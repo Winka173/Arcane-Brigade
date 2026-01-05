@@ -4,6 +4,7 @@ namespace ArcaneBrigade
     {
         public static string Describe(WeaponDefinition weapon, int tier, bool reflectiveInk = false)
         {
+            if (weapon.Family != ExpandedWeapon.None) return ExpandedDescription.Describe(weapon, tier);
             if (weapon.Signature == SignatureWeapon.None) return "";
             string details = weapon.Signature == SignatureWeapon.Stamp
                 ? "Một mục tiêu: " + weapon.SignatureBeats + " dấu cùng nguồn → burst " + (weapon.SignatureScale * 100).ToString("0") + "% damage. Mỗi hit " + (reflectiveInk ? 2 : 1) + " dấu; hết sau " + UnityEngine.Mathf.Max(0.1f, weapon.MarkLifetime * (reflectiveInk ? 0.65f : 1)).ToString("0.##") + "s không đánh."

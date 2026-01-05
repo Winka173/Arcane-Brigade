@@ -1,0 +1,34 @@
+{
+  "created": "2026-10-14",
+  "mode": "painting pass",
+  "renderTarget": "Unity Windows D3D11, 3840x2160 supersampled screenshots; no claim of native-4K PNG sources",
+  "reference": "Own-project Characters_v2.png and Weapons_v2.png; original concepts, no extracted game assets",
+  "assets": [
+    {
+      "file": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v1.png",
+      "nativeSize": "1536x1024",
+      "role": "Initial nine-cell weapon atlas, retained source iteration; bow crossed row gutter"
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+      "nativeSize": "1536x1024",
+      "role": "Selected runtime weapon atlas; corrected complete bow cell",
+      "prompt": "Edit this original 3x3 weapons atlas. ONLY change the bottom-right Zipper Bow: uniformly scale that complete bow down to about 70% of its current size and place it comfortably in the CENTER of the bottom-right third cell, with its top BELOW y=700 and its bottom ABOVE y=1000 in this 1536x1024 canvas. Its entire silhouette including both tips must fit the bottom row, with clear transparent gutter above separating it from the Alarm Mortar in middle-right. Keep all other eight weapon shapes, colors and positions exactly unchanged. Preserve nine distinct cells and existing transparent alpha, removing any colored matte/background entirely. No extra elements or glow."
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedEnemies_v1.png",
+      "nativeSize": "1334x1179",
+      "role": "Four original body silhouettes; no arms or weapon baked into body",
+      "prompt": "Create a transparent 2x2 sprite atlas of FOUR original armless cute arcade enemy bodies matching provided reference colors and bold simple shapes. Top left teal door-helmet blob with golden peephole and tiny boots; top right plum blob with coral horseshoe magnet crown and cream tips; bottom left coral wax pillow mimic with sleepy eyes and mint patch cap; bottom right violet theater curtain ghost with cream hood and coral tassel. Separate full bodies with big transparent gutters, no hands weapons shadows captions. Distinct readable silhouettes, high quality crisp cel painting."
+    },
+    {
+      "file": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png",
+      "nativeSize": "1448x1086",
+      "role": "Six props plus six relic icons",
+      "prompt": "Create one high quality original game sprite atlas, THREE columns by FOUR rows, exactly 12 clearly separated objects with large true transparent gutters, transparent background, no labels text shadows or glow. Bold clean rounded cream/coral/plum/teal/gold cel-painted shapes matching the supplied original reference. Objects in row order: Row1 brass stage bell on mint plinth; mint wooden wheeled toy trolley; squat plum ink bottle with mint splashed rim. Row2 gold hanging rubber hammer on short cream stand; mint ornate sleep mirror on gold feet with dark violet glass; coral wind-up floor music box on gold feet. Row3 cream tea coaster with teal rim and simple coral steam emblem; plum scratched vinyl record with gold center; treasure gold bow ribbon with coral gem. Row4 thick gold patch spring with mint cloth band; plum thermal ink bottle with coral thermometer emblem no text; cream repair ticket with teal gear symbol and coral corners no text. Large silhouettes, minimal tiny detail, rich vibrant colors, crisp professional 2D arcade prop and inventory sprites. Every object comfortably wholly inside equal cell. No limbs or faces."
+    }
+  ],
+  "import": "Lossless RGBA, NPOT unchanged, bilinear, no mipmap, CPU readability disabled after alpha-aware custom slices; per-path sprite GUIDs reused on reapply.",
+  "review": "Alpha at sampled gutters/corners verified zero; v2 bow corrected before acceptance. Atlas RGB matte is hidden by genuine alpha and is not a runtime background.",
+  "limitations": "No natural playtest, mobile capture, native-4K texture requirement, music audition, video motion acceptance or production performance claim."
+}

@@ -28,7 +28,13 @@ namespace ArcaneBrigade
         public bool IsBoss;
         public int BossPattern;
         public int CombatTier = 1;
+        public EnemyBehavior Behavior;
+        public BodyMaterial Material;
+        public BossMotif Motif;
     }
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }
+    public enum EnemyBehavior { Standard, Door, Magnet, Mimic, Curtain }
+    public enum BodyMaterial { Paper, Metal, Wax, Fabric, Glass, Wood }
+    public enum BossMotif { Stage, Office, Toys }
 }

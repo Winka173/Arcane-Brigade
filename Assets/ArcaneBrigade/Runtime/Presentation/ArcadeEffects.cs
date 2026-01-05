@@ -58,7 +58,24 @@ namespace ArcaneBrigade
             }
             else if (value.Kind == CombatEventKind.Fire && weapon != null)
             {
-                if (weapon.Kind == WeaponKind.Melee)
+                if (weapon.Family == ExpandedWeapon.Camera)
+                {
+                    Spawn(Shape.Glyph, value.Position + value.Direction * 0.8f, angle, 0.55f, 0.18f, new Color(0.5f, 1, 0.86f));
+                    Spawn(Shape.Star, value.Position + value.Direction * 0.6f, angle, 0.25f, 0.08f, Color.white);
+                }
+                else if (weapon.Family == ExpandedWeapon.Scissors)
+                {
+                    Spawn(Shape.Slash, value.Position, angle - 18, weapon.Range, 0.22f, new Color(0.3f, 0.95f, 0.85f));
+                    Spawn(Shape.Slash, value.Position, angle + 18, weapon.Range * 0.9f, 0.28f, new Color(1, 0.92f, 0.74f));
+                }
+                else if (weapon.Family == ExpandedWeapon.Iron)
+                    Spawn(Shape.Puff, value.Position + value.Direction, angle, 0.4f, 0.32f, new Color(1, 0.65f, 0.3f, 0.6f));
+                else if (weapon.Family == ExpandedWeapon.Hammer)
+                {
+                    Spawn(Shape.Star, value.Position + value.Direction * 1.1f, angle, 0.48f, 0.2f, new Color(1, 0.68f, 0.25f));
+                    Spawn(Shape.Ring, value.Position + value.Direction * 1.1f, angle, 0.8f, 0.25f, new Color(1, 0.9f, 0.65f));
+                }
+                else if (weapon.Kind == WeaponKind.Melee)
                 {
                     float radius = Mathf.Min(weapon.Range, 2.5f);
                     if (weapon.Signature == SignatureWeapon.Stamp)

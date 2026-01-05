@@ -39,10 +39,13 @@ namespace ArcaneBrigade
         public float SignatureDelay = 0.18f;
         public float MarkLifetime = 2.4f;
         public float PushDistance = 0.35f;
+        public ExpandedWeapon Family;
     }
+
+    public enum ExpandedWeapon { None, Tea, TetherBow, Scissors, Camera, Fish, Iron, Hammer, Alarm, MusicBox }
 
     public enum SignatureWeapon { None, Umbrella, Bell, Stamp }
 
     public enum DamageElement { Physical, Ember, Frost, Arcane }
-    public enum WeaponMotion { Slash, Thrust, Slam, Recoil, Bell, Bow, Cast, Stamp }
+    public enum WeaponMotion { Slash, Thrust, Slam, Recoil, Bell, Bow, Cast, Stamp, Scissors, Camera, Iron, Hammer, Music }
 }

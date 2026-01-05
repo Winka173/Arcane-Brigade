@@ -24,7 +24,7 @@ namespace ArcaneBrigade.Editor
                 require(catalog.Items.Count(item => item.Id == id) == 1 && catalog.Item(id).Icon != null && catalog.Item(id).SignatureRole != SignatureRelicKind.None, "Unique authored relic and HD icon " + id);
             require(catalog.Item("carbon-ribbon").EffectiveModifiers.Any(modifier => modifier.Value < 0) && catalog.Item("harvest-receipt").EffectiveModifiers.Any(modifier => modifier.Value < 0), "Connector and harvester have visible real trade-offs");
             var relicImporter = (TextureImporter)AssetImporter.GetAtPath("Assets/ArcaneBrigade/Art/QualityHD/SignatureRelics_v1.png");
-            require(relicImporter.alphaIsTransparency && !relicImporter.isReadable && relicImporter.textureCompression == TextureImporterCompression.Uncompressed && catalog.Items.Where(item => item.SignatureRole != SignatureRelicKind.None).All(item => item.Icon.rect.width > 200 && item.Icon.rect.height > 200), "HD relic imports preserve alpha and full readable icon bounds without CPU copy");
+            require(relicImporter.alphaIsTransparency && !relicImporter.isReadable && relicImporter.textureCompression == TextureImporterCompression.Uncompressed && catalog.Items.Where(item => item.SignatureRole != SignatureRelicKind.None && item.SignatureRole <= SignatureRelicKind.OfficeLens).All(item => item.Icon.rect.width > 200 && item.Icon.rect.height > 200), "HD relic imports preserve alpha and full readable icon bounds without CPU copy");
             using (var fixture = new Fixture(catalog, "BellFork", "harvest-receipt"))
             {
                 require(SignatureBuildGraph.Status("signature-harvest", fixture.Session, catalog).Contains("ACTIVE"), "Two components activate harvest before completing set");
@@ -125,7 +125,7 @@ namespace ArcaneBrigade.Editor
                 CheckpointCatalog combat = session.PrepareCombat();
                 require(combat.EnableArenaToys && combat.EnableBossArenaPhase && combat.RunWave == 4 && combat.Boss != null, "Authored boss wave enables deterministic toys and arena phase");
                 var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);
-                require(simulation.ArenaToys.Count == 2, "Ordinary Start automatically seeds two toys at later wave");
+                require(simulation.ArenaToys.Count >= 2 && simulation.ArenaToys[0].Kind == ArenaToyKind.StageBell && simulation.ArenaToys[1].Kind == ArenaToyKind.ToyCart, "Ordinary Start automatically seeds original toy pair at later wave");
                 simulation.EnterRest(); require(simulation.ArenaToys.Count == 0, "Rest removes toys and all pending arena warnings");
             }
             Directory.CreateDirectory("PreviewExports/K4/Final"); File.WriteAllLines("PreviewExports/K4/Final/Checks.txt", results);

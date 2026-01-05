@@ -1,0 +1,41 @@
+PASS Twelve weapon squad plus six seeded props in actual Windows scene
+PASS 4K Unity render 01-expanded-combat
+PASS Native capture 01-expanded-combat
+PASS 4K Unity render 02-family-payoffs
+PASS Native capture 02-family-payoffs
+PASS Family fields and measured combat damage execute natively
+PASS 4K Unity render 03-prop-0-StageBell
+PASS Native capture 03-prop-0-StageBell
+PASS 4K Unity render 03-prop-1-ToyCart
+PASS Native capture 03-prop-1-ToyCart
+PASS 4K Unity render 03-prop-2-InkBottle
+PASS Native capture 03-prop-2-InkBottle
+PASS 4K Unity render 03-prop-3-HangingHammer
+PASS Native capture 03-prop-3-HangingHammer
+PASS 4K Unity render 03-prop-4-SleepMirror
+PASS Native capture 03-prop-4-SleepMirror
+PASS 4K Unity render 03-prop-5-FloorMusicBox
+PASS Native capture 03-prop-5-FloorMusicBox
+PASS Six distinct props charge and resolve in player runtime
+PASS 4K Unity render 04-boss-Stage
+PASS Native capture 04-boss-Stage
+PASS Stage real warned phase appears
+PASS Stage player survives base-health phase
+PASS 4K Unity render 04-boss-Office
+PASS Native capture 04-boss-Office
+PASS Office real warned phase appears
+PASS Office player survives base-health phase
+PASS 4K Unity render 04-boss-Toys
+PASS Native capture 04-boss-Toys
+PASS Toys real warned phase appears
+PASS Toys player survives base-health phase
+PASS 4K Unity render 05-sandbox-CloudScissors
+PASS Native capture 05-sandbox-CloudScissors
+PASS 4K Unity render 05-sandbox-SleepCamera
+PASS Native capture 05-sandbox-SleepCamera
+PASS 4K Unity render 05-sandbox-MusicBox
+PASS Native capture 05-sandbox-MusicBox
+PASS 4K Unity render 05-sandbox-CrescentBow
+PASS Native capture 05-sandbox-CrescentBow
+PASS Sandbox leaves supplied profile untouched
+Fixture seed5505: hall10 seeded 12-family roster, relics and chest; ambient spawns disabled, four original enemy types retain movement behavior but contact/ordinary attacks frozen and HP1500 for presentation. For prop screenshots the Champion is relocated and valid primary root charges are injected through NotifyArenaToyHit; actual seeded layout, charge deduplication, warning and activation resolve in runtime. Hall12 empty squad snapshots each actual boss phase; HP set49%, ordinary boss bullets frozen. Sandbox uses a read-only fixture discovery list. Profile/save root isolated. Screens render live Unity1080p with 2x supersampling to3840x2160; raster sources are not native4K. This is functional Windows evidence, not natural playtest/mobile acceptance.

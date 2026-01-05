@@ -136,6 +136,8 @@ namespace ArcaneBrigade
                     if (!target.Alive || target.Faction != Faction.Enemy || delta.sqrMagnitude > pulse.Radius * pulse.Radius) continue;
                     if (weapon.Signature == SignatureWeapon.Umbrella && Vector2.Dot(delta.normalized, pulse.Direction) < 0) continue;
                     ApplyDamage(target, pulse.Damage, pulse.Source.Faction, weapon.Id + " payoff", pulse.Direction, weapon, cause: pulse.Cause);
+                    if (target.Alive && weapon.Signature == SignatureWeapon.Bell && target.VisibleMarks > 0 && catalog.ChorusStacks > 0 && pulse.Cause.ItemId == "bell-wave")
+                        ApplyDamage(target, pulse.Damage * Mathf.Min(0.5f, catalog.ChorusStacks * 0.25f), pulse.Source.Faction, "Chorus marked target", cause: pulse.Cause.Child("scratch-record"));
                     if (target.Alive && weapon.Signature == SignatureWeapon.Bell && catalog.CarbonRibbon)
                     {
                         target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.5f);

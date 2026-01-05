@@ -1,0 +1,97 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    public sealed class ExpandedVisual : MonoBehaviour
+    {
+        private readonly List<LineRenderer> lines = new List<LineRenderer>();
+        private Material material;
+        private Mesh disc;
+        private readonly List<MeshRenderer> fills = new List<MeshRenderer>();
+        private readonly MaterialPropertyBlock tint = new MaterialPropertyBlock();
+        public bool ReducedMotion;
+        public int VisibleCount { get; private set; }
+        public void Display(CombatSimulation simulation)
+        {
+            VisibleCount = 0;
+            if (simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused))
+                for (int priority = 0; priority < 2; priority++)
+                foreach (ExpandedField field in simulation.ExpandedFields)
+                {
+                    bool hazard = field.Kind == ExpandedFieldKind.Curtain || field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard;
+                    if (hazard != (priority == 0)) continue;
+                    if (VisibleCount >= 96) break;
+                    int slot = VisibleCount++;
+                    LineRenderer line = Acquire(slot);
+                    bool warning = simulation.Elapsed < field.At;
+                    float progress = Mathf.Clamp01((simulation.Elapsed - field.At) / Mathf.Max(0.05f, field.Until - field.At));
+                    Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
+                    color.a = warning ? 0.65f + (ReducedMotion ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
+                    line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;
+                    if (field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
+                    {
+                        line.loop = false; line.positionCount = 12;
+                        for (int point = 0; point < 12; point++)
+                        {
+                            float fraction = point / 11f;
+                            Vector2 normal = new Vector2(-(field.Position - field.Start).y, (field.Position - field.Start).x).normalized;
+                            line.SetPosition(point, Vector2.Lerp(field.Start, field.Position, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 8f) * 0.055f * (1 - progress));
+                        }
+                    }
+                    else if (field.Kind == ExpandedFieldKind.Iron)
+                    {
+                        Vector2 normal = new Vector2(-field.Direction.y, field.Direction.x) * field.Radius;
+                        line.positionCount = 4;
+                        line.SetPosition(0, field.Position - field.Direction + normal); line.SetPosition(1, field.Position + field.Direction + normal);
+                        line.SetPosition(2, field.Position + field.Direction - normal); line.SetPosition(3, field.Position - field.Direction - normal);
+                    }
+                    else
+                    {
+                        line.positionCount = 64;
+                        float radius = field.Radius * (warning || field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Ink ? 1 : Mathf.Lerp(0.75f, 1.08f, progress));
+                        for (int point = 0; point < 64; point++)
+                        {
+                            float angle = point * Mathf.PI * 2 / 64;
+                            if (field.Kind == ExpandedFieldKind.Strike) angle = Mathf.Atan2(field.Direction.y, field.Direction.x) - 0.65f + point / 63f * 1.3f;
+                            line.SetPosition(point, field.Position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius);
+                        }
+                        if (field.Kind == ExpandedFieldKind.Strike) line.loop = false;
+                    }
+                    line.enabled = true;
+                    MeshRenderer fill = fills[slot];
+                    fill.enabled = field.Radius > 0 && field.Kind != ExpandedFieldKind.Strike && field.Kind != ExpandedFieldKind.Iron && field.Kind != ExpandedFieldKind.Link;
+                    if (fill.enabled)
+                    {
+                        fill.transform.position = field.Position; fill.transform.localScale = Vector3.one * field.Radius;
+                        Color wash = color; wash.a *= hazard ? 0.14f : 0.1f;
+                        tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
+                    }
+                }
+            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; }
+        }
+        private LineRenderer Acquire(int index)
+        {
+            if (index < lines.Count) return lines[index];
+            if (material == null) material = new Material(Shader.Find("Sprites/Default"));
+            var child = new GameObject("ExpandedFieldCue"); child.transform.SetParent(transform, false);
+            LineRenderer line = child.AddComponent<LineRenderer>(); line.sharedMaterial = material; line.useWorldSpace = true;
+            line.sortingOrder = 65; line.numCapVertices = 5; line.numCornerVertices = 5; lines.Add(line);
+            if (disc == null)
+            {
+                var vertices = new Vector3[65]; var colors = new Color[65]; var triangles = new int[192]; colors[0] = Color.white;
+                for (int point = 0; point < 64; point++)
+                {
+                    float angle = point * Mathf.PI * 2 / 64;
+                    vertices[point + 1] = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0); colors[point + 1] = new Color(1, 1, 1, 0.4f);
+                    triangles[point * 3] = 0; triangles[point * 3 + 1] = point + 1; triangles[point * 3 + 2] = (point + 1) % 64 + 1;
+                }
+                disc = new Mesh { name = "ExpandedSoftField", vertices = vertices, colors = colors, triangles = triangles }; disc.RecalculateBounds();
+            }
+            var wash = new GameObject("SoftFieldWash"); wash.transform.SetParent(transform, false);
+            wash.AddComponent<MeshFilter>().sharedMesh = disc; MeshRenderer renderer = wash.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = material; renderer.sortingOrder = 61; fills.Add(renderer); return line;
+        }
+        private void OnDestroy() { if (material != null) Destroy(material); if (disc != null) Destroy(disc); }
+    }
+}

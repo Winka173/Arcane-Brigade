@@ -47,6 +47,7 @@ namespace ArcaneBrigade
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
         private ArenaToyVisual arenaToyVisual;
+        private ExpandedVisual expandedVisual;
         private float transitionRemaining;
         private float resultRevealRemaining;
         private float terminalVisualAge;
@@ -91,6 +92,7 @@ namespace ArcaneBrigade
             deathFeedback.Configure(catalog.ImpactSprite);
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
+            if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
             CreateRadiusGuide();
@@ -371,6 +373,7 @@ namespace ArcaneBrigade
         private void Render(float interpolation)
         {
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
+            if (expandedVisual != null) { expandedVisual.ReducedMotion = profile != null && profile.ReducedMotion; expandedVisual.Display(simulation); }
             liveIds.Clear();
             for (int index = 0; index < simulation.Units.Count; index++)
             {

@@ -64,6 +64,7 @@ namespace ArcaneBrigade
 
         public static AudioClip Cue(int kind)
         {
+            if (kind >= 10) return ExpandedCue(kind);
             if (kind >= 7) return SignatureCue(kind);
             float length = kind == 6 ? 0.5f : kind == 4 || kind == 5 ? 0.25f : 0.14f;
             var samples = new float[Mathf.CeilToInt(SampleRate * length)];
@@ -82,6 +83,30 @@ namespace ArcaneBrigade
             AudioClip clip = AudioClip.Create("ArcadeCue" + kind, samples.Length, 1, SampleRate, false);
             clip.SetData(samples, 0);
             return clip;
+        }
+
+        private static AudioClip ExpandedCue(int kind)
+        {
+            ExpandedWeapon family = (ExpandedWeapon)(kind - 9);
+            float duration = family == ExpandedWeapon.MusicBox ? 0.3f : family == ExpandedWeapon.Alarm ? 0.24f : 0.16f;
+            var samples = new float[Mathf.CeilToInt(SampleRate * duration)];
+            uint random = unchecked((uint)kind * 177u + 431u);
+            for (int index = 0; index < samples.Length; index++)
+            {
+                float time = index / (float)SampleRate;
+                random ^= random << 13; random ^= random >> 17; random ^= random << 5;
+                float noise = (random & 65535) / 32767.5f - 1;
+                float frequency = family == ExpandedWeapon.Tea ? 720 + time * 1800 : family == ExpandedWeapon.TetherBow ? 950 : family == ExpandedWeapon.Hammer ? 130 : family == ExpandedWeapon.Alarm ? 280 : family == ExpandedWeapon.Fish ? 410 : 600;
+                float phase = time * frequency * Mathf.PI * 2;
+                float tone = Mathf.Sin(phase);
+                if (family == ExpandedWeapon.MusicBox) tone = Mathf.Sin(time * 659 * Mathf.PI * 2) + 0.3f * Mathf.Sin(time * 988 * Mathf.PI * 2);
+                if (family == ExpandedWeapon.Scissors || family == ExpandedWeapon.Camera) tone = noise * 0.75f + tone * 0.2f;
+                if (family == ExpandedWeapon.Iron) tone = noise * 0.45f + tone * 0.3f;
+                float attack = Mathf.Min(1, time / 0.003f);
+                samples[index] = tone * attack * Mathf.Exp(-time * (family == ExpandedWeapon.MusicBox ? 12 : 25)) * 0.35f;
+            }
+            AudioClip clip = AudioClip.Create("ExpandedCue-" + family, samples.Length, 1, SampleRate, false);
+            clip.SetData(samples, 0); return clip;
         }
 
         private static AudioClip SignatureCue(int kind)

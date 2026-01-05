@@ -221,6 +221,19 @@ namespace ArcaneBrigade
             CombatCatalog.EnableArenaToys = catalog.SignatureRevision > 0;
             CombatCatalog.RunWave = State.Wave;
             CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
+            CombatCatalog.ExpandedContent = catalog.ExpansionRevision > 0;
+            if (CombatCatalog.ExpandedContent)
+            {
+                var pool = new List<UnitDefinition>();
+                foreach (UnitDefinition enemy in catalog.Enemies)
+                    if (enemy.UnlockWave <= State.Wave)
+                    {
+                        UnitDefinition candidate = BuildEnemy(enemy, scaling); pool.Add(candidate);
+                        bool emphasis = State.Wave < 7 ? enemy.Behavior == EnemyBehavior.Standard && enemy.Weapon.Kind == WeaponKind.Contact : State.Wave < 14 ? enemy.Behavior == EnemyBehavior.Door || enemy.Behavior == EnemyBehavior.Magnet : enemy.Behavior != EnemyBehavior.Standard;
+                        if (emphasis) pool.Add(candidate);
+                    }
+                CombatCatalog.EnemyPool = pool.ToArray();
+            }
             foreach (ItemStack stack in State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id); int count = item.EffectiveStacks(stack.Count);
@@ -228,6 +241,12 @@ namespace ArcaneBrigade
                 if (item.SignatureRole == SignatureRelicKind.ReflectiveInk) CombatCatalog.ReflectiveInkStacks += count;
                 if (item.SignatureRole == SignatureRelicKind.CarbonRibbon && count > 0) CombatCatalog.CarbonRibbon = true;
                 if (item.SignatureRole == SignatureRelicKind.OfficeLens) CombatCatalog.OfficeLensStacks += count;
+                if (item.SignatureRole == SignatureRelicKind.TeaCoaster) CombatCatalog.TeaCoasterStacks += count;
+                if (item.SignatureRole == SignatureRelicKind.ScratchRecord) CombatCatalog.ChorusStacks += count;
+                if (item.SignatureRole == SignatureRelicKind.TreasureRibbon) CombatCatalog.TreasureStacks += count;
+                if (item.SignatureRole == SignatureRelicKind.PatchSpring && count > 0) CombatCatalog.PatchSpring = true;
+                if (item.SignatureRole == SignatureRelicKind.ThermalInk && count > 0) CombatCatalog.ThermalInk = true;
+                if (item.SignatureRole == SignatureRelicKind.RepairCoupon) CombatCatalog.RepairStacks += count;
             }
             WaveModifier active = ActiveModifier;
             if (active != null)

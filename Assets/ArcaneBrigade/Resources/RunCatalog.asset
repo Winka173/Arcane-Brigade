@@ -40,6 +40,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 08e2089b2e3d68c49afeacf4c35bc5c2, type: 2}
   - {fileID: 11400000, guid: 0587a16ddceed524da237dfc27090cdb, type: 2}
   - {fileID: 11400000, guid: 06a98b0579cc2274b9d8bb2f564bf5d4, type: 2}
+  - {fileID: 11400000, guid: a5508bca62b546542b597d78e07456e6, type: 2}
+  - {fileID: 11400000, guid: 35b4739acae34234a83b0303ee946b93, type: 2}
+  - {fileID: 11400000, guid: d411606b4a657564a930c047d710eb23, type: 2}
+  - {fileID: 11400000, guid: 107614f15eee5e04e8c3b2907c89bb87, type: 2}
+  - {fileID: 11400000, guid: 9be6ddddde7387a4cb360bbeeec75e78, type: 2}
+  - {fileID: 11400000, guid: bcabc075bfdc0ff449271494e19dea5e, type: 2}
+  - {fileID: 11400000, guid: c111c8775c40a7543990846407155683, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}
@@ -47,6 +54,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b8f0407ce62277479be0201dc0a1c2d, type: 2}
   - {fileID: 11400000, guid: c7ed93321c56b1a429f9cb0f8a022a41, type: 2}
   - {fileID: 11400000, guid: 72e9e38521dd5ec4eb91b88e5976d49a, type: 2}
+  - {fileID: 11400000, guid: cf764315ebb962f43ae6ca144ea30ad3, type: 2}
+  - {fileID: 11400000, guid: 73ccf3fce90ee8d44a97a20bb549ff0f, type: 2}
+  - {fileID: 11400000, guid: 93f0be145dd0ce54e9f3193504751b16, type: 2}
+  - {fileID: 11400000, guid: c9536099e4e0b5a4ea77f7ab5ebdb359, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}
@@ -647,6 +658,133 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 4
+  - Id: tea-coaster
+    Name: Tea Coaster
+    Description: Tea radius +40%; field damage -20%. Burn lets Hammer's third hit
+      release steam. No set required.
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1786902115, guid: 047d018c633860743877d383df2f3edd, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 3
+      Scope: 0
+      Value: -0.02
+    Rarity: 1
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 5
+  - Id: scratch-record
+    Name: Scratch Record
+    Description: Every third Music Box note echoes once after 0.3s (35%/70% damage).
+      Bell primary wave deals 25%/50% extra to live marked targets; echo never recurses.
+      Attack speed -4% per stack.
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1156904932, guid: 047d018c633860743877d383df2f3edd, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: -0.04
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 2
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 6
+  - Id: treasure-ribbon
+    Name: Treasure Ribbon
+    Description: Chest heals 3 per stack and buffs bow damage 15% per stack for 4s,
+      max 45%. Damage outside chests -3% per stack.
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 498074566, guid: 047d018c633860743877d383df2f3edd, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: -0.03
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 7
+  - Id: patch-spring
+    Name: Patch Spring
+    Description: One automatic prop charge every 3s; no secondary charge recursion.
+      Companion attack speed -6%.
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1045349834, guid: 047d018c633860743877d383df2f3edd, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 14
+      Scope: 2
+      Value: -0.06
+    Rarity: 1
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 8
+  - Id: thermal-ink
+    Name: Thermal Ink
+    Description: Tea/Iron heat on marked enemies adds 40% field damage, target cooldown
+      0.9s. Crit -3%. Does not add marks.
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -610519763, guid: 047d018c633860743877d383df2f3edd, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 8
+      Scope: 0
+      Value: -0.03
+    Rarity: 1
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 9
+  - Id: repair-coupon
+    Name: Repair Coupon
+    Description: Prop kill heals 1/2/3, shared 0.6s cooldown. Pickup radius -0.1
+      per stack. No coin/proc loop.
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 283339621, guid: 047d018c633860743877d383df2f3edd, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 4
+      Scope: 3
+      Value: -0.1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 3
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 10
   Bonds:
   - Id: hearth
     Name: Hearth
@@ -754,12 +892,48 @@ MonoBehaviour:
     - reflective-ink
     - office-lens
     - carbon-ribbon
+  - Id: signature-tea
+    Name: "TR\xC0 \xC1C M\u1ED8NG"
+    Description: Tea + Hammer works via burning targets and third-hit steam; Coaster
+      widens weaker tea; Thermal links marks to heat with cooldown.
+    ItemIds:
+    - tea-coaster
+    - thermal-ink
+  - Id: signature-chorus
+    Name: "D\xC0N H\u1EE2P X\u01AF\u1EDANG"
+    Description: Music Box + Record echoes every third note. Music extends live marks;
+      Carbon bell exposes targets. Each echo ends, never echoes itself.
+    ItemIds:
+    - scratch-record
+    - carbon-ribbon
+  - Id: signature-treasure
+    Name: "\u0110O\xC0N KHO B\xC1U"
+    Description: Bow + Ribbon gains a short chest window, healing without a set.
+      Receipt connects separate coin pickups to bell cadence.
+    ItemIds:
+    - treasure-ribbon
+    - harvest-receipt
+  - Id: signature-toys
+    Name: "X\u01AF\u1EDENG \u0110\u1ED2 CH\u01A0I"
+    Description: Spring + arena props charges automatically; Coupon turns prop kills
+      into capped healing. Swept cart cannot hit twice.
+    ItemIds:
+    - patch-spring
+    - repair-coupon
   EconomyRevision: 1
   AltarRevision: 1
   AltarBaseChance: 0.1
   AltarChancePerEgg: 0.05
   LootRevision: 1
   SignatureRevision: 1
+  ExpansionRevision: 1
+  ArenaPropSprites:
+  - {fileID: 1517528812, guid: 047d018c633860743877d383df2f3edd, type: 3}
+  - {fileID: -655209866, guid: 047d018c633860743877d383df2f3edd, type: 3}
+  - {fileID: -1659872146, guid: 047d018c633860743877d383df2f3edd, type: 3}
+  - {fileID: 461227555, guid: 047d018c633860743877d383df2f3edd, type: 3}
+  - {fileID: -716760705, guid: 047d018c633860743877d383df2f3edd, type: 3}
+  - {fileID: -202293158, guid: 047d018c633860743877d383df2f3edd, type: 3}
   ProcRules:
   - Id: proc-coin-salve
     ItemId: coin-salve

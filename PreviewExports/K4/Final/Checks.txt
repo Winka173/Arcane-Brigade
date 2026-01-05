@@ -32,5 +32,5 @@ PASS Contribution rows persist in schema2 without RNG reroll
 PASS Older schema2 without ledger migrates read-only safely
 PASS Invalid contribution floats cannot enter save
 PASS Authored boss wave enables deterministic toys and arena phase
-PASS Ordinary Start automatically seeds two toys at later wave
+PASS Ordinary Start automatically seeds original toy pair at later wave
 PASS Rest removes toys and all pending arena warnings

@@ -155,7 +155,7 @@ namespace ArcaneBrigade.Editor
                 require(source.Contains(api), "Shared pipeline/lifecycle wiring: " + api);
             foreach (string forbidden in new[] { "Run" + "Session", "Run" + "Storage", "SaveProfile(", "RunLaunch.", "Random.InitState", "SeenWeapons.Add", "SeenUnits.Add" })
                 require(!source.Contains(forbidden), "No persistent/global dependency: " + forbidden);
-            foreach (string api in new[] { "ReducedMotion = readOnlyProfile.ReducedMotion", "view.ReducedMotion = ReducedMotion", "GetPreviewDescriptor(Application.isMobilePlatform)", "previewCamera.aspect = 2f", "RenderTextureFormat.ARGB32", "new Rect(65, 300, 760, 380)" })
+            foreach (string api in new[] { "ReducedMotion = readOnlyProfile.ReducedMotion", "view.ReducedMotion = ReducedMotion", "GetPreviewDescriptor(Application.isMobilePlatform)", "previewCamera.aspect = 2f", "RenderTextureFormat.ARGB32", "new Rect(65, 300, 760, 300)" })
                 require(source.Contains(api), "Reduced-motion/capture wiring: " + api);
         }
 

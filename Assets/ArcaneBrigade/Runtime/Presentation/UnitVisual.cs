@@ -31,6 +31,9 @@ namespace ArcaneBrigade
             if (definition.Signature == SignatureWeapon.Stamp) return new Vector2(1 + step * 0.12f, 1 + step * 0.28f);
             if (definition.Signature == SignatureWeapon.Umbrella) return new Vector2(1 + step * 0.24f, 1 + step * 0.08f);
             if (definition.Motion == WeaponMotion.Bow) return new Vector2(1 + step * 0.08f, 1 + step * 0.24f);
+            if (definition.Family == ExpandedWeapon.Scissors) return new Vector2(1 + step * 0.22f, 1 + step * 0.08f);
+            if (definition.Family == ExpandedWeapon.Camera || definition.Family == ExpandedWeapon.MusicBox) return new Vector2(1 + step * 0.08f, 1 + step * 0.2f);
+            if (definition.Family == ExpandedWeapon.Iron || definition.Family == ExpandedWeapon.Hammer) return new Vector2(1 + step * 0.2f, 1 + step * 0.18f);
             return new Vector2(1 + step * 0.16f, 1 + step * 0.12f);
         }
 
@@ -158,7 +161,8 @@ namespace ArcaneBrigade
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             WeaponDefinition definition = state.Definition.Weapon;
             float age = simulationTime - state.AttackStarted;
-            bool attacking = age >= 0f && age < definition.Windup + definition.Recovery;
+            float poseWindup = state.AttackWindup > 0 ? state.AttackWindup : definition.Windup;
+            bool attacking = age >= 0f && age < poseWindup + definition.Recovery;
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
             Vector2 facing = attacking ? state.AttackDirection : state.Facing;
             if (facing.sqrMagnitude < 0.01f) facing = Vector2.right;
@@ -176,11 +180,11 @@ namespace ArcaneBrigade
             float impactSquash = 0f;
             if (attacking)
             {
-                float anticipation = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(age / Mathf.Max(0.001f, definition.Windup)));
-                float followThrough = 1f - Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((age - definition.Windup) / Mathf.Max(0.001f, definition.Recovery)));
+                float anticipation = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)));
+                float followThrough = 1f - Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery)));
                 float strike = Mathf.SmoothStep(0, 1, Mathf.Clamp01((anticipation - 0.65f) / 0.35f));
-                attackLean = definition.BodyAttackTilt * (age < definition.Windup ? Mathf.Lerp(-anticipation * 0.4f, 1, strike) : followThrough);
-                if (definition.Kind == WeaponKind.Melee && age >= definition.Windup) impactSquash = 0.08f * followThrough;
+                attackLean = definition.BodyAttackTilt * (age < poseWindup ? Mathf.Lerp(-anticipation * 0.4f, 1, strike) : followThrough);
+                if (definition.Kind == WeaponKind.Melee && age >= poseWindup) impactSquash = 0.08f * followThrough;
             }
             float scale = state.Definition.BodyHeight / body.sprite.bounds.size.y;
             float hitAge = simulationTime - state.LastHit;
@@ -226,34 +230,34 @@ namespace ArcaneBrigade
             {
                 if (definition.Kind == WeaponKind.Melee)
                 {
-                    float windup = Mathf.Clamp01(age / Mathf.Max(0.001f, definition.Windup));
-                    float recovery = Mathf.Clamp01((age - definition.Windup) / Mathf.Max(0.001f, definition.Recovery));
+                    float windup = Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup));
+                    float recovery = Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery));
                     float strike = Mathf.SmoothStep(0, 1, Mathf.Clamp01((windup - 0.7f) / 0.3f));
                     if (definition.Motion == WeaponMotion.Thrust)
-                        recoil = age < definition.Windup ? Mathf.Lerp(0.12f * windup, -0.28f, strike) : -0.28f * (1f - Mathf.SmoothStep(0, 1, recovery));
+                        recoil = age < poseWindup ? Mathf.Lerp(0.12f * windup, -0.28f, strike) : -0.28f * (1f - Mathf.SmoothStep(0, 1, recovery));
                     else
-                        angleOffset = age < definition.Windup ? Mathf.Lerp(-definition.SwingAngle * Mathf.SmoothStep(0, 1, windup), definition.SwingAngle, strike) : definition.SwingAngle * (1f - Mathf.SmoothStep(0, 1, recovery));
-                    if (definition.Motion == WeaponMotion.Slam) recoil = age < definition.Windup ? -0.12f * strike : -0.12f * (1f - recovery);
+                        angleOffset = age < poseWindup ? Mathf.Lerp(-definition.SwingAngle * Mathf.SmoothStep(0, 1, windup), definition.SwingAngle, strike) : definition.SwingAngle * (1f - Mathf.SmoothStep(0, 1, recovery));
+                    if (definition.Motion == WeaponMotion.Slam) recoil = age < poseWindup ? -0.12f * strike : -0.12f * (1f - recovery);
                     if (definition.Motion == WeaponMotion.Stamp)
                     {
                         angleOffset = 0;
-                        recoil = age < definition.Windup ? Mathf.Lerp(0.12f * windup, -0.32f, strike) : -0.32f * (1 - Mathf.SmoothStep(0, 1, recovery));
+                        recoil = age < poseWindup ? Mathf.Lerp(0.12f * windup, -0.32f, strike) : -0.32f * (1 - Mathf.SmoothStep(0, 1, recovery));
                     }
                 }
-                else if (age >= definition.Windup)
+                else if (age >= poseWindup)
                 {
-                    recoil = definition.RecoilDistance * (1f - Mathf.Clamp01((age - definition.Windup) / Mathf.Max(0.001f, definition.Recovery)));
-                    if (definition.Motion == WeaponMotion.Bell) angleOffset = Mathf.Sin((age - definition.Windup) * 45f) * 12f;
+                    recoil = definition.RecoilDistance * (1f - Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery)));
+                    if (definition.Motion == WeaponMotion.Bell) angleOffset = Mathf.Sin((age - poseWindup) * 45f) * 12f;
                 }
                 else if (definition.Motion == WeaponMotion.Cast)
                 {
-                    float windup = Mathf.Clamp01(age / Mathf.Max(0.001f, definition.Windup));
+                    float windup = Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup));
                     angleOffset = -22f * windup * (1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((windup - 0.7f) / 0.3f)));
                 }
             }
             if (bowString != null && definition.Motion == WeaponMotion.Bow)
             {
-                float pull = attacking && age < definition.Windup ? Mathf.Clamp01(age / Mathf.Max(0.001f, definition.Windup)) : 0f;
+                float pull = attacking && age < poseWindup ? Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)) : 0f;
                 float height = weapon.sprite.bounds.size.y * weapon.transform.localScale.y * 0.4f;
                 bowString.sortingOrder = weapon.sortingOrder + 1;
                 bowString.SetPosition(0, new Vector3(-0.18f, height, 0));
@@ -264,6 +268,15 @@ namespace ArcaneBrigade
                 recoil += pull * 0.06f;
             }
             grip.localPosition = facing * (definition.MountDistance - recoil);
+            if (attacking && !ReducedMotion)
+            {
+                float phase = Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup + definition.Recovery));
+                if (definition.Motion == WeaponMotion.Scissors) angleOffset += Mathf.Sin(phase * Mathf.PI * 4f) * 12f;
+                if (definition.Motion == WeaponMotion.Iron) recoil += Mathf.Sin(phase * Mathf.PI) * -0.12f;
+                if (definition.Motion == WeaponMotion.Camera) angleOffset += Mathf.Sin(phase * Mathf.PI) * -8f;
+                if (definition.Motion == WeaponMotion.Music) angleOffset += Mathf.Sin(phase * Mathf.PI * 2f) * 10f;
+                grip.localPosition = facing * (definition.MountDistance - recoil);
+            }
             grip.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg + angleOffset);
         }
 

@@ -6,7 +6,7 @@ namespace ArcaneBrigade
     public enum ModifierScope { Team, Champion, Companions, Run }
     public enum ItemRarity { Common, Uncommon, Rare, Mythic }
     public enum StackPolicy { Additive, Unique }
-    public enum SignatureRelicKind { None, HarvestReceipt, ReflectiveInk, CarbonRibbon, OfficeLens }
+    public enum SignatureRelicKind { None, HarvestReceipt, ReflectiveInk, CarbonRibbon, OfficeLens, TeaCoaster, ScratchRecord, TreasureRibbon, PatchSpring, ThermalInk, RepairCoupon }
     [System.Flags]
     public enum ShopPool { Gold = 1, Eggs = 2, Both = Gold | Eggs }
 
@@ -99,6 +99,8 @@ namespace ArcaneBrigade
         public float AltarChancePerEgg;
         public int LootRevision;
         public int SignatureRevision;
+        public int ExpansionRevision;
+        public Sprite[] ArenaPropSprites = new Sprite[0];
         public ProcRule[] ProcRules = new ProcRule[0];
         public Sprite EggSprite;
         public Sprite HeartSprite;

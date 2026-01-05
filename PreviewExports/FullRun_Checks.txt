@@ -25,6 +25,13 @@ PASS Weapon BookPaddle
 PASS Weapon CrescentBow
 PASS Weapon RuneStaff
 PASS Weapon DreamStamp
+PASS Weapon CloudScissors
+PASS Weapon SleepCamera
+PASS Weapon TinFish
+PASS Weapon DreamIron
+PASS Weapon RubberHammer
+PASS Weapon AlarmMortar
+PASS Weapon MusicBox
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop

@@ -51,7 +51,7 @@ namespace ArcaneBrigade
                 view.Body.localRotation = Quaternion.Euler(0f, 0f, shake);
                 view.Body.localScale = Vector3.one * (warning ? 1f + 0.035f * Mathf.Sin(now * 18f) : 1f);
                 Color cue = Color.Lerp(Brass, Cream, 0.5f + 0.5f * Mathf.Sin(now * 8f));
-                view.Warning.enabled = warning && toy.Kind == ArenaToyKind.StageBell;
+                view.Warning.enabled = warning && toy.Kind != ArenaToyKind.ToyCart;
                 Circle(view.Warning, toy.Position, toy.Radius, cue);
                 view.Lane.enabled = (warning || toy.Mode == ArenaToyMode.Rolling) && toy.Kind == ArenaToyKind.ToyCart;
                 Lane(view.Lane, toy.LaneStart, toy.LaneEnd, toy.Radius, cue);
@@ -70,7 +70,15 @@ namespace ArcaneBrigade
             body.transform.SetParent(root.transform, false);
             var view = new ToyView { Root = root.transform, Body = body.transform };
             Disc(root.transform, "SoftShadow", new Vector2(0f, -0.14f), new Vector2(0.65f, 0.22f), new Color(0.1f, 0.08f, 0.18f, 0.22f), 45);
-            if (toy.Kind == ArenaToyKind.StageBell)
+            RunCatalog content = Resources.Load<RunCatalog>("RunCatalog");
+            if (content != null && content.ArenaPropSprites.Length > (int)toy.Kind && content.ArenaPropSprites[(int)toy.Kind] != null)
+            {
+                Sprite sprite = content.ArenaPropSprites[(int)toy.Kind];
+                var painted = new GameObject("HDProp"); painted.transform.SetParent(body.transform, false);
+                SpriteRenderer renderer = painted.AddComponent<SpriteRenderer>(); renderer.sprite = sprite; renderer.sortingOrder = 84;
+                painted.transform.localScale = Vector3.one * (1.15f / sprite.bounds.size.x);
+            }
+            else if (toy.Kind == ArenaToyKind.StageBell)
             {
                 Quad(body.transform, "PlinthOutline", new Vector2(0f, -0.3f), new Vector2(1.12f, 0.22f), Ink);
                 Quad(body.transform, "Plinth", new Vector2(0f, -0.28f), new Vector2(1f, 0.12f), Mint);

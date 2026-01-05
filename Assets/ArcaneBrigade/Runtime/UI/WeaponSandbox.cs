@@ -26,10 +26,12 @@ namespace ArcaneBrigade
         private Scene previewScene;
         private Camera previewCamera;
         private ArcadeEffects effects;
+        private ExpandedVisual expandedVisual;
         private CheckpointAudio audioFeedback;
         private UnitState target;
         private float targetDistance;
         private GUIStyle instructionText;
+        private GUIStyle descriptionText;
         public bool IsOpen { get; private set; }
         public int Tier { get; private set; } = 1;
         public bool MovingTarget { get; private set; }
@@ -205,6 +207,7 @@ namespace ArcaneBrigade
             world = new GameObject("WeaponSandboxWorld") { hideFlags = HideFlags.DontSave };
             SceneManager.MoveGameObjectToScene(world, previewScene);
             effects = world.AddComponent<ArcadeEffects>();
+            expandedVisual = world.AddComponent<ExpandedVisual>();
             audioFeedback = world.AddComponent<CheckpointAudio>();
             audioFeedback.ConfigurePresentation();
             if (FindAnyObjectByType<AudioListener>() == null) world.AddComponent<AudioListener>();
@@ -214,7 +217,7 @@ namespace ArcaneBrigade
             previewCamera.scene = previewScene;
             previewCamera.enabled = false;
             previewCamera.orthographic = true;
-            previewCamera.orthographicSize = 3.5f;
+            previewCamera.orthographicSize = 2.2f;
             previewCamera.aspect = 2f;
             previewCamera.allowMSAA = true;
             previewCamera.transform.position = new Vector3(0.8f, 0, -10);
@@ -284,6 +287,7 @@ namespace ArcaneBrigade
                 view.color = state.Color;
                 view.GetComponent<ProjectileVisual>().Display(state, view, state.Position, Simulation.Elapsed);
             }
+            expandedVisual.ReducedMotion = ReducedMotion; expandedVisual.Display(Simulation);
             Renderer[] renderers = world.GetComponentsInChildren<Renderer>();
             RenderTexture previousActive = RenderTexture.active;
             try
@@ -311,7 +315,9 @@ namespace ArcaneBrigade
             if (GUI.Button(new Rect(65, 230, 140, 55), "< PREV", button)) CycleWeapon(-1);
             GUI.Label(new Rect(225, 235, 600, 50), SelectedWeaponId + "  (" + (selected + 1) + "/" + weapons.Count + ")", text);
             if (GUI.Button(new Rect(1045, 230, 170, 55), "NEXT >", button)) CycleWeapon(1);
-            if (PreviewTexture != null) GUI.DrawTexture(new Rect(65, 300, 760, 380), PreviewTexture, ScaleMode.ScaleToFit, false);
+            if (PreviewTexture != null) GUI.DrawTexture(new Rect(65, 300, 760, 300), PreviewTexture, ScaleMode.ScaleToFit, false);
+            if (descriptionText == null) descriptionText = new GUIStyle(text) { fontSize = 14, wordWrap = true, alignment = TextAnchor.UpperLeft };
+            GUI.Label(new Rect(65, 605, 760, 95), SignatureDescription.Describe(Attacker.Definition.Weapon, Tier), descriptionText);
             GUI.Label(new Rect(850, 295, 365, 75), "Tier " + Tier + " PREVIEW — NOT OWNED\nNo relics, bonds or body passive", text);
             for (int index = 1; index <= 3; index++)
                 if (GUI.Button(new Rect(850 + (index - 1) * 122, 380, 115, 55), "TIER " + index, button)) SetTier(index);
@@ -353,7 +359,7 @@ namespace ArcaneBrigade
             foreach (UnityEngine.Object asset in runtimeAssets) Release(asset);
             runtimeAssets.Clear();
             unitViews.Clear(); projectileViews.Clear(); retired.Clear();
-            world = null; previewCamera = null; PreviewTexture = null; effects = null; audioFeedback = null;
+            world = null; previewCamera = null; PreviewTexture = null; effects = null; audioFeedback = null; expandedVisual = null;
             arena = null; Simulation = null; Attacker = target = null;
         }
 

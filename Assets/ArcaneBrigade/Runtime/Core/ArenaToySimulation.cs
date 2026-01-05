@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ArenaToyKind { StageBell, ToyCart }
+    public enum ArenaToyKind { StageBell, ToyCart, InkBottle, HangingHammer, SleepMirror, FloorMusicBox }
     public enum ArenaToyMode { Charging, Warning, Rolling, Cooldown }
 
     public sealed class ArenaToyState
@@ -20,10 +20,11 @@ namespace ArcaneBrigade
         public int RequiredCharge => Kind == ArenaToyKind.StageBell ? 3 : 2;
         public float Until { get; internal set; }
         public float Started { get; internal set; }
-        public float Radius => Kind == ArenaToyKind.StageBell ? 2.4f : 0.55f;
+        public float Radius => Kind == ArenaToyKind.StageBell ? 2.4f : Kind == ArenaToyKind.InkBottle ? 2.5f : Kind == ArenaToyKind.HangingHammer ? 1.8f : Kind == ArenaToyKind.FloorMusicBox ? 4f : 0.55f;
         internal CombatCause Cause;
         internal readonly HashSet<int> Roots = new HashSet<int>();
         internal readonly HashSet<int> Victims = new HashSet<int>();
+        internal float NextAutomatic;
     }
 
     public sealed partial class CombatSimulation
@@ -56,6 +57,7 @@ namespace ArcaneBrigade
             if (!catalog.EnableArenaToys || Champion == null) return;
             var random = new System.Random(unchecked(catalog.Seed ^ arenaToyWave * 486187739 ^ 0x4A44));
             int count = arenaToyWave == 1 ? 1 : 2;
+            if (catalog.ExpandedContent) count = Mathf.Min(6, 2 + (arenaToyWave - 1) / 2);
             for (int index = 0; index < count; index++)
             {
                 if (!TryArenaPlacement(random, out Vector2 position)) continue;
@@ -122,7 +124,9 @@ namespace ArcaneBrigade
                 if (toy.Mode != ArenaToyMode.Charging || SegmentCircle(start, end, toy.Position, impactRadius + 0.45f) < 0f || !toy.Roots.Add(cause.RootId)) continue;
                 toy.Charge++;
                 if (toy.Charge < toy.RequiredCharge) continue;
-                toy.Cause = new CombatCause(cause.RootId, 0, toy.Kind == ArenaToyKind.StageBell ? "arena-stage-bell" : "arena-toy-cart", 1);
+                toy.Cause = new CombatCause(cause.RootId, 0, "arena-" + toy.Kind.ToString().ToLowerInvariant(), 1);
+                if (toy.Kind == ArenaToyKind.StageBell) toy.Cause = new CombatCause(cause.RootId, 0, "arena-stage-bell", 1);
+                if (toy.Kind == ArenaToyKind.ToyCart) toy.Cause = new CombatCause(cause.RootId, 0, "arena-toy-cart", 1);
                 toy.Mode = ArenaToyMode.Warning;
                 toy.Started = Elapsed;
                 toy.Until = Elapsed + ArenaToyWarning;
@@ -140,6 +144,11 @@ namespace ArcaneBrigade
             foreach (ArenaToyState toy in arenaToys)
             {
                 toy.PreviousPosition = toy.Position;
+                if (catalog.PatchSpring && toy.Mode == ArenaToyMode.Charging && Elapsed >= toy.NextAutomatic)
+                {
+                    toy.NextAutomatic = Elapsed + 3f;
+                    NotifyArenaToyHit(Champion, toy.Position, toy.Position, 0, Vector2.right, NewCause(Champion.Id));
+                }
                 if (toy.Mode == ArenaToyMode.Cooldown && Elapsed >= toy.Until)
                 {
                     toy.Mode = ArenaToyMode.Charging;
@@ -150,6 +159,12 @@ namespace ArcaneBrigade
                     ArenaToyActivations++;
                     RecordActivation(toy.Cause);
                     toy.Victims.Clear();
+                    if (toy.Kind >= ArenaToyKind.InkBottle)
+                    {
+                        ActivateExpandedToy(toy);
+                        CoolArenaToy(toy);
+                        continue;
+                    }
                     if (toy.Kind == ArenaToyKind.StageBell)
                     {
                         DamageArenaToyArea(toy, toy.Position, toy.Position, toy.Radius);
@@ -176,6 +191,33 @@ namespace ArcaneBrigade
             toy.Started = Elapsed;
             toy.Until = Elapsed + ArenaToyCooldown;
             toy.Charge = 0;
+        }
+
+        private void ActivateExpandedToy(ArenaToyState toy)
+        {
+            if (toy.Kind == ArenaToyKind.InkBottle)
+            {
+                Field(ExpandedFieldKind.Ink, Champion, toy.Position, Vector2.zero, 2.5f, 0, 0, 2f, toy.Cause);
+            }
+            else if (toy.Kind == ArenaToyKind.HangingHammer)
+            {
+                DamageArenaToyArea(toy, toy.Position, toy.Position, 1.8f);
+                Field(ExpandedFieldKind.Echo, Champion, toy.Position, Vector2.zero, 1.8f, 0, 0, 0.4f, toy.Cause);
+            }
+            else if (toy.Kind == ArenaToyKind.SleepMirror)
+            {
+                UnitState owner = units.Find(unit => unit.Alive && unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Projectile);
+                UnitState target = units.Find(unit => unit.Alive && unit.Faction == Faction.Enemy && (unit.Position - toy.Position).sqrMagnitude < 36f);
+                if (owner != null && target != null)
+                    projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Companion, Position = toy.Position, PreviousPosition = toy.Position, Velocity = (target.Position - toy.Position).normalized * 6f, Remaining = 1.5f, Damage = owner.Definition.Weapon.Damage * 0.4f, SourceUnitId = owner.Id, Cause = toy.Cause, Color = owner.Definition.Weapon.ProjectileColor, Sprite = owner.Definition.Weapon.ProjectileSprite, VisualWidth = 0.18f, Element = DamageElement.Physical, SourceName = "Sleep mirror" });
+            }
+            else
+            {
+                foreach (UnitState ally in units)
+                    if (ally.Alive && ally.Faction != Faction.Enemy && (ally.Position - toy.Position).sqrMagnitude < 16f)
+                        ally.NextAttack = Mathf.Max(Elapsed, ally.NextAttack - 0.2f);
+                Field(ExpandedFieldKind.Echo, Champion, toy.Position, Vector2.zero, 4f, 0, 0, 0.8f, toy.Cause);
+            }
         }
 
         private void DamageArenaToyArea(ArenaToyState toy, Vector2 start, Vector2 end, float radius)

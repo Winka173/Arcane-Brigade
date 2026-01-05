@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: TeapotPopgun
   Kind: 2
-  Sprite: {fileID: 1271412142, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
+  Sprite: {fileID: -1793744748, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
   Damage: 10
   Range: 7.8
   Cooldown: 0.85
@@ -28,12 +28,20 @@ MonoBehaviour:
   ConeDot: 0.2
   ProjectileColor: {r: 1, g: 0.7, b: 0.4, a: 1}
   Element: 1
-  Motion: 3
+  Motion: 6
   ProjectileCount: 1
   SwingAngle: 65
   RecoilDistance: 0.09
   BodyAttackTilt: 8
   HasMuzzleOffset: 1
-  ProjectileMuzzleOffset: {x: 0.56939995, y: 0.22458069}
+  ProjectileMuzzleOffset: {x: 0.54599994, y: 0}
   ProjectileSprite: {fileID: 0}
   ProjectileVisualWidth: 0.22
+  Signature: 0
+  SignatureBeats: 3
+  SignatureRadius: 2.2
+  SignatureScale: 0.65
+  SignatureDelay: 0.18
+  MarkLifetime: 2.4
+  PushDistance: 0.35
+  Family: 1

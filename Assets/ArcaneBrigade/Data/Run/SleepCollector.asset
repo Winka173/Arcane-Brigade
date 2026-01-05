@@ -32,3 +32,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 1
   BossPattern: 2
+  CombatTier: 1
+  Behavior: 0
+  Material: 5
+  Motif: 2

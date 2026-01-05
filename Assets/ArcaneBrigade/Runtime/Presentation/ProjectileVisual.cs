@@ -7,7 +7,10 @@ namespace ArcaneBrigade
         private SpriteRenderer halo;
         private SpriteRenderer core;
         private LineRenderer streak;
+        private LineRenderer motif;
         private Material material;
+        private static readonly Vector2[] FishMotif = { new Vector2(0.19f, 0), new Vector2(-0.03f, 0.1f), new Vector2(-0.16f, -0.12f), new Vector2(-0.16f, 0.12f), new Vector2(-0.03f, -0.1f) };
+        private static readonly Vector2[] NoteMotif = { new Vector2(-0.03f, -0.08f), new Vector2(0.05f, -0.08f), new Vector2(0.05f, 0.22f), new Vector2(0.14f, 0.18f), new Vector2(0.14f, 0.1f) };
 
         public void Configure(Sprite disc)
         {
@@ -23,6 +26,9 @@ namespace ArcaneBrigade
             material = new Material(Shader.Find("Sprites/Default"));
             streak.sharedMaterial = material;
             streak.sortingOrder = 1800;
+            var glyph = new GameObject("ProjectileMotif"); glyph.transform.SetParent(transform, false);
+            motif = glyph.AddComponent<LineRenderer>(); motif.sharedMaterial = material; motif.sortingOrder = 1804;
+            motif.numCapVertices = 4; motif.numCornerVertices = 4; motif.widthMultiplier = 0.035f;
         }
 
         private SpriteRenderer Child(string name, Sprite sprite)
@@ -56,6 +62,16 @@ namespace ArcaneBrigade
             streak.endColor = new Color(state.Color.r, state.Color.g, state.Color.b, 0.65f);
             streak.SetPosition(0, position - state.Velocity.normalized * (arrow ? 0.5f : 0.24f));
             streak.SetPosition(1, position);
+            ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;
+            motif.enabled = family == ExpandedWeapon.MusicBox || family == ExpandedWeapon.Fish;
+            if (motif.enabled)
+            {
+                Vector2 direction = state.Velocity.normalized; Vector2 normal = new Vector2(-direction.y, direction.x);
+                motif.startColor = motif.endColor = family == ExpandedWeapon.Fish ? new Color(0.3f, 1, 0.8f) : new Color(1, 0.86f, 0.45f);
+                motif.loop = family == ExpandedWeapon.Fish; motif.positionCount = 5;
+                Vector2[] points = family == ExpandedWeapon.Fish ? FishMotif : NoteMotif;
+                for (int index = 0; index < points.Length; index++) motif.SetPosition(index, position + direction * points[index].x + normal * points[index].y);
+            }
         }
 
         private void OnDestroy() { if (material != null) Destroy(material); }
@@ -66,7 +82,8 @@ namespace ArcaneBrigade
             Color coreColor = core.color; coreColor.a *= alpha; core.color = coreColor;
             Color start = streak.startColor; start.a *= alpha; streak.startColor = start;
             Color end = streak.endColor; end.a *= alpha; streak.endColor = end;
+            Color glyph = motif.startColor; glyph.a *= alpha; motif.startColor = motif.endColor = glyph;
         }
-        public void Hide() { if (halo != null) { halo.enabled = core.enabled = streak.enabled = false; } }
+        public void Hide() { if (halo != null) { halo.enabled = core.enabled = streak.enabled = motif.enabled = false; } }
     }
 }

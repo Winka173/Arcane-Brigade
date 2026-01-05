@@ -5,8 +5,8 @@ namespace ArcaneBrigade
     public sealed class CheckpointAudio : MonoBehaviour
     {
         private readonly AudioSource[] voices = new AudioSource[8];
-        private readonly AudioClip[] clips = new AudioClip[10];
-        private readonly float[] nextPlayback = new float[10];
+        private readonly AudioClip[] clips = new AudioClip[19];
+        private readonly float[] nextPlayback = new float[19];
         private int nextVoice;
         private bool presentation;
 
@@ -65,8 +65,9 @@ namespace ArcaneBrigade
             int cue = value.Kind == CombatEventKind.Kill ? value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss ? 6 : 5 : value.Kind == CombatEventKind.Hit ? 3 : value.Kind == CombatEventKind.ChestOpened ? 2 : value.Kind == CombatEventKind.Pickup ? 4 : value.Kind == CombatEventKind.Fire && value.Weapon != null ? value.Weapon.Kind == WeaponKind.Melee ? 0 : value.Weapon.Motion == WeaponMotion.Bow ? 1 : 2 : -1;
             if (value.Kind == CombatEventKind.SignaturePulse) cue = value.Weapon != null && value.Weapon.Signature == SignatureWeapon.Bell ? 7 : 8;
             if (value.Kind == CombatEventKind.SignatureBurst) cue = 9;
+            if (value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Family != ExpandedWeapon.None) cue = 9 + (int)value.Weapon.Family;
             if (cue < 0 || Time.unscaledTime < nextPlayback[cue]) return;
-            nextPlayback[cue] = Time.unscaledTime + (cue == 4 ? 0.08f : 0.04f);
+            nextPlayback[cue] = Time.unscaledTime + (cue >= 10 ? 0.09f : cue == 4 ? 0.08f : 0.04f);
             AudioSource voice = voices[nextVoice];
             nextVoice = (nextVoice + 1) % voices.Length;
             voice.clip = clips[cue];

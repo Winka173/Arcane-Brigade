@@ -51,5 +51,13 @@ namespace ArcaneBrigade
         public int ReflectiveInkStacks;
         public bool CarbonRibbon;
         public int OfficeLensStacks;
+        public bool ExpandedContent;
+        public UnitDefinition[] EnemyPool = new UnitDefinition[0];
+        public int TeaCoasterStacks;
+        public int ChorusStacks;
+        public int TreasureStacks;
+        public bool PatchSpring;
+        public bool ThermalInk;
+        public int RepairStacks;
     }
 }

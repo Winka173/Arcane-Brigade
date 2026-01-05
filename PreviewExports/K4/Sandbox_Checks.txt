@@ -122,6 +122,90 @@ PASS DreamStamp tier damage follows catalog multiplier with no build bonuses
 PASS DreamStamp tier 3 auto attacks through actual simulation events
 PASS DreamStamp real cadence payoff resolves
 PASS DreamStamp preview cannot farm rewards or kills
+PASS CloudScissors tier 1 uses independent unit/weapon data
+PASS CloudScissors tier damage follows catalog multiplier with no build bonuses
+PASS CloudScissors tier 1 auto attacks through actual simulation events
+PASS CloudScissors preview cannot farm rewards or kills
+PASS CloudScissors tier 2 uses independent unit/weapon data
+PASS CloudScissors tier damage follows catalog multiplier with no build bonuses
+PASS CloudScissors tier 2 auto attacks through actual simulation events
+PASS CloudScissors preview cannot farm rewards or kills
+PASS CloudScissors tier 3 uses independent unit/weapon data
+PASS CloudScissors tier damage follows catalog multiplier with no build bonuses
+PASS CloudScissors tier 3 auto attacks through actual simulation events
+PASS CloudScissors preview cannot farm rewards or kills
+PASS SleepCamera tier 1 uses independent unit/weapon data
+PASS SleepCamera tier damage follows catalog multiplier with no build bonuses
+PASS SleepCamera tier 1 auto attacks through actual simulation events
+PASS SleepCamera preview cannot farm rewards or kills
+PASS SleepCamera tier 2 uses independent unit/weapon data
+PASS SleepCamera tier damage follows catalog multiplier with no build bonuses
+PASS SleepCamera tier 2 auto attacks through actual simulation events
+PASS SleepCamera preview cannot farm rewards or kills
+PASS SleepCamera tier 3 uses independent unit/weapon data
+PASS SleepCamera tier damage follows catalog multiplier with no build bonuses
+PASS SleepCamera tier 3 auto attacks through actual simulation events
+PASS SleepCamera preview cannot farm rewards or kills
+PASS TinFish tier 1 uses independent unit/weapon data
+PASS TinFish tier damage follows catalog multiplier with no build bonuses
+PASS TinFish tier 1 auto attacks through actual simulation events
+PASS TinFish preview cannot farm rewards or kills
+PASS TinFish tier 2 uses independent unit/weapon data
+PASS TinFish tier damage follows catalog multiplier with no build bonuses
+PASS TinFish tier 2 auto attacks through actual simulation events
+PASS TinFish preview cannot farm rewards or kills
+PASS TinFish tier 3 uses independent unit/weapon data
+PASS TinFish tier damage follows catalog multiplier with no build bonuses
+PASS TinFish tier 3 auto attacks through actual simulation events
+PASS TinFish preview cannot farm rewards or kills
+PASS DreamIron tier 1 uses independent unit/weapon data
+PASS DreamIron tier damage follows catalog multiplier with no build bonuses
+PASS DreamIron tier 1 auto attacks through actual simulation events
+PASS DreamIron preview cannot farm rewards or kills
+PASS DreamIron tier 2 uses independent unit/weapon data
+PASS DreamIron tier damage follows catalog multiplier with no build bonuses
+PASS DreamIron tier 2 auto attacks through actual simulation events
+PASS DreamIron preview cannot farm rewards or kills
+PASS DreamIron tier 3 uses independent unit/weapon data
+PASS DreamIron tier damage follows catalog multiplier with no build bonuses
+PASS DreamIron tier 3 auto attacks through actual simulation events
+PASS DreamIron preview cannot farm rewards or kills
+PASS RubberHammer tier 1 uses independent unit/weapon data
+PASS RubberHammer tier damage follows catalog multiplier with no build bonuses
+PASS RubberHammer tier 1 auto attacks through actual simulation events
+PASS RubberHammer preview cannot farm rewards or kills
+PASS RubberHammer tier 2 uses independent unit/weapon data
+PASS RubberHammer tier damage follows catalog multiplier with no build bonuses
+PASS RubberHammer tier 2 auto attacks through actual simulation events
+PASS RubberHammer preview cannot farm rewards or kills
+PASS RubberHammer tier 3 uses independent unit/weapon data
+PASS RubberHammer tier damage follows catalog multiplier with no build bonuses
+PASS RubberHammer tier 3 auto attacks through actual simulation events
+PASS RubberHammer preview cannot farm rewards or kills
+PASS AlarmMortar tier 1 uses independent unit/weapon data
+PASS AlarmMortar tier damage follows catalog multiplier with no build bonuses
+PASS AlarmMortar tier 1 auto attacks through actual simulation events
+PASS AlarmMortar preview cannot farm rewards or kills
+PASS AlarmMortar tier 2 uses independent unit/weapon data
+PASS AlarmMortar tier damage follows catalog multiplier with no build bonuses
+PASS AlarmMortar tier 2 auto attacks through actual simulation events
+PASS AlarmMortar preview cannot farm rewards or kills
+PASS AlarmMortar tier 3 uses independent unit/weapon data
+PASS AlarmMortar tier damage follows catalog multiplier with no build bonuses
+PASS AlarmMortar tier 3 auto attacks through actual simulation events
+PASS AlarmMortar preview cannot farm rewards or kills
+PASS MusicBox tier 1 uses independent unit/weapon data
+PASS MusicBox tier damage follows catalog multiplier with no build bonuses
+PASS MusicBox tier 1 auto attacks through actual simulation events
+PASS MusicBox preview cannot farm rewards or kills
+PASS MusicBox tier 2 uses independent unit/weapon data
+PASS MusicBox tier damage follows catalog multiplier with no build bonuses
+PASS MusicBox tier 2 auto attacks through actual simulation events
+PASS MusicBox preview cannot farm rewards or kills
+PASS MusicBox tier 3 uses independent unit/weapon data
+PASS MusicBox tier damage follows catalog multiplier with no build bonuses
+PASS MusicBox tier 3 auto attacks through actual simulation events
+PASS MusicBox preview cannot farm rewards or kills
 PASS Reset disposes old runtime weapon clone
 PASS Reset clears elapsed time, attacks and diagnostics
 PASS Local combat and roam RNG reproduce after reset despite reduced-motion change
@@ -170,5 +254,5 @@ PASS Reduced-motion/capture wiring: view.ReducedMotion = ReducedMotion
 PASS Reduced-motion/capture wiring: GetPreviewDescriptor(Application.isMobilePlatform)
 PASS Reduced-motion/capture wiring: previewCamera.aspect = 2f
 PASS Reduced-motion/capture wiring: RenderTextureFormat.ARGB32
-PASS Reduced-motion/capture wiring: new Rect(65, 300, 760, 380)
+PASS Reduced-motion/capture wiring: new Rect(65, 300, 760, 300)
 PASS RunMenu exposes sandbox page

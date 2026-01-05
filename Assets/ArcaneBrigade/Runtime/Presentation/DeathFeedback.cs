@@ -29,6 +29,7 @@ namespace ArcaneBrigade
             public float Duration;
             public float Weight;
             public bool Important;
+            public BodyMaterial Material;
         }
         private readonly List<Remnant> pool = new List<Remnant>();
         private Sprite fragmentSprite;
@@ -86,6 +87,7 @@ namespace ArcaneBrigade
             remnant.Direction = state.HitDirection.sqrMagnitude > 0.001f ? state.HitDirection.normalized : Vector2.up;
             remnant.Weight = state.Definition.IsBoss ? 1.6f : state.Faction == Faction.Champion ? 1.3f : 1;
             remnant.Important = important;
+            remnant.Material = state.Definition.Material;
             remnant.Duration = state.Definition.IsBoss ? 1.1f : state.Faction == Faction.Champion ? 0.95f : 0.65f;
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
@@ -115,6 +117,8 @@ namespace ArcaneBrigade
             float progress = Mathf.Clamp01(remnant.Age / remnant.Duration);
             float kick = Mathf.Sin(Mathf.Clamp01(progress / 0.25f) * Mathf.PI);
             float collapse = Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.16f) / 0.52f));
+            if (remnant.Material == BodyMaterial.Metal || remnant.Material == BodyMaterial.Wood) collapse *= 0.3f;
+            if (remnant.Material == BodyMaterial.Glass) collapse = Mathf.Clamp01(collapse * 1.5f);
             float alpha = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.45f) / 0.5f));
             remnant.Root.position = (Vector3)(remnant.Position + remnant.Direction * (0.22f * Mathf.SmoothStep(0, 1, progress)));
             remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (kick * 0.17f * remnant.Weight - collapse * 0.09f);
@@ -138,8 +142,13 @@ namespace ArcaneBrigade
                 fragment.transform.localPosition = remnant.BodyPosition + (Vector3)(direction * (travel * 0.65f * remnant.Weight) + Vector2.up * Mathf.Sin(travel * Mathf.PI) * 0.20f);
                 float size = (0.05f + index % 3 * 0.015f) * (1 - travel * 0.4f);
                 fragment.transform.localScale = new Vector3(size, size * 0.45f, 1) / fragment.sprite.bounds.size.x;
+                if (remnant.Material == BodyMaterial.Metal) fragment.transform.localScale = new Vector3(size, size, 1) / fragment.sprite.bounds.size.x;
+                if (remnant.Material == BodyMaterial.Wax) fragment.transform.localScale = new Vector3(size * 1.4f, size * 0.2f, 1) / fragment.sprite.bounds.size.x;
+                if (remnant.Material == BodyMaterial.Fabric) fragment.transform.localScale = new Vector3(size * 0.4f, size * 1.8f, 1) / fragment.sprite.bounds.size.x;
                 fragment.transform.localRotation = Quaternion.Euler(0, 0, index * 39 + travel * 170);
                 Color color = index % 2 == 0 ? remnant.BodyColor : new Color(0.79f, 0.70f, 0.89f);
+                if (remnant.Material == BodyMaterial.Metal) color = index % 2 == 0 ? new Color(1f, 0.78f, 0.32f) : new Color(0.65f, 0.93f, 0.9f);
+                if (remnant.Material == BodyMaterial.Glass) color = new Color(0.65f, 1f, 0.94f);
                 color.a = 1 - travel;
                 fragment.color = color;
             }

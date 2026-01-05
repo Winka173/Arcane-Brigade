@@ -1,0 +1,23 @@
+K5 release functional gate - 2026-10-14 Asia/Saigon
+Unity 6000.4.8f1, Windows64, batchmode nographics
+Command: ArcaneBrigade.Editor.K5Builder.GateAndBuild
+PASS K5 checks: 139
+PASS Checkpoint: 17
+PASS Squad: 12
+PASS Full run: 104
+PASS K0/K1: 27
+PASS K2: 30
+PASS K3 transaction: 36
+PASS K3.2 modifiers: 29
+PASS K3.2 altar: 14
+PASS K3 final: 31
+PASS Visual quality: 31
+PASS K4 signature: 40
+PASS K4 merge
+PASS K4 arena: 49
+PASS K4 sandbox: 258
+PASS K4 final: 36
+Unity returned code0 and exited successfully; build result is Windows_Build.txt.
+Counts summarize each suite once; dependent suites rerun baseline internally.
+Raw log remains local ignored Logs/K5-ReleaseGate.log; licensing/environment identifiers intentionally excluded from published report.
+Native model/render gate is separate Player/CaptureNotes.txt. This report is not mobile, video, audio audition or production acceptance.

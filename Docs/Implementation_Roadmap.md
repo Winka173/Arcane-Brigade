@@ -1,5 +1,7 @@
 # Arcane Brigade — kế hoạch chuẩn bị triển khai
 
+**Mốc mới nhất 2026-10-14: K5 DONE theo functional gate Windows.** Xem `K5_Final_Checkpoint.md`;12 concept/6 build/6 prop,139 checks K5 + regression và40 native assertions đạt. Phase kế tiếp K6, production/mobile K7. Mốc này có ưu tiên hơn mọi trạng thái lịch sử phía dưới.
+
 **K4 cập nhật cuối (2026-10-13): DONE theo functional gate runtime Windows.** Ba weapon, hai build/connector/contribution, post-save merge/tier/idle, hai đạo cụ/boss phase và sandbox cô lập đã nối; regression + native vertical slice PASS. Xem `K4_Final_Checkpoint.md`. Phase kế tiếp K5; font/UI redesign K6, device/production polish K7. Những trạng thái K4.1/chưa triển khai cũ bên dưới là lịch sử, cập nhật này có ưu tiên.
 
 **Visual pass trước K4:** chủ dự án chọn hướng 1 (render sắc ở 4K, không yêu cầu mỗi PNG native 4K). Model/map/zoom/effects và ảnh Unity được nâng cấp riêng, giữ contract gameplay K3. Xem `Visual_Quality_4K_Pass.md`; không tính là hoàn tất K4 hoặc device gate K7.
@@ -83,6 +85,8 @@ Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning
 **Đạt khi:** một lượt combat → loot → mua/ghép → build payoff → boss/rest chơi được và hiểu được; ba weapon khác nhau cả khi tắt particle; sandbox không farm hoặc đổi run/profile.
 
 ### K5 — Mở rộng gameplay theo quality gate
+
+**Cập nhật 2026-10-14: DONE theo functional gate runtime Windows.** Đủ12 concept/6 build/6 prop,4 enemy behavior và3 boss motif;139 checks K5 + regression PASS,40 native assertions/15 ảnh Unity3840×2160, build0errors/0warnings. Xem `K5_Final_Checkpoint.md`. Phase kế tiếp K6/font/UI/museum; natural playtest, production/device gate vẫn K7. Các trạng thái lịch sử bên dưới không ghi đè checkpoint mới này.
 
 **Phạm vi:** phần còn lại R4/R5; S1–S4, N06–N12. **Dependency:** K4 được kiểm chứng.
 
