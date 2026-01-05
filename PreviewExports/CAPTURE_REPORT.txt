@@ -1,0 +1,7 @@
+Rendered by Unity Camera.Render.
+Editor: 6000.4.8f1
+Renderer: NVIDIA GeForce RTX 5070 Ti
+Resolution: 1920 x 1080
+Characters: 3
+Source poses per character: 4
+Crowd units: 54

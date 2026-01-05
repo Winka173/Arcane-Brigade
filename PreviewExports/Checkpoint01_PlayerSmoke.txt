@@ -1,0 +1,12 @@
+Date: 2026-10-13
+Unity: 6000.4.8f1
+Executable: Builds/Checkpoint01/ArcaneBrigade.exe
+Arguments: -batchmode -nographics -arcane-smoke -logFile Logs/Checkpoint01-PlayerSmoke.log
+Build target: Windows x64
+Build result: Succeeded, 0 errors, 0 warnings
+Observed: ARCANE_PLAYER_SMOKE_PASSED
+Process exit code: 0
+Checks: Arena loaded, simulation elapsed > 1 second, active SpriteRenderers have sprite references, no logged errors/exceptions.
+Graphics device: NullGfxDevice
+Scope: headless runtime smoke only; not a manual playtest, graphics benchmark, mobile validation or Steam certification.
+Editor smoke checks: 17 passed; see Checkpoint01_Checks.txt.

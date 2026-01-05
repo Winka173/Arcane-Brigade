@@ -1,0 +1,406 @@
+fileFormatVersion: 2
+guid: 4c62e39b83e8f0f45acee19f5b10f58e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 289.6
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SleepyKnight_Idle
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 718
+        width: 256
+        height: 276
+      alignment: 9
+      pivot: {x: 0.37109375, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1e5e342a33943410800000000000000
+      internalID: 1455950457472966173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SleepyKnight_StepLeft
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 718
+        width: 244
+        height: 274
+      alignment: 9
+      pivot: {x: 0.40163934, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 455c8e04459534430800000000000000
+      internalID: 3765951931812988244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SleepyKnight_StepRight
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 718
+        width: 245
+        height: 274
+      alignment: 9
+      pivot: {x: 0.46530613, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf07e774a39369b0800000000000000
+      internalID: -5088060819402977336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SleepyKnight_Action
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 719
+        width: 306
+        height: 269
+      alignment: 9
+      pivot: {x: 0.44117647, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba55f57f8d420c5a0800000000000000
+      internalID: -6503157347641240149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoodWisp_Idle
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 355
+        width: 245
+        height: 254
+      alignment: 9
+      pivot: {x: 0.35918367, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0abaeadcf09c670800000000000000
+      internalID: 8559389942867534011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoodWisp_StepLeft
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 352
+        width: 248
+        height: 244
+      alignment: 9
+      pivot: {x: 0.3266129, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 441092e4450761360800000000000000
+      internalID: 7140017766633374020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoodWisp_StepRight
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 352
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.408, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec1c681da9cfc7250800000000000000
+      internalID: 5943903350092644814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoodWisp_Action
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 353
+        width: 244
+        height: 238
+      alignment: 9
+      pivot: {x: 0.41393444, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d06bd3d408e236a0800000000000000
+      internalID: -6470854607146098480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrumpyJelly_Idle
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 77
+        width: 216
+        height: 176
+      alignment: 9
+      pivot: {x: 0.42592594, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b17c327c5c11080800000000000000
+      internalID: -9218369503161279636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrumpyJelly_StepLeft
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 75
+        width: 208
+        height: 177
+      alignment: 9
+      pivot: {x: 0.43269232, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e724d74cb4e216330800000000000000
+      internalID: 3702291271629226622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrumpyJelly_StepRight
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 74
+        width: 211
+        height: 176
+      alignment: 9
+      pivot: {x: 0.45023698, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce2e333f7188af9c0800000000000000
+      internalID: -3892649291462483220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrumpyJelly_Action
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 74
+        width: 226
+        height: 180
+      alignment: 9
+      pivot: {x: 0.46460176, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de362b97e5ecd94a0800000000000000
+      internalID: -6584880174981815315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7c38624112379d54ca56d02cef321c35
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GrumpyJelly_Action: -6584880174981815315
+      GrumpyJelly_Idle: -9218369503161279636
+      GrumpyJelly_StepLeft: 3702291271629226622
+      GrumpyJelly_StepRight: -3892649291462483220
+      HoodWisp_Action: -6470854607146098480
+      HoodWisp_Idle: 8559389942867534011
+      HoodWisp_StepLeft: 7140017766633374020
+      HoodWisp_StepRight: 5943903350092644814
+      SleepyKnight_Action: -6503157347641240149
+      SleepyKnight_Idle: 1455950457472966173
+      SleepyKnight_StepLeft: 3765951931812988244
+      SleepyKnight_StepRight: -5088060819402977336
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

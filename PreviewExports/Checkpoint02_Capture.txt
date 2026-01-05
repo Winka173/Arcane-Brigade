@@ -1,0 +1,7 @@
+Actual Unity Camera.Render captures.
+Editor: 6000.4.8f1
+GPU: NVIDIA GeForce RTX 5070 Ti
+Resolution: 1920 x 1080
+Combat: seeded simulation after 16 seconds.
+Roaming: same seeded idle simulation at 2, 6 and 10 seconds, no enemies, champion stays at origin.
+Circles and labels are editor-only diagnostics.

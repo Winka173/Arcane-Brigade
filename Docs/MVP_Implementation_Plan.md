@@ -1,5 +1,7 @@
 # Arcane Brigade — MVP Implementation Plan
 
+> **Historical plan — superseded on 2026-10-13.** Follow [Production_Plan_2D.md](Production_Plan_2D.md) and the owner's confirmed gameplay decisions. This file contains outdated assumptions about fixed ally weapons, weapon switching, blessing slots, merge deferral, and silent placeholder presentation. The current repository does not yet contain a Unity project or package manifest.
+
 **Goal:** Build a playable vertical slice that proves the full core loop (move → fight wave → earn gold → shop blessings/relics/allies → next wave → boss) in one arena, with enough variety to feel like the design doc.
 
 **Tech base:** Unity 2D URP (existing project), New Input System (already in package manifest), 2D Sprite primitives + simple Sprite Editor-drawn shapes. Keyboard + mouse.

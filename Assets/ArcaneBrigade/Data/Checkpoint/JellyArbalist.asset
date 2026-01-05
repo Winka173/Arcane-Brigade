@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: JellyArbalist
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: JellyArbalist
+  DisplayName: JellyArbalist
+  Body: {fileID: -389509726, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Weapon: {fileID: 11400000, guid: c92d65e81b20a0d408228da38dc90ffc, type: 2}
+  Health: 22
+  Speed: 1.1
+  Radius: 0.25
+  BodyHeight: 0.65
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CriticalChance: 0
+  Tint: {r: 0.75, g: 0.8, b: 1, a: 1}

@@ -1,0 +1,7 @@
+Unity Camera.Render capture.
+Editor: 6000.4.8f1
+GPU: NVIDIA GeForce RTX 5070 Ti
+Resolution: 1920 x 1080
+Atlas: original modular artwork.
+Arena: actual simulation stepped in Editor; capture labels are editor-only.
+Animation: procedural bob, squash, grip rotation and recoil; not final hand-drawn clips.

@@ -1,0 +1,20 @@
+Editor deterministic smoke checks
+PASS Initial champion and companion
+PASS Normalized diagonal movement
+PASS Arena bounds
+PASS Pause freezes simulation
+PASS Immortal companion without finite HP
+PASS Concurrent damage without global invulnerability
+PASS Swept projectile passes companion and hits champion
+PASS Per-source contact cooldown
+PASS Kill drop and proximity pickup
+PASS One melee impact per attack windup
+PASS Companion stays within leash
+PASS Defeat transition
+PASS Restart clears run state
+PASS Wave timer victory
+PASS Hand and weapon share grip transform
+PASS Atlas assets and no arm bones
+PASS Persistent shadow sprite
+Total: 17 passed
+Not a device or performance certification.

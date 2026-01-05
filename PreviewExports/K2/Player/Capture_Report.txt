@@ -1,0 +1,6 @@
+Rendered Windows D3D11 1280x720; isolated seeded diagnostic run.
+Injected enemies/HP/roster are presentation fixtures; attacks, kill, loot and settlement use normal runtime. No screenshot frames used for FPS measurement.
+Uncaptured 3s early-wave sample, frames=181, median_ms=16.67, p95_ms=16.67. Not a stress/device certification.
+Enemy kill + player walks toward dropped coin through normal movement + coin credit observed; wallet=2.
+Sequences store frame timestamp CSV for truthful playback; PNG capture cost affects cadence. No production animation/FPS approval implied.
+Result: PASS

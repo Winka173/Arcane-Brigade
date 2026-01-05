@@ -1,0 +1,15 @@
+Squad deterministic Editor checks
+PASS Three-body squad with sword, staff and crossbow fixtures
+PASS Idle champion remains stationary
+PASS Every ally patrols and retargets while champion is idle
+PASS Independent patrol destinations
+PASS Idle squad does not settle on champion
+PASS Pause freezes patrol and timers
+PASS Continuous leash and arena bounds during movement, reversal and corners
+PASS All squad members ignore damage
+PASS Same seed and input reproduce patrol in this Editor
+PASS Squad keeps auto-attacking while roaming
+PASS Recruit API has no fixed companion slot cap
+PASS Restart clears squad additions and patrol state
+Total: 12 passed
+Not a mobile or large-army performance certification.

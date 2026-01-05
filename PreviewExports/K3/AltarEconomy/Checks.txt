@@ -1,0 +1,14 @@
+PASS Failed HP save restores health, item, offer, receipt and RNG
+PASS HP offer spends only current health
+PASS Receipt records exact health payment
+PASS HP payment never reduces maximum health
+PASS HP offer cannot kill Champion or consume RNG
+PASS HP offer may leave exactly one current HP
+PASS Egg activation chance clamps safely without overflow
+PASS Authored chance displays base plus eggs contribution
+PASS Zero chance does not activate or spend eggs
+PASS Certain activation rolls reproducible offers from saved shop RNG
+PASS Resume keeps existing altar without a new activation roll
+PASS Failed reroll keeps altar and activation random boundary
+PASS Health currency round-trips through checksum storage
+PASS Altar authoring migration is idempotent

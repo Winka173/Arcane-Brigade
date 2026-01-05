@@ -1,9 +1,13 @@
 # ARCANE BRIGADE - COMPLETE GAME DESIGN DOCUMENT
 
+> **Gameplay update — 2026-10-13:** This document is retained as the original content/vision reference. The owner's confirmed 2D, movement-only, auto-combat rules take precedence. See [Production_Plan_2D.md](Production_Plan_2D.md) for the revised production direction, superseded mechanics, and reference-verification requirements. The original "Production-Ready" label below does not certify the revised design or an implemented game.
+
 **Version:** 4.0 - Expanded Design Edition
 **Status:** Production-Ready with Base Game Analysis
 **Genre:** High-Fantasy Magic Roguelike Arcade
 **Reference:** Bizarre Brigade (Zenless Zone Zero mini-game)
+
+> **Reference audit correction — 2026-10-13:** The owner selected the expanded **1.5+** version. The historical base-game analysis below is not a verified parity spec: duration/wave counts, universal merge behavior and some economic rules need correction or version-specific evidence. Use `Bizarre_Brigade_15_Reference_Audit.md` and `Reference_Parity_Backlog.md`. Latest camera direction is a bounded arena larger than the viewport, not a fully visible fixed-screen arena. No permanent candy-stat grind, upkeep or manual combat skill is reintroduced.
 **Tagline:** *Forge your Brigade. Master the arcane. Hold the line against the Scourge.*
 
 ---

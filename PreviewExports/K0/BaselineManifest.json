@@ -1,0 +1,1621 @@
+{
+    "UnityVersion": "6000.4.8f1",
+    "CatalogVersion": "run-0.1",
+    "SavePolicy": "No real player save read or written. Regression fixtures use isolated temporary folders. Source_Before_K1.zip preserves the pre-change workspace.",
+    "UnitIds": [
+        "LanternKnight",
+        "Postmaster",
+        "DrowsySeer",
+        "TeapotPilgrim",
+        "CandleSnail",
+        "MailboxImp",
+        "PillowOracle",
+        "MushroomLibrarian",
+        "HoodWisp",
+        "JellySwordsman"
+    ],
+    "WeaponIds": [
+        "KeyCleaver",
+        "TeapotPopgun",
+        "UmbrellaLance",
+        "MailboxLauncher",
+        "BellFork",
+        "BookPaddle",
+        "CrescentBow",
+        "RuneStaff"
+    ],
+    "ItemIds": [
+        "key-oil",
+        "clock-spring",
+        "honey-pot",
+        "felt-boots",
+        "coin-compass",
+        "wandering-map",
+        "guardian-canopy",
+        "warm-tea",
+        "oracle-lens",
+        "twin-seal",
+        "piggy-mail",
+        "pillow-mail",
+        "royal-key",
+        "brigade-banner",
+        "marching-bell",
+        "coupon-book",
+        "long-atlas",
+        "starlight-quilt",
+        "echo-postage",
+        "tarnished-crown"
+    ],
+    "Files": [
+        {
+            "Path": "Assets/ArcaneBrigade/Art.meta",
+            "Bytes": 172,
+            "Sha256": "5a1a7214e3b0963c75f2e69f198d19880d2391a0179cfbabe17ce1ddc578083f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint.meta",
+            "Bytes": 172,
+            "Sha256": "5b9399803b1e06721e94bc60cb5671307e08b0a32d51f111d323704f7f5f2558"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint/Disc.png",
+            "Bytes": 946,
+            "Sha256": "8d48391bd95c6dafcecb849baaf534d1094462a9e5bec3c2421e120dad80a567"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint/Disc.png.meta",
+            "Bytes": 3038,
+            "Sha256": "b66881d85d37cdf09850b20d1aaec6244235afdfe4296da0754ec47951e28f24"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint/ModularArcade_Atlas.png",
+            "Bytes": 450041,
+            "Sha256": "51b5b0baf0dbe20f0c6fb19eff56e961a66780c7aca58c5b50fb1b5c15eb857a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint/ModularArcade_Atlas.png.meta",
+            "Bytes": 7727,
+            "Sha256": "048e29aef256eeb929f6986a369957e981badb5877563c7ec3d59140cf005b5b"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint/Square.png",
+            "Bytes": 75,
+            "Sha256": "e737dac8d0f4f8564bb2c31436ee4c84e1ac9cd308683b892176607ab24ad2e3"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Checkpoint/Square.png.meta",
+            "Bytes": 3037,
+            "Sha256": "387c8351656b4bce53248788f0488ff1a8d5950de88fd55981b31371fd862730"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation.meta",
+            "Bytes": 172,
+            "Sha256": "cc58677e83a0bf7615ad696080cff46b3a14632d6aac542c25d65ba616b01afd"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/BowMagic_v1.png",
+            "Bytes": 1401022,
+            "Sha256": "ac7990a3022ecdfa4771d944e8c1bc0343b387bb9b30a2d1d6df8777516c7c93"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/BowMagic_v1.png.meta",
+            "Bytes": 3007,
+            "Sha256": "6a8798fd5259d7eb05adf9a310ca98ecdf2b2173e777199edec950ebac11cf65"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/BowMagic_v2.png",
+            "Bytes": 1354615,
+            "Sha256": "91f2b2bba5031dc3d59b3cbb5e790f864473cb0b56bf5455caef5e10fa3fa1f4"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/BowMagic_v2.png.meta",
+            "Bytes": 5134,
+            "Sha256": "b7a5c76673b2d68e30073441d9fb3aba2e2d59d9465787a20874b7b6a107e430"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/NightmareFloor_v1.png",
+            "Bytes": 1615137,
+            "Sha256": "ecef4bb1357c23a4a6f6898ae47e5680dcda47e46ff7e8f8aa56e4512af0c4b7"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/NightmareFloor_v1.png.meta",
+            "Bytes": 3039,
+            "Sha256": "73bac198afa91addbfa8f64c090b4b4a5fb54309b32bc99dbe1585ee5294cd01"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/UnitFlash.shader",
+            "Bytes": 1069,
+            "Sha256": "a4d17c7d640ec545480569951fb254cc349e341b544a420f625daa47a77bc746"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Presentation/UnitFlash.shader.meta",
+            "Bytes": 204,
+            "Sha256": "c7aef8c153f623a2c8996397fa11093917bd89d07144573cd15d889e29362f3f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Run.meta",
+            "Bytes": 172,
+            "Sha256": "e08861512e8bc47dae0f89d78eb397acaebcba6c075c10872175dde5647c63bc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Run/Characters_v1.png",
+            "Bytes": 1467524,
+            "Sha256": "0793cc9b013128e33f2527b49647852a86b95389b2bd0bd745698353f9465869"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Run/Characters_v1.png.meta",
+            "Bytes": 6222,
+            "Sha256": "98ec764ef422a502897309043a790e7eacd1783266dd1646311074d5a0ed8203"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Run/Weapons_v1.png",
+            "Bytes": 1295227,
+            "Sha256": "50ca6cdcf8375366765ef56ae133bfeb37d818bf1d9fd6222ccb0d9d7929eee1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Art/Run/Weapons_v1.png.meta",
+            "Bytes": 6221,
+            "Sha256": "81f5cca086470d5141ec519f4aab2eb3dee0f5c44aa01d46e7e297bb9efc3729"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data.meta",
+            "Bytes": 172,
+            "Sha256": "e4a94183bf8cd56af47cb8bf629bb88557554b0c02244538ef904fa93537dd88"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint.meta",
+            "Bytes": 172,
+            "Sha256": "1da53a5de72970d47b12546776894f6bc1c198af186bd37ac7122ed047a790ac"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/CheckpointCatalog.asset",
+            "Bytes": 1857,
+            "Sha256": "197536f7d2a4050b36fa08878154d49138f5abad917d23f9a8c9c7da4679acc0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/CheckpointCatalog.asset.meta",
+            "Bytes": 189,
+            "Sha256": "bcfe772416028a0b2cd18e0f2090b76288bc3e66f3056e46836a62aac46ee895"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/EnemyCrossbow.asset",
+            "Bytes": 811,
+            "Sha256": "8c38f17944c6a04be0d69342c549a089a9ba9105893e4456620588deb6b9cda9"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/EnemyCrossbow.asset.meta",
+            "Bytes": 189,
+            "Sha256": "a191847891dd41f4e399f0685b476343f5e7b1d51b21f13ad2019f76b932454a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/GrumpyJelly.asset",
+            "Bytes": 807,
+            "Sha256": "063917b22809fa60e7f93933fcef9ffd57e92b40084ab48ac03490a7693ac536"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/GrumpyJelly.asset.meta",
+            "Bytes": 189,
+            "Sha256": "bcd02b88f1e93aeeee1ea3df21fdf1e4b3ce94a8e839018c14c40ca8de27bda3"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/HoodWisp.asset",
+            "Bytes": 797,
+            "Sha256": "9d7edcc2c7e056c79a217c7ac37511d30075345e244998b58d792964e281ece1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/HoodWisp.asset.meta",
+            "Bytes": 189,
+            "Sha256": "9259639eeda57c8b539d75451b11ba23d5f805b810a31fd9b2639c97f3aa1a61"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/JellyArbalist.asset",
+            "Bytes": 818,
+            "Sha256": "04a30ad7da311d08c688400ac1b1c67c85e65a0f4d983a8233dcb7e2a43051df"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/JellyArbalist.asset.meta",
+            "Bytes": 189,
+            "Sha256": "f696b0572f5a8ce63ebd1fb34eacbe1c9f6320c381e32794bc7d189bc316093d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/JellyContact.asset",
+            "Bytes": 748,
+            "Sha256": "0d49e5c7965013d334feb3a81296b416673ba884fa09fb17ae77d9797ce0460f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/JellyContact.asset.meta",
+            "Bytes": 189,
+            "Sha256": "7bd828e5bc8037ce2b8ef838b0a57906e19d4c06ff646274c5f587ba9497c57a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/JellySwordsman.asset",
+            "Bytes": 816,
+            "Sha256": "acea1edbf35b3fc897b447276674e6a4b133bd2a4bfdbe812353d91529f8c5e3"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/JellySwordsman.asset.meta",
+            "Bytes": 189,
+            "Sha256": "6963ae39196f66ee83c9bfc39fbe7fb887bc449c3b98154c91b756f7a269aead"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/KnightArbalist.asset",
+            "Bytes": 818,
+            "Sha256": "dbbe3384fb6afebe541993b53c481dd7516061fac4186bfaa5dd238fd3633d08"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/KnightArbalist.asset.meta",
+            "Bytes": 189,
+            "Sha256": "ba62770de79f040f34d08a92fb13e3f95bade3ee7ae8b183d4602dcc493d457a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/KnightSword.asset",
+            "Bytes": 803,
+            "Sha256": "bcb20908bff3bc38d4996a993ab2fe461378397e8e98dbb6a2cb7746c56357be"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/KnightSword.asset.meta",
+            "Bytes": 189,
+            "Sha256": "1144b681925a360a16a765deccc6f5e1b65f9a8aec5190b1978c7b54fcb8b6e8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/SleepyKnight.asset",
+            "Bytes": 815,
+            "Sha256": "85df61419e8c380e8f7123f131956f5c3ba79cf11aaf14d94e10c65fabb21cb6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/SleepyKnight.asset.meta",
+            "Bytes": 189,
+            "Sha256": "b7d44755eabeacf30cdbbd85cd6427cc8b27747ad4385f3c0b9bf4c4b8584240"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/SquadCrossbow.asset",
+            "Bytes": 804,
+            "Sha256": "da12ecd0dc68e1a389dc2235cc382200517637af6e5f4f558142545865fec464"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/SquadCrossbow.asset.meta",
+            "Bytes": 189,
+            "Sha256": "5968cb7c24a3dc388da214fea2ee7d76b92691f75ccbcde5dbace30de3994e25"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/WispStaff.asset",
+            "Bytes": 800,
+            "Sha256": "414c47d93df95172dc25b3de1b0dbb403762457344cca0309146515c399342f4"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Checkpoint/WispStaff.asset.meta",
+            "Bytes": 189,
+            "Sha256": "b73efe0743add3bf69a1045bd8d0432cd9dfb8b9e2d1b4b2b2f4a86f2571813d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run.meta",
+            "Bytes": 172,
+            "Sha256": "98fe24d36dea6b1e3d9511ff5826b414c784d13410f8e70d55734de159f2bd99"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BellFork.asset",
+            "Bytes": 1102,
+            "Sha256": "c6be43cf298abbf65e0b6e3b50a7562932ad88ebbf58098b90d4372724cadbf4"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BellFork.asset.meta",
+            "Bytes": 189,
+            "Sha256": "7abf64b17a2a7dbccb036a9d306c0518e259e495545bced74cce4521815d3a4a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BookPaddle.asset",
+            "Bytes": 1034,
+            "Sha256": "b00bfe1735d00920f0f602b58920944ff7ec9c107ce9327d63037aefd739b8a8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BookPaddle.asset.meta",
+            "Bytes": 189,
+            "Sha256": "3ea57f5901a5bb694b694d0ba680a344d9c351e5172f4b4238459c7dc7bb6452"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BristleImp.asset",
+            "Bytes": 935,
+            "Sha256": "6a519fe6242a3cd3ad5bedce06f0e35f9fb4a566a4f132c539c5059e39eb44c7"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BristleImp.asset.meta",
+            "Bytes": 189,
+            "Sha256": "98f97fa7a229384d5d98e0e55b67afe496154c6ab4df46ed8a8e9b4f0c839144"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BristleImpAttack.asset",
+            "Bytes": 986,
+            "Sha256": "40fa9d855ef46b8ff0789710d26d3cf8be52c9dacbe3bcbf27fa8cfbeb65c999"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/BristleImpAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "884a9be70db4bcf149c7520631e1ad9426a54397978e5e24229a6550610e8691"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/CandleSnail.asset",
+            "Bytes": 984,
+            "Sha256": "be581186538c52ec19a86a8fcea95e74c97845e6b2c791df4d62a79befde46f6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/CandleSnail.asset.meta",
+            "Bytes": 189,
+            "Sha256": "8974f3a7bd46ef346a2acc2414a0043a3196e3e5badf6c44dd875e91115d3eb8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ClockBat.asset",
+            "Bytes": 925,
+            "Sha256": "1b0cd8c8e28f75e25cfcce630e50eb1c3f02116fc7fecea782f879645268bd50"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ClockBat.asset.meta",
+            "Bytes": 189,
+            "Sha256": "dc9e1ace2700dcf2b0b3788b852a6810f81d91a768264456f8461c8baf9b14a2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ClockBatAttack.asset",
+            "Bytes": 1039,
+            "Sha256": "207ebe6c2547b28ef2a93d2227a79bfccca8b9eec29144780090346efb38ded5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ClockBatAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "d8b3cf78f2cd24ef7c65de49bf82d2342343521feffd8f05e68955f50f1c7a6d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/CrescentBow.asset",
+            "Bytes": 1094,
+            "Sha256": "8f184c81ecdbdf7909158d1a66a714be6a1abc46c50c13adeefd8ec8a8e47304"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/CrescentBow.asset.meta",
+            "Bytes": 189,
+            "Sha256": "e8be6a926c0a41bd7a30ad0615a6e4edb4285559c7a6a1fda83da78525c1c496"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/DrowsySeer.asset",
+            "Bytes": 978,
+            "Sha256": "f5b2b9bf3546f8712c3a0db52e5590edf04a1ec6f472c7f3db02a7c030d2dbe7"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/DrowsySeer.asset.meta",
+            "Bytes": 189,
+            "Sha256": "36d01224cc99f384859bc0f4f0fd9c061ee0a6a29b5f1aebdf7939b1b1088ada"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/HoodWisp.asset",
+            "Bytes": 978,
+            "Sha256": "6b55439a8505a005bdc455e7d393f1a21dd77a24a5c9d22a487ce4d63715fe9a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/HoodWisp.asset.meta",
+            "Bytes": 189,
+            "Sha256": "0c73c42f320acbc80c64dd04dd0c827988f9d17a99db4388fc3b968050689f41"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/HushMite.asset",
+            "Bytes": 924,
+            "Sha256": "97d8a7c247e13d9b14fbcf8898970d2f7527d88f878f3f7773f05b7c4fab5153"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/HushMite.asset.meta",
+            "Bytes": 189,
+            "Sha256": "fcfc4ddab60c336e3d5e136e737960557e18a8fd6679e6dbc129fc1d191b74f1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/HushMiteAttack.asset",
+            "Bytes": 982,
+            "Sha256": "4db9f8dcd453d602ce232868cbd498f1a214743f7dc10dfaf4a2c9e60bb32815"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/HushMiteAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "723d3379707ca8395bb6bb32bad4e4833cb2f0ca0eef5272fca10332bd11a59a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/InkMoth.asset",
+            "Bytes": 922,
+            "Sha256": "c4b520b19bfbdbd6937acee48bfeb87ab939a40870cf44933726ce4dc8093b02"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/InkMoth.asset.meta",
+            "Bytes": 189,
+            "Sha256": "12ffbc9e5f01af5f41c3c8454f744d84ce4162fd1acf0b0036415eab95528e2d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/InkMothAttack.asset",
+            "Bytes": 980,
+            "Sha256": "6abb2e89eb8ca79c46ebd2db01182fe869a47701b413667a2d33a2c4a04ed924"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/InkMothAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "6d9148e2280a53afff7f5a91e0a232889fb4ec0cfecb87814e8409e55dd1e8a2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/JellySwordsman.asset",
+            "Bytes": 1003,
+            "Sha256": "de2482cf5ea5d0d21f4f67805d86c76d7034a33d40b689dbf3b412af0d9f6a1f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/JellySwordsman.asset.meta",
+            "Bytes": 189,
+            "Sha256": "c5a13acc809493c49c76657f98c37253f0faf565e0de75d92043158c88339451"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/KeyCleaver.asset",
+            "Bytes": 1037,
+            "Sha256": "2b0c7a7f756d19ea51f4033ba4520291d7162de182409172e10e3e29efa359c8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/KeyCleaver.asset.meta",
+            "Bytes": 189,
+            "Sha256": "00ba82b27c1180751e9b57d6daf34000a7b7a7d39f73210c64653a81bac59a9b"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/LanternKnight.asset",
+            "Bytes": 999,
+            "Sha256": "91c972c89fbbca8510a9c3360ca1e2ef86c6f098005fb3ac6088fa44758f86d6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/LanternKnight.asset.meta",
+            "Bytes": 189,
+            "Sha256": "6367eb32c3e9b14c84235e570fb3cbbe1bc3aff21b428ef0eedac2888a317319"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/LastLantern.asset",
+            "Bytes": 927,
+            "Sha256": "43c3306e779e6adf72b8065123df002ee4de7110668db92a07f5b24bf946add2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/LastLantern.asset.meta",
+            "Bytes": 189,
+            "Sha256": "08fe8c46b3130f4a0aebe2b5a5047f998e5fe9d1df6941297b402230c7ec3f93"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/LastLanternAttack.asset",
+            "Bytes": 925,
+            "Sha256": "e2541b1167bdf8677c1bdd5423b5a5790269b8723136564de061a470a565ba52"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/LastLanternAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "c2abf07b1da5fe03b676ad35a55b2378030aa8e0cd38918e6348a3be232f43a2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/MailboxImp.asset",
+            "Bytes": 974,
+            "Sha256": "d047768a213b0acdf7cdb683d144bfe6b9f5e61278f14f8b9c12fa7338a676f3"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/MailboxImp.asset.meta",
+            "Bytes": 189,
+            "Sha256": "f1c50e725861059ffce03bcadedf8cd6bedfc1d27850b8324f6c6a115175edc5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/MailboxLauncher.asset",
+            "Bytes": 1053,
+            "Sha256": "5244bee0a2eec2e4b328f193073e66296864dbc2b52b7ae3c9ae40e5003a0697"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/MailboxLauncher.asset.meta",
+            "Bytes": 189,
+            "Sha256": "1fd7119931b8dd943993169060edc3f41953f24194f13c5a7225e66f8f6ec8e9"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/MushroomLibrarian.asset",
+            "Bytes": 1006,
+            "Sha256": "3894a6e161751b7a3311018b6f3eb35df95f49b99f4bcd5e73a81200d6585d74"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/MushroomLibrarian.asset.meta",
+            "Bytes": 189,
+            "Sha256": "03f5d1b5d52d42980158b14c04209622815cb737fc77f204143b3927e9e51d87"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/PillowOracle.asset",
+            "Bytes": 995,
+            "Sha256": "09d14d6a9d0a6c217ac6c52e8841a95db0da366e6ecb49c907f9a897cee59b41"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/PillowOracle.asset.meta",
+            "Bytes": 189,
+            "Sha256": "029eff35386512dac466ebc9b059d43b3d1cce00fd2381b0e5f290d6be637164"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/Postmaster.asset",
+            "Bytes": 971,
+            "Sha256": "0f2e7cd4ac6959e4d7a4bc9457f09da309def2e19fa5ffcc1e7ffc2ecc36afad"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/Postmaster.asset.meta",
+            "Bytes": 189,
+            "Sha256": "b5950904ccd8b3972ccb1f9f337a726ba4c9398bb734f1d611d58194f95647dd"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/RuneStaff.asset",
+            "Bytes": 1099,
+            "Sha256": "c63242390b07da16b6bca4c42211003906263161e52d0475f134704438323096"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/RuneStaff.asset.meta",
+            "Bytes": 189,
+            "Sha256": "994dad9e6b128cbcdb978553c05a148f70270a9054abf1f69ac3113bd207b55a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/RuneWisp.asset",
+            "Bytes": 925,
+            "Sha256": "dc9474391f410b45bc87c0f42f13c9c96817709f1752d933a5625c4b6b45c057"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/RuneWisp.asset.meta",
+            "Bytes": 189,
+            "Sha256": "833aef2513c6686b76899ac7dd5d21d8730c36a14f91f3330e74e96204d599fc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/RuneWispAttack.asset",
+            "Bytes": 1039,
+            "Sha256": "171c80cd5e9589b89b0ed0b5424be439c2342c307de7c2b35bd923e972e9e975"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/RuneWispAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "2871dd13a140b72546379ee672c3a200025a2c53ac6cf2d71a8cd92b55f824db"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ScarletIndex.asset",
+            "Bytes": 929,
+            "Sha256": "0cdf732d2fab320ee5134b1a90198eaee71fafab02f59e91ebe9156e5364989d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ScarletIndex.asset.meta",
+            "Bytes": 189,
+            "Sha256": "f65ca4cd8230894e27590208197ff9f412a2ff1951f0fc5a089d99e8b63b53cc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ScarletIndexAttack.asset",
+            "Bytes": 927,
+            "Sha256": "342618de5e7bd3bfefcdafb81cba550ffd1d7ffa6a6bdd3f38ee31ca4ae8e02e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/ScarletIndexAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "0d0ce16aa146921a85aa6f299daf46bfa030c307701c4eaccd4a60269a3f6782"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SirenSeal.asset",
+            "Bytes": 928,
+            "Sha256": "4b84cdca3d19e0ad48d903636334628ac5d6051bc21d9ead5344f8a7e3e38cc7"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SirenSeal.asset.meta",
+            "Bytes": 189,
+            "Sha256": "a3be5a4cf8eb39d8e44b17da5553319916688f4d2d62a892e2d5ece6c18ba82e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SirenSealAttack.asset",
+            "Bytes": 1042,
+            "Sha256": "d3de8288baab6cf50ab0b589d23ca33d9a5170bf32da50ef3c36982a5b9bc44a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SirenSealAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "4d8de55f7222b65df0d83e7d3581c8b75708f3a1e567512c5eaecf5a9c155fc0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SleepCollector.asset",
+            "Bytes": 941,
+            "Sha256": "6785c927441e0ac248aec5ac87f74f6095bd6351b934821f9e36d29f376e27a2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SleepCollector.asset.meta",
+            "Bytes": 189,
+            "Sha256": "b12346b31d916713488ec1c8dbc643ca002da0d426c98ba085aaee5909b00c8d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SleepCollectorAttack.asset",
+            "Bytes": 931,
+            "Sha256": "5db17ba39bd0f8c2bbbb31544ae2c395a93bc60c80f7b3b8f455bcfdd79fee28"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/SleepCollectorAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "4e1eaa993b00254be44e15902a7ac6d77227575026236c92f572d25261df5358"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/TeapotPilgrim.asset",
+            "Bytes": 996,
+            "Sha256": "26959074567548c910de198e03022fb9a5bf5059505d726813e5385a5401a80b"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/TeapotPilgrim.asset.meta",
+            "Bytes": 189,
+            "Sha256": "8ad62613acaa7c7de5c36562a49434db6023d8bd18d7d0f5d9e268d0052df0eb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/TeapotPopgun.asset",
+            "Bytes": 1050,
+            "Sha256": "ffbf41fd9164a0d624c1ec4a09b3e68e651e3d9c2c95c87326130e5e2737a3bd"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/TeapotPopgun.asset.meta",
+            "Bytes": 189,
+            "Sha256": "df82f9b1266557e3cae477994a6801501b13c9e5cb38060986887c1539b13942"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/UmbrellaLance.asset",
+            "Bytes": 1040,
+            "Sha256": "e0f2b54d9e3e1ac58a08cb700bdaa08ad6cebe51855bb863a8f746c478b7b512"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/UmbrellaLance.asset.meta",
+            "Bytes": 189,
+            "Sha256": "6cbd36405bee6852d73795e8dd81ccf87f162a8f68d5e1c6a0c7ea0863e009fe"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/UndeliveredKing.asset",
+            "Bytes": 936,
+            "Sha256": "e7905d3faaad2a64339969c02f8eb69aae2780b61c1ea8c5d4415cd3d4b7ca71"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/UndeliveredKing.asset.meta",
+            "Bytes": 189,
+            "Sha256": "f2f33d71dc39837074917f2d7f8ae97bdd538dbae124f9be0eb932151850c53f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/UndeliveredKingAttack.asset",
+            "Bytes": 933,
+            "Sha256": "d2f8ec3cc8afb7a47a5bd628319b33efd15829fc7193d227ff3c82275cb1daad"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/UndeliveredKingAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "0f5544705780c78cc7322453a4ca2ebcf8ae70c2d66ad3c4f6a0d962c1e45e82"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/WaxAdmiral.asset",
+            "Bytes": 925,
+            "Sha256": "9344aac9a2185833f11939bcbc527d782a58db26e3e8661ec25ea5a92709cdfc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/WaxAdmiral.asset.meta",
+            "Bytes": 189,
+            "Sha256": "d4a82d39080d73433f15459ec7ede04d9e720b5764cbd4fd908998f799b10960"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/WaxAdmiralAttack.asset",
+            "Bytes": 923,
+            "Sha256": "b2a640bc0fced0b94a00ff284f75d0416d380f9830dc46a8b13662ea093f3a73"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Data/Run/WaxAdmiralAttack.asset.meta",
+            "Bytes": 189,
+            "Sha256": "86f87b576445367af1ae37a0f630a7ed67f70f8c44fed79b03635fd4c5894bd5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor.meta",
+            "Bytes": 172,
+            "Sha256": "db18e405a8272b83e8805f2a4c908e6f41523d8dc460796961da591148bffe2f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/ArcaneBrigade.Editor.asmdef",
+            "Bytes": 209,
+            "Sha256": "3cf9fe54edb8195c50936cedbffc1aec93f3915b9bba7caef3c97c00316a753e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/ArcaneBrigade.Editor.asmdef.meta",
+            "Bytes": 166,
+            "Sha256": "fa889dcfe17f65f6fce253ec4fd7568132535dce328908d650aa046293cd7075"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/CheckpointBuilder.cs",
+            "Bytes": 21745,
+            "Sha256": "68333b33d67705334240b27c2cc6ee159927eac1db9fd750de244b753ba0a006"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/CheckpointBuilder.cs.meta",
+            "Bytes": 59,
+            "Sha256": "e0ecdcaaeba6d5d26194e4d36f1954f21e4416dafc2282462d7bbf032a6f9576"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/CheckpointChecks.cs",
+            "Bytes": 5815,
+            "Sha256": "ba76021e09ad808fd06d9765a8ae28184b354afbd9781fc4457912305f36ad5a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/CheckpointChecks.cs.meta",
+            "Bytes": 59,
+            "Sha256": "0b931d56cf2df65ad94b46e0a8ee435b1b7ae328db8093ad0b7bdf0ac1964494"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/FullRunBuilder.cs",
+            "Bytes": 25961,
+            "Sha256": "4ca52c36df1ecc1b795dceb15d388c2c98c22881dd9709ca1a997b01d5aea5f7"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/FullRunBuilder.cs.meta",
+            "Bytes": 59,
+            "Sha256": "a8b21fc87ba2a9fc49163cea8b2c11dada947c7523c3a2f205a56250742c2314"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/FullRunChecks.cs",
+            "Bytes": 22394,
+            "Sha256": "5fddb659a24e52868d8fbae4e1ed365025919c78e0e304025501de728ac2adef"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/FullRunChecks.cs.meta",
+            "Bytes": 59,
+            "Sha256": "0fa863b8451ce6b5821435115cf5c26094c222301f70abf1531b64d3c2100d91"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/K0BaselineBuilder.cs",
+            "Bytes": 3128,
+            "Sha256": "50621d977dbb9b9333d3045a3774714dafffb8ae9322cb8b1f7d7b3ec58608df"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/K0BaselineBuilder.cs.meta",
+            "Bytes": 59,
+            "Sha256": "8c968dadb58dca9ff00fc04334c20490835b008371b987414e07d90eea6b1c08"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/PresentationBuilder.cs",
+            "Bytes": 10762,
+            "Sha256": "6a58c8baea39a1e13b3cd4292f6c88e8bca9422e39ea9f314870a8ce67e928ef"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/PresentationBuilder.cs.meta",
+            "Bytes": 59,
+            "Sha256": "754bfad7ac4c854f922c75816fd9f9d55acf4375c1fa85be93c0a6663b1d645b"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/SquadCheckpointBuilder.cs",
+            "Bytes": 8274,
+            "Sha256": "3e592f222b9dd6d24db69637ed3c41b378588ead8303ff75c6e759983715ceeb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/SquadCheckpointBuilder.cs.meta",
+            "Bytes": 59,
+            "Sha256": "8c36f019897ce93b00ac889f90d366da542281b897fdceb233ff9da9114931c6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/SquadCheckpointChecks.cs",
+            "Bytes": 6771,
+            "Sha256": "970e042101690c645853083d52700ffa09af882d9d8c36d7525fdefbc0fe1fb3"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Editor/SquadCheckpointChecks.cs.meta",
+            "Bytes": 59,
+            "Sha256": "931678b5e849fa944ee89a24775d668c659f3e0a8fc2446e90afa944c482b13c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Prefabs.meta",
+            "Bytes": 172,
+            "Sha256": "8febf6d43074dacfc43831ff09a2f750a4182c8cf3f1609ea75e20847c4d8169"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Prefabs/Checkpoint.meta",
+            "Bytes": 172,
+            "Sha256": "d304d65bbcef5bdbe64a5d7cc6cdb7a7c549704dfb0d0a5a39a953ae09c0199a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Prefabs/Checkpoint/ModularUnit.prefab",
+            "Bytes": 13579,
+            "Sha256": "cdb9bc597b031920cacd0a6c0829902b9e41cee29dc5fcd9bd397318c278b839"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Prefabs/Checkpoint/ModularUnit.prefab.meta",
+            "Bytes": 154,
+            "Sha256": "dd1abc7713e1210b45e32ffe94cf8f00c50df6e18b573fdf718ce19b64e7e927"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources.meta",
+            "Bytes": 172,
+            "Sha256": "5f4a1eb9c2f5105812fa89c4e6ea8388b42ea4bdc97de83741bbeca353d073a2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/Audio.meta",
+            "Bytes": 172,
+            "Sha256": "7df810ce52cb941abbf4d3bc8fa2a6e3aef7cc2d98e64ee8b99ef7f803bfaa17"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/Audio/CombatStudy.wav",
+            "Bytes": 641498,
+            "Sha256": "071ce4ea725dd5555d754011c0b5a284d118ab4354e18bf94a39fc77698b6892"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/Audio/CombatStudy.wav.meta",
+            "Bytes": 485,
+            "Sha256": "e10bec09b641fa05a55c76fe3a8dfca4ca4f3ced3c7519edf7e4a49837b1aa62"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/Audio/ShopStudy.wav",
+            "Bytes": 814198,
+            "Sha256": "fd29372eb570ab216f8a00b7daded85ea05d7058012c30dc581941d80ebac6ed"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/Audio/ShopStudy.wav.meta",
+            "Bytes": 485,
+            "Sha256": "09388f4e9fccdf674d10b47c98fb56471ccf9089eb2c607c996ea7e1cf81ee85"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/RunCatalog.asset",
+            "Bytes": 8743,
+            "Sha256": "365a7b3e82fd2f5d0798f2e260772d8da692a61d7da01d427ab7c7adca3ba65e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/RunCatalog.asset.meta",
+            "Bytes": 189,
+            "Sha256": "a68125aa22fe269d1865d349c1b6f51815372c86b284dc441eca5a1fe6ae8733"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/UnitFlash.mat",
+            "Bytes": 993,
+            "Sha256": "aab57391f0cc8ce230ef63d09abff5d21f2dadc5204caba970a5926fef7200cb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Resources/UnitFlash.mat.meta",
+            "Bytes": 188,
+            "Sha256": "316e3217983de630de55c92c0b923bc05636c6a4b380cce36f7c8605f901d9b5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime.meta",
+            "Bytes": 172,
+            "Sha256": "f6d84773d2ad62f395e58c6440a6949c284ba95448d07411441da9b896462925"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/ArcaneBrigade.Runtime.asmdef",
+            "Bytes": 120,
+            "Sha256": "57cb3293f25d7be68847f2894a34dc9989117d7388d377889a1cee1dfb4094fb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/ArcaneBrigade.Runtime.asmdef.meta",
+            "Bytes": 166,
+            "Sha256": "cd6bde8d5d6cc26fc31261942b07e495c033c011ff3fe10cc96eac4823cea328"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core.meta",
+            "Bytes": 172,
+            "Sha256": "c6d2798f1faf19123052144b2989adfb4afa726f3476cb6ef4b59fca8a42e0f8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/ArenaController.cs",
+            "Bytes": 22066,
+            "Sha256": "e1943013a419f19854b128632c75c67acfda24481f491adad8a6e7faa1495a91"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/ArenaController.cs.meta",
+            "Bytes": 59,
+            "Sha256": "1824030ed603998b176e2e624e038d9c3561aeb5bfc6b20d0f9b796a29f2cf7c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/BootLoader.cs",
+            "Bytes": 215,
+            "Sha256": "e72d2cfb56f37308f63ece09e0bc71910615800a4a55cb3957c0ec4d9a1c85f9"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/BootLoader.cs.meta",
+            "Bytes": 59,
+            "Sha256": "9be09bbd5a4f5b2359960cc0c15461b2bed000f249ba398568b725969d06bd57"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/CheckpointPlayerSmoke.cs",
+            "Bytes": 1763,
+            "Sha256": "29e6caf7d07cc1faf696c2d6e87011a9389cbde1ac734da8123256c0bfd54ab8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/CheckpointPlayerSmoke.cs.meta",
+            "Bytes": 59,
+            "Sha256": "a342f47b15d0a1235ec0f419bef124e7e1644d16235c0ce5ce6277e33529b0ec"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/CombatSimulation.cs",
+            "Bytes": 31724,
+            "Sha256": "99b4caa52ce62602fdb8b6bbcad21eeca008973f649e68ba01f46d6fff6d30fe"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/CombatSimulation.cs.meta",
+            "Bytes": 59,
+            "Sha256": "12027baa38af7ba057b3d739497744a59b241006999ccfcdfc5f29b9152d3d5c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/CompanionMotion.cs",
+            "Bytes": 3553,
+            "Sha256": "57a4e63aa15c19acb56ce7a56f91671edb025cddaa5ae081ce8795c2ecf30b43"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/CompanionMotion.cs.meta",
+            "Bytes": 59,
+            "Sha256": "c7f0c45c4a3d39b0571ff736d4a2858cd6f2eb4023310a9d1e7dd55cbc82da2c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/FullRunPlayerCapture.cs",
+            "Bytes": 7355,
+            "Sha256": "80ad93f4184bb0d23609dfc534ac0c8a287528bba2f62abe2ea7fbd8712ab1dd"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/FullRunPlayerCapture.cs.meta",
+            "Bytes": 59,
+            "Sha256": "12f7b03015aa3192e9cd2268566ab10003e4d54c66ed26174577648fc9e55c0c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/RunBootLoader.cs",
+            "Bytes": 221,
+            "Sha256": "6cc7b8ff7ee3591c6580cc2b9317c48ad03781939c90fa755359c713393b4954"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/RunBootLoader.cs.meta",
+            "Bytes": 59,
+            "Sha256": "ccf879f77eb0613e2e2778098834448ccf94ddb2d13d622fee79e11bb935a93a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/RunSession.cs",
+            "Bytes": 22119,
+            "Sha256": "049bd8d5384acae621b11767be7f9880cf0c8d54e49dc177c812eddc6678c3c7"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/RunSession.cs.meta",
+            "Bytes": 59,
+            "Sha256": "1d1dc8e12868f29aec0f39e3d7fc0b8d77dd1258c82c7a3901f6a36db673b3fc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/SpatialUnitIndex.cs",
+            "Bytes": 2330,
+            "Sha256": "d133c47aa5af563f33f4468e438c3ae48ba944ff83cdc4e4b6d854d846dd812d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Core/SpatialUnitIndex.cs.meta",
+            "Bytes": 59,
+            "Sha256": "0656dfd05a2e54d73c4573d5de98ac7d85b78c20b5c49c92bf0f686c98190db4"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data.meta",
+            "Bytes": 172,
+            "Sha256": "864fc1563e296600e4d56f59d4dff1e129f3ab34286ca0d4c89e82d75400a1fe"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/CheckpointCatalog.cs",
+            "Bytes": 1548,
+            "Sha256": "a4f5b45540f42d2d0128bed8d30bb576f61974ab6e779a0321783b6fd7d6f2ed"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/CheckpointCatalog.cs.meta",
+            "Bytes": 59,
+            "Sha256": "d2b52f21d26709302f3b745951bbac1cd1e7a5f6edf05d664685a79bbf3720a0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/RunCatalog.cs",
+            "Bytes": 3059,
+            "Sha256": "38898d438b5ccd4f699a10263f62febeedcce94617edae6f07f63529a2fbde54"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/RunCatalog.cs.meta",
+            "Bytes": 59,
+            "Sha256": "70e248c32b6996248cb37c78aba07a2a139e9ecb268a725015eb3a585c649756"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/UnitDefinition.cs",
+            "Bytes": 1033,
+            "Sha256": "29588a1b7280bc4f4a84eb2b9d3e4b55d222a1e694310ee742cd8520ef1d7978"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/UnitDefinition.cs.meta",
+            "Bytes": 59,
+            "Sha256": "5c37c11f62cec6b6a9025955786a5e7e2d06b52573097278842dff2d2296f32d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/WeaponDefinition.cs",
+            "Bytes": 1378,
+            "Sha256": "77924339b6923a855dc8396be54bcbc707daec64f4ea90d8ddf436a83be0414b"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Data/WeaponDefinition.cs.meta",
+            "Bytes": 59,
+            "Sha256": "19eaf2bfa811be7432b65d725a94584975ec51b272111c96c709ef7163bfb5eb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Input.meta",
+            "Bytes": 172,
+            "Sha256": "357a793b03dad1baf33f0cf199010584c3cf7f37d81d0ed891288dd42c5c08f9"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Input/MovementInput.cs",
+            "Bytes": 2029,
+            "Sha256": "667f80c6db42fa231afe010890ff1e832628b7fb06e824cc84d47207cecd12d4"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Input/MovementInput.cs.meta",
+            "Bytes": 59,
+            "Sha256": "f435b1760f8d51ff8028ebfb1d9ba80128279328c5703532f6936ceb418873a5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Persistence.meta",
+            "Bytes": 172,
+            "Sha256": "f4af1f31f663d5c8eee5287d74bf0c488154a075015e0f928f1c84e4e5bf1495"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Persistence/RunStorage.cs",
+            "Bytes": 5773,
+            "Sha256": "3b17ab5450b4fd20ba2523a3a8a6d1716ff79fc0ea350778a418c05bb1e0dba1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Persistence/RunStorage.cs.meta",
+            "Bytes": 59,
+            "Sha256": "296a38f8d440dbc3d6c70441cf1cc9cad38f83c34e83137385391847ea5c368c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation.meta",
+            "Bytes": 172,
+            "Sha256": "8a1464944ecde77a6a20fa35cd813cc794037229f098c87077d096c0195deccf"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArcadeEffects.cs",
+            "Bytes": 8278,
+            "Sha256": "3d5605f41dbf2e6116ab60d545e7c474b198a20565aaaecee74dc070c4939377"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArcadeEffects.cs.meta",
+            "Bytes": 59,
+            "Sha256": "670fab27d3448e1f53a80ad2e6efd9555463412fcac485f427da4289142cbe85"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArcadeMusic.cs",
+            "Bytes": 1186,
+            "Sha256": "42cba10b1e09c6f4582650a154ee591732ffa96262d9c4e6074d3241d48cde71"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArcadeMusic.cs.meta",
+            "Bytes": 59,
+            "Sha256": "2c864280bb0ae78d3b87e09e29140a77726ec42ecf50e32744805c1968ea4f25"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArcadeSound.cs",
+            "Bytes": 4779,
+            "Sha256": "4495fd00d116d10c34bf9e648b285527a8f88fb2ddfc9350baa9b8fda71fd58c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArcadeSound.cs.meta",
+            "Bytes": 59,
+            "Sha256": "e62be02a07084154fef7fa3cdb0c0d2f374bc894a16845b754d3ea93c7b0d255"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArenaCamera.cs",
+            "Bytes": 802,
+            "Sha256": "c2515dc3a5a5a84f89c26637148acb5ef63524e8c933327d64ddba7632f2b3ca"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ArenaCamera.cs.meta",
+            "Bytes": 59,
+            "Sha256": "9ecd9b347e1343dffa4693cc46c170d972b05b362388b87253ff20d4452f0725"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/BossTelegraph.cs",
+            "Bytes": 1995,
+            "Sha256": "3c2dda23cf4277bc03cdbd69836bc6b681e74335b47c8e82bc14d8bccf355e90"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/BossTelegraph.cs.meta",
+            "Bytes": 59,
+            "Sha256": "ce25981040eb42016f53e92643d9320e4e91fcac649b9e05588ce0a3fc3641ce"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/CheckpointAudio.cs",
+            "Bytes": 3434,
+            "Sha256": "fbf3b043d3f5a10cf3b6de2ccebe204931ed10287771fb736bf42fd49f43edeb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/CheckpointAudio.cs.meta",
+            "Bytes": 59,
+            "Sha256": "8a73c67be790b8dad973da5564b89841d69da60288987fd771784d2445752734"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/CombatFeedback.cs",
+            "Bytes": 7437,
+            "Sha256": "2c481f771e78784b6aaaa8e4f4d30139ee9130f1cc77c175bfaf78fea90fa2bc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/CombatFeedback.cs.meta",
+            "Bytes": 59,
+            "Sha256": "acd80486eed32282c5464f86cf3fcfaa412df35a919b5ab7fa7118e32ae55bd6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ProjectileVisual.cs",
+            "Bytes": 2868,
+            "Sha256": "193c710e8fa4bcdf0443dabfc2dfae4ca255b495114c720176428c4fcb72459f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/ProjectileVisual.cs.meta",
+            "Bytes": 59,
+            "Sha256": "36a1ee76e0ca5a8bf3342b420eb9e192b3284a2bd93e760af773601e60880fda"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/UnitVisual.cs",
+            "Bytes": 10261,
+            "Sha256": "fe4b7db5c9e31f34a28ccff9848977aaa4a15c65d7ae0c0f41c9f8b4a728e01e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/UnitVisual.cs.meta",
+            "Bytes": 59,
+            "Sha256": "eaf92e51736be3d74cab3cb2dadc8786ee282aba3c88bc815dc6aeba587689d4"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/WorldShop.cs",
+            "Bytes": 8592,
+            "Sha256": "d39e607be6e4be7a1e6dd3e5fb591509fcd6b92ed9fac0f12308d8cead3d0ac1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/Presentation/WorldShop.cs.meta",
+            "Bytes": 59,
+            "Sha256": "4227b7829a5a54c6b256c962ca93a6f563417a63b337863a7e383907fabb6ceb"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI.meta",
+            "Bytes": 172,
+            "Sha256": "4155825d0e8b813ea59ae58f07c8b0bc29fc9fe64f393755c36369deba48e915"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/ArcadeSkin.cs",
+            "Bytes": 4139,
+            "Sha256": "801b51b842b73c42e69e571f7c2b6641107d09b6b90fba74efcdd643c189295c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/ArcadeSkin.cs.meta",
+            "Bytes": 59,
+            "Sha256": "c566c61fe8a82cca4b8cd067b3511317b516e93483f69e68d10e0c4220d1eddc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/CheckpointMenu.cs",
+            "Bytes": 1529,
+            "Sha256": "7b6364ee0c3699f4716f8ec45f9e52bbbb9961c74955980b5264316c6c49af38"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/CheckpointMenu.cs.meta",
+            "Bytes": 59,
+            "Sha256": "88c540203ce546790c7b283bfcac98240a56368ee6b195980eef4dbca6aa400e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/RunHud.cs",
+            "Bytes": 8335,
+            "Sha256": "95c8c5cffcf5480bae1fc0b2b2c39d821e92311a033306a79ce8b9918db66263"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/RunHud.cs.meta",
+            "Bytes": 59,
+            "Sha256": "0efdf99ce39d33956f9ad9e6d7e0dd7ba8e47401d25a399190dfc3698f832366"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/RunMenu.cs",
+            "Bytes": 6471,
+            "Sha256": "8f2f26b4c360b7d28be307f516cf80d922c9a5c6c4dba71dbff0d87c430cd2b0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Runtime/UI/RunMenu.cs.meta",
+            "Bytes": 59,
+            "Sha256": "00c5d38e851df2b18de57fb5fae578176dbd9bcd9e1bb3d9af81a6afd2443002"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes.meta",
+            "Bytes": 172,
+            "Sha256": "2645c36fc7da7a05c2dc7fecf4d122b3ff769ba7592690831768e6432659d520"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/Arena.unity",
+            "Bytes": 215589,
+            "Sha256": "147b22a82f7902be5a16df00bbb3f6bffede6fcd8dfa3b4b14e5d3db688b20a8"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/Arena.unity.meta",
+            "Bytes": 155,
+            "Sha256": "7f63b81771ff137d362fff5c6b7316e0db0f48795e331bf6364b68a2d5ad38d6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/Boot.unity",
+            "Bytes": 4825,
+            "Sha256": "4e980f3d0008baa4fceda35edcdb215d38b5fcd93ea638649599f114e28e4f42"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/Boot.unity.meta",
+            "Bytes": 155,
+            "Sha256": "b6df6814884854b7bd65d03a088f47bd10933a05b2ea9602c9af66deb708cb39"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/Frontend.unity",
+            "Bytes": 7319,
+            "Sha256": "4e7d467e11287f2297ea301ddb78340529b49ff67ae6e654d59f8b2140a4e85f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/Frontend.unity.meta",
+            "Bytes": 155,
+            "Sha256": "fa9e6be80235bb008201268b6118d6e48f121d298d3472f311572f2601b96543"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunArena.unity",
+            "Bytes": 218181,
+            "Sha256": "c5b95f64d0d02373e96dd85981ebf4f7b5dae5ae98b28fd22469181a3f0fb276"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunArena.unity.meta",
+            "Bytes": 155,
+            "Sha256": "a17d82ee1a8e3ed8841dd45c65b9f69d8b9b54cd8fcf0222515b151a07595a6e"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunBoot.unity",
+            "Bytes": 4831,
+            "Sha256": "854f6cc2cb9d6799d1eec0a6a9f3db90b290919ec567f21694646353b648c219"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunBoot.unity.meta",
+            "Bytes": 155,
+            "Sha256": "4c5e2a94ec773d2d0f33700b013e62577b162181aeb47ec196851c216c3ddec0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunFrontend.unity",
+            "Bytes": 6931,
+            "Sha256": "0db7dda4cc74e228c82b86896c93d7cc2464b7361797d2ab9cf52a409b061e34"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunFrontend.unity.meta",
+            "Bytes": 155,
+            "Sha256": "09fc483686aab513aeac19e9bb692b589f9e6e5cc46942f1d91291d036a81c93"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunModelGallery.unity",
+            "Bytes": 131369,
+            "Sha256": "7d9a8a34a0cde34dbe840932b098b2a3245969873aab7dcc45a688e2211c1906"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/Scenes/RunModelGallery.unity.meta",
+            "Bytes": 155,
+            "Sha256": "6590a5f1a21ee32efc3b2b1218414adaf9a79dd73613afd1247d86001123a8e1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview.meta",
+            "Bytes": 172,
+            "Sha256": "a9215b9c9eded7be43e1a933e9f77a5f7b34536b088ec725c7dea15e04d0bb1c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations.meta",
+            "Bytes": 172,
+            "Sha256": "a763c89b0b49dfa66cc7935a9831ec88c767eaabf718d5028cd98730b94dc7a0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/GrumpyJelly_Action.anim",
+            "Bytes": 2221,
+            "Sha256": "a3aae55d4194e3358cb7a3da3649547d15380ac33029729fa156fd62b0a21667"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/GrumpyJelly_Action.anim.meta",
+            "Bytes": 188,
+            "Sha256": "52bacaecc9e05578f874553432398364320c60e0caea1430bf74b83939129cc3"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/GrumpyJelly_Idle.anim",
+            "Bytes": 2024,
+            "Sha256": "f3b69a29bf5dfe3178223a71a99a9277d434058007ec1f8701e6bcd8a08f079d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/GrumpyJelly_Idle.anim.meta",
+            "Bytes": 188,
+            "Sha256": "f4a9f7af80452ab211e598163c21af4ce3181339e06c0aa9f10f1be6520d0795"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/GrumpyJelly_Walk.anim",
+            "Bytes": 2215,
+            "Sha256": "bb6ad38078eb2ac4cc4019c93e0a91be5d66b187f21ec80e204c5be9e16ca47f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/GrumpyJelly_Walk.anim.meta",
+            "Bytes": 188,
+            "Sha256": "cd6f07ef94ae5f9865c79d17706eb23e615217c63a260bc2c6b3c053011e7e65"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/HoodWisp_Action.anim",
+            "Bytes": 2214,
+            "Sha256": "6a8af131de570e1eb849818eb9b56d452ed541addb50360a965eb68fc47583bc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/HoodWisp_Action.anim.meta",
+            "Bytes": 188,
+            "Sha256": "dc0070d1f64713c35b3a892f4740fb7fcee071a8324f403ebfbf8235abfac3ea"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/HoodWisp_Idle.anim",
+            "Bytes": 2017,
+            "Sha256": "bb8b393a985a523ad5c7b2475463422136f23cbaa97aa57ab7d9c9e84317e1be"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/HoodWisp_Idle.anim.meta",
+            "Bytes": 188,
+            "Sha256": "daa9c28ebe52a491d3f7eb10f7c22c329b9c219991acaf98f978e78b6d47b772"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/HoodWisp_Walk.anim",
+            "Bytes": 2210,
+            "Sha256": "f62051d3d87841a151307546539866ab36e92e112921642220d605d4c50eba67"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/HoodWisp_Walk.anim.meta",
+            "Bytes": 188,
+            "Sha256": "a0a11c2a099802f71571074ae18bde6a39d3ce562693787112a5bcbb557a893f"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/SleepyKnight_Action.anim",
+            "Bytes": 2218,
+            "Sha256": "dde745782965dbcae3e59eb56d21bf8585d0ae411966311f517f1d81f1a678f0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/SleepyKnight_Action.anim.meta",
+            "Bytes": 188,
+            "Sha256": "8d2d0ef0ce0d30abdf107a40b64535b7efe808f5a3bac1ba26ec084c264d6cc5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/SleepyKnight_Idle.anim",
+            "Bytes": 2021,
+            "Sha256": "686834bd5f81d2401e43030e67fc6b710daa06b10895a8f91d4e8941789edcc5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/SleepyKnight_Idle.anim.meta",
+            "Bytes": 188,
+            "Sha256": "258c9f95a811c0ab4218c95433f759d83bdb01254e54cf2c14792c191a18fd15"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/SleepyKnight_Walk.anim",
+            "Bytes": 2216,
+            "Sha256": "0385620c767b0b45b53defa7041774d46b995ca430ff9494b4936f64bf5787c5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Animations/SleepyKnight_Walk.anim.meta",
+            "Bytes": 188,
+            "Sha256": "89eaecca3dc4460b1ea872a3f2cf81d86c5a205ad1cf434b25820de5035fba1c"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Art.meta",
+            "Bytes": 172,
+            "Sha256": "5a0a2ccad4cad911d4079fb482853a9ccda02ef5febbf3d319494db893f742c9"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Art/MinimalArcade_Sheet.png",
+            "Bytes": 717019,
+            "Sha256": "301ea20e57e4af3198520b4e8cf473b52e5ad153bcb0eb189408edba06692062"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Art/MinimalArcade_Sheet.png.meta",
+            "Bytes": 9855,
+            "Sha256": "1fe2b5e5007a689ba70a5c95a193825a3cffa26e6a24a33e59649d4d2b76e4d9"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Editor.meta",
+            "Bytes": 172,
+            "Sha256": "226dcb714367e953552cd44cf3e9a3b8065995b458dbf55f3aa36c9506e6f809"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Editor/StylePreviewBuilder.cs",
+            "Bytes": 16231,
+            "Sha256": "52d598fc33079e2357dd9ce0cfa0ecc5c9e6a92a8ae7611649529a2fb43e6e88"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Editor/StylePreviewBuilder.cs.meta",
+            "Bytes": 59,
+            "Sha256": "136172014a2562976f9e5898097cf47e33b4c9d0ac73bfe24fbc9e61d0e200e0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials.meta",
+            "Bytes": 172,
+            "Sha256": "f5000c099738decf64a7d3007bbce1a85f896c7649ca06469737be36574bb8dc"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials/Divider.mat",
+            "Bytes": 795,
+            "Sha256": "a4bd09f755a38368c5afa0d6ff399a0674bab9cb759bada62527defb1e62f18d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials/Divider.mat.meta",
+            "Bytes": 188,
+            "Sha256": "4d25d3d7f9dd79705f9e1246b7fe33c493da9653694cfcca238d24ad9d02d3f5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials/FloorMark.mat",
+            "Bytes": 797,
+            "Sha256": "0cf68a0172d3820eed72f93ce8b519bd010eaa40f2c7a2bf41d6833eb1dc1f27"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials/FloorMark.mat.meta",
+            "Bytes": 188,
+            "Sha256": "5ce656fc0aaf53f99a2e802c98129d1d5fb179c1811d529352c8db24746233e1"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials/Panel.mat",
+            "Bytes": 793,
+            "Sha256": "608e37db4be35d09b2c94c399fae410b56f3517e05f64bb90bac6667a641ede2"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Materials/Panel.mat.meta",
+            "Bytes": 188,
+            "Sha256": "e0f0d20a3f4e8e840ae06169d32b6e44e9e2dc1b308208d359f1c5642ecac0ca"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs.meta",
+            "Bytes": 172,
+            "Sha256": "eebe44eadd345ff522f9fc1a355df9c152dd375816691218f857ebb1e5a3c7af"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs/GrumpyJelly.prefab",
+            "Bytes": 3461,
+            "Sha256": "9df84fa6a4af88cc63ed1c5dcc56ee33ad5dd5aefda7789d9caafd965db7c6ff"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs/GrumpyJelly.prefab.meta",
+            "Bytes": 154,
+            "Sha256": "36179efb2810dfa9659838e8dcabe2ad0230ec089288243740894356e18157ec"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs/HoodWisp.prefab",
+            "Bytes": 3454,
+            "Sha256": "ca5378cb9f91c1054aa6ce20c9878735e5c9818fdd1fcad015a7d185423b370d"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs/HoodWisp.prefab.meta",
+            "Bytes": 154,
+            "Sha256": "d8fb1572b4b44650f102932c49bb52bc3908ae10151d792f55a36118ce9946c6"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs/SleepyKnight.prefab",
+            "Bytes": 3458,
+            "Sha256": "694672ea3b89de7208845939c13a617af8bfa3b6440387b7e0e8f142622c01c0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Prefabs/SleepyKnight.prefab.meta",
+            "Bytes": 154,
+            "Sha256": "2dbc1acfdb180c634e6f422fa47311578402bf1a4b747efaab7d6658ddde442a"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Runtime.meta",
+            "Bytes": 172,
+            "Sha256": "f0ffe879d581197d6115d150b77485837c36e6844357bfc1b75345b4f80636a0"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Runtime/PreviewSpriteActor.cs",
+            "Bytes": 1354,
+            "Sha256": "ee154ae000de9ce2e1ed52c232d764a81417ec860963604256bdba19a534d859"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Runtime/PreviewSpriteActor.cs.meta",
+            "Bytes": 59,
+            "Sha256": "fa8ad6ec0f64774afdc9aa03d94ec428d879718b4f7b0a6e867b7365440ca3a5"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Scenes.meta",
+            "Bytes": 172,
+            "Sha256": "6da866556104d0a551c3538ae800ef391e933cfefa90cf03b7ffe7f3bbcc56fa"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Scenes/MinimalArcadePreview.unity",
+            "Bytes": 410783,
+            "Sha256": "f63c12b88a53e91d350b5346d09ecc2a47563127e206cdbe8f69f86f3e19dc64"
+        },
+        {
+            "Path": "Assets/ArcaneBrigade/StylePreview/Scenes/MinimalArcadePreview.unity.meta",
+            "Bytes": 155,
+            "Sha256": "ef894dc8b1ba29f3ddbee4ef1a5d84b57ef4bdeeed2367eca8c13a3bd9de61d7"
+        },
+        {
+            "Path": "Packages/manifest.json",
+            "Bytes": 370,
+            "Sha256": "00ddb23b99d7c29ed3fbda92946af4d9548cb91903ba467d9260c17fd3db0195"
+        },
+        {
+            "Path": "Packages/packages-lock.json",
+            "Bytes": 1198,
+            "Sha256": "9f810ffd99d4112c9e40a0adeb80d2fe120e4fc88ffc1c8b7ca83dbb6479833b"
+        },
+        {
+            "Path": "ProjectSettings/AudioManager.asset",
+            "Bytes": 523,
+            "Sha256": "9543c41dbfc7d3951217c4dd9481ed026eb8e529b85ecf4463969a0fea747729"
+        },
+        {
+            "Path": "ProjectSettings/ClusterInputManager.asset",
+            "Bytes": 114,
+            "Sha256": "40e65dd214bf254955d2c8829ca8ce2130fd3510485560ce012e9a1ddd93e623"
+        },
+        {
+            "Path": "ProjectSettings/DynamicsManager.asset",
+            "Bytes": 1553,
+            "Sha256": "fb36e677f7de32325bede8462e7e3eaf0be86ca374216d2907886fce7cb1d488"
+        },
+        {
+            "Path": "ProjectSettings/EditorBuildSettings.asset",
+            "Bytes": 492,
+            "Sha256": "bc3e2c6665e8e81e3659eee9012c61be013c7b55a88fba5e3df8347944345a4a"
+        },
+        {
+            "Path": "ProjectSettings/EditorSettings.asset",
+            "Bytes": 1660,
+            "Sha256": "4fb4ed8f1e8758a52bcf5978b120bc54c640ca4b58ee879ba6c8518abc918fe5"
+        },
+        {
+            "Path": "ProjectSettings/GraphicsSettings.asset",
+            "Bytes": 2433,
+            "Sha256": "40de98f4d46d02fb08e268ad3a722a00eed7289f4ef6d2e759984b1b4a85d2af"
+        },
+        {
+            "Path": "ProjectSettings/InputManager.asset",
+            "Bytes": 5816,
+            "Sha256": "d0f454ddb880912abcae92e3e12957a7446786ba89e24937e019ff3bbc0d4300"
+        },
+        {
+            "Path": "ProjectSettings/MemorySettings.asset",
+            "Bytes": 1192,
+            "Sha256": "cb2e41edd7f5a64298d68dd4ab768e8908e33a00f26e5ee53638e4d4251c358e"
+        },
+        {
+            "Path": "ProjectSettings/MultiplayerManager.asset",
+            "Bytes": 232,
+            "Sha256": "ce4075d7a7dd8ac7ffe55de2427692c63f90dae398208bd80cec0f27cbe09f4b"
+        },
+        {
+            "Path": "ProjectSettings/NavMeshAreas.asset",
+            "Bytes": 1361,
+            "Sha256": "7ebbf8f53b8033104e1878b95ca07a28d0954092d81c220f14196a42f651e658"
+        },
+        {
+            "Path": "ProjectSettings/Physics2DSettings.asset",
+            "Bytes": 1862,
+            "Sha256": "1cfc0c8fbceec604fd7cd2a06c04ff05dddee6335b75c92b0f5715ad80ba9490"
+        },
+        {
+            "Path": "ProjectSettings/PresetManager.asset",
+            "Bytes": 146,
+            "Sha256": "29c125923fe6e29f90190d4fce1c82d660e7051546e2c9d02908d18c9cf2436c"
+        },
+        {
+            "Path": "ProjectSettings/ProjectSettings.asset",
+            "Bytes": 20359,
+            "Sha256": "bbe61214260c5953773c3399716f2b9cf0cbbc4b6c034ab130bc2e81d56cbc5e"
+        },
+        {
+            "Path": "ProjectSettings/ProjectVersion.txt",
+            "Bytes": 83,
+            "Sha256": "effeb24bc3ee0a6e910ba0f5cd51ac60ebe06dfff7b50773fe88ab4a104a1eea"
+        },
+        {
+            "Path": "ProjectSettings/QualitySettings.asset",
+            "Bytes": 9802,
+            "Sha256": "f1f893b1be47ad2442f58338dd7c860dc1986bb317e2f5bb31084454ffabbf4c"
+        },
+        {
+            "Path": "ProjectSettings/SceneTemplateSettings.json",
+            "Bytes": 3535,
+            "Sha256": "bb9098b3bfcde78d93e264b96f7b77b5430e64e8c57a7aad7f5a5d9c3945e16a"
+        },
+        {
+            "Path": "ProjectSettings/TagManager.asset",
+            "Bytes": 443,
+            "Sha256": "996628fdc904025b83606bbfbda4fe08c0bbe916475146110e77cdc2f22c2013"
+        },
+        {
+            "Path": "ProjectSettings/TimeManager.asset",
+            "Bytes": 305,
+            "Sha256": "3396f52fdc16d445024e01d7a2d99db6f0a37569d1d73c0302e9ffb857d90287"
+        },
+        {
+            "Path": "ProjectSettings/UnityConnectSettings.asset",
+            "Bytes": 1063,
+            "Sha256": "11251dae0356b6f43dd2c67bb511f6b7ecda4e5de425186bba3297e6f3dc1c6f"
+        },
+        {
+            "Path": "ProjectSettings/VersionControlSettings.asset",
+            "Bytes": 172,
+            "Sha256": "e199cdfa6a8f2bf33cfd47e549198f13e3eb2a5099e908fdb4e0f14d939ccc6b"
+        },
+        {
+            "Path": "ProjectSettings/VFXManager.asset",
+            "Bytes": 525,
+            "Sha256": "2973a6af930e142f62cde00076beda8a3cc3a66d9bfcde7a58ba7d4be2251c26"
+        },
+        {
+            "Path": "Builds/FullRun/ArcaneBrigade.exe",
+            "Bytes": 667648,
+            "Sha256": "e83058c236f35a720c27e465dc42d1549f13b25a8573dce464438b855764e7af"
+        }
+    ]
+}

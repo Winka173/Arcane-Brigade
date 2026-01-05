@@ -1,0 +1,27 @@
+PASS World exceeds viewport in both axes
+PASS Camera clamps (-17.00, -11.00)
+PASS Camera clamps (17.00, -11.00)
+PASS Camera clamps (-17.00, 11.00)
+PASS Camera clamps (17.00, 11.00)
+PASS Small arena stays centered
+PASS Closing Details preserves manual pause
+PASS Closing navigation preserves focus pause
+PASS Restart preserves background pause
+PASS Pause clears only after all owners clear
+PASS Details capture is read-only including RNG
+PASS Legacy schema migrates without dropping IDs
+PASS Unknown future schema rejected
+PASS Checksum failure recovers backup
+PASS Failed save rejected without touching backup
+PASS Failed transaction restores gold, stock and RNG
+PASS Movement reaches corner (-1.00, -1.00)
+PASS Movement reaches corner (1.00, -1.00)
+PASS Movement reaches corner (-1.00, 1.00)
+PASS Movement reaches corner (1.00, 1.00)
+PASS Large roster Details has no UI slot cap
+PASS Font resource loads
+PASS Vietnamese glyph coverage NotoSans-Regular
+PASS Font resource loads
+PASS Vietnamese glyph coverage NotoSans-Black
+PASS Font resource loads
+PASS Vietnamese glyph coverage NotoSansMono-Bold

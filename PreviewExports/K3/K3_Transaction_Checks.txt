@@ -1,0 +1,36 @@
+PASS False operation rolls back currency, offers, counters and RNG without saving
+PASS Operation exception rolls back exactly
+PASS Rejected save leaves no receipt or gameplay changes
+PASS Save exception restores both random streams
+PASS Successful transaction commits
+PASS Receipt and reroll counter persist with the purchase boundary
+PASS Receipt records actual wallet and reroll before/after
+PASS Recruit purchase through atomic pipeline
+PASS Recruit receipt includes the rolled weapon and tier
+PASS Sold offer cannot duplicate receipt, weapon roll or charge
+PASS Egg transaction never spends gold
+PASS Egg and item stack deltas use committed values
+PASS Companion-only upgrade records actual existing weapon stat changes
+PASS Checksum save/resume preserves receipt and RNG
+PASS Schema one migrates without consuming RNG or dropping roster
+PASS History rollover transaction 0
+PASS History rollover transaction 1
+PASS History rollover transaction 2
+PASS History rollover transaction 3
+PASS History rollover transaction 4
+PASS History rollover transaction 5
+PASS History rollover transaction 6
+PASS History rollover transaction 7
+PASS History rollover transaction 8
+PASS History rollover transaction 9
+PASS History rollover transaction 10
+PASS History rollover transaction 11
+PASS History bounds UI records, not gameplay or roster
+PASS Details history reads without changing random streams
+PASS Triple purchase merges into one higher-tier body
+PASS Merge receipt shows consumed variants and actual rolled result
+PASS Health upgrade commits
+PASS Committed Details maximum HP matches prepared combat
+PASS Failed altar save restores materials, eggs and result weapon RNG
+PASS Existing altar recipe commits materials and egg cost together
+PASS Shop transaction cannot execute in combat

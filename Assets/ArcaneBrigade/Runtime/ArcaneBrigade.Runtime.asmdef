@@ -1,0 +1,6 @@
+{
+  "name": "ArcaneBrigade.Runtime",
+  "rootNamespace": "ArcaneBrigade",
+  "references": [],
+  "autoReferenced": true
+}

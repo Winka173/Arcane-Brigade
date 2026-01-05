@@ -1,0 +1,470 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    public enum SessionPhase { Combat, Shop, Victory, Defeat }
+    public enum OfferKind { Companion, Item }
+    public enum ShopCurrency { Gold, Eggs, Health }
+
+    [Serializable]
+    public sealed class RosterEntry
+    {
+        public string UnitId;
+        public string WeaponId;
+        public int Tier = 1;
+    }
+
+    [Serializable]
+    public sealed class ItemStack { public string Id; public int Count; }
+
+    [Serializable]
+    public sealed class ShopOffer
+    {
+        public int Token;
+        public OfferKind Kind;
+        public string Id;
+        public int Price;
+        public bool Sold;
+        public ShopCurrency Currency;
+    }
+
+    [Serializable]
+    public sealed class RunSnapshot
+    {
+        public const int CurrentSchemaRevision = 2;
+        public int SchemaRevision = CurrentSchemaRevision;
+        public string Version;
+        public string RunId;
+        public string ChampionId;
+        public int Seed;
+        public int Wave = 1;
+        public int Gold;
+        public int Eggs;
+        public int TotalKills;
+        public int BossKills;
+        public float Health;
+        public float CombatSeconds;
+        public bool Endless;
+        public SessionPhase Phase;
+        public uint ShopRandom;
+        public uint WeaponRandom;
+        public int NextOffer;
+        public int RerollsThisShop;
+        public int NextReceipt;
+        public List<RunTransactionReceipt> Receipts = new List<RunTransactionReceipt>();
+        public int LastIncome;
+        public int LastInterest;
+        public string LastDamageSource;
+        public float LastDamageAmount;
+        public List<RosterEntry> Roster = new List<RosterEntry>();
+        public List<ItemStack> Items = new List<ItemStack>();
+        public List<ShopOffer> Offers = new List<ShopOffer>();
+        public List<ShopOffer> SpecialOffers = new List<ShopOffer>();
+    }
+
+    public sealed class RunSession : IDisposable
+    {
+        private readonly RunCatalog catalog;
+        private readonly List<UnityEngine.Object> runtimeAssets = new List<UnityEngine.Object>();
+        public RunSnapshot State { get; private set; }
+        public CheckpointCatalog CombatCatalog { get; private set; }
+        public readonly Dictionary<string, int> BondCounts = new Dictionary<string, int>();
+        public string Notice { get; private set; } = "";
+        public WaveModifier ActiveModifier
+        {
+            get
+            {
+                foreach (WaveModifier modifier in catalog.WaveModifiers)
+                    if (modifier.Every > 0 && State.Wave % modifier.Every == 0) return modifier;
+                return null;
+            }
+        }
+
+        public RunSession(RunCatalog definition) { RunModifierRules.Validate(definition); catalog = definition; }
+
+        public void Start(string championId, int seed)
+        {
+            UnitDefinition champion = catalog.Unit(championId);
+            if (champion == null || !Array.Exists(catalog.Champions, unit => unit.Id == championId)) throw new ArgumentException("Unknown champion");
+            State = new RunSnapshot
+            {
+                Version = catalog.Version, RunId = Guid.NewGuid().ToString("N"), ChampionId = championId, Seed = seed,
+                Gold = catalog.StartingGold, Health = champion.Health, Phase = SessionPhase.Combat,
+                ShopRandom = unchecked((uint)seed ^ 0xAC731u), WeaponRandom = unchecked((uint)seed ^ 0xE517u)
+            };
+            State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
+            RecountBonds();
+        }
+
+        public void Restore(RunSnapshot snapshot)
+        {
+            Validate(snapshot);
+            State = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(snapshot));
+            State.SchemaRevision = RunSnapshot.CurrentSchemaRevision;
+            if (State.Receipts == null) State.Receipts = new List<RunTransactionReceipt>();
+            if (State.SpecialOffers == null) State.SpecialOffers = new List<ShopOffer>();
+            if (State.Offers.Count > catalog.ShopSlots) State.Offers.RemoveRange(catalog.ShopSlots, State.Offers.Count - catalog.ShopSlots);
+            RecountBonds();
+        }
+
+        public void Validate(RunSnapshot snapshot)
+        {
+            if (snapshot != null && (snapshot.SchemaRevision < 0 || snapshot.SchemaRevision > RunSnapshot.CurrentSchemaRevision)) throw new InvalidOperationException("Unsupported run schema");
+            if (snapshot == null || snapshot.Version != catalog.Version || string.IsNullOrEmpty(snapshot.RunId) || catalog.Unit(snapshot.ChampionId) == null || snapshot.Wave < 1 || snapshot.Gold < 0 || snapshot.Eggs < 0 || !float.IsFinite(snapshot.Health) || snapshot.Health < 0 || !float.IsFinite(snapshot.CombatSeconds) || snapshot.CombatSeconds < 0 || !Enum.IsDefined(typeof(SessionPhase), snapshot.Phase)) throw new InvalidOperationException("Invalid or incompatible run save");
+            if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
+            if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
+            var rosterKeys = new HashSet<string>();
+            if (snapshot.NextReceipt < 0 || snapshot.RerollsThisShop < 0) throw new InvalidOperationException("Invalid transaction counters");
+            if (snapshot.SchemaRevision >= 2 && snapshot.Receipts == null) throw new InvalidOperationException("Missing transaction history");
+            if (snapshot.Receipts != null)
+            {
+                if (snapshot.Receipts.Count > RunTransactionReceipt.HistoryLimit) throw new InvalidOperationException("Invalid transaction history length");
+                int previousReceipt = 0;
+                foreach (RunTransactionReceipt receipt in snapshot.Receipts)
+                {
+                    if (receipt == null || receipt.Id <= previousReceipt || receipt.Id > snapshot.NextReceipt || receipt.Hall < 1 || string.IsNullOrEmpty(receipt.Title) || receipt.Changes == null) throw new InvalidOperationException("Invalid transaction receipt");
+                    foreach (string change in receipt.Changes) if (string.IsNullOrEmpty(change)) throw new InvalidOperationException("Invalid transaction delta");
+                    previousReceipt = receipt.Id;
+                }
+            }
+            foreach (RosterEntry entry in snapshot.Roster)
+            {
+                if (entry == null || !Array.Exists(catalog.Companions, unit => unit.Id == entry.UnitId) || catalog.Weapon(entry.WeaponId) == null || entry.Tier < 1 || entry.Tier > catalog.MaximumTier || !rosterKeys.Add(entry.UnitId + "/" + entry.WeaponId)) throw new InvalidOperationException("Invalid roster entry");
+            }
+            var items = new HashSet<string>();
+            foreach (ItemStack stack in snapshot.Items) if (stack == null || catalog.Item(stack.Id) == null || stack.Count < 1 || stack.Count > 100000 || !items.Add(stack.Id)) throw new InvalidOperationException("Invalid item stack");
+            var tokens = new HashSet<int>();
+            var allOffers = new List<ShopOffer>(snapshot.Offers);
+            if (snapshot.SpecialOffers != null) allOffers.AddRange(snapshot.SpecialOffers);
+            foreach (ShopOffer offer in allOffers)
+                if (offer == null || !Enum.IsDefined(typeof(OfferKind), offer.Kind) || !Enum.IsDefined(typeof(ShopCurrency), offer.Currency) || offer.Price < 0 || offer.Token < 1 || offer.Token > snapshot.NextOffer || !tokens.Add(offer.Token) || (offer.Kind == OfferKind.Item ? catalog.Item(offer.Id) == null : !Array.Exists(catalog.Companions, unit => unit.Id == offer.Id))) throw new InvalidOperationException("Invalid shop offer");
+        }
+
+        public int StackCount(string id) { foreach (ItemStack stack in State.Items) if (stack.Id == id) return stack.Count; return 0; }
+
+        public float Bonus(ItemEffect effect)
+        {
+            return Bonus(effect, RunModifierRules.DefaultScope(effect));
+        }
+
+        public float Bonus(ItemEffect effect, ModifierScope target)
+        {
+            float value = 0f;
+            foreach (ItemStack stack in State.Items)
+            {
+                ItemDefinition item = catalog.Item(stack.Id);
+                foreach (StatModifier modifier in item.EffectiveModifiers)
+                    if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * item.EffectiveStacks(stack.Count);
+            }
+            foreach (BondDefinition bond in catalog.Bonds)
+                if (bond.Effect == effect && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && BondCounts.TryGetValue(bond.Id, out int count)) value += count / Mathf.Max(1, bond.Threshold) * bond.Value;
+            return value;
+        }
+
+        private void RecountBonds()
+        {
+            BondCounts.Clear();
+            foreach (RosterEntry entry in State.Roster)
+                foreach (string tag in catalog.Unit(entry.UnitId).Tags)
+                    BondCounts[tag] = BondCounts.TryGetValue(tag, out int count) ? count + 1 : 1;
+        }
+
+        public CheckpointCatalog PrepareCombat()
+        {
+            DisposeAssets();
+            RecountBonds();
+            CombatCatalog = Clone(catalog.Arena);
+            CombatCatalog.ArenaSize = catalog.WorldSize;
+            CombatCatalog.StartingCompanions = new UnitDefinition[State.Roster.Count];
+            CombatCatalog.ExplicitStartingRoster = true;
+            CombatCatalog.Champion = BuildUnit(catalog.Unit(State.ChampionId), catalog.Unit(State.ChampionId).Weapon, 1, false);
+            for (int index = 0; index < State.Roster.Count; index++)
+            {
+                RosterEntry entry = State.Roster[index];
+                CombatCatalog.StartingCompanions[index] = BuildUnit(catalog.Unit(entry.UnitId), catalog.Weapon(entry.WeaponId), entry.Tier, true);
+            }
+            float scaling = 1f + (State.Wave - 1) * 0.10f;
+            CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
+            CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
+            CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[(State.Wave / catalog.BossEvery - 1) % catalog.Bosses.Length], scaling) : null;
+            CombatCatalog.WaveDuration = catalog.WaveSeconds;
+            CombatCatalog.EnemyBudget = 30 + Mathf.Min(State.Wave, 30) * 3;
+            CombatCatalog.SpawnInterval = Mathf.Max(0.32f, 1.4f - State.Wave * 0.035f);
+            CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
+            CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
+            CombatCatalog.PickupRadius = catalog.Arena.PickupRadius + Bonus(ItemEffect.Pickup);
+            CombatCatalog.CompanionInterceptor = Bonus(ItemEffect.Interceptor) > 0f;
+            CombatCatalog.PassiveHeal = Bonus(ItemEffect.Heal);
+            CombatCatalog.Armor = Bonus(ItemEffect.Armor);
+            CombatCatalog.Seed = unchecked(State.Seed + State.Wave * 7919);
+            CombatCatalog.GoldPerKill = 2;
+            WaveModifier active = ActiveModifier;
+            if (active != null)
+            {
+                CombatCatalog.SpawnInterval *= active.SpawnMultiplier;
+                CombatCatalog.EnemyBudget = Mathf.CeilToInt(CombatCatalog.EnemyBudget * active.BudgetMultiplier);
+                CombatCatalog.GoldPerKill = active.GoldPerKill;
+                CombatCatalog.PassiveHeal += active.Healing;
+            }
+            return CombatCatalog;
+        }
+
+        private UnitDefinition BuildUnit(UnitDefinition source, WeaponDefinition weapon, int tier, bool companion)
+        {
+            UnitDefinition unit = Clone(source);
+            ModifierScope target = companion ? ModifierScope.Companions : ModifierScope.Champion;
+            unit.Weapon = Clone(weapon);
+            unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
+            unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
+            unit.Weapon.Cooldown /= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f));
+            unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
+            unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
+            unit.Weapon.ProjectileCount += Mathf.FloorToInt(Bonus(ItemEffect.Projectiles, target));
+            unit.CriticalChance = Mathf.Clamp01(unit.CriticalChance + Bonus(ItemEffect.Crit, target));
+            unit.Speed *= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.MoveSpeed, target));
+            if (!companion) unit.Health = Mathf.Max(1f, unit.Health + Bonus(ItemEffect.Health));
+            if (companion) unit.BodyHeight *= 1f + (tier - 1) * 0.12f;
+            return unit;
+        }
+
+        public float DamageMultiplier(UnitDefinition unit, int tier, bool companion)
+        {
+            float value = Mathf.Pow(catalog.TierDamageMultiplier, tier - 1) * Mathf.Max(0.1f, 1f + Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage));
+            if (unit.Passive == PassiveKind.Rally) value *= 1f + unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1) * 0.01f * State.Roster.Count;
+            return value;
+        }
+
+        private UnitDefinition BuildEnemy(UnitDefinition source, float scaling)
+        {
+            UnitDefinition unit = Clone(source);
+            unit.Weapon = Clone(source.Weapon);
+            unit.Health *= scaling;
+            unit.Speed *= Mathf.Min(1.6f, 1f + (State.Wave - 1) * 0.018f);
+            unit.ContactDamage = Mathf.Min(14f, source.ContactDamage + State.Wave * 0.35f);
+            unit.Weapon.Damage = Mathf.Min(source.IsBoss ? 26f : 14f, source.Weapon.Damage + State.Wave * 0.35f);
+            return unit;
+        }
+
+        private T Clone<T>(T source) where T : UnityEngine.Object { T copy = UnityEngine.Object.Instantiate(source); runtimeAssets.Add(copy); return copy; }
+
+        public void Settle(CombatSimulation simulation)
+        {
+            if (State.Phase != SessionPhase.Combat || (simulation.Phase != RunPhase.Victory && simulation.Phase != RunPhase.Defeat)) return;
+            State.Health = simulation.Champion.Health;
+            State.LastDamageSource = simulation.LastDamageSource;
+            State.LastDamageAmount = simulation.LastDamageAmount;
+            State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
+            State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
+            State.CombatSeconds += simulation.Elapsed;
+            State.Eggs = BoundedCounter((long)State.Eggs + (simulation.BossDefeated ? 3 : 1));
+            if (simulation.BossDefeated) State.BossKills = BoundedCounter((long)State.BossKills + 1);
+            if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
+            if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.Phase = SessionPhase.Victory; return; }
+            State.LastInterest = Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), State.Gold / Mathf.Max(1, catalog.InterestDivisor));
+            State.LastIncome = BoundedCounter((long)catalog.Income + (long)State.Wave * 2);
+            State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
+            State.Health = Mathf.Min(CombatCatalog.Champion.Health, State.Health + 8f);
+            State.Phase = SessionPhase.Shop;
+            RollShop(true);
+        }
+
+        public void ContinueWave()
+        {
+            if (State.Phase != SessionPhase.Shop) return;
+            if (State.Wave == int.MaxValue) { Notice = "Technical hall counter limit reached. Records remain saved."; return; }
+            State.Wave++;
+            State.Phase = SessionPhase.Combat;
+            State.Offers.Clear();
+            State.SpecialOffers.Clear();
+            Notice = "";
+        }
+
+        public void EnterEndless()
+        {
+            if (State.Phase != SessionPhase.Victory) return;
+            State.Endless = true;
+            State.RunId = Guid.NewGuid().ToString("N");
+            State.TotalKills = State.BossKills = 0;
+            State.CombatSeconds = 0f;
+            State.Phase = SessionPhase.Shop;
+            State.Gold = BoundedCounter((long)State.Gold + catalog.Income);
+            RollShop(true);
+        }
+
+        public bool Buy(int token)
+        {
+            if (State.Phase != SessionPhase.Shop) return false;
+            ShopOffer offer = State.Offers.Find(candidate => candidate.Token == token) ?? State.SpecialOffers.Find(candidate => candidate.Token == token);
+            if (!CanBuy(offer)) { Notice = "Offer expired, capped or insufficient currency. HP purchases must leave at least 1 HP."; return false; }
+            if (offer.Kind == OfferKind.Companion)
+            {
+                var choices = new List<WeaponDefinition>();
+                foreach (WeaponDefinition weapon in catalog.Weapons)
+                    if (!State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
+                if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
+                WeaponDefinition chosen = choices[Next(ref State.WeaponRandom, choices.Count)];
+                State.Roster.Add(new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id });
+                MergeTriples(offer.Id);
+            }
+            else
+            {
+                ItemStack stack = State.Items.Find(candidate => candidate.Id == offer.Id);
+                ItemDefinition item = catalog.Item(offer.Id);
+                if (stack != null && stack.Count >= item.StackLimit) { Notice = "Item stack limit reached."; return false; }
+                float previousMaximum = Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
+                if (stack == null) State.Items.Add(new ItemStack { Id = offer.Id, Count = 1 }); else stack.Count++;
+                float nextMaximum = Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
+                State.Health = Mathf.Clamp(State.Health + nextMaximum - previousMaximum, 0f, nextMaximum);
+            }
+            if (offer.Currency == ShopCurrency.Eggs) State.Eggs -= offer.Price;
+            else if (offer.Currency == ShopCurrency.Health) State.Health -= offer.Price;
+            else State.Gold -= offer.Price;
+            offer.Sold = true;
+            RecountBonds();
+            Notice = "Purchased. " + (offer.Kind == OfferKind.Companion ? "Weapon rolled after purchase." : "Upgrade stacks for this run.");
+            return true;
+        }
+
+        public bool CanBuy(ShopOffer offer)
+        {
+            if (offer == null || offer.Sold || State.Phase != SessionPhase.Shop) return false;
+            if (offer.Currency == ShopCurrency.Health ? State.Health - offer.Price < 1f : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
+            if (offer.Kind == OfferKind.Item) return StackCount(offer.Id) < catalog.Item(offer.Id).StackLimit;
+            return Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id));
+        }
+
+        private void MergeTriples(string id)
+        {
+            for (int tier = 1; tier < catalog.MaximumTier; tier++)
+            {
+                List<RosterEntry> materials = State.Roster.FindAll(entry => entry.UnitId == id && entry.Tier == tier);
+                while (materials.Count >= 3)
+                {
+                    List<RosterEntry> consumed = materials.GetRange(0, 3);
+                    var choices = new List<WeaponDefinition>();
+                    foreach (WeaponDefinition weapon in catalog.Weapons)
+                        if (!State.Roster.Exists(entry => entry.UnitId == id && entry.WeaponId == weapon.Id && !consumed.Contains(entry))) choices.Add(weapon);
+                    if (choices.Count == 0) break;
+                    for (int index = 0; index < 3; index++) State.Roster.Remove(materials[index]);
+                    materials.RemoveRange(0, 3);
+                    State.Roster.Add(new RosterEntry { UnitId = id, Tier = tier + 1, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+                }
+            }
+        }
+
+        public bool Reroll()
+        {
+            int price = RerollCost;
+            if (State.Phase != SessionPhase.Shop || State.Gold < price) return false;
+            if (State.RerollsThisShop == int.MaxValue) return false;
+            State.Gold -= price;
+            RollShop();
+            State.RerollsThisShop++;
+            Notice = "Shop refreshed.";
+            return true;
+        }
+
+        public int RerollCost => RunSession.BoundedCounter((long)catalog.RerollPrice + (long)State.RerollsThisShop * catalog.RerollPriceStep);
+        public float AltarActivationChance => (float)Math.Min(1d, catalog.AltarBaseChance + (double)State.Eggs * catalog.AltarChancePerEgg);
+
+        private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && (item.Pools & pool) != 0) && StackCount(item.Id) < item.StackLimit;
+
+        private int WeightedItem(List<ItemDefinition> items)
+        {
+            long total = 0;
+            foreach (ItemDefinition item in items) total += catalog.EconomyRevision == 0 ? 1 : item.ShopWeight;
+            if (total <= 0 || total > int.MaxValue) throw new InvalidOperationException("Invalid weighted shop pool");
+            int ticket = Next(ref State.ShopRandom, (int)total);
+            for (int index = 0; index < items.Count; index++)
+            {
+                ticket -= catalog.EconomyRevision == 0 ? 1 : items[index].ShopWeight;
+                if (ticket < 0) return index;
+            }
+            throw new InvalidOperationException("Weighted selection failed");
+        }
+
+        private void RollShop(bool rollSpecial = false)
+        {
+            State.Offers.Clear();
+            if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
+            var units = new List<UnitDefinition>();
+            foreach (UnitDefinition unit in catalog.Companions) if (unit.UnlockWave <= State.Wave && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            var items = new List<ItemDefinition>();
+            foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
+            if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
+            for (int index = 0; index < catalog.ShopSlots; index++)
+            {
+                bool recruit = units.Count > 0 && (index < catalog.ShopSlots / 2 || items.Count == 0);
+                int choice = recruit ? Next(ref State.ShopRandom, units.Count) : WeightedItem(items);
+                int basePrice = recruit ? units[choice].Price : items[choice].Price;
+                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? units[choice].Id : items[choice].Id, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Min(0.5f, Bonus(ItemEffect.Discount))))) });
+            }
+            if (!rollSpecial) return;
+            State.RerollsThisShop = 0;
+            State.SpecialOffers.Clear();
+            if (catalog.AltarRevision > 0)
+            {
+                if (Next(ref State.ShopRandom, 1000000) >= Mathf.RoundToInt(AltarActivationChance * 1000000)) return;
+            }
+            else if (catalog.SpecialShopEvery <= 0 || State.Wave % catalog.SpecialShopEvery != 0) return;
+            for (int index = 0; index < 3; index++)
+            {
+                var specialItems = new List<ItemDefinition>();
+                foreach (ItemDefinition candidate in catalog.Items) if (Eligible(candidate, ShopPool.Eggs)) specialItems.Add(candidate);
+                if (specialItems.Count == 0) break;
+                ItemDefinition item = specialItems[WeightedItem(specialItems)];
+                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
+            }
+        }
+
+        public bool Altar(string recipeId)
+        {
+            if (State.Phase != SessionPhase.Shop) return false;
+            AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
+            if (recipe == null || State.Eggs < recipe.EggCost) return false;
+            RosterEntry first = LowestTier(recipe.FirstUnit, null);
+            RosterEntry second = LowestTier(recipe.SecondUnit, first);
+            if (first == null || second == null) { Notice = "Altar needs both listed companions."; return false; }
+            var choices = new List<WeaponDefinition>();
+            foreach (WeaponDefinition weapon in catalog.Weapons) if (!State.Roster.Exists(entry => entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id)) choices.Add(weapon);
+            if (choices.Count == 0) return false;
+            State.Roster.Remove(first);
+            State.Roster.Remove(second);
+            State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = 2, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+            State.Eggs -= recipe.EggCost;
+            RecountBonds();
+            Notice = "Altar fusion completed.";
+            return true;
+        }
+
+        public RosterEntry LowestTier(string id, RosterEntry excluded = null)
+        {
+            RosterEntry result = null;
+            foreach (RosterEntry entry in State.Roster)
+                if (entry.UnitId == id && entry != excluded && (result == null || entry.Tier < result.Tier)) result = entry;
+            return result;
+        }
+
+        public static int BoundedCounter(long value) => (int)Math.Max(0L, Math.Min(int.MaxValue, value));
+
+        private static int Next(ref uint state, int count)
+        {
+            if (count <= 0) throw new InvalidOperationException("Empty random pool");
+            if (state == 0) state = 0xA731u;
+            state ^= state << 13; state ^= state >> 17; state ^= state << 5;
+            return (int)(state % (uint)count);
+        }
+
+        private void DisposeAssets()
+        {
+            foreach (UnityEngine.Object asset in runtimeAssets)
+            {
+                if (Application.isPlaying) UnityEngine.Object.Destroy(asset); else UnityEngine.Object.DestroyImmediate(asset);
+            }
+            runtimeAssets.Clear();
+        }
+        public void Dispose() { DisposeAssets(); }
+    }
+}

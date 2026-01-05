@@ -1,0 +1,152 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    public sealed class CombatFeedback : MonoBehaviour
+    {
+        private sealed class Spark
+        {
+            public SpriteRenderer View;
+            public Vector2 Position;
+            public Vector2 Velocity;
+            public Color Color;
+            public float Age;
+            public float Duration;
+            public float Size;
+        }
+
+        private readonly List<Spark> sparks = new List<Spark>();
+        private sealed class DamageNumber
+        {
+            public TextMesh View;
+            public Vector2 Position;
+            public Color Color;
+            public float Age = 1f;
+            public bool Champion;
+            public TextMesh Outline;
+        }
+        private readonly List<DamageNumber> numbers = new List<DamageNumber>();
+        private Font font;
+        private Sprite sprite;
+        private int sequence;
+        public void Configure(Sprite source) { sprite = source; font = ArcadeTypography.Numbers != null ? ArcadeTypography.Numbers : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); }
+
+        public void Clear()
+        {
+            foreach (Spark spark in sparks) { spark.Age = spark.Duration; spark.View.gameObject.SetActive(false); }
+            foreach (DamageNumber number in numbers) { number.Age = 1f; number.View.gameObject.SetActive(false); }
+            sequence = 0;
+        }
+
+        public void Play(CombatEvent combatEvent)
+        {
+            bool hit = combatEvent.Kind == CombatEventKind.Hit;
+            bool kill = combatEvent.Kind == CombatEventKind.Kill;
+            bool pickup = combatEvent.Kind == CombatEventKind.Pickup;
+            if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
+            if (sprite == null || (!hit && !kill && !pickup)) return;
+            int count = kill ? 9 : pickup ? 3 : 5;
+            Color color = pickup ? new Color(1f, 0.78f, 0.3f) : combatEvent.Faction == Faction.Champion && hit ? new Color(1f, 0.34f, 0.33f) : new Color(1f, 0.94f, 0.75f);
+            for (int index = 0; index < count; index++)
+            {
+                Spark spark = null;
+                foreach (Spark candidate in sparks) if (candidate.Age >= candidate.Duration) { spark = candidate; break; }
+                if (spark == null)
+                {
+                    if (sparks.Count >= 96) break;
+                    var child = new GameObject("ImpactSpark");
+                    child.transform.SetParent(transform, false);
+                    spark = new Spark { View = child.AddComponent<SpriteRenderer>() };
+                    spark.View.sprite = sprite;
+                    spark.View.sortingOrder = 2500;
+                    sparks.Add(spark);
+                }
+                float angle = index * Mathf.PI * 2f / count + sequence * 0.73f;
+                spark.Position = combatEvent.Position;
+                spark.Velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * (kill ? 2.4f : 1.4f);
+                spark.Color = color;
+                spark.Age = 0f;
+                spark.Duration = kill ? 0.34f : 0.20f;
+                spark.Size = kill ? 0.09f : 0.065f;
+                spark.View.gameObject.SetActive(true);
+            }
+            sequence++;
+        }
+
+        private void ShowDamage(CombatEvent combatEvent)
+        {
+            DamageNumber number = numbers.Find(candidate => candidate.Age >= 0.55f);
+            bool champion = combatEvent.Faction == Faction.Champion;
+            if (number == null && numbers.Count >= 64)
+            {
+                if (!champion) return;
+                number = numbers.Find(candidate => !candidate.Champion) ?? numbers[0];
+            }
+            if (number == null)
+            {
+                var child = new GameObject("DamageNumber");
+                child.transform.SetParent(transform, false);
+                TextMesh view = child.AddComponent<TextMesh>();
+                view.font = font;
+                view.fontSize = 48;
+                view.characterSize = 0.055f;
+                view.anchor = TextAnchor.MiddleCenter;
+                view.fontStyle = FontStyle.Bold;
+                MeshRenderer renderer = child.GetComponent<MeshRenderer>();
+                renderer.sharedMaterial = font.material;
+                renderer.sortingOrder = 2600;
+                var outlineObject = new GameObject("DamageOutline");
+                outlineObject.transform.SetParent(child.transform, false);
+                outlineObject.transform.localPosition = new Vector3(0.025f, -0.025f, 0.01f);
+                TextMesh outline = outlineObject.AddComponent<TextMesh>();
+                outline.font = font;
+                outline.fontSize = view.fontSize;
+                outline.characterSize = view.characterSize;
+                outline.anchor = view.anchor;
+                outline.fontStyle = view.fontStyle;
+                MeshRenderer outlineRenderer = outlineObject.GetComponent<MeshRenderer>();
+                outlineRenderer.sharedMaterial = font.material;
+                outlineRenderer.sortingOrder = 2599;
+                number = new DamageNumber { View = view, Outline = outline };
+                numbers.Add(number);
+            }
+            number.Champion = champion;
+            number.Position = combatEvent.Position + new Vector2((sequence % 3 - 1) * 0.12f, 0.55f);
+            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.white;
+            number.Age = 0f;
+            number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
+            number.Outline.text = number.View.text;
+            number.Outline.color = new Color(0.06f, 0.035f, 0.10f);
+            number.View.color = number.Color;
+            number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
+            number.View.gameObject.SetActive(true);
+        }
+
+        public void Advance(float deltaTime)
+        {
+            foreach (DamageNumber number in numbers)
+            {
+                if (number.Age >= 0.55f) continue;
+                number.Age += deltaTime;
+                number.Position += Vector2.up * deltaTime * 0.7f;
+                number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
+                number.View.transform.localScale = Vector3.one * (1f + 0.35f * Mathf.Clamp01(1f - number.Age / 0.08f));
+                number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01(1f - number.Age / 0.55f));
+                number.Outline.color = new Color(0.06f, 0.035f, 0.10f, number.View.color.a);
+                if (number.Age >= 0.55f) number.View.gameObject.SetActive(false);
+            }
+            foreach (Spark spark in sparks)
+            {
+                if (spark.Age >= spark.Duration) continue;
+                spark.Age += deltaTime;
+                float remaining = Mathf.Clamp01(1f - spark.Age / spark.Duration);
+                spark.Position += spark.Velocity * deltaTime;
+                spark.View.transform.position = spark.Position;
+                spark.View.transform.localScale = Vector3.one * (spark.Size * remaining / sprite.bounds.size.x);
+                spark.View.color = new Color(spark.Color.r, spark.Color.g, spark.Color.b, remaining);
+                if (remaining <= 0f) spark.View.gameObject.SetActive(false);
+            }
+        }
+    }
+}

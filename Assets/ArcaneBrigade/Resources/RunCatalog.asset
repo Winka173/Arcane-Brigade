@@ -1,0 +1,536 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef95c5fd43746b42b75011e875c8a3c, type: 3}
+  m_Name: RunCatalog
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.RunCatalog
+  Version: run-0.1
+  Arena: {fileID: 11400000, guid: df5b371438de8f94f845c72dd8c4a27e, type: 2}
+  ProjectileDisc: {fileID: 21300000, guid: 73c46aa0c6d777b489ee34565420ff09, type: 3}
+  WorldSize: {x: 34, y: 22}
+  CombatViewHeight: 5.4
+  RestViewHeight: 6
+  Champions:
+  - {fileID: 11400000, guid: fff0e650e26b8ab42991de6cb7640207, type: 2}
+  - {fileID: 11400000, guid: b1de2139305b7b542bd5c76f0e20ce5c, type: 2}
+  - {fileID: 11400000, guid: 8e0445ae0fc6df34d8b93d5060a77328, type: 2}
+  Companions:
+  - {fileID: 11400000, guid: f00fa9512cd6d764aa9fc9c575393d44, type: 2}
+  - {fileID: 11400000, guid: b3f868644b82b21428287215c111ce5f, type: 2}
+  - {fileID: 11400000, guid: c3babfceca53a254e9e32a25ee8628d5, type: 2}
+  - {fileID: 11400000, guid: 39333c1b738a18b45ad4df4a436d2cf3, type: 2}
+  - {fileID: 11400000, guid: afb269d7f49173744965af13a4dd4f4b, type: 2}
+  - {fileID: 11400000, guid: 200eedc19dd67de498098654dbabb60e, type: 2}
+  - {fileID: 11400000, guid: 480b991e7bebb874f9981841d690e849, type: 2}
+  Weapons:
+  - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
+  - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
+  - {fileID: 11400000, guid: 587b225325d62cf45b3b516967a944ad, type: 2}
+  - {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
+  - {fileID: 11400000, guid: e1377fe9fd09ccb4ea0b8817b675a2a3, type: 2}
+  - {fileID: 11400000, guid: 3b296350d6f02654f98a89ca62bf43e3, type: 2}
+  - {fileID: 11400000, guid: 08e2089b2e3d68c49afeacf4c35bc5c2, type: 2}
+  - {fileID: 11400000, guid: 0587a16ddceed524da237dfc27090cdb, type: 2}
+  Enemies:
+  - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
+  - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}
+  - {fileID: 11400000, guid: 8b8cc83dee2ae1b47b973f9d06ad62d5, type: 2}
+  - {fileID: 11400000, guid: 2b8f0407ce62277479be0201dc0a1c2d, type: 2}
+  - {fileID: 11400000, guid: c7ed93321c56b1a429f9cb0f8a022a41, type: 2}
+  - {fileID: 11400000, guid: 72e9e38521dd5ec4eb91b88e5976d49a, type: 2}
+  Bosses:
+  - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
+  - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}
+  - {fileID: 11400000, guid: 702de46723763c548a90996192823bd2, type: 2}
+  - {fileID: 11400000, guid: c100c725a20a5f24a81eb9c3863f71c6, type: 2}
+  - {fileID: 11400000, guid: 6b6b33f0630a726459aa6dfae91e9a36, type: 2}
+  Items:
+  - Id: key-oil
+    Name: Key Oil
+    Description: +12% damage
+    Price: 18
+    Effect: 0
+    Value: 0.12
+    Icon: {fileID: -1311877020, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.12
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: clock-spring
+    Name: Clock Spring
+    Description: +10% attack speed
+    Price: 20
+    Effect: 1
+    Value: 0.1
+    Icon: {fileID: 823193995, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: 0.1
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: honey-pot
+    Name: Honey Pot
+    Description: +20 max health and current health
+    Price: 22
+    Effect: 2
+    Value: 20
+    Icon: {fileID: -926295115, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 20
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: felt-boots
+    Name: Felt Boots
+    Description: +6% movement speed
+    Price: 18
+    Effect: 3
+    Value: 0.06
+    Icon: {fileID: -1287582899, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 3
+      Scope: 0
+      Value: 0.06
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: coin-compass
+    Name: Coin Compass
+    Description: +0.25 pickup radius
+    Price: 15
+    Effect: 4
+    Value: 0.25
+    Icon: {fileID: -1589700613, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 4
+      Scope: 3
+      Value: 0.25
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: wandering-map
+    Name: Wandering Map
+    Description: +0.4 companion leash radius
+    Price: 18
+    Effect: 5
+    Value: 0.4
+    Icon: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 5
+      Scope: 3
+      Value: 0.4
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: guardian-canopy
+    Name: Guardian Canopy
+    Description: Allies block enemy bullets; stacks do not add extra blocks
+    Price: 45
+    Effect: 6
+    Value: 1
+    Icon: {fileID: -814582946, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 4
+    Modifiers:
+    - Effect: 6
+      Scope: 3
+      Value: 1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 14
+  - Id: warm-tea
+    Name: Warm Tea
+    Description: +0.15 health per second
+    Price: 24
+    Effect: 7
+    Value: 0.15
+    Icon: {fileID: -926295115, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 0.15
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: oracle-lens
+    Name: Oracle Lens
+    Description: +4% critical chance; effective chance capped at 100%
+    Price: 22
+    Effect: 8
+    Value: 0.04
+    Icon: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 8
+      Scope: 0
+      Value: 0.04
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: twin-seal
+    Name: Twin Seal
+    Description: +1 projectile per ranged attack
+    Price: 35
+    Effect: 9
+    Value: 1
+    Icon: {fileID: 118936876, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 5
+    Modifiers:
+    - Effect: 9
+      Scope: 0
+      Value: 1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 11
+  - Id: piggy-mail
+    Name: Piggy Mail
+    Description: +2 maximum interest; one interest per ten gold
+    Price: 18
+    Effect: 10
+    Value: 2
+    Icon: {fileID: 932299066, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 10
+      Scope: 3
+      Value: 2
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: pillow-mail
+    Name: Pillow Mail
+    Description: +0.12 armor; received damage divided by 1 + armor
+    Price: 20
+    Effect: 11
+    Value: 0.12
+    Icon: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: 0.12
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: royal-key
+    Name: Royal Key
+    Description: +22% champion damage only
+    Price: 28
+    Effect: 12
+    Value: 0.22
+    Icon: {fileID: -1311877020, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.22
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: brigade-banner
+    Name: Brigade Banner
+    Description: +15% companion damage only
+    Price: 30
+    Effect: 13
+    Value: 0.15
+    Icon: {fileID: 932299066, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 13
+      Scope: 2
+      Value: 0.15
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: marching-bell
+    Name: Marching Bell
+    Description: +12% companion attack speed only
+    Price: 26
+    Effect: 14
+    Value: 0.12
+    Icon: {fileID: 118936876, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 14
+      Scope: 2
+      Value: 0.12
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: coupon-book
+    Name: Coupon Book
+    Description: Future gold offer prices -5% per stack (cap 50%). Does not reduce
+      reroll fees.
+    Price: 24
+    Effect: 15
+    Value: 0.05
+    Icon: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 15
+      Scope: 3
+      Value: 0.05
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: long-atlas
+    Name: Long Atlas
+    Description: +1.0 ally leash radius; -4% team movement speed. Wider patrols,
+      slower travel.
+    Price: 36
+    Effect: 5
+    Value: 1
+    Icon: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 8
+    Modifiers:
+    - Effect: 5
+      Scope: 3
+      Value: 1
+    - Effect: 3
+      Scope: 0
+      Value: -0.04
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 11
+  - Id: starlight-quilt
+    Name: Starlight Quilt
+    Description: +45 max and current health
+    Price: 42
+    Effect: 2
+    Value: 45
+    Icon: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 8
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 45
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 13
+  - Id: echo-postage
+    Name: Echo Postage
+    Description: +2 projectiles per ranged attack; -8% team attack speed. More shots,
+      longer attack cycle.
+    Price: 60
+    Effect: 9
+    Value: 2
+    Icon: {fileID: 823193995, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    UnlockWave: 10
+    Modifiers:
+    - Effect: 9
+      Scope: 0
+      Value: 2
+    - Effect: 1
+      Scope: 0
+      Value: -0.08
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 18
+  - Id: tarnished-crown
+    Name: Tarnished Crown
+    Description: +40% champion damage only
+    Price: 48
+    Effect: 12
+    Value: 0.4
+    Icon: {fileID: 1102527455, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    UnlockWave: 10
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.4
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 15
+  Bonds:
+  - Id: hearth
+    Name: Hearth
+    Threshold: 2
+    Effect: 7
+    Value: 0.15
+  - Id: archive
+    Name: Archive
+    Threshold: 2
+    Effect: 0
+    Value: 0.08
+  - Id: clock
+    Name: Clockwork
+    Threshold: 2
+    Effect: 1
+    Value: 0.07
+  - Id: frost
+    Name: Frost
+    Threshold: 2
+    Effect: 5
+    Value: 0.15
+  Recipes:
+  - Id: dream-pillow
+    FirstUnit: HoodWisp
+    SecondUnit: JellySwordsman
+    ResultUnit: PillowOracle
+    EggCost: 3
+  - Id: warm-library
+    FirstUnit: TeapotPilgrim
+    SecondUnit: CandleSnail
+    ResultUnit: MushroomLibrarian
+    EggCost: 3
+  WaveModifiers:
+  - Name: 'Clockstorm: denser waves'
+    Every: 7
+    SpawnMultiplier: 0.75
+    BudgetMultiplier: 1.3
+    GoldPerKill: 2
+    Healing: 0
+  - Name: 'Lost treasury: richer drops'
+    Every: 5
+    SpawnMultiplier: 1
+    BudgetMultiplier: 1
+    GoldPerKill: 3
+    Healing: 0
+  - Name: 'Quiet stacks: gentle regeneration'
+    Every: 11
+    SpawnMultiplier: 1
+    BudgetMultiplier: 1
+    GoldPerKill: 2
+    Healing: 0.25
+  BuildLinks:
+  - Id: engine-clockwork
+    Name: "B\u1ED8 M\xC1Y L\xCAN D\xC2Y"
+    Description: "Damage v\xE0 attack speed t\u1EEB hai ngu\u1ED3n \u0111\u1ED9c
+      l\u1EADp; xem stat sau scope/tier, kh\xF4ng ph\u1EA3i bonus set."
+    ItemIds:
+    - key-oil
+    - clock-spring
+  - Id: engine-economy
+    Name: "QU\u1EF8 B\u01AFU \u0110I\u1EC6N"
+    Description: "Gi\u1EEF v\xE0ng \u0111\u1EC3 l\u1EA5y l\xE3i, gi\u1EA3m gi\xE1
+      offer \u1EDF roll ti\u1EBFp theo. Coupon kh\xF4ng gi\u1EA3m reroll."
+    ItemIds:
+    - piggy-mail
+    - coupon-book
+  - Id: engine-patrol
+    Name: "\u0110O\xC0N TH\xC1M HI\u1EC2M"
+    Description: "Pickup thu\u1ED9c Champion; leash l\xE0 v\xF9ng tu\u1EA7n tra \u0111\u1ED3ng
+      minh. Hai b\xE1n k\xEDnh kh\xF4ng thay th\u1EBF nhau."
+    ItemIds:
+    - coin-compass
+    - wandering-map
+  EconomyRevision: 1
+  AltarRevision: 1
+  AltarBaseChance: 0.1
+  AltarChancePerEgg: 0.05
+  NormalWaves: 20
+  WaveSeconds: 84
+  BossEvery: 4
+  StartingGold: 35
+  Income: 20
+  InterestDivisor: 10
+  InterestCap: 15
+  RerollPrice: 4
+  RerollPriceStep: 2
+  ShopSlots: 3
+  SpecialShopEvery: 2
+  SpecialShopPrice: 2
+  MaximumTier: 3
+  TierDamageMultiplier: 3.6
+  TierSupportMultiplier: 3

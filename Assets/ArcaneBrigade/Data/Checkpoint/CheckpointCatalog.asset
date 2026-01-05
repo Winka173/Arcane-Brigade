@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249a161a66a1f4947b31c883d05f9c60, type: 3}
+  m_Name: CheckpointCatalog
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.CheckpointCatalog
+  DataVersion: checkpoint-0.2
+  Seed: 131026
+  Champion: {fileID: 11400000, guid: 03fe193528e07d043b7be36d2285c1b6, type: 2}
+  Companion: {fileID: 11400000, guid: 8f0e8965cad4515468ef432862ac3a37, type: 2}
+  StartingCompanions:
+  - {fileID: 11400000, guid: 8f0e8965cad4515468ef432862ac3a37, type: 2}
+  - {fileID: 11400000, guid: 8abb0fc3d53017049b03d082e953a5e2, type: 2}
+  - {fileID: 11400000, guid: 81ef5bfbd3149fe48a3c70afee98d08d, type: 2}
+  MeleeEnemy: {fileID: 11400000, guid: 7618e1489a4043841b566264e843b13c, type: 2}
+  RangedEnemy: {fileID: 11400000, guid: 6de4f866923b4a849b41da97ce633ca2, type: 2}
+  Hand: {fileID: 244465793, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Projectile: {fileID: 1125835779, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Coin: {fileID: -1589700613, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  ImpactSprite: {fileID: 21300000, guid: 73c46aa0c6d777b489ee34565420ff09, type: 3}
+  UnitPrefab: {fileID: 2916724516397582577, guid: dfce1ed7f695e0b4dbbb7e4f2e80b9af, type: 3}
+  ArenaSize: {x: 22, y: 11}
+  WaveDuration: 60
+  SpawnInterval: 1.5
+  EnemyBudget: 18
+  SpawnSafetyRadius: 4
+  CompanionLeash: 3.2
+  CompanionRoamInnerRadius: 0.9
+  CompanionRoamOuterRadius: 2.7
+  CompanionPatrolSpeed: 1.4
+  CompanionAcceleration: 8
+  CompanionSeparation: 0.75
+  CompanionRetargetMin: 1.2
+  CompanionRetargetMax: 2.8
+  PickupRadius: 0.7
+  GoldPerKill: 5
