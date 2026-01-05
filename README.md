@@ -1,5 +1,7 @@
 # Arcane Brigade
 
+K4.1 mới: Ô bung đẩy enemy phía trước, Chuông tích nhịp phát sóng trễ, **DreamStamp** đánh một mục tiêu/tích dấu/burst; tier ≥2 có twist hữu hạn riêng. Thêm weapon vào pool tuyển ngẫu nhiên, không cho chọn/đổi weapon. 40 checks + regression PASS, native Windows capture: `PreviewExports/K4/SignaturePlayer/index.html`. Báo cáo: `Docs/K4_Signature_Checkpoint.md`; menu `Arcane Brigade > K4 > Apply signature weapons check and build`. K4.2–K4.5 chưa hoàn tất, font/UI redesign để K6–K7.
+
 Visual pass theo **hướng 1**: model/vũ khí HD, nền map lát tile, zoom combat +38% / shop +25%, màu rõ hơn, hiệu ứng viền mềm và bảng giá dễ đọc. Ảnh Unity **3840×2160**: `PreviewExports/VisualQuality/Player4K/index.html`; báo cáo và giới hạn: `Docs/Visual_Quality_4K_Pass.md`. PNG nguồn 1672×941, không gọi là native 4K. Dùng menu `Arcane Brigade > Visual Quality > Apply HD assets map and check build`; không dựng lại baseline. K4 chưa triển khai trong visual pass này.
 
 K3 hoàn tất theo gate Windows đã duyệt: proc/cause, chest/egg/heart/Luck/Detection, offscreen chest/egg indicators, item delta preview, recipe preview/altar reroll. Chủ dự án chuyển device gate sang K7. Báo cáo: `Docs/K3_Final_Checkpoint.md`; build: `Arcane Brigade > K3 > Check final checkpoint and build`. Motion native: `PreviewExports/K3/Final/Player/index.html`. Mobile/parity chưa nghiệm thu, không gọi candidate là production.
@@ -27,7 +29,7 @@ Unity 6000.4.8f1. Bản mới: **Full Run — functional candidate P3–P6**. Đ
 3. Sau hall có **3 quầy trong sân**, không mở bảng shop: di chuyển tới quầy, nhấn **Space** hoặc nút **USE** trên màn hình để mua. Reroll và cửa hall kế tiếp cũng tương tác tại chỗ. Shop đặc biệt dùng **EGGS**, không trừ vàng; lịch xuất hiện và giá hiện là tuning thử nghiệm. Đồng minh tự đi trong bán kính, bất tử; cần Guardian Canopy để chặn đạn.
 4. Resume khôi phục shop đã lưu hoặc **bắt đầu lại hall hiện tại từ ranh giới**; không khôi phục projectile giữa trận. Meta chỉ unlock/codex/record/cosmetic, không tăng stat vĩnh viễn.
 
-Nội dung hiện tại: 3 Champion, 7 loại đồng minh, 8 vũ khí (thêm cung và trượng phép), 20 item, 4 bond, 6 enemy definitions và 5 boss variants. Một số nhân vật/địch/boss dùng chung body; không phải 21 model độc lập.
+Nội dung hiện tại: 3 Champion, 7 loại đồng minh, 9 vũ khí (gồm cung, trượng phép và DreamStamp), 20 item, 4 bond, 6 enemy definitions và 5 boss variants. Một số nhân vật/địch/boss dùng chung body; không phải 21 model độc lập.
 
 Presentation mới: ảnh Unity và video motion tại `PreviewExports/Presentation/`. Chi tiết shop: `Docs/World_Shop_Implementation.md`; đối chiếu hình ảnh, asset và giới hạn âm nhạc: `Docs/Presentation_Reference_Pass.md`. Nhạc hiện là bản study tổng hợp, chưa phải soundtrack hoàn chỉnh. Dùng **Presentation > Apply presentation and check** để áp dụng art/map và chạy kiểm tra; không dùng menu dựng baseline Full Run nếu muốn giữ presentation mới.
 

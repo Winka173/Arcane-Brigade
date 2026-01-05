@@ -68,6 +68,8 @@ Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning
 
 ### K4 — Lát cắt signature hoàn chỉnh
 
+**Tiến độ mới:** K4.1 có Windows candidate ba weapon families (Umbrella/BellFork/DreamStamp), tier twist, mark/pulse cause, art/SFX/cue và Details theo data; 40 checks + regression và native capture PASS. K4 chưa DONE: hai build/connector/contribution, merge reveal/tier silhouette, props/boss phase và sandbox còn theo `K4_Implementation_Plan.md`. Font/UI redesign vẫn để K6–K7.
+
 **Phạm vi:** R4/R5; S1–S4, N06/N07/N09/N10 và sandbox N16. **Dependency:** K3.
 
 - Hoàn thiện Ô / Chuông / Đóng dấu: target, cadence/tật, pose, tier twist, VFX/SFX/UI riêng; regression cung/phép cũ.

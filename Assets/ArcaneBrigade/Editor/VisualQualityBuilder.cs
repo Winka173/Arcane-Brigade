@@ -42,6 +42,7 @@ namespace ArcaneBrigade.Editor
             }
             foreach (WeaponDefinition weapon in catalog.Weapons)
             {
+                if (!weapons.ContainsKey(weapon.Id)) continue;
                 weapon.Sprite = weapons[weapon.Id];
                 if (weapon.Id == "CrescentBow") weapon.VisualWidth = weapon.Sprite.bounds.size.x / weapon.Sprite.bounds.size.y * 0.9f;
                 Vector2 tip = weapon.Id == "TeapotPopgun" ? new Vector2(0.98f, 0.57f) : weapon.Id == "MailboxLauncher" ? new Vector2(0.98f, 0.5f) : weapon.Id == "BellFork" ? new Vector2(0.83f, 0.45f) : weapon.Id == "CrescentBow" ? new Vector2(0.94f, 0.5f) : new Vector2(0.97f, 0.5f);

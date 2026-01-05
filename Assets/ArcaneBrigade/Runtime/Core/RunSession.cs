@@ -226,6 +226,7 @@ namespace ArcaneBrigade
             UnitDefinition unit = Clone(source);
             ModifierScope target = companion ? ModifierScope.Companions : ModifierScope.Champion;
             unit.Weapon = Clone(weapon);
+            unit.CombatTier = tier;
             unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
             unit.Weapon.Cooldown /= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f));

@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         private Material bowMaterial;
         private SpriteRenderer drawHand;
         private Color shadowColor;
+        private readonly SpriteRenderer[] stampPips = new SpriteRenderer[3];
         public UnitState State => state;
 
         public void CopyDeathPose(SpriteRenderer targetBody, SpriteRenderer targetShadow, SpriteRenderer targetWeapon, SpriteRenderer targetHand, SpriteRenderer targetDrawHand, Transform targetGrip)
@@ -168,6 +169,21 @@ namespace ArcaneBrigade
 
             float angleOffset = 0f;
             float recoil = 0f;
+            for (int index = 0; index < stampPips.Length; index++)
+            {
+                bool visible = hand.sprite != null && state.Alive && state.MarkVisibleUntil > simulationTime && state.VisibleMarks > index;
+                if (visible && stampPips[index] == null)
+                {
+                    var pip = new GameObject("StampSeal" + index); pip.transform.SetParent(transform, false);
+                    stampPips[index] = pip.AddComponent<SpriteRenderer>(); stampPips[index].sprite = hand.sprite;
+                    stampPips[index].color = new Color(1, 0.27f, 0.38f);
+                    pip.transform.localScale = Vector3.one * (0.1f / Mathf.Max(0.01f, hand.sprite.bounds.size.x));
+                    pip.transform.localRotation = Quaternion.Euler(0, 0, 45);
+                }
+                if (stampPips[index] == null) continue;
+                stampPips[index].enabled = visible; stampPips[index].sortingOrder = body.sortingOrder + 8;
+                stampPips[index].transform.localPosition = new Vector3((index - 1) * 0.16f, state.Definition.BodyHeight * 0.65f, 0);
+            }
             if (attacking)
             {
                 if (definition.Kind == WeaponKind.Melee)
@@ -180,6 +196,11 @@ namespace ArcaneBrigade
                     else
                         angleOffset = age < definition.Windup ? Mathf.Lerp(-definition.SwingAngle * Mathf.SmoothStep(0, 1, windup), definition.SwingAngle, strike) : definition.SwingAngle * (1f - Mathf.SmoothStep(0, 1, recovery));
                     if (definition.Motion == WeaponMotion.Slam) recoil = age < definition.Windup ? -0.12f * strike : -0.12f * (1f - recovery);
+                    if (definition.Motion == WeaponMotion.Stamp)
+                    {
+                        angleOffset = 0;
+                        recoil = age < definition.Windup ? Mathf.Lerp(0.12f * windup, -0.32f, strike) : -0.32f * (1 - Mathf.SmoothStep(0, 1, recovery));
+                    }
                 }
                 else if (age >= definition.Windup)
                 {

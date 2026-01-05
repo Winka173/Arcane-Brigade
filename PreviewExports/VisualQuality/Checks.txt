@@ -19,7 +19,7 @@ PASS Full-resolution in-bounds sprite RuneStaff
 PASS Full-resolution in-bounds sprite CrescentBow
 PASS Full-resolution in-bounds sprite TeapotPopgun
 PASS All champion bodies use new art
-PASS All eight weapons use new art and valid visual muzzles
+PASS All weapons use HD art and valid visual muzzles
 PASS Persistent HD map in real gameplay scene
 PASS Mirrored native tile map, no stretched whole-map bitmap
 PASS Map texel density and richer palette

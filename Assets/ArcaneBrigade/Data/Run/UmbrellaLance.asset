@@ -37,3 +37,10 @@ MonoBehaviour:
   ProjectileMuzzleOffset: {x: 0.747, y: 0}
   ProjectileSprite: {fileID: 0}
   ProjectileVisualWidth: 0.22
+  Signature: 1
+  SignatureBeats: 3
+  SignatureRadius: 2.1
+  SignatureScale: 0.45
+  SignatureDelay: 0.18
+  MarkLifetime: 2.4
+  PushDistance: 0.35

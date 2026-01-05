@@ -27,6 +27,7 @@ namespace ArcaneBrigade
         public int UnlockWave;
         public bool IsBoss;
         public int BossPattern;
+        public int CombatTier = 1;
     }
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }

@@ -32,8 +32,17 @@ namespace ArcaneBrigade
         public Vector2 ProjectileMuzzleOffset;
         public Sprite ProjectileSprite;
         public float ProjectileVisualWidth = 0.22f;
+        public SignatureWeapon Signature;
+        public int SignatureBeats = 3;
+        public float SignatureRadius = 2.2f;
+        public float SignatureScale = 0.65f;
+        public float SignatureDelay = 0.18f;
+        public float MarkLifetime = 2.4f;
+        public float PushDistance = 0.35f;
     }
 
+    public enum SignatureWeapon { None, Umbrella, Bell, Stamp }
+
     public enum DamageElement { Physical, Ember, Frost, Arcane }
-    public enum WeaponMotion { Slash, Thrust, Slam, Recoil, Bell, Bow, Cast }
+    public enum WeaponMotion { Slash, Thrust, Slam, Recoil, Bell, Bow, Cast, Stamp }
 }

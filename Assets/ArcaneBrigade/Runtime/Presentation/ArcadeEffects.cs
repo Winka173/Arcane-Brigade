@@ -42,13 +42,32 @@ namespace ArcaneBrigade
             WeaponDefinition weapon = value.Weapon;
             Color color = ElementColor(value.Element);
             float angle = Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg;
-            if (value.Kind == CombatEventKind.Fire && weapon != null)
+            if (value.Kind == CombatEventKind.SignatureMark)
+            {
+                Spawn(Shape.Star, value.Position, 45, 0.12f + value.Value * 0.055f, 0.24f, new Color(1, 0.28f, 0.38f));
+            }
+            else if (value.Kind == CombatEventKind.SignatureBurst)
+            {
+                Spawn(Shape.Star, value.Position, 45, 0.72f, 0.28f, new Color(1, 0.25f, 0.34f));
+                Spawn(Shape.Glyph, value.Position, 0, 0.55f, 0.35f, new Color(1, 0.86f, 0.56f));
+            }
+            else if (value.Kind == CombatEventKind.SignaturePulse)
+            {
+                bool umbrella = weapon != null && weapon.Signature == SignatureWeapon.Umbrella;
+                Spawn(umbrella ? Shape.Slash : Shape.Ring, value.Position, angle, value.Value, 0.32f, umbrella ? new Color(0.35f, 0.95f, 0.88f) : new Color(1, 0.82f, 0.35f));
+            }
+            else if (value.Kind == CombatEventKind.Fire && weapon != null)
             {
                 if (weapon.Kind == WeaponKind.Melee)
                 {
                     float radius = Mathf.Min(weapon.Range, 2.5f);
-                    Spawn(Shape.Slash, value.Position, angle, radius, 0.18f, color);
-                    Spawn(Shape.Slash, value.Position, angle + 8f, radius * 0.9f, 0.1f, new Color(1f, 1f, 0.88f));
+                    if (weapon.Signature == SignatureWeapon.Stamp)
+                        Spawn(Shape.Star, value.Position + value.Direction * weapon.Range * 0.65f, 45, 0.22f, 0.13f, new Color(1, 0.35f, 0.38f));
+                    else
+                    {
+                        Spawn(Shape.Slash, value.Position, angle, radius, 0.18f, color);
+                        Spawn(Shape.Slash, value.Position, angle + 8f, radius * 0.9f, 0.1f, new Color(1f, 1f, 0.88f));
+                    }
                 }
                 else
                 {

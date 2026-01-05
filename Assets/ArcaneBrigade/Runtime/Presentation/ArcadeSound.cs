@@ -64,6 +64,7 @@ namespace ArcaneBrigade
 
         public static AudioClip Cue(int kind)
         {
+            if (kind >= 7) return SignatureCue(kind);
             float length = kind == 6 ? 0.5f : kind == 4 || kind == 5 ? 0.25f : 0.14f;
             var samples = new float[Mathf.CeilToInt(SampleRate * length)];
             uint random = (uint)(419 + kind * 173);
@@ -81,6 +82,23 @@ namespace ArcaneBrigade
             AudioClip clip = AudioClip.Create("ArcadeCue" + kind, samples.Length, 1, SampleRate, false);
             clip.SetData(samples, 0);
             return clip;
+        }
+
+        private static AudioClip SignatureCue(int kind)
+        {
+            float duration = kind == 7 ? 0.42f : kind == 8 ? 0.19f : 0.23f;
+            var samples = new float[Mathf.CeilToInt(SampleRate * duration)];
+            uint random = 431;
+            for (int index = 0; index < samples.Length; index++)
+            {
+                float time = index / (float)SampleRate;
+                random ^= random << 13; random ^= random >> 17; random ^= random << 5;
+                float noise = (random & 65535) / 32767.5f - 1;
+                float tone = kind == 7 ? Mathf.Sin(time * 740 * Mathf.PI * 2) + 0.3f * Mathf.Sin(time * 1970 * Mathf.PI * 2) : kind == 8 ? noise * 0.7f + Mathf.Sin(time * 180 * Mathf.PI * 2) * 0.2f : Mathf.Sin(time * (210 - time * 300) * Mathf.PI * 2) * 0.7f + noise * Mathf.Exp(-time * 80) * 0.5f;
+                samples[index] = tone * Mathf.Min(1, time / 0.003f) * Mathf.Exp(-time * (kind == 7 ? 9 : 22)) * 0.45f;
+            }
+            AudioClip clip = AudioClip.Create("SignatureCue" + kind, samples.Length, 1, SampleRate, false);
+            clip.SetData(samples, 0); return clip;
         }
     }
 }

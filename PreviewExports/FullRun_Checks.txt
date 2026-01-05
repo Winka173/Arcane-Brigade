@@ -24,6 +24,7 @@ PASS Weapon BellFork
 PASS Weapon BookPaddle
 PASS Weapon CrescentBow
 PASS Weapon RuneStaff
+PASS Weapon DreamStamp
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop

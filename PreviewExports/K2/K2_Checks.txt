@@ -18,5 +18,6 @@ PASS Impact pose rotation continuity BellFork
 PASS Impact pose rotation continuity BookPaddle
 PASS Impact pose rotation continuity CrescentBow
 PASS Impact pose rotation continuity RuneStaff
+PASS Impact pose rotation continuity DreamStamp
 PASS Coin arc and positive spin scale
 PASS Coin shadow world size independent of spin

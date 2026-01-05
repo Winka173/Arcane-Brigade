@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst }
 
     public readonly struct CombatEvent
     {
@@ -68,6 +68,10 @@ namespace ArcaneBrigade
         public Vector2 TelegraphDirection;
         public Vector2 HitDirection;
         public CombatCause BurnCause;
+        public int AttackBeat;
+        public int AttackTargetId;
+        public int VisibleMarks;
+        public float MarkVisibleUntil;
     }
 
     public sealed class ProjectileState
@@ -101,7 +105,7 @@ namespace ArcaneBrigade
         public LootKind Kind;
     }
 
-    public sealed class CombatSimulation
+    public sealed partial class CombatSimulation
     {
         private readonly CheckpointCatalog catalog;
         private readonly List<UnitState> units = new List<UnitState>();
@@ -155,6 +159,7 @@ namespace ArcaneBrigade
             pickups.Clear();
             events.Clear();
             spawnRandom = new System.Random(seed);
+            ClearSignatures();
             combatRandom = new System.Random(unchecked(seed ^ 0x51B31));
             lootRandom = new System.Random(unchecked(seed ^ 0xC4357));
             procRandom = new System.Random(unchecked(seed ^ 0xA1703));
@@ -209,6 +214,7 @@ namespace ArcaneBrigade
             events.Clear();
             Boss = null;
             restElapsed = 0f;
+            ClearSignatures();
             foreach (UnitState unit in units) { unit.PendingAttack = false; unit.AttackStarted = -100f; unit.BurnUntil = unit.ChillUntil = 0f; }
             spatial.Rebuild(units);
             Phase = RunPhase.Rest;
@@ -273,6 +279,7 @@ namespace ArcaneBrigade
                     CollectPickups(deltaTime);
                     SpawnTreasure();
                     ProcessProcs();
+                    ProcessSignatures();
                 }
                 if (Phase == RunPhase.Combat && (catalog.Boss == null ? Elapsed >= catalog.WaveDuration : BossDefeated)) Phase = RunPhase.Victory;
             }
@@ -439,11 +446,21 @@ namespace ArcaneBrigade
             {
                 unit.PendingAttack = false;
                 float damage = weapon.Damage;
+                CombatCause attackCause = NewCause(unit.Id);
                 bool critical = combatRandom.NextDouble() < unit.Definition.CriticalChance;
                 if (critical) damage *= 1.5f;
                 if (weapon.Kind == WeaponKind.Projectile)
                 {
                     EmitProjectile(unit, damage, critical);
+                }
+                else if (weapon.Signature == SignatureWeapon.Stamp && unit.Faction != Faction.Enemy)
+                {
+                    UnitState target = units.Find(candidate => candidate.Id == unit.AttackTargetId);
+                    if (target != null && CanHit(unit.Faction, target) && (target.Position - unit.Position).magnitude <= weapon.Range + target.Definition.Radius)
+                    {
+                        ApplyDamage(target, damage, unit.Faction, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, cause: attackCause);
+                        AddStamp(unit, target, damage, attackCause);
+                    }
                 }
                 else
                 {
@@ -455,12 +472,14 @@ namespace ArcaneBrigade
                             ApplyWeaponDamage(target, damage, unit.Faction, weapon.Element, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, NewCause(unit.Id));
                     }
                 }
-                events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, cause: NewCause(unit.Id)));
+                AdvanceSignatureBeat(unit, damage, attackCause);
+                events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
             UnitState nearest = FindTarget(unit, weapon.Range);
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;
+            unit.AttackTargetId = nearest.Id;
             unit.Facing = unit.AttackDirection;
             unit.AttackStarted = Elapsed;
             unit.ImpactTime = Elapsed + weapon.Windup;
@@ -706,20 +725,21 @@ namespace ArcaneBrigade
 
         public void AddLootPresentationFixture(LootKind kind, Vector2 position, int value)
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             DropLoot(kind, position, value);
         }
 
         public void ConfigureLootPresentationFixture()
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             catalog.EnemyBudget = 0;
             nextChest = float.PositiveInfinity;
+            if (RunPaths.K4Capture) { catalog.CompanionPatrolSpeed = 0; catalog.CompanionAcceleration = 0; }
         }
 
         public UnitState AddPresentationFixture(Vector2 position, float health)
         {
-            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture) throw new InvalidOperationException("Presentation fixture requires isolated capture mode");
+            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture) throw new InvalidOperationException("Presentation fixture requires isolated capture mode");
             UnitState unit = Spawn(catalog.MeleeEnemy, Faction.Enemy, position);
             unit.Health = health;
             return unit;
