@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: BookPaddle
   Kind: 1
-  Sprite: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+  Sprite: {fileID: 1067514590, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
   Damage: 10
   Range: 1.9
   Cooldown: 0.5
@@ -34,6 +34,6 @@ MonoBehaviour:
   RecoilDistance: 0.09
   BodyAttackTilt: 22
   HasMuzzleOffset: 1
-  ProjectileMuzzleOffset: {x: 0.585, y: 0}
+  ProjectileMuzzleOffset: {x: 0.5928, y: 0}
   ProjectileSprite: {fileID: 0}
   ProjectileVisualWidth: 0.22

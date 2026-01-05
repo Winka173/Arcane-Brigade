@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UndeliveredKing
   DisplayName: UndeliveredKing
-  Body: {fileID: 932299066, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: -1120507908, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 047722544859a9b4ab3b93a7f5cfde07, type: 2}
   Health: 650
   Speed: 0.65

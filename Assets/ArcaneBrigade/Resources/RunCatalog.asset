@@ -16,8 +16,8 @@ MonoBehaviour:
   Arena: {fileID: 11400000, guid: df5b371438de8f94f845c72dd8c4a27e, type: 2}
   ProjectileDisc: {fileID: 21300000, guid: 73c46aa0c6d777b489ee34565420ff09, type: 3}
   WorldSize: {x: 34, y: 22}
-  CombatViewHeight: 5.4
-  RestViewHeight: 6
+  CombatViewHeight: 3.9
+  RestViewHeight: 4.8
   Champions:
   - {fileID: 11400000, guid: fff0e650e26b8ab42991de6cb7640207, type: 2}
   - {fileID: 11400000, guid: b1de2139305b7b542bd5c76f0e20ce5c, type: 2}
@@ -59,7 +59,7 @@ MonoBehaviour:
     Price: 18
     Effect: 0
     Value: 0.12
-    Icon: {fileID: -1311877020, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -1250492523, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     Price: 20
     Effect: 1
     Value: 0.1
-    Icon: {fileID: 823193995, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -377929156, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
     Price: 22
     Effect: 2
     Value: 20
-    Icon: {fileID: -926295115, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: -732712032, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 2
@@ -116,7 +116,7 @@ MonoBehaviour:
     Price: 18
     Effect: 3
     Value: 0.06
-    Icon: {fileID: -1287582899, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: -679540106, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 3
@@ -154,7 +154,7 @@ MonoBehaviour:
     Price: 18
     Effect: 5
     Value: 0.4
-    Icon: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: 1067514590, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 5
@@ -173,7 +173,7 @@ MonoBehaviour:
     Price: 45
     Effect: 6
     Value: 1
-    Icon: {fileID: -814582946, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -54328072, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 4
     Modifiers:
     - Effect: 6
@@ -192,7 +192,7 @@ MonoBehaviour:
     Price: 24
     Effect: 7
     Value: 0.15
-    Icon: {fileID: -926295115, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: -732712032, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 7
@@ -211,7 +211,7 @@ MonoBehaviour:
     Price: 22
     Effect: 8
     Value: 0.04
-    Icon: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: 1419738374, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 8
@@ -230,7 +230,7 @@ MonoBehaviour:
     Price: 35
     Effect: 9
     Value: 1
-    Icon: {fileID: 118936876, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -950303755, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 5
     Modifiers:
     - Effect: 9
@@ -249,7 +249,7 @@ MonoBehaviour:
     Price: 18
     Effect: 10
     Value: 2
-    Icon: {fileID: 932299066, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: -1120507908, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 10
@@ -268,7 +268,7 @@ MonoBehaviour:
     Price: 20
     Effect: 11
     Value: 0.12
-    Icon: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: 1419738374, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 11
@@ -287,7 +287,7 @@ MonoBehaviour:
     Price: 28
     Effect: 12
     Value: 0.22
-    Icon: {fileID: -1311877020, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -1250492523, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 12
@@ -306,7 +306,7 @@ MonoBehaviour:
     Price: 30
     Effect: 13
     Value: 0.15
-    Icon: {fileID: 932299066, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: -1120507908, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 13
@@ -325,7 +325,7 @@ MonoBehaviour:
     Price: 26
     Effect: 14
     Value: 0.12
-    Icon: {fileID: 118936876, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -950303755, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 14
@@ -345,7 +345,7 @@ MonoBehaviour:
     Price: 24
     Effect: 15
     Value: 0.05
-    Icon: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: 1067514590, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 0
     Modifiers:
     - Effect: 15
@@ -365,7 +365,7 @@ MonoBehaviour:
     Price: 36
     Effect: 5
     Value: 1
-    Icon: {fileID: -179188034, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: 1067514590, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 8
     Modifiers:
     - Effect: 5
@@ -387,7 +387,7 @@ MonoBehaviour:
     Price: 42
     Effect: 2
     Value: 45
-    Icon: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: 1419738374, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 8
     Modifiers:
     - Effect: 2
@@ -407,7 +407,7 @@ MonoBehaviour:
     Price: 60
     Effect: 9
     Value: 2
-    Icon: {fileID: 823193995, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+    Icon: {fileID: -377929156, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
     UnlockWave: 10
     Modifiers:
     - Effect: 9
@@ -429,7 +429,7 @@ MonoBehaviour:
     Price: 48
     Effect: 12
     Value: 0.4
-    Icon: {fileID: 1102527455, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+    Icon: {fileID: 42960041, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
     UnlockWave: 10
     Modifiers:
     - Effect: 12

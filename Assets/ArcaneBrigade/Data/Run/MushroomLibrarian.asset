@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MushroomLibrarian
   DisplayName: MushroomLibrarian
-  Body: {fileID: 2015088381, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: -1732407878, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 3b296350d6f02654f98a89ca62bf43e3, type: 2}
   Health: 120
   Speed: 5.1

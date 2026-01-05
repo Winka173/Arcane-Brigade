@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LanternKnight
   DisplayName: LanternKnight
-  Body: {fileID: 1102527455, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: 42960041, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 120
   Speed: 4.8

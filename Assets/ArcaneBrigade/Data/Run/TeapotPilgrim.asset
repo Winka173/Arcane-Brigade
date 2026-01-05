@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TeapotPilgrim
   DisplayName: TeapotPilgrim
-  Body: {fileID: -926295115, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: -732712032, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
   Health: 120
   Speed: 5.1

@@ -706,20 +706,20 @@ namespace ArcaneBrigade
 
         public void AddLootPresentationFixture(LootKind kind, Vector2 position, int value)
         {
-            if (!RunPaths.K3FinalCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             DropLoot(kind, position, value);
         }
 
         public void ConfigureLootPresentationFixture()
         {
-            if (!RunPaths.K3FinalCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             catalog.EnemyBudget = 0;
             nextChest = float.PositiveInfinity;
         }
 
         public UnitState AddPresentationFixture(Vector2 position, float health)
         {
-            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture) throw new InvalidOperationException("Presentation fixture requires isolated capture mode");
+            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture) throw new InvalidOperationException("Presentation fixture requires isolated capture mode");
             UnitState unit = Spawn(catalog.MeleeEnemy, Faction.Enemy, position);
             unit.Health = health;
             return unit;

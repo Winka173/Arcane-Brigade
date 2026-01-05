@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SirenSeal
   DisplayName: SirenSeal
-  Body: {fileID: -926295115, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: -732712032, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 4f1d870ec4a38e44b92c4565e4a1df7d, type: 2}
   Health: 63
   Speed: 1.85

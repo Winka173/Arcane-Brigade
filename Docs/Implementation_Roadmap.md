@@ -1,5 +1,7 @@
 # Arcane Brigade — kế hoạch chuẩn bị triển khai
 
+**Visual pass trước K4:** chủ dự án chọn hướng 1 (render sắc ở 4K, không yêu cầu mỗi PNG native 4K). Model/map/zoom/effects và ảnh Unity được nâng cấp riêng, giữ contract gameplay K3. Xem `Visual_Quality_4K_Pass.md`; không tính là hoàn tất K4 hoặc device gate K7.
+
 **K3 cập nhật cuối:** DONE theo gate runtime Windows; báo cáo `K3_Final_Checkpoint.md`. Chủ dự án xác nhận chuyển device gate sang K7. Có thể tiếp tục K4; chưa triển khai K4 trong lượt này hoặc tuyên bố production/mobile/exact-reference parity DONE. Các dòng trạng thái cũ bên dưới là lịch sử, cập nhật này có ưu tiên.
 
 Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning riêng trong `K3_Altar_Economy.md`. Parity/inheritance và K3.3/K3.4 còn lại; chưa qua K4.
@@ -88,6 +90,8 @@ Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning
 **Đạt khi:** từng family có sample/pattern/tooltip/art đủ; mỗi build có tác dụng khi mới có hai thành phần, có trade-off/điểm yếu; không item bắt buộc cho mọi build, không one-hit do base damage, không cap đội để né lag.
 
 ### K6 — Kết quả, museum và meta
+
+**Feedback đã nhận (2026-10-13):** font và UI hiện tại chưa phù hợp chất lượng art. Chủ dự án đồng ý chưa redesign trong visual pass. K6 làm bộ UI đồng nhất (HUD/menu/Details/shop/results), font có cá tính arcade nhưng rõ dấu tiếng Việt, phân cấp chữ/số, spacing, icon và bảng giá gọn; giữ các thao tác và dữ liệu thật. K7 chốt kerning/glyph, transitions và nghiệm thu đa nền tảng. Đổi palette/bảng giá nhỏ trong visual pass không được tính là hoàn tất redesign này.
 
 **Phạm vi:** R6; N04/N13–N16, contribution N02/N07. **Dependency:** K3/K4; content K5 bổ sung theo ID.
 

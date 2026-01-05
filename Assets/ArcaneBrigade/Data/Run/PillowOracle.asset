@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PillowOracle
   DisplayName: PillowOracle
-  Body: {fileID: -1964589000, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: 1419738374, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: e1377fe9fd09ccb4ea0b8817b675a2a3, type: 2}
   Health: 120
   Speed: 5.1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: CrescentBow
   Kind: 2
-  Sprite: {fileID: -919413446, guid: 9789d334ce31e8a478dfc037ae4df088, type: 3}
+  Sprite: {fileID: 840580801, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
   Damage: 14
   Range: 8
   Cooldown: 0.95
@@ -22,7 +22,7 @@ MonoBehaviour:
   Recovery: 0.24
   ProjectileSpeed: 10
   ProjectileLifetime: 3
-  VisualWidth: 0.65
+  VisualWidth: 0.34179774
   MountDistance: 0.34
   MuzzleDistance: 0.5
   ConeDot: 0.2
@@ -34,6 +34,6 @@ MonoBehaviour:
   RecoilDistance: 0.09
   BodyAttackTilt: 12
   HasMuzzleOffset: 1
-  ProjectileMuzzleOffset: {x: 0.2665, y: 0}
+  ProjectileMuzzleOffset: {x: 0.11621123, y: 0}
   ProjectileSprite: {fileID: 1145923209, guid: 9789d334ce31e8a478dfc037ae4df088, type: 3}
   ProjectileVisualWidth: 0.5

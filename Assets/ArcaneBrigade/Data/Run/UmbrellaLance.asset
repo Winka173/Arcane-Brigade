@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: UmbrellaLance
   Kind: 1
-  Sprite: {fileID: -814582946, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+  Sprite: {fileID: -54328072, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
   Damage: 10
   Range: 2.4
   Cooldown: 0.85

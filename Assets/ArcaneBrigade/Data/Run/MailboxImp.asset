@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MailboxImp
   DisplayName: MailboxImp
-  Body: {fileID: 932299066, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: -1120507908, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 120
   Speed: 5.1

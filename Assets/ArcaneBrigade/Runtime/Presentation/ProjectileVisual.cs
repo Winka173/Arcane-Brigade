@@ -18,6 +18,8 @@ namespace ArcaneBrigade
             child.transform.SetParent(transform, false);
             streak = child.AddComponent<LineRenderer>();
             streak.positionCount = 2;
+            streak.numCapVertices = 6;
+            streak.numCornerVertices = 6;
             material = new Material(Shader.Find("Sprites/Default"));
             streak.sharedMaterial = material;
             streak.sortingOrder = 1800;
@@ -43,9 +45,9 @@ namespace ArcaneBrigade
             {
                 float pulse = 1f + Mathf.Sin(time * 18f + state.Id) * 0.08f;
                 float local = width / body.transform.localScale.x / halo.sprite.bounds.size.x;
-                halo.transform.localScale = Vector3.one * local * 2.1f * pulse;
+                halo.transform.localScale = Vector3.one * local * 1.85f * pulse;
                 core.transform.localScale = Vector3.one * local * 0.45f;
-                halo.color = new Color(state.Color.r, state.Color.g, state.Color.b, 0.18f);
+                halo.color = new Color(state.Color.r, state.Color.g, state.Color.b, 0.25f);
                 core.color = new Color(1f, 0.96f, 0.89f, 0.9f);
             }
             streak.enabled = arrow || magic;

@@ -8,9 +8,9 @@ namespace ArcaneBrigade
         private static GUIStyle panel;
         private static Texture2D rounded;
         public static readonly Color Ink = new Color(0.10f, 0.09f, 0.19f);
-        public static readonly Color Purple = new Color(0.48f, 0.25f, 0.7f);
+        public static readonly Color Purple = new Color(0.62f, 0.28f, 0.92f);
         public static readonly Color Cream = new Color(1f, 0.94f, 0.76f);
-        public static readonly Color Teal = new Color(0.3f, 0.87f, 0.89f);
+        public static readonly Color Teal = new Color(0.28f, 0.94f, 0.86f);
 
         public static GUISkin Skin
         {

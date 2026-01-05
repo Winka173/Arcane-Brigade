@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: MailboxLauncher
   Kind: 2
-  Sprite: {fileID: 823193995, guid: aca283dfb9e2b79468c173bb2ebe30d3, type: 3}
+  Sprite: {fileID: -377929156, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
   Damage: 10
   Range: 7.8
   Cooldown: 0.85
@@ -34,6 +34,6 @@ MonoBehaviour:
   RecoilDistance: 0.09
   BodyAttackTilt: 8
   HasMuzzleOffset: 1
-  ProjectileMuzzleOffset: {x: 0.6786, y: 0.14475471}
+  ProjectileMuzzleOffset: {x: 0.6552, y: 0.15003164}
   ProjectileSprite: {fileID: 0}
   ProjectileVisualWidth: 0.22

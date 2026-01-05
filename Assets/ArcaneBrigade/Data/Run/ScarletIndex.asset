@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ScarletIndex
   DisplayName: ScarletIndex
-  Body: {fileID: 2015088381, guid: 608cba0b65d939e4bb597eaab647410c, type: 3}
+  Body: {fileID: -1732407878, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
   Weapon: {fileID: 11400000, guid: 166ba93775526cd44a5b7af36a08fd42, type: 2}
   Health: 790
   Speed: 0.65

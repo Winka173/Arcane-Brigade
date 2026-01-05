@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
   Id: RuneStaff
   Kind: 2
-  Sprite: {fileID: -854049897, guid: 9789d334ce31e8a478dfc037ae4df088, type: 3}
+  Sprite: {fileID: 32564173, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
   Damage: 11
   Range: 8
   Cooldown: 1.05
@@ -34,6 +34,6 @@ MonoBehaviour:
   RecoilDistance: 0.09
   BodyAttackTilt: 18
   HasMuzzleOffset: 1
-  ProjectileMuzzleOffset: {x: 0.55759996, y: 0}
+  ProjectileMuzzleOffset: {x: 0.62320006, y: 0}
   ProjectileSprite: {fileID: 89134280, guid: 9789d334ce31e8a478dfc037ae4df088, type: 3}
   ProjectileVisualWidth: 0.3

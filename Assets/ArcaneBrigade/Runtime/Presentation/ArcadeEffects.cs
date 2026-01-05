@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class ArcadeEffects : MonoBehaviour
     {
-        private enum Shape { Ring, Slash, Star, Puff }
+        private enum Shape { Ring, Slash, Star, Puff, Glyph }
         private sealed class Burst
         {
             public Mesh Mesh;
@@ -34,7 +34,7 @@ namespace ArcaneBrigade
 
         public static Color ElementColor(DamageElement element)
         {
-            return element == DamageElement.Ember ? new Color(1f, 0.53f, 0.23f) : element == DamageElement.Frost ? new Color(0.4f, 0.88f, 1f) : element == DamageElement.Arcane ? new Color(0.9f, 0.35f, 1f) : new Color(1f, 0.88f, 0.45f);
+            return element == DamageElement.Ember ? new Color(1f, 0.34f, 0.12f) : element == DamageElement.Frost ? new Color(0.15f, 0.92f, 1f) : element == DamageElement.Arcane ? new Color(0.85f, 0.25f, 1f) : new Color(1f, 0.82f, 0.28f);
         }
 
         public void Play(CombatEvent value)
@@ -54,11 +54,11 @@ namespace ArcaneBrigade
                 {
                     Vector2 offset = weapon.HasMuzzleOffset ? weapon.ProjectileMuzzleOffset : Vector2.right * weapon.MuzzleDistance;
                     Vector2 muzzle = value.Position + value.Direction * (weapon.MountDistance - weapon.RecoilDistance) + (Vector2)(Quaternion.Euler(0, 0, angle) * offset);
-                    Spawn(weapon.Motion == WeaponMotion.Bow ? Shape.Star : Shape.Ring, muzzle, angle, weapon.Motion == WeaponMotion.Bow ? 0.25f : 0.4f, 0.18f, color);
+                    Spawn(weapon.Motion == WeaponMotion.Bow ? Shape.Star : Shape.Glyph, muzzle, angle, weapon.Motion == WeaponMotion.Bow ? 0.25f : 0.42f, 0.22f, color);
                 }
             }
             else if (value.Kind == CombatEventKind.Windup && weapon != null && (weapon.Motion == WeaponMotion.Cast || weapon.Motion == WeaponMotion.Bell))
-                Spawn(Shape.Ring, value.Position + value.Direction * 0.7f, angle, 0.22f, weapon.Windup, color);
+                Spawn(Shape.Glyph, value.Position + value.Direction * 0.7f, angle, 0.26f, weapon.Windup, color);
             else if (value.Kind == CombatEventKind.Hit)
             {
                 Spawn(Shape.Star, value.Position, angle + 15f, value.Critical ? 0.58f : 0.32f, 0.12f, new Color(1f, 1f, 0.9f));
@@ -128,10 +128,11 @@ namespace ArcaneBrigade
             vertices.Clear(); colors.Clear(); triangles.Clear();
             float progress = Mathf.Clamp01(burst.Age / burst.Duration);
             Color color = burst.Color;
-            color.a = (1f - progress) * (burst.Shape == Shape.Puff ? 0.30f : 0.85f);
-            float radius = burst.Radius * (burst.Shape == Shape.Star ? 1f - progress * 0.35f : 0.6f + progress * 0.65f);
-            const int segments = 24;
-            if (burst.Shape == Shape.Ring || burst.Shape == Shape.Slash)
+            color.a = Mathf.Pow(1f - progress, 1.4f) * (burst.Shape == Shape.Puff ? 0.22f : 0.95f);
+            float eased = 1f - Mathf.Pow(1f - progress, 3);
+            float radius = burst.Radius * (burst.Shape == Shape.Star ? 1f - eased * 0.3f : 0.75f + eased * 0.4f);
+            const int segments = 72;
+            if (burst.Shape == Shape.Ring || burst.Shape == Shape.Slash || burst.Shape == Shape.Glyph)
             {
                 float first = burst.Shape == Shape.Slash ? -1.15f + progress * 0.35f : 0f;
                 float length = burst.Shape == Shape.Slash ? 2.3f : Mathf.PI * 2f;
@@ -140,10 +141,34 @@ namespace ArcaneBrigade
                     float fraction = index / (float)segments;
                     float angle = first + fraction * length;
                     Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                    float width = burst.Shape == Shape.Slash ? 0.25f * Mathf.Sin(fraction * Mathf.PI) : 0.065f;
-                    vertices.Add(direction * radius); vertices.Add(direction * (radius - width));
-                    colors.Add(color); colors.Add(color);
-                    if (index > 0) Quad((index - 1) * 2);
+                    float width = burst.Shape == Shape.Slash ? 0.22f * Mathf.Sin(fraction * Mathf.PI) : 0.045f;
+                    Color visible = color;
+                    if (burst.Shape == Shape.Slash) visible.a *= Mathf.Clamp01(Mathf.Sin(fraction * Mathf.PI) * 4);
+                    for (int edge = 0; edge < 4; edge++)
+                    {
+                        float edgeRadius = edge == 0 ? radius + 0.014f : edge == 1 ? radius : edge == 2 ? radius - width : radius - width - 0.014f;
+                        vertices.Add(direction * Mathf.Max(0, edgeRadius));
+                        colors.Add(edge == 0 || edge == 3 ? new Color(visible.r, visible.g, visible.b, 0) : visible);
+                    }
+                    if (index > 0)
+                        for (int edge = 0; edge < 3; edge++)
+                        {
+                            int previous = (index - 1) * 4 + edge; int current = index * 4 + edge;
+                            triangles.Add(previous); triangles.Add(current); triangles.Add(previous + 1);
+                            triangles.Add(previous + 1); triangles.Add(current); triangles.Add(current + 1);
+                        }
+                }
+                if (burst.Shape == Shape.Glyph)
+                {
+                    for (int rune = 0; rune < 4; rune++)
+                    {
+                        float angle = rune * Mathf.PI * 0.5f + progress * 0.5f;
+                        Vector2 center = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius * 0.8f;
+                        int firstVertex = vertices.Count;
+                        vertices.Add(center + Vector2.up * 0.045f); vertices.Add(center + Vector2.right * 0.035f); vertices.Add(center + Vector2.down * 0.045f); vertices.Add(center + Vector2.left * 0.035f);
+                        for (int corner = 0; corner < 4; corner++) colors.Add(color);
+                        triangles.Add(firstVertex); triangles.Add(firstVertex + 1); triangles.Add(firstVertex + 2); triangles.Add(firstVertex); triangles.Add(firstVertex + 2); triangles.Add(firstVertex + 3);
+                    }
                 }
             }
             else

@@ -1,5 +1,7 @@
 # Arcane Brigade
 
+Visual pass theo **hướng 1**: model/vũ khí HD, nền map lát tile, zoom combat +38% / shop +25%, màu rõ hơn, hiệu ứng viền mềm và bảng giá dễ đọc. Ảnh Unity **3840×2160**: `PreviewExports/VisualQuality/Player4K/index.html`; báo cáo và giới hạn: `Docs/Visual_Quality_4K_Pass.md`. PNG nguồn 1672×941, không gọi là native 4K. Dùng menu `Arcane Brigade > Visual Quality > Apply HD assets map and check build`; không dựng lại baseline. K4 chưa triển khai trong visual pass này.
+
 K3 hoàn tất theo gate Windows đã duyệt: proc/cause, chest/egg/heart/Luck/Detection, offscreen chest/egg indicators, item delta preview, recipe preview/altar reroll. Chủ dự án chuyển device gate sang K7. Báo cáo: `Docs/K3_Final_Checkpoint.md`; build: `Arcane Brigade > K3 > Check final checkpoint and build`. Motion native: `PreviewExports/K3/Final/Player/index.html`. Mobile/parity chưa nghiệm thu, không gọi candidate là production.
 
 K3.2b mới: altar mua bằng HP hiện tại hoặc eggs, activation chance theo eggs, giữ save/rollback; báo cáo `Docs/K3_Altar_Economy.md`. Giá/chance là tuning riêng chưa xác nhận công thức reference. Clone source cần `git lfs pull`; mở bằng Unity 6000.4.8f1, dùng `Arcane Brigade > K3 > Check altar economy and build`. Build/cache/save diagnostic không commit vào Git.
