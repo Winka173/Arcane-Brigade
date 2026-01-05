@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount }
+    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection }
     public enum ModifierScope { Team, Champion, Companions, Run }
     public enum ItemRarity { Common, Uncommon, Rare, Mythic }
     public enum StackPolicy { Additive, Unique }
@@ -68,6 +68,8 @@ namespace ArcaneBrigade
         public string SecondUnit;
         public string ResultUnit;
         public int EggCost = 3;
+        public int MinimumMaterialTier = 1;
+        public int ResultTier = 2;
     }
 
     [CreateAssetMenu(menuName = "Arcane Brigade/Run Catalog")]
@@ -93,6 +95,11 @@ namespace ArcaneBrigade
         public int AltarRevision;
         public float AltarBaseChance;
         public float AltarChancePerEgg;
+        public int LootRevision;
+        public ProcRule[] ProcRules = new ProcRule[0];
+        public Sprite EggSprite;
+        public Sprite HeartSprite;
+        public Sprite ChestSprite;
         public int NormalWaves = 20;
         public float WaveSeconds = 84f;
         public int BossEvery = 4;

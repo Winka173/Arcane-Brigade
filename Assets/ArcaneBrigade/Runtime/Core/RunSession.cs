@@ -200,6 +200,16 @@ namespace ArcaneBrigade
             CombatCatalog.Armor = Bonus(ItemEffect.Armor);
             CombatCatalog.Seed = unchecked(State.Seed + State.Wave * 7919);
             CombatCatalog.GoldPerKill = 2;
+            CombatCatalog.ExtendedLoot = catalog.LootRevision > 0;
+            CombatCatalog.Luck = Bonus(ItemEffect.Luck);
+            CombatCatalog.TreasureDetection = Bonus(ItemEffect.TreasureDetection);
+            var procs = new List<ActiveProc>();
+            foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
+            {
+                int stacks = catalog.Item(rule.ItemId).EffectiveStacks(StackCount(rule.ItemId));
+                if (stacks > 0) procs.Add(new ActiveProc { Rule = rule, Stacks = stacks });
+            }
+            CombatCatalog.Procs = procs.ToArray();
             WaveModifier active = ActiveModifier;
             if (active != null)
             {
@@ -258,7 +268,7 @@ namespace ArcaneBrigade
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
-            State.Eggs = BoundedCounter((long)State.Eggs + (simulation.BossDefeated ? 3 : 1));
+            State.Eggs = BoundedCounter((long)State.Eggs + simulation.Eggs + (simulation.BossDefeated ? 3 : 1));
             if (simulation.BossDefeated) State.BossKills = BoundedCounter((long)State.BossKills + 1);
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
             if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.Phase = SessionPhase.Victory; return; }
@@ -367,6 +377,15 @@ namespace ArcaneBrigade
         }
 
         public int RerollCost => RunSession.BoundedCounter((long)catalog.RerollPrice + (long)State.RerollsThisShop * catalog.RerollPriceStep);
+        public bool RerollAltar()
+        {
+            if (State.Phase != SessionPhase.Shop || State.SpecialOffers.Count == 0 || State.Gold < RerollCost || State.RerollsThisShop == int.MaxValue) return false;
+            State.Gold -= RerollCost;
+            RollSpecialOffers();
+            State.RerollsThisShop++;
+            Notice = "Altar refreshed with gold. Eggs and HP unchanged.";
+            return true;
+        }
         public float AltarActivationChance => (float)Math.Min(1d, catalog.AltarBaseChance + (double)State.Eggs * catalog.AltarChancePerEgg);
 
         private bool Eligible(ItemDefinition item, ShopPool pool) => item.UnlockWave <= State.Wave && (catalog.EconomyRevision == 0 || item.ShopWeight > 0 && (item.Pools & pool) != 0) && StackCount(item.Id) < item.StackLimit;
@@ -409,11 +428,18 @@ namespace ArcaneBrigade
                 if (Next(ref State.ShopRandom, 1000000) >= Mathf.RoundToInt(AltarActivationChance * 1000000)) return;
             }
             else if (catalog.SpecialShopEvery <= 0 || State.Wave % catalog.SpecialShopEvery != 0) return;
+            RollSpecialOffers();
+        }
+
+        private void RollSpecialOffers()
+        {
+            if (State.NextOffer > int.MaxValue - 3) throw new InvalidOperationException("Shop token counter exhausted");
+            var specialItems = new List<ItemDefinition>();
+            foreach (ItemDefinition candidate in catalog.Items) if (Eligible(candidate, ShopPool.Eggs)) specialItems.Add(candidate);
+            if (specialItems.Count == 0) throw new InvalidOperationException("No eligible altar offers");
+            State.SpecialOffers.Clear();
             for (int index = 0; index < 3; index++)
             {
-                var specialItems = new List<ItemDefinition>();
-                foreach (ItemDefinition candidate in catalog.Items) if (Eligible(candidate, ShopPool.Eggs)) specialItems.Add(candidate);
-                if (specialItems.Count == 0) break;
                 ItemDefinition item = specialItems[WeightedItem(specialItems)];
                 State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
             }
@@ -421,29 +447,47 @@ namespace ArcaneBrigade
 
         public bool Altar(string recipeId)
         {
-            if (State.Phase != SessionPhase.Shop) return false;
+            if (!CanAltar(recipeId)) { Notice = "Altar needs eggs, eligible materials and a unique result weapon."; return false; }
             AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
-            if (recipe == null || State.Eggs < recipe.EggCost) return false;
-            RosterEntry first = LowestTier(recipe.FirstUnit, null);
-            RosterEntry second = LowestTier(recipe.SecondUnit, first);
+            RosterEntry first = LowestTier(recipe.FirstUnit, null, recipe.MinimumMaterialTier);
+            RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
             if (first == null || second == null) { Notice = "Altar needs both listed companions."; return false; }
             var choices = new List<WeaponDefinition>();
-            foreach (WeaponDefinition weapon in catalog.Weapons) if (!State.Roster.Exists(entry => entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id)) choices.Add(weapon);
+            foreach (WeaponDefinition weapon in catalog.Weapons) if (!State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id)) choices.Add(weapon);
             if (choices.Count == 0) return false;
             State.Roster.Remove(first);
             State.Roster.Remove(second);
-            State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = 2, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+            State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = recipe.ResultTier, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
             State.Eggs -= recipe.EggCost;
             RecountBonds();
             Notice = "Altar fusion completed.";
             return true;
         }
 
-        public RosterEntry LowestTier(string id, RosterEntry excluded = null)
+        public bool CanAltar(string recipeId)
+        {
+            AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
+            if (recipe == null || State.Phase != SessionPhase.Shop || State.Eggs < recipe.EggCost) return false;
+            RosterEntry first = LowestTier(recipe.FirstUnit, null, recipe.MinimumMaterialTier);
+            RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
+            return first != null && second != null && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id));
+        }
+
+        public string RecipePreview(string recipeId)
+        {
+            AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
+            if (recipe == null) return "Unknown recipe.";
+            RosterEntry first = LowestTier(recipe.FirstUnit, null, recipe.MinimumMaterialTier);
+            RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
+            string Describe(RosterEntry entry, string id) => entry == null ? catalog.Unit(id).DisplayName + " · còn thiếu" : catalog.Unit(id).DisplayName + " / " + entry.WeaponId + " / cấp " + entry.Tier;
+            return "Tiêu " + recipe.EggCost + " eggs + hai body:\n− " + Describe(first, recipe.FirstUnit) + "\n− " + Describe(second, recipe.SecondUnit) + "\n→ " + catalog.Unit(recipe.ResultUnit).DisplayName + " cấp " + recipe.ResultTier + "; weapon roll sau craft, không cho chọn.\n" + (CanAltar(recipeId) ? "ĐỦ ĐIỀU KIỆN" : "CHƯA ĐỦ ĐIỀU KIỆN");
+        }
+
+        public RosterEntry LowestTier(string id, RosterEntry excluded = null, int minimumTier = 1)
         {
             RosterEntry result = null;
             foreach (RosterEntry entry in State.Roster)
-                if (entry.UnitId == id && entry != excluded && (result == null || entry.Tier < result.Tier)) result = entry;
+                if (entry.UnitId == id && entry != excluded && entry.Tier >= minimumTier && (result == null || entry.Tier < result.Tier)) result = entry;
             return result;
         }
 

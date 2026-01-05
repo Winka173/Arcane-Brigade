@@ -11,7 +11,7 @@ namespace ArcaneBrigade
             {
                 case ItemEffect.Health: case ItemEffect.Heal: case ItemEffect.Armor: case ItemEffect.ChampionDamage: return ModifierScope.Champion;
                 case ItemEffect.CompanionDamage: case ItemEffect.CompanionAttackSpeed: return ModifierScope.Companions;
-                case ItemEffect.Pickup: case ItemEffect.Roam: case ItemEffect.Interceptor: case ItemEffect.Interest: case ItemEffect.Discount: return ModifierScope.Run;
+                case ItemEffect.Pickup: case ItemEffect.Roam: case ItemEffect.Interceptor: case ItemEffect.Interest: case ItemEffect.Discount: case ItemEffect.Luck: case ItemEffect.TreasureDetection: return ModifierScope.Run;
                 default: return ModifierScope.Team;
             }
         }
@@ -55,7 +55,7 @@ namespace ArcaneBrigade
         {
             string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Duy nhất" : "Cộng dồn") + "\n";
             foreach (StatModifier modifier in item.EffectiveModifiers)
-                description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
+                if (modifier.Value != 0) description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
             return description;
         }
 
@@ -94,6 +94,13 @@ namespace ArcaneBrigade
                 }
             }
             var ids = new System.Collections.Generic.HashSet<string>();
+            foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
+            {
+                if (rule == null || string.IsNullOrEmpty(rule.Id) || !ids.Add(rule.Id) || catalog.Item(rule.ItemId) == null || !Enum.IsDefined(typeof(ProcTrigger), rule.Trigger) || !Enum.IsDefined(typeof(ProcAction), rule.Action) || !float.IsFinite(rule.Power) || rule.Power <= 0 || !float.IsFinite(rule.Radius) || rule.Radius < 0 || !float.IsFinite(rule.Cooldown) || rule.Cooldown < 0 || !float.IsFinite(rule.Chance) || rule.Chance < 0 || rule.Chance > 1) throw new InvalidOperationException("Invalid proc authoring");
+            }
+            ids.Clear();
+            foreach (AltarRecipe recipe in catalog.Recipes)
+                if (recipe.EggCost < 0 || recipe.MinimumMaterialTier < 1 || recipe.MinimumMaterialTier > catalog.MaximumTier || recipe.ResultTier < 1 || recipe.ResultTier > catalog.MaximumTier) throw new InvalidOperationException("Invalid recipe tier/cost");
             foreach (BuildLinkRule rule in catalog.BuildLinks ?? new BuildLinkRule[0])
             {
                 if (rule == null || string.IsNullOrEmpty(rule.Id) || !ids.Add(rule.Id) || string.IsNullOrEmpty(rule.Name) || rule.ItemIds == null || rule.ItemIds.Length < 2) throw new InvalidOperationException("Invalid build link");

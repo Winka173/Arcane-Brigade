@@ -62,7 +62,7 @@ namespace ArcaneBrigade
         public void Play(CombatEvent value)
         {
             if (!presentation) { Play(value.Kind); return; }
-            int cue = value.Kind == CombatEventKind.Kill ? value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss ? 6 : 5 : value.Kind == CombatEventKind.Hit ? 3 : value.Kind == CombatEventKind.Pickup ? 4 : value.Kind == CombatEventKind.Fire && value.Weapon != null ? value.Weapon.Kind == WeaponKind.Melee ? 0 : value.Weapon.Motion == WeaponMotion.Bow ? 1 : 2 : -1;
+            int cue = value.Kind == CombatEventKind.Kill ? value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss ? 6 : 5 : value.Kind == CombatEventKind.Hit ? 3 : value.Kind == CombatEventKind.ChestOpened ? 2 : value.Kind == CombatEventKind.Pickup ? 4 : value.Kind == CombatEventKind.Fire && value.Weapon != null ? value.Weapon.Kind == WeaponKind.Melee ? 0 : value.Weapon.Motion == WeaponMotion.Bow ? 1 : 2 : -1;
             if (cue < 0 || Time.unscaledTime < nextPlayback[cue]) return;
             nextPlayback[cue] = Time.unscaledTime + (cue == 4 ? 0.08f : 0.04f);
             AudioSource voice = voices[nextVoice];

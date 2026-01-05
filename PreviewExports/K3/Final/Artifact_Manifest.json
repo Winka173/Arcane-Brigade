@@ -1,0 +1,63 @@
+{
+  "Checkpoint": "K3 completed, user-approved Windows gate",
+  "Artifacts": [
+    {
+      "SHA256": "FA619803FE6161D533E63F9D39EE5466DC0F38B687C551D8771D54CA6D9C3003",
+      "Path": "Builds/FullRun/ArcaneBrigade_Data/Managed/ArcaneBrigade.Runtime.dll"
+    },
+    {
+      "SHA256": "2FAF901619B8BF7EE3173C8E9A219C3B349D4975A8D81047E271876BFF0E649C",
+      "Path": "Assets/ArcaneBrigade/Resources/RunCatalog.asset"
+    },
+    {
+      "SHA256": "35CCF91E9D13FA9E4C59439D63B5F0594276FABEAA5D16568D1F24F6B47F3D14",
+      "Path": "Assets/ArcaneBrigade/Runtime/Core/CombatSimulation.cs"
+    },
+    {
+      "SHA256": "A6F306209EAAC7CB09F05FEA751976F3DD50D304D15155A942C6F03DF42956E1",
+      "Path": "Assets/ArcaneBrigade/Runtime/Core/CombatCause.cs"
+    },
+    {
+      "SHA256": "734DA5F2D8F657BF7ADE80C86B80B143A1921F7B7A22312362D6D53534AD1B21",
+      "Path": "PreviewExports/K3/Final/Checks.txt"
+    },
+    {
+      "SHA256": "E5260839A2F7E9E0A052483B634D5C2A0FD58CF0FDD4C0F316A5166033CC706B",
+      "Path": "PreviewExports/K3/Final/Player/Loot_Icons_Indicators_Fixture.png"
+    },
+    {
+      "SHA256": "389E07B03B6797A7CF470027D3CBC5319382B8A1ACB0709A9F0C58E9F5BBDBC8",
+      "Path": "PreviewExports/K3/Final/Player/Final_Item_Delta_Preview_Fixture.png"
+    },
+    {
+      "SHA256": "D04C3D16BFF73AE11A13759900FCF1CE3FC4DD48F5DC61FC71DFE44F20A5AF06",
+      "Path": "PreviewExports/K3/Final/Player/Proc_Details_Fixture.png"
+    },
+    {
+      "SHA256": "E99218B101CC2F60BF3E4CF0E5AC06A38DD7C09506F6201B9F6A597F4506C2AB",
+      "Path": "PreviewExports/K3/Final/Player/Chest_Motion_Timestamps.csv"
+    },
+    {
+      "SHA256": "0D9DAD5A7A26BE77A6BA77394242C13BCFF3228BAC9B7A6386F33AF5EA34533C",
+      "Path": "PreviewExports/K3/Final/Player/Capture_Notes.txt"
+    },
+    {
+      "SHA256": "F34FBBC145D57D9F179CCCCAF8321C3679C2BB6A6FBC1DE3577B170887145D64",
+      "Path": "PreviewExports/K3/Final/Player/index.html"
+    }
+  ],
+  "AltarChecks": 14,
+  "K0K1Checks": 27,
+  "FinalChecks": 31,
+  "K2Checks": 22,
+  "ModifierEconomyChecks": 29,
+  "NativeCapture": "PASS",
+  "DeviceGate": "Deferred to K7 by explicit user confirmation",
+  "SchemaRevision": 2,
+  "FormulaStatus": "AUTHORED, exact reference unverified",
+  "MotionFrames": 72,
+  "LootRevision": 1,
+  "UserDate": "2026-10-13",
+  "FullRunChecks": 96,
+  "TransactionChecks": 36
+}

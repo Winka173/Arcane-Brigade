@@ -38,7 +38,7 @@ namespace ArcaneBrigade
         private Vector2? presentationMoveTarget;
         public void SetPresentationMoveTarget(Vector2? target)
         {
-            if (!RunPaths.K2Capture) throw new InvalidOperationException("Movement fixture requires isolated capture mode");
+            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture) throw new InvalidOperationException("Movement fixture requires isolated capture mode");
             presentationMoveTarget = target;
         }
         private CheckpointAudio audioFeedback;
@@ -173,7 +173,7 @@ namespace ArcaneBrigade
                 else SetPaused(!pauseGate.Manual);
             }
             moveIntent = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? movement.Read(arenaCamera.pixelRect) : Vector2.zero;
-            if (RunPaths.K2Capture && presentationMoveTarget.HasValue && simulation.Phase == RunPhase.Combat) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
+            if ((RunPaths.K2Capture || RunPaths.K3FinalCapture) && presentationMoveTarget.HasValue && simulation.Phase == RunPhase.Combat) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space)) Shop.Interact(); }
             float interpolation = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? Mathf.Clamp01((Time.time - Time.fixedTime) / Time.fixedDeltaTime) : 1f;
             Render(interpolation);
@@ -207,7 +207,7 @@ namespace ArcaneBrigade
             simulation.Step(Time.fixedDeltaTime, moveIntent);
             foreach (CombatEvent value in simulation.Events)
             {
-                if (value.Kind == CombatEventKind.Pickup && value.Value > 0) WalletPulse = 1;
+                if (value.Kind == CombatEventKind.Pickup && value.Value > 0 && (value.Loot == LootKind.Coin || value.Loot == LootKind.Egg)) WalletPulse = 1;
                 if (value.Kind != CombatEventKind.Kill || value.Subject == null || deathFeedback == null) continue;
                 if (units.TryGetValue(value.SubjectId, out UnitVisual existing)) { existing.Display(simulation.VisualElapsed, 1); deathFeedback.Play(existing, value.Subject); }
                 else
@@ -295,8 +295,10 @@ namespace ArcaneBrigade
 
         public bool BuyOffer(int token) => Transaction("Mua tại quầy", () => session.Buy(token));
         public bool RerollShop() => Transaction("Đổi hàng", () => session.Reroll());
+        public bool RerollAltar() => Transaction("Đổi hàng altar", () => session.RerollAltar());
         public bool FuseAltar(string id) => Transaction("Hợp nhất tại altar", () => session.Altar(id));
         public void ShowReceiptFixture() => runHud.ShowReceiptFixture();
+        public void ShowOfferPreviewFixture() => runHud.ShowOfferPreviewFixture();
         public void NextWave()
         {
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;
@@ -420,15 +422,18 @@ namespace ArcaneBrigade
             for (int index = 0; index < simulation.Pickups.Count; index++)
             {
                 PickupState state = simulation.Pickups[index];
+                Sprite lootSprite = state.Kind == LootKind.Egg ? runCatalog?.EggSprite : state.Kind == LootKind.Heart ? runCatalog?.HeartSprite : state.Kind == LootKind.Chest ? runCatalog?.ChestSprite : catalog.Coin;
+                if (lootSprite == null) lootSprite = catalog.Coin;
                 liveIds.Add(state.Id);
                 if (!pickupViews.TryGetValue(state.Id, out SpriteRenderer view))
                 {
-                    view = AcquireSprite("Coin", catalog.Coin);
+                    view = AcquireSprite(state.Kind.ToString(), lootSprite);
                     ProjectileVisual visual = view.GetComponent<ProjectileVisual>();
                     if (visual != null) visual.Hide();
                     pickupViews.Add(state.Id, view);
                 }
                 CoinVisual coin = view.GetComponent<CoinVisual>();
+                view.sprite = lootSprite;
                 if (coin == null) coin = view.gameObject.AddComponent<CoinVisual>();
                 float coinTime = simulation.Elapsed + terminalVisualAge - (simulation.Phase == RunPhase.Combat ? Time.fixedDeltaTime * (1 - interpolation) : 0);
                 Sprite disc = runCatalog != null && runCatalog.ProjectileDisc != null ? runCatalog.ProjectileDisc : catalog.Projectile;

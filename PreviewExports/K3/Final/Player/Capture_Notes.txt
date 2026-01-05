@@ -1,0 +1,2 @@
+Native Windows D3D11 1280x720. Seeded wallet/items/loot positions and disabled ambient spawning are isolated fixtures. Chest proximity, reward drops, movement, proc, physical-shop purchase and disk resume use normal runtime. Motion PNGs buffered before encoding; timestamps supplied. Not a natural full-run or mobile certification.
+Result: PASS

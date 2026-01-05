@@ -1,5 +1,7 @@
 # Arcane Brigade
 
+K3 hoàn tất theo gate Windows đã duyệt: proc/cause, chest/egg/heart/Luck/Detection, offscreen chest/egg indicators, item delta preview, recipe preview/altar reroll. Chủ dự án chuyển device gate sang K7. Báo cáo: `Docs/K3_Final_Checkpoint.md`; build: `Arcane Brigade > K3 > Check final checkpoint and build`. Motion native: `PreviewExports/K3/Final/Player/index.html`. Mobile/parity chưa nghiệm thu, không gọi candidate là production.
+
 K3.2b mới: altar mua bằng HP hiện tại hoặc eggs, activation chance theo eggs, giữ save/rollback; báo cáo `Docs/K3_Altar_Economy.md`. Giá/chance là tuning riêng chưa xác nhận công thức reference. Clone source cần `git lfs pull`; mở bằng Unity 6000.4.8f1, dùng `Arcane Brigade > K3 > Check altar economy and build`. Build/cache/save diagnostic không commit vào Git.
 
 Plan triển khai hiện hành: `Docs/Implementation_Roadmap.md` (K0–K7). K0–K2 có baseline, camera/map, main menu/Details và death/coin/pose runtime; báo cáo `Docs/K0_K2_Implementation.md`. Chơi bản mới tại `Builds/FullRun/ArcaneBrigade.exe`; giữ thư mục đi kèm. Ảnh Unity: `PreviewExports/K1/Player`; motion/capture K2: `PreviewExports/K2/Player`. N16–N18 vẫn chờ pipeline K3/K4/K6, không demo bằng dữ liệu giả.

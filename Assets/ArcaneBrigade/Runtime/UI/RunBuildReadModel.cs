@@ -33,6 +33,11 @@ namespace ArcaneBrigade
             model.Stat("Lãi shop kế tiếp", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " vàng", "Dự báo từ vàng đã lưu; không tính thêm loot chưa settle hoặc income hall kế tiếp.");
             model.Stat("Reroll kế tiếp", session.RerollCost + " vàng", "Đã đổi " + session.State.RerollsThisShop + " lần tại shop này. Giá gốc " + catalog.RerollPrice + "; mỗi lần thêm " + catalog.RerollPriceStep + ". Tuning riêng, không phải công thức reference đã xác nhận. Coupon giảm giá offer tương lai, không giảm phí reroll.");
             if (catalog.AltarRevision > 0) model.Stat("Altar tại rest mới", Percent(session.AltarActivationChance), "Dự báo từ trứng đang giữ: clamp(base + trứng × chance mỗi trứng). Roll một lần khi tạo rest mới; không reroll khi load. Trứng không bị tiêu để kích hoạt. Tuning riêng, chưa xác minh công thức reference.");
+            if (catalog.LootRevision > 0)
+            {
+                model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Tăng chance egg/heart enemy và reward chest, clamp 0–100%. RNG loot riêng, không đổi roll combat/shop.");
+                model.Stat("Treasure Detection", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Rương xuất hiện mỗi max(4, 24 / max(0.25, 1 + detection)) giây. Đi tới gần để mở, không thêm nút skill.");
+            }
             foreach (RosterEntry entry in session.State.Roster)
             {
                 UnitDefinition unit = catalog.Unit(entry.UnitId);
@@ -47,7 +52,12 @@ namespace ArcaneBrigade
             foreach (ItemStack stack in session.State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
+                string procDescription = "";
+                foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
+                    if (rule.ItemId == item.Id) procDescription += "\nTRIGGER " + rule.Trigger + " → " + rule.Action + "\nPower " + (rule.Power * item.EffectiveStacks(stack.Count)).ToString("0.###") + " · radius " + rule.Radius + " · cooldown " + rule.Cooldown + " s · chance " + Percent(rule.Chance) + "\nProc không kích hoạt proc khác.\n";
                 model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Summary = "Sở hữu ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " hiệu ứng · xem cả lợi/hại" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = item.Description + "\n\nStack sở hữu: " + stack.Count + " / hiệu lực: " + item.EffectiveStacks(stack.Count) + "\n" + RunModifierRules.Describe(item, stack.Count) + "\nNâng cấp trong lượt. Không bán, đổi hoặc tháo đồ tại đây." });
+                model.Relics[model.Relics.Count - 1].Explanation += procDescription;
+                if (!string.IsNullOrEmpty(procDescription)) model.Relics[model.Relics.Count - 1].Summary = "Sở hữu ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\nPassive proc · theo trigger";
             }
             foreach (BuildLinkRule rule in catalog.BuildLinks ?? new BuildLinkRule[0])
             {
@@ -75,7 +85,53 @@ namespace ArcaneBrigade
                 RunTransactionReceipt receipt = session.State.Receipts[index];
                 model.Receipts += receipt.Title + "\n" + receipt.Description + "\n\n";
             }
+            foreach (Row row in model.Stats)
+            {
+                ItemEffect[] effects = SourceEffects(row.Name);
+                if (effects.Length == 0) continue;
+                ModifierScope target = effects[0] == ItemEffect.Luck || effects[0] == ItemEffect.TreasureDetection || effects[0] == ItemEffect.Pickup || effects[0] == ItemEffect.Roam || effects[0] == ItemEffect.Interest || effects[0] == ItemEffect.Interceptor ? ModifierScope.Run : ModifierScope.Champion;
+                string sources = "\n\nNGUỒN MODIFIER TRONG LƯỢT\n";
+                int sourceCount = 0;
+                foreach (ItemStack stack in session.State.Items)
+                {
+                    ItemDefinition item = catalog.Item(stack.Id);
+                    foreach (StatModifier modifier in item.EffectiveModifiers)
+                        if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
+                        {
+                            sources += item.Name + " ×" + item.EffectiveStacks(stack.Count) + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / additive " + (modifier.Value * item.EffectiveStacks(stack.Count)).ToString("+0.###;-0.###;0") + "\n";
+                            sourceCount++;
+                        }
+                }
+                foreach (BondDefinition bond in catalog.Bonds)
+                    if (System.Array.IndexOf(effects, bond.Effect) >= 0 && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && session.BondCounts.TryGetValue(bond.Id, out int count) && count >= bond.Threshold)
+                    {
+                        sources += bond.Name + " / " + count + " body / activation ×" + count / bond.Threshold + " / additive " + (bond.Value * (count / bond.Threshold)).ToString("+0.###;-0.###;0") + "\n"; sourceCount++;
+                    }
+                row.Explanation += sources + (sourceCount == 0 ? "Không có modifier item/bond cho scope này.\n" : "Giá trị nguồn trước clamp/tier/passive; số effective nằm ở bảng stat.\n");
+            }
             return model;
+        }
+
+        private static ItemEffect[] SourceEffects(string name)
+        {
+            switch (name)
+            {
+                case "Máu Champion": return new[] { ItemEffect.Health };
+                case "Sát thương Champion": return new[] { ItemEffect.Damage, ItemEffect.ChampionDamage };
+                case "Chu kỳ đánh Champion": return new[] { ItemEffect.AttackSpeed };
+                case "Tốc độ di chuyển": return new[] { ItemEffect.MoveSpeed };
+                case "Crit Champion": return new[] { ItemEffect.Crit };
+                case "Số projectile Champion": return new[] { ItemEffect.Projectiles };
+                case "Giáp Champion": return new[] { ItemEffect.Armor };
+                case "Hồi máu thụ động": return new[] { ItemEffect.Heal };
+                case "Bán kính nhặt loot": return new[] { ItemEffect.Pickup };
+                case "Leash đồng minh": return new[] { ItemEffect.Roam };
+                case "Đồng minh chặn đạn": return new[] { ItemEffect.Interceptor };
+                case "Lãi shop kế tiếp": return new[] { ItemEffect.Interest };
+                case "Luck": return new[] { ItemEffect.Luck };
+                case "Treasure Detection": return new[] { ItemEffect.TreasureDetection };
+                default: return new ItemEffect[0];
+            }
         }
 
         private void Stat(string name, string value, string explanation) { Stats.Add(new Row { Name = name, Summary = value, Explanation = explanation }); }
@@ -100,6 +156,8 @@ namespace ArcaneBrigade
                 case ItemEffect.Interest: return "Trần lãi vàng";
                 case ItemEffect.Armor: return "Giáp Champion";
                 case ItemEffect.Discount: return "Giảm giá shop";
+                case ItemEffect.Luck: return "Luck";
+                case ItemEffect.TreasureDetection: return "Treasure Detection";
                 default: return effect.ToString();
             }
         }

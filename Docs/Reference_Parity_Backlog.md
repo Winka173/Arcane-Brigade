@@ -1,5 +1,7 @@
 # Backlog triển khai sau audit Bizarre Brigade 1.5+
 
+K3 runtime Windows mới: `K3_Final_Checkpoint.md` (stat/transaction/shop/loot/proc/N17/N18). Không nâng R2/R3 nguyên khối thành DONE: parity/device/art/content sâu còn theo checklist acceptance.
+
 Ngày 2026-10-13. Chuẩn tham chiếu do chủ dự án chọn: **1.5+**. Nguồn, mốc footage, mức xác nhận và khác biệt chủ đích ở `Bizarre_Brigade_15_Reference_Audit.md`.
 
 Trạng thái mới: R1 có Windows candidate K1; death/coin/pose thuộc R3/R5 đã có nền K2. Các mục còn lại vẫn PLANNED; không đánh dấu toàn R3/R5 hoàn tất. Báo cáo thực chạy: `K0_K2_Implementation.md`. P3–P6 trước đó là functional candidate, không phải completion của backlog này.

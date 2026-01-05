@@ -67,7 +67,7 @@ namespace ArcaneBrigade
             }
             bool completed = true;
             if (station.Action == "NEXT HALL") { owner.NextWave(); completed = owner.Session.State.Phase == SessionPhase.Combat; }
-            else if (station.Action == "REROLL") completed = owner.RerollShop();
+            else if (station.Action == "REROLL") completed = Special ? owner.RerollAltar() : owner.RerollShop();
             else if (station.Recipe != null) completed = owner.FuseAltar(station.Recipe);
             else { Special = !Special; signature = int.MinValue; }
             Display();
@@ -99,7 +99,7 @@ namespace ArcaneBrigade
                 station.Description = description;
                 if (offer.Sold) foreach (SpriteRenderer renderer in station.Marker.GetComponentsInChildren<SpriteRenderer>()) renderer.color *= new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
-            if (!Special) AddStation(new Vector2(0, 2.3f), "REROLL", owner.Session.RerollCost + " GOLD", catalog.Arena.Coin, tint).Description = "Đổi ba offer vàng. Đã đổi " + state.RerollsThisShop + " lần; mỗi lần tăng " + catalog.RerollPriceStep + " vàng. Không đổi offer trứng.";
+            AddStation(new Vector2(0, 2.3f), "REROLL", owner.Session.RerollCost + " GOLD", catalog.Arena.Coin, tint).Description = "Đổi ba offer " + (Special ? "altar" : "vàng") + ". Đã đổi " + state.RerollsThisShop + " lần tại rest; mỗi lần tăng " + catalog.RerollPriceStep + " vàng. Không đổi stock cửa hàng bên kia hoặc roll lại activation.";
             AddStation(new Vector2(7, 1), "NEXT HALL", "SPACE TO CONTINUE", catalog.Arena.Coin, tint).Description = "Finish shopping and enter the next hall.";
             if (Special || state.SpecialOffers.Count > 0)
                 AddStation(new Vector2(-7, 1), Special ? "GOLD SHOP" : "DREAM ALTAR", "SPACE TO VISIT", Special ? catalog.Arena.Coin : catalog.Weapon("RuneStaff")?.ProjectileSprite, new Color(0.45f, 0.95f, 0.88f)).Description = "Altar dùng trứng hoặc HP hiện tại theo từng quầy. Đi qua không mất tài nguyên.";
@@ -109,7 +109,7 @@ namespace ArcaneBrigade
                     AltarRecipe recipe = catalog.Recipes[index];
                     Station station = AddStation(new Vector2(-4 + index * 8, -3), "FUSE " + catalog.Unit(recipe.ResultUnit).DisplayName, recipe.EggCost + " EGGS + ALLIES", catalog.Unit(recipe.ResultUnit).Body, tint);
                     station.Recipe = recipe.Id;
-                    station.Description = "Consume " + recipe.FirstUnit + " + " + recipe.SecondUnit + " for a two-star companion.";
+                    station.Description = owner.Session.RecipePreview(recipe.Id);
                 }
         }
 

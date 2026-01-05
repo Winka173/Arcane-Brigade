@@ -11,6 +11,15 @@ namespace ArcaneBrigade
         private bool receiptOpen;
         private int receiptId;
         private Vector2 receiptScroll;
+        private readonly LootIndicators lootIndicators = new LootIndicators();
+        private Vector2 tooltipScroll;
+        private string tooltipKey;
+        private string offerPreview;
+        public void ShowOfferPreviewFixture()
+        {
+            if (!RunPaths.K3FinalCapture) throw new System.InvalidOperationException("Preview fixture requires isolated capture mode");
+            tooltipScroll.y = 100000;
+        }
         public void ShowReceiptFixture()
         {
             if (!RunPaths.K3Capture) throw new System.InvalidOperationException("Receipt fixture requires isolated capture mode");
@@ -62,13 +71,14 @@ namespace ArcaneBrigade
             float maximum = Mathf.Max(1f, owner.Content.Unit(state.ChampionId).Health + session.Bonus(ItemEffect.Health));
             Fill(new Rect(125, 87, 390, 18), new Color(0.22f, 0.12f, 0.25f));
             Fill(new Rect(125, 87, 390 * Mathf.Clamp01(health / maximum), 18), new Color(0.95f, 0.2f, 0.37f));
-            GUI.Label(new Rect(125, 38, 440, 45), Mathf.CeilToInt(health) + " / " + maximum.ToString("0") + "   GOLD " + RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)) + "   EGGS " + state.Eggs, text);
+            GUI.Label(new Rect(125, 38, 440, 45), Mathf.CeilToInt(health) + " / " + maximum.ToString("0") + "   GOLD " + RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)) + "   EGGS " + RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0)), text);
             GUI.Label(new Rect(695, 42, 550, 55), (state.Endless ? "ENDLESS " : "HALL ") + state.Wave + "   ALLIES " + state.Roster.Count + "   " + (state.Phase == SessionPhase.Combat ? Mathf.Max(0, Mathf.CeilToInt(owner.Content.WaveSeconds - simulation.Elapsed)) + "s" : state.Phase.ToString()), text);
             if (GUI.Button(new Rect(1650, 43, 190, 55), "MENU", button)) owner.RequestMenuReturn();
             if (GUI.Button(new Rect(1260, 43, 175, 55), "ĐỒ / I", button)) owner.ToggleDetails();
             if (state.Phase == SessionPhase.Shop && GUI.Button(new Rect(1450, 43, 175, 55), "PAUSE", button)) owner.TogglePause();
             if (state.Phase == SessionPhase.Combat)
             {
+                if (owner.Content.LootRevision > 0) lootIndicators.Draw(simulation, owner.Content, camera, small);
                 if (GUI.Button(new Rect(1450, 43, 175, 55), "PAUSE", button)) owner.TogglePause();
                 if (simulation.Boss != null && simulation.Boss.Alive)
                 {
@@ -134,14 +144,25 @@ namespace ArcaneBrigade
                 if (station.Offer != null) caption += "   " + station.Offer.Price + " " + (station.Offer.Currency == ShopCurrency.Health ? "HP HIỆN TẠI" : station.Offer.Currency.ToString().ToUpperInvariant());
                 GUI.Label(new Rect(465, 765, 730, 45), caption, text);
                 string description = station.Description;
+                if (station.Recipe != null) description = owner.Session.RecipePreview(station.Recipe);
                 if (station.Offer != null && station.Offer.Kind == OfferKind.Item)
                 {
                     ItemDefinition item = owner.Content.Item(station.Offer.Id);
                     description += "Đang có ×" + owner.Session.StackCount(item.Id) + (owner.Session.StackCount(item.Id) >= item.StackLimit ? " · ĐÃ ĐẠT GIỚI HẠN" : "");
                 }
-                GUI.Label(new Rect(465, 815, 730, 175), description, small);
+                string key = station.Action + "/" + (station.Offer?.Token ?? 0) + "/" + owner.Session.State.NextReceipt + "/" + owner.Session.State.RunId + "/" + owner.Session.State.Wave;
+                if (key != tooltipKey)
+                {
+                    tooltipKey = key; tooltipScroll = Vector2.zero;
+                    offerPreview = station.Offer != null ? RunOfferPreview.Capture(owner.Session, owner.Content, station.Offer) : "";
+                }
+                description += "\n\n" + offerPreview;
+                float descriptionHeight = Mathf.Max(155, small.CalcHeight(new GUIContent(description), 680) + 12);
+                tooltipScroll = GUI.BeginScrollView(new Rect(465, 815, 720, 165), tooltipScroll, new Rect(0, 0, 680, descriptionHeight));
+                GUI.Label(new Rect(0, 0, 680, descriptionHeight), description, small);
+                GUI.EndScrollView();
                 if (station.Offer != null && !station.Offer.Sold && station.Offer.Currency == ShopCurrency.Health) GUI.Label(new Rect(1215, 810, 235, 55), "HP sau trả: " + (owner.Session.State.Health - station.Offer.Price).ToString("0.#"), small);
-                GUI.enabled = GUI.enabled && (station.Offer == null || owner.Session.CanBuy(station.Offer));
+                GUI.enabled = GUI.enabled && (station.Offer == null || owner.Session.CanBuy(station.Offer)) && (station.Recipe == null || owner.Session.CanAltar(station.Recipe));
                 if (GUI.Button(new Rect(1215, 870, 235, 75), "SPACE / USE", button)) shop.Interact();
                 GUI.enabled = !owner.Details.Open && !owner.MenuConfirmation;
             }

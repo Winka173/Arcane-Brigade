@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K3 — Native Unity capture</title>
+<style>
+body{margin:24px;background:#171125;color:#f9efd6;font:16px system-ui,sans-serif}main{max-width:1280px;margin:auto}img{width:100%;border-radius:12px;border:1px solid #8960be}button,input{margin:12px 8px 12px 0}button{padding:12px 22px;background:#4c3067;color:#fff;border:1px solid #9970c5;border-radius:8px}input{width:60%}p{line-height:1.5}a{color:#8de5d5}
+</style>
+<main>
+<h1>K3 — Mở rương, loot và proc</h1>
+<p>72 frame chụp trực tiếp Unity Windows. Fixture seed/loot/position riêng; movement, mở rương, reward pickup và proc dùng runtime thật. Không phải full-run hoặc chứng nhận mobile. Timestamp gốc ở <a href="Chest_Motion_Timestamps.csv">CSV</a>.</p>
+<img id="frame" src="Chest_Motion_000.png" alt="Native Unity chest motion">
+<button id="play">Phát / Dừng</button><input id="seek" type="range" min="0" max="71" value="0"><span id="label">0 / 71</span>
+<p>Viewer phát ~60 FPS; CSV là thời gian capture thật, không dùng viewer để đo hiệu năng.</p>
+<p><a href="Loot_Icons_Indicators_Fixture.png">Loot và offscreen indicators</a> · <a href="Proc_Details_Fixture.png">Proc Details</a> · <a href="Final_Item_Delta_Preview_Fixture.png">Delta preview</a> · <a href="Capture_Notes.txt">Capture notes</a></p>
+</main>
+<script>
+const frames=Array.from({length:72},(_,index)=>{const image=new Image();image.src=`Chest_Motion_${String(index).padStart(3,'0')}.png`;return image;});
+const picture=document.querySelector('#frame');const seek=document.querySelector('#seek');const label=document.querySelector('#label');let playing=false;let position=0;let previous=0;
+function show(index){position=index;picture.src=frames[index].src;seek.value=index;label.textContent=`${index} / 71`;}
+document.querySelector('#play').onclick=()=>{playing=!playing;previous=0;};seek.oninput=()=>{playing=false;show(Number(seek.value));};
+function animate(time){if(playing&&time-previous>=1000/60){show((position+1)%72);previous=time;}requestAnimationFrame(animate);}requestAnimationFrame(animate);
+</script>
+</html>

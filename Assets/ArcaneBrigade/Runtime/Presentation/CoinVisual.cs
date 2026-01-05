@@ -15,11 +15,13 @@ namespace ArcaneBrigade
             }
             float age = Mathf.Max(0, time - state.SpawnTime);
             float landing = Mathf.Clamp01(age / 0.26f);
-            float height = Mathf.Sin(landing * Mathf.PI) * 0.32f;
+            float height = Mathf.Sin(landing * Mathf.PI) * (state.Kind == LootKind.Chest ? 0.1f : 0.32f);
+            if (state.Kind != LootKind.Coin) height += Mathf.Sin(age * 3 + state.Id) * 0.025f;
             Vector2 ground = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             renderer.transform.position = ground + Vector2.up * height;
-            float spin = 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f;
-            float scale = 0.24f / renderer.sprite.bounds.size.x;
+            float spin = state.Kind == LootKind.Coin ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
+            float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f : 0.4f;
+            float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
             renderer.transform.rotation = Quaternion.Euler(0, 0, state.Attracting ? Mathf.Sin(age * 12) * 12 : 0);
             renderer.color = Color.white;
@@ -27,7 +29,7 @@ namespace ArcaneBrigade
             shadow.gameObject.SetActive(true); shadow.sprite = disc;
             shadow.transform.position = ground;
             Vector3 parentScale = renderer.transform.lossyScale;
-            shadow.transform.localScale = new Vector3(0.22f / parentScale.x, 0.07f / parentScale.y, 1) / disc.bounds.size.x;
+            shadow.transform.localScale = new Vector3(width * 0.92f / parentScale.x, width * 0.29f / parentScale.y, 1) / disc.bounds.size.x;
             shadow.color = new Color(0.04f, 0.025f, 0.08f, 0.30f * (1 - height));
             shadow.sortingOrder = 490;
             float pulse = Mathf.Pow(Mathf.Max(0, Mathf.Cos(age * 4 + state.Id * 1.3f)), 12);

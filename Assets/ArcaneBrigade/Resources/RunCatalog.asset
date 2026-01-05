@@ -442,6 +442,94 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 15
+  - Id: fortune-egg
+    Name: Fortune Egg
+    Description: 'Luck +0.2: more egg/heart loot; no hidden damage bonus.'
+    Price: 24
+    Effect: 16
+    Value: 0.2
+    Icon: {fileID: 21300000, guid: bf2c169150c8a3f49928aec5896c20e2, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: treasure-whisper
+    Name: Treasure Whisper
+    Description: 'Treasure Detection +0.35: chests appear sooner; walk to open.'
+    Price: 30
+    Effect: 17
+    Value: 0.35
+    Icon: {fileID: 21300000, guid: f2a23aad617e3c842a2754161e4df2f6, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: coin-salve
+    Name: Coin Salve
+    Description: 'Coin collected: heal 0.5 HP per stack, once per root, cooldown
+      0.2s.'
+    Price: 28
+    Effect: 7
+    Value: 0
+    Icon: {fileID: 21300000, guid: a90467885db2c4a4a80316b8c705cd16, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: chest-thunder
+    Name: Chest Thunder
+    Description: 'Chest opened: damage pulse 14 per stack, radius 3, cooldown 1s.
+      Cannot trigger another proc.'
+    Price: 42
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: f2a23aad617e3c842a2754161e4df2f6, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 2
+  - Id: altar-ember
+    Name: Altar Ember
+    Description: 'Altar exclusive: +18% Champion damage, -3% team movement speed.'
+    Price: 36
+    Effect: 12
+    Value: 0.18
+    Icon: {fileID: 21300000, guid: a90467885db2c4a4a80316b8c705cd16, type: 3}
+    UnlockWave: 4
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.18
+    - Effect: 3
+      Scope: 0
+      Value: -0.03
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 25
+    Pools: 2
+    AltarCurrency: 2
+    AltarPrice: 10
   Bonds:
   - Id: hearth
     Name: Hearth
@@ -469,11 +557,15 @@ MonoBehaviour:
     SecondUnit: JellySwordsman
     ResultUnit: PillowOracle
     EggCost: 3
+    MinimumMaterialTier: 1
+    ResultTier: 2
   - Id: warm-library
     FirstUnit: TeapotPilgrim
     SecondUnit: CandleSnail
     ResultUnit: MushroomLibrarian
     EggCost: 3
+    MinimumMaterialTier: 1
+    ResultTier: 2
   WaveModifiers:
   - Name: 'Clockstorm: denser waves'
     Every: 7
@@ -515,10 +607,38 @@ MonoBehaviour:
     ItemIds:
     - coin-compass
     - wandering-map
+  - Id: engine-loot
+    Name: "KHO B\xC1U TH\xCC TH\u1EA6M"
+    Description: "Detection sinh r\u01B0\u01A1ng s\u1EDBm h\u01A1n; chest pulse d\xF9ng
+      event m\u1EDF r\u01B0\u01A1ng th\u1EADt. Proc kh\xF4ng t\u1EF1 chain."
+    ItemIds:
+    - treasure-whisper
+    - chest-thunder
   EconomyRevision: 1
   AltarRevision: 1
   AltarBaseChance: 0.1
   AltarChancePerEgg: 0.05
+  LootRevision: 1
+  ProcRules:
+  - Id: proc-coin-salve
+    ItemId: coin-salve
+    Trigger: 0
+    Action: 0
+    Power: 0.5
+    Radius: 0
+    Cooldown: 0.2
+    Chance: 1
+  - Id: proc-chest-thunder
+    ItemId: chest-thunder
+    Trigger: 1
+    Action: 1
+    Power: 14
+    Radius: 3
+    Cooldown: 1
+    Chance: 1
+  EggSprite: {fileID: 21300000, guid: bf2c169150c8a3f49928aec5896c20e2, type: 3}
+  HeartSprite: {fileID: 21300000, guid: a90467885db2c4a4a80316b8c705cd16, type: 3}
+  ChestSprite: {fileID: 21300000, guid: f2a23aad617e3c842a2754161e4df2f6, type: 3}
   NormalWaves: 20
   WaveSeconds: 84
   BossEvery: 4

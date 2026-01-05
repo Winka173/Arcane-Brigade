@@ -70,7 +70,14 @@ namespace ArcaneBrigade
                 Spawn(Shape.Ring, value.Position, 0, 0.5f, 0.2f, new Color(0.75f, 0.45f, 0.95f));
             }
             else if (value.Kind == CombatEventKind.Pickup)
-                Spawn(Shape.Star, value.Position, 0, 0.23f, 0.25f, new Color(1f, 0.88f, 0.45f));
+                Spawn(Shape.Star, value.Position, 0, 0.23f, 0.25f, value.Loot == LootKind.Egg ? new Color(0.45f, 1f, 0.86f) : value.Loot == LootKind.Heart ? new Color(1f, 0.4f, 0.58f) : new Color(1f, 0.88f, 0.45f));
+            else if (value.Kind == CombatEventKind.ChestOpened)
+            {
+                Spawn(Shape.Ring, value.Position, 0, 0.85f, 0.4f, new Color(1f, 0.79f, 0.3f));
+                Spawn(Shape.Star, value.Position, 0, 0.55f, 0.22f, new Color(1f, 0.96f, 0.75f));
+            }
+            else if (value.Kind == CombatEventKind.Proc)
+                Spawn(Shape.Ring, value.Position, 0, value.Cause.ItemId == "chest-thunder" ? 3f : 0.4f, 0.35f, new Color(0.55f, 0.9f, 1f));
             else if (value.Kind == CombatEventKind.Heal)
                 Spawn(Shape.Ring, value.Position, 0, 0.35f, 0.28f, new Color(0.35f, 0.92f, 0.75f));
         }

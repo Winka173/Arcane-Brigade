@@ -37,5 +37,12 @@ namespace ArcaneBrigade
         public float CompanionRetargetMax = 2.8f;
         public float PickupRadius = 0.7f;
         public int GoldPerKill = 5;
+        public bool ExtendedLoot;
+        public float Luck;
+        public float TreasureDetection;
+        public float EggDropChance = 0.025f;
+        public float HeartDropChance = 0.04f;
+        public float ChestInterval = 24f;
+        public ActiveProc[] Procs = new ActiveProc[0];
     }
 }

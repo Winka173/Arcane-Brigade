@@ -1,5 +1,7 @@
 # K3 — Triển khai theo lát cắt
 
+**Cập nhật cuối:** K3.1–K3.3 và gate Windows K3.4 hoàn tất; checklist `K3_Final_Checkpoint.md`. Chủ dự án chốt runtime Windows, device gate sang K7. K3 DONE theo gate này, có thể qua K4; không gọi hoàn tất production/mobile/parity. Các trạng thái bên dưới giữ lịch sử bàn giao.
+
 K0–K2 recheck ngày 2026-10-13: checkpoint 17, squad 12, full-run 96, K0/K1 27, K2 22 PASS. Đây là kiểm tra tự động Windows, không phải chứng nhận art/mobile.
 
 ## K3.1 — Giao dịch và biên lai (Windows candidate)
@@ -23,7 +25,11 @@ K3.2b đã có runtime HP hiện tại, activation theo eggs và receipt/rollbac
 - Cause registry và proc guard; random gameplay tách khỏi presentation.
 - Chest/egg/heart, Treasure Detection/Luck, chỉ báo ngoài viewport ưu tiên/gộp/fade. Không biến mọi coin thành marker; loot logical vẫn tồn tại ngoài camera.
 
+Runtime đã có hai proc root-only, RNG riêng, loot bốn loại và indicators thật. Final checks/capture PASS; xem báo cáo cuối.
+
 ## K3.4 — Gate hoàn tất
 - Regression, failure injection, end-to-end mua tại quầy và save/resume.
 - Capture native kiểm đọc UI, touch safe-area, scene motion và các trade-off; kiểm device Android/iOS riêng.
 - Chỉ qua K4 sau khi toàn bộ K3 đạt gate. K3.1 không được ghi thành K3 hoàn tất.
+
+Windows gate PASS. Theo xác nhận của chủ dự án, Android/iOS device gate chuyển K7; chưa chạy vì module/device chưa sẵn sàng. K3 chốt Windows, giữ AUTHORED tuning và không chứng nhận exact-reference parity.

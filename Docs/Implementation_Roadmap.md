@@ -1,5 +1,7 @@
 # Arcane Brigade — kế hoạch chuẩn bị triển khai
 
+**K3 cập nhật cuối:** DONE theo gate runtime Windows; báo cáo `K3_Final_Checkpoint.md`. Chủ dự án xác nhận chuyển device gate sang K7. Có thể tiếp tục K4; chưa triển khai K4 trong lượt này hoặc tuyên bố production/mobile/exact-reference parity DONE. Các dòng trạng thái cũ bên dưới là lịch sử, cập nhật này có ưu tiên.
+
 Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning riêng trong `K3_Altar_Economy.md`. Parity/inheritance và K3.3/K3.4 còn lại; chưa qua K4.
 
 **Ngày:** 2026-10-13. **Trạng thái:** K0 đã khóa baseline/contract; K1 và K2 có runtime Windows candidate và đã recheck. K3 đang triển khai theo `K3_Implementation_Plan.md`: K3.1 giao dịch/biên lai/schema 2 và K3.2a modifier/weighted shop/reroll/build links. Báo cáo mới: `K3_Modifier_Economy.md`. Báo cáo K0–K2: `K0_K2_Implementation.md`. Chưa nghiệm thu production hoặc thiết bị mobile.
