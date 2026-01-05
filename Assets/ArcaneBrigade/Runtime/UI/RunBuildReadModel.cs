@@ -14,7 +14,7 @@ namespace ArcaneBrigade
         public string Receipts;
         public string BuildLinks;
 
-        public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health)
+        public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null)
         {
             var model = new RunBuildReadModel();
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
@@ -47,7 +47,7 @@ namespace ArcaneBrigade
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
                 model.Companions.Add(new Row { Name = unit.DisplayName, Icon = unit.Body, Summary = "Cấp " + entry.Tier + " · " + actual.Id + "\n" + actual.Kind + " / " + actual.Element,
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Chu kỳ", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(Mathf.Clamp01(unit.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Companions))) }, { "Speed", (unit.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Companions))).ToString("0.###") }, { "Projectile", (actual.ProjectileCount + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Companions))).ToString() }, { "Passive", passive.ToString("0.###") } },
-                    Explanation = unit.Description + "\n\nWeapon đã roll: " + actual.Id + "\nDamage: " + damage.ToString("0.0") + " / chu kỳ " + cooldown.ToString("0.00") + " s\nRange: " + actual.Range.ToString("0.0") + "\n" + SignatureDescription.Describe(actual, entry.Tier) + "\nPassive: " + unit.Passive + " / strength " + passive.ToString("0.0") + "\nBond: " + string.Join(" / ", unit.Tags) + "\nBất tử. Một body tính một đơn vị bond, không nhân theo tier." });
+                    Explanation = unit.Description + "\n\nWeapon đã roll: " + actual.Id + "\nDamage: " + damage.ToString("0.0") + " / chu kỳ " + cooldown.ToString("0.00") + " s\nRange: " + actual.Range.ToString("0.0") + "\n" + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nPassive: " + unit.Passive + " / strength " + passive.ToString("0.0") + "\nBond: " + string.Join(" / ", unit.Tags) + "\nBất tử. Một body tính một đơn vị bond, không nhân theo tier." });
             }
             foreach (ItemStack stack in session.State.Items)
             {
@@ -72,7 +72,10 @@ namespace ArcaneBrigade
                     explanation += catalog.Item(id).Name + " ×" + count + "\n" + (count > 0 ? RunModifierRules.Describe(catalog.Item(id), count) : "Chưa sở hữu.\n") + "\n";
                 }
                 model.BuildLinks += rule.Name + " · " + owned + "/" + rule.ItemIds.Length + "\n" + rule.Description + "\n" + sources + "Liên kết đọc từ item đang sở hữu; không cộng stat ẩn.\n\n";
-                model.Links.Add(new Row { Name = rule.Name, Icon = catalog.Item(rule.ItemIds[0]).Icon, Summary = (owned == rule.ItemIds.Length ? "ĐỦ NGUỒN" : "ĐANG GHÉP") + " · " + owned + "/" + rule.ItemIds.Length + "\nKhông phải bonus set", Explanation = explanation + "Liên kết là cách đọc nguồn stat; không cộng bonus ẩn. Stack hiển thị trước clamp combat." });
+                bool signature = rule.Id.StartsWith("signature-");
+                string status = signature ? SignatureBuildGraph.Status(rule.Id, session, catalog) : (owned == rule.ItemIds.Length ? "ĐỦ NGUỒN" : "ĐANG GHÉP") + " · " + owned + "/" + rule.ItemIds.Length;
+                string measured = signature ? "\n\nĐÓNG GÓP ĐÃ ĐO\n" + ContributionLedger.Describe(session.State.Contributions) + (simulation == null ? "" : "\nHALL HIỆN TẠI (chưa settle)\n" + ContributionLedger.Describe(simulation.Contributions)) : "";
+                model.Links.Add(new Row { Name = rule.Name, Icon = catalog.Item(rule.ItemIds[0]).Icon, Summary = status + "\n" + (signature ? "Graph hữu hạn · số đo thật" : "Không phải bonus set"), Explanation = explanation + "Liên kết là cách đọc nguồn stat; không cộng bonus ẩn. Stack hiển thị trước clamp combat." + measured });
             }
             foreach (BondDefinition bond in catalog.Bonds)
             {

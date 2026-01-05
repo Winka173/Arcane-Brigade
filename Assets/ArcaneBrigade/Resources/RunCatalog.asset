@@ -73,6 +73,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: clock-spring
     Name: Clock Spring
     Description: +10% attack speed
@@ -92,6 +93,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: honey-pot
     Name: Honey Pot
     Description: +20 max health and current health
@@ -111,6 +113,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: felt-boots
     Name: Felt Boots
     Description: +6% movement speed
@@ -130,6 +133,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: coin-compass
     Name: Coin Compass
     Description: +0.25 pickup radius
@@ -149,6 +153,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: wandering-map
     Name: Wandering Map
     Description: +0.4 companion leash radius
@@ -168,6 +173,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: guardian-canopy
     Name: Guardian Canopy
     Description: Allies block enemy bullets; stacks do not add extra blocks
@@ -187,6 +193,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 14
+    SignatureRole: 0
   - Id: warm-tea
     Name: Warm Tea
     Description: +0.15 health per second
@@ -206,6 +213,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: oracle-lens
     Name: Oracle Lens
     Description: +4% critical chance; effective chance capped at 100%
@@ -225,6 +233,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: twin-seal
     Name: Twin Seal
     Description: +1 projectile per ranged attack
@@ -244,6 +253,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 11
+    SignatureRole: 0
   - Id: piggy-mail
     Name: Piggy Mail
     Description: +2 maximum interest; one interest per ten gold
@@ -263,6 +273,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: pillow-mail
     Name: Pillow Mail
     Description: +0.12 armor; received damage divided by 1 + armor
@@ -282,6 +293,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: royal-key
     Name: Royal Key
     Description: +22% champion damage only
@@ -301,6 +313,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: brigade-banner
     Name: Brigade Banner
     Description: +15% companion damage only
@@ -320,6 +333,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: marching-bell
     Name: Marching Bell
     Description: +12% companion attack speed only
@@ -339,6 +353,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: coupon-book
     Name: Coupon Book
     Description: Future gold offer prices -5% per stack (cap 50%). Does not reduce
@@ -359,6 +374,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: long-atlas
     Name: Long Atlas
     Description: +1.0 ally leash radius; -4% team movement speed. Wider patrols,
@@ -382,6 +398,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 11
+    SignatureRole: 0
   - Id: starlight-quilt
     Name: Starlight Quilt
     Description: +45 max and current health
@@ -401,6 +418,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 13
+    SignatureRole: 0
   - Id: echo-postage
     Name: Echo Postage
     Description: +2 projectiles per ranged attack; -8% team attack speed. More shots,
@@ -424,6 +442,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 18
+    SignatureRole: 0
   - Id: tarnished-crown
     Name: Tarnished Crown
     Description: +40% champion damage only
@@ -443,6 +462,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 2
     AltarPrice: 15
+    SignatureRole: 0
   - Id: fortune-egg
     Name: Fortune Egg
     Description: 'Luck +0.2: more egg/heart loot; no hidden damage bonus.'
@@ -459,6 +479,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: treasure-whisper
     Name: Treasure Whisper
     Description: 'Treasure Detection +0.35: chests appear sooner; walk to open.'
@@ -475,6 +496,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: coin-salve
     Name: Coin Salve
     Description: 'Coin collected: heal 0.5 HP per stack, once per root, cooldown
@@ -492,6 +514,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: chest-thunder
     Name: Chest Thunder
     Description: 'Chest opened: damage pulse 14 per stack, radius 3, cooldown 1s.
@@ -509,6 +532,7 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 2
+    SignatureRole: 0
   - Id: altar-ember
     Name: Altar Ember
     Description: 'Altar exclusive: +18% Champion damage, -3% team movement speed.'
@@ -531,6 +555,98 @@ MonoBehaviour:
     Pools: 2
     AltarCurrency: 2
     AltarPrice: 10
+    SignatureRole: 0
+  - Id: harvest-receipt
+    Name: Harvest Receipt
+    Description: "Coin logical pickup \u2192 m\u1ED9t nh\u1ECBp cho Bell g\u1EA7n
+      trong 6 units, cooldown 0.35s. Stack 2 cho hai nh\u1ECBp, kh\xF4ng sinh coin.
+      H\xFAt loot -0.15 m\u1ED7i stack."
+    Price: 28
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1313962474, guid: 11aac4ba7130e4041bb57db064a7da80, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 4
+      Scope: 3
+      Value: -0.15
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 2
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 1
+  - Id: reflective-ink
+    Name: Reflective Ink
+    Description: "Stamp th\xEAm m\u1ED9t d\u1EA5u m\u1ED7i hit; expiry \xD70.65.
+      Burst m\u1EDF weakness 1.8s cho Office Lens. Kh\xF4ng t\u0103ng damage burst
+      tr\u1EF1c ti\u1EBFp. Duy nh\u1EA5t."
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -568152159, guid: 11aac4ba7130e4041bb57db064a7da80, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0
+    Rarity: 1
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 2
+  - Id: carbon-ribbon
+    Name: Carbon Ribbon
+    Description: "Bell wave m\u1EDF weakness 1.5s; Stamp burst k\xE9o coin trong
+      2.5 units. Kh\xF4ng copy damage/death/loot, kh\xF4ng t\u1EF1 truy\u1EC1n; Crit
+      team -4%. Duy nh\u1EA5t."
+    Price: 40
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1667430341, guid: 11aac4ba7130e4041bb57db064a7da80, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 8
+      Scope: 0
+      Value: -0.04
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 3
+  - Id: office-lens
+    Name: Office Lens
+    Description: "Crit ally +15%, attack speed -5%. Stamp burst m\u1EDF weakness
+      1.8s: crit v\xE0o m\u1EE5c ti\xEAu exposed th\xEAm 30% damage (stack t\u0103ng
+      t\u1EDBi 50%). Kh\xF4ng t\u1EA1o burst t\u1EEB crit."
+    Price: 38
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 201376597, guid: 11aac4ba7130e4041bb57db064a7da80, type: 3}
+    UnlockWave: 2
+    Modifiers:
+    - Effect: 8
+      Scope: 2
+      Value: 0.15
+    - Effect: 1
+      Scope: 2
+      Value: -0.05
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 5
+    ShopWeight: 55
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 4
   Bonds:
   - Id: hearth
     Name: Hearth
@@ -615,11 +731,35 @@ MonoBehaviour:
     ItemIds:
     - treasure-whisper
     - chest-thunder
+  - Id: signature-harvest
+    Name: "M\xC1Y THU HO\u1EA0CH"
+    Description: "Enemy kill \u2192 coin \u2192 logical pickup \u2192 Receipt (0.35s)
+      \u2192 Bell cadence \u2192 delayed wave. Bell + Receipt \u0111\xE3 ho\u1EA1t
+      \u0111\u1ED9ng, kh\xF4ng c\u1EA7n \u0111\u1EE7 set. Carbon n\u1ED1i wave \u2192
+      weakness (Lens m\u1EDBi t\u0103ng crit damage); Stamp burst \u2192 h\xFAt coin
+      ph\u1EA1m vi 2.5. Pickup kh\xF4ng t\u1EF1 sinh ti\u1EC1n, secondary kh\xF4ng
+      charge prop/proc."
+    ItemIds:
+    - harvest-receipt
+    - carbon-ribbon
+  - Id: signature-office
+    Name: "V\u0102N PH\xD2NG HO\xC0N TR\u1EA2"
+    Description: "Stamp \u2192 Ink (d\u1EA5u nhanh h\u01A1n nh\u01B0ng ng\u1EAFn
+      h\u01A1n) \u2192 threshold burst \u2192 weakness 1.8s \u2192 Lens h\u01B0\u1EDFng
+      crit. Stamp + Ink \u0111\xE3 c\xF3 payoff cadence; Lens h\u1EEFu \xEDch v\u1EDBi
+      m\u1ECDi ally crit tr\u01B0\u1EDBc khi \u0111\u1EE7 build. Carbon n\u1ED1i
+      Stamp burst \u2192 coin collection cho Harvest. D\u1EA5u truy\u1EC1n tier kh\xF4ng
+      t\u1EF1 burst, crit kh\xF4ng t\u1EA1o stamp l\u1EA1i."
+    ItemIds:
+    - reflective-ink
+    - office-lens
+    - carbon-ribbon
   EconomyRevision: 1
   AltarRevision: 1
   AltarBaseChance: 0.1
   AltarChancePerEgg: 0.05
   LootRevision: 1
+  SignatureRevision: 1
   ProcRules:
   - Id: proc-coin-salve
     ItemId: coin-salve

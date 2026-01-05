@@ -37,20 +37,22 @@ namespace ArcaneBrigade
         {
             stamps.Clear(); signaturePulses.Clear(); expiredStamps.Clear();
             BellWaves = UmbrellaOpenings = StampBursts = 0;
-            foreach (UnitState unit in units) { unit.AttackBeat = unit.VisibleMarks = 0; unit.MarkVisibleUntil = 0; }
+            foreach (UnitState unit in units) { unit.AttackBeat = unit.VisibleMarks = 0; unit.MarkVisibleUntil = unit.ExposedUntil = 0; }
         }
 
-        private void AdvanceSignatureBeat(UnitState unit, float damage, CombatCause cause)
+        private void AdvanceSignatureBeat(UnitState unit, float damage, CombatCause cause, int charge = 1)
         {
             WeaponDefinition weapon = unit.Definition.Weapon;
             if (unit.Faction == Faction.Enemy || weapon.Signature == SignatureWeapon.None || weapon.Signature == SignatureWeapon.Stamp) return;
-            unit.AttackBeat = (unit.AttackBeat + 1) % Mathf.Max(2, weapon.SignatureBeats);
-            if (unit.AttackBeat != 0) return;
+            int beats = Mathf.Max(2, weapon.SignatureBeats);
+            int total = unit.AttackBeat + Mathf.Clamp(charge, 1, beats);
+            unit.AttackBeat = total % beats;
+            if (total < beats) return;
             float radius = Mathf.Max(0.1f, weapon.SignatureRadius);
             if (weapon.Signature == SignatureWeapon.Umbrella && unit.Definition.CombatTier >= 2) radius *= 1.25f;
-            signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale), Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay), Cause = cause.Child(weapon.Signature == SignatureWeapon.Bell ? "bell-wave" : "umbrella-open") });
+            signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale), Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay), Cause = new CombatCause(cause.RootId, unit.Id, weapon.Signature == SignatureWeapon.Bell ? "bell-wave" : "umbrella-open", 1) });
             if (weapon.Signature == SignatureWeapon.Bell && unit.Definition.CombatTier >= 2)
-                signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale) * 0.35f, Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay) + 0.3f, Cause = cause.Child("bell-echo") });
+                signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale) * 0.35f, Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay) + 0.3f, Cause = new CombatCause(cause.RootId, unit.Id, "bell-echo", 1) });
         }
 
         private void AddStamp(UnitState source, UnitState target, float damage, CombatCause cause)
@@ -63,12 +65,25 @@ namespace ArcaneBrigade
                 mark = new StampState { Source = source, Target = target }; stamps.Add(key, mark);
             }
             if (mark.Expires <= Elapsed) mark.Count = 0;
-            mark.Count++; mark.Expires = Elapsed + Mathf.Max(0.1f, weapon.MarkLifetime);
+            mark.Count += catalog.ReflectiveInkStacks > 0 ? 2 : 1;
+            mark.Expires = Elapsed + Mathf.Max(0.1f, weapon.MarkLifetime * (catalog.ReflectiveInkStacks > 0 ? 0.65f : 1));
             target.VisibleMarks = mark.Count; target.MarkVisibleUntil = mark.Expires;
             events.Add(new CombatEvent(CombatEventKind.SignatureMark, target.Position, source.Faction, mark.Count, weapon: weapon, subjectId: target.Id, cause: cause.Child("stamp-mark")));
             if (mark.Count < Mathf.Max(2, weapon.SignatureBeats)) return;
             stamps.Remove(key); target.VisibleMarks = 0;
             StampBursts++;
+            RecordActivation(cause.Child("stamp-burst"));
+            if (catalog.ReflectiveInkStacks > 0 || catalog.OfficeLensStacks > 0)
+            {
+                target.ExposedUntil = Elapsed + 1.8f;
+                RecordActivation(cause.Child(catalog.ReflectiveInkStacks > 0 ? "reflective-ink" : "office-lens-exposure"));
+            }
+            if (catalog.CarbonRibbon)
+            {
+                foreach (PickupState pickup in pickups)
+                    if (pickup.Kind == LootKind.Coin && (pickup.Position - target.Position).sqrMagnitude <= 6.25f) pickup.Attracting = true;
+                RecordActivation(cause.Child("carbon-collector"));
+            }
             events.Add(new CombatEvent(CombatEventKind.SignatureBurst, target.Position, source.Faction, weapon.SignatureRadius, weapon: weapon, cause: cause.Child("stamp-burst")));
             ApplyDamage(target, damage * Mathf.Max(0, weapon.SignatureScale), source.Faction, "Dream stamp burst", weapon: weapon, cause: cause.Child("stamp-burst"));
             if (source.Definition.CombatTier < 2) return;
@@ -113,6 +128,7 @@ namespace ArcaneBrigade
                 if (!pulse.Source.Alive) continue;
                 WeaponDefinition weapon = pulse.Source.Definition.Weapon;
                 if (weapon.Signature == SignatureWeapon.Bell) BellWaves++; else UmbrellaOpenings++;
+                RecordActivation(pulse.Cause);
                 events.Add(new CombatEvent(CombatEventKind.SignaturePulse, pulse.Position, pulse.Source.Faction, pulse.Radius, pulse.Direction, weapon, cause: pulse.Cause));
                 foreach (UnitState target in units)
                 {
@@ -120,6 +136,11 @@ namespace ArcaneBrigade
                     if (!target.Alive || target.Faction != Faction.Enemy || delta.sqrMagnitude > pulse.Radius * pulse.Radius) continue;
                     if (weapon.Signature == SignatureWeapon.Umbrella && Vector2.Dot(delta.normalized, pulse.Direction) < 0) continue;
                     ApplyDamage(target, pulse.Damage, pulse.Source.Faction, weapon.Id + " payoff", pulse.Direction, weapon, cause: pulse.Cause);
+                    if (target.Alive && weapon.Signature == SignatureWeapon.Bell && catalog.CarbonRibbon)
+                    {
+                        target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.5f);
+                        RecordActivation(pulse.Cause.Child("carbon-exposure"));
+                    }
                     if (target.Alive && weapon.Signature == SignatureWeapon.Umbrella)
                     {
                         float resistance = target.Definition.IsBoss ? 0.2f : 1;

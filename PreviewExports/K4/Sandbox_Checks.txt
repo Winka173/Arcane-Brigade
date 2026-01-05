@@ -1,0 +1,174 @@
+PASS Sandbox content exists
+PASS Uses the gameplay UnitVisual prefab
+PASS SeenUnits does not imply weapon discovery
+PASS Empty list reset and repeated dispose are safe
+PASS Saved roster grants read-only preview eligibility
+PASS Saved champion default grants read-only preview eligibility
+PASS Eligibility union never writes discovery
+PASS Reduced motion defaults off with the profile
+PASS Stable discovery IDs filter unknown and duplicate entries
+PASS Unknown selection cannot unlock weapons
+PASS KeyCleaver tier 1 uses independent unit/weapon data
+PASS KeyCleaver tier damage follows catalog multiplier with no build bonuses
+PASS KeyCleaver tier 1 auto attacks through actual simulation events
+PASS KeyCleaver preview cannot farm rewards or kills
+PASS KeyCleaver tier 2 uses independent unit/weapon data
+PASS KeyCleaver tier damage follows catalog multiplier with no build bonuses
+PASS KeyCleaver tier 2 auto attacks through actual simulation events
+PASS KeyCleaver preview cannot farm rewards or kills
+PASS KeyCleaver tier 3 uses independent unit/weapon data
+PASS KeyCleaver tier damage follows catalog multiplier with no build bonuses
+PASS KeyCleaver tier 3 auto attacks through actual simulation events
+PASS KeyCleaver preview cannot farm rewards or kills
+PASS TeapotPopgun tier 1 uses independent unit/weapon data
+PASS TeapotPopgun tier damage follows catalog multiplier with no build bonuses
+PASS TeapotPopgun tier 1 auto attacks through actual simulation events
+PASS TeapotPopgun preview cannot farm rewards or kills
+PASS TeapotPopgun tier 2 uses independent unit/weapon data
+PASS TeapotPopgun tier damage follows catalog multiplier with no build bonuses
+PASS TeapotPopgun tier 2 auto attacks through actual simulation events
+PASS TeapotPopgun preview cannot farm rewards or kills
+PASS TeapotPopgun tier 3 uses independent unit/weapon data
+PASS TeapotPopgun tier damage follows catalog multiplier with no build bonuses
+PASS TeapotPopgun tier 3 auto attacks through actual simulation events
+PASS TeapotPopgun preview cannot farm rewards or kills
+PASS UmbrellaLance tier 1 uses independent unit/weapon data
+PASS UmbrellaLance tier damage follows catalog multiplier with no build bonuses
+PASS UmbrellaLance tier 1 auto attacks through actual simulation events
+PASS UmbrellaLance preview cannot farm rewards or kills
+PASS UmbrellaLance tier 2 uses independent unit/weapon data
+PASS UmbrellaLance tier damage follows catalog multiplier with no build bonuses
+PASS UmbrellaLance tier 2 auto attacks through actual simulation events
+PASS UmbrellaLance preview cannot farm rewards or kills
+PASS UmbrellaLance tier 3 uses independent unit/weapon data
+PASS UmbrellaLance tier damage follows catalog multiplier with no build bonuses
+PASS UmbrellaLance tier 3 auto attacks through actual simulation events
+PASS UmbrellaLance preview cannot farm rewards or kills
+PASS MailboxLauncher tier 1 uses independent unit/weapon data
+PASS MailboxLauncher tier damage follows catalog multiplier with no build bonuses
+PASS MailboxLauncher tier 1 auto attacks through actual simulation events
+PASS MailboxLauncher preview cannot farm rewards or kills
+PASS MailboxLauncher tier 2 uses independent unit/weapon data
+PASS MailboxLauncher tier damage follows catalog multiplier with no build bonuses
+PASS MailboxLauncher tier 2 auto attacks through actual simulation events
+PASS MailboxLauncher preview cannot farm rewards or kills
+PASS MailboxLauncher tier 3 uses independent unit/weapon data
+PASS MailboxLauncher tier damage follows catalog multiplier with no build bonuses
+PASS MailboxLauncher tier 3 auto attacks through actual simulation events
+PASS MailboxLauncher preview cannot farm rewards or kills
+PASS BellFork tier 1 uses independent unit/weapon data
+PASS BellFork tier damage follows catalog multiplier with no build bonuses
+PASS BellFork tier 1 auto attacks through actual simulation events
+PASS BellFork real cadence payoff resolves
+PASS BellFork preview cannot farm rewards or kills
+PASS BellFork tier 2 uses independent unit/weapon data
+PASS BellFork tier damage follows catalog multiplier with no build bonuses
+PASS BellFork tier 2 auto attacks through actual simulation events
+PASS BellFork real cadence payoff resolves
+PASS BellFork preview cannot farm rewards or kills
+PASS BellFork tier 3 uses independent unit/weapon data
+PASS BellFork tier damage follows catalog multiplier with no build bonuses
+PASS BellFork tier 3 auto attacks through actual simulation events
+PASS BellFork real cadence payoff resolves
+PASS BellFork preview cannot farm rewards or kills
+PASS BookPaddle tier 1 uses independent unit/weapon data
+PASS BookPaddle tier damage follows catalog multiplier with no build bonuses
+PASS BookPaddle tier 1 auto attacks through actual simulation events
+PASS BookPaddle preview cannot farm rewards or kills
+PASS BookPaddle tier 2 uses independent unit/weapon data
+PASS BookPaddle tier damage follows catalog multiplier with no build bonuses
+PASS BookPaddle tier 2 auto attacks through actual simulation events
+PASS BookPaddle preview cannot farm rewards or kills
+PASS BookPaddle tier 3 uses independent unit/weapon data
+PASS BookPaddle tier damage follows catalog multiplier with no build bonuses
+PASS BookPaddle tier 3 auto attacks through actual simulation events
+PASS BookPaddle preview cannot farm rewards or kills
+PASS CrescentBow tier 1 uses independent unit/weapon data
+PASS CrescentBow tier damage follows catalog multiplier with no build bonuses
+PASS CrescentBow tier 1 auto attacks through actual simulation events
+PASS CrescentBow preview cannot farm rewards or kills
+PASS CrescentBow tier 2 uses independent unit/weapon data
+PASS CrescentBow tier damage follows catalog multiplier with no build bonuses
+PASS CrescentBow tier 2 auto attacks through actual simulation events
+PASS CrescentBow preview cannot farm rewards or kills
+PASS CrescentBow tier 3 uses independent unit/weapon data
+PASS CrescentBow tier damage follows catalog multiplier with no build bonuses
+PASS CrescentBow tier 3 auto attacks through actual simulation events
+PASS CrescentBow preview cannot farm rewards or kills
+PASS RuneStaff tier 1 uses independent unit/weapon data
+PASS RuneStaff tier damage follows catalog multiplier with no build bonuses
+PASS RuneStaff tier 1 auto attacks through actual simulation events
+PASS RuneStaff preview cannot farm rewards or kills
+PASS RuneStaff tier 2 uses independent unit/weapon data
+PASS RuneStaff tier damage follows catalog multiplier with no build bonuses
+PASS RuneStaff tier 2 auto attacks through actual simulation events
+PASS RuneStaff preview cannot farm rewards or kills
+PASS RuneStaff tier 3 uses independent unit/weapon data
+PASS RuneStaff tier damage follows catalog multiplier with no build bonuses
+PASS RuneStaff tier 3 auto attacks through actual simulation events
+PASS RuneStaff preview cannot farm rewards or kills
+PASS DreamStamp tier 1 uses independent unit/weapon data
+PASS DreamStamp tier damage follows catalog multiplier with no build bonuses
+PASS DreamStamp tier 1 auto attacks through actual simulation events
+PASS DreamStamp real cadence payoff resolves
+PASS DreamStamp preview cannot farm rewards or kills
+PASS DreamStamp tier 2 uses independent unit/weapon data
+PASS DreamStamp tier damage follows catalog multiplier with no build bonuses
+PASS DreamStamp tier 2 auto attacks through actual simulation events
+PASS DreamStamp real cadence payoff resolves
+PASS DreamStamp preview cannot farm rewards or kills
+PASS DreamStamp tier 3 uses independent unit/weapon data
+PASS DreamStamp tier damage follows catalog multiplier with no build bonuses
+PASS DreamStamp tier 3 auto attacks through actual simulation events
+PASS DreamStamp real cadence payoff resolves
+PASS DreamStamp preview cannot farm rewards or kills
+PASS Reset disposes old runtime weapon clone
+PASS Reset clears elapsed time, attacks and diagnostics
+PASS Local combat and roam RNG reproduce after reset despite reduced-motion change
+PASS Local reduced-motion override never writes the profile
+PASS Moving target preset actually moves
+PASS Stationary preset returns to fixed lane
+PASS Open, selection, tier, target, reset never mutate profile
+PASS Saved roster, currency, score and RNG stay byte-identical
+PASS Shared catalog, unit and weapon data stay byte-identical
+PASS Opening snapshots the saved reduced-motion preference
+PASS Actual gameplay UnitVisual binds and displays sandbox pose
+PASS Gameplay reduced-motion property suppresses decorative idle while retaining attack pose
+PASS Pose renders the selected weapon, not the companion default
+PASS Gameplay hand/grip pipeline retained
+PASS Tier preview retains gameplay body silhouette
+PASS Reduced motion survives tier/reset without profile mutation
+PASS Global Unity RNG untouched
+PASS Dispose releases simulation, templates, runtime assets and presentation references
+PASS Fixture profile unchanged except explicit test discovery setup
+PASS Desktop native preview uses 2560x1280 MSAA4
+PASS Mobile preview uses 880x440 MSAA2 pending K7 device acceptance
+PASS Both preview targets preserve 2:1 aspect and alpha format
+PASS Shared pipeline/lifecycle wiring: new CombatSimulation(arena)
+PASS Shared pipeline/lifecycle wiring: Simulation.Step(delta, Vector2.zero)
+PASS Shared pipeline/lifecycle wiring: view.Bind(state, arena)
+PASS Shared pipeline/lifecycle wiring: view.Display(Simulation.VisualElapsed, 1)
+PASS Shared pipeline/lifecycle wiring: effects.Play(value)
+PASS Shared pipeline/lifecycle wiring: effects.Advance(delta)
+PASS Shared pipeline/lifecycle wiring: audioFeedback.ConfigurePresentation()
+PASS Shared pipeline/lifecycle wiring: audioFeedback.Play(value)
+PASS Shared pipeline/lifecycle wiring: AddComponent<ProjectileVisual>()
+PASS Shared pipeline/lifecycle wiring: previewCamera.scene = previewScene
+PASS Shared pipeline/lifecycle wiring: SceneManager.UnloadSceneAsync(previewScene)
+PASS Shared pipeline/lifecycle wiring: previewCamera.Render()
+PASS Shared pipeline/lifecycle wiring: PreviewTexture.Release()
+PASS Shared pipeline/lifecycle wiring: forceRenderingOff = true
+PASS No persistent/global dependency: RunSession
+PASS No persistent/global dependency: RunStorage
+PASS No persistent/global dependency: SaveProfile(
+PASS No persistent/global dependency: RunLaunch.
+PASS No persistent/global dependency: Random.InitState
+PASS No persistent/global dependency: SeenWeapons.Add
+PASS No persistent/global dependency: SeenUnits.Add
+PASS Reduced-motion/capture wiring: ReducedMotion = readOnlyProfile.ReducedMotion
+PASS Reduced-motion/capture wiring: view.ReducedMotion = ReducedMotion
+PASS Reduced-motion/capture wiring: GetPreviewDescriptor(Application.isMobilePlatform)
+PASS Reduced-motion/capture wiring: previewCamera.aspect = 2f
+PASS Reduced-motion/capture wiring: RenderTextureFormat.ARGB32
+PASS Reduced-motion/capture wiring: new Rect(65, 300, 760, 380)
+PASS RunMenu exposes sandbox page

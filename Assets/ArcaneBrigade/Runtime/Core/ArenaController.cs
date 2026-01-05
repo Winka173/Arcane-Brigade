@@ -46,6 +46,7 @@ namespace ArcaneBrigade
         private BossTelegraph bossTelegraph;
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
+        private ArenaToyVisual arenaToyVisual;
         private float transitionRemaining;
         private float resultRevealRemaining;
         private float terminalVisualAge;
@@ -89,6 +90,7 @@ namespace ArcaneBrigade
             deathFeedback = gameObject.AddComponent<DeathFeedback>();
             deathFeedback.Configure(catalog.ImpactSprite);
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
+            if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
             CreateRadiusGuide();
@@ -254,7 +256,7 @@ namespace ArcaneBrigade
         {
             if (session == null) return;
             if (details.Open) details.Close();
-            else details.Show(session, runCatalog, session.State.Phase == SessionPhase.Combat ? simulation.Champion.Health : session.State.Health);
+            else details.Show(session, runCatalog, session.State.Phase == SessionPhase.Combat ? simulation.Champion.Health : session.State.Health, session.State.Phase == SessionPhase.Combat ? simulation : null);
             pauseGate.Details = details.Open;
             ApplyPause();
         }
@@ -270,7 +272,12 @@ namespace ArcaneBrigade
                 SaveError = "";
             }
             catch (Exception exception) { SaveError = "Save failed: " + exception.Message; return false; }
-            try { storage.RecordProgress(profile, session.State); }
+            try
+            {
+                string weaponId = runCatalog.Unit(session.State.ChampionId).Weapon.Id;
+                if (!profile.SeenWeapons.Contains(weaponId)) profile.SeenWeapons.Add(weaponId);
+                storage.RecordProgress(profile, session.State);
+            }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
             return true;
         }
@@ -363,6 +370,7 @@ namespace ArcaneBrigade
 
         private void Render(float interpolation)
         {
+            if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
             liveIds.Clear();
             for (int index = 0; index < simulation.Units.Count; index++)
             {
@@ -377,6 +385,7 @@ namespace ArcaneBrigade
                     if (profile != null) view.SetChampionCosmetic(profile.Cosmetic);
                     units.Add(state.Id, view);
                 }
+                view.ReducedMotion = profile != null && profile.ReducedMotion;
                 float poseTime = simulation.VisualElapsed + terminalVisualAge - (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? Time.fixedDeltaTime * (1 - interpolation) : 0);
                 view.Display(poseTime, interpolation);
                 if (terminalVisualAge > 0 && state.Faction == Faction.Enemy) view.SetTerminalFade(Mathf.Clamp01(1 - terminalVisualAge / 0.35f));

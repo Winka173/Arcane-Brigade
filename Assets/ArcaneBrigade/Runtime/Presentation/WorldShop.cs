@@ -21,14 +21,22 @@ namespace ArcaneBrigade
         private int signature = int.MinValue;
         private Mesh plateMesh;
         private Material plateMaterial;
+        public MergeReveal Reveal { get; private set; }
         private readonly List<Station> stations = new List<Station>();
         public IReadOnlyList<Station> Stations => stations;
         public bool Special { get; private set; }
         public Station Nearby { get; private set; }
-        public void Configure(ArenaController controller) { owner = controller; }
+        public void Configure(ArenaController controller)
+        {
+            owner = controller;
+            Reveal = gameObject.AddComponent<MergeReveal>();
+            Reveal.Configure(controller);
+            Reveal.ReducedMotion = owner.Profile != null && owner.Profile.ReducedMotion;
+        }
 
         public void Display()
         {
+            if (Reveal != null) Reveal.ReducedMotion = owner.Profile != null && owner.Profile.ReducedMotion;
             if (owner.Session.State.Phase != SessionPhase.Shop)
             {
                 if (scenery != null) scenery.SetActive(false);
@@ -63,14 +71,21 @@ namespace ArcaneBrigade
             if (station.Offer != null)
             {
                 if (station.Offer.Sold) return false;
+                RunSnapshot before = MergeReveal.Capture(owner.Session.State);
                 bool purchased = owner.BuyOffer(station.Offer.Token);
+                Reveal.EnqueueCommitted(before, owner.Session.State, purchased, station.Position, false);
                 Display();
                 return purchased;
             }
             bool completed = true;
             if (station.Action == "NEXT HALL") { owner.NextWave(); completed = owner.Session.State.Phase == SessionPhase.Combat; }
             else if (station.Action == "REROLL") completed = Special ? owner.RerollAltar() : owner.RerollShop();
-            else if (station.Recipe != null) completed = owner.FuseAltar(station.Recipe);
+            else if (station.Recipe != null)
+            {
+                RunSnapshot before = MergeReveal.Capture(owner.Session.State);
+                completed = owner.FuseAltar(station.Recipe);
+                Reveal.EnqueueCommitted(before, owner.Session.State, completed, station.Position, true);
+            }
             else { Special = !Special; signature = int.MinValue; }
             Display();
             return completed;

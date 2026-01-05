@@ -1,0 +1,68 @@
+# Actual Unity batch run 2026-10-13; filtered verification output, not a mobile/performance certificate.
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+ARCANE_K0_K1_CHECKS_PASSED 27
+ARCANE_K2_CHECKS_PASSED 23
+ARCANE_K3_TRANSACTION_CHECKS_PASSED 36
+ARCANE_K32_CHECKS_PASSED 29
+ARCANE_K32_ALTAR_CHECKS_PASSED 14
+ARCANE_K3_FINAL_CHECKS_PASSED 31
+ARCANE_VISUAL_QUALITY_CHECKS_PASSED 31
+ARCANE_K4_SIGNATURE_CHECKS_PASSED 40
+K4 merge checks PASS (no build or asset writes)
+PASS K4 arena: seed creates bell and cart
+PASS K4 arena: seed and wave reproduce layout
+PASS K4 arena: wave changes layout
+PASS K4 arena: placement has wall and champion clearance
+PASS K4 arena: duplicate root cannot charge twice
+PASS K4 arena: secondary, hostile and invalid impacts are rejected
+PASS K4 arena: full charge warns before damage
+PASS K4 arena: pause freezes charge, warning and damage
+PASS K4 arena: warning cannot fire before a second
+PASS K4 arena: bell only damages enemies
+PASS K4 arena: payoff carries secondary arena ledger cause
+PASS K4 arena: cooldown rejects impact
+PASS K4 arena: finite cooldown and single payoff
+PASS K4 arena: root dedup survives cooldown
+PASS K4 arena: event overload resolves eligible allied source
+PASS K4 arena: cart sweeps lane once and stops
+PASS K4 arena: cart endpoint remains bounded
+PASS K4 arena: boss resistance prevents prop one-hit
+PASS K4 arena: boss phase has independent gate
+PASS K4 arena: half HP starts one warned phase
+PASS K4 arena: layout does not jump early
+PASS K4 arena: shift completes without champion harm
+PASS K4 arena: boss phase actually shifts available layout
+PASS K4 arena: boss phase occurs only once
+PASS K4 arena: gate and reset clear combat state
+PASS K4 arena: unsafe tiny arena safely omits props
+PASS K4 arena: boundary clear is idempotent
+PASS K4 arena: occupied preview is cancelled rather than overlapping champion
+PASS K4 arena: boss death cancels pending phase
+PASS K4 arena: actual Start introduces only stage bell on wave one
+PASS K4 arena: actual Start reads RunWave for wave-two cart
+PASS K4 arena: actual EnterRest clears props
+PASS K4 arena: actual melee windup does not charge prop
+PASS K4 arena: actual multi-target melee shares root and charges once
+PASS K4 arena: distinct actual melee attacks reach warned charge
+PASS K4 arena: actual Step pause freezes prop warning
+PASS K4 arena: actual Step resolves once and ledger records effective arena damage and activation
+PASS K4 arena: secondary payoff callbacks do not charge cart
+PASS K4 arena: actual projectile windup cannot charge prop
+PASS K4 arena: actual emission retains allied Fire root on swept projectile
+PASS K4 arena: projectile cause matches its attack Fire event
+PASS K4 arena: actual paused projectile neither travels nor recharges
+PASS K4 arena: overlapping consecutive flight segments retain and deduplicate root
+PASS K4 arena: projectile swept and enemy-hit callbacks share one root and one charge
+PASS K4 arena: actual fast sweep truncates at blocking hit instead of charging prop behind it
+PASS K4 arena: actual sibling projectiles share attack root without multiplying charge
+PASS K4 arena: actual Step detects half-health boss phase
+PASS K4 arena: actual Step pause freezes boss phase warning
+PASS K4 arena: actual Step completes warned phase without champion harm
+K4 arena checks passed: 49
+ARCANE_K4_SANDBOX_CHECKS_PASSED 174 (model checks; native rendering/audio still require capture)
+ARCANE_K4_FINAL_CHECKS_PASSED 36
+Result: Succeeded
+Errors: 0
+Warnings: 0
+Size: 149254027

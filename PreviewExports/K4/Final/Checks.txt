@@ -1,0 +1,36 @@
+PASS Full signature revision enabled
+PASS Full migration idempotent with authored tuning preserved
+PASS Unique authored relic and HD icon harvest-receipt
+PASS Unique authored relic and HD icon reflective-ink
+PASS Unique authored relic and HD icon carbon-ribbon
+PASS Unique authored relic and HD icon office-lens
+PASS Connector and harvester have visible real trade-offs
+PASS HD relic imports preserve alpha and full readable icon bounds without CPU copy
+PASS Two components activate harvest before completing set
+PASS Coin credits once; same-tick collector bursts share finite cooldown
+PASS Receipt charges actual bell cadence, not cosmetic counter
+PASS Harvest charge feeds delayed real wave
+PASS Harvest wave cannot farm coin or recurse pickup
+PASS Credit and collector activations are measured once
+PASS Office graph reads actual weapon and owned relic roles
+PASS Ink advances marks but shortens actual expiry
+PASS Ink threshold creates burst and real weakness window
+PASS Actual critical hit consumes Lens damage benefit without second burst
+PASS Primary, burst and lens bonus split equal actual enemy HP loss
+PASS Critical bonus cannot recursively stamp or burst
+PASS Live contribution graph is read-only and explicitly unsettled
+PASS Details uses effective Ink mark count and expiry rather than base tooltip
+PASS Lens-only exposure never credits unowned Ink
+PASS Harvest-completed Bell cadence preserves depth-one payoff and real source
+PASS Connector alone with Stamp pulls only eligible local coin
+PASS Connector does not invent or prematurely credit currency
+PASS Carbon bell branch exposes but never fabricates a stamp burst
+PASS Ledger excludes overkill and repeated death damage
+PASS Ledger excludes overheal
+PASS Contribution settles exactly once with normal phase guard
+PASS Contribution rows persist in schema2 without RNG reroll
+PASS Older schema2 without ledger migrates read-only safely
+PASS Invalid contribution floats cannot enter save
+PASS Authored boss wave enables deterministic toys and arena phase
+PASS Ordinary Start automatically seeds two toys at later wave
+PASS Rest removes toys and all pending arena warnings

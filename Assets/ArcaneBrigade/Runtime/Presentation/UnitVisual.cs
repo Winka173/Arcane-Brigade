@@ -17,7 +17,29 @@ namespace ArcaneBrigade
         private SpriteRenderer drawHand;
         private Color shadowColor;
         private readonly SpriteRenderer[] stampPips = new SpriteRenderer[3];
+        private SpriteRenderer tierBell;
+        private readonly LineRenderer[] exposedCorners = new LineRenderer[4];
+        private Material exposedMaterial;
+        public bool ReducedMotion { get; set; }
         public UnitState State => state;
+        public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;
+        public static bool IsWeakspotVisible(UnitState unit, float time) => unit != null && unit.Alive && unit.Faction == Faction.Enemy && unit.ExposedUntil > time && unit.TelegraphUntil <= time;
+
+        public static Vector2 TierWeaponShape(WeaponDefinition definition, int tier)
+        {
+            float step = Mathf.Clamp(tier - 1, 0, 2);
+            if (definition.Signature == SignatureWeapon.Stamp) return new Vector2(1 + step * 0.12f, 1 + step * 0.28f);
+            if (definition.Signature == SignatureWeapon.Umbrella) return new Vector2(1 + step * 0.24f, 1 + step * 0.08f);
+            if (definition.Motion == WeaponMotion.Bow) return new Vector2(1 + step * 0.08f, 1 + step * 0.24f);
+            return new Vector2(1 + step * 0.16f, 1 + step * 0.12f);
+        }
+
+        public static float IdleBeat(UnitState unit, float time, bool attacking, bool reducedMotion)
+        {
+            if (reducedMotion || unit.Faction != Faction.Companion || !unit.Alive || attacking || unit.PendingAttack || time - unit.LastHit < 0.4f || unit.TelegraphUntil > time) return 0;
+            float phase = Mathf.Repeat(time + unit.Id * 0.73f, 6.4f);
+            return phase < 0.65f ? Mathf.Sin(phase / 0.65f * Mathf.PI) : 0;
+        }
 
         public void CopyDeathPose(SpriteRenderer targetBody, SpriteRenderer targetShadow, SpriteRenderer targetWeapon, SpriteRenderer targetHand, SpriteRenderer targetDrawHand, Transform targetGrip)
         {
@@ -88,10 +110,16 @@ namespace ArcaneBrigade
             if (armed)
             {
                 float weaponScale = unit.Definition.Weapon.VisualWidth / weapon.sprite.bounds.size.x;
-                weapon.transform.localScale = Vector3.one * weaponScale;
+                Vector2 shape = TierWeaponShape(unit.Definition.Weapon, unit.Definition.CombatTier);
+                weapon.transform.localScale = new Vector3(weaponScale * shape.x, weaponScale * shape.y, 1);
                 hand.transform.localScale = Vector3.one * (0.13f / hand.sprite.bounds.size.x);
                 muzzle.localPosition = unit.Definition.Weapon.HasMuzzleOffset ? (Vector3)unit.Definition.Weapon.ProjectileMuzzleOffset : Vector3.right * unit.Definition.Weapon.MuzzleDistance;
             }
+            if (tierBell == null) tierBell = CreateSprite("TierBellSatellite", grip);
+            tierBell.sprite = weapon.sprite;
+            tierBell.enabled = armed && unit.Definition.CombatTier >= 2 && unit.Definition.Weapon.Signature == SignatureWeapon.Bell;
+            tierBell.transform.localPosition = new Vector3(0.1f, -0.26f, 0);
+            tierBell.transform.localScale = weapon.transform.localScale * (unit.Definition.CombatTier >= 3 ? 0.48f : 0.36f);
             name = unit.Definition.DisplayName + "_" + unit.Id;
             if (unit.Definition.Weapon.Motion == WeaponMotion.Bow && bowString == null)
             {
@@ -124,12 +152,14 @@ namespace ArcaneBrigade
             if (state == null) return;
             weapon.color = hand.color = Color.white;
             shadow.color = shadowColor;
+            if (tierBell != null) tierBell.color = Color.white;
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             WeaponDefinition definition = state.Definition.Weapon;
             float age = simulationTime - state.AttackStarted;
             bool attacking = age >= 0f && age < definition.Windup + definition.Recovery;
+            float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
             Vector2 facing = attacking ? state.AttackDirection : state.Facing;
             if (facing.sqrMagnitude < 0.01f) facing = Vector2.right;
             int order = 1000 - Mathf.RoundToInt(state.Position.y * 12f);
@@ -138,6 +168,7 @@ namespace ArcaneBrigade
             bool behind = facing.y > 0.45f;
             weapon.sortingOrder = order + (behind ? -2 : 2);
             hand.sortingOrder = order + (behind ? -1 : 3);
+            if (tierBell != null) tierBell.sortingOrder = weapon.sortingOrder;
             body.flipX = facing.x < -0.1f;
             float movement = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
             float bob = Mathf.Sin(simulationTime * 13f + state.Id) * 0.025f * movement;
@@ -157,7 +188,8 @@ namespace ArcaneBrigade
             impactSquash += hurt * 0.09f;
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, -state.Definition.BodyHeight * 0.5f + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
-            body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + attackLean * (facing.x < 0f ? -1f : 1f));
+            float personality = state.Id % 2 == 0 ? -1 : 1;
+            body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
             shadow.transform.localPosition = new Vector3(0f, -state.Definition.BodyHeight * 0.5f, 0f);
             body.color = Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
@@ -166,9 +198,15 @@ namespace ArcaneBrigade
             flashProperties.SetFloat("_Flash", Mathf.Clamp01(1f - hitAge / 0.075f));
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), 0.5f + Mathf.Sin(simulationTime * 22f) * 0.4f);
+            DisplayWeakspot(simulationTime, order);
 
             float angleOffset = 0f;
             float recoil = 0f;
+            if (idle > 0)
+            {
+                angleOffset = idle * (definition.Motion == WeaponMotion.Bell ? Mathf.Sin(simulationTime * 30f) * 9f : personality * 7f);
+                recoil = definition.Motion == WeaponMotion.Stamp ? idle * 0.04f : 0;
+            }
             for (int index = 0; index < stampPips.Length; index++)
             {
                 bool visible = hand.sprite != null && state.Alive && state.MarkVisibleUntil > simulationTime && state.VisibleMarks > index;
@@ -229,11 +267,55 @@ namespace ArcaneBrigade
             grip.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg + angleOffset);
         }
 
-        private void OnDestroy() { if (bowMaterial != null) Destroy(bowMaterial); }
+        private void DisplayWeakspot(float time, int order)
+        {
+            bool visible = IsWeakspotVisible(state, time);
+            if (!visible && exposedCorners[0] == null) return;
+            if (exposedMaterial == null) exposedMaterial = new Material(Shader.Find("Sprites/Default"));
+            Vector3 center = body.transform.localPosition + Vector3.Scale(body.sprite.bounds.center, body.transform.localScale);
+            Vector3 extent = Vector3.Scale(body.sprite.bounds.extents, body.transform.localScale) + new Vector3(0.045f, 0.045f, 0);
+            float length = Mathf.Min(extent.x, extent.y) * 0.38f;
+            for (int index = 0; index < exposedCorners.Length; index++)
+            {
+                if (exposedCorners[index] == null)
+                {
+                    var corner = new GameObject("ExposedMintCorner" + index);
+                    corner.transform.SetParent(transform, false);
+                    LineRenderer frame = corner.AddComponent<LineRenderer>();
+                    frame.sharedMaterial = exposedMaterial; frame.useWorldSpace = false; frame.positionCount = 3;
+                    frame.startColor = frame.endColor = new Color(0.55f, 1f, 0.82f, 0.65f);
+                    exposedCorners[index] = frame;
+                }
+                LineRenderer renderer = exposedCorners[index];
+                renderer.enabled = visible;
+                if (!visible) continue;
+                float horizontal = index < 2 ? -1 : 1;
+                float vertical = index % 2 == 0 ? -1 : 1;
+                Vector3 tip = center + new Vector3(horizontal * extent.x, vertical * extent.y, 0);
+                renderer.SetPosition(0, tip - Vector3.right * horizontal * length);
+                renderer.SetPosition(1, tip);
+                renderer.SetPosition(2, tip - Vector3.up * vertical * length);
+                renderer.widthMultiplier = Mathf.Clamp(state.Definition.BodyHeight * 0.02f, 0.012f, 0.026f);
+                renderer.sortingOrder = order + 7;
+                renderer.startColor = renderer.endColor = new Color(0.55f, 1f, 0.82f, 0.65f);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (bowMaterial != null) Destroy(bowMaterial);
+            if (exposedMaterial != null) Destroy(exposedMaterial);
+        }
 
         public void SetTerminalFade(float alpha)
         {
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
+            if (tierBell != null) Fade(tierBell, alpha);
+            foreach (LineRenderer corner in exposedCorners)
+            {
+                if (corner == null) continue;
+                Color tint = corner.startColor; tint.a *= alpha; corner.startColor = corner.endColor = tint;
+            }
             if (drawHand != null) Fade(drawHand, alpha);
             if (bowString != null)
             {

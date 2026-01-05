@@ -146,6 +146,7 @@ namespace ArcaneBrigade.Editor
             {
                 session = new RunSession(catalog); session.Start(catalog.Champions[0].Id, 13104); session.State.Roster.Clear();
                 Combat = session.PrepareCombat(); Combat.EnemyBudget = 0; Combat.Boss = null; Combat.WaveDuration = 1000;
+                Combat.EnableArenaToys = Combat.EnableBossArenaPhase = false;
                 Combat.PassiveHeal = 0; Combat.ChestInterval = 1000; Combat.ExtendedLoot = false; Combat.Procs = new ActiveProc[0];
                 Combat.Champion.Weapon = UnityEngine.Object.Instantiate(catalog.Weapon(id)); assets.Add(Combat.Champion.Weapon);
                 Combat.Champion.Speed = 0; Combat.Champion.CriticalChance = 0;

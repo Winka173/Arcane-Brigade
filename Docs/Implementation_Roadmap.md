@@ -1,5 +1,7 @@
 # Arcane Brigade — kế hoạch chuẩn bị triển khai
 
+**K4 cập nhật cuối (2026-10-13): DONE theo functional gate runtime Windows.** Ba weapon, hai build/connector/contribution, post-save merge/tier/idle, hai đạo cụ/boss phase và sandbox cô lập đã nối; regression + native vertical slice PASS. Xem `K4_Final_Checkpoint.md`. Phase kế tiếp K5; font/UI redesign K6, device/production polish K7. Những trạng thái K4.1/chưa triển khai cũ bên dưới là lịch sử, cập nhật này có ưu tiên.
+
 **Visual pass trước K4:** chủ dự án chọn hướng 1 (render sắc ở 4K, không yêu cầu mỗi PNG native 4K). Model/map/zoom/effects và ảnh Unity được nâng cấp riêng, giữ contract gameplay K3. Xem `Visual_Quality_4K_Pass.md`; không tính là hoàn tất K4 hoặc device gate K7.
 
 **K3 cập nhật cuối:** DONE theo gate runtime Windows; báo cáo `K3_Final_Checkpoint.md`. Chủ dự án xác nhận chuyển device gate sang K7. Có thể tiếp tục K4; chưa triển khai K4 trong lượt này hoặc tuyên bố production/mobile/exact-reference parity DONE. Các dòng trạng thái cũ bên dưới là lịch sử, cập nhật này có ưu tiên.
@@ -68,7 +70,7 @@ Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning
 
 ### K4 — Lát cắt signature hoàn chỉnh
 
-**Tiến độ mới:** K4.1 có Windows candidate ba weapon families (Umbrella/BellFork/DreamStamp), tier twist, mark/pulse cause, art/SFX/cue và Details theo data; 40 checks + regression và native capture PASS. K4 chưa DONE: hai build/connector/contribution, merge reveal/tier silhouette, props/boss phase và sandbox còn theo `K4_Implementation_Plan.md`. Font/UI redesign vẫn để K6–K7.
+**Tiến độ cuối:** K4.1–K4.5 đạt functional gate Windows theo `K4_Final_Checkpoint.md`. Plan/checkpoint chi tiết: `K4_Implementation_Plan.md`. Font/UI redesign vẫn để K6–K7; không tự nhận mobile, final art/audio/balance hoặc exact-reference parity đã nghiệm thu.
 
 **Phạm vi:** R4/R5; S1–S4, N06/N07/N09/N10 và sandbox N16. **Dependency:** K3.
 

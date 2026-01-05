@@ -62,6 +62,7 @@ namespace ArcaneBrigade
         public List<ItemStack> Items = new List<ItemStack>();
         public List<ShopOffer> Offers = new List<ShopOffer>();
         public List<ShopOffer> SpecialOffers = new List<ShopOffer>();
+        public List<ContributionEntry> Contributions = new List<ContributionEntry>();
     }
 
     public sealed class RunSession : IDisposable
@@ -105,6 +106,7 @@ namespace ArcaneBrigade
             State.SchemaRevision = RunSnapshot.CurrentSchemaRevision;
             if (State.Receipts == null) State.Receipts = new List<RunTransactionReceipt>();
             if (State.SpecialOffers == null) State.SpecialOffers = new List<ShopOffer>();
+            if (State.Contributions == null) State.Contributions = new List<ContributionEntry>();
             if (State.Offers.Count > catalog.ShopSlots) State.Offers.RemoveRange(catalog.ShopSlots, State.Offers.Count - catalog.ShopSlots);
             RecountBonds();
         }
@@ -116,6 +118,12 @@ namespace ArcaneBrigade
             if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
             if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
             var rosterKeys = new HashSet<string>();
+            if (snapshot.Contributions != null)
+            {
+                var contributionKeys = new HashSet<string>();
+                foreach (ContributionEntry entry in snapshot.Contributions)
+                    if (entry == null || string.IsNullOrEmpty(entry.UnitId) || entry.WeaponId == null || string.IsNullOrEmpty(entry.EffectId) || entry.Tier < 0 || entry.Tier > catalog.MaximumTier || !float.IsFinite(entry.Damage) || entry.Damage < 0 || !float.IsFinite(entry.Healing) || entry.Healing < 0 || entry.Coins < 0 || entry.Activations < 0 || !contributionKeys.Add(entry.Key)) throw new InvalidOperationException("Invalid contribution ledger");
+            }
             if (snapshot.NextReceipt < 0 || snapshot.RerollsThisShop < 0) throw new InvalidOperationException("Invalid transaction counters");
             if (snapshot.SchemaRevision >= 2 && snapshot.Receipts == null) throw new InvalidOperationException("Missing transaction history");
             if (snapshot.Receipts != null)
@@ -210,6 +218,17 @@ namespace ArcaneBrigade
                 if (stacks > 0) procs.Add(new ActiveProc { Rule = rule, Stacks = stacks });
             }
             CombatCatalog.Procs = procs.ToArray();
+            CombatCatalog.EnableArenaToys = catalog.SignatureRevision > 0;
+            CombatCatalog.RunWave = State.Wave;
+            CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
+            foreach (ItemStack stack in State.Items)
+            {
+                ItemDefinition item = catalog.Item(stack.Id); int count = item.EffectiveStacks(stack.Count);
+                if (item.SignatureRole == SignatureRelicKind.HarvestReceipt) CombatCatalog.HarvestStacks += count;
+                if (item.SignatureRole == SignatureRelicKind.ReflectiveInk) CombatCatalog.ReflectiveInkStacks += count;
+                if (item.SignatureRole == SignatureRelicKind.CarbonRibbon && count > 0) CombatCatalog.CarbonRibbon = true;
+                if (item.SignatureRole == SignatureRelicKind.OfficeLens) CombatCatalog.OfficeLensStacks += count;
+            }
             WaveModifier active = ActiveModifier;
             if (active != null)
             {
@@ -269,6 +288,7 @@ namespace ArcaneBrigade
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
+            ContributionLedger.Merge(State.Contributions, simulation.Contributions);
             State.Eggs = BoundedCounter((long)State.Eggs + simulation.Eggs + (simulation.BossDefeated ? 3 : 1));
             if (simulation.BossDefeated) State.BossKills = BoundedCounter((long)State.BossKills + 1);
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }

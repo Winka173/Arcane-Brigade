@@ -84,6 +84,7 @@ namespace ArcaneBrigade
             if (catalog.AltarRevision < 0 || !float.IsFinite(catalog.AltarBaseChance) || catalog.AltarBaseChance < 0 || catalog.AltarBaseChance > 1 || !float.IsFinite(catalog.AltarChancePerEgg) || catalog.AltarChancePerEgg < 0) throw new InvalidOperationException("Invalid altar tuning");
             foreach (ItemDefinition item in catalog.Items)
             {
+                if (!Enum.IsDefined(typeof(SignatureRelicKind), item.SignatureRole)) throw new InvalidOperationException("Invalid signature relic role: " + item.Id);
                 if (!Enum.IsDefined(typeof(ItemRarity), item.Rarity) || !Enum.IsDefined(typeof(StackPolicy), item.Stacking) || item.ShopWeight < 0 || item.MaximumStacks < 0 || item.MaximumStacks > 100000 || (catalog.EconomyRevision > 0 && (item.Pools == 0 || (item.Pools & ~ShopPool.Both) != 0))) throw new InvalidOperationException("Invalid item policy: " + item.Id);
                 if (catalog.AltarRevision > 0 && (item.AltarPrice < 1 || (item.AltarCurrency != ShopCurrency.Eggs && item.AltarCurrency != ShopCurrency.Health))) throw new InvalidOperationException("Invalid altar price/currency: " + item.Id);
                 foreach (StatModifier modifier in item.EffectiveModifiers)

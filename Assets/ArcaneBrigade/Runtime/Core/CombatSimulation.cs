@@ -72,6 +72,7 @@ namespace ArcaneBrigade
         public int AttackTargetId;
         public int VisibleMarks;
         public float MarkVisibleUntil;
+        public float ExposedUntil;
     }
 
     public sealed class ProjectileState
@@ -91,6 +92,7 @@ namespace ArcaneBrigade
         public float VisualWidth;
         public bool Critical;
         public int SourceUnitId;
+        public CombatCause Cause;
     }
 
     public sealed class PickupState
@@ -160,6 +162,7 @@ namespace ArcaneBrigade
             events.Clear();
             spawnRandom = new System.Random(seed);
             ClearSignatures();
+            contributions.Clear(); contributionIndex.Clear(); nextHarvestBeat = 0; HarvestBeats = 0;
             combatRandom = new System.Random(unchecked(seed ^ 0x51B31));
             lootRandom = new System.Random(unchecked(seed ^ 0xC4357));
             procRandom = new System.Random(unchecked(seed ^ 0xA1703));
@@ -188,6 +191,7 @@ namespace ArcaneBrigade
             if (catalog.Boss != null) Boss = Spawn(catalog.Boss, Faction.Enemy, new Vector2(0f, catalog.ArenaSize.y * 0.35f));
             spatial.Rebuild(units);
             Phase = RunPhase.Combat;
+            ResetArenaToys(catalog.RunWave);
         }
 
         public UnitState AddCompanion(UnitDefinition definition)
@@ -215,6 +219,7 @@ namespace ArcaneBrigade
             Boss = null;
             restElapsed = 0f;
             ClearSignatures();
+            ClearArenaToys();
             foreach (UnitState unit in units) { unit.PendingAttack = false; unit.AttackStarted = -100f; unit.BurnUntil = unit.ChillUntil = 0f; }
             spatial.Rebuild(units);
             Phase = RunPhase.Rest;
@@ -252,7 +257,9 @@ namespace ArcaneBrigade
             Elapsed += deltaTime;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
             Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * deltaTime, Champion.Definition.Radius);
+            float beforeRegeneration = Champion.Health;
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + catalog.PassiveHeal * deltaTime);
+            if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
             SpawnWaveEnemies();
             spatial.Rebuild(units);
@@ -279,7 +286,9 @@ namespace ArcaneBrigade
                     CollectPickups(deltaTime);
                     SpawnTreasure();
                     ProcessProcs();
+                    ProcessSignatureRelics();
                     ProcessSignatures();
+                    ProcessArenaToys(deltaTime);
                 }
                 if (Phase == RunPhase.Combat && (catalog.Boss == null ? Elapsed >= catalog.WaveDuration : BossDefeated)) Phase = RunPhase.Victory;
             }
@@ -371,9 +380,16 @@ namespace ArcaneBrigade
                 case PassiveKind.HealChampion:
                     float healthBefore = Champion.Health;
                     Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + unit.Definition.PassiveStrength * 3f);
-                    if (Champion.Health > healthBefore) events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - healthBefore, subjectId: Champion.Id, cause: NewCause(unit.Id)));
+                    if (Champion.Health > healthBefore)
+                    {
+                        CombatCause healingCause = NewCause(unit.Id);
+                        RecordHealing(healingCause.Child("unit-passive"), Champion.Health - healthBefore);
+                        events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - healthBefore, subjectId: Champion.Id, cause: healingCause));
+                    }
                     break;
-                case PassiveKind.Scavenge: Gold += Mathf.RoundToInt(unit.Definition.PassiveStrength); break;
+                case PassiveKind.Scavenge:
+                    int nextGold = RunSession.BoundedCounter((long)Gold + Mathf.RoundToInt(unit.Definition.PassiveStrength));
+                    Contribution(NewCause(unit.Id).Child("scavenge")).Coins += nextGold - Gold; Gold = nextGold; break;
                 case PassiveKind.ChillAura:
                     float auraRadius = 2f + unit.Definition.PassiveStrength * 0.625f;
                     foreach (UnitState enemy in units)
@@ -451,7 +467,7 @@ namespace ArcaneBrigade
                 if (critical) damage *= 1.5f;
                 if (weapon.Kind == WeaponKind.Projectile)
                 {
-                    EmitProjectile(unit, damage, critical);
+                    EmitProjectile(unit, damage, critical, attackCause);
                 }
                 else if (weapon.Signature == SignatureWeapon.Stamp && unit.Faction != Faction.Enemy)
                 {
@@ -469,7 +485,7 @@ namespace ArcaneBrigade
                         UnitState target = units[index];
                         Vector2 delta = target.Position - unit.Position;
                         if (CanHit(unit.Faction, target) && delta.magnitude <= weapon.Range + target.Definition.Radius && Vector2.Dot(delta.normalized, unit.AttackDirection) >= weapon.ConeDot)
-                            ApplyWeaponDamage(target, damage, unit.Faction, weapon.Element, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, NewCause(unit.Id));
+                            ApplyWeaponDamage(target, damage, unit.Faction, weapon.Element, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, attackCause);
                     }
                 }
                 AdvanceSignatureBeat(unit, damage, attackCause);
@@ -488,7 +504,7 @@ namespace ArcaneBrigade
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
 
-        private void EmitProjectile(UnitState unit, float damage, bool critical)
+        private void EmitProjectile(UnitState unit, float damage, bool critical, CombatCause cause)
         {
             WeaponDefinition weapon = unit.Definition.Weapon;
             Vector2 muzzleOffset = weapon.HasMuzzleOffset ? weapon.ProjectileMuzzleOffset : Vector2.right * weapon.MuzzleDistance;
@@ -514,7 +530,8 @@ namespace ArcaneBrigade
                     Sprite = weapon.ProjectileSprite,
                     VisualWidth = weapon.ProjectileVisualWidth,
                     Critical = critical,
-                    SourceUnitId = unit.Id
+                    SourceUnitId = unit.Id,
+                    Cause = cause
                 });
             }
         }
@@ -551,9 +568,13 @@ namespace ArcaneBrigade
                 }
                 projectile.Position = destination;
                 projectile.Remaining -= deltaTime;
+                if (projectile.Cause.RootId == 0) projectile.Cause = NewCause(projectile.SourceUnitId);
+                UnitState projectileSource = null;
+                foreach (UnitState candidate in units) if (candidate.Id == projectile.SourceUnitId) { projectileSource = candidate; break; }
+                NotifyArenaToyHit(projectileSource, start, hit == null ? destination : Vector2.Lerp(start, destination, nearestFraction), 0.055f, projectile.Velocity.normalized, projectile.Cause);
                 if (hit != null)
                 {
-                    ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, null, projectile.Critical, NewCause(projectile.SourceUnitId));
+                    ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, null, projectile.Critical, projectile.Cause);
                     projectiles.RemoveAt(index);
                 }
                 else if (projectile.Remaining <= 0f || Mathf.Abs(destination.x) > catalog.ArenaSize.x || Mathf.Abs(destination.y) > catalog.ArenaSize.y)
@@ -580,11 +601,21 @@ namespace ArcaneBrigade
             if (!target.Alive || target.Faction == Faction.Companion || !float.IsFinite(damage) || damage <= 0f) return;
             if (cause.RootId == 0) cause = NewCause(0);
             if (target.Faction == Faction.Champion) damage *= 1f / (1f + Mathf.Max(0f, catalog.Armor));
+            float baseDamage = damage;
+            if (target.Faction == Faction.Enemy && critical && target.ExposedUntil > Elapsed && catalog.OfficeLensStacks > 0) damage *= 1.25f + Mathf.Min(0.25f, catalog.OfficeLensStacks * 0.05f);
+            if (target.Faction == Faction.Enemy && source != Faction.Enemy)
+            {
+                float primary = Mathf.Min(target.Health, baseDamage);
+                RecordDamage(cause, primary);
+                float extra = Mathf.Min(target.Health, damage) - primary;
+                if (extra > 0) RecordDamage(cause.Child("office-lens"), extra);
+            }
             if (target.Faction == Faction.Champion) { LastDamageSource = string.IsNullOrEmpty(sourceName) ? "Enemy damage" : sourceName; LastDamageAmount = damage; }
             target.Health = Mathf.Max(0f, target.Health - damage);
             target.LastHit = Elapsed;
             target.HitDirection = direction;
             events.Add(new CombatEvent(CombatEventKind.Hit, target.Position, target.Faction, damage, direction, weapon, critical, element, target.Id, target, cause));
+            NotifyArenaToyHit(events[events.Count - 1]);
             if (target.Health > 0f) return;
             target.Alive = false;
             target.PendingAttack = false;
@@ -649,10 +680,16 @@ namespace ArcaneBrigade
                 if (!pickup.Attracting) continue;
                 pickup.Position = Vector2.MoveTowards(pickup.Position, Champion.Position, (7f + age * 2f) * deltaTime);
                 if ((pickup.Position - Champion.Position).sqrMagnitude > 0.045f) continue;
-                if (pickup.Kind == LootKind.Coin) Gold = RunSession.BoundedCounter((long)Gold + pickup.Value);
+                CombatCause pickupCause = NewCause(Champion.Id);
+                if (pickup.Kind == LootKind.Coin)
+                {
+                    int nextGold = RunSession.BoundedCounter((long)Gold + pickup.Value);
+                    Contribution(pickupCause.Child("coin-credit")).Coins = RunSession.BoundedCounter((long)Contribution(pickupCause.Child("coin-credit")).Coins + nextGold - Gold);
+                    Gold = nextGold;
+                }
                 else if (pickup.Kind == LootKind.Egg) Eggs = RunSession.BoundedCounter((long)Eggs + pickup.Value);
                 else if (pickup.Kind == LootKind.Heart) Heal(pickup.Value, NewCause(Champion.Id));
-                events.Add(new CombatEvent(CombatEventKind.Pickup, pickup.Position, Faction.Champion, pickup.Value, subjectId: pickup.Id, cause: NewCause(Champion.Id), loot: pickup.Kind));
+                events.Add(new CombatEvent(CombatEventKind.Pickup, pickup.Position, Faction.Champion, pickup.Value, subjectId: pickup.Id, cause: pickupCause, loot: pickup.Kind));
                 pickups.RemoveAt(index);
             }
         }
@@ -694,6 +731,7 @@ namespace ArcaneBrigade
             if (!Champion.Alive) return;
             float previous = Champion.Health;
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0, amount));
+            RecordHealing(cause, Champion.Health - previous);
             if (Champion.Health > previous) events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - previous, subjectId: Champion.Id, cause: cause));
         }
 
@@ -725,21 +763,21 @@ namespace ArcaneBrigade
 
         public void AddLootPresentationFixture(LootKind kind, Vector2 position, int value)
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             DropLoot(kind, position, value);
         }
 
         public void ConfigureLootPresentationFixture()
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             catalog.EnemyBudget = 0;
             nextChest = float.PositiveInfinity;
-            if (RunPaths.K4Capture) { catalog.CompanionPatrolSpeed = 0; catalog.CompanionAcceleration = 0; }
+            if (RunPaths.K4Capture || RunPaths.K4FinalCapture) { catalog.CompanionPatrolSpeed = 0; catalog.CompanionAcceleration = 0; }
         }
 
         public UnitState AddPresentationFixture(Vector2 position, float health)
         {
-            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture) throw new InvalidOperationException("Presentation fixture requires isolated capture mode");
+            if (!RunPaths.K2Capture && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture) throw new InvalidOperationException("Presentation fixture requires isolated capture mode");
             UnitState unit = Spawn(catalog.MeleeEnemy, Faction.Enemy, position);
             unit.Health = health;
             return unit;

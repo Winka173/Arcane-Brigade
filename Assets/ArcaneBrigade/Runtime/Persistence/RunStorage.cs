@@ -16,9 +16,11 @@ namespace ArcaneBrigade
         public int TotalKills;
         public int Cosmetic;
         public float Volume = 0.7f;
+        public bool ReducedMotion;
         public List<string> CompletedRuns = new List<string>();
         public List<string> SeenUnits = new List<string>();
         public List<string> SeenItems = new List<string>();
+        public List<string> SeenWeapons = new List<string>();
         public List<string> Achievements = new List<string>();
     }
 
@@ -62,6 +64,7 @@ namespace ArcaneBrigade
                     if (profile == null || profile.Version != 1 || profile.BestWave < 0 || profile.CompletedRuns == null || profile.SeenUnits == null || profile.SeenItems == null || profile.Achievements == null || !float.IsFinite(profile.Volume)) throw new InvalidOperationException("Invalid profile");
                     if (profile.Wins < 0 || profile.TotalKills < 0 || profile.Cosmetic < 0 || profile.Cosmetic > 1) throw new InvalidOperationException("Invalid profile counters");
                     profile.Volume = Mathf.Clamp01(profile.Volume);
+                    if (profile.SeenWeapons == null) profile.SeenWeapons = new List<string>();
                     return profile;
                 }
                 catch (Exception exception) { LastError = "Profile save rejected: " + exception.Message; }
@@ -100,6 +103,8 @@ namespace ArcaneBrigade
         {
             profile.BestWave = Mathf.Max(profile.BestWave, run.Wave);
             foreach (RosterEntry entry in run.Roster) if (!profile.SeenUnits.Contains(entry.UnitId)) profile.SeenUnits.Add(entry.UnitId);
+            if (profile.SeenWeapons == null) profile.SeenWeapons = new List<string>();
+            foreach (RosterEntry entry in run.Roster) if (!profile.SeenWeapons.Contains(entry.WeaponId)) profile.SeenWeapons.Add(entry.WeaponId);
             foreach (ItemStack stack in run.Items) if (!profile.SeenItems.Contains(stack.Id)) profile.SeenItems.Add(stack.Id);
             if (run.BossKills > 0 && !profile.Achievements.Contains("First bell silenced")) profile.Achievements.Add("First bell silenced");
             if (run.Wave >= 10 && !profile.Achievements.Contains("Ten halls crossed")) profile.Achievements.Add("Ten halls crossed");

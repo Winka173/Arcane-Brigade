@@ -6,6 +6,7 @@ namespace ArcaneBrigade
     public enum ModifierScope { Team, Champion, Companions, Run }
     public enum ItemRarity { Common, Uncommon, Rare, Mythic }
     public enum StackPolicy { Additive, Unique }
+    public enum SignatureRelicKind { None, HarvestReceipt, ReflectiveInk, CarbonRibbon, OfficeLens }
     [System.Flags]
     public enum ShopPool { Gold = 1, Eggs = 2, Both = Gold | Eggs }
 
@@ -45,6 +46,7 @@ namespace ArcaneBrigade
         public ShopPool Pools = ShopPool.Both;
         public ShopCurrency AltarCurrency = ShopCurrency.Eggs;
         public int AltarPrice = 2;
+        public SignatureRelicKind SignatureRole;
         public int StackLimit => Stacking == StackPolicy.Unique ? 1 : (MaximumStacks > 0 ? MaximumStacks : 100000);
         public int EffectiveStacks(int count) => Mathf.Min(count, StackLimit);
         public StatModifier[] EffectiveModifiers => Modifiers != null && Modifiers.Length > 0 ? Modifiers : new[] { new StatModifier { Effect = Effect, Scope = RunModifierRules.DefaultScope(Effect), Value = Value } };
@@ -96,6 +98,7 @@ namespace ArcaneBrigade
         public float AltarBaseChance;
         public float AltarChancePerEgg;
         public int LootRevision;
+        public int SignatureRevision;
         public ProcRule[] ProcRules = new ProcRule[0];
         public Sprite EggSprite;
         public Sprite HeartSprite;

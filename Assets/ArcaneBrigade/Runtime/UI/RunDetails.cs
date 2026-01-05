@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public bool Open => model != null;
         public int Tab => tab;
         public const int TabCount = 4;
-        public void Show(RunSession session, RunCatalog catalog, float health) { model = RunBuildReadModel.Capture(session, catalog, health); selection = 0; scroll = explanationScroll = Vector2.zero; }
+        public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; }
         public void Close() { model = null; }
         public void SelectTab(int index) { tab = Mathf.Clamp(index, 0, TabCount - 1); selection = 0; scroll = explanationScroll = Vector2.zero; }
         public void MoveSelection(int direction)

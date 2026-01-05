@@ -44,5 +44,12 @@ namespace ArcaneBrigade
         public float HeartDropChance = 0.04f;
         public float ChestInterval = 24f;
         public ActiveProc[] Procs = new ActiveProc[0];
+        public bool EnableArenaToys;
+        public bool EnableBossArenaPhase;
+        public int RunWave = 1;
+        public int HarvestStacks;
+        public int ReflectiveInkStacks;
+        public bool CarbonRibbon;
+        public int OfficeLensStacks;
     }
 }

@@ -8,7 +8,7 @@ namespace ArcaneBrigade
     public static class RunLaunch { public static string ChampionId; public static bool Resume; }
     public sealed class RunMenu : MonoBehaviour
     {
-        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite }
+        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox }
         [SerializeField] private RunCatalog catalog;
         private RunStorage storage;
         private PlayerProfile profile;
@@ -20,13 +20,56 @@ namespace ArcaneBrigade
         private Vector2 scroll;
         private string error;
         private bool existingSave;
+        private WeaponSandbox sandbox;
+        private Page sandboxReturnPage;
+        private Vector2 sandboxReturnScroll;
+        private bool diagnosticState;
+        public WeaponSandbox Sandbox => sandbox;
+        public WeaponSandbox GetSandbox() => sandbox;
         public Page CurrentPage { get; private set; }
         public void Configure(RunCatalog definition) { catalog = definition; }
-        public void ShowPage(Page page) { CurrentPage = page; scroll = Vector2.zero; }
+        public void ShowPage(Page page)
+        {
+            if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
+            if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
+            CurrentPage = page;
+            scroll = Vector2.zero;
+        }
+        public void OpenWeaponSandbox()
+        {
+            if (profile == null || catalog == null) return;
+            EnterWeaponSandbox(catalog, profile, saved, null, 1, false);
+        }
+        public void OpenWeaponSandboxForDiagnostics(RunCatalog definition, PlayerProfile readOnlyProfile,
+            RunSnapshot readOnlySaved = null, string weaponId = null, int tier = 1, bool moving = false)
+        {
+            diagnosticState = true;
+            catalog = definition;
+            profile = readOnlyProfile;
+            saved = readOnlySaved;
+            EnterWeaponSandbox(definition, readOnlyProfile, readOnlySaved, weaponId, tier, moving);
+        }
+        private void EnterWeaponSandbox(RunCatalog definition, PlayerProfile readOnlyProfile,
+            RunSnapshot readOnlySaved, string weaponId, int tier, bool moving)
+        {
+            if (CurrentPage != Page.WeaponSandbox) { sandboxReturnPage = CurrentPage; sandboxReturnScroll = scroll; }
+            if (sandbox == null) sandbox = gameObject.AddComponent<WeaponSandbox>();
+            sandbox.Open(definition, readOnlyProfile, readOnlySaved, weaponId, tier, moving);
+            CurrentPage = Page.WeaponSandbox;
+        }
+        public void CloseWeaponSandbox()
+        {
+            if (CurrentPage != Page.WeaponSandbox) return;
+            sandbox.Dispose();
+            CurrentPage = sandboxReturnPage;
+            scroll = sandboxReturnScroll;
+        }
+        private void OnDisable() { CloseWeaponSandbox(); }
         private bool CanResume => saved != null && (saved.Phase == SessionPhase.Combat || saved.Phase == SessionPhase.Shop);
 
         private void Start()
         {
+            if (diagnosticState) return;
             storage = new RunStorage(RunPaths.Root);
             profile = storage.LoadProfile();
             error = storage.LastError;
@@ -46,6 +89,12 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            if (CurrentPage == Page.WeaponSandbox)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) CloseWeaponSandbox();
+                else sandbox.HandleInput();
+                return;
+            }
             if (Input.GetKeyDown(KeyCode.Escape)) ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
         }
 
@@ -89,7 +138,11 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(20, 15, 1240, 690), new Color(0.10f, 0.08f, 0.19f));
             GUI.Label(new Rect(60, 35, 940, 65), "ARCANE BRIGADE", heading);
             Label(new Rect(60, 105, 1120, 48), "Đội quân kỳ quặc · Chỉ di chuyển · Mọi đòn đánh tự động");
-            if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "QUAY LẠI")) ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
+            if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "QUAY LẠI"))
+            {
+                if (CurrentPage == Page.WeaponSandbox) CloseWeaponSandbox();
+                else ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
+            }
             switch (CurrentPage)
             {
                 case Page.Landing: DrawLanding(); break;
@@ -110,8 +163,9 @@ namespace ArcaneBrigade
                     Label(new Rect(110, 185, 1060, 410), "DI CHUYỂN: WASD / mũi tên / kéo ngón tay vùng dưới bên trái.\nNhân vật và đồng minh tự đánh; không có nút kỹ năng.\nSHOP: đi tới quầy, SPACE / USE để mua; không mua tự động. Nâng cấp cũng tốn tiền.\nĐồng minh bất tử, không chặn đạn mặc định. Không phí nuôi, không bán hoặc khóa shop.\nI / ĐỒ: Stats, Companions, Relics. TAB đổi tab; I / ESC đóng.\nESC pause hoặc đóng lớp đang mở. Mất focus / vào nền giữ pause riêng.\nHồ sơ chỉ lưu unlock, cosmetic và kỷ lục; không tăng stat vĩnh viễn.");
                     break;
                 case Page.Records: DrawRecords(); break;
+                case Page.WeaponSandbox: sandbox.DrawPanel(text, button); break;
             }
-            if (!string.IsNullOrEmpty(error)) Label(new Rect(60, 630, 1150, 65), error);
+            if (CurrentPage != Page.WeaponSandbox && !string.IsNullOrEmpty(error)) Label(new Rect(60, 630, 1150, 65), error);
             GUI.matrix = previous;
             GUI.skin = previousSkin;
         }
@@ -170,13 +224,20 @@ namespace ArcaneBrigade
                 if (!SaveProfile()) profile.Cosmetic = before;
             }
             GUI.enabled = true;
-            Label(new Rect(130, 455, 980, 130), "Cosmetic mở ở hall 5, không tăng sức mạnh.\nNoto Sans / Black / Mono — SIL OFL 1.1.\nBộ chữ nền có tiếng Việt; lettering độc quyền sẽ polish sau.");
+            if (Button(new Rect(130, 445, 650, 65), profile.ReducedMotion ? "GIẢM CHUYỂN ĐỘNG: BẬT" : "GIẢM CHUYỂN ĐỘNG: TẮT"))
+            {
+                bool before = profile.ReducedMotion;
+                profile.ReducedMotion = !before;
+                if (!SaveProfile()) profile.ReducedMotion = before;
+            }
+            Label(new Rect(130, 525, 980, 100), "Cosmetic mở ở hall 5, không tăng sức mạnh.\nNoto Sans / Black / Mono — SIL OFL 1.1.\nBộ chữ nền có tiếng Việt; lettering độc quyền sẽ polish sau.");
         }
 
         private void DrawRecords()
         {
+            if (Button(new Rect(710, 550, 470, 60), "THỬ VŨ KHÍ / SANDBOX")) OpenWeaponSandbox();
             float height = 130 + profile.Achievements.Count * 55 + catalog.Companions.Length * 80 + catalog.Items.Length * 80;
-            scroll = GUI.BeginScrollView(new Rect(90, 180, 1100, 415), scroll, new Rect(0, 0, 1050, height));
+            scroll = GUI.BeginScrollView(new Rect(90, 180, 1100, 345), scroll, new Rect(0, 0, 1050, height));
             Label(new Rect(15, 10, 1010, 95), "Hall cao nhất: " + profile.BestWave + " · Thắng: " + profile.Wins + " · Kills: " + profile.TotalKills + "\nBộ sưu tập chỉ hiện nội dung đã gặp thật.");
             float vertical = 130;
             foreach (string achievement in profile.Achievements) { Label(new Rect(15, vertical, 1010, 50), achievement); vertical += 55; }
