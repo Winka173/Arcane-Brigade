@@ -80,7 +80,7 @@ namespace ArcaneBrigade
                 AudioListener.volume = profile.Volume;
                 session = new RunSession(runCatalog);
                 RunSnapshot saved = RunLaunch.Resume ? storage.LoadRun(session) : null;
-                if (saved != null && (saved.Phase == SessionPhase.Shop || saved.Phase == SessionPhase.Combat)) session.Restore(saved);
+                if (saved != null) session.Restore(saved);
                 else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
                 ArcadeSkin.Bundle = profile.Cosmetic;
                 PersistBoundary();

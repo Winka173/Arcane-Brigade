@@ -4,6 +4,7 @@ PASS 4K Unity frame 02-companion-files
 PASS 4K Unity frame 03-relic-drawers
 PASS 4K Unity frame 04-build-inspection
 PASS Seeded terminal fixture credits one frozen history
+PASS Windows terminal Victory resume reopens invoice without new run or duplicated credit
 PASS 4K Unity frame 05-victory-invoice
 PASS 4K Unity frame 05-invoice-contribution-evidence
 PASS 4K Unity frame 06-bundle-1
@@ -12,6 +13,7 @@ PASS Native Endless starts clean segment with build and parent intact
 PASS Physical rest has three real stand offers not modal shop
 PASS 4K Unity frame 07-physical-rest-endless
 PASS 4K Unity frame 07-stand-price-preview
+PASS Windows terminal Defeat resume keeps final cause build and single credit
 PASS 4K Unity frame 08-defeat-invoice
 PASS 4K Unity frame 08-death-source-evidence
 PASS 4K Unity frame 09-main-menu

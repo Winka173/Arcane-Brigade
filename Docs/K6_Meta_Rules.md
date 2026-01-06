@@ -14,6 +14,7 @@ Ngày thiết kế: 2026-10-14. Tuning nguyên bản của Arcane Brigade; **kh�
 
 - Schema run 3; profile 2. Envelope SHA256, `.tmp` + flush + atomic replace + `.bak` giữ nguyên. Profile disk write thất bại rollback in-memory counters/discovery/history; có thể retry. Menu phục hồi credit terminal run đã lưu mà profile chưa nhận. Retry/reopen dedupe theo RunId, không theo nickname.
 - Detailed history giữ 50 hóa đơn gần nhất; CompletedRuns giữ identity lifetime để eviction không recredit. Best records không phụ thuộc detailed history còn tồn tại.
+- Resume cả Combat/Shop/Victory/Defeat đã validate. Kết quả terminal mở đúng RunId/build/cause cũ, không tạo run mới; Victory cho tiếp tục Endless dù trước đó đã đóng game. History vẫn read-only, không biến hóa đơn lịch sử thành một save sống.
 - Frozen deep-copy build, actual weapon/tier/stack, ledger hiệu lực, seed/mode, score và nickname được lưu. Nickname chọn nguồn damage lớn nhất, tie theo stable key; không RNG/network. History dùng nickname/score đã lưu, không reroll khi đổi trang.
 - Contribution: damage/heal theo HP thực, không overkill. Secondary chỉ ghi phần HP nó thực gây mất; kill ghi một lần cho nguồn đòn kết thúc. Không cộng kill lần nữa cho nguồn root/connector. Ledger gồm unit/weapon/tier/effect; không chia damage đều theo rarity.
 - Invoice có đội dạng grid + danh sách, cổ vật và ledger scroll, quick summary, death source/kind/damage thật. Export tùy chọn lưu ảnh frame local trong `RunPaths.Root/Receipts`, không upload; PNG là frame UI hiện tại, không hứa export toàn bộ phần scroll.

@@ -1,6 +1,6 @@
 K6 final Windows gate / 2026-10-14
 Unity6000.4.8f1; executeMethod ArcaneBrigade.Editor.K6Builder.GateAndBuild
-PASS K6 focused meta/migration/discovery/score/UI checks:71
+PASS K6 focused meta/migration/discovery/score/UI checks:72
 PASS K5 current content checks:139
 PASS FullRun existing checks:104
 PASS Checkpoint17 / Squad12 / K0-K1 contract27
@@ -9,8 +9,9 @@ PASS K3 transaction36 / modifier-economy29 / altar14 / final31
 PASS VisualQuality31
 PASS K4 signature40 / merge transaction / arena model / sandbox258 / final36
 Nested baseline reruns are not counted again as unique tests.
-PASS BuildWindows Succeeded; Errors0; Warnings0; size173270647 bytes
-PASS Native K6 Windows D3D11 capture:32 assertions;24PNG3840x2160
+PASS BuildWindows Succeeded; Errors0; Warnings0; size173271671 bytes
+PASS Native K6 Windows D3D11 capture:34 assertions;24PNG3840x2160
+PASS terminal Victory/Defeat native resume reopens exact RunId without duplicate credit
 PASS profile/run byte identity through read-only museum/history/sandbox
 PASS licenses packaged: Noto-OFL.txt and BeVietnamPro-OFL.txt
 Raw logs remain ignored under Logs; this summary intentionally excludes licensing/MachineIDs.

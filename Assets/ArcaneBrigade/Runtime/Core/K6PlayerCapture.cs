@@ -68,6 +68,11 @@ namespace ArcaneBrigade
             owner.Session.Restore(snapshot);
             storage.RecordProgress(owner.Profile, owner.Session.State, catalog);
             Check(owner.Profile.History.Count == 1 && owner.Profile.Wins == 1, "Seeded terminal fixture credits one frozen history");
+            string resultId = owner.Session.State.RunId;
+            storage.SaveRun(owner.Session.State); RunLaunch.Resume = true;
+            SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.5f);
+            owner = FindAnyObjectByType<ArenaController>();
+            Check(owner.Session.State.Phase == SessionPhase.Victory && owner.Session.State.RunId == resultId && owner.Profile.History.Count == 1 && owner.Profile.Wins == 1, "Windows terminal Victory resume reopens invoice without new run or duplicated credit");
             yield return Shot("05-victory-invoice");
             owner.ShowInvoiceEvidenceFixture(); yield return Shot("05-invoice-contribution-evidence");
             for (int bundle = 1; bundle <= 2; bundle++)
@@ -90,6 +95,10 @@ namespace ArcaneBrigade
             snapshot = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(owner.Session.State)); snapshot.Wave = 21; snapshot.Phase = SessionPhase.Defeat; snapshot.Health = 0;
             snapshot.LastDamageSource = "Door Bearer"; snapshot.LastDamageKind = "Physical / Contact"; snapshot.LastDamageAmount = 8;
             owner.Session.Restore(snapshot); storage.RecordProgress(owner.Profile, snapshot, catalog);
+            resultId = snapshot.RunId; storage.SaveRun(snapshot); RunLaunch.Resume = true;
+            SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.5f);
+            owner = FindAnyObjectByType<ArenaController>();
+            Check(owner.Session.State.Phase == SessionPhase.Defeat && owner.Session.State.RunId == resultId && owner.Profile.History.Count == 2 && owner.Profile.Wins == 1, "Windows terminal Defeat resume keeps final cause build and single credit");
             yield return Shot("08-defeat-invoice");
             owner.ShowInvoiceEvidenceFixture(); yield return Shot("08-death-source-evidence");
             PlayerProfile profile = owner.Profile; profile.Cosmetic = 0; ArcadeSkin.Bundle = 0;

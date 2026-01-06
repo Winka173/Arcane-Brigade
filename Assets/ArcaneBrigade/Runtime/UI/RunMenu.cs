@@ -84,7 +84,8 @@ namespace ArcaneBrigade
             scroll = sandboxReturnScroll;
         }
         private void OnDisable() { CloseWeaponSandbox(); }
-        private bool CanResume => saved != null && (saved.Phase == SessionPhase.Combat || saved.Phase == SessionPhase.Shop);
+        public static bool CanResumeSnapshot(RunSnapshot snapshot) => snapshot != null && Enum.IsDefined(typeof(SessionPhase), snapshot.Phase);
+        private bool CanResume => CanResumeSnapshot(saved);
 
         private void Start()
         {
@@ -191,7 +192,7 @@ namespace ArcaneBrigade
                 case Page.Landing: DrawLanding(); break;
                 case Page.Roster: DrawRoster(); break;
                 case Page.Resume:
-                    Label(new Rect(110, 200, 1060, 230), CanResume ? catalog.Unit(saved.ChampionId).DisplayName + " · Hall " + saved.Wave + "\n" + saved.Phase + " · Vàng " + saved.Gold + " · Trứng " + saved.Eggs + "\n" + saved.Roster.Count + " đồng minh · " + saved.Items.Count + " loại cổ vật\nCombat chưa xong sẽ chơi lại từ đầu hall; shop tiếp tục ở giao dịch cuối cùng." : "Không có mốc lưu hợp lệ.");
+                    Label(new Rect(110, 200, 1060, 230), CanResume ? catalog.Unit(saved.ChampionId).DisplayName + " · Hall " + saved.Wave + "\n" + saved.Phase + " · Vàng " + saved.Gold + " · Trứng " + saved.Eggs + "\n" + saved.Roster.Count + " đồng minh · " + saved.Items.Count + " loại cổ vật\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Mở lại hóa đơn đã chốt, không nhận thưởng hai lần. Victory vẫn cho tiếp tục Endless." : "Combat chưa xong sẽ chơi lại từ đầu hall; shop tiếp tục ở giao dịch cuối cùng.") : "Không có mốc lưu hợp lệ.");
                     GUI.enabled = CanResume;
                     if (Button(new Rect(420, 490, 440, 70), "TIẾP TỤC")) Launch(true);
                     GUI.enabled = true;

@@ -1,4 +1,5 @@
 PASS Tests do not touch player profile
+PASS All validated run phases including terminal results can resume without silently creating new run
 PASS New default mode schema3
 PASS Invoice read model cannot mutate build or RNG
 PASS Invoice reports actual weapon and identity

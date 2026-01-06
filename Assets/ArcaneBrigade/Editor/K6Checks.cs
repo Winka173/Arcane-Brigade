@@ -18,6 +18,7 @@ namespace ArcaneBrigade.Editor
             var storage = new RunStorage(root);
             var profile = new PlayerProfile();
             require(RunPaths.Diagnostic && root != Application.persistentDataPath, "Tests do not touch player profile");
+            require(new[] { SessionPhase.Combat, SessionPhase.Shop, SessionPhase.Victory, SessionPhase.Defeat }.All(phase => RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = phase })) && !RunMenu.CanResumeSnapshot(null) && !RunMenu.CanResumeSnapshot(new RunSnapshot { Phase = (SessionPhase)999 }), "All validated run phases including terminal results can resume without silently creating new run");
             using (var session = new RunSession(catalog))
             {
                 session.Start(catalog.Champions[0].Id, 610026);
