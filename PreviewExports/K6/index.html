@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arcane Brigade — K6 Windows</title>
+<style>
+body{margin:0;background:#171326;color:#fff0c4;font:16px system-ui,sans-serif}main{max-width:1400px;margin:auto;padding:32px}h1{color:#ffb852}p{max-width:1100px;line-height:1.6}a{color:#70e8d3}section{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:20px}figure{margin:0;padding:12px;border:1px solid #7a613f;border-radius:12px;background:#282039}img{display:block;width:100%;height:auto}figcaption{padding-top:12px;font-weight:600}small{display:block;font-weight:400;margin-top:6px;color:#c4bed0}
+</style>
+<main>
+<h1>K6 — Cửa hàng đồ thất lạc</h1>
+<p>Ảnh từ Unity Windows, 3840×2160 qua supersampling 2×. UI tiếng Việt / hồ sơ / biên lai / bảo tàng / lịch sử / bundle. Nguồn ảnh menu native 1536×1024, không gọi là PNG native 4K. Gameplay và đóng góp lấy pipeline thật; màn victory/death/boss discovery có fixture được gán rõ để kiểm tra bố cục, không phải bằng chứng thắng tự nhiên 20 hall. Save diagnostic cô lập, không chạm hồ sơ thật. K7 còn natural playtest, balance, audio, performance và thiết bị.</p>
+<p><a href="Checks.txt">Kiểm tra K6</a> · <a href="Editor_Checks.txt">Regression/build</a> · <a href="Player/CaptureNotes.txt">Assertions và giới hạn fixture</a> · <a href="Artifact_SHA256.txt">SHA256</a></p>
+<section>
+<figure><a href="Player/09-main-menu.png"><img src="Player/09-main-menu.png" alt="Main menu"></a><figcaption>Cửa hàng trong giấc mơ<small>Backdrop original, nhân vật/vũ khí hiện có, typography Việt.</small></figcaption></figure>
+<figure><a href="Player/10-champion-mode-selection.png"><img src="Player/10-champion-mode-selection.png" alt="Chọn Champion"></a><figcaption>Champion / độ khó / challenge<small>Năm bậc và ba challenge seed local; không stat vĩnh viễn.</small></figcaption></figure>
+<figure><a href="Player/01-hud-live-score.png"><img src="Player/01-hud-live-score.png" alt="HUD"></a><figcaption>HUD / score live<small>Combat thực với squad seeded12; không đo FPS từ ảnh.</small></figcaption></figure>
+<figure><a href="Player/02-companion-files.png"><img src="Player/02-companion-files.png" alt="Hồ sơ đồng minh"></a><figcaption>Thẻ đồng minh<small>Body + vũ khí thực + tier, passive, bond, read-only.</small></figcaption></figure>
+<figure><a href="Player/03-relic-drawers.png"><img src="Player/03-relic-drawers.png" alt="Ngăn cổ vật"></a><figcaption>Ngăn cổ vật<small>Icon, stack, scope và cả lợi/hại.</small></figcaption></figure>
+<figure><a href="Player/04-build-inspection.png"><img src="Player/04-build-inspection.png" alt="Liên kết"></a><figcaption>Đường nối build<small>Rule data và ledger thật, không bonus set bị bịa.</small></figcaption></figure>
+<figure><a href="Player/05-victory-invoice.png"><img src="Player/05-victory-invoice.png" alt="Invoice victory"></a><figcaption>Hóa đơn tới bình minh<small>Outcome/clear count là fixture; đội và contribution từ runtime.</small></figcaption></figure>
+<figure><a href="Player/05-invoice-contribution-evidence.png"><img src="Player/05-invoice-contribution-evidence.png" alt="Đóng góp đo được"></a><figcaption>Đóng góp đã đo<small>HP hiệu lực, nguồn/weapon/tier/effect, kill/heal/coin.</small></figcaption></figure>
+<figure><a href="Player/06-bundle-1.png"><img src="Player/06-bundle-1.png" alt="Văn phòng đêm"></a><figcaption>Bundle Văn phòng đêm<small>Chỉ frame/paper/stamp; không đổi threat semantics.</small></figcaption></figure>
+<figure><a href="Player/06-bundle-2.png"><img src="Player/06-bundle-2.png" alt="Sân khấu giấy"></a><figcaption>Bundle Sân khấu giấy<small>Unlock từ ba boss khác nhau; không buff.</small></figcaption></figure>
+<figure><a href="Player/07-physical-rest-endless.png"><img src="Player/07-physical-rest-endless.png" alt="Rest"></a><figcaption>Rest / ba quầy vật lý<small>ContinueEndless thật, build giữ nguyên, segment score mới0.</small></figcaption></figure>
+<figure><a href="Player/07-stand-price-preview.png"><img src="Player/07-stand-price-preview.png" alt="Quầy"></a><figcaption>Giá và preview tại quầy<small>Tới gần rồi Space/USE, không modal shop.</small></figcaption></figure>
+<figure><a href="Player/08-defeat-invoice.png"><img src="Player/08-defeat-invoice.png" alt="Defeat"></a><figcaption>Khép lại giấc mơ<small>Death outcome/cause seeded cho QA bố cục.</small></figcaption></figure>
+<figure><a href="Player/08-death-source-evidence.png"><img src="Player/08-death-source-evidence.png" alt="Nguyên nhân chết"></a><figcaption>Nguồn / loại / damage<small>Nhìn được sau scroll; không đoán từ enemy gần nhất.</small></figcaption></figure>
+<figure><a href="Player/11-cosmetic-settings.png"><img src="Player/11-cosmetic-settings.png" alt="Cài đặt"></a><figcaption>Cosmetic / reduced motion<small>Điều kiện mở khóa rõ, font OFL đi kèm build.</small></figcaption></figure>
+<figure><a href="Player/12-history-receipts.png"><img src="Player/12-history-receipts.png" alt="Lịch sử"></a><figcaption>Lịch sử / bảng kỷ lục<small>50 frozen invoices, lifetime credit identity.</small></figcaption></figure>
+<figure><a href="Player/12-history-normal-record.png"><img src="Player/12-history-normal-record.png" alt="Record normal"></a><figcaption>Hóa đơn Normal đã chốt<small>Không trộn với Endless hoặc reroll nickname.</small></figcaption></figure>
+<figure><a href="Player/12-history-measured-contribution.png"><img src="Player/12-history-measured-contribution.png" alt="Ledger history"></a><figcaption>Ledger trong lịch sử<small>Deep-copy actual contribution, không đổi khi run tiếp tục.</small></figcaption></figure>
+<figure><a href="Player/13-museum-tab-0.png"><img src="Player/13-museum-tab-0.png" alt="Weapon museum"></a><figcaption>Bảo tàng vũ khí / tier<small>Locked giữ nguyên; preview tier khác không claim owned.</small></figcaption></figure>
+<figure><a href="Player/13-museum-tab-1.png"><img src="Player/13-museum-tab-1.png" alt="Relic museum"></a><figcaption>Bảo tàng cổ vật</figcaption></figure>
+<figure><a href="Player/13-museum-tab-2.png"><img src="Player/13-museum-tab-2.png" alt="Ally museum"></a><figcaption>Bảo tàng đồng minh</figcaption></figure>
+<figure><a href="Player/13-museum-tab-3.png"><img src="Player/13-museum-tab-3.png" alt="Chain museum"></a><figcaption>Bảo tàng chuỗi<small>Discovery cần gameplay evidence, không chỉ graph ACTIVE.</small></figcaption></figure>
+<figure><a href="Player/13-museum-tab-4.png"><img src="Player/13-museum-tab-4.png" alt="Boss museum"></a><figcaption>Bảo tàng boss<small>Ba boss ở capture được seed rõ, runtime thật dùng boss death.</small></figcaption></figure>
+<figure><a href="Player/14-museum-tier3-preview.png"><img src="Player/14-museum-tier3-preview.png" alt="Sandbox"></a><figcaption>Sandbox từ bảo tàng<small>Private data/RNG, actual weapon pipeline, không ghi save/reward.</small></figcaption></figure>
+</section>
+</main>
+</html>

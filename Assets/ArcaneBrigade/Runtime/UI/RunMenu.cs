@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 namespace ArcaneBrigade
 {
-    public static class RunLaunch { public static string ChampionId; public static bool Resume; }
+    public static class RunLaunch { public static string ChampionId; public static bool Resume; public static int Difficulty; public static int ChallengeIndex; }
     public sealed class RunMenu : MonoBehaviour
     {
-        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox }
+        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox, Museum }
         [SerializeField] private RunCatalog catalog;
         private RunStorage storage;
         private PlayerProfile profile;
@@ -24,6 +24,25 @@ namespace ArcaneBrigade
         private Page sandboxReturnPage;
         private Vector2 sandboxReturnScroll;
         private bool diagnosticState;
+        private int difficulty;
+        private int challenge;
+        private int historySelection;
+        private readonly RunMuseum museum = new RunMuseum();
+        private readonly RunInvoice invoice = new RunInvoice();
+        private Texture2D shopIllustration;
+        public RunMuseum Museum => museum;
+        public void SelectHistoryForDiagnostics(int index, bool evidence)
+        {
+            if (!RunPaths.K6Capture) throw new InvalidOperationException("History fixture requires isolated K6 capture mode");
+            historySelection = Mathf.Clamp(index, 0, Mathf.Max(0, profile.History.Count - 1));
+            if (evidence) invoice.ScrollToEnd();
+        }
+        public void ConfigureMetaDiagnostics(RunCatalog definition, PlayerProfile readOnlyProfile, RunSnapshot readOnlySaved)
+        {
+            if (!RunPaths.K6Capture) throw new InvalidOperationException("K6 fixture requires isolated capture mode");
+            diagnosticState = true; catalog = definition; profile = readOnlyProfile; saved = readOnlySaved;
+            ArcadeSkin.Bundle = profile.Cosmetic;
+        }
         public WeaponSandbox Sandbox => sandbox;
         public WeaponSandbox GetSandbox() => sandbox;
         public Page CurrentPage { get; private set; }
@@ -38,7 +57,7 @@ namespace ArcaneBrigade
         public void OpenWeaponSandbox()
         {
             if (profile == null || catalog == null) return;
-            EnterWeaponSandbox(catalog, profile, saved, null, 1, false);
+            EnterWeaponSandbox(catalog, profile, saved, CurrentPage == Page.Museum ? museum.SelectedWeapon : null, 1, false);
         }
         public void OpenWeaponSandboxForDiagnostics(RunCatalog definition, PlayerProfile readOnlyProfile,
             RunSnapshot readOnlySaved = null, string weaponId = null, int tier = 1, bool moving = false)
@@ -72,6 +91,7 @@ namespace ArcaneBrigade
             if (diagnosticState) return;
             storage = new RunStorage(RunPaths.Root);
             profile = storage.LoadProfile();
+            ArcadeSkin.Bundle = profile.Cosmetic;
             error = storage.LastError;
             ReloadSaveSummary();
             AudioListener.volume = profile.Volume;
@@ -82,20 +102,40 @@ namespace ArcaneBrigade
 
         public void ReloadSaveSummary()
         {
-            using (var session = new RunSession(catalog)) saved = storage.LoadRun(session);
+            using (var session = new RunSession(catalog))
+            {
+                saved = storage.LoadRun(session);
+                if (saved != null)
+                {
+                    session.Restore(saved); saved = session.State;
+                    if ((saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat) && !profile.CompletedRuns.Contains(saved.RunId))
+                        try { storage.RecordProgress(profile, saved, catalog); } catch (Exception exception) { error = "Hồ sơ chờ lưu lại: " + exception.Message; }
+                }
+            }
             if (!string.IsNullOrEmpty(storage.LastError)) error = storage.LastError;
             existingSave = File.Exists(Path.Combine(RunPaths.Root, "run.json")) || File.Exists(Path.Combine(RunPaths.Root, "run.json.bak"));
         }
 
         private void Update()
         {
+            if (CurrentPage == Page.Records && profile != null && profile.History.Count > 0)
+            {
+                int direction = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.JoystickButton3) ? 1 : Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.JoystickButton2) ? -1 : 0;
+                historySelection = Mathf.Clamp(historySelection + direction, 0, profile.History.Count - 1);
+                if (direction != 0) scroll.y = Mathf.Max(0, historySelection * 95 - 250);
+            }
+            if (CurrentPage == Page.Museum)
+            {
+                museum.HandleInput();
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0)) && museum.SelectedWeapon != null) OpenWeaponSandbox();
+            }
             if (CurrentPage == Page.WeaponSandbox)
             {
                 if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) CloseWeaponSandbox();
                 else sandbox.HandleInput();
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Escape)) ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1)) ShowPage(CurrentPage == Page.ConfirmOverwrite ? Page.Roster : Page.Landing);
         }
 
         private void Launch(bool resume)
@@ -117,6 +157,8 @@ namespace ArcaneBrigade
             }
             RunLaunch.Resume = resume;
             RunLaunch.ChampionId = catalog.Champions[selection].Id;
+            RunLaunch.Difficulty = challenge > 0 ? 0 : difficulty;
+            RunLaunch.ChallengeIndex = challenge;
             SceneManager.LoadScene("RunArena");
         }
 
@@ -131,13 +173,14 @@ namespace ArcaneBrigade
             if (text == null)
             {
                 heading = ArcadeTypography.Style(38, true);
-                text = ArcadeTypography.Style(21);
-                button = new GUIStyle(GUI.skin.button) { fontSize = 22, font = ArcadeTypography.Heading };
+                text = ArcadeTypography.Style(19);
+                button = new GUIStyle(GUI.skin.button) { fontSize = 19, font = ArcadeTypography.Heading };
             }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(new Rect(0, 0, Screen.width, Screen.height), 1280, 720);
-            RunHud.Fill(new Rect(20, 15, 1240, 690), new Color(0.10f, 0.08f, 0.19f));
-            GUI.Label(new Rect(60, 35, 940, 65), "ARCANE BRIGADE", heading);
-            Label(new Rect(60, 105, 1120, 48), "Đội quân kỳ quặc · Chỉ di chuyển · Mọi đòn đánh tự động");
+            ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
+            RunHud.Fill(new Rect(20, 15, 1240, 690), new Color(0.12f, 0.10f, 0.20f));
+            ArcadeSkin.Header(new Rect(60, 32, 940, 92), "LOST & FOUND / CỬA HÀNG TRONG GIẤC MƠ", "ARCANE BRIGADE");
+            ArcadeSkin.Divider(new Rect(60, 132, 1150, 2), ArcadeSkin.Accent * 0.5f);
             if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "QUAY LẠI"))
             {
                 if (CurrentPage == Page.WeaponSandbox) CloseWeaponSandbox();
@@ -163,25 +206,37 @@ namespace ArcaneBrigade
                     Label(new Rect(110, 185, 1060, 410), "DI CHUYỂN: WASD / mũi tên / kéo ngón tay vùng dưới bên trái.\nNhân vật và đồng minh tự đánh; không có nút kỹ năng.\nSHOP: đi tới quầy, SPACE / USE để mua; không mua tự động. Nâng cấp cũng tốn tiền.\nĐồng minh bất tử, không chặn đạn mặc định. Không phí nuôi, không bán hoặc khóa shop.\nI / ĐỒ: Stats, Companions, Relics. TAB đổi tab; I / ESC đóng.\nESC pause hoặc đóng lớp đang mở. Mất focus / vào nền giữ pause riêng.\nHồ sơ chỉ lưu unlock, cosmetic và kỷ lục; không tăng stat vĩnh viễn.");
                     break;
                 case Page.Records: DrawRecords(); break;
+                case Page.Museum:
+                    museum.Draw(catalog, profile);
+                    GUI.enabled = museum.SelectedWeapon != null;
+                    if (Button(new Rect(850, 625, 355, 45), "THỬ MÓN ĐÃ KHÁM PHÁ")) OpenWeaponSandbox();
+                    GUI.enabled = true;
+                    break;
                 case Page.WeaponSandbox: sandbox.DrawPanel(text, button); break;
             }
-            if (CurrentPage != Page.WeaponSandbox && !string.IsNullOrEmpty(error)) Label(new Rect(60, 630, 1150, 65), error);
+            if (CurrentPage != Page.WeaponSandbox && !string.IsNullOrEmpty(error)) Label(new Rect(60, 675, 1150, 28), error);
             GUI.matrix = previous;
             GUI.skin = previousSkin;
         }
 
         private void DrawLanding()
         {
-            RunHud.Fill(new Rect(70, 180, 560, 410), new Color(0.17f, 0.13f, 0.25f));
-            RunHud.Sprite(new Rect(245, 200, 220, 240), catalog.Champions[selection].Body);
-            Label(new Rect(105, 470, 490, 95), "20 hall tới bình minh.\nĐồng minh, cổ vật và bond tạo build trong từng lượt.");
-            if (Button(new Rect(710, 185, 470, 65), "LƯỢT CHƠI MỚI")) ShowPage(Page.Roster);
+            RunHud.Fill(new Rect(60, 165, 575, 470), new Color(0.19f, 0.15f, 0.28f));
+            if (shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
+            if (shopIllustration != null) GUI.DrawTexture(new Rect(68, 246, 559, 280), shopIllustration, ScaleMode.ScaleAndCrop);
+            ArcadeSkin.Stamp(new Rect(90, 190, 510, 52), "QUẦY NHẬN NHỮNG GIẤC MƠ BỊ BỎ QUÊN");
+            RunHud.Sprite(new Rect(190, 250, 260, 260), catalog.Champions[selection].Body);
+            RunHud.Sprite(new Rect(405, 350, 110, 110), catalog.Champions[selection].Weapon.Sprite);
+            Label(new Rect(95, 545, 510, 76), "20 hall tới bình minh. Chỉ cần di chuyển.\nNhững món đồ kỳ quặc sẽ lo phần còn lại.");
+            if (Button(new Rect(695, 165, 500, 70), "01   NHẬN MỘT GIẤC MƠ MỚI")) ShowPage(Page.Roster);
             GUI.enabled = CanResume;
-            if (Button(new Rect(710, 267, 470, 65), "TIẾP TỤC LƯỢT ĐÃ LƯU")) ShowPage(Page.Resume);
+            if (Button(new Rect(695, 250, 500, 60), "02   TIẾP TỤC HỒ SƠ ĐANG MỞ")) ShowPage(Page.Resume);
             GUI.enabled = true;
-            if (Button(new Rect(710, 349, 470, 65), "HỒ SƠ / BỘ SƯU TẬP")) ShowPage(Page.Records);
-            if (Button(new Rect(710, 431, 470, 65), "CÀI ĐẶT")) ShowPage(Page.Settings);
-            if (Button(new Rect(710, 513, 470, 65), "CÁCH CHƠI")) ShowPage(Page.Help);
+            if (Button(new Rect(695, 325, 500, 60), "03   BẢO TÀNG ĐỒ THẤT LẠC")) ShowPage(Page.Museum);
+            if (Button(new Rect(695, 400, 500, 60), "04   HÓA ĐƠN / KỶ LỤC")) ShowPage(Page.Records);
+            if (Button(new Rect(695, 475, 240, 60), "CÀI ĐẶT")) ShowPage(Page.Settings);
+            if (Button(new Rect(955, 475, 240, 60), "CÁCH CHƠI")) ShowPage(Page.Help);
+            ArcadeSkin.Stamp(new Rect(695, 565, 500, 58), "KHÔNG PHÍ NUÔI • KHÔNG GRIND CHỈ SỐ");
         }
 
         private void DrawRoster()
@@ -198,8 +253,14 @@ namespace ArcaneBrigade
             }
             GUI.EndScrollView();
             UnitDefinition champion = catalog.Champions[selection];
-            RunHud.Sprite(new Rect(870, 175, 170, 175), champion.Body);
-            Label(new Rect(770, 370, 440, 130), champion.DisplayName + "\n" + champion.Description);
+            RunHud.Sprite(new Rect(910, 170, 110, 120), champion.Body);
+            Label(new Rect(770, 295, 440, 90), champion.DisplayName + "\n" + champion.Description);
+            if (Button(new Rect(65, 595, 660, 55), "THỬ THÁCH: " + RunMeta.ChallengeNames[challenge])) challenge = (challenge + 1) % RunMeta.ChallengeIds.Length;
+            GUI.enabled = challenge == 0;
+            if (Button(new Rect(775, 405, 420, 55), "ĐỘ KHÓ: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
+            GUI.enabled = true;
+            GUIStyle modeNote = ArcadeTypography.Style(16);
+            GUI.Label(new Rect(775, 470, 430, 44), challenge > 0 ? "Seed cố định · bậc 1 · điểm riêng theo Champion" : "Thắng bậc trước để mở bậc tiếp. Không buff vĩnh viễn.", modeNote);
             GUI.enabled = profile.BestWave >= champion.UnlockWave;
             if (Button(new Rect(775, 520, 420, 65), "BẮT ĐẦU")) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
@@ -216,12 +277,14 @@ namespace ArcaneBrigade
                 if (!SaveProfile()) profile.Volume = before;
                 AudioListener.volume = profile.Volume;
             }
-            GUI.enabled = profile.BestWave >= 5;
-            if (Button(new Rect(130, 365, 650, 65), profile.Cosmetic == 0 ? "MARKER: VÀNG" : "MARKER: NGỌC LAM"))
+            if (Button(new Rect(130, 365, 950, 65), "BỘ TRANG TRÍ: " + RunMeta.CosmeticName(profile.Cosmetic)))
             {
                 int before = profile.Cosmetic;
-                profile.Cosmetic = 1 - before;
+                int candidate = (before + 1) % 3;
+                while (!RunMeta.CosmeticUnlocked(profile, candidate)) candidate = (candidate + 1) % 3;
+                profile.Cosmetic = candidate;
                 if (!SaveProfile()) profile.Cosmetic = before;
+                ArcadeSkin.Bundle = profile.Cosmetic;
             }
             GUI.enabled = true;
             if (Button(new Rect(130, 445, 650, 65), profile.ReducedMotion ? "GIẢM CHUYỂN ĐỘNG: BẬT" : "GIẢM CHUYỂN ĐỘNG: TẮT"))
@@ -230,20 +293,32 @@ namespace ArcaneBrigade
                 profile.ReducedMotion = !before;
                 if (!SaveProfile()) profile.ReducedMotion = before;
             }
-            Label(new Rect(130, 525, 980, 100), "Cosmetic mở ở hall 5, không tăng sức mạnh.\nNoto Sans / Black / Mono — SIL OFL 1.1.\nBộ chữ nền có tiếng Việt; lettering độc quyền sẽ polish sau.");
+            Label(new Rect(130, 525, 980, 120), "Văn phòng đêm: hall 5 (" + Mathf.Min(profile.BestWave, 5) + "/5). Sân khấu giấy: thắng 3 boss khác nhau (" + Mathf.Min(profile.SeenBosses.Count, 3) + "/3).\nBundle đổi viền UI, dấu và biên lai, không đổi đạn/telegraph/stat.\nBe Vietnam Pro + Noto Sans Mono · SIL OFL 1.1.");
         }
 
         private void DrawRecords()
         {
-            if (Button(new Rect(710, 550, 470, 60), "THỬ VŨ KHÍ / SANDBOX")) OpenWeaponSandbox();
-            float height = 130 + profile.Achievements.Count * 55 + catalog.Companions.Length * 80 + catalog.Items.Length * 80;
-            scroll = GUI.BeginScrollView(new Rect(90, 180, 1100, 345), scroll, new Rect(0, 0, 1050, height));
-            Label(new Rect(15, 10, 1010, 95), "Hall cao nhất: " + profile.BestWave + " · Thắng: " + profile.Wins + " · Kills: " + profile.TotalKills + "\nBộ sưu tập chỉ hiện nội dung đã gặp thật.");
-            float vertical = 130;
-            foreach (string achievement in profile.Achievements) { Label(new Rect(15, vertical, 1010, 50), achievement); vertical += 55; }
-            foreach (UnitDefinition unit in catalog.Companions) { Label(new Rect(15, vertical, 1010, 75), profile.SeenUnits.Contains(unit.Id) ? unit.DisplayName + " — " + unit.Description : "??? Đồng minh chưa gặp"); vertical += 80; }
-            foreach (ItemDefinition item in catalog.Items) { Label(new Rect(15, vertical, 1010, 75), profile.SeenItems.Contains(item.Id) ? item.Name + " — " + item.Description : "??? Cổ vật chưa gặp"); vertical += 80; }
+            Label(new Rect(60, 165, 575, 80), "Hall " + profile.BestWave + " / Thắng " + profile.Wins + " / Kills " + profile.TotalKills + "\nBậc đã mở: " + (RunMeta.UnlockedDifficulty(profile) + 1) + " / 5");
+            scroll = GUI.BeginScrollView(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 95 + profile.Records.Count * 65 + profile.Achievements.Count * 40 + 65)));
+            float vertical = 0;
+            for (int index = 0; index < profile.History.Count; index++)
+            {
+                RunRecord record = profile.History[index];
+                if (Button(new Rect(0, vertical, 515, 85), record.Nickname + "\n" + record.Score.ToString("N0") + " điểm · " + record.Build.ChampionId + " · " + (record.Build.Endless ? "Endless" : "Normal"))) historySelection = index;
+                vertical += 95;
+            }
+            Label(new Rect(0, vertical, 510, 50), "KỶ LỤC THEO CHAMPION / MODE / BẬC"); vertical += 60;
+            foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), record.Key + "\n" + record.Score.ToString("N0") + " điểm · hall " + record.Hall); vertical += 65; }
+            foreach (string achievement in profile.Achievements) { Label(new Rect(0, vertical, 510, 40), "✓ " + achievement); vertical += 40; }
             GUI.EndScrollView();
+            if (profile.History.Count > 0)
+            {
+                RunRecord record = profile.History[Mathf.Clamp(historySelection, 0, profile.History.Count - 1)];
+                invoice.Draw(new Rect(660, 160, 545, 465), record.Build, catalog, record.Nickname, record.Score);
+                if (Button(new Rect(660, 640, 545, 42), "LƯU ẢNH HÓA ĐƠN · LOCAL PNG"))
+                    try { error = "Ảnh: " + RunInvoice.ExportFrame(record.Id); } catch (Exception exception) { error = exception.Message; }
+            }
+            else Label(new Rect(690, 240, 470, 200), "Chưa có hóa đơn mới. Kết thúc một lượt để lưu đội/vũ khí/đóng góp thật.\nSave cũ giữ kỷ lục, không dựng lại lịch sử chưa đo.");
         }
 
         private bool SaveProfile()

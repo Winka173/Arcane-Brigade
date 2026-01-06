@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class RunBuildReadModel
     {
-        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; }
+        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; }
         public readonly List<Row> Stats = new List<Row>();
         public readonly List<Row> Companions = new List<Row>();
         public readonly List<Row> Relics = new List<Row>();
@@ -45,7 +45,7 @@ namespace ArcaneBrigade
                 float damage = actual.Damage * session.DamageMultiplier(unit, entry.Tier, true);
                 float cooldown = actual.Cooldown / Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions) + session.Bonus(ItemEffect.CompanionAttackSpeed));
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
-                model.Companions.Add(new Row { Name = unit.DisplayName, Icon = unit.Body, Summary = "Cấp " + entry.Tier + " · " + actual.Id + "\n" + actual.Kind + " / " + actual.Element,
+                model.Companions.Add(new Row { Name = unit.DisplayName, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Cấp " + entry.Tier + " · " + actual.Id + "\n" + actual.Kind + " / " + actual.Element,
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Chu kỳ", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(Mathf.Clamp01(unit.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Companions))) }, { "Speed", (unit.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Companions))).ToString("0.###") }, { "Projectile", (actual.ProjectileCount + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Companions))).ToString() }, { "Passive", passive.ToString("0.###") } },
                     Explanation = unit.Description + "\n\nWeapon đã roll: " + actual.Id + "\nDamage: " + damage.ToString("0.0") + " / chu kỳ " + cooldown.ToString("0.00") + " s\nRange: " + actual.Range.ToString("0.0") + "\n" + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nPassive: " + unit.Passive + " / strength " + passive.ToString("0.0") + "\nBond: " + string.Join(" / ", unit.Tags) + "\nBất tử. Một body tính một đơn vị bond, không nhân theo tier." });
             }

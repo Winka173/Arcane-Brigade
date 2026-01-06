@@ -164,6 +164,7 @@ namespace ArcaneBrigade
         public UnitState Boss { get; private set; }
         public string LastDamageSource { get; private set; } = "";
         public float LastDamageAmount { get; private set; }
+        public string LastDamageKind { get; private set; } = "";
 
         public CombatSimulation(CheckpointCatalog definition) { catalog = definition; }
 
@@ -194,6 +195,7 @@ namespace ArcaneBrigade
             Boss = null;
             LastDamageSource = "";
             LastDamageAmount = 0f;
+            LastDamageKind = "";
             maximumRadius = maximumSpeed = 0f;
             Generation++;
             Champion = Spawn(catalog.Champion, Faction.Champion, Vector2.zero);
@@ -644,7 +646,7 @@ namespace ArcaneBrigade
                 float extra = Mathf.Min(target.Health, damage) - Mathf.Min(target.Health, treasureDamage);
                 if (extra > 0) RecordDamage(cause.Child("office-lens"), extra);
             }
-            if (target.Faction == Faction.Champion) { LastDamageSource = string.IsNullOrEmpty(sourceName) ? "Enemy damage" : sourceName; LastDamageAmount = damage; }
+            if (target.Faction == Faction.Champion) { LastDamageSource = string.IsNullOrEmpty(sourceName) ? "Enemy damage" : sourceName; LastDamageAmount = damage; LastDamageKind = element + " / " + (weapon == null ? "Contact / arena" : weapon.Kind.ToString()); }
             target.Health = Mathf.Max(0f, target.Health - damage);
             target.LastHit = Elapsed;
             target.HitDirection = direction;
@@ -659,6 +661,7 @@ namespace ArcaneBrigade
             {
                 if (target == Boss) BossDefeated = true;
                 Kills++;
+                if (source != Faction.Enemy) RecordKill(cause);
                 DropLoot(LootKind.Coin, target.Position, catalog.GoldPerKill);
                 if (catalog.ExtendedLoot)
                 {

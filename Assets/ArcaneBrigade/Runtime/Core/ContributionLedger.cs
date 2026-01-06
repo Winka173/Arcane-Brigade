@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         public float Healing;
         public int Coins;
         public int Activations;
+        public int Kills;
         public string Key => UnitId + "/" + WeaponId + "/" + Tier + "/" + EffectId;
     }
 
@@ -33,6 +34,7 @@ namespace ArcaneBrigade
                 existing.Healing = Mathf.Min(1e12f, existing.Healing + entry.Healing);
                 existing.Coins = RunSession.BoundedCounter((long)existing.Coins + entry.Coins);
                 existing.Activations = RunSession.BoundedCounter((long)existing.Activations + entry.Activations);
+                existing.Kills = RunSession.BoundedCounter((long)existing.Kills + entry.Kills);
             }
         }
 
@@ -41,7 +43,7 @@ namespace ArcaneBrigade
             if (entries == null || entries.Count == 0) return "Chưa có đóng góp được đo.\n";
             var lines = new List<string>();
             foreach (ContributionEntry entry in entries)
-                lines.Add(entry.UnitId + " / " + entry.WeaponId + " / " + entry.EffectId + "\nDamage hiệu lực " + entry.Damage.ToString("0.#") + " · heal " + entry.Healing.ToString("0.#") + " · coin " + entry.Coins + " · kích hoạt " + entry.Activations);
+                lines.Add(entry.UnitId + " / " + entry.WeaponId + " / " + entry.EffectId + "\nDamage hiệu lực " + entry.Damage.ToString("0.#") + " · heal " + entry.Healing.ToString("0.#") + " · kills " + entry.Kills + " · coin " + entry.Coins + " · kích hoạt " + entry.Activations);
             return string.Join("\n\n", lines) + "\nChỉ lượng HP thực mất/hồi; không tính overkill, VFX hoặc cộng damage lần hai cho connector.\n";
         }
     }
@@ -69,5 +71,6 @@ namespace ArcaneBrigade
         private void RecordDamage(CombatCause cause, float actual) { Contribution(cause).Damage += actual; }
         private void RecordHealing(CombatCause cause, float actual) { if (actual > 0) Contribution(cause).Healing += actual; }
         private void RecordActivation(CombatCause cause) { ContributionEntry entry = Contribution(cause); entry.Activations = RunSession.BoundedCounter((long)entry.Activations + 1); }
+        private void RecordKill(CombatCause cause) { ContributionEntry entry = Contribution(cause); entry.Kills = RunSession.BoundedCounter((long)entry.Kills + 1); }
     }
 }

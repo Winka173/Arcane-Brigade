@@ -15,6 +15,12 @@ namespace ArcaneBrigade
         private Vector2 tooltipScroll;
         private string tooltipKey;
         private string offerPreview;
+        private readonly RunInvoice invoice = new RunInvoice();
+        public void ShowInvoiceEvidenceFixture()
+        {
+            if (!RunPaths.K6Capture) throw new System.InvalidOperationException("Invoice fixture requires isolated K6 capture mode");
+            invoice.ScrollToEnd();
+        }
         public void ShowOfferPreviewFixture()
         {
             if (!RunPaths.K3FinalCapture) throw new System.InvalidOperationException("Preview fixture requires isolated capture mode");
@@ -71,8 +77,11 @@ namespace ArcaneBrigade
             float maximum = Mathf.Max(1f, owner.Content.Unit(state.ChampionId).Health + session.Bonus(ItemEffect.Health));
             Fill(new Rect(125, 87, 390, 18), new Color(0.22f, 0.12f, 0.25f));
             Fill(new Rect(125, 87, 390 * Mathf.Clamp01(health / maximum), 18), new Color(0.95f, 0.2f, 0.37f));
-            GUI.Label(new Rect(125, 38, 440, 45), Mathf.CeilToInt(health) + " / " + maximum.ToString("0") + "   GOLD " + RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)) + "   EGGS " + RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0)), text);
-            GUI.Label(new Rect(695, 42, 550, 55), (state.Endless ? "ENDLESS " : "HALL ") + state.Wave + "   ALLIES " + state.Roster.Count + "   " + (state.Phase == SessionPhase.Combat ? Mathf.Max(0, Mathf.CeilToInt(owner.Content.WaveSeconds - simulation.Elapsed)) + "s" : state.Phase.ToString()), text);
+            GUIStyle numeric = ArcadeTypography.Style(20, false, true);
+            GUI.Label(new Rect(125, 33, 400, 28), "HP " + Mathf.CeilToInt(health) + " / " + maximum.ToString("0"), numeric);
+            GUI.Label(new Rect(125, 60, 400, 28), "G " + RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)) + "   E " + RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0)), numeric);
+            GUI.Label(new Rect(695, 34, 540, 30), (state.Endless ? "ENDLESS " : "HALL ") + state.Wave + " / ALLIES " + state.Roster.Count + " / " + (state.Phase == SessionPhase.Combat ? Mathf.Max(0, Mathf.CeilToInt(owner.Content.WaveSeconds - simulation.Elapsed)) + "s" : state.Phase.ToString()), numeric);
+            GUI.Label(new Rect(695, 66, 540, 30), "SCORE " + RunMeta.Score(state, state.Phase == SessionPhase.Combat ? simulation.Kills : 0, state.Phase == SessionPhase.Combat && simulation.BossDefeated).ToString("N0") + " / " + RunMeta.DifficultyNames[state.Difficulty], small);
             if (GUI.Button(new Rect(1650, 43, 190, 55), "MENU", button)) owner.RequestMenuReturn();
             if (GUI.Button(new Rect(1260, 43, 175, 55), "ĐỒ / I", button)) owner.ToggleDetails();
             if (state.Phase == SessionPhase.Shop && GUI.Button(new Rect(1450, 43, 175, 55), "PAUSE", button)) owner.TogglePause();
@@ -106,12 +115,17 @@ namespace ArcaneBrigade
                     GUI.skin = previousSkin;
                     return;
                 }
-                Fill(new Rect(430, 280, 1060, 580), Panel);
-                GUI.Label(new Rect(480, 325, 960, 70), state.Phase == SessionPhase.Victory ? "DAWN REACHED" : "BRIGADE FALLEN", title);
-                GUI.Label(new Rect(560, 430, 850, 130), "Hall " + state.Wave + "   Kills " + state.TotalKills + "   Bosses " + state.BossKills + "\nCombat time " + (state.CombatSeconds / 60f).ToString("0.0") + " min\nUnlocks, codex and records are saved; no permanent stat grind.", text);
-                if (state.Phase == SessionPhase.Defeat) GUI.Label(new Rect(560, 570, 850, 70), "Last hit: " + state.LastDamageSource + " / " + state.LastDamageAmount.ToString("0.0") + " damage", small);
-                if (state.Phase == SessionPhase.Victory && GUI.Button(new Rect(675, 600, 570, 65), "CONTINUE INTO ENDLESS", button)) owner.ContinueEndless();
-                if (GUI.Button(new Rect(675, 700, 570, 65), "NEW RUN", button)) owner.RestartRun();
+                Fill(new Rect(80, 200, 630, 750), Panel);
+                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "HỒ SƠ ĐÃ KHÉP / KHÔNG THƯỞNG CHỈ SỐ", state.Phase == SessionPhase.Victory ? "BÌNH MINH ĐÃ TỚI" : "HẸN Ở GIẤC MƠ SAU");
+                Sprite(new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
+                Sprite(new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
+                GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
+                if (state.Phase == SessionPhase.Victory && GUI.Button(new Rect(115, 750, 560, 60), "TIẾP TỤC ENDLESS · GIỮ BUILD", button)) owner.ContinueEndless();
+                if (GUI.Button(new Rect(115, 825, 270, 65), "CHƠI LẠI", button)) owner.RestartRun();
+                if (GUI.Button(new Rect(405, 825, 270, 65), "VỀ MENU", button)) owner.ReturnToMenu();
+                invoice.Draw(new Rect(770, 200, 1060, 685), state, owner.Content);
+                if (GUI.Button(new Rect(1025, 915, 570, 55), "LƯU HÓA ĐƠN · PNG LOCAL", button))
+                    try { RunInvoice.ExportFrame(state.RunId); } catch (System.Exception exception) { Debug.LogWarning("Receipt export failed: " + exception.Message); }
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
             GUI.matrix = previous;
@@ -128,7 +142,8 @@ namespace ArcaneBrigade
             WorldShop shop = owner.Shop;
             if (shop == null) return;
             GUI.Label(new Rect(75, 145, 1450, 55), (shop.Special ? "DREAM ALTAR · EGGS / HP" : "CURIOSITY EXCHANGE") + "   Income +" + owner.Session.State.LastIncome + "   Interest +" + owner.Session.State.LastInterest, text);
-            GUI.Label(new Rect(75, 1010, 1600, 45), "MOVE: WASD / arrows / touch drag. Approach a stand, then SPACE / USE. No automatic purchase.", small);
+            ArcadeSkin.Line(new Rect(40, 1000, 1800, 58), Panel);
+            GUI.Label(new Rect(75, 1010, 1730, 45), "DI CHUYỂN: WASD / mũi tên / kéo ngón tay · tới gần quầy rồi SPACE / USE · không mua tự động", small);
             if (owner.Simulation.Phase == RunPhase.Paused)
             {
                 Fill(new Rect(710, 440, 500, 180), Panel);
@@ -179,7 +194,8 @@ namespace ArcaneBrigade
             if (!receiptOpen) return;
             float contentHeight = small.CalcHeight(new GUIContent(receipt.Description), 425) + 20;
             float panelHeight = Mathf.Clamp(contentHeight + 110, 190, 470);
-            Fill(new Rect(1320, 275, 510, panelHeight), Panel);
+            Fill(new Rect(1320, 275, 510, panelHeight), Color.Lerp(Panel, ArcadeSkin.Accent, 0.12f));
+            ArcadeSkin.Divider(new Rect(1340, 342, 460, 2), ArcadeSkin.Accent);
             GUI.Label(new Rect(1340, 295, 465, 45), receipt.Title, text);
             float height = Mathf.Max(panelHeight - 105, contentHeight);
             receiptScroll = GUI.BeginScrollView(new Rect(1340, 355, 470, panelHeight - 105), receiptScroll, new Rect(0, 0, 430, height));

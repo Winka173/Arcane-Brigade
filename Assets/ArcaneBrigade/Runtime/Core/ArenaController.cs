@@ -25,6 +25,7 @@ namespace ArcaneBrigade
         public RunCatalog Content => runCatalog;
         public PlayerProfile Profile => profile;
         public string SaveError { get; private set; } = "";
+        public string MetaNotice { get; private set; } = "";
         private CombatSimulation simulation;
         private readonly MovementInput movement = new MovementInput();
         private readonly Dictionary<int, UnitVisual> units = new Dictionary<int, UnitVisual>();
@@ -80,7 +81,8 @@ namespace ArcaneBrigade
                 session = new RunSession(runCatalog);
                 RunSnapshot saved = RunLaunch.Resume ? storage.LoadRun(session) : null;
                 if (saved != null && (saved.Phase == SessionPhase.Shop || saved.Phase == SessionPhase.Combat)) session.Restore(saved);
-                else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunPaths.Diagnostic ? 131026 : Environment.TickCount);
+                else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
+                ArcadeSkin.Bundle = profile.Cosmetic;
                 PersistBoundary();
             }
             if (GetComponent<AudioListener>() == null) gameObject.AddComponent<AudioListener>();
@@ -276,9 +278,10 @@ namespace ArcaneBrigade
             catch (Exception exception) { SaveError = "Save failed: " + exception.Message; return false; }
             try
             {
-                string weaponId = runCatalog.Unit(session.State.ChampionId).Weapon.Id;
-                if (!profile.SeenWeapons.Contains(weaponId)) profile.SeenWeapons.Add(weaponId);
-                storage.RecordProgress(profile, session.State);
+                int before = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count;
+                storage.RecordProgress(profile, session.State, runCatalog);
+                int delta = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count - before;
+                MetaNotice = delta > 0 ? "ĐÃ LƯU " + delta + " KHÁM PHÁ / THÀNH TÍCH MỚI · XEM BẢO TÀNG" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
             return true;
@@ -307,6 +310,7 @@ namespace ArcaneBrigade
         public bool RerollAltar() => Transaction("Đổi hàng altar", () => session.RerollAltar());
         public bool FuseAltar(string id) => Transaction("Hợp nhất tại altar", () => session.Altar(id));
         public void ShowReceiptFixture() => runHud.ShowReceiptFixture();
+        public void ShowInvoiceEvidenceFixture() => runHud.ShowInvoiceEvidenceFixture();
         public void ShowOfferPreviewFixture() => runHud.ShowOfferPreviewFixture();
         public void NextWave()
         {
@@ -319,6 +323,8 @@ namespace ArcaneBrigade
         }
         public void ContinueEndless()
         {
+            if (session.State.Phase != SessionPhase.Victory || !ResultsReady) return;
+            if (!PersistBoundary() || !profile.CompletedRuns.Contains(session.State.RunId)) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
             session.EnterEndless();
             if (!PersistBoundary()) { session.Restore(before); return; }
@@ -327,8 +333,11 @@ namespace ArcaneBrigade
         public void EnterShopPresentation() { if (session.State.Phase == SessionPhase.Shop) Begin(true); }
         public void RestartRun()
         {
+            if (!PersistBoundary() || ((session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat) && !profile.CompletedRuns.Contains(session.State.RunId))) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
-            session.Start(session.State.ChampionId, Environment.TickCount);
+            string challenge = session.State.ChallengeId;
+            int challengeIndex = Array.IndexOf(RunMeta.ChallengeIds, challenge);
+            session.Start(session.State.ChampionId, challengeIndex > 0 ? RunMeta.ChallengeSeed(challengeIndex) : Environment.TickCount, session.State.Difficulty, challenge);
             if (!PersistBoundary()) { session.Restore(before); return; }
             details.Close(); pauseGate.ResetSession(); Begin();
         }

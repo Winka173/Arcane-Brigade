@@ -20,8 +20,8 @@ PASS Movement reaches corner (-1.00, 1.00)
 PASS Movement reaches corner (1.00, 1.00)
 PASS Large roster Details has no UI slot cap
 PASS Font resource loads
-PASS Vietnamese glyph coverage NotoSans-Regular
+PASS Vietnamese glyph coverage BeVietnamPro-Medium
 PASS Font resource loads
-PASS Vietnamese glyph coverage NotoSans-Black
+PASS Vietnamese glyph coverage BeVietnamPro-Black
 PASS Font resource loads
 PASS Vietnamese glyph coverage NotoSansMono-Bold

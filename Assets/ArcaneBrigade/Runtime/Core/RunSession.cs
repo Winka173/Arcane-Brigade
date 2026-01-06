@@ -33,7 +33,7 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class RunSnapshot
     {
-        public const int CurrentSchemaRevision = 2;
+        public const int CurrentSchemaRevision = 3;
         public int SchemaRevision = CurrentSchemaRevision;
         public string Version;
         public string RunId;
@@ -47,6 +47,14 @@ namespace ArcaneBrigade
         public float Health;
         public float CombatSeconds;
         public bool Endless;
+        public int Difficulty;
+        public string ChallengeId = "";
+        public string ParentRunId = "";
+        public int StartHall = 1;
+        public string LastDamageKind = "";
+        public List<string> DefeatedBosses = new List<string>();
+        public bool LegacyContributionKills;
+        public List<RosterEntry> AcquiredVariants = new List<RosterEntry>();
         public SessionPhase Phase;
         public uint ShopRandom;
         public uint WeaponRandom;
@@ -85,17 +93,21 @@ namespace ArcaneBrigade
 
         public RunSession(RunCatalog definition) { RunModifierRules.Validate(definition); catalog = definition; }
 
-        public void Start(string championId, int seed)
+        public void Start(string championId, int seed, int difficulty = 0, string challengeId = "")
         {
+            if (difficulty < 0 || difficulty > 4 || !Array.Exists(RunMeta.ChallengeIds, id => id == challengeId)) throw new ArgumentException("Invalid run mode");
+            int challengeIndex = Array.IndexOf(RunMeta.ChallengeIds, challengeId);
+            if (challengeIndex > 0 && (difficulty != 0 || seed != RunMeta.ChallengeSeed(challengeIndex))) throw new ArgumentException("Challenge requires its fixed seed and difficulty");
             UnitDefinition champion = catalog.Unit(championId);
             if (champion == null || !Array.Exists(catalog.Champions, unit => unit.Id == championId)) throw new ArgumentException("Unknown champion");
             State = new RunSnapshot
             {
                 Version = catalog.Version, RunId = Guid.NewGuid().ToString("N"), ChampionId = championId, Seed = seed,
-                Gold = catalog.StartingGold, Health = champion.Health, Phase = SessionPhase.Combat,
+                Gold = catalog.StartingGold, Health = champion.Health, Phase = SessionPhase.Combat, Difficulty = difficulty, ChallengeId = challengeId,
                 ShopRandom = unchecked((uint)seed ^ 0xAC731u), WeaponRandom = unchecked((uint)seed ^ 0xE517u)
             };
             State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
+            RememberVariant(State.Roster[0]);
             RecountBonds();
         }
 
@@ -103,6 +115,17 @@ namespace ArcaneBrigade
         {
             Validate(snapshot);
             State = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(snapshot));
+            if (snapshot.SchemaRevision < 3)
+            {
+                State.StartHall = State.Endless ? catalog.NormalWaves + 1 : 1;
+                State.ChallengeId = "";
+                State.Difficulty = 0;
+                if (State.Endless) State.Contributions = new List<ContributionEntry>();
+                else State.LegacyContributionKills = State.Contributions != null && State.Contributions.Count > 0;
+            }
+            if (State.DefeatedBosses == null) State.DefeatedBosses = new List<string>();
+            if (State.AcquiredVariants == null) State.AcquiredVariants = new List<RosterEntry>();
+            if (snapshot.SchemaRevision < 3) foreach (RosterEntry entry in State.Roster) RememberVariant(entry);
             State.SchemaRevision = RunSnapshot.CurrentSchemaRevision;
             if (State.Receipts == null) State.Receipts = new List<RunTransactionReceipt>();
             if (State.SpecialOffers == null) State.SpecialOffers = new List<ShopOffer>();
@@ -113,6 +136,18 @@ namespace ArcaneBrigade
 
         public void Validate(RunSnapshot snapshot)
         {
+            if (snapshot != null && snapshot.SchemaRevision >= 3 && (snapshot.Difficulty < 0 || snapshot.Difficulty > 4 || !Array.Exists(RunMeta.ChallengeIds, id => id == snapshot.ChallengeId) || snapshot.StartHall < 1 || snapshot.StartHall > snapshot.Wave + (long)1 || snapshot.DefeatedBosses == null || !float.IsFinite(snapshot.LastDamageAmount) || snapshot.LastDamageAmount < 0)) throw new InvalidOperationException("Invalid run meta identity");
+            if (snapshot != null && snapshot.SchemaRevision >= 3)
+            {
+                int challengeIndex = Array.IndexOf(RunMeta.ChallengeIds, snapshot.ChallengeId);
+                if (challengeIndex > 0 && (snapshot.Difficulty != 0 || snapshot.Seed != RunMeta.ChallengeSeed(challengeIndex))) throw new InvalidOperationException("Invalid challenge seed");
+                var bosses = new HashSet<string>();
+                foreach (string id in snapshot.DefeatedBosses) if (!Array.Exists(catalog.Bosses, boss => boss.Id == id) || !bosses.Add(id)) throw new InvalidOperationException("Invalid boss discovery");
+                if (snapshot.AcquiredVariants == null) throw new InvalidOperationException("Missing variant discovery journal");
+                var variantKeys = new HashSet<string>();
+                foreach (RosterEntry entry in snapshot.AcquiredVariants)
+                    if (entry == null || !Array.Exists(catalog.Companions, unit => unit.Id == entry.UnitId) || catalog.Weapon(entry.WeaponId) == null || entry.Tier < 1 || entry.Tier > catalog.MaximumTier || !variantKeys.Add(entry.UnitId + "/" + entry.WeaponId + "/" + entry.Tier)) throw new InvalidOperationException("Invalid variant discovery");
+            }
             if (snapshot != null && (snapshot.SchemaRevision < 0 || snapshot.SchemaRevision > RunSnapshot.CurrentSchemaRevision)) throw new InvalidOperationException("Unsupported run schema");
             if (snapshot == null || snapshot.Version != catalog.Version || string.IsNullOrEmpty(snapshot.RunId) || catalog.Unit(snapshot.ChampionId) == null || snapshot.Wave < 1 || snapshot.Gold < 0 || snapshot.Eggs < 0 || !float.IsFinite(snapshot.Health) || snapshot.Health < 0 || !float.IsFinite(snapshot.CombatSeconds) || snapshot.CombatSeconds < 0 || !Enum.IsDefined(typeof(SessionPhase), snapshot.Phase)) throw new InvalidOperationException("Invalid or incompatible run save");
             if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
@@ -122,7 +157,7 @@ namespace ArcaneBrigade
             {
                 var contributionKeys = new HashSet<string>();
                 foreach (ContributionEntry entry in snapshot.Contributions)
-                    if (entry == null || string.IsNullOrEmpty(entry.UnitId) || entry.WeaponId == null || string.IsNullOrEmpty(entry.EffectId) || entry.Tier < 0 || entry.Tier > catalog.MaximumTier || !float.IsFinite(entry.Damage) || entry.Damage < 0 || !float.IsFinite(entry.Healing) || entry.Healing < 0 || entry.Coins < 0 || entry.Activations < 0 || !contributionKeys.Add(entry.Key)) throw new InvalidOperationException("Invalid contribution ledger");
+                    if (entry == null || string.IsNullOrEmpty(entry.UnitId) || entry.WeaponId == null || string.IsNullOrEmpty(entry.EffectId) || entry.Tier < 0 || entry.Tier > catalog.MaximumTier || !float.IsFinite(entry.Damage) || entry.Damage < 0 || !float.IsFinite(entry.Healing) || entry.Healing < 0 || entry.Coins < 0 || entry.Activations < 0 || entry.Kills < 0 || !contributionKeys.Add(entry.Key)) throw new InvalidOperationException("Invalid contribution ledger");
             }
             if (snapshot.NextReceipt < 0 || snapshot.RerollsThisShop < 0) throw new InvalidOperationException("Invalid transaction counters");
             if (snapshot.SchemaRevision >= 2 && snapshot.Receipts == null) throw new InvalidOperationException("Missing transaction history");
@@ -193,12 +228,12 @@ namespace ArcaneBrigade
                 RosterEntry entry = State.Roster[index];
                 CombatCatalog.StartingCompanions[index] = BuildUnit(catalog.Unit(entry.UnitId), catalog.Weapon(entry.WeaponId), entry.Tier, true);
             }
-            float scaling = 1f + (State.Wave - 1) * 0.10f;
+            float scaling = (1f + (State.Wave - 1) * 0.10f) * (1f + State.Difficulty * 0.18f);
             CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
             CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[(State.Wave / catalog.BossEvery - 1) % catalog.Bosses.Length], scaling) : null;
             CombatCatalog.WaveDuration = catalog.WaveSeconds;
-            CombatCatalog.EnemyBudget = 30 + Mathf.Min(State.Wave, 30) * 3;
+            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * (1f + State.Difficulty * 0.12f));
             CombatCatalog.SpawnInterval = Mathf.Max(0.32f, 1.4f - State.Wave * 0.035f);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
@@ -304,12 +339,17 @@ namespace ArcaneBrigade
             State.Health = simulation.Champion.Health;
             State.LastDamageSource = simulation.LastDamageSource;
             State.LastDamageAmount = simulation.LastDamageAmount;
+            State.LastDamageKind = simulation.LastDamageKind;
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
             State.Eggs = BoundedCounter((long)State.Eggs + simulation.Eggs + (simulation.BossDefeated ? 3 : 1));
-            if (simulation.BossDefeated) State.BossKills = BoundedCounter((long)State.BossKills + 1);
+            if (simulation.BossDefeated)
+            {
+                State.BossKills = BoundedCounter((long)State.BossKills + 1);
+                RunMeta.Add(State.DefeatedBosses, simulation.Boss.Definition.Id);
+            }
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
             if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.Phase = SessionPhase.Victory; return; }
             State.LastInterest = Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), State.Gold / Mathf.Max(1, catalog.InterestDivisor));
@@ -335,7 +375,16 @@ namespace ArcaneBrigade
         {
             if (State.Phase != SessionPhase.Victory) return;
             State.Endless = true;
+            State.ParentRunId = State.RunId;
             State.RunId = Guid.NewGuid().ToString("N");
+            State.StartHall = State.Wave + 1;
+            State.Contributions.Clear();
+            State.LegacyContributionKills = false;
+            State.DefeatedBosses.Clear();
+            State.LastDamageSource = State.LastDamageKind = "";
+            State.LastDamageAmount = 0;
+            State.LastIncome = catalog.Income;
+            State.LastInterest = 0;
             State.TotalKills = State.BossKills = 0;
             State.CombatSeconds = 0f;
             State.Phase = SessionPhase.Shop;
@@ -356,6 +405,7 @@ namespace ArcaneBrigade
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
                 WeaponDefinition chosen = choices[Next(ref State.WeaponRandom, choices.Count)];
                 State.Roster.Add(new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id });
+                RememberVariant(State.Roster[State.Roster.Count - 1]);
                 MergeTriples(offer.Id);
             }
             else
@@ -400,6 +450,7 @@ namespace ArcaneBrigade
                     for (int index = 0; index < 3; index++) State.Roster.Remove(materials[index]);
                     materials.RemoveRange(0, 3);
                     State.Roster.Add(new RosterEntry { UnitId = id, Tier = tier + 1, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+                    RememberVariant(State.Roster[State.Roster.Count - 1]);
                 }
             }
         }
@@ -417,6 +468,11 @@ namespace ArcaneBrigade
         }
 
         public int RerollCost => RunSession.BoundedCounter((long)catalog.RerollPrice + (long)State.RerollsThisShop * catalog.RerollPriceStep);
+        private void RememberVariant(RosterEntry entry)
+        {
+            if (!State.AcquiredVariants.Exists(candidate => candidate.UnitId == entry.UnitId && candidate.WeaponId == entry.WeaponId && candidate.Tier == entry.Tier))
+                State.AcquiredVariants.Add(new RosterEntry { UnitId = entry.UnitId, WeaponId = entry.WeaponId, Tier = entry.Tier });
+        }
         public bool RerollAltar()
         {
             if (State.Phase != SessionPhase.Shop || State.SpecialOffers.Count == 0 || State.Gold < RerollCost || State.RerollsThisShop == int.MaxValue) return false;
@@ -498,6 +554,7 @@ namespace ArcaneBrigade
             State.Roster.Remove(first);
             State.Roster.Remove(second);
             State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = recipe.ResultTier, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+            RememberVariant(State.Roster[State.Roster.Count - 1]);
             State.Eggs -= recipe.EggCost;
             RecountBonds();
             Notice = "Altar fusion completed.";

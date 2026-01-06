@@ -1,0 +1,11 @@
+{
+  "created": "2026-10-14",
+  "mode": "painting pass",
+  "asset": "Assets/ArcaneBrigade/Resources/LostShop_v1.png",
+  "nativeSize": "1536x1024",
+  "sha256": "2C32E531457A30DE3F91216D7ACB4530FE64A922691C8FD0780C2DD1935A4021",
+  "import": "Uncompressed, NPOT none, max4096, no mips/readability; menu illustration only",
+  "reference": "Original scene prompt, no extracted game assets; existing Characters_v2 inspected for overlay silhouette, not edited",
+  "renderTarget": "Windows Unity3840x2160 supersampled screenshots; not native4K PNG source",
+  "prompt": "Create one production-ready original 2D hand-drawn game main-menu illustration for Arcane Brigade, a surreal lost-and-found shop inside a dream. Landscape 3:2 composition. No text, lettering, numbers, logos, frames, buttons or UI. Rich vivid colors, clean bold ink contour, very polished restrained cel shading with subtle painterly texture, whimsical arcade toy aesthetic. Palette deep aubergine, midnight blue, warm honey-gold, turquoise ceramic and hot coral accents. The scene is an empty tiny nocturnal curiosity shop, view straight on with mild perspective: an old crescent-shaped ceiling lamp, tidy shelves on the upper left and right with odd small teapot, rolled moon ribbon, sleeping camera and bell, a little crooked receipt printer on the right. Main center and lower center must remain spacious and fairly dark empty for overlaying one existing armless cartoon character, do not draw any characters, people, humanoids, weapons or hands. A warm circular pool of lamp light shines onto the wide wooden countertop in the bottom third. Crisp appealing shapes readable at small size, deliberate artistic composition, luxurious high-quality indie 2D illustration, not photorealistic, not pixel art. This is scenery only, not an imitation of any existing game's assets. Render with no transparent background."
+}

@@ -115,6 +115,7 @@ namespace ArcaneBrigade
                 station.Offer = offer;
                 station.Description = description;
                 if (offer.Sold) foreach (SpriteRenderer renderer in station.Marker.GetComponentsInChildren<SpriteRenderer>()) renderer.color *= new Color(0.45f, 0.45f, 0.45f, 0.7f);
+                if (offer.Sold) AddText(station.Marker, "ĐÃ MUA", new Vector2(0, 0.35f), 0.048f, ArcadeSkin.Accent);
             }
             AddStation(new Vector2(0, 2.3f), "REROLL", owner.Session.RerollCost + " GOLD", catalog.Arena.Coin, tint).Description = "Đổi ba offer " + (Special ? "altar" : "vàng") + ". Đã đổi " + state.RerollsThisShop + " lần tại rest; mỗi lần tăng " + catalog.RerollPriceStep + " vàng. Không đổi stock cửa hàng bên kia hoặc roll lại activation.";
             AddStation(new Vector2(7, 1), "NEXT HALL", "SPACE TO CONTINUE", catalog.Arena.Coin, tint).Description = "Finish shopping and enter the next hall.";
@@ -142,8 +143,8 @@ namespace ArcaneBrigade
             Vector2 namePosition = reroll ? new Vector2(-1.25f, 0.32f) : new Vector2(0, -0.85f);
             Vector2 pricePosition = reroll ? new Vector2(-1.25f, 0.04f) : new Vector2(0, -1.17f);
             CreatePlate(marker.transform, reroll ? new Vector2(-1.25f, 0.08f) : new Vector2(0, -1.25f), reroll ? new Vector2(1.65f, 0.74f) : new Vector2(2.55f, 1.3f), tint);
-            AddText(marker.transform, action, namePosition, reroll ? 0.038f : 0.041f, Color.white);
-            AddText(marker.transform, price, pricePosition, 0.036f, tint, TextAnchor.UpperCenter);
+            AddText(marker.transform, action, namePosition, reroll ? 0.038f : Mathf.Min(0.041f, 0.57f / Mathf.Max(1, action.Length)), Color.white);
+            AddText(marker.transform, price, pricePosition, 0.032f, tint, TextAnchor.UpperCenter, true);
             var station = new Station { Position = position, Action = action, Marker = marker.transform };
             stations.Add(station);
             return station;
@@ -196,14 +197,14 @@ namespace ArcaneBrigade
             return renderer;
         }
 
-        private static void AddText(Transform parent, string text, Vector2 position, float size, Color tint, TextAnchor anchor = TextAnchor.MiddleCenter)
+        private static void AddText(Transform parent, string text, Vector2 position, float size, Color tint, TextAnchor anchor = TextAnchor.MiddleCenter, bool numeric = false)
         {
             var child = new GameObject("ShopLabel");
             child.transform.SetParent(parent, false);
             child.transform.localPosition = position;
             TextMesh mesh = child.AddComponent<TextMesh>();
             mesh.text = text;
-            mesh.font = ArcadeTypography.Body;
+            mesh.font = numeric ? ArcadeTypography.Numbers : ArcadeTypography.Heading;
             mesh.GetComponent<MeshRenderer>().sharedMaterial = mesh.font.material;
             mesh.fontSize = 64;
             mesh.characterSize = size;

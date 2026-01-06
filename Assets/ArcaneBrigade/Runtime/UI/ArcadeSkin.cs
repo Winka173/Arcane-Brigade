@@ -7,10 +7,13 @@ namespace ArcaneBrigade
         private static GUISkin skin;
         private static GUIStyle panel;
         private static Texture2D rounded;
+        public static int Bundle { get; set; }
         public static readonly Color Ink = new Color(0.10f, 0.09f, 0.19f);
         public static readonly Color Purple = new Color(0.62f, 0.28f, 0.92f);
         public static readonly Color Cream = new Color(1f, 0.94f, 0.76f);
         public static readonly Color Teal = new Color(0.28f, 0.94f, 0.86f);
+        public static Color Paper => Bundle == 1 ? new Color(0.87f, 0.96f, 0.91f) : Bundle == 2 ? new Color(1f, 0.89f, 0.90f) : new Color(0.98f, 0.93f, 0.81f);
+        public static Color Accent => Bundle == 1 ? new Color(0.35f, 0.90f, 0.83f) : Bundle == 2 ? new Color(1f, 0.50f, 0.66f) : new Color(1f, 0.72f, 0.32f);
 
         public static GUISkin Skin
         {
@@ -20,7 +23,7 @@ namespace ArcaneBrigade
                 skin = Object.Instantiate(GUI.skin);
                 if (ArcadeTypography.Body != null) skin.font = ArcadeTypography.Body;
                 skin.button = new GUIStyle(skin.button) { border = new RectOffset(10, 10, 10, 10), fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
-                skin.button.normal.background = ButtonTexture(new Color(0.27f, 0.19f, 0.39f), Purple);
+                skin.button.normal.background = ButtonTexture(new Color(0.22f, 0.18f, 0.32f), new Color(0.88f, 0.65f, 0.34f));
                 skin.button.hover.background = ButtonTexture(new Color(0.33f, 0.24f, 0.46f), Teal);
                 skin.button.active.background = ButtonTexture(new Color(0.2f, 0.15f, 0.31f), Cream);
                 skin.button.normal.textColor = skin.button.hover.textColor = skin.button.active.textColor = Cream;
@@ -74,8 +77,38 @@ namespace ArcaneBrigade
         public static void Panel(Rect rectangle, Color color)
         {
             Rounded(new Rect(rectangle.x, rectangle.y + 5f, rectangle.width, rectangle.height), new Color(0.035f, 0.025f, 0.075f, 0.8f));
-            Rounded(rectangle, Purple);
-            Rounded(new Rect(rectangle.x + 3, rectangle.y + 3, rectangle.width - 6, rectangle.height - 6), color);
+            Rounded(rectangle, Color.Lerp(Accent, Ink, 0.55f));
+            Rounded(new Rect(rectangle.x + 2, rectangle.y + 2, rectangle.width - 4, rectangle.height - 4), color);
+            Line(new Rect(rectangle.x + 16, rectangle.y + 9, Mathf.Min(32, rectangle.width - 32), 2), Accent);
+        }
+
+        public static void Line(Rect rectangle, Color color)
+        {
+            Color previous = GUI.color;
+            GUI.color = color;
+            GUI.DrawTexture(rectangle, Texture2D.whiteTexture);
+            GUI.color = previous;
+        }
+        public static void Divider(Rect rectangle, Color color)
+        {
+            for (float horizontal = rectangle.x; horizontal < rectangle.xMax; horizontal += 14)
+                Line(new Rect(horizontal, rectangle.y, Mathf.Min(7, rectangle.xMax - horizontal), 2), color);
+        }
+        public static void Header(Rect rectangle, string eyebrow, string heading)
+        {
+            GUIStyle label = ArcadeTypography.Style(13, false, true);
+            label.normal.textColor = Accent;
+            GUI.Label(new Rect(rectangle.x, rectangle.y, rectangle.width, 24), eyebrow, label);
+            GUI.Label(new Rect(rectangle.x, rectangle.y + 27, rectangle.width, rectangle.height - 27), heading, ArcadeTypography.Style(36, true));
+        }
+        public static void Stamp(Rect rectangle, string caption)
+        {
+            Divider(new Rect(rectangle.x, rectangle.y, rectangle.width, 2), Accent);
+            GUIStyle label = ArcadeTypography.Style(15, true);
+            label.normal.textColor = Accent;
+            label.alignment = TextAnchor.MiddleCenter;
+            GUI.Label(new Rect(rectangle.x, rectangle.y + 6, rectangle.width, rectangle.height - 12), caption, label);
+            Divider(new Rect(rectangle.x, rectangle.yMax - 2, rectangle.width, 2), Accent);
         }
     }
 }

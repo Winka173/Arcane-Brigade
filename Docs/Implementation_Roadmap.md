@@ -1,6 +1,6 @@
 # Arcane Brigade — kế hoạch chuẩn bị triển khai
 
-**Mốc mới nhất 2026-10-14: K5 DONE theo functional gate Windows.** Xem `K5_Final_Checkpoint.md`;12 concept/6 build/6 prop,139 checks K5 + regression và40 native assertions đạt. Phase kế tiếp K6, production/mobile K7. Mốc này có ưu tiên hơn mọi trạng thái lịch sử phía dưới.
+**Mốc mới nhất 2026-10-14: K6 DONE theo functional gate Windows.** Xem `K6_Final_Checkpoint.md`; UI/font/museum/invoice/history/cosmetic, difficulty/challenge/score và Endless segment đã nối. 71 checks K6 + K0–K5 regression,32 native assertions/24 ảnh Unity4K đạt; build0errors/0warnings. Phase kế tiếp K7 production/device/balance/audio/performance. Mốc này có ưu tiên hơn mọi trạng thái lịch sử phía dưới.
 
 **K4 cập nhật cuối (2026-10-13): DONE theo functional gate runtime Windows.** Ba weapon, hai build/connector/contribution, post-save merge/tier/idle, hai đạo cụ/boss phase và sandbox cô lập đã nối; regression + native vertical slice PASS. Xem `K4_Final_Checkpoint.md`. Phase kế tiếp K5; font/UI redesign K6, device/production polish K7. Những trạng thái K4.1/chưa triển khai cũ bên dưới là lịch sử, cập nhật này có ưu tiên.
 
@@ -98,6 +98,8 @@ Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning
 **Đạt khi:** từng family có sample/pattern/tooltip/art đủ; mỗi build có tác dụng khi mới có hai thành phần, có trade-off/điểm yếu; không item bắt buộc cho mọi build, không one-hit do base damage, không cap đội để né lag.
 
 ### K6 — Kết quả, museum và meta
+
+**Cập nhật cuối 2026-10-14: DONE Windows functional gate.** K6.1–K6.5 theo `K6_Final_Checkpoint.md`; rule/tuning/migration xem `K6_Meta_Rules.md`. Gallery `PreviewExports/K6/index.html`. Không permanent power, không duplicate credit/Endless ledger, không gọi terminal fixture là natural playtest. Các yêu cầu/nghiệm thu còn lại của production/device giữ K7.
 
 **Feedback đã nhận (2026-10-13):** font và UI hiện tại chưa phù hợp chất lượng art. Chủ dự án đồng ý chưa redesign trong visual pass. K6 làm bộ UI đồng nhất (HUD/menu/Details/shop/results), font có cá tính arcade nhưng rõ dấu tiếng Việt, phân cấp chữ/số, spacing, icon và bảng giá gọn; giữ các thao tác và dữ liệu thật. K7 chốt kerning/glyph, transitions và nghiệm thu đa nền tảng. Đổi palette/bảng giá nhỏ trong visual pass không được tính là hoàn tất redesign này.
 

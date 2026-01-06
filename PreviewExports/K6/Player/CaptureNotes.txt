@@ -1,0 +1,33 @@
+PASS Windows resumes saved mode and uncapped roster
+PASS 4K Unity frame 01-hud-live-score
+PASS 4K Unity frame 02-companion-files
+PASS 4K Unity frame 03-relic-drawers
+PASS 4K Unity frame 04-build-inspection
+PASS Seeded terminal fixture credits one frozen history
+PASS 4K Unity frame 05-victory-invoice
+PASS 4K Unity frame 05-invoice-contribution-evidence
+PASS 4K Unity frame 06-bundle-1
+PASS 4K Unity frame 06-bundle-2
+PASS Native Endless starts clean segment with build and parent intact
+PASS Physical rest has three real stand offers not modal shop
+PASS 4K Unity frame 07-physical-rest-endless
+PASS 4K Unity frame 07-stand-price-preview
+PASS 4K Unity frame 08-defeat-invoice
+PASS 4K Unity frame 08-death-source-evidence
+PASS 4K Unity frame 09-main-menu
+PASS 4K Unity frame 10-champion-mode-selection
+PASS 4K Unity frame 11-cosmetic-settings
+PASS 4K Unity frame 12-history-receipts
+PASS 4K Unity frame 12-history-normal-record
+PASS 4K Unity frame 12-history-measured-contribution
+PASS 4K Unity frame 13-museum-tab-0
+PASS 4K Unity frame 13-museum-tab-1
+PASS 4K Unity frame 13-museum-tab-2
+PASS 4K Unity frame 13-museum-tab-3
+PASS 4K Unity frame 13-museum-tab-4
+PASS Museum discovery list opens gameplay sandbox
+PASS 4K Unity frame 14-museum-tier3-preview
+PASS Museum history sandbox and cosmetic rendering do not mutate read-only profile
+PASS Preview/reset/tier/close leaves durable saved run byte-identical
+PASS Native normal and Endless grouped records stay separate
+Seed610026, hall10 with seeded12-family tier roster/relics. HUD and Details use live gameplay pipeline, measured contribution copied from its actual combat. Victory/death screens are explicitly seeded terminal fixtures, not claimed natural20hall clears: wave/outcome/three boss identities and last lethal hit assigned for layout coverage. Native ContinueEndless, record writes, museum and sandbox use real runtime methods. Discovery gaps remain locked. Captures render live1920x1080 with2x supersampling3840x2160, not native4K source art. Root isolated under diagnostic tempcache, never player persistent profile. No mobile/performance/fullrun/audio approval.

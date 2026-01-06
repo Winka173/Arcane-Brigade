@@ -7,8 +7,8 @@ namespace ArcaneBrigade
         private static Font body;
         private static Font heading;
         private static Font numbers;
-        public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/NotoSans-Regular");
-        public static Font Heading => heading != null ? heading : heading = Resources.Load<Font>("Fonts/NotoSans-Black");
+        public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/BeVietnamPro-Medium");
+        public static Font Heading => heading != null ? heading : heading = Resources.Load<Font>("Fonts/BeVietnamPro-Black");
         public static Font Numbers => numbers != null ? numbers : numbers = Resources.Load<Font>("Fonts/NotoSansMono-Bold");
 
         public static GUIStyle Style(int size, bool title = false, bool numeric = false)

@@ -37,10 +37,10 @@ namespace ArcaneBrigade
             GUIStyle number = ArcadeTypography.Style(27, false, true);
             GUIStyle button = new GUIStyle(GUI.skin.button) { fontSize = 26 };
             RunHud.Fill(new Rect(30, 20, 1860, 1040), new Color(0.09f, 0.075f, 0.16f, 0.99f));
-            GUI.Label(new Rect(75, 50, 1300, 70), "HỒ SƠ ĐỘI QUÂN", title);
-            GUI.Label(new Rect(75, 125, 1600, 50), "Read-only · không đổi build/RNG · I hoặc Escape để đóng", text);
+            ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "PHÒNG KIỂM ĐỊNH / HỒ SƠ READ-ONLY", "HỒ SƠ ĐỘI QUÂN");
+            ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (GUI.Button(new Rect(1610, 55, 220, 70), "ĐÓNG", button)) owner.ToggleDetails();
-            string[] names = { "STATS", "ĐỒNG MINH", "VẬT PHẨM", "LIÊN KẾT" };
+            string[] names = { "01  KIỂM ĐỊNH", "02  THẺ ĐỒNG MINH", "03  NGĂN CỔ VẬT", "04  ĐƯỜNG NỐI BUILD" };
             for (int index = 0; index < names.Length; index++)
             {
                 Color previousColor = GUI.color;
@@ -59,6 +59,7 @@ namespace ArcaneBrigade
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; explanationScroll = Vector2.zero; }
                 float contentLeft = row.Icon != null ? 120 : 28;
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);
+                if (row.WeaponIcon != null) RunHud.Sprite(new Rect(68, card.y + 62, 42, 48), row.WeaponIcon);
                 GUI.Label(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
                 GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
             }

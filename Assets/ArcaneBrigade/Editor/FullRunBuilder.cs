@@ -363,6 +363,7 @@ namespace ArcaneBrigade.Editor
             if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException("Full run build failed");
             Directory.CreateDirectory("Builds/FullRun/ThirdPartyNotices");
             File.Copy(Root + "Resources/Fonts/OFL.txt", "Builds/FullRun/ThirdPartyNotices/Noto-OFL.txt", true);
+            File.Copy(Root + "Resources/Fonts/BeVietnamPro-OFL.txt", "Builds/FullRun/ThirdPartyNotices/BeVietnamPro-OFL.txt", true);
         }
 
         [MenuItem("Arcane Brigade/Full Run/Check existing content without resetting")]
