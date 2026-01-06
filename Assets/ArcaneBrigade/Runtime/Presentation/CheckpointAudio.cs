@@ -5,13 +5,20 @@ namespace ArcaneBrigade
     public sealed class CheckpointAudio : MonoBehaviour
     {
         private readonly AudioSource[] voices = new AudioSource[8];
-        private readonly AudioClip[] clips = new AudioClip[19];
-        private readonly float[] nextPlayback = new float[19];
+        private readonly AudioClip[] clips = new AudioClip[33];
+        private readonly float[] nextPlayback = new float[33];
+        private readonly float[] nextDangerPlayback = new float[33];
+        private readonly float[] voiceGain = new float[8];
+        private static CheckpointAudio interfaceAudio;
+        private int dangerVoice;
+        public int PlayedCues { get; private set; }
+        public int DroppedCosmeticCues { get; private set; }
         private int nextVoice;
         private bool presentation;
 
         private void Awake()
         {
+            if (interfaceAudio == null) interfaceAudio = this;
             for (int index = 0; index < voices.Length; index++)
             {
                 voices[index] = gameObject.AddComponent<AudioSource>();
@@ -66,18 +73,46 @@ namespace ArcaneBrigade
             if (value.Kind == CombatEventKind.SignaturePulse) cue = value.Weapon != null && value.Weapon.Signature == SignatureWeapon.Bell ? 7 : 8;
             if (value.Kind == CombatEventKind.SignatureBurst) cue = 9;
             if (value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Family != ExpandedWeapon.None) cue = 9 + (int)value.Weapon.Family;
-            if (cue < 0 || Time.unscaledTime < nextPlayback[cue]) return;
-            nextPlayback[cue] = Time.unscaledTime + (cue >= 10 ? 0.09f : cue == 4 ? 0.08f : 0.04f);
-            AudioSource voice = voices[nextVoice];
-            nextVoice = (nextVoice + 1) % voices.Length;
+            if (value.Kind == CombatEventKind.Kill && value.Faction != Faction.Champion && value.Subject != null && !value.Subject.Definition.IsBoss) cue = 27 + (int)value.Subject.Definition.Material;
+            bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit || cue == 6;
+            PlayCue(cue, danger, value.Critical);
+        }
+
+        public static bool IsDangerCue(int cue) => cue == 6 || cue == 24 || cue == 25 || cue == 26;
+        public static float GroupDelay(int cue, bool reduced) => (cue >= 10 ? 0.09f : cue == 4 ? 0.08f : 0.04f) * (reduced ? 2.5f : 1);
+        public void PlayCue(int cue, bool danger = false, bool critical = false)
+        {
+            if (cue < 0 || cue >= clips.Length || clips[cue] == null) return;
+            danger |= IsDangerCue(cue);
+            float[] clock = danger ? nextDangerPlayback : nextPlayback;
+            if (Time.unscaledTime < clock[cue]) { if (!danger) DroppedCosmeticCues++; return; }
+            clock[cue] = Time.unscaledTime + (danger ? 0.035f : GroupDelay(cue, PresentationSettings.ReducedAudio));
+            int voiceIndex = danger ? dangerVoice : 2 + nextVoice % 6;
+            if (danger) dangerVoice = (dangerVoice + 1) % 2; else nextVoice = (nextVoice + 1) % 6;
+            AudioSource voice = voices[voiceIndex];
+            if (!danger && voice.isPlaying && Time.unscaledTime < PresentationSettings.DangerUntil) { DroppedCosmeticCues++; return; }
             voice.clip = clips[cue];
-            voice.volume = cue == 6 ? 0.23f : value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit ? 0.25f : 0.12f;
-            voice.pitch = value.Critical ? 1.15f : 0.94f + nextVoice * 0.015f;
+            voiceGain[voiceIndex] = danger ? 0.25f : cue == 4 ? 0.09f : cue == 19 ? 0.08f : 0.14f;
+            voice.volume = voiceGain[voiceIndex] * PresentationSettings.SfxVolume;
+            voice.priority = danger ? 16 : 180;
+            voice.pitch = critical ? 1.1f : 1f;
             voice.Play();
+            PlayedCues++;
+            if (danger) PresentationSettings.Danger();
+        }
+        public static void PlayInterface(int cue)
+        {
+            if (interfaceAudio != null) interfaceAudio.PlayCue(cue);
+        }
+        private void Update()
+        {
+            if (!presentation) return;
+            for (int index = 0; index < voices.Length; index++) voices[index].volume = voiceGain[index] * PresentationSettings.SfxVolume;
         }
 
         private void OnDestroy()
         {
+            if (interfaceAudio == this) interfaceAudio = null;
             for (int index = 0; index < clips.Length; index++) if (clips[index] != null) Destroy(clips[index]);
         }
     }

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RuneWisp
   DisplayName: RuneWisp
-  Body: {fileID: 1336070698, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Body: {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 538038739, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1367685831, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 465823829, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: 2cde74c3dbeae4044814e6d56d09a267, type: 2}
   Health: 49
   Speed: 1.65
@@ -23,7 +28,7 @@ MonoBehaviour:
   ContactDamage: 4
   ContactInterval: 0.8
   CriticalChance: 0
-  Tint: {r: 0.75, g: 0.55, b: 0.7, a: 1}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1
@@ -32,3 +37,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

@@ -20,6 +20,12 @@ namespace ArcaneBrigade
         private SpriteRenderer tierBell;
         private readonly LineRenderer[] exposedCorners = new LineRenderer[4];
         private Material exposedMaterial;
+        private Vector2 arrivalOrigin;
+        private float arrivalAge = 10;
+        private int arrivalFrame;
+        private float facingAngle;
+        private BodyPuppet puppet;
+        public void BeginArrival(Vector2 origin) { arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount; }
         public bool ReducedMotion { get; set; }
         public UnitState State => state;
         public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;
@@ -44,9 +50,17 @@ namespace ArcaneBrigade
             return phase < 0.65f ? Mathf.Sin(phase / 0.65f * Mathf.PI) : 0;
         }
 
+        public static int AnimationFrame(float time, int identity, bool moving, bool reducedMotion)
+        {
+            if (reducedMotion) return 0;
+            if (moving) return 2 + (Mathf.FloorToInt(time * 7 + identity * 0.37f) & 1);
+            return Mathf.Repeat(time + identity * 0.73f, 4.7f) < 0.13f ? 1 : 0;
+        }
+
         public void CopyDeathPose(SpriteRenderer targetBody, SpriteRenderer targetShadow, SpriteRenderer targetWeapon, SpriteRenderer targetHand, SpriteRenderer targetDrawHand, Transform targetGrip)
         {
             CopyPart(body, targetBody);
+            targetBody.enabled = body.sprite != null;
             CopyPart(shadow, targetShadow);
             targetGrip.localPosition = grip.localPosition;
             targetGrip.localRotation = grip.localRotation;
@@ -97,6 +111,9 @@ namespace ArcaneBrigade
         public void Bind(UnitState unit, CheckpointCatalog catalog)
         {
             state = unit;
+            if (puppet == null) puppet = body.gameObject.AddComponent<BodyPuppet>();
+            arrivalAge = 10;
+            facingAngle = Mathf.Atan2(unit.Facing.y, unit.Facing.x) * Mathf.Rad2Deg;
             if (flashProperties == null) flashProperties = new MaterialPropertyBlock();
             body.sprite = unit.Definition.Body;
             Material flash = Resources.Load<Material>("UnitFlash");
@@ -153,12 +170,23 @@ namespace ArcaneBrigade
         public void Display(float simulationTime, float interpolation)
         {
             if (state == null) return;
+            if (state.Definition.AnimationFrames.Length >= 4)
+                body.sprite = state.Definition.AnimationFrames[AnimationFrame(simulationTime, state.Id, (state.Position - state.PreviousPosition).sqrMagnitude > 0.000001f, ReducedMotion)];
             weapon.color = hand.color = Color.white;
-            shadow.color = shadowColor;
+            shadow.color = state.Faction == Faction.Enemy ? new Color(0.02f, 0.02f, 0.04f, 0.3f) : shadowColor;
             if (tierBell != null) tierBell.color = Color.white;
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+            if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount) { arrivalAge += Mathf.Min(Time.deltaTime, 0.05f); arrivalFrame = Time.frameCount; }
+            float arrival = arrivalAge / 0.9f;
+            if (arrival >= 0 && arrival < 1)
+            {
+                Vector2 landing = arrivalOrigin + new Vector2(0.5f, -0.6f);
+                Vector2 destination = arrival < 0.45f ? Vector2.Lerp(arrivalOrigin, landing, arrival / 0.45f) : Vector2.Lerp(landing, (Vector2)transform.position, Mathf.SmoothStep(0, 1, (arrival - 0.45f) / 0.55f));
+                if (!ReducedMotion && arrival < 0.45f) destination.y += Mathf.Sin(arrival / 0.45f * Mathf.PI) * 0.85f;
+                transform.position = destination;
+            }
             WeaponDefinition definition = state.Definition.Weapon;
             float age = simulationTime - state.AttackStarted;
             float poseWindup = state.AttackWindup > 0 ? state.AttackWindup : definition.Windup;
@@ -175,10 +203,10 @@ namespace ArcaneBrigade
             if (tierBell != null) tierBell.sortingOrder = weapon.sortingOrder;
             body.flipX = facing.x < -0.1f;
             float movement = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
-            float bob = Mathf.Sin(simulationTime * 13f + state.Id) * 0.025f * movement;
+            float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * 13f + state.Id) * 0.025f * movement;
             float attackLean = 0f;
             float impactSquash = 0f;
-            if (attacking)
+            if (attacking && !ReducedMotion)
             {
                 float anticipation = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)));
                 float followThrough = 1f - Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery)));
@@ -188,23 +216,24 @@ namespace ArcaneBrigade
             }
             float scale = state.Definition.BodyHeight / body.sprite.bounds.size.y;
             float hitAge = simulationTime - state.LastHit;
-            float hurt = Mathf.Clamp01(1f - hitAge / 0.14f);
+            float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
             impactSquash += hurt * 0.09f;
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, -state.Definition.BodyHeight * 0.5f + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
             float personality = state.Id % 2 == 0 ? -1 : 1;
             body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
             shadow.transform.localPosition = new Vector3(0f, -state.Definition.BodyHeight * 0.5f, 0f);
-            body.color = Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
+            body.color = ReducedMotion ? state.Definition.Tint : Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
             body.GetPropertyBlock(flashProperties);
-            flashProperties.SetFloat("_Flash", Mathf.Clamp01(1f - hitAge / 0.075f));
+            flashProperties.SetFloat("_Flash", ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.075f));
             body.SetPropertyBlock(flashProperties);
-            if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), 0.5f + Mathf.Sin(simulationTime * 22f) * 0.4f);
+            if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion ? 0.75f : 0.5f + Mathf.Sin(simulationTime * 22f) * 0.4f);
+            if (puppet != null) puppet.Display(body, state, simulationTime, ReducedMotion);
             DisplayWeakspot(simulationTime, order);
 
-            float angleOffset = 0f;
+            float angleOffset = !ReducedMotion && definition.Kind == WeaponKind.Melee ? Mathf.Sin(simulationTime * 1.8f + state.Id * 0.4f) * 9f : 0f;
             float recoil = 0f;
             if (idle > 0)
             {
@@ -277,7 +306,9 @@ namespace ArcaneBrigade
                 if (definition.Motion == WeaponMotion.Music) angleOffset += Mathf.Sin(phase * Mathf.PI * 2f) * 10f;
                 grip.localPosition = facing * (definition.MountDistance - recoil);
             }
-            grip.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg + angleOffset);
+            float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+            facingAngle = attacking || ReducedMotion ? targetAngle : Mathf.MoveTowardsAngle(facingAngle, targetAngle, Time.deltaTime * 240f);
+            grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset);
         }
 
         private void DisplayWeakspot(float time, int order)
@@ -323,6 +354,7 @@ namespace ArcaneBrigade
         public void SetTerminalFade(float alpha)
         {
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
+            if (puppet != null) puppet.Fade(alpha);
             if (tierBell != null) Fade(tierBell, alpha);
             foreach (LineRenderer corner in exposedCorners)
             {

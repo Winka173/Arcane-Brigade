@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SirenSeal
   DisplayName: SirenSeal
-  Body: {fileID: -732712032, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: 1946362046, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: 1946362046, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1830704283, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 1289733431, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -97535582, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: 4f1d870ec4a38e44b92c4565e4a1df7d, type: 2}
   Health: 63
   Speed: 1.85
@@ -23,7 +28,7 @@ MonoBehaviour:
   ContactDamage: 4
   ContactInterval: 0.8
   CriticalChance: 0
-  Tint: {r: 0.75, g: 0.55, b: 0.7, a: 1}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1
@@ -32,3 +37,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

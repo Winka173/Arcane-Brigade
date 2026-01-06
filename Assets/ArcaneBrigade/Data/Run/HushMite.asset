@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HushMite
   DisplayName: HushMite
-  Body: {fileID: -389509726, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Body: {fileID: 1563552575, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: 1563552575, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1109439120, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -926919587, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -717866939, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 28
   Speed: 1.35
@@ -23,7 +28,7 @@ MonoBehaviour:
   ContactDamage: 4
   ContactInterval: 0.8
   CriticalChance: 0
-  Tint: {r: 0.8, g: 0.6, b: 0.65, a: 1}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1
@@ -32,3 +37,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

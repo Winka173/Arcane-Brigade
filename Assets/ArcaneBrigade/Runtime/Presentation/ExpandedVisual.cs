@@ -9,11 +9,12 @@ namespace ArcaneBrigade
         private Material material;
         private Mesh disc;
         private readonly List<MeshRenderer> fills = new List<MeshRenderer>();
-        private readonly MaterialPropertyBlock tint = new MaterialPropertyBlock();
+        private MaterialPropertyBlock tint;
         public bool ReducedMotion;
         public int VisibleCount { get; private set; }
         public void Display(CombatSimulation simulation)
         {
+            if (tint == null) tint = new MaterialPropertyBlock();
             VisibleCount = 0;
             if (simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused))
                 for (int priority = 0; priority < 2; priority++)
@@ -21,6 +22,7 @@ namespace ArcaneBrigade
                 {
                     bool hazard = field.Kind == ExpandedFieldKind.Curtain || field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard;
                     if (hazard != (priority == 0)) continue;
+                    if (!hazard && field.Kind != ExpandedFieldKind.Link && field.Kind != ExpandedFieldKind.Strike) continue;
                     if (VisibleCount >= 96) break;
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
@@ -58,9 +60,9 @@ namespace ArcaneBrigade
                         }
                         if (field.Kind == ExpandedFieldKind.Strike) line.loop = false;
                     }
-                    line.enabled = true;
+                    line.enabled = hazard || field.Kind == ExpandedFieldKind.Link && field.Radius == 0 || field.Kind == ExpandedFieldKind.Strike;
                     MeshRenderer fill = fills[slot];
-                    fill.enabled = field.Radius > 0 && field.Kind != ExpandedFieldKind.Strike && field.Kind != ExpandedFieldKind.Iron && field.Kind != ExpandedFieldKind.Link;
+                    fill.enabled = hazard && field.Radius > 0;
                     if (fill.enabled)
                     {
                         fill.transform.position = field.Position; fill.transform.localScale = Vector3.one * field.Radius;

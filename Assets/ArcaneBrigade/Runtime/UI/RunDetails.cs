@@ -10,6 +10,10 @@ namespace ArcaneBrigade
         private int selection;
         private Vector2 scroll;
         private Vector2 explanationScroll;
+        private GUIStyle titleStyle;
+        private GUIStyle bodyStyle;
+        private GUIStyle numberStyle;
+        private GUIStyle buttonStyle;
         public bool Open => model != null;
         public int Tab => tab;
         public const int TabCount = 4;
@@ -32,15 +36,15 @@ namespace ArcaneBrigade
             GUISkin previousSkin = GUI.skin;
             GUI.skin = ArcadeSkin.Skin;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
-            GUIStyle title = ArcadeTypography.Style(44, true);
-            GUIStyle text = ArcadeTypography.Style(25);
-            GUIStyle number = ArcadeTypography.Style(27, false, true);
-            GUIStyle button = new GUIStyle(GUI.skin.button) { fontSize = 26 };
+            GUIStyle title = titleStyle ?? (titleStyle = ArcadeTypography.Style(44, true));
+            GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(25));
+            GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
+            GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
             RunHud.Fill(new Rect(30, 20, 1860, 1040), new Color(0.09f, 0.075f, 0.16f, 0.99f));
-            ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "PHÒNG KIỂM ĐỊNH / HỒ SƠ READ-ONLY", "HỒ SƠ ĐỘI QUÂN");
+            ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "ĐỘI QUÂN");
             ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (GUI.Button(new Rect(1610, 55, 220, 70), "ĐÓNG", button)) owner.ToggleDetails();
-            string[] names = { "01  KIỂM ĐỊNH", "02  THẺ ĐỒNG MINH", "03  NGĂN CỔ VẬT", "04  ĐƯỜNG NỐI BUILD" };
+            string[] names = { "CHỈ SỐ", "ĐỒNG MINH", "VẬT PHẨM", "LIÊN KẾT" };
             for (int index = 0; index < names.Length; index++)
             {
                 Color previousColor = GUI.color;
@@ -73,7 +77,6 @@ namespace ArcaneBrigade
             explanationScroll = GUI.BeginScrollView(new Rect(1180, 325, 625, 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GUI.Label(new Rect(5, 5, 570, explanationHeight), explanation, text);
             GUI.EndScrollView();
-            GUI.Label(new Rect(75, 995, 1730, 45), "Tab: đổi mục · click/tap một dòng để xem nguồn và scope · không bán/đổi đồ", text);
             GUI.matrix = previous;
             GUI.skin = previousSkin;
         }

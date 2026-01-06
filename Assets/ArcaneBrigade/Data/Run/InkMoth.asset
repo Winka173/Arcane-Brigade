@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: InkMoth
   DisplayName: InkMoth
-  Body: {fileID: 1419738374, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 727089170, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1861701143, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1572981011, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: ca73b1df21a154848807e691e4dccc01, type: 2}
   Health: 56
   Speed: 1.75
@@ -23,7 +28,7 @@ MonoBehaviour:
   ContactDamage: 4
   ContactInterval: 0.8
   CriticalChance: 0
-  Tint: {r: 0.8, g: 0.6, b: 0.65, a: 1}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1
@@ -32,3 +37,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

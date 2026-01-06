@@ -1,0 +1,15 @@
+Arcane Brigade K7 audio credits — 2026-10-14
+
+Runtime SFX sources: Kenney, Impact Sounds1.0, RPG Audio1.0, Interface Sounds1.0. Creative Commons Zero (CC0). Exact supplied License.txt files included alongside sources and in ThirdPartyNotices.
+https://kenney.nl/assets/impact-sounds
+https://kenney.nl/assets/rpg-audio
+https://kenney.nl/assets/interface-sounds
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Runtime music: (Basically not) Fusion Jazz — Julie Damsgaard / Spring Spring / Spring Enterprises. Author's original upload labels the track CC0. Downloaded original fusion jazz_0.ogg, stored as FusionJazz.ogg; runtime shop playback pitch0.9 and boss pitch1.035, no source file editing.
+https://opengameart.org/content/basically-not-fusion-jazz
+https://opengameart.org/sites/default/files/fusion%20jazz_0.ogg
+https://spring-enterprises.neocities.org
+https://creativecommons.org/publicdomain/zero/1.0/
+
+This licensed track is not exclusively composed for Arcane Brigade. No Bizarre Brigade soundtrack or extracted reference samples are packaged. Procedural NightCabaretSound is retained as a fallback/study, not the default licensed music or sampled Foley when resources are present.

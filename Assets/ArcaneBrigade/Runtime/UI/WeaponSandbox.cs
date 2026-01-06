@@ -14,6 +14,7 @@ namespace ArcaneBrigade
         private readonly Dictionary<int, UnitVisual> unitViews = new Dictionary<int, UnitVisual>();
         private readonly Dictionary<int, SpriteRenderer> projectileViews = new Dictionary<int, SpriteRenderer>();
         private readonly List<int> retired = new List<int>();
+        private readonly List<Renderer> renderers = new List<Renderer>();
         private CheckpointCatalog template;
         private CheckpointCatalog arena;
         private Sprite projectileDisc;
@@ -288,7 +289,7 @@ namespace ArcaneBrigade
                 view.GetComponent<ProjectileVisual>().Display(state, view, state.Position, Simulation.Elapsed);
             }
             expandedVisual.ReducedMotion = ReducedMotion; expandedVisual.Display(Simulation);
-            Renderer[] renderers = world.GetComponentsInChildren<Renderer>();
+            renderers.Clear(); world.GetComponentsInChildren<Renderer>(true, renderers);
             RenderTexture previousActive = RenderTexture.active;
             try
             {

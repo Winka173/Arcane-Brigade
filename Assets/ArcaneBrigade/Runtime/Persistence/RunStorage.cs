@@ -10,13 +10,20 @@ namespace ArcaneBrigade
     [Serializable]
     public sealed class PlayerProfile
     {
-        public int Version = 2;
+        public const int CurrentVersion = 3;
+        public int Version = CurrentVersion;
         public int BestWave;
         public int Wins;
         public int TotalKills;
         public int Cosmetic;
         public float Volume = 0.7f;
         public bool ReducedMotion;
+        public float MusicVolume = 0.8f;
+        public float SfxVolume = 0.85f;
+        public bool ReducedAudio;
+        public bool ShowDamageNumbers = true;
+        public bool ShowLootIndicators = true;
+        public bool HighReadability;
         public List<string> CompletedRuns = new List<string>();
         public List<string> SeenUnits = new List<string>();
         public List<string> SeenItems = new List<string>();
@@ -66,7 +73,7 @@ namespace ArcaneBrigade
                     string payload = Read("profile.json" + suffix);
                     if (payload == null) continue;
                     PlayerProfile profile = JsonUtility.FromJson<PlayerProfile>(payload);
-                    if (profile == null || profile.Version < 1 || profile.Version > 2 || profile.BestWave < 0 || profile.CompletedRuns == null || profile.SeenUnits == null || profile.SeenItems == null || profile.Achievements == null || !float.IsFinite(profile.Volume)) throw new InvalidOperationException("Invalid profile");
+                    if (profile == null || profile.Version < 1 || profile.Version > PlayerProfile.CurrentVersion || profile.BestWave < 0 || profile.CompletedRuns == null || profile.SeenUnits == null || profile.SeenItems == null || profile.Achievements == null || !float.IsFinite(profile.Volume)) throw new InvalidOperationException("Invalid profile");
                     if (profile.Wins < 0 || profile.TotalKills < 0 || profile.Cosmetic < 0 || profile.Cosmetic > 2) throw new InvalidOperationException("Invalid profile counters");
                     profile.Volume = Mathf.Clamp01(profile.Volume);
                     if (profile.SeenWeapons == null) profile.SeenWeapons = new List<string>();
@@ -89,7 +96,10 @@ namespace ArcaneBrigade
                     var recordKeys = new HashSet<string>();
                     foreach (ScoreRecord record in profile.Records)
                         if (record == null || string.IsNullOrEmpty(record.Key) || string.IsNullOrEmpty(record.RunId) || record.Score < 0 || record.Hall < 1 || !recordKeys.Add(record.Key)) throw new InvalidOperationException("Invalid score record");
-                    profile.Version = 2;
+                    if (profile.Version < 3) { profile.MusicVolume = 0.8f; profile.SfxVolume = 0.85f; profile.ShowDamageNumbers = profile.ShowLootIndicators = true; }
+                    if (!float.IsFinite(profile.MusicVolume) || !float.IsFinite(profile.SfxVolume)) throw new InvalidOperationException("Invalid audio bus settings");
+                    profile.MusicVolume = Mathf.Clamp01(profile.MusicVolume); profile.SfxVolume = Mathf.Clamp01(profile.SfxVolume);
+                    profile.Version = PlayerProfile.CurrentVersion;
                     return profile;
                 }
                 catch (Exception exception) { LastError = "Profile save rejected: " + exception.Message; }

@@ -15,11 +15,11 @@ namespace ArcaneBrigade
             }
             float age = Mathf.Max(0, time - state.SpawnTime);
             float landing = Mathf.Clamp01(age / 0.26f);
-            float height = Mathf.Sin(landing * Mathf.PI) * (state.Kind == LootKind.Chest ? 0.1f : 0.32f);
+            float height = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(landing * Mathf.PI) * (state.Kind == LootKind.Chest ? 0.1f : 0.32f);
             if (state.Kind != LootKind.Coin) height += Mathf.Sin(age * 3 + state.Id) * 0.025f;
             Vector2 ground = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             renderer.transform.position = ground + Vector2.up * height;
-            float spin = state.Kind == LootKind.Coin ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
+            float spin = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
             float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f : 0.4f;
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);

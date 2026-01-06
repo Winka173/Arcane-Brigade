@@ -20,6 +20,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f0e8965cad4515468ef432862ac3a37, type: 2}
   - {fileID: 11400000, guid: 8abb0fc3d53017049b03d082e953a5e2, type: 2}
   - {fileID: 11400000, guid: 81ef5bfbd3149fe48a3c70afee98d08d, type: 2}
+  ExplicitStartingRoster: 0
+  Boss: {fileID: 0}
+  CompanionInterceptor: 0
+  PassiveHeal: 0
+  Armor: 0
   MeleeEnemy: {fileID: 11400000, guid: 7618e1489a4043841b566264e843b13c, type: 2}
   RangedEnemy: {fileID: 11400000, guid: 6de4f866923b4a849b41da97ce633ca2, type: 2}
   Hand: {fileID: 244465793, guid: c01ddd2345183a748957710cb09f682d, type: 3}
@@ -40,5 +45,26 @@ MonoBehaviour:
   CompanionSeparation: 0.75
   CompanionRetargetMin: 1.2
   CompanionRetargetMax: 2.8
-  PickupRadius: 0.7
+  PickupRadius: 1.7
   GoldPerKill: 5
+  ExtendedLoot: 0
+  Luck: 0
+  TreasureDetection: 0
+  EggDropChance: 0.025
+  HeartDropChance: 0.04
+  ChestInterval: 24
+  EnableArenaToys: 0
+  EnableBossArenaPhase: 0
+  RunWave: 1
+  HarvestStacks: 0
+  ReflectiveInkStacks: 0
+  CarbonRibbon: 0
+  OfficeLensStacks: 0
+  ExpandedContent: 0
+  EnemyPool: []
+  TeaCoasterStacks: 0
+  ChorusStacks: 0
+  TreasureStacks: 0
+  PatchSpring: 0
+  ThermalInk: 0
+  RepairStacks: 0

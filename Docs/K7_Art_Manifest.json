@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-14",
+  "mode": "painting pass",
+  "runtime": "Original Arcane Brigade character animation; reference footage not imported into Assets",
+  "sources": [
+    {
+      "path": "Assets/ArcaneBrigade/Art/AnimationHD/NightmareEnemies_v2.png",
+      "dimensions": "1024x1536",
+      "frames": 24,
+      "selected_output": "exec-5480deeb-beae-4a05-ba31-d67da73afdb3.png",
+      "prompt": "Production 2D hand drawn game enemy animation SPRITE SHEET. Transparent background true alpha. EXACT regular grid 4 columns x 6 rows, all cells equal, no text no labels no weapons no ground shadows. 24 isolated full-body sprites. Each ROW same unique enemy with FOUR frames LEFT to RIGHT: neutral idle eyes open; breathing idle eyes squeezed shut blink; locomotion left foot forward; locomotion right foot forward. Maintain same scale, same center and foot baseline per cell, generous transparent padding 15%, no overlap. Six rows: row1 spiky soot-black dust imp with one hot coral red ring eye; row2 hunched dark navy ink slug with two angry crimson slits and paper teeth; row3 jagged aubergine magnetic brute with chipped horseshoe crown and crimson eyes; row4 black wax puddle creature with melted angular cap and tiny red pin eyes; row5 dark violet curtain ghost triangular ragged lower hem and sharp red eyes; row6 hulking charcoal shadow clerk with torn collar and red diamond eyes. Original designs for Arcane Brigade lost-object nightmare world, NOT copyrighted characters. Enemy visual grammar: 85% dark blue/black silhouette, sparse bright red/pink focal eyes, jagged/pointed silhouettes, NOT friendly rounded pastel toy or humanoid allies. SIMPLE extremely readable small-scale 2D cartoon, bold clean outline and 2-value hand painted cel shading, minimal small detail. Animate the SHAPE and limbs visibly between frames, not identical copies. No arms or hands, only body + tiny feet. Flat frontal slightly 3/4 view, consistent orthographic camera. Crisp polished raster illustration.",
+      "notes": "True alpha confirmed; some empty corner alpha1/255 tolerated <=3, not chroma-key. Background-removal retry was not selected because same alpha behavior. Six base enemy forms; boss variants reuse these animations, not five bespoke boss sheets."
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+      "dimensions": "1024x1536",
+      "frames": 24,
+      "selected_output": "exec-99588714-dce7-4d96-99ab-682f9adf8b8c.png",
+      "reference": "Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png",
+      "prompt": "Create a NEW production animation atlas referencing the six original toy characters in supplied image. Preserve their designs and palette very closely. EXACT GRID 4 COLUMNS x6 ROWS on true transparent background. Each row ONE character: row1 teal lantern knight blue skirt; row2 mint teapot cream skirt; row3 violet snail coral shell; row4 golden mailbox black coat; row5 purple patched sleeping pillow cap; row6 red book-head librarian. FOUR FRAMES left to right per row: 1 idle eyes OPEN; 2 blink eyelids CLOSED; 3 walking LEFT foot forward upper body tilts subtly right and hem follows; 4 walking RIGHT foot forward upper body subtly tilts left and hem follows. Orthographic front slight3/4 same design same size same center same feet baseline. No arms, no hands, no weapon attached, no shadows, no text or labels. All sprites completely isolated, each in equal cell, generous transparent15%padding, don't overlap. Hand drawn clean bold dark outlines, rich but simple cel shading with sparse highlights. Both upper and lower body subtly change pose when walking, visible feet movement/cloth deformation, DO NOT repeat same image4times. Crisp high quality original game assets, not concept poster. Important must show expressive open eyes in frame1, closed eyelids only frame2. Background genuinely transparent alpha, no checkerboard.",
+      "notes": "Actual rows have unequal heights; importer uses inspected row edges and common per-row bounds, no per-frame scale pumping. Mailbox/pillow retain their stylized faces so blink less pronounced than lantern/teapot/book."
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Art/AnimationHD/PaintedEffects_v1.png",
+      "dimensions": "1536x1024",
+      "frames": 16,
+      "selected_output": "exec-c9cede48-82dd-4225-a3a5-51ae770d673b.png",
+      "prompt": "An original polished hand drawn 2D game VFX animation SPRITE ATLAS on completely TRANSPARENT alpha background. EXACT GRID 4 columns x4 rows, sixteen equally-sized square cells. Each row is one chronological 4-frame effect, left to right; every sprite centered in cell with generous clear padding, no overlap. Row1: pale warm cream walking DUST puff, tiny soft cloud then expands into3rounded wisps then dispersed wisps then small fading cloud fragments. Row2: clean warm ivory and amber SWORD SLASH crescent arc: short taper swipe, broad smooth90degree slash, stretched dissipating curve, thin tapering final stroke. Row3: turquoise and cream MAGIC launch burst: small four-point spark, expanding layered pointed star with short trails, separate trailing sparks, fading twinkles. Row4: dark navy INK MONSTER DEATH: compact dark explosive organic splash with coral red sparks, broad silhouette puff, separated ragged dark cloud fragments, final droplets. Simple bold anime arcade paint strokes, soft antialiased edges, sharp graphic readable impact, no thick perfect circles or targeting reticle, no body characters no weapons no symbols no text no labels no shadows. Not photoreal smoke, not noisy particles, not neon rings. Preserve true transparent empty space alpha0 including all borders, no colored gradient backdrop. Full animation sequence with visible change in each frame, no duplicate frames. High-quality crisp original game asset for lost-object cabaret arcade."
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Art/AnimationHD/ShopFixtures_v1.png",
+      "dimensions": "2172x724",
+      "frames": 4,
+      "selected_output": "exec-73b0a4b4-6865-4803-86c0-a1de35a7c126.png",
+      "prompt": "Production original2D cartoon arcade shop fixture SPRITE SHEET on true fully transparent background, EXACT4columns ONE row, four isolated objects in equal cells, no text no labels no shadows outside objects. Cell1 a short cozy walnut WOODEN MERCHANT DISPLAY CHAIR/STAND, top/front3/4 view, low open seat platform for a small character to stand on, two decorative curved side supports and small feet, cream/brass corner accent, simple clean silhouette, no backboard covering character. Cell2 a similarly low mystical dark teal and mint altar display dais with paper lantern details, no tall columns. Cell3 a gold/cream forward arrow inset into a dark teal rounded sign plaque, no circle; Cell4 a gold/cream circular reroll arrow inset into dark teal rounded square sign plaque, no coin artwork and no text. Hand drawn polished bold clean dark outline with simple two-tone cel shading, matching whimsical lost-object night shop game style. Readable at small size, no ornate fine texture. All props same size and consistent front3/4 orthographic angle, generous20% completely transparent padding in every cell. NOT a UI screenshot, no scene no background no surface.",
+      "notes": "Four independent props, not an animation strip. Inspected unequal column widths use explicit crop boundaries."
+    }
+  ],
+  "limits": "Source PNGs are not native4K.48 character states +16 VFX frames +4 shop fixtures. Runtime BodyPuppet uses sprite-region upper/lower parts with breathing/tilt and independent blink/walk selection, not a full bone-rig/turnaround or dozens of individually hand-drawn attack/death frames. Seven companions share six base friendly forms; boss variants reuse six enemy forms.4K render measured separately."
+}

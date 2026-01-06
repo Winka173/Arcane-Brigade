@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WaxAdmiral
   DisplayName: WaxAdmiral
-  Body: {fileID: -679540106, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 538038739, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1367685831, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 465823829, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: d336dbf131d47394d94256398c418143, type: 2}
   Health: 1070
   Speed: 0.65

@@ -76,6 +76,7 @@ namespace ArcaneBrigade
 
         private void ShowDamage(CombatEvent combatEvent)
         {
+            if (!PresentationSettings.DamageNumbers) return;
             DamageNumber number = numbers.Find(candidate => candidate.Age >= 0.55f);
             bool champion = combatEvent.Faction == Faction.Champion;
             if (number == null && numbers.Count >= 64)
@@ -131,7 +132,7 @@ namespace ArcaneBrigade
                 number.Age += deltaTime;
                 number.Position += Vector2.up * deltaTime * 0.7f;
                 number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
-                number.View.transform.localScale = Vector3.one * (1f + 0.35f * Mathf.Clamp01(1f - number.Age / 0.08f));
+                number.View.transform.localScale = Vector3.one * (1f + (PresentationSettings.ReducedMotion ? 0 : 0.35f * Mathf.Clamp01(1f - number.Age / 0.08f)));
                 number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01(1f - number.Age / 0.55f));
                 number.Outline.color = new Color(0.06f, 0.035f, 0.10f, number.View.color.a);
                 if (number.Age >= 0.55f) number.View.gameObject.SetActive(false);

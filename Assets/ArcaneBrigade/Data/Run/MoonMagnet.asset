@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MoonMagnet
   DisplayName: MoonMagnet
-  Body: {fileID: 810198511, guid: db25b932cb4796744a426518769ab8bd, type: 3}
+  Body: {fileID: -852497279, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: -852497279, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -950050135, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -341863724, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1148076488, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
   Speed: 1.7
@@ -23,7 +28,7 @@ MonoBehaviour:
   ContactDamage: 5
   ContactInterval: 0.8
   CriticalChance: 0
-  Tint: {r: 0.8, g: 0.6, b: 0.65, a: 1}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K7 Windows candidate — evidence</title>
+<style>body{background:#10191f;color:#f8ecd4;font:17px system-ui;max-width:1200px;margin:36px auto;padding:0 24px}a{color:#89e2ce}img,video{width:100%;border-radius:8px;border:1px solid #46666b}figure{margin:24px 0}figcaption{padding:10px 0;color:#bed3ce}h1,h2{color:#efb869}</style>
+<h1>K7 — bản thử Windows</h1>
+<p>Candidate chờ duyệt art/audio/feel. Ảnh/render và bot test không thay cho bạn chơi thử hoặc nghiệm thu mobile/Steam.</p>
+<p><a href="Audition/index.html">Nghe nhạc &amp; 33 SFX</a> · <a href="../../Docs/K7_Playtest_Checklist.md">Checklist</a> · <a href="Player/Native_Metrics.txt">Native metrics</a> · <a href="Player/CaptureNotes.txt">Setup / assertions</a> · <a href="Movement_Bot_Balance.csv">Balance bot CSV</a></p>
+<h2>Motion realtime — game window only</h2>
+<video controls preload="none" src="K7-Gameplay-Realtime.mp4"></video>
+<p>Framebuffer Unity trực tiếp, không audio/desktop/microphone. Seed7707,24ally/relic seeded; movement-only driver, timeScale1. CFR60 giữ wall-clock, không lấy FPS clip làm FPS render. Xem metadata cạnh MP4 và metrics đo riêng không encoder.</p>
+<h2>Shop / focus / merge / recruit walkout</h2>
+<video controls preload="none" src="K7-Shop-Realtime.mp4"></video>
+<p>Seed4313, price1/gold10000/2material seeded để demo ngắn; di chuyển vật lý và2giao dịch thật, không natural economy playtest. No PNG overhead trong clip.</p>
+<figure><a href="Player/00-main-menu.png"><img loading="lazy" src="Player/00-main-menu.png" alt="Main menu rework"></a><figcaption>Art-led landing; Coiny logo, Be Vietnam Pro body.</figcaption></figure>
+<h2>Menu / typography / options</h2>
+<figure><a href="Player/01-settings-bundle-0.png"><img loading="lazy" src="Player/01-settings-bundle-0.png" alt="Settings bundle 0"></a><figcaption>Bundle 0: buses và accessibility options; bundle2 high-readability/reduced-motion fixture.</figcaption></figure>
+<figure><a href="Player/01-settings-bundle-1.png"><img loading="lazy" src="Player/01-settings-bundle-1.png" alt="Settings bundle 1"></a><figcaption>Bundle 1: buses và accessibility options; bundle2 high-readability/reduced-motion fixture.</figcaption></figure>
+<figure><a href="Player/01-settings-bundle-2.png"><img loading="lazy" src="Player/01-settings-bundle-2.png" alt="Settings bundle 2"></a><figcaption>Bundle 2: buses và accessibility options; bundle2 high-readability/reduced-motion fixture.</figcaption></figure>
+<figure><a href="Player/02-aspect-2560x1080.png"><img loading="lazy" src="Player/02-aspect-2560x1080.png" alt="Desktop aspect 2560x1080"></a><figcaption>Desktop 2560x1080; không phải bằng chứng notch/touch/device.</figcaption></figure>
+<figure><a href="Player/02-aspect-1600x1000.png"><img loading="lazy" src="Player/02-aspect-1600x1000.png" alt="Desktop aspect 1600x1000"></a><figcaption>Desktop 1600x1000; không phải bằng chứng notch/touch/device.</figcaption></figure>
+<figure><a href="Player/02-aspect-1334x750.png"><img loading="lazy" src="Player/02-aspect-1334x750.png" alt="Desktop aspect 1334x750"></a><figcaption>Desktop 1334x750; không phải bằng chứng notch/touch/device.</figcaption></figure>
+<h2>Combat / inventory — runtime seeded stress fixtures</h2>
+<figure><a href="Player/03-combat-roster-1.png"><img loading="lazy" src="Player/03-combat-roster-1.png" alt="Combat 1 allies"></a><figcaption>Combat, 1 unique body/weapon allies; no ally cap, không invulnerability. Không phải roster mua tự nhiên hay20hall playtest.</figcaption></figure>
+<figure><a href="Player/04-details-roster-1.png"><img loading="lazy" src="Player/04-details-roster-1.png" alt="Details 1 allies"></a><figcaption>Details, 1 unique body/weapon allies; no ally cap, không invulnerability. Không phải roster mua tự nhiên hay20hall playtest.</figcaption></figure>
+<figure><a href="Player/03-combat-roster-56.png"><img loading="lazy" src="Player/03-combat-roster-56.png" alt="Combat 56 allies"></a><figcaption>Combat, 56 unique body/weapon allies; no ally cap, không invulnerability. Không phải roster mua tự nhiên hay20hall playtest.</figcaption></figure>
+<figure><a href="Player/04-details-roster-56.png"><img loading="lazy" src="Player/04-details-roster-56.png" alt="Details 56 allies"></a><figcaption>Details, 56 unique body/weapon allies; no ally cap, không invulnerability. Không phải roster mua tự nhiên hay20hall playtest.</figcaption></figure>
+<figure><a href="Player/03-combat-roster-100.png"><img loading="lazy" src="Player/03-combat-roster-100.png" alt="Combat 100 allies"></a><figcaption>Combat, 100 unique body/weapon allies; no ally cap, không invulnerability. Không phải roster mua tự nhiên hay20hall playtest.</figcaption></figure>
+<figure><a href="Player/04-details-roster-100.png"><img loading="lazy" src="Player/04-details-roster-100.png" alt="Details 100 allies"></a><figcaption>Details, 100 unique body/weapon allies; no ally cap, không invulnerability. Không phải roster mua tự nhiên hay20hall playtest.</figcaption></figure>
+<h2>Actual committed shop fixtures</h2>
+<figure><img loading="lazy" src="Player/05-shop-focus.png" alt="Shop focus"><figcaption>Proximity focus / compact price strips.</figcaption></figure>
+<figure><img loading="lazy" src="Player/06-merge-gather.png" alt="Merge gathering"><figcaption>Gather silhouettes after successful save.</figcaption></figure>
+<figure><img loading="lazy" src="Player/07-merge-payoff.png" alt="Merge payoff"><figcaption>Actual rolled result / tier / painted payoff, not a purchase message.</figcaption></figure>
+<figure><img loading="lazy" src="Player/08-recruit-hop.png" alt="Recruit landing"><figcaption>Recruit drop/landing.</figcaption></figure>
+<figure><img loading="lazy" src="Player/09-recruit-walkout.png" alt="Recruit joins squad"><figcaption>Walkout toward squad.</figcaption></figure>
+</html>

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: JellySwordsman
   DisplayName: JellySwordsman
-  Body: {fileID: -389509726, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Body: {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AnimationFrames:
+  - {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -1026667240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 2073995237, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 251621088, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 1
   Speed: 5.1
@@ -34,3 +39,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

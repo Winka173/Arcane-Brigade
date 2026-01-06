@@ -10,6 +10,11 @@ namespace ArcaneBrigade
     {
         private Vector2 scroll;
         private string identity;
+        private string cachedContent;
+        private RunSnapshot cachedBuild;
+        private GUIStyle headingStyle;
+        private GUIStyle bodyStyle;
+        private GUIStyle numericStyle;
         public void ScrollToEnd() { scroll.y = 10000000; }
         public static string Describe(RunSnapshot run, RunCatalog catalog)
         {
@@ -49,16 +54,17 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(rectangle, ArcadeSkin.Paper);
             for (float horizontal = rectangle.x; horizontal < rectangle.xMax; horizontal += 22)
                 ArcadeSkin.Line(new Rect(horizontal, rectangle.yMax - 6, 10, 6), ArcadeSkin.Ink);
-            GUIStyle heading = ArcadeTypography.Style(26, true);
-            GUIStyle body = ArcadeTypography.Style(17);
-            GUIStyle number = ArcadeTypography.Style(19, false, true);
+            GUIStyle heading = headingStyle ?? (headingStyle = ArcadeTypography.Style(26, true));
+            GUIStyle body = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(17));
+            GUIStyle number = numericStyle ?? (numericStyle = ArcadeTypography.Style(19, false, true));
             heading.normal.textColor = body.normal.textColor = number.normal.textColor = ArcadeSkin.Ink;
             GUI.Label(new Rect(rectangle.x + 24, rectangle.y + 15, rectangle.width - 48, 45), nickname ?? RunMeta.Nickname(run), heading);
             string summary = (run.Endless ? "ENDLESS" : "NORMAL") + " / " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, 4)] + " / " + (run.Phase == SessionPhase.Victory ? "BÌNH MINH" : "KHÉP LẠI");
             GUI.Label(new Rect(rectangle.x + 24, rectangle.y + 65, rectangle.width - 48, 35), summary, body);
             GUI.Label(new Rect(rectangle.x + 24, rectangle.y + 105, rectangle.width - 48, 55), "SCORE " + (frozenScore < 0 ? RunMeta.Score(run) : frozenScore).ToString("N0") + "  ·  HALL " + run.Wave + "\n" + run.TotalKills + " kills / " + run.BossKills + " bosses / " + (run.CombatSeconds / 60).ToString("0.0") + " min", number);
             ArcadeSkin.Divider(new Rect(rectangle.x + 24, rectangle.y + 170, rectangle.width - 48, 2), ArcadeSkin.Ink);
-            string content = Describe(run, catalog);
+            if (cachedBuild != run) { cachedBuild = run; cachedContent = Describe(run, catalog); }
+            string content = cachedContent;
             float gridHeight = Mathf.CeilToInt(run.Roster.Count / Mathf.Max(1, Mathf.Floor((rectangle.width - 70) / 90))) * 88;
             float height = Mathf.Max(rectangle.height - 200, gridHeight + body.CalcHeight(new GUIContent(content), rectangle.width - 85) + 20);
             scroll = GUI.BeginScrollView(new Rect(rectangle.x + 20, rectangle.y + 185, rectangle.width - 40, rectangle.height - 208), scroll, new Rect(0, 0, rectangle.width - 62, height));

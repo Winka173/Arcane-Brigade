@@ -7,6 +7,9 @@ namespace ArcaneBrigade
         private static GUISkin skin;
         private static GUIStyle panel;
         private static Texture2D rounded;
+        private static GUIStyle accessionStyle;
+        private static GUIStyle headerStyle;
+        private static GUIStyle stampStyle;
         public static int Bundle { get; set; }
         public static readonly Color Ink = new Color(0.10f, 0.09f, 0.19f);
         public static readonly Color Purple = new Color(0.62f, 0.28f, 0.92f);
@@ -76,6 +79,7 @@ namespace ArcaneBrigade
 
         public static void Panel(Rect rectangle, Color color)
         {
+            if (PresentationSettings.HighReadability) color = new Color(color.r * 0.6f, color.g * 0.6f, color.b * 0.6f, 1);
             Rounded(new Rect(rectangle.x, rectangle.y + 5f, rectangle.width, rectangle.height), new Color(0.035f, 0.025f, 0.075f, 0.8f));
             Rounded(rectangle, Color.Lerp(Accent, Ink, 0.55f));
             Rounded(new Rect(rectangle.x + 2, rectangle.y + 2, rectangle.width - 4, rectangle.height - 4), color);
@@ -96,15 +100,16 @@ namespace ArcaneBrigade
         }
         public static void Header(Rect rectangle, string eyebrow, string heading)
         {
-            GUIStyle label = ArcadeTypography.Style(13, false, true);
+            GUIStyle label = accessionStyle ?? (accessionStyle = ArcadeTypography.Style(13, false, true));
             label.normal.textColor = Accent;
             GUI.Label(new Rect(rectangle.x, rectangle.y, rectangle.width, 24), eyebrow, label);
-            GUI.Label(new Rect(rectangle.x, rectangle.y + 27, rectangle.width, rectangle.height - 27), heading, ArcadeTypography.Style(36, true));
+            if (headerStyle == null) headerStyle = ArcadeTypography.Style(36, true);
+            GUI.Label(new Rect(rectangle.x, rectangle.y + 27, rectangle.width, rectangle.height - 27), heading, headerStyle);
         }
         public static void Stamp(Rect rectangle, string caption)
         {
             Divider(new Rect(rectangle.x, rectangle.y, rectangle.width, 2), Accent);
-            GUIStyle label = ArcadeTypography.Style(15, true);
+            GUIStyle label = stampStyle ?? (stampStyle = ArcadeTypography.Style(15, true));
             label.normal.textColor = Accent;
             label.alignment = TextAnchor.MiddleCenter;
             GUI.Label(new Rect(rectangle.x, rectangle.y + 6, rectangle.width, rectangle.height - 12), caption, label);

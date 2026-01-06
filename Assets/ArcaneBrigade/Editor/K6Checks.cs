@@ -106,7 +106,7 @@ namespace ArcaneBrigade.Editor
             }
             var oldProfile = new PlayerProfile { Version = 1, Wins = 7, SeenWeapons = null, SeenTiers = null, SeenChains = null, SeenBosses = null, History = null, Records = null };
             storage.SaveProfile(oldProfile); PlayerProfile migrated = storage.LoadProfile();
-            require(migrated.Version == 2 && migrated.Wins == 7 && migrated.History.Count == 0 && migrated.SeenTiers.Count == 0 && migrated.SeenWeapons.Count == 0, "Profile1 migration preserves counters without fabricating discovery/history");
+            require(migrated.Version == PlayerProfile.CurrentVersion && migrated.Wins == 7 && migrated.History.Count == 0 && migrated.SeenTiers.Count == 0 && migrated.SeenWeapons.Count == 0, "Profile1 migration preserves counters without fabricating discovery/history");
             using (var session = new RunSession(catalog))
             {
                 session.Start(catalog.Champions[0].Id, 61); session.State.Phase = SessionPhase.Defeat;

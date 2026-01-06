@@ -30,6 +30,7 @@ MonoBehaviour:
   Element: 3
   Motion: 4
   ProjectileCount: 1
+  ProjectilePierce: 0
   SwingAngle: 65
   RecoilDistance: 0.09
   BodyAttackTilt: 8
@@ -44,3 +45,4 @@ MonoBehaviour:
   SignatureDelay: 0.18
   MarkLifetime: 2.4
   PushDistance: 0.35
+  Family: 0

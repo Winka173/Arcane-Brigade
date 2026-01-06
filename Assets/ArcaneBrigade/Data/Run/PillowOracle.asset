@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PillowOracle
   DisplayName: PillowOracle
-  Body: {fileID: 1419738374, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AnimationFrames:
+  - {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -1026667240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 2073995237, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 251621088, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   Weapon: {fileID: 11400000, guid: e1377fe9fd09ccb4ea0b8817b675a2a3, type: 2}
   Health: 120
   Speed: 5.1
@@ -34,3 +39,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

@@ -7,6 +7,7 @@ namespace ArcaneBrigade
     public static class RunPaths
     {
         private static string diagnosticRoot;
+        public static bool K7Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7-capture") >= 0;
         public static bool K6Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k6-capture") >= 0;
         public static bool K5Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k5-capture") >= 0;
         public static bool K4Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k4-capture") >= 0;
@@ -17,7 +18,7 @@ namespace ArcaneBrigade
         public static bool AltarCapture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-altar-capture") >= 0;
         public static bool K32Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k32-capture") >= 0 || AltarCapture;
         public static bool K3Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k3-capture") >= 0 || K32Capture;
-        public static bool Diagnostic => Application.isBatchMode || FullRunPlayerCapture.Requested || Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k1-capture") >= 0 || K2Capture || K3Capture || K3FinalCapture || QualityCapture || K4Capture || K4FinalCapture || K5Capture || K6Capture;
+        public static bool Diagnostic => Application.isBatchMode || FullRunPlayerCapture.Requested || Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k1-capture") >= 0 || K2Capture || K3Capture || K3FinalCapture || QualityCapture || K4Capture || K4FinalCapture || K5Capture || K6Capture || K7Capture;
         public static string Root
         {
             get

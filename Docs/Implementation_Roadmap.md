@@ -114,6 +114,8 @@ Cập nhật K3.2b: HP currency/activation/receipt Windows candidate theo tuning
 
 ### K7 — Production polish và ba nền tảng
 
+**Cập nhật 2026-10-14:** Windows candidate + quality rework đã triển khai, checklist/art/audio/source và video framebuffer ở `K7_Final_Checkpoint.md`, `PreviewExports/K7/index.html`. HUD/menu/shop/animation/enemy/audio được sửa theo feedback. Không ghi toàn K7 production DONE: device/Steam/physical-controller/human quality/long-session gates vẫn OPEN; chủ dự án đã chọn Windows trước.
+
 **Phạm vi:** R7, nghiệm thu toàn R1–R6/S1–S10/N01–N18. **Dependency:** các checkpoint liên quan đủ functionality; profile xuyên suốt từ K2.
 
 - Audition và soundtrack/SFX nguyên bản có license, audio ensemble/layers/grouping/danger priority; không gọi waveform test là musical approval.

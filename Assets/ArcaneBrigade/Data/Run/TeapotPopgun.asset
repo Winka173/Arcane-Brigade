@@ -30,6 +30,7 @@ MonoBehaviour:
   Element: 1
   Motion: 6
   ProjectileCount: 1
+  ProjectilePierce: 0
   SwingAngle: 65
   RecoilDistance: 0.09
   BodyAttackTilt: 8

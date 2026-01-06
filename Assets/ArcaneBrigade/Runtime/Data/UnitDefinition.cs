@@ -10,6 +10,7 @@ namespace ArcaneBrigade
         public string Id;
         public string DisplayName;
         public Sprite Body;
+        public Sprite[] AnimationFrames = new Sprite[0];
         public WeaponDefinition Weapon;
         public float Health = 100f;
         public float Speed = 4.8f;

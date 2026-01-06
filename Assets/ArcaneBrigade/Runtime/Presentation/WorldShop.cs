@@ -14,6 +14,9 @@ namespace ArcaneBrigade
             public string Description;
             public string Recipe;
             public Transform Marker;
+            public float Focus;
+            public float FocusVelocity;
+            public float EnteredAt = -10;
         }
 
         private ArenaController owner;
@@ -21,6 +24,7 @@ namespace ArcaneBrigade
         private int signature = int.MinValue;
         private Mesh plateMesh;
         private Material plateMaterial;
+        private PaintedAnimationLibrary art;
         public MergeReveal Reveal { get; private set; }
         private readonly List<Station> stations = new List<Station>();
         public IReadOnlyList<Station> Stations => stations;
@@ -29,6 +33,7 @@ namespace ArcaneBrigade
         public void Configure(ArenaController controller)
         {
             owner = controller;
+            art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             Reveal = gameObject.AddComponent<MergeReveal>();
             Reveal.Configure(controller);
             Reveal.ReducedMotion = owner.Profile != null && owner.Profile.ReducedMotion;
@@ -57,10 +62,21 @@ namespace ArcaneBrigade
             float closest = InteractionRadius * InteractionRadius;
             foreach (Station station in stations)
             {
+                if (station.Offer != null && station.Offer.Sold) continue;
                 float distance = (station.Position - owner.Simulation.Champion.Position).sqrMagnitude;
                 if (distance <= closest) { closest = distance; Nearby = station; }
             }
-            foreach (Station station in stations) station.Marker.localScale = Vector3.one * (station == Nearby ? 1.12f : 1f);
+            foreach (Station station in stations)
+            {
+                float target = station == Nearby && (station.Offer == null || !station.Offer.Sold) ? 1 : 0;
+                if (target > 0 && station.Focus < 0.02f) station.EnteredAt = Time.time;
+                station.Focus = Mathf.SmoothDamp(station.Focus, target, ref station.FocusVelocity, 0.09f);
+                bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
+                float age = Time.time - station.EnteredAt;
+                float bounce = reduced || age > 0.55f ? 0 : Mathf.Sin(age * 18f) * Mathf.Exp(-age * 7f) * 0.13f;
+                station.Marker.localScale = Vector3.one * (1 + station.Focus * (reduced ? 0.07f : 0.18f) + bounce);
+                station.Marker.localPosition = station.Position + Vector2.up * (reduced ? 0 : station.Focus * 0.08f + Mathf.Max(0, bounce));
+            }
         }
 
         public bool Interact()
@@ -73,6 +89,7 @@ namespace ArcaneBrigade
                 if (station.Offer.Sold) return false;
                 RunSnapshot before = MergeReveal.Capture(owner.Session.State);
                 bool purchased = owner.BuyOffer(station.Offer.Token);
+                if (purchased) owner.PlayCommittedArrival(before, station.Position);
                 Reveal.EnqueueCommitted(before, owner.Session.State, purchased, station.Position, false);
                 Display();
                 return purchased;
@@ -84,6 +101,7 @@ namespace ArcaneBrigade
             {
                 RunSnapshot before = MergeReveal.Capture(owner.Session.State);
                 completed = owner.FuseAltar(station.Recipe);
+                if (completed) owner.PlayCommittedArrival(before, station.Position);
                 Reveal.EnqueueCommitted(before, owner.Session.State, completed, station.Position, true);
             }
             else { Special = !Special; signature = int.MinValue; }
@@ -111,14 +129,13 @@ namespace ArcaneBrigade
                 Sprite icon = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
                 Color offerTint = offer.Kind == OfferKind.Item ? RunModifierRules.RarityColor(catalog.Item(offer.Id).Rarity) : tint;
                 string rarity = offer.Kind == OfferKind.Item ? RunModifierRules.RarityName(catalog.Item(offer.Id).Rarity) + "\n" : "";
-                Station station = AddStation(new Vector2((index - 1) * 3f, 0.5f), offer.Sold ? "SOLD" : name, rarity + offer.Price + " " + (offer.Currency == ShopCurrency.Health ? "HP HIỆN TẠI" : offer.Currency.ToString().ToUpperInvariant()), icon, offerTint);
+                Station station = AddStation(new Vector2((index - 1) * 3f, 0.5f), offer.Sold ? "" : name, offer.Sold ? "" : offer.Price + " " + (offer.Currency == ShopCurrency.Health ? "♥" : offer.Currency == ShopCurrency.Eggs ? "◆" : "●"), offer.Sold ? null : icon, offerTint);
                 station.Offer = offer;
                 station.Description = description;
                 if (offer.Sold) foreach (SpriteRenderer renderer in station.Marker.GetComponentsInChildren<SpriteRenderer>()) renderer.color *= new Color(0.45f, 0.45f, 0.45f, 0.7f);
-                if (offer.Sold) AddText(station.Marker, "ĐÃ MUA", new Vector2(0, 0.35f), 0.048f, ArcadeSkin.Accent);
             }
-            AddStation(new Vector2(0, 2.3f), "REROLL", owner.Session.RerollCost + " GOLD", catalog.Arena.Coin, tint).Description = "Đổi ba offer " + (Special ? "altar" : "vàng") + ". Đã đổi " + state.RerollsThisShop + " lần tại rest; mỗi lần tăng " + catalog.RerollPriceStep + " vàng. Không đổi stock cửa hàng bên kia hoặc roll lại activation.";
-            AddStation(new Vector2(7, 1), "NEXT HALL", "SPACE TO CONTINUE", catalog.Arena.Coin, tint).Description = "Finish shopping and enter the next hall.";
+            AddStation(new Vector2(0, 2.3f), "REROLL", owner.Session.RerollCost + " GOLD", art != null ? art.ShopFixtures[3] : catalog.Arena.Coin, tint).Description = "Đổi ba offer " + (Special ? "altar" : "vàng") + ". Đã đổi " + state.RerollsThisShop + " lần tại rest; mỗi lần tăng " + catalog.RerollPriceStep + " vàng. Không đổi stock cửa hàng bên kia hoặc roll lại activation.";
+            AddStation(new Vector2(7, 1), "NEXT HALL", "SPACE TO CONTINUE", art != null ? art.ShopFixtures[2] : catalog.Arena.Coin, tint).Description = "Finish shopping and enter the next hall.";
             if (Special || state.SpecialOffers.Count > 0)
                 AddStation(new Vector2(-7, 1), Special ? "GOLD SHOP" : "DREAM ALTAR", "SPACE TO VISIT", Special ? catalog.Arena.Coin : catalog.Weapon("RuneStaff")?.ProjectileSprite, new Color(0.45f, 0.95f, 0.88f)).Description = "Altar dùng trứng hoặc HP hiện tại theo từng quầy. Đi qua không mất tài nguyên.";
             if (!Special && state.Wave >= 4)
@@ -136,15 +153,16 @@ namespace ArcaneBrigade
             var marker = new GameObject(action);
             marker.transform.SetParent(scenery.transform, false);
             marker.transform.localPosition = position;
-            SpriteRenderer pedestal = AddSprite(marker.transform, owner.Content.Arena.Hand, new Vector2(0, -0.2f), 1.25f, new Color(0.25f, 0.17f, 0.36f));
-            if (pedestal != null) { Vector3 scale = pedestal.transform.localScale; scale.y *= 0.35f; pedestal.transform.localScale = scale; }
+            Sprite stand = art != null && art.ShopFixtures.Length == 4 ? art.ShopFixtures[Special ? 1 : 0] : owner.Content.Arena.Hand;
+            SpriteRenderer pedestal = AddSprite(marker.transform, stand, new Vector2(0, -0.05f), 1.25f, art != null ? Color.white : new Color(0.25f, 0.17f, 0.36f));
+            if (pedestal != null && art == null) { Vector3 scale = pedestal.transform.localScale; scale.y *= 0.35f; pedestal.transform.localScale = scale; }
             AddSprite(marker.transform, sprite, new Vector2(0, 0.35f), 0.72f, Color.white);
             bool reroll = action == "REROLL";
-            Vector2 namePosition = reroll ? new Vector2(-1.25f, 0.32f) : new Vector2(0, -0.85f);
-            Vector2 pricePosition = reroll ? new Vector2(-1.25f, 0.04f) : new Vector2(0, -1.17f);
-            CreatePlate(marker.transform, reroll ? new Vector2(-1.25f, 0.08f) : new Vector2(0, -1.25f), reroll ? new Vector2(1.65f, 0.74f) : new Vector2(2.55f, 1.3f), tint);
-            AddText(marker.transform, action, namePosition, reroll ? 0.038f : Mathf.Min(0.041f, 0.57f / Mathf.Max(1, action.Length)), Color.white);
-            AddText(marker.transform, price, pricePosition, 0.032f, tint, TextAnchor.UpperCenter, true);
+            bool utility = reroll || action == "NEXT HALL" || action == "GOLD SHOP" || action == "DREAM ALTAR" || action.StartsWith("FUSE ");
+            Vector2 pricePosition = new Vector2(0, -0.52f);
+            if (!string.IsNullOrEmpty(action) && action != "NEXT HALL") CreatePlate(marker.transform, pricePosition, new Vector2(utility ? 1.55f : 1.2f, utility ? 0.55f : 0.3f), tint);
+            if (utility && !reroll && action != "NEXT HALL") AddText(marker.transform, action.StartsWith("FUSE ") ? "FUSE" : "ALTAR", pricePosition + Vector2.up * 0.1f, 0.032f, Color.white);
+            if (!utility || reroll) AddText(marker.transform, price, pricePosition - Vector2.up * (utility ? 0.1f : 0), 0.028f, tint, TextAnchor.MiddleCenter, true);
             var station = new Station { Position = position, Action = action, Marker = marker.transform };
             stations.Add(station);
             return station;

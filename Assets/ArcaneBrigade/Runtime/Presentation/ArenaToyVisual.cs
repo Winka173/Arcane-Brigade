@@ -47,10 +47,10 @@ namespace ArcaneBrigade
                 Vector2 position = Vector2.Lerp(toy.PreviousPosition, toy.Position, Mathf.Clamp01(interpolation));
                 view.Root.position = new Vector3(position.x, position.y, 0f);
                 bool warning = toy.Mode == ArenaToyMode.Warning;
-                float shake = warning ? Mathf.Sin(now * 24f) * 5f : 0f;
+                float shake = warning && !PresentationSettings.ReducedMotion ? Mathf.Sin(now * 24f) * 5f : 0f;
                 view.Body.localRotation = Quaternion.Euler(0f, 0f, shake);
-                view.Body.localScale = Vector3.one * (warning ? 1f + 0.035f * Mathf.Sin(now * 18f) : 1f);
-                Color cue = Color.Lerp(Brass, Cream, 0.5f + 0.5f * Mathf.Sin(now * 8f));
+                view.Body.localScale = Vector3.one * (warning && !PresentationSettings.ReducedMotion ? 1f + 0.035f * Mathf.Sin(now * 18f) : 1f);
+                Color cue = Color.Lerp(Brass, Cream, PresentationSettings.ReducedMotion ? 0.75f : 0.5f + 0.5f * Mathf.Sin(now * 8f));
                 view.Warning.enabled = warning && toy.Kind != ArenaToyKind.ToyCart;
                 Circle(view.Warning, toy.Position, toy.Radius, cue);
                 view.Lane.enabled = (warning || toy.Mode == ArenaToyMode.Rolling) && toy.Kind == ArenaToyKind.ToyCart;

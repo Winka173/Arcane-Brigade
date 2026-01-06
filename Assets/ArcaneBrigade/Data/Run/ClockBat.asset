@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ClockBat
   DisplayName: ClockBat
-  Body: {fileID: 1336070698, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Body: {fileID: 347259973, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: 347259973, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 1433082203, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 760773894, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 1182378790, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 35
   Speed: 1.45
@@ -23,7 +28,7 @@ MonoBehaviour:
   ContactDamage: 4
   ContactInterval: 0.8
   CriticalChance: 0
-  Tint: {r: 0.75, g: 0.55, b: 0.7, a: 1}
+  Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1
@@ -32,3 +37,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

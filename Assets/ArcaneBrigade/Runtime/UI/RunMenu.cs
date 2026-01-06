@@ -30,7 +30,23 @@ namespace ArcaneBrigade
         private readonly RunMuseum museum = new RunMuseum();
         private readonly RunInvoice invoice = new RunInvoice();
         private Texture2D shopIllustration;
+        private Texture2D landingShade;
+        private GUIStyle logoStyle;
+        private readonly ArcadeNavigation navigation = new ArcadeNavigation();
+        private bool focusLost;
+        private bool backgrounded;
+        private float pageChangedAt;
         public RunMuseum Museum => museum;
+        public void NavigateForDiagnostics(int direction, bool submit)
+        {
+            if (!RunPaths.K7Capture) throw new InvalidOperationException("Navigation fixture requires isolated mode");
+            navigation.Move(direction); if (submit) navigation.QueueSubmit();
+        }
+        public void ConfigureK7Diagnostics(RunCatalog definition, PlayerProfile readOnlyProfile)
+        {
+            if (!RunPaths.K7Capture) throw new InvalidOperationException("K7 fixture requires isolated mode");
+            catalog = definition; profile = readOnlyProfile; PresentationSettings.Apply(profile);
+        }
         public void SelectHistoryForDiagnostics(int index, bool evidence)
         {
             if (!RunPaths.K6Capture) throw new InvalidOperationException("History fixture requires isolated K6 capture mode");
@@ -52,6 +68,7 @@ namespace ArcaneBrigade
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
             CurrentPage = page;
+            navigation.Reset(); pageChangedAt = Time.unscaledTime;
             scroll = Vector2.zero;
         }
         public void OpenWeaponSandbox()
@@ -95,9 +112,10 @@ namespace ArcaneBrigade
             ArcadeSkin.Bundle = profile.Cosmetic;
             error = storage.LastError;
             ReloadSaveSummary();
-            AudioListener.volume = profile.Volume;
+            PresentationSettings.Apply(profile);
             if (FindAnyObjectByType<AudioListener>() == null) gameObject.AddComponent<AudioListener>();
             gameObject.AddComponent<ArcadeMusic>();
+            gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();
             Screen.orientation = ScreenOrientation.LandscapeLeft;
         }
 
@@ -119,6 +137,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            if (CurrentPage != Page.Museum && CurrentPage != Page.Records && CurrentPage != Page.WeaponSandbox) navigation.ReadInput();
             if (CurrentPage == Page.Records && profile != null && profile.History.Count > 0)
             {
                 int direction = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.JoystickButton3) ? 1 : Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.JoystickButton2) ? -1 : 0;
@@ -163,14 +182,15 @@ namespace ArcaneBrigade
             SceneManager.LoadScene("RunArena");
         }
 
-        private bool Button(Rect rectangle, string caption) => GUI.Button(rectangle, caption, button);
-        private void Label(Rect rectangle, string caption) { GUI.Label(rectangle, caption, text); }
+        private bool Button(Rect rectangle, string caption) => navigation.Button(rectangle, caption, button);
+        private void Label(Rect rectangle, string caption) { GUI.Label(rectangle, ArcadeTypography.DisplayText(caption), text); }
 
         private void OnGUI()
         {
             if (profile == null) return;
             GUISkin previousSkin = GUI.skin;
             GUI.skin = ArcadeSkin.Skin;
+            navigation.Begin();
             if (text == null)
             {
                 heading = ArcadeTypography.Style(38, true);
@@ -179,9 +199,11 @@ namespace ArcaneBrigade
             }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(new Rect(0, 0, Screen.width, Screen.height), 1280, 720);
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
-            RunHud.Fill(new Rect(20, 15, 1240, 690), new Color(0.12f, 0.10f, 0.20f));
-            ArcadeSkin.Header(new Rect(60, 32, 940, 92), "LOST & FOUND / CỬA HÀNG TRONG GIẤC MƠ", "ARCANE BRIGADE");
-            ArcadeSkin.Divider(new Rect(60, 132, 1150, 2), ArcadeSkin.Accent * 0.5f);
+            if (CurrentPage != Page.Landing)
+            {
+                RunHud.Fill(new Rect(20, 15, 1240, 690), new Color(0.12f, 0.10f, 0.20f));
+                ArcadeSkin.Header(new Rect(60, 32, 940, 92), "", "ARCANE BRIGADE");
+            }
             if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "QUAY LẠI"))
             {
                 if (CurrentPage == Page.WeaponSandbox) CloseWeaponSandbox();
@@ -216,28 +238,43 @@ namespace ArcaneBrigade
                 case Page.WeaponSandbox: sandbox.DrawPanel(text, button); break;
             }
             if (CurrentPage != Page.WeaponSandbox && !string.IsNullOrEmpty(error)) Label(new Rect(60, 675, 1150, 28), error);
+            if (!profile.ReducedMotion)
+            {
+                float alpha = Mathf.Clamp01(1 - (Time.unscaledTime - pageChangedAt) / 0.16f);
+                if (alpha > 0) ArcadeSkin.Line(new Rect(25, 145, 1230, 540), new Color(0.10f, 0.08f, 0.17f, alpha * 0.3f));
+            }
+            navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;
         }
 
         private void DrawLanding()
         {
-            RunHud.Fill(new Rect(60, 165, 575, 470), new Color(0.19f, 0.15f, 0.28f));
             if (shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
-            if (shopIllustration != null) GUI.DrawTexture(new Rect(68, 246, 559, 280), shopIllustration, ScaleMode.ScaleAndCrop);
-            ArcadeSkin.Stamp(new Rect(90, 190, 510, 52), "QUẦY NHẬN NHỮNG GIẤC MƠ BỊ BỎ QUÊN");
-            RunHud.Sprite(new Rect(190, 250, 260, 260), catalog.Champions[selection].Body);
-            RunHud.Sprite(new Rect(405, 350, 110, 110), catalog.Champions[selection].Weapon.Sprite);
-            Label(new Rect(95, 545, 510, 76), "20 hall tới bình minh. Chỉ cần di chuyển.\nNhững món đồ kỳ quặc sẽ lo phần còn lại.");
-            if (Button(new Rect(695, 165, 500, 70), "01   NHẬN MỘT GIẤC MƠ MỚI")) ShowPage(Page.Roster);
+            if (shopIllustration != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), shopIllustration, ScaleMode.ScaleAndCrop);
+            if (landingShade == null)
+            {
+                landingShade = new Texture2D(64, 1, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
+                var pixels = new Color[64];
+                for (int index = 0; index < pixels.Length; index++) pixels[index] = new Color(0.035f, 0.05f, 0.08f, Mathf.Lerp(0.97f, 0, index / 63f));
+                landingShade.SetPixels(pixels); landingShade.Apply(false, true);
+            }
+            GUI.DrawTexture(new Rect(0, 0, 864, 720), landingShade);
+            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(60, true));
+            if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
+            GUI.Label(new Rect(75, 85, 655, 165), "ARCANE\nBRIGADE", logo);
+            UnitDefinition hero = catalog.Champions[selection];
+            Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, false, profile.ReducedMotion)] : hero.Body;
+            RunHud.Sprite(new Rect(850, 340 + (profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f) * 5), 240, 260), pose);
+            if (Button(new Rect(75, 285, 390, 68), "CHƠI MỚI")) ShowPage(Page.Roster);
             GUI.enabled = CanResume;
-            if (Button(new Rect(695, 250, 500, 60), "02   TIẾP TỤC HỒ SƠ ĐANG MỞ")) ShowPage(Page.Resume);
+            if (Button(new Rect(75, 365, 390, 52), "TIẾP TỤC")) ShowPage(Page.Resume);
             GUI.enabled = true;
-            if (Button(new Rect(695, 325, 500, 60), "03   BẢO TÀNG ĐỒ THẤT LẠC")) ShowPage(Page.Museum);
-            if (Button(new Rect(695, 400, 500, 60), "04   HÓA ĐƠN / KỶ LỤC")) ShowPage(Page.Records);
-            if (Button(new Rect(695, 475, 240, 60), "CÀI ĐẶT")) ShowPage(Page.Settings);
-            if (Button(new Rect(955, 475, 240, 60), "CÁCH CHƠI")) ShowPage(Page.Help);
-            ArcadeSkin.Stamp(new Rect(695, 565, 500, 58), "KHÔNG PHÍ NUÔI • KHÔNG GRIND CHỈ SỐ");
+            if (Button(new Rect(75, 429, 390, 52), "BỘ SƯU TẬP")) ShowPage(Page.Museum);
+            if (Button(new Rect(75, 493, 390, 52), "KỶ LỤC")) ShowPage(Page.Records);
+            if (Button(new Rect(75, 567, 185, 45), "CÀI ĐẶT")) ShowPage(Page.Settings);
+            if (Button(new Rect(280, 567, 185, 45), "CÁCH CHƠI")) ShowPage(Page.Help);
+            Label(new Rect(75, 660, 560, 28), "Chỉ cần di chuyển. Đồ vật sẽ lo phần còn lại.");
         }
 
         private void DrawRoster()
@@ -247,7 +284,7 @@ namespace ArcaneBrigade
             {
                 UnitDefinition unit = catalog.Champions[index];
                 Rect row = new Rect(0, index * 130, 610, 120);
-                if (GUI.Button(row, "", GUIStyle.none)) selection = index;
+                if (navigation.Button(row, "", GUIStyle.none)) selection = index;
                 RunHud.Fill(row, index == selection ? new Color(0.27f, 0.20f, 0.38f) : new Color(0.17f, 0.13f, 0.25f));
                 RunHud.Sprite(new Rect(15, row.y + 10, 90, 95), unit.Body);
                 Label(new Rect(125, row.y + 15, 460, 90), unit.DisplayName + "\n" + (profile.BestWave >= unit.UnlockWave ? "Sẵn sàng" : "Đạt hall " + unit.UnlockWave + " để mở khóa"));
@@ -269,33 +306,52 @@ namespace ArcaneBrigade
 
         private void DrawSettings()
         {
-            Label(new Rect(130, 195, 980, 60), "Âm lượng tổng: " + Mathf.RoundToInt(profile.Volume * 100) + "%");
-            float volume = GUI.HorizontalSlider(new Rect(130, 285, 980, 35), profile.Volume, 0, 1);
-            if (Mathf.Abs(volume - profile.Volume) > 0.005f)
-            {
-                float before = profile.Volume;
-                profile.Volume = volume;
-                if (!SaveProfile()) profile.Volume = before;
-                AudioListener.volume = profile.Volume;
-            }
-            if (Button(new Rect(130, 365, 950, 65), "BỘ TRANG TRÍ: " + RunMeta.CosmeticName(profile.Cosmetic)))
+            DrawVolume(175, "Âm lượng tổng", profile.Volume, value => profile.Volume = value);
+            DrawVolume(230, "Nhạc", profile.MusicVolume, value => profile.MusicVolume = value);
+            DrawVolume(285, "Hiệu ứng", profile.SfxVolume, value => profile.SfxVolume = value);
+            if (Button(new Rect(75, 350, 540, 55), "BỘ: " + RunMeta.CosmeticName(profile.Cosmetic)))
             {
                 int before = profile.Cosmetic;
                 int candidate = (before + 1) % 3;
                 while (!RunMeta.CosmeticUnlocked(profile, candidate)) candidate = (candidate + 1) % 3;
                 profile.Cosmetic = candidate;
                 if (!SaveProfile()) profile.Cosmetic = before;
-                ArcadeSkin.Bundle = profile.Cosmetic;
+                PresentationSettings.Apply(profile);
             }
-            GUI.enabled = true;
-            if (Button(new Rect(130, 445, 650, 65), profile.ReducedMotion ? "GIẢM CHUYỂN ĐỘNG: BẬT" : "GIẢM CHUYỂN ĐỘNG: TẮT"))
-            {
-                bool before = profile.ReducedMotion;
-                profile.ReducedMotion = !before;
-                if (!SaveProfile()) profile.ReducedMotion = before;
-            }
-            Label(new Rect(130, 525, 980, 120), "Văn phòng đêm: hall 5 (" + Mathf.Min(profile.BestWave, 5) + "/5). Sân khấu giấy: thắng 3 boss khác nhau (" + Mathf.Min(profile.SeenBosses.Count, 3) + "/3).\nBundle đổi viền UI, dấu và biên lai, không đổi đạn/telegraph/stat.\nBe Vietnam Pro + Noto Sans Mono · SIL OFL 1.1.");
+            ToggleOption(new Rect(645, 350, 560, 55), "GIẢM CHUYỂN ĐỘNG", profile.ReducedMotion, value => profile.ReducedMotion = value);
+            ToggleOption(new Rect(75, 425, 540, 55), "GIẢM DỒN ÂM THANH", profile.ReducedAudio, value => profile.ReducedAudio = value);
+            ToggleOption(new Rect(645, 425, 560, 55), "TƯƠNG PHẢN UI CAO", profile.HighReadability, value => profile.HighReadability = value);
+            ToggleOption(new Rect(75, 500, 540, 55), "SỐ DAMAGE", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
+            ToggleOption(new Rect(645, 500, 560, 55), "CHỈ BÁO LOOT", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
+            Label(new Rect(75, 580, 1130, 85), "Tab / stick / mũi tên: chọn · Enter / A: xác nhận · Escape / B: quay lại\nVăn phòng đêm: hall 5; Sân khấu giấy: 3 boss khác nhau. Chỉ presentation, không đổi gameplay.\nBe Vietnam Pro + Noto Sans Mono · SIL OFL 1.1.");
         }
+
+        private void DrawVolume(float top, string caption, float value, Action<float> setter)
+        {
+            Label(new Rect(75, top, 310, 40), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
+            float changed = GUI.HorizontalSlider(new Rect(390, top + 16, 630, 25), value, 0, 1);
+            if (Button(new Rect(1050, top, 65, 42), "−")) changed = Mathf.Max(0, value - 0.1f);
+            if (Button(new Rect(1135, top, 65, 42), "+")) changed = Mathf.Min(1, value + 0.1f);
+            if (Mathf.Abs(changed - value) < 0.005f) return;
+            setter(changed);
+            if (!SaveProfile()) setter(value);
+            PresentationSettings.Apply(profile);
+        }
+
+        private void ToggleOption(Rect rectangle, string caption, bool value, Action<bool> setter)
+        {
+            if (!Button(rectangle, caption + (value ? ": BẬT" : ": TẮT"))) return;
+            setter(!value);
+            if (!SaveProfile()) setter(value);
+            PresentationSettings.Apply(profile);
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            if (RunPaths.Diagnostic) return;
+            focusLost = !focus; AudioListener.pause = focusLost || backgrounded;
+        }
+        private void OnApplicationPause(bool paused) { backgrounded = paused; AudioListener.pause = focusLost || backgrounded; }
 
         private void DrawRecords()
         {

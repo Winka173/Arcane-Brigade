@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MushroomLibrarian
   DisplayName: MushroomLibrarian
-  Body: {fileID: -1732407878, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: -965750099, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AnimationFrames:
+  - {fileID: -965750099, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -2102499276, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -408783478, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -698028735, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   Weapon: {fileID: 11400000, guid: 3b296350d6f02654f98a89ca62bf43e3, type: 2}
   Health: 120
   Speed: 5.1
@@ -34,3 +39,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

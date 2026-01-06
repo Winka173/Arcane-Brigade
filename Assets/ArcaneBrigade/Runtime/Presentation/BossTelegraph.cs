@@ -37,7 +37,7 @@ namespace ArcaneBrigade
                 if (!line.enabled) continue;
                 float angle = CombatSimulation.BossBulletAngle(boss, index, boss.TelegraphUntil);
                 Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                Color color = new Color(1f, 0.48f, 0.32f, 0.25f + 0.3f * Mathf.PingPong(simulation.Elapsed * 4f, 1f));
+                Color color = new Color(1f, 0.48f, 0.32f, PresentationSettings.ReducedMotion ? 0.5f : 0.25f + 0.3f * Mathf.PingPong(simulation.Elapsed * 4f, 1f));
                 line.startColor = line.endColor = color;
                 line.SetPosition(0, boss.Position);
                 line.SetPosition(1, boss.Position + direction * 12f);

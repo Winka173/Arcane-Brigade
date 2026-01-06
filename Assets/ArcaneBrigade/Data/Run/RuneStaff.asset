@@ -29,7 +29,8 @@ MonoBehaviour:
   ProjectileColor: {r: 0.85, g: 0.35, b: 1, a: 1}
   Element: 3
   Motion: 6
-  ProjectileCount: 1
+  ProjectileCount: 2
+  ProjectilePierce: 1
   SwingAngle: 65
   RecoilDistance: 0.09
   BodyAttackTilt: 18
@@ -37,3 +38,11 @@ MonoBehaviour:
   ProjectileMuzzleOffset: {x: 0.62320006, y: 0}
   ProjectileSprite: {fileID: 89134280, guid: 9789d334ce31e8a478dfc037ae4df088, type: 3}
   ProjectileVisualWidth: 0.3
+  Signature: 0
+  SignatureBeats: 3
+  SignatureRadius: 2.2
+  SignatureScale: 0.65
+  SignatureDelay: 0.18
+  MarkLifetime: 2.4
+  PushDistance: 0.35
+  Family: 0

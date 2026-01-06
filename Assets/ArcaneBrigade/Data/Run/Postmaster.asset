@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: Postmaster
   DisplayName: Postmaster
-  Body: {fileID: -1120507908, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: 1694225575, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AnimationFrames:
+  - {fileID: 1694225575, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -2008201169, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 340090513, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -1990760485, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 110
   Speed: 5
@@ -32,3 +37,7 @@ MonoBehaviour:
   UnlockWave: 5
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

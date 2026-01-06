@@ -1,0 +1,7 @@
+2026-10-14 — sanitized report; raw Unity licensing/network logs excluded.
+Full K7QualityBuilder regression: Unity exit0. Final RecheckCandidate: exit0.
+K7 focused73; K7 quality47; K6 focused72; K5 content139.
+Checkpoint17; Squad12; K0/K1 27; K2 30; K3 transaction36; K3 modifiers29; altar14; K3 final31; full-run104; visual quality31.
+K4 signature40; arena49; sandbox258 model checks; final36; merge PASS.
+Windows build Succeeded,0errors,0warnings; exact report PreviewExports/FullRun_Build.txt.
+Model/simulation/font/sample validation is not human art/audio/feel approval or mobile/controller-hardware certification.

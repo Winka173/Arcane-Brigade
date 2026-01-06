@@ -7,9 +7,12 @@ namespace ArcaneBrigade
         private static Font body;
         private static Font heading;
         private static Font numbers;
+        private static Font display;
         public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/BeVietnamPro-Medium");
         public static Font Heading => heading != null ? heading : heading = Resources.Load<Font>("Fonts/BeVietnamPro-Black");
         public static Font Numbers => numbers != null ? numbers : numbers = Resources.Load<Font>("Fonts/NotoSansMono-Bold");
+        public static Font Display => display != null ? display : display = Resources.Load<Font>("Fonts/Coiny-Regular");
+        public static string DisplayText(string value) => string.IsNullOrEmpty(value) || value.IsNormalized(System.Text.NormalizationForm.FormC) ? value : value.Normalize(System.Text.NormalizationForm.FormC);
 
         public static GUIStyle Style(int size, bool title = false, bool numeric = false)
         {
@@ -18,15 +21,18 @@ namespace ArcaneBrigade
 
         public static Matrix4x4 BeginViewport(Rect viewport, float designWidth, float designHeight)
         {
-            Rect safe = Screen.safeArea;
+            Matrix4x4 previous = GUI.matrix;
+            GUI.matrix = FitViewport(viewport, Screen.safeArea, Screen.height, designWidth, designHeight);
+            return previous;
+        }
+        public static Matrix4x4 FitViewport(Rect viewport, Rect safe, float screenHeight, float designWidth, float designHeight)
+        {
             float left = Mathf.Max(viewport.xMin, safe.xMin);
             float right = Mathf.Min(viewport.xMax, safe.xMax);
             float bottom = Mathf.Max(viewport.yMin, safe.yMin);
             float top = Mathf.Min(viewport.yMax, safe.yMax);
-            float scale = Mathf.Min((right - left) / designWidth, (top - bottom) / designHeight);
-            Matrix4x4 previous = GUI.matrix;
-            GUI.matrix = Matrix4x4.TRS(new Vector3(left + (right - left - designWidth * scale) * 0.5f, Screen.height - top + (top - bottom - designHeight * scale) * 0.5f, 0), Quaternion.identity, Vector3.one * scale);
-            return previous;
+            float scale = Mathf.Max(0.001f, Mathf.Min(Mathf.Max(0, right - left) / Mathf.Max(1, designWidth), Mathf.Max(0, top - bottom) / Mathf.Max(1, designHeight)));
+            return Matrix4x4.TRS(new Vector3(left + (right - left - designWidth * scale) * 0.5f, screenHeight - top + (top - bottom - designHeight * scale) * 0.5f, 0), Quaternion.identity, Vector3.one * scale);
         }
     }
 }

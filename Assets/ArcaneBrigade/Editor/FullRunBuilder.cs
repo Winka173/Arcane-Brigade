@@ -360,10 +360,16 @@ namespace ArcaneBrigade.Editor
             Directory.CreateDirectory("Builds/FullRun");
             BuildReport report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = ScenePaths, locationPathName = "Builds/FullRun/ArcaneBrigade.exe", target = BuildTarget.StandaloneWindows64, options = BuildOptions.None });
             File.WriteAllText("PreviewExports/FullRun_Build.txt", "Result: " + report.summary.result + "\nErrors: " + report.summary.totalErrors + "\nWarnings: " + report.summary.totalWarnings + "\nSize: " + report.summary.totalSize + "\n");
+            Directory.CreateDirectory("PreviewExports/K7");
+            File.WriteAllLines("PreviewExports/K7/Build_Messages.txt", report.steps.SelectMany(step => step.messages).Where(message => message.type == LogType.Warning || message.type == LogType.Error).Select(message => message.type + ": " + message.content));
             if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException("Full run build failed");
             Directory.CreateDirectory("Builds/FullRun/ThirdPartyNotices");
             File.Copy(Root + "Resources/Fonts/OFL.txt", "Builds/FullRun/ThirdPartyNotices/Noto-OFL.txt", true);
             File.Copy(Root + "Resources/Fonts/BeVietnamPro-OFL.txt", "Builds/FullRun/ThirdPartyNotices/BeVietnamPro-OFL.txt", true);
+            if (File.Exists(Root + "Resources/Fonts/Coiny-OFL.txt")) File.Copy(Root + "Resources/Fonts/Coiny-OFL.txt", "Builds/FullRun/ThirdPartyNotices/Coiny-OFL.txt", true);
+            string licensed = Root + "Resources/Audio/Licensed";
+            if (Directory.Exists(licensed))
+                foreach (string notice in Directory.GetFiles(licensed, "*.txt")) File.Copy(notice, "Builds/FullRun/ThirdPartyNotices/" + Path.GetFileName(notice), true);
         }
 
         [MenuItem("Arcane Brigade/Full Run/Check existing content without resetting")]

@@ -10,7 +10,7 @@ namespace ArcaneBrigade
                 ExpandedWeapon.TetherBow => "Arrow links up to " + (tier >= 2 ? 3 : 2) + " distinct nearby targets at 25% damage. Each link searches within 2 units, never loops.",
                 ExpandedWeapon.Scissors => "Two narrow cuts, 0.12s apart, each 65% damage. Position to land both; no full-circle sweep.",
                 ExpandedWeapon.Camera => "Cone flash hits at most " + (tier >= 2 ? 4 : 3) + " targets and exposes them for 2s. Allied attacks gain 15% crit chance on exposed targets.",
-                ExpandedWeapon.Fish => "One outbound hit, then harmless boomerang return. Returns after 0.7s even on miss. No return damage duplication.",
+                ExpandedWeapon.Fish => "Bay ra rồi quay về nguồn sau hit đầu hoặc0.7s khi trượt. Đường về có thể trúng mục tiêu khác; mỗi mục tiêu chỉ nhận một hit mỗi lần ném, không nhân damage khi quay về.",
                 ExpandedWeapon.Iron => "Forward hit leaves a " + (tier >= 2 ? "wider " : "") + "hot strip for 1.4s. Heat ticks every 0.4s; Thermal Ink links existing marks.",
                 ExpandedWeapon.Hammer => "Third hit has 50% longer windup and 35% longer cadence, then a 55% area impact. Burning targets release a separate 30% steam puff.",
                 ExpandedWeapon.Alarm => "Locks a floor position, warns 0.9s, then one " + (tier >= 2 ? "wide " : "") + "blast. Moving enemies can evade it; no homing after launch.",

@@ -28,6 +28,8 @@ namespace ArcaneBrigade
         private AudioClip confirmationClip;
         private bool sounded;
         private SpriteRenderer purchaseShadow;
+        private SpriteRenderer confirmationSpark;
+        private Sprite[] confirmationFrames;
         public bool ReadOnly { get; set; }
         public bool ReducedMotion { get; set; }
         public int PendingCount => queue.Count + (active == null ? 0 : 1);
@@ -112,7 +114,7 @@ namespace ArcaneBrigade
                 }
                 CreateConfirmation();
             }
-            age += Time.unscaledDeltaTime;
+            age += Mathf.Min(Time.unscaledDeltaTime, 0.05f);
             float gather = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 0.28f));
             if (purchaseShadow != null)
             {
@@ -135,18 +137,31 @@ namespace ArcaneBrigade
             }
             if (age >= 0.54f)
             {
-                ring.enabled = true;
+                ring.enabled = confirmationSpark == null;
                 float pulse = Mathf.Clamp01((age - 0.54f) / 0.36f);
                 ring.transform.localScale = Vector3.one * (ReducedMotion ? 0.62f : Mathf.Lerp(0.4f, 1.1f, pulse));
                 Color tint = active.Altar ? new Color(0.45f, 0.95f, 0.88f, 1 - pulse) : new Color(1f, 0.78f, 0.4f, 1 - pulse);
                 ring.startColor = ring.endColor = tint;
-                if (!sounded) { confirmation.PlayOneShot(confirmationClip, 0.18f); sounded = true; }
+                if (confirmationSpark != null)
+                {
+                    confirmationSpark.enabled = true; confirmationSpark.sprite = confirmationFrames[Mathf.Min(3, Mathf.FloorToInt(pulse * 4))];
+                    confirmationSpark.transform.localScale = Vector3.one * (1.1f / confirmationSpark.sprite.bounds.size.x);
+                    confirmationSpark.color = new Color(1, 1, 1, 1 - pulse);
+                }
+                if (!sounded) { CheckpointAudio.PlayInterface(23); sounded = true; }
             }
             if (age >= 0.9f) { CompletedCount++; ClearStage(); }
         }
 
         private void CreateConfirmation()
         {
+            PaintedAnimationLibrary library = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
+            if (library != null)
+            {
+                var sparkle = new GameObject("PaintedMergePayoff"); sparkle.transform.SetParent(stage.transform, false);
+                confirmationSpark = sparkle.AddComponent<SpriteRenderer>(); confirmationSpark.sortingOrder = 2300; confirmationSpark.enabled = false;
+                confirmationFrames = library.Magic;
+            }
             if (ringMaterial == null) ringMaterial = new Material(Shader.Find("Sprites/Default"));
             var outline = new GameObject("MergeConfirmationRing");
             outline.transform.SetParent(stage.transform, false);
@@ -162,7 +177,7 @@ namespace ArcaneBrigade
             label.transform.SetParent(stage.transform, false); label.transform.localPosition = Vector3.down * 0.8f;
             TextMesh text = label.AddComponent<TextMesh>();
             text.font = ArcadeTypography.Body; text.fontSize = 64; text.characterSize = 0.035f; text.anchor = TextAnchor.MiddleCenter;
-            text.text = (active.Altar ? "ALTAR" : "MERGE") + " · T" + active.Result.Tier + " · " + active.Result.WeaponId;
+            text.text = new string('★', Mathf.Clamp(active.Result.Tier, 1, 3));
             text.GetComponent<MeshRenderer>().sharedMaterial = text.font.material; text.GetComponent<MeshRenderer>().sortingOrder = 2300;
             if (confirmation == null)
             {
@@ -197,7 +212,7 @@ namespace ArcaneBrigade
         {
             if (stage != null) { stage.SetActive(false); Destroy(stage); }
             foreach (UnitDefinition definition in definitions) Destroy(definition);
-            definitions.Clear(); ghosts.Clear(); stage = null; active = null; purchaseShadow = null;
+            definitions.Clear(); ghosts.Clear(); stage = null; active = null; purchaseShadow = null; confirmationSpark = null;
         }
         private void OnDisable() { Skip(); }
         private void OnDestroy()

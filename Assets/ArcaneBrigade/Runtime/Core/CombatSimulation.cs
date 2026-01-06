@@ -590,7 +590,7 @@ namespace ArcaneBrigade
                 {
                     UnitState target = projectileCandidates[unitIndex];
                     bool interceptor = projectile.Faction == Faction.Enemy && target.Faction == Faction.Companion && catalog.CompanionInterceptor;
-                    if (!CanHit(projectile.Faction, target) && !interceptor) continue;
+                    if ((!CanHit(projectile.Faction, target) && !interceptor) || projectile.Victims.Contains(target.Id)) continue;
                     float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + 0.055f);
                     if (fraction >= 0f && fraction < nearestFraction) { nearestFraction = fraction; hit = target; }
                 }
@@ -605,6 +605,7 @@ namespace ArcaneBrigade
                     ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, projectile.Weapon, projectile.Critical, projectile.Cause);
                     OnExpandedProjectileHit(projectile, hit);
                     if (projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.Fish) { projectile.Victims.Add(hit.Id); projectile.Returning = true; }
+                    else if (projectile.Weapon != null && projectile.Victims.Count < projectile.Weapon.ProjectilePierce) projectile.Victims.Add(hit.Id);
                     else projectiles.RemoveAt(index);
                 }
                 else if (projectile.Remaining <= 0f || Mathf.Abs(destination.x) > catalog.ArenaSize.x || Mathf.Abs(destination.y) > catalog.ArenaSize.y)

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TeapotPilgrim
   DisplayName: TeapotPilgrim
-  Body: {fileID: -732712032, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: -1299497851, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AnimationFrames:
+  - {fileID: -1299497851, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 918964847, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -1041608238, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 1189756933, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   Weapon: {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
   Health: 120
   Speed: 5.1
@@ -34,3 +39,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

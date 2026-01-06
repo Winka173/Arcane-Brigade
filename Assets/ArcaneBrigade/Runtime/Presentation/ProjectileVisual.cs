@@ -43,6 +43,8 @@ namespace ArcaneBrigade
 
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
+            if (state.Weapon != null && state.Weapon.Family == ExpandedWeapon.Fish)
+                body.transform.rotation = Quaternion.Euler(0, 0, time * 650 + state.Id * 31);
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = !arrow && (state.Element == DamageElement.Arcane || state.Faction == Faction.Enemy || state.Element == DamageElement.Ember);
             halo.enabled = core.enabled = magic;

@@ -108,10 +108,10 @@ namespace ArcaneBrigade
             if (!projectile.Returning) return 0;
             UnitState owner = units.Find(unit => unit.Id == projectile.SourceUnitId && unit.Alive);
             if (owner == null) return -1;
-            projectile.PreviousPosition = projectile.Position; projectile.LaunchSegment = false;
-            projectile.Position = Vector2.MoveTowards(projectile.Position, owner.Position, projectile.Weapon.ProjectileSpeed * delta);
-            projectile.Remaining -= delta;
-            return (projectile.Position - owner.Position).sqrMagnitude < 0.04f || projectile.Remaining <= 0 ? -1 : 1;
+            Vector2 offset = owner.Position - projectile.Position;
+            if (offset.sqrMagnitude < Mathf.Pow(Mathf.Max(0.2f, projectile.Weapon.ProjectileSpeed * delta), 2) || projectile.Remaining <= 0) return -1;
+            projectile.Velocity = offset.normalized * projectile.Weapon.ProjectileSpeed;
+            return 0;
         }
 
         private void OnExpandedProjectileHit(ProjectileState projectile, UnitState target)

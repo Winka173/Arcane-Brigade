@@ -1,0 +1,47 @@
+PASS LanternKnight has separate idle blink left right source frames
+PASS Postmaster has separate idle blink left right source frames
+PASS DrowsySeer has separate idle blink left right source frames
+PASS TeapotPilgrim has separate idle blink left right source frames
+PASS CandleSnail has separate idle blink left right source frames
+PASS MailboxImp has separate idle blink left right source frames
+PASS PillowOracle has separate idle blink left right source frames
+PASS MushroomLibrarian has separate idle blink left right source frames
+PASS HoodWisp has separate idle blink left right source frames
+PASS JellySwordsman has separate idle blink left right source frames
+PASS HushMite has separate idle blink left right source frames
+PASS ClockBat has separate idle blink left right source frames
+PASS BristleImp has separate idle blink left right source frames
+PASS RuneWisp has separate idle blink left right source frames
+PASS InkMoth has separate idle blink left right source frames
+PASS SirenSeal has separate idle blink left right source frames
+PASS DoorBearer has separate idle blink left right source frames
+PASS MoonMagnet has separate idle blink left right source frames
+PASS SleepMimic has separate idle blink left right source frames
+PASS CurtainWisp has separate idle blink left right source frames
+PASS UndeliveredKing has separate idle blink left right source frames
+PASS ScarletIndex has separate idle blink left right source frames
+PASS SleepCollector has separate idle blink left right source frames
+PASS WaxAdmiral has separate idle blink left right source frames
+PASS LastLantern has separate idle blink left right source frames
+PASS Idle blink timed independently of attack
+PASS Walk alternates feet; reduced motion stays stable
+PASS HushMite enemy source never reuses friendly body
+PASS ClockBat enemy source never reuses friendly body
+PASS BristleImp enemy source never reuses friendly body
+PASS RuneWisp enemy source never reuses friendly body
+PASS InkMoth enemy source never reuses friendly body
+PASS SirenSeal enemy source never reuses friendly body
+PASS DoorBearer enemy source never reuses friendly body
+PASS MoonMagnet enemy source never reuses friendly body
+PASS SleepMimic enemy source never reuses friendly body
+PASS CurtainWisp enemy source never reuses friendly body
+PASS Companion identities map explicitly not generic pillow fallback
+PASS Base magic fan and bow pierce authored without item dependency
+PASS Painted effects have16 actual alpha animation frames not mesh placeholders
+PASS Default playback uses licensed composed music and sampled33Foley cues
+PASS Single actual projectile pierces into second enemy with no same-target repeat
+PASS Pierce victim identity prevents multi-frame duplicate hit
+PASS Coin attracts and credits once inside baseline1.7radius without walking onto it
+PASS Combat HUD removes tutorial bonds difficulty ally-count sections
+PASS Shop focus spring plus committed visual arrival replaces sold-text feedback
+PASS Hit target rings removed; death puff retained

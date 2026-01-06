@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LastLantern
   DisplayName: LastLantern
-  Body: {fileID: 42960041, guid: 62a650265539fb94d8bfc0f8e8c7617a, type: 3}
+  Body: {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AnimationFrames:
+  - {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 727089170, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1861701143, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -1572981011, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   Weapon: {fileID: 11400000, guid: ff8886242d47ac447b7b4c76112fbefd, type: 2}
   Health: 1210
   Speed: 0.65

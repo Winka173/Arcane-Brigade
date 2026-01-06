@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HoodWisp
   DisplayName: HoodWisp
-  Body: {fileID: 1336070698, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+  Body: {fileID: -965750099, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AnimationFrames:
+  - {fileID: -965750099, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -2102499276, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -408783478, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -698028735, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   Weapon: {fileID: 11400000, guid: 0587a16ddceed524da237dfc27090cdb, type: 2}
   Health: 1
   Speed: 5.2
@@ -34,3 +39,7 @@ MonoBehaviour:
   UnlockWave: 0
   IsBoss: 0
   BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

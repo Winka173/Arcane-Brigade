@@ -17,6 +17,8 @@ namespace ArcaneBrigade
             float horizontal = (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ? 1f : 0f) - (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ? 1f : 0f);
             float vertical = (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) ? 1f : 0f) - (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) ? 1f : 0f);
             Vector2 keyboard = Vector2.ClampMagnitude(new Vector2(horizontal, vertical), 1f);
+            Vector2 pad = FilterPad(ArcadeNavigation.Pad);
+            if (pad.sqrMagnitude > keyboard.sqrMagnitude) keyboard = pad;
             TouchRadius = Mathf.Max(42f, viewport.height * 0.075f);
             bool tracked = false;
             Rect safe = Screen.safeArea;
@@ -38,5 +40,10 @@ namespace ArcaneBrigade
         }
 
         public void Reset() { fingerId = -1; offset = Vector2.zero; }
+        public static Vector2 FilterPad(Vector2 value)
+        {
+            if (!float.IsFinite(value.x) || !float.IsFinite(value.y) || value.magnitude <= 0.18f) return Vector2.zero;
+            return value.normalized * Mathf.Clamp01((value.magnitude - 0.18f) / 0.82f);
+        }
     }
 }

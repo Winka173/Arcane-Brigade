@@ -25,6 +25,7 @@ namespace ArcaneBrigade
         public DamageElement Element;
         public WeaponMotion Motion;
         public int ProjectileCount = 1;
+        public int ProjectilePierce;
         public float SwingAngle = 65f;
         public float RecoilDistance = 0.09f;
         public float BodyAttackTilt = 10f;

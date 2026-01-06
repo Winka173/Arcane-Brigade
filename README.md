@@ -1,5 +1,13 @@
 # Arcane Brigade
 
+## Bản mới nhất — K7 Windows candidate
+
+K7 quality rework: combat HUD tối giản, main menu art-led/Coiny, shop spring/recruit arrival/merge,48 character frames +16 painted VFX, upper/lower-body animation, enemy silhouette tối mắt đỏ; Foley/music CC0 thay default beep, keyboard/pad, profile3, readability/reduced-motion và native diagnostics. **Chưa nghiệm thu production.** Android/iOS device gates vẫn mở; tests không thay duyệt art/audio/feel.
+
+Chạy `Builds/FullRun/ArcaneBrigade.exe`; giữ nguyên thư mục đi kèm. Checklist: `Docs/K7_Playtest_Checklist.md`; ảnh/video: `PreviewExports/K7/index.html`; nghe thử: `PreviewExports/K7/Audition/index.html`. Dựng rework không reset catalog bằng Unity menu **Arcane Brigade > K7 > Quality rework apply check and build**; không dùng gate K5/K6 Apply cũ ghi đè art mới.
+
+Các đoạn dưới là lịch sử checkpoint; thông tin chưa implement ở đoạn cũ không ghi đè trạng thái checkpoint mới.
+
 **K4 DONE — functional gate Windows:** hai build Máy thu hoạch/Văn phòng hoàn trả và Carbon Ribbon, contribution đo HP thật, merge reveal sau save, tier/idle/reduced motion, Chuông sân khấu/Xe đồ chơi và boss phase đổi sân, sandbox chỉ weapon đã khám phá. Regression + native combat→loot→shop/merge→boss/rest→sandbox PASS. Báo cáo: `Docs/K4_Final_Checkpoint.md`; ảnh Unity4K: `PreviewExports/K4/Final/Player/index.html`. Menu build/check: `Arcane Brigade > K4 > Apply full signature slice check and build`. K5 tiếp theo, font/UI K6, production/mobile K7; DONE không phải nghiệm thu release.
 
 Checkpoint K4.1: Ô bung đẩy enemy phía trước, Chuông tích nhịp phát sóng trễ, **DreamStamp** đánh một mục tiêu/tích dấu/burst; tier ≥2 có twist hữu hạn riêng. Thêm weapon vào pool tuyển ngẫu nhiên, không cho chọn/đổi weapon. 40 checks + regression PASS, native Windows capture: `PreviewExports/K4/SignaturePlayer/index.html`. Báo cáo lịch sử: `Docs/K4_Signature_Checkpoint.md`; bản tích hợp mới dùng menu full signature slice ở trên.

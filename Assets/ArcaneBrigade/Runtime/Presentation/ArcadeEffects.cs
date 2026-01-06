@@ -98,12 +98,10 @@ namespace ArcaneBrigade
             else if (value.Kind == CombatEventKind.Hit)
             {
                 Spawn(Shape.Star, value.Position, angle + 15f, value.Critical ? 0.58f : 0.32f, 0.12f, new Color(1f, 1f, 0.9f));
-                Spawn(Shape.Ring, value.Position, 0f, value.Faction == Faction.Champion ? 0.75f : 0.45f, 0.22f, value.Faction == Faction.Champion ? new Color(1f, 0.35f, 0.45f) : color);
             }
             else if (value.Kind == CombatEventKind.Kill)
             {
                 Spawn(Shape.Puff, value.Position, 0, 0.6f, 0.32f, new Color(0.17f, 0.13f, 0.26f));
-                Spawn(Shape.Ring, value.Position, 0, 0.5f, 0.2f, new Color(0.75f, 0.45f, 0.95f));
             }
             else if (value.Kind == CombatEventKind.Pickup)
                 Spawn(Shape.Star, value.Position, 0, 0.23f, 0.25f, value.Loot == LootKind.Egg ? new Color(0.45f, 1f, 0.86f) : value.Loot == LootKind.Heart ? new Color(1f, 0.4f, 0.58f) : new Color(1f, 0.88f, 0.45f));
