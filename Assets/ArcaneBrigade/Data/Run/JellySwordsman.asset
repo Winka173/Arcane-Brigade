@@ -42,6 +42,13 @@ MonoBehaviour:
     gi\u1EEF quy t\u1EAFc g\u1ED1c; s\xE1t th\u01B0\u01A1ng v\xE0 n\u1ED9i t\u1EA1i
     v\u1EABn nh\xE2n theo c\u1EA5p."
   ChampionModifiers: []
+  CompanionModifiers:
+  - Effect: 13
+    Scope: 2
+    Value: 0.025
+  - Effect: 3
+    Scope: 2
+    Value: -0.005
   Price: 20
   UnlockWave: 0
   IsBoss: 0

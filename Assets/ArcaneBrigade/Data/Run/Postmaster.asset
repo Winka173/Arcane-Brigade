@@ -47,6 +47,7 @@ MonoBehaviour:
   - Effect: 9
     Scope: 1
     Value: 1
+  CompanionModifiers: []
   Price: 20
   UnlockWave: 5
   IsBoss: 0

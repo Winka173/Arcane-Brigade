@@ -21,6 +21,12 @@ namespace ArcaneBrigade
         private readonly RunBondFeedback bondFeedback = new RunBondFeedback();
         private Vector2 shopScroll;
         private WorldShop.Station tooltipStation;
+        private string walletRun;
+        private float healthTrail;
+        private int lastGold;
+        private int lastEggs;
+        private float goldChanged = -100;
+        private float eggsChanged = -100;
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
         public void ShowInvoiceEvidenceFixture()
         {
@@ -79,14 +85,24 @@ namespace ArcaneBrigade
             Matrix4x4 previous = ArcadeTypography.BeginViewport(viewport, 1920f, 1080f);
             float health = state.Phase == SessionPhase.Combat ? simulation.Champion.Health : state.Health;
             float maximum = Mathf.Max(1f, owner.Content.Unit(state.ChampionId).Health + session.Bonus(ItemEffect.Health));
+            int gold = RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0));
+            int eggs = RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0));
+            if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; }
+            if (lastGold != gold) { goldChanged = simulation.VisualElapsed; lastGold = gold; }
+            if (lastEggs != eggs) { eggsChanged = simulation.VisualElapsed; lastEggs = eggs; }
+            if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
+            else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
             Sprite(new Rect(35, 28, 62, 62), owner.Content.Unit(state.ChampionId).Body);
             ArcadeSkin.Line(new Rect(105, 36, 230, 30), new Color(0.06f, 0.07f, 0.12f, 0.85f));
+            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(1f, 0.68f, 0.28f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(0.94f, 0.24f, 0.36f));
             GUI.Label(new Rect(135, 36, 200, 32), Mathf.CeilToInt(health) + " / " + maximum.ToString("0"), numeric);
-            Sprite(new Rect(40, 100, 32, 32), owner.Content.Arena.Coin);
-            GUI.Label(new Rect(85, 102, 240, 30), RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)).ToString(), numeric);
-            Sprite(new Rect(40, 140, 32, 32), owner.Content.EggSprite);
-            GUI.Label(new Rect(85, 142, 240, 30), RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0)).ToString(), numeric);
+            float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
+            float eggPulse = LivingUI.Press(simulation.VisualElapsed - eggsChanged, PresentationSettings.ReducedMotion) * 4;
+            Sprite(new Rect(40 - goldPulse, 100 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
+            GUI.Label(new Rect(85, 102, 240, 30), gold.ToString(), numeric);
+            Sprite(new Rect(40 - eggPulse, 140 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
+            GUI.Label(new Rect(85, 142, 240, 30), eggs.ToString(), numeric);
             GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "MÀN " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
                 GUI.Label(new Rect(870, 74, 210, 32), CombatTimerCaption(simulation.IsBossOvertime, simulation.WaveDuration - simulation.Elapsed), numeric);
@@ -187,8 +203,9 @@ namespace ArcaneBrigade
 
         private void DrawControls(ArenaController owner)
         {
-            Rect pause = new Rect(1770, 35, 65, 52);
-            Rect details = new Rect(1680, 35, 65, 52);
+            if (RunUIHints.Device != RunUIDevice.Touch) return;
+            Rect pause = new Rect(35, 245, 65, 52);
+            Rect details = new Rect(115, 245, 65, 52);
             if (navigation.Button(pause, "", button)) owner.TogglePause();
             if (navigation.Button(details, "", button)) owner.ToggleDetails();
             ArcadeSkin.Line(new Rect(pause.x + 21, pause.y + 14, 8, 24), ArcadeSkin.Ink);
@@ -209,19 +226,21 @@ namespace ArcaneBrigade
 
         private void DrawBonds(ArenaController owner)
         {
-            bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, Time.unscaledTime);
+            bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, owner.Simulation.VisualElapsed);
             int index = 0;
             string tooltip = null;
             foreach (BondDefinition bond in owner.Content.Bonds)
             {
                 if (!owner.Session.BondCounts.TryGetValue(bond.Id, out int count) || count <= 0) continue;
-                Rect badge = new Rect(1550 + index % 4 * 74, 117 + index / 4 * 88, 64, 76);
+                Rect badge = new Rect(1550 + index % 4 * 74, 38 + index / 4 * 88, 64, 76);
                 int level = bond.ActiveLevel(count);
                 bool active = level > 0;
-                bool flashing = bondFeedback.Flashing(bond.Id, Time.unscaledTime);
+                bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
                 if (flashing) ArcadeSkin.Panel(badge, ArcadeSkin.Accent);
                 if (active) ArcadeSkin.Line(new Rect(badge.x + 7, badge.y + 8, 50, 43), new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.16f));
-                Sprite(new Rect(badge.x + 4, badge.y, 56, 52), bond.Icon);
+                float burst = owner.Profile != null && owner.Profile.ReducedMotion ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
+                Rect icon = new Rect(badge.x + 4 - burst * 5, badge.y - burst * 5, 56 + burst * 10, 52 + burst * 10);
+                Sprite(icon, bond.Icon);
                 small.normal.textColor = active ? ArcadeSkin.Teal : ArcadeSkin.Cream;
                 small.alignment = TextAnchor.MiddleCenter;
                 GUI.Label(new Rect(badge.x, badge.y + 52, 64, 24), count + "/" + bond.NextThreshold(count), small);
@@ -231,13 +250,12 @@ namespace ArcaneBrigade
                 {
                     tooltip = RunUICopy.BondDescription(bond, count);
                 }
-                if (flashing && tooltip == null) tooltip = bond.Name + " · thưởng hệ tăng!";
                 index++;
             }
             small.normal.textColor = ArcadeSkin.Cream; small.alignment = TextAnchor.UpperLeft;
             if (tooltip != null)
             {
-                float top = 130 + Mathf.CeilToInt(index / 4f) * 88;
+                float top = 50 + Mathf.CeilToInt(index / 4f) * 88;
                 float height = small.CalcHeight(new GUIContent(tooltip), 385) + 24;
                 Fill(new Rect(1430, top, 420, height), Panel);
                 GUI.Label(new Rect(1445, top + 12, 385, height - 24), tooltip, small);

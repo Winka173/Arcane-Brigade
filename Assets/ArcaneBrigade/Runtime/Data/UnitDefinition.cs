@@ -25,6 +25,8 @@ namespace ArcaneBrigade
         public float PassiveStrength = 1f;
         public string Description;
         public StatModifier[] ChampionModifiers = new StatModifier[0];
+        public StatModifier[] CompanionModifiers = new StatModifier[0];
+        public static float ModifierScale(int tier) => Mathf.Pow(2f, Mathf.Clamp(tier, 1, 3) - 1);
         public int Price = 20;
         public int UnlockWave;
         public bool IsBoss;

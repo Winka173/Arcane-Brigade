@@ -96,12 +96,14 @@ namespace ArcaneBrigade
             if (sandbox == null) sandbox = gameObject.AddComponent<WeaponSandbox>();
             sandbox.Open(definition, readOnlyProfile, readOnlySaved, weaponId, tier, moving);
             CurrentPage = Page.WeaponSandbox;
+            pageChangedAt = Time.unscaledTime;
         }
         public void CloseWeaponSandbox()
         {
             if (CurrentPage != Page.WeaponSandbox) return;
             sandbox.Dispose();
             CurrentPage = sandboxReturnPage;
+            pageChangedAt = Time.unscaledTime;
             scroll = sandboxReturnScroll;
         }
         private void OnDisable() { CloseWeaponSandbox(); }
@@ -213,6 +215,8 @@ namespace ArcaneBrigade
                 button = new GUIStyle(GUI.skin.button) { fontSize = 19, font = ArcadeTypography.Heading };
             }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(new Rect(0, 0, Screen.width, Screen.height), 1280, 720);
+            Color previousTint = GUI.color;
+            LivingUI.Enter(Time.unscaledTime - pageChangedAt, new Vector2(640, 360));
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
             if (CurrentPage != Page.Landing)
             {
@@ -260,6 +264,7 @@ namespace ArcaneBrigade
             }
             navigation.End();
             GUI.matrix = previous;
+            GUI.color = previousTint;
             GUI.skin = previousSkin;
         }
 

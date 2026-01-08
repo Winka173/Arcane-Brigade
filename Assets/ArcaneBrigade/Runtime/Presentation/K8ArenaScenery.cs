@@ -59,6 +59,7 @@ namespace ArcaneBrigade
                 var garland = new GameObject("MarketPennants"); garland.transform.SetParent(parent, false); garland.transform.localPosition = new Vector2(0, 4.65f);
                 SpriteRenderer flags = garland.AddComponent<SpriteRenderer>(); flags.sprite = art.MarketDecor[special ? 3 : 2]; flags.sortingOrder = 300;
                 garland.transform.localScale = Vector3.one * (3.7f / flags.sprite.bounds.size.x);
+                garland.AddComponent<LivingScenery>();
             }
             for (int step = 0; step < 3; step++)
             {

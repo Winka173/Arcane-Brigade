@@ -51,6 +51,14 @@ namespace ArcaneBrigade
             }
         }
 
+        public static string DescribeCompanion(UnitDefinition unit, int tier)
+        {
+            string description = "";
+            foreach (StatModifier modifier in unit.CompanionModifiers ?? new StatModifier[0])
+                description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value * UnitDefinition.ModifierScale(tier)) + "\n";
+            return description + "Đặc tính cấp 1/2/3 ×1/2/4; ghép ba người làm giảm số nguồn hỗ trợ.\n";
+        }
+
         public static string Describe(ItemDefinition item, int stacks)
         {
             string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Duy nhất" : "Cộng dồn") + "\n";
@@ -93,6 +101,8 @@ namespace ArcaneBrigade
             if (catalog.ContentRevision < 0) throw new InvalidOperationException("Invalid content revision");
             foreach (UnitDefinition champion in catalog.Champions)
                 foreach (StatModifier modifier in champion.ChampionModifiers ?? new StatModifier[0]) ValidateModifier(modifier, champion.Id);
+            foreach (UnitDefinition companion in catalog.Companions)
+                foreach (StatModifier modifier in companion.CompanionModifiers ?? new StatModifier[0]) ValidateModifier(modifier, companion.Id);
             foreach (BondDefinition bond in catalog.Bonds)
             {
                 if (bond == null || bond.Threshold < 1 || !float.IsFinite(bond.Value) || !Enum.IsDefined(typeof(ItemEffect), bond.Effect)) throw new InvalidOperationException("Invalid bond");

@@ -1,0 +1,33 @@
+PASS TeapotPilgrim has an authored benefit and tradeoff
+PASS CandleSnail has an authored benefit and tradeoff
+PASS MailboxImp has an authored benefit and tradeoff
+PASS PillowOracle has an authored benefit and tradeoff
+PASS MushroomLibrarian has an authored benefit and tradeoff
+PASS HoodWisp has an authored benefit and tradeoff
+PASS JellySwordsman has an authored benefit and tradeoff
+PASS Companion grants player HP through real stat pipeline
+PASS Negative player modifier retained
+PASS Player debuff does not leak to companions
+PASS Companion damage buff does not leak to player
+PASS Companion scope affects actual team damage
+PASS Tier three scales support by four, not nine
+PASS Restore derives modifiers once without duplicate stacking
+PASS Restore clamps HP after current companion balance changes without healing missing HP
+PASS Restore health reconciliation does not mutate caller snapshot
+PASS Roster discloses actual benefits and tradeoffs
+PASS Buying HP companion preserves missing HP rather than fully healing
+PASS Repeated purchase does not reapply health gain
+PASS Future HP buff cannot finance unaffordable blood payment
+PASS Health tradeoff cannot kill player inside shop
+PASS Three source units actually merge on purchase
+PASS Merge removes three old support sources and adds one doubled source
+PASS Merge does not grant discarded third-unit HP
+PASS Merged companion remains one body for bonds
+PASS Speech cadence uses simulation time
+PASS Speaking pose ends after actual text reveal
+PASS Reduced motion reveals dialogue immediately
+PASS UI reveal bounded with reduced motion bypass
+PASS Button compression settles and respects reduced motion
+PASS Loading does not fabricate bond bounce
+PASS Actual bond activation bounces and settles
+PASS New wave resetting visual clock cannot prolong previous shop bond flash

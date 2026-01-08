@@ -31,6 +31,7 @@ namespace ArcaneBrigade
         private int signature = int.MinValue;
         private PaintedAnimationLibrary art;
         private ShopDisplayActor merchant;
+        private MerchantVoice voice;
         private GUIStyle priceStyle;
         private GUIStyle denialStyle;
         private bool arrivingStock = true;
@@ -38,6 +39,7 @@ namespace ArcaneBrigade
         private bool displayedSpecial;
         private readonly MerchantDialogue dialogue = new MerchantDialogue();
         public MerchantDialogue Dialogue => dialogue;
+        public int PlayedSpeechSyllables => voice == null ? 0 : voice.PlayedSyllables;
         public MergeReveal Reveal { get; private set; }
         public ShopPickupEffect ItemPickup { get; private set; }
         private readonly List<Station> stations = new List<Station>();
@@ -50,6 +52,7 @@ namespace ArcaneBrigade
             owner = controller; art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             Reveal = gameObject.AddComponent<MergeReveal>(); Reveal.Configure(controller);
             ItemPickup = gameObject.AddComponent<ShopPickupEffect>(); ItemPickup.Configure(controller);
+            voice = gameObject.AddComponent<MerchantVoice>();
         }
         public void Display()
         {
@@ -57,6 +60,7 @@ namespace ArcaneBrigade
             if (owner.Session.State.Phase != SessionPhase.Shop)
             {
                 if (scenery != null) scenery.SetActive(false);
+                if (voice != null) voice.Silence();
                 Nearby = null; Special = false; signature = int.MinValue; arrivingStock = true; return;
             }
             RunSnapshot state = owner.Session.State;
@@ -74,9 +78,11 @@ namespace ArcaneBrigade
                 float distance = (station.Position - owner.Simulation.Champion.Position).sqrMagnitude;
                 if (distance <= closest) { closest = distance; Nearby = station; }
             }
-            if (owner.Simulation.Phase == RunPhase.Paused) return;
+            if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.Simulation.VisualElapsed, true); return; }
             dialogue.Observe(Special, Nearby == null ? null : Nearby.Offer != null ? "offer:" + Nearby.Offer.Token : Nearby.Action, owner.Simulation.VisualElapsed);
             if (merchant != null) merchant.Inspect(Nearby != null);
+            voice.Advance(dialogue, Special, owner.Simulation.VisualElapsed, false);
+            if (merchant != null) merchant.Speak(dialogue.IsSpeaking(owner.Simulation.VisualElapsed));
             foreach (Station station in stations)
             {
                 float target = station == Nearby && !owner.HallExitPending ? 1 : 0;
@@ -237,6 +243,7 @@ namespace ArcaneBrigade
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count;
                 result = RunUICopy.PassiveDescription(unit.Passive) + ".\nVũ khí ngẫu nhiên khi nhận · " + copies + "/3 bản cấp 1";
+                result += "\n" + RunModifierRules.DescribeCompanion(unit, 1);
                 if (copies >= 2) result += " · Có thể ghép cấp sau khi nhận";
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)

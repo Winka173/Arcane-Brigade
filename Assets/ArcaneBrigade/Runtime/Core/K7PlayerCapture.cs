@@ -236,6 +236,8 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(0.2f); yield return Shot("05-shop-entry");
                 int entryLines = owner.Shop.Dialogue.SpokenCount;
                 Check(owner.Shop.Dialogue.LastMoment == MerchantMoment.Enter, "Merchant entry speaks without popup or purchase");
+                if (Array.IndexOf(args, "-arcane-k9") >= 0)
+                    Check(owner.Shop.PlayedSpeechSyllables > 0, "K9 merchant cadence actually dispatches syllables on dedicated audio lane");
                 yield return new WaitForSecondsRealtime(2.35f); yield return Shot("05-shop-focus");
                 Check(owner.Shop.Dialogue.LastMoment == MerchantMoment.Inspect && owner.Shop.Dialogue.SpokenCount > entryLines, "Approaching an offer produces merchant conversation automatically");
                 Check(owner.Shop.Interact(), "Actual shop proximity purchase commits and queues merge");
@@ -249,6 +251,16 @@ namespace ArcaneBrigade
                 Check(owner.Shop.Interact(), "Actual unmerged recruit purchase commits");
                 yield return new WaitForSecondsRealtime(0.12f); yield return Shot("08-recruit-hop");
                 yield return new WaitForSecondsRealtime(0.9f); yield return Shot("09-recruit-walkout");
+                if (Array.IndexOf(args, "-arcane-k9") >= 0)
+                {
+                    Check(Array.TrueForAll(content.Companions, unit => unit.CompanionModifiers.Length >= 2), "K9 authored positive and negative companion traits loaded in player");
+                    owner.ToggleDetails(); owner.Details.SelectTab(1);
+                    yield return new WaitForSecondsRealtime(0.3f); yield return Shot("09-k9-companion-tradeoffs");
+                    int spoken = owner.Shop.PlayedSpeechSyllables;
+                    yield return new WaitForSecondsRealtime(0.2f);
+                    Check(owner.Shop.PlayedSpeechSyllables == spoken, "K9 paused inventory does not emit dialogue audio");
+                    owner.ToggleDetails();
+                }
                 if (RunPaths.K7B)
                 {
                     owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(3, 0.5f);

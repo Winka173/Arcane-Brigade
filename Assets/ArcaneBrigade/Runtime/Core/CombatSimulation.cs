@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support }
 
     public readonly struct CombatEvent
     {
@@ -42,6 +42,7 @@ namespace ArcaneBrigade
     {
         public int Id;
         public UnitDefinition Definition;
+        public float LastSupport = -100;
         public Faction Faction;
         public Vector2 Position;
         public Vector2 PreviousPosition;
@@ -412,15 +413,28 @@ namespace ArcaneBrigade
                         CombatCause healingCause = NewCause(unit.Id);
                         RecordHealing(healingCause.Child("unit-passive"), Champion.Health - healthBefore);
                         events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - healthBefore, subjectId: Champion.Id, cause: healingCause));
+                        unit.LastSupport = Elapsed;
+                        events.Add(new CombatEvent(CombatEventKind.Support, unit.Position, unit.Faction, subject: unit, element: DamageElement.Arcane));
                     }
                     break;
                 case PassiveKind.Scavenge:
                     int nextGold = RunSession.BoundedCounter((long)Gold + Mathf.RoundToInt(unit.Definition.PassiveStrength));
+                    if (nextGold > Gold)
+                    {
+                        unit.LastSupport = Elapsed;
+                        events.Add(new CombatEvent(CombatEventKind.Support, unit.Position, unit.Faction, subject: unit));
+                    }
                     Contribution(NewCause(unit.Id).Child("scavenge")).Coins += nextGold - Gold; Gold = nextGold; break;
                 case PassiveKind.ChillAura:
                     float auraRadius = 2f + unit.Definition.PassiveStrength * 0.625f;
+                    bool chilled = false;
                     foreach (UnitState enemy in units)
-                        if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - unit.Position).sqrMagnitude < auraRadius * auraRadius) enemy.ChillUntil = Elapsed + (enemy.Definition.IsBoss ? 0.6f : 1.5f);
+                        if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - unit.Position).sqrMagnitude < auraRadius * auraRadius) { enemy.ChillUntil = Elapsed + (enemy.Definition.IsBoss ? 0.6f : 1.5f); chilled = true; }
+                    if (chilled)
+                    {
+                        unit.LastSupport = Elapsed;
+                        events.Add(new CombatEvent(CombatEventKind.Support, unit.Position, unit.Faction, element: DamageElement.Frost, subject: unit));
+                    }
                     break;
             }
         }

@@ -1,0 +1,10 @@
+PASS Requested render surface 1920x1080; actual=1920x1080
+PASS Actual uncapped rendered roster 24
+PASS Realtime Unity framebuffer movie completed without OS overlays
+PASS Native full-resolution frame 03-combat-roster-24
+PASS Frame contains rendered content not blank black 03-combat-roster-24
+PASS No timeScale acceleration in native run 24
+PASS Measurement remained in live combat 24
+PASS Native full-resolution frame 04-details-roster-24
+PASS Frame contains rendered content not blank black 04-details-roster-24
+Windows fixture seed7707, native resolution3840x2160 (video1920x1080), timeScale1, movement-only circle driver, seeded1/56/100 unique body+weapon roster and relics. No HP/invulnerability/weapon/enemy timer adjustments. Native instrumentation captures real Unity frame/memory/GC/GPU where counters exist; NA means unavailable, not zero-cost. CSV/summary measured before screenshots and without video encoder. Not natural20hall balance/human feel/device approval. Aspect screenshots are desktop resizes, not device safe-area evidence. Video flag leaves22seconds for external game-window-only60fps recording; separate audio audition, no microphone/desktop capture.

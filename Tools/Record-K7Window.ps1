@@ -1,6 +1,6 @@
 param(
     [ValidateSet('combat', 'shop')][string]$Mode = 'combat',
-    [ValidateSet('K7', 'K7B', 'K8')][string]$Phase = 'K7',
+    [ValidateSet('K7', 'K7B', 'K8', 'K9')][string]$Phase = 'K7',
     [string]$FFmpegPath
 )
 $ErrorActionPreference = 'Stop'
@@ -15,8 +15,9 @@ $video = Join-Path $project ('PreviewExports/' + $Phase + '/' + $Phase + '-' + $
 $flag = if ($Mode -eq 'shop') { '-arcane-k7-shop-video' } else { '-arcane-k7-video' }
 $log = Join-Path $project ('Logs/K7-Video-' + $Mode + '.log')
 $arguments = @('-arcane-k7-capture', $flag, '-capturePath', ('"' + $fixture + '"'), '-ffmpegPath', ('"' + $FFmpegPath + '"'), '-videoPath', ('"' + $video + '"'), '-force-d3d11', '-screen-fullscreen', '0', '-logFile', ('"' + $log + '"'))
-if ($Phase -eq 'K7B' -or $Phase -eq 'K8') { $arguments += '-arcane-k7b' }
-if ($Phase -eq 'K8') { $arguments += '-arcane-k8' }
+if ($Phase -eq 'K7B' -or $Phase -eq 'K8' -or $Phase -eq 'K9') { $arguments += '-arcane-k7b' }
+if ($Phase -eq 'K8' -or $Phase -eq 'K9') { $arguments += '-arcane-k8' }
+if ($Phase -eq 'K9') { $arguments += '-arcane-k9' }
 $process = Start-Process -FilePath $player -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $process.WaitForExit()
 if ($process.ExitCode -ne 0) { throw ('Framebuffer recorder or fixture failed: player=' + $process.ExitCode) }

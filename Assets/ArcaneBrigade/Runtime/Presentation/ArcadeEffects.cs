@@ -42,7 +42,11 @@ namespace ArcaneBrigade
             WeaponDefinition weapon = value.Weapon;
             Color color = ElementColor(value.Element);
             float angle = Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg;
-            if (value.Kind == CombatEventKind.SignatureMark)
+            if (value.Kind == CombatEventKind.Support)
+            {
+                Spawn(Shape.Glyph, value.Position + Vector2.up * 0.25f, 0, 0.22f, 0.36f, color);
+            }
+            else if (value.Kind == CombatEventKind.SignatureMark)
             {
                 Spawn(Shape.Star, value.Position, 45, 0.12f + value.Value * 0.055f, 0.24f, new Color(1, 0.28f, 0.38f));
             }

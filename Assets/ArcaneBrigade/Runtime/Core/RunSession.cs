@@ -109,6 +109,7 @@ namespace ArcaneBrigade
             State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
             RememberVariant(State.Roster[0]);
             RecountBonds();
+            State.Health = MaximumHealth();
         }
 
         public void Restore(RunSnapshot snapshot)
@@ -132,6 +133,7 @@ namespace ArcaneBrigade
             if (State.Contributions == null) State.Contributions = new List<ContributionEntry>();
             if (State.Offers.Count > catalog.ShopSlots) State.Offers.RemoveRange(catalog.ShopSlots, State.Offers.Count - catalog.ShopSlots);
             RecountBonds();
+            State.Health = Mathf.Min(State.Health, MaximumHealth());
         }
 
         public void Validate(RunSnapshot snapshot)
@@ -197,6 +199,9 @@ namespace ArcaneBrigade
             float value = 0f;
             foreach (StatModifier modifier in catalog.Unit(State.ChampionId).ChampionModifiers ?? new StatModifier[0])
                 if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value;
+            foreach (RosterEntry entry in State.Roster)
+                foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
+                    if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * UnitDefinition.ModifierScale(entry.Tier);
             foreach (ItemStack stack in State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
@@ -422,6 +427,7 @@ namespace ArcaneBrigade
             if (State.Phase != SessionPhase.Shop) return false;
             ShopOffer offer = State.Offers.Find(candidate => candidate.Token == token) ?? State.SpecialOffers.Find(candidate => candidate.Token == token);
             if (!CanBuy(offer)) { Notice = "Offer expired, capped or insufficient currency. HP purchases must leave at least 1 HP."; return false; }
+            float previousMaximum = MaximumHealth();
             if (offer.Kind == OfferKind.Companion)
             {
                 var choices = new List<WeaponDefinition>();
@@ -438,16 +444,14 @@ namespace ArcaneBrigade
                 ItemStack stack = State.Items.Find(candidate => candidate.Id == offer.Id);
                 ItemDefinition item = catalog.Item(offer.Id);
                 if (stack != null && stack.Count >= item.StackLimit) { Notice = "Item stack limit reached."; return false; }
-                float previousMaximum = Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
                 if (stack == null) State.Items.Add(new ItemStack { Id = offer.Id, Count = 1 }); else stack.Count++;
-                float nextMaximum = Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
-                State.Health = Mathf.Clamp(State.Health + nextMaximum - previousMaximum, 0f, nextMaximum);
             }
             if (offer.Currency == ShopCurrency.Eggs) State.Eggs -= offer.Price;
             else if (offer.Currency == ShopCurrency.Health) State.Health -= offer.Price;
             else State.Gold -= offer.Price;
             offer.Sold = true;
             RecountBonds();
+            ReconcileHealth(previousMaximum);
             Notice = "Purchased. " + (offer.Kind == OfferKind.Companion ? "Weapon rolled after purchase." : "Upgrade stacks for this run.");
             return true;
         }
@@ -576,6 +580,7 @@ namespace ArcaneBrigade
             var choices = new List<WeaponDefinition>();
             foreach (WeaponDefinition weapon in catalog.Weapons) if (!State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id)) choices.Add(weapon);
             if (choices.Count == 0) return false;
+            float previousMaximum = MaximumHealth();
             State.Roster.Remove(first);
             State.Roster.Remove(second);
             State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = recipe.ResultTier, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
@@ -583,7 +588,16 @@ namespace ArcaneBrigade
             State.Eggs -= recipe.EggCost;
             RecountBonds();
             Notice = "Altar fusion completed.";
+            ReconcileHealth(previousMaximum);
             return true;
+        }
+
+        private float MaximumHealth() => Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
+
+        private void ReconcileHealth(float previousMaximum)
+        {
+            float maximum = MaximumHealth();
+            State.Health = Mathf.Clamp(State.Health + maximum - previousMaximum, 1f, maximum);
         }
 
         public bool CanAltar(string recipeId)

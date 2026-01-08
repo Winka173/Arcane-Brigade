@@ -44,8 +44,11 @@ namespace ArcaneBrigade
             float windup = state.AttackWindup > 0 ? state.AttackWindup : state.Definition.Weapon.Windup;
             K8Motion.Pose pose = K8Motion.Attack(state.Definition.Weapon, time - state.AttackStarted, windup, reduced);
             upper.transform.localPosition += Vector3.up * pose.Lift * 0.25f;
+            float supportAge = time - state.LastSupport;
+            float support = reduced || reacting || supportAge < 0 || supportAge >= 0.5f ? 0 : Mathf.Sin(supportAge / 0.5f * Mathf.PI);
+            upper.transform.localPosition += Vector3.up * support * 0.035f;
             float turn = reduced || reacting ? 0 : Mathf.Sin(time * (moving ? 7 : 2.2f) + state.Id) * (moving ? 1.6f : 1.4f);
-            upper.transform.localRotation = Quaternion.Euler(0, 0, turn + pose.Lean * 0.25f * (reference.flipX ? -1 : 1));
+            upper.transform.localRotation = Quaternion.Euler(0, 0, turn + (pose.Lean * 0.25f + support * 4) * (reference.flipX ? -1 : 1));
             lower.transform.localScale = Vector3.one;
             upper.sharedMaterial = lower.sharedMaterial = reference.sharedMaterial;
             upper.color = lower.color = reference.color;

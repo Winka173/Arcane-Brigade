@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         private float attention;
         private bool dreamMerchant;
         private bool inspecting;
+        private bool speaking;
         private ArenaController owner;
         public void Configure(SpriteRenderer renderer, Sprite[] animation, float bodyHeight, ArenaController controller, float offset)
         {
@@ -27,6 +28,7 @@ namespace ArcaneBrigade
         public void LookAt(float direction) { attention = Mathf.Clamp(direction, -1, 1); }
         public void SetMerchantMood(bool special) { dreamMerchant = special; }
         public void Inspect(bool active) { inspecting = active; }
+        public void Speak(bool active) { speaking = active; }
         public void Arrive(float delay) { arrivalStarted = owner.Simulation.VisualElapsed; arrivalDelay = delay; }
         private void Update()
         {
@@ -41,10 +43,12 @@ namespace ArcaneBrigade
                 if (frames.Length == 4 && cheer && !reduced) frame = 2 + Mathf.FloorToInt(time * 8) % 2;
                 if (frames.Length == 4 && denied && !reduced) frame = 1;
                 else if (frames.Length == 4 && inspecting && !cheer && !reduced) frame = 2;
+                if (frames.Length == 4 && speaking && !cheer && !denied && !reduced) frame = 2 + Mathf.FloorToInt(owner.Simulation.VisualElapsed * 9.5f) % 2;
                 view.sprite = frames[frame];
             }
             if (view.sprite == null) return;
             float breathing = reduced ? 0 : Mathf.Sin(time * 2.5f) * 0.04f;
+            if (speaking && !reduced) breathing += Mathf.Sin(owner.Simulation.VisualElapsed * 19) * 0.012f;
             float scale = Mathf.Min(height / view.sprite.bounds.size.y, height * 1.2f / view.sprite.bounds.size.x);
             float arrival = reduced ? 1 : Mathf.Clamp01((owner.Simulation.VisualElapsed - arrivalStarted - arrivalDelay) / 0.42f);
             float settle = Mathf.Sin(arrival * Mathf.PI) * 0.12f;

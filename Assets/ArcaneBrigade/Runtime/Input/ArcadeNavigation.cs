@@ -12,6 +12,7 @@ namespace ArcaneBrigade
         private float nextMove;
         private bool keyboardFocus;
         private readonly Dictionary<string, float> hover = new Dictionary<string, float>();
+        private readonly Dictionary<string, float> pressed = new Dictionary<string, float>();
         public int Selected => selected;
         public static Vector2 Pad => new Vector2(Input.GetAxisRaw("BrigadePadHorizontal"), Input.GetAxisRaw("BrigadePadVertical"));
         public void ReadInput()
@@ -47,15 +48,18 @@ namespace ArcaneBrigade
             int index = controls.Count;
             controls.Add(new Control { Enabled = GUI.enabled, Bounds = bounds });
             bool focused = GUI.enabled && (bounds.Contains(Event.current.mousePosition) || keyboardFocus && selected == index);
-            float amount = hover.TryGetValue(caption, out float value) ? value : 0;
+            string identity = index + ":" + caption;
+            float amount = hover.TryGetValue(identity, out float value) ? value : 0;
             if (Event.current.type == EventType.Repaint)
             {
                 amount = Mathf.MoveTowards(amount, focused ? 1 : 0, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * 7);
                 if (hover.Count > 256) hover.Clear();
-                hover[caption] = amount;
+                hover[identity] = amount;
             }
             float shift = PresentationSettings.ReducedMotion ? 0 : amount * 4;
             Rect animatedBounds = new Rect(bounds.x + shift, bounds.y - shift * 0.5f, bounds.width, bounds.height);
+            float compression = pressed.TryGetValue(identity, out float began) ? LivingUI.Press(Time.unscaledTime - began, PresentationSettings.ReducedMotion) * 0.025f : 0;
+            animatedBounds = new Rect(animatedBounds.x + bounds.width * compression * 0.5f, animatedBounds.y + bounds.height * compression * 0.5f, bounds.width * (1 - compression), bounds.height * (1 - compression));
             bool clicked = GUI.Button(animatedBounds, caption, style);
             bool accepted = submit && keyboardFocus && index == selected && GUI.enabled && Event.current.type == EventType.Repaint;
             if (accepted) submit = false;
@@ -63,7 +67,7 @@ namespace ArcaneBrigade
             {
                 ArcadeSkin.Line(new Rect(bounds.x + 8, bounds.y + 8, 5, bounds.height - 16), ArcadeSkin.Accent);
             }
-            if (clicked || accepted) { submit = false; selected = index; CheckpointAudio.PlayInterface(19); }
+            if (clicked || accepted) { submit = false; selected = index; if (pressed.Count > 256) pressed.Clear(); pressed[identity] = Time.unscaledTime; CheckpointAudio.PlayInterface(19); }
             return clicked || accepted;
         }
         public void End()

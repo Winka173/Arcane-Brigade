@@ -164,10 +164,13 @@ namespace ArcaneBrigade
     public sealed class RunBondFeedback
     {
         private string runId;
+        private float lastObserved;
         private readonly Dictionary<string, float> rewards = new Dictionary<string, float>();
         private readonly Dictionary<string, float> flashes = new Dictionary<string, float>();
         public void Observe(string identity, BondDefinition[] bonds, Dictionary<string, int> counts, float now)
         {
+            if (now < lastObserved) flashes.Clear();
+            lastObserved = now;
             bool initial = runId != identity || rewards.Count == 0;
             if (runId != identity) { rewards.Clear(); flashes.Clear(); runId = identity; }
             foreach (BondDefinition bond in bonds)
@@ -179,5 +182,11 @@ namespace ArcaneBrigade
             }
         }
         public bool Flashing(string id, float now) => flashes.TryGetValue(id, out float until) && now < until;
+        public float Burst(string id, float now)
+        {
+            if (!flashes.TryGetValue(id, out float until)) return 0;
+            float age = now - (until - 2);
+            return age >= 0 && age < 0.65f ? Mathf.Sin(age * 18) * Mathf.Exp(-age * 5) : 0;
+        }
     }
 }

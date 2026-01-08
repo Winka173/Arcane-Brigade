@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         private Camera arenaCamera;
         private ArenaController owner;
         private Vector3 velocity;
+        private float heightVelocity;
         private void Awake() { arenaCamera = GetComponent<Camera>(); Refresh(); }
         private void Update() { Refresh(); }
         public void Follow(ArenaController controller) { owner = controller; Snap(); }
@@ -20,13 +21,15 @@ namespace ArcaneBrigade
             Vector2 position = ClampCenter(target, owner.WorldBounds, arenaCamera.orthographicSize, 16f / 9f);
             transform.position = new Vector3(position.x, position.y, transform.position.z);
             velocity = Vector3.zero;
+            heightVelocity = 0;
         }
         private void LateUpdate()
         {
             if (owner == null || owner.Simulation == null) return;
             float height = owner.Session.State.Phase == SessionPhase.Shop ? owner.Content.RestViewHeight : owner.Content.CombatViewHeight;
-            arenaCamera.orthographicSize = height;
             if (owner.Simulation.Phase == RunPhase.Paused) return;
+            arenaCamera.orthographicSize = PresentationSettings.ReducedMotion ? height : Mathf.SmoothDamp(arenaCamera.orthographicSize, height, ref heightVelocity, 0.3f, Mathf.Infinity, Time.deltaTime);
+            height = arenaCamera.orthographicSize;
             Vector2 target = owner.Session.State.Phase == SessionPhase.Shop ? Vector2.zero : owner.VisualChampionPosition;
             Vector2 center = ClampCenter(target, owner.WorldBounds, height, 16f / 9f);
             Vector3 next = Vector3.SmoothDamp(transform.position, new Vector3(center.x, center.y, transform.position.z), ref velocity, 0.16f, Mathf.Infinity, Time.deltaTime);

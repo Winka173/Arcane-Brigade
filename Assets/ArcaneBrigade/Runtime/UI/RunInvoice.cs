@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         private GUIStyle bodyStyle;
         private GUIStyle numericStyle;
         private bool scrollToEnd;
+        private float revealedAt;
         public void ScrollToEnd() { scrollToEnd = true; }
         public static string Describe(RunSnapshot run, RunCatalog catalog)
         {
@@ -48,7 +49,7 @@ namespace ArcaneBrigade
         }
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)
         {
-            if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; cachedBuild = null; }
+            if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; cachedBuild = null; revealedAt = Time.unscaledTime; }
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.PageDown) { scroll.y += 300; Event.current.Use(); }
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.PageUp) { scroll.y = Mathf.Max(0, scroll.y - 300); Event.current.Use(); }
             ArcadeSkin.Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), ArcadeSkin.Ink);
@@ -76,8 +77,12 @@ namespace ArcaneBrigade
                 RosterEntry entry = run.Roster[index];
                 float left = index % columns * 90;
                 float top = index / columns * 88;
-                RunHud.Sprite(new Rect(left + 10, top, 48, 50), catalog.Unit(entry.UnitId)?.Body);
+                float reveal = LivingUI.Reveal(Time.unscaledTime - revealedAt - Mathf.Min(index, 12) * 0.025f, PresentationSettings.ReducedMotion);
+                Color previousTint = GUI.color;
+                GUI.color *= new Color(1, 1, 1, reveal);
+                RunHud.Sprite(new Rect(left + 10, top + (1 - reveal) * 8, 48, 50), catalog.Unit(entry.UnitId)?.Body);
                 RunHud.Sprite(new Rect(left + 45, top + 25, 32, 32), catalog.Weapon(entry.WeaponId)?.Sprite);
+                GUI.color = previousTint;
                 GUI.Label(new Rect(left + 5, top + 57, 80, 27), "Cấp " + entry.Tier, body);
             }
             GUI.Label(new Rect(6, gridHeight, rectangle.width - 85, height - gridHeight), content, body);

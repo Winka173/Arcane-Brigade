@@ -51,6 +51,7 @@ namespace ArcaneBrigade
                 model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Cấp " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Chu kỳ", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(Mathf.Clamp01(unit.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Companions))) }, { "Speed", (unit.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Companions))).ToString("0.###") }, { "Projectile", (actual.ProjectileCount + (actual.Kind == WeaponKind.Projectile ? tierSteps : 0) + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Companions))).ToString() }, { "Passive", passive.ToString("0.###") } },
                     Explanation = "Vũ khí đã nhận: " + RunUICopy.WeaponName(actual.Id) + "\nSát thương: " + damage.ToString("0.0") + " / chu kỳ " + cooldown.ToString("0.00") + " giây\nTầm đánh: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Nâng cấp: thêm " + tierSteps + " đạn và " + tierSteps + " lượt xuyên.\n" : "Nâng cấp: tầm đánh, góc quét và tốc độ đánh tăng.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nNội tại: " + RunUICopy.PassiveDescription(unit.Passive) + " · hiệu lực " + passive.ToString("0.0") + "\nBất tử. Mỗi đồng minh tính một người cho liên kết hệ, không nhân theo cấp." });
+                model.Companions[model.Companions.Count - 1].Explanation += "\n\nĐẶC TÍNH HỖ TRỢ\n" + RunModifierRules.DescribeCompanion(unit, entry.Tier);
             }
             foreach (ItemStack stack in session.State.Items)
             {
@@ -100,6 +101,13 @@ namespace ArcaneBrigade
                 ModifierScope target = effects[0] == ItemEffect.Luck || effects[0] == ItemEffect.TreasureDetection || effects[0] == ItemEffect.Pickup || effects[0] == ItemEffect.Roam || effects[0] == ItemEffect.Interest || effects[0] == ItemEffect.Interceptor ? ModifierScope.Run : ModifierScope.Champion;
                 string sources = "\n\nNGUỒN MODIFIER TRONG LƯỢT\n";
                 int sourceCount = 0;
+                foreach (RosterEntry entry in session.State.Roster)
+                    foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
+                        if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
+                        {
+                            sources += catalog.Unit(entry.UnitId).DisplayName + " / cấp " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / cộng " + (modifier.Value * UnitDefinition.ModifierScale(entry.Tier)).ToString("+0.###;-0.###;0") + "\n";
+                            sourceCount++;
+                        }
                 foreach (StatModifier modifier in champion.ChampionModifiers ?? new StatModifier[0])
                     if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                     {
