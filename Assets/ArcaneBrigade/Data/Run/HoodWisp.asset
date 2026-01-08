@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: HoodWisp
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HoodWisp
-  DisplayName: HoodWisp
-  Body: {fileID: -965750099, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  DisplayName: "Linh H\u1ED3n Tr\xF9m M\u0169"
+  Body: {fileID: -247330035, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
-  - {fileID: -965750099, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -2102499276, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -408783478, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -698028735, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -247330035, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -354882249, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -1962063599, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: 409504848, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   Weapon: {fileID: 11400000, guid: 0587a16ddceed524da237dfc27090cdb, type: 2}
   Health: 1
   Speed: 5.2
@@ -34,7 +34,14 @@ MonoBehaviour:
   - frost
   Passive: 0
   PassiveStrength: 1
-  Description: A hood with a bell and an uncertain opinion.
+  Description: "T\u1EF1 \u0111\u1ED9ng t\xECm v\xE0 \u0111\xE1nh \u0111\u1ECBch b\u1EB1ng
+    v\u0169 kh\xED \u0111\u01B0\u1EE3c nh\u1EADn ng\u1EABu nhi\xEAn. C\u1EA5p 2/3:
+    \u0111\xF2n b\u1EAFn th\xEAm 1/2 \u0111\u1EA1n v\xE0 1/2 l\u01B0\u1EE3t xuy\xEAn;
+    \u0111\xF2n c\u1EADn chi\u1EBFn t\u0103ng t\u1EA7m 10/20%, m\u1EDF r\u1ED9ng
+    cung \u0111\xE1nh v\xE0 chia chu k\u1EF3 cho 1,12/1,24. Hi\u1EC7u \u1EE9ng ri\xEAng
+    gi\u1EEF quy t\u1EAFc g\u1ED1c; s\xE1t th\u01B0\u01A1ng v\xE0 n\u1ED9i t\u1EA1i
+    v\u1EABn nh\xE2n theo c\u1EA5p."
+  ChampionModifiers: []
   Price: 20
   UnlockWave: 0
   IsBoss: 0

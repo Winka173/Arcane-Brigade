@@ -93,7 +93,7 @@ namespace ArcaneBrigade.Editor
             foreach (WeaponDefinition weapon in catalog.Weapons)
                 if (weapons.TryGetValue(weapon.Id, out Sprite sprite)) { weapon.Sprite = sprite; EditorUtility.SetDirty(weapon); }
             foreach (ItemDefinition item in catalog.Items) if (props.TryGetValue(item.Id, out Sprite icon)) item.Icon = icon;
-            catalog.Item("scratch-record").Description = "Every third Music Box note echoes once after 0.3s (35%/70% damage). Bell primary wave deals 25%/50% extra to live marked targets; echo never recurses. Attack speed -4% per stack.";
+            if (catalog.ContentRevision == 0) catalog.Item("scratch-record").Description = "Every third Music Box note echoes once after 0.3s (35%/70% damage). Bell primary wave deals 25%/50% extra to live marked targets; echo never recurses. Attack speed -4% per stack.";
             RunModifierRules.Validate(catalog); EditorUtility.SetDirty(catalog); AssetDatabase.SaveAssets();
         }
 

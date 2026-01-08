@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arcane Brigade · K8</title>
+<style>
+body{margin:0;background:#122730;color:#fff0c2;font:16px/1.6 system-ui,sans-serif}main{max-width:1400px;margin:auto;padding:32px}h1,h2{color:#6be9d8}a{color:#ffac83}section{margin:36px 0}article{background:#1b3540;border-radius:12px;padding:18px}video,img{width:100%;border-radius:8px}audio{width:100%}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}.note{border-left:4px solid #ff785c;padding-left:18px}summary{cursor:pointer}figcaption{padding-top:8px}
+</style>
+<main>
+<h1>Arcane Brigade · K8 Windows</h1>
+<p>Ông Nuốt Biên Lai và Bà Vỏ Mộng: vào quầy, ngắm hàng, mua, thiếu tiền và hợp thể đều có phản ứng. Hội thoại ngắn, không modal, vẫn chỉ cần di chuyển và tương tác mua.</p>
+<p class="note">Ảnh là framebuffer Unity native 3840×2160, trừ ba ảnh desktop aspect. Nguồn art không native4K. Stock/vàng/roster trong demo được seed để kiểm tra, không mô tả cân bằng tự nhiên. Video không có âm thanh; nghe từng bài riêng bên dưới. Test tự động không thay duyệt art/cảm giác/âm thanh.</p>
+<p><a href="../../Docs/K8_Final_Checkpoint.md">Checkpoint và các gate còn mở</a> · <a href="Player/CaptureNotes.txt">Native assertions</a> · <a href="Editor_Gates.txt">Editor gates</a> · <a href="Movement_Bot_Balance.csv">15 lượt bot</a></p>
+<section><h2>Shop có tính cách</h2><video controls preload="metadata" src="K8-Shop-Realtime.mp4"></video><p>38s · 1920×1080 · Unity framebuffer, timeScale1. CFR60 không chứng minh hiệu năng render60FPS.</p>
+<div class="grid">
+<article><a href="Player/05-shop-entry.png"><img loading="lazy" src="Player/05-shop-entry.png" alt="Người bán vàng chào khách"></a><figcaption>Vào quầy: chào khách và hiệu ứng xuất hiện.</figcaption></article>
+<article><a href="Player/05-shop-focus.png"><img loading="lazy" src="Player/05-shop-focus.png" alt="Hội thoại khi ngắm hàng"></a><figcaption>Tới gần món hàng: trò chuyện, focus và thông tin mua.</figcaption></article>
+<article><a href="Player/08-recruit-hop.png"><img loading="lazy" src="Player/08-recruit-hop.png" alt="Mua đồng minh"></a><figcaption>Mua thành công: người bán phản ứng, đồng minh nhảy xuống.</figcaption></article>
+<article><a href="Player/13-special-rarity-lights.png"><img loading="lazy" src="Player/13-special-rarity-lights.png" alt="Quầy đặc biệt"></a><figcaption>Quầy giấc mơ: tính cách khác, trứng hoặc máu và ánh sáng độ hiếm.</figcaption></article>
+</div></section>
+<section><h2>Combat / roster</h2><video controls preload="metadata" src="K8-Gameplay-Realtime.mp4"></video><div class="grid">
+<article><a href="Player/00-roster-unlocked.png"><img loading="lazy" src="Player/00-roster-unlocked.png" alt="Chọn nhân vật"></a><figcaption>Chân dung riêng, luật chơi và điều kiện mở khóa.</figcaption></article>
+<article><a href="Player/03-combat-roster-56.png"><img loading="lazy" src="Player/03-combat-roster-56.png" alt="Đội 56 đồng minh"></a><figcaption>Stress fixture56 đồng minh: tỷ lệ và đạn dễ đọc hơn, không giới hạn quân.</figcaption></article>
+<article><a href="Player/17-boss-0.png"><img loading="lazy" src="Player/17-boss-0.png" alt="Boss đồng hồ"></a><figcaption>Boss đồng hồ: source riêng, không tái sử dụng quái thường.</figcaption></article>
+<article><a href="Player/17-boss-4.png"><img loading="lazy" src="Player/17-boss-4.png" alt="Boss cánh cửa"></a><figcaption>Boss cánh cửa: silhouette và pose riêng.</figcaption></article>
+</div></section>
+<section><h2>Nghe nhạc</h2><p>Nhạc CC0 không độc quyền, không phải nhạc Bizarre Brigade. Chưa có duyệt nghe của người chơi. <a href="../../Docs/K8_Audio_Provenance.md">Nguồn/license</a>.</p><div class="grid">
+<article>Menu · Fusion Jazz<audio controls preload="none" src="../../Assets/ArcaneBrigade/Resources/Audio/Licensed/K8-Menu-FusionJazz.ogg"></audio></article>
+<article>Shop · Coffee House Bump<audio controls preload="none" src="../../Assets/ArcaneBrigade/Resources/Audio/Licensed/K8-Shop-CoffeeHouse.wav"></audio></article>
+<article>Combat · Jazz Club<audio controls preload="none" src="../../Assets/ArcaneBrigade/Resources/Audio/Licensed/K8-Combat-JazzClub.ogg"></audio></article>
+<article>Boss · Battle Theme<audio controls preload="none" src="../../Assets/ArcaneBrigade/Resources/Audio/Licensed/K8-Boss-BattleTheme.ogg"></audio></article>
+</div></section>
+<section><h2>Checklist chơi thử</h2><p>Chạy <code>Builds/FullRun/ArcaneBrigade.exe</code>, giữ nguyên folder đi kèm.</p><ul>
+<li>Người bán có cùng thế giới với nhân vật không? Thoại có duyên, không che goods/cửa và không lặp khó chịu?</li>
+<li>Thử mua, không đủ tiền, đổi hàng, hợp thể; reaction chỉ xuất hiện sau giao dịch thực sự thành công?</li>
+<li>Quầy đặc biệt: màu hiếm nhìn rõ, hiểu trả trứng hay HP; HP payment vẫn để lại ít nhất1HP?</li>
+<li>Đứng yên xem idle, đồng minh nghỉ/đi quanh; đánh giá cảm giác kiếm, cung, boomerang và phép.</li>
+<li>Đội đông vẫn thấy người chơi/đạn địch? Boss quá giờ ngừng gọi viện binh và hiện HẠ TRÙM?</li>
+<li>Nghe menu/shop/combat/boss và SFX trong trận đông; báo âm chói, lặp, hụt hoặc lấn nhau.</li>
+</ul><p>Android/iOS hardware, Steam/Deck/controller, co-op và human-quality gates chưa đóng.</p></section>
+</main>
+</html>

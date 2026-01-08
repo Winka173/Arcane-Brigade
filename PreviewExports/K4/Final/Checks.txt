@@ -19,9 +19,9 @@ PASS Actual critical hit consumes Lens damage benefit without second burst
 PASS Primary, burst and lens bonus split equal actual enemy HP loss
 PASS Critical bonus cannot recursively stamp or burst
 PASS Live contribution graph is read-only and explicitly unsettled
-PASS Details uses effective Ink mark count and expiry rather than base tooltip
+PASS Localized Details uses effective Ink mark count and expiry rather than base tooltip
 PASS Lens-only exposure never credits unowned Ink
-PASS Harvest-completed Bell cadence preserves depth-one payoff and real source
+PASS Harvest-completed Bell cadence increments existing secondary depth and preserves real source
 PASS Connector alone with Stamp pulls only eligible local coin
 PASS Connector does not invent or prematurely credit currency
 PASS Carbon bell branch exposes but never fabricates a stamp burst

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: UndeliveredKing
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UndeliveredKing
-  DisplayName: UndeliveredKing
-  Body: {fileID: 1563552575, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  DisplayName: "Cua \u0110\u1ED3ng H\u1ED3"
+  Body: {fileID: 465057803, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
-  - {fileID: 1563552575, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1109439120, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -926919587, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -717866939, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 465057803, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 479076234, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 301046218, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 874408747, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   Weapon: {fileID: 11400000, guid: 047722544859a9b4ab3b93a7f5cfde07, type: 2}
   Health: 650
   Speed: 0.65
@@ -33,6 +33,7 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ChampionModifiers: []
   Price: 20
   UnlockWave: 0
   IsBoss: 1

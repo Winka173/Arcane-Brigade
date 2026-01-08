@@ -16,7 +16,7 @@ namespace ArcaneBrigade.Editor
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             PaintedAnimationLibrary art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             require(art.GoldMerchant.Length == 4 && art.EggMerchant.Length == 4 && art.RerollMachine.Length == 2 && art.HallDoor.Length == 2, "Twelve original merchant/fixture source frames imported");
-            require(art.GoldMerchant.Concat(art.EggMerchant).Concat(art.RerollMachine).Concat(art.HallDoor).All(sprite => sprite != null && sprite.texture.name == "NightMarket_v1"), "New fixture references are project assets not external files");
+            require(art.GoldMerchant.Concat(art.EggMerchant).All(sprite => sprite != null && (sprite.texture.name == "NightMarket_v1" || sprite.texture.name == "StrangeMerchants_v2")) && art.RerollMachine.Concat(art.HallDoor).All(sprite => sprite != null && sprite.texture.name == "NightMarket_v1"), "Versioned merchant and utility fixture references are project assets not external files");
             require(art.RerollMachine[0] != art.HallDoor[0] && art.GoldMerchant[0] != art.EggMerchant[0], "Reroll/door and two shopkeepers have separate silhouettes");
             require(catalog.Bonds.All(bond => bond.Icon != null && bond.Icon.texture.name == "BondIcons_v1") && catalog.Bonds.Select(bond => bond.Icon).Distinct().Count() == 4, "Four held-system HUD identities use original imported icons");
             require(catalog.Items.Any(item => item.AltarCurrency == ShopCurrency.Health) && catalog.Items.Any(item => item.AltarCurrency == ShopCurrency.Eggs), "Authored special stock supports currentHP and separate egg currency");

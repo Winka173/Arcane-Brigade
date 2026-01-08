@@ -22,7 +22,7 @@ namespace ArcaneBrigade
         {
             switch (scope)
             {
-                case ModifierScope.Champion: return "Champion";
+                case ModifierScope.Champion: return "Thủ lĩnh";
                 case ModifierScope.Companions: return "Đồng minh";
                 case ModifierScope.Run: return "Lượt chơi";
                 default: return "Toàn đội";
@@ -63,12 +63,22 @@ namespace ArcaneBrigade
         {
             switch (effect)
             {
-                case ItemEffect.Damage: case ItemEffect.ChampionDamage: case ItemEffect.CompanionDamage: return "Damage";
-                case ItemEffect.AttackSpeed: case ItemEffect.CompanionAttackSpeed: return "Attack speed";
-                case ItemEffect.MoveSpeed: return "Move speed";
-                case ItemEffect.Crit: return "Crit";
-                case ItemEffect.Projectiles: return "Projectile";
-                default: return RunBuildReadModel.EffectName(effect);
+                case ItemEffect.Damage: case ItemEffect.ChampionDamage: case ItemEffect.CompanionDamage: return "Sát thương";
+                case ItemEffect.AttackSpeed: case ItemEffect.CompanionAttackSpeed: return "Tốc độ đánh";
+                case ItemEffect.MoveSpeed: return "Tốc độ di chuyển";
+                case ItemEffect.Crit: return "Tỷ lệ chí mạng";
+                case ItemEffect.Projectiles: return "Số đạn";
+                case ItemEffect.Health: return "Máu tối đa";
+                case ItemEffect.Pickup: return "Bán kính nhặt đồ";
+                case ItemEffect.Roam: return "Bán kính tuần tra";
+                case ItemEffect.Interceptor: return "Đồng minh chặn đạn";
+                case ItemEffect.Heal: return "Hồi máu mỗi giây";
+                case ItemEffect.Interest: return "Giới hạn tiền lãi";
+                case ItemEffect.Armor: return "Giáp";
+                case ItemEffect.Discount: return "Giảm giá hàng bằng vàng";
+                case ItemEffect.Luck: return "May mắn";
+                case ItemEffect.TreasureDetection: return "Phát hiện kho báu";
+                default: return "Hiệu ứng không hợp lệ";
             }
         }
 
@@ -80,6 +90,19 @@ namespace ArcaneBrigade
 
         public static void Validate(RunCatalog catalog)
         {
+            if (catalog.ContentRevision < 0) throw new InvalidOperationException("Invalid content revision");
+            foreach (UnitDefinition champion in catalog.Champions)
+                foreach (StatModifier modifier in champion.ChampionModifiers ?? new StatModifier[0]) ValidateModifier(modifier, champion.Id);
+            foreach (BondDefinition bond in catalog.Bonds)
+            {
+                if (bond == null || bond.Threshold < 1 || !float.IsFinite(bond.Value) || !Enum.IsDefined(typeof(ItemEffect), bond.Effect)) throw new InvalidOperationException("Invalid bond");
+                int previous = bond.Threshold;
+                foreach (BondThresholdBonus bonus in bond.ExtraBonuses ?? new BondThresholdBonus[0])
+                {
+                    if (bonus == null || bonus.Threshold <= previous || !float.IsFinite(bonus.Value)) throw new InvalidOperationException("Invalid bond milestone");
+                    previous = bonus.Threshold;
+                }
+            }
             if (catalog.RerollPrice < 0 || catalog.RerollPriceStep < 0 || catalog.EconomyRevision < 0) throw new InvalidOperationException("Invalid economy tuning");
             if (catalog.AltarRevision < 0 || !float.IsFinite(catalog.AltarBaseChance) || catalog.AltarBaseChance < 0 || catalog.AltarBaseChance > 1 || !float.IsFinite(catalog.AltarChancePerEgg) || catalog.AltarChancePerEgg < 0) throw new InvalidOperationException("Invalid altar tuning");
             foreach (ItemDefinition item in catalog.Items)
@@ -89,9 +112,7 @@ namespace ArcaneBrigade
                 if (catalog.AltarRevision > 0 && (item.AltarPrice < 1 || (item.AltarCurrency != ShopCurrency.Eggs && item.AltarCurrency != ShopCurrency.Health))) throw new InvalidOperationException("Invalid altar price/currency: " + item.Id);
                 foreach (StatModifier modifier in item.EffectiveModifiers)
                 {
-                    if (modifier == null || !Enum.IsDefined(typeof(ItemEffect), modifier.Effect) || !Enum.IsDefined(typeof(ModifierScope), modifier.Scope) || !float.IsFinite(modifier.Value)) throw new InvalidOperationException("Invalid modifier: " + item.Id);
-                    ModifierScope expected = DefaultScope(modifier.Effect);
-                    if (expected != ModifierScope.Team && modifier.Scope != expected || expected == ModifierScope.Team && modifier.Scope == ModifierScope.Run) throw new InvalidOperationException("Unsupported modifier scope: " + item.Id);
+                    ValidateModifier(modifier, item.Id);
                 }
             }
             var ids = new System.Collections.Generic.HashSet<string>();
@@ -101,13 +122,21 @@ namespace ArcaneBrigade
             }
             ids.Clear();
             foreach (AltarRecipe recipe in catalog.Recipes)
-                if (recipe.EggCost < 0 || recipe.MinimumMaterialTier < 1 || recipe.MinimumMaterialTier > catalog.MaximumTier || recipe.ResultTier < 1 || recipe.ResultTier > catalog.MaximumTier) throw new InvalidOperationException("Invalid recipe tier/cost");
+                if (recipe == null || string.IsNullOrEmpty(recipe.Id) || !ids.Add(recipe.Id) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.FirstUnit) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.SecondUnit) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.ResultUnit) || recipe.EggCost < 0 || recipe.MinimumMaterialTier < 1 || recipe.MinimumMaterialTier > catalog.MaximumTier || recipe.ResultTier < 1 || recipe.ResultTier > catalog.MaximumTier) throw new InvalidOperationException("Invalid recipe identity/tier/cost");
+            ids.Clear();
             foreach (BuildLinkRule rule in catalog.BuildLinks ?? new BuildLinkRule[0])
             {
                 if (rule == null || string.IsNullOrEmpty(rule.Id) || !ids.Add(rule.Id) || string.IsNullOrEmpty(rule.Name) || rule.ItemIds == null || rule.ItemIds.Length < 2) throw new InvalidOperationException("Invalid build link");
                 var sources = new System.Collections.Generic.HashSet<string>();
                 foreach (string id in rule.ItemIds) if (catalog.Item(id) == null || !sources.Add(id)) throw new InvalidOperationException("Invalid build link source");
             }
+        }
+
+        private static void ValidateModifier(StatModifier modifier, string id)
+        {
+            if (modifier == null || !Enum.IsDefined(typeof(ItemEffect), modifier.Effect) || !Enum.IsDefined(typeof(ModifierScope), modifier.Scope) || !float.IsFinite(modifier.Value)) throw new InvalidOperationException("Invalid modifier: " + id);
+            ModifierScope expected = DefaultScope(modifier.Effect);
+            if (expected != ModifierScope.Team && modifier.Scope != expected || expected == ModifierScope.Team && modifier.Scope == ModifierScope.Run) throw new InvalidOperationException("Unsupported modifier scope: " + id);
         }
     }
 }

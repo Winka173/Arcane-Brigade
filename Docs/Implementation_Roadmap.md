@@ -1,6 +1,6 @@
 # Arcane Brigade — kế hoạch chuẩn bị triển khai
 
-**Mốc hiện tại 2026-10-14: K7B Windows shop/life rework đã triển khai.** Giant merchant có bóng, ticket UI, icon hệ, rarity glow, feedback mua/thiếu tiền/HP và cửa xuống; body idle/random rest-roam, wave thường35–55s. Xem `K7B_Final_Checkpoint.md`; các mốc bên dưới là lịch sử. Device/human quality gates chưa được chứng nhận.
+**Mốc hiện tại 2026-10-14: K8 single-player audit remediation.** Shopkeeper dị riêng + hội thoại không modal, thảm/cờ vẽ riêng, hero/boss độc lập, pose liên tục/readability, nâng sao/hệ/hợp thể mở rộng, nhạc theo phase và sửa boss starvation. Xem `K8_Final_Checkpoint.md` và `K8_Polish_Plan.md`; các mốc bên dưới là lịch sử. Co-op/device/human quality gates chưa được chứng nhận.
 
 **Mốc mới nhất 2026-10-14: K6 DONE theo functional gate Windows.** Xem `K6_Final_Checkpoint.md`; UI/font/museum/invoice/history/cosmetic, difficulty/challenge/score và Endless segment/terminal resume đã nối. 72 checks K6 + K0–K5 regression,34 native assertions/24 ảnh Unity4K đạt; build0errors/0warnings. Phase kế tiếp K7 production/device/balance/audio/performance. Mốc này có ưu tiên hơn mọi trạng thái lịch sử phía dưới.
 

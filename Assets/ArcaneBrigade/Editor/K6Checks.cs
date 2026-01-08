@@ -27,7 +27,9 @@ namespace ArcaneBrigade.Editor
                 string initial = JsonUtility.ToJson(state);
                 string first = RunInvoice.Describe(state, catalog); string second = RunInvoice.Describe(state, catalog);
                 require(first == second && initial == JsonUtility.ToJson(state), "Invoice read model cannot mutate build or RNG");
-                require(first.Contains(state.Roster[0].WeaponId) && first.Contains(state.RunId), "Invoice reports actual weapon and identity");
+                RosterEntry actualEntry = state.Roster[0];
+                string actualRosterLine = RunUICopy.UnitName(actualEntry.UnitId, catalog.Unit(actualEntry.UnitId)?.DisplayName) + " · " + RunUICopy.WeaponName(actualEntry.WeaponId) + " · cấp " + actualEntry.Tier;
+                require(first.Contains(actualRosterLine) && first.Contains(RunUICopy.UnitName(catalog.Unit(state.ChampionId))) && first.Contains(state.RunId), "Localized invoice reports actual roster weapon, champion and run identity");
                 state.Phase = SessionPhase.Victory; state.Wave = 20; state.TotalKills = 7; state.BossKills = 2;
                 state.Contributions.Add(new ContributionEntry { UnitId = state.ChampionId, WeaponId = "SleepCamera", EffectId = "primary", Tier = 1, Damage = 11 });
                 require(RunMeta.Score(state) == 26070, "Score uses20clears+7kills+2bosses+victory exactly");

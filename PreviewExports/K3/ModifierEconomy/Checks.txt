@@ -12,7 +12,7 @@ PASS Combat uses scoped Champion damage
 PASS Champion health modifiers do not change immortal ally definitions
 PASS Details attack cycles equal combat for both scopes
 PASS Negative movement tradeoff matches Details and combat
-PASS Relic explanation exposes all positive and negative scopes
+PASS Relic explanation exposes all positive and negative localized scopes
 PASS Unique policy blocks redundant purchase without spending
 PASS Legacy excess stacks retain ownership but obey effective unique policy
 PASS Capped additive policy limits effective stacks

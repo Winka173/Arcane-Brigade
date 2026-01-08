@@ -24,6 +24,7 @@ namespace ArcaneBrigade
         public PassiveKind Passive;
         public float PassiveStrength = 1f;
         public string Description;
+        public StatModifier[] ChampionModifiers = new StatModifier[0];
         public int Price = 20;
         public int UnlockWave;
         public bool IsBoss;

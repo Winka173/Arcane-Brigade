@@ -67,16 +67,16 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
                 GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
             }
-            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), "Chưa có vật phẩm trong lượt. Mua tại ba quầy ở rest; không nhận lựa chọn nâng cấp thủ công trong combat.", text);
+            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "Chưa có đồng minh. Tuyển tại cửa hàng ở khu nghỉ." : tab == 2 ? "Chưa có vật phẩm. Mua tại cửa hàng ở khu nghỉ." : "Chưa có liên kết để xem.", text);
             GUI.EndScrollView();
             RunHud.Fill(new Rect(1160, 300, 665, 665), new Color(0.15f, 0.12f, 0.24f));
             string explanation = rows.Count == 0 ? "" : rows[Mathf.Clamp(selection, 0, rows.Count - 1)].Explanation;
             if (tab == 2) explanation += "\nBIÊN LAI GẦN ĐÂY\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "Chưa có giao dịch đã lưu." : model.Receipts);
-            explanation += "\n\nBONDS\n\n" + model.Bonds;
             float explanationHeight = Mathf.Max(620, text.CalcHeight(new GUIContent(explanation), 570) + 30);
             explanationScroll = GUI.BeginScrollView(new Rect(1180, 325, 625, 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GUI.Label(new Rect(5, 5, 570, explanationHeight), explanation, text);
             GUI.EndScrollView();
+            GUI.Label(new Rect(75, 988, 1750, 42), RunUIHints.DetailsNavigation, text);
             GUI.matrix = previous;
             GUI.skin = previousSkin;
         }

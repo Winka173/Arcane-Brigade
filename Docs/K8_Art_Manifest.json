@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-14",
+  "tool": "painting pass",
+  "native4K": false,
+  "assets": [
+    {
+      "path": "Assets/ArcaneBrigade/Art/AnimationHD/BossesAndProps_v1.png",
+      "sourceSize": [
+        1024,
+        1536
+      ],
+      "frames": 24,
+      "prompt": "Create an ORIGINAL production 2D game sprite atlas, transparent background. A clean orthogonal grid of FOUR equal-width columns and SIX equal-height rows, each cell fully isolated with generous transparent padding. No text, numbers, labels, scenery or drop shadows. Thick crisp dark outlines, simple readable flat painted shapes, minimal gradients, saturated coral/mint/gold accents on dark navy villains. Cute eerie arcade roguelike, bizarre but not any existing game character. Five distinct boss designs in rows 1-5: row1 giant cracked alarm clock crab with ringing bells and angry red eyes; row2 royal ink bottle octopus with a pen crown and floating detached gloved hands, no arms; row3 carnivorous pillow mimic with sharp zipper mouth and slippers; row4 chandelier moth queen with candle antennae and torn curtain wings; row5 enormous walking door knight with keyhole glowing red and detached floating gauntlets, no arms. Each row depicts SAME boss in FOUR coherent animation poses with identical scale and feet baseline: neutral alert, blinking/breathing compressed, charging attack stretch with hostile expression, recoil squash. Final row SIXTH: four separate original environment props, each one in own cell: crooked lantern streetlamp; crooked piled books with candles; tiny stained-glass dream fountain; arcane wooden signpost without text. All characters/props in a front view with slightly visible top surfaces suitable for a top-down 2D arena. Ensure exactly 24 separated sprites arranged 4 columns x 6 rows. Match cell size and don't cross cells. True transparent alpha background."
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+      "sourceSize": [
+        1122,
+        1402
+      ],
+      "frames": 20,
+      "prompt": "Production transparent 2D arcade game sprite sheet. Exactly FOUR columns x FIVE rows, equal cells, generous transparent gutters, all 20 figures isolated fully visible. ORIGINAL characters, very SIMPLE flat cartoon painted style, thick clean navy outlines, minimal 2-tone shading, no tiny textures or realistic detailing. Front view for overhead arena. Oversized expressive eyes, short round bodies, no arms or carried weapons. Floating detached hands allowed but keep near body. Row1 same teal lantern knight in four poses, squat teal metal lantern head containing two black oval eyes on cream face, tiny golden flame on top, royal-blue coat and dark little boots. Row2 same golden yellow mailbox postman in four poses, envelope slit smiling mouth, crimson cap flag, rounded square body, short boots. Row3 same lavender pillow dream oracle in four poses, crescent moon embroidery on round pillow head, tiny star nightcap, sleepy eyes and mint slippers. Row4 same pale mint hooded candle ghost in four poses, hollow dark navy face with two golden eyes and pale floating teardrop body, tiny candle wick. Row5 same coral jelly swordsman in four poses, translucent flat coral round pudding body with dark navy determined eyebrows, tiny gold crown and boots. Four poses in each row: neutral alert; compressed body with eyes closed blinking; purposeful walking pose with left foot forward and leaning; walking opposite foot forward with slight recoil face. Maintain identity, SAME scale per row and aligned feet baseline, spacing no overlap. Transparent alpha, no backgrounds, no shadows, no text, no symbols outside characters, no gradients except tiny simple shading. Crisp readable at 64px. Do NOT copy characters from any existing game."
+    }
+  ],
+  "notes": "Original assets, not Bizarre Brigade extracts. Four source states per character with layered runtime motion; not dozens of independently hand-drawn attack/death frames."
+}

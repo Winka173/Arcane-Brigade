@@ -1,0 +1,46 @@
+Arcane Brigade K8 audio credits - verified 2026-10-14
+All four tracks select CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+License evidence: the primary author-uploaded asset pages below each list CC0.
+These are non-exclusive third-party compositions, not commissioned/live-band recordings.
+Original download bytes are preserved. Runtime pitch is always 1.0.
+
+MENU: (Basically not) Fusion Jazz
+Julie Damsgaard / Spring Spring / Spring Enterprises
+https://spring-enterprises.neocities.org
+https://opengameart.org/content/basically-not-fusion-jazz
+https://opengameart.org/sites/default/files/fusion%20jazz_0.ogg
+K8-Menu-FusionJazz.ogg (byte-identical copy of existing verified FusionJazz.ogg)
+SHA256 645F7CD6EF7A56B22FE394FF006DAE17348CF70C72AA9E2A9B4D7F70B2804AF4
+
+SHOP: Coffee House Bump
+OatCog
+https://opengameart.org/content/coffee-house-bump
+https://opengameart.org/sites/default/files/little_cafe_0.wav
+K8-Shop-CoffeeHouse.wav
+SHA256 BB2668C05173600C90B68F6192F7B7316582AF18D9A28ACC3F7FC98A3C8339CE
+
+COMBAT: Beat 'Em Up Jazz Club
+Spring Spring
+https://opengameart.org/content/beat-em-up-jazz-club
+https://opengameart.org/sites/default/files/beatemup%20jazz%20club_0.ogg
+K8-Combat-JazzClub.ogg
+SHA256 EA78B533F259EFD58E8BC07B2C987E6AD4EAA5DC7692ED2F843DDF47449E59E3
+
+BOSS: Boss Battle Theme (OGG variation)
+Cleyton Kauffman / CleytonKauffman
+https://soundcloud.com/cleytonkauffman
+https://opengameart.org/content/boss-battle-theme
+https://opengameart.org/sites/default/files/CleytonRX%20-%20Battle%20RPG%20Theme%20Var_0.ogg
+K8-Boss-BattleTheme.ogg
+SHA256 9A63F74305F5CBCE8374A72A027A645C07C97663255ABA0B817BC1F70C432ED5
+
+SFX remain Kenney CC0 (Impact Sounds, RPG Audio, Interface Sounds).
+See the unchanged Kenney-*-License.txt and K7 Audio-Credits.txt for original cue mapping.
+K8 hit palette reuses the existing licensed sources: Paper=bookPlace1 (15),
+Metal=metalPot1 (10), Wax=impactPunch_medium_000 (03), Fabric=cloth2 (14),
+Glass=glass_004 (02), Wood=impactWood_heavy_000 (16).
+Death palette remains cues 27-32. Missing SFX use project procedural fallback.
+No Bizarre Brigade audio, extracted reference samples, or executable downloads.
+Technical checks do not certify soundtrack taste, loop quality, or human approval.

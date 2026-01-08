@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-14",
+  "tool": "painting pass",
+  "asset": "Assets/ArcaneBrigade/Art/AnimationHD/MarketRugs_v3.png",
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "native4K": false,
+  "prompt": "Derive a NEW production sprite atlas from the supplied reference, extracting ONLY the two oval textile floor rugs and redrawing them at much higher source detail. Keep teal/gold coin-sun rug identity and purple/mint crescent-egg rug identity. Do NOT include merchants, flags, characters, UI, text or props. TWO large rugs vertically stacked, one rug in upper half and one in lower half, same scale and quiet center, each takes almost the full canvas WIDTH, generous transparent gutters between them and at edges. Wide 3:2 canvas ideally1536x1024. Rugs are FLAT TOP DOWN no perspective. Crisp thick clean hand-painted outline and simple sparse embroidery, TWO-TONE flat color, avoid gritty noise or realistic texture, center mostly solid dark-muted teal/purple so game sprites are readable. Irregular textile edge and tiny sparse tassels at border. True transparent alpha background. The first teal rug has warm cream coin/sun embroidery around outside border, second plum rug has pale mint eggs/crescents embroidery around outsideborder. Do not draw circular target guides, only tasteful textile border pattern. Original game art assets.",
+  "reference": "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png",
+  "notes": "Two full-width authored rugs from original reference art. Source alpha preserved; importer slices sprites only, no bitmap upscaling. Runtime keeps uniform scale to avoid stretched embroidery."
+}

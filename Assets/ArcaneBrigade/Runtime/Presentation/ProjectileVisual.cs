@@ -43,22 +43,29 @@ namespace ArcaneBrigade
 
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
-            if (state.Weapon != null && state.Weapon.Family == ExpandedWeapon.Fish)
+            bool hostile = state.Faction == Faction.Enemy;
+            int order = hostile ? 2400 : 2100;
+            body.sortingOrder = order;
+            halo.sortingOrder = order - 1; core.sortingOrder = order + 1;
+            streak.sortingOrder = order - 2; motif.sortingOrder = order + 2;
+            if (!PresentationSettings.ReducedMotion && state.Weapon != null && state.Weapon.Family == ExpandedWeapon.Fish)
                 body.transform.rotation = Quaternion.Euler(0, 0, time * 650 + state.Id * 31);
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
-            bool magic = !arrow && (state.Element == DamageElement.Arcane || state.Faction == Faction.Enemy || state.Element == DamageElement.Ember);
+            bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
             halo.enabled = core.enabled = magic;
-            float width = state.Faction == Faction.Enemy ? 0.2f : state.VisualWidth > 0 ? state.VisualWidth : 0.22f;
+            float width = hostile ? 0.23f : state.VisualWidth > 0 ? state.VisualWidth : 0.22f;
+            if (hostile && body.sprite != null)
+                body.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, body.sprite.bounds.size.x));
             if (magic)
             {
-                float pulse = 1f + Mathf.Sin(time * 18f + state.Id) * 0.08f;
-                float local = width / body.transform.localScale.x / halo.sprite.bounds.size.x;
+                float pulse = PresentationSettings.ReducedMotion ? 1 : 1f + Mathf.Sin(time * 18f + state.Id) * 0.08f;
+                float local = width / Mathf.Max(0.001f, Mathf.Abs(body.transform.localScale.x)) / Mathf.Max(0.01f, halo.sprite.bounds.size.x);
                 halo.transform.localScale = Vector3.one * local * 1.85f * pulse;
                 core.transform.localScale = Vector3.one * local * 0.45f;
-                halo.color = new Color(state.Color.r, state.Color.g, state.Color.b, 0.25f);
+                halo.color = hostile ? new Color(1, 0.3f, 0.15f, 0.42f) : new Color(state.Color.r, state.Color.g, state.Color.b, 0.18f);
                 core.color = new Color(1f, 0.96f, 0.89f, 0.9f);
             }
-            streak.enabled = arrow || magic;
+            streak.enabled = hostile || !PresentationSettings.ReducedMotion && (arrow || magic);
             streak.widthMultiplier = arrow ? 0.024f : 0.065f;
             streak.startColor = new Color(state.Color.r, state.Color.g, state.Color.b, 0.03f);
             streak.endColor = new Color(state.Color.r, state.Color.g, state.Color.b, 0.65f);

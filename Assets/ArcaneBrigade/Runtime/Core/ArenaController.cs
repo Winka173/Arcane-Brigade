@@ -111,6 +111,7 @@ namespace ArcaneBrigade
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
+            if (runCatalog != null) gameObject.AddComponent<K8ArenaScenery>().Configure(this);
             CreateRadiusGuide();
             Begin();
         }
@@ -244,7 +245,12 @@ namespace ArcaneBrigade
         private void FixedUpdate()
         {
             if (simulation == null) return;
-            if (session != null && session.State.Phase == SessionPhase.Shop) { simulation.StepRest(Time.fixedDeltaTime, moveIntent); return; }
+            if (session != null && session.State.Phase == SessionPhase.Shop)
+            {
+                simulation.StepRest(Time.fixedDeltaTime, moveIntent);
+                if (Shop != null) Shop.ResolveCompanionPositions();
+                return;
+            }
             if (session != null && session.State.Phase != SessionPhase.Combat) return;
             simulation.Step(Time.fixedDeltaTime, moveIntent);
             foreach (CombatEvent value in simulation.Events)

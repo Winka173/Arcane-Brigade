@@ -50,10 +50,10 @@ namespace ArcaneBrigade
                 }
             }
             storage.SaveProfile(new PlayerProfile()); RunLaunch.Resume = true;
-            SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.8f);
+            SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k8") >= 0 ? 0.1f : 0.8f);
             owner = FindAnyObjectByType<ArenaController>();
             target = new Vector2(-5, -1); owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = target;
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k8") >= 0 ? 0.05f : 0.5f);
             K7FramebufferRecorder recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(RunPaths.K7B ? 38 : 12);
             File.WriteAllText(Path.Combine(root, "VideoReady.txt"), "Window-only realtime1920x1080 shop seed4313. Seeded gold/price/roster for short visual diagnostic, not natural run; movement-only target driver + real Shop.Interact transactions; timeScale1, no PNG during capture.");
             yield return new WaitForSecondsRealtime(3);

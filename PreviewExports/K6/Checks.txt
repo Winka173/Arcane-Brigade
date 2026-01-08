@@ -2,7 +2,7 @@ PASS Tests do not touch player profile
 PASS All validated run phases including terminal results can resume without silently creating new run
 PASS New default mode schema3
 PASS Invoice read model cannot mutate build or RNG
-PASS Invoice reports actual weapon and identity
+PASS Localized invoice reports actual roster weapon, champion and run identity
 PASS Score uses20clears+7kills+2bosses+victory exactly
 PASS Repeated results credit exactly once
 PASS Measured dominant weapon yields stable stored nickname

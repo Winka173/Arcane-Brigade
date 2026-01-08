@@ -6,18 +6,18 @@ namespace ArcaneBrigade
         {
             string text = weapon.Family switch
             {
-                ExpandedWeapon.Tea => "Tea impact leaves heat for 1.8s, ticking every 0.4s. Coaster widens but weakens the field. Burning targets feed Hammer steam.",
-                ExpandedWeapon.TetherBow => "Arrow links up to " + (tier >= 2 ? 3 : 2) + " distinct nearby targets at 25% damage. Each link searches within 2 units, never loops.",
-                ExpandedWeapon.Scissors => "Two narrow cuts, 0.12s apart, each 65% damage. Position to land both; no full-circle sweep.",
-                ExpandedWeapon.Camera => "Cone flash hits at most " + (tier >= 2 ? 4 : 3) + " targets and exposes them for 2s. Allied attacks gain 15% crit chance on exposed targets.",
+                ExpandedWeapon.Tea => "Trà tách thành hai giọt khi va chạm, mỗi giọt gây 35% sát thương và không tách tiếp. Giọt chính để lại vùng nóng 1,8 giây, gây sát thương mỗi 0,4 giây. Lót cốc mở rộng nhưng làm yếu vùng nóng. Mục tiêu đang cháy giúp búa tạo hơi nước.",
+                ExpandedWeapon.TetherBow => "Mũi tên nảy tối đa " + (tier >= 2 ? 3 : 2) + " lần giữa các mục tiêu trong bán kính 3; mỗi lần còn 70% sát thương. Đòn đầu nối mục tiêu gần, gây 25% sát thương mỗi đường nối trong bán kính 2. Không đánh lặp mục tiêu cũ bằng cùng viên đạn.",
+                ExpandedWeapon.Scissors => "Hai nhát cắt hẹp cách nhau 0,12 giây, mỗi nhát gây 65% sát thương. Chọn vị trí để trúng cả hai; không quét vòng tròn.",
+                ExpandedWeapon.Camera => "Chớp sáng hình quạt trúng tối đa " + (tier >= 2 ? 4 : 3) + " mục tiêu, làm lộ điểm yếu trong 2 giây. Đòn đồng minh thêm 15% cơ hội chí mạng lên mục tiêu đó.",
                 ExpandedWeapon.Fish => "Bay ra rồi quay về nguồn sau hit đầu hoặc0.7s khi trượt. Đường về có thể trúng mục tiêu khác; mỗi mục tiêu chỉ nhận một hit mỗi lần ném, không nhân damage khi quay về.",
-                ExpandedWeapon.Iron => "Forward hit leaves a " + (tier >= 2 ? "wider " : "") + "hot strip for 1.4s. Heat ticks every 0.4s; Thermal Ink links existing marks.",
-                ExpandedWeapon.Hammer => "Third hit has 50% longer windup and 35% longer cadence, then a 55% area impact. Burning targets release a separate 30% steam puff.",
-                ExpandedWeapon.Alarm => "Locks a floor position, warns 0.9s, then one " + (tier >= 2 ? "wide " : "") + "blast. Moving enemies can evade it; no homing after launch.",
-                ExpandedWeapon.MusicBox => "Soft homing notes; every third note extends a live mark to at least 0.6s. Scratch Record adds exactly one delayed echo.",
+                ExpandedWeapon.Iron => "Đòn phía trước để lại vệt nóng " + (tier >= 2 ? "rộng hơn " : "") + "trong 1,4 giây, gây sát thương mỗi 0,4 giây. Mực nhiệt nối các dấu đang còn hiệu lực.",
+                ExpandedWeapon.Hammer => "Đòn thứ ba lấy đà lâu hơn 50%, chu kỳ dài hơn 35%, rồi gây sát thương vùng bằng 55%. Mục tiêu đang cháy tạo thêm hơi nước gây 30% sát thương.",
+                ExpandedWeapon.Alarm => "Khóa một vị trí trên sàn, báo trước 0,9 giây rồi nổ " + (tier >= 2 ? "rộng hơn" : "một lần") + ". Kẻ địch có thể né; không bám mục tiêu sau khi bắn.",
+                ExpandedWeapon.MusicBox => "Nốt nhạc nhẹ bám mục tiêu; mỗi nốt thứ ba kéo dài dấu đang có lên ít nhất 0,6 giây. Đĩa xước thêm đúng một tiếng vọng trễ.",
                 _ => ""
             };
-            return text + "\nSecondary effects are finite. Cadence resets each hall; no manual skill or ally cap.";
+            return text + "\nHiệu ứng phụ không lặp vô hạn. Nhịp đánh bắt đầu lại mỗi màn; không cần nút kỹ năng, không giới hạn số đồng minh.";
         }
     }
 }

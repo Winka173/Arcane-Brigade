@@ -3,6 +3,8 @@ namespace ArcaneBrigade
     public static class SignatureBuildGraph
     {
         public static string Status(string id, RunSession session, RunCatalog catalog)
+            => IsActive(id, session, catalog) ? "NHÁNH ĐÃ KÍCH HOẠT · không cần đủ bộ" : "CHƯA KÍCH HOẠT · thiếu vũ khí hoặc vật phẩm nối";
+        public static bool IsActive(string id, RunSession session, RunCatalog catalog)
         {
             bool bell = catalog.Unit(session.State.ChampionId).Weapon.Signature == SignatureWeapon.Bell;
             bool stamp = catalog.Unit(session.State.ChampionId).Weapon.Signature == SignatureWeapon.Stamp;
@@ -26,7 +28,7 @@ namespace ArcaneBrigade
             if (id == "signature-chorus") active = music && session.StackCount("scratch-record") > 0;
             if (id == "signature-treasure") active = bow && session.StackCount("treasure-ribbon") > 0;
             if (id == "signature-toys") active = catalog.SignatureRevision > 0 && session.StackCount("patch-spring") > 0;
-            return active ? "NHÁNH CƠ BẢN ACTIVE · không cần đủ set" : "TIỀM NĂNG · thiếu weapon hoặc bộ nối";
+            return active;
         }
     }
 }

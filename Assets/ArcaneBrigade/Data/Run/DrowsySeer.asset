@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: DrowsySeer
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DrowsySeer
-  DisplayName: DrowsySeer
-  Body: {fileID: 1599731240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  DisplayName: "Ti\xEAn Tri Ng\xE1i Ng\u1EE7"
+  Body: {fileID: -914476585, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
-  - {fileID: 1599731240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1047730014, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1708994758, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1867918937, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -914476585, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -2018626955, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -483576811, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: 1640786917, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   Weapon: {fileID: 11400000, guid: e1377fe9fd09ccb4ea0b8817b675a2a3, type: 2}
   Health: 130
   Speed: 4.5
@@ -32,7 +32,20 @@ MonoBehaviour:
   Tags: []
   Passive: 1
   PassiveStrength: 1
-  Description: Bell magic and gentle self-healing. No active skills.
+  Description: "Gi\u1EA5c ng\u1EE7 an l\xE0nh: th\u1EE7 l\u0129nh +0,35 gi\xE1p,
+    h\u1ED3i th\xEAm 0,6 m\xE1u/gi\xE2y, +15 \u0111i\u1EC3m ph\u1EA7n tr\u0103m ch\xED
+    m\u1EA1ng. N\u1ED9i t\u1EA1i h\u1ED3i m\xE1u m\u1ED7i 4 gi\xE2y v\u1EABn ho\u1EA1t
+    \u0111\u1ED9ng; kh\xF4ng c\xF3 k\u1EF9 n\u0103ng b\u1EA5m tay."
+  ChampionModifiers:
+  - Effect: 11
+    Scope: 1
+    Value: 0.35
+  - Effect: 7
+    Scope: 1
+    Value: 0.6
+  - Effect: 8
+    Scope: 1
+    Value: 0.15
   Price: 20
   UnlockWave: 10
   IsBoss: 0

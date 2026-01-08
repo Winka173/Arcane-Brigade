@@ -53,6 +53,13 @@ namespace ArcaneBrigade
     }
 
     [System.Serializable]
+    public sealed class BondThresholdBonus
+    {
+        public int Threshold;
+        public float Value;
+    }
+
+    [System.Serializable]
     public sealed class BondDefinition
     {
         public string Id;
@@ -61,6 +68,25 @@ namespace ArcaneBrigade
         public Sprite Icon;
         public ItemEffect Effect;
         public float Value = 0.06f;
+        public BondThresholdBonus[] ExtraBonuses = new BondThresholdBonus[0];
+
+        public int ActiveLevel(int count) => Mathf.Max(0, count) / Mathf.Max(1, Threshold);
+
+        public int NextThreshold(int count)
+        {
+            long next = ((long)ActiveLevel(count) + 1) * Mathf.Max(1, Threshold);
+            foreach (BondThresholdBonus bonus in ExtraBonuses ?? new BondThresholdBonus[0])
+                if (bonus.Threshold > count) next = System.Math.Min(next, bonus.Threshold);
+            return (int)System.Math.Min(int.MaxValue, next);
+        }
+
+        public float Reward(int count)
+        {
+            float reward = ActiveLevel(count) * Value;
+            foreach (BondThresholdBonus bonus in ExtraBonuses ?? new BondThresholdBonus[0])
+                if (count >= bonus.Threshold) reward += bonus.Value;
+            return reward;
+        }
     }
 
     [System.Serializable]
@@ -101,6 +127,7 @@ namespace ArcaneBrigade
         public int LootRevision;
         public int SignatureRevision;
         public int ExpansionRevision;
+        public int ContentRevision;
         public Sprite[] ArenaPropSprites = new Sprite[0];
         public ProcRule[] ProcRules = new ProcRule[0];
         public Sprite EggSprite;

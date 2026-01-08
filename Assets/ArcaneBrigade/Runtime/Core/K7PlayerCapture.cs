@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         private bool failed;
         private string root;
         private ArenaController owner;
+        private bool bossPortraitCapture;
 #if UNITY_STANDALONE_WIN
         [StructLayout(LayoutKind.Sequential)]
         private struct WindowRect { public int Left; public int Top; public int Right; public int Bottom; }
@@ -85,7 +86,7 @@ namespace ArcaneBrigade
             if (owner != null && owner.Session.State.Phase == SessionPhase.Combat)
             {
                 float time = owner.Simulation.Elapsed;
-                owner.SetPresentationMoveTarget(new Vector2(Mathf.Cos(time * 0.37f) * 5, Mathf.Sin(time * 0.37f) * 3));
+                owner.SetPresentationMoveTarget(bossPortraitCapture && owner.Simulation.Boss != null ? owner.Simulation.Boss.Position + Vector2.down * 2 : new Vector2(Mathf.Cos(time * 0.37f) * 5, Mathf.Sin(time * 0.37f) * 3));
             }
         }
         private IEnumerator Shot(string name)
@@ -118,6 +119,14 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(0.25f); menu.NavigateForDiagnostics(1, true);
                 yield return new WaitForSecondsRealtime(0.2f);
                 Check(menu.CurrentPage == RunMenu.Page.Museum, "Actual GUI navigation skips disabled resume and submits discovered museum without mouse");
+                if (Array.IndexOf(args, "-arcane-k8") >= 0)
+                {
+                    menu.ConfigureK7Diagnostics(content, new PlayerProfile()); menu.ShowPage(RunMenu.Page.Roster);
+                    yield return new WaitForSecondsRealtime(0.4f); yield return Shot("00-roster-locked");
+                    menu.ConfigureK7Diagnostics(content, new PlayerProfile { BestWave = 20 }); menu.ShowPage(RunMenu.Page.Roster);
+                    yield return new WaitForSecondsRealtime(0.4f); yield return Shot("00-roster-unlocked");
+                    Check(content.Champions.Length == 3 && content.Bosses.Length == 5, "K8 authored distinct champion and boss identities loaded");
+                }
                 foreach (int bundle in new[] { 0, 1, 2 })
                 {
                     var profile = new PlayerProfile { Cosmetic = bundle, BestWave = 10, HighReadability = bundle == 2, ReducedMotion = bundle == 2 };
@@ -175,6 +184,29 @@ namespace ArcaneBrigade
                 owner.ToggleDetails(); yield return Shot("04-details-roster-" + count); owner.ToggleDetails();
                 owner = null;
             }
+            if (!video && Array.IndexOf(args, "-arcane-k8") >= 0)
+            {
+                for (int bossIndex = 0; bossIndex < content.Bosses.Length; bossIndex++)
+                {
+                    using (var session = new RunSession(content))
+                    {
+                        session.Start(content.Champions[0].Id, 88100 + bossIndex); session.State.Wave = (bossIndex + 1) * 4;
+                        session.State.Roster.Clear();
+                        for (int companion = 0; companion < 7; companion++) session.State.Roster.Add(new RosterEntry { UnitId = content.Companions[companion].Id, WeaponId = content.Weapons[companion].Id, Tier = 2 });
+                        session.Validate(session.State); storage.SaveRun(session.State);
+                    }
+                    RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(1.2f);
+                    owner = FindAnyObjectByType<ArenaController>();
+                    Check(owner.Simulation.Boss != null && owner.Simulation.Boss.Definition.Body.texture.name == "BossesAndProps_v1", "Native real boss uses distinct imported source " + bossIndex);
+                    bossPortraitCapture = true;
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = owner.Simulation.Boss.Position + Vector2.down * 2;
+                    FindAnyObjectByType<ArenaCamera>().Snap();
+                    yield return new WaitForSecondsRealtime(0.45f);
+                    yield return Shot("17-boss-" + bossIndex);
+                    bossPortraitCapture = false;
+                    owner = null;
+                }
+            }
             if (!video)
             {
                 using (var session = new RunSession(content))
@@ -201,8 +233,13 @@ namespace ArcaneBrigade
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.8f);
                 owner = FindAnyObjectByType<ArenaController>();
                 owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-3, 0.5f);
-                yield return new WaitForSecondsRealtime(0.2f); yield return Shot("05-shop-focus");
+                yield return new WaitForSecondsRealtime(0.2f); yield return Shot("05-shop-entry");
+                int entryLines = owner.Shop.Dialogue.SpokenCount;
+                Check(owner.Shop.Dialogue.LastMoment == MerchantMoment.Enter, "Merchant entry speaks without popup or purchase");
+                yield return new WaitForSecondsRealtime(2.35f); yield return Shot("05-shop-focus");
+                Check(owner.Shop.Dialogue.LastMoment == MerchantMoment.Inspect && owner.Shop.Dialogue.SpokenCount > entryLines, "Approaching an offer produces merchant conversation automatically");
                 Check(owner.Shop.Interact(), "Actual shop proximity purchase commits and queues merge");
+                Check(owner.Shop.Dialogue.LastMoment == MerchantMoment.Buy, "Only committed purchase produces merchant sale dialogue");
                 yield return new WaitForSecondsRealtime(0.15f); yield return Shot("06-merge-gather");
                 yield return new WaitForSecondsRealtime(0.28f); yield return Shot("07-merge-payoff");
                 yield return new WaitForSecondsRealtime(0.7f);

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: SleepCollector
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SleepCollector
-  DisplayName: SleepCollector
-  Body: {fileID: -852497279, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  DisplayName: "G\u1ED1i H\xE1u \u0102n"
+  Body: {fileID: 1054513797, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
-  - {fileID: -852497279, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -950050135, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -341863724, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1148076488, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 1054513797, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 453745029, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 329348947, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 210252917, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   Weapon: {fileID: 11400000, guid: 760bf72e211c5ed4b9c785e1b5a99e2f, type: 2}
   Health: 930
   Speed: 0.65
@@ -33,6 +33,7 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ChampionModifiers: []
   Price: 20
   UnlockWave: 0
   IsBoss: 1

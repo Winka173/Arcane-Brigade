@@ -1,5 +1,5 @@
 PASS Twelve original merchant/fixture source frames imported
-PASS New fixture references are project assets not external files
+PASS Versioned merchant and utility fixture references are project assets not external files
 PASS Reroll/door and two shopkeepers have separate silhouettes
 PASS Four held-system HUD identities use original imported icons
 PASS Authored special stock supports currentHP and separate egg currency

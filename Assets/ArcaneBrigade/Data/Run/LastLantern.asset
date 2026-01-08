@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: LastLantern
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LastLantern
-  DisplayName: LastLantern
-  Body: {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  DisplayName: "Hi\u1EC7p S\u0129 C\xE1nh C\u1EEDa"
+  Body: {fileID: 2111205140, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
-  - {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 727089170, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1861701143, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1572981011, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: 2111205140, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: -530819054, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 814488608, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: -209994236, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   Weapon: {fileID: 11400000, guid: ff8886242d47ac447b7b4c76112fbefd, type: 2}
   Health: 1210
   Speed: 0.65
@@ -33,6 +33,7 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ChampionModifiers: []
   Price: 20
   UnlockWave: 0
   IsBoss: 1

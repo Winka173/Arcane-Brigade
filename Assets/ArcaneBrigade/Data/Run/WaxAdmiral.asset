@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: WaxAdmiral
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WaxAdmiral
-  DisplayName: WaxAdmiral
-  Body: {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  DisplayName: "B\u01B0\u1EDBm \u0110\xE8n Ch\xF9m"
+  Body: {fileID: -123257345, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
-  - {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 538038739, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1367685831, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 465823829, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  - {fileID: -123257345, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 1241637567, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: -1747686466, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 406254443, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   Weapon: {fileID: 11400000, guid: d336dbf131d47394d94256398c418143, type: 2}
   Health: 1070
   Speed: 0.65
@@ -33,6 +33,7 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ChampionModifiers: []
   Price: 20
   UnlockWave: 0
   IsBoss: 1

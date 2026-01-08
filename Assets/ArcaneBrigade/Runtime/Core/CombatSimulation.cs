@@ -106,6 +106,9 @@ namespace ArcaneBrigade
         public bool Returning;
         public float Age;
         public bool FinalNote;
+        public int RicochetsRemaining;
+        public bool SplitOnImpact;
+        public bool IsFragment;
         public readonly HashSet<int> Victims = new HashSet<int>();
     }
 
@@ -164,6 +167,8 @@ namespace ArcaneBrigade
         public int CompanionCount { get; private set; }
         public bool BossDefeated { get; private set; }
         public UnitState Boss { get; private set; }
+        public bool IsBossOvertime => Boss != null && Boss.Alive && Elapsed >= WaveDuration && (Phase == RunPhase.Combat || Phase == RunPhase.Paused && phaseBeforePause == RunPhase.Combat);
+        public float BossOvertimeSeconds => IsBossOvertime ? Mathf.Max(0f, Elapsed - WaveDuration) : 0f;
         public string LastDamageSource { get; private set; } = "";
         public float LastDamageAmount { get; private set; }
         public string LastDamageKind { get; private set; } = "";
@@ -337,6 +342,7 @@ namespace ArcaneBrigade
 
         private void SpawnWaveEnemies()
         {
+            if (catalog.Boss != null && Elapsed >= catalog.WaveDuration) return;
             if (Elapsed < nextSpawn) return;
             nextSpawn = Elapsed + Mathf.Max(0.3f, catalog.SpawnInterval * (1f - Elapsed / catalog.WaveDuration * 0.4f));
             int enemyCount = 0;
@@ -421,6 +427,7 @@ namespace ArcaneBrigade
 
         private void ProcessBoss(UnitState boss)
         {
+            if (catalog.RunWave == 1) return;
             if (boss.TelegraphUntil > 0f && Elapsed >= boss.TelegraphUntil)
             {
                 float launchTime = boss.TelegraphUntil;
@@ -531,6 +538,7 @@ namespace ArcaneBrigade
 
         private void EmitProjectile(UnitState unit, float damage, bool critical, CombatCause cause)
         {
+            if (unit.Faction == Faction.Enemy && catalog.RunWave == 1) return;
             WeaponDefinition weapon = unit.Definition.Weapon;
             Vector2 muzzleOffset = weapon.HasMuzzleOffset ? weapon.ProjectileMuzzleOffset : Vector2.right * weapon.MuzzleDistance;
             Vector2 rotatedMuzzle = Quaternion.Euler(0f, 0f, Mathf.Atan2(unit.AttackDirection.y, unit.AttackDirection.x) * Mathf.Rad2Deg) * muzzleOffset;
@@ -558,6 +566,8 @@ namespace ArcaneBrigade
                     SourceUnitId = unit.Id,
                     Cause = cause,
                     Weapon = weapon,
+                    RicochetsRemaining = weapon.Family == ExpandedWeapon.TetherBow ? unit.Definition.CombatTier >= 2 ? 3 : 2 : weapon.Family == ExpandedWeapon.Fish ? 1 : 0,
+                    SplitOnImpact = weapon.Family == ExpandedWeapon.Tea,
                     FinalNote = weapon.Family == ExpandedWeapon.MusicBox && unit.ExpandedBeat % 3 == 0
                 });
             }
@@ -580,38 +590,7 @@ namespace ArcaneBrigade
                 ProjectileState projectile = projectiles[index];
                 int expandedMotion = MoveExpandedProjectile(projectile, deltaTime);
                 if (expandedMotion != 0) { if (expandedMotion < 0) projectiles.RemoveAt(index); continue; }
-                Vector2 start = projectile.LaunchSegment ? projectile.PreviousPosition : projectile.Position;
-                projectile.PreviousPosition = start;
-                projectile.LaunchSegment = false;
-                Vector2 destination = projectile.Position + projectile.Velocity * deltaTime;
-                UnitState hit = null;
-                float nearestFraction = 2f;
-                Vector2 padding = Vector2.one * (maximumRadius + 0.055f);
-                spatial.Query(Vector2.Min(start, destination) - padding, Vector2.Max(start, destination) + padding, projectileCandidates);
-                for (int unitIndex = 0; unitIndex < projectileCandidates.Count; unitIndex++)
-                {
-                    UnitState target = projectileCandidates[unitIndex];
-                    bool interceptor = projectile.Faction == Faction.Enemy && target.Faction == Faction.Companion && catalog.CompanionInterceptor;
-                    if ((!CanHit(projectile.Faction, target) && !interceptor) || projectile.Victims.Contains(target.Id)) continue;
-                    float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + 0.055f);
-                    if (fraction >= 0f && fraction < nearestFraction) { nearestFraction = fraction; hit = target; }
-                }
-                projectile.Position = destination;
-                projectile.Remaining -= deltaTime;
-                if (projectile.Cause.RootId == 0) projectile.Cause = NewCause(projectile.SourceUnitId);
-                UnitState projectileSource = null;
-                foreach (UnitState candidate in units) if (candidate.Id == projectile.SourceUnitId) { projectileSource = candidate; break; }
-                NotifyArenaToyHit(projectileSource, start, hit == null ? destination : Vector2.Lerp(start, destination, nearestFraction), 0.055f, projectile.Velocity.normalized, projectile.Cause);
-                if (hit != null)
-                {
-                    ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, projectile.Weapon, projectile.Critical, projectile.Cause);
-                    OnExpandedProjectileHit(projectile, hit);
-                    if (projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.Fish) { projectile.Victims.Add(hit.Id); projectile.Returning = true; }
-                    else if (projectile.Weapon != null && projectile.Victims.Count < projectile.Weapon.ProjectilePierce) projectile.Victims.Add(hit.Id);
-                    else projectiles.RemoveAt(index);
-                }
-                else if (projectile.Remaining <= 0f || Mathf.Abs(destination.x) > catalog.ArenaSize.x || Mathf.Abs(destination.y) > catalog.ArenaSize.y)
-                    projectiles.RemoveAt(index);
+                if (!AdvanceCombatProjectile(projectile, deltaTime)) projectiles.RemoveAt(index);
             }
         }
 
@@ -629,12 +608,16 @@ namespace ArcaneBrigade
             return fraction >= 0f && fraction <= 1f ? fraction : -1f;
         }
 
-        private void ApplyDamage(UnitState target, float damage, Faction source, string sourceName = "", Vector2 direction = default, WeaponDefinition weapon = null, bool critical = false, DamageElement element = DamageElement.Physical, CombatCause cause = default)
+        private void ApplyDamage(UnitState target, float damage, Faction source, string sourceName = "", Vector2 direction = default, WeaponDefinition weapon = null, bool critical = false, DamageElement element = DamageElement.Physical, CombatCause cause = default, bool injectedDamage = false)
         {
             if (!target.Alive || target.Faction == Faction.Companion || !float.IsFinite(damage) || damage <= 0f) return;
             damage = ExpandedDamage(target, damage, source, direction, weapon);
             if (cause.RootId == 0) cause = NewCause(0);
-            if (target.Faction == Faction.Champion) damage *= 1f / (1f + Mathf.Max(0f, catalog.Armor));
+            if (target.Faction == Faction.Champion)
+            {
+                damage *= 1f / (1f + Mathf.Max(0f, catalog.Armor));
+                if (!injectedDamage) damage = Mathf.Min(damage, Mathf.Min(14f, target.Definition.Health * 0.25f));
+            }
             float baseDamage = damage;
             if (target.Faction == Faction.Enemy && weapon != null && weapon.Motion == WeaponMotion.Bow && treasureUntil > Elapsed && source != Faction.Enemy)
                 damage *= 1f + Mathf.Min(0.45f, catalog.TreasureStacks * 0.15f);
@@ -833,7 +816,7 @@ namespace ArcaneBrigade
         public void ProcessProcFixture() => ProcessProcs();
         public void LootFixture(LootKind kind, Vector2 position, int value) => DropLoot(kind, position, value);
         public UnitState AddFixture(UnitDefinition definition, Faction faction, Vector2 position) => Spawn(definition, faction, position);
-        public void DamageFixture(UnitState target, float damage) => ApplyDamage(target, damage, Faction.Enemy);
+        public void DamageFixture(UnitState target, float damage) => ApplyDamage(target, damage, Faction.Enemy, injectedDamage: true);
         public void WeaponDamageFixture(UnitState target, float damage, DamageElement element) => ApplyWeaponDamage(target, damage, Faction.Companion, element);
         public void ProjectileFixture(Vector2 position, Vector2 velocity, float damage, Faction faction, DamageElement element = DamageElement.Physical)
         {

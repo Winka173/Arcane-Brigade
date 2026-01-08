@@ -66,7 +66,7 @@ namespace ArcaneBrigade.Editor
                     require(combat.StartingCompanions[0].Health == catalog.Unit(entry.UnitId).Health, "Champion health modifiers do not change immortal ally definitions");
                     require(model.Stats[2].Summary == combat.Champion.Weapon.Cooldown.ToString("0.00") + " s" && model.Companions[0].CombatValues["Chu kỳ"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s", "Details attack cycles equal combat for both scopes");
                     require(model.Stats[3].Summary == combat.Champion.Speed.ToString("0.00") && model.Companions[0].CombatValues["Speed"] == combat.StartingCompanions[0].Speed.ToString("0.###"), "Negative movement tradeoff matches Details and combat");
-                    require(model.Relics[0].Explanation.Contains("-5%") && model.Relics[0].Explanation.Contains("Champion") && model.Relics[0].Explanation.Contains("Đồng minh"), "Relic explanation exposes all positive and negative scopes");
+                    require(model.Relics[0].Explanation.Contains("-5%") && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Champion)) && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Companions)), "Relic explanation exposes all positive and negative localized scopes");
                     item.Stacking = StackPolicy.Unique;
                     offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 1 };
                     session.State.Offers.Add(offer);

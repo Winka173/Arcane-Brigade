@@ -13,5 +13,8 @@ namespace ArcaneBrigade
         public Sprite[] EggMerchant;
         public Sprite[] RerollMachine;
         public Sprite[] HallDoor;
+        public Sprite[] EnvironmentProps;
+        public Sprite[] MarketDecor;
+        public Sprite[] MarketRugs;
     }
 }

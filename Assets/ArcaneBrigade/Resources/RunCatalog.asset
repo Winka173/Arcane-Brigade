@@ -66,8 +66,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b6b33f0630a726459aa6dfae91e9a36, type: 2}
   Items:
   - Id: key-oil
-    Name: Key Oil
-    Description: +12% damage
+    Name: "D\u1EA7u Ch\xECa Kh\xF3a"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / S\xE1t th\u01B0\u01A1ng: +12% \xD7 1 = +12%"
     Price: 18
     Effect: 0
     Value: 0.12
@@ -86,8 +87,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: clock-spring
-    Name: Clock Spring
-    Description: +10% attack speed
+    Name: "L\xF2 Xo \u0110\u1ED3ng H\u1ED3"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: +10% \xD7 1 = +10%"
     Price: 20
     Effect: 1
     Value: 0.1
@@ -106,8 +108,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: honey-pot
-    Name: Honey Pot
-    Description: +20 max health and current health
+    Name: "H\u0169 M\u1EADt Ong"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh /
+      M\xE1u t\u1ED1i \u0111a: +20 \xD7 1 = +20\nKhi mua, m\xE1u hi\u1EC7n t\u1EA1i
+      t\u0103ng theo ph\u1EA7n thay \u0111\u1ED5i m\xE1u t\u1ED1i \u0111a."
     Price: 22
     Effect: 2
     Value: 20
@@ -126,8 +130,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: felt-boots
-    Name: Felt Boots
-    Description: +6% movement speed
+    Name: "\u1EE6ng N\u1EC9"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / T\u1ED1c \u0111\u1ED9 di chuy\u1EC3n: +6% \xD7 1 = +6%"
     Price: 18
     Effect: 3
     Value: 0.06
@@ -146,8 +151,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: coin-compass
-    Name: Coin Compass
-    Description: +0.25 pickup radius
+    Name: "La B\xE0n Ti\u1EC1n"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / B\xE1n k\xEDnh nh\u1EB7t \u0111\u1ED3: +0.25 \xD7 1 = +0.25"
     Price: 15
     Effect: 4
     Value: 0.25
@@ -166,8 +172,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: wandering-map
-    Name: Wandering Map
-    Description: +0.4 companion leash radius
+    Name: "B\u1EA3n \u0110\u1ED3 Lang Thang"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / B\xE1n k\xEDnh tu\u1EA7n tra: +0.4 \xD7 1 = +0.4"
     Price: 18
     Effect: 5
     Value: 0.4
@@ -186,8 +193,11 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: guardian-canopy
-    Name: Guardian Canopy
-    Description: Allies block enemy bullets; stacks do not add extra blocks
+    Name: "T\xE1n \xD4 H\u1ED9 V\u1EC7"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i / \u0110\u1ED3ng
+      minh ch\u1EB7n \u0111\u1EA1n: +1 \xD7 1 = +1\n\u0110\u1ED3ng minh ch\u1EB7n
+      \u0111\u1EA1n \u0111\u1ECBch. C\u1ED9ng d\u1ED3n kh\xF4ng th\xEAm l\u01B0\u1EE3t
+      ch\u1EB7n."
     Price: 45
     Effect: 6
     Value: 1
@@ -206,8 +216,9 @@ MonoBehaviour:
     AltarPrice: 14
     SignatureRole: 0
   - Id: warm-tea
-    Name: Warm Tea
-    Description: +0.15 health per second
+    Name: "Tr\xE0 \u1EA4m"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh /
+      H\u1ED3i m\xE1u m\u1ED7i gi\xE2y: +0.15 \xD7 1 = +0.15"
     Price: 24
     Effect: 7
     Value: 0.15
@@ -226,8 +237,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: oracle-lens
-    Name: Oracle Lens
-    Description: +4% critical chance; effective chance capped at 100%
+    Name: "K\xEDnh Ti\xEAn Tri"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / T\u1EF7 l\u1EC7 ch\xED m\u1EA1ng: +4% \xD7 1 = +4%"
     Price: 22
     Effect: 8
     Value: 0.04
@@ -246,8 +258,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: twin-seal
-    Name: Twin Seal
-    Description: +1 projectile per ranged attack
+    Name: "\u1EA4n Song Sinh"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i / S\u1ED1
+      \u0111\u1EA1n: +1 \xD7 1 = +1"
     Price: 35
     Effect: 9
     Value: 1
@@ -266,8 +279,11 @@ MonoBehaviour:
     AltarPrice: 11
     SignatureRole: 0
   - Id: piggy-mail
-    Name: Piggy Mail
-    Description: +2 maximum interest; one interest per ten gold
+    Name: "Heo Th\u01B0 Ti\u1EBFt Ki\u1EC7m"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / Gi\u1EDBi h\u1EA1n ti\u1EC1n l\xE3i: +2 \xD7 1 = +2\nT\u0103ng gi\u1EDBi
+      h\u1EA1n ti\u1EC1n l\xE3i; l\xE3i th\u1EF1c nh\u1EADn c\xF2n ph\u1EE5 thu\u1ED9c
+      s\u1ED1 v\xE0ng \u0111ang gi\u1EEF."
     Price: 18
     Effect: 10
     Value: 2
@@ -286,8 +302,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: pillow-mail
-    Name: Pillow Mail
-    Description: +0.12 armor; received damage divided by 1 + armor
+    Name: "Th\u01B0 G\u1ED1i"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh /
+      Gi\xE1p: +0.12 \xD7 1 = +0.12\nS\xE1t th\u01B0\u01A1ng nh\u1EADn chia cho 1
+      + gi\xE1p."
     Price: 20
     Effect: 11
     Value: 0.12
@@ -306,8 +324,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: royal-key
-    Name: Royal Key
-    Description: +22% champion damage only
+    Name: "Ch\xECa Kh\xF3a Ho\xE0ng Gia"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh
+      / S\xE1t th\u01B0\u01A1ng: +22% \xD7 1 = +22%"
     Price: 28
     Effect: 12
     Value: 0.22
@@ -326,8 +345,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: brigade-banner
-    Name: Brigade Banner
-    Description: +15% companion damage only
+    Name: "C\u1EDD L\u1EEF \u0110o\xE0n"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng minh
+      / S\xE1t th\u01B0\u01A1ng: +15% \xD7 1 = +15%"
     Price: 30
     Effect: 13
     Value: 0.15
@@ -346,8 +366,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: marching-bell
-    Name: Marching Bell
-    Description: +12% companion attack speed only
+    Name: "Chu\xF4ng H\xE0nh Qu\xE2n"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng minh
+      / T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: +12% \xD7 1 = +12%"
     Price: 26
     Effect: 14
     Value: 0.12
@@ -366,9 +387,12 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: coupon-book
-    Name: Coupon Book
-    Description: Future gold offer prices -5% per stack (cap 50%). Does not reduce
-      reroll fees.
+    Name: "S\u1ED5 Phi\u1EBFu Gi\u1EA3m Gi\xE1"
+    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / Gi\u1EA3m gi\xE1 h\xE0ng b\u1EB1ng v\xE0ng: +5% \xD7 1 = +5%\nGi\u1EA3m gi\xE1
+      h\xE0ng b\u1EB1ng v\xE0ng \u1EDF l\u1EA7n t\u1EA1o c\u1EEDa h\xE0ng ti\u1EBFp
+      theo, t\u1ED5ng gi\u1EA3m t\u1ED1i \u0111a 50%; kh\xF4ng gi\u1EA3m ph\xED \u0111\u1ED5i
+      h\xE0ng."
     Price: 24
     Effect: 15
     Value: 0.05
@@ -387,9 +411,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: long-atlas
-    Name: Long Atlas
-    Description: +1.0 ally leash radius; -4% team movement speed. Wider patrols,
-      slower travel.
+    Name: "\u0110\u1ECBa \u0110\u1ED3 D\xE0i"
+    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / B\xE1n k\xEDnh tu\u1EA7n tra: +1 \xD7 1 = +1\nTo\xE0n \u0111\u1ED9i / T\u1ED1c
+      \u0111\u1ED9 di chuy\u1EC3n: -4% \xD7 1 = -4%"
     Price: 36
     Effect: 5
     Value: 1
@@ -411,8 +436,10 @@ MonoBehaviour:
     AltarPrice: 11
     SignatureRole: 0
   - Id: starlight-quilt
-    Name: Starlight Quilt
-    Description: +45 max and current health
+    Name: "Ch\u0103n \xC1nh Sao"
+    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: +45 \xD7 1 = +45\nKhi mua, m\xE1u hi\u1EC7n t\u1EA1i
+      t\u0103ng theo ph\u1EA7n thay \u0111\u1ED5i m\xE1u t\u1ED1i \u0111a."
     Price: 42
     Effect: 2
     Value: 45
@@ -431,9 +458,10 @@ MonoBehaviour:
     AltarPrice: 13
     SignatureRole: 0
   - Id: echo-postage
-    Name: Echo Postage
-    Description: +2 projectiles per ranged attack; -8% team attack speed. More shots,
-      longer attack cycle.
+    Name: "Tem V\u1ECDng \xC2m"
+    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / S\u1ED1 \u0111\u1EA1n: +2 \xD7 1 = +2\nTo\xE0n \u0111\u1ED9i / T\u1ED1c \u0111\u1ED9
+      \u0111\xE1nh: -8% \xD7 1 = -8%"
     Price: 60
     Effect: 9
     Value: 2
@@ -455,8 +483,9 @@ MonoBehaviour:
     AltarPrice: 18
     SignatureRole: 0
   - Id: tarnished-crown
-    Name: Tarnished Crown
-    Description: +40% champion damage only
+    Name: "V\u01B0\u01A1ng Mi\u1EC7n X\u1EC9n"
+    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh
+      / S\xE1t th\u01B0\u01A1ng: +40% \xD7 1 = +40%"
     Price: 48
     Effect: 12
     Value: 0.4
@@ -475,8 +504,10 @@ MonoBehaviour:
     AltarPrice: 15
     SignatureRole: 0
   - Id: fortune-egg
-    Name: Fortune Egg
-    Description: 'Luck +0.2: more egg/heart loot; no hidden damage bonus.'
+    Name: "Tr\u1EE9ng May M\u1EAFn"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i / May
+      m\u1EAFn: +0.2 \xD7 1 = +0.2\nMay m\u1EAFn t\u0103ng c\u01A1 h\u1ED9i r\u01A1i
+      tr\u1EE9ng v\xE0 tim; kh\xF4ng t\u0103ng s\xE1t th\u01B0\u01A1ng."
     Price: 24
     Effect: 16
     Value: 0.2
@@ -492,8 +523,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: treasure-whisper
-    Name: Treasure Whisper
-    Description: 'Treasure Detection +0.35: chests appear sooner; walk to open.'
+    Name: "L\u1EDDi Th\xEC Th\u1EA7m Kho B\xE1u"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i / Ph\xE1t
+      hi\u1EC7n kho b\xE1u: +0.35 \xD7 1 = +0.35\nR\u01B0\u01A1ng xu\u1EA5t hi\u1EC7n
+      s\u1EDBm h\u01A1n; v\u1EABn ph\u1EA3i \u0111\u1EBFn g\u1EA7n \u0111\u1EC3 m\u1EDF."
     Price: 30
     Effect: 17
     Value: 0.35
@@ -509,9 +542,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: coin-salve
-    Name: Coin Salve
-    Description: 'Coin collected: heal 0.5 HP per stack, once per root, cooldown
-      0.2s.'
+    Name: "Thu\u1ED1c M\u1EE1 \u0110\u1ED3ng Xu"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nNh\u1EB7t ti\u1EC1n: h\u1ED3i
+      0,5 m\xE1u m\u1ED7i c\u1ED9ng d\u1ED3n, m\u1ED9t l\u1EA7n m\u1ED7i s\u1EF1
+      ki\u1EC7n g\u1ED1c, h\u1ED3i chi\xEAu 0,2 gi\xE2y."
     Price: 28
     Effect: 7
     Value: 0
@@ -527,9 +561,11 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: chest-thunder
-    Name: Chest Thunder
-    Description: 'Chest opened: damage pulse 14 per stack, radius 3, cooldown 1s.
-      Cannot trigger another proc.'
+    Name: "S\u1EA5m R\u01B0\u01A1ng"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nM\u1EDF r\u01B0\u01A1ng: xung
+      s\xE1t th\u01B0\u01A1ng 14 m\u1ED7i c\u1ED9ng d\u1ED3n, b\xE1n k\xEDnh 3, h\u1ED3i
+      chi\xEAu 1 gi\xE2y. Kh\xF4ng k\xEDch ho\u1EA1t hi\u1EC7u \u1EE9ng v\u1EADt
+      ph\u1EA9m kh\xE1c."
     Price: 42
     Effect: 0
     Value: 0
@@ -545,8 +581,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: altar-ember
-    Name: Altar Ember
-    Description: 'Altar exclusive: +18% Champion damage, -3% team movement speed.'
+    Name: "Than H\u1ED3ng T\u1EBF \u0110\xE0n"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh / S\xE1t
+      th\u01B0\u01A1ng: +18% \xD7 1 = +18%\nTo\xE0n \u0111\u1ED9i / T\u1ED1c \u0111\u1ED9
+      di chuy\u1EC3n: -3% \xD7 1 = -3%"
     Price: 36
     Effect: 12
     Value: 0.18
@@ -568,10 +606,13 @@ MonoBehaviour:
     AltarPrice: 10
     SignatureRole: 0
   - Id: harvest-receipt
-    Name: Harvest Receipt
-    Description: "Coin logical pickup \u2192 m\u1ED9t nh\u1ECBp cho Bell g\u1EA7n
-      trong 6 units, cooldown 0.35s. Stack 2 cho hai nh\u1ECBp, kh\xF4ng sinh coin.
-      H\xFAt loot -0.15 m\u1ED7i stack."
+    Name: "Bi\xEAn Lai M\xF9a G\u1EB7t"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / B\xE1n k\xEDnh nh\u1EB7t \u0111\u1ED3: -0.15 \xD7 1 = -0.15\nNh\u1EB7t ti\u1EC1n
+      ti\u1EBFn m\u1ED9t nh\u1ECBp cho chu\xF4ng trong b\xE1n k\xEDnh 6; c\u1ED9ng
+      d\u1ED3n th\u1EE9 hai cho hai nh\u1ECBp. H\u1ED3i chi\xEAu 0,35 gi\xE2y; kh\xF4ng
+      sinh ti\u1EC1n m\u1EDBi, kh\xF4ng k\xEDch ho\u1EA1t l\u1EB7p t\u1EEB hi\u1EC7u
+      \u1EE9ng ph\u1EE5."
     Price: 28
     Effect: 0
     Value: 0
@@ -590,10 +631,11 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 1
   - Id: reflective-ink
-    Name: Reflective Ink
-    Description: "Stamp th\xEAm m\u1ED9t d\u1EA5u m\u1ED7i hit; expiry \xD70.65.
-      Burst m\u1EDF weakness 1.8s cho Office Lens. Kh\xF4ng t\u0103ng damage burst
-      tr\u1EF1c ti\u1EBFp. Duy nh\u1EA5t."
+    Name: "M\u1EF1c Ph\u1EA3n Chi\u1EBFu"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\nCon d\u1EA5u th\xEAm
+      m\u1ED9t d\u1EA5u m\u1ED7i \u0111\xF2n; th\u1EDDi h\u1EA1n d\u1EA5u nh\xE2n
+      0,65. B\xF9ng d\u1EA5u m\u1EDF \u0111i\u1EC3m y\u1EBFu 1,8 gi\xE2y; kh\xF4ng
+      tr\u1EF1c ti\u1EBFp t\u0103ng s\xE1t th\u01B0\u01A1ng b\xF9ng d\u1EA5u."
     Price: 32
     Effect: 0
     Value: 0
@@ -612,10 +654,12 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 2
   - Id: carbon-ribbon
-    Name: Carbon Ribbon
-    Description: "Bell wave m\u1EDF weakness 1.5s; Stamp burst k\xE9o coin trong
-      2.5 units. Kh\xF4ng copy damage/death/loot, kh\xF4ng t\u1EF1 truy\u1EC1n; Crit
-      team -4%. Duy nh\u1EA5t."
+    Name: "Ruy B\u0103ng Than"
+    Description: "HI\u1EBEM \xB7 Duy nh\u1EA5t\nTo\xE0n \u0111\u1ED9i / T\u1EF7 l\u1EC7
+      ch\xED m\u1EA1ng: -4% \xD7 1 = -4%\nS\xF3ng chu\xF4ng m\u1EDF \u0111i\u1EC3m
+      y\u1EBFu 1,5 gi\xE2y; b\xF9ng d\u1EA5u k\xE9o ti\u1EC1n trong b\xE1n k\xEDnh
+      2,5. Kh\xF4ng sao ch\xE9p s\xE1t th\u01B0\u01A1ng, h\u1EA1 \u0111\u1ECBch ho\u1EB7c
+      v\u1EADt ph\u1EA9m r\u01A1i; kh\xF4ng t\u1EF1 lan truy\u1EC1n."
     Price: 40
     Effect: 0
     Value: 0
@@ -634,10 +678,13 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 3
   - Id: office-lens
-    Name: Office Lens
-    Description: "Crit ally +15%, attack speed -5%. Stamp burst m\u1EDF weakness
-      1.8s: crit v\xE0o m\u1EE5c ti\xEAu exposed th\xEAm 30% damage (stack t\u0103ng
-      t\u1EDBi 50%). Kh\xF4ng t\u1EA1o burst t\u1EEB crit."
+    Name: "K\xEDnh V\u0103n Ph\xF2ng"
+    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng minh / T\u1EF7
+      l\u1EC7 ch\xED m\u1EA1ng: +15% \xD7 1 = +15%\n\u0110\u1ED3ng minh / T\u1ED1c
+      \u0111\u1ED9 \u0111\xE1nh: -5% \xD7 1 = -5%\nB\xF9ng d\u1EA5u m\u1EDF \u0111i\u1EC3m
+      y\u1EBFu 1,8 gi\xE2y: ch\xED m\u1EA1ng tr\xEAn \u0111\u1ECBch l\u1ED9 \u0111i\u1EC3m
+      y\u1EBFu th\xEAm 30% s\xE1t th\u01B0\u01A1ng, t\u0103ng theo c\u1ED9ng d\u1ED3n
+      t\u1EDBi 50%. Ch\xED m\u1EA1ng kh\xF4ng t\u1EA1o b\xF9ng d\u1EA5u m\u1EDBi."
     Price: 38
     Effect: 0
     Value: 0
@@ -659,9 +706,12 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 4
   - Id: tea-coaster
-    Name: Tea Coaster
-    Description: Tea radius +40%; field damage -20%. Burn lets Hammer's third hit
-      release steam. No set required.
+    Name: "\u0110\u1EBF L\xF3t Tr\xE0"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\nTo\xE0n \u0111\u1ED9i
+      / T\u1ED1c \u0111\u1ED9 di chuy\u1EC3n: -2% \xD7 1 = -2%\nV\xF9ng tr\xE0 r\u1ED9ng
+      th\xEAm 40%, s\xE1t th\u01B0\u01A1ng v\xF9ng gi\u1EA3m 20%. \u0110\u1ECBch
+      ch\xE1y cho ph\xE9p \u0111\xF2n b\xFAa th\u1EE9 ba t\u1EA1o h\u01A1i n\u01B0\u1EDBc;
+      kh\xF4ng c\u1EA7n \u0111\u1EE7 b\u1ED9 v\u1EADt ph\u1EA9m."
     Price: 32
     Effect: 0
     Value: 0
@@ -680,10 +730,13 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 5
   - Id: scratch-record
-    Name: Scratch Record
-    Description: Every third Music Box note echoes once after 0.3s (35%/70% damage).
-      Bell primary wave deals 25%/50% extra to live marked targets; echo never recurses.
-      Attack speed -4% per stack.
+    Name: "\u0110\u0129a Nh\u1EA1c X\u01B0\u1EDBc"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: -4% \xD7 1 = -4%\nM\u1ED7i n\u1ED1t h\u1ED9p
+      nh\u1EA1c th\u1EE9 ba v\u1ECDng l\u1EA1i m\u1ED9t l\u1EA7n sau 0,3 gi\xE2y,
+      s\xE1t th\u01B0\u01A1ng 35%/70%. S\xF3ng chu\xF4ng ch\xEDnh g\xE2y th\xEAm
+      25%/50% s\xE1t th\u01B0\u01A1ng l\xEAn \u0111\u1ECBch c\xF2n d\u1EA5u; kh\xF4ng
+      l\u1EB7p v\xF4 h\u1EA1n."
     Price: 32
     Effect: 0
     Value: 0
@@ -702,9 +755,11 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 6
   - Id: treasure-ribbon
-    Name: Treasure Ribbon
-    Description: Chest heals 3 per stack and buffs bow damage 15% per stack for 4s,
-      max 45%. Damage outside chests -3% per stack.
+    Name: "Ruy B\u0103ng Kho B\xE1u"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
+      / S\xE1t th\u01B0\u01A1ng: -3% \xD7 1 = -3%\nM\u1EDF r\u01B0\u01A1ng h\u1ED3i
+      3 m\xE1u v\xE0 t\u0103ng s\xE1t th\u01B0\u01A1ng cung 15% m\u1ED7i c\u1ED9ng
+      d\u1ED3n trong 4 gi\xE2y, t\u1ED1i \u0111a 45%."
     Price: 32
     Effect: 0
     Value: 0
@@ -723,9 +778,11 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 7
   - Id: patch-spring
-    Name: Patch Spring
-    Description: One automatic prop charge every 3s; no secondary charge recursion.
-      Companion attack speed -6%.
+    Name: "L\xF2 Xo V\xE1"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\n\u0110\u1ED3ng minh /
+      T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: -6% \xD7 1 = -6%\nT\u1EF1 n\u1EA1p m\u1ED9t
+      nh\u1ECBp cho v\u1EADt d\u1EE5ng \u0111\u1EA5u tr\u01B0\u1EDDng m\u1ED7i 3
+      gi\xE2y; hi\u1EC7u \u1EE9ng ph\u1EE5 kh\xF4ng t\u1EF1 n\u1EA1p l\u1EB7p."
     Price: 32
     Effect: 0
     Value: 0
@@ -744,9 +801,12 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 8
   - Id: thermal-ink
-    Name: Thermal Ink
-    Description: Tea/Iron heat on marked enemies adds 40% field damage, target cooldown
-      0.9s. Crit -3%. Does not add marks.
+    Name: "M\u1EF1c Nhi\u1EC7t"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\nTo\xE0n \u0111\u1ED9i
+      / T\u1EF7 l\u1EC7 ch\xED m\u1EA1ng: -3% \xD7 1 = -3%\nNhi\u1EC7t tr\xE0/b\xE0n
+      l\xE0 tr\xEAn \u0111\u1ECBch c\xF3 d\u1EA5u t\u0103ng s\xE1t th\u01B0\u01A1ng
+      v\xF9ng 40%; h\u1ED3i chi\xEAu tr\xEAn t\u1EEBng m\u1EE5c ti\xEAu 0,9 gi\xE2y.
+      Kh\xF4ng th\xEAm d\u1EA5u."
     Price: 32
     Effect: 0
     Value: 0
@@ -765,9 +825,12 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 9
   - Id: repair-coupon
-    Name: Repair Coupon
-    Description: Prop kill heals 1/2/3, shared 0.6s cooldown. Pickup radius -0.1
-      per stack. No coin/proc loop.
+    Name: "Phi\u1EBFu S\u1EEDa Ch\u1EEFa"
+    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
+      / B\xE1n k\xEDnh nh\u1EB7t \u0111\u1ED3: -0.1 \xD7 1 = -0.1\nV\u1EADt d\u1EE5ng
+      \u0111\u1EA5u tr\u01B0\u1EDDng h\u1EA1 \u0111\u1ECBch h\u1ED3i 1/2/3 m\xE1u,
+      h\u1ED3i chi\xEAu chung 0,6 gi\xE2y. Kh\xF4ng t\u1EA1o v\xF2ng l\u1EB7p ti\u1EC1n
+      ho\u1EB7c hi\u1EC7u \u1EE9ng v\u1EADt ph\u1EA9m."
     Price: 32
     Effect: 0
     Value: 0
@@ -787,29 +850,49 @@ MonoBehaviour:
     SignatureRole: 10
   Bonds:
   - Id: hearth
-    Name: Hearth
+    Name: "B\u1EBFp \u1EA4m"
     Threshold: 2
     Icon: {fileID: 1401764315, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 7
     Value: 0.15
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.15
+    - Threshold: 6
+      Value: 0.3
   - Id: archive
-    Name: Archive
+    Name: "Th\u01B0 Vi\u1EC7n"
     Threshold: 2
     Icon: {fileID: 1269724658, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 0
     Value: 0.08
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.08
+    - Threshold: 6
+      Value: 0.16
   - Id: clock
-    Name: Clockwork
+    Name: "B\u1ED9 M\xE1y"
     Threshold: 2
     Icon: {fileID: -1203761967, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 1
     Value: 0.07
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.07
+    - Threshold: 6
+      Value: 0.14
   - Id: frost
-    Name: Frost
+    Name: "S\u01B0\u01A1ng Gi\xE1"
     Threshold: 2
     Icon: {fileID: -30878964, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 5
     Value: 0.15
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.15
+    - Threshold: 6
+      Value: 0.3
   Recipes:
   - Id: dream-pillow
     FirstUnit: HoodWisp
@@ -825,20 +908,34 @@ MonoBehaviour:
     EggCost: 3
     MinimumMaterialTier: 1
     ResultTier: 2
+  - Id: frost-post
+    FirstUnit: MailboxImp
+    SecondUnit: HoodWisp
+    ResultUnit: CandleSnail
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: clock-tea
+    FirstUnit: MushroomLibrarian
+    SecondUnit: JellySwordsman
+    ResultUnit: TeapotPilgrim
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
   WaveModifiers:
-  - Name: 'Clockstorm: denser waves'
+  - Name: "B\xE3o \u0111\u1ED3ng h\u1ED3: \u0111\u1ECBch \u0111\xF4ng h\u01A1n"
     Every: 7
     SpawnMultiplier: 0.75
     BudgetMultiplier: 1.3
     GoldPerKill: 2
     Healing: 0
-  - Name: 'Lost treasury: richer drops'
+  - Name: "Kho b\u1EA1c th\u1EA5t l\u1EA1c: nhi\u1EC1u v\xE0ng h\u01A1n"
     Every: 5
     SpawnMultiplier: 1
     BudgetMultiplier: 1
     GoldPerKill: 3
     Healing: 0
-  - Name: 'Quiet stacks: gentle regeneration'
+  - Name: "K\u1EC7 s\xE1ch y\xEAn t\u0129nh: h\u1ED3i m\xE1u nh\u1EB9"
     Every: 11
     SpawnMultiplier: 1
     BudgetMultiplier: 1
@@ -931,6 +1028,7 @@ MonoBehaviour:
   LootRevision: 1
   SignatureRevision: 1
   ExpansionRevision: 1
+  ContentRevision: 1
   ArenaPropSprites:
   - {fileID: 1517528812, guid: 047d018c633860743877d383df2f3edd, type: 3}
   - {fileID: -655209866, guid: 047d018c633860743877d383df2f3edd, type: 3}

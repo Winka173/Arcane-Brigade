@@ -69,9 +69,9 @@ PASS Armor shares received damage pipeline
 PASS Feedback reports damage after armor
 PASS Champion only damage build leaves allies unchanged
 PASS HUD multiplier matches combat including rally passive
-PASS Stacked roam and interception reach simulation
+PASS Stacked roam adds exactly its bonus above champion baseline and interception reaches simulation
 PASS Treasury wave modifier
-PASS Clockstorm wave modifier
+PASS Clockstorm wave modifier is selected by rule rather than localized name
 PASS Quiet stacks wave modifier
 PASS Boss telegraph precedes firing
 PASS Boss telegraph commits one pattern then cooldown

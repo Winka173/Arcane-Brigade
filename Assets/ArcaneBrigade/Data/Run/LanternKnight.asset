@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: LanternKnight
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LanternKnight
-  DisplayName: LanternKnight
-  Body: {fileID: 586000216, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  DisplayName: "Hi\u1EC7p S\u0129 \u0110\xE8n"
+  Body: {fileID: -186974807, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
-  - {fileID: 586000216, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 1174616138, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 1370353651, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -78336647, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: -186974807, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: 1435386198, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -1384713947, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -1236638076, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 120
   Speed: 4.8
@@ -34,7 +34,20 @@ MonoBehaviour:
   - hearth
   Passive: 3
   PassiveStrength: 0.8
-  Description: 'Lantern rally: damage grows with brigade size.'
+  Description: "D\u1EABn \u0111o\xE0n: \u0111\u1ED3ng minh +25% s\xE1t th\u01B0\u01A1ng,
+    +15% t\u1ED1c \u0111\u1ED9 \u0111\xE1nh, tu\u1EA7n tra xa th\xEAm 0,6. S\xE1t
+    th\u01B0\u01A1ng ri\xEAng t\u0103ng theo s\u1ED1 \u0111\u1ED3ng minh nh\u1EDD
+    n\u1ED9i t\u1EA1i t\u1EADp h\u1EE3p."
+  ChampionModifiers:
+  - Effect: 13
+    Scope: 2
+    Value: 0.25
+  - Effect: 14
+    Scope: 2
+    Value: 0.15
+  - Effect: 5
+    Scope: 3
+    Value: 0.6
   Price: 20
   UnlockWave: 0
   IsBoss: 0

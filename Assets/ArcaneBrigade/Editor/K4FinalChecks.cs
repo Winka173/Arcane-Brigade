@@ -27,7 +27,7 @@ namespace ArcaneBrigade.Editor
             require(relicImporter.alphaIsTransparency && !relicImporter.isReadable && relicImporter.textureCompression == TextureImporterCompression.Uncompressed && catalog.Items.Where(item => item.SignatureRole != SignatureRelicKind.None && item.SignatureRole <= SignatureRelicKind.OfficeLens).All(item => item.Icon.rect.width > 200 && item.Icon.rect.height > 200), "HD relic imports preserve alpha and full readable icon bounds without CPU copy");
             using (var fixture = new Fixture(catalog, "BellFork", "harvest-receipt"))
             {
-                require(SignatureBuildGraph.Status("signature-harvest", fixture.Session, catalog).Contains("ACTIVE"), "Two components activate harvest before completing set");
+                require(SignatureBuildGraph.IsActive("signature-harvest", fixture.Session, catalog), "Two components activate harvest before completing set");
                 for (int index = 0; index < 3; index++) fixture.Simulation.LootFixture(LootKind.Coin, Vector2.zero, 2);
                 fixture.Tick(24);
                 require(fixture.Simulation.Gold == 6 && fixture.Simulation.HarvestBeats == 1, "Coin credits once; same-tick collector bursts share finite cooldown");
@@ -41,7 +41,7 @@ namespace ArcaneBrigade.Editor
             }
             using (var fixture = new Fixture(catalog, "DreamStamp", "reflective-ink", "office-lens"))
             {
-                require(SignatureBuildGraph.Status("signature-office", fixture.Session, catalog).Contains("ACTIVE"), "Office graph reads actual weapon and owned relic roles");
+                require(SignatureBuildGraph.IsActive("signature-office", fixture.Session, catalog), "Office graph reads actual weapon and owned relic roles");
                 UnitState target = fixture.Enemy(fixture.Source.Position + Vector2.right);
                 fixture.Simulation.StampFixture(fixture.Source, target);
                 require(target.VisibleMarks == 2 && target.MarkVisibleUntil < fixture.Source.Definition.Weapon.MarkLifetime, "Ink advances marks but shortens actual expiry");
@@ -56,7 +56,7 @@ namespace ArcaneBrigade.Editor
                 string before = JsonUtility.ToJson(fixture.Session.State);
                 RunBuildReadModel model = RunBuildReadModel.Capture(fixture.Session, catalog, fixture.Simulation.Champion.Health, fixture.Simulation);
                 require(before == JsonUtility.ToJson(fixture.Session.State) && model.Links.Any(row => row.Name == "VĂN PHÒNG HOÀN TRẢ" && row.Explanation.Contains("HALL HIỆN TẠI")), "Live contribution graph is read-only and explicitly unsettled");
-                require(model.Companions[0].Explanation.Contains("hit 2 dấu") && model.Companions[0].Explanation.Contains((fixture.Source.Definition.Weapon.MarkLifetime * 0.65f).ToString("0.##") + "s"), "Details uses effective Ink mark count and expiry rather than base tooltip");
+                require(model.Companions[0].Explanation.Contains("Mỗi đòn 2 dấu") && model.Companions[0].Explanation.Contains((fixture.Source.Definition.Weapon.MarkLifetime * 0.65f).ToString("0.##") + " giây"), "Localized Details uses effective Ink mark count and expiry rather than base tooltip");
             }
             using (var fixture = new Fixture(catalog, "DreamStamp", "office-lens"))
             {
@@ -73,9 +73,9 @@ namespace ArcaneBrigade.Editor
                 {
                     fixture.Tick(1);
                     foreach (CombatEvent value in fixture.Simulation.Events)
-                        if (value.Kind == CombatEventKind.SignaturePulse) valid = value.Cause.Depth == 1 && value.Cause.SourceUnitId == fixture.Source.Id;
+                        if (value.Kind == CombatEventKind.SignaturePulse) valid = value.Cause.Depth == 2 && value.Cause.SourceUnitId == fixture.Source.Id;
                 }
-                require(valid, "Harvest-completed Bell cadence preserves depth-one payoff and real source");
+                require(valid, "Harvest-completed Bell cadence increments existing secondary depth and preserves real source");
             }
             using (var fixture = new Fixture(catalog, "DreamStamp", "carbon-ribbon"))
             {

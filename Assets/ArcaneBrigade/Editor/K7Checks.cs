@@ -65,8 +65,7 @@ namespace ArcaneBrigade.Editor
                 var pause = new RunPauseGate { Manual = true, Backgrounded = true, Details = true };
                 pause.Backgrounded = false; require(pause.Paused, "Foregrounding cannot release manual/details pause ownership");
             }
-            string sound = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/CheckpointAudio.cs");
-            require(sound.Contains("nextDangerPlayback") && sound.Contains("2 + nextVoice % 6") && sound.Contains("voice.priority = danger ? 16 : 180"), "Cosmetic voices cannot steal reserved priority critical lanes");
+            require(K8AudioChecks.ReservedLanesAreIsolated(), "Cosmetic voices cannot steal reserved priority critical lanes");
             string sandbox = File.ReadAllText("Assets/ArcaneBrigade/Runtime/UI/WeaponSandbox.cs");
             require(sandbox.Contains("GetComponentsInChildren<Renderer>(true, renderers)"), "Sandbox avoids renderer array allocation every frame");
             require(PlayerSettings.enableFrameTimingStats, "Frame timing enabled for nativeGPU measurement attempt");

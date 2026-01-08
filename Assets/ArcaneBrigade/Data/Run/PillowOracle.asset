@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PillowOracle
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: PillowOracle
-  DisplayName: PillowOracle
+  DisplayName: "Nh\xE0 Ti\xEAn Tri G\u1ED1i"
   Body: {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   AnimationFrames:
   - {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
@@ -34,7 +34,14 @@ MonoBehaviour:
   - frost
   Passive: 3
   PassiveStrength: 0.8
-  Description: Reads the crowd and scales with brigade size.
+  Description: "S\xE1t th\u01B0\u01A1ng ri\xEAng t\u0103ng theo s\u1ED1 \u0111\u1ED3ng
+    minh v\xE0 s\u1EE9c m\u1EA1nh n\u1ED9i t\u1EA1i. C\u1EA5p 2/3: \u0111\xF2n b\u1EAFn
+    th\xEAm 1/2 \u0111\u1EA1n v\xE0 1/2 l\u01B0\u1EE3t xuy\xEAn; \u0111\xF2n c\u1EADn
+    chi\u1EBFn t\u0103ng t\u1EA7m 10/20%, m\u1EDF r\u1ED9ng cung \u0111\xE1nh v\xE0
+    chia chu k\u1EF3 cho 1,12/1,24. Hi\u1EC7u \u1EE9ng ri\xEAng gi\u1EEF quy t\u1EAFc
+    g\u1ED1c; s\xE1t th\u01B0\u01A1ng v\xE0 n\u1ED9i t\u1EA1i v\u1EABn nh\xE2n theo
+    c\u1EA5p."
+  ChampionModifiers: []
   Price: 32
   UnlockWave: 0
   IsBoss: 0

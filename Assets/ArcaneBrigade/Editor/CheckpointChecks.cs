@@ -12,6 +12,7 @@ namespace ArcaneBrigade.Editor
             var results = new List<string>();
             CheckpointCatalog catalog = UnityEngine.Object.Instantiate(source);
             catalog.EnemyBudget = 0;
+            catalog.RunWave = 0;
             catalog.StartingCompanions = null;
             var simulation = new CombatSimulation(catalog);
             simulation.Start(42);

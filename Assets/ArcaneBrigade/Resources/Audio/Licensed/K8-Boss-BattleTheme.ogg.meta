@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 7608a7b91f8446ce9c20dbea871b8103
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 2
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 0.9
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 0
+  loadInBackground: 1
+  ambisonic: 0
+  3D: 0
+  userData: K8 CC0 original bytes; see K8-Audio-Credits.txt
+  assetBundleName:
+  assetBundleVariant:

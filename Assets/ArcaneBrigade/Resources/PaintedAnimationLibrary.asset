@@ -38,18 +38,31 @@ MonoBehaviour:
   - {fileID: 2048480777, guid: 01a2012a6a1bfcc409546a03e7e46f52, type: 3}
   - {fileID: 2007587753, guid: 01a2012a6a1bfcc409546a03e7e46f52, type: 3}
   GoldMerchant:
-  - {fileID: -119616418, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: 21566066, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: -1156081364, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: 725111870, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: -1615983536, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: -87359592, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: -81408041, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: 1655454678, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   EggMerchant:
-  - {fileID: 1971809160, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: -657747021, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: -1422898135, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
-  - {fileID: 1459524513, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: -1963114962, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: 1475355619, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: -970641457, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: -129732050, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   RerollMachine:
   - {fileID: -584565737, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
   - {fileID: 1827130957, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
   HallDoor:
   - {fileID: 1602315860, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
   - {fileID: 1082734174, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  EnvironmentProps:
+  - {fileID: -1443339385, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: -1245854615, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 1084724986, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 1007779352, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  MarketDecor:
+  - {fileID: 1008449346, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: -676605501, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: 222630643, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  - {fileID: -1352225158, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  MarketRugs:
+  - {fileID: 333623675, guid: fbc7e03e6e218fd45a8c8d35c5514a4e, type: 3}
+  - {fileID: 1896742061, guid: fbc7e03e6e218fd45a8c8d35c5514a4e, type: 3}

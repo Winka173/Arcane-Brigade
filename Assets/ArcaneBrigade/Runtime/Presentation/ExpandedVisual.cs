@@ -22,7 +22,7 @@ namespace ArcaneBrigade
                 {
                     bool hazard = field.Kind == ExpandedFieldKind.Curtain || field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard;
                     if (hazard != (priority == 0)) continue;
-                    if (!hazard && field.Kind != ExpandedFieldKind.Link && field.Kind != ExpandedFieldKind.Strike) continue;
+                    if (!hazard && (field.Kind != ExpandedFieldKind.Link || field.Radius != 0) && field.Kind != ExpandedFieldKind.Strike) continue;
                     if (VisibleCount >= 96) break;
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
@@ -38,7 +38,7 @@ namespace ArcaneBrigade
                         {
                             float fraction = point / 11f;
                             Vector2 normal = new Vector2(-(field.Position - field.Start).y, (field.Position - field.Start).x).normalized;
-                            line.SetPosition(point, Vector2.Lerp(field.Start, field.Position, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 8f) * 0.055f * (1 - progress));
+                            line.SetPosition(point, Vector2.Lerp(field.Start, field.Position, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 8f) * (ReducedMotion ? 0 : 0.055f) * (1 - progress));
                         }
                     }
                     else if (field.Kind == ExpandedFieldKind.Iron)
@@ -51,7 +51,7 @@ namespace ArcaneBrigade
                     else
                     {
                         line.positionCount = 64;
-                        float radius = field.Radius * (warning || field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Ink ? 1 : Mathf.Lerp(0.75f, 1.08f, progress));
+                        float radius = field.Radius * (ReducedMotion || hazard || warning ? 1 : Mathf.Lerp(0.75f, 1.08f, progress));
                         for (int point = 0; point < 64; point++)
                         {
                             float angle = point * Mathf.PI * 2 / 64;

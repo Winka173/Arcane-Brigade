@@ -18,7 +18,10 @@ namespace ArcaneBrigade
         private readonly LootIndicators lootIndicators = new LootIndicators();
         private readonly RunInvoice invoice = new RunInvoice();
         private readonly ArcadeNavigation navigation = new ArcadeNavigation();
-        public void ReadNavigation(bool enabled) { if (enabled) navigation.ReadInput(); }
+        private readonly RunBondFeedback bondFeedback = new RunBondFeedback();
+        private Vector2 shopScroll;
+        private WorldShop.Station tooltipStation;
+        public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
         public void ShowInvoiceEvidenceFixture()
         {
             if (!RunPaths.K6Capture) throw new System.InvalidOperationException("Invoice fixture requires isolated K6 capture mode");
@@ -84,25 +87,26 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(85, 102, 240, 30), RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)).ToString(), numeric);
             Sprite(new Rect(40, 140, 32, 32), owner.Content.EggSprite);
             GUI.Label(new Rect(85, 142, 240, 30), RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0)).ToString(), numeric);
-            GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
+            GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "MÀN " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
-                GUI.Label(new Rect(885, 74, 150, 32), Mathf.Max(0, Mathf.CeilToInt(simulation.WaveDuration - simulation.Elapsed)).ToString(), numeric);
-            if (navigation.Button(new Rect(1770, 35, 65, 52), "II", button)) owner.TogglePause();
-            if (navigation.Button(new Rect(1680, 35, 65, 52), "I", button)) owner.ToggleDetails();
+                GUI.Label(new Rect(870, 74, 210, 32), CombatTimerCaption(simulation.IsBossOvertime, simulation.WaveDuration - simulation.Elapsed), numeric);
+            DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
             {
                 if (owner.Content.LootRevision > 0 && PresentationSettings.LootIndicators) lootIndicators.Draw(simulation, owner.Content, camera, small);
                 if (simulation.Boss != null && simulation.Boss.Alive)
                 {
+                    Sprite(new Rect(360, 941, 48, 52), simulation.Boss.Definition.Body);
                     Fill(new Rect(420, 950, 1080, 38), Panel);
                     Fill(new Rect(425, 955, 1070 * simulation.Boss.Health / simulation.Boss.Definition.Health, 28), new Color(0.8f, 0.26f, 0.3f));
+                    GUI.Label(new Rect(810, 950, 440, 35), Mathf.CeilToInt(simulation.Boss.Health) + " / " + simulation.Boss.Definition.Health.ToString("0"), numeric);
                 }
                 if (simulation.Phase == RunPhase.Paused)
                 {
                     Fill(new Rect(640, 360, 640, 320), Panel);
-                    GUI.Label(new Rect(680, 395, 560, 60), "PAUSED", title);
-                    if (navigation.Button(new Rect(750, 515, 420, 65), "RESUME", button)) owner.TogglePause();
-                    if (navigation.Button(new Rect(750, 605, 420, 55), "VỀ MENU", button)) owner.RequestMenuReturn();
+                    GUI.Label(new Rect(680, 395, 560, 60), "TẠM DỪNG", title);
+                    if (navigation.Button(new Rect(750, 515, 420, 65), "TIẾP TỤC", button)) owner.TogglePause();
+                    if (navigation.Button(new Rect(750, 605, 420, 55), "VỀ TRANG CHỦ", button)) owner.RequestMenuReturn();
                 }
             }
             else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
@@ -113,6 +117,7 @@ namespace ArcaneBrigade
                     GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "ĐỘI QUÂN GỤC NGÃ…" : "BÌNH MINH ĐÃ TỚI…", title);
                     GUI.matrix = previous;
                     GUI.skin = previousSkin;
+                    navigation.End();
                     return;
                 }
                 Fill(new Rect(80, 200, 630, 750), Panel);
@@ -120,15 +125,15 @@ namespace ArcaneBrigade
                 Sprite(new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
                 GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
-                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "TIẾP TỤC ENDLESS · GIỮ BUILD", button)) owner.ContinueEndless();
+                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "CHƠI VÔ TẬN · GIỮ ĐỘI VÀ ĐỒ", button)) owner.ContinueEndless();
                 if (navigation.Button(new Rect(115, 825, 270, 65), "CHƠI LẠI", button)) owner.RestartRun();
-                if (navigation.Button(new Rect(405, 825, 270, 65), "VỀ MENU", button)) owner.ReturnToMenu();
+                if (navigation.Button(new Rect(405, 825, 270, 65), "VỀ TRANG CHỦ", button)) owner.ReturnToMenu();
                 invoice.Draw(new Rect(770, 200, 1060, 685), state, owner.Content);
-                if (navigation.Button(new Rect(1025, 915, 570, 55), "LƯU HÓA ĐƠN · PNG LOCAL", button))
+                if (navigation.Button(new Rect(1025, 915, 570, 55), "LƯU ẢNH HÓA ĐƠN · PNG", button))
                     try { RunInvoice.ExportFrame(state.RunId); } catch (System.Exception exception) { Debug.LogWarning("Receipt export failed: " + exception.Message); }
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
-            DrawBonds(owner);
+            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
             if (owner.HallCurtain > 0) ArcadeSkin.Line(new Rect(0, 0, 1920, 1080), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, owner.HallCurtain));
             navigation.End();
             GUI.matrix = previous;
@@ -140,56 +145,103 @@ namespace ArcaneBrigade
             if (owner.HallExitPending) return;
             if (owner.TransitionPending)
             {
-                GUI.Label(new Rect(550, 840, 820, 70), "HALL CLEARED", title);
+                GUI.Label(new Rect(550, 720, 820, 70), "ĐÃ VƯỢT MÀN", title);
                 return;
             }
             WorldShop shop = owner.Shop;
             if (shop == null) return;
+            shop.DrawMerchantDialogue();
             if (owner.Simulation.Phase == RunPhase.Paused)
             {
                 Fill(new Rect(710, 440, 500, 180), Panel);
-                if (navigation.Button(new Rect(755, 485, 410, 75), "RESUME", button)) owner.TogglePause();
+                if (navigation.Button(new Rect(755, 485, 410, 75), "TIẾP TỤC", button)) owner.TogglePause();
                 return;
             }
             WorldShop.Station station = shop.Nearby;
             if (station != null)
             {
-                string description = station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                float descriptionHeight = Mathf.Clamp(small.CalcHeight(new GUIContent(description), 505), 54, 100);
-                Fill(new Rect(580, 860, 760, descriptionHeight + 70), Panel);
-                string caption = station.Action;
-                if (station.Offer != null) caption += " · " + station.Offer.Price;
-                GUI.Label(new Rect(610, 878, 520, 32), caption, text);
-                GUI.Label(new Rect(610, 922, 505, descriptionHeight), description, small);
-                if (navigation.Button(new Rect(1150, 889, 160, 65), "SPACE", button)) shop.Interact();
-                GUI.enabled = !owner.Details.Open && !owner.MenuConfirmation;
+                if (station.Action == "NEXT HALL")
+                {
+                    GUI.Label(new Rect(730, 738, 460, 32), "↓ Màn tiếp · " + RunUIHints.Interact(RunUIHints.Device), small);
+                    if (navigation.Button(new Rect(860, 778, 200, 48), "ĐI TIẾP ↓", button)) shop.Interact();
+                    return;
+                }
+                if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; }
+                string description = station.Offer != null ? shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                float contentHeight = small.CalcHeight(new GUIContent(description), 670) + 8;
+                Rect panel = ShopTooltipBounds(contentHeight);
+                Fill(panel, Panel);
+                GUI.Label(new Rect(panel.x + 24, panel.y + 16, 690, 38), shop.DisplayName(station), text);
+                shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, 710, panel.height - 85), shopScroll, new Rect(0, 0, 675, contentHeight));
+                GUI.Label(new Rect(0, 0, 670, contentHeight), description, small);
+                GUI.EndScrollView();
+                if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · MUA" : RunUIHints.Device == RunUIDevice.Touch ? "MUA" : "Space · MUA", button)) shop.Interact();
             }
+        }
+        public static Rect ShopTooltipBounds(float contentHeight)
+        {
+            float height = Mathf.Clamp(contentHeight + 85, 155, 185);
+            return new Rect(485, 870 - height, 950, height);
+        }
+        public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "HẠ TRÙM" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
+
+        private void DrawControls(ArenaController owner)
+        {
+            Rect pause = new Rect(1770, 35, 65, 52);
+            Rect details = new Rect(1680, 35, 65, 52);
+            if (navigation.Button(pause, "", button)) owner.TogglePause();
+            if (navigation.Button(details, "", button)) owner.ToggleDetails();
+            ArcadeSkin.Line(new Rect(pause.x + 21, pause.y + 14, 8, 24), ArcadeSkin.Ink);
+            ArcadeSkin.Line(new Rect(pause.x + 36, pause.y + 14, 8, 24), ArcadeSkin.Ink);
+            ArcadeSkin.Line(new Rect(details.x + 16, details.y + 12, 33, 28), ArcadeSkin.Ink);
+            ArcadeSkin.Line(new Rect(details.x + 19, details.y + 15, 27, 22), ArcadeSkin.Paper);
+            ArcadeSkin.Line(new Rect(details.x + 31, details.y + 15, 3, 22), ArcadeSkin.Ink);
+            for (int line = 0; line < 3; line++)
+            {
+                ArcadeSkin.Line(new Rect(details.x + 22, details.y + 18 + line * 6, 6, 2), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(details.x + 37, details.y + 18 + line * 6, 6, 2), ArcadeSkin.Ink);
+            }
+            string hint = pause.Contains(Event.current.mousePosition) ? RunUIHints.Pause(RunUIHints.Device) : details.Contains(Event.current.mousePosition) ? RunUIHints.Details(RunUIHints.Device) : null;
+            if (hint == null) return;
+            Fill(new Rect(1400, 92, 435, 44), Panel);
+            GUI.Label(new Rect(1413, 99, 410, 32), hint, small);
         }
 
         private void DrawBonds(ArenaController owner)
         {
+            bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, Time.unscaledTime);
             int index = 0;
+            string tooltip = null;
             foreach (BondDefinition bond in owner.Content.Bonds)
             {
                 if (!owner.Session.BondCounts.TryGetValue(bond.Id, out int count) || count <= 0) continue;
                 Rect badge = new Rect(1550 + index % 4 * 74, 117 + index / 4 * 88, 64, 76);
-                bool active = count >= bond.Threshold;
+                int level = bond.ActiveLevel(count);
+                bool active = level > 0;
+                bool flashing = bondFeedback.Flashing(bond.Id, Time.unscaledTime);
+                if (flashing) ArcadeSkin.Panel(badge, ArcadeSkin.Accent);
                 if (active) ArcadeSkin.Line(new Rect(badge.x + 7, badge.y + 8, 50, 43), new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.16f));
                 Sprite(new Rect(badge.x + 4, badge.y, 56, 52), bond.Icon);
                 small.normal.textColor = active ? ArcadeSkin.Teal : ArcadeSkin.Cream;
                 small.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(badge.x, badge.y + 52, 64, 24), count + "/" + bond.Threshold, small);
+                GUI.Label(new Rect(badge.x, badge.y + 52, 64, 24), count + "/" + bond.NextThreshold(count), small);
                 if (bondHit == null) bondHit = new GUIStyle();
                 if (GUI.Button(badge, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
                 if (badge.Contains(Event.current.mousePosition) || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
                 {
-                    ArcadeSkin.Panel(new Rect(1500, 216, 350, 90), ArcadeSkin.Ink);
-                    small.alignment = TextAnchor.UpperLeft;
-                    GUI.Label(new Rect(1520, 230, 315, 62), bond.Name + " · " + count + "/" + bond.Threshold + "\nThưởng: " + bond.Effect + " +" + bond.Value.ToString("0.##"), small);
+                    tooltip = RunUICopy.BondDescription(bond, count);
                 }
+                if (flashing && tooltip == null) tooltip = bond.Name + " · thưởng hệ tăng!";
                 index++;
             }
             small.normal.textColor = ArcadeSkin.Cream; small.alignment = TextAnchor.UpperLeft;
+            if (tooltip != null)
+            {
+                float top = 130 + Mathf.CeilToInt(index / 4f) * 88;
+                float height = small.CalcHeight(new GUIContent(tooltip), 385) + 24;
+                Fill(new Rect(1430, top, 420, height), Panel);
+                GUI.Label(new Rect(1445, top + 12, 385, height - 24), tooltip, small);
+            }
         }
 
         private void DrawReceipt(RunSnapshot state)
@@ -210,14 +262,6 @@ namespace ArcaneBrigade
             GUI.EndScrollView();
         }
 
-        private static string BondSummary(RunSession session, RunCatalog catalog)
-        {
-            string summary = "BONDS: ";
-            foreach (BondDefinition bond in catalog.Bonds)
-                if (session.BondCounts.TryGetValue(bond.Id, out int count)) summary += bond.Name + " " + count + "/" + bond.Threshold + "  ";
-            return summary;
-        }
-
         public void DrawMenuConfirmation(ArenaController owner, Camera camera)
         {
             GUISkin previousSkin = GUI.skin;
@@ -225,11 +269,11 @@ namespace ArcaneBrigade
             navigation.Begin();
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Fill(new Rect(470, 310, 980, 440), Panel);
-            GUI.Label(new Rect(520, 345, 880, 80), "VỀ MENU?", title);
-            GUI.Label(new Rect(540, 445, 840, 105), "Lượt chơi được lưu tại đầu hall hoặc sau giao dịch shop. Combat đang diễn ra sẽ bắt đầu lại từ mốc lưu, không phải thời điểm đang pause.", text);
+            GUI.Label(new Rect(520, 345, 880, 80), "VỀ TRANG CHỦ?", title);
+            GUI.Label(new Rect(540, 445, 840, 105), "Lượt chơi được lưu tại đầu màn hoặc sau giao dịch cửa hàng. Trận đang diễn ra sẽ bắt đầu lại từ mốc lưu, không phải thời điểm tạm dừng.", text);
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), owner.SaveError, small);
-            if (navigation.Button(new Rect(550, 650, 360, 65), "Ở LẠI / ESC", button)) owner.CancelMenuReturn();
-            if (navigation.Button(new Rect(1010, 650, 360, 65), "LƯU VÀ VỀ MENU", button)) owner.ReturnToMenu();
+            if (navigation.Button(new Rect(550, 650, 360, 65), "Ở LẠI", button)) owner.CancelMenuReturn();
+            if (navigation.Button(new Rect(1010, 650, 360, 65), "LƯU VÀ VỀ TRANG CHỦ", button)) owner.ReturnToMenu();
             navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;

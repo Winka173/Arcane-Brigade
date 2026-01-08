@@ -25,6 +25,8 @@ namespace ArcaneBrigade
         private int arrivalFrame;
         private float facingAngle;
         private BodyPuppet puppet;
+        private float lastDisplayTime;
+        private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
         public void BeginArrival(Vector2 origin) { arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount; }
         public bool ReducedMotion { get; set; }
         public UnitState State => state;
@@ -60,15 +62,19 @@ namespace ArcaneBrigade
         public void CopyDeathPose(SpriteRenderer targetBody, SpriteRenderer targetShadow, SpriteRenderer targetWeapon, SpriteRenderer targetHand, SpriteRenderer targetDrawHand, Transform targetGrip)
         {
             CopyPart(body, targetBody);
-            targetBody.enabled = body.sprite != null;
+            targetBody.enabled = body.sprite != null && state.Faction != Faction.Companion;
             CopyPart(shadow, targetShadow);
             targetGrip.localPosition = grip.localPosition;
             targetGrip.localRotation = grip.localRotation;
             CopyPart(weapon, targetWeapon);
             CopyPart(hand, targetHand);
             CopyPart(drawHand, targetDrawHand);
-            targetWeapon.enabled = targetHand.enabled = grip.gameObject.activeSelf;
-            targetDrawHand.enabled = drawHand != null && drawHand.gameObject.activeSelf && grip.gameObject.activeSelf;
+            targetWeapon.enabled = weapon.enabled && grip.gameObject.activeSelf && state.Faction != Faction.Companion;
+            targetHand.enabled = hand.enabled && targetWeapon.enabled;
+            targetDrawHand.enabled = drawHand != null && drawHand.enabled && drawHand.gameObject.activeSelf && targetWeapon.enabled;
+            K8MotionDeath freeze = targetBody.GetComponent<K8MotionDeath>();
+            if (freeze == null) freeze = targetBody.gameObject.AddComponent<K8MotionDeath>();
+            freeze.Capture(targetShadow.transform, targetGrip, state.Position);
         }
 
         private static void CopyPart(SpriteRenderer source, SpriteRenderer destination)
@@ -111,6 +117,7 @@ namespace ArcaneBrigade
         public void Bind(UnitState unit, CheckpointCatalog catalog)
         {
             state = unit;
+            lastDisplayTime = 0;
             if (puppet == null) puppet = body.gameObject.AddComponent<BodyPuppet>();
             arrivalAge = 10;
             facingAngle = Mathf.Atan2(unit.Facing.y, unit.Facing.x) * Mathf.Rad2Deg;
@@ -129,16 +136,23 @@ namespace ArcaneBrigade
             grip.gameObject.SetActive(armed);
             if (armed)
             {
-                float weaponScale = unit.Definition.Weapon.VisualWidth / weapon.sprite.bounds.size.x;
+                float weaponScale = K8Motion.WeaponWidth(unit) / Mathf.Max(0.01f, weapon.sprite.bounds.size.x);
                 Vector2 shape = TierWeaponShape(unit.Definition.Weapon, unit.Definition.CombatTier);
+                if (unit.Faction == Faction.Companion) weaponScale /= Mathf.Max(1, Mathf.Max(shape.x, shape.y) / 1.18f);
                 weapon.transform.localScale = new Vector3(weaponScale * shape.x, weaponScale * shape.y, 1);
-                hand.transform.localScale = Vector3.one * (0.13f / hand.sprite.bounds.size.x);
+                if (unit.Faction == Faction.Companion)
+                {
+                    Vector3 size = Vector3.Scale(weapon.sprite.bounds.size, weapon.transform.localScale);
+                    float longest = Mathf.Max(size.x, size.y);
+                    weapon.transform.localScale *= Mathf.Min(1, K8Motion.BodyHeight(unit) * 0.95f / Mathf.Max(0.01f, longest));
+                }
+                if (hand.sprite != null) hand.transform.localScale = Vector3.one * ((unit.Faction == Faction.Companion ? 0.095f : 0.13f) / Mathf.Max(0.01f, hand.sprite.bounds.size.x));
                 muzzle.localPosition = unit.Definition.Weapon.HasMuzzleOffset ? (Vector3)unit.Definition.Weapon.ProjectileMuzzleOffset : Vector3.right * unit.Definition.Weapon.MuzzleDistance;
             }
             if (tierBell == null) tierBell = CreateSprite("TierBellSatellite", grip);
             tierBell.sprite = weapon.sprite;
             tierBell.enabled = armed && unit.Definition.CombatTier >= 2 && unit.Definition.Weapon.Signature == SignatureWeapon.Bell;
-            tierBell.transform.localPosition = new Vector3(0.1f, -0.26f, 0);
+            tierBell.transform.localPosition = unit.Faction == Faction.Companion ? new Vector3(0.07f, -0.16f, 0) : new Vector3(0.1f, -0.26f, 0);
             tierBell.transform.localScale = weapon.transform.localScale * (unit.Definition.CombatTier >= 3 ? 0.48f : 0.36f);
             name = unit.Definition.DisplayName + "_" + unit.Id;
             if (unit.Definition.Weapon.Motion == WeaponMotion.Bow && bowString == null)
@@ -170,15 +184,17 @@ namespace ArcaneBrigade
         public void Display(float simulationTime, float interpolation)
         {
             if (state == null) return;
+            float motionDelta = Mathf.Clamp(simulationTime - lastDisplayTime, 0, 0.05f);
+            lastDisplayTime = simulationTime;
             if (state.Definition.AnimationFrames.Length >= 4)
-                body.sprite = state.Definition.AnimationFrames[AnimationFrame(simulationTime, state.Id, (state.Position - state.PreviousPosition).sqrMagnitude > 0.000001f, ReducedMotion)];
+                body.sprite = state.Definition.AnimationFrames[K8Motion.BodyFrame(state, simulationTime, ReducedMotion)];
             weapon.color = hand.color = Color.white;
             shadow.color = state.Faction == Faction.Enemy ? new Color(0.02f, 0.02f, 0.04f, 0.3f) : shadowColor;
             if (tierBell != null) tierBell.color = Color.white;
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
-            if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount) { arrivalAge += Mathf.Min(Time.deltaTime, 0.05f); arrivalFrame = Time.frameCount; }
+            if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount) { arrivalAge += motionDelta; arrivalFrame = Time.frameCount; }
             float arrival = arrivalAge / 0.9f;
             if (arrival >= 0 && arrival < 1)
             {
@@ -190,7 +206,8 @@ namespace ArcaneBrigade
             WeaponDefinition definition = state.Definition.Weapon;
             float age = simulationTime - state.AttackStarted;
             float poseWindup = state.AttackWindup > 0 ? state.AttackWindup : definition.Windup;
-            bool attacking = age >= 0f && age < poseWindup + definition.Recovery;
+            bool attacking = K8Motion.Attacking(state, simulationTime);
+            K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion);
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
             Vector2 facing = attacking ? state.AttackDirection : state.Facing;
             if (facing.sqrMagnitude < 0.01f) facing = Vector2.right;
@@ -204,25 +221,19 @@ namespace ArcaneBrigade
             body.flipX = facing.x < -0.1f;
             float movement = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
             float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * 13f + state.Id) * 0.025f * movement;
-            float attackLean = 0f;
-            float impactSquash = 0f;
-            if (attacking && !ReducedMotion)
-            {
-                float anticipation = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)));
-                float followThrough = 1f - Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery)));
-                float strike = Mathf.SmoothStep(0, 1, Mathf.Clamp01((anticipation - 0.65f) / 0.35f));
-                attackLean = definition.BodyAttackTilt * (age < poseWindup ? Mathf.Lerp(-anticipation * 0.4f, 1, strike) : followThrough);
-                if (definition.Kind == WeaponKind.Melee && age >= poseWindup) impactSquash = 0.08f * followThrough;
-            }
-            float scale = state.Definition.BodyHeight / body.sprite.bounds.size.y;
+            float attackLean = attacking ? pose.Lean : 0;
+            float impactSquash = attacking ? pose.Squash : 0;
+            float height = K8Motion.BodyHeight(state);
+            float scale = height / Mathf.Max(0.01f, body.sprite.bounds.size.y);
             float hitAge = simulationTime - state.LastHit;
             float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
             impactSquash += hurt * 0.09f;
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
-            body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, -state.Definition.BodyHeight * 0.5f + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
+            body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, -height * 0.5f + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
             float personality = state.Id % 2 == 0 ? -1 : 1;
-            body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
-            shadow.transform.localPosition = new Vector3(0f, -state.Definition.BodyHeight * 0.5f, 0f);
+            body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
+            shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
+            shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
             body.color = ReducedMotion ? state.Definition.Tint : Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
@@ -232,6 +243,7 @@ namespace ArcaneBrigade
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion ? 0.75f : 0.5f + Mathf.Sin(simulationTime * 22f) * 0.4f);
             if (puppet != null) puppet.Display(body, state, simulationTime, ReducedMotion);
             DisplayWeakspot(simulationTime, order);
+            DisplayTier(order, height);
 
             float angleOffset = !ReducedMotion && definition.Kind == WeaponKind.Melee ? Mathf.Sin(simulationTime * 1.8f + state.Id * 0.4f) * 9f : 0f;
             float recoil = 0f;
@@ -239,6 +251,9 @@ namespace ArcaneBrigade
             {
                 angleOffset = idle * (definition.Motion == WeaponMotion.Bell ? Mathf.Sin(simulationTime * 30f) * 9f : personality * 7f);
                 recoil = definition.Motion == WeaponMotion.Stamp ? idle * 0.04f : 0;
+                if (definition.Motion == WeaponMotion.Bow || definition.Motion == WeaponMotion.Camera) angleOffset = -idle * 5;
+                if (definition.Motion == WeaponMotion.Hammer || definition.Motion == WeaponMotion.Slam) angleOffset = idle * personality * 3;
+                if (definition.Motion == WeaponMotion.Cast || definition.Motion == WeaponMotion.Music) angleOffset = idle * personality * 10;
             }
             for (int index = 0; index < stampPips.Length; index++)
             {
@@ -253,62 +268,48 @@ namespace ArcaneBrigade
                 }
                 if (stampPips[index] == null) continue;
                 stampPips[index].enabled = visible; stampPips[index].sortingOrder = body.sortingOrder + 8;
-                stampPips[index].transform.localPosition = new Vector3((index - 1) * 0.16f, state.Definition.BodyHeight * 0.65f, 0);
+                stampPips[index].transform.localPosition = new Vector3((index - 1) * 0.16f, height * 0.65f, 0);
             }
-            if (attacking)
-            {
-                if (definition.Kind == WeaponKind.Melee)
-                {
-                    float windup = Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup));
-                    float recovery = Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery));
-                    float strike = Mathf.SmoothStep(0, 1, Mathf.Clamp01((windup - 0.7f) / 0.3f));
-                    if (definition.Motion == WeaponMotion.Thrust)
-                        recoil = age < poseWindup ? Mathf.Lerp(0.12f * windup, -0.28f, strike) : -0.28f * (1f - Mathf.SmoothStep(0, 1, recovery));
-                    else
-                        angleOffset = age < poseWindup ? Mathf.Lerp(-definition.SwingAngle * Mathf.SmoothStep(0, 1, windup), definition.SwingAngle, strike) : definition.SwingAngle * (1f - Mathf.SmoothStep(0, 1, recovery));
-                    if (definition.Motion == WeaponMotion.Slam) recoil = age < poseWindup ? -0.12f * strike : -0.12f * (1f - recovery);
-                    if (definition.Motion == WeaponMotion.Stamp)
-                    {
-                        angleOffset = 0;
-                        recoil = age < poseWindup ? Mathf.Lerp(0.12f * windup, -0.32f, strike) : -0.32f * (1 - Mathf.SmoothStep(0, 1, recovery));
-                    }
-                }
-                else if (age >= poseWindup)
-                {
-                    recoil = definition.RecoilDistance * (1f - Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery)));
-                    if (definition.Motion == WeaponMotion.Bell) angleOffset = Mathf.Sin((age - poseWindup) * 45f) * 12f;
-                }
-                else if (definition.Motion == WeaponMotion.Cast)
-                {
-                    float windup = Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup));
-                    angleOffset = -22f * windup * (1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((windup - 0.7f) / 0.3f)));
-                }
-            }
+            if (attacking) { angleOffset = pose.Angle; recoil = pose.Recoil; }
             if (bowString != null && definition.Motion == WeaponMotion.Bow)
             {
-                float pull = attacking && age < poseWindup ? Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)) : 0f;
-                float height = weapon.sprite.bounds.size.y * weapon.transform.localScale.y * 0.4f;
+                float pull = !ReducedMotion && attacking ? age < poseWindup ? Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)) : 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery * 0.18f))) : 0f;
+                float bowHeight = weapon.sprite.bounds.size.y * weapon.transform.localScale.y * 0.4f;
+                float anchor = -weapon.sprite.bounds.size.x * weapon.transform.localScale.x * 0.35f;
+                float draw = pull * (state.Faction == Faction.Companion ? 0.12f : 0.17f);
                 bowString.sortingOrder = weapon.sortingOrder + 1;
-                bowString.SetPosition(0, new Vector3(-0.18f, height, 0));
-                bowString.SetPosition(1, new Vector3(-0.18f - pull * 0.17f, 0, 0));
-                bowString.SetPosition(2, new Vector3(-0.18f, -height, 0));
+                bowString.SetPosition(0, new Vector3(anchor, bowHeight, 0));
+                bowString.SetPosition(1, new Vector3(anchor - draw, 0, 0));
+                bowString.SetPosition(2, new Vector3(anchor, -bowHeight, 0));
                 drawHand.sortingOrder = hand.sortingOrder + 1;
-                drawHand.transform.localPosition = new Vector3(-0.18f - pull * 0.17f, 0, 0);
-                recoil += pull * 0.06f;
+                drawHand.transform.localPosition = new Vector3(anchor - draw, 0, 0);
             }
-            grip.localPosition = facing * (definition.MountDistance - recoil);
-            if (attacking && !ReducedMotion)
-            {
-                float phase = Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup + definition.Recovery));
-                if (definition.Motion == WeaponMotion.Scissors) angleOffset += Mathf.Sin(phase * Mathf.PI * 4f) * 12f;
-                if (definition.Motion == WeaponMotion.Iron) recoil += Mathf.Sin(phase * Mathf.PI) * -0.12f;
-                if (definition.Motion == WeaponMotion.Camera) angleOffset += Mathf.Sin(phase * Mathf.PI) * -8f;
-                if (definition.Motion == WeaponMotion.Music) angleOffset += Mathf.Sin(phase * Mathf.PI * 2f) * 10f;
-                grip.localPosition = facing * (definition.MountDistance - recoil);
-            }
+            float attachmentScale = state.Faction == Faction.Companion ? 0.72f : 1;
+            grip.localPosition = facing.normalized * ((definition.MountDistance - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale);
             float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-            facingAngle = attacking || ReducedMotion ? targetAngle : Mathf.MoveTowardsAngle(facingAngle, targetAngle, Time.deltaTime * 240f);
+            facingAngle = attacking || ReducedMotion ? targetAngle : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
             grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset);
+        }
+
+        private void DisplayTier(int order, float height)
+        {
+            int tier = Mathf.Clamp(state.Definition.CombatTier, 1, 3);
+            float top = body.transform.localPosition.y + body.sprite.bounds.max.y * body.transform.localScale.y;
+            for (int index = 0; index < tierStars.Length; index++)
+            {
+                bool visible = state.Alive && state.Faction == Faction.Companion && tier > 1 && index < tier;
+                if (visible && tierStars[index] == null)
+                {
+                    tierStars[index] = CreateSprite("K8MotionTierStar" + index, transform);
+                    tierStars[index].sprite = K8Motion.TierStar();
+                    tierStars[index].transform.localScale = Vector3.one * 0.085f;
+                }
+                if (tierStars[index] == null) continue;
+                tierStars[index].enabled = visible;
+                tierStars[index].sortingOrder = order + 8;
+                tierStars[index].color = tier == 3 ? new Color(1, 0.77f, 0.25f) : new Color(0.65f, 0.94f, 1);
+                tierStars[index].transform.localPosition = new Vector3((index - (tier - 1) * 0.5f) * 0.095f, top + 0.065f, 0);
+            }
         }
 
         private void DisplayWeakspot(float time, int order)
@@ -356,6 +357,8 @@ namespace ArcaneBrigade
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
             if (puppet != null) puppet.Fade(alpha);
             if (tierBell != null) Fade(tierBell, alpha);
+            foreach (SpriteRenderer star in tierStars) if (star != null) Fade(star, alpha);
+            foreach (SpriteRenderer pip in stampPips) if (pip != null) Fade(pip, alpha);
             foreach (LineRenderer corner in exposedCorners)
             {
                 if (corner == null) continue;

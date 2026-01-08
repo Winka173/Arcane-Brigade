@@ -1,0 +1,1 @@
+roster-1: frames=720; wall=12.02s; fps=59.9; frame_p50=16.667ms; p95=16.706ms; p99=16.729ms; cpu_p95=0.731ms; gpu_p95=17.309ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=182.6MiB; units_peak=12; projectiles_peak=0

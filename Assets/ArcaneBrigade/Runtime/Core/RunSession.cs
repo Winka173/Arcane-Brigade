@@ -195,6 +195,8 @@ namespace ArcaneBrigade
         public float Bonus(ItemEffect effect, ModifierScope target)
         {
             float value = 0f;
+            foreach (StatModifier modifier in catalog.Unit(State.ChampionId).ChampionModifiers ?? new StatModifier[0])
+                if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value;
             foreach (ItemStack stack in State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
@@ -202,7 +204,7 @@ namespace ArcaneBrigade
                     if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * item.EffectiveStacks(stack.Count);
             }
             foreach (BondDefinition bond in catalog.Bonds)
-                if (bond.Effect == effect && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && BondCounts.TryGetValue(bond.Id, out int count)) value += count / Mathf.Max(1, bond.Threshold) * bond.Value;
+                if (bond.Effect == effect && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && BondCounts.TryGetValue(bond.Id, out int count)) value += bond.Reward(count);
             return value;
         }
 
@@ -306,6 +308,21 @@ namespace ArcaneBrigade
             UnitDefinition unit = Clone(source);
             ModifierScope target = companion ? ModifierScope.Companions : ModifierScope.Champion;
             unit.Weapon = Clone(weapon);
+            if (companion && catalog.ContentRevision > 0 && tier > 1)
+            {
+                int steps = tier - 1;
+                if (weapon.Kind == WeaponKind.Projectile)
+                {
+                    unit.Weapon.ProjectileCount += steps;
+                    unit.Weapon.ProjectilePierce += steps;
+                }
+                else
+                {
+                    unit.Weapon.Range *= 1f + steps * 0.1f;
+                    unit.Weapon.ConeDot = Mathf.Max(-1f, weapon.ConeDot - steps * 0.1f);
+                    unit.Weapon.Cooldown /= 1f + steps * 0.12f;
+                }
+            }
             unit.CombatTier = tier;
             unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
@@ -581,11 +598,30 @@ namespace ArcaneBrigade
         public string RecipePreview(string recipeId)
         {
             AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
-            if (recipe == null) return "Unknown recipe.";
+            if (recipe == null) return "Công thức không tồn tại.";
             RosterEntry first = LowestTier(recipe.FirstUnit, null, recipe.MinimumMaterialTier);
             RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
             string Describe(RosterEntry entry, string id) => entry == null ? catalog.Unit(id).DisplayName + " · còn thiếu" : catalog.Unit(id).DisplayName + " / " + entry.WeaponId + " / cấp " + entry.Tier;
-            return "Tiêu " + recipe.EggCost + " eggs + hai body:\n− " + Describe(first, recipe.FirstUnit) + "\n− " + Describe(second, recipe.SecondUnit) + "\n→ " + catalog.Unit(recipe.ResultUnit).DisplayName + " cấp " + recipe.ResultTier + "; weapon roll sau craft, không cho chọn.\n" + (CanAltar(recipeId) ? "ĐỦ ĐIỀU KIỆN" : "CHƯA ĐỦ ĐIỀU KIỆN");
+            return "Tiêu " + recipe.EggCost + " trứng và hai đồng minh:\n− " + Describe(first, recipe.FirstUnit) + "\n− " + Describe(second, recipe.SecondUnit) + "\n→ " + catalog.Unit(recipe.ResultUnit).DisplayName + " cấp " + recipe.ResultTier + "; vũ khí ngẫu nhiên sau hợp nhất, không được chọn.\n" + (CanAltar(recipeId) ? "ĐỦ ĐIỀU KIỆN" : "CHƯA ĐỦ ĐIỀU KIỆN");
+        }
+
+        public AltarRecipe[] ActiveRecipes()
+        {
+            var active = new List<AltarRecipe>();
+            foreach (AltarRecipe recipe in catalog.Recipes)
+                if (CanAltar(recipe.Id)) active.Add(recipe);
+            return active.ToArray();
+        }
+
+        public string TierAttackDescription(string weaponId, int tier)
+        {
+            WeaponDefinition weapon = catalog.Weapon(weaponId);
+            if (weapon == null || tier < 1 || tier > catalog.MaximumTier) return "Biến thể không hợp lệ.";
+            if (catalog.ContentRevision == 0 || tier == 1) return "Đòn đánh gốc; thưởng cấp chỉ áp dụng cho đồng minh.";
+            int steps = tier - 1;
+            return weapon.Kind == WeaponKind.Projectile
+                ? "Đồng minh: đòn bắn thường +" + steps + " đạn, +" + steps + " lượt xuyên mỗi đạn. Sóng chuông và vùng báo thức giữ quy tắc gốc, không tự nhân số hiệu ứng."
+                : "Đồng minh: +" + steps * 10 + "% tầm đánh; đòn quét thường có cung rộng hơn; chu kỳ đánh chia cho " + (1f + steps * 0.12f).ToString("0.00") + ". Hiệu ứng riêng giữ quy tắc gốc.";
         }
 
         public RosterEntry LowestTier(string id, RosterEntry excluded = null, int minimumTier = 1)

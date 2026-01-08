@@ -1,0 +1,114 @@
+PASS Four different soundtrack content hashes
+PASS Track 0 imports stereo and lasts over a minute
+PASS Track 0 exact original bytes and shipping hash credit
+PASS Track 0 streaming stereo import
+PASS Track 1 imports stereo and lasts over a minute
+PASS Track 1 exact original bytes and shipping hash credit
+PASS Track 1 streaming stereo import
+PASS Track 2 imports stereo and lasts over a minute
+PASS Track 2 exact original bytes and shipping hash credit
+PASS Track 2 streaming stereo import
+PASS Track 3 imports stereo and lasts over a minute
+PASS Track 3 exact original bytes and shipping hash credit
+PASS Track 3 streaming stereo import
+PASS Phase mapping including terminal phases
+PASS Music reduced and pause gains compose
+PASS Reduced global density gate
+PASS Reduced cosmetics never attenuate danger
+PASS All 256 occupancy masks preserve reserved lanes, both density modes and cursors
+PASS Paper borrows licensed hit source
+PASS Paper hit/death event palette
+PASS Paper boss death preserves danger cue
+PASS Fallback 33 readable samples
+PASS Fallback 33 finite non-silent and bounded
+PASS Fallback 33 tapered boundaries
+PASS Fallback 27 readable samples
+PASS Fallback 27 finite non-silent and bounded
+PASS Fallback 27 tapered boundaries
+PASS Metal borrows licensed hit source
+PASS Metal hit/death event palette
+PASS Metal boss death preserves danger cue
+PASS Fallback 34 readable samples
+PASS Fallback 34 finite non-silent and bounded
+PASS Fallback 34 tapered boundaries
+PASS Fallback 28 readable samples
+PASS Fallback 28 finite non-silent and bounded
+PASS Fallback 28 tapered boundaries
+PASS Wax borrows licensed hit source
+PASS Wax hit/death event palette
+PASS Wax boss death preserves danger cue
+PASS Fallback 35 readable samples
+PASS Fallback 35 finite non-silent and bounded
+PASS Fallback 35 tapered boundaries
+PASS Fallback 29 readable samples
+PASS Fallback 29 finite non-silent and bounded
+PASS Fallback 29 tapered boundaries
+PASS Fabric borrows licensed hit source
+PASS Fabric hit/death event palette
+PASS Fabric boss death preserves danger cue
+PASS Fallback 36 readable samples
+PASS Fallback 36 finite non-silent and bounded
+PASS Fallback 36 tapered boundaries
+PASS Fallback 30 readable samples
+PASS Fallback 30 finite non-silent and bounded
+PASS Fallback 30 tapered boundaries
+PASS Glass borrows licensed hit source
+PASS Glass hit/death event palette
+PASS Glass boss death preserves danger cue
+PASS Fallback 37 readable samples
+PASS Fallback 37 finite non-silent and bounded
+PASS Fallback 37 tapered boundaries
+PASS Fallback 31 readable samples
+PASS Fallback 31 finite non-silent and bounded
+PASS Fallback 31 tapered boundaries
+PASS Wood borrows licensed hit source
+PASS Wood hit/death event palette
+PASS Wood boss death preserves danger cue
+PASS Fallback 38 readable samples
+PASS Fallback 38 finite non-silent and bounded
+PASS Fallback 38 tapered boundaries
+PASS Fallback 32 readable samples
+PASS Fallback 32 finite non-silent and bounded
+PASS Fallback 32 tapered boundaries
+PASS Six distinct sampled material hit sources
+PASS Cue 0 borrowed, not cloned or generated
+PASS Cue 1 borrowed, not cloned or generated
+PASS Cue 2 borrowed, not cloned or generated
+PASS Cue 3 borrowed, not cloned or generated
+PASS Cue 4 borrowed, not cloned or generated
+PASS Cue 5 borrowed, not cloned or generated
+PASS Cue 6 borrowed, not cloned or generated
+PASS Cue 7 borrowed, not cloned or generated
+PASS Cue 8 borrowed, not cloned or generated
+PASS Cue 9 borrowed, not cloned or generated
+PASS Cue 10 borrowed, not cloned or generated
+PASS Cue 11 borrowed, not cloned or generated
+PASS Cue 12 borrowed, not cloned or generated
+PASS Cue 13 borrowed, not cloned or generated
+PASS Cue 14 borrowed, not cloned or generated
+PASS Cue 15 borrowed, not cloned or generated
+PASS Cue 16 borrowed, not cloned or generated
+PASS Cue 17 borrowed, not cloned or generated
+PASS Cue 18 borrowed, not cloned or generated
+PASS Cue 19 borrowed, not cloned or generated
+PASS Cue 20 borrowed, not cloned or generated
+PASS Cue 21 borrowed, not cloned or generated
+PASS Cue 22 borrowed, not cloned or generated
+PASS Cue 23 borrowed, not cloned or generated
+PASS Cue 24 borrowed, not cloned or generated
+PASS Cue 25 borrowed, not cloned or generated
+PASS Cue 26 borrowed, not cloned or generated
+PASS Cue 27 borrowed, not cloned or generated
+PASS Cue 28 borrowed, not cloned or generated
+PASS Cue 29 borrowed, not cloned or generated
+PASS Cue 30 borrowed, not cloned or generated
+PASS Cue 31 borrowed, not cloned or generated
+PASS Cue 32 borrowed, not cloned or generated
+PASS Cue 33 borrowed, not cloned or generated
+PASS Cue 34 borrowed, not cloned or generated
+PASS Cue 35 borrowed, not cloned or generated
+PASS Cue 36 borrowed, not cloned or generated
+PASS Cue 37 borrowed, not cloned or generated
+PASS Cue 38 borrowed, not cloned or generated
+PASS Legacy builder API retains caller-owned copy
+PASS Chest uses confirmation instead of projectile glass

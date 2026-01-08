@@ -50,9 +50,9 @@ namespace ArcaneBrigade
             if (total < beats) return;
             float radius = Mathf.Max(0.1f, weapon.SignatureRadius);
             if (weapon.Signature == SignatureWeapon.Umbrella && unit.Definition.CombatTier >= 2) radius *= 1.25f;
-            signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale), Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay), Cause = new CombatCause(cause.RootId, unit.Id, weapon.Signature == SignatureWeapon.Bell ? "bell-wave" : "umbrella-open", 1) });
+            signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale), Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay), Cause = new CombatCause(cause.RootId, unit.Id, weapon.Signature == SignatureWeapon.Bell ? "bell-wave" : "umbrella-open", cause.Depth + 1) });
             if (weapon.Signature == SignatureWeapon.Bell && unit.Definition.CombatTier >= 2)
-                signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale) * 0.35f, Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay) + 0.3f, Cause = new CombatCause(cause.RootId, unit.Id, "bell-echo", 1) });
+                signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale) * 0.35f, Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay) + 0.3f, Cause = new CombatCause(cause.RootId, unit.Id, "bell-echo", cause.Depth + 1) });
         }
 
         private void AddStamp(UnitState source, UnitState target, float damage, CombatCause cause)

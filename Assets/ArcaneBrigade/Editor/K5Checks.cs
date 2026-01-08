@@ -173,7 +173,7 @@ namespace ArcaneBrigade.Editor
                     require(arena.StartingCompanions.Length == 9 && arena.ChorusStacks == 1 && arena.PatchSpring && arena.ThermalInk, "Save restores expanded stable IDs and roles");
                 }
                 require(content.BuildLinks.Count(link => link.Id.StartsWith("signature-")) == 6, "Six build graphs available without hidden set bonus");
-                foreach (string id in new[] { "signature-tea", "signature-chorus", "signature-treasure", "signature-toys" }) require(SignatureBuildGraph.Status(id, session, content).Contains("ACTIVE"), id + " component-based activation read model");
+                foreach (string id in new[] { "signature-tea", "signature-chorus", "signature-treasure", "signature-toys" }) require(SignatureBuildGraph.IsActive(id, session, content), id + " component-based activation read model");
             }
             Directory.CreateDirectory("PreviewExports/K5"); File.WriteAllLines("PreviewExports/K5/Checks.txt", results);
             Debug.Log("K5 checks PASS: " + results.Count);

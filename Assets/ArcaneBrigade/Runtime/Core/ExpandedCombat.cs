@@ -34,7 +34,7 @@ namespace ArcaneBrigade
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
-            int depth = kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Strike ? cause.Depth : Mathf.Max(1, cause.Depth);
+            int depth = kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Strike ? cause.Depth : cause.Depth + 1;
             fields.Add(new ExpandedField { Kind = kind, Source = source, Position = position, Start = source == null ? position : source.Position, Direction = direction, Radius = radius, Damage = damage, At = Elapsed + delay, Until = Elapsed + delay + duration, NextTick = Elapsed + delay, Cause = new CombatCause(cause.RootId, cause.SourceUnitId, "expanded-" + kind.ToString().ToLowerInvariant(), depth), Target = target });
         }
 
@@ -103,7 +103,7 @@ namespace ArcaneBrigade
                 }
                 if (nearest != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (nearest.Position - projectile.Position).normalized * projectile.Weapon.ProjectileSpeed, Mathf.Clamp01(delta * 4));
             }
-            if (family != ExpandedWeapon.Fish) return 0;
+            if (family != ExpandedWeapon.Fish || projectile.Faction == Faction.Enemy) return 0;
             if (projectile.Age > 0.7f) projectile.Returning = true;
             if (!projectile.Returning) return 0;
             UnitState owner = units.Find(unit => unit.Id == projectile.SourceUnitId && unit.Alive);
@@ -120,9 +120,9 @@ namespace ArcaneBrigade
             UnitState source = units.Find(unit => unit.Id == projectile.SourceUnitId);
             if (source == null) return;
             ExpandedWeapon family = projectile.Weapon.Family;
-            if (family == ExpandedWeapon.Tea)
+            if (family == ExpandedWeapon.Tea && !projectile.IsFragment)
                 Field(ExpandedFieldKind.Tea, source, target.Position, Vector2.zero, 0.7f * (catalog.TeaCoasterStacks > 0 ? 1.4f : 1), projectile.Damage * 0.25f * (catalog.TeaCoasterStacks > 0 ? 0.8f : 1), 0, 1.8f, projectile.Cause);
-            if (family == ExpandedWeapon.TetherBow)
+            if (family == ExpandedWeapon.TetherBow && projectile.Victims.Count == 1)
             {
                 UnitState previous = target; var visited = new HashSet<int> { target.Id };
                 for (int link = 0; link < (source.Definition.CombatTier >= 2 ? 3 : 2); link++)

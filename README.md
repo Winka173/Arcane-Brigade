@@ -1,10 +1,10 @@
 # Arcane Brigade
 
-## Bản mới nhất — K7B Windows candidate
+## Bản mới nhất — K8 Windows candidate
 
-K7B: UI vé hội chợ, giant animated merchant/ground shadows, reroll machine và cửa xuống riêng, item/deny/HP purchase feedback, blue/purple/gold rarity lights, góc phải icon hệ + count, body idle và random rest/roam. Wave thường35–55s, wave1 contact-only, đạn địch chậm hơn. Giữ Foley/music CC0 và các hệ thống K7. **Chưa nghiệm thu production.** Android/iOS device gates vẫn mở; tests không thay duyệt art/audio/feel.
+K8: shopkeeper kỳ dị riêng với thoại lúc vào/xem hàng/mua/thiếu tiền, thảm và cờ quầy vẽ riêng; boss/hero có silhouette riêng, squad/vũ khí nhỏ gọn hơn, pose liên tục và feedback gộp damage. Roster lưới chân dung, UI tiếng Việt, hệ có mốc 2/4/6, nâng sao đổi cách đánh, bốn công thức hợp thể, đạn nảy/tách nhánh và bốn bài nhạc CC0 riêng. Boss quá giờ ngừng gọi viện binh nhưng vẫn cần bị hạ. **Chưa nghiệm thu production.** Co-op và Android/iOS/Steam device gates vẫn mở; tests không thay duyệt art/audio/feel.
 
-Chạy `Builds/FullRun/ArcaneBrigade.exe`; giữ nguyên thư mục đi kèm. Báo cáo: `Docs/K7B_Final_Checkpoint.md`; ảnh/video: `PreviewExports/K7B/index.html`; nghe thử: `PreviewExports/K7/Audition/index.html`. Dựng bằng Unity menu **Arcane Brigade > K7B > Night market apply check build**; không dùng baseline/K5/K6 Apply cũ ghi đè art mới.
+Chạy `Builds/FullRun/ArcaneBrigade.exe`; giữ nguyên thư mục đi kèm. Báo cáo: `Docs/K8_Final_Checkpoint.md`; ảnh/video/nhạc: `PreviewExports/K8/index.html`. Dựng bằng Unity menu **Arcane Brigade > K8 > Check and build Windows**; không dùng baseline/K5/K6 Apply cũ ghi đè art mới. Tạo art bằng painting tích hợp; prompt/kích thước nguồn trong `Docs/K8_Art_Manifest.json` và `Docs/K8_Merchant_Art_Manifest.json`, không phải PNG native4K.
 
 Các đoạn dưới là lịch sử checkpoint; thông tin chưa implement ở đoạn cũ không ghi đè trạng thái checkpoint mới.
 

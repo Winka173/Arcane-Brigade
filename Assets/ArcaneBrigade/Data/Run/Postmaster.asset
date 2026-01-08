@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Postmaster
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: Postmaster
-  DisplayName: Postmaster
-  Body: {fileID: 1694225575, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  DisplayName: "Tr\u01B0\u1EDFng B\u01B0u C\u1EE5c"
+  Body: {fileID: 229030292, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
-  - {fileID: 1694225575, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -2008201169, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 340090513, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1990760485, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  - {fileID: 229030292, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: 1711105860, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: -357533613, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: 711971618, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 110
   Speed: 5
@@ -32,7 +32,21 @@ MonoBehaviour:
   Tags: []
   Passive: 2
   PassiveStrength: 2
-  Description: Automatic parcel fire; earns spare coins in combat.
+  Description: "Giao h\xE0ng k\xE9p: th\u1EE7 l\u0129nh +1 \u0111\u1EA1n m\u1ED7i
+    \u0111\xF2n b\u1EAFn; nh\u1EB7t \u0111\u1ED3 xa th\xEAm 0,5. H\xE0ng b\u1EB1ng
+    v\xE0ng \u1EDF l\u1EA7n t\u1EA1o c\u1EEDa h\xE0ng ti\u1EBFp theo r\u1EBB h\u01A1n
+    15%; kh\xF4ng gi\u1EA3m ph\xED \u0111\u1ED5i h\xE0ng. Nh\u1EB7t ti\u1EC1n t\u1EF1
+    \u0111\u1ED9ng m\u1ED7i 4 gi\xE2y theo n\u1ED9i t\u1EA1i."
+  ChampionModifiers:
+  - Effect: 15
+    Scope: 3
+    Value: 0.15
+  - Effect: 4
+    Scope: 3
+    Value: 0.5
+  - Effect: 9
+    Scope: 1
+    Value: 1
   Price: 20
   UnlockWave: 5
   IsBoss: 0

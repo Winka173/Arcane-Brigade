@@ -163,6 +163,8 @@ namespace ArcaneBrigade.Editor
                 session.Start(source.Champions[0].Id, 42);
                 CheckpointCatalog catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
+                catalog.RunWave = 0;
+                float baselineLeash = catalog.CompanionLeash;
                 var simulation = new CombatSimulation(catalog);
                 simulation.Start(42);
                 UnitState enemy = simulation.AddFixture(catalog.MeleeEnemy, Faction.Enemy, Vector2.right * 5f);
@@ -204,11 +206,11 @@ namespace ArcaneBrigade.Editor
                 catalog = session.PrepareCombat();
                 Check(catalog.Champion.Weapon.Damage > source.Champions[0].Weapon.Damage * 1.44f && catalog.StartingCompanions[0].Weapon.Damage < source.Weapons[1].Damage * 1.44f, "Champion only damage build leaves allies unchanged", results);
                 Check(Mathf.Abs(catalog.Champion.Weapon.Damage - source.Champions[0].Weapon.Damage * session.DamageMultiplier(source.Champions[0], 1, false)) < 0.001f, "HUD multiplier matches combat including rally passive", results);
-                Check(Mathf.Abs(catalog.CompanionLeash - source.Arena.CompanionLeash - 0.8f) < 0.001f && catalog.CompanionInterceptor, "Stacked roam and interception reach simulation", results);
+                Check(Mathf.Abs(catalog.CompanionLeash - baselineLeash - 0.8f) < 0.001f && catalog.CompanionInterceptor, "Stacked roam adds exactly its bonus above champion baseline and interception reaches simulation", results);
                 session.State.Wave = 5;
                 Check(session.PrepareCombat().GoldPerKill == 3 && session.ActiveModifier != null, "Treasury wave modifier", results);
                 session.State.Wave = 7;
-                Check(session.PrepareCombat().EnemyBudget > 51 && session.ActiveModifier.Name.Contains("Clockstorm"), "Clockstorm wave modifier", results);
+                Check(session.PrepareCombat().EnemyBudget > 51 && session.ActiveModifier.Every == 7, "Clockstorm wave modifier is selected by rule rather than localized name", results);
                 session.State.Wave = 11;
                 Check(session.PrepareCombat().PassiveHeal >= 0.25f, "Quiet stacks wave modifier", results);
                 session.State.Wave = 4;

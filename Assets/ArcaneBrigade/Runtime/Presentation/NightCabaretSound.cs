@@ -7,6 +7,7 @@ namespace ArcaneBrigade
         private const int Rate = ArcadeSound.SampleRate;
         public static AudioClip Foley(int cue)
         {
+            if (cue >= 27 && cue <= 38) return MaterialFoley((BodyMaterial)((cue - 27) % 6), cue < 33);
             float length = cue == 6 ? 0.65f : cue == 23 ? 0.55f : cue == 4 ? 0.14f : cue >= 27 ? 0.3f : 0.2f;
             var samples = new float[Mathf.CeilToInt(Rate * length)];
             uint state = (uint)(701 + cue * 8191); float low = 0; float previous = 0;
@@ -37,6 +38,41 @@ namespace ArcaneBrigade
                 samples[index] = signal * attack * tail * 0.7f * Mathf.Clamp01((length - time) / 0.018f);
             }
             AudioClip clip = AudioClip.Create("CabaretFoley-" + cue, samples.Length, 1, Rate, false); clip.SetData(samples, 0); return clip;
+        }
+
+        public static AudioClip MaterialFoley(BodyMaterial material, bool death)
+        {
+            float length = death ? 0.32f : 0.16f;
+            var samples = new float[Mathf.CeilToInt(Rate * length)];
+            uint state = 701u + (uint)material * 8191u;
+            float low = 0;
+            for (int index = 0; index < samples.Length; index++)
+            {
+                state ^= state << 13; state ^= state >> 17; state ^= state << 5;
+                float noise = (state & 65535) / 32767.5f - 1;
+                low += (noise - low) * 0.09f;
+                float time = index / (float)Rate;
+                float signal;
+                switch (material)
+                {
+                    case BodyMaterial.Paper: signal = (noise - low) * (0.3f + 0.2f * Mathf.Sin(time * 240)); break;
+                    case BodyMaterial.Metal: signal = Resonance(time, 330, 2.71f, 13) + (noise - low) * Mathf.Exp(-time * 100) * 0.25f; break;
+                    case BodyMaterial.Wax: signal = low * 0.8f + Resonance(time, 105, 1.4f, 38) * 0.3f; break;
+                    case BodyMaterial.Fabric: signal = low * Mathf.Sin(Mathf.PI * time / length) * 0.85f; break;
+                    case BodyMaterial.Glass: signal = Resonance(time, 1300, 3.17f, 24) * 0.7f + (noise - low) * Mathf.Exp(-time * 55) * 0.2f; break;
+                    default: signal = Resonance(time, 190, 1.83f, 42) * 0.65f + low * Mathf.Exp(-time * 70); break;
+                }
+                samples[index] = signal * Mathf.Min(1, time / 0.003f) * Mathf.Exp(-time * (death ? 9 : 18)) * Mathf.Clamp01((length - time) / 0.018f) * 0.55f;
+            }
+            AudioClip clip = AudioClip.Create("CabaretMaterial-" + material + (death ? "-Death" : "-Hit"), samples.Length, 1, Rate, false);
+            clip.SetData(samples, 0);
+            return clip;
+        }
+
+        private static float Resonance(float time, float frequency, float overtone, float decay)
+        {
+            float phase = time * frequency * Mathf.PI * 2;
+            return Mathf.Sin(phase) * 0.45f + Mathf.Sin(phase * overtone) * Mathf.Exp(-time * decay) * 0.25f;
         }
         public static float[] Compose(int layer, bool shop = false)
         {
