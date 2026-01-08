@@ -16,19 +16,19 @@ PASS Endless history separate from normal score and wins
 PASS Endless death cannot duplicate normal or segment credit
 PASS Legacy Endless drops inseparable old ledger not invents segment damage
 PASS Legacy normal schema1 preserves measured ledger and migrates receipts
-PASS Difficulty 0 explicit HP and budget only
+PASS Difficulty 0 explicit HP, authored trait and budget
 PASS Difficulty 0 damage caps and base Champion unchanged
 PASS Difficulty 0 resume preserves identity
-PASS Difficulty 1 explicit HP and budget only
+PASS Difficulty 1 explicit HP, authored trait and budget
 PASS Difficulty 1 damage caps and base Champion unchanged
 PASS Difficulty 1 resume preserves identity
-PASS Difficulty 2 explicit HP and budget only
+PASS Difficulty 2 explicit HP, authored trait and budget
 PASS Difficulty 2 damage caps and base Champion unchanged
 PASS Difficulty 2 resume preserves identity
-PASS Difficulty 3 explicit HP and budget only
+PASS Difficulty 3 explicit HP, authored trait and budget
 PASS Difficulty 3 damage caps and base Champion unchanged
 PASS Difficulty 3 resume preserves identity
-PASS Difficulty 4 explicit HP and budget only
+PASS Difficulty 4 explicit HP, authored trait and budget
 PASS Difficulty 4 damage caps and base Champion unchanged
 PASS Difficulty 4 resume preserves identity
 PASS Challenge 1 seed and streams stable on resume

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge }
 
     public readonly struct CombatEvent
     {
@@ -43,6 +43,7 @@ namespace ArcaneBrigade
         public int Id;
         public UnitDefinition Definition;
         public float LastSupport = -100;
+        public float NextCollision;
         public Faction Faction;
         public Vector2 Position;
         public Vector2 PreviousPosition;
@@ -110,6 +111,9 @@ namespace ArcaneBrigade
         public int RicochetsRemaining;
         public bool SplitOnImpact;
         public bool IsFragment;
+        public float Radius = 0.055f;
+        public int SplitCount;
+        public int RandomBounces = 8;
         public readonly HashSet<int> Victims = new HashSet<int>();
     }
 
@@ -301,6 +305,7 @@ namespace ArcaneBrigade
                 if (unit.Definition.IsBoss) ProcessBoss(unit);
                 ProcessAttack(unit);
                 if (unit.Faction == Faction.Enemy) ProcessContact(unit);
+                else ProcessOutgoingCollision(unit);
             }
 
             if (Phase == RunPhase.Combat)
@@ -557,7 +562,7 @@ namespace ArcaneBrigade
             Vector2 muzzleOffset = weapon.HasMuzzleOffset ? weapon.ProjectileMuzzleOffset : Vector2.right * weapon.MuzzleDistance;
             Vector2 rotatedMuzzle = Quaternion.Euler(0f, 0f, Mathf.Atan2(unit.AttackDirection.y, unit.AttackDirection.x) * Mathf.Rad2Deg) * muzzleOffset;
             Vector2 position = unit.Position + unit.AttackDirection * (weapon.MountDistance - weapon.RecoilDistance) + rotatedMuzzle;
-            for (int index = 0; index < Mathf.Max(1, weapon.ProjectileCount); index++)
+            for (int index = 0; index < Mathf.Clamp(weapon.ProjectileCount, 1, 96) && projectiles.Count < 4096; index++)
             {
                 float angle = (index - (weapon.ProjectileCount - 1) * 0.5f) * 0.14f;
                 Vector2 direction = Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg) * unit.AttackDirection;
@@ -576,12 +581,14 @@ namespace ArcaneBrigade
                     LaunchSegment = true,
                     Sprite = weapon.ProjectileSprite,
                     VisualWidth = weapon.ProjectileVisualWidth,
+                    Radius = weapon.ProjectileRadius,
+                    SplitCount = weapon.ProjectileSplit,
                     Critical = critical,
                     SourceUnitId = unit.Id,
                     Cause = cause,
                     Weapon = weapon,
                     RicochetsRemaining = weapon.Family == ExpandedWeapon.TetherBow ? unit.Definition.CombatTier >= 2 ? 3 : 2 : weapon.Family == ExpandedWeapon.Fish ? 1 : 0,
-                    SplitOnImpact = weapon.Family == ExpandedWeapon.Tea,
+                    SplitOnImpact = weapon.Family == ExpandedWeapon.Tea || weapon.ProjectileSplit > 0,
                     FinalNote = weapon.Family == ExpandedWeapon.MusicBox && unit.ExpandedBeat % 3 == 0
                 });
             }
@@ -629,7 +636,12 @@ namespace ArcaneBrigade
             if (cause.RootId == 0) cause = NewCause(0);
             if (target.Faction == Faction.Champion)
             {
-                damage *= 1f / (1f + Mathf.Max(0f, catalog.Armor));
+                if (!injectedDamage && catalog.Dodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge, 0, 0.6f))
+                {
+                    events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
+                    return;
+                }
+                damage *= catalog.Armor >= 0 ? 1f / (1f + catalog.Armor) : 1 + Mathf.Min(1, -catalog.Armor);
                 if (!injectedDamage) damage = Mathf.Min(damage, Mathf.Min(14f, target.Definition.Health * 0.25f));
             }
             float baseDamage = damage;
@@ -725,7 +737,7 @@ namespace ArcaneBrigade
                     Gold = nextGold;
                 }
                 else if (pickup.Kind == LootKind.Egg) Eggs = RunSession.BoundedCounter((long)Eggs + pickup.Value);
-                else if (pickup.Kind == LootKind.Heart) Heal(pickup.Value, NewCause(Champion.Id));
+                else if (pickup.Kind == LootKind.Heart) Heal(Mathf.Max(0, pickup.Value + catalog.HeartHealing), NewCause(Champion.Id));
                 events.Add(new CombatEvent(CombatEventKind.Pickup, pickup.Position, Faction.Champion, pickup.Value, subjectId: pickup.Id, cause: pickupCause, loot: pickup.Kind));
                 pickups.RemoveAt(index);
             }
@@ -750,7 +762,7 @@ namespace ArcaneBrigade
             if (chestCount >= 4) return;
             Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one;
             Vector2 position = new Vector2(((float)lootRandom.NextDouble() * 2 - 1) * half.x, ((float)lootRandom.NextDouble() * 2 - 1) * half.y);
-            DropLoot(LootKind.Chest, position, 8 + lootRandom.Next(0, 9));
+            DropLoot(LootKind.Chest, position, Mathf.Max(1, Mathf.RoundToInt((8 + lootRandom.Next(0, 9)) * K10StatRules.Factor(catalog.ChestQuality, 0.2f, 5))));
         }
 
         private void OpenChest(PickupState chest)

@@ -16,6 +16,38 @@ PASS Companion PillowOracle
 PASS Companion MushroomLibrarian
 PASS Companion HoodWisp
 PASS Companion JellySwordsman
+PASS Companion BrassAcorn
+PASS Companion BreadCrab
+PASS Companion KettleBat
+PASS Companion BookmarkGolem
+PASS Companion TinTick
+PASS Companion SpringDuck
+PASS Companion ButtonBeetle
+PASS Companion StapleMole
+PASS Companion SnowSpoon
+PASS Companion IceCreamOwl
+PASS Companion FridgeWisp
+PASS Companion PearMoth
+PASS Companion CitrusToad
+PASS Companion RadishJester
+PASS Companion SeedHedgehog
+PASS Companion MoonJelly
+PASS Companion StarSock
+PASS Companion CometKite
+PASS Companion EclipseEgg
+PASS Companion OrbitMoth
+PASS Companion DreamCompass
+PASS Companion ShellPostman
+PASS Companion CoralTeacup
+PASS Companion BubbleKoi
+PASS Companion AnchorSnail
+PASS Companion SailSquid
+PASS Companion SockCyclops
+PASS Companion DiceCrab
+PASS Companion MaskPepper
+PASS Companion CrayonGremlin
+PASS Companion MirrorNewt
+PASS Companion RibbonSpider
 PASS Weapon KeyCleaver
 PASS Weapon TeapotPopgun
 PASS Weapon UmbrellaLance
@@ -32,6 +64,30 @@ PASS Weapon DreamIron
 PASS Weapon RubberHammer
 PASS Weapon AlarmMortar
 PASS Weapon MusicBox
+PASS Weapon SpoonSabre
+PASS Weapon ToastCleaver
+PASS Weapon LollipopLance
+PASS Weapon PaperFan
+PASS Weapon CorkscrewRapier
+PASS Weapon TeabagFlail
+PASS Weapon UmbrellaHook
+PASS Weapon PizzaWheel
+PASS Weapon MoonScythe
+PASS Weapon ForkTrident
+PASS Weapon MaracaHammer
+PASS Weapon TapeWhip
+PASS Weapon ButtonBow
+PASS Weapon LeafCrossbow
+PASS Weapon InkPistol
+PASS Weapon BubbleWand
+PASS Weapon StarKazoo
+PASS Weapon ShellCannon
+PASS Weapon AcornSling
+PASS Weapon CrescentBoomerang
+PASS Weapon DartCompass
+PASS Weapon LanternStaff
+PASS Weapon SnowGlobeOrb
+PASS Weapon RibbonHarp
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop
@@ -46,7 +102,6 @@ PASS Three recruits merge to tier two
 PASS Merged unit has meaningful damage growth without slot cap
 PASS Merge preserves three copies of healing potency
 PASS Bond counts bodies not stars: hearth
-PASS Bond counts bodies not stars: archive
 PASS Duplicate identity save rejected
 PASS Atomic save round trip
 PASS Corrupt primary recovers previous backup

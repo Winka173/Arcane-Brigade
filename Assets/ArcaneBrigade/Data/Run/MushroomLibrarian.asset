@@ -25,13 +25,15 @@ MonoBehaviour:
   Speed: 5.1
   Radius: 0.25
   BodyHeight: 0.9
+  BodyScale: 1
   ContactDamage: 4
   ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - archive
-  - hearth
+  - orchard
   Passive: 1
   PassiveStrength: 0.5
   Description: "H\u1ED3i m\xE1u th\u1EE7 l\u0129nh m\u1ED7i 4 gi\xE2y theo s\u1EE9c

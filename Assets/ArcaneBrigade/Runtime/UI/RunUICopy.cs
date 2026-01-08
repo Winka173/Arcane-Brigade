@@ -28,6 +28,33 @@ namespace ArcaneBrigade
         {
             switch (id)
             {
+                case "SpoonSabre": return "Kiếm Muỗng";
+                case "ToastCleaver": return "Dao Bánh Mì";
+                case "LollipopLance": return "Thương Kẹo";
+                case "PaperFan": return "Quạt Giấy";
+                case "CorkscrewRapier": return "Kiếm Vặn Nút";
+                case "TeabagFlail": return "Chùy Túi Trà";
+                case "UmbrellaHook": return "Móc Ô";
+                case "PizzaWheel": return "Bánh Cưa Pizza";
+                case "MoonScythe": return "Lưỡi Hái Trăng";
+                case "ForkTrident": return "Đinh Ba Nĩa";
+                case "MaracaHammer": return "Búa Lục Lạc";
+                case "TapeWhip": return "Roi Băng Keo";
+                case "ButtonBow": return "Cung Cúc Áo";
+                case "LeafCrossbow": return "Nỏ Lá";
+                case "InkPistol": return "Súng Mực";
+                case "BubbleWand": return "Đũa Bong Bóng";
+                case "StarKazoo": return "Kèn Sao";
+                case "ShellCannon": return "Pháo Vỏ Ốc";
+                case "AcornSling": return "Ná Hạt Dẻ";
+                case "CrescentBoomerang": return "Boomerang Trăng";
+                case "DartCompass": return "La Bàn Phi Tiêu";
+                case "LanternStaff": return "Trượng Đèn";
+                case "SnowGlobeOrb": return "Cầu Tuyết";
+                case "RibbonHarp": return "Đàn Ruy Băng";
+            }
+            switch (id)
+            {
                 case "KeyCleaver": return "Kiếm chìa khóa";
                 case "RuneStaff": return "Trượng cổ ngữ";
                 case "UmbrellaLance": return "Thương ô";

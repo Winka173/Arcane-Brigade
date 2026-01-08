@@ -1,5 +1,5 @@
 Editor simulation only, 600 ticks at 60 Hz; not rendering/mobile FPS. Fixture allies bypass shop identity policy. Champion and enemies have raised HP for sustained combat. Initial 50 contact + 50 ranged enemies.
-25 allies / initial 100 enemies: 0.421 ms/step, survivors 126, projectiles 8
-50 allies / initial 100 enemies: 1.002 ms/step, survivors 151, projectiles 20
-100 allies / initial 100 enemies: 2.617 ms/step, survivors 201, projectiles 47
-200 allies / initial 100 enemies: 7.438 ms/step, survivors 301, projectiles 96
+25 allies / initial 100 enemies: 0.393 ms/step, survivors 126, projectiles 8
+50 allies / initial 100 enemies: 0.931 ms/step, survivors 151, projectiles 20
+100 allies / initial 100 enemies: 2.504 ms/step, survivors 201, projectiles 47
+200 allies / initial 100 enemies: 7.231 ms/step, survivors 301, projectiles 96

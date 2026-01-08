@@ -44,7 +44,8 @@ namespace ArcaneBrigade
             if (run.Wave >= run.StartHall && (run.Phase == SessionPhase.Shop || run.Phase == SessionPhase.Victory)) cleared++;
             long value = (long)cleared * 1000 + ((long)run.TotalKills + liveKills) * 10 + ((long)run.BossKills + (liveBoss ? 1 : 0)) * 500;
             if (run.Phase == SessionPhase.Victory) value += 5000;
-            return RunSession.BoundedCounter(value * (100 + run.Difficulty * 20) / 100);
+            float build = float.IsFinite(run.BuildScoreMultiplier) && run.BuildScoreMultiplier > 0 ? run.BuildScoreMultiplier : 1;
+            return RunSession.BoundedCounter((long)(value * (100 + run.Difficulty * 20) / 100 * (double)Mathf.Clamp(build, 0.1f, 100)));
         }
         public static string Nickname(RunSnapshot run)
         {

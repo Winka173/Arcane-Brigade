@@ -72,6 +72,7 @@ namespace ArcaneBrigade
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
             CurrentPage = page;
+            GlossaryUI.Close();
             navigation.Reset(); pageChangedAt = Time.unscaledTime;
             scroll = Vector2.zero;
         }
@@ -217,6 +218,7 @@ namespace ArcaneBrigade
             Matrix4x4 previous = ArcadeTypography.BeginViewport(new Rect(0, 0, Screen.width, Screen.height), 1280, 720);
             Color previousTint = GUI.color;
             LivingUI.Enter(Time.unscaledTime - pageChangedAt, new Vector2(640, 360));
+            GlossaryUI.BlockUnderlying(new Vector2(1280, 720));
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
             if (CurrentPage != Page.Landing)
             {
@@ -263,6 +265,7 @@ namespace ArcaneBrigade
                 if (alpha > 0) ArcadeSkin.Line(new Rect(25, 145, 1230, 540), new Color(0.10f, 0.08f, 0.17f, alpha * 0.3f));
             }
             navigation.End();
+            GlossaryUI.Draw(new Vector2(1280, 720));
             GUI.matrix = previous;
             GUI.color = previousTint;
             GUI.skin = previousSkin;
@@ -329,9 +332,12 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(915, 242, 280, 40), RunUICopy.WeaponName(champion.Weapon.Id), note);
             GUI.Label(new Rect(775, 278, 420, 38), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
             string description = RunUICopy.ChampionDescription(champion);
-            float descriptionHeight = Mathf.Max(115, text.CalcHeight(new GUIContent(description), 400) + 8);
+            description += "\n\nĐẶC TÍNH KHỞI ĐẦU\n";
+            foreach (StatModifier modifier in champion.ChampionModifiers)
+                description += RunModifierRules.ScopeName(modifier.Scope) + " / " + RunModifierRules.ModifierName(modifier.Effect) + ": " + RunModifierRules.ValueText(modifier.Effect, modifier.Value) + "\n";
+            float descriptionHeight = Mathf.Max(115, GlossaryUI.Height(description, text, 400) + 8);
             rosterDescriptionScroll = GUI.BeginScrollView(new Rect(775, 320, 430, 118), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
-            GUI.Label(new Rect(0, 0, 400, descriptionHeight), description, text);
+            GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
             GUI.EndScrollView();
             if (Button(new Rect(65, 595, 660, 55), "THỬ THÁCH: " + RunMeta.ChallengeNames[challenge].Replace("clear hall", "vượt màn"))) challenge = (challenge + 1) % RunMeta.ChallengeIds.Length;
             GUI.enabled = challenge == 0;

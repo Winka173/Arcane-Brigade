@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection }
+    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection, ScoreMultiplier, CollisionDamage, MeleeDamage, RangedDamage, AttackRange, Dodge, Income, BulletPierce, BulletSplit, BulletBounce, BulletSize, BulletSpeed, BulletDistance, Knockback, BodySize, CompanionSize, EnemyCount, EnemyHealth, EnemySpeed, HeartHealing, ChestQuality, RecruitDiscount, RelicDiscount, ShopRarity, HealthCorrection, DamageCorrection, SpeedCorrection, ArmorCorrection, HealCorrection, CollisionFrequency }
     public enum ModifierScope { Team, Champion, Companions, Run }
     public enum ItemRarity { Common, Uncommon, Rare, Mythic }
     public enum StackPolicy { Additive, Unique }
@@ -128,6 +128,7 @@ namespace ArcaneBrigade
         public int SignatureRevision;
         public int ExpansionRevision;
         public int ContentRevision;
+        public int StatRevision;
         public Sprite[] ArenaPropSprites = new Sprite[0];
         public ProcRule[] ProcRules = new ProcRule[0];
         public Sprite EggSprite;

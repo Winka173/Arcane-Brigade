@@ -46,6 +46,9 @@ namespace ArcaneBrigade
                 if (!visible) continue;
                 Vector2 position = Vector2.Lerp(toy.PreviousPosition, toy.Position, Mathf.Clamp01(interpolation));
                 view.Root.position = new Vector3(position.x, position.y, 0f);
+                GroundShadow grounded = view.Root.GetComponent<GroundShadow>();
+                SpriteRenderer painted = view.Body.GetComponentInChildren<SpriteRenderer>();
+                if (grounded != null && painted != null) grounded.Display(painted.sprite, position + Vector2.down * 0.3f, 1.1f);
                 bool warning = toy.Mode == ArenaToyMode.Warning;
                 float shake = warning && !PresentationSettings.ReducedMotion ? Mathf.Sin(now * 24f) * 5f : 0f;
                 view.Body.localRotation = Quaternion.Euler(0f, 0f, shake);
@@ -77,6 +80,8 @@ namespace ArcaneBrigade
                 var painted = new GameObject("HDProp"); painted.transform.SetParent(body.transform, false);
                 SpriteRenderer renderer = painted.AddComponent<SpriteRenderer>(); renderer.sprite = sprite; renderer.sortingOrder = 84;
                 painted.transform.localScale = Vector3.one * (1.15f / sprite.bounds.size.x);
+                GroundShadow shadow = root.AddComponent<GroundShadow>(); shadow.Configure(sprite);
+                shadow.Display(sprite, toy.Position + Vector2.down * 0.3f, 1.1f);
             }
             else if (toy.Kind == ArenaToyKind.StageBell)
             {

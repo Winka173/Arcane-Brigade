@@ -25,6 +25,8 @@ namespace ArcaneBrigade
         private int arrivalFrame;
         private float facingAngle;
         private BodyPuppet puppet;
+        private GroundShadow grounded;
+        private GroundShadow groundedWeapon;
         private float lastDisplayTime;
         private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
         public void BeginArrival(Vector2 origin) { arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount; }
@@ -125,8 +127,7 @@ namespace ArcaneBrigade
             body.sprite = unit.Definition.Body;
             Material flash = Resources.Load<Material>("UnitFlash");
             if (flash != null) body.sharedMaterial = flash;
-            shadow.color = unit.Faction == Faction.Champion ? new Color(0.95f, 0.76f, 0.32f, 0.6f)
-                : unit.Faction == Faction.Companion ? new Color(0.3f, 0.75f, 0.72f, 0.4f) : new Color(0f, 0f, 0f, 0.25f);
+            shadow.color = new Color(0.015f, 0.025f, 0.045f, 0.38f);
             shadowColor = shadow.color;
             hand.sprite = catalog.Hand;
             weapon.sprite = unit.Definition.Weapon.Sprite;
@@ -178,7 +179,7 @@ namespace ArcaneBrigade
         public void SetChampionCosmetic(int choice)
         {
             if (state != null && state.Faction == Faction.Champion && choice == 1)
-                shadowColor = shadow.color = new Color(0.3f, 0.85f, 0.8f, 0.65f);
+                shadowColor = shadow.color = new Color(0.015f, 0.025f, 0.045f, 0.38f);
         }
 
         public void Display(float simulationTime, float interpolation)
@@ -229,11 +230,19 @@ namespace ArcaneBrigade
             float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
             impactSquash += hurt * 0.09f;
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
-            body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, -height * 0.5f + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
+            float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
+            body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
             float personality = state.Id % 2 == 0 ? -1 : 1;
             body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
+            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
+            Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f);
+            grounded.Display(body.sprite, ground, height * 0.72f, arrivalAge < 0.4f ? 0.4f : 0);
+            if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
+            if (weapon.enabled && grip.gameObject.activeSelf) groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
+            else groundedWeapon.Hide();
+            shadow.enabled = false;
             body.color = ReducedMotion ? state.Definition.Tint : Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
@@ -355,6 +364,8 @@ namespace ArcaneBrigade
         public void SetTerminalFade(float alpha)
         {
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
+            if (grounded != null) grounded.Fade(alpha);
+            if (groundedWeapon != null) groundedWeapon.Fade(alpha);
             if (puppet != null) puppet.Fade(alpha);
             if (tierBell != null) Fade(tierBell, alpha);
             foreach (SpriteRenderer star in tierStars) if (star != null) Fade(star, alpha);

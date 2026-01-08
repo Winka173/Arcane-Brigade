@@ -45,6 +45,7 @@ namespace ArcaneBrigade
             lines.AppendLine("\nMã ngẫu nhiên " + run.Seed + " · mã lượt " + run.RunId);
             if (run.Endless) lines.AppendLine("Chặng vô tận · lượt trước " + run.ParentRunId);
             lines.AppendLine("\nĐIỂM: 1.000 / vượt màn + 10 / hạ gục + 500 / trùm + 5.000 / thắng.\nNhân 1 + 0,2 × bậc khó; sát thương, hồi máu và vàng không cho điểm.");
+            if (catalog.StatRevision > 0) lines.AppendLine("Hệ số build đã chốt: ×" + run.BuildScoreMultiplier.ToString("0.###") + ". Chỉ số mua giữ trong lượt, không qua lượt mới.");
             return lines.ToString();
         }
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)

@@ -4,6 +4,7 @@ namespace ArcaneBrigade
 {
     public sealed class ProjectileVisual : MonoBehaviour
     {
+        private GroundShadow grounded;
         private SpriteRenderer halo;
         private SpriteRenderer core;
         private LineRenderer streak;
@@ -44,6 +45,8 @@ namespace ArcaneBrigade
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
+            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
+            grounded.Display(body.sprite, position + Vector2.down * 0.18f, Mathf.Max(0.13f, state.VisualWidth), 0.18f, hostile ? 0.22f : 0.13f);
             int order = hostile ? 2400 : 2100;
             body.sortingOrder = order;
             halo.sortingOrder = order - 1; core.sortingOrder = order + 1;
@@ -53,7 +56,7 @@ namespace ArcaneBrigade
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
             halo.enabled = core.enabled = magic;
-            float width = hostile ? 0.23f : state.VisualWidth > 0 ? state.VisualWidth : 0.22f;
+            float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;
             if (hostile && body.sprite != null)
                 body.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, body.sprite.bounds.size.x));
             if (magic)
@@ -86,6 +89,7 @@ namespace ArcaneBrigade
         private void OnDestroy() { if (material != null) Destroy(material); }
         public void SetFade(float alpha)
         {
+            if (grounded != null) grounded.Fade(alpha);
             if (halo == null) return;
             Color haloColor = halo.color; haloColor.a *= alpha; halo.color = haloColor;
             Color coreColor = core.color; coreColor.a *= alpha; core.color = coreColor;
@@ -93,6 +97,6 @@ namespace ArcaneBrigade
             Color end = streak.endColor; end.a *= alpha; streak.endColor = end;
             Color glyph = motif.startColor; glyph.a *= alpha; motif.startColor = motif.endColor = glyph;
         }
-        public void Hide() { if (halo != null) { halo.enabled = core.enabled = streak.enabled = motif.enabled = false; } }
+        public void Hide() { if (halo != null) { halo.enabled = core.enabled = streak.enabled = motif.enabled = false; } if (grounded != null) grounded.Hide(); }
     }
 }

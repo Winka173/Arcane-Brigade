@@ -29,7 +29,7 @@ namespace ArcaneBrigade.Editor
                 foreach (Sprite sprite in sprites) require(sprite.rect.width > 80 && sprite.rect.height > 100 && sprite.rect.xMin >= 0 && sprite.rect.yMin >= 0 && sprite.rect.xMax <= sprite.texture.width && sprite.rect.yMax <= sprite.texture.height, "Full-resolution in-bounds sprite " + sprite.name);
             }
             require(catalog.Champions.All(unit => AssetDatabase.GetAssetPath(unit.Body).Contains("QualityHD") || AssetDatabase.GetAssetPath(unit.Body).Contains("AnimationHD") && unit.AnimationFrames.Length == 4), "All champion bodies use HD art or complete animation atlas");
-            require(catalog.Weapons.All(weapon => AssetDatabase.GetAssetPath(weapon.Sprite).Contains("QualityHD") && float.IsFinite(weapon.ProjectileMuzzleOffset.x) && float.IsFinite(weapon.ProjectileMuzzleOffset.y)), "All weapons use HD art and valid visual muzzles");
+            require(catalog.Weapons.All(weapon => (AssetDatabase.GetAssetPath(weapon.Sprite).Contains("QualityHD") || AssetDatabase.GetAssetPath(weapon.Sprite).Contains("Art/K10") && weapon.Sprite.texture.width >= 512) && float.IsFinite(weapon.ProjectileMuzzleOffset.x) && float.IsFinite(weapon.ProjectileMuzzleOffset.y)), "All weapons use HD art and valid visual muzzles");
             EditorSceneManager.OpenScene("Assets/ArcaneBrigade/Scenes/RunArena.unity");
             GameObject world = GameObject.Find("HDWorld"); require(world != null, "Persistent HD map in real gameplay scene");
             Material floor = world.transform.Find("HD_TiledFloor").GetComponent<MeshRenderer>().sharedMaterial;

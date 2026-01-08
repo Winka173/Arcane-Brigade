@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         private bool inspecting;
         private bool speaking;
         private ArenaController owner;
+        private GroundShadow grounded;
         public void Configure(SpriteRenderer renderer, Sprite[] animation, float bodyHeight, ArenaController controller, float offset)
         {
             view = renderer; frames = animation; height = bodyHeight; owner = controller; phase = offset;
@@ -56,6 +57,9 @@ namespace ArcaneBrigade
             transform.localPosition = origin + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * 0.035f + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0) + (1 - arrival) * 0.65f, 0);
             transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
             view.sortingOrder = 1000 - Mathf.RoundToInt(transform.position.y * 12);
+            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(view.sprite); }
+            Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * 0.42f);
+            grounded.Display(view.sprite, ground, height * 0.72f, (1 - arrival) * 0.65f, 0.34f);
         }
     }
 }

@@ -1,0 +1,22 @@
+# K10 — reference audit 1.5+ and adaptation
+
+2026-10-14. User: purchased stat gains last until end of run, across halls/endless; new run resets. Do not import profile candy growth/upkeep/manual knockback/co-op against prior decisions.
+
+## Sources
+
+- Primary viewed gameplay: [Belle1.5](https://www.youtube.com/watch?v=70OufN07abE) and [Boo Fortress1.5](https://www.youtube.com/watch?v=tqvQPCo51xc). Local contactsheets `Logs/K10-reference-combat.png`, `Logs/K9-reference-stats.png`: sparse small silhouettes, separate weapons, distinctive enemy palette, compact impact bursts, readable round projectiles, bottom shop hints, upper-right bonds. Reference footage stays outside shipped assets. No artwork/audio copied.
+- [Companions](https://zenless-zone-zero.fandom.com/wiki/Bizarre_Brigade/Companions): indexed excerpts show scoped team/player/tag-dependent effects, merge tiers and bonds. [Relics](https://zenless-zone-zero.fandom.com/wiki/Bizarre_Brigade/Relics): indexed effects include flat melee/ranged damage, bullet pierce, chance-based bounce, division and size. Full pages remain blocked; do not claim complete page extraction or exact1.5 formulas. The publicly documented groups inform our own original content, not a verbatim item catalog.
+- [Dream Seekers](https://zenless-zone-zero.fandom.com/wiki/Bizarre_Brigade/Dream_Seekers): protagonist-specific rules and correction factors; page itself warns of missing/version-mixed data. [Game8](https://game8.co/games/Zenless-Zone-Zero/archives/475381) supports character overrides and relative stats but has incomplete entries.
+- [Overview](https://zenless-zone-zero.fandom.com/wiki/Bizarre_Brigade), [Nightmares](https://zenless-zone-zero.fandom.com/wiki/Bizarre_Brigade/Nightmares), [Achievements](https://zenless-zone-zero.fandom.com/wiki/Bizarre_Brigade_(Achievement)), [1.5 release announcement](https://www.hoyolab.com/article/36519625): useful coverage targets; blocked/incomplete contents are not reported as fully read. [Icy Veins](https://www.icy-veins.com/zenless-zone-zero/bizarre-brigade) is a later overview, not a1.5 formula authority. Community patch reposts mention range affecting bullet flight after1.5; our authored range affects flight distance accordingly, without claiming matching internal units.
+
+## Adaptations implemented in code
+
+- Missing core categories now have modifier types: score, outgoing collision, flat melee/ranged damage, attack range, dodge and income. Projectile modifiers: pierce, first-impact split, bounce chance, size, speed and travel distance. Body/hitbox size, knockback, collision frequency, heart healing, chest quality, enemy count/HP/speed, recruit/relic discount, rarity weight and health/damage/speed/armor/regen correction added.
+- Bonuses compile into weapon/unit/collision/economy mechanics, not only UI text. Data and stacks persist in run snapshot; no profile stat reward. Split descendants cannot recursively split; eight chance ricochets, six split branches, projectile size ×0.25–4, technical4096-live-projectile/96-per-shot bounds. Owned stacks/roster are not deleted by caps. Dodge0–60%, separately rolled per incoming hit, no generic hit invulnerability.
+- Added32 original four-frame species and24 original weapons, not cloned reference characters. Eight authored bonds have4–6 species each. This is Arcane roster organization, not a claim that reference has an identical per-bond species cap. Arbitrary high roster counts remain stress fixtures, not normal per-bond content.
+- Ground shadows are layered soft contact plus directional silhouette; airborne elevation softens/fades contact. Light direction kept consistent. These are art-directed2D projections, not physical realtime ray-traced lighting.
+- Effects retain existing material-specific hit/death, squash, slash anticipation/recovery and trails. Painted attack bursts now tint by element, projectile size applies to collision and visual, grounded silhouettes replace tinted faction disks.
+
+## Not falsely claimed
+
+No complete clone of every public Dream Seeker, relic trigger, Nightmare, altar species or achievements. Companion corrections in our data are original and coefficients use Arcane units/caps; no claim exact BB parity. Human taste approval cannot be inferred from generated-art resolution/tests. The previous comparison in `Bizarre_Brigade_15_Stat_Comparison.md` describes K9, not currentK10 implementation.

@@ -141,6 +141,7 @@ namespace ArcaneBrigade
                 yield return Resize(3840, 2160);
             }
             int[] counts = video ? new[] { 24 } : new[] { 1, 56, 100 };
+            if (!video && Array.IndexOf(args, "-arcane-k10") >= 0) counts = new[] { 1, 39, 56, 100 };
             foreach (int count in counts)
             {
                 using (var session = new RunSession(content))
@@ -149,7 +150,7 @@ namespace ArcaneBrigade
                     session.State.Endless = count == 100; session.State.StartHall = count == 100 ? 21 : 1;
                     session.State.Roster.Clear();
                     for (int rosterIndex = 0; rosterIndex < count; rosterIndex++)
-                        session.State.Roster.Add(new RosterEntry { UnitId = content.Companions[rosterIndex / content.Weapons.Length % content.Companions.Length].Id, WeaponId = content.Weapons[rosterIndex % content.Weapons.Length].Id, Tier = count == 100 ? 2 : 1 });
+                        session.State.Roster.Add(new RosterEntry { UnitId = content.Companions[Array.IndexOf(args, "-arcane-k10") >= 0 ? rosterIndex % content.Companions.Length : rosterIndex / content.Weapons.Length % content.Companions.Length].Id, WeaponId = content.Weapons[rosterIndex % content.Weapons.Length].Id, Tier = count == 100 ? 2 : 1 });
                     foreach (ItemDefinition item in content.Items) if (item.SignatureRole != SignatureRelicKind.None) session.State.Items.Add(new ItemStack { Id = item.Id, Count = 1 });
                     session.Validate(session.State); storage.SaveRun(session.State);
                 }
@@ -181,7 +182,14 @@ namespace ArcaneBrigade
                 yield return Shot("03-combat-roster-" + count);
                 Check(Time.timeScale == 1, "No timeScale acceleration in native run " + count);
                 Check(owner.Session.State.Phase == SessionPhase.Combat, "Measurement remained in live combat " + count);
-                owner.ToggleDetails(); yield return Shot("04-details-roster-" + count); owner.ToggleDetails();
+                owner.ToggleDetails(); yield return new WaitForSecondsRealtime(0.3f); yield return Shot("04-details-roster-" + count);
+                if (count == 39 && Array.IndexOf(args, "-arcane-k10") >= 0)
+                {
+                    Check(owner.Content.Companions.Length == 39 && owner.Content.Weapons.Length == 40, "K10 full roster and 24 new weapon definitions loaded in player");
+                    Check(GlossaryUI.Show("split") && GlossaryUI.Open, "K10 contextual term route opens glossary in player");
+                    yield return Shot("04-k10-glossary"); GlossaryUI.Close();
+                }
+                owner.ToggleDetails();
                 owner = null;
             }
             if (!video && Array.IndexOf(args, "-arcane-k8") >= 0)
@@ -294,7 +302,7 @@ namespace ArcaneBrigade
                 }
                 owner = null;
             }
-            notes.Add("Windows fixture seed7707, native resolution3840x2160 (video1920x1080), timeScale1, movement-only circle driver, seeded1/56/100 unique body+weapon roster and relics. No HP/invulnerability/weapon/enemy timer adjustments. Native instrumentation captures real Unity frame/memory/GC/GPU where counters exist; NA means unavailable, not zero-cost. CSV/summary measured before screenshots and without video encoder. Not natural20hall balance/human feel/device approval. Aspect screenshots are desktop resizes, not device safe-area evidence. Video flag leaves22seconds for external game-window-only60fps recording; separate audio audition, no microphone/desktop capture.");
+            notes.Add("Windows fixture seed7707, native resolution3840x2160 (video1920x1080), timeScale1, movement-only circle driver, seeded1/56/100 (K10:1/39/56/100) unique body+weapon roster and relics. No HP/invulnerability/weapon/enemy timer adjustments. Native instrumentation captures real Unity frame/memory/GC/GPU where counters exist; NA means unavailable, not zero-cost. CSV/summary measured before screenshots and without video encoder. Not natural20hall balance/human feel/device approval. Aspect screenshots are desktop resizes, not device safe-area evidence. Video flag leaves22seconds for external game-window-only60fps recording; separate audio audition, no microphone/desktop capture.");
             metrics.Insert(0, "Device=" + SystemInfo.graphicsDeviceName + "; backend=" + SystemInfo.graphicsDeviceType + "; CPU=" + SystemInfo.processorType + "; RAM=" + SystemInfo.systemMemorySize + "MiB; OS=" + SystemInfo.operatingSystem);
             File.WriteAllLines(Path.Combine(root, "Native_Metrics.txt"), metrics); File.WriteAllLines(Path.Combine(root, "CaptureNotes.txt"), notes);
             Debug.Log(failed ? "K7_NATIVE_CAPTURE_FAILED" : "K7_NATIVE_CAPTURE_PASSED"); Application.Quit(failed ? 1 : 0);

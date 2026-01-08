@@ -25,13 +25,15 @@ MonoBehaviour:
   Speed: 5.1
   Radius: 0.25
   BodyHeight: 0.9
+  BodyScale: 1
   ContactDamage: 4
   ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - archive
-  - frost
+  - astral
   Passive: 3
   PassiveStrength: 0.8
   Description: "S\xE1t th\u01B0\u01A1ng ri\xEAng t\u0103ng theo s\u1ED1 \u0111\u1ED3ng

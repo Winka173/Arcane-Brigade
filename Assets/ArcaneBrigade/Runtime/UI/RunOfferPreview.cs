@@ -5,7 +5,7 @@ namespace ArcaneBrigade
         public static string Capture(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
             if (!session.CanBuy(offer)) return "Không thể mua: kiểm tiền/HP, stack limit hoặc weapon variant.";
-            if (offer.Kind == OfferKind.Companion) return "Vũ khí roll sau khi mua. Ba cùng loại/cấp sẽ merge; một body tính một bond. Không preview một weapon như đã chốt.";
+            if (offer.Kind == OfferKind.Companion) return "Vũ khí roll sau khi mua. Ba cùng loại/cấp sẽ merge; một body tính một bond. Không preview một weapon như đã chốt.\n" + RunModifierRules.DescribeCompanion(catalog.Unit(offer.Id), 1);
             RunBuildReadModel before = RunBuildReadModel.Capture(session, catalog, session.State.Health);
             using (var preview = new RunSession(catalog))
             {

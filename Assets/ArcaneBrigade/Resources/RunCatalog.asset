@@ -30,6 +30,38 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afb269d7f49173744965af13a4dd4f4b, type: 2}
   - {fileID: 11400000, guid: 200eedc19dd67de498098654dbabb60e, type: 2}
   - {fileID: 11400000, guid: 480b991e7bebb874f9981841d690e849, type: 2}
+  - {fileID: 11400000, guid: 6598adcbac6d10048ae8aac196c58cfe, type: 2}
+  - {fileID: 11400000, guid: e7ddcd7b5506e454c850ee92ba16ffca, type: 2}
+  - {fileID: 11400000, guid: 8157d09c5135e23468d30140e36c8271, type: 2}
+  - {fileID: 11400000, guid: 47306863257d5eb42a4447efd2033499, type: 2}
+  - {fileID: 11400000, guid: a69135bf1e1d65f49ba33a526011912c, type: 2}
+  - {fileID: 11400000, guid: 364e403c97869214a936d80d27c7b98e, type: 2}
+  - {fileID: 11400000, guid: b9c3ba0e17cd42c4085991d33814872b, type: 2}
+  - {fileID: 11400000, guid: 38cc34445b1bc0b47b7cd09322962199, type: 2}
+  - {fileID: 11400000, guid: 92d2bc6cecfafcb45a3efac22141bf64, type: 2}
+  - {fileID: 11400000, guid: 58992d13f566eb849a1224df731e178e, type: 2}
+  - {fileID: 11400000, guid: 1fc5efd548d5f9340b87758ce377bff8, type: 2}
+  - {fileID: 11400000, guid: 664027b2f06ed834783ddd143970bf75, type: 2}
+  - {fileID: 11400000, guid: 7ac34c2f2e6ec8c46976b882ffe53120, type: 2}
+  - {fileID: 11400000, guid: 7c030128686806d4fa9a0c528dfb4ba4, type: 2}
+  - {fileID: 11400000, guid: 15ac2f4b3c127aa4b94e12730f0ac90a, type: 2}
+  - {fileID: 11400000, guid: 1b9efe144c1a33443afc1368cece6fe4, type: 2}
+  - {fileID: 11400000, guid: 37e6de30ea449e44e9d8ebece323303e, type: 2}
+  - {fileID: 11400000, guid: 7a317574e4a11cc4a9ceeebc9b795969, type: 2}
+  - {fileID: 11400000, guid: d17250df66fe12643a549f0be860a890, type: 2}
+  - {fileID: 11400000, guid: 4aabcad1d06f9614cb94c41fd1da80f8, type: 2}
+  - {fileID: 11400000, guid: 89f1f1d40b8b4704a9a7acfb4629e798, type: 2}
+  - {fileID: 11400000, guid: ab6a4c48bef5071469fef2b40508b054, type: 2}
+  - {fileID: 11400000, guid: 29a4c54381ef9ff468056dd494d1dc0e, type: 2}
+  - {fileID: 11400000, guid: 44ed9c48dcea28f4d832950629d898a1, type: 2}
+  - {fileID: 11400000, guid: df187b6f49951534dafa15ad40b890f4, type: 2}
+  - {fileID: 11400000, guid: d88a024a63e7f8346b2b2e7d4801dccb, type: 2}
+  - {fileID: 11400000, guid: 63f94e34548fd614ba384585459192d6, type: 2}
+  - {fileID: 11400000, guid: ceb869f67137efc4a86f685d7ed94ad8, type: 2}
+  - {fileID: 11400000, guid: 672307adc2249014e8309686bc46af52, type: 2}
+  - {fileID: 11400000, guid: 61cef4349d8476d45a855c601689e0e8, type: 2}
+  - {fileID: 11400000, guid: 1bc194bd8884d6b44bd8d621cf597427, type: 2}
+  - {fileID: 11400000, guid: 5fd1ef354ddd67c48a238849096815bc, type: 2}
   Weapons:
   - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
@@ -47,6 +79,30 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9be6ddddde7387a4cb360bbeeec75e78, type: 2}
   - {fileID: 11400000, guid: bcabc075bfdc0ff449271494e19dea5e, type: 2}
   - {fileID: 11400000, guid: c111c8775c40a7543990846407155683, type: 2}
+  - {fileID: 11400000, guid: c49101b482dca144bb87b559088a45ca, type: 2}
+  - {fileID: 11400000, guid: 87c0733b128c4494cbd5888830067d47, type: 2}
+  - {fileID: 11400000, guid: 542fe4212187c014fbbbca11b1a4b631, type: 2}
+  - {fileID: 11400000, guid: 842c8b3c2d1512940b012f06c97790fb, type: 2}
+  - {fileID: 11400000, guid: 69dfbe399ffa9b2499b2be0eb7bf8c92, type: 2}
+  - {fileID: 11400000, guid: 8184162313aaa4147a285272c25678ea, type: 2}
+  - {fileID: 11400000, guid: a90f7c5f27b31c746a18531a28f165f1, type: 2}
+  - {fileID: 11400000, guid: 7f5c0f391f15f844b99467e2edbff077, type: 2}
+  - {fileID: 11400000, guid: 30904810a5a93264aaeb641f7c40c51f, type: 2}
+  - {fileID: 11400000, guid: b851de8e90261f941b7e58cc4bd81cc8, type: 2}
+  - {fileID: 11400000, guid: 1665e13a7f88ef1489fa9c5cf023f24b, type: 2}
+  - {fileID: 11400000, guid: a22718ca5bb6fd4409d7346c3f6d3bd9, type: 2}
+  - {fileID: 11400000, guid: d4c1c7772ddea7b4888b8e5cc0de4665, type: 2}
+  - {fileID: 11400000, guid: 33bb23d863bcac446ab17cc451225cd5, type: 2}
+  - {fileID: 11400000, guid: 14f017f6a49b0934082a86682332d43e, type: 2}
+  - {fileID: 11400000, guid: 3a552c526a3998a428518fbbccaa188b, type: 2}
+  - {fileID: 11400000, guid: b26b42583b43d0c4ba23a33460a7ca62, type: 2}
+  - {fileID: 11400000, guid: d767d8709a798c54b9186acd9c644e90, type: 2}
+  - {fileID: 11400000, guid: a9a2d9fefdfdf754ba93cd3c99a14df1, type: 2}
+  - {fileID: 11400000, guid: b8b75c39f98614a439f9995a95828421, type: 2}
+  - {fileID: 11400000, guid: 361db9a79aee64c40ad6a14a4976232c, type: 2}
+  - {fileID: 11400000, guid: b786846ce06a5a84f9219410e266774f, type: 2}
+  - {fileID: 11400000, guid: 6ac4ac855e2e7844d8c80d1f319a316f, type: 2}
+  - {fileID: 11400000, guid: a9b27cddf2286b24bacaed7af9c6ba1f, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}
@@ -848,6 +904,798 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 10
+  - Id: k10-scoremultiplier
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 H\u1EC7 s\u1ED1 \u0111i\u1EC3m"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 18
+    Value: 0.08
+    Icon: {fileID: -937318099, guid: 1e08db2a58cc3c949bcac9ca1cef7966, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 18
+      Scope: 3
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-collisiondamage
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 S\xE1t th\u01B0\u01A1ng va ch\u1EA1m"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / S\xE1t th\u01B0\u01A1ng va ch\u1EA1m: +2 \xD7 1 = +2\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 19
+    Value: 2
+    Icon: {fileID: 2050716288, guid: 7fb84515817caac478451b9dcfa46914, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 19
+      Scope: 0
+      Value: 2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-meleedamage
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Damage c\u1EADn c\u1ED9ng th\u1EB3ng"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Damage c\u1EADn c\u1ED9ng th\u1EB3ng: +2 \xD7 1 = +2\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 20
+    Value: 2
+    Icon: {fileID: -1553821426, guid: 168550c11e01bf54f978259f8828a6b1, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 20
+      Scope: 0
+      Value: 2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-rangeddamage
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Damage xa c\u1ED9ng th\u1EB3ng"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Damage xa c\u1ED9ng th\u1EB3ng: +2 \xD7 1 = +2\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 21
+    Value: 2
+    Icon: {fileID: -242229779, guid: 34cb187ab144bc745af5a98b7e83fe7c, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 21
+      Scope: 0
+      Value: 2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-attackrange
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1EA7m \u0111\xE1nh"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / T\u1EA7m \u0111\xE1nh: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 22
+    Value: 0.08
+    Icon: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 22
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-dodge
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 N\xE9 tr\xE1nh"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
+      l\u0129nh / N\xE9 tr\xE1nh: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i
+      \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 23
+    Value: 0.08
+    Icon: {fileID: 73887098, guid: 83ffeb8d914794842baf466b85f93186, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 23
+      Scope: 1
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-income
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Thu nh\u1EADp"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / Thu nh\u1EADp: +4 \xD7 1 = +4\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i
+      \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 24
+    Value: 4
+    Icon: {fileID: -1692510590, guid: ae85a9f667d2d2b4bb423053dc7df379, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 24
+      Scope: 3
+      Value: 4
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-bulletpierce
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Xuy\xEAn \u0111\u1EA1n"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Xuy\xEAn \u0111\u1EA1n: +1 \xD7 1 = +1\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 25
+    Value: 1
+    Icon: {fileID: 1679436766, guid: fe22312f2cf8c4241a46975db9985d3f, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 25
+      Scope: 0
+      Value: 1
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-bulletsplit
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Chia nh\xE1nh \u0111\u1EA1n"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Chia nh\xE1nh \u0111\u1EA1n: +1 \xD7 1 = +1\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 26
+    Value: 1
+    Icon: {fileID: 295325108, guid: 1d9a427f385be9244a2b28c6b946500e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 26
+      Scope: 0
+      Value: 1
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-bulletbounce
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 X\xE1c su\u1EA5t n\u1EA3y \u0111\u1EA1n"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / X\xE1c su\u1EA5t n\u1EA3y \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 27
+    Value: 0.08
+    Icon: {fileID: -1619715484, guid: d31e5af4f42711f4e9bcce5bf342237a, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 27
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-bulletsize
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 K\xEDch th\u01B0\u1EDBc \u0111\u1EA1n"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / K\xEDch th\u01B0\u1EDBc \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 28
+    Value: 0.08
+    Icon: {fileID: 1661647115, guid: 5568a7517ad2cc541970cc9c0ae8884b, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 28
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-bulletspeed
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1ED1c \u0111\u1ED9 \u0111\u1EA1n"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / T\u1ED1c \u0111\u1ED9 \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 29
+    Value: 0.08
+    Icon: {fileID: 563702668, guid: 99c1852c8eceff948be975b2fb923f0f, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 29
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-bulletdistance
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Kho\u1EA3ng bay \u0111\u1EA1n"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Kho\u1EA3ng bay \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 30
+    Value: 0.08
+    Icon: {fileID: -221415099, guid: f538a3750f358e943a33d140902c6b92, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 30
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-knockback
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 \u0110\u1EA9y l\xF9i"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / \u0110\u1EA9y l\xF9i: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 31
+    Value: 0.08
+    Icon: {fileID: 1438538688, guid: 095719b9b1c16e144bb720908212f050, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 31
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-bodysize
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 K\xEDch th\u01B0\u1EDBc th\u1EE7 l\u0129nh"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
+      l\u0129nh / K\xEDch th\u01B0\u1EDBc th\u1EE7 l\u0129nh: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 32
+    Value: 0.08
+    Icon: {fileID: 1937520009, guid: d809f178fc93a0c4f8268a308fd2b43a, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 32
+      Scope: 1
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-companionsize
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 K\xEDch th\u01B0\u1EDBc \u0111\u1ED3ng minh"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng
+      minh / K\xEDch th\u01B0\u1EDBc \u0111\u1ED3ng minh: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 33
+    Value: 0.08
+    Icon: {fileID: 1202266405, guid: 60774e083deefd54e9a470b83c057f39, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 33
+      Scope: 2
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-enemycount
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 S\u1ED1 l\u01B0\u1EE3ng qu\xE1i"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / S\u1ED1 l\u01B0\u1EE3ng qu\xE1i: +10% \xD7 1 = +10%\nL\u01B0\u1EE3t
+      ch\u01A1i / H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +20% \xD7 1 = +20%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 34
+    Value: 0.08
+    Icon: {fileID: -1890122771, guid: 697ca3140ac394c4abe1df3dc641e506, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 34
+      Scope: 3
+      Value: 0.1
+    - Effect: 18
+      Scope: 3
+      Value: 0.2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-enemyhealth
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 M\xE1u qu\xE1i"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / M\xE1u qu\xE1i: +10% \xD7 1 = +10%\nL\u01B0\u1EE3t ch\u01A1i /
+      H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +20% \xD7 1 = +20%\nTh\u1EE7 l\u0129nh / M\xE1u
+      t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 35
+    Value: 0.08
+    Icon: {fileID: -1235735543, guid: 456c78d67ceb2c94fb3e9d7f58c0efde, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 35
+      Scope: 3
+      Value: 0.1
+    - Effect: 18
+      Scope: 3
+      Value: 0.2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-enemyspeed
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1ED1c \u0111\u1ED9 qu\xE1i"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / T\u1ED1c \u0111\u1ED9 qu\xE1i: +10% \xD7 1 = +10%\nL\u01B0\u1EE3t
+      ch\u01A1i / H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +20% \xD7 1 = +20%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 36
+    Value: 0.08
+    Icon: {fileID: 686278047, guid: 4c175e45414bdaa40bc8b3c2c569ee4b, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 36
+      Scope: 3
+      Value: 0.1
+    - Effect: 18
+      Scope: 3
+      Value: 0.2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-hearthealing
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 H\u1ED3i t\u1EEB tim"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
+      l\u0129nh / H\u1ED3i t\u1EEB tim: +2 \xD7 1 = +2\nTh\u1EE7 l\u0129nh / M\xE1u
+      t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 37
+    Value: 2
+    Icon: {fileID: 291779487, guid: 2b48c86237673a34e83b8a5ddf536abd, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 37
+      Scope: 1
+      Value: 2
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-chestquality
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Ch\u1EA5t l\u01B0\u1EE3ng r\u01B0\u01A1ng"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / Ch\u1EA5t l\u01B0\u1EE3ng r\u01B0\u01A1ng: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 38
+    Value: 0.08
+    Icon: {fileID: 397209000, guid: 8148d6fc4ea5367419df19ef98ef0e97, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 38
+      Scope: 3
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-recruitdiscount
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Gi\u1EA3m gi\xE1 \u0111\u1ED3ng minh"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / Gi\u1EA3m gi\xE1 \u0111\u1ED3ng minh: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 39
+    Value: 0.08
+    Icon: {fileID: 765566995, guid: 99584e0697c57374ab39df7aa2fd5fbb, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 39
+      Scope: 3
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-relicdiscount
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Gi\u1EA3m gi\xE1 c\u1ED5 v\u1EADt"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / Gi\u1EA3m gi\xE1 c\u1ED5 v\u1EADt: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 40
+    Value: 0.08
+    Icon: {fileID: 1308484604, guid: 783d1c25e01578e46bc850cedab9ad63, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 40
+      Scope: 3
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-shoprarity
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 \u0110\u1ED9 hi\u1EBFm h\xE0ng"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
+      ch\u01A1i / \u0110\u1ED9 hi\u1EBFm h\xE0ng: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 41
+    Value: 0.08
+    Icon: {fileID: -1544474966, guid: 722a97e8d86d6b745ba19cbf692a7f9b, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 41
+      Scope: 3
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-healthcorrection
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh m\xE1u"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
+      l\u0129nh / Hi\u1EC7u ch\u1EC9nh m\xE1u: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 42
+    Value: 0.08
+    Icon: {fileID: -937318099, guid: 1e08db2a58cc3c949bcac9ca1cef7966, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 42
+      Scope: 1
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-damagecorrection
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh damage"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Hi\u1EC7u ch\u1EC9nh damage: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 43
+    Value: 0.08
+    Icon: {fileID: 2050716288, guid: 7fb84515817caac478451b9dcfa46914, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 43
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-speedcorrection
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh t\u1ED1c \u0111\u1ED9"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / Hi\u1EC7u ch\u1EC9nh t\u1ED1c \u0111\u1ED9: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 18
+    Effect: 44
+    Value: 0.08
+    Icon: {fileID: -1553821426, guid: 168550c11e01bf54f978259f8828a6b1, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 44
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
+  - Id: k10-armorcorrection
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh gi\xE1p"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
+      l\u0129nh / Hi\u1EC7u ch\u1EC9nh gi\xE1p: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
+      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 21
+    Effect: 45
+    Value: 0.08
+    Icon: {fileID: -242229779, guid: 34cb187ab144bc745af5a98b7e83fe7c, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 45
+      Scope: 1
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 2
+    AltarPrice: 3
+    SignatureRole: 0
+  - Id: k10-healcorrection
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh h\u1ED3i m\xE1u"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
+      l\u0129nh / Hi\u1EC7u ch\u1EC9nh h\u1ED3i m\xE1u: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 24
+    Effect: 46
+    Value: 0.08
+    Icon: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 46
+      Scope: 1
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+  - Id: k10-collisionfrequency
+    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1EA7n su\u1EA5t va ch\u1EA1m"
+    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
+      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
+      \u0111\u1ED9i / T\u1EA7n su\u1EA5t va ch\u1EA1m: +8% \xD7 1 = +8%\nTh\u1EE7
+      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Price: 27
+    Effect: 47
+    Value: 0.08
+    Icon: {fileID: 73887098, guid: 83ffeb8d914794842baf466b85f93186, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 47
+      Scope: 0
+      Value: 0.08
+    - Effect: 2
+      Scope: 1
+      Value: -1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 50
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 5
+    SignatureRole: 0
   Bonds:
   - Id: hearth
     Name: "B\u1EBFp \u1EA4m"
@@ -893,6 +1741,50 @@ MonoBehaviour:
       Value: 0.15
     - Threshold: 6
       Value: 0.3
+  - Id: orchard
+    Name: "V\u01B0\u1EDDn M\u1ED9ng"
+    Threshold: 2
+    Icon: {fileID: -991718301, guid: b4d4fdcb254a28e4e82a5bb7c64ce85c, type: 3}
+    Effect: 16
+    Value: 0.04
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.04
+    - Threshold: 6
+      Value: 0.08
+  - Id: astral
+    Name: "Tinh T\xFA"
+    Threshold: 2
+    Icon: {fileID: 608553034, guid: 9e6358b84def80646bc9d3ec24bc7470, type: 3}
+    Effect: 28
+    Value: 0.04
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.04
+    - Threshold: 6
+      Value: 0.08
+  - Id: tidal
+    Name: "Thu\u1EF7 Tri\u1EC1u"
+    Threshold: 2
+    Icon: {fileID: 1326636829, guid: 2de0098cfeb2c084d9925f3154964afa, type: 3}
+    Effect: 27
+    Value: 0.04
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.04
+    - Threshold: 6
+      Value: 0.08
+  - Id: oddity
+    Name: "\u0110\u1ED3 D\u1ECB"
+    Threshold: 2
+    Icon: {fileID: 1554392765, guid: 5e1b2e412571c9b479c388262e2b6fd7, type: 3}
+    Effect: 23
+    Value: 0.04
+    ExtraBonuses:
+    - Threshold: 4
+      Value: 0.04
+    - Threshold: 6
+      Value: 0.08
   Recipes:
   - Id: dream-pillow
     FirstUnit: HoodWisp
@@ -1029,6 +1921,7 @@ MonoBehaviour:
   SignatureRevision: 1
   ExpansionRevision: 1
   ContentRevision: 1
+  StatRevision: 1
   ArenaPropSprites:
   - {fileID: 1517528812, guid: 047d018c633860743877d383df2f3edd, type: 3}
   - {fileID: -655209866, guid: 047d018c633860743877d383df2f3edd, type: 3}

@@ -29,6 +29,7 @@ namespace ArcaneBrigade
                 float height = index % 4 == 0 ? 2.15f : 1.5f;
                 child.transform.localScale = Vector3.one * (height / renderer.sprite.bounds.size.y);
                 renderer.sortingOrder = 1000 - Mathf.RoundToInt(position.y * 12); props.Add(renderer);
+                child.AddComponent<StaticGroundShadow>();
                 ShopFloorShadow.Create(transform, position + Vector2.down * height * 0.44f, height * 0.7f, 0.38f);
             }
             GameObject ground = GameObject.Find("HD_TiledFloor");

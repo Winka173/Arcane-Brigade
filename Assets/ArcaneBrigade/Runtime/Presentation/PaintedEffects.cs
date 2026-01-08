@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class PaintedEffects : MonoBehaviour
     {
-        private sealed class Burst { public SpriteRenderer View; public Sprite[] Frames; public float Age = 10; public float Duration; public float Width; }
+        private sealed class Burst { public SpriteRenderer View; public Sprite[] Frames; public float Age = 10; public float Duration; public float Width; public Color Tint; }
         private readonly List<Burst> pool = new List<Burst>();
         private PaintedAnimationLibrary library;
         private void Awake() { library = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary"); }
@@ -29,6 +29,7 @@ namespace ArcaneBrigade
                 burst = new Burst { View = child.AddComponent<SpriteRenderer>() }; burst.View.sortingOrder = 1850; pool.Add(burst);
             }
             burst.Age = 0; burst.Duration = duration; burst.Frames = frames; burst.Width = width;
+            burst.Tint = slash || magic ? Color.Lerp(Color.white, ArcadeEffects.ElementColor(value.Element), 0.3f) : Color.white;
             burst.View.sprite = frames[0]; burst.View.enabled = true; burst.View.color = Color.white;
             burst.View.transform.position = position;
             burst.View.transform.rotation = Quaternion.Euler(0, 0, slash ? Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg : 0);
@@ -43,7 +44,7 @@ namespace ArcaneBrigade
                 burst.View.sprite = burst.Frames[Mathf.Min(3, Mathf.FloorToInt(progress * 4))];
                 float scale = burst.Width / burst.View.sprite.bounds.size.x;
                 burst.View.transform.localScale = Vector3.one * scale * (PresentationSettings.ReducedMotion ? 1 : 0.9f + progress * 0.18f);
-                burst.View.color = new Color(1, 1, 1, Mathf.Clamp01((1 - progress) * 3));
+                Color tint = burst.Tint; tint.a = Mathf.Clamp01((1 - progress) * 3); burst.View.color = tint;
                 if (progress >= 1) burst.View.enabled = false;
             }
         }

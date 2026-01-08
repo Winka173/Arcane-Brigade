@@ -6,6 +6,7 @@ namespace ArcaneBrigade
     {
         private SpriteRenderer shadow;
         private SpriteRenderer glint;
+        private GroundShadow grounded;
         public void Display(PickupState state, SpriteRenderer renderer, Sprite disc, Sprite spark, float time, float interpolation)
         {
             if (shadow == null)
@@ -32,6 +33,9 @@ namespace ArcaneBrigade
             shadow.transform.localScale = new Vector3(width * 0.92f / parentScale.x, width * 0.29f / parentScale.y, 1) / disc.bounds.size.x;
             shadow.color = new Color(0.04f, 0.025f, 0.08f, 0.30f * (1 - height));
             shadow.sortingOrder = 490;
+            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(renderer.sprite); }
+            grounded.Display(renderer.sprite, ground, width * 0.95f, height, 0.3f);
+            shadow.gameObject.SetActive(false);
             float pulse = Mathf.Pow(Mathf.Max(0, Mathf.Cos(age * 4 + state.Id * 1.3f)), 12);
             glint.gameObject.SetActive(pulse > 0.05f); glint.sprite = spark;
             glint.transform.position = ground + new Vector2(0.06f * spin, height + 0.07f);
@@ -46,12 +50,13 @@ namespace ArcaneBrigade
             child.transform.SetParent(transform, false);
             return child.AddComponent<SpriteRenderer>();
         }
-        public void Hide() { if (shadow != null) shadow.gameObject.SetActive(false); if (glint != null) glint.gameObject.SetActive(false); }
+        public void Hide() { if (shadow != null) shadow.gameObject.SetActive(false); if (glint != null) glint.gameObject.SetActive(false); if (grounded != null) grounded.Hide(); }
         public void SetFade(SpriteRenderer renderer, float alpha)
         {
             Color body = renderer.color; body.a *= alpha; renderer.color = body;
             if (shadow != null) { Color color = shadow.color; color.a *= alpha; shadow.color = color; }
             if (glint != null) { Color color = glint.color; color.a *= alpha; glint.color = color; }
+            if (grounded != null) grounded.Fade(alpha);
         }
     }
 }

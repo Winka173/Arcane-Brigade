@@ -19,7 +19,8 @@ namespace ArcaneBrigade
 
         public static float BodyHeight(UnitState unit)
         {
-            return unit.Faction == Faction.Companion ? Mathf.Min(unit.Definition.BodyHeight * 0.72f, 0.64f) : unit.Definition.BodyHeight;
+            float scale = Mathf.Max(0.01f, unit.Definition.BodyScale);
+            return unit.Faction == Faction.Companion ? Mathf.Min(unit.Definition.BodyHeight / scale * 0.72f, 0.64f) * scale : unit.Definition.BodyHeight;
         }
 
         public static float WeaponWidth(UnitState unit)

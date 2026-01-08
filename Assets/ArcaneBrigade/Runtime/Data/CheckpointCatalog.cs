@@ -15,6 +15,9 @@ namespace ArcaneBrigade
         public bool CompanionInterceptor;
         public float PassiveHeal;
         public float Armor;
+        public float Dodge;
+        public float HeartHealing;
+        public float ChestQuality;
         public UnitDefinition MeleeEnemy;
         public UnitDefinition RangedEnemy;
         public Sprite Hand;

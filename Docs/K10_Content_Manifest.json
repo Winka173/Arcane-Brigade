@@ -1,0 +1,342 @@
+{
+  "characters": [
+    [
+      "BrassAcorn",
+      "Hạt Dẻ Bưu Tá",
+      "archive",
+      "warm brass acorn with a teal folded-envelope cap and tiny boots"
+    ],
+    [
+      "BreadCrab",
+      "Cua Bánh Mì",
+      "hearth",
+      "a triangular toasted bread slice crab with two little crust feet, a butter pat eyebrow, no claws or arms"
+    ],
+    [
+      "KettleBat",
+      "Dơi Ấm Đun",
+      "hearth",
+      "a squat coral red kettle creature with folded bat-ear lid, spout like a hooked nose, tiny boots, no wings"
+    ],
+    [
+      "BookmarkGolem",
+      "Golem Kẹp Sách",
+      "archive",
+      "a tall folded mint bookmark golem with one huge curious eye and a purple ribbon tail, two paper feet"
+    ],
+    [
+      "TinTick",
+      "Ve Hộp Thiếc",
+      "clock",
+      "a flat square brass biscuit tin insect with two spring antennae and two little black boots"
+    ],
+    [
+      "SpringDuck",
+      "Vịt Lò Xo",
+      "clock",
+      "a teal wind-up rubber duck with a copper spring pedestal instead of legs, stubby beak, no arms or wings"
+    ],
+    [
+      "ButtonBeetle",
+      "Bọ Cúc Áo",
+      "clock",
+      "a violet four-hole button beetle with a single eye peeking through one hole and tiny clockwork feet"
+    ],
+    [
+      "StapleMole",
+      "Chuột Dập Ghim",
+      "clock",
+      "a cream office stapler shaped like a sleepy burrowing mole, long hinged snout, coral inner mouth, two boots"
+    ],
+    [
+      "SnowSpoon",
+      "Muỗng Tuyết",
+      "frost",
+      "a tall pale blue soup spoon snow spirit, bowl-shaped face, gold scarf, two tiny boots"
+    ],
+    [
+      "IceCreamOwl",
+      "Cú Kem",
+      "frost",
+      "a mint and lavender ice-cream scoop owl in a short waffle cup, two huge asymmetrical eyes, two biscuit feet, no wings"
+    ],
+    [
+      "FridgeWisp",
+      "Ma Tủ Lạnh",
+      "frost",
+      "a squat cream mini fridge ghost with one eye on the upper door and frost drips below, short feet"
+    ],
+    [
+      "PearMoth",
+      "Bướm Lê",
+      "orchard",
+      "a sideways pear creature wearing two folded leaf antennae like a moth, coral cheeks, two wooden feet, no wings"
+    ],
+    [
+      "CitrusToad",
+      "Cóc Cam",
+      "orchard",
+      "a wide squat orange half-citrus toad with leafy eyebrows, very wide mouth, two lime feet, no arms"
+    ],
+    [
+      "RadishJester",
+      "Củ Cải Hề",
+      "orchard",
+      "a slim upside-down red radish jester with a curling leaf cap and mismatched diamond eyes, two root feet"
+    ],
+    [
+      "SeedHedgehog",
+      "Nhím Hạt",
+      "orchard",
+      "a rounded dark chocolate seed hedgehog with five large mint leaf spikes and a tiny gold nose, two boots"
+    ],
+    [
+      "MoonJelly",
+      "Sứa Trăng",
+      "astral",
+      "a lavender crescent moon jelly creature with a hollow crescent silhouette, two floating teal droplets as feet"
+    ],
+    [
+      "StarSock",
+      "Tất Sao",
+      "astral",
+      "a long bent teal sock creature with a gold star patch eye and floppy violet cuff, two little heel feet"
+    ],
+    [
+      "CometKite",
+      "Diều Sao Chổi",
+      "astral",
+      "an asymmetrical coral diamond kite with dark oval eyes, lavender folded paper feet and a gold ribbon tail"
+    ],
+    [
+      "EclipseEgg",
+      "Trứng Nhật Thực",
+      "clock",
+      "a dark navy cracked egg with a brilliant thin cream crescent face and two coral boot feet"
+    ],
+    [
+      "OrbitMoth",
+      "Bướm Quỹ Đạo",
+      "astral",
+      "a squat lilac moth cocoon with a golden orbit halo tilted around its head and two teal feet, no wings"
+    ],
+    [
+      "DreamCompass",
+      "La Bàn Mộng",
+      "archive",
+      "a brass hexagonal compass creature with a sleepy needle nose and mismatched navy eyes, two teal boots"
+    ],
+    [
+      "ShellPostman",
+      "Ốc Bưu Tá",
+      "tidal",
+      "a huge mint spiral shell carrying a coral postage stamp face, two little sandy feet, no arms"
+    ],
+    [
+      "CoralTeacup",
+      "Tách San Hô",
+      "tidal",
+      "a tilted cream teacup sea spirit with three large red coral prongs on its rim and sea-blue eyes, two shell feet"
+    ],
+    [
+      "BubbleKoi",
+      "Cá Bong Bóng",
+      "tidal",
+      "a translucent-looking but opaque pale teal round koi creature with coral fins like eyebrows, two little gold tail-feet"
+    ],
+    [
+      "AnchorSnail",
+      "Ốc Mỏ Neo",
+      "tidal",
+      "a gold anchor-shaped snail creature with lavender shell embedded in its loop and two broad mint feet"
+    ],
+    [
+      "SailSquid",
+      "Mực Cánh Buồm",
+      "tidal",
+      "a navy squid-shaped inkwell creature wearing one cream triangular sail cap, two coral curled feet, no tentacle arms"
+    ],
+    [
+      "SockCyclops",
+      "Tất Độc Nhãn",
+      "hearth",
+      "a striped coral and lavender rolled sock cyclops with one oversized cream eye and two mismatched short boots"
+    ],
+    [
+      "DiceCrab",
+      "Cua Xúc Xắc",
+      "oddity",
+      "a cream tilted dice cube crab with the six pips forming a goofy face, two bent teal feet, no claws"
+    ],
+    [
+      "MaskPepper",
+      "Ớt Mặt Nạ",
+      "oddity",
+      "a long bent red chili pepper with a tiny gold theater mask eye patch and curling mint stem, two boots"
+    ],
+    [
+      "CrayonGremlin",
+      "Quỷ Sáp Màu",
+      "archive",
+      "a chunky purple broken crayon gremlin with a jagged golden wax crown and two teal feet"
+    ],
+    [
+      "MirrorNewt",
+      "Thằn Lằn Gương",
+      "oddity",
+      "a pear-shaped turquoise hand mirror creature with a lavender frame, a reflected sideways eye and two gold feet, no arms"
+    ],
+    [
+      "RibbonSpider",
+      "Nhện Ruy Băng",
+      "oddity",
+      "a navy ribbon bow creature with a single coral eye in its knot and four short curled ribbon feet, no arms"
+    ]
+  ],
+  "weapons": [
+    [
+      "SpoonSabre",
+      "Kiếm Muỗng",
+      "a curved oversized silver soup spoon sabre with teal wrapped handle",
+      "Slash"
+    ],
+    [
+      "ToastCleaver",
+      "Dao Bánh Mì",
+      "a square coral toaster cleaver with two toast slots and gold cutting edge",
+      "Slam"
+    ],
+    [
+      "LollipopLance",
+      "Thương Kẹo",
+      "a long cream and coral spiral lollipop lance with mint ribbon grip",
+      "Thrust"
+    ],
+    [
+      "PaperFan",
+      "Quạt Giấy",
+      "a mint folded paper fan with purple crescent tip and short brass pivot grip",
+      "Slash"
+    ],
+    [
+      "CorkscrewRapier",
+      "Kiếm Vặn Nút",
+      "a corkscrew rapier with navy spiral blade and gold wine-cork grip",
+      "Thrust"
+    ],
+    [
+      "TeabagFlail",
+      "Chùy Túi Trà",
+      "a cream tea bag flail on a short coral cord attached to brass cup-handle grip",
+      "Slam"
+    ],
+    [
+      "UmbrellaHook",
+      "Móc Ô",
+      "a closed lilac umbrella hook blade with curved golden crook grip",
+      "Slash"
+    ],
+    [
+      "PizzaWheel",
+      "Bánh Cưa Pizza",
+      "a round mint pizza cutter saw with coral spoke and brass handle pointing left",
+      "Slash"
+    ],
+    [
+      "MoonScythe",
+      "Lưỡi Hái Trăng",
+      "a cream crescent scythe blade on a short navy handle with teal wrapping",
+      "Slash"
+    ],
+    [
+      "ForkTrident",
+      "Đinh Ba Nĩa",
+      "a chunky golden three-pronged fork trident with coral enamel handle",
+      "Thrust"
+    ],
+    [
+      "MaracaHammer",
+      "Búa Lục Lạc",
+      "a bulbous coral maraca hammer covered in three large cream dots with navy handle",
+      "Slam"
+    ],
+    [
+      "TapeWhip",
+      "Roi Băng Keo",
+      "a rolled mint measuring tape whip with curled gold blade and purple box grip",
+      "Slash"
+    ],
+    [
+      "ButtonBow",
+      "Cung Cúc Áo",
+      "a navy crescent bow studded with three large mint buttons and gold taut string",
+      "Bow"
+    ],
+    [
+      "LeafCrossbow",
+      "Nỏ Lá",
+      "a compact coral crossbow formed of two broad mint leaves with gold bolt channel",
+      "Bow"
+    ],
+    [
+      "InkPistol",
+      "Súng Mực",
+      "a brass inkwell pistol with navy barrel, coral trigger bulb, mint ink droplet muzzle",
+      "Recoil"
+    ],
+    [
+      "BubbleWand",
+      "Đũa Bong Bóng",
+      "a mint bubble wand with double gold loop tip and lavender twisted handle",
+      "Cast"
+    ],
+    [
+      "StarKazoo",
+      "Kèn Sao",
+      "a short gold kazoo with a coral star bell and navy mouthpiece",
+      "Cast"
+    ],
+    [
+      "ShellCannon",
+      "Pháo Vỏ Ốc",
+      "a squat purple spiral conch cannon with gold rim and teal short stock",
+      "Recoil"
+    ],
+    [
+      "AcornSling",
+      "Ná Hạt Dẻ",
+      "a mint Y-shaped slingshot with coral bands and brass acorn-shaped grip",
+      "Bow"
+    ],
+    [
+      "CrescentBoomerang",
+      "Boomerang Trăng",
+      "a cream crescent boomerang with coral weighted tips and teal runes",
+      "Recoil"
+    ],
+    [
+      "DartCompass",
+      "La Bàn Phi Tiêu",
+      "a gold eight-point compass throwing star with navy central eye and mint points",
+      "Recoil"
+    ],
+    [
+      "LanternStaff",
+      "Trượng Đèn",
+      "a short navy staff topped with a mint lantern cage and one coral flame",
+      "Cast"
+    ],
+    [
+      "SnowGlobeOrb",
+      "Cầu Tuyết",
+      "a pale mint glass snow-globe spell focus with coral tiny tower inside and brass base",
+      "Cast"
+    ],
+    [
+      "RibbonHarp",
+      "Đàn Ruy Băng",
+      "a coral triangular mini harp with gold strings and mint ribbon spiral grip",
+      "Cast"
+    ]
+  ]
+}

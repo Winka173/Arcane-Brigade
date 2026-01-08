@@ -64,6 +64,7 @@ namespace ArcaneBrigade
         public List<RunTransactionReceipt> Receipts = new List<RunTransactionReceipt>();
         public int LastIncome;
         public int LastInterest;
+        public float BuildScoreMultiplier = 1f;
         public string LastDamageSource;
         public float LastDamageAmount;
         public List<RosterEntry> Roster = new List<RosterEntry>();
@@ -255,6 +256,16 @@ namespace ArcaneBrigade
             CombatCatalog.CompanionInterceptor = Bonus(ItemEffect.Interceptor) > 0f;
             CombatCatalog.PassiveHeal = Bonus(ItemEffect.Heal);
             CombatCatalog.Armor = Bonus(ItemEffect.Armor);
+            if (catalog.StatRevision > 0)
+            {
+                CombatCatalog.PassiveHeal *= K10StatRules.Factor(Bonus(ItemEffect.HealCorrection));
+                CombatCatalog.Armor *= K10StatRules.Factor(Bonus(ItemEffect.ArmorCorrection));
+                CombatCatalog.Dodge = Mathf.Clamp(Bonus(ItemEffect.Dodge), 0, 0.6f);
+                CombatCatalog.HeartHealing = Bonus(ItemEffect.HeartHealing);
+                CombatCatalog.ChestQuality = Bonus(ItemEffect.ChestQuality) + Mathf.Max(0, Bonus(ItemEffect.TreasureDetection)) * 0.25f;
+                CombatCatalog.EnemyBudget = Mathf.CeilToInt(CombatCatalog.EnemyBudget * K10StatRules.Factor(Bonus(ItemEffect.EnemyCount), 0.2f, 4));
+                CombatCatalog.SpawnInterval /= K10StatRules.Factor(Bonus(ItemEffect.EnemyCount), 0.2f, 4);
+            }
             CombatCatalog.Seed = unchecked(State.Seed + State.Wave * 7919);
             CombatCatalog.GoldPerKill = 2;
             CombatCatalog.ExtendedLoot = catalog.LootRevision > 0;
@@ -339,6 +350,7 @@ namespace ArcaneBrigade
             unit.Speed *= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.MoveSpeed, target));
             if (!companion) unit.Health = Mathf.Max(1f, unit.Health + Bonus(ItemEffect.Health));
             if (companion) unit.BodyHeight *= 1f + (tier - 1) * 0.12f;
+            K10StatRules.ApplyUnit(this, catalog, unit, source, weapon, tier, companion);
             return unit;
         }
 
@@ -358,6 +370,12 @@ namespace ArcaneBrigade
             unit.Speed *= Mathf.Min(1.6f, 1f + (State.Wave - 1) * 0.018f);
             unit.ContactDamage = Mathf.Min(14f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min(source.IsBoss ? 26f : 14f, source.Weapon.Damage + State.Wave * 0.35f);
+            if (catalog.StatRevision > 0)
+            {
+                float late = Mathf.Max(0, State.Wave - 10);
+                unit.Health *= (1 + late * 0.055f) * K10StatRules.Factor(Bonus(ItemEffect.EnemyHealth), 0.2f, 10);
+                unit.Speed *= K10StatRules.Factor(Bonus(ItemEffect.EnemySpeed), 0.25f, 2);
+            }
             return unit;
         }
 
@@ -367,6 +385,7 @@ namespace ArcaneBrigade
         {
             if (State.Phase != SessionPhase.Combat || (simulation.Phase != RunPhase.Victory && simulation.Phase != RunPhase.Defeat)) return;
             State.Health = simulation.Champion.Health;
+            State.BuildScoreMultiplier = catalog.StatRevision > 0 ? K10StatRules.Factor(Bonus(ItemEffect.ScoreMultiplier), 0.1f, 100) : 1;
             State.LastDamageSource = simulation.LastDamageSource;
             State.LastDamageAmount = simulation.LastDamageAmount;
             State.LastDamageKind = simulation.LastDamageKind;
@@ -383,7 +402,7 @@ namespace ArcaneBrigade
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
             if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.Phase = SessionPhase.Victory; return; }
             State.LastInterest = Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), State.Gold / Mathf.Max(1, catalog.InterestDivisor));
-            State.LastIncome = BoundedCounter((long)catalog.Income + (long)State.Wave * 2);
+            State.LastIncome = BoundedCounter((long)catalog.Income + (long)State.Wave * 2 + Mathf.FloorToInt(Bonus(ItemEffect.Income)));
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
             State.Health = Mathf.Min(CombatCatalog.Champion.Health, State.Health + 8f);
             State.Phase = SessionPhase.Shop;
@@ -413,12 +432,12 @@ namespace ArcaneBrigade
             State.DefeatedBosses.Clear();
             State.LastDamageSource = State.LastDamageKind = "";
             State.LastDamageAmount = 0;
-            State.LastIncome = catalog.Income;
+            State.LastIncome = BoundedCounter((long)catalog.Income + Mathf.FloorToInt(Bonus(ItemEffect.Income)));
             State.LastInterest = 0;
             State.TotalKills = State.BossKills = 0;
             State.CombatSeconds = 0f;
             State.Phase = SessionPhase.Shop;
-            State.Gold = BoundedCounter((long)State.Gold + catalog.Income);
+            State.Gold = BoundedCounter((long)State.Gold + State.LastIncome);
             RollShop(true);
         }
 
@@ -452,6 +471,7 @@ namespace ArcaneBrigade
             offer.Sold = true;
             RecountBonds();
             ReconcileHealth(previousMaximum);
+            State.BuildScoreMultiplier = catalog.StatRevision > 0 ? K10StatRules.Factor(Bonus(ItemEffect.ScoreMultiplier), 0.1f, 100) : 1;
             Notice = "Purchased. " + (offer.Kind == OfferKind.Companion ? "Weapon rolled after purchase." : "Upgrade stacks for this run.");
             return true;
         }
@@ -518,16 +538,18 @@ namespace ArcaneBrigade
         private int WeightedItem(List<ItemDefinition> items)
         {
             long total = 0;
-            foreach (ItemDefinition item in items) total += catalog.EconomyRevision == 0 ? 1 : item.ShopWeight;
+            foreach (ItemDefinition item in items) total += ItemWeight(item);
             if (total <= 0 || total > int.MaxValue) throw new InvalidOperationException("Invalid weighted shop pool");
             int ticket = Next(ref State.ShopRandom, (int)total);
             for (int index = 0; index < items.Count; index++)
             {
-                ticket -= catalog.EconomyRevision == 0 ? 1 : items[index].ShopWeight;
+                ticket -= ItemWeight(items[index]);
                 if (ticket < 0) return index;
             }
             throw new InvalidOperationException("Weighted selection failed");
         }
+
+        private int ItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4)));
 
         private void RollShop(bool rollSpecial = false)
         {
@@ -543,7 +565,8 @@ namespace ArcaneBrigade
                 bool recruit = units.Count > 0 && (index < catalog.ShopSlots / 2 || items.Count == 0);
                 int choice = recruit ? Next(ref State.ShopRandom, units.Count) : WeightedItem(items);
                 int basePrice = recruit ? units[choice].Price : items[choice].Price;
-                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? units[choice].Id : items[choice].Id, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Min(0.5f, Bonus(ItemEffect.Discount))))) });
+                float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
+                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? units[choice].Id : items[choice].Id, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
             if (!rollSpecial) return;
             State.RerollsThisShop = 0;
@@ -592,7 +615,7 @@ namespace ArcaneBrigade
             return true;
         }
 
-        private float MaximumHealth() => Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
+        private float MaximumHealth() => catalog.StatRevision > 0 ? K10StatRules.MaximumHealth(this, catalog) : Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
 
         private void ReconcileHealth(float previousMaximum)
         {

@@ -20,7 +20,7 @@ namespace ArcaneBrigade
         public int Tab => tab;
         public const int TabCount = 4;
         public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; }
-        public void Close() { model = null; }
+        public void Close() { model = null; GlossaryUI.Close(); }
         public void SelectTab(int index) { tab = Mathf.Clamp(index, 0, TabCount - 1); selection = 0; scroll = explanationScroll = Vector2.zero; selectedAt = Time.unscaledTime; }
         public void MoveSelection(int direction)
         {
@@ -41,6 +41,7 @@ namespace ArcaneBrigade
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Color previousTint = GUI.color;
             LivingUI.Enter(Time.unscaledTime - openedAt, new Vector2(960, 540));
+            GlossaryUI.BlockUnderlying(new Vector2(1920, 1080));
             GUIStyle title = titleStyle ?? (titleStyle = ArcadeTypography.Style(44, true));
             GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(25));
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
@@ -65,12 +66,12 @@ namespace ArcaneBrigade
                 RunBuildReadModel.Row row = rows[index];
                 Rect card = new Rect(5, index * rowHeight + 5, 990, rowHeight - 12);
                 RunHud.Fill(card, index == selection ? new Color(0.24f, 0.18f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
-                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
                 float contentLeft = row.Icon != null ? 120 : 28;
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(68, card.y + 62, 42, 48), row.WeaponIcon);
-                GUI.Label(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
+                GlossaryUI.Text(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
                 GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
+                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
             if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "Chưa có đồng minh. Tuyển tại cửa hàng ở khu nghỉ." : tab == 2 ? "Chưa có vật phẩm. Mua tại cửa hàng ở khu nghỉ." : "Chưa có liên kết để xem.", text);
             GUI.EndScrollView();
@@ -78,11 +79,12 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));
             string explanation = rows.Count == 0 ? "" : rows[Mathf.Clamp(selection, 0, rows.Count - 1)].Explanation;
             if (tab == 2) explanation += "\nBIÊN LAI GẦN ĐÂY\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "Chưa có giao dịch đã lưu." : model.Receipts);
-            float explanationHeight = Mathf.Max(620, text.CalcHeight(new GUIContent(explanation), 570) + 30);
+            float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
             explanationScroll = GUI.BeginScrollView(new Rect(1180, 325, 625, 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
-            GUI.Label(new Rect(5, 5, 570, explanationHeight), explanation, text);
+            GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);
             GUI.EndScrollView();
             GUI.Label(new Rect(75, 988, 1750, 42), RunUIHints.DetailsNavigation, text);
+            GlossaryUI.Draw(new Vector2(1920, 1080));
             GUI.matrix = previous;
             GUI.color = previousTint;
             GUI.skin = previousSkin;

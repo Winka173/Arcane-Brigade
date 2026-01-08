@@ -26,7 +26,7 @@ namespace ArcaneBrigade.Editor
                     "MushroomLibrarian" => new[] { Modifier(ItemEffect.Luck, 0.025f), Modifier(ItemEffect.CompanionAttackSpeed, -0.005f) },
                     "HoodWisp" => new[] { Modifier(ItemEffect.Crit, 0.01f), Modifier(ItemEffect.Health, -1f) },
                     "JellySwordsman" => new[] { Modifier(ItemEffect.CompanionDamage, 0.025f), Modifier(ItemEffect.MoveSpeed, -0.005f, ModifierScope.Companions) },
-                    _ => throw new InvalidOperationException("K9: missing authored companion traits: " + unit.Id)
+                    _ => unit.CompanionModifiers
                 };
                 EditorUtility.SetDirty(unit);
             }

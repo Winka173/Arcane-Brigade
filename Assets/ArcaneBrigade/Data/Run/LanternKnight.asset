@@ -25,8 +25,11 @@ MonoBehaviour:
   Speed: 4.8
   Radius: 0.25
   BodyHeight: 0.9
+  BodyScale: 1
   ContactDamage: 4
   ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
@@ -48,6 +51,15 @@ MonoBehaviour:
   - Effect: 5
     Scope: 3
     Value: 0.6
+  - Effect: 19
+    Scope: 1
+    Value: 2
+  - Effect: 27
+    Scope: 2
+    Value: 0.08
+  - Effect: 35
+    Scope: 3
+    Value: 0.08
   CompanionModifiers: []
   Price: 20
   UnlockWave: 0

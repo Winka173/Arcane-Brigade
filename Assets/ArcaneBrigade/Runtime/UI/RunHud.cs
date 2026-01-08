@@ -83,8 +83,10 @@ namespace ArcaneBrigade
             CombatSimulation simulation = owner.Simulation;
             Rect viewport = camera.pixelRect;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(viewport, 1920f, 1080f);
+            GlossaryUI.BlockUnderlying(new Vector2(1920, 1080));
             float health = state.Phase == SessionPhase.Combat ? simulation.Champion.Health : state.Health;
             float maximum = Mathf.Max(1f, owner.Content.Unit(state.ChampionId).Health + session.Bonus(ItemEffect.Health));
+            if (owner.Content.StatRevision > 0) maximum = K10StatRules.MaximumHealth(session, owner.Content);
             int gold = RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0));
             int eggs = RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0));
             if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; }
@@ -184,14 +186,15 @@ namespace ArcaneBrigade
                 }
                 if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; }
                 string description = station.Offer != null ? shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                float contentHeight = small.CalcHeight(new GUIContent(description), 670) + 8;
+                float contentHeight = GlossaryUI.Height(description, small, 670) + 8;
                 Rect panel = ShopTooltipBounds(contentHeight);
                 Fill(panel, Panel);
                 GUI.Label(new Rect(panel.x + 24, panel.y + 16, 690, 38), shop.DisplayName(station), text);
                 shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, 710, panel.height - 85), shopScroll, new Rect(0, 0, 675, contentHeight));
-                GUI.Label(new Rect(0, 0, 670, contentHeight), description, small);
+                GlossaryUI.Text(new Rect(0, 0, 670, contentHeight), description, small);
                 GUI.EndScrollView();
                 if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · MUA" : RunUIHints.Device == RunUIDevice.Touch ? "MUA" : "Space · MUA", button)) shop.Interact();
+                GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }
         public static Rect ShopTooltipBounds(float contentHeight)
@@ -256,9 +259,10 @@ namespace ArcaneBrigade
             if (tooltip != null)
             {
                 float top = 50 + Mathf.CeilToInt(index / 4f) * 88;
-                float height = small.CalcHeight(new GUIContent(tooltip), 385) + 24;
+                float height = GlossaryUI.Height(tooltip, small, 385) + 24;
                 Fill(new Rect(1430, top, 420, height), Panel);
-                GUI.Label(new Rect(1445, top + 12, 385, height - 24), tooltip, small);
+                GlossaryUI.Text(new Rect(1445, top + 12, 385, height - 24), tooltip, small);
+                GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }
 

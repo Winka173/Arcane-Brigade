@@ -74,6 +74,38 @@ PASS MusicBox boundary clears delayed effects
 PASS MusicBox tier 2 auto targeting real damage
 PASS MusicBox finite secondary effects
 PASS MusicBox boundary clears delayed effects
+PASS MaracaHammer full lossless alpha concept sprite
+PASS MaracaHammer actual rules exposed in tooltip
+PASS MaracaHammer tier 1 auto targeting real damage
+PASS MaracaHammer finite secondary effects
+PASS MaracaHammer boundary clears delayed effects
+PASS MaracaHammer tier 2 auto targeting real damage
+PASS MaracaHammer finite secondary effects
+PASS MaracaHammer boundary clears delayed effects
+PASS TapeWhip full lossless alpha concept sprite
+PASS TapeWhip actual rules exposed in tooltip
+PASS TapeWhip tier 1 auto targeting real damage
+PASS TapeWhip finite secondary effects
+PASS TapeWhip boundary clears delayed effects
+PASS TapeWhip tier 2 auto targeting real damage
+PASS TapeWhip finite secondary effects
+PASS TapeWhip boundary clears delayed effects
+PASS CrescentBoomerang full lossless alpha concept sprite
+PASS CrescentBoomerang actual rules exposed in tooltip
+PASS CrescentBoomerang tier 1 auto targeting real damage
+PASS CrescentBoomerang finite secondary effects
+PASS CrescentBoomerang boundary clears delayed effects
+PASS CrescentBoomerang tier 2 auto targeting real damage
+PASS CrescentBoomerang finite secondary effects
+PASS CrescentBoomerang boundary clears delayed effects
+PASS RibbonHarp full lossless alpha concept sprite
+PASS RibbonHarp actual rules exposed in tooltip
+PASS RibbonHarp tier 1 auto targeting real damage
+PASS RibbonHarp finite secondary effects
+PASS RibbonHarp boundary clears delayed effects
+PASS RibbonHarp tier 2 auto targeting real damage
+PASS RibbonHarp finite secondary effects
+PASS RibbonHarp boundary clears delayed effects
 PASS Zipper hits distinct nearby targets through chain
 PASS Camera creates timed visible weakness
 PASS Fish return cannot duplicate its outgoing hit
@@ -131,7 +163,7 @@ PASS Office half-health arena warning phase
 PASS Office no base-health one-hit phase
 PASS Toys half-health arena warning phase
 PASS Toys no base-health one-hit phase
-PASS Save restores expanded stable IDs and roles
+PASS Save restores all expanded stable IDs and roles
 PASS Six build graphs available without hidden set bonus
 PASS signature-tea component-based activation read model
 PASS signature-chorus component-based activation read model

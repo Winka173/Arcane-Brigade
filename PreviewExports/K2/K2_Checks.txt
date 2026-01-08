@@ -26,5 +26,29 @@ PASS Impact pose rotation continuity DreamIron
 PASS Impact pose rotation continuity RubberHammer
 PASS Impact pose rotation continuity AlarmMortar
 PASS Impact pose rotation continuity MusicBox
+PASS Impact pose rotation continuity SpoonSabre
+PASS Impact pose rotation continuity ToastCleaver
+PASS Impact pose rotation continuity LollipopLance
+PASS Impact pose rotation continuity PaperFan
+PASS Impact pose rotation continuity CorkscrewRapier
+PASS Impact pose rotation continuity TeabagFlail
+PASS Impact pose rotation continuity UmbrellaHook
+PASS Impact pose rotation continuity PizzaWheel
+PASS Impact pose rotation continuity MoonScythe
+PASS Impact pose rotation continuity ForkTrident
+PASS Impact pose rotation continuity MaracaHammer
+PASS Impact pose rotation continuity TapeWhip
+PASS Impact pose rotation continuity ButtonBow
+PASS Impact pose rotation continuity LeafCrossbow
+PASS Impact pose rotation continuity InkPistol
+PASS Impact pose rotation continuity BubbleWand
+PASS Impact pose rotation continuity StarKazoo
+PASS Impact pose rotation continuity ShellCannon
+PASS Impact pose rotation continuity AcornSling
+PASS Impact pose rotation continuity CrescentBoomerang
+PASS Impact pose rotation continuity DartCompass
+PASS Impact pose rotation continuity LanternStaff
+PASS Impact pose rotation continuity SnowGlobeOrb
+PASS Impact pose rotation continuity RibbonHarp
 PASS Coin arc and positive spin scale
 PASS Coin shadow world size independent of spin

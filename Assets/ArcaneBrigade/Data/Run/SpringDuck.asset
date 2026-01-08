@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: SpringDuck
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: SpringDuck
+  DisplayName: "V\u1ECBt L\xF2 Xo"
+  Body: {fileID: 519033955, guid: dd11442663499154bb51ccb32b72cef3, type: 3}
+  AnimationFrames:
+  - {fileID: 519033955, guid: dd11442663499154bb51ccb32b72cef3, type: 3}
+  - {fileID: 437231474, guid: dd11442663499154bb51ccb32b72cef3, type: 3}
+  - {fileID: 459491577, guid: dd11442663499154bb51ccb32b72cef3, type: 3}
+  - {fileID: 271491149, guid: dd11442663499154bb51ccb32b72cef3, type: 3}
+  Weapon: {fileID: 11400000, guid: 8184162313aaa4147a285272c25678ea, type: 2}
+  Health: 100
+  Speed: 4.6
+  Radius: 0.22
+  BodyHeight: 0.725
+  BodyScale: 1
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - clock
+  Passive: 0
+  PassiveStrength: 0.5
+  Description: "T\u1EF1 \u0111\xE1nh, b\u1EA5t t\u1EED; \u0111\u1EB7c t\xEDnh gi\u1EEF
+    khi c\xF2n trong roster c\u1EE7a l\u01B0\u1EE3t. Th\u1EE7 l\u0129nh / N\xE9 tr\xE1nh:
+    +2.5%\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1\n\u0110\u1EB7c t\xEDnh
+    c\u1EA5p 1/2/3 \xD71/2/4; gh\xE9p ba ng\u01B0\u1EDDi l\xE0m gi\u1EA3m s\u1ED1
+    ngu\u1ED3n h\u1ED7 tr\u1EE3.\n"
+  ChampionModifiers: []
+  CompanionModifiers:
+  - Effect: 23
+    Scope: 1
+    Value: 0.025
+  - Effect: 2
+    Scope: 1
+    Value: -1
+  Price: 18
+  UnlockWave: 1
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Material: 0
+  Motif: 0

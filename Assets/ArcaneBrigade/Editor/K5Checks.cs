@@ -170,7 +170,7 @@ namespace ArcaneBrigade.Editor
                 using (var restored = new RunSession(content))
                 {
                     restored.Restore(storage.LoadRun(restored)); CheckpointCatalog arena = restored.PrepareCombat();
-                    require(arena.StartingCompanions.Length == 9 && arena.ChorusStacks == 1 && arena.PatchSpring && arena.ThermalInk, "Save restores expanded stable IDs and roles");
+                    require(arena.StartingCompanions.Length == content.Weapons.Count(weapon => weapon.Family != ExpandedWeapon.None) && arena.StartingCompanions.Length >= 9 && arena.ChorusStacks == 1 && arena.PatchSpring && arena.ThermalInk, "Save restores all expanded stable IDs and roles");
                 }
                 require(content.BuildLinks.Count(link => link.Id.StartsWith("signature-")) == 6, "Six build graphs available without hidden set bonus");
                 foreach (string id in new[] { "signature-tea", "signature-chorus", "signature-treasure", "signature-toys" }) require(SignatureBuildGraph.IsActive(id, session, content), id + " component-based activation read model");

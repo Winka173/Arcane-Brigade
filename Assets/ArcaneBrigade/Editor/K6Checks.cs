@@ -66,7 +66,8 @@ namespace ArcaneBrigade.Editor
                 {
                     session.Start(catalog.Champions[0].Id, 61, level);
                     CheckpointCatalog combat = session.PrepareCombat();
-                    require(Mathf.Approximately(combat.MeleeEnemy.Health, catalog.Enemies[0].Health * (1 + level * 0.18f)) && combat.EnemyBudget == Mathf.CeilToInt(33 * (1 + level * 0.12f)), "Difficulty " + level + " explicit HP and budget only");
+                    float enemyHealthTrait = catalog.StatRevision > 0 ? K10StatRules.Factor(session.Bonus(ItemEffect.EnemyHealth)) : 1;
+                    require(Mathf.Approximately(combat.MeleeEnemy.Health, catalog.Enemies[0].Health * (1 + level * 0.18f) * enemyHealthTrait) && combat.EnemyBudget == Mathf.CeilToInt(33 * (1 + level * 0.12f)), "Difficulty " + level + " explicit HP, authored trait and budget");
                     require(combat.MeleeEnemy.ContactDamage <= 14 && combat.MeleeEnemy.Weapon.Damage <= 14 && combat.Champion.Health == catalog.Champions[0].Health, "Difficulty " + level + " damage caps and base Champion unchanged");
                     storage.SaveRun(session.State); session.Restore(storage.LoadRun(session));
                     require(session.State.Difficulty == level && session.State.Seed == 61, "Difficulty " + level + " resume preserves identity");

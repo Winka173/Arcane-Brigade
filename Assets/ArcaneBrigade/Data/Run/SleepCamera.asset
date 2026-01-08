@@ -31,6 +31,9 @@ MonoBehaviour:
   Motion: 9
   ProjectileCount: 1
   ProjectilePierce: 0
+  ProjectileSplit: 0
+  ProjectileBounceChance: 0
+  ProjectileRadius: 0.055
   SwingAngle: 65
   RecoilDistance: 0.09
   BodyAttackTilt: 12

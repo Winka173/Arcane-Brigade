@@ -9,9 +9,9 @@ namespace ArcaneBrigade
         {
             switch (effect)
             {
-                case ItemEffect.Health: case ItemEffect.Heal: case ItemEffect.Armor: case ItemEffect.ChampionDamage: return ModifierScope.Champion;
-                case ItemEffect.CompanionDamage: case ItemEffect.CompanionAttackSpeed: return ModifierScope.Companions;
-                case ItemEffect.Pickup: case ItemEffect.Roam: case ItemEffect.Interceptor: case ItemEffect.Interest: case ItemEffect.Discount: case ItemEffect.Luck: case ItemEffect.TreasureDetection: return ModifierScope.Run;
+                case ItemEffect.Health: case ItemEffect.Heal: case ItemEffect.Armor: case ItemEffect.ChampionDamage: case ItemEffect.Dodge: case ItemEffect.BodySize: case ItemEffect.HeartHealing: case ItemEffect.HealthCorrection: case ItemEffect.ArmorCorrection: case ItemEffect.HealCorrection: return ModifierScope.Champion;
+                case ItemEffect.CompanionDamage: case ItemEffect.CompanionAttackSpeed: case ItemEffect.CompanionSize: return ModifierScope.Companions;
+                case ItemEffect.Pickup: case ItemEffect.Roam: case ItemEffect.Interceptor: case ItemEffect.Interest: case ItemEffect.Discount: case ItemEffect.Luck: case ItemEffect.TreasureDetection: case ItemEffect.ScoreMultiplier: case ItemEffect.Income: case ItemEffect.EnemyCount: case ItemEffect.EnemyHealth: case ItemEffect.EnemySpeed: case ItemEffect.ChestQuality: case ItemEffect.RecruitDiscount: case ItemEffect.RelicDiscount: case ItemEffect.ShopRarity: return ModifierScope.Run;
                 default: return ModifierScope.Team;
             }
         }
@@ -86,13 +86,14 @@ namespace ArcaneBrigade
                 case ItemEffect.Discount: return "Giảm giá hàng bằng vàng";
                 case ItemEffect.Luck: return "May mắn";
                 case ItemEffect.TreasureDetection: return "Phát hiện kho báu";
-                default: return "Hiệu ứng không hợp lệ";
+                default: return K10StatRules.Name(effect);
             }
         }
 
-        private static string ValueText(ItemEffect effect, float value)
+        public static string ValueText(ItemEffect effect, float value)
         {
             bool percent = effect == ItemEffect.Damage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.AttackSpeed || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.MoveSpeed || effect == ItemEffect.Crit || effect == ItemEffect.Discount;
+            if (effect >= ItemEffect.ScoreMultiplier) percent = K10StatRules.Percentage(effect);
             return (percent ? value * 100 : value).ToString("+0.###;-0.###;0") + (percent ? "%" : "");
         }
 

@@ -21,18 +21,18 @@ namespace ArcaneBrigade
                 float wallFraction = ProjectileWallFraction(start, destination, half, out Vector2 normal);
                 UnitState hit = null;
                 float hitFraction = wallFraction;
-                Vector2 padding = Vector2.one * (maximumRadius + 0.055f);
+                Vector2 padding = Vector2.one * (maximumRadius + projectile.Radius);
                 spatial.Query(Vector2.Min(start, destination) - padding, Vector2.Max(start, destination) + padding, projectileCandidates);
                 foreach (UnitState target in projectileCandidates)
                 {
                     bool interceptor = projectile.Faction == Faction.Enemy && target.Alive && target.Faction == Faction.Companion && catalog.CompanionInterceptor;
                     if ((!CanHit(projectile.Faction, target) && !interceptor) || projectile.Victims.Contains(target.Id)) continue;
-                    float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + 0.055f);
+                    float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + projectile.Radius);
                     if (fraction >= 0f && fraction < hitFraction) { hitFraction = fraction; hit = target; }
                 }
                 Vector2 impact = hit == null && wallFraction > 1f ? destination : Vector2.Lerp(start, destination, hitFraction);
                 projectile.Position = impact;
-                NotifyArenaToyHit(source, start, impact, 0.055f, projectile.Velocity.normalized, projectile.Cause);
+                NotifyArenaToyHit(source, start, impact, projectile.Radius, projectile.Velocity.normalized, projectile.Cause);
                 if (hit == null && wallFraction > 1f) return projectile.Remaining > 0f;
                 float travelLeft = (destination - impact).magnitude;
                 if (hit == null)
@@ -56,7 +56,11 @@ namespace ArcaneBrigade
                         projectile.Returning = true;
                         return projectile.Remaining > 0f;
                     }
-                    bool ricochet = projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.TetherBow && TryCombatRicochet(projectile);
+                    bool guaranteed = projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.TetherBow;
+                    bool randomBounce = projectile.Weapon != null && projectile.RandomBounces > 0 && projectile.Weapon.ProjectileBounceChance > 0 && combatRandom.NextDouble() < projectile.Weapon.ProjectileBounceChance;
+                    if (randomBounce && projectile.RicochetsRemaining <= 0) projectile.RicochetsRemaining = 1;
+                    bool ricochet = (guaranteed || randomBounce) && TryCombatRicochet(projectile);
+                    if (ricochet && randomBounce) projectile.RandomBounces--;
                     if (!ricochet && (projectile.Weapon == null || previousVictims >= projectile.Weapon.ProjectilePierce)) return false;
                 }
                 start = projectile.Position;
@@ -90,9 +94,12 @@ namespace ArcaneBrigade
         {
             projectile.SplitOnImpact = false;
             if (projectile.Remaining <= 0f) return;
-            for (int branch = 0; branch < 2; branch++)
+            int count = Mathf.Clamp(projectile.SplitCount > 0 ? projectile.SplitCount : 2, 1, 6);
+            for (int branch = 0; branch < count && projectiles.Count < 4096; branch++)
             {
-                Vector2 velocity = Quaternion.Euler(0, 0, branch == 0 ? -30f : 30f) * projectile.Velocity;
+                float spread = projectile.SplitCount > 0 ? 45 : 30;
+                float angle = count == 1 ? 25 : Mathf.Lerp(-spread, spread, branch / (float)(count - 1));
+                Vector2 velocity = Quaternion.Euler(0, 0, angle) * projectile.Velocity;
                 var fragment = new ProjectileState
                 {
                     Id = ++nextId, Faction = projectile.Faction, Position = projectile.Position, PreviousPosition = projectile.Position,
@@ -100,7 +107,7 @@ namespace ArcaneBrigade
                     Color = projectile.Color, Element = projectile.Element, SourceName = projectile.SourceName,
                     Sprite = projectile.Sprite, VisualWidth = projectile.VisualWidth * 0.7f, Critical = projectile.Critical,
                     SourceUnitId = projectile.SourceUnitId, Cause = projectile.Cause.Child("projectile-split"),
-                    Weapon = projectile.Weapon, IsFragment = true
+                    Weapon = projectile.Weapon, IsFragment = true, Radius = projectile.Radius * (projectile.SplitCount > 0 ? 0.7f : 1), SplitCount = 0, RandomBounces = 0
                 };
                 fragment.Victims.UnionWith(projectile.Victims);
                 projectiles.Add(fragment);

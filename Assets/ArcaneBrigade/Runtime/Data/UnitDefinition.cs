@@ -16,8 +16,11 @@ namespace ArcaneBrigade
         public float Speed = 4.8f;
         public float Radius = 0.25f;
         public float BodyHeight = 0.8f;
+        public float BodyScale = 1f;
         public float ContactDamage = 4f;
         public float ContactInterval = 0.8f;
+        public float CollisionDamage;
+        public float CollisionFrequency = 0.8f;
         public float CriticalChance;
         public Color Tint = Color.white;
         public string[] Tags = new string[0];

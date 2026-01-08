@@ -1,0 +1,140 @@
+K8_AUDIO_SOURCE_CHECKS_PASSED 114
+K8_AUDIO_APPLIED: four CC0 tracks; existing FullRunBuilder copies K8-Audio-Credits.txt into ThirdPartyNotices.
+K9_COMPANION_CHARACTERISTICS_APPLIED
+K10_CONTENT_APPLIED companions=39 weapons=40
+K10_FOCUSED_CHECKS_PASSED 163
+K9_FOCUSED_CHECKS_PASSED 65
+K8_PRESENTATION_CHECKS_PASSED 12
+K8_COMBAT_PASS Swept pierce resolves both victims in one step
+K8_COMBAT_PASS Incoming hit capped against Champion maximum HP
+K8_COMBAT_PASS Damage cap does not grant immortality at low HP
+K8_RICOCHET_SAMPLE first=990 next=990.5 victims=2 depth=1
+K8_COMBAT_PASS Ricochet changes direction and hits a new victim with child attribution
+K8_COMBAT_PASS Ricochet preserves root and owner attribution
+K8_COMBAT_PASS Wall bounce uses reflected swept segment before Fish return
+K8_COMBAT_PASS Returning Fish cannot repeat-hit the same victim
+K8_COMBAT_PASS Impact creates exactly two nonrecursive owned child fragments
+K8_COMBAT_PASS Split fragments hit diverging targets without multiplying Tea fields
+K8_COMBAT_PASS Secondary projectile hits remain ineligible for root-only procs
+K8_COMBAT_PASS Enemy split keeps ownership and never damages hostile units
+K8_COMBAT_PASS Wave one blocks hostile fragments at simulation boundary
+K8_COMBAT_PASS Companion interception consumes hostile projectile before split or ricochet
+K8_COMBAT_PASS Child projectile kills cannot recursively trigger item procs
+K8_COMBAT_PASS Root projectile kill still triggers an eligible item proc once
+K8_COMBAT_PASS Wave one blocks real enemy attack and boss pattern emitters
+K8_COMBAT_PASS Wave two restores ranged fire with enemy-only speed cap
+K8_COMBAT_PASS Signature payoff increments secondary cause depth rather than resetting it
+K8_COMBAT_PASS Boss overtime stops reinforcements without granting timer victory
+K8_COMBAT_PASS Paused boss overtime remains visible and frozen for UI
+K8_COMBAT_PASS Boss death alone resolves overtime
+K8_COMBAT_PASS Focused checks leave authored catalog unchanged
+K8_BOSS_HALL 1 phase=Victory seconds=35.0163 bossHp=0 hits=0 roster=1
+K8_BOSS_HALL 2 phase=Victory seconds=37.01627 bossHp=0 hits=0 roster=2
+K8_BOSS_HALL 3 phase=Victory seconds=39.01624 bossHp=0 hits=0 roster=3
+K8_BOSS_HALL 4 phase=Victory seconds=8.60004 bossHp=0 hits=117 roster=4
+K8_BOSS_HALL 5 phase=Victory seconds=43.01618 bossHp=0 hits=0 roster=5
+K8_BOSS_HALL 6 phase=Victory seconds=45.01615 bossHp=0 hits=0 roster=6
+K8_BOSS_HALL 7 phase=Victory seconds=47.01612 bossHp=0 hits=0 roster=7
+K8_BOSS_SAMPLE seconds=0.01666667 hp=1228.523 hits=0 enemies=1
+K8_BOSS_SAMPLE seconds=30.01638 hp=0.7791238 hits=161 enemies=15
+K8_BOSS_HALL 8 phase=Victory seconds=30.14971 bossHp=0 hits=162 roster=8
+K8_COMBAT_PASS Boss bot leaves authored catalog unchanged
+K8_BOSS_REGRESSION_PASS LanternKnight difficulty3 seed77200 hall8
+K8_COMBAT_CHECKS_PASS
+ARCANE_K8_CONTENT_CHECKS_PASS
+K8_MOTION_CHECKS_PASSED 51
+K8_AUDIO_SOURCE_CHECKS_PASSED 114
+K8_UI_PASS Actual roster exists
+K8_UI_PASS Portraits use existing sprites
+K8_UI_PASS Roster blink uses authored frame LanternKnight
+K8_UI_PASS Focused portrait steps briefly LanternKnight
+K8_UI_PASS Reduced motion freezes portrait LanternKnight
+K8_UI_PASS Roster blink uses authored frame Postmaster
+K8_UI_PASS Focused portrait steps briefly Postmaster
+K8_UI_PASS Reduced motion freezes portrait Postmaster
+K8_UI_PASS Roster blink uses authored frame DrowsySeer
+K8_UI_PASS Focused portrait steps briefly DrowsySeer
+K8_UI_PASS Reduced motion freezes portrait DrowsySeer
+K8_UI_PASS Each champion has a distinct description
+K8_UI_PASS Unlock boundary LanternKnight
+K8_UI_PASS Unlock boundary Postmaster
+K8_UI_PASS Locked condition Postmaster
+K8_UI_PASS Unlock boundary DrowsySeer
+K8_UI_PASS Locked condition DrowsySeer
+K8_UI_PASS Three-column roster wraps
+K8_UI_PASS Portrait cards do not overlap
+K8_UI_PASS Boss overtime differs from ordinary zero timer
+K8_UI_PASS Shop tooltip leaves goods above and bottom exit clear 0
+K8_UI_PASS Shop tooltip leaves goods above and bottom exit clear 100
+K8_UI_PASS Shop tooltip leaves goods above and bottom exit clear 600
+K8_UI_PASS Tooltip uses actual next threshold and reward including extra bonuses
+K8_UI_PASS Loading does not fake activation
+K8_UI_PASS Activation feedback expires without persistent text
+K8_UI_PASS Extra milestone triggers feedback even without base level change
+K8_UI_PASS Losing threshold clears obsolete activation feedback
+K8_UI_PASS New run resets activation feedback
+K8_UI_PASS Device-specific details hints
+K8_UI_PASS Pause and interaction hints match existing bindings
+K8_UI_PASS Bonds live in existing Details links tab
+K8_UI_PASS Localized stats retain source explanations
+K8_UI_PASS Invoice uses player-facing Vietnamese
+K8_UI_PASS Details and invoice do not mutate run state
+K8_UI_PASS Tier-upgraded details agree with real attack cycle and projectile count
+K8_UI_PASS HUD consumes WorldShop copy API
+K8_UI_PASS Battle controls use drawn icons instead of ambiguous letters
+K8_UI_PASS Details does not append duplicate bond blocks to every selection
+K8_UI_PASS UI audit does not modify authored content
+K8_UI_CHECKS_PASSED 40
+K8_MERCHANT_CHECKS_PASSED 17
+K5 checks PASS: 171
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+Full run checks PASS: 159
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+Full run checks PASS: 159
+ARCANE_K0_K1_CHECKS_PASSED 27
+ARCANE_K2_CHECKS_PASSED 54
+ARCANE_K3_TRANSACTION_CHECKS_PASSED 36
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+Full run checks PASS: 159
+ARCANE_K0_K1_CHECKS_PASSED 27
+ARCANE_K2_CHECKS_PASSED 54
+ARCANE_K3_TRANSACTION_CHECKS_PASSED 36
+ARCANE_K32_CHECKS_PASSED 29
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+Full run checks PASS: 159
+ARCANE_K0_K1_CHECKS_PASSED 27
+ARCANE_K2_CHECKS_PASSED 54
+ARCANE_K3_TRANSACTION_CHECKS_PASSED 36
+ARCANE_K32_CHECKS_PASSED 29
+ARCANE_K32_ALTAR_CHECKS_PASSED 14
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+Full run checks PASS: 159
+ARCANE_K0_K1_CHECKS_PASSED 27
+ARCANE_K2_CHECKS_PASSED 54
+ARCANE_K3_TRANSACTION_CHECKS_PASSED 36
+ARCANE_K32_CHECKS_PASSED 29
+ARCANE_K32_ALTAR_CHECKS_PASSED 14
+ARCANE_K3_FINAL_CHECKS_PASSED 31
+ARCANE_CHECKPOINT_CHECKS_PASSED 17
+ARCANE_SQUAD_CHECKS_PASSED 12
+Full run checks PASS: 159
+ARCANE_K0_K1_CHECKS_PASSED 27
+ARCANE_K2_CHECKS_PASSED 54
+ARCANE_K3_TRANSACTION_CHECKS_PASSED 36
+ARCANE_K32_CHECKS_PASSED 29
+ARCANE_K32_ALTAR_CHECKS_PASSED 14
+ARCANE_K3_FINAL_CHECKS_PASSED 31
+ARCANE_VISUAL_QUALITY_CHECKS_PASSED 31
+ARCANE_K4_SIGNATURE_CHECKS_PASSED 40
+K4 merge checks PASS (no build or asset writes)
+ARCANE_K4_SANDBOX_CHECKS_PASSED 546 (model checks; native rendering/audio still require capture)
+ARCANE_K4_FINAL_CHECKS_PASSED 36
+K8_EDITOR_REGRESSION_PASSED
+K10_FINAL_CANDIDATE_BUILT

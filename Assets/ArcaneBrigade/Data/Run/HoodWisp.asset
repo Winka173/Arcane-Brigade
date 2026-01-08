@@ -25,12 +25,14 @@ MonoBehaviour:
   Speed: 5.2
   Radius: 0.25
   BodyHeight: 0.85
+  BodyScale: 1
   ContactDamage: 4
   ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - archive
   - frost
   Passive: 0
   PassiveStrength: 1
