@@ -58,6 +58,7 @@ namespace ArcaneBrigade
         public string Id;
         public string Name;
         public int Threshold = 2;
+        public Sprite Icon;
         public ItemEffect Effect;
         public float Value = 0.06f;
     }
@@ -106,7 +107,10 @@ namespace ArcaneBrigade
         public Sprite HeartSprite;
         public Sprite ChestSprite;
         public int NormalWaves = 20;
-        public float WaveSeconds = 84f;
+        public float FirstWaveSeconds = 35f;
+        public float WaveIncrement = 2f;
+        public float WaveSeconds = 55f;
+        public float BossHealthMultiplier = 0.55f;
         public int BossEvery = 4;
         public int StartingGold = 35;
         public int Income = 20;

@@ -187,6 +187,16 @@ namespace ArcaneBrigade
                     session.State.Offers.Add(new ShopOffer { Token = 2, Id = content.Companions[1].Id, Kind = OfferKind.Companion, Price = 1 });
                     session.State.Offers.Add(new ShopOffer { Token = 3, Id = content.Items[0].Id, Kind = OfferKind.Item, Price = 1 });
                     session.State.NextOffer = 3; session.Validate(session.State); storage.SaveRun(session.State);
+                    if (RunPaths.K7B)
+                    {
+                        session.State.Eggs = 10;
+                        for (int rarity = 1; rarity <= 3; rarity++)
+                        {
+                            ItemDefinition item = Array.Find(content.Items, candidate => candidate.Rarity == (ItemRarity)rarity && !Array.Exists(candidate.EffectiveModifiers, modifier => modifier.Effect == ItemEffect.Health));
+                            session.State.SpecialOffers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = item.Id, Kind = OfferKind.Item, Price = rarity == 2 ? 5 : 1, Currency = rarity == 2 ? ShopCurrency.Health : ShopCurrency.Eggs });
+                        }
+                        session.Validate(session.State); storage.SaveRun(session.State);
+                    }
                 }
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.8f);
                 owner = FindAnyObjectByType<ArenaController>();
@@ -202,6 +212,37 @@ namespace ArcaneBrigade
                 Check(owner.Shop.Interact(), "Actual unmerged recruit purchase commits");
                 yield return new WaitForSecondsRealtime(0.12f); yield return Shot("08-recruit-hop");
                 yield return new WaitForSecondsRealtime(0.9f); yield return Shot("09-recruit-walkout");
+                if (RunPaths.K7B)
+                {
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(3, 0.5f);
+                    owner.Session.State.Gold = 0; yield return new WaitForSecondsRealtime(0.15f);
+                    int receipts = owner.Session.State.NextReceipt;
+                    Check(!owner.Shop.Interact() && owner.Shop.DeniedCount == 1 && owner.Session.State.NextReceipt == receipts, "Insufficient gold shakes/flashes without committing or consuming item");
+                    yield return new WaitForSecondsRealtime(0.12f); yield return Shot("10-denied-purchase");
+                    owner.Session.State.Gold = 10000; Check(owner.Shop.Interact(), "Actual item purchase commits");
+                    yield return new WaitForSecondsRealtime(0.12f); yield return Shot("11-item-flight");
+                    yield return new WaitForSecondsRealtime(1); Check(owner.Shop.ItemPickup.CompletedCount == 1, "Committed item arrives at player with animated flight");
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-4.8f, 2.8f);
+                    yield return new WaitForSecondsRealtime(0.15f); Check(owner.Shop.Interact(), "Dedicated machine rerolls actual stock");
+                    yield return new WaitForSecondsRealtime(0.12f); yield return Shot("12-reroll-machine");
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(4.8f, 2.8f);
+                    yield return new WaitForSecondsRealtime(0.15f); Check(owner.Shop.Interact() && owner.Shop.Special, "Special merchant visited through world interaction");
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = Vector2.zero;
+                    yield return new WaitForSecondsRealtime(0.3f); yield return Shot("13-special-rarity-lights");
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(0, 0.5f);
+                    float healthBefore = owner.Session.State.Health; yield return new WaitForSecondsRealtime(0.15f);
+                    Check(owner.Shop.Interact() && owner.Session.State.Health == healthBefore - 5 && owner.Session.State.Health >= 1, "Special item charges currentHP not maxHP and leaves at least1HP");
+                    yield return new WaitForSecondsRealtime(0.15f); yield return Shot("14-special-hp-purchase");
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(-3, 0.5f);
+                    int eggsBefore = owner.Session.State.Eggs; yield return new WaitForSecondsRealtime(0.15f);
+                    Check(owner.Shop.Interact() && owner.Session.State.Eggs == eggsBefore - 1, "Special merchant also charges separate egg currency");
+                    yield return new WaitForSecondsRealtime(0.85f);
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(0, -4.3f);
+                    yield return new WaitForSecondsRealtime(0.2f); Check(owner.Shop.Interact() && owner.HallExitPending, "Downward door starts committed hall travel presentation");
+                    yield return new WaitForSecondsRealtime(0.3f); yield return Shot("15-downward-exit");
+                    yield return new WaitForSecondsRealtime(1.5f); Check(owner.Session.State.Wave == 2 && owner.Session.State.Phase == SessionPhase.Combat, "Curtain finishes into actual wave2 without duplicate advance");
+                    yield return Shot("16-next-wave");
+                }
                 owner = null;
             }
             notes.Add("Windows fixture seed7707, native resolution3840x2160 (video1920x1080), timeScale1, movement-only circle driver, seeded1/56/100 unique body+weapon roster and relics. No HP/invulnerability/weapon/enemy timer adjustments. Native instrumentation captures real Unity frame/memory/GC/GPU where counters exist; NA means unavailable, not zero-cost. CSV/summary measured before screenshots and without video encoder. Not natural20hall balance/human feel/device approval. Aspect screenshots are desktop resizes, not device safe-area evidence. Video flag leaves22seconds for external game-window-only60fps recording; separate audio audition, no microphone/desktop capture.");

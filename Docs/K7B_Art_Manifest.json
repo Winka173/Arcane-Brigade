@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-14",
+  "tool": "painting pass",
+  "source": "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+  "generated_file": "exec-8c8c6e93-8fb9-4a60-b0c6-e9483780efe1.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "prompt": "Use case: stylized-concept. Production transparent 2D hand-painted game sprite sheet for Arcane Brigade, a charming strange arcade dream shop. Reference image only sets existing thick dark outline, cream/mint/coral saturated flat hand-painted illustration style. Create ORIGINAL characters and fixtures, not copyrighted game assets. Exactly 4 equal columns x 3 equal rows, twelve isolated sprites, generous transparent gutters and no text or background, aligned consistent scale and baseline within each row. Row1: four animation frames of SAME friendly GOLD MERCHANT, a squat living coral coin purse with brass clasp on head, expressive big dark eyes, little feet and detached gloved hands, no arms; poses neutral open eyes, closed-eye blink/squash, cheerful leaning left, cheerful leaning right. Row2: four animation frames of SAME SPECIAL EGG MERCHANT, a mysterious mint cracked-egg owl-mask creature wearing an ink-navy cape with cream star patch and tiny feet, friendly but clearly distinct from enemy, no arms, detached mitts; neutral eyes, blink, sway left, sway right. Row3: column1 a standalone whimsical coral brass hand-cranked capsule lottery reroll MACHINE with a clear globe of colored balls and small mint curved-arrow emblem, no table; column2 SAME machine with crank rotated and capsules shifted; column3 a standalone downward-facing mint-and-cream doorway/trapdoor threshold with short steps leading DOWN toward viewer, big cream downward arrow painted on threshold, no table, coral side posts; column4 SAME doorway in open/glowing welcoming state. Each object fully inside its cell. No wooden pedestals, no rectangular UI boxes, no price labels, no numerals, no lettering. Clean high quality antialiased silhouettes. Actual transparent alpha. Sheet square at highest supported resolution.",
+  "reference_role": "Own ShopFixtures_v1.png for style only",
+  "layout": "4columns x3rows; normalized vertical slice edges0,550,985,1536; two merchant4frame sets, reroll2frames and downwarddoor2frames",
+  "limits": "Not native4K. Existing actor frames plus procedural idle; no copied reference-game art."
+}

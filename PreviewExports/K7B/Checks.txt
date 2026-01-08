@@ -1,0 +1,18 @@
+PASS Twelve original merchant/fixture source frames imported
+PASS New fixture references are project assets not external files
+PASS Reroll/door and two shopkeepers have separate silhouettes
+PASS Four held-system HUD identities use original imported icons
+PASS Authored special stock supports currentHP and separate egg currency
+PASS Blue purple gold rarity lighting identities retained
+PASS Wave1 lasts35s and every spawn route is contact-only
+PASS Wave1 actual simulation has no hostile projectile over1800tick audit or death
+PASS Wave2 opens ranged enemy pool and increases time gently
+PASS Enemy cloned projectile speed capped at2.4 without changing ally weapons
+PASS Later non-boss authored duration capped55s
+PASS Stationary champion has simultaneous independently resting and roaming companions
+PASS 900ticks and10companions never leave leash
+PASS Stationary body breathing/sway visible independently of weapon
+PASS Reduced motion removes breathing/sway without changing combat
+PASS Runtime wave/speed tuning leaves source catalog untouched
+PASS Downward exit and item/deny visual feedback wired through actual transactions
+PASS Price ticket UI replaces mesh boxes; utility objects do not reuse offer pedestals

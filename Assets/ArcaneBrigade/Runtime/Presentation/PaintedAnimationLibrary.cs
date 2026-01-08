@@ -9,5 +9,9 @@ namespace ArcaneBrigade
         public Sprite[] Magic;
         public Sprite[] Death;
         public Sprite[] ShopFixtures;
+        public Sprite[] GoldMerchant;
+        public Sprite[] EggMerchant;
+        public Sprite[] RerollMachine;
+        public Sprite[] HallDoor;
     }
 }

@@ -52,7 +52,13 @@ namespace ArcaneBrigade
         private float transitionRemaining;
         private float resultRevealRemaining;
         private float terminalVisualAge;
+        private bool hallExitPending;
+        private float hallExitElapsed;
+        private float hallEntryRemaining;
+        private Vector2 hallExitTarget;
         public bool TransitionPending => transitionRemaining > 0;
+        public bool HallExitPending => hallExitPending;
+        public float HallCurtain => hallExitPending ? Mathf.Clamp01((hallExitElapsed - 0.35f) / 0.55f) : Mathf.Clamp01(hallEntryRemaining / 0.4f);
         public bool ResultsReady => resultRevealRemaining <= 0;
         public float WalletPulse { get; private set; }
         private ArcadeMusic music;
@@ -195,6 +201,7 @@ namespace ArcaneBrigade
             }
             moveIntent = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? movement.Read(arenaCamera.pixelRect) : Vector2.zero;
             if ((RunPaths.K2Capture || RunPaths.K3FinalCapture || RunPaths.K7Capture) && presentationMoveTarget.HasValue && (simulation.Phase == RunPhase.Combat || RunPaths.K7Capture && simulation.Phase == RunPhase.Rest)) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
+            if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); }
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
             if (warning && !warningAudio && !pauseGate.Paused) audioFeedback.PlayCue(24, true);
@@ -220,6 +227,12 @@ namespace ArcaneBrigade
                 if (deathFeedback != null) deathFeedback.Advance(Time.deltaTime);
                 WalletPulse = Mathf.Max(0, WalletPulse - Time.deltaTime * 3);
                 resultRevealRemaining = Mathf.Max(0, resultRevealRemaining - Time.deltaTime);
+                hallEntryRemaining = Mathf.Max(0, hallEntryRemaining - Time.deltaTime);
+                if (hallExitPending)
+                {
+                    hallExitElapsed += Time.deltaTime;
+                    if (hallExitElapsed >= 0.9f) { hallExitPending = false; NextWave(); hallEntryRemaining = 0.4f; }
+                }
                 if (transitionRemaining > 0)
                 {
                     transitionRemaining -= Time.deltaTime;
@@ -313,7 +326,7 @@ namespace ArcaneBrigade
 
         private bool Transaction(string title, Func<bool> operation, int cue = 20)
         {
-            if (pauseGate.Paused || TransitionPending) return false;
+            if (pauseGate.Paused || TransitionPending || hallExitPending) return false;
             bool committed = RunTransaction.TryCommit(session, runCatalog, title, operation, PersistBoundary, out string error);
             if (!committed)
             {
@@ -349,6 +362,12 @@ namespace ArcaneBrigade
         public void ShowReceiptFixture() => runHud.ShowReceiptFixture();
         public void ShowInvoiceEvidenceFixture() => runHud.ShowInvoiceEvidenceFixture();
         public void ShowOfferPreviewFixture() => runHud.ShowOfferPreviewFixture();
+        public bool BeginHallExit(Vector2 doorway)
+        {
+            if (pauseGate.Paused || hallExitPending || TransitionPending || session.State.Phase != SessionPhase.Shop) return false;
+            hallExitPending = true; hallExitElapsed = 0; hallExitTarget = doorway + Vector2.down * 1.1f;
+            CheckpointAudio.PlayInterface(20); return true;
+        }
         public void NextWave()
         {
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;

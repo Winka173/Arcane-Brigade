@@ -231,8 +231,15 @@ namespace ArcaneBrigade
             float scaling = (1f + (State.Wave - 1) * 0.10f) * (1f + State.Difficulty * 0.18f);
             CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
             CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
+            if (State.Wave == 1)
+            {
+                UnitDefinition firstContact = Array.Find(catalog.Enemies, enemy => enemy.Weapon.Kind == WeaponKind.Contact && enemy.UnlockWave <= 1);
+                if (firstContact == null) throw new InvalidOperationException("Wave1 requires an unlocked contact enemy");
+                CombatCatalog.MeleeEnemy = BuildEnemy(firstContact, scaling);
+                CombatCatalog.RangedEnemy = CombatCatalog.MeleeEnemy;
+            }
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[(State.Wave / catalog.BossEvery - 1) % catalog.Bosses.Length], scaling) : null;
-            CombatCatalog.WaveDuration = catalog.WaveSeconds;
+            CombatCatalog.WaveDuration = Mathf.Min(catalog.WaveSeconds, catalog.FirstWaveSeconds + (State.Wave - 1) * catalog.WaveIncrement);
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * (1f + State.Difficulty * 0.12f));
             CombatCatalog.SpawnInterval = Mathf.Max(0.32f, 1.4f - State.Wave * 0.035f);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
@@ -261,7 +268,7 @@ namespace ArcaneBrigade
             {
                 var pool = new List<UnitDefinition>();
                 foreach (UnitDefinition enemy in catalog.Enemies)
-                    if (enemy.UnlockWave <= State.Wave)
+                    if (enemy.UnlockWave <= State.Wave && (State.Wave > 1 || enemy.Weapon.Kind == WeaponKind.Contact))
                     {
                         UnitDefinition candidate = BuildEnemy(enemy, scaling); pool.Add(candidate);
                         bool emphasis = State.Wave < 7 ? enemy.Behavior == EnemyBehavior.Standard && enemy.Weapon.Kind == WeaponKind.Contact : State.Wave < 14 ? enemy.Behavior == EnemyBehavior.Door || enemy.Behavior == EnemyBehavior.Magnet : enemy.Behavior != EnemyBehavior.Standard;
@@ -324,7 +331,8 @@ namespace ArcaneBrigade
         {
             UnitDefinition unit = Clone(source);
             unit.Weapon = Clone(source.Weapon);
-            unit.Health *= scaling;
+            unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
+            unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
             unit.Speed *= Mathf.Min(1.6f, 1f + (State.Wave - 1) * 0.018f);
             unit.ContactDamage = Mathf.Min(14f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min(source.IsBoss ? 26f : 14f, source.Weapon.Damage + State.Wave * 0.35f);

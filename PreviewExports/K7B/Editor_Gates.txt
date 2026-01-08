@@ -1,0 +1,9 @@
+2026-10-14 — sanitized Unity6000.4.8f1 report, raw licensing/network logs excluded.
+K7BBuilder.Build regression exit0; FinalizeCandidate exit0 after final HUD/merchant adjustments.
+K7B18focused; K7 focused73; K7 quality47; K6 focused72; K5 content139.
+Checkpoint17; squad12; FullRun104; K3 transaction36; modifiers29; altar14; K3 final31.
+Windows Succeeded,0errors,0warnings. Exact size/report: ../FullRun_Build.txt.
+Native77assertions,25PNG (22native3840x2160 +3desktop aspects). Native exit0.
+Framebuffer shop38s /2280CFRframes; combat15s /900CFRframes;1920x1080. Metadata beside each MP4.
+15movement-only balance runs:14VICTORY20hall,1TIMEOUT8. Diagnostic not human balance certification.
+Device/human art/audio/feel/physical controller/Steam approval remains unclaimed.

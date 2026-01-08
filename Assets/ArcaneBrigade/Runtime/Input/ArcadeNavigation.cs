@@ -11,6 +11,7 @@ namespace ArcaneBrigade
         private bool submit;
         private float nextMove;
         private bool keyboardFocus;
+        private readonly Dictionary<string, float> hover = new Dictionary<string, float>();
         public int Selected => selected;
         public static Vector2 Pad => new Vector2(Input.GetAxisRaw("BrigadePadHorizontal"), Input.GetAxisRaw("BrigadePadVertical"));
         public void ReadInput()
@@ -45,7 +46,17 @@ namespace ArcaneBrigade
         {
             int index = controls.Count;
             controls.Add(new Control { Enabled = GUI.enabled, Bounds = bounds });
-            bool clicked = GUI.Button(bounds, caption, style);
+            bool focused = GUI.enabled && (bounds.Contains(Event.current.mousePosition) || keyboardFocus && selected == index);
+            float amount = hover.TryGetValue(caption, out float value) ? value : 0;
+            if (Event.current.type == EventType.Repaint)
+            {
+                amount = Mathf.MoveTowards(amount, focused ? 1 : 0, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * 7);
+                if (hover.Count > 256) hover.Clear();
+                hover[caption] = amount;
+            }
+            float shift = PresentationSettings.ReducedMotion ? 0 : amount * 4;
+            Rect animatedBounds = new Rect(bounds.x + shift, bounds.y - shift * 0.5f, bounds.width, bounds.height);
+            bool clicked = GUI.Button(animatedBounds, caption, style);
             bool accepted = submit && keyboardFocus && index == selected && GUI.enabled && Event.current.type == EventType.Repaint;
             if (accepted) submit = false;
             if (keyboardFocus && selected == index && GUI.enabled)

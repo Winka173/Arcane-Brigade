@@ -44,7 +44,7 @@ namespace ArcaneBrigade
         {
             switch (rarity)
             {
-                case ItemRarity.Uncommon: return new Color(0.45f, 0.95f, 0.82f);
+                case ItemRarity.Uncommon: return new Color(0.25f, 0.7f, 1f);
                 case ItemRarity.Rare: return new Color(0.75f, 0.6f, 1f);
                 case ItemRarity.Mythic: return new Color(1f, 0.76f, 0.35f);
                 default: return new Color(0.82f, 0.85f, 0.92f);

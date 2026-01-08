@@ -37,3 +37,19 @@ MonoBehaviour:
   - {fileID: -527477449, guid: 01a2012a6a1bfcc409546a03e7e46f52, type: 3}
   - {fileID: 2048480777, guid: 01a2012a6a1bfcc409546a03e7e46f52, type: 3}
   - {fileID: 2007587753, guid: 01a2012a6a1bfcc409546a03e7e46f52, type: 3}
+  GoldMerchant:
+  - {fileID: -119616418, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: 21566066, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: -1156081364, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: 725111870, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  EggMerchant:
+  - {fileID: 1971809160, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: -657747021, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: -1422898135, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: 1459524513, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  RerollMachine:
+  - {fileID: -584565737, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: 1827130957, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  HallDoor:
+  - {fileID: 1602315860, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
+  - {fileID: 1082734174, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}

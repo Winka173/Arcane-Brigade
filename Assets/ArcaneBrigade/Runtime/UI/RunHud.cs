@@ -9,6 +9,9 @@ namespace ArcaneBrigade
         private GUIStyle title;
         private GUIStyle button;
         private GUIStyle numeric;
+        private GUIStyle bondHit;
+        private string selectedBond;
+        private float bondTooltipUntil;
         private bool receiptOpen;
         private int receiptId;
         private Vector2 receiptScroll;
@@ -81,9 +84,9 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(85, 102, 240, 30), RunSession.BoundedCounter((long)state.Gold + (state.Phase == SessionPhase.Combat ? simulation.Gold : 0)).ToString(), numeric);
             Sprite(new Rect(40, 140, 32, 32), owner.Content.EggSprite);
             GUI.Label(new Rect(85, 142, 240, 30), RunSession.BoundedCounter((long)state.Eggs + (state.Phase == SessionPhase.Combat ? simulation.Eggs : 0)).ToString(), numeric);
-            GUI.Label(new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
+            GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
-                GUI.Label(new Rect(885, 74, 150, 32), Mathf.Max(0, Mathf.CeilToInt(owner.Content.WaveSeconds - simulation.Elapsed)).ToString(), numeric);
+                GUI.Label(new Rect(885, 74, 150, 32), Mathf.Max(0, Mathf.CeilToInt(simulation.WaveDuration - simulation.Elapsed)).ToString(), numeric);
             if (navigation.Button(new Rect(1770, 35, 65, 52), "II", button)) owner.TogglePause();
             if (navigation.Button(new Rect(1680, 35, 65, 52), "I", button)) owner.ToggleDetails();
             if (state.Phase == SessionPhase.Combat)
@@ -102,7 +105,7 @@ namespace ArcaneBrigade
                     if (navigation.Button(new Rect(750, 605, 420, 55), "VỀ MENU", button)) owner.RequestMenuReturn();
                 }
             }
-            else if (state.Phase == SessionPhase.Shop) DrawShop(owner);
+            else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
             else
             {
                 if (!owner.ResultsReady)
@@ -125,6 +128,8 @@ namespace ArcaneBrigade
                     try { RunInvoice.ExportFrame(state.RunId); } catch (System.Exception exception) { Debug.LogWarning("Receipt export failed: " + exception.Message); }
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
+            DrawBonds(owner);
+            if (owner.HallCurtain > 0) ArcadeSkin.Line(new Rect(0, 0, 1920, 1080), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, owner.HallCurtain));
             navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;
@@ -132,6 +137,7 @@ namespace ArcaneBrigade
 
         private void DrawShop(ArenaController owner)
         {
+            if (owner.HallExitPending) return;
             if (owner.TransitionPending)
             {
                 GUI.Label(new Rect(550, 840, 820, 70), "HALL CLEARED", title);
@@ -148,16 +154,42 @@ namespace ArcaneBrigade
             WorldShop.Station station = shop.Nearby;
             if (station != null)
             {
-                Fill(new Rect(580, 860, 760, 125), Panel);
+                string description = station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                float descriptionHeight = Mathf.Clamp(small.CalcHeight(new GUIContent(description), 505), 54, 100);
+                Fill(new Rect(580, 860, 760, descriptionHeight + 70), Panel);
                 string caption = station.Action;
                 if (station.Offer != null) caption += " · " + station.Offer.Price;
                 GUI.Label(new Rect(610, 878, 520, 32), caption, text);
-                string description = station.Offer?.Kind == OfferKind.Item ? owner.Content.Item(station.Offer.Id).Description : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Description : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                GUI.Label(new Rect(610, 922, 505, 54), description, small);
-                GUI.enabled = GUI.enabled && (station.Offer == null || owner.Session.CanBuy(station.Offer)) && (station.Recipe == null || owner.Session.CanAltar(station.Recipe));
+                GUI.Label(new Rect(610, 922, 505, descriptionHeight), description, small);
                 if (navigation.Button(new Rect(1150, 889, 160, 65), "SPACE", button)) shop.Interact();
                 GUI.enabled = !owner.Details.Open && !owner.MenuConfirmation;
             }
+        }
+
+        private void DrawBonds(ArenaController owner)
+        {
+            int index = 0;
+            foreach (BondDefinition bond in owner.Content.Bonds)
+            {
+                if (!owner.Session.BondCounts.TryGetValue(bond.Id, out int count) || count <= 0) continue;
+                Rect badge = new Rect(1550 + index % 4 * 74, 117 + index / 4 * 88, 64, 76);
+                bool active = count >= bond.Threshold;
+                if (active) ArcadeSkin.Line(new Rect(badge.x + 7, badge.y + 8, 50, 43), new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.16f));
+                Sprite(new Rect(badge.x + 4, badge.y, 56, 52), bond.Icon);
+                small.normal.textColor = active ? ArcadeSkin.Teal : ArcadeSkin.Cream;
+                small.alignment = TextAnchor.MiddleCenter;
+                GUI.Label(new Rect(badge.x, badge.y + 52, 64, 24), count + "/" + bond.Threshold, small);
+                if (bondHit == null) bondHit = new GUIStyle();
+                if (GUI.Button(badge, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
+                if (badge.Contains(Event.current.mousePosition) || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
+                {
+                    ArcadeSkin.Panel(new Rect(1500, 216, 350, 90), ArcadeSkin.Ink);
+                    small.alignment = TextAnchor.UpperLeft;
+                    GUI.Label(new Rect(1520, 230, 315, 62), bond.Name + " · " + count + "/" + bond.Threshold + "\nThưởng: " + bond.Effect + " +" + bond.Value.ToString("0.##"), small);
+                }
+                index++;
+            }
+            small.normal.textColor = ArcadeSkin.Cream; small.alignment = TextAnchor.UpperLeft;
         }
 
         private void DrawReceipt(RunSnapshot state)

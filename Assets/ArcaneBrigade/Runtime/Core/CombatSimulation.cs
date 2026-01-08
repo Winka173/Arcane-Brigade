@@ -58,6 +58,7 @@ namespace ArcaneBrigade
         public Vector2 RoamOffset;
         public Vector2 Velocity;
         public float NextRoamTime;
+        public float RoamRestUntil;
         public System.Random RoamRandom;
         public float BurnUntil;
         public float ChillUntil;
@@ -154,6 +155,7 @@ namespace ArcaneBrigade
         public UnitState Champion { get; private set; }
         public float Elapsed { get; private set; }
         public float VisualElapsed => Elapsed + restElapsed;
+        public float WaveDuration => catalog.WaveDuration;
         public int Gold { get; private set; }
         public int Eggs { get; private set; }
         public int ChestsOpened { get; private set; }
@@ -429,7 +431,7 @@ namespace ArcaneBrigade
                 {
                     float angle = BossBulletAngle(boss, index, launchTime);
                     Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                    float speed = pattern == 3 ? 7f : pattern == 2 ? 3.5f + index % 4 * 0.7f : pattern == 4 ? 3.5f + index % 2 * 1.8f : 4.2f;
+                    float speed = catalog.RunWave > 0 ? pattern == 2 ? 1.8f + index % 4 * 0.2f : pattern == 4 ? 2f + index % 2 * 0.4f : 2.4f : pattern == 3 ? 7f : pattern == 2 ? 3.5f + index % 4 * 0.7f : pattern == 4 ? 3.5f + index % 2 * 1.8f : 4.2f;
                     projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = boss.Position, PreviousPosition = boss.Position, Velocity = direction * speed, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
                 }
                 boss.NextBossPattern = Elapsed + 3.5f;
@@ -543,7 +545,7 @@ namespace ArcaneBrigade
                     Faction = unit.Faction,
                     Position = position,
                     PreviousPosition = unit.Position,
-                    Velocity = direction * weapon.ProjectileSpeed,
+                    Velocity = direction * (unit.Faction == Faction.Enemy && catalog.RunWave > 0 ? Mathf.Min(2.4f, weapon.ProjectileSpeed) : weapon.ProjectileSpeed),
                     Damage = damage,
                     Remaining = weapon.ProjectileLifetime,
                     Color = weapon.ProjectileColor,

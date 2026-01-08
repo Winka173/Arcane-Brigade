@@ -1,0 +1,1 @@
+Window-only realtime1920x1080 shop seed4313. Seeded gold/price/roster for short visual diagnostic, not natural run; movement-only target driver + real Shop.Interact transactions; timeScale1, no PNG during capture.

@@ -29,9 +29,10 @@ namespace ArcaneBrigade
             upper.sprite = head.Upper; lower.sprite = feet.Lower;
             upper.transform.localPosition = head.UpperOffset;
             lower.transform.localPosition = feet.LowerOffset;
-            float breathing = reduced ? 0 : Mathf.Sin(time * 2.8f + state.Id * 0.8f) * 0.012f;
+            float breathing = reduced ? 0 : Mathf.Sin(time * 2.8f + state.Id * 0.8f) * 0.045f;
             upper.transform.localScale = new Vector3(1 - breathing * 0.3f, 1 + breathing, 1);
-            upper.transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * (moving ? 7 : 2.2f) + state.Id) * (moving ? 1.6f : 0.5f));
+            upper.transform.localPosition += new Vector3(reduced ? 0 : Mathf.Sin(time * 1.8f + state.Id) * 0.018f, breathing * 0.18f, 0);
+            upper.transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * (moving ? 7 : 2.2f) + state.Id) * (moving ? 1.6f : 2.4f));
             lower.transform.localScale = Vector3.one;
             upper.sharedMaterial = lower.sharedMaterial = reference.sharedMaterial;
             upper.color = lower.color = reference.color;

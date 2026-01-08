@@ -1,5 +1,7 @@
 # K7 — Windows candidate / quality rework
 
+**Snapshot trước K7B (commit36bb49d).** Candidate hiện tại xem `K7B_Final_Checkpoint.md`; fingerprint/render K7 trước không mô tả executable/source mới. Các report K7 do shared regression builders có thể đã chạy lại; balance/presentation hiện tại lấy từ K7B.
+
 2026-10-14. **Bản Windows rework đã bàn giao theo functional/capture gate. Không đánh dấu toàn K7 production DONE.** Chủ dự án yêu cầu tự quyết định/sửa không đợi confirm; đã triển khai và kiểm tra, không dùng test để tự ghi human approval. Android/iOS device gate vẫn OPEN theo quyết định trước.
 
 ## Những điểm đã sửa

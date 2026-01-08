@@ -1,0 +1,17 @@
+{
+  "tool": "painting pass",
+  "source": "Assets/ArcaneBrigade/Art/AnimationHD/BondIcons_v1.png",
+  "generated_file": "exec-aceeb609-57fd-49ce-a54b-7f0f68ed4a49.png",
+  "dimensions": [
+    2172,
+    724
+  ],
+  "reference_role": "Own NightMarket_v1.png for style only",
+  "prompt": "Use case: stylized-concept. Asset type: 2D hand-painted UI faction/bond icon strip for original Arcane Brigade dream arcade, exactly FOUR isolated icons side by side in FOUR equal cells ONE row, transparent alpha, horizontal4:1 composition, large empty gutters, crisp thick dark ink silhouettes readable at48px. Matching the original reference game's OWN supplied mint/coral/cream/brass painted art style only, no copying existing game icons. Icon1 HEARTH: simple coral-orange living flame rising above small cream teacup, 3flat tones. Icon2 ARCHIVE: open cream book with mint cover, a single small coral star above center crease. Icon3 CLOCKWORK: brass/coral round cog wheel containing cream clock face with two dark hands, not text. Icon4 FROST: bold six-branch icy cyan snowflake with dark navy outline and small cream diamond center. Each icon fills at most70% of cell, identical visual scale, centered. No background panel, no frame, no circle badge backgrounds, no numerals, no lettering, no shadows outside icon silhouettes, no extra objects, no gradients on empty background. Genuine transparent alpha outside artwork. Premium cohesive arcade screenprint icon system.",
+  "mapping": [
+    "hearth",
+    "archive",
+    "clock",
+    "frost"
+  ]
+}

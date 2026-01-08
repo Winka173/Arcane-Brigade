@@ -11,12 +11,12 @@ namespace ArcaneBrigade
         private static GUIStyle headerStyle;
         private static GUIStyle stampStyle;
         public static int Bundle { get; set; }
-        public static readonly Color Ink = new Color(0.10f, 0.09f, 0.19f);
-        public static readonly Color Purple = new Color(0.62f, 0.28f, 0.92f);
+        public static readonly Color Ink = new Color(0.07f, 0.12f, 0.16f);
+        public static readonly Color Purple = new Color(0.97f, 0.35f, 0.28f);
         public static readonly Color Cream = new Color(1f, 0.94f, 0.76f);
         public static readonly Color Teal = new Color(0.28f, 0.94f, 0.86f);
         public static Color Paper => Bundle == 1 ? new Color(0.87f, 0.96f, 0.91f) : Bundle == 2 ? new Color(1f, 0.89f, 0.90f) : new Color(0.98f, 0.93f, 0.81f);
-        public static Color Accent => Bundle == 1 ? new Color(0.35f, 0.90f, 0.83f) : Bundle == 2 ? new Color(1f, 0.50f, 0.66f) : new Color(1f, 0.72f, 0.32f);
+        public static Color Accent => Bundle == 1 ? new Color(0.35f, 0.90f, 0.83f) : Bundle == 2 ? new Color(1f, 0.50f, 0.66f) : new Color(0.97f, 0.35f, 0.28f);
 
         public static GUISkin Skin
         {
@@ -26,10 +26,10 @@ namespace ArcaneBrigade
                 skin = Object.Instantiate(GUI.skin);
                 if (ArcadeTypography.Body != null) skin.font = ArcadeTypography.Body;
                 skin.button = new GUIStyle(skin.button) { border = new RectOffset(10, 10, 10, 10), fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
-                skin.button.normal.background = ButtonTexture(new Color(0.22f, 0.18f, 0.32f), new Color(0.88f, 0.65f, 0.34f));
-                skin.button.hover.background = ButtonTexture(new Color(0.33f, 0.24f, 0.46f), Teal);
-                skin.button.active.background = ButtonTexture(new Color(0.2f, 0.15f, 0.31f), Cream);
-                skin.button.normal.textColor = skin.button.hover.textColor = skin.button.active.textColor = Cream;
+                skin.button.normal.background = ButtonTexture(Cream, Ink);
+                skin.button.hover.background = ButtonTexture(Teal, Ink);
+                skin.button.active.background = ButtonTexture(new Color(1, 0.5f, 0.38f), Ink);
+                skin.button.normal.textColor = skin.button.hover.textColor = skin.button.active.textColor = Ink;
                 skin.button.onNormal = skin.button.normal;
                 skin.label.normal.textColor = Cream;
                 return skin;
@@ -43,9 +43,8 @@ namespace ArcaneBrigade
             for (int vertical = 0; vertical < 32; vertical++)
                 for (int horizontal = 0; horizontal < 32; horizontal++)
                 {
-                    float distance = RoundedDistance(horizontal, vertical);
-                    Color color = distance > 7.8f ? Color.clear : distance > 5.2f || horizontal < 3 || horizontal > 28 || vertical < 3 || vertical > 28 ? edge : Color.Lerp(face * 0.8f, face, vertical / 31f);
-                    color.a = distance > 7.8f ? 0f : 1f;
+                    bool punch = Vector2.Distance(new Vector2(horizontal, vertical), new Vector2(0, 15.5f)) < 3.8f || Vector2.Distance(new Vector2(horizontal, vertical), new Vector2(31, 15.5f)) < 3.8f;
+                    Color color = punch ? Color.clear : horizontal < 2 || horizontal > 29 || vertical < 2 || vertical > 29 ? edge : horizontal < 5 ? Accent : face;
                     pixels[vertical * 32 + horizontal] = color;
                 }
             texture.SetPixels(pixels); texture.Apply(false, true);
@@ -79,11 +78,20 @@ namespace ArcaneBrigade
 
         public static void Panel(Rect rectangle, Color color)
         {
-            if (PresentationSettings.HighReadability) color = new Color(color.r * 0.6f, color.g * 0.6f, color.b * 0.6f, 1);
-            Rounded(new Rect(rectangle.x, rectangle.y + 5f, rectangle.width, rectangle.height), new Color(0.035f, 0.025f, 0.075f, 0.8f));
-            Rounded(rectangle, Color.Lerp(Accent, Ink, 0.55f));
-            Rounded(new Rect(rectangle.x + 2, rectangle.y + 2, rectangle.width - 4, rectangle.height - 4), color);
-            Line(new Rect(rectangle.x + 16, rectangle.y + 9, Mathf.Min(32, rectangle.width - 32), 2), Accent);
+            Color surface = PresentationSettings.HighReadability ? new Color(0.025f, 0.045f, 0.06f) : Color.Lerp(Ink, Teal, 0.055f);
+            Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), new Color(0.025f, 0.03f, 0.035f, 0.72f));
+            Line(rectangle, surface);
+            Line(new Rect(rectangle.x, rectangle.y, 7, rectangle.height), Accent);
+            Divider(new Rect(rectangle.x + 20, rectangle.yMax - 9, rectangle.width - 40, 2), Color.Lerp(Cream, surface, 0.65f));
+        }
+
+        public static void Ticket(Rect rectangle, Color paper, Color stamp)
+        {
+            Line(new Rect(rectangle.x + 3, rectangle.y + 4, rectangle.width, rectangle.height), new Color(Ink.r, Ink.g, Ink.b, 0.55f));
+            Line(rectangle, paper);
+            Line(new Rect(rectangle.x, rectangle.y, 6, rectangle.height), stamp);
+            for (float horizontal = rectangle.x + 10; horizontal < rectangle.xMax - 5; horizontal += 12)
+                Line(new Rect(horizontal, rectangle.yMax - 3, 5, 3), Ink);
         }
 
         public static void Line(Rect rectangle, Color color)

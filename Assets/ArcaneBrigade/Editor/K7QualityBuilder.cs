@@ -63,7 +63,7 @@ namespace ArcaneBrigade.Editor
             catalog.Arena.PickupRadius = Mathf.Max(catalog.Arena.PickupRadius, 1.7f);
             EditorUtility.SetDirty(catalog.Arena); EditorUtility.SetDirty(catalog); AssetDatabase.SaveAssets();
         }
-        private static Dictionary<string, Sprite[]> Import(string file, string[] rows, int[] edges, float[] columns = null)
+        internal static Dictionary<string, Sprite[]> Import(string file, string[] rows, int[] edges, float[] columns = null)
         {
             string path = Root + "Art/AnimationHD/" + file + ".png";
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);

@@ -8,6 +8,7 @@ namespace ArcaneBrigade
     {
         private static string diagnosticRoot;
         public static bool K7Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7-capture") >= 0;
+        public static bool K7B => K7Capture && Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7b") >= 0;
         public static bool K6Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k6-capture") >= 0;
         public static bool K5Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k5-capture") >= 0;
         public static bool K4Capture => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k4-capture") >= 0;

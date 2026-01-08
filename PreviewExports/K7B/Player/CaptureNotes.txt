@@ -1,0 +1,78 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Native full-resolution frame 00-main-menu
+PASS Frame contains rendered content not blank black 00-main-menu
+PASS Actual GUI navigation skips disabled resume and submits discovered museum without mouse
+PASS Native full-resolution frame 01-settings-bundle-0
+PASS Frame contains rendered content not blank black 01-settings-bundle-0
+PASS Native full-resolution frame 01-settings-bundle-1
+PASS Frame contains rendered content not blank black 01-settings-bundle-1
+PASS Native full-resolution frame 01-settings-bundle-2
+PASS Frame contains rendered content not blank black 01-settings-bundle-2
+PASS Requested render surface 2560x1080; actual=2560x1080
+PASS Native full-resolution frame 02-aspect-2560x1080
+PASS Frame contains rendered content not blank black 02-aspect-2560x1080
+PASS Requested render surface 1600x1000; actual=1600x1000
+PASS Native full-resolution frame 02-aspect-1600x1000
+PASS Frame contains rendered content not blank black 02-aspect-1600x1000
+PASS Requested render surface 1334x750; actual=1334x750
+PASS Native full-resolution frame 02-aspect-1334x750
+PASS Frame contains rendered content not blank black 02-aspect-1334x750
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Actual uncapped rendered roster 1
+PASS Native full-resolution frame 03-combat-roster-1
+PASS Frame contains rendered content not blank black 03-combat-roster-1
+PASS No timeScale acceleration in native run 1
+PASS Measurement remained in live combat 1
+PASS Native full-resolution frame 04-details-roster-1
+PASS Frame contains rendered content not blank black 04-details-roster-1
+PASS Actual uncapped rendered roster 56
+PASS Native full-resolution frame 03-combat-roster-56
+PASS Frame contains rendered content not blank black 03-combat-roster-56
+PASS No timeScale acceleration in native run 56
+PASS Measurement remained in live combat 56
+PASS Native full-resolution frame 04-details-roster-56
+PASS Frame contains rendered content not blank black 04-details-roster-56
+PASS Actual uncapped rendered roster 100
+PASS Native full-resolution frame 03-combat-roster-100
+PASS Frame contains rendered content not blank black 03-combat-roster-100
+PASS No timeScale acceleration in native run 100
+PASS Measurement remained in live combat 100
+PASS Native full-resolution frame 04-details-roster-100
+PASS Frame contains rendered content not blank black 04-details-roster-100
+PASS Native full-resolution frame 05-shop-focus
+PASS Frame contains rendered content not blank black 05-shop-focus
+PASS Actual shop proximity purchase commits and queues merge
+PASS Native full-resolution frame 06-merge-gather
+PASS Frame contains rendered content not blank black 06-merge-gather
+PASS Native full-resolution frame 07-merge-payoff
+PASS Frame contains rendered content not blank black 07-merge-payoff
+PASS Merge completes from actual committed roster not fake message
+PASS Actual unmerged recruit purchase commits
+PASS Native full-resolution frame 08-recruit-hop
+PASS Frame contains rendered content not blank black 08-recruit-hop
+PASS Native full-resolution frame 09-recruit-walkout
+PASS Frame contains rendered content not blank black 09-recruit-walkout
+PASS Insufficient gold shakes/flashes without committing or consuming item
+PASS Native full-resolution frame 10-denied-purchase
+PASS Frame contains rendered content not blank black 10-denied-purchase
+PASS Actual item purchase commits
+PASS Native full-resolution frame 11-item-flight
+PASS Frame contains rendered content not blank black 11-item-flight
+PASS Committed item arrives at player with animated flight
+PASS Dedicated machine rerolls actual stock
+PASS Native full-resolution frame 12-reroll-machine
+PASS Frame contains rendered content not blank black 12-reroll-machine
+PASS Special merchant visited through world interaction
+PASS Native full-resolution frame 13-special-rarity-lights
+PASS Frame contains rendered content not blank black 13-special-rarity-lights
+PASS Special item charges currentHP not maxHP and leaves at least1HP
+PASS Native full-resolution frame 14-special-hp-purchase
+PASS Frame contains rendered content not blank black 14-special-hp-purchase
+PASS Special merchant also charges separate egg currency
+PASS Downward door starts committed hall travel presentation
+PASS Native full-resolution frame 15-downward-exit
+PASS Frame contains rendered content not blank black 15-downward-exit
+PASS Curtain finishes into actual wave2 without duplicate advance
+PASS Native full-resolution frame 16-next-wave
+PASS Frame contains rendered content not blank black 16-next-wave
+Windows fixture seed7707, native resolution3840x2160 (video1920x1080), timeScale1, movement-only circle driver, seeded1/56/100 unique body+weapon roster and relics. No HP/invulnerability/weapon/enemy timer adjustments. Native instrumentation captures real Unity frame/memory/GC/GPU where counters exist; NA means unavailable, not zero-cost. CSV/summary measured before screenshots and without video encoder. Not natural20hall balance/human feel/device approval. Aspect screenshots are desktop resizes, not device safe-area evidence. Video flag leaves22seconds for external game-window-only60fps recording; separate audio audition, no microphone/desktop capture.

@@ -789,21 +789,25 @@ MonoBehaviour:
   - Id: hearth
     Name: Hearth
     Threshold: 2
+    Icon: {fileID: 1401764315, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 7
     Value: 0.15
   - Id: archive
     Name: Archive
     Threshold: 2
+    Icon: {fileID: 1269724658, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 0
     Value: 0.08
   - Id: clock
     Name: Clockwork
     Threshold: 2
+    Icon: {fileID: -1203761967, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 1
     Value: 0.07
   - Id: frost
     Name: Frost
     Threshold: 2
+    Icon: {fileID: -30878964, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 5
     Value: 0.15
   Recipes:
@@ -955,7 +959,10 @@ MonoBehaviour:
   HeartSprite: {fileID: 21300000, guid: a90467885db2c4a4a80316b8c705cd16, type: 3}
   ChestSprite: {fileID: 21300000, guid: f2a23aad617e3c842a2754161e4df2f6, type: 3}
   NormalWaves: 20
-  WaveSeconds: 84
+  FirstWaveSeconds: 35
+  WaveIncrement: 2
+  WaveSeconds: 55
+  BossHealthMultiplier: 0.55
   BossEvery: 4
   StartingGold: 35
   Income: 20

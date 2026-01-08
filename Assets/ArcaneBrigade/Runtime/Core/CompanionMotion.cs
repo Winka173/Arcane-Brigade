@@ -10,8 +10,19 @@ namespace ArcaneBrigade
             float outer = Mathf.Max(0.1f, Mathf.Min(catalog.CompanionRoamOuterRadius, catalog.CompanionLeash * 0.9f));
             float inner = Mathf.Clamp(catalog.CompanionRoamInnerRadius, 0f, outer);
             Vector2 destination = champion.Position + unit.RoamOffset;
-            if (elapsed >= unit.NextRoamTime || (destination - unit.Position).sqrMagnitude < 0.04f)
+            bool championMoving = (champion.Position - champion.PreviousPosition).sqrMagnitude > 0.000001f;
+            bool resting = !championMoving && elapsed < unit.RoamRestUntil;
+            if (!resting && (elapsed >= unit.NextRoamTime || (destination - unit.Position).sqrMagnitude < 0.04f))
             {
+                if (!championMoving && unit.RoamRandom.NextDouble() < 0.4)
+                {
+                    unit.RoamRestUntil = elapsed + Mathf.Lerp(0.6f, 1.8f, (float)unit.RoamRandom.NextDouble());
+                    unit.NextRoamTime = unit.RoamRestUntil;
+                    unit.RoamOffset = unit.Position - champion.Position;
+                    resting = true;
+                }
+                else
+                {
                 float angle = (float)unit.RoamRandom.NextDouble() * Mathf.PI * 2f;
                 float radius = Mathf.Sqrt(Mathf.Lerp(inner * inner, outer * outer, (float)unit.RoamRandom.NextDouble()));
                 unit.RoamOffset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
@@ -19,6 +30,7 @@ namespace ArcaneBrigade
                 float maximumTime = Mathf.Max(minimumTime, catalog.CompanionRetargetMax);
                 unit.NextRoamTime = elapsed + Mathf.Lerp(minimumTime, maximumTime, (float)unit.RoamRandom.NextDouble());
                 destination = champion.Position + unit.RoamOffset;
+                }
             }
             bool pursuing = target != null && unit.Definition.Weapon.Kind == WeaponKind.Melee && (target.Position - champion.Position).magnitude <= catalog.CompanionLeash - target.Definition.Radius;
             if (pursuing)
@@ -29,6 +41,7 @@ namespace ArcaneBrigade
             float maximumSpeed = Mathf.Max(0f, unit.Definition.Speed);
             float speed = Mathf.Lerp(Mathf.Min(catalog.CompanionPatrolSpeed, maximumSpeed), maximumSpeed, pursuing ? 1f : catchup);
             Vector2 desired = toDestination.normalized * Mathf.Min(speed, toDestination.magnitude * 3f);
+            if (resting && !pursuing) desired = Vector2.zero;
             float separation = Mathf.Max(0.05f, catalog.CompanionSeparation);
             for (int index = 0; index < units.Count; index++)
             {

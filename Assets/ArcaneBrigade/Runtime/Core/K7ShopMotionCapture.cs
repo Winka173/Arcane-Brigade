@@ -38,24 +38,50 @@ namespace ArcaneBrigade
                 session.State.Offers.Add(new ShopOffer { Token = 2, Id = catalog.Companions[1].Id, Kind = OfferKind.Companion, Price = 1 });
                 session.State.Offers.Add(new ShopOffer { Token = 3, Id = catalog.Items[0].Id, Kind = OfferKind.Item, Price = 1 });
                 session.State.NextOffer = 3; session.Validate(session.State); storage.SaveRun(session.State);
+                if (RunPaths.K7B)
+                {
+                    session.State.Eggs = 10;
+                    for (int rarity = 1; rarity <= 3; rarity++)
+                    {
+                        ItemDefinition item = Array.Find(catalog.Items, candidate => candidate.Rarity == (ItemRarity)rarity && !Array.Exists(candidate.EffectiveModifiers, modifier => modifier.Effect == ItemEffect.Health));
+                        session.State.SpecialOffers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = item.Id, Kind = OfferKind.Item, Price = rarity == 2 ? 5 : 1, Currency = rarity == 2 ? ShopCurrency.Health : ShopCurrency.Eggs });
+                    }
+                    session.Validate(session.State); storage.SaveRun(session.State);
+                }
             }
             storage.SaveProfile(new PlayerProfile()); RunLaunch.Resume = true;
             SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.8f);
             owner = FindAnyObjectByType<ArenaController>();
             target = new Vector2(-5, -1); owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = target;
             yield return new WaitForSecondsRealtime(0.5f);
-            K7FramebufferRecorder recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(12);
+            K7FramebufferRecorder recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(RunPaths.K7B ? 38 : 12);
             File.WriteAllText(Path.Combine(root, "VideoReady.txt"), "Window-only realtime1920x1080 shop seed4313. Seeded gold/price/roster for short visual diagnostic, not natural run; movement-only target driver + real Shop.Interact transactions; timeScale1, no PNG during capture.");
             yield return new WaitForSecondsRealtime(3);
             target = new Vector2(-3, 0.5f); yield return new WaitForSecondsRealtime(1.8f);
             failed |= !owner.Shop.Interact(); yield return new WaitForSecondsRealtime(2);
             target = new Vector2(0, 0.5f); yield return new WaitForSecondsRealtime(1.6f);
             failed |= !owner.Shop.Interact(); yield return new WaitForSecondsRealtime(2);
-            target = new Vector2(3, -2); yield return new WaitForSecondsRealtime(5);
+            if (RunPaths.K7B)
+            {
+                target = new Vector2(3, 0.5f); yield return new WaitForSecondsRealtime(1.6f);
+                owner.Session.State.Gold = 0; failed |= owner.Shop.Interact(); yield return new WaitForSecondsRealtime(0.75f);
+                owner.Session.State.Gold = 10000; failed |= !owner.Shop.Interact(); yield return new WaitForSecondsRealtime(1.2f);
+                target = new Vector2(-4.8f, 2.8f); yield return new WaitForSecondsRealtime(4.5f);
+                failed |= !owner.Shop.Interact(); yield return new WaitForSecondsRealtime(1);
+                target = new Vector2(4.8f, 2.8f); yield return new WaitForSecondsRealtime(5);
+                failed |= !owner.Shop.Interact() || !owner.Shop.Special; yield return new WaitForSecondsRealtime(1);
+                target = new Vector2(0, 0.5f); yield return new WaitForSecondsRealtime(2.8f);
+                float healthBefore = owner.Session.State.Health; failed |= !owner.Shop.Interact() || owner.Session.State.Health != healthBefore - 5;
+                yield return new WaitForSecondsRealtime(1.2f);
+                target = new Vector2(0, -4.3f); yield return new WaitForSecondsRealtime(3);
+                failed |= !owner.Shop.Interact(); yield return new WaitForSecondsRealtime(2);
+                failed |= owner.Session.State.Wave != 2 || owner.Shop.DeniedCount != 1 || owner.Shop.ItemPickup.CompletedCount < 2;
+            }
+            else { target = new Vector2(3, -2); yield return new WaitForSecondsRealtime(5); }
             failed |= owner.Session.State.Roster.Count != 2 || owner.Shop.Reveal.CompletedCount != 1;
             while (!recorder.Complete) yield return null;
             failed |= !recorder.Passed;
-            File.WriteAllText(Path.Combine(root, "CaptureNotes.txt"), (failed ? "FAIL" : "PASS") + " actual physical movement/proximity spring/merge/drop/walkout;2committed purchases,1merge;timeScale=" + Time.timeScale + ";surface=" + Screen.width + "x" + Screen.height + "; seeded visual fixture not balance or input-hardware certification.");
+            File.WriteAllText(Path.Combine(root, "CaptureNotes.txt"), (failed ? "FAIL" : "PASS") + (RunPaths.K7B ? " idle/roam, merchant,3rarity glows, actual item/deny/reroll/HP purchase/downward exit into wave2;" : " actual physical movement/proximity spring/merge/drop/walkout;2committed purchases,1merge;") + "timeScale=" + Time.timeScale + ";surface=" + Screen.width + "x" + Screen.height + "; seeded visual fixture not balance or input-hardware certification.");
             Debug.Log(failed ? "K7_SHOP_MOTION_FAILED" : "K7_SHOP_MOTION_PASSED"); Application.Quit(failed ? 1 : 0);
         }
     }

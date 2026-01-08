@@ -1,10 +1,10 @@
 # Arcane Brigade
 
-## Bản mới nhất — K7 Windows candidate
+## Bản mới nhất — K7B Windows candidate
 
-K7 quality rework: combat HUD tối giản, main menu art-led/Coiny, shop spring/recruit arrival/merge,48 character frames +16 painted VFX, upper/lower-body animation, enemy silhouette tối mắt đỏ; Foley/music CC0 thay default beep, keyboard/pad, profile3, readability/reduced-motion và native diagnostics. **Chưa nghiệm thu production.** Android/iOS device gates vẫn mở; tests không thay duyệt art/audio/feel.
+K7B: UI vé hội chợ, giant animated merchant/ground shadows, reroll machine và cửa xuống riêng, item/deny/HP purchase feedback, blue/purple/gold rarity lights, góc phải icon hệ + count, body idle và random rest/roam. Wave thường35–55s, wave1 contact-only, đạn địch chậm hơn. Giữ Foley/music CC0 và các hệ thống K7. **Chưa nghiệm thu production.** Android/iOS device gates vẫn mở; tests không thay duyệt art/audio/feel.
 
-Chạy `Builds/FullRun/ArcaneBrigade.exe`; giữ nguyên thư mục đi kèm. Checklist: `Docs/K7_Playtest_Checklist.md`; ảnh/video: `PreviewExports/K7/index.html`; nghe thử: `PreviewExports/K7/Audition/index.html`. Dựng rework không reset catalog bằng Unity menu **Arcane Brigade > K7 > Quality rework apply check and build**; không dùng gate K5/K6 Apply cũ ghi đè art mới.
+Chạy `Builds/FullRun/ArcaneBrigade.exe`; giữ nguyên thư mục đi kèm. Báo cáo: `Docs/K7B_Final_Checkpoint.md`; ảnh/video: `PreviewExports/K7B/index.html`; nghe thử: `PreviewExports/K7/Audition/index.html`. Dựng bằng Unity menu **Arcane Brigade > K7B > Night market apply check build**; không dùng baseline/K5/K6 Apply cũ ghi đè art mới.
 
 Các đoạn dưới là lịch sử checkpoint; thông tin chưa implement ở đoạn cũ không ghi đè trạng thái checkpoint mới.
 
