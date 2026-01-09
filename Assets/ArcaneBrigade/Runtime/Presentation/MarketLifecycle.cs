@@ -9,15 +9,18 @@ namespace ArcaneBrigade
         private bool departing;
         private bool dream;
         private Transform rug;
-        private Vector3 rugScale;
-        private Vector3 rugPosition;
+        private MarketCarpetRoll carpet;
         private SpriteRenderer[] wisps;
-        public bool Busy => departing || owner != null && owner.PresentationClock - started < 0.65f;
+        private ShopDisplayActor[] fixtures;
+        private Vector3[] fixtureOrigins;
+        public bool Busy => departing || owner != null && owner.PresentationClock - started < 1.15f;
         public void Configure(ArenaController controller, bool special, bool entrance)
         {
-            owner = controller; dream = special; started = owner.PresentationClock - (entrance ? 0 : 1);
+            owner = controller; dream = special; started = owner.PresentationClock - (entrance ? 0 : 2);
             rug = transform.Find("PaintedMarketRug");
-            if (rug != null) { rugScale = rug.localScale; rugPosition = rug.localPosition; }
+            if (rug != null) { carpet = rug.gameObject.AddComponent<MarketCarpetRoll>(); carpet.Configure(rug.GetComponent<SpriteRenderer>()); }
+            fixtures = GetComponentsInChildren<ShopDisplayActor>(); fixtureOrigins = new Vector3[fixtures.Length];
+            for (int index = 0; index < fixtures.Length; index++) fixtureOrigins[index] = fixtures[index].transform.localPosition;
             if (!dream) return;
             wisps = new SpriteRenderer[8];
             for (int index = 0; index < wisps.Length; index++)
@@ -32,19 +35,16 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (owner == null || owner.Simulation == null) return;
-            float progress = Mathf.Clamp01((owner.PresentationClock - started) / (departing ? 0.78f : 0.65f));
+            float progress = Mathf.Clamp01((owner.PresentationClock - started) / (departing ? 0.78f : 0.9f));
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
-            if (departing)
+            if (carpet != null) carpet.Display(reduced ? 1 : Mathf.SmoothStep(0, 1, departing ? 1 - progress : progress), departing ? 1 - progress : 1);
+            for (int index = 0; index < fixtures.Length; index++)
             {
-                float fold = Mathf.SmoothStep(0, 1, progress);
-                transform.localScale = new Vector3(1 - fold * 0.92f, 1 - fold * 0.99f, 1);
-                transform.localPosition = new Vector3(Mathf.Sin(progress * Mathf.PI * 2) * (reduced ? 0 : 0.15f), fold * (dream ? 2.7f : 1.8f), 0);
-            }
-            else if (rug != null)
-            {
-                float unfurl = Mathf.SmoothStep(0.02f, 1, progress);
-                rug.localScale = Vector3.Scale(rugScale, new Vector3(1, unfurl, 1));
-                rug.localPosition = rugPosition + Vector3.up * (1 - unfurl) * 1.1f;
+                if (fixtures[index].enabled) continue;
+                float rise = departing ? 1 - progress : progress;
+                fixtures[index].transform.localPosition = fixtureOrigins[index] + Vector3.down * (reduced ? 0 : (1 - rise) * 0.65f);
+                SpriteRenderer renderer = fixtures[index].GetComponent<SpriteRenderer>();
+                Color tint = renderer.color; tint.a = rise; renderer.color = tint;
             }
             if (wisps == null) return;
             for (int index = 0; index < wisps.Length; index++)

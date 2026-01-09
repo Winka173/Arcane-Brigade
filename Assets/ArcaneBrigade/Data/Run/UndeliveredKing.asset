@@ -37,6 +37,8 @@ MonoBehaviour:
   PassiveStrength: 1
   Description: 
   ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
   CompanionModifiers: []
   Price: 20
   UnlockWave: 0

@@ -41,6 +41,12 @@ namespace ArcaneBrigade.Editor
             require(controller.Contains("session.Restore(before); if (Shop != null) Shop.CancelDeparture()"), "Failed boundary save restores shop departure for retry");
             require(lifecycle.Contains("!state.SpecialShopVisited") && lifecycle.Contains("owner.FinishSpecialShop()"), "Special first then gold merchant stage, not toggle sign");
             require(!lifecycle.Contains("Station visit = AddStation"), "No alternate-shop switch station left on map");
+            string actorMotion = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/ShopDisplayActor.cs");
+            string marketMotion = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/MarketLifecycle.cs");
+            require(!actorMotion.Contains("SmoothStep(0.05f, 1, arrival)") && actorMotion.Contains("6 * travel * travel"), "Gold merchant falls ballistically at full authored size");
+            require(actorMotion.Contains("-height * Mathf.SmoothStep") && actorMotion.Contains("launchOffset * Mathf.SmoothStep"), "Dream merchant rises and goods follow separate launch arcs");
+            require(!marketMotion.Contains("1 - fold") && marketMotion.Contains("carpet.Display"), "Market root never shrinks; rug owns independent mesh curl");
+            require(lifecycle.Contains("actor.Depart") && lifecycle.Contains("actor.Arrive(0)"), "Independent actor departures recover after failed boundary save");
             require(File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/UnitVisual.cs").Contains("unit.Faction != Faction.Enemy &&"), "Enemy attacks use body, never held friendly weapon");
             require(File.ReadAllText("Assets/ArcaneBrigade/Runtime/Core/CombatSimulation.cs").Contains("unit.Definition.Radius * 0.9f"), "Hostile spit originates from body rather than held muzzle");
             PaintedAnimationLibrary art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");

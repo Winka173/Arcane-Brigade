@@ -2,6 +2,8 @@
 
 2026-10-14. This checkpoint implements the transition/body-attack portion of K11, not the complete requested overhaul.
 
+Historical K11.1 evidence; subsequent theme/protagonist work is documented separately in `K11_Themes_Checkpoint.md`. Read the newest checkpoint for current build/test totals.
+
 ## Implemented
 
 - Wave continuation stays in RunArena. Removed the opaque curtain rather than disguising a load. Simulation recompiles inside the same scene; friendly world positions are preserved through purchases and wave changes, no reset-to-origin teleport.

@@ -223,7 +223,7 @@ namespace ArcaneBrigade
                 Station station = AddStation(new Vector2((index - 1) * 3f, 0.5f), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 station.Description = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Description : catalog.Item(offer.Id).Description;
-                if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(0.16f + index * 0.09f);
+                if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(0.35f + index * 0.09f, scenery.transform.TransformPoint(MerchantCenter));
                 if (offer.Currency == ShopCurrency.Health) station.Description += " · Trả HP hiện tại, không giảm HP tối đa; phải còn ít nhất 1 HP.";
                 if (!offer.Sold && offer.Kind == OfferKind.Item && catalog.Item(offer.Id).Rarity != ItemRarity.Common)
                 {
@@ -246,8 +246,19 @@ namespace ArcaneBrigade
                 }
             lifecycle = scenery.AddComponent<MarketLifecycle>(); lifecycle.Configure(owner, Special, merchantEntrance);
         }
-        public void Depart() { if (lifecycle != null) lifecycle.Depart(); Nearby = null; }
-        public void CancelDeparture() { if (lifecycle != null) lifecycle.Reenter(); }
+        public void Depart()
+        {
+            if (lifecycle != null) lifecycle.Depart();
+            foreach (ShopDisplayActor actor in scenery.GetComponentsInChildren<ShopDisplayActor>())
+                if (actor.enabled) actor.Depart(scenery.transform.TransformPoint(MerchantCenter));
+            Nearby = null;
+        }
+        public void CancelDeparture()
+        {
+            if (lifecycle != null) lifecycle.Reenter();
+            foreach (ShopDisplayActor actor in scenery.GetComponentsInChildren<ShopDisplayActor>())
+                if (actor.enabled) actor.Arrive(0);
+        }
         public string DescribeOffer(ShopOffer offer)
         {
             if (offer == null) return "";

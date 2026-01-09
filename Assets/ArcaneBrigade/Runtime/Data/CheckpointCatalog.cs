@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         public float Dodge;
         public float HeartHealing;
         public float ChestQuality;
+        public bool EnableHeroMechanics;
         public UnitDefinition MeleeEnemy;
         public UnitDefinition RangedEnemy;
         public Sprite Hand;

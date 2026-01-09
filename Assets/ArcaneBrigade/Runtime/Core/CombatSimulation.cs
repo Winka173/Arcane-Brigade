@@ -182,6 +182,7 @@ namespace ArcaneBrigade
 
         public void Start(int seed)
         {
+            ResetHeroMechanic();
             units.Clear();
             projectiles.Clear();
             pickups.Clear();
@@ -315,6 +316,7 @@ namespace ArcaneBrigade
                 {
                     CollectPickups(deltaTime);
                     SpawnTreasure();
+                    ProcessHeroMechanic(deltaTime);
                     ProcessSignatureRelics();
                     ProcessSignatures();
                     ProcessArenaToys(deltaTime);

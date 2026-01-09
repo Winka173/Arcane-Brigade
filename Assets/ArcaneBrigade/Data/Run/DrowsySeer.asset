@@ -58,6 +58,12 @@ MonoBehaviour:
   - Effect: 36
     Scope: 3
     Value: 0.05
+  RecruitThemes:
+  - frost
+  - astral
+  - tidal
+  - oddity
+  HeroMechanic: 3
   CompanionModifiers: []
   Price: 20
   UnlockWave: 10

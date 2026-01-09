@@ -78,7 +78,7 @@ namespace ArcaneBrigade
         public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Đã mở khóa" : "Đạt màn " + unit.UnlockWave + " để mở · hiện tại " + bestWave;
         public static string ChampionDescription(UnitDefinition unit)
         {
-            if (unit.ChampionModifiers != null && unit.ChampionModifiers.Length > 0) return unit.Description;
+            if (unit.ChampionModifiers != null && unit.ChampionModifiers.Length > 0) return unit.Description + (unit.HeroMechanic == HeroMechanic.None ? "" : "\n\n" + K11HeroRules.Describe(unit));
             switch (unit.Id)
             {
                 case "LanternKnight": return "Tiên phong cận chiến bằng kiếm chìa khóa. Sát thương tăng theo số đồng minh trong đoàn; hợp với đội quân đông.";
@@ -136,6 +136,9 @@ namespace ArcaneBrigade
             switch (id)
             {
                 case "primary": return "Đòn đánh chính";
+                  case "hero-LanternStride": return "BƯỚC ĐÈN";
+                  case "hero-ParcelExpress": return "CHUYỂN PHÁT";
+                  case "hero-DreamBreath": return "NHỊP MƠ";
                 case "unit-passive": return "Nội tại hồi máu";
                 case "passive-regen": return "Hồi máu thụ động";
                 case "scavenge": return "Nhặt vàng tự động";

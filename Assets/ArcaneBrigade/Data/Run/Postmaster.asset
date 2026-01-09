@@ -59,6 +59,11 @@ MonoBehaviour:
   - Effect: 34
     Scope: 3
     Value: 0.08
+  RecruitThemes:
+  - archive
+  - clock
+  - tidal
+  HeroMechanic: 2
   CompanionModifiers: []
   Price: 20
   UnlockWave: 5

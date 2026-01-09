@@ -327,11 +327,23 @@ namespace ArcaneBrigade
             }
             GUI.EndScrollView();
             UnitDefinition champion = catalog.Champions[selection];
+            if (catalog.HeroRevision > 0)
+            {
+                int iconIndex = 0;
+                foreach (BondDefinition bond in catalog.Bonds)
+                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) RunHud.Sprite(new Rect(660 - iconIndex++ * 34, 145, 28, 28), bond.Icon);
+            }
             RunHud.Sprite(new Rect(784, 150, 122, 132), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             GUI.Label(new Rect(915, 166, 280, 70), RunUICopy.UnitName(champion), rosterTitle ?? (rosterTitle = ArcadeTypography.Style(24, true)));
             GUI.Label(new Rect(915, 242, 280, 40), RunUICopy.WeaponName(champion.Weapon.Id), note);
             GUI.Label(new Rect(775, 278, 420, 38), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
             string description = RunUICopy.ChampionDescription(champion);
+            if (catalog.HeroRevision > 0)
+            {
+                description += "\n\nTHEME TUYỂN QUÂN: ";
+                foreach (BondDefinition bond in catalog.Bonds)
+                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) description += bond.Name + " · ";
+            }
             description += "\n\nĐẶC TÍNH KHỞI ĐẦU\n";
             foreach (StatModifier modifier in champion.ChampionModifiers)
                 description += RunModifierRules.ScopeName(modifier.Scope) + " / " + RunModifierRules.ModifierName(modifier.Effect) + ": " + RunModifierRules.ValueText(modifier.Effect, modifier.Value) + "\n";

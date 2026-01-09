@@ -108,7 +108,7 @@ namespace ArcaneBrigade
                 Gold = catalog.StartingGold, Health = champion.Health, Phase = SessionPhase.Combat, Difficulty = difficulty, ChallengeId = challengeId,
                 ShopRandom = unchecked((uint)seed ^ 0xAC731u), WeaponRandom = unchecked((uint)seed ^ 0xE517u)
             };
-            State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
+            State.Roster.Add(catalog.HeroRevision > 0 ? K11HeroRules.Starter(catalog, champion) : new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = catalog.Weapons[1].Id });
             RememberVariant(State.Roster[0]);
             RecountBonds();
             State.Health = MaximumHealth();
@@ -228,6 +228,7 @@ namespace ArcaneBrigade
             DisposeAssets();
             RecountBonds();
             CombatCatalog = Clone(catalog.Arena);
+            CombatCatalog.EnableHeroMechanics = catalog.HeroRevision > 0;
             CombatCatalog.ArenaSize = catalog.WorldSize;
             CombatCatalog.StartingCompanions = new UnitDefinition[State.Roster.Count];
             CombatCatalog.ExplicitStartingRoster = true;
@@ -455,6 +456,12 @@ namespace ArcaneBrigade
                 foreach (WeaponDefinition weapon in catalog.Weapons)
                     if (!State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
+                if (catalog.HeroRevision > 0)
+                {
+                    bool melee = Next(ref State.WeaponRandom, 2) == 0;
+                    List<WeaponDefinition> preferred = choices.FindAll(weapon => (weapon.Kind == WeaponKind.Melee) == melee);
+                    if (preferred.Count > 0) choices = preferred;
+                }
                 WeaponDefinition chosen = choices[Next(ref State.WeaponRandom, choices.Count)];
                 State.Roster.Add(new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id });
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
@@ -558,7 +565,7 @@ namespace ArcaneBrigade
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (unit.UnlockWave <= State.Wave && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");

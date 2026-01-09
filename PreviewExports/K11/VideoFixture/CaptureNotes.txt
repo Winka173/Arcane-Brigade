@@ -1,4 +1,6 @@
 PASS Requested render surface 1920x1080; actual=1920x1080
+PASS Live market has independently curled carpet mesh
+PASS Entrance keeps market root at full scale
 PASS Dream merchant appears before regular shop
 PASS New giant dream oracle is loaded at colossal scale
 PASS Whole merchant silhouette fits viewport: GiantEggMerchant height 5.2
@@ -19,4 +21,4 @@ PASS Live hostile visuals have no held weapons
 PASS Wave end also keeps scene/controller
 PASS Natural combat completion returns to living market
 PASS Realtime transition framebuffer movie completed
-Isolated saved fixture, actual purchases/transitions and natural wave2 combat. Last three stills are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. No human art/feel approval or mobile certification. No OS/desktop capture.
+Isolated saved fixture, actual purchases/transitions and natural wave2 combat with movement-only circle driver. Base stills09-11 are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. Hero stills use separate seeded character fixtures. No HP/invulnerability/timer adjustments, human feel approval, mobile certification or OS/desktop capture.

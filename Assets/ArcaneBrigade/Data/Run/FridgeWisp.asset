@@ -42,6 +42,8 @@ MonoBehaviour:
     -1\n\u0110\u1EB7c t\xEDnh c\u1EA5p 1/2/3 \xD71/2/4; gh\xE9p ba ng\u01B0\u1EDDi
     l\xE0m gi\u1EA3m s\u1ED1 ngu\u1ED3n h\u1ED7 tr\u1EE3.\n"
   ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
   CompanionModifiers:
   - Effect: 28
     Scope: 0

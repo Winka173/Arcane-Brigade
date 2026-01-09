@@ -60,6 +60,12 @@ MonoBehaviour:
   - Effect: 35
     Scope: 3
     Value: 0.08
+  RecruitThemes:
+  - hearth
+  - clock
+  - orchard
+  - oddity
+  HeroMechanic: 1
   CompanionModifiers: []
   Price: 20
   UnlockWave: 0

@@ -99,6 +99,12 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(1f, 0.68f, 0.28f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(0.94f, 0.24f, 0.36f));
             GUI.Label(new Rect(135, 36, 200, 32), Mathf.CeilToInt(health) + " / " + maximum.ToString("0"), numeric);
+            if (owner.Content.HeroRevision > 0 && state.Phase == SessionPhase.Combat)
+            {
+                float required = simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
+                ArcadeSkin.Line(new Rect(108, 72, 224, 5), new Color(0.08f, 0.13f, 0.2f, 0.8f));
+                ArcadeSkin.Line(new Rect(108, 72, 224 * Mathf.Clamp01(simulation.HeroCharge / required), 5), simulation.HeroCooldownRemaining > 0 ? Color.Lerp(ArcadeSkin.Teal, ArcadeSkin.Ink, 0.6f) : ArcadeSkin.Teal);
+            }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
             float eggPulse = LivingUI.Press(simulation.VisualElapsed - eggsChanged, PresentationSettings.ReducedMotion) * 4;
             Sprite(new Rect(40 - goldPulse, 100 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);

@@ -29,7 +29,7 @@ namespace ArcaneBrigade
                 burst = new Burst { View = child.AddComponent<SpriteRenderer>() }; burst.View.sortingOrder = 1850; pool.Add(burst);
             }
             burst.Age = 0; burst.Duration = duration; burst.Frames = frames; burst.Width = width;
-            burst.Tint = slash || magic ? Color.Lerp(Color.white, ArcadeEffects.ElementColor(value.Element), 0.3f) : Color.white;
+            burst.Tint = slash || magic || value.Kind == CombatEventKind.SignaturePulse ? Color.Lerp(Color.white, ArcadeEffects.ElementColor(value.Element), 0.3f) : Color.white;
             burst.View.sprite = frames[0]; burst.View.enabled = true; burst.View.color = Color.white;
             burst.View.transform.position = position;
             burst.View.transform.rotation = Quaternion.Euler(0, 0, slash ? Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg : 0);

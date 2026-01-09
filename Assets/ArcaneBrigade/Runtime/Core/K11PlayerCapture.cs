@@ -61,7 +61,11 @@ namespace ArcaneBrigade
             if (video) { recorder = gameObject.AddComponent<K7FramebufferRecorder>(); recorder.Begin(38); }
             var scene = SceneManager.GetActiveScene().handle; ArenaController identity = owner;
             owner.SetPresentationMoveTarget(Vector2.zero);
-            yield return Shot("01-dream-arrival"); yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(0.3f); yield return Shot("01-dream-arrival");
+            Check(FindAnyObjectByType<MarketCarpetRoll>() != null, "Live market has independently curled carpet mesh");
+            foreach (MarketLifecycle market in FindObjectsByType<MarketLifecycle>())
+                Check(market.transform.localScale == Vector3.one, "Entrance keeps market root at full scale");
+            yield return new WaitForSecondsRealtime(1);
             Check(owner.Shop.Special && !owner.Session.State.SpecialShopVisited, "Dream merchant appears before regular shop");
             Check(owner.Shop.MerchantIdentity == "GiantEggMerchant" && owner.Shop.MerchantHeight >= 5, "New giant dream oracle is loaded at colossal scale");
             CheckMerchantFits();
@@ -99,7 +103,11 @@ namespace ArcaneBrigade
                 }
             Check(hostileSeen && hostileGripsHidden, "Live hostile visuals have no held weapons");
             owner.SetPresentationMoveTarget(Vector2.zero);
-            while (owner.Session.State.Phase == SessionPhase.Combat && owner.Simulation.Elapsed < owner.Simulation.WaveDuration + 1) yield return null;
+            while (owner.Session.State.Phase == SessionPhase.Combat && owner.Simulation.Elapsed < owner.Simulation.WaveDuration + 1)
+            {
+                owner.SetPresentationMoveTarget(new Vector2(Mathf.Cos(owner.Simulation.Elapsed * 0.65f) * 4, Mathf.Sin(owner.Simulation.Elapsed * 0.65f) * 2.8f));
+                yield return null;
+            }
             yield return new WaitForSecondsRealtime(0.65f); yield return Shot("08-wave-end-arrival");
             Check(SceneManager.GetActiveScene().handle == scene && ReferenceEquals(owner, identity), "Wave end also keeps scene/controller");
             Check(owner.Session.State.Phase == SessionPhase.Shop, "Natural combat completion returns to living market");
@@ -121,8 +129,47 @@ namespace ArcaneBrigade
                 yield return Shot("11-colossal-gold");
             }
             if (video) { while (!recorder.Complete) yield return null; Check(recorder.Passed, "Realtime transition framebuffer movie completed"); }
-            notes.Add("Isolated saved fixture, actual purchases/transitions and natural wave2 combat. Last three stills are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. No human art/feel approval or mobile certification. No OS/desktop capture.");
+            if (!video && Array.IndexOf(args, "-arcane-k11-themes") >= 0) yield return CaptureHeroThemes(content, storage);
+            notes.Add("Isolated saved fixture, actual purchases/transitions and natural wave2 combat with movement-only circle driver. Base stills09-11 are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. Hero stills use separate seeded character fixtures. No HP/invulnerability/timer adjustments, human feel approval, mobile certification or OS/desktop capture.");
             File.WriteAllLines(Path.Combine(root, "CaptureNotes.txt"), notes); Application.Quit(failed ? 1 : 0);
+        }
+        private IEnumerator CaptureHeroThemes(RunCatalog content, RunStorage storage)
+        {
+            Check(content.HeroRevision > 0, "Player loads enabled themed recruitment revision");
+            foreach (UnitDefinition hero in content.Champions)
+            {
+                using (var session = new RunSession(content))
+                {
+                    session.Start(hero.Id, 721107); session.State.Wave = 3;
+                    storage.SaveRun(session.State);
+                }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.5f);
+                owner = FindAnyObjectByType<ArenaController>();
+                while (owner.Session.State.Phase == SessionPhase.Combat && owner.Simulation.Elapsed < 18 && owner.Simulation.HeroActivations == 0)
+                {
+                    Vector2 target = Vector2.zero;
+                    if (hero.HeroMechanic == HeroMechanic.LanternStride) target = new Vector2(Mathf.Cos(owner.Simulation.Elapsed) * 3, Mathf.Sin(owner.Simulation.Elapsed) * 2);
+                    else if (hero.HeroMechanic == HeroMechanic.ParcelExpress)
+                        foreach (PickupState pickup in owner.Simulation.Pickups) if (pickup.Kind == LootKind.Coin) { target = pickup.Position; break; }
+                    owner.SetPresentationMoveTarget(target); yield return null;
+                }
+                Check(owner.Simulation.HeroActivations > 0 && owner.Simulation.Champion.Definition.HeroMechanic == hero.HeroMechanic, "Native automatic hero mechanic activates: " + hero.Id);
+                yield return Shot("12-" + hero.Id + "-hero");
+                using (var session = new RunSession(content))
+                {
+                    session.Start(hero.Id, 721107); session.State.Wave = 10; session.State.Phase = SessionPhase.Shop; session.State.Gold = 100;
+                    Check(session.Reroll(), "Native regular stock rolls for hero " + hero.Id); storage.SaveRun(session.State);
+                }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.9f);
+                owner = FindAnyObjectByType<ArenaController>();
+                bool themed = true; bool recruit = false;
+                foreach (ShopOffer offer in owner.Session.State.Offers)
+                    if (offer.Kind == OfferKind.Companion) { recruit = true; themed &= K11HeroRules.Eligible(hero, content.Unit(offer.Id)); }
+                Check(recruit && themed, "Native regular recruit stock respects protagonist themes: " + hero.Id);
+                owner.SetPresentationMoveTarget(new Vector2(-3, 0.5f)); yield return new WaitForSecondsRealtime(2);
+                yield return Shot("13-" + hero.Id + "-themed-shop");
+            }
+            notes.Add("Hero showcases explicitly load separate seeded protagonist fixtures; not claimed as changing heroes within one run. Native mechanics run with real enemies/loot, without HP/invulnerability adjustments.");
         }
     }
     public static class K11StationChecks

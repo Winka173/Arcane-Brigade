@@ -28,6 +28,8 @@ namespace ArcaneBrigade
         public float PassiveStrength = 1f;
         public string Description;
         public StatModifier[] ChampionModifiers = new StatModifier[0];
+        public string[] RecruitThemes = new string[0];
+        public HeroMechanic HeroMechanic;
         public StatModifier[] CompanionModifiers = new StatModifier[0];
         public static float ModifierScale(int tier) => Mathf.Pow(2f, Mathf.Clamp(tier, 1, 3) - 1);
         public int Price = 20;
@@ -41,6 +43,7 @@ namespace ArcaneBrigade
     }
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }
+    public enum HeroMechanic { None, LanternStride, ParcelExpress, DreamBreath }
     public enum EnemyBehavior { Standard, Door, Magnet, Mimic, Curtain }
     public enum BodyMaterial { Paper, Metal, Wax, Fabric, Glass, Wood }
     public enum BossMotif { Stage, Office, Toys }

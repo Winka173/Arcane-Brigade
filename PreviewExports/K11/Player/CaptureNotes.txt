@@ -1,5 +1,7 @@
 PASS Requested render surface 3840x2160; actual=3840x2160
 PASS Native 4K 01-dream-arrival
+PASS Live market has independently curled carpet mesh
+PASS Entrance keeps market root at full scale
 PASS Dream merchant appears before regular shop
 PASS New giant dream oracle is loaded at colossal scale
 PASS Whole merchant silhouette fits viewport: GiantEggMerchant height 5.2
@@ -35,4 +37,21 @@ PASS Showcase regular stage still uses committed transaction
 PASS Gold merchant also has colossal size variant
 PASS Whole merchant silhouette fits viewport: GiantGoldMerchant height 5.25
 PASS Native 4K 11-colossal-gold
-Isolated saved fixture, actual purchases/transitions and natural wave2 combat. Last three stills are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. No human art/feel approval or mobile certification. No OS/desktop capture.
+PASS Player loads enabled themed recruitment revision
+PASS Native automatic hero mechanic activates: LanternKnight
+PASS Native 4K 12-LanternKnight-hero
+PASS Native regular stock rolls for hero LanternKnight
+PASS Native regular recruit stock respects protagonist themes: LanternKnight
+PASS Native 4K 13-LanternKnight-themed-shop
+PASS Native automatic hero mechanic activates: Postmaster
+PASS Native 4K 12-Postmaster-hero
+PASS Native regular stock rolls for hero Postmaster
+PASS Native regular recruit stock respects protagonist themes: Postmaster
+PASS Native 4K 13-Postmaster-themed-shop
+PASS Native automatic hero mechanic activates: DrowsySeer
+PASS Native 4K 12-DrowsySeer-hero
+PASS Native regular stock rolls for hero DrowsySeer
+PASS Native regular recruit stock respects protagonist themes: DrowsySeer
+PASS Native 4K 13-DrowsySeer-themed-shop
+Hero showcases explicitly load separate seeded protagonist fixtures; not claimed as changing heroes within one run. Native mechanics run with real enemies/loot, without HP/invulnerability adjustments.
+Isolated saved fixture, actual purchases/transitions and natural wave2 combat with movement-only circle driver. Base stills09-11 are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. Hero stills use separate seeded character fixtures. No HP/invulnerability/timer adjustments, human feel approval, mobile certification or OS/desktop capture.

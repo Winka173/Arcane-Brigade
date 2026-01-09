@@ -129,6 +129,7 @@ namespace ArcaneBrigade
         public int ExpansionRevision;
         public int ContentRevision;
         public int StatRevision;
+        public int HeroRevision;
         public Sprite[] ArenaPropSprites = new Sprite[0];
         public ProcRule[] ProcRules = new ProcRule[0];
         public Sprite EggSprite;

@@ -65,6 +65,10 @@ namespace ArcaneBrigade
             Add(result, "trứng", "Trứng", ItemEffect.Luck, "Tiền riêng cho quầy giấc mơ/altar. Một số món ở quầy đó trả bằng máu thay vì trứng; hai chi phí không cộng làm một.");
             Add(result, "bất tử", "Đồng minh bất tử", ItemEffect.Interceptor, "Đồng minh không mất máu hoặc chết. Không chặn đạn địch mặc định; chỉ item chặn đạn mới bật cơ chế đó. Thủ lĩnh không bất tử.");
             Add(result, "vô tận", "Chặng vô tận", ItemEffect.EnemyCount, "Chơi tiếp sau thắng, giữ roster/item/stat của lượt. Quái tiếp tục mạnh lên theo wave; không cộng stat vào hồ sơ lượt mới.");
+            Add(result, "BƯỚC ĐÈN", "Bước Đèn", ItemEffect.CollisionDamage, K11HeroRules.Describe(HeroMechanic.LanternStride), "Lantern stride");
+            Add(result, "CHUYỂN PHÁT", "Chuyển Phát", ItemEffect.Projectiles, K11HeroRules.Describe(HeroMechanic.ParcelExpress), "Parcel express");
+            Add(result, "NHỊP MƠ", "Nhịp Mơ", ItemEffect.Dodge, K11HeroRules.Describe(HeroMechanic.DreamBreath), "Dream breath");
+            Add(result, "THEME TUYỂN QUÂN", "Theme tuyển quân", ItemEffect.CompanionDamage, "Chỉ đồng minh thuộc các hệ đã chọn của thủ lĩnh được roll trong shop thường. Vũ khí vẫn ngẫu nhiên. Quân có sẵn trong save và hợp thể không bị xóa chỉ vì khác theme.");
             return result;
         }
         private static void Add(Dictionary<string, Entry> result, string key, string name, ItemEffect effect, string description, params string[] aliases)

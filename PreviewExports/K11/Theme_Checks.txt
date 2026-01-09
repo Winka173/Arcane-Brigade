@@ -1,0 +1,167 @@
+PASS Themed runtime is enabled
+PASS Distinct broad themed pool LanternKnight = 20
+PASS Starter belongs to selected theme LanternKnight
+PASS Seeded themed reroll LanternKnight/0
+PASS Shop recruits stay within theme LanternKnight/0
+PASS Seeded themed reroll LanternKnight/1
+PASS Shop recruits stay within theme LanternKnight/1
+PASS Seeded themed reroll LanternKnight/2
+PASS Shop recruits stay within theme LanternKnight/2
+PASS Seeded themed reroll LanternKnight/3
+PASS Shop recruits stay within theme LanternKnight/3
+PASS Seeded themed reroll LanternKnight/4
+PASS Shop recruits stay within theme LanternKnight/4
+PASS Seeded themed reroll LanternKnight/5
+PASS Shop recruits stay within theme LanternKnight/5
+PASS Seeded themed reroll LanternKnight/6
+PASS Shop recruits stay within theme LanternKnight/6
+PASS Seeded themed reroll LanternKnight/7
+PASS Shop recruits stay within theme LanternKnight/7
+PASS Seeded themed reroll LanternKnight/8
+PASS Shop recruits stay within theme LanternKnight/8
+PASS Seeded themed reroll LanternKnight/9
+PASS Shop recruits stay within theme LanternKnight/9
+PASS Seeded themed reroll LanternKnight/10
+PASS Shop recruits stay within theme LanternKnight/10
+PASS Seeded themed reroll LanternKnight/11
+PASS Shop recruits stay within theme LanternKnight/11
+PASS Seeded themed reroll LanternKnight/12
+PASS Shop recruits stay within theme LanternKnight/12
+PASS Seeded themed reroll LanternKnight/13
+PASS Shop recruits stay within theme LanternKnight/13
+PASS Seeded themed reroll LanternKnight/14
+PASS Shop recruits stay within theme LanternKnight/14
+PASS Seeded themed reroll LanternKnight/15
+PASS Shop recruits stay within theme LanternKnight/15
+PASS Seeded themed reroll LanternKnight/16
+PASS Shop recruits stay within theme LanternKnight/16
+PASS Seeded themed reroll LanternKnight/17
+PASS Shop recruits stay within theme LanternKnight/17
+PASS Seeded themed reroll LanternKnight/18
+PASS Shop recruits stay within theme LanternKnight/18
+PASS Seeded themed reroll LanternKnight/19
+PASS Shop recruits stay within theme LanternKnight/19
+PASS Seeded themed reroll LanternKnight/20
+PASS Shop recruits stay within theme LanternKnight/20
+PASS Seeded themed reroll LanternKnight/21
+PASS Shop recruits stay within theme LanternKnight/21
+PASS Seeded themed reroll LanternKnight/22
+PASS Shop recruits stay within theme LanternKnight/22
+PASS Seeded themed reroll LanternKnight/23
+PASS Shop recruits stay within theme LanternKnight/23
+PASS Theme/RNG survive save restore LanternKnight
+PASS Actual movement triggers Lantern stride
+PASS Lantern pulse deals actual damage, not only VFX
+PASS Pause does not charge or trigger hero mechanic LanternKnight
+PASS Shop/rest does not trigger hero mechanic LanternKnight
+PASS Distinct broad themed pool Postmaster = 15
+PASS Starter belongs to selected theme Postmaster
+PASS Seeded themed reroll Postmaster/0
+PASS Shop recruits stay within theme Postmaster/0
+PASS Seeded themed reroll Postmaster/1
+PASS Shop recruits stay within theme Postmaster/1
+PASS Seeded themed reroll Postmaster/2
+PASS Shop recruits stay within theme Postmaster/2
+PASS Seeded themed reroll Postmaster/3
+PASS Shop recruits stay within theme Postmaster/3
+PASS Seeded themed reroll Postmaster/4
+PASS Shop recruits stay within theme Postmaster/4
+PASS Seeded themed reroll Postmaster/5
+PASS Shop recruits stay within theme Postmaster/5
+PASS Seeded themed reroll Postmaster/6
+PASS Shop recruits stay within theme Postmaster/6
+PASS Seeded themed reroll Postmaster/7
+PASS Shop recruits stay within theme Postmaster/7
+PASS Seeded themed reroll Postmaster/8
+PASS Shop recruits stay within theme Postmaster/8
+PASS Seeded themed reroll Postmaster/9
+PASS Shop recruits stay within theme Postmaster/9
+PASS Seeded themed reroll Postmaster/10
+PASS Shop recruits stay within theme Postmaster/10
+PASS Seeded themed reroll Postmaster/11
+PASS Shop recruits stay within theme Postmaster/11
+PASS Seeded themed reroll Postmaster/12
+PASS Shop recruits stay within theme Postmaster/12
+PASS Seeded themed reroll Postmaster/13
+PASS Shop recruits stay within theme Postmaster/13
+PASS Seeded themed reroll Postmaster/14
+PASS Shop recruits stay within theme Postmaster/14
+PASS Seeded themed reroll Postmaster/15
+PASS Shop recruits stay within theme Postmaster/15
+PASS Seeded themed reroll Postmaster/16
+PASS Shop recruits stay within theme Postmaster/16
+PASS Seeded themed reroll Postmaster/17
+PASS Shop recruits stay within theme Postmaster/17
+PASS Seeded themed reroll Postmaster/18
+PASS Shop recruits stay within theme Postmaster/18
+PASS Seeded themed reroll Postmaster/19
+PASS Shop recruits stay within theme Postmaster/19
+PASS Seeded themed reroll Postmaster/20
+PASS Shop recruits stay within theme Postmaster/20
+PASS Seeded themed reroll Postmaster/21
+PASS Shop recruits stay within theme Postmaster/21
+PASS Seeded themed reroll Postmaster/22
+PASS Shop recruits stay within theme Postmaster/22
+PASS Seeded themed reroll Postmaster/23
+PASS Shop recruits stay within theme Postmaster/23
+PASS Theme/RNG survive save restore Postmaster
+PASS Collected gold triggers actual express projectiles
+PASS Express volley does not retarget a pending base attack
+PASS Pause does not charge or trigger hero mechanic Postmaster
+PASS Shop/rest does not trigger hero mechanic Postmaster
+PASS Distinct broad themed pool DrowsySeer = 19
+PASS Starter belongs to selected theme DrowsySeer
+PASS Seeded themed reroll DrowsySeer/0
+PASS Shop recruits stay within theme DrowsySeer/0
+PASS Seeded themed reroll DrowsySeer/1
+PASS Shop recruits stay within theme DrowsySeer/1
+PASS Seeded themed reroll DrowsySeer/2
+PASS Shop recruits stay within theme DrowsySeer/2
+PASS Seeded themed reroll DrowsySeer/3
+PASS Shop recruits stay within theme DrowsySeer/3
+PASS Seeded themed reroll DrowsySeer/4
+PASS Shop recruits stay within theme DrowsySeer/4
+PASS Seeded themed reroll DrowsySeer/5
+PASS Shop recruits stay within theme DrowsySeer/5
+PASS Seeded themed reroll DrowsySeer/6
+PASS Shop recruits stay within theme DrowsySeer/6
+PASS Seeded themed reroll DrowsySeer/7
+PASS Shop recruits stay within theme DrowsySeer/7
+PASS Seeded themed reroll DrowsySeer/8
+PASS Shop recruits stay within theme DrowsySeer/8
+PASS Seeded themed reroll DrowsySeer/9
+PASS Shop recruits stay within theme DrowsySeer/9
+PASS Seeded themed reroll DrowsySeer/10
+PASS Shop recruits stay within theme DrowsySeer/10
+PASS Seeded themed reroll DrowsySeer/11
+PASS Shop recruits stay within theme DrowsySeer/11
+PASS Seeded themed reroll DrowsySeer/12
+PASS Shop recruits stay within theme DrowsySeer/12
+PASS Seeded themed reroll DrowsySeer/13
+PASS Shop recruits stay within theme DrowsySeer/13
+PASS Seeded themed reroll DrowsySeer/14
+PASS Shop recruits stay within theme DrowsySeer/14
+PASS Seeded themed reroll DrowsySeer/15
+PASS Shop recruits stay within theme DrowsySeer/15
+PASS Seeded themed reroll DrowsySeer/16
+PASS Shop recruits stay within theme DrowsySeer/16
+PASS Seeded themed reroll DrowsySeer/17
+PASS Shop recruits stay within theme DrowsySeer/17
+PASS Seeded themed reroll DrowsySeer/18
+PASS Shop recruits stay within theme DrowsySeer/18
+PASS Seeded themed reroll DrowsySeer/19
+PASS Shop recruits stay within theme DrowsySeer/19
+PASS Seeded themed reroll DrowsySeer/20
+PASS Shop recruits stay within theme DrowsySeer/20
+PASS Seeded themed reroll DrowsySeer/21
+PASS Shop recruits stay within theme DrowsySeer/21
+PASS Seeded themed reroll DrowsySeer/22
+PASS Shop recruits stay within theme DrowsySeer/22
+PASS Seeded themed reroll DrowsySeer/23
+PASS Shop recruits stay within theme DrowsySeer/23
+PASS Theme/RNG survive save restore DrowsySeer
+PASS Stationary dream breath chills actual enemy
+PASS Dream breath removes exactly three of five unexpired hostile projectiles
+PASS Pause does not charge or trigger hero mechanic DrowsySeer
+PASS Shop/rest does not trigger hero mechanic DrowsySeer
+PASS All three pools differ and cover every species across protagonists

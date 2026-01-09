@@ -1922,6 +1922,7 @@ MonoBehaviour:
   ExpansionRevision: 1
   ContentRevision: 1
   StatRevision: 1
+  HeroRevision: 1
   ArenaPropSprites:
   - {fileID: 1517528812, guid: 047d018c633860743877d383df2f3edd, type: 3}
   - {fileID: -655209866, guid: 047d018c633860743877d383df2f3edd, type: 3}
