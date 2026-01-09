@@ -133,7 +133,7 @@ namespace ArcaneBrigade
             weapon.sprite = unit.Definition.Weapon.Sprite;
             weapon.color = hand.color = Color.white;
             if (drawHand != null) drawHand.color = Color.white;
-            bool armed = unit.Definition.Weapon.Kind != WeaponKind.Contact && weapon.sprite != null;
+            bool armed = unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind != WeaponKind.Contact && weapon.sprite != null;
             grip.gameObject.SetActive(armed);
             if (armed)
             {
@@ -224,6 +224,13 @@ namespace ArcaneBrigade
             float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * 13f + state.Id) * 0.025f * movement;
             float attackLean = attacking ? pose.Lean : 0;
             float impactSquash = attacking ? pose.Squash : 0;
+            if (state.Faction == Faction.Enemy && attacking && !ReducedMotion)
+            {
+                float charge = Mathf.Clamp01(age / Mathf.Max(0.01f, poseWindup));
+                float release = Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.01f, definition.Recovery));
+                impactSquash += age < poseWindup ? charge * 0.14f : -Mathf.Sin(release * Mathf.PI) * 0.18f;
+                attackLean += age < poseWindup ? -charge * 8 : Mathf.Sin(release * Mathf.PI) * 12;
+            }
             float height = K8Motion.BodyHeight(state);
             float scale = height / Mathf.Max(0.01f, body.sprite.bounds.size.y);
             float hitAge = simulationTime - state.LastHit;

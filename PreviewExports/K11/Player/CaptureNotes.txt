@@ -1,0 +1,38 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Native 4K 01-dream-arrival
+PASS Dream merchant appears before regular shop
+PASS New giant dream oracle is loaded at colossal scale
+PASS Whole merchant silhouette fits viewport: GiantEggMerchant height 5.2
+PASS No alternate-shop switch stations
+PASS Native 4K 02-dream-open
+PASS Actual egg purchase at dream merchant
+PASS Dream exit starts animated departure
+PASS Native 4K 03-dream-fold
+PASS Regular merchant follows dream merchant without advancing wave
+PASS New many-footed gold merchant has distinct large scale
+PASS Whole merchant silhouette fits viewport: GiantGoldMerchant height 4.2
+PASS Committed regular stage survives storage
+PASS Native 4K 04-gold-open
+PASS Actual recruit purchase in following regular shop
+PASS Native 4K 05-recruit-arrival
+PASS Regular exit starts shop fold instead of loading
+PASS Native 4K 06-gold-fold
+PASS No opaque transition curtain
+PASS Same-scene transition starts wave two
+PASS Player does not teleport to new arena origin
+PASS Scene and controller identity unchanged through both merchants and next wave
+PASS Native 4K 07-next-wave
+PASS Live hostile visuals have no held weapons
+PASS Native 4K 08-wave-end-arrival
+PASS Wave end also keeps scene/controller
+PASS Natural combat completion returns to living market
+PASS Different merchant silhouette and size in hall two
+PASS Native 4K 09-classic-large
+PASS Dream merchant reaches biggest authored size in hall three showcase
+PASS Whole merchant silhouette fits viewport: GiantEggMerchant height 5.65
+PASS Native 4K 10-colossal-dream
+PASS Showcase regular stage still uses committed transaction
+PASS Gold merchant also has colossal size variant
+PASS Whole merchant silhouette fits viewport: GiantGoldMerchant height 5.25
+PASS Native 4K 11-colossal-gold
+Isolated saved fixture, actual purchases/transitions and natural wave2 combat. Last three stills are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. No human art/feel approval or mobile certification. No OS/desktop capture.

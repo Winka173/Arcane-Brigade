@@ -37,6 +37,10 @@ namespace ArcaneBrigade
         private bool arrivingStock = true;
         private int displayedWave = -1;
         private bool displayedSpecial;
+        private MarketLifecycle lifecycle;
+        private bool leavingSpecial;
+        private float specialDepartureAt;
+        public bool Animating => lifecycle != null && lifecycle.Busy;
         private readonly MerchantDialogue dialogue = new MerchantDialogue();
         public MerchantDialogue Dialogue => dialogue;
         public int PlayedSpeechSyllables => voice == null ? 0 : voice.PlayedSyllables;
@@ -45,6 +49,11 @@ namespace ArcaneBrigade
         private readonly List<Station> stations = new List<Station>();
         public IReadOnlyList<Station> Stations => stations;
         public bool Special { get; private set; }
+        public float MerchantHeight { get; private set; }
+        public string MerchantIdentity { get; private set; }
+        public Vector2 MerchantCenter { get; private set; }
+        public Bounds MerchantBounds => merchant == null ? default : merchant.GetComponent<SpriteRenderer>().bounds;
+        public static float MerchantSize(bool special, int wave) => special ? wave % 3 == 0 ? 5.65f : wave % 3 == 1 ? 5.2f : 4.4f : wave % 3 == 0 ? 5.25f : wave % 3 == 1 ? 4.2f : 3.7f;
         public Station Nearby { get; private set; }
         public int DeniedCount { get; private set; }
         public void Configure(ArenaController controller)
@@ -64,12 +73,19 @@ namespace ArcaneBrigade
                 Nearby = null; Special = false; signature = int.MinValue; arrivingStock = true; return;
             }
             RunSnapshot state = owner.Session.State;
-            if (state.SpecialOffers.Count == 0) Special = false;
+            Special = state.SpecialOffers.Count > 0 && !state.SpecialShopVisited;
+            if (leavingSpecial && owner.PresentationClock >= specialDepartureAt)
+            {
+                leavingSpecial = false;
+                if (!owner.FinishSpecialShop()) { lifecycle.Reenter(); return; }
+                Special = false; signature = int.MinValue; arrivingStock = true;
+            }
             int current = Special ? 7919 : 17;
             foreach (ShopOffer offer in Special ? state.SpecialOffers : state.Offers) current = unchecked(current * 31 + offer.Token * 2 + (offer.Sold ? 1 : 0));
             current = unchecked(current * 31 + state.Wave);
             if (current != signature) { Build(); signature = current; }
             scenery.SetActive(true); Nearby = null;
+            if (Animating || leavingSpecial || owner.HallExitPending) return;
             if (merchant != null) merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
             float closest = InteractionRadius * InteractionRadius;
             foreach (Station station in stations)
@@ -78,11 +94,11 @@ namespace ArcaneBrigade
                 float distance = (station.Position - owner.Simulation.Champion.Position).sqrMagnitude;
                 if (distance <= closest) { closest = distance; Nearby = station; }
             }
-            if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.Simulation.VisualElapsed, true); return; }
-            dialogue.Observe(Special, Nearby == null ? null : Nearby.Offer != null ? "offer:" + Nearby.Offer.Token : Nearby.Action, owner.Simulation.VisualElapsed);
+            if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.PresentationClock, true); return; }
+            dialogue.Observe(Special, Nearby == null ? null : Nearby.Offer != null ? "offer:" + Nearby.Offer.Token : Nearby.Action, owner.PresentationClock);
             if (merchant != null) merchant.Inspect(Nearby != null);
-            voice.Advance(dialogue, Special, owner.Simulation.VisualElapsed, false);
-            if (merchant != null) merchant.Speak(dialogue.IsSpeaking(owner.Simulation.VisualElapsed));
+            voice.Advance(dialogue, Special, owner.PresentationClock, false);
+            if (merchant != null) merchant.Speak(dialogue.IsSpeaking(owner.PresentationClock));
             foreach (Station station in stations)
             {
                 float target = station == Nearby && !owner.HallExitPending ? 1 : 0;
@@ -102,7 +118,7 @@ namespace ArcaneBrigade
         public bool Interact()
         {
             Display();
-            if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending) return false;
+            if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;
             bool completed;
             RunSnapshot before = null;
@@ -119,8 +135,13 @@ namespace ArcaneBrigade
             }
             else if (station.Action == "NEXT HALL")
             {
+                if (Special)
+                {
+                    leavingSpecial = true; specialDepartureAt = owner.PresentationClock + 0.8f;
+                    Depart(); dialogue.Speak(true, MerchantMoment.Leave, owner.PresentationClock); return true;
+                }
                 bool exit = owner.BeginHallExit(position);
-                if (exit) dialogue.Speak(Special, MerchantMoment.Leave, owner.Simulation.VisualElapsed);
+                if (exit) dialogue.Speak(Special, MerchantMoment.Leave, owner.PresentationClock);
                 return exit;
             }
             else if (station.Action == "REROLL")
@@ -149,13 +170,13 @@ namespace ArcaneBrigade
             if (completed)
             {
                 if (station.Offer != null || station.Recipe != null || station.Action == "REROLL")
-                    dialogue.Speak(Special, station.Recipe != null ? MerchantMoment.Fuse : station.Action == "REROLL" ? MerchantMoment.Reroll : station.Currency == ShopCurrency.Health ? MerchantMoment.BloodBuy : MerchantMoment.Buy, owner.Simulation.VisualElapsed);
+                    dialogue.Speak(Special, station.Recipe != null ? MerchantMoment.Fuse : station.Action == "REROLL" ? MerchantMoment.Reroll : station.Currency == ShopCurrency.Health ? MerchantMoment.BloodBuy : MerchantMoment.Buy, owner.PresentationClock);
                 if (merchant != null) merchant.Celebrate();
                 if (result != null) { result.ReactUntil = Time.time + 0.8f; if (result.Actor != null) result.Actor.Celebrate(); }
             }
             else
             {
-                dialogue.Speak(Special, MerchantMoment.Denied, owner.Simulation.VisualElapsed);
+                dialogue.Speak(Special, MerchantMoment.Denied, owner.PresentationClock);
                 if (merchant != null) merchant.Reject();
                 DeniedCount++;
                 if (result != null)
@@ -177,16 +198,21 @@ namespace ArcaneBrigade
             displayedSpecial = Special;
             K8ArenaScenery.CreateMarketFloor(scenery.transform, Special);
             Sprite[] merchantFrames = Special ? art.EggMerchant : art.GoldMerchant;
-            merchant = AddActor(scenery.transform, merchantFrames[0], merchantFrames, new Vector2(0, 2.7f), 3.15f, 0.7f);
+            bool giant = state.Wave % 3 != 2;
+            Sprite[] giantFrames = Special ? art.GiantEggMerchant : art.GiantGoldMerchant;
+            if (giant && giantFrames != null && giantFrames.Length == 4) merchantFrames = giantFrames;
+            MerchantIdentity = giant ? Special ? "GiantEggMerchant" : "GiantGoldMerchant" : Special ? "EggOracle" : "ReceiptMaw";
+            MerchantHeight = MerchantSize(Special, state.Wave);
+            dialogue.MerchantName = giant ? Special ? "MẸ TRỨNG NGÀN MẮT" : "KÉT SẮT TRĂM CHÂN" : Special ? "BÀ VỎ MỘNG" : "ÔNG NUỐT BIÊN LAI";
+            MerchantCenter = new Vector2(0, Mathf.Min(1.6f + MerchantHeight * 0.18f, owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f));
+            merchant = AddActor(scenery.transform, merchantFrames[0], merchantFrames, MerchantCenter, MerchantHeight, 0.7f);
             merchant.SetMerchantMood(Special);
             if (merchantEntrance)
             {
                 merchant.Arrive(0); MerchantEntranceEffect.Play(owner, scenery.transform, merchant.transform.localPosition, Special);
-                dialogue.ResetFocus(); dialogue.Speak(Special, MerchantMoment.Enter, owner.Simulation.VisualElapsed);
+                dialogue.ResetFocus(); dialogue.Speak(Special, MerchantMoment.Enter, owner.PresentationClock);
                 CheckpointAudio.PlayInterface(20);
             }
-            ShopFloorShadow.Create(scenery.transform, new Vector2(0, 1.26f), 3.8f, 0.65f);
-            ShopFloorShadow.Create(scenery.transform, new Vector2(0, 1.28f), 2.2f, 0.6f);
             List<ShopOffer> offers = Special ? state.SpecialOffers : state.Offers;
             for (int index = 0; index < offers.Count; index++)
             {
@@ -210,12 +236,6 @@ namespace ArcaneBrigade
             Station reroll = AddStation(new Vector2(-4.8f, 2.8f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Đổi ba món đang bày. Giá tăng sau mỗi lần.";
             AddStation(new Vector2(0, -4.3f), "NEXT HALL", art.HallDoor[0], art.HallDoor, false).Description = "Đi xuống để tới màn tiếp theo.";
-            if (Special || state.SpecialOffers.Count > 0)
-            {
-                Sprite sign = art.EnvironmentProps != null && art.EnvironmentProps.Length > 3 ? art.EnvironmentProps[3] : Special ? art.GoldMerchant[0] : art.EggMerchant[0];
-                Station visit = AddStation(new Vector2(4.8f, 2.8f), Special ? "GOLD SHOP" : "DREAM ALTAR", sign, null, false);
-                visit.Description = Special ? "Ghé người bán vàng." : "Ghé người bán giấc mơ: dùng trứng hoặc HP theo từng món.";
-            }
             if (!Special && state.Wave >= 4)
                 for (int index = 0; index < catalog.Recipes.Length; index++)
                 {
@@ -224,7 +244,10 @@ namespace ArcaneBrigade
                     station.Recipe = recipe.Id; station.Price = recipe.EggCost; station.Currency = ShopCurrency.Eggs;
                     station.Description = owner.Session.RecipePreview(recipe.Id);
                 }
+            lifecycle = scenery.AddComponent<MarketLifecycle>(); lifecycle.Configure(owner, Special, merchantEntrance);
         }
+        public void Depart() { if (lifecycle != null) lifecycle.Depart(); Nearby = null; }
+        public void CancelDeparture() { if (lifecycle != null) lifecycle.Reenter(); }
         public string DescribeOffer(ShopOffer offer)
         {
             if (offer == null) return "";
@@ -254,12 +277,12 @@ namespace ArcaneBrigade
         }
         public void DrawMerchantDialogue()
         {
-            if (scenery != null && scenery.activeSelf && !owner.HallExitPending) dialogue.Draw(Special, owner.Simulation.VisualElapsed, owner.Profile != null && owner.Profile.ReducedMotion);
+            if (scenery != null && scenery.activeSelf && !owner.HallExitPending) dialogue.Draw(Special, owner.PresentationClock, owner.Profile != null && owner.Profile.ReducedMotion);
         }
         public string DisplayName(Station station)
         {
             if (station.Action == "REROLL") return "ĐỔI HÀNG";
-            if (station.Action == "NEXT HALL") return "ĐI XUỐNG · MÀN TIẾP";
+            if (station.Action == "NEXT HALL") return Special ? "ĐI XUỐNG · QUẦY VÀNG" : "ĐI XUỐNG · MÀN TIẾP";
             if (station.Action == "GOLD SHOP") return "QUẦY VÀNG";
             if (station.Action == "DREAM ALTAR") return "QUẦY GIẤC MƠ";
             if (station.Recipe != null) return "HỢP THỂ · " + station.Action.Substring(5);
@@ -271,7 +294,7 @@ namespace ArcaneBrigade
             foreach (UnitState unit in owner.Simulation.Units)
             {
                 if (unit.Faction != Faction.Companion) continue;
-                Vector2 position = AvoidObstacle(unit.Position, new Vector2(0, 2.4f), 1.65f, unit.Id);
+                Vector2 position = AvoidObstacle(unit.Position, MerchantCenter, Mathf.Min(2.2f, MerchantHeight * 0.45f), unit.Id);
                 foreach (Station station in stations) position = AvoidObstacle(position, station.Position, station.Action == "NEXT HALL" ? 0.55f : 0.65f, unit.Id);
                 position = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(position - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
                 unit.Position = position;
@@ -302,7 +325,7 @@ namespace ArcaneBrigade
         }
         public void DrawPriceTags(Camera camera)
         {
-            if (scenery == null || !scenery.activeSelf || owner.HallExitPending) return;
+            if (scenery == null || !scenery.activeSelf || owner.HallExitPending || Animating || leavingSpecial) return;
             if (priceStyle == null) { priceStyle = ArcadeTypography.Style(25, true); priceStyle.normal.textColor = ArcadeSkin.Ink; priceStyle.alignment = TextAnchor.MiddleLeft; denialStyle = ArcadeTypography.Style(20, true); denialStyle.alignment = TextAnchor.MiddleCenter; denialStyle.normal.textColor = new Color(1, 0.45f, 0.35f); }
             foreach (Station station in stations)
             {

@@ -46,8 +46,8 @@ namespace ArcaneBrigade.Editor
                     WeaponDefinition weapon = UnityEngine.Object.Instantiate(definition.Weapon); temporary.Add(weapon); definition.Weapon = weapon;
                     definition.BodyHeight = 1; definition.CombatTier = 3;
                     UnitState companion = simulation.AddFixture(definition, Faction.Companion, Vector2.zero);
-                    Require(K8Motion.BodyHeight(companion) <= 0.64f && K8Motion.BodyHeight(simulation.Champion) == simulation.Champion.Definition.BodyHeight, "Allies smaller without scaling Champion");
-                    Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * 0.82f + 0.0001f, "Companion weapons bounded by body size");
+                    Require(K8Motion.BodyHeight(companion) <= 0.88f && K8Motion.BodyHeight(companion) >= Mathf.Min(companion.Definition.BodyHeight * 0.95f, 0.88f) && K8Motion.BodyHeight(simulation.Champion) == simulation.Champion.Definition.BodyHeight, "Allies readable at near-authored scale without scaling Champion");
+                    Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * 1.05f + 0.0001f, "Companion weapons bounded by updated readable body size");
                     int before = simulation.CompanionCount;
                     for (int index = 0; index < 128; index++) simulation.AddCompanion(definition);
                     Require(simulation.CompanionCount == before + 128, "No companion population cap");

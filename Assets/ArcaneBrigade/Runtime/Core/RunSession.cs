@@ -65,6 +65,7 @@ namespace ArcaneBrigade
         public int LastIncome;
         public int LastInterest;
         public float BuildScoreMultiplier = 1f;
+        public bool SpecialShopVisited;
         public string LastDamageSource;
         public float LastDamageAmount;
         public List<RosterEntry> Roster = new List<RosterEntry>();
@@ -406,6 +407,7 @@ namespace ArcaneBrigade
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
             State.Health = Mathf.Min(CombatCatalog.Champion.Health, State.Health + 8f);
             State.Phase = SessionPhase.Shop;
+            State.SpecialShopVisited = false;
             RollShop(true);
         }
 

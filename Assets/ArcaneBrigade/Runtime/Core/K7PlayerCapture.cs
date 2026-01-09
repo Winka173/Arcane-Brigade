@@ -45,7 +45,8 @@ namespace ArcaneBrigade
             IntPtr handle = GameWindow(); if (handle != IntPtr.Zero) ShowWindow(handle, 4);
 #endif
         }
-        private IEnumerator Resize(int width, int height)
+        private IEnumerator Resize(int width, int height) => ResizeDiagnostic(width, height, Check);
+        public static IEnumerator ResizeDiagnostic(int width, int height, Action<bool, string> verify)
         {
 #if UNITY_STANDALONE_WIN
             IntPtr gameWindow = GameWindow(); if (gameWindow != IntPtr.Zero) ShowWindow(gameWindow, 4);
@@ -68,11 +69,12 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(1);
             }
 #endif
-            Check(Screen.width == width && Screen.height == height, "Requested render surface " + width + "x" + height + "; actual=" + Screen.width + "x" + Screen.height);
+            verify(Screen.width == width && Screen.height == height, "Requested render surface " + width + "x" + height + "; actual=" + Screen.width + "x" + Screen.height);
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Initialize()
         {
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k11") >= 0) return;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7-shop-video") >= 0) return;
             if (!RunPaths.K7Capture || FindAnyObjectByType<K7PlayerCapture>() != null) return;
             var runner = new GameObject("K7PlayerCapture"); DontDestroyOnLoad(runner); runner.AddComponent<K7PlayerCapture>();

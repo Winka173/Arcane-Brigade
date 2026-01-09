@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         {
             if (controller.Profile != null && controller.Profile.ReducedMotion) return;
             var child = new GameObject("MerchantEntranceConfetti"); child.transform.SetParent(parent, false); child.transform.localPosition = position + Vector2.down * 0.6f;
-            MerchantEntranceEffect effect = child.AddComponent<MerchantEntranceEffect>(); effect.owner = controller; effect.started = controller.Simulation.VisualElapsed; effect.special = dream;
+            MerchantEntranceEffect effect = child.AddComponent<MerchantEntranceEffect>(); effect.owner = controller; effect.started = controller.PresentationClock; effect.special = dream;
             effect.fragments = new SpriteRenderer[9];
             for (int index = 0; index < effect.fragments.Length; index++)
             {
@@ -25,7 +25,7 @@ namespace ArcaneBrigade
         {
             if (owner == null || owner.Simulation == null) { Destroy(gameObject); return; }
             if (owner.Simulation.Phase == RunPhase.Paused) return;
-            float progress = Mathf.Clamp01((owner.Simulation.VisualElapsed - started) / 0.85f);
+            float progress = Mathf.Clamp01((owner.PresentationClock - started) / 0.85f);
             for (int index = 0; index < fragments.Length; index++)
             {
                 float angle = index * Mathf.PI * 2 / fragments.Length;

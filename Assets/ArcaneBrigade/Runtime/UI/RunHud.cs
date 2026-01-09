@@ -152,7 +152,6 @@ namespace ArcaneBrigade
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
-            if (owner.HallCurtain > 0) ArcadeSkin.Line(new Rect(0, 0, 1920, 1080), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, owner.HallCurtain));
             navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;

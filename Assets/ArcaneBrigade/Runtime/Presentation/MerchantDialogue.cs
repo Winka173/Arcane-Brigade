@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         public int SpokenCount { get; private set; }
         public MerchantMoment LastMoment { get; private set; }
         public string CurrentLine => line;
+        public string MerchantName { get; set; }
         public float ExpiresAt => expires;
         public int VisibleGlyphs(float now, bool reduced) => line == null ? 0 : reduced ? line.Length : Mathf.Clamp(Mathf.FloorToInt((now - began) * 58), 0, line.Length);
         public bool IsSpeaking(float now) => line != null && now >= began && now < expires && VisibleGlyphs(now, false) < line.Length;
@@ -72,7 +73,7 @@ namespace ArcaneBrigade
             Rect bubble = new Rect(1180, 260 + (1 - reveal) * 8, width, 126);
             Color previous = GUI.color; GUI.color = new Color(1, 1, 1, reveal);
             ArcadeSkin.Ticket(bubble, ArcadeSkin.Cream, special ? new Color(0.7f, 0.45f, 0.85f) : ArcadeSkin.Accent);
-            GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, bubble.width - 36, 27), special ? "BÀ VỎ MỘNG" : "ÔNG NUỐT BIÊN LAI", name);
+            GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, bubble.width - 36, 27), MerchantName ?? (special ? "BÀ VỎ MỘNG" : "ÔNG NUỐT BIÊN LAI"), name);
             int length = VisibleGlyphs(now, reduced);
             GUI.Label(new Rect(bubble.x + 18, bubble.y + 45, bubble.width - 36, 70), line.Substring(0, length), copy);
             GUI.color = previous;

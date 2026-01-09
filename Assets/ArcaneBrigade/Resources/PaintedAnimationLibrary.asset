@@ -47,6 +47,16 @@ MonoBehaviour:
   - {fileID: 1475355619, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   - {fileID: -970641457, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   - {fileID: -129732050, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
+  GiantGoldMerchant:
+  - {fileID: -166845428, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
+  - {fileID: -868876378, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
+  - {fileID: 1281639069, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
+  - {fileID: -851989769, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
+  GiantEggMerchant:
+  - {fileID: 1867400005, guid: 72929147727500e41bdc67d20ccac123, type: 3}
+  - {fileID: 66019994, guid: 72929147727500e41bdc67d20ccac123, type: 3}
+  - {fileID: -1094040024, guid: 72929147727500e41bdc67d20ccac123, type: 3}
+  - {fileID: 865583295, guid: 72929147727500e41bdc67d20ccac123, type: 3}
   RerollMachine:
   - {fileID: -584565737, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}
   - {fileID: 1827130957, guid: 96c7843bfb9ebc14ba01a790d1d04643, type: 3}

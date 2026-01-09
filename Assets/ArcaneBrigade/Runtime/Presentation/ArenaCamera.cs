@@ -11,7 +11,7 @@ namespace ArcaneBrigade
         private float heightVelocity;
         private void Awake() { arenaCamera = GetComponent<Camera>(); Refresh(); }
         private void Update() { Refresh(); }
-        public void Follow(ArenaController controller) { owner = controller; Snap(); }
+        public void Follow(ArenaController controller, bool snap = true) { owner = controller; if (snap) Snap(); }
         public void Snap()
         {
             if (owner == null || owner.Simulation == null) return;

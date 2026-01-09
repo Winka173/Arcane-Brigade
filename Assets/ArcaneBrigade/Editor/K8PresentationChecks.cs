@@ -29,7 +29,7 @@ namespace ArcaneBrigade.Editor
             Vector2 safe = WorldShop.AvoidObstacle(Vector2.zero, Vector2.zero, 1, 1);
             require(Mathf.Abs(safe.magnitude - 1) < 0.001f && WorldShop.AvoidObstacle(Vector2.right * 3, Vector2.zero, 1, 1) == Vector2.right * 3, "Merchant avoidance projects only overlapping companion positions");
             string worldShop = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/WorldShop.cs");
-            require(worldShop.Contains("CreateMarketFloor") && worldShop.Contains("EnvironmentProps[3]") && worldShop.Contains("station.Actor.Arrive"), "Shop has grounded cloth staging, sign instead of duplicate tiny vendor and stock entrance choreography");
+            require(worldShop.Contains("CreateMarketFloor") && worldShop.Contains("MarketLifecycle") && worldShop.Contains("station.Actor.Arrive") && !worldShop.Contains("Station visit = AddStation"), "Shop has grounded cloth staging, sequential merchants without switch sign and stock entrance choreography");
             require(worldShop.Contains("RunModifierRules.Describe(item, 1)") && worldShop.Contains("Vũ khí ngẫu nhiên") && worldShop.Contains("item.EffectiveStacks(held + 1)"), "Purchase consequences preserve random weapon rule, explain stat scope and post-purchase stack count");
             Directory.CreateDirectory("PreviewExports/K8"); File.WriteAllLines("PreviewExports/K8/Presentation_Checks.txt", notes);
             Debug.Log("K8_PRESENTATION_CHECKS_PASSED " + notes.Count);

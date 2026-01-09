@@ -54,13 +54,13 @@ namespace ArcaneBrigade
         private float terminalVisualAge;
         private bool hallExitPending;
         private float hallExitElapsed;
-        private float hallEntryRemaining;
         private Vector2 hallExitTarget;
         public bool TransitionPending => transitionRemaining > 0;
         public bool HallExitPending => hallExitPending;
-        public float HallCurtain => hallExitPending ? Mathf.Clamp01((hallExitElapsed - 0.35f) / 0.55f) : Mathf.Clamp01(hallEntryRemaining / 0.4f);
+        public float HallCurtain => 0;
         public bool ResultsReady => resultRevealRemaining <= 0;
         public float WalletPulse { get; private set; }
+        public float PresentationClock { get; private set; }
         private ArcadeMusic music;
         public WorldShop Shop { get; private set; }
         private GUIStyle label;
@@ -141,6 +141,14 @@ namespace ArcaneBrigade
 
         private void Begin(bool preserveEffects = false)
         {
+            var positions = new Dictionary<string, Vector2>();
+            Vector2? championPosition = null;
+            if (preserveEffects && simulation != null)
+            {
+                championPosition = simulation.Champion.Position;
+                foreach (UnitState unit in simulation.Units)
+                    if (unit.Faction == Faction.Companion) positions[unit.Definition.Id + "/" + unit.Definition.Weapon.Id] = unit.Position;
+            }
             if (footDust != null) footDust.Clear();
             if (paintedEffects != null) paintedEffects.Clear();
             terminalVisualAge = 0;
@@ -160,6 +168,12 @@ namespace ArcaneBrigade
             simulation.Start(catalog.Seed);
             if (session != null) simulation.Champion.Health = Mathf.Min(session.State.Health, simulation.Champion.Definition.Health);
             if (session != null && session.State.Phase == SessionPhase.Shop) { simulation.EnterRest(); simulation.Champion.Position = simulation.Champion.PreviousPosition = new Vector2(0, -3); }
+            if (championPosition.HasValue)
+            {
+                simulation.Champion.Position = simulation.Champion.PreviousPosition = championPosition.Value;
+                foreach (UnitState unit in simulation.Units)
+                    if (unit.Faction == Faction.Companion && positions.TryGetValue(unit.Definition.Id + "/" + unit.Definition.Weapon.Id, out Vector2 position)) unit.Position = unit.PreviousPosition = position;
+            }
             movement.Reset();
             moveIntent = Vector2.zero;
             if (!preserveEffects)
@@ -175,7 +189,7 @@ namespace ArcaneBrigade
             {
                 ArenaCamera follow = arenaCamera.GetComponent<ArenaCamera>();
                 if (follow == null) follow = arenaCamera.gameObject.AddComponent<ArenaCamera>();
-                follow.Follow(this);
+                follow.Follow(this, !preserveEffects);
                 simulation.Pause(pauseGate.Paused);
             }
         }
@@ -221,6 +235,7 @@ namespace ArcaneBrigade
             }
             if (!pauseGate.Paused && simulation.Phase != RunPhase.Paused)
             {
+                PresentationClock += Time.deltaTime;
                 if (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat) terminalVisualAge += Time.deltaTime;
                 if (combatFeedback != null) combatFeedback.Advance(Time.deltaTime);
                 if (arcadeEffects != null) arcadeEffects.Advance(Time.deltaTime);
@@ -228,11 +243,10 @@ namespace ArcaneBrigade
                 if (deathFeedback != null) deathFeedback.Advance(Time.deltaTime);
                 WalletPulse = Mathf.Max(0, WalletPulse - Time.deltaTime * 3);
                 resultRevealRemaining = Mathf.Max(0, resultRevealRemaining - Time.deltaTime);
-                hallEntryRemaining = Mathf.Max(0, hallEntryRemaining - Time.deltaTime);
                 if (hallExitPending)
                 {
                     hallExitElapsed += Time.deltaTime;
-                    if (hallExitElapsed >= 0.9f) { hallExitPending = false; NextWave(); hallEntryRemaining = 0.4f; }
+                    if (hallExitElapsed >= 0.9f) { hallExitPending = false; NextWave(); }
                 }
                 if (transitionRemaining > 0)
                 {
@@ -372,15 +386,21 @@ namespace ArcaneBrigade
         {
             if (pauseGate.Paused || hallExitPending || TransitionPending || session.State.Phase != SessionPhase.Shop) return false;
             hallExitPending = true; hallExitElapsed = 0; hallExitTarget = doorway + Vector2.down * 1.1f;
+            if (Shop != null) Shop.Depart();
             CheckpointAudio.PlayInterface(20); return true;
         }
+        public bool FinishSpecialShop() => Transaction("Leave dream market", () =>
+        {
+            if (session.State.Phase != SessionPhase.Shop || session.State.SpecialShopVisited) return false;
+            session.State.SpecialShopVisited = true; return true;
+        });
         public void NextWave()
         {
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
             session.ContinueWave();
-            if (session.State.Phase != SessionPhase.Combat) return;
-            if (!PersistBoundary()) { session.Restore(before); return; }
+            if (session.State.Phase != SessionPhase.Combat) { if (Shop != null) Shop.CancelDeparture(); return; }
+            if (!PersistBoundary()) { session.Restore(before); if (Shop != null) Shop.CancelDeparture(); return; }
             Begin(true);
         }
         public void ContinueEndless()

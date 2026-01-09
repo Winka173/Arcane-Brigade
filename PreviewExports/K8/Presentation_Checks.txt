@@ -8,5 +8,5 @@ PASS BossesAndProps_v1 retains source fidelity without claiming native4K
 PASS HeroIdentity_v1 has true transparent alpha
 PASS HeroIdentity_v1 retains source fidelity without claiming native4K
 PASS Merchant avoidance projects only overlapping companion positions
-PASS Shop has grounded cloth staging, sign instead of duplicate tiny vendor and stock entrance choreography
+PASS Shop has grounded cloth staging, sequential merchants without switch sign and stock entrance choreography
 PASS Purchase consequences preserve random weapon rule, explain stat scope and post-purchase stack count
