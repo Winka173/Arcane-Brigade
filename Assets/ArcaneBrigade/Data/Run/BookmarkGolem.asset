@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BookmarkGolem
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BookmarkGolem
-  DisplayName: "Golem K\u1EB9p S\xE1ch"
+  DisplayName: Bookmark Golem
   Body: {fileID: -354559401, guid: 57de553de6a4a6f43b259fa138d11383, type: 3}
   AnimationFrames:
   - {fileID: -354559401, guid: 57de553de6a4a6f43b259fa138d11383, type: 3}
@@ -36,11 +36,9 @@ MonoBehaviour:
   - archive
   Passive: 3
   PassiveStrength: 0.5
-  Description: "T\u1EF1 \u0111\xE1nh, b\u1EA5t t\u1EED; \u0111\u1EB7c t\xEDnh gi\u1EEF
-    khi c\xF2n trong roster c\u1EE7a l\u01B0\u1EE3t. To\xE0n \u0111\u1ED9i / Damage
-    xa c\u1ED9ng th\u1EB3ng: +1\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1\n\u0110\u1EB7c
-    t\xEDnh c\u1EA5p 1/2/3 \xD71/2/4; gh\xE9p ba ng\u01B0\u1EDDi l\xE0m gi\u1EA3m
-    s\u1ED1 ngu\u1ED3n h\u1ED7 tr\u1EE3.\n"
+  Description: "Damage scales with companion count\nTeam / Flat ranged damage: +1\nChampion
+    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
+    support sources.\n"
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

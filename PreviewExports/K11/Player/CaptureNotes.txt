@@ -25,9 +25,12 @@ PASS Player does not teleport to new arena origin
 PASS Scene and controller identity unchanged through both merchants and next wave
 PASS Native 4K 07-next-wave
 PASS Live hostile visuals have no held weapons
+PASS Native 4K 18-melee-pursuit
 PASS Native 4K 08-wave-end-arrival
 PASS Wave end also keeps scene/controller
 PASS Natural combat completion returns to living market
+PASS Live melee companions switch into pursuit mode
+PASS Natural wave completion restores full HP in save and live HUD
 PASS Different merchant silhouette and size in hall two
 PASS Native 4K 09-classic-large
 PASS Dream merchant reaches biggest authored size in hall three showcase
@@ -54,4 +57,12 @@ PASS Native regular stock rolls for hero DrowsySeer
 PASS Native regular recruit stock respects protagonist themes: DrowsySeer
 PASS Native 4K 13-DrowsySeer-themed-shop
 Hero showcases explicitly load separate seeded protagonist fixtures; not claimed as changing heroes within one run. Native mechanics run with real enemies/loot, without HP/invulnerability adjustments.
+PASS Native star showcase has six unique body/weapon variants
+PASS Native tier3 bodies visibly exceed tier1 bodies
+PASS Native 4K 20-star-growth
+PASS Native 4K 21-tier3-projectiles
+PASS Native tier3 companion fires enlarged real projectile hitbox
+Star stills20-21 use an explicitly saved wave3 six-variant diagnostic roster. No enemy budget/speed, damage immunity or combat timer overrides. Initial champion HP is the fixture's legal maximum; not claimed natural recruitment progression.
+PASS Native 4K 19-english-main-menu
+PASS Native catalog and merchant dialogue are English
 Isolated saved fixture, actual purchases/transitions and natural wave2 combat with movement-only circle driver. Base stills09-11 are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. Hero stills use separate seeded character fixtures. No HP/invulnerability/timer adjustments, human feel approval, mobile certification or OS/desktop capture.

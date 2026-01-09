@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DrowsySeer
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DrowsySeer
-  DisplayName: "Ti\xEAn Tri Ng\xE1i Ng\u1EE7"
+  DisplayName: Drowsy Seer
   Body: {fileID: -914476585, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
   - {fileID: -914476585, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
@@ -35,10 +35,8 @@ MonoBehaviour:
   Tags: []
   Passive: 1
   PassiveStrength: 1
-  Description: "Gi\u1EA5c ng\u1EE7 an l\xE0nh: th\u1EE7 l\u0129nh +0,35 gi\xE1p,
-    h\u1ED3i th\xEAm 0,6 m\xE1u/gi\xE2y, +15 \u0111i\u1EC3m ph\u1EA7n tr\u0103m ch\xED
-    m\u1EA1ng. N\u1ED9i t\u1EA1i h\u1ED3i m\xE1u m\u1ED7i 4 gi\xE2y v\u1EABn ho\u1EA1t
-    \u0111\u1ED9ng; kh\xF4ng c\xF3 k\u1EF9 n\u0103ng b\u1EA5m tay."
+  Description: A sleepy tuning-bell oracle. Stand still to chill nearby threats and
+    erase a few hostile bullets.
   ChampionModifiers:
   - Effect: 11
     Scope: 1

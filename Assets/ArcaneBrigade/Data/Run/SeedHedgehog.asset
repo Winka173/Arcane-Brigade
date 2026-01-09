@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SeedHedgehog
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SeedHedgehog
-  DisplayName: "Nh\xEDm H\u1EA1t"
+  DisplayName: Seed Hedgehog
   Body: {fileID: 797282853, guid: 6b33e573f6faed54791e4a2f05f069c0, type: 3}
   AnimationFrames:
   - {fileID: 797282853, guid: 6b33e573f6faed54791e4a2f05f069c0, type: 3}
@@ -36,11 +36,9 @@ MonoBehaviour:
   - orchard
   Passive: 4
   PassiveStrength: 0.5
-  Description: "T\u1EF1 \u0111\xE1nh, b\u1EA5t t\u1EED; \u0111\u1EB7c t\xEDnh gi\u1EEF
-    khi c\xF2n trong roster c\u1EE7a l\u01B0\u1EE3t. Th\u1EE7 l\u0129nh / K\xEDch
-    th\u01B0\u1EDBc th\u1EE7 l\u0129nh: +2.5%\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i
-    \u0111a: -1\n\u0110\u1EB7c t\xEDnh c\u1EA5p 1/2/3 \xD71/2/4; gh\xE9p ba ng\u01B0\u1EDDi
-    l\xE0m gi\u1EA3m s\u1ED1 ngu\u1ED3n h\u1ED7 tr\u1EE3.\n"
+  Description: "Chills nearby enemies\nChampion / Champion size: +2.5%\nChampion
+    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
+    support sources.\n"
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

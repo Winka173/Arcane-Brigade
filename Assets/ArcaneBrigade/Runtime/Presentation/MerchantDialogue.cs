@@ -27,25 +27,25 @@ namespace ArcaneBrigade
             if (special)
                 choices = moment switch
                 {
-                    MerchantMoment.Enter => new[] { "Suỵt... giấc mơ vừa mở một con mắt.", "Vào đi. Ta đã thấy ngươi trong một quả trứng." },
-                    MerchantMoment.Inspect => new[] { "Đừng nhìn quá lâu. Món đó cũng biết nhìn.", "Ngươi muốn mang nó về... hay để nó mang ngươi đi?", "Ta nhận trứng. Một vài món thích máu hơn." },
-                    MerchantMoment.BloodBuy => new[] { "Một chút máu thôi. Phần còn lại giữ để mơ.", "Tim còn đập là giao dịch còn đẹp." },
-                    MerchantMoment.Buy => new[] { "Vỏ trứng giữ lại. Giấc mơ bên trong thuộc về ngươi.", "Đã đổi chủ. Đừng để nó nhớ tên cũ." },
-                    MerchantMoment.Denied => new[] { "Chưa đủ. Ta không mua nhịp tim cuối cùng.", "Ví trống cũng có tiếng vọng. Tiếc là ta không nhận." },
-                    MerchantMoment.Reroll => new[] { "Chớp mắt đi. Ta thay giấc mơ bên dưới.", "Ba điều chưa xảy ra. Chọn một." },
-                    MerchantMoment.Fuse => new[] { "Hai cái tên chìm xuống. Một cái tên tỉnh dậy." },
-                    _ => new[] { "Đi đi. Đừng nhìn vào giấc mơ phía sau." }
+                    MerchantMoment.Enter => new[] { "Shh... a dream has just opened one eye.", "Come in. I saw you inside an egg." },
+                    MerchantMoment.Inspect => new[] { "Do not stare too long. That one stares back.", "Will you take it home... or will it take you?", "I accept eggs. Some wares prefer blood." },
+                    MerchantMoment.BloodBuy => new[] { "Only a little blood. Keep the rest for dreaming.", "A beating heart makes a beautiful bargain." },
+                    MerchantMoment.Buy => new[] { "Keep the shell. The dream inside is yours.", "A new owner. Do not let it remember the old name." },
+                    MerchantMoment.Denied => new[] { "Not enough. I will not buy your final heartbeat.", "An empty purse echoes too. Sadly, I do not accept echoes." },
+                    MerchantMoment.Reroll => new[] { "Blink. I shall change the dream underneath.", "Three things that have not happened. Choose one." },
+                    MerchantMoment.Fuse => new[] { "Two names sink. One name wakes." },
+                    _ => new[] { "Go. Do not look into the dream behind you." }
                 };
             else
                 choices = moment switch
                 {
-                    MerchantMoment.Enter => new[] { "Keng! Chợ mở. Ba mắt ta đều thấy ví ngươi!", "Mời vào! Hôm nay biên lai còn tươi." },
-                    MerchantMoment.Inspect => new[] { "Món đó chưa cắn ai... trong ca bán này.", "Cứ ngắm đi. Ta chưa tính phí nhìn!", "Một mắt xem hàng, hai mắt xem túi tiền." },
-                    MerchantMoment.Buy => new[] { "Chốt! Ta nhai tiền, ngươi nhận điều kỳ diệu.", "Biên lai dài hơn đời quái vật. Cầm lấy!", "Keng keng! Lại thêm một giấc mơ có chủ." },
-                    MerchantMoment.Denied => new[] { "Ví đang ngủ à? Đánh thức nó rồi quay lại!", "Ta nghe tiếng leng keng... nhưng đó là răng ta." },
-                    MerchantMoment.Reroll => new[] { "Hàng cũ vào bụng, hàng mới lên bàn!", "Ba món mới! Mắt thứ ba ta tự chọn đấy." },
-                    MerchantMoment.Fuse => new[] { "Hai vào một ra! Đừng hỏi phép toán của ta." },
-                    _ => new[] { "Xuống dưới nhé! Ta không bảo hành ác mộng." }
+                    MerchantMoment.Enter => new[] { "Clang! Market open. All three eyes can see your purse!", "Welcome! Today's receipts are still fresh." },
+                    MerchantMoment.Inspect => new[] { "That one has not bitten anyone... this shift.", "Look all you like. I am not charging for looking. Yet!", "One eye on the wares, two on your purse." },
+                    MerchantMoment.Buy => new[] { "Sold! I chew the coins; you get the miracle.", "A receipt longer than a monster's life. Take it!", "Clink, clink! Another dream has an owner." },
+                    MerchantMoment.Denied => new[] { "Is your purse asleep? Wake it and come back!", "I hear jingling... but those are my teeth." },
+                    MerchantMoment.Reroll => new[] { "Old stock into my belly, new stock onto the stands!", "Three new wares! My third eye picked them." },
+                    MerchantMoment.Fuse => new[] { "Two in, one out! Do not question my arithmetic." },
+                    _ => new[] { "Head down! Nightmares are not covered by warranty." }
                 };
             return choices[Mathf.Abs(variant % choices.Length)];
         }
@@ -70,12 +70,15 @@ namespace ArcaneBrigade
             if (copy == null) { copy = ArcadeTypography.Style(19); copy.normal.textColor = ArcadeSkin.Ink; name = ArcadeTypography.Style(18, true); name.normal.textColor = ArcadeSkin.Ink; }
             float reveal = reduced ? 1 : Mathf.Clamp01((now - began) / 0.18f);
             float width = 370 * Mathf.SmoothStep(0.9f, 1, reveal);
-            Rect bubble = new Rect(1180, 260 + (1 - reveal) * 8, width, 126);
+            Rect bubble = new Rect(1180, 260 + (1 - reveal) * 8, width, Mathf.Max(126, copy.CalcHeight(new GUIContent(line), width - 36) + 61));
             Color previous = GUI.color; GUI.color = new Color(1, 1, 1, reveal);
             ArcadeSkin.Ticket(bubble, ArcadeSkin.Cream, special ? new Color(0.7f, 0.45f, 0.85f) : ArcadeSkin.Accent);
-            GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, bubble.width - 36, 27), MerchantName ?? (special ? "BÀ VỎ MỘNG" : "ÔNG NUỐT BIÊN LAI"), name);
+            string title = MerchantName ?? (special ? "MADAM DREAMSHELL" : "THE RECEIPT GULPER");
+            name.fontSize = 18; name.wordWrap = false;
+            name.fontSize = Mathf.Clamp(Mathf.FloorToInt(18 * (bubble.width - 36) / Mathf.Max(1, name.CalcSize(new GUIContent(title)).x)), 12, 18);
+            GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, bubble.width - 36, 27), title, name);
             int length = VisibleGlyphs(now, reduced);
-            GUI.Label(new Rect(bubble.x + 18, bubble.y + 45, bubble.width - 36, 70), line.Substring(0, length), copy);
+            GUI.Label(new Rect(bubble.x + 18, bubble.y + 45, bubble.width - 36, bubble.height - 55), line.Substring(0, length), copy);
             GUI.color = previous;
         }
     }

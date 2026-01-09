@@ -15,7 +15,7 @@ namespace ArcaneBrigade
             Sprite[] frames; float width; float duration; Vector2 position = value.Position;
             bool slash = value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Melee;
             bool magic = value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && value.Weapon.Motion != WeaponMotion.Bow;
-            if (slash) { frames = library.Slash; width = Mathf.Clamp(value.Weapon.Range, 0.6f, 1.25f); duration = 0.22f; position += value.Direction * 0.5f; }
+            if (slash) { frames = library.Slash; width = Mathf.Clamp(value.Weapon.Range * 0.85f, 0.6f, 3.4f); duration = 0.22f; position += value.Direction * value.Weapon.Range * 0.4f; }
             else if (magic) { frames = library.Magic; width = 0.48f; duration = 0.18f; position += value.Direction * 0.65f; }
             else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy) { frames = library.Death; width = value.Subject != null && value.Subject.Definition.IsBoss ? 1.4f : 0.7f; duration = 0.34f; }
             else if (value.Kind == CombatEventKind.SignaturePulse || value.Kind == CombatEventKind.SignatureBurst || value.Kind == CombatEventKind.ChestOpened || value.Kind == CombatEventKind.Heal || value.Kind == CombatEventKind.Proc)

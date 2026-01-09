@@ -9,7 +9,7 @@ namespace ArcaneBrigade.Editor
         {
             RunCatalog catalog = UnityEngine.Resources.Load<RunCatalog>("RunCatalog"); catalog.HeroRevision = 0;
             K10Builder.Apply(); K11ArtBuilder.Apply(); K11Checks.Run(); K10Checks.Run(); K9Checks.Run(); K8Builder.Check();
-            K11ThemeBuilder.Apply(); K11ThemeChecks.Run();
+            K11ThemeBuilder.Apply(); K11EnglishBuilder.Apply(); K11ThemeChecks.Run();
             K7BalanceDiagnostics.Run();
             FullRunBuilder.BuildWindows();
             Directory.CreateDirectory("PreviewExports/K11");
@@ -19,6 +19,7 @@ namespace ArcaneBrigade.Editor
         }
         public static void FinalizeCandidate()
         {
+            K11EnglishBuilder.Apply();
             K11Checks.Run(); K11ThemeChecks.Run();
             FullRunBuilder.BuildWindows();
             File.Copy("PreviewExports/FullRun_Build.txt", "PreviewExports/K11/Windows_Build.txt", true);

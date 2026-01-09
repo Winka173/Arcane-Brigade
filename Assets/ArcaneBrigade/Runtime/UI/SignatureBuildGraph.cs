@@ -3,7 +3,7 @@ namespace ArcaneBrigade
     public static class SignatureBuildGraph
     {
         public static string Status(string id, RunSession session, RunCatalog catalog)
-            => IsActive(id, session, catalog) ? "NHÁNH ĐÃ KÍCH HOẠT · không cần đủ bộ" : "CHƯA KÍCH HOẠT · thiếu vũ khí hoặc vật phẩm nối";
+            => IsActive(id, session, catalog) ? "BRANCH ACTIVE · full set not required" : "INACTIVE · missing weapon or connecting relic";
         public static bool IsActive(string id, RunSession session, RunCatalog catalog)
         {
             bool bell = catalog.Unit(session.State.ChampionId).Weapon.Signature == SignatureWeapon.Bell;

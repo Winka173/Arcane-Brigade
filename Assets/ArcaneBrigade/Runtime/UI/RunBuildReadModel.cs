@@ -17,72 +17,74 @@ namespace ArcaneBrigade
         public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null)
         {
             var model = new RunBuildReadModel();
+            using var readSession = new RunSession(catalog);
+            readSession.Restore(session.State);
+            CheckpointCatalog compiled = readSession.PrepareCombat();
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
             WeaponDefinition weapon = champion.Weapon;
-            model.Stat("Máu người dẫn đoàn", health.ToString("0.0") + " / " + Mathf.Max(1f, champion.Health + session.Bonus(ItemEffect.Health)).ToString("0.0"), "Máu tối đa bằng máu gốc cộng nâng cấp trong lượt, tối thiểu 1. Không tăng chỉ số vĩnh viễn.");
-            model.Stat("Sát thương người dẫn đoàn", (weapon.Damage * session.DamageMultiplier(champion, 1, false)).ToString("0.0"), "Gốc " + weapon.Damage.ToString("0.0") + "; gồm tăng sát thương và nội tại theo số đồng minh. Chưa tính chí mạng, giáp mục tiêu hoặc phản ứng nguyên tố.");
-            model.Stat("Chu kỳ đánh người dẫn đoàn", (weapon.Cooldown / Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion))).ToString("0.00") + " s", "Chu kỳ gốc " + weapon.Cooldown.ToString("0.00") + " giây; tất cả đòn đánh đều tự động.");
-            model.Stat("Tốc độ di chuyển", (champion.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))).ToString("0.00"), "Gốc " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; hệ số tối thiểu 0.1.");
-            model.Stat("Chí mạng người dẫn đoàn", Percent(Mathf.Clamp01(champion.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Champion))), "Gốc " + Percent(champion.CriticalChance) + "; cộng thưởng rồi giới hạn từ 0 đến 100%.");
-            model.Stat("Số đạn người dẫn đoàn", (weapon.ProjectileCount + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Champion))).ToString(), "Chỉ áp dụng cho vũ khí bắn đạn, không biến đòn cận chiến thành đạn.");
-            model.Stat("Giáp người dẫn đoàn", session.Bonus(ItemEffect.Armor).ToString("0.00"), "Sát thương nhận chia cho (1 + giáp). Giáp âm được tính là 0.");
-            model.Stat("Hồi máu thụ động", (session.Bonus(ItemEffect.Heal) + (session.ActiveModifier == null ? 0f : session.ActiveModifier.Healing)).ToString("0.00") + " / s", "Hồi máu mỗi giây từ vật phẩm và hiệu ứng màn. Nội tại hồi máu của từng đơn vị kích hoạt riêng mỗi 4 giây, không gộp vào số này.");
-            model.Stat("Bán kính nhặt đồ", (catalog.Arena.PickupRadius + session.Bonus(ItemEffect.Pickup)).ToString("0.00"), "Gốc " + catalog.Arena.PickupRadius.ToString("0.00") + "; khoảng cách trong đấu trường, không phải điểm ảnh màn hình.");
-            model.Stat("Phạm vi đi lại đồng minh", (catalog.Arena.CompanionLeash + session.Bonus(ItemEffect.Roam)).ToString("0.00"), "Đồng minh tự đi quanh người chơi; không cần điều khiển đội hình.");
-            model.Stat("Đồng minh chặn đạn", session.Bonus(ItemEffect.Interceptor) > 0 ? "Đã bật bởi item" : "Không", "Đồng minh bất tử nhưng không chặn đạn mặc định.");
-            model.Stat("Lãi cửa hàng kế tiếp", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " vàng", "Dự báo từ vàng đã lưu; chưa tính đồ nhặt chưa chốt hoặc thu nhập màn kế tiếp.");
-            model.Stat("Phí đổi hàng kế tiếp", session.RerollCost + " vàng", "Đã đổi " + session.State.RerollsThisShop + " lần tại cửa hàng này. Giá gốc " + catalog.RerollPrice + "; mỗi lần thêm " + catalog.RerollPriceStep + ". Phiếu giảm giá chỉ giảm món bày sau đó, không giảm phí đổi hàng.");
-            if (catalog.AltarRevision > 0) model.Stat("Quầy đặc biệt ở lần nghỉ tới", Percent(session.AltarActivationChance), "Cơ hội xuất hiện tăng theo số trứng đang giữ, tối đa 100%. Chỉ chọn một lần khi tạo khu nghỉ, không chọn lại khi tải lượt. Không tiêu trứng để mở quầy.");
+            model.Stat("Champion health", health.ToString("0.0") + " / " + Mathf.Max(1f, champion.Health + session.Bonus(ItemEffect.Health)).ToString("0.0"), "Maximum health includes base HP, run bonuses and health correction, minimum 1. No permanent profile stat growth. Every cleared wave restores full HP.");
+            model.Stat("Champion damage", compiled.Champion.Weapon.Damage.ToString("0.0"), "Base " + weapon.Damage.ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
+            model.Stat("Champion attack cycle", (weapon.Cooldown / Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion))).ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
+            model.Stat("Movement speed", (champion.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))).ToString("0.00"), "Base " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; minimum multiplier 0.1.");
+            model.Stat("Champion critical chance", Percent(Mathf.Clamp01(champion.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Champion))), "Base " + Percent(champion.CriticalChance) + "; bonuses add before the 0–100% cap.");
+            model.Stat("Champion projectile count", (weapon.ProjectileCount + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Champion))).ToString(), "Applies only to projectile weapons; does not turn melee attacks into bullets.");
+            model.Stat("Champion armor", session.Bonus(ItemEffect.Armor).ToString("0.00"), "Positive armor reduces incoming damage; negative armor increases it, capped before the per-hit limit.");
+            model.Stat("Passive regeneration", (session.Bonus(ItemEffect.Heal) + (session.ActiveModifier == null ? 0f : session.ActiveModifier.Healing)).ToString("0.00") + " / s", "HP per second from items and wave effects. Individual unit healing triggers separately every 4 seconds and is not included here.");
+            model.Stat("Pickup radius", (catalog.Arena.PickupRadius + session.Bonus(ItemEffect.Pickup)).ToString("0.00"), "Base " + catalog.Arena.PickupRadius.ToString("0.00") + "; arena distance, not screen pixels.");
+            model.Stat("Companion roaming range", "Ranged " + compiled.CompanionLeash.ToString("0.00") + " / Melee " + (compiled.CompanionLeash + MeleeBalance.RoamBonus).ToString("0.00"), "Companions patrol around the player automatically. Melee units have wider roaming and faster enemy pursuit; no formation controls required.");
+            model.Stat("Companion bullet interception", session.Bonus(ItemEffect.Interceptor) > 0 ? "Enabled by item" : "No", "Companions are immortal but do not block bullets by default.");
+            model.Stat("Next shop interest", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " gold", "Forecast from saved gold; excludes uncommitted pickups or next-wave income.");
+            model.Stat("Next reroll cost", session.RerollCost + " gold", "Rerolled " + session.State.RerollsThisShop + " times in this shop. Base cost " + catalog.RerollPrice + "; each roll adds " + catalog.RerollPriceStep + ". Coupons discount displayed wares, not reroll fees.");
+            if (catalog.AltarRevision > 0) model.Stat("Next rest's special shop", Percent(session.AltarActivationChance), "Appearance chance increases with held eggs, up to 100%. Rolled once when creating rest, not again on loading. Opening the shop does not spend eggs.");
             if (catalog.LootRevision > 0)
             {
-                model.Stat("May mắn", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Tăng cơ hội nhặt trứng, tim từ kẻ địch và phần thưởng rương. Không thay kết quả ngẫu nhiên chiến đấu hoặc cửa hàng.");
-                model.Stat("Tìm kho báu", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Tăng chỉ số này để rương xuất hiện sớm hơn, tối thiểu cách nhau 4 giây. Đi tới gần để mở, không cần nút kỹ năng.");
+                model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Increases egg/heart drops and chest rewards. Does not change combat or shop RNG outcomes.");
+                model.Stat("Treasure detection", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Makes chests appear sooner, at least 4 seconds apart. Approach to open; no skill button required.");
             }
+            int companionIndex = 0;
             foreach (RosterEntry entry in session.State.Roster)
             {
                 UnitDefinition unit = catalog.Unit(entry.UnitId);
                 WeaponDefinition actual = catalog.Weapon(entry.WeaponId);
-                float damage = actual.Damage * session.DamageMultiplier(unit, entry.Tier, true);
-                if (catalog.StatRevision > 0) damage = Mathf.Max(0, actual.Damage + session.Bonus(actual.Kind == WeaponKind.Projectile ? ItemEffect.RangedDamage : ItemEffect.MeleeDamage, ModifierScope.Companions)) * session.DamageMultiplier(unit, entry.Tier, true) * K10StatRules.Factor(session.Bonus(ItemEffect.DamageCorrection, ModifierScope.Companions));
-                float cooldown = actual.Cooldown / Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions) + session.Bonus(ItemEffect.CompanionAttackSpeed));
+                UnitDefinition applied = compiled.StartingCompanions[companionIndex++];
+                float damage = applied.Weapon.Damage;
+                float cooldown = applied.Weapon.Cooldown;
                 int tierSteps = catalog.ContentRevision > 0 ? Mathf.Max(0, entry.Tier - 1) : 0;
-                if (actual.Kind != WeaponKind.Projectile) cooldown /= 1 + tierSteps * 0.12f;
-                float range = actual.Range * (actual.Kind == WeaponKind.Projectile ? 1 : 1 + tierSteps * 0.1f);
-                if (catalog.StatRevision > 0) range *= K10StatRules.Factor(session.Bonus(ItemEffect.AttackRange, ModifierScope.Companions));
+                float range = applied.Weapon.Range;
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
-                model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Cấp " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
-                    CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Chu kỳ", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(Mathf.Clamp01(unit.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Companions))) }, { "Speed", (unit.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Companions))).ToString("0.###") }, { "Projectile", (actual.ProjectileCount + (actual.Kind == WeaponKind.Projectile ? tierSteps : 0) + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Companions))).ToString() }, { "Passive", passive.ToString("0.###") } },
-                    Explanation = "Vũ khí đã nhận: " + RunUICopy.WeaponName(actual.Id) + "\nSát thương: " + damage.ToString("0.0") + " / chu kỳ " + cooldown.ToString("0.00") + " giây\nTầm đánh: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Nâng cấp: thêm " + tierSteps + " đạn và " + tierSteps + " lượt xuyên.\n" : "Nâng cấp: tầm đánh, góc quét và tốc độ đánh tăng.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nNội tại: " + RunUICopy.PassiveDescription(unit.Passive) + " · hiệu lực " + passive.ToString("0.0") + "\nBất tử. Mỗi đồng minh tính một người cho liên kết hệ, không nhân theo cấp." });
-                model.Companions[model.Companions.Count - 1].Explanation += "\n\nĐẶC TÍNH HỖ TRỢ\n" + RunModifierRules.DescribeCompanion(unit, entry.Tier);
+                model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
+                    CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
+                    Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Tier bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Tier bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nPassive: " + RunUICopy.PassiveDescription(unit.Passive) + " · effective " + passive.ToString("0.0") + "\nImmortal. Each companion counts as one unit toward bonds, regardless of tier." });
+                model.Companions[model.Companions.Count - 1].Explanation += "\n\nSUPPORT TRAITS\n" + RunModifierRules.DescribeCompanion(unit, entry.Tier);
             }
-            if (catalog.StatRevision > 0) K10BuildReadModel.Append(model, session, catalog, health);
+            if (catalog.StatRevision > 0) K10BuildReadModel.Append(model, session, catalog, health, compiled);
             foreach (ItemStack stack in session.State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
                 string procDescription = "";
                 foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
-                    if (rule.ItemId == item.Id) procDescription += "\nKhi " + RunUICopy.TriggerName(rule.Trigger) + " → " + RunUICopy.ActionName(rule.Action) + "\nHiệu lực " + (rule.Power * item.EffectiveStacks(stack.Count)).ToString("0.###") + " · bán kính " + rule.Radius + " · hồi " + rule.Cooldown + " giây · cơ hội " + Percent(rule.Chance) + "\nHiệu ứng này không kích hoạt hiệu ứng vật phẩm khác.\n";
-                model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Summary = "Sở hữu ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " hiệu ứng · xem cả lợi/hại" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = item.Description + "\n\nStack sở hữu: " + stack.Count + " / hiệu lực: " + item.EffectiveStacks(stack.Count) + "\n" + RunModifierRules.Describe(item, stack.Count) + "\nNâng cấp trong lượt. Không bán, đổi hoặc tháo đồ tại đây." });
+                    if (rule.ItemId == item.Id) procDescription += "\nOn " + RunUICopy.TriggerName(rule.Trigger) + " → " + RunUICopy.ActionName(rule.Action) + "\nEffective " + (rule.Power * item.EffectiveStacks(stack.Count)).ToString("0.###") + " · radius " + rule.Radius + " · cooldown " + rule.Cooldown + " seconds · chance " + Percent(rule.Chance) + "\nThis effect does not trigger other item effects.\n";
+                model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " effects · includes benefits/tradeoffs" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = item.Description + "\n\nOwned stacks: " + stack.Count + " / effective: " + item.EffectiveStacks(stack.Count) + "\n" + RunModifierRules.Describe(item, stack.Count) + "\nRun upgrade. Cannot sell, swap or remove items here." });
                 model.Relics[model.Relics.Count - 1].Explanation += procDescription;
-                if (!string.IsNullOrEmpty(procDescription)) model.Relics[model.Relics.Count - 1].Summary = "Sở hữu ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\nTự kích hoạt theo điều kiện";
+                if (!string.IsNullOrEmpty(procDescription)) model.Relics[model.Relics.Count - 1].Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\nAutomatically triggers under its conditions";
             }
             foreach (BuildLinkRule rule in catalog.BuildLinks ?? new BuildLinkRule[0])
             {
                 int owned = 0;
                 string sources = "";
-                string explanation = rule.Description + "\n\nNGUỒN THỰC TRONG LƯỢT\n\n";
+                string explanation = rule.Description + "\n\nACTUAL SOURCES IN THIS RUN\n\n";
                 foreach (string id in rule.ItemIds)
                 {
                     int count = session.StackCount(id);
                     if (count > 0) owned++;
                     sources += catalog.Item(id).Name + " ×" + count + "\n";
-                    explanation += catalog.Item(id).Name + " ×" + count + "\n" + (count > 0 ? RunModifierRules.Describe(catalog.Item(id), count) : "Chưa sở hữu.\n") + "\n";
+                    explanation += catalog.Item(id).Name + " ×" + count + "\n" + (count > 0 ? RunModifierRules.Describe(catalog.Item(id), count) : "Not owned yet.\n") + "\n";
                 }
-                model.BuildLinks += rule.Name + " · " + owned + "/" + rule.ItemIds.Length + "\n" + rule.Description + "\n" + sources + "Liên kết đọc từ item đang sở hữu; không cộng stat ẩn.\n\n";
+                model.BuildLinks += rule.Name + " · " + owned + "/" + rule.ItemIds.Length + "\n" + rule.Description + "\n" + sources + "Links are read from owned items; no hidden stat bonuses.\n\n";
                 bool signature = rule.Id.StartsWith("signature-");
-                string status = signature ? SignatureBuildGraph.Status(rule.Id, session, catalog) : (owned == rule.ItemIds.Length ? "ĐỦ NGUỒN" : "ĐANG GHÉP") + " · " + owned + "/" + rule.ItemIds.Length;
-                string measured = signature ? "\n\nĐÓNG GÓP ĐÃ ĐO\n" + ContributionLedger.Describe(session.State.Contributions) + (simulation == null ? "" : "\nHALL HIỆN TẠI (chưa settle)\n" + ContributionLedger.Describe(simulation.Contributions)) : "";
-                model.Links.Add(new Row { Name = rule.Name, Icon = catalog.Item(rule.ItemIds[0]).Icon, Summary = status + "\n" + (signature ? "Chuỗi có giới hạn · số đo thật" : "Không có thưởng bộ riêng"), Explanation = explanation + "Liên kết giải thích nguồn chỉ số, không cộng thưởng ẩn. Số lượng hiển thị trước giới hạn chiến đấu." + measured });
+                string status = signature ? SignatureBuildGraph.Status(rule.Id, session, catalog) : (owned == rule.ItemIds.Length ? "SOURCES READY" : "IN PROGRESS") + " · " + owned + "/" + rule.ItemIds.Length;
+                string measured = signature ? "\n\nMEASURED CONTRIBUTIONS\n" + ContributionLedger.Describe(session.State.Contributions) + (simulation == null ? "" : "\nCURRENT HALL (not settled)\n" + ContributionLedger.Describe(simulation.Contributions)) : "";
+                model.Links.Add(new Row { Name = rule.Name, Icon = catalog.Item(rule.ItemIds[0]).Icon, Summary = status + "\n" + (signature ? "Bounded chains · actual measurements" : "No separate set bonus"), Explanation = explanation + "Links explain stat sources without hidden bonuses. Counts are shown before combat caps." + measured });
             }
             foreach (BondDefinition bond in catalog.Bonds)
             {
@@ -90,7 +92,7 @@ namespace ArcaneBrigade
                 int activations = bond.ActiveLevel(count);
                 string description = RunUICopy.BondDescription(bond, count);
                 model.Bonds += description + "\n\n";
-                model.Links.Add(new Row { Name = "Hệ " + bond.Name, Icon = bond.Icon, Summary = count + "/" + bond.NextThreshold(count) + " người · " + (activations > 0 ? "kích hoạt ×" + activations : "chưa đủ"), Explanation = description });
+                model.Links.Add(new Row { Name = "Bond " + bond.Name, Icon = bond.Icon, Summary = count + "/" + bond.NextThreshold(count) + " units · " + (activations > 0 ? "activations ×" + activations : "not ready"), Explanation = description });
             }
             for (int index = session.State.Receipts.Count - 1; index >= 0; index--)
             {
@@ -102,19 +104,19 @@ namespace ArcaneBrigade
                 ItemEffect[] effects = SourceEffects(row.Name);
                 if (effects.Length == 0) continue;
                 ModifierScope target = effects[0] == ItemEffect.Luck || effects[0] == ItemEffect.TreasureDetection || effects[0] == ItemEffect.Pickup || effects[0] == ItemEffect.Roam || effects[0] == ItemEffect.Interest || effects[0] == ItemEffect.Interceptor ? ModifierScope.Run : ModifierScope.Champion;
-                string sources = "\n\nNGUỒN MODIFIER TRONG LƯỢT\n";
+                string sources = "\n\nRUN MODIFIER SOURCES\n";
                 int sourceCount = 0;
                 foreach (RosterEntry entry in session.State.Roster)
                     foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
                         if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                         {
-                            sources += catalog.Unit(entry.UnitId).DisplayName + " / cấp " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / cộng " + (modifier.Value * UnitDefinition.ModifierScale(entry.Tier)).ToString("+0.###;-0.###;0") + "\n";
+                            sources += catalog.Unit(entry.UnitId).DisplayName + " / tier " + entry.Tier + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + (modifier.Value * UnitDefinition.ModifierScale(entry.Tier)).ToString("+0.###;-0.###;0") + "\n";
                             sourceCount++;
                         }
                 foreach (StatModifier modifier in champion.ChampionModifiers ?? new StatModifier[0])
                     if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                     {
-                        sources += RunUICopy.UnitName(champion) + " / đặc tính riêng / " + RunModifierRules.ScopeName(modifier.Scope) + " / cộng " + modifier.Value.ToString("+0.###;-0.###;0") + "\n";
+                        sources += RunUICopy.UnitName(champion) + " / personal trait / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + modifier.Value.ToString("+0.###;-0.###;0") + "\n";
                         sourceCount++;
                     }
                 foreach (ItemStack stack in session.State.Items)
@@ -123,16 +125,16 @@ namespace ArcaneBrigade
                     foreach (StatModifier modifier in item.EffectiveModifiers)
                         if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                         {
-                            sources += item.Name + " ×" + item.EffectiveStacks(stack.Count) + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / cộng " + (modifier.Value * item.EffectiveStacks(stack.Count)).ToString("+0.###;-0.###;0") + "\n";
+                            sources += item.Name + " ×" + item.EffectiveStacks(stack.Count) + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + (modifier.Value * item.EffectiveStacks(stack.Count)).ToString("+0.###;-0.###;0") + "\n";
                             sourceCount++;
                         }
                 }
                 foreach (BondDefinition bond in catalog.Bonds)
                     if (System.Array.IndexOf(effects, bond.Effect) >= 0 && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && session.BondCounts.TryGetValue(bond.Id, out int count) && count >= bond.Threshold)
                     {
-                        sources += bond.Name + " / " + count + " đồng minh / bậc " + bond.ActiveLevel(count) + " / cộng " + bond.Reward(count).ToString("+0.###;-0.###;0") + "\n"; sourceCount++;
+                        sources += bond.Name + " / " + count + " companions / level " + bond.ActiveLevel(count) + " / adds " + bond.Reward(count).ToString("+0.###;-0.###;0") + "\n"; sourceCount++;
                     }
-                row.Explanation += sources + (sourceCount == 0 ? "Không có nguồn cộng thêm cho chỉ số này.\n" : "Nguồn hiển thị trước giới hạn, cấp và nội tại; giá trị áp dụng nằm ở bảng chỉ số.\n");
+                row.Explanation += sources + (sourceCount == 0 ? "No additional sources for this stat.\n" : "Sources are shown before caps, tiers and passives; applied values appear in the stat table.\n");
             }
             return model;
         }
@@ -141,20 +143,20 @@ namespace ArcaneBrigade
         {
             switch (name)
             {
-                case "Máu người dẫn đoàn": return new[] { ItemEffect.Health };
-                case "Sát thương người dẫn đoàn": return new[] { ItemEffect.Damage, ItemEffect.ChampionDamage };
-                case "Chu kỳ đánh người dẫn đoàn": return new[] { ItemEffect.AttackSpeed };
-                case "Tốc độ di chuyển": return new[] { ItemEffect.MoveSpeed };
-                case "Chí mạng người dẫn đoàn": return new[] { ItemEffect.Crit };
-                case "Số đạn người dẫn đoàn": return new[] { ItemEffect.Projectiles };
-                case "Giáp người dẫn đoàn": return new[] { ItemEffect.Armor };
-                case "Hồi máu thụ động": return new[] { ItemEffect.Heal };
-                case "Bán kính nhặt đồ": return new[] { ItemEffect.Pickup };
-                case "Phạm vi đi lại đồng minh": return new[] { ItemEffect.Roam };
-                case "Đồng minh chặn đạn": return new[] { ItemEffect.Interceptor };
-                case "Lãi cửa hàng kế tiếp": return new[] { ItemEffect.Interest };
-                case "May mắn": return new[] { ItemEffect.Luck };
-                case "Tìm kho báu": return new[] { ItemEffect.TreasureDetection };
+                case "Champion health": return new[] { ItemEffect.Health };
+                case "Champion damage": return new[] { ItemEffect.Damage, ItemEffect.ChampionDamage };
+                case "Champion attack cycle": return new[] { ItemEffect.AttackSpeed };
+                case "Movement speed": return new[] { ItemEffect.MoveSpeed };
+                case "Champion critical chance": return new[] { ItemEffect.Crit };
+                case "Champion projectile count": return new[] { ItemEffect.Projectiles };
+                case "Champion armor": return new[] { ItemEffect.Armor };
+                case "Passive regeneration": return new[] { ItemEffect.Heal };
+                case "Pickup radius": return new[] { ItemEffect.Pickup };
+                case "Companion roaming range": return new[] { ItemEffect.Roam };
+                case "Companion bullet interception": return new[] { ItemEffect.Interceptor };
+                case "Next shop interest": return new[] { ItemEffect.Interest };
+                case "Luck": return new[] { ItemEffect.Luck };
+                case "Treasure detection": return new[] { ItemEffect.TreasureDetection };
                 default: return new ItemEffect[0];
             }
         }
@@ -165,24 +167,24 @@ namespace ArcaneBrigade
         {
             switch (effect)
             {
-                case ItemEffect.Damage: return "Sát thương toàn đội";
-                case ItemEffect.ChampionDamage: return "Sát thương người dẫn đoàn";
-                case ItemEffect.CompanionDamage: return "Sát thương đồng minh";
-                case ItemEffect.AttackSpeed: return "Tốc độ đánh toàn đội";
-                case ItemEffect.CompanionAttackSpeed: return "Tốc độ đánh đồng minh";
-                case ItemEffect.Health: return "Máu tối đa người dẫn đoàn";
-                case ItemEffect.MoveSpeed: return "Tốc độ di chuyển toàn đội";
-                case ItemEffect.Pickup: return "Bán kính nhặt đồ";
-                case ItemEffect.Roam: return "Phạm vi đi lại đồng minh";
-                case ItemEffect.Interceptor: return "Đồng minh chặn đạn";
-                case ItemEffect.Heal: return "Hồi máu người dẫn đoàn";
-                case ItemEffect.Crit: return "Chí mạng toàn đội";
-                case ItemEffect.Projectiles: return "Số đạn thêm toàn đội";
-                case ItemEffect.Interest: return "Trần lãi vàng";
-                case ItemEffect.Armor: return "Giáp người dẫn đoàn";
-                case ItemEffect.Discount: return "Giảm giá cửa hàng";
-                case ItemEffect.Luck: return "May mắn";
-                case ItemEffect.TreasureDetection: return "Tìm kho báu";
+                case ItemEffect.Damage: return "Team damage";
+                case ItemEffect.ChampionDamage: return "Champion damage";
+                case ItemEffect.CompanionDamage: return "Companion damage";
+                case ItemEffect.AttackSpeed: return "Team attack speed";
+                case ItemEffect.CompanionAttackSpeed: return "Companion attack speed";
+                case ItemEffect.Health: return "Champion maximum health";
+                case ItemEffect.MoveSpeed: return "Team movement speed";
+                case ItemEffect.Pickup: return "Pickup radius";
+                case ItemEffect.Roam: return "Companion roaming range";
+                case ItemEffect.Interceptor: return "Companion bullet interception";
+                case ItemEffect.Heal: return "Champion regeneration";
+                case ItemEffect.Crit: return "Team critical chance";
+                case ItemEffect.Projectiles: return "Team bonus projectiles";
+                case ItemEffect.Interest: return "Gold interest cap";
+                case ItemEffect.Armor: return "Champion armor";
+                case ItemEffect.Discount: return "Shop discount";
+                case ItemEffect.Luck: return "Luck";
+                case ItemEffect.TreasureDetection: return "Treasure detection";
                 default: return RunModifierRules.ModifierName(effect);
             }
         }

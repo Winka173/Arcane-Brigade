@@ -4,15 +4,15 @@ namespace ArcaneBrigade
     {
         public static string Capture(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
-            if (!session.CanBuy(offer)) return "Không thể mua: kiểm tiền/HP, stack limit hoặc weapon variant.";
-            if (offer.Kind == OfferKind.Companion) return "Vũ khí roll sau khi mua. Ba cùng loại/cấp sẽ merge; một body tính một bond. Không preview một weapon như đã chốt.\n" + RunModifierRules.DescribeCompanion(catalog.Unit(offer.Id), 1);
+            if (!session.CanBuy(offer)) return "Cannot purchase: check currency/HP, stack limit or weapon variants.";
+            if (offer.Kind == OfferKind.Companion) return "Weapons roll after purchase. Three matching species/tiers merge; each body counts once for bonds. No preview pretends a random weapon is already assigned.\n" + RunModifierRules.DescribeCompanion(catalog.Unit(offer.Id), 1);
             RunBuildReadModel before = RunBuildReadModel.Capture(session, catalog, session.State.Health);
             using (var preview = new RunSession(catalog))
             {
                 preview.Restore(session.State);
-                if (!preview.Buy(offer.Token)) return "Offer không còn hợp lệ.";
+                if (!preview.Buy(offer.Token)) return "Offer is no longer valid.";
                 RunBuildReadModel after = RunBuildReadModel.Capture(preview, catalog, preview.State.Health);
-                string result = "NẾU MUA · dữ liệu thật\n";
+                string result = "IF PURCHASED · actual data\n";
                 for (int index = 0; index < before.Stats.Count; index++)
                     if (before.Stats[index].Summary != after.Stats[index].Summary) result += before.Stats[index].Name + ": " + before.Stats[index].Summary + " → " + after.Stats[index].Summary + "\n";
                 for (int index = 0; index < before.Companions.Count; index++)

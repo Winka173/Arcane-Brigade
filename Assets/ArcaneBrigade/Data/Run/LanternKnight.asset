@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LanternKnight
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LanternKnight
-  DisplayName: "Hi\u1EC7p S\u0129 \u0110\xE8n"
+  DisplayName: Lantern Knight
   Body: {fileID: -186974807, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
   - {fileID: -186974807, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
@@ -37,10 +37,8 @@ MonoBehaviour:
   - hearth
   Passive: 3
   PassiveStrength: 0.8
-  Description: "D\u1EABn \u0111o\xE0n: \u0111\u1ED3ng minh +25% s\xE1t th\u01B0\u01A1ng,
-    +15% t\u1ED1c \u0111\u1ED9 \u0111\xE1nh, tu\u1EA7n tra xa th\xEAm 0,6. S\xE1t
-    th\u01B0\u01A1ng ri\xEAng t\u0103ng theo s\u1ED1 \u0111\u1ED3ng minh nh\u1EDD
-    n\u1ED9i t\u1EA1i t\u1EADp h\u1EE3p."
+  Description: A keyblade-bearing pioneer. Travel to charge a lantern pulse; build
+    a bustling brigade.
   ChampionModifiers:
   - Effect: 13
     Scope: 2

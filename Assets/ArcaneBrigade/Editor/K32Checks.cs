@@ -64,7 +64,7 @@ namespace ArcaneBrigade.Editor
                     RosterEntry entry = session.State.Roster[0];
                     require(Mathf.Approximately(combat.Champion.Weapon.Damage, champion.Weapon.Damage * session.DamageMultiplier(champion, 1, false)), "Combat uses scoped Champion damage");
                     require(combat.StartingCompanions[0].Health == catalog.Unit(entry.UnitId).Health, "Champion health modifiers do not change immortal ally definitions");
-                    require(model.Stats[2].Summary == combat.Champion.Weapon.Cooldown.ToString("0.00") + " s" && model.Companions[0].CombatValues["Chu kỳ"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s", "Details attack cycles equal combat for both scopes");
+                    require(model.Stats[2].Summary == combat.Champion.Weapon.Cooldown.ToString("0.00") + " s" && model.Companions[0].CombatValues["Cycle"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s", "Details attack cycles equal combat for both scopes");
                     require(model.Stats[3].Summary == combat.Champion.Speed.ToString("0.00") && model.Companions[0].CombatValues["Speed"] == combat.StartingCompanions[0].Speed.ToString("0.###"), "Negative movement tradeoff matches Details and combat");
                     require(model.Relics[0].Explanation.Contains("-5%") && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Champion)) && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Companions)), "Relic explanation exposes all positive and negative localized scopes");
                     item.Stacking = StackPolicy.Unique;

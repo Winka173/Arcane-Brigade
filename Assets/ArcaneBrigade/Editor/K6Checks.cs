@@ -28,7 +28,7 @@ namespace ArcaneBrigade.Editor
                 string first = RunInvoice.Describe(state, catalog); string second = RunInvoice.Describe(state, catalog);
                 require(first == second && initial == JsonUtility.ToJson(state), "Invoice read model cannot mutate build or RNG");
                 RosterEntry actualEntry = state.Roster[0];
-                string actualRosterLine = RunUICopy.UnitName(actualEntry.UnitId, catalog.Unit(actualEntry.UnitId)?.DisplayName) + " · " + RunUICopy.WeaponName(actualEntry.WeaponId) + " · cấp " + actualEntry.Tier;
+                string actualRosterLine = RunUICopy.UnitName(actualEntry.UnitId, catalog.Unit(actualEntry.UnitId)?.DisplayName) + " · " + RunUICopy.WeaponName(actualEntry.WeaponId) + " · tier " + actualEntry.Tier;
                 require(first.Contains(actualRosterLine) && first.Contains(RunUICopy.UnitName(catalog.Unit(state.ChampionId))) && first.Contains(state.RunId), "Localized invoice reports actual roster weapon, champion and run identity");
                 state.Phase = SessionPhase.Victory; state.Wave = 20; state.TotalKills = 7; state.BossKills = 2;
                 state.Contributions.Add(new ContributionEntry { UnitId = state.ChampionId, WeaponId = "SleepCamera", EffectId = "primary", Tier = 1, Damage = 11 });
@@ -37,7 +37,7 @@ namespace ArcaneBrigade.Editor
                 string recorded = JsonUtility.ToJson(profile);
                 storage.RecordProgress(profile, state, catalog);
                 require(recorded == JsonUtility.ToJson(profile) && profile.Wins == 1 && profile.TotalKills == 7 && profile.History.Count == 1, "Repeated results credit exactly once");
-                require(profile.History[0].Nickname == "Ảnh thẻ lúc nửa đêm" && profile.History[0].Score == 26070, "Measured dominant weapon yields stable stored nickname");
+                require(profile.History[0].Nickname == "Midnight photo booth" && profile.History[0].Score == 26070, "Measured dominant weapon yields stable stored nickname");
                 state.Contributions[0].Damage = 200;
                 require(profile.History[0].Build.Contributions[0].Damage == 11, "History is a deep frozen build not live reference");
                 require(RunMeta.UnlockedDifficulty(profile) == 1, "Normal clear unlocks next difficulty without permanent stats");

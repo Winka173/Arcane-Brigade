@@ -25,14 +25,21 @@ MonoBehaviour:
   Speed: 1.75
   Radius: 0.25
   BodyHeight: 0.65
+  BodyScale: 1
   ContactDamage: 4
   ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 0
   PassiveStrength: 1
   Description: 
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
   Price: 20
   UnlockWave: 0
   IsBoss: 0

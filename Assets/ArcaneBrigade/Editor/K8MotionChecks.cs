@@ -46,8 +46,8 @@ namespace ArcaneBrigade.Editor
                     WeaponDefinition weapon = UnityEngine.Object.Instantiate(definition.Weapon); temporary.Add(weapon); definition.Weapon = weapon;
                     definition.BodyHeight = 1; definition.CombatTier = 3;
                     UnitState companion = simulation.AddFixture(definition, Faction.Companion, Vector2.zero);
-                    Require(K8Motion.BodyHeight(companion) <= 0.88f && K8Motion.BodyHeight(companion) >= Mathf.Min(companion.Definition.BodyHeight * 0.95f, 0.88f) && K8Motion.BodyHeight(simulation.Champion) == simulation.Champion.Definition.BodyHeight, "Allies readable at near-authored scale without scaling Champion");
-                    Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * 1.05f + 0.0001f, "Companion weapons bounded by updated readable body size");
+                    Require(K8Motion.BodyHeight(companion) <= 0.88f * CompanionTierScaling.Body(3) && K8Motion.BodyHeight(companion) >= Mathf.Min(companion.Definition.BodyHeight * 0.95f, 0.88f) && K8Motion.BodyHeight(simulation.Champion) == simulation.Champion.Definition.BodyHeight, "Allies readable with star-scaled cap without scaling Champion");
+                    Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * (companion.Definition.Weapon.Kind == WeaponKind.Melee ? 1.9f : 1.05f) + 0.0001f, "Companion weapons bounded by class-specific readable body size");
                     int before = simulation.CompanionCount;
                     for (int index = 0; index < 128; index++) simulation.AddCompanion(definition);
                     Require(simulation.CompanionCount == before + 128, "No companion population cap");
@@ -102,7 +102,7 @@ namespace ArcaneBrigade.Editor
                     Require(root.GetComponentsInChildren<SpriteRenderer>().Count(part => part.name.StartsWith("K8MotionTierStar") && part.enabled) == 3, "Three-star identity visibly represented");
                     SpriteRenderer held = root.transform.Find("GripRoot/WeaponVisual").GetComponent<SpriteRenderer>();
                     Vector3 heldSize = Vector3.Scale(held.sprite.bounds.size, held.transform.localScale);
-                    Require(Mathf.Max(heldSize.x, heldSize.y) <= K8Motion.BodyHeight(companion) * 0.95f + 0.0001f, "Both weapon axes bounded, including tall bows and tier-three shapes");
+                    Require(Mathf.Max(heldSize.x, heldSize.y) <= K8Motion.BodyHeight(companion) * (companion.Definition.Weapon.Kind == WeaponKind.Melee ? 1.75f : 0.95f) + 0.0001f, "Both weapon axes bounded by class, including tall bows and tier-three shapes");
                     SpriteRenderer reference = root.transform.Find("BodyVisual").GetComponent<SpriteRenderer>();
                     SpriteRenderer tierStar = root.GetComponentsInChildren<SpriteRenderer>().First(part => part.name.StartsWith("K8MotionTierStar"));
                     Require(tierStar.transform.localPosition.y > reference.transform.localPosition.y + reference.sprite.bounds.max.y * reference.transform.localScale.y, "Tier stars clear actual sprite pivot and silhouette");

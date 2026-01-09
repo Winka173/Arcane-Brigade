@@ -145,7 +145,8 @@ namespace ArcaneBrigade
                 {
                     Vector3 size = Vector3.Scale(weapon.sprite.bounds.size, weapon.transform.localScale);
                     float longest = Mathf.Max(size.x, size.y);
-                    weapon.transform.localScale *= Mathf.Min(1, K8Motion.BodyHeight(unit) * 0.95f / Mathf.Max(0.01f, longest));
+                    float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.75f : 0.95f;
+                    weapon.transform.localScale *= Mathf.Min(1, K8Motion.BodyHeight(unit) * limit / Mathf.Max(0.01f, longest));
                 }
                 if (hand.sprite != null) hand.transform.localScale = Vector3.one * ((unit.Faction == Faction.Companion ? 0.095f : 0.13f) / Mathf.Max(0.01f, hand.sprite.bounds.size.x));
                 muzzle.localPosition = unit.Definition.Weapon.HasMuzzleOffset ? (Vector3)unit.Definition.Weapon.ProjectileMuzzleOffset : Vector3.right * unit.Definition.Weapon.MuzzleDistance;
@@ -221,8 +222,10 @@ namespace ArcaneBrigade
             if (tierBell != null) tierBell.sortingOrder = weapon.sortingOrder;
             body.flipX = facing.x < -0.1f;
             float movement = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
-            float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * 13f + state.Id) * 0.025f * movement;
+            bool pursuit = state.TravelMode == CompanionTravelMode.Pursuit;
+            float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * (pursuit ? 17f : 13f) + state.Id) * (pursuit ? 0.035f : 0.025f) * movement;
             float attackLean = attacking ? pose.Lean : 0;
+            if (pursuit && !attacking && !ReducedMotion) attackLean += Mathf.Clamp(state.Velocity.x, -1, 1) * (facing.x < 0 ? -1 : 1) * -7;
             float impactSquash = attacking ? pose.Squash : 0;
             if (state.Faction == Faction.Enemy && attacking && !ReducedMotion)
             {

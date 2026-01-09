@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LastLantern
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LastLantern
-  DisplayName: "Hi\u1EC7p S\u0129 C\xE1nh C\u1EEDa"
+  DisplayName: Last Lantern
   Body: {fileID: 2111205140, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
   - {fileID: 2111205140, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}

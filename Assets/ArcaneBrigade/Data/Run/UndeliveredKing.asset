@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UndeliveredKing
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UndeliveredKing
-  DisplayName: "Cua \u0110\u1ED3ng H\u1ED3"
+  DisplayName: Undelivered King
   Body: {fileID: 465057803, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
   - {fileID: 465057803, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}

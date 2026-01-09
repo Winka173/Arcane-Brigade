@@ -103,14 +103,23 @@ namespace ArcaneBrigade
                 }
             Check(hostileSeen && hostileGripsHidden, "Live hostile visuals have no held weapons");
             owner.SetPresentationMoveTarget(Vector2.zero);
+            bool pursuitSeen = false;
             while (owner.Session.State.Phase == SessionPhase.Combat && owner.Simulation.Elapsed < owner.Simulation.WaveDuration + 1)
             {
                 owner.SetPresentationMoveTarget(new Vector2(Mathf.Cos(owner.Simulation.Elapsed * 0.65f) * 4, Mathf.Sin(owner.Simulation.Elapsed * 0.65f) * 2.8f));
+                if (!pursuitSeen)
+                    foreach (UnitState unit in owner.Simulation.Units)
+                        if (unit.Faction == Faction.Companion && unit.TravelMode == CompanionTravelMode.Pursuit && unit.Velocity.sqrMagnitude > 1)
+                        {
+                            pursuitSeen = true; yield return Shot("18-melee-pursuit"); break;
+                        }
                 yield return null;
             }
             yield return new WaitForSecondsRealtime(0.65f); yield return Shot("08-wave-end-arrival");
             Check(SceneManager.GetActiveScene().handle == scene && ReferenceEquals(owner, identity), "Wave end also keeps scene/controller");
             Check(owner.Session.State.Phase == SessionPhase.Shop, "Natural combat completion returns to living market");
+            Check(pursuitSeen, "Live melee companions switch into pursuit mode");
+            Check(Mathf.Approximately(owner.Session.State.Health, owner.Simulation.Champion.Definition.Health) && Mathf.Approximately(owner.Simulation.Champion.Health, owner.Session.State.Health), "Natural wave completion restores full HP in save and live HUD");
             if (!video && owner.Session.State.Phase == SessionPhase.Shop)
             {
                 owner.Session.State.SpecialShopVisited = true; owner.Shop.Display(); yield return new WaitForSecondsRealtime(0.8f);
@@ -130,9 +139,60 @@ namespace ArcaneBrigade
             }
             if (video) { while (!recorder.Complete) yield return null; Check(recorder.Passed, "Realtime transition framebuffer movie completed"); }
             if (!video && Array.IndexOf(args, "-arcane-k11-themes") >= 0) yield return CaptureHeroThemes(content, storage);
+            if (!video && Array.IndexOf(args, "-arcane-k11-melee") >= 0) yield return CaptureTierGrowth(content, storage);
+            if (!video)
+            {
+                SceneManager.LoadScene("RunFrontend"); yield return new WaitForSecondsRealtime(0.5f);
+                yield return Shot("19-english-main-menu");
+                Check(content.Champions[0].DisplayName == "Lantern Knight" && MerchantDialogue.Pick(true, MerchantMoment.Enter, 0).StartsWith("Shh"), "Native catalog and merchant dialogue are English");
+            }
             notes.Add("Isolated saved fixture, actual purchases/transitions and natural wave2 combat with movement-only circle driver. Base stills09-11 are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. Hero stills use separate seeded character fixtures. No HP/invulnerability/timer adjustments, human feel approval, mobile certification or OS/desktop capture.");
             File.WriteAllLines(Path.Combine(root, "CaptureNotes.txt"), notes); Application.Quit(failed ? 1 : 0);
         }
+        private IEnumerator CaptureTierGrowth(RunCatalog content, RunStorage storage)
+        {
+            string[] weapons = { "SpoonSabre", "ToastCleaver", "LollipopLance", "InkPistol", "ButtonBow", "ShellCannon" };
+            using (var session = new RunSession(content))
+            {
+                session.Start(content.Champions[0].Id, 11217); session.State.Wave = 3; session.State.Roster.Clear();
+                for (int index = 0; index < weapons.Length; index++)
+                    session.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = weapons[index], Tier = index % 3 + 1 });
+                session.State.Health = session.PrepareCombat().Champion.Health;
+                session.Validate(session.State); storage.SaveRun(session.State);
+            }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(0.1f);
+            owner = FindAnyObjectByType<ArenaController>(); owner.SetPresentationMoveTarget(new Vector2(3, -2));
+            Check(owner.Simulation.CompanionCount == 6, "Native star showcase has six unique body/weapon variants");
+            float minimum = float.PositiveInfinity, maximum = 0;
+            foreach (UnitState unit in owner.Simulation.Units)
+                if (unit.Faction == Faction.Companion)
+                {
+                    float size = K8Motion.BodyHeight(unit);
+                    if (unit.Definition.CombatTier == 1) minimum = Mathf.Min(minimum, size);
+                    if (unit.Definition.CombatTier == 3) maximum = Mathf.Max(maximum, size);
+                }
+            Check(maximum > minimum * 1.25f, "Native tier3 bodies visibly exceed tier1 bodies");
+            yield return new WaitForSecondsRealtime(4); yield return Shot("20-star-growth");
+            bool largeProjectile = false;
+            float until = Time.realtimeSinceStartup + 12;
+            while (Time.realtimeSinceStartup < until && !largeProjectile && owner.Session.State.Phase == SessionPhase.Combat)
+            {
+                foreach (ProjectileState projectile in owner.Simulation.Projectiles)
+                {
+                    foreach (UnitState unit in owner.Simulation.Units)
+                        if (unit.Faction == Faction.Companion && unit.Definition.CombatTier == 3 && projectile.SourceUnitId == unit.Id && projectile.Faction == Faction.Companion && projectile.Radius >= unit.Definition.Weapon.ProjectileRadius * 0.99f)
+                        {
+                            largeProjectile = true; break;
+                        }
+                    if (largeProjectile) break;
+                }
+                if (largeProjectile) yield return Shot("21-tier3-projectiles");
+                yield return null;
+            }
+            Check(largeProjectile, "Native tier3 companion fires enlarged real projectile hitbox");
+            notes.Add("Star stills20-21 use an explicitly saved wave3 six-variant diagnostic roster. No enemy budget/speed, damage immunity or combat timer overrides. Initial champion HP is the fixture's legal maximum; not claimed natural recruitment progression.");
+        }
+
         private IEnumerator CaptureHeroThemes(RunCatalog content, RunStorage storage)
         {
             Check(content.HeroRevision > 0, "Player loads enabled themed recruitment revision");

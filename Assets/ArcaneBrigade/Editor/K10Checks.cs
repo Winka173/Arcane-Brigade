@@ -22,7 +22,7 @@ namespace ArcaneBrigade.Editor
                 foreach (UnitDefinition unit in catalog.Companions) unit.CompanionModifiers = Array.Empty<StatModifier>();
                 foreach (UnitDefinition unit in catalog.Champions) unit.ChampionModifiers = unit.ChampionModifiers.Where(modifier => modifier.Effect < ItemEffect.ScoreMultiplier).ToArray();
                 foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
-                    if (effect >= ItemEffect.ScoreMultiplier) require(RunModifierRules.ModifierName(effect) != "Hiệu ứng không hợp lệ", "Localized stat " + effect);
+                    if (effect >= ItemEffect.ScoreMultiplier) require(RunModifierRules.ModifierName(effect) != "Invalid effect", "Localized stat " + effect);
                 var item = new ItemDefinition { Id = "k10-fixture", Modifiers = new[]
                 {
                     Modifier(ItemEffect.BulletPierce, 3), Modifier(ItemEffect.BulletSplit, 2), Modifier(ItemEffect.BulletSize, 0.5f), Modifier(ItemEffect.BulletBounce, 0.2f), Modifier(ItemEffect.BulletSpeed, 0.5f), Modifier(ItemEffect.AttackRange, 0.25f), Modifier(ItemEffect.RangedDamage, 4), Modifier(ItemEffect.Dodge, 0.15f), Modifier(ItemEffect.Income, 5), Modifier(ItemEffect.BodySize, 0.2f), Modifier(ItemEffect.HeartHealing, 3), Modifier(ItemEffect.ChestQuality, 0.2f), Modifier(ItemEffect.ScoreMultiplier, 0.2f)
@@ -72,7 +72,7 @@ namespace ArcaneBrigade.Editor
                     float lateHealth = session.PrepareCombat().MeleeEnemy.Health;
                     session.State.Wave = 3;
                     require(lateHealth > session.PrepareCombat().MeleeEnemy.Health, "Late enemies gain health rather than only visual size");
-                    require(RunBuildReadModel.Capture(session, catalog, 5).Stats.Any(row => row.Name == "Chia nhánh đạn"), "Details expose hidden projectile stat types");
+                    require(RunBuildReadModel.Capture(session, catalog, 5).Stats.Any(row => row.Name == "Bullet split"), "Details expose hidden projectile stat types");
                     item.Modifiers = new[] { Modifier(ItemEffect.CollisionDamage, 10) };
                     combat = session.PrepareCombat();
                     var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);
@@ -94,7 +94,7 @@ namespace ArcaneBrigade.Editor
                         RunBuildReadModel startingModel = RunBuildReadModel.Capture(starting, original, 5);
                         require(startingModel.Stats.Any(row => row.Explanation.Contains("đặc tính riêng") && row.Explanation.Contains(RunUICopy.UnitName(protagonist))), "New stat sources include protagonist identity " + protagonist.Id);
                     }
-                    foreach (string term in new[] { "split", "xuyên", "nảy", "giáp", "hệ", "scope", "merge", "altar", "reroll", "hiệu chỉnh", "thủ lĩnh", "đồng minh" })
+                    foreach (string term in new[] { "split", "pierce", "bounce", "armor", "bond", "scope", "merge", "altar", "reroll", "correction", "champion", "companions" })
                         require(GlossaryUI.Find(term) != null && GlossaryUI.Find(term).Description.Length > 40, "Technical term has icon-linked explanation: " + term);
                     foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
                         require(GlossaryUI.Find(RunModifierRules.ModifierName(effect)) != null, "All stat labels have definitions: " + effect);

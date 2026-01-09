@@ -47,10 +47,10 @@ namespace ArcaneBrigade
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
             GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
             RunHud.Fill(new Rect(30, 20, 1860, 1040), new Color(0.09f, 0.075f, 0.16f, 0.99f));
-            ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "ĐỘI QUÂN");
+            ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
-            if (GUI.Button(new Rect(1610, 55, 220, 70), "ĐÓNG", button)) owner.ToggleDetails();
-            string[] names = { "CHỈ SỐ", "ĐỒNG MINH", "VẬT PHẨM", "LIÊN KẾT" };
+            if (GUI.Button(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
+            string[] names = { "STATS", "COMPANIONS", "RELICS", "LINKS" };
             for (int index = 0; index < names.Length; index++)
             {
                 Color previousColor = GUI.color;
@@ -73,12 +73,12 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
-            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "Chưa có đồng minh. Tuyển tại cửa hàng ở khu nghỉ." : tab == 2 ? "Chưa có vật phẩm. Mua tại cửa hàng ở khu nghỉ." : "Chưa có liên kết để xem.", text);
+            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No companions yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
             GUI.EndScrollView();
             RunHud.Fill(new Rect(1160, 300, 665, 665), new Color(0.15f, 0.12f, 0.24f));
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));
             string explanation = rows.Count == 0 ? "" : rows[Mathf.Clamp(selection, 0, rows.Count - 1)].Explanation;
-            if (tab == 2) explanation += "\nBIÊN LAI GẦN ĐÂY\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "Chưa có giao dịch đã lưu." : model.Receipts);
+            if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
             float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
             explanationScroll = GUI.BeginScrollView(new Rect(1180, 325, 625, 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);

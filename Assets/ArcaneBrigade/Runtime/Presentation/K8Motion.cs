@@ -20,13 +20,14 @@ namespace ArcaneBrigade
         public static float BodyHeight(UnitState unit)
         {
             float scale = Mathf.Max(0.01f, unit.Definition.BodyScale);
-            return unit.Faction == Faction.Companion ? Mathf.Min(unit.Definition.BodyHeight / scale * 0.95f, 0.88f) * scale : unit.Definition.BodyHeight;
+            return unit.Faction == Faction.Companion ? Mathf.Min(unit.Definition.BodyHeight / scale * 0.95f, 0.88f * CompanionTierScaling.Body(unit.Definition.CombatTier)) * scale : unit.Definition.BodyHeight;
         }
 
         public static float WeaponWidth(UnitState unit)
         {
             float width = unit.Definition.Weapon.VisualWidth;
-            return unit.Faction == Faction.Companion ? Mathf.Min(width * 0.95f, BodyHeight(unit) * 1.05f) : width;
+            float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.9f : 1.05f;
+            return unit.Faction == Faction.Companion ? Mathf.Min(width * 0.95f, BodyHeight(unit) * limit) : width;
         }
 
         public static bool Attacking(UnitState unit, float time)

@@ -5,6 +5,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
+    public enum CompanionTravelMode { Patrol, Pursuit }
     public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge }
 
     public readonly struct CombatEvent
@@ -59,6 +60,7 @@ namespace ArcaneBrigade
         public Vector2 AttackDirection;
         public Vector2 RoamOffset;
         public Vector2 Velocity;
+        public CompanionTravelMode TravelMode;
         public float NextRoamTime;
         public float RoamRestUntil;
         public System.Random RoamRandom;
@@ -268,7 +270,7 @@ namespace ArcaneBrigade
             {
                 if (unit.Faction != Faction.Companion) continue;
                 unit.Position = ClampPosition(CompanionMotion.Step(unit, Champion, units, null, catalog, Elapsed + restElapsed, deltaTime), unit.Definition.Radius);
-                unit.Position = Champion.Position + Vector2.ClampMagnitude(unit.Position - Champion.Position, catalog.CompanionLeash);
+                unit.Position = Champion.Position + Vector2.ClampMagnitude(unit.Position - Champion.Position, CompanionMotion.Leash(unit, catalog));
             }
         }
 
@@ -376,13 +378,27 @@ namespace ArcaneBrigade
 
         private void FollowChampion(UnitState unit, float deltaTime)
         {
-            UnitState target = FindTarget(unit, unit.Definition.Weapon.Range);
+            float leash = CompanionMotion.Leash(unit, catalog);
+            UnitState target = unit.Definition.Weapon.Kind == WeaponKind.Melee ? FindPursuitTarget(unit, leash + unit.Definition.Weapon.Range * 0.65f) : FindTarget(unit, unit.Definition.Weapon.Range);
             float neighborhood = Mathf.Max(catalog.CompanionSeparation, unit.Definition.Radius + maximumRadius + 0.35f) + maximumSpeed * deltaTime;
             spatial.Query(unit.PreviousPosition - Vector2.one * neighborhood, unit.PreviousPosition + Vector2.one * neighborhood, separationCandidates);
             Vector2 next = CompanionMotion.Step(unit, Champion, separationCandidates, target, catalog, Elapsed, deltaTime);
-            next = Champion.Position + Vector2.ClampMagnitude(next - Champion.Position, catalog.CompanionLeash);
+            next = Champion.Position + Vector2.ClampMagnitude(next - Champion.Position, leash);
             unit.Position = ClampPosition(next, unit.Definition.Radius);
             if (!unit.PendingAttack && unit.Velocity.sqrMagnitude > 0.01f) unit.Facing = unit.Velocity.normalized;
+        }
+
+        private UnitState FindPursuitTarget(UnitState unit, float radius)
+        {
+            spatial.Query(Champion.Position - Vector2.one * radius, Champion.Position + Vector2.one * radius, targetCandidates);
+            UnitState nearest = null; float bestDistance = float.PositiveInfinity;
+            foreach (UnitState candidate in targetCandidates)
+            {
+                if (!CanHit(unit.Faction, candidate) || (candidate.Position - Champion.Position).sqrMagnitude > radius * radius) continue;
+                float distance = (candidate.Position - unit.Position).sqrMagnitude;
+                if (distance < bestDistance) { nearest = candidate; bestDistance = distance; }
+            }
+            return nearest;
         }
 
         private void MoveEnemy(UnitState unit, float deltaTime)

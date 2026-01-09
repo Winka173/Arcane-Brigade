@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Postmaster
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: Postmaster
-  DisplayName: "Tr\u01B0\u1EDFng B\u01B0u C\u1EE5c"
+  DisplayName: Postmaster
   Body: {fileID: 229030292, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   AnimationFrames:
   - {fileID: 229030292, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
@@ -35,11 +35,8 @@ MonoBehaviour:
   Tags: []
   Passive: 2
   PassiveStrength: 2
-  Description: "Giao h\xE0ng k\xE9p: th\u1EE7 l\u0129nh +1 \u0111\u1EA1n m\u1ED7i
-    \u0111\xF2n b\u1EAFn; nh\u1EB7t \u0111\u1ED3 xa th\xEAm 0,5. H\xE0ng b\u1EB1ng
-    v\xE0ng \u1EDF l\u1EA7n t\u1EA1o c\u1EEDa h\xE0ng ti\u1EBFp theo r\u1EBB h\u01A1n
-    15%; kh\xF4ng gi\u1EA3m ph\xED \u0111\u1ED5i h\xE0ng. Nh\u1EB7t ti\u1EC1n t\u1EF1
-    \u0111\u1ED9ng m\u1ED7i 4 gi\xE2y theo n\u1ED9i t\u1EA1i."
+  Description: A wandering parcel launcher. Collected gold charges automatic express
+    volleys.
   ChampionModifiers:
   - Effect: 15
     Scope: 3

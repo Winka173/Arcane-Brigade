@@ -122,9 +122,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b6b33f0630a726459aa6dfae91e9a36, type: 2}
   Items:
   - Id: key-oil
-    Name: "D\u1EA7u Ch\xECa Kh\xF3a"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / S\xE1t th\u01B0\u01A1ng: +12% \xD7 1 = +12%"
+    Name: Key Oil
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nTeam / Damage: +12% \xD7 1 = +12%\n"
     Price: 18
     Effect: 0
     Value: 0.12
@@ -143,9 +143,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: clock-spring
-    Name: "L\xF2 Xo \u0110\u1ED3ng H\u1ED3"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: +10% \xD7 1 = +10%"
+    Name: Clock Spring
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nTeam / Attack speed: +10% \xD7 1 = +10%\n"
     Price: 20
     Effect: 1
     Value: 0.1
@@ -164,10 +164,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: honey-pot
-    Name: "H\u0169 M\u1EADt Ong"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh /
-      M\xE1u t\u1ED1i \u0111a: +20 \xD7 1 = +20\nKhi mua, m\xE1u hi\u1EC7n t\u1EA1i
-      t\u0103ng theo ph\u1EA7n thay \u0111\u1ED5i m\xE1u t\u1ED1i \u0111a."
+    Name: Honey Pot
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nChampion / Maximum health: +20 \xD7 1 = +20\n"
     Price: 22
     Effect: 2
     Value: 20
@@ -186,9 +185,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: felt-boots
-    Name: "\u1EE6ng N\u1EC9"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / T\u1ED1c \u0111\u1ED9 di chuy\u1EC3n: +6% \xD7 1 = +6%"
+    Name: Felt Boots
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nTeam / Movement speed: +6% \xD7 1 = +6%\n"
     Price: 18
     Effect: 3
     Value: 0.06
@@ -207,9 +206,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: coin-compass
-    Name: "La B\xE0n Ti\u1EC1n"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / B\xE1n k\xEDnh nh\u1EB7t \u0111\u1ED3: +0.25 \xD7 1 = +0.25"
+    Name: Coin Compass
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nRun / Pickup radius: +0.25 \xD7 1 = +0.25\n"
     Price: 15
     Effect: 4
     Value: 0.25
@@ -228,9 +227,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: wandering-map
-    Name: "B\u1EA3n \u0110\u1ED3 Lang Thang"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / B\xE1n k\xEDnh tu\u1EA7n tra: +0.4 \xD7 1 = +0.4"
+    Name: Wandering Map
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nRun / Patrol radius: +0.4 \xD7 1 = +0.4\n"
     Price: 18
     Effect: 5
     Value: 0.4
@@ -249,11 +248,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: guardian-canopy
-    Name: "T\xE1n \xD4 H\u1ED9 V\u1EC7"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i / \u0110\u1ED3ng
-      minh ch\u1EB7n \u0111\u1EA1n: +1 \xD7 1 = +1\n\u0110\u1ED3ng minh ch\u1EB7n
-      \u0111\u1EA1n \u0111\u1ECBch. C\u1ED9ng d\u1ED3n kh\xF4ng th\xEAm l\u01B0\u1EE3t
-      ch\u1EB7n."
+    Name: Guardian Canopy
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nRun / Companion bullet interception: +1 \xD7 1 =
+      +1\n"
     Price: 45
     Effect: 6
     Value: 1
@@ -272,9 +270,10 @@ MonoBehaviour:
     AltarPrice: 14
     SignatureRole: 0
   - Id: warm-tea
-    Name: "Tr\xE0 \u1EA4m"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh /
-      H\u1ED3i m\xE1u m\u1ED7i gi\xE2y: +0.15 \xD7 1 = +0.15"
+    Name: Warm Tea
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nChampion / Healing per second: +0.15 \xD7 1 =
+      +0.15\n"
     Price: 24
     Effect: 7
     Value: 0.15
@@ -293,9 +292,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: oracle-lens
-    Name: "K\xEDnh Ti\xEAn Tri"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / T\u1EF7 l\u1EC7 ch\xED m\u1EA1ng: +4% \xD7 1 = +4%"
+    Name: Oracle Lens
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nTeam / Critical chance: +4% \xD7 1 = +4%\n"
     Price: 22
     Effect: 8
     Value: 0.04
@@ -314,9 +313,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: twin-seal
-    Name: "\u1EA4n Song Sinh"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i / S\u1ED1
-      \u0111\u1EA1n: +1 \xD7 1 = +1"
+    Name: Twin Seal
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Projectile count: +1 \xD7 1 = +1\n"
     Price: 35
     Effect: 9
     Value: 1
@@ -335,11 +334,9 @@ MonoBehaviour:
     AltarPrice: 11
     SignatureRole: 0
   - Id: piggy-mail
-    Name: "Heo Th\u01B0 Ti\u1EBFt Ki\u1EC7m"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / Gi\u1EDBi h\u1EA1n ti\u1EC1n l\xE3i: +2 \xD7 1 = +2\nT\u0103ng gi\u1EDBi
-      h\u1EA1n ti\u1EC1n l\xE3i; l\xE3i th\u1EF1c nh\u1EADn c\xF2n ph\u1EE5 thu\u1ED9c
-      s\u1ED1 v\xE0ng \u0111ang gi\u1EEF."
+    Name: Piggy Mail
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nRun / Interest cap: +2 \xD7 1 = +2\n"
     Price: 18
     Effect: 10
     Value: 2
@@ -358,10 +355,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: pillow-mail
-    Name: "Th\u01B0 G\u1ED1i"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh /
-      Gi\xE1p: +0.12 \xD7 1 = +0.12\nS\xE1t th\u01B0\u01A1ng nh\u1EADn chia cho 1
-      + gi\xE1p."
+    Name: Pillow Mail
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nChampion / Armor: +0.12 \xD7 1 = +0.12\n"
     Price: 20
     Effect: 11
     Value: 0.12
@@ -380,9 +376,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: royal-key
-    Name: "Ch\xECa Kh\xF3a Ho\xE0ng Gia"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh
-      / S\xE1t th\u01B0\u01A1ng: +22% \xD7 1 = +22%"
+    Name: Royal Key
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nChampion / Damage: +22% \xD7 1 = +22%\n"
     Price: 28
     Effect: 12
     Value: 0.22
@@ -401,9 +397,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: brigade-banner
-    Name: "C\u1EDD L\u1EEF \u0110o\xE0n"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng minh
-      / S\xE1t th\u01B0\u01A1ng: +15% \xD7 1 = +15%"
+    Name: Brigade Banner
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nCompanions / Damage: +15% \xD7 1 = +15%\n"
     Price: 30
     Effect: 13
     Value: 0.15
@@ -422,9 +418,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: marching-bell
-    Name: "Chu\xF4ng H\xE0nh Qu\xE2n"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng minh
-      / T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: +12% \xD7 1 = +12%"
+    Name: Marching Bell
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nCompanions / Attack speed: +12% \xD7 1 = +12%\n"
     Price: 26
     Effect: 14
     Value: 0.12
@@ -443,12 +439,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: coupon-book
-    Name: "S\u1ED5 Phi\u1EBFu Gi\u1EA3m Gi\xE1"
-    Description: "PH\u1ED4 TH\xD4NG \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / Gi\u1EA3m gi\xE1 h\xE0ng b\u1EB1ng v\xE0ng: +5% \xD7 1 = +5%\nGi\u1EA3m gi\xE1
-      h\xE0ng b\u1EB1ng v\xE0ng \u1EDF l\u1EA7n t\u1EA1o c\u1EEDa h\xE0ng ti\u1EBFp
-      theo, t\u1ED5ng gi\u1EA3m t\u1ED1i \u0111a 50%; kh\xF4ng gi\u1EA3m ph\xED \u0111\u1ED5i
-      h\xE0ng."
+    Name: Coupon Book
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nCOMMON \xB7 Stackable\nRun / Gold shop discount: +5% \xD7 1 = +5%\n"
     Price: 24
     Effect: 15
     Value: 0.05
@@ -467,10 +460,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: long-atlas
-    Name: "\u0110\u1ECBa \u0110\u1ED3 D\xE0i"
-    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / B\xE1n k\xEDnh tu\u1EA7n tra: +1 \xD7 1 = +1\nTo\xE0n \u0111\u1ED9i / T\u1ED1c
-      \u0111\u1ED9 di chuy\u1EC3n: -4% \xD7 1 = -4%"
+    Name: Long Atlas
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nRun / Patrol radius: +1 \xD7 1 = +1\nTeam / Movement
+      speed: -4% \xD7 1 = -4%\n"
     Price: 36
     Effect: 5
     Value: 1
@@ -492,10 +485,9 @@ MonoBehaviour:
     AltarPrice: 11
     SignatureRole: 0
   - Id: starlight-quilt
-    Name: "Ch\u0103n \xC1nh Sao"
-    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: +45 \xD7 1 = +45\nKhi mua, m\xE1u hi\u1EC7n t\u1EA1i
-      t\u0103ng theo ph\u1EA7n thay \u0111\u1ED5i m\xE1u t\u1ED1i \u0111a."
+    Name: Starlight Quilt
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nChampion / Maximum health: +45 \xD7 1 = +45\n"
     Price: 42
     Effect: 2
     Value: 45
@@ -514,10 +506,10 @@ MonoBehaviour:
     AltarPrice: 13
     SignatureRole: 0
   - Id: echo-postage
-    Name: "Tem V\u1ECDng \xC2m"
-    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / S\u1ED1 \u0111\u1EA1n: +2 \xD7 1 = +2\nTo\xE0n \u0111\u1ED9i / T\u1ED1c \u0111\u1ED9
-      \u0111\xE1nh: -8% \xD7 1 = -8%"
+    Name: Echo Postage
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nTeam / Projectile count: +2 \xD7 1 = +2\nTeam
+      / Attack speed: -8% \xD7 1 = -8%\n"
     Price: 60
     Effect: 9
     Value: 2
@@ -539,9 +531,9 @@ MonoBehaviour:
     AltarPrice: 18
     SignatureRole: 0
   - Id: tarnished-crown
-    Name: "V\u01B0\u01A1ng Mi\u1EC7n X\u1EC9n"
-    Description: "HUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh
-      / S\xE1t th\u01B0\u01A1ng: +40% \xD7 1 = +40%"
+    Name: Tarnished Crown
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nChampion / Damage: +40% \xD7 1 = +40%\n"
     Price: 48
     Effect: 12
     Value: 0.4
@@ -560,10 +552,9 @@ MonoBehaviour:
     AltarPrice: 15
     SignatureRole: 0
   - Id: fortune-egg
-    Name: "Tr\u1EE9ng May M\u1EAFn"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i / May
-      m\u1EAFn: +0.2 \xD7 1 = +0.2\nMay m\u1EAFn t\u0103ng c\u01A1 h\u1ED9i r\u01A1i
-      tr\u1EE9ng v\xE0 tim; kh\xF4ng t\u0103ng s\xE1t th\u01B0\u01A1ng."
+    Name: Fortune Egg
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nRun / Luck: +0.2 \xD7 1 = +0.2\n"
     Price: 24
     Effect: 16
     Value: 0.2
@@ -579,10 +570,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: treasure-whisper
-    Name: "L\u1EDDi Th\xEC Th\u1EA7m Kho B\xE1u"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i / Ph\xE1t
-      hi\u1EC7n kho b\xE1u: +0.35 \xD7 1 = +0.35\nR\u01B0\u01A1ng xu\u1EA5t hi\u1EC7n
-      s\u1EDBm h\u01A1n; v\u1EABn ph\u1EA3i \u0111\u1EBFn g\u1EA7n \u0111\u1EC3 m\u1EDF."
+    Name: Treasure Whisper
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nRun / Treasure detection: +0.35 \xD7 1 = +0.35\n"
     Price: 30
     Effect: 17
     Value: 0.35
@@ -598,10 +588,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: coin-salve
-    Name: "Thu\u1ED1c M\u1EE1 \u0110\u1ED3ng Xu"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nNh\u1EB7t ti\u1EC1n: h\u1ED3i
-      0,5 m\xE1u m\u1ED7i c\u1ED9ng d\u1ED3n, m\u1ED9t l\u1EA7n m\u1ED7i s\u1EF1
-      ki\u1EC7n g\u1ED1c, h\u1ED3i chi\xEAu 0,2 gi\xE2y."
+    Name: Coin Salve
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\n"
     Price: 28
     Effect: 7
     Value: 0
@@ -617,11 +606,9 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: chest-thunder
-    Name: "S\u1EA5m R\u01B0\u01A1ng"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nM\u1EDF r\u01B0\u01A1ng: xung
-      s\xE1t th\u01B0\u01A1ng 14 m\u1ED7i c\u1ED9ng d\u1ED3n, b\xE1n k\xEDnh 3, h\u1ED3i
-      chi\xEAu 1 gi\xE2y. Kh\xF4ng k\xEDch ho\u1EA1t hi\u1EC7u \u1EE9ng v\u1EADt
-      ph\u1EA9m kh\xE1c."
+    Name: Chest Thunder
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\n"
     Price: 42
     Effect: 0
     Value: 0
@@ -637,10 +624,10 @@ MonoBehaviour:
     AltarPrice: 2
     SignatureRole: 0
   - Id: altar-ember
-    Name: "Than H\u1ED3ng T\u1EBF \u0110\xE0n"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7 l\u0129nh / S\xE1t
-      th\u01B0\u01A1ng: +18% \xD7 1 = +18%\nTo\xE0n \u0111\u1ED9i / T\u1ED1c \u0111\u1ED9
-      di chuy\u1EC3n: -3% \xD7 1 = -3%"
+    Name: Altar Ember
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nChampion / Damage: +18% \xD7 1 = +18%\nTeam / Movement
+      speed: -3% \xD7 1 = -3%\n"
     Price: 36
     Effect: 12
     Value: 0.18
@@ -662,13 +649,9 @@ MonoBehaviour:
     AltarPrice: 10
     SignatureRole: 0
   - Id: harvest-receipt
-    Name: "Bi\xEAn Lai M\xF9a G\u1EB7t"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / B\xE1n k\xEDnh nh\u1EB7t \u0111\u1ED3: -0.15 \xD7 1 = -0.15\nNh\u1EB7t ti\u1EC1n
-      ti\u1EBFn m\u1ED9t nh\u1ECBp cho chu\xF4ng trong b\xE1n k\xEDnh 6; c\u1ED9ng
-      d\u1ED3n th\u1EE9 hai cho hai nh\u1ECBp. H\u1ED3i chi\xEAu 0,35 gi\xE2y; kh\xF4ng
-      sinh ti\u1EC1n m\u1EDBi, kh\xF4ng k\xEDch ho\u1EA1t l\u1EB7p t\u1EEB hi\u1EC7u
-      \u1EE9ng ph\u1EE5."
+    Name: Harvest Receipt
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nRun / Pickup radius: -0.15 \xD7 1 = -0.15\n"
     Price: 28
     Effect: 0
     Value: 0
@@ -687,11 +670,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 1
   - Id: reflective-ink
-    Name: "M\u1EF1c Ph\u1EA3n Chi\u1EBFu"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\nCon d\u1EA5u th\xEAm
-      m\u1ED9t d\u1EA5u m\u1ED7i \u0111\xF2n; th\u1EDDi h\u1EA1n d\u1EA5u nh\xE2n
-      0,65. B\xF9ng d\u1EA5u m\u1EDF \u0111i\u1EC3m y\u1EBFu 1,8 gi\xE2y; kh\xF4ng
-      tr\u1EF1c ti\u1EBFp t\u0103ng s\xE1t th\u01B0\u01A1ng b\xF9ng d\u1EA5u."
+    Name: Reflective Ink
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Unique\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -710,12 +691,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 2
   - Id: carbon-ribbon
-    Name: "Ruy B\u0103ng Than"
-    Description: "HI\u1EBEM \xB7 Duy nh\u1EA5t\nTo\xE0n \u0111\u1ED9i / T\u1EF7 l\u1EC7
-      ch\xED m\u1EA1ng: -4% \xD7 1 = -4%\nS\xF3ng chu\xF4ng m\u1EDF \u0111i\u1EC3m
-      y\u1EBFu 1,5 gi\xE2y; b\xF9ng d\u1EA5u k\xE9o ti\u1EC1n trong b\xE1n k\xEDnh
-      2,5. Kh\xF4ng sao ch\xE9p s\xE1t th\u01B0\u01A1ng, h\u1EA1 \u0111\u1ECBch ho\u1EB7c
-      v\u1EADt ph\u1EA9m r\u01A1i; kh\xF4ng t\u1EF1 lan truy\u1EC1n."
+    Name: Carbon Ribbon
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Unique\nTeam / Critical chance: -4% \xD7 1 = -4%\n"
     Price: 40
     Effect: 0
     Value: 0
@@ -734,13 +712,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 3
   - Id: office-lens
-    Name: "K\xEDnh V\u0103n Ph\xF2ng"
-    Description: "HI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng minh / T\u1EF7
-      l\u1EC7 ch\xED m\u1EA1ng: +15% \xD7 1 = +15%\n\u0110\u1ED3ng minh / T\u1ED1c
-      \u0111\u1ED9 \u0111\xE1nh: -5% \xD7 1 = -5%\nB\xF9ng d\u1EA5u m\u1EDF \u0111i\u1EC3m
-      y\u1EBFu 1,8 gi\xE2y: ch\xED m\u1EA1ng tr\xEAn \u0111\u1ECBch l\u1ED9 \u0111i\u1EC3m
-      y\u1EBFu th\xEAm 30% s\xE1t th\u01B0\u01A1ng, t\u0103ng theo c\u1ED9ng d\u1ED3n
-      t\u1EDBi 50%. Ch\xED m\u1EA1ng kh\xF4ng t\u1EA1o b\xF9ng d\u1EA5u m\u1EDBi."
+    Name: Office Lens
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nCompanions / Critical chance: +15% \xD7 1 = +15%\nCompanions
+      / Attack speed: -5% \xD7 1 = -5%\n"
     Price: 38
     Effect: 0
     Value: 0
@@ -762,12 +737,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 4
   - Id: tea-coaster
-    Name: "\u0110\u1EBF L\xF3t Tr\xE0"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\nTo\xE0n \u0111\u1ED9i
-      / T\u1ED1c \u0111\u1ED9 di chuy\u1EC3n: -2% \xD7 1 = -2%\nV\xF9ng tr\xE0 r\u1ED9ng
-      th\xEAm 40%, s\xE1t th\u01B0\u01A1ng v\xF9ng gi\u1EA3m 20%. \u0110\u1ECBch
-      ch\xE1y cho ph\xE9p \u0111\xF2n b\xFAa th\u1EE9 ba t\u1EA1o h\u01A1i n\u01B0\u1EDBc;
-      kh\xF4ng c\u1EA7n \u0111\u1EE7 b\u1ED9 v\u1EADt ph\u1EA9m."
+    Name: Tea Coaster
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Unique\nTeam / Movement speed: -2% \xD7 1 = -2%\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -786,13 +758,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 5
   - Id: scratch-record
-    Name: "\u0110\u0129a Nh\u1EA1c X\u01B0\u1EDBc"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: -4% \xD7 1 = -4%\nM\u1ED7i n\u1ED1t h\u1ED9p
-      nh\u1EA1c th\u1EE9 ba v\u1ECDng l\u1EA1i m\u1ED9t l\u1EA7n sau 0,3 gi\xE2y,
-      s\xE1t th\u01B0\u01A1ng 35%/70%. S\xF3ng chu\xF4ng ch\xEDnh g\xE2y th\xEAm
-      25%/50% s\xE1t th\u01B0\u01A1ng l\xEAn \u0111\u1ECBch c\xF2n d\u1EA5u; kh\xF4ng
-      l\u1EB7p v\xF4 h\u1EA1n."
+    Name: Scratch Record
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nTeam / Attack speed: -4% \xD7 1 = -4%\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -811,11 +779,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 6
   - Id: treasure-ribbon
-    Name: "Ruy B\u0103ng Kho B\xE1u"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n \u0111\u1ED9i
-      / S\xE1t th\u01B0\u01A1ng: -3% \xD7 1 = -3%\nM\u1EDF r\u01B0\u01A1ng h\u1ED3i
-      3 m\xE1u v\xE0 t\u0103ng s\xE1t th\u01B0\u01A1ng cung 15% m\u1ED7i c\u1ED9ng
-      d\u1ED3n trong 4 gi\xE2y, t\u1ED1i \u0111a 45%."
+    Name: Treasure Ribbon
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nTeam / Damage: -3% \xD7 1 = -3%\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -834,11 +800,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 7
   - Id: patch-spring
-    Name: "L\xF2 Xo V\xE1"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\n\u0110\u1ED3ng minh /
-      T\u1ED1c \u0111\u1ED9 \u0111\xE1nh: -6% \xD7 1 = -6%\nT\u1EF1 n\u1EA1p m\u1ED9t
-      nh\u1ECBp cho v\u1EADt d\u1EE5ng \u0111\u1EA5u tr\u01B0\u1EDDng m\u1ED7i 3
-      gi\xE2y; hi\u1EC7u \u1EE9ng ph\u1EE5 kh\xF4ng t\u1EF1 n\u1EA1p l\u1EB7p."
+    Name: Patch Spring
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Unique\nCompanions / Attack speed: -6% \xD7 1 = -6%\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -857,12 +821,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 8
   - Id: thermal-ink
-    Name: "M\u1EF1c Nhi\u1EC7t"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 Duy nh\u1EA5t\nTo\xE0n \u0111\u1ED9i
-      / T\u1EF7 l\u1EC7 ch\xED m\u1EA1ng: -3% \xD7 1 = -3%\nNhi\u1EC7t tr\xE0/b\xE0n
-      l\xE0 tr\xEAn \u0111\u1ECBch c\xF3 d\u1EA5u t\u0103ng s\xE1t th\u01B0\u01A1ng
-      v\xF9ng 40%; h\u1ED3i chi\xEAu tr\xEAn t\u1EEBng m\u1EE5c ti\xEAu 0,9 gi\xE2y.
-      Kh\xF4ng th\xEAm d\u1EA5u."
+    Name: Thermal Ink
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Unique\nTeam / Critical chance: -3% \xD7 1 = -3%\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -881,12 +842,9 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 9
   - Id: repair-coupon
-    Name: "Phi\u1EBFu S\u1EEDa Ch\u1EEFa"
-    Description: "\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t ch\u01A1i
-      / B\xE1n k\xEDnh nh\u1EB7t \u0111\u1ED3: -0.1 \xD7 1 = -0.1\nV\u1EADt d\u1EE5ng
-      \u0111\u1EA5u tr\u01B0\u1EDDng h\u1EA1 \u0111\u1ECBch h\u1ED3i 1/2/3 m\xE1u,
-      h\u1ED3i chi\xEAu chung 0,6 gi\xE2y. Kh\xF4ng t\u1EA1o v\xF2ng l\u1EB7p ti\u1EC1n
-      ho\u1EB7c hi\u1EC7u \u1EE9ng v\u1EADt ph\u1EA9m."
+    Name: Repair Coupon
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nRun / Pickup radius: -0.1 \xD7 1 = -0.1\n"
     Price: 32
     Effect: 0
     Value: 0
@@ -905,11 +863,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 10
   - Id: k10-scoremultiplier
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 H\u1EC7 s\u1ED1 \u0111i\u1EC3m"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Score multiplier"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nRun / Score multiplier: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 18
     Value: 0.08
@@ -931,11 +888,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-collisiondamage
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 S\xE1t th\u01B0\u01A1ng va ch\u1EA1m"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / S\xE1t th\u01B0\u01A1ng va ch\u1EA1m: +2 \xD7 1 = +2\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Collision damage"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Collision damage: +2 \xD7 1 = +2\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 19
     Value: 2
@@ -957,11 +913,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-meleedamage
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Damage c\u1EADn c\u1ED9ng th\u1EB3ng"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Damage c\u1EADn c\u1ED9ng th\u1EB3ng: +2 \xD7 1 = +2\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Flat melee damage"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nTeam / Flat melee damage: +2 \xD7 1 = +2\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 18
     Effect: 20
     Value: 2
@@ -983,11 +938,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-rangeddamage
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Damage xa c\u1ED9ng th\u1EB3ng"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Damage xa c\u1ED9ng th\u1EB3ng: +2 \xD7 1 = +2\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Flat ranged damage"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nTeam / Flat ranged damage: +2 \xD7 1 = +2\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 21
     Value: 2
@@ -1009,11 +963,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-attackrange
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1EA7m \u0111\xE1nh"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / T\u1EA7m \u0111\xE1nh: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Attack range"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Attack range: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 22
     Value: 0.08
@@ -1035,11 +988,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-dodge
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 N\xE9 tr\xE1nh"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
-      l\u0129nh / N\xE9 tr\xE1nh: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i
-      \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Dodge"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nChampion / Dodge: +8% \xD7 1 = +8%\nChampion /
+      Maximum health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 23
     Value: 0.08
@@ -1061,11 +1013,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-income
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Thu nh\u1EADp"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / Thu nh\u1EADp: +4 \xD7 1 = +4\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i
-      \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Income"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nRun / Income: +4 \xD7 1 = +4\nChampion / Maximum
+      health: -1 \xD7 1 = -1\n"
     Price: 18
     Effect: 24
     Value: 4
@@ -1087,11 +1038,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-bulletpierce
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Xuy\xEAn \u0111\u1EA1n"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Xuy\xEAn \u0111\u1EA1n: +1 \xD7 1 = +1\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Bullet pierce"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Bullet pierce: +1 \xD7 1 = +1\nChampion /
+      Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 25
     Value: 1
@@ -1113,11 +1063,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-bulletsplit
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Chia nh\xE1nh \u0111\u1EA1n"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Chia nh\xE1nh \u0111\u1EA1n: +1 \xD7 1 = +1\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Bullet split"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nTeam / Bullet split: +1 \xD7 1 = +1\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 26
     Value: 1
@@ -1139,11 +1088,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-bulletbounce
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 X\xE1c su\u1EA5t n\u1EA3y \u0111\u1EA1n"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / X\xE1c su\u1EA5t n\u1EA3y \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Bullet bounce chance"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nTeam / Bullet bounce chance: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 27
     Value: 0.08
@@ -1165,11 +1113,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-bulletsize
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 K\xEDch th\u01B0\u1EDBc \u0111\u1EA1n"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / K\xEDch th\u01B0\u1EDBc \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Bullet size"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Bullet size: +8% \xD7 1 = +8%\nChampion /
+      Maximum health: -1 \xD7 1 = -1\n"
     Price: 18
     Effect: 28
     Value: 0.08
@@ -1191,11 +1138,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-bulletspeed
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1ED1c \u0111\u1ED9 \u0111\u1EA1n"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / T\u1ED1c \u0111\u1ED9 \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Bullet speed"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nTeam / Bullet speed: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 29
     Value: 0.08
@@ -1217,11 +1163,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-bulletdistance
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Kho\u1EA3ng bay \u0111\u1EA1n"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Kho\u1EA3ng bay \u0111\u1EA1n: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Bullet travel distance"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nTeam / Bullet travel distance: +8% \xD7 1 =
+      +8%\nChampion / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 30
     Value: 0.08
@@ -1243,11 +1188,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-knockback
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 \u0110\u1EA9y l\xF9i"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / \u0110\u1EA9y l\xF9i: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Knockback"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Knockback: +8% \xD7 1 = +8%\nChampion / Maximum
+      health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 31
     Value: 0.08
@@ -1269,11 +1213,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-bodysize
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 K\xEDch th\u01B0\u1EDBc th\u1EE7 l\u0129nh"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
-      l\u0129nh / K\xEDch th\u01B0\u1EDBc th\u1EE7 l\u0129nh: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Champion size"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nChampion / Champion size: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 18
     Effect: 32
     Value: 0.08
@@ -1295,11 +1238,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-companionsize
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 K\xEDch th\u01B0\u1EDBc \u0111\u1ED3ng minh"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\n\u0110\u1ED3ng
-      minh / K\xEDch th\u01B0\u1EDBc \u0111\u1ED3ng minh: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Companion size"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nCompanions / Companion size: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 33
     Value: 0.08
@@ -1321,12 +1263,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-enemycount
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 S\u1ED1 l\u01B0\u1EE3ng qu\xE1i"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / S\u1ED1 l\u01B0\u1EE3ng qu\xE1i: +10% \xD7 1 = +10%\nL\u01B0\u1EE3t
-      ch\u01A1i / H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +20% \xD7 1 = +20%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Enemy count"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nRun / Enemy count: +10% \xD7 1 = +10%\nRun / Score
+      multiplier: +20% \xD7 1 = +20%\nChampion / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 34
     Value: 0.08
@@ -1351,12 +1291,11 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-enemyhealth
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 M\xE1u qu\xE1i"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / M\xE1u qu\xE1i: +10% \xD7 1 = +10%\nL\u01B0\u1EE3t ch\u01A1i /
-      H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +20% \xD7 1 = +20%\nTh\u1EE7 l\u0129nh / M\xE1u
-      t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Enemy health"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nRun / Enemy health: +10% \xD7 1 = +10%\nRun /
+      Score multiplier: +20% \xD7 1 = +20%\nChampion / Maximum health: -1 \xD7 1
+      = -1\n"
     Price: 27
     Effect: 35
     Value: 0.08
@@ -1381,12 +1320,11 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-enemyspeed
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1ED1c \u0111\u1ED9 qu\xE1i"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / T\u1ED1c \u0111\u1ED9 qu\xE1i: +10% \xD7 1 = +10%\nL\u01B0\u1EE3t
-      ch\u01A1i / H\u1EC7 s\u1ED1 \u0111i\u1EC3m: +20% \xD7 1 = +20%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Enemy speed"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nRun / Enemy speed: +10% \xD7 1 = +10%\nRun /
+      Score multiplier: +20% \xD7 1 = +20%\nChampion / Maximum health: -1 \xD7 1
+      = -1\n"
     Price: 18
     Effect: 36
     Value: 0.08
@@ -1411,11 +1349,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-hearthealing
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 H\u1ED3i t\u1EEB tim"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
-      l\u0129nh / H\u1ED3i t\u1EEB tim: +2 \xD7 1 = +2\nTh\u1EE7 l\u0129nh / M\xE1u
-      t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Heart healing"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nChampion / Heart healing: +2 \xD7 1 = +2\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 37
     Value: 2
@@ -1437,11 +1374,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-chestquality
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Ch\u1EA5t l\u01B0\u1EE3ng r\u01B0\u01A1ng"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / Ch\u1EA5t l\u01B0\u1EE3ng r\u01B0\u01A1ng: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Chest quality"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nRun / Chest quality: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 38
     Value: 0.08
@@ -1463,11 +1399,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-recruitdiscount
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Gi\u1EA3m gi\xE1 \u0111\u1ED3ng minh"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / Gi\u1EA3m gi\xE1 \u0111\u1ED3ng minh: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Recruit discount"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nRun / Recruit discount: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 39
     Value: 0.08
@@ -1489,11 +1424,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-relicdiscount
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Gi\u1EA3m gi\xE1 c\u1ED5 v\u1EADt"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / Gi\u1EA3m gi\xE1 c\u1ED5 v\u1EADt: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Relic discount"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nRun / Relic discount: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 18
     Effect: 40
     Value: 0.08
@@ -1515,11 +1449,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-shoprarity
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 \u0110\u1ED9 hi\u1EBFm h\xE0ng"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nL\u01B0\u1EE3t
-      ch\u01A1i / \u0110\u1ED9 hi\u1EBFm h\xE0ng: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Shop rarity"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nRun / Shop rarity: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 41
     Value: 0.08
@@ -1541,11 +1474,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-healthcorrection
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh m\xE1u"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
-      l\u0129nh / Hi\u1EC7u ch\u1EC9nh m\xE1u: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Health correction"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nChampion / Health correction: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 42
     Value: 0.08
@@ -1567,11 +1499,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-damagecorrection
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh damage"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Hi\u1EC7u ch\u1EC9nh damage: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Damage correction"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nTeam / Damage correction: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 43
     Value: 0.08
@@ -1593,11 +1524,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-speedcorrection
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh t\u1ED1c \u0111\u1ED9"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / Hi\u1EC7u ch\u1EC9nh t\u1ED1c \u0111\u1ED9: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Speed correction"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nTeam / Speed correction: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 18
     Effect: 44
     Value: 0.08
@@ -1619,11 +1549,10 @@ MonoBehaviour:
     AltarPrice: 5
     SignatureRole: 0
   - Id: k10-armorcorrection
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh gi\xE1p"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\n\u0110\u1ED8C L\u1EA0 \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
-      l\u0129nh / Hi\u1EC7u ch\u1EC9nh gi\xE1p: +8% \xD7 1 = +8%\nTh\u1EE7 l\u0129nh
-      / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Armor correction"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nUNCOMMON \xB7 Stackable\nChampion / Armor correction: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 21
     Effect: 45
     Value: 0.08
@@ -1645,11 +1574,10 @@ MonoBehaviour:
     AltarPrice: 3
     SignatureRole: 0
   - Id: k10-healcorrection
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 Hi\u1EC7u ch\u1EC9nh h\u1ED3i m\xE1u"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHI\u1EBEM \xB7 C\u1ED9ng d\u1ED3n\nTh\u1EE7
-      l\u0129nh / Hi\u1EC7u ch\u1EC9nh h\u1ED3i m\xE1u: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Healing correction"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nRARE \xB7 Stackable\nChampion / Healing correction: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 24
     Effect: 46
     Value: 0.08
@@ -1671,11 +1599,10 @@ MonoBehaviour:
     AltarPrice: 4
     SignatureRole: 0
   - Id: k10-collisionfrequency
-    Name: "Kh\u1EBF \u01B0\u1EDBc \xB7 T\u1EA7n su\u1EA5t va ch\u1EA1m"
-    Description: "C\u1ED9ng d\u1ED3n trong l\u01B0\u1EE3t, qua wave v\xE0 v\xF4 t\u1EADn;
-      l\u01B0\u1EE3t m\u1EDBi reset.\nHUY\u1EC0N THO\u1EA0I \xB7 C\u1ED9ng d\u1ED3n\nTo\xE0n
-      \u0111\u1ED9i / T\u1EA7n su\u1EA5t va ch\u1EA1m: +8% \xD7 1 = +8%\nTh\u1EE7
-      l\u0129nh / M\xE1u t\u1ED1i \u0111a: -1 \xD7 1 = -1\n"
+    Name: "Contract \xB7 Collision frequency"
+    Description: "Lasts for this run, including waves and endless. Resets in a new
+      run.\nMYTHIC \xB7 Stackable\nTeam / Collision frequency: +8% \xD7 1 = +8%\nChampion
+      / Maximum health: -1 \xD7 1 = -1\n"
     Price: 27
     Effect: 47
     Value: 0.08
@@ -1698,7 +1625,7 @@ MonoBehaviour:
     SignatureRole: 0
   Bonds:
   - Id: hearth
-    Name: "B\u1EBFp \u1EA4m"
+    Name: Hearth
     Threshold: 2
     Icon: {fileID: 1401764315, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 7
@@ -1709,7 +1636,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.3
   - Id: archive
-    Name: "Th\u01B0 Vi\u1EC7n"
+    Name: Archive
     Threshold: 2
     Icon: {fileID: 1269724658, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 0
@@ -1720,7 +1647,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.16
   - Id: clock
-    Name: "B\u1ED9 M\xE1y"
+    Name: Clock
     Threshold: 2
     Icon: {fileID: -1203761967, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 1
@@ -1731,7 +1658,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.14
   - Id: frost
-    Name: "S\u01B0\u01A1ng Gi\xE1"
+    Name: Frost
     Threshold: 2
     Icon: {fileID: -30878964, guid: a7f3022276cabc145be1d073413a243a, type: 3}
     Effect: 5
@@ -1742,7 +1669,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.3
   - Id: orchard
-    Name: "V\u01B0\u1EDDn M\u1ED9ng"
+    Name: Orchard
     Threshold: 2
     Icon: {fileID: -991718301, guid: b4d4fdcb254a28e4e82a5bb7c64ce85c, type: 3}
     Effect: 16
@@ -1753,7 +1680,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.08
   - Id: astral
-    Name: "Tinh T\xFA"
+    Name: Astral
     Threshold: 2
     Icon: {fileID: 608553034, guid: 9e6358b84def80646bc9d3ec24bc7470, type: 3}
     Effect: 28
@@ -1764,7 +1691,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.08
   - Id: tidal
-    Name: "Thu\u1EF7 Tri\u1EC1u"
+    Name: Tidal
     Threshold: 2
     Icon: {fileID: 1326636829, guid: 2de0098cfeb2c084d9925f3154964afa, type: 3}
     Effect: 27
@@ -1775,7 +1702,7 @@ MonoBehaviour:
     - Threshold: 6
       Value: 0.08
   - Id: oddity
-    Name: "\u0110\u1ED3 D\u1ECB"
+    Name: Oddity
     Threshold: 2
     Icon: {fileID: 1554392765, guid: 5e1b2e412571c9b479c388262e2b6fd7, type: 3}
     Effect: 23
@@ -1815,19 +1742,19 @@ MonoBehaviour:
     MinimumMaterialTier: 1
     ResultTier: 2
   WaveModifiers:
-  - Name: "B\xE3o \u0111\u1ED3ng h\u1ED3: \u0111\u1ECBch \u0111\xF4ng h\u01A1n"
+  - Name: Restless Night 1
     Every: 7
     SpawnMultiplier: 0.75
     BudgetMultiplier: 1.3
     GoldPerKill: 2
     Healing: 0
-  - Name: "Kho b\u1EA1c th\u1EA5t l\u1EA1c: nhi\u1EC1u v\xE0ng h\u01A1n"
+  - Name: Golden Rush
     Every: 5
     SpawnMultiplier: 1
     BudgetMultiplier: 1
     GoldPerKill: 3
     Healing: 0
-  - Name: "K\u1EC7 s\xE1ch y\xEAn t\u0129nh: h\u1ED3i m\xE1u nh\u1EB9"
+  - Name: Breathing Room
     Every: 11
     SpawnMultiplier: 1
     BudgetMultiplier: 1
@@ -1835,79 +1762,68 @@ MonoBehaviour:
     Healing: 0.25
   BuildLinks:
   - Id: engine-clockwork
-    Name: "B\u1ED8 M\xC1Y L\xCAN D\xC2Y"
-    Description: "Damage v\xE0 attack speed t\u1EEB hai ngu\u1ED3n \u0111\u1ED9c
-      l\u1EADp; xem stat sau scope/tier, kh\xF4ng ph\u1EA3i bonus set."
+    Name: Engine Clockwork
+    Description: 'Connected relics: Key Oil, Clock Spring. No hidden set bonus.'
     ItemIds:
     - key-oil
     - clock-spring
   - Id: engine-economy
-    Name: "QU\u1EF8 B\u01AFU \u0110I\u1EC6N"
-    Description: "Gi\u1EEF v\xE0ng \u0111\u1EC3 l\u1EA5y l\xE3i, gi\u1EA3m gi\xE1
-      offer \u1EDF roll ti\u1EBFp theo. Coupon kh\xF4ng gi\u1EA3m reroll."
+    Name: Engine Economy
+    Description: 'Connected relics: Piggy Mail, Coupon Book. No hidden set bonus.'
     ItemIds:
     - piggy-mail
     - coupon-book
   - Id: engine-patrol
-    Name: "\u0110O\xC0N TH\xC1M HI\u1EC2M"
-    Description: "Pickup thu\u1ED9c Champion; leash l\xE0 v\xF9ng tu\u1EA7n tra \u0111\u1ED3ng
-      minh. Hai b\xE1n k\xEDnh kh\xF4ng thay th\u1EBF nhau."
+    Name: Engine Patrol
+    Description: 'Connected relics: Coin Compass, Wandering Map. No hidden set bonus.'
     ItemIds:
     - coin-compass
     - wandering-map
   - Id: engine-loot
-    Name: "KHO B\xC1U TH\xCC TH\u1EA6M"
-    Description: "Detection sinh r\u01B0\u01A1ng s\u1EDBm h\u01A1n; chest pulse d\xF9ng
-      event m\u1EDF r\u01B0\u01A1ng th\u1EADt. Proc kh\xF4ng t\u1EF1 chain."
+    Name: Engine Loot
+    Description: 'Connected relics: Treasure Whisper, Chest Thunder. No hidden set
+      bonus.'
     ItemIds:
     - treasure-whisper
     - chest-thunder
   - Id: signature-harvest
-    Name: "M\xC1Y THU HO\u1EA0CH"
-    Description: "Enemy kill \u2192 coin \u2192 logical pickup \u2192 Receipt (0.35s)
-      \u2192 Bell cadence \u2192 delayed wave. Bell + Receipt \u0111\xE3 ho\u1EA1t
-      \u0111\u1ED9ng, kh\xF4ng c\u1EA7n \u0111\u1EE7 set. Carbon n\u1ED1i wave \u2192
-      weakness (Lens m\u1EDBi t\u0103ng crit damage); Stamp burst \u2192 h\xFAt coin
-      ph\u1EA1m vi 2.5. Pickup kh\xF4ng t\u1EF1 sinh ti\u1EC1n, secondary kh\xF4ng
-      charge prop/proc."
+    Name: Signature Harvest
+    Description: 'Connected relics: Harvest Receipt, Carbon Ribbon. No hidden set
+      bonus.'
     ItemIds:
     - harvest-receipt
     - carbon-ribbon
   - Id: signature-office
-    Name: "V\u0102N PH\xD2NG HO\xC0N TR\u1EA2"
-    Description: "Stamp \u2192 Ink (d\u1EA5u nhanh h\u01A1n nh\u01B0ng ng\u1EAFn
-      h\u01A1n) \u2192 threshold burst \u2192 weakness 1.8s \u2192 Lens h\u01B0\u1EDFng
-      crit. Stamp + Ink \u0111\xE3 c\xF3 payoff cadence; Lens h\u1EEFu \xEDch v\u1EDBi
-      m\u1ECDi ally crit tr\u01B0\u1EDBc khi \u0111\u1EE7 build. Carbon n\u1ED1i
-      Stamp burst \u2192 coin collection cho Harvest. D\u1EA5u truy\u1EC1n tier kh\xF4ng
-      t\u1EF1 burst, crit kh\xF4ng t\u1EA1o stamp l\u1EA1i."
+    Name: Signature Office
+    Description: 'Connected relics: Reflective Ink, Office Lens, Carbon Ribbon. No
+      hidden set bonus.'
     ItemIds:
     - reflective-ink
     - office-lens
     - carbon-ribbon
   - Id: signature-tea
-    Name: "TR\xC0 \xC1C M\u1ED8NG"
+    Name: Signature Tea
     Description: Tea + Hammer works via burning targets and third-hit steam; Coaster
       widens weaker tea; Thermal links marks to heat with cooldown.
     ItemIds:
     - tea-coaster
     - thermal-ink
   - Id: signature-chorus
-    Name: "D\xC0N H\u1EE2P X\u01AF\u1EDANG"
+    Name: Signature Chorus
     Description: Music Box + Record echoes every third note. Music extends live marks;
       Carbon bell exposes targets. Each echo ends, never echoes itself.
     ItemIds:
     - scratch-record
     - carbon-ribbon
   - Id: signature-treasure
-    Name: "\u0110O\xC0N KHO B\xC1U"
+    Name: Signature Treasure
     Description: Bow + Ribbon gains a short chest window, healing without a set.
       Receipt connects separate coin pickups to bell cadence.
     ItemIds:
     - treasure-ribbon
     - harvest-receipt
   - Id: signature-toys
-    Name: "X\u01AF\u1EDENG \u0110\u1ED2 CH\u01A0I"
+    Name: Signature Toys
     Description: Spring + arena props charges automatically; Coupon turns prop kills
       into capped healing. Swept cart cannot hit twice.
     ItemIds:

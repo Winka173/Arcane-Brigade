@@ -32,11 +32,11 @@ namespace ArcaneBrigade.Editor
             foreach (UnitDefinition champion in catalog.Champions)
             {
                 require(RunUICopy.UnlockCondition(champion, champion.UnlockWave).Contains("Đã mở"), "Unlock boundary " + champion.Id);
-                if (champion.UnlockWave > 0) require(RunUICopy.UnlockCondition(champion, champion.UnlockWave - 1).Contains("Đạt màn " + champion.UnlockWave), "Locked condition " + champion.Id);
+                if (champion.UnlockWave > 0) require(RunUICopy.UnlockCondition(champion, champion.UnlockWave - 1).Contains("Reach wave " + champion.UnlockWave), "Locked condition " + champion.Id);
             }
             require(RunMenu.RosterCardBounds(0).y == RunMenu.RosterCardBounds(2).y && RunMenu.RosterCardBounds(3).y > RunMenu.RosterCardBounds(2).y, "Three-column roster wraps");
             require(!RunMenu.RosterCardBounds(0).Overlaps(RunMenu.RosterCardBounds(1)), "Portrait cards do not overlap");
-            require(RunHud.CombatTimerCaption(false, 0.1f) == "1" && RunHud.CombatTimerCaption(false, -1) == "0" && RunHud.CombatTimerCaption(true, -25) == "HẠ TRÙM", "Boss overtime differs from ordinary zero timer");
+            require(RunHud.CombatTimerCaption(false, 0.1f) == "1" && RunHud.CombatTimerCaption(false, -1) == "0" && RunHud.CombatTimerCaption(true, -25) == "BOSSES", "Boss overtime differs from ordinary zero timer");
             foreach (float height in new[] { 0f, 100f, 600f })
                 require(RunHud.ShopTooltipBounds(height).yMax <= 870 && RunHud.ShopTooltipBounds(height).y >= 685, "Shop tooltip leaves goods above and bottom exit clear " + height);
             var bond = new BondDefinition { Id = "fixture", Name = "Hệ thử", Threshold = 3, Value = 0.1f, Effect = ItemEffect.Damage,
@@ -61,15 +61,15 @@ namespace ArcaneBrigade.Editor
                 session.Start(catalog.Champions[0].Id, 8801);
                 string originalState = JsonUtility.ToJson(session.State);
                 RunBuildReadModel model = RunBuildReadModel.Capture(session, catalog, session.State.Health);
-                require(model.Links.Count(row => row.Name.StartsWith("Hệ ", StringComparison.Ordinal)) == catalog.Bonds.Length, "Bonds live in existing Details links tab");
-                require(model.Stats.Any(row => row.Name == "Máu người dẫn đoàn" && row.Explanation.Contains("NGUỒN")), "Localized stats retain source explanations");
+                require(model.Links.Count(row => row.Name.StartsWith("Bond ", StringComparison.Ordinal)) == catalog.Bonds.Length, "Bonds live in existing Details links tab");
+                require(model.Stats.Any(row => row.Name == "Champion health" && row.Explanation.Contains("NGUỒN")), "Localized stats retain source explanations");
                 string invoice = RunInvoice.Describe(session.State, catalog);
-                require(invoice.Contains(RunUICopy.WeaponName(catalog.Champions[0].Weapon.Id)) && invoice.Contains("vượt màn") && !invoice.Contains("overkill"), "Invoice uses player-facing Vietnamese");
+                require(invoice.Contains(RunUICopy.WeaponName(catalog.Champions[0].Weapon.Id)) && invoice.Contains("cleared waves") && !invoice.Contains("overkill"), "Invoice uses player-facing Vietnamese");
                 require(originalState == JsonUtility.ToJson(session.State), "Details and invoice do not mutate run state");
                 session.State.Roster[0].Tier = 2;
                 RunBuildReadModel upgraded = RunBuildReadModel.Capture(session, catalog, session.State.Health);
                 CheckpointCatalog combat = session.PrepareCombat();
-                require(upgraded.Companions[0].CombatValues["Chu kỳ"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s" && upgraded.Companions[0].CombatValues["Projectile"] == combat.StartingCompanions[0].Weapon.ProjectileCount.ToString(), "Tier-upgraded details agree with real attack cycle and projectile count");
+                require(upgraded.Companions[0].CombatValues["Cycle"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s" && upgraded.Companions[0].CombatValues["Projectile"] == combat.StartingCompanions[0].Weapon.ProjectileCount.ToString(), "Tier-upgraded details agree with real attack cycle and projectile count");
             }
             string hud = File.ReadAllText("Assets/ArcaneBrigade/Runtime/UI/RunHud.cs");
             require(hud.Contains("shop.DescribeOffer(station.Offer)") && hud.Contains("shop.DisplayName(station)"), "HUD consumes WorldShop copy API");

@@ -130,10 +130,12 @@ namespace ArcaneBrigade
             arena.Companion = CloneUnit(template.Companion, runtimeAssets);
             arena.Companion.Weapon = Clone(weapons[selected], runtimeAssets);
             arena.Companion.CombatTier = Tier;
-            arena.Companion.BodyHeight *= 1f + (Tier - 1) * 0.12f;
+            arena.Companion.BodyHeight *= CompanionTierScaling.Body(Tier);
             arena.Companion.Passive = PassiveKind.None;
             arena.Companion.Speed = 0;
             WeaponDefinition weapon = arena.Companion.Weapon;
+            MeleeBalance.Apply(weapon);
+            CompanionTierScaling.Apply(weapon, Tier);
             weapon.Damage *= Mathf.Pow(tierDamageMultiplier, Tier - 1);
             weapon.Windup = Mathf.Min(weapon.Windup, weapon.Cooldown * 0.35f);
             weapon.Recovery = Mathf.Min(weapon.Recovery, weapon.Cooldown * 0.4f);
@@ -307,25 +309,25 @@ namespace ArcaneBrigade
 
         public void DrawPanel(GUIStyle text, GUIStyle button)
         {
-            GUI.Label(new Rect(65, 170, 1150, 50), "THỬ VŨ KHÍ ĐÃ KHÁM PHÁ · không nhận thưởng, không thay lượt lưu", text);
+            GUI.Label(new Rect(65, 170, 1150, 50), "TRY DISCOVERED WEAPONS · no rewards or saved-run changes", text);
             if (weapons.Count == 0)
             {
-                GUI.Label(new Rect(100, 270, 1050, 150), "Chưa khám phá vũ khí nào. Hãy nhận vũ khí trong lượt chơi thật trước.\nTìm thấy đồng minh không tự mở tất cả vũ khí họ có thể nhận.", text);
+                GUI.Label(new Rect(100, 270, 1050, 150), "No discovered weapons yet. Acquire weapons in a real run first.\nDiscovering a companion does not unlock every weapon it might receive.", text);
                 return;
             }
-            if (GUI.Button(new Rect(65, 230, 140, 55), "← TRƯỚC", button)) CycleWeapon(-1);
+            if (GUI.Button(new Rect(65, 230, 140, 55), "← PREVIOUS", button)) CycleWeapon(-1);
             GUI.Label(new Rect(225, 235, 600, 50), RunUICopy.WeaponName(SelectedWeaponId) + "  (" + (selected + 1) + "/" + weapons.Count + ")", text);
             if (GUI.Button(new Rect(1045, 230, 170, 55), "SAU →", button)) CycleWeapon(1);
             if (PreviewTexture != null) GUI.DrawTexture(new Rect(65, 300, 760, 300), PreviewTexture, ScaleMode.ScaleToFit, false);
             if (descriptionText == null) descriptionText = new GUIStyle(text) { fontSize = 14, wordWrap = true, alignment = TextAnchor.UpperLeft };
             GUI.Label(new Rect(65, 605, 760, 95), SignatureDescription.Describe(Attacker.Definition.Weapon, Tier), descriptionText);
-            GUI.Label(new Rect(850, 295, 365, 75), "Thử cấp " + Tier + " · chưa sở hữu\nKhông có cổ vật, liên kết hệ hay nội tại", text);
+            GUI.Label(new Rect(850, 295, 365, 75), "Preview tier " + Tier + " · not owned yet\nNo relics, bonds or passives", text);
             for (int index = 1; index <= 3; index++)
-                if (GUI.Button(new Rect(850 + (index - 1) * 122, 380, 115, 55), "CẤP " + index, button)) SetTier(index);
-            if (GUI.Button(new Rect(850, 450, 365, 55), MovingTarget ? "MỤC TIÊU: DI CHUYỂN" : "MỤC TIÊU: ĐỨNG YÊN", button)) SetMovingTarget(!MovingTarget);
-            if (GUI.Button(new Rect(850, 520, 365, 55), "THỬ LẠI · R", button)) ResetPreview();
+                if (GUI.Button(new Rect(850 + (index - 1) * 122, 380, 115, 55), "TIER " + index, button)) SetTier(index);
+            if (GUI.Button(new Rect(850, 450, 365, 55), MovingTarget ? "TARGET: MOVING" : "TARGET: STATIONARY", button)) SetMovingTarget(!MovingTarget);
+            if (GUI.Button(new Rect(850, 520, 365, 55), "RETRY · R", button)) ResetPreview();
             if (instructionText == null) instructionText = new GUIStyle(text) { fontSize = 16, wordWrap = false, alignment = TextAnchor.UpperLeft };
-            GUI.Label(new Rect(850, 585, 365, 110), RunUIHints.Device == RunUIDevice.Controller ? "Tự đánh · bất tử\nLB/RB: vũ khí · A: cấp\nX: mục tiêu · Y: thử lại\nB: quay lại" : RunUIHints.Device == RunUIDevice.Touch ? "Tự đánh · bất tử\nChạm nút để đổi vũ khí, cấp\nvà cách mục tiêu di chuyển\nChạm QUAY LẠI để đóng" : "Tự đánh · bất tử\nMũi tên: vũ khí · 1–3: cấp\nT: mục tiêu · R: thử lại\nEsc: quay lại", instructionText);
+            GUI.Label(new Rect(850, 585, 365, 110), RunUIHints.Device == RunUIDevice.Controller ? "Auto-attack · immortal\nLB/RB: weapon · A: tier\nX: target · Y: retry\nB: back" : RunUIHints.Device == RunUIDevice.Touch ? "Auto-attack · immortal\nTap buttons to change weapon, tier\nand target movement\nTap BACK to close" : "Auto-attack · immortal\nArrows: weapon · 1–3: tier\nT: target · R: retry\nEsc: back", instructionText);
         }
 
         private static T Clone<T>(T source, List<UnityEngine.Object> assets) where T : UnityEngine.Object

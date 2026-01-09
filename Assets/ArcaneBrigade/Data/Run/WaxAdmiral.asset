@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaxAdmiral
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WaxAdmiral
-  DisplayName: "B\u01B0\u1EDBm \u0110\xE8n Ch\xF9m"
+  DisplayName: Wax Admiral
   Body: {fileID: -123257345, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
   - {fileID: -123257345, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}

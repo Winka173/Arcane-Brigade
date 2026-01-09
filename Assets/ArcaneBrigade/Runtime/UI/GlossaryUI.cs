@@ -39,36 +39,36 @@ namespace ArcaneBrigade
             foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
             {
                 string name = RunModifierRules.ModifierName(effect);
-                if (!result.ContainsKey(name)) result[name] = new Entry { Name = name, Effect = effect, Description = Definition(effect) + "\nPhạm vi: " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(effect)) + ". Giữ trong lượt, lượt mới reset." };
+                if (!result.ContainsKey(name)) result[name] = new Entry { Name = name, Effect = effect, Description = Definition(effect) + "\nScope: " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(effect)) + ". Lasts for this run; resets in a new run." };
             }
-            Add(result, "xuyên", "Đạn xuyên", ItemEffect.BulletPierce, "Số mục tiêu bổ sung một đạn có thể xuyên qua. Đạn thường không đánh lại cùng mục tiêu; cộng từ weapon, cấp và item, tối đa 64 lượt xuyên.", "pierce");
-            Add(result, "split", "Chia nhánh đạn", ItemEffect.BulletSplit, "Tạo đạn con sau va chạm đầu, tối đa 6 nhánh. Đạn con gây 35% damage, nhỏ hơn và không split tiếp; không hồi lại thời gian sống.", "chia nhánh đạn");
-            Add(result, "nảy", "Nảy đạn", ItemEffect.BulletBounce, "Xác suất đổi hướng tới mục tiêu chưa bị đạn này đánh. Tối đa 8 lần nảy xác suất. Nảy cố định của vũ khí là thuộc tính riêng; lifetime không được gia hạn.");
-            Add(result, "chí mạng", "Chí mạng", ItemEffect.Crit, "Xác suất đòn đánh chí mạng; cộng trước rồi giới hạn 0–100%. Đây không phải né tránh.", "crit");
-            Add(result, "né tránh", "Né tránh", ItemEffect.Dodge, "Roll riêng từng đòn nhận, tối đa 60%. Thành công không mất máu từ đòn đó; không có thời gian miễn damage chung sau mỗi đòn.", "dodge");
-            Add(result, "giáp", "Giáp", ItemEffect.Armor, "Giáp dương giảm damage nhận theo 1/(1+giáp). Giáp âm làm nhận nhiều damage hơn, tối đa ×2 trước giới hạn mỗi đòn.", "armor");
-            Add(result, "damage", "Sát thương", ItemEffect.Damage, "Damage cận/xa cộng thẳng được cộng vào gốc trước hệ số %. Chí mạng, phản ứng và hiệu ứng phụ tính theo luật riêng; bảng đóng góp chỉ ghi lượng máu thực mất.");
-            Add(result, "hệ", "Liên kết hệ", ItemEffect.CompanionDamage, "Đếm số người trong roster có tag đó, không đếm sao. Mốc 2/4/6 có thưởng; một hệ có 4–6 loài để tuyển, không phải giới hạn số quân sở hữu.");
-            Add(result, "merge", "Ghép cấp", ItemEffect.CompanionDamage, "Ba người cùng loại/cấp ghép thành một người cấp cao. Support cấp 1/2/3 ×1/2/4, không giữ ba nguồn cũ. Vũ khí recruit ngẫu nhiên, không trùng cùng loại + cùng weapon.", "tier");
-            Add(result, "altar", "Quầy giấc mơ", ItemEffect.Luck, "Quầy đặc biệt xuất hiện theo luật lượt, dùng trứng hoặc máu hiện tại. Mua bằng máu phải còn ít nhất 1 HP; bonus của món mới không trả hộ giá mua.");
-            Add(result, "reroll", "Đổi hàng", ItemEffect.Discount, "Trả vàng để đổi các món đang bày. Không bán hoặc khóa hàng; giảm giá món không tự giảm phí reroll.");
-            Add(result, "stack", "Cộng dồn", ItemEffect.Damage, "Nhiều bản item cộng bonus theo stack hiệu lực. Item duy nhất không cộng thêm bản thứ hai. Cap kỹ thuật không xóa stack sở hữu.", "cộng dồn");
-            Add(result, "scope", "Phạm vi tác động", ItemEffect.CompanionDamage, "Thủ lĩnh, đồng minh, toàn đội hoặc lượt chơi. Bonus chỉ áp dụng đúng phạm vi; bonus thủ lĩnh không tự chuyển sang đồng minh.", "toàn đội", "lượt chơi");
-            Add(result, "hiệu chỉnh", "Hiệu chỉnh chỉ số", ItemEffect.DamageCorrection, "Hệ số bổ sung nhân sau các bonus cơ bản của chỉ số tương ứng, có sàn/cap riêng. Không phải chỉ số vĩnh viễn của hồ sơ.");
-            Add(result, "vũ khí", "Vũ khí", ItemEffect.MeleeDamage, "Quy định tầm, damage gốc, chu kỳ, loại đòn, nguyên tố và hành vi đạn. Chỉ tự đánh; bàn tay và vũ khí tách khỏi thân, không có cánh tay.");
-            Add(result, "thủ lĩnh", "Thủ lĩnh", ItemEffect.Health, "Nhân vật bạn điều khiển bằng di chuyển; tự đánh. Chết kết thúc lượt; các đồng minh bất tử không chặn đạn mặc định.");
-            Add(result, "đồng minh", "Đồng minh", ItemEffect.CompanionDamage, "Quân tự tuần tra/nghỉ/đánh quanh thủ lĩnh. Có đặc tính lợi/hại riêng, không phí nuôi, không giới hạn roster.");
-            Add(result, "nội tại", "Nội tại tự động", ItemEffect.Heal, "Hiệu ứng tự kích hoạt theo chu kỳ/điều kiện, không có nút kỹ năng. Hồi máu, tìm vàng và chill của đơn vị được đo riêng, không cộng vào một con số damage giả.", "tự đánh");
-            Add(result, "boomerang", "Vũ khí quay về", ItemEffect.BulletDistance, "Bay ra rồi quay về chủ. Không hồi lại lifetime; split/pierce tuân theo luật đạn của vũ khí, không biến mọi vũ khí thành boomerang.");
-            Add(result, "máu", "Máu hiện tại / tối đa", ItemEffect.Health, "Máu hiện tại là lượng còn sống; máu tối đa là trần sau build. Mua bằng máu trả lượng hiện tại, phải còn 1 HP. Mua/ghép đổi maximum giữ lượng máu đã mất.", "HP");
-            Add(result, "vàng", "Vàng", ItemEffect.Income, "Nhặt trong trận, nhận thu nhập/lãi sau màn và dùng tại quầy thường. Vàng còn trong trận chỉ chốt vào save khi kết thúc màn, không sinh ra từ animation.");
-            Add(result, "trứng", "Trứng", ItemEffect.Luck, "Tiền riêng cho quầy giấc mơ/altar. Một số món ở quầy đó trả bằng máu thay vì trứng; hai chi phí không cộng làm một.");
-            Add(result, "bất tử", "Đồng minh bất tử", ItemEffect.Interceptor, "Đồng minh không mất máu hoặc chết. Không chặn đạn địch mặc định; chỉ item chặn đạn mới bật cơ chế đó. Thủ lĩnh không bất tử.");
-            Add(result, "vô tận", "Chặng vô tận", ItemEffect.EnemyCount, "Chơi tiếp sau thắng, giữ roster/item/stat của lượt. Quái tiếp tục mạnh lên theo wave; không cộng stat vào hồ sơ lượt mới.");
-            Add(result, "BƯỚC ĐÈN", "Bước Đèn", ItemEffect.CollisionDamage, K11HeroRules.Describe(HeroMechanic.LanternStride), "Lantern stride");
-            Add(result, "CHUYỂN PHÁT", "Chuyển Phát", ItemEffect.Projectiles, K11HeroRules.Describe(HeroMechanic.ParcelExpress), "Parcel express");
-            Add(result, "NHỊP MƠ", "Nhịp Mơ", ItemEffect.Dodge, K11HeroRules.Describe(HeroMechanic.DreamBreath), "Dream breath");
-            Add(result, "THEME TUYỂN QUÂN", "Theme tuyển quân", ItemEffect.CompanionDamage, "Chỉ đồng minh thuộc các hệ đã chọn của thủ lĩnh được roll trong shop thường. Vũ khí vẫn ngẫu nhiên. Quân có sẵn trong save và hợp thể không bị xóa chỉ vì khác theme.");
+            Add(result, "pierce", "Bullet pierce", ItemEffect.BulletPierce, "Extra targets a projectile can pass through. Basic projectiles do not hit the same target twice. Adds weapon, tier and item bonuses, capped at 64 extra hits.", "pierce");
+            Add(result, "split", "Bullet split", ItemEffect.BulletSplit, "Creates up to 6 child projectiles after the first impact. Children deal 35% damage, are smaller and cannot split again; lifetime is not reset.", "bullet split");
+            Add(result, "bounce", "Bullet bounce", ItemEffect.BulletBounce, "Chance to redirect toward a target not yet hit by this projectile. Up to 8 chance-based bounces. Fixed weapon bounces are separate; lifetime is not extended.");
+            Add(result, "critical", "Critical hit", ItemEffect.Crit, "Chance for an attack to critically hit; bonuses add before the 0–100% cap. This is not dodge.", "crit");
+            Add(result, "dodge", "Dodge", ItemEffect.Dodge, "Rolled separately for every incoming hit, capped at 60%. Success prevents that hit's damage; there is no shared damage-immunity window after each hit.", "dodge");
+            Add(result, "armor", "Armor", ItemEffect.Armor, "Positive armor reduces incoming damage by 1/(1+armor). Negative armor increases damage, up to ×2 before the per-hit cap.", "armor");
+            Add(result, "damage", "Damage", ItemEffect.Damage, "Flat melee/ranged damage adds to base damage before percentage multipliers. Critical hits, reactions and secondary effects use separate rules; contributions record actual HP lost.");
+            Add(result, "bond", "Bond synergy", ItemEffect.CompanionDamage, "Counts roster units with that tag, not stars. Thresholds 2/4/6 grant bonuses. Each bond has 4–6 recruitable species, not an ownership cap.");
+            Add(result, "merge", "Tier merge", ItemEffect.CompanionDamage, "Three units of the same species/tier merge into one higher-tier unit. Tier 1/2/3 support ×1/2/4 does not preserve three old sources. Recruit weapons are random; identical species + weapon variants cannot coexist.", "tier");
+            Add(result, "altar", "Dream shop", ItemEffect.Luck, "A special shop that uses eggs or current HP. HP purchases must leave at least 1 HP; the new item's bonuses cannot pay its purchase cost.");
+            Add(result, "reroll", "Reroll stock", ItemEffect.Discount, "Pay gold to replace displayed wares. No selling or locking stock; item discounts do not discount rerolls.");
+            Add(result, "stack", "Stackable", ItemEffect.Damage, "Multiple copies add bonuses according to effective stacks. Unique items cannot stack twice. Technical caps do not remove owned stacks.", "stackable");
+            Add(result, "scope", "Effect scope", ItemEffect.CompanionDamage, "Champion, companions, team or run. Bonuses apply only to their declared scope; champion bonuses do not automatically transfer to companions.", "team", "run");
+            Add(result, "correction", "Stat correction", ItemEffect.DamageCorrection, "An extra multiplier applied after the stat's basic bonuses, with its own floor/cap. This is not a permanent profile upgrade.");
+            Add(result, "weapon", "Weapons", ItemEffect.MeleeDamage, "Defines range, base damage, cycle, attack type, element and projectile behavior. Attacks are automatic; attached hands and weapons are separate from the body, without arms.");
+            Add(result, "champion", "Champion", ItemEffect.Health, "The character you control by moving; attacks automatically. Death ends the run. Immortal companions do not block bullets by default.");
+            Add(result, "companions", "Companions", ItemEffect.CompanionDamage, "Units automatically patrol, rest and attack around the champion. Each has its own benefits/tradeoffs, without upkeep or a roster cap. Melee units can enter a faster pursuit mode.");
+            Add(result, "passive", "Automatic passive", ItemEffect.Heal, "Triggers automatically on timers/conditions, without skill buttons. Unit healing, scavenging and chill are measured separately, not added to fake damage totals.", "auto-attack");
+            Add(result, "boomerang", "Returning weapon", ItemEffect.BulletDistance, "Flies out and returns to its owner. Lifetime is not reset. Split/pierce follow the weapon's projectile rules; not every weapon is a boomerang.");
+            Add(result, "health", "Current / maximum health", ItemEffect.Health, "Current HP keeps you alive; maximum HP is the build's health ceiling. HP purchases spend current HP and must leave 1 HP. Maximum changes from buying/merging preserve missing HP. Clearing a wave restores full HP.", "HP");
+            Add(result, "gold", "Gold", ItemEffect.Income, "Collected in combat, earned as wave-end income/interest and spent in the regular shop. Combat gold commits to the save at wave end; animations do not create currency.");
+            Add(result, "eggs", "Eggs", ItemEffect.Luck, "Separate currency for the dream shop/altar. Some wares cost HP instead of eggs; the two costs are never combined.");
+            Add(result, "immortal", "Immortal companions", ItemEffect.Interceptor, "Companions cannot lose HP or die. They do not block hostile bullets by default; interception items enable that mechanic. The champion is not immortal.");
+            Add(result, "endless", "Endless journey", ItemEffect.EnemyCount, "Continue after victory, retaining this run's roster/items/stats. Enemies grow stronger with each wave; stats do not carry into a new run's profile.");
+            Add(result, "LANTERN STRIDE", "Lantern Stride", ItemEffect.CollisionDamage, K11HeroRules.Describe(HeroMechanic.LanternStride), "Lantern stride");
+            Add(result, "PARCEL EXPRESS", "Parcel Express", ItemEffect.Projectiles, K11HeroRules.Describe(HeroMechanic.ParcelExpress), "Parcel express");
+            Add(result, "DREAM BREATH", "Dream Breath", ItemEffect.Dodge, K11HeroRules.Describe(HeroMechanic.DreamBreath), "Dream breath");
+            Add(result, "RECRUIT THEMES", "Recruit themes", ItemEffect.CompanionDamage, "Only companions matching the champion's selected bonds roll in the regular shop. Weapons remain random. Existing saved units and fusion results are not removed for being off-theme.");
             return result;
         }
         private static void Add(Dictionary<string, Entry> result, string key, string name, ItemEffect effect, string description, params string[] aliases)
@@ -79,52 +79,52 @@ namespace ArcaneBrigade
 
         private static string Definition(ItemEffect effect) => effect switch
         {
-            ItemEffect.Damage or ItemEffect.ChampionDamage or ItemEffect.CompanionDamage => "Tăng damage theo %, khác damage cận/xa cộng thẳng. Scope quyết định thủ lĩnh, đồng minh hay toàn đội; không tự chuyển buff giữa các scope.",
-            ItemEffect.AttackSpeed or ItemEffect.CompanionAttackSpeed => "Chia chu kỳ đánh cho 1 + bonus. Tốc độ đánh cao giảm thời gian giữa các đòn, không tăng tốc di chuyển hoặc tốc độ bay đạn.",
-            ItemEffect.Health => "Tăng trần máu. Maximum = (gốc + bonus HP) × hiệu chỉnh máu, tối thiểu 1. Thay maximum khi mua/ghép giữ lượng máu đã mất.",
-            ItemEffect.MoveSpeed => "Nhân tốc độ di chuyển gốc theo bonus. Không tăng tốc độ đánh; bonus âm làm chậm nhưng hệ số có sàn để vẫn di chuyển được.",
-            ItemEffect.Pickup => "Khoảng cách kích hoạt hút loot tự bay tới người. Tính bằng đơn vị map; không làm đạn hoặc hitbox người chơi lớn hơn.",
-            ItemEffect.Roam => "Bán kính đồng minh được tuần tra quanh thủ lĩnh. Không phải tầm đánh; đồng minh vẫn có thời gian nghỉ riêng.",
-            ItemEffect.Interceptor => "Bật chặn đạn địch bằng đồng minh bất tử. Không bật mặc định; không bảo vệ khỏi mọi dạng va chạm hoặc hazard.",
-            ItemEffect.Heal => "HP hồi mỗi giây từ stat liên tục. Nội tại từng đơn vị, tim và proc hồi máu là nguồn khác, không gộp sai vào số này.",
-            ItemEffect.Crit => "Tỉ lệ đòn chí mạng, cộng trước rồi giới hạn 0–100%. Không phải né tránh hoặc hệ số damage cận cộng thẳng.",
-            ItemEffect.Projectiles => "Số đạn trong một lần bắn trước split. Một đòn cận không tự thành đạn; có giới hạn kỹ thuật 96 đạn mỗi lần bắn.",
-            ItemEffect.Interest => "Tăng giới hạn tiền lãi tại kỳ nghỉ. Lãi thực còn phụ thuộc lượng vàng giữ và divisor của luật lượt; không phải thu nhập nền.",
-            ItemEffect.Armor => "Giáp dương giảm damage nhận theo 1/(1+giáp). Giáp âm làm nhận nhiều damage, tối đa ×2 trước giới hạn mỗi đòn.",
-            ItemEffect.Discount => "Giảm giá món bày bằng vàng, tối đa 50% khi cộng các discount. Không giảm reroll hoặc tự giảm giá trả bằng máu/trứng.",
-            ItemEffect.Luck => "Tăng cơ hội loot và góp 25% bonus vào trọng số độ hiếm hàng khi roll shop. Không sửa chí mạng hoặc damage RNG.",
-            ItemEffect.TreasureDetection => "Rương xuất hiện sớm hơn, tối thiểu cách nhau 4 giây. Góp 25% bonus vào chất lượng vàng của rương.",
-            ItemEffect.ScoreMultiplier => "Nhân điểm build sau điểm nền/độ khó. Giá trị được chốt vào snapshot khi mua/kết thúc màn; không bịa điểm từ animation.",
-            ItemEffect.CollisionDamage => "Damage tự gây khi người/đồng minh chạm địch, có cooldown riêng. Không phải lượng damage địch gây ngược vào bạn.",
-            ItemEffect.MeleeDamage => "Bonus cố định cộng vào damage gốc của đòn cận trước các hệ số %. Không tăng damage đạn; có thể bị giảm bởi tradeoff.",
-            ItemEffect.RangedDamage => "Bonus cố định cộng vào damage gốc đạn trước các hệ số %. Khác số đạn, split và damage toàn đội theo %.",
-            ItemEffect.AttackRange => "Tăng tầm chọn/đánh của weapon và khoảng bay đạn. Không tăng bán kính tuần tra; tốc độ bay được tính riêng.",
-            ItemEffect.Dodge => "Roll riêng mỗi đòn nhận, tối đa 60%. Thành công tránh damage của đòn đó, không tạo thời gian bất tử chung.",
-            ItemEffect.Income => "Cộng vàng nền nhận sau wave và lúc vào chặng vô tận. Khác tiền lãi và vàng nhặt; có thể âm để giảm khoản nhận.",
-            ItemEffect.BulletPierce => "Số mục tiêu thêm đạn xuyên được. Victim tracking tránh đánh lại cùng người; cộng weapon/cấp/stat, tối đa 64.",
-            ItemEffect.BulletSplit => "Tạo đạn con ở impact đầu, tối đa 6 nhánh, mỗi nhánh 35% damage và nhỏ hơn. Không split đệ quy hay hồi lifetime.",
-            ItemEffect.BulletBounce => "Xác suất đổi hướng sang mục tiêu chưa bị đạn đánh, 0–100%, tối đa 8 lần. Nảy cố định của weapon là nguồn riêng.",
-            ItemEffect.BulletSize => "Nhân đồng thời chiều rộng render và radius collision đạn, ×0,25–4. Không chỉ phóng sprite để tạo cảm giác damage giả.",
-            ItemEffect.BulletSpeed => "Tăng tốc bay. Lifetime giảm tương ứng để không tự nhận thêm tầm; tầm/khoảng bay có stat riêng.",
-            ItemEffect.BulletDistance => "Tăng thời gian/khoảng bay còn lại. Không gia hạn khi split/nảy; boomerang vẫn có luật quay về chủ riêng.",
-            ItemEffect.Knockback => "Tăng khoảng đẩy lùi tự động của weapon khi hit. Không thêm nút đẩy tay; trùm/hành vi đặc biệt có luật riêng.",
-            ItemEffect.BodySize => "Tăng/giảm sprite và hitbox thủ lĩnh cùng nhau. Người to dễ bị chạm hơn; đây không phải bonus HP.",
-            ItemEffect.CompanionSize => "Tăng/giảm sprite và radius đồng minh. Không đổi số người/hệ, không làm đồng minh mất trạng thái bất tử.",
-            ItemEffect.EnemyCount => "Thay ngân sách quái và nhịp spawn. Có thể đổi áp lực lấy cơ hội loot/điểm; không tăng số loài quân bạn sở hữu.",
-            ItemEffect.EnemyHealth => "Nhân HP quái bên cạnh curve wave/độ khó. Quái late-game còn nhận hệ số tăng riêng, không chỉ lớn lên bằng hình vẽ.",
-            ItemEffect.EnemySpeed => "Nhân tốc di chuyển quái. Không tăng tốc đạn địch; hostile bullet vẫn giữ trần tốc độ để đọc được.",
-            ItemEffect.HeartHealing => "Cộng HP hồi từ tim nhặt được. Không cộng vào regen liên tục hoặc mọi nội tại hồi máu.",
-            ItemEffect.ChestQuality => "Nhân lượng vàng khi tạo rương, hệ số ×0,2–5. Không tự tạo item rarity mới hoặc đổi một rương thành tất cả loot.",
-            ItemEffect.RecruitDiscount => "Giảm riêng giá tuyển đồng minh bằng vàng; cộng với discount chung, tổng tối đa 50%. Không giảm giá mọi loại món.",
-            ItemEffect.RelicDiscount => "Giảm riêng giá item bằng vàng; cộng với discount chung, tổng tối đa 50%. Không tác động reroll hoặc blood shop.",
-            ItemEffect.ShopRarity => "Tăng trọng số của rarity cao khi tạo hàng mới. Không nâng cấp rarity của món đang sở hữu/đang bày, không bảo đảm roll hiếm.",
-            ItemEffect.HealthCorrection => "Nhân maximum HP sau cộng bonus HP gốc; khác HP hiện tại và giá máu trả tại quầy.",
-            ItemEffect.DamageCorrection => "Nhân damage sau gốc + bonus cận/xa và các hệ số damage thường, đúng scope của nguồn.",
-            ItemEffect.SpeedCorrection => "Hệ số thêm nhân tốc di chuyển sau MoveSpeed; không sửa attack cooldown hoặc tốc bay đạn.",
-            ItemEffect.ArmorCorrection => "Nhân lượng giáp bonus trước công thức giảm/tăng damage nhận. Không phải cộng trực tiếp phần trăm miễn damage.",
-            ItemEffect.HealCorrection => "Nhân regen liên tục khi compile combat. Không tự nhân tim, mọi proc hoặc healing contribution đã ghi.",
-            ItemEffect.CollisionFrequency => "Giảm cooldown damage va chạm gây ra bằng hệ số 1+bonus. Khoảng hiệu lực 0,15–4 giây; không giảm cooldown địch chạm bạn.",
-            _ => "Xem scope và nguồn của modifier trong sổ; không có bonus ẩn từ một dòng chú thích."
+            ItemEffect.Damage or ItemEffect.ChampionDamage or ItemEffect.CompanionDamage => "Percentage damage, separate from flat melee/ranged bonuses. Scope determines champion, companions or team; buffs do not transfer across scopes.",
+            ItemEffect.AttackSpeed or ItemEffect.CompanionAttackSpeed => "Divides attack cycle by 1 + bonus. Higher attack speed shortens time between attacks, not movement or projectile speed.",
+            ItemEffect.Health => "Raises maximum HP: (base + HP bonus) × health correction, minimum 1. Maximum changes from buying/merging preserve missing HP.",
+            ItemEffect.MoveSpeed => "Multiplies base movement speed. Does not increase attack speed; negative bonuses slow movement with a minimum multiplier.",
+            ItemEffect.Pickup => "Distance that triggers automatic loot attraction. Measured in map units; does not enlarge projectiles or the player's hitbox.",
+            ItemEffect.Roam => "Companion patrol radius around the champion, separate from attack range. Melee companions add 2 units and can pursue nearby enemies. Companions still rest independently.",
+            ItemEffect.Interceptor => "Enables hostile-bullet interception by immortal companions. Disabled by default; does not protect against every collision or hazard.",
+            ItemEffect.Heal => "Continuous stat-based HP regeneration per second. Unit passives, hearts and healing procs are separate sources.",
+            ItemEffect.Crit => "Critical-hit chance, added before the 0–100% cap. Separate from dodge or flat melee damage.",
+            ItemEffect.Projectiles => "Projectiles per volley before splitting. Melee attacks do not become projectiles; technical cap is 96 projectiles per volley.",
+            ItemEffect.Interest => "Raises the interest cap at rest. Actual interest also depends on stored gold and the run's divisor; separate from base income.",
+            ItemEffect.Armor => "Positive armor divides incoming damage by 1+armor. Negative armor increases damage, capped at ×2 before the per-hit limit.",
+            ItemEffect.Discount => "Discounts gold wares, up to 50% combined discount. Does not discount rerolls or HP/egg purchases.",
+            ItemEffect.Luck => "Increases loot chance and contributes 25% of its bonus to shop-rarity weights. Does not change critical-hit or combat damage RNG.",
+            ItemEffect.TreasureDetection => "Chests appear sooner, at least 4 seconds apart. Adds 25% of the bonus to chest gold quality.",
+            ItemEffect.ScoreMultiplier => "Multiplies build score after base score/difficulty. Commits on purchase/wave end; animations do not invent score.",
+            ItemEffect.CollisionDamage => "Outgoing damage when the champion/companions touch enemies, with its own cooldown. Separate from damage enemies deal to you.",
+            ItemEffect.MeleeDamage => "Flat bonus added to melee base damage before percentage multipliers. Does not increase projectile damage; tradeoffs can reduce it.",
+            ItemEffect.RangedDamage => "Flat bonus added to projectile base damage before percentage multipliers. Separate from projectile count, splitting and team percentage damage.",
+            ItemEffect.AttackRange => "Increases weapon targeting/attack range and projectile travel distance. Does not increase patrol radius; projectile speed is separate.",
+            ItemEffect.Dodge => "Rolled separately for each incoming hit, capped at 60%. Success avoids that hit, without a shared invulnerability window.",
+            ItemEffect.Income => "Adds base gold after waves and on entering endless mode. Separate from interest and pickups; negative values reduce income.",
+            ItemEffect.BulletPierce => "Extra targets projectiles can pierce. Victim tracking prevents repeated hits; adds weapon/tier/stat bonuses, capped at 64.",
+            ItemEffect.BulletSplit => "Creates up to 6 child projectiles at first impact, each smaller and dealing 35% damage. No recursive splitting or lifetime reset.",
+            ItemEffect.BulletBounce => "Chance to redirect to an unhit target, 0–100%, up to 8 bounces. Fixed weapon bounces are separate.",
+            ItemEffect.BulletSize => "Multiplies both rendered width and projectile collision radius, ×0.25–4. Not merely visual enlargement with fake damage.",
+            ItemEffect.BulletSpeed => "Increases flight speed. Lifetime decreases proportionally so speed does not grant extra range; range/distance have separate stats.",
+            ItemEffect.BulletDistance => "Increases remaining flight time/distance. No extension on splitting/bouncing; boomerangs retain their own return rules.",
+            ItemEffect.Knockback => "Increases the weapon's automatic on-hit push distance. No manual shove button; bosses/special behaviors have separate rules.",
+            ItemEffect.BodySize => "Scales champion sprite and hitbox together. Bigger champions are easier to hit; this is not an HP bonus.",
+            ItemEffect.CompanionSize => "Scales companion sprite and radius. Does not change unit/bond counts or remove immortality.",
+            ItemEffect.EnemyCount => "Changes enemy budget and spawn pacing. Can trade pressure for loot/score opportunities; does not increase your recruitable species.",
+            ItemEffect.EnemyHealth => "Multiplies enemy HP alongside wave/difficulty curves. Late-game enemies gain extra scaling, not merely larger artwork.",
+            ItemEffect.EnemySpeed => "Multiplies enemy movement speed, not bullet speed. Hostile bullets retain readable speed caps.",
+            ItemEffect.HeartHealing => "Adds HP restored by collected hearts. Does not add to continuous regeneration or every healing passive.",
+            ItemEffect.ChestQuality => "Multiplies generated chest gold, ×0.2–5. Does not create new item rarities or turn one chest into every loot type.",
+            ItemEffect.RecruitDiscount => "Discounts gold-priced recruits, combined with general discount up to 50%. Does not discount every ware.",
+            ItemEffect.RelicDiscount => "Discounts gold-priced items, combined with general discount up to 50%. Does not affect rerolls or blood shops.",
+            ItemEffect.ShopRarity => "Increases higher-rarity weights for newly generated stock. Does not upgrade owned/displayed items or guarantee rare rolls.",
+            ItemEffect.HealthCorrection => "Multiplies maximum HP after base HP bonuses; separate from current HP and blood-shop costs.",
+            ItemEffect.DamageCorrection => "Multiplies damage after base + flat melee/ranged bonuses and regular damage multipliers, respecting source scope.",
+            ItemEffect.SpeedCorrection => "An extra movement multiplier after MoveSpeed; does not change attack cooldown or projectile speed.",
+            ItemEffect.ArmorCorrection => "Multiplies armor bonuses before incoming-damage formulas. Not a directly added damage-immunity percentage.",
+            ItemEffect.HealCorrection => "Multiplies continuous regeneration when compiling combat. Does not automatically multiply hearts, all procs or recorded healing.",
+            ItemEffect.CollisionFrequency => "Divides outgoing collision-damage cooldown by 1+bonus, bounded to 0.15–4 seconds. Does not shorten enemy contact cooldown.",
+            _ => "Inspect the modifier's scope and source in the ledger; explanatory text grants no hidden bonuses."
         };
 
         public static float Height(string text, GUIStyle style, float width) => Layout(new Rect(0, 0, width, 10000), text, style, false);

@@ -111,7 +111,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(85, 102, 240, 30), gold.ToString(), numeric);
             Sprite(new Rect(40 - eggPulse, 140 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
             GUI.Label(new Rect(85, 142, 240, 30), eggs.ToString(), numeric);
-            GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "MÀN " + state.Wave, title);
+            GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
                 GUI.Label(new Rect(870, 74, 210, 32), CombatTimerCaption(simulation.IsBossOvertime, simulation.WaveDuration - simulation.Elapsed), numeric);
             DrawControls(owner);
@@ -128,9 +128,9 @@ namespace ArcaneBrigade
                 if (simulation.Phase == RunPhase.Paused)
                 {
                     Fill(new Rect(640, 360, 640, 320), Panel);
-                    GUI.Label(new Rect(680, 395, 560, 60), "TẠM DỪNG", title);
-                    if (navigation.Button(new Rect(750, 515, 420, 65), "TIẾP TỤC", button)) owner.TogglePause();
-                    if (navigation.Button(new Rect(750, 605, 420, 55), "VỀ TRANG CHỦ", button)) owner.RequestMenuReturn();
+                    GUI.Label(new Rect(680, 395, 560, 60), "PAUSED", title);
+                    if (navigation.Button(new Rect(750, 515, 420, 65), "RESUME", button)) owner.TogglePause();
+                    if (navigation.Button(new Rect(750, 605, 420, 55), "MAIN MENU", button)) owner.RequestMenuReturn();
                 }
             }
             else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
@@ -138,22 +138,22 @@ namespace ArcaneBrigade
             {
                 if (!owner.ResultsReady)
                 {
-                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "ĐỘI QUÂN GỤC NGÃ…" : "BÌNH MINH ĐÃ TỚI…", title);
+                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "THE BRIGADE HAS FALLEN…" : "DAWN HAS ARRIVED…", title);
                     GUI.matrix = previous;
                     GUI.skin = previousSkin;
                     navigation.End();
                     return;
                 }
                 Fill(new Rect(80, 200, 630, 750), Panel);
-                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "HỒ SƠ ĐÃ KHÉP / KHÔNG THƯỞNG CHỈ SỐ", state.Phase == SessionPhase.Victory ? "BÌNH MINH ĐÃ TỚI" : "HẸN Ở GIẤC MƠ SAU");
+                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "RECORD CLOSED / NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "DAWN HAS ARRIVED" : "UNTIL THE NEXT DREAM");
                 Sprite(new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
                 GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
-                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "CHƠI VÔ TẬN · GIỮ ĐỘI VÀ ĐỒ", button)) owner.ContinueEndless();
-                if (navigation.Button(new Rect(115, 825, 270, 65), "CHƠI LẠI", button)) owner.RestartRun();
-                if (navigation.Button(new Rect(405, 825, 270, 65), "VỀ TRANG CHỦ", button)) owner.ReturnToMenu();
+                if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
+                if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", button)) owner.RestartRun();
+                if (navigation.Button(new Rect(405, 825, 270, 65), "MAIN MENU", button)) owner.ReturnToMenu();
                 invoice.Draw(new Rect(770, 200, 1060, 685), state, owner.Content);
-                if (navigation.Button(new Rect(1025, 915, 570, 55), "LƯU ẢNH HÓA ĐƠN · PNG", button))
+                if (navigation.Button(new Rect(1025, 915, 570, 55), "SAVE RECEIPT IMAGE · PNG", button))
                     try { RunInvoice.ExportFrame(state.RunId); } catch (System.Exception exception) { Debug.LogWarning("Receipt export failed: " + exception.Message); }
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
@@ -168,7 +168,7 @@ namespace ArcaneBrigade
             if (owner.HallExitPending) return;
             if (owner.TransitionPending)
             {
-                GUI.Label(new Rect(550, 720, 820, 70), "ĐÃ VƯỢT MÀN", title);
+                GUI.Label(new Rect(550, 720, 820, 70), "WAVE CLEARED", title);
                 return;
             }
             WorldShop shop = owner.Shop;
@@ -177,7 +177,7 @@ namespace ArcaneBrigade
             if (owner.Simulation.Phase == RunPhase.Paused)
             {
                 Fill(new Rect(710, 440, 500, 180), Panel);
-                if (navigation.Button(new Rect(755, 485, 410, 75), "TIẾP TỤC", button)) owner.TogglePause();
+                if (navigation.Button(new Rect(755, 485, 410, 75), "RESUME", button)) owner.TogglePause();
                 return;
             }
             WorldShop.Station station = shop.Nearby;
@@ -185,8 +185,8 @@ namespace ArcaneBrigade
             {
                 if (station.Action == "NEXT HALL")
                 {
-                    GUI.Label(new Rect(730, 738, 460, 32), "↓ Màn tiếp · " + RunUIHints.Interact(RunUIHints.Device), small);
-                    if (navigation.Button(new Rect(860, 778, 200, 48), "ĐI TIẾP ↓", button)) shop.Interact();
+                    GUI.Label(new Rect(730, 738, 460, 32), "↓ Next wave · " + RunUIHints.Interact(RunUIHints.Device), small);
+                    if (navigation.Button(new Rect(860, 778, 200, 48), "CONTINUE ↓", button)) shop.Interact();
                     return;
                 }
                 if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; }
@@ -207,7 +207,7 @@ namespace ArcaneBrigade
             float height = Mathf.Clamp(contentHeight + 85, 155, 185);
             return new Rect(485, 870 - height, 950, height);
         }
-        public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "HẠ TRÙM" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
+        public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSSES" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
 
         private void DrawControls(ArenaController owner)
         {
@@ -276,7 +276,7 @@ namespace ArcaneBrigade
             if (state.Receipts.Count == 0) return;
             RunTransactionReceipt receipt = state.Receipts[state.Receipts.Count - 1];
             if (receiptId != receipt.Id) { receiptId = receipt.Id; receiptScroll = Vector2.zero; receiptOpen = false; }
-            if (navigation.Button(new Rect(1460, 205, 370, 52), receiptOpen ? "ĐÓNG BIÊN LAI" : "BIÊN LAI ĐÃ LƯU", button)) receiptOpen = !receiptOpen;
+            if (navigation.Button(new Rect(1460, 205, 370, 52), receiptOpen ? "CLOSE RECEIPT" : "RECEIPT SAVED", button)) receiptOpen = !receiptOpen;
             if (!receiptOpen) return;
             float contentHeight = small.CalcHeight(new GUIContent(receipt.Description), 425) + 20;
             float panelHeight = Mathf.Clamp(contentHeight + 110, 190, 470);
@@ -296,11 +296,11 @@ namespace ArcaneBrigade
             navigation.Begin();
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Fill(new Rect(470, 310, 980, 440), Panel);
-            GUI.Label(new Rect(520, 345, 880, 80), "VỀ TRANG CHỦ?", title);
-            GUI.Label(new Rect(540, 445, 840, 105), "Lượt chơi được lưu tại đầu màn hoặc sau giao dịch cửa hàng. Trận đang diễn ra sẽ bắt đầu lại từ mốc lưu, không phải thời điểm tạm dừng.", text);
+            GUI.Label(new Rect(520, 345, 880, 80), "RETURN TO MAIN MENU?", title);
+            GUI.Label(new Rect(540, 445, 840, 105), "Saves commit at wave start or after shop transactions. Unfinished combat restarts from the saved boundary, not the pause moment.", text);
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), owner.SaveError, small);
-            if (navigation.Button(new Rect(550, 650, 360, 65), "Ở LẠI", button)) owner.CancelMenuReturn();
-            if (navigation.Button(new Rect(1010, 650, 360, 65), "LƯU VÀ VỀ TRANG CHỦ", button)) owner.ReturnToMenu();
+            if (navigation.Button(new Rect(550, 650, 360, 65), "STAY", button)) owner.CancelMenuReturn();
+            if (navigation.Button(new Rect(1010, 650, 360, 65), "SAVE AND RETURN", button)) owner.ReturnToMenu();
             navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;

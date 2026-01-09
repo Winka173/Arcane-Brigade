@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DreamCompass
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DreamCompass
-  DisplayName: "La B\xE0n M\u1ED9ng"
+  DisplayName: Dream Compass
   Body: {fileID: 343327141, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
   AnimationFrames:
   - {fileID: 343327141, guid: 58456a40b2cd64f4f88a3e30094bcc74, type: 3}
@@ -36,11 +36,9 @@ MonoBehaviour:
   - archive
   Passive: 0
   PassiveStrength: 0.5
-  Description: "T\u1EF1 \u0111\xE1nh, b\u1EA5t t\u1EED; \u0111\u1EB7c t\xEDnh gi\u1EEF
-    khi c\xF2n trong roster c\u1EE7a l\u01B0\u1EE3t. L\u01B0\u1EE3t ch\u01A1i / Ch\u1EA5t
-    l\u01B0\u1EE3ng r\u01B0\u01A1ng: +2.5%\nTh\u1EE7 l\u0129nh / M\xE1u t\u1ED1i
-    \u0111a: -1\n\u0110\u1EB7c t\xEDnh c\u1EA5p 1/2/3 \xD71/2/4; gh\xE9p ba ng\u01B0\u1EDDi
-    l\xE0m gi\u1EA3m s\u1ED1 ngu\u1ED3n h\u1ED7 tr\u1EE3.\n"
+  Description: "No personal passive\nRun / Chest quality: +2.5%\nChampion / Maximum
+    health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
+    sources.\n"
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

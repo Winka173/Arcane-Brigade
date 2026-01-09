@@ -5,9 +5,11 @@ namespace ArcaneBrigade
 {
     public static class CompanionMotion
     {
+        public static float Leash(UnitState unit, CheckpointCatalog catalog) => catalog.CompanionLeash + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? MeleeBalance.RoamBonus : 0);
         public static Vector2 Step(UnitState unit, UnitState champion, IReadOnlyList<UnitState> units, UnitState target, CheckpointCatalog catalog, float elapsed, float deltaTime)
         {
-            float outer = Mathf.Max(0.1f, Mathf.Min(catalog.CompanionRoamOuterRadius, catalog.CompanionLeash * 0.9f));
+            float leash = Leash(unit, catalog);
+            float outer = Mathf.Max(0.1f, Mathf.Min(catalog.CompanionRoamOuterRadius + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.3f : 0), leash * 0.9f));
             float inner = Mathf.Clamp(catalog.CompanionRoamInnerRadius, 0f, outer);
             Vector2 destination = champion.Position + unit.RoamOffset;
             bool championMoving = (champion.Position - champion.PreviousPosition).sqrMagnitude > 0.000001f;
@@ -32,14 +34,21 @@ namespace ArcaneBrigade
                 destination = champion.Position + unit.RoamOffset;
                 }
             }
-            bool pursuing = target != null && unit.Definition.Weapon.Kind == WeaponKind.Melee && (target.Position - champion.Position).magnitude <= catalog.CompanionLeash - target.Definition.Radius;
+            bool pursuing = target != null && unit.Definition.Weapon.Kind == WeaponKind.Melee && (target.Position - champion.Position).magnitude <= leash + unit.Definition.Weapon.Range * 0.65f;
+            unit.TravelMode = pursuing ? CompanionTravelMode.Pursuit : CompanionTravelMode.Patrol;
             if (pursuing)
-                destination = Vector2.MoveTowards(target.Position, champion.Position, unit.Definition.Radius + target.Definition.Radius);
+            {
+                float orbit = elapsed * 0.35f + unit.Id * 2.4f;
+                float distance = Mathf.Max(unit.Definition.Radius + target.Definition.Radius, unit.Definition.Weapon.Range * 0.65f);
+                destination = target.Position + new Vector2(Mathf.Cos(orbit), Mathf.Sin(orbit)) * distance;
+                destination = champion.Position + Vector2.ClampMagnitude(destination - champion.Position, leash * 0.96f);
+            }
             Vector2 toDestination = destination - unit.Position;
             float fromChampion = (unit.Position - champion.Position).magnitude;
-            float catchup = Mathf.InverseLerp(outer * 0.75f, catalog.CompanionLeash * 0.9f, fromChampion);
+            float catchup = Mathf.InverseLerp(outer * 0.75f, leash * 0.9f, fromChampion);
             float maximumSpeed = Mathf.Max(0f, unit.Definition.Speed);
-            float speed = Mathf.Lerp(Mathf.Min(catalog.CompanionPatrolSpeed, maximumSpeed), maximumSpeed, pursuing ? 1f : catchup);
+            float patrolSpeed = catalog.CompanionPatrolSpeed * (unit.Definition.Weapon.Kind == WeaponKind.Melee ? MeleeBalance.Speed : 1);
+            float speed = Mathf.Lerp(Mathf.Min(patrolSpeed, maximumSpeed), maximumSpeed, pursuing ? 1f : catchup);
             Vector2 desired = toDestination.normalized * Mathf.Min(speed, toDestination.magnitude * 3f);
             if (resting && !pursuing) desired = Vector2.zero;
             float separation = Mathf.Max(0.05f, catalog.CompanionSeparation);

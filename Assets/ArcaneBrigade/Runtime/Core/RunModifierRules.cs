@@ -22,10 +22,10 @@ namespace ArcaneBrigade
         {
             switch (scope)
             {
-                case ModifierScope.Champion: return "Thủ lĩnh";
-                case ModifierScope.Companions: return "Đồng minh";
-                case ModifierScope.Run: return "Lượt chơi";
-                default: return "Toàn đội";
+                case ModifierScope.Champion: return "Champion";
+                case ModifierScope.Companions: return "Companions";
+                case ModifierScope.Run: return "Run";
+                default: return "Team";
             }
         }
 
@@ -33,10 +33,10 @@ namespace ArcaneBrigade
         {
             switch (rarity)
             {
-                case ItemRarity.Uncommon: return "ĐỘC LẠ";
-                case ItemRarity.Rare: return "HIẾM";
-                case ItemRarity.Mythic: return "HUYỀN THOẠI";
-                default: return "PHỔ THÔNG";
+                case ItemRarity.Uncommon: return "UNCOMMON";
+                case ItemRarity.Rare: return "RARE";
+                case ItemRarity.Mythic: return "MYTHIC";
+                default: return "COMMON";
             }
         }
 
@@ -56,12 +56,12 @@ namespace ArcaneBrigade
             string description = "";
             foreach (StatModifier modifier in unit.CompanionModifiers ?? new StatModifier[0])
                 description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value * UnitDefinition.ModifierScale(tier)) + "\n";
-            return description + "Đặc tính cấp 1/2/3 ×1/2/4; ghép ba người làm giảm số nguồn hỗ trợ.\n";
+            return description + "Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.\n";
         }
 
         public static string Describe(ItemDefinition item, int stacks)
         {
-            string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Duy nhất" : "Cộng dồn") + "\n";
+            string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Unique" : "Stackable") + "\n";
             foreach (StatModifier modifier in item.EffectiveModifiers)
                 if (modifier.Value != 0) description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
             return description;
@@ -71,21 +71,21 @@ namespace ArcaneBrigade
         {
             switch (effect)
             {
-                case ItemEffect.Damage: case ItemEffect.ChampionDamage: case ItemEffect.CompanionDamage: return "Sát thương";
-                case ItemEffect.AttackSpeed: case ItemEffect.CompanionAttackSpeed: return "Tốc độ đánh";
-                case ItemEffect.MoveSpeed: return "Tốc độ di chuyển";
-                case ItemEffect.Crit: return "Tỷ lệ chí mạng";
-                case ItemEffect.Projectiles: return "Số đạn";
-                case ItemEffect.Health: return "Máu tối đa";
-                case ItemEffect.Pickup: return "Bán kính nhặt đồ";
-                case ItemEffect.Roam: return "Bán kính tuần tra";
-                case ItemEffect.Interceptor: return "Đồng minh chặn đạn";
-                case ItemEffect.Heal: return "Hồi máu mỗi giây";
-                case ItemEffect.Interest: return "Giới hạn tiền lãi";
-                case ItemEffect.Armor: return "Giáp";
-                case ItemEffect.Discount: return "Giảm giá hàng bằng vàng";
-                case ItemEffect.Luck: return "May mắn";
-                case ItemEffect.TreasureDetection: return "Phát hiện kho báu";
+                case ItemEffect.Damage: case ItemEffect.ChampionDamage: case ItemEffect.CompanionDamage: return "Damage";
+                case ItemEffect.AttackSpeed: case ItemEffect.CompanionAttackSpeed: return "Attack speed";
+                case ItemEffect.MoveSpeed: return "Movement speed";
+                case ItemEffect.Crit: return "Critical chance";
+                case ItemEffect.Projectiles: return "Projectile count";
+                case ItemEffect.Health: return "Maximum health";
+                case ItemEffect.Pickup: return "Pickup radius";
+                case ItemEffect.Roam: return "Patrol radius";
+                case ItemEffect.Interceptor: return "Companion bullet interception";
+                case ItemEffect.Heal: return "Healing per second";
+                case ItemEffect.Interest: return "Interest cap";
+                case ItemEffect.Armor: return "Armor";
+                case ItemEffect.Discount: return "Gold shop discount";
+                case ItemEffect.Luck: return "Luck";
+                case ItemEffect.TreasureDetection: return "Treasure detection";
                 default: return K10StatRules.Name(effect);
             }
         }

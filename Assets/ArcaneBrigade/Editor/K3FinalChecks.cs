@@ -104,7 +104,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Roster.Add(new RosterEntry { UnitId = recipe.SecondUnit, WeaponId = catalog.Weapons[1].Id });
                 session.Restore(session.State);
                 before = JsonUtility.ToJson(session.State);
-                require(session.CanAltar(recipe.Id) && session.RecipePreview(recipe.Id).Contains("ĐỦ ĐIỀU KIỆN") && before == JsonUtility.ToJson(session.State), "Recipe material/tier preview is read-only including both RNG streams");
+                require(session.CanAltar(recipe.Id) && session.RecipePreview(recipe.Id).Contains("READY") && before == JsonUtility.ToJson(session.State), "Recipe material/tier preview is read-only including both RNG streams");
                 require(RunTransaction.TryCommit(session, catalog, "Recipe gate", () => session.Altar(recipe.Id), () => true, out _) && session.State.Roster.Count == 1 && session.State.Roster[0].Tier == recipe.ResultTier, "Recipe commits authored tier and actual consumed materials");
                 combat = session.PrepareCombat(); combat.EnemyBudget = 0; combat.ChestInterval = 1000; combat.Procs = new ActiveProc[0];
                 simulation = new CombatSimulation(combat); simulation.Start(510);

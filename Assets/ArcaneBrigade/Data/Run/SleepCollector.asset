@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleepCollector
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SleepCollector
-  DisplayName: "G\u1ED1i H\xE1u \u0102n"
+  DisplayName: Sleep Collector
   Body: {fileID: 1054513797, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
   - {fileID: 1054513797, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}

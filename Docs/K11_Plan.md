@@ -17,8 +17,10 @@ K11.1 implemented and Windows technical gate passed: same-scene wave continuatio
 
 Latest merchant requirement added: two new original four-frame giant merchant strips, four merchant silhouettes in rotation, six large/colossal height presets by hall/shop identity. Merchant staging uses camera bounds so oversized crowns stay in view; ground shadows derive from sprite pivot and avoidance follows the actual NPC center. Native review caught a clipped crown and prompted this framing fix before finalizing.
 
-Remaining K11 work: complete English-default localization; artifact variety and highlighted concise synergy previews; full melee distribution/reach/DPS and harder measured balance; dedicated new enemy attack artwork and richer bespoke environmental art. These are pending, not implied finished by the transition/theme gates.
+Remaining K11 work: artifact variety and highlighted concise synergy previews; human difficulty/pacing review after combat buffs; dedicated new enemy attack artwork and richer bespoke environmental art. These are pending, not implied finished by technical gates.
 
 K11.2 implemented: distinct20/15/19-species pools, themed starters, three movement-only automatic mechanics, contribution provenance, charge HUD, theme icons and named-mechanic glossary.167 themed model checks passed. Initial15 scripted runs:14 victories and one Lantern/difficulty2 boss timeout, not15 victories. Melee bot approach and harder difficulty tuning remain open. See `K11_Themes_Checkpoint.md`.
 
 Shop motion revision: gold merchants fall and land; dream merchants emerge through a ground-clipping shader. Goods take separate launch/return arcs, pedestals rise, and a32-by32 carpet mesh curls/unrolls independently. The market root does not shrink. This is shopkeeper choreography; combat-boss introductions are separate work.
+
+K11.3 implemented: stronger/larger/longer-reaching melee, faster and wider Patrol/Pursuit movement with foot smoke/streaks, adaptive melee/ranged roster balancing, full HP on wave victory, shared tier scaling of body/weapon/range/projectile size, English runtime/content and compiled read-only stat displays. See `K11_Melee_English_Checkpoint.md` for evidence and explicit balance/save limitations. English-only is the current decision; no language selector is added.

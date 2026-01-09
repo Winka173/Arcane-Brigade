@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ScarletIndex
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ScarletIndex
-  DisplayName: "Vua M\u1EF1c"
+  DisplayName: Scarlet Index
   Body: {fileID: -1912887981, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   AnimationFrames:
   - {fileID: -1912887981, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}

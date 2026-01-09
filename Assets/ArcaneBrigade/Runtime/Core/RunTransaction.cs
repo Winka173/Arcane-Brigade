@@ -30,10 +30,10 @@ namespace ArcaneBrigade
                 session.Validate(session.State);
                 RunBuildReadModel current = RunBuildReadModel.Capture(session, catalog, session.State.Health);
                 var receipt = new RunTransactionReceipt { Id = ++session.State.NextReceipt, Hall = session.State.Wave, Title = title };
-                Change(receipt, "Vàng", before.Gold.ToString(), session.State.Gold.ToString());
-                Change(receipt, "Trứng", before.Eggs.ToString(), session.State.Eggs.ToString());
-                Change(receipt, "HP hiện tại", before.Health.ToString("0.###"), session.State.Health.ToString("0.###"));
-                Change(receipt, "Reroll tại shop", before.RerollsThisShop.ToString(), session.State.RerollsThisShop.ToString());
+                Change(receipt, "Gold", before.Gold.ToString(), session.State.Gold.ToString());
+                Change(receipt, "Eggs", before.Eggs.ToString(), session.State.Eggs.ToString());
+                Change(receipt, "Current HP", before.Health.ToString("0.###"), session.State.Health.ToString("0.###"));
+                Change(receipt, "Shop reroll", before.RerollsThisShop.ToString(), session.State.RerollsThisShop.ToString());
                 RosterChanges(receipt, before.Roster, session.State.Roster, catalog);
                 for (int index = 0; index < before.Roster.Count; index++)
                 {
@@ -51,7 +51,7 @@ namespace ArcaneBrigade
                     Change(receipt, catalog.Item(id).Name + " ×", Count(before.Items, id).ToString(), Count(session.State.Items, id).ToString());
                 for (int index = 0; index < previous.Stats.Count; index++)
                     Change(receipt, previous.Stats[index].Name, previous.Stats[index].Summary, current.Stats[index].Summary);
-                if (previous.Bonds != current.Bonds) receipt.Changes.Add("Bonds trước:\n" + previous.Bonds + "Bonds sau:\n" + current.Bonds);
+                if (previous.Bonds != current.Bonds) receipt.Changes.Add("Bonds before:\n" + previous.Bonds + "Bonds sau:\n" + current.Bonds);
                 session.State.Receipts.Add(receipt);
                 while (session.State.Receipts.Count > RunTransactionReceipt.HistoryLimit) session.State.Receipts.RemoveAt(0);
                 session.Validate(session.State);
@@ -82,6 +82,6 @@ namespace ArcaneBrigade
         }
 
         private static bool Same(RosterEntry first, RosterEntry second) => first.UnitId == second.UnitId && first.WeaponId == second.WeaponId && first.Tier == second.Tier;
-        private static string RosterLabel(RosterEntry entry, RunCatalog catalog) => catalog.Unit(entry.UnitId).DisplayName + " · " + entry.WeaponId + " · cấp " + entry.Tier;
+        private static string RosterLabel(RosterEntry entry, RunCatalog catalog) => catalog.Unit(entry.UnitId).DisplayName + " · " + entry.WeaponId + " · tier " + entry.Tier;
     }
 }

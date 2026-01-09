@@ -24,7 +24,7 @@ namespace ArcaneBrigade
             bool attacking = K8Motion.Attacking(state, time);
             bool reacting = attacking || time - state.LastHit < 0.18f || !state.Alive;
             if (reacting) moving = false;
-            int legFrame = UnitVisual.AnimationFrame(time, state.Id, moving, reduced);
+            int legFrame = UnitVisual.AnimationFrame(time * (state.TravelMode == CompanionTravelMode.Pursuit ? 1.45f : 1), state.Id, moving, reduced);
             int idleFrame = reacting ? 0 : UnitVisual.AnimationFrame(time, state.Id, false, reduced);
             int headFrame = idleFrame == 1 ? 1 : legFrame;
             if (state.Definition.IsBoss) headFrame = legFrame = K8Motion.BodyFrame(state, time, reduced);

@@ -23,9 +23,9 @@ namespace ArcaneBrigade
         {
             return mechanic switch
             {
-                HeroMechanic.LanternStride => "BƯỚC ĐÈN: đi 12 đơn vị tích một xung cận chiến bán kính 2,4; gây 65% damage vũ khí, hồi tối thiểu 4 giây. Giữ một xung đến khi có quái gần; không tích khi shop/pause.",
-                HeroMechanic.ParcelExpress => "CHUYỂN PHÁT: nhặt 6 vàng tích một loạt bưu kiện tự bắn tới quái; gây 70% damage vũ khí, hồi tối thiểu 4 giây. Không tính vàng từ nội tại/thu nhập.",
-                HeroMechanic.DreamBreath => "NHỊP MƠ: đứng yên 2 giây làm chậm quái trong bán kính 3 và xóa tối đa 3 đạn địch gần; hồi 7 giây. Chờ nguy hiểm gần mới kích hoạt; di chuyển ngắt tích nhịp, không bất tử.",
+                HeroMechanic.LanternStride => "LANTERN STRIDE: travel 12 units to charge a melee pulse within 2.4 units; deals 65% weapon damage, minimum 4-second cooldown. Holds one pulse until an enemy is nearby. No charge in shops or while paused.",
+                HeroMechanic.ParcelExpress => "PARCEL EXPRESS: collect 6 gold to charge an automatic parcel volley; deals 70% weapon damage, minimum 4-second cooldown. Passive gold and income do not count.",
+                HeroMechanic.DreamBreath => "DREAM BREATH: stand still for 2 seconds to chill enemies within 3 units and remove up to 3 nearby hostile bullets; 7-second cooldown. Waits for nearby danger. Moving interrupts charge; grants no invulnerability.",
                 _ => ""
             };
         }

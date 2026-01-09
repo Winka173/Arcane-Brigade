@@ -28,9 +28,9 @@ namespace ArcaneBrigade
     public static class RunMeta
     {
         public const int HistoryLimit = 50;
-        public static readonly string[] DifficultyNames = { "Êm đềm", "Lạc lối", "Chập chờn", "Ác mộng", "Không ngủ" };
+        public static readonly string[] DifficultyNames = { "Peaceful", "Wandering", "Restless", "Nightmare", "Sleepless" };
         public static readonly string[] ChallengeIds = { "", "night-shift", "first-light", "small-brigade" };
-        public static readonly string[] ChallengeNames = { "Chuyến đi tự do", "Ca đêm · tới bình minh", "Ánh sáng đầu · clear hall 10", "Đội nhỏ · thắng với ≤ 6 đồng minh" };
+        public static readonly string[] ChallengeNames = { "Free journey", "Night shift · until dawn", "First light · clear hall 10", "Small brigade · win with ≤ 6 companions" };
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
         public static int UnlockedDifficulty(PlayerProfile profile)
         {
@@ -53,13 +53,13 @@ namespace ArcaneBrigade
             foreach (ContributionEntry entry in run.Contributions)
                 if (entry.Damage > 0 && (strongest == null || entry.Damage > strongest.Damage || entry.Damage == strongest.Damage && string.CompareOrdinal(entry.Key, strongest.Key) < 0)) strongest = entry;
             string weapon = strongest?.WeaponId;
-            if (weapon == "TeapotPopgun" || weapon == "DreamIron") return "Tiệc trà cháy bếp";
-            if (weapon == "BellFork" || weapon == "MusicBox") return "Dàn chuông đòi nợ";
-            if (weapon == "DreamStamp") return "Phòng hoàn trả không nghỉ";
-            if (weapon == "SleepCamera") return "Ảnh thẻ lúc nửa đêm";
-            if (weapon == "CrescentBow") return "Đường chỉ qua giấc mơ";
-            if (weapon == "RubberHammer") return "Xưởng sửa những cơn mơ";
-            return "Những món đồ chưa chịu ngủ";
+            if (weapon == "TeapotPopgun" || weapon == "DreamIron") return "Scorched tea party";
+            if (weapon == "BellFork" || weapon == "MusicBox") return "Debt-collecting bells";
+            if (weapon == "DreamStamp") return "Relentless returns office";
+            if (weapon == "SleepCamera") return "Midnight photo booth";
+            if (weapon == "CrescentBow") return "Threads through dreams";
+            if (weapon == "RubberHammer") return "Dream repair workshop";
+            return "Things that refuse to sleep";
         }
         public static string ChainEvidence(string effect)
         {
@@ -121,6 +121,6 @@ namespace ArcaneBrigade
         }
         public static void Add(List<string> destination, string id) { if (!string.IsNullOrEmpty(id) && !destination.Contains(id)) destination.Add(id); }
         public static bool CosmeticUnlocked(PlayerProfile profile, int bundle) => bundle == 0 || bundle == 1 && profile.BestWave >= 5 || bundle == 2 && profile.SeenBosses.Count >= 3;
-        public static string CosmeticName(int bundle) => bundle == 1 ? "Văn phòng đêm" : bundle == 2 ? "Sân khấu giấy" : "Cửa hàng thất lạc";
+        public static string CosmeticName(int bundle) => bundle == 1 ? "Night office" : bundle == 2 ? "Paper stage" : "Lost-and-found shop";
     }
 }

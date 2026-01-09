@@ -182,7 +182,7 @@ namespace ArcaneBrigade
                 if (result != null)
                 {
                     result.DeniedUntil = Time.time + 0.65f;
-                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "CHƯA LƯU ĐƯỢC" : station.Recipe != null ? "THIẾU NGUYÊN LIỆU" : station.Currency == ShopCurrency.Eggs ? "THIẾU TRỨNG" : station.Currency == ShopCurrency.Health ? "KHÔNG ĐỦ HP" : "THIẾU VÀNG";
+                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
                 }
             }
             return completed;
@@ -203,7 +203,7 @@ namespace ArcaneBrigade
             if (giant && giantFrames != null && giantFrames.Length == 4) merchantFrames = giantFrames;
             MerchantIdentity = giant ? Special ? "GiantEggMerchant" : "GiantGoldMerchant" : Special ? "EggOracle" : "ReceiptMaw";
             MerchantHeight = MerchantSize(Special, state.Wave);
-            dialogue.MerchantName = giant ? Special ? "MẸ TRỨNG NGÀN MẮT" : "KÉT SẮT TRĂM CHÂN" : Special ? "BÀ VỎ MỘNG" : "ÔNG NUỐT BIÊN LAI";
+            dialogue.MerchantName = giant ? Special ? "MOTHER OF A THOUSAND EGG-EYES" : "THE HUNDRED-FOOT VAULT" : Special ? "MADAM DREAMSHELL" : "THE RECEIPT GULPER";
             MerchantCenter = new Vector2(0, Mathf.Min(1.6f + MerchantHeight * 0.18f, owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f));
             merchant = AddActor(scenery.transform, merchantFrames[0], merchantFrames, MerchantCenter, MerchantHeight, 0.7f);
             merchant.SetMerchantMood(Special);
@@ -224,7 +224,7 @@ namespace ArcaneBrigade
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 station.Description = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Description : catalog.Item(offer.Id).Description;
                 if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(0.35f + index * 0.09f, scenery.transform.TransformPoint(MerchantCenter));
-                if (offer.Currency == ShopCurrency.Health) station.Description += " · Trả HP hiện tại, không giảm HP tối đa; phải còn ít nhất 1 HP.";
+                if (offer.Currency == ShopCurrency.Health) station.Description += " · Costs current HP, not maximum HP; must leave at least 1 HP.";
                 if (!offer.Sold && offer.Kind == OfferKind.Item && catalog.Item(offer.Id).Rarity != ItemRarity.Common)
                 {
                     var glow = new GameObject("ItemRarityAura"); glow.transform.SetParent(station.Marker, false); glow.transform.localPosition = new Vector2(0, 0.4f);
@@ -234,8 +234,8 @@ namespace ArcaneBrigade
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
             Station reroll = AddStation(new Vector2(-4.8f, 2.8f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
-            reroll.Price = owner.Session.RerollCost; reroll.Description = "Đổi ba món đang bày. Giá tăng sau mỗi lần.";
-            AddStation(new Vector2(0, -4.3f), "NEXT HALL", art.HallDoor[0], art.HallDoor, false).Description = "Đi xuống để tới màn tiếp theo.";
+            reroll.Price = owner.Session.RerollCost; reroll.Description = "Replace the three displayed wares. Cost increases each time.";
+            AddStation(new Vector2(0, -4.3f), "NEXT HALL", art.HallDoor[0], art.HallDoor, false).Description = "Head down to the next wave.";
             if (!Special && state.Wave >= 4)
                 for (int index = 0; index < catalog.Recipes.Length; index++)
                 {
@@ -270,20 +270,20 @@ namespace ArcaneBrigade
                 int held = owner.Session.State.Items.Find(stack => stack.Id == item.Id)?.Count ?? 0;
                 string stats = RunModifierRules.Describe(item, 1).TrimEnd();
                 result = item.Description.Contains(stats) ? item.Description : item.Description + "\n" + stats;
-                result += "\nĐang có: " + held + " · Sau mua: " + item.EffectiveStacks(held + 1);
+                result += "\nOwned: " + held + " · Sau mua: " + item.EffectiveStacks(held + 1);
             }
             else
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count;
-                result = RunUICopy.PassiveDescription(unit.Passive) + ".\nVũ khí ngẫu nhiên khi nhận · " + copies + "/3 bản cấp 1";
+                result = RunUICopy.PassiveDescription(unit.Passive) + ".\nWeapon rolled on recruitment · " + copies + "/3 tier-1 copies";
                 result += "\n" + RunModifierRules.DescribeCompanion(unit, 1);
-                if (copies >= 2) result += " · Có thể ghép cấp sau khi nhận";
+                if (copies >= 2) result += " · May merge after recruitment";
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
             }
-            if (offer.Currency == ShopCurrency.Health) result += "\nTrả HP hiện tại; không giảm HP tối đa; phải còn ít nhất 1 HP.";
+            if (offer.Currency == ShopCurrency.Health) result += "\nCosts current HP, not maximum HP; must leave at least 1 HP.";
             return result;
         }
         public void DrawMerchantDialogue()
@@ -292,11 +292,11 @@ namespace ArcaneBrigade
         }
         public string DisplayName(Station station)
         {
-            if (station.Action == "REROLL") return "ĐỔI HÀNG";
-            if (station.Action == "NEXT HALL") return Special ? "ĐI XUỐNG · QUẦY VÀNG" : "ĐI XUỐNG · MÀN TIẾP";
-            if (station.Action == "GOLD SHOP") return "QUẦY VÀNG";
-            if (station.Action == "DREAM ALTAR") return "QUẦY GIẤC MƠ";
-            if (station.Recipe != null) return "HỢP THỂ · " + station.Action.Substring(5);
+            if (station.Action == "REROLL") return "REROLL";
+            if (station.Action == "NEXT HALL") return Special ? "HEAD DOWN · GOLD SHOP" : "HEAD DOWN · NEXT WAVE";
+            if (station.Action == "GOLD SHOP") return "GOLD SHOP";
+            if (station.Action == "DREAM ALTAR") return "DREAM SHOP";
+            if (station.Recipe != null) return "FUSION · " + station.Action.Substring(5);
             return station.Action;
         }
         public void ResolveCompanionPositions()

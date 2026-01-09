@@ -5,22 +5,22 @@ namespace ArcaneBrigade
 {
     public static class RunUICopy
     {
-        public static string UnitName(UnitDefinition unit) => unit == null ? "Không rõ nhân vật" : UnitName(unit.Id, unit.DisplayName);
+        public static string UnitName(UnitDefinition unit) => unit == null ? "Unknown character" : UnitName(unit.Id, unit.DisplayName);
         public static string UnitName(string id, string fallback = null)
         {
             if (!string.IsNullOrEmpty(fallback) && fallback != id) return fallback;
             switch (id)
             {
-                case "LanternKnight": return "Hiệp sĩ đèn lồng";
-                case "Postmaster": return "Trưởng trạm bưu điện";
-                case "DrowsySeer": return "Nhà tiên tri ngái ngủ";
-                case "TeapotPilgrim": return "Lữ khách ấm trà";
-                case "CandleSnail": return "Ốc sên nến";
-                case "MailboxImp": return "Tiểu quỷ hòm thư";
-                case "PillowOracle": return "Nhà tiên tri gối";
-                case "MushroomLibrarian": return "Thủ thư nấm";
-                case "HoodWisp": return "Đốm sáng trùm mũ";
-                case "JellySwordsman": return "Kiếm sĩ thạch";
+                case "LanternKnight": return "Lantern Knight";
+                case "Postmaster": return "Postmaster";
+                case "DrowsySeer": return "Drowsy Seer";
+                case "TeapotPilgrim": return "Teapot Pilgrim";
+                case "CandleSnail": return "Candle Snail";
+                case "MailboxImp": return "Mailbox Imp";
+                case "PillowOracle": return "Pillow Oracle";
+                case "MushroomLibrarian": return "Mushroom Librarian";
+                case "HoodWisp": return "Hood Wisp";
+                case "JellySwordsman": return "Jelly Swordsman";
                 default: return fallback ?? id;
             }
         }
@@ -28,62 +28,62 @@ namespace ArcaneBrigade
         {
             switch (id)
             {
-                case "SpoonSabre": return "Kiếm Muỗng";
-                case "ToastCleaver": return "Dao Bánh Mì";
-                case "LollipopLance": return "Thương Kẹo";
-                case "PaperFan": return "Quạt Giấy";
-                case "CorkscrewRapier": return "Kiếm Vặn Nút";
-                case "TeabagFlail": return "Chùy Túi Trà";
-                case "UmbrellaHook": return "Móc Ô";
-                case "PizzaWheel": return "Bánh Cưa Pizza";
-                case "MoonScythe": return "Lưỡi Hái Trăng";
-                case "ForkTrident": return "Đinh Ba Nĩa";
-                case "MaracaHammer": return "Búa Lục Lạc";
-                case "TapeWhip": return "Roi Băng Keo";
-                case "ButtonBow": return "Cung Cúc Áo";
-                case "LeafCrossbow": return "Nỏ Lá";
-                case "InkPistol": return "Súng Mực";
-                case "BubbleWand": return "Đũa Bong Bóng";
-                case "StarKazoo": return "Kèn Sao";
-                case "ShellCannon": return "Pháo Vỏ Ốc";
-                case "AcornSling": return "Ná Hạt Dẻ";
-                case "CrescentBoomerang": return "Boomerang Trăng";
-                case "DartCompass": return "La Bàn Phi Tiêu";
-                case "LanternStaff": return "Trượng Đèn";
-                case "SnowGlobeOrb": return "Cầu Tuyết";
-                case "RibbonHarp": return "Đàn Ruy Băng";
+                case "SpoonSabre": return "Spoon Sabre";
+                case "ToastCleaver": return "Toast Cleaver";
+                case "LollipopLance": return "Lollipop Lance";
+                case "PaperFan": return "Paper Fan";
+                case "CorkscrewRapier": return "Corkscrew Rapier";
+                case "TeabagFlail": return "Teabag Flail";
+                case "UmbrellaHook": return "Umbrella Hook";
+                case "PizzaWheel": return "Pizza Wheel";
+                case "MoonScythe": return "Moon Scythe";
+                case "ForkTrident": return "Fork Trident";
+                case "MaracaHammer": return "Maraca Hammer";
+                case "TapeWhip": return "Tape Whip";
+                case "ButtonBow": return "Button Bow";
+                case "LeafCrossbow": return "Leaf Crossbow";
+                case "InkPistol": return "Ink Pistol";
+                case "BubbleWand": return "Bubble Wand";
+                case "StarKazoo": return "Star Kazoo";
+                case "ShellCannon": return "Shell Cannon";
+                case "AcornSling": return "Acorn Sling";
+                case "CrescentBoomerang": return "Crescent Boomerang";
+                case "DartCompass": return "Dart Compass";
+                case "LanternStaff": return "Lantern Staff";
+                case "SnowGlobeOrb": return "Snow Globe Orb";
+                case "RibbonHarp": return "Ribbon Harp";
             }
             switch (id)
             {
-                case "KeyCleaver": return "Kiếm chìa khóa";
-                case "RuneStaff": return "Trượng cổ ngữ";
-                case "UmbrellaLance": return "Thương ô";
-                case "MailboxLauncher": return "Ống phóng bưu kiện";
-                case "BellFork": return "Chuông âm thoa";
-                case "DreamStamp": return "Con dấu giấc mơ";
-                case "TeapotPopgun": return "Súng ấm trà";
-                case "CrescentBow": return "Cung trăng khuyết";
-                case "CloudScissors": return "Kéo mây";
-                case "SleepCamera": return "Máy ảnh ru ngủ";
-                case "TinFish": return "Cá thiếc";
-                case "DreamIron": return "Bàn ủi giấc mơ";
-                case "RubberHammer": return "Búa cao su";
-                case "AlarmMortar": return "Pháo báo thức";
-                case "MusicBox": return "Hộp nhạc";
-                default: return string.IsNullOrEmpty(id) ? "Không rõ vũ khí" : id;
+                case "KeyCleaver": return "Keyblade";
+                case "RuneStaff": return "Rune Staff";
+                case "UmbrellaLance": return "Umbrella Lance";
+                case "MailboxLauncher": return "Parcel Launcher";
+                case "BellFork": return "Tuning Bell";
+                case "DreamStamp": return "Dream Stamp";
+                case "TeapotPopgun": return "Teapot Popgun";
+                case "CrescentBow": return "Crescent Bow";
+                case "CloudScissors": return "Cloud Scissors";
+                case "SleepCamera": return "Sleep Camera";
+                case "TinFish": return "Tin Fish";
+                case "DreamIron": return "Dream Iron";
+                case "RubberHammer": return "Rubber Hammer";
+                case "AlarmMortar": return "Alarm Mortar";
+                case "MusicBox": return "Music Box";
+                default: return string.IsNullOrEmpty(id) ? "Unknown weapon" : id;
             }
         }
-        public static string WeaponKindName(WeaponKind kind) => kind == WeaponKind.Projectile ? "Đánh xa" : kind == WeaponKind.Melee ? "Cận chiến" : "Va chạm";
-        public static string ElementName(DamageElement element) => element == DamageElement.Ember ? "Lửa" : element == DamageElement.Frost ? "Băng" : element == DamageElement.Arcane ? "Phép thuật" : "Vật lý";
-        public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Đã mở khóa" : "Đạt màn " + unit.UnlockWave + " để mở · hiện tại " + bestWave;
+        public static string WeaponKindName(WeaponKind kind) => kind == WeaponKind.Projectile ? "Ranged" : kind == WeaponKind.Melee ? "Melee" : "Contact";
+        public static string ElementName(DamageElement element) => element == DamageElement.Ember ? "Ember" : element == DamageElement.Frost ? "Frost" : element == DamageElement.Arcane ? "Arcane" : "Physical";
+        public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Unlocked" : "Reach wave " + unit.UnlockWave + " to unlock · current " + bestWave;
         public static string ChampionDescription(UnitDefinition unit)
         {
             if (unit.ChampionModifiers != null && unit.ChampionModifiers.Length > 0) return unit.Description + (unit.HeroMechanic == HeroMechanic.None ? "" : "\n\n" + K11HeroRules.Describe(unit));
             switch (unit.Id)
             {
-                case "LanternKnight": return "Tiên phong cận chiến bằng kiếm chìa khóa. Sát thương tăng theo số đồng minh trong đoàn; hợp với đội quân đông.";
-                case "Postmaster": return "Bắn bưu kiện từ xa và tự kiếm thêm vàng khi chiến đấu. Hợp với người thích tích tiền để mua sắm.";
-                case "DrowsySeer": return "Đánh bằng chuông âm thoa và tự hồi máu định kỳ. Di chuyển chậm hơn, nhưng có nhiều máu để trụ lâu.";
+                case "LanternKnight": return "A melee pioneer with a keyblade. Damage increases with the brigade's size; suited to large rosters.";
+                case "Postmaster": return "Launches parcels from range and scavenges extra gold in combat. Suited to saving up for shops.";
+                case "DrowsySeer": return "Attacks with a tuning bell and heals periodically. Moves slower, but has more health to endure.";
                 default: return WeaponKindName(unit.Weapon.Kind) + " · " + PassiveDescription(unit.Passive) + "\n" + unit.Description;
             }
         }
@@ -91,77 +91,77 @@ namespace ArcaneBrigade
         {
             switch (passive)
             {
-                case PassiveKind.Rally: return "Sát thương tăng theo số đồng minh";
-                case PassiveKind.HealChampion: return "Tự hồi máu cho người dẫn đoàn mỗi 4 giây";
-                case PassiveKind.Scavenge: return "Tự kiếm thêm vàng mỗi 4 giây khi chiến đấu";
-                case PassiveKind.ChillAura: return "Làm chậm kẻ địch ở gần";
-                default: return "Không có nội tại riêng";
+                case PassiveKind.Rally: return "Damage scales with companion count";
+                case PassiveKind.HealChampion: return "Automatically heals the champion every 4 seconds";
+                case PassiveKind.Scavenge: return "Scavenges extra gold every 4 seconds in combat";
+                case PassiveKind.ChillAura: return "Chills nearby enemies";
+                default: return "No personal passive";
             }
         }
         public static string BondDescription(BondDefinition bond, int count)
         {
             int threshold = Mathf.Max(1, bond.Threshold);
             int level = bond.ActiveLevel(count);
-            string result = bond.Name + " · " + (level > 0 ? "Đã kích hoạt ×" + level : "Chưa kích hoạt")
-                + "\n" + count + "/" + bond.NextThreshold(count) + " đồng minh · mỗi " + threshold + " người thêm một bậc"
+            string result = bond.Name + " · " + (level > 0 ? "Activated ×" + level : "Not active yet")
+                + "\n" + count + "/" + bond.NextThreshold(count) + " companions · every " + threshold + " units adds one level"
                 + "\n" + RunBuildReadModel.EffectName(bond.Effect) + ": " + bond.Reward(count).ToString("+0.###;-0.###;0");
             foreach (BondThresholdBonus bonus in bond.ExtraBonuses ?? new BondThresholdBonus[0])
-                result += "\nMốc " + bonus.Threshold + " người: thêm " + bonus.Value.ToString("+0.###;-0.###;0") + (count >= bonus.Threshold ? " · đã đạt" : " · chưa đạt");
-            return result + "\nMỗi đồng minh tính một người, không nhân theo cấp.";
+                result += "\nThreshold " + bonus.Threshold + " units: extra " + bonus.Value.ToString("+0.###;-0.###;0") + (count >= bonus.Threshold ? " · reached" : " · not reached");
+            return result + "\nEach companion counts once, regardless of tier.";
         }
-        public static string PhaseName(SessionPhase phase) => phase == SessionPhase.Combat ? "Đang chiến đấu" : phase == SessionPhase.Shop ? "Đang nghỉ và mua sắm" : phase == SessionPhase.Victory ? "Đã chiến thắng" : "Đã kết thúc";
-        public static string TriggerName(ProcTrigger trigger) => trigger == ProcTrigger.CoinCollected ? "nhặt vàng" : trigger == ProcTrigger.ChestOpened ? "mở rương" : "hạ gục kẻ địch";
-        public static string ActionName(ProcAction action) => action == ProcAction.HealChampion ? "hồi máu người dẫn đoàn" : "gây sát thương vùng";
+        public static string PhaseName(SessionPhase phase) => phase == SessionPhase.Combat ? "In combat" : phase == SessionPhase.Shop ? "Resting and shopping" : phase == SessionPhase.Victory ? "Victorious" : "Finished";
+        public static string TriggerName(ProcTrigger trigger) => trigger == ProcTrigger.CoinCollected ? "collect gold" : trigger == ProcTrigger.ChestOpened ? "open chests" : "defeat enemies";
+        public static string ActionName(ProcAction action) => action == ProcAction.HealChampion ? "heal the champion" : "deal area damage";
         public static string RecordName(string key, RunCatalog catalog)
         {
             string[] parts = (key ?? "").Split('/');
             if (parts.Length < 3 || !int.TryParse(parts[1], out int difficulty)) return key;
-            return UnitName(parts[0], catalog.Unit(parts[0])?.DisplayName) + " · " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, 4)] + " · " + (parts[2] == "endless" ? "Vô tận" : "Chuyến đi") + (parts.Length > 3 && !string.IsNullOrEmpty(parts[3]) ? " · " + AchievementName("challenge-" + parts[3]) : "");
+            return UnitName(parts[0], catalog.Unit(parts[0])?.DisplayName) + " · " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, 4)] + " · " + (parts[2] == "endless" ? "Endless" : "Journey") + (parts.Length > 3 && !string.IsNullOrEmpty(parts[3]) ? " · " + AchievementName("challenge-" + parts[3]) : "");
         }
         public static string AchievementName(string id)
         {
-            if (id == "Brigade dawn") return "Đưa đoàn tới bình minh";
-            if (id == "challenge-night-shift") return "Hoàn thành Ca đêm";
-            if (id == "challenge-first-light") return "Hoàn thành Ánh sáng đầu";
-            if (id == "challenge-small-brigade") return "Hoàn thành Đội nhỏ";
+            if (id == "Brigade dawn") return "Lead the brigade to dawn";
+            if (id == "challenge-night-shift") return "Complete Night Shift";
+            if (id == "challenge-first-light") return "Complete First Light";
+            if (id == "challenge-small-brigade") return "Complete Small Brigade";
             const string prefix = "clear-difficulty-";
-            if (id != null && id.StartsWith(prefix) && int.TryParse(id.Substring(prefix.Length), out int difficulty)) return "Thắng bậc " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, 4)];
+            if (id != null && id.StartsWith(prefix) && int.TryParse(id.Substring(prefix.Length), out int difficulty)) return "Win difficulty " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, 4)];
             return id;
         }
         public static string ContributionName(string id, RunCatalog catalog)
         {
-            if (string.IsNullOrEmpty(id)) return "Đòn đánh chính";
+            if (string.IsNullOrEmpty(id)) return "Primary attack";
             ItemDefinition item = catalog.Item(id);
             if (item != null) return item.Name;
             switch (id)
             {
-                case "primary": return "Đòn đánh chính";
-                  case "hero-LanternStride": return "BƯỚC ĐÈN";
-                  case "hero-ParcelExpress": return "CHUYỂN PHÁT";
-                  case "hero-DreamBreath": return "NHỊP MƠ";
-                case "unit-passive": return "Nội tại hồi máu";
-                case "passive-regen": return "Hồi máu thụ động";
-                case "scavenge": return "Nhặt vàng tự động";
-                case "element-reaction": return "Phản ứng nguyên tố";
-                case "stamp-burst": return "Bùng nổ con dấu";
-                case "stamp-carbon": return "Truyền dấu";
-                case "carbon-exposure": return "Làm suy yếu";
-                case "projectile-bounce": return "Đạn bật tường";
-                case "projectile-ricochet": return "Đạn nảy mục tiêu";
-                case "projectile-split": return "Đạn phân tách";
-                case "zipper-link": return "Đường tên nối";
-                case "heat-status": return "Thiêu đốt";
-                default: return "Hiệu ứng " + id;
+                case "primary": return "Primary attack";
+                  case "hero-LanternStride": return "LANTERN STRIDE";
+                  case "hero-ParcelExpress": return "PARCEL EXPRESS";
+                  case "hero-DreamBreath": return "DREAM BREATH";
+                case "unit-passive": return "Healing passive";
+                case "passive-regen": return "Passive regeneration";
+                case "scavenge": return "Automatic scavenging";
+                case "element-reaction": return "Elemental reaction";
+                case "stamp-burst": return "Stamp burst";
+                case "stamp-carbon": return "Mark transfer";
+                case "carbon-exposure": return "Weakening";
+                case "projectile-bounce": return "Wall bounce";
+                case "projectile-ricochet": return "Target bounce";
+                case "projectile-split": return "Projectile split";
+                case "zipper-link": return "Arrow tether";
+                case "heat-status": return "Burn";
+                default: return "Effect " + id;
             }
         }
-        public static string DamageKind(string kind) => (kind ?? "").Replace("Physical", "Vật lý").Replace("Ember", "Lửa").Replace("Frost", "Băng").Replace("Arcane", "Phép thuật").Replace("Projectile", "Đạn").Replace("Melee", "Cận chiến").Replace("Contact", "Va chạm").Replace("arena", "đấu trường");
+        public static string DamageKind(string kind) => (kind ?? "").Replace("Physical", "Physical").Replace("Ember", "Ember").Replace("Frost", "Frost").Replace("Arcane", "Arcane").Replace("Projectile", "Projectile").Replace("Melee", "Melee").Replace("Contact", "Contact").Replace("arena", "arena");
         public static string DamageSource(string source, RunCatalog catalog)
         {
             foreach (UnitDefinition enemy in catalog.Enemies)
-                if (source == enemy.DisplayName || source == enemy.DisplayName + " contact") return UnitName(enemy) + (source.EndsWith(" contact") ? " · va chạm" : "");
+                if (source == enemy.DisplayName || source == enemy.DisplayName + " contact") return UnitName(enemy) + (source.EndsWith(" contact") ? " · contact" : "");
             foreach (UnitDefinition boss in catalog.Bosses)
-                if (source == boss.DisplayName || source == boss.DisplayName + " contact") return UnitName(boss) + (source.EndsWith(" contact") ? " · va chạm" : "");
-            return source == "Enemy damage" ? "Đòn đánh kẻ địch" : source;
+                if (source == boss.DisplayName || source == boss.DisplayName + " contact") return UnitName(boss) + (source.EndsWith(" contact") ? " · contact" : "");
+            return source == "Enemy damage" ? "Enemy attack" : source;
         }
     }
 
@@ -184,11 +184,11 @@ namespace ArcaneBrigade
             if (Input.touchCount > 0 || Application.isMobilePlatform) Device = RunUIDevice.Touch;
             previousPad = pad; previousMouse = Input.mousePosition;
         }
-        public static string Details(RunUIDevice device) => device == RunUIDevice.Controller ? "Đội quân · nút Y / nút 3" : device == RunUIDevice.Touch ? "Chạm để xem đội quân" : "Đội quân · phím I";
-        public static string Pause(RunUIDevice device) => device == RunUIDevice.Controller ? "Tạm dừng / tiếp tục · Start hoặc B" : device == RunUIDevice.Touch ? "Chạm để tạm dừng / tiếp tục" : "Tạm dừng / tiếp tục · Esc";
-        public static string Interact(RunUIDevice device) => device == RunUIDevice.Controller ? "DÙNG · A" : device == RunUIDevice.Touch ? "DÙNG" : "DÙNG · Space";
-        public static string Menu => Device == RunUIDevice.Controller ? "Cần điều khiển: chọn · A: xác nhận · B: quay lại" : Device == RunUIDevice.Touch ? "Chạm để chọn · kéo để cuộn" : "Mũi tên / Tab: chọn · Enter: xác nhận · Esc: quay lại";
-        public static string DetailsNavigation => Device == RunUIDevice.Controller ? "LB/RB: mục · A/X: dòng tiếp/trước · Y/B: đóng" : Device == RunUIDevice.Touch ? "Chạm mục hoặc dòng · kéo để cuộn" : "Tab: đổi mục · ↑/↓: chọn dòng · I/Esc: đóng";
+        public static string Details(RunUIDevice device) => device == RunUIDevice.Controller ? "Brigade · Y / button 3" : device == RunUIDevice.Touch ? "Tap to inspect brigade" : "Brigade · I";
+        public static string Pause(RunUIDevice device) => device == RunUIDevice.Controller ? "Pause / resume · Start or B" : device == RunUIDevice.Touch ? "Tap to pause / resume" : "Pause / resume · Esc";
+        public static string Interact(RunUIDevice device) => device == RunUIDevice.Controller ? "USE · A" : device == RunUIDevice.Touch ? "USE" : "USE · Space";
+        public static string Menu => Device == RunUIDevice.Controller ? "Stick: select · A: confirm · B: back" : Device == RunUIDevice.Touch ? "Tap to select · drag to scroll" : "Arrows / Tab: select · Enter: confirm · Esc: back";
+        public static string DetailsNavigation => Device == RunUIDevice.Controller ? "LB/RB: tab · A/X: next/previous row · Y/B: close" : Device == RunUIDevice.Touch ? "Tap a tab or row · drag to scroll" : "Tab: change tab · ↑/↓: select row · I/Esc: close";
     }
 
     public sealed class RunBondFeedback

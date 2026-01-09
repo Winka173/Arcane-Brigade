@@ -21,7 +21,7 @@ namespace ArcaneBrigade.Editor
             Require(content.Recipes.Length == 4 && content.Recipes.Select(recipe => recipe.ResultUnit).Distinct().Count() == 4, "Four distinct fusion outcomes");
             foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))
                 Require(RunModifierRules.ModifierName(effect) != effect.ToString(), "Localized modifier " + effect);
-            Require(RunModifierRules.ScopeName(ModifierScope.Champion) == "Thủ lĩnh", "Localized champion scope");
+            Require(RunModifierRules.ScopeName(ModifierScope.Champion) == "Champion", "Localized champion scope");
             CheckBonds(content);
             CheckTiersAndScopes(content);
             CheckChampions(content);
@@ -143,7 +143,7 @@ namespace ArcaneBrigade.Editor
                     session.State.Roster.Add(new RosterEntry { UnitId = recipe.SecondUnit, WeaponId = content.Weapons[1].Id, Tier = recipe.MinimumMaterialTier });
                     uint randomBefore = session.State.WeaponRandom;
                     string stateBefore = JsonUtility.ToJson(session.State);
-                    Require(session.ActiveRecipes().Any(active => active.Id == recipe.Id) && session.RecipePreview(recipe.Id).Contains("ĐỦ ĐIỀU KIỆN"), recipe.Id + " active preview");
+                    Require(session.ActiveRecipes().Any(active => active.Id == recipe.Id) && session.RecipePreview(recipe.Id).Contains("READY"), recipe.Id + " active preview");
                     Require(stateBefore == JsonUtility.ToJson(session.State), "Preview is side effect free");
                     Require(session.Altar(recipe.Id) && session.State.Eggs == 0 && session.State.Roster.Count == 1, recipe.Id + " consumes exactly two bodies and egg cost");
                     RosterEntry result = session.State.Roster[0];

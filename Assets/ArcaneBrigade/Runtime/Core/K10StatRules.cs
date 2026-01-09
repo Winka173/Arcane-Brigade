@@ -4,12 +4,12 @@ namespace ArcaneBrigade
 {
     public static class K10StatRules
     {
-        public static readonly string[] Names = { "Hệ số điểm", "Sát thương va chạm", "Damage cận cộng thẳng", "Damage xa cộng thẳng", "Tầm đánh", "Né tránh", "Thu nhập", "Xuyên đạn", "Chia nhánh đạn", "Xác suất nảy đạn", "Kích thước đạn", "Tốc độ đạn", "Khoảng bay đạn", "Đẩy lùi", "Kích thước thủ lĩnh", "Kích thước đồng minh", "Số lượng quái", "Máu quái", "Tốc độ quái", "Hồi từ tim", "Chất lượng rương", "Giảm giá đồng minh", "Giảm giá cổ vật", "Độ hiếm hàng", "Hiệu chỉnh máu", "Hiệu chỉnh damage", "Hiệu chỉnh tốc độ", "Hiệu chỉnh giáp", "Hiệu chỉnh hồi máu", "Tần suất va chạm" };
+        public static readonly string[] Names = { "Score multiplier", "Collision damage", "Flat melee damage", "Flat ranged damage", "Attack range", "Dodge", "Income", "Bullet pierce", "Bullet split", "Bullet bounce chance", "Bullet size", "Bullet speed", "Bullet travel distance", "Knockback", "Champion size", "Companion size", "Enemy count", "Enemy health", "Enemy speed", "Heart healing", "Chest quality", "Recruit discount", "Relic discount", "Shop rarity", "Health correction", "Damage correction", "Speed correction", "Armor correction", "Healing correction", "Collision frequency" };
         public static bool Percentage(ItemEffect effect) => effect != ItemEffect.CollisionDamage && effect != ItemEffect.MeleeDamage && effect != ItemEffect.RangedDamage && effect != ItemEffect.Income && effect != ItemEffect.BulletPierce && effect != ItemEffect.BulletSplit && effect != ItemEffect.HeartHealing;
         public static string Name(ItemEffect effect)
         {
             int index = (int)effect - (int)ItemEffect.ScoreMultiplier;
-            return index >= 0 && index < Names.Length ? Names[index] : "Hiệu ứng không hợp lệ";
+            return index >= 0 && index < Names.Length ? Names[index] : "Invalid effect";
         }
         public static float Factor(float bonus, float minimum = 0.1f, float maximum = 10f) => Mathf.Clamp(1 + bonus, minimum, maximum);
         public static float MaximumHealth(RunSession session, RunCatalog catalog)

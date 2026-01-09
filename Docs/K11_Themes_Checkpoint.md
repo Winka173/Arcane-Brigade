@@ -2,6 +2,8 @@
 
 2026-10-14. Continues K11.1; not the complete K11 language/artifact/balance overhaul.
 
+Historical K11.2 gate results below are superseded for melee, tiers, recruitment distribution and language by `K11_Melee_English_Checkpoint.md`. Current player captures are refreshed from K11.3, not archival K11.2 screenshots.
+
 ## Recruitment
 
 | Protagonist | Recruit themes | Species pool | Starter |

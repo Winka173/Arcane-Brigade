@@ -292,6 +292,12 @@ namespace ArcaneBrigade
             if (session != null && (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat))
             {
                 session.Settle(simulation);
+                if (simulation.Phase == RunPhase.Victory)
+                {
+                    float restored = session.State.Health - simulation.Champion.Health;
+                    simulation.Champion.Health = session.State.Health;
+                    if (restored > 0 && paintedEffects != null) paintedEffects.Play(new CombatEvent(CombatEventKind.Heal, simulation.Champion.Position, Faction.Champion, restored));
+                }
                 PersistBoundary();
                 movement.Reset();
                 if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? 1.15f : 0.45f;
@@ -338,7 +344,7 @@ namespace ArcaneBrigade
                 int before = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count;
                 storage.RecordProgress(profile, session.State, runCatalog);
                 int delta = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count - before;
-                MetaNotice = delta > 0 ? "ĐÃ LƯU " + delta + " KHÁM PHÁ / THÀNH TÍCH MỚI · XEM BẢO TÀNG" : "";
+                MetaNotice = delta > 0 ? "SAVED " + delta + " NEW DISCOVERIES / ACHIEVEMENTS · VISIT MUSEUM" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
             return true;
@@ -364,7 +370,7 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public bool BuyOffer(int token) => Transaction("Mua tại quầy", () => session.Buy(token));
+        public bool BuyOffer(int token) => Transaction("Shop purchase", () => session.Buy(token));
         public void PlayCommittedArrival(RunSnapshot before, Vector2 origin)
         {
             Render(1);
@@ -376,9 +382,9 @@ namespace ArcaneBrigade
                 if (!existed) visual.BeginArrival(origin);
             }
         }
-        public bool RerollShop() => Transaction("Đổi hàng", () => session.Reroll(), 21);
-        public bool RerollAltar() => Transaction("Đổi hàng altar", () => session.RerollAltar(), 21);
-        public bool FuseAltar(string id) => Transaction("Hợp nhất tại altar", () => session.Altar(id), 23);
+        public bool RerollShop() => Transaction("Reroll stock", () => session.Reroll(), 21);
+        public bool RerollAltar() => Transaction("Reroll altar stock", () => session.RerollAltar(), 21);
+        public bool FuseAltar(string id) => Transaction("Altar fusion", () => session.Altar(id), 23);
         public void ShowReceiptFixture() => runHud.ShowReceiptFixture();
         public void ShowInvoiceEvidenceFixture() => runHud.ShowInvoiceEvidenceFixture();
         public void ShowOfferPreviewFixture() => runHud.ShowOfferPreviewFixture();

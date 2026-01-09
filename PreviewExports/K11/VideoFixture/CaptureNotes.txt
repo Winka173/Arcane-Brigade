@@ -20,5 +20,7 @@ PASS Scene and controller identity unchanged through both merchants and next wav
 PASS Live hostile visuals have no held weapons
 PASS Wave end also keeps scene/controller
 PASS Natural combat completion returns to living market
+PASS Live melee companions switch into pursuit mode
+PASS Natural wave completion restores full HP in save and live HUD
 PASS Realtime transition framebuffer movie completed
 Isolated saved fixture, actual purchases/transitions and natural wave2 combat with movement-only circle driver. Base stills09-11 are explicit hall2/3 merchant-size showcases, not claimed natural hall3 progression. Hero stills use separate seeded character fixtures. No HP/invulnerability/timer adjustments, human feel approval, mobile certification or OS/desktop capture.

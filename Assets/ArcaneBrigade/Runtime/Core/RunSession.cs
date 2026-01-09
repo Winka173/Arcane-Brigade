@@ -327,20 +327,7 @@ namespace ArcaneBrigade
             ModifierScope target = companion ? ModifierScope.Companions : ModifierScope.Champion;
             unit.Weapon = Clone(weapon);
             if (companion && catalog.ContentRevision > 0 && tier > 1)
-            {
-                int steps = tier - 1;
-                if (weapon.Kind == WeaponKind.Projectile)
-                {
-                    unit.Weapon.ProjectileCount += steps;
-                    unit.Weapon.ProjectilePierce += steps;
-                }
-                else
-                {
-                    unit.Weapon.Range *= 1f + steps * 0.1f;
-                    unit.Weapon.ConeDot = Mathf.Max(-1f, weapon.ConeDot - steps * 0.1f);
-                    unit.Weapon.Cooldown /= 1f + steps * 0.12f;
-                }
-            }
+                CompanionTierScaling.Apply(unit.Weapon, tier);
             unit.CombatTier = tier;
             unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
@@ -351,8 +338,13 @@ namespace ArcaneBrigade
             unit.CriticalChance = Mathf.Clamp01(unit.CriticalChance + Bonus(ItemEffect.Crit, target));
             unit.Speed *= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.MoveSpeed, target));
             if (!companion) unit.Health = Mathf.Max(1f, unit.Health + Bonus(ItemEffect.Health));
-            if (companion) unit.BodyHeight *= 1f + (tier - 1) * 0.12f;
+            if (companion) unit.BodyHeight *= CompanionTierScaling.Body(tier);
             K10StatRules.ApplyUnit(this, catalog, unit, source, weapon, tier, companion);
+            if (unit.Weapon.Kind == WeaponKind.Melee)
+            {
+                MeleeBalance.Apply(unit.Weapon);
+                if (companion) unit.Speed *= MeleeBalance.Speed;
+            }
             return unit;
         }
 
@@ -402,11 +394,11 @@ namespace ArcaneBrigade
                 RunMeta.Add(State.DefeatedBosses, simulation.Boss.Definition.Id);
             }
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
+            State.Health = MaximumHealth();
             if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.Phase = SessionPhase.Victory; return; }
             State.LastInterest = Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), State.Gold / Mathf.Max(1, catalog.InterestDivisor));
             State.LastIncome = BoundedCounter((long)catalog.Income + (long)State.Wave * 2 + Mathf.FloorToInt(Bonus(ItemEffect.Income)));
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
-            State.Health = Mathf.Min(CombatCatalog.Champion.Health, State.Health + 8f);
             State.Phase = SessionPhase.Shop;
             State.SpecialShopVisited = false;
             RollShop(true);
@@ -456,13 +448,7 @@ namespace ArcaneBrigade
                 foreach (WeaponDefinition weapon in catalog.Weapons)
                     if (!State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
-                if (catalog.HeroRevision > 0)
-                {
-                    bool melee = Next(ref State.WeaponRandom, 2) == 0;
-                    List<WeaponDefinition> preferred = choices.FindAll(weapon => (weapon.Kind == WeaponKind.Melee) == melee);
-                    if (preferred.Count > 0) choices = preferred;
-                }
-                WeaponDefinition chosen = choices[Next(ref State.WeaponRandom, choices.Count)];
+                WeaponDefinition chosen = BalancedWeapon(choices);
                 State.Roster.Add(new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id });
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 MergeTriples(offer.Id);
@@ -507,7 +493,7 @@ namespace ArcaneBrigade
                     if (choices.Count == 0) break;
                     for (int index = 0; index < 3; index++) State.Roster.Remove(materials[index]);
                     materials.RemoveRange(0, 3);
-                    State.Roster.Add(new RosterEntry { UnitId = id, Tier = tier + 1, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+                    State.Roster.Add(new RosterEntry { UnitId = id, Tier = tier + 1, WeaponId = BalancedWeapon(choices).Id });
                     RememberVariant(State.Roster[State.Roster.Count - 1]);
                 }
             }
@@ -615,13 +601,26 @@ namespace ArcaneBrigade
             float previousMaximum = MaximumHealth();
             State.Roster.Remove(first);
             State.Roster.Remove(second);
-            State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = recipe.ResultTier, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id });
+            State.Roster.Add(new RosterEntry { UnitId = recipe.ResultUnit, Tier = recipe.ResultTier, WeaponId = BalancedWeapon(choices).Id });
             RememberVariant(State.Roster[State.Roster.Count - 1]);
             State.Eggs -= recipe.EggCost;
             RecountBonds();
             Notice = "Altar fusion completed.";
             ReconcileHealth(previousMaximum);
             return true;
+        }
+
+        private WeaponDefinition BalancedWeapon(List<WeaponDefinition> choices)
+        {
+            if (catalog.HeroRevision > 0)
+            {
+                int melee = State.Roster.FindAll(entry => catalog.Weapon(entry.WeaponId).Kind == WeaponKind.Melee).Count;
+                int ranged = State.Roster.FindAll(entry => catalog.Weapon(entry.WeaponId).Kind == WeaponKind.Projectile).Count;
+                WeaponKind kind = melee == ranged ? Next(ref State.WeaponRandom, 2) == 0 ? WeaponKind.Melee : WeaponKind.Projectile : melee < ranged ? WeaponKind.Melee : WeaponKind.Projectile;
+                List<WeaponDefinition> preferred = choices.FindAll(weapon => weapon.Kind == kind);
+                if (preferred.Count > 0) choices = preferred;
+            }
+            return choices[Next(ref State.WeaponRandom, choices.Count)];
         }
 
         private float MaximumHealth() => catalog.StatRevision > 0 ? K10StatRules.MaximumHealth(this, catalog) : Mathf.Max(1f, catalog.Unit(State.ChampionId).Health + Bonus(ItemEffect.Health));
@@ -644,11 +643,11 @@ namespace ArcaneBrigade
         public string RecipePreview(string recipeId)
         {
             AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
-            if (recipe == null) return "Công thức không tồn tại.";
+            if (recipe == null) return "Recipe not found.";
             RosterEntry first = LowestTier(recipe.FirstUnit, null, recipe.MinimumMaterialTier);
             RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
-            string Describe(RosterEntry entry, string id) => entry == null ? catalog.Unit(id).DisplayName + " · còn thiếu" : catalog.Unit(id).DisplayName + " / " + entry.WeaponId + " / cấp " + entry.Tier;
-            return "Tiêu " + recipe.EggCost + " trứng và hai đồng minh:\n− " + Describe(first, recipe.FirstUnit) + "\n− " + Describe(second, recipe.SecondUnit) + "\n→ " + catalog.Unit(recipe.ResultUnit).DisplayName + " cấp " + recipe.ResultTier + "; vũ khí ngẫu nhiên sau hợp nhất, không được chọn.\n" + (CanAltar(recipeId) ? "ĐỦ ĐIỀU KIỆN" : "CHƯA ĐỦ ĐIỀU KIỆN");
+            string Describe(RosterEntry entry, string id) => entry == null ? catalog.Unit(id).DisplayName + " · missing" : catalog.Unit(id).DisplayName + " / " + entry.WeaponId + " / tier " + entry.Tier;
+            return "Spend " + recipe.EggCost + " eggs and two companions:\n− " + Describe(first, recipe.FirstUnit) + "\n− " + Describe(second, recipe.SecondUnit) + "\n→ " + catalog.Unit(recipe.ResultUnit).DisplayName + " tier " + recipe.ResultTier + "; weapon is rolled after fusion, not selected.\n" + (CanAltar(recipeId) ? "READY" : "NOT READY");
         }
 
         public AltarRecipe[] ActiveRecipes()
@@ -662,12 +661,12 @@ namespace ArcaneBrigade
         public string TierAttackDescription(string weaponId, int tier)
         {
             WeaponDefinition weapon = catalog.Weapon(weaponId);
-            if (weapon == null || tier < 1 || tier > catalog.MaximumTier) return "Biến thể không hợp lệ.";
-            if (catalog.ContentRevision == 0 || tier == 1) return "Đòn đánh gốc; thưởng cấp chỉ áp dụng cho đồng minh.";
+            if (weapon == null || tier < 1 || tier > catalog.MaximumTier) return "Invalid variant.";
+            if (catalog.ContentRevision == 0 || tier == 1) return "Base attack; tier bonuses apply only to companions.";
             int steps = tier - 1;
             return weapon.Kind == WeaponKind.Projectile
-                ? "Đồng minh: đòn bắn thường +" + steps + " đạn, +" + steps + " lượt xuyên mỗi đạn. Sóng chuông và vùng báo thức giữ quy tắc gốc, không tự nhân số hiệu ứng."
-                : "Đồng minh: +" + steps * 10 + "% tầm đánh; đòn quét thường có cung rộng hơn; chu kỳ đánh chia cho " + (1f + steps * 0.12f).ToString("0.00") + ". Hiệu ứng riêng giữ quy tắc gốc.";
+                ? "Companions: +" + steps * 18 + "% body, range and bullet size; +" + steps * 15 + "% weapon width; basic volleys +" + steps + " projectiles and pierce. Signature effects retain their own rules."
+                : "Companions: +" + steps * 18 + "% body and attack range; +" + steps * 15 + "% weapon width; wider sweeps; attack cycle divided by " + (1f + steps * 0.12f).ToString("0.00") + ". Signature effects retain their own rules.";
         }
 
         public RosterEntry LowestTier(string id, RosterEntry excluded = null, int minimumTier = 1)

@@ -40,11 +40,11 @@ namespace ArcaneBrigade
 
         public static string Describe(IReadOnlyList<ContributionEntry> entries)
         {
-            if (entries == null || entries.Count == 0) return "Chưa có đóng góp được đo.\n";
+            if (entries == null || entries.Count == 0) return "No measured contributions yet.\n";
             var lines = new List<string>();
             foreach (ContributionEntry entry in entries)
-                lines.Add(entry.UnitId + " / " + entry.WeaponId + " / " + entry.EffectId + "\nDamage hiệu lực " + entry.Damage.ToString("0.#") + " · heal " + entry.Healing.ToString("0.#") + " · kills " + entry.Kills + " · coin " + entry.Coins + " · kích hoạt " + entry.Activations);
-            return string.Join("\n\n", lines) + "\nChỉ lượng HP thực mất/hồi; không tính overkill, VFX hoặc cộng damage lần hai cho connector.\n";
+                lines.Add(entry.UnitId + " / " + entry.WeaponId + " / " + entry.EffectId + "\nEffective damage " + entry.Damage.ToString("0.#") + " · heal " + entry.Healing.ToString("0.#") + " · kills " + entry.Kills + " · coin " + entry.Coins + " · activations " + entry.Activations);
+            return string.Join("\n\n", lines) + "\nCounts actual HP lost/restored only; excludes overkill, VFX and duplicate connector damage.\n";
         }
     }
 
