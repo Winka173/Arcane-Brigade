@@ -22,6 +22,8 @@ Treasure Detection, pickup radius, chest quality, Luck, pierce, split, bounce, s
 
 ## Validation and remaining work
 
+This is the historical core checkpoint. Subsequent market/animation work and its acceptance evidence are documented in [K12 Market Polish](K12_Market_Polish.md).
+
 K12 focused121 assertions and K11 transition22 assertions pass; Windows build succeeds with zero errors/warnings. Checks cover real wave5 density, wave growth, first-wave shooter exclusion, quota enforcement/copy availability/save persistence, rerolls, exclusive pool, nonzero soft cap and imported art/compact summaries.
 
 Native 4K capture, knockback gameplay fixtures, full-run balance and device performance have not yet been rerun for K12; K11 captures are historical. Stronger bosses/density require balance review rather than assuming earlier15 bot victories still apply.

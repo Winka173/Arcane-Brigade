@@ -7,6 +7,7 @@ namespace ArcaneBrigade
     {
         public static ModifierScope DefaultScope(ItemEffect effect)
         {
+            if (effect == ItemEffect.ChestReach) return ModifierScope.Run;
             switch (effect)
             {
                 case ItemEffect.Health: case ItemEffect.Heal: case ItemEffect.Armor: case ItemEffect.ChampionDamage: case ItemEffect.Dodge: case ItemEffect.BodySize: case ItemEffect.HeartHealing: case ItemEffect.HealthCorrection: case ItemEffect.ArmorCorrection: case ItemEffect.HealCorrection: return ModifierScope.Champion;

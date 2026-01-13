@@ -5,6 +5,7 @@ Shader "ArcaneBrigade/MarketEmergence"
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
         _FloorY ("Ground Cut", Float) = -10000
+        _Flash ("Hit Flash", Range(0,1)) = 0
     }
     SubShader
     {
@@ -21,6 +22,7 @@ Shader "ArcaneBrigade/MarketEmergence"
             sampler2D _MainTex;
             fixed4 _Color;
             float _FloorY;
+            float _Flash;
             struct Input { float4 position : POSITION; float2 uv : TEXCOORD0; fixed4 color : COLOR; };
             struct Output { float4 position : SV_POSITION; float2 uv : TEXCOORD0; fixed4 color : COLOR; float worldY : TEXCOORD1; };
             Output Vertex(Input input)
@@ -36,6 +38,7 @@ Shader "ArcaneBrigade/MarketEmergence"
             {
                 clip(input.worldY - _FloorY);
                 fixed4 color = tex2D(_MainTex, input.uv) * input.color;
+                color.rgb = lerp(color.rgb, fixed3(1,1,1), saturate(_Flash));
                 color.rgb *= color.a;
                 return color;
             }

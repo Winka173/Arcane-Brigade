@@ -41,8 +41,8 @@ namespace ArcaneBrigade
                 position.x = Mathf.Clamp(position.x, -bounds.x + 1.2f, bounds.x - 1.2f);
                 position.y = Mathf.Clamp(position.y, -bounds.y + 1.2f, bounds.y - 1.2f);
                 var child = new GameObject("DreamGarden_" + index); child.transform.SetParent(transform, false); child.transform.localPosition = position;
-                SpriteRenderer renderer = child.AddComponent<SpriteRenderer>(); renderer.sprite = art.EnvironmentProps[(index + 1) % 4];
-                float height = index % 3 == 0 ? 0.95f : 0.58f;
+                SpriteRenderer renderer = child.AddComponent<SpriteRenderer>(); renderer.sprite = art.DreamGardenProps != null && art.DreamGardenProps.Length == 4 ? art.DreamGardenProps[index % 4] : art.EnvironmentProps[(index + 1) % 4];
+                float height = index % 3 == 0 ? 1.25f : 0.82f;
                 child.transform.localScale = Vector3.one * (height / renderer.sprite.bounds.size.y);
                 renderer.sortingOrder = 1000 - Mathf.RoundToInt(position.y * 12); props.Add(renderer);
                 child.AddComponent<StaticGroundShadow>();
@@ -65,7 +65,7 @@ namespace ArcaneBrigade
             Color target = Color.Lerp(Palettes[theme], new Color(0.28f, 0.17f, 0.37f), owner.Shop != null && owner.Shop.Special ? 0.55f : 0);
             palette = Color.Lerp(palette, target, reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * 0.8f));
             if (floor != null) { floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.28f); }
-            foreach (SpriteRenderer prop in props) prop.color = Color.Lerp(Color.white, palette, 0.12f);
+            foreach (SpriteRenderer prop in props) prop.color = Color.Lerp(new Color(0.58f, 0.62f, 0.65f), palette, 0.42f);
         }
 
         public static void CreateMarketFloor(Transform parent, bool special)

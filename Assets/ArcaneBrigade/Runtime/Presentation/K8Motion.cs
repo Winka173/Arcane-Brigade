@@ -39,6 +39,16 @@ namespace ArcaneBrigade
 
         public static int BodyFrame(UnitState unit, float time, bool reduced)
         {
+            if (unit.Faction == Faction.Enemy && unit.Definition.AnimationFrames.Length >= 4 && !unit.Definition.IsBoss)
+            {
+                if (reduced) return 0;
+                float attackAge = time - unit.AttackStarted;
+                float prepare = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;
+                if (time - unit.LastHit < 0.18f) return 3;
+                if (unit.TelegraphUntil > time || unit.ContactImpactAt > time || unit.PendingAttack && attackAge < prepare) return 1;
+                if (Attacking(unit, time)) return 2;
+                return 0;
+            }
             if (!unit.Definition.IsBoss)
                 return UnitVisual.AnimationFrame(time, unit.Id, (unit.Position - unit.PreviousPosition).sqrMagnitude > 0.000001f, reduced);
             float windup = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;

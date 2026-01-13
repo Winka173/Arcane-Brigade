@@ -157,6 +157,7 @@ namespace ArcaneBrigade
             if (snapshot == null || snapshot.Version != catalog.Version || string.IsNullOrEmpty(snapshot.RunId) || catalog.Unit(snapshot.ChampionId) == null || snapshot.Wave < 1 || snapshot.Gold < 0 || snapshot.Eggs < 0 || !float.IsFinite(snapshot.Health) || snapshot.Health < 0 || !float.IsFinite(snapshot.CombatSeconds) || snapshot.CombatSeconds < 0 || !Enum.IsDefined(typeof(SessionPhase), snapshot.Phase)) throw new InvalidOperationException("Invalid or incompatible run save");
             if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
             if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
+            if (snapshot.NewRecruitsThisWave < 0 || snapshot.NewRecruitsThisWave > 3) throw new InvalidOperationException("Invalid wave recruitment quota");
             var rosterKeys = new HashSet<string>();
             if (snapshot.Contributions != null)
             {
@@ -274,6 +275,7 @@ namespace ArcaneBrigade
             CombatCatalog.ExtendedLoot = catalog.LootRevision > 0;
             CombatCatalog.Luck = Bonus(ItemEffect.Luck);
             CombatCatalog.TreasureDetection = Bonus(ItemEffect.TreasureDetection);
+            CombatCatalog.ChestOpenRadius = catalog.Arena.ChestOpenRadius * K10StatRules.Factor(Bonus(ItemEffect.ChestReach), 0.5f, 4);
             var procs = new List<ActiveProc>();
             foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
             {
@@ -366,7 +368,7 @@ namespace ArcaneBrigade
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
             if (source.IsBoss) unit.Health *= 4f;
             unit.Health *= 1 + Mathf.Max(0, State.Wave - 3) * 0.06f;
-            unit.Speed *= Mathf.Min(1.6f, 1f + (State.Wave - 1) * 0.018f);
+            unit.Speed *= 1 + 1.5f * (1 - Mathf.Exp(-(State.Wave - 1) * 0.015f));
             unit.ContactDamage = Mathf.Min(14f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min(source.IsBoss ? 26f : 14f, source.Weapon.Damage + State.Wave * 0.35f);
             if (catalog.StatRevision > 0)
@@ -425,6 +427,7 @@ namespace ArcaneBrigade
         {
             if (State.Phase != SessionPhase.Victory) return;
             State.Endless = true;
+            State.NewRecruitsThisWave = 0;
             State.ParentRunId = State.RunId;
             State.RunId = Guid.NewGuid().ToString("N");
             State.StartHall = State.Wave + 1;
@@ -565,6 +568,9 @@ namespace ArcaneBrigade
             }
         }
 
+        public float StagePriceFactor => 1 + 0.07f * Mathf.Max(0, State.Wave - 1);
+        public float SpecialStagePriceFactor => 1 + 0.035f * Mathf.Max(0, State.Wave - 1);
+
         private void RollShop(bool rollSpecial = false)
         {
             State.Offers.Clear();
@@ -580,7 +586,7 @@ namespace ArcaneBrigade
                 var available = units.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id) || newRecruit);
                 bool recruit = available.Count > 0 && (items.Count == 0 || index == 0);
                 int choice = recruit ? Next(ref State.ShopRandom, available.Count) : WeightedItem(items);
-                int basePrice = recruit ? available[choice].Price : Mathf.CeilToInt(items[choice].Price * (1 + (int)items[choice].Rarity * 0.4f));
+                int basePrice = Mathf.CeilToInt((recruit ? available[choice].Price : items[choice].Price * (1 + (int)items[choice].Rarity * 0.4f)) * StagePriceFactor);
                 float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
                 State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : items[choice].Id, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
@@ -612,11 +618,11 @@ namespace ArcaneBrigade
                 if (index == 0 && recruits.Count > 0)
                 {
                     UnitDefinition recruit = recruits[Next(ref State.ShopRandom, recruits.Count)];
-                    State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Companion, Id = recruit.Id, Price = 4, Currency = ShopCurrency.Eggs });
+                    State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Companion, Id = recruit.Id, Price = Mathf.CeilToInt(4 * SpecialStagePriceFactor), Currency = ShopCurrency.Eggs });
                     continue;
                 }
                 ItemDefinition item = specialItems[WeightedItem(specialItems)];
-                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, Mathf.CeilToInt((catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice) * (1 + (int)item.Rarity * 0.25f))), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
+                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, Mathf.CeilToInt((catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice) * (1 + (int)item.Rarity * 0.25f) * SpecialStagePriceFactor)), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
             }
         }
 

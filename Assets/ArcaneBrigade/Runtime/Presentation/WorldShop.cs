@@ -38,6 +38,19 @@ namespace ArcaneBrigade
         private int displayedWave = -1;
         private bool displayedSpecial;
         private MarketLifecycle lifecycle;
+        private int previewToken = -1;
+        private int previewReceipt = -1;
+        private string bondPreview = "";
+        public string BondPreview(ShopOffer offer)
+        {
+            if (offer == null) return "";
+            if (previewToken != offer.Token || previewReceipt != owner.Session.State.NextReceipt)
+            {
+                previewToken = offer.Token; previewReceipt = owner.Session.State.NextReceipt;
+                bondPreview = ShortOfferCopy.BondPreview(owner.Session, owner.Content, offer);
+            }
+            return bondPreview;
+        }
         private bool leavingSpecial;
         private float specialDepartureAt;
         public bool Animating => lifecycle != null && lifecycle.Busy;
@@ -112,7 +125,12 @@ namespace ArcaneBrigade
                 station.Marker.localScale = Vector3.one * (1 + station.Focus * (reduced ? 0.07f : 0.18f) + bounce);
                 station.Marker.localPosition = station.Position + new Vector2(shake, reduced ? 0 : station.Focus * 0.08f + Mathf.Max(0, bounce));
                 foreach (SpriteRenderer renderer in station.Renderers)
-                    if (renderer.gameObject.name != "ShopFloorContact") renderer.color = Color.Lerp(station.Offer != null && station.Offer.Sold ? new Color(0.45f, 0.45f, 0.45f, 0.7f) : Color.white, new Color(1, 0.36f, 0.3f), denied);
+                    if (renderer.gameObject.name != "ShopFloorContact")
+                    {
+                        float opacity = renderer.color.a;
+                        Color tint = Color.Lerp(station.Offer != null && station.Offer.Sold ? new Color(0.45f, 0.45f, 0.45f, 0.7f) : Color.white, new Color(1, 0.36f, 0.3f), denied);
+                        tint.a = opacity; renderer.color = tint;
+                    }
             }
         }
         public bool Interact()
@@ -137,7 +155,7 @@ namespace ArcaneBrigade
             {
                 if (Special)
                 {
-                    leavingSpecial = true; specialDepartureAt = owner.PresentationClock + 0.8f;
+                    leavingSpecial = true; specialDepartureAt = owner.PresentationClock + MarketMotion.HandoffDuration;
                     Depart(); dialogue.Speak(true, MerchantMoment.Leave, owner.PresentationClock); return true;
                 }
                 bool exit = owner.BeginHallExit(position);
@@ -209,7 +227,7 @@ namespace ArcaneBrigade
             merchant.SetMerchantMood(Special);
             if (merchantEntrance)
             {
-                merchant.Arrive(0); MerchantEntranceEffect.Play(owner, scenery.transform, merchant.transform.localPosition, Special);
+                merchant.Arrive(MarketMotion.MerchantArrivalDelay); MerchantEntranceEffect.Play(owner, scenery.transform, merchant.transform.localPosition, Special);
                 dialogue.ResetFocus(); dialogue.Speak(Special, MerchantMoment.Enter, owner.PresentationClock);
                 CheckpointAudio.PlayInterface(20);
             }
@@ -222,8 +240,9 @@ namespace ArcaneBrigade
                 Sprite[] frames = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).AnimationFrames : null;
                 Station station = AddStation(new Vector2((index - 1) * 3f, 0.5f), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
+                if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
                 station.Description = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Description : catalog.Item(offer.Id).Description;
-                if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(0.35f + index * 0.09f, scenery.transform.TransformPoint(MerchantCenter));
+                if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(MarketMotion.StockArrivalDelay + index * MarketMotion.StockStagger, scenery.transform.TransformPoint(MerchantCenter));
                 if (offer.Currency == ShopCurrency.Health) station.Description += " · Costs current HP, not maximum HP; must leave at least 1 HP.";
                 if (!offer.Sold && offer.Kind == OfferKind.Item && catalog.Item(offer.Id).Rarity != ItemRarity.Common)
                 {
@@ -236,6 +255,9 @@ namespace ArcaneBrigade
             Station reroll = AddStation(new Vector2(-4.8f, 2.8f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Replace the three displayed wares. Cost increases each time.";
             AddStation(new Vector2(0, -4.3f), "NEXT HALL", art.HallDoor[0], art.HallDoor, false).Description = "Head down to the next wave.";
+            if (merchantEntrance)
+                foreach (Station fixture in stations)
+                    if (fixture.Offer == null && fixture.Actor != null) fixture.Actor.Arrive(0.45f);
             if (!Special && state.Wave >= 4)
                 for (int index = 0; index < catalog.Recipes.Length; index++)
                 {
@@ -249,8 +271,9 @@ namespace ArcaneBrigade
         public void Depart()
         {
             if (lifecycle != null) lifecycle.Depart();
+            int stock = 0;
             foreach (ShopDisplayActor actor in scenery.GetComponentsInChildren<ShopDisplayActor>())
-                if (actor.enabled) actor.Depart(scenery.transform.TransformPoint(MerchantCenter));
+                if (actor.enabled) actor.Depart(scenery.transform.TransformPoint(MerchantCenter), actor == merchant ? MarketMotion.MerchantDepartureDelay : stock++ * 0.07f);
             Nearby = null;
         }
         public void CancelDeparture()
@@ -320,6 +343,7 @@ namespace ArcaneBrigade
             var marker = new GameObject(action); marker.transform.SetParent(scenery.transform, false); marker.transform.localPosition = position;
             if (pedestal) AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0).enabled = false;
             ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
+            if (!pedestal && actor != null) actor.SetFloorFixture();
             ShopFloorShadow.Create(marker.transform, new Vector2(0, pedestal ? -0.48f : action == "NEXT HALL" ? -0.72f : -0.56f), pedestal ? 1.55f : 1.65f, 0.7f);
             var station = new Station { Position = position, Action = action, Marker = marker.transform, Icon = sprite, Actor = actor, Renderers = marker.GetComponentsInChildren<SpriteRenderer>() };
             stations.Add(station); return station;
@@ -340,7 +364,6 @@ namespace ArcaneBrigade
                 if (station.Offer != null && station.Offer.Sold || station.Action == "NEXT HALL" || station.Action == "GOLD SHOP" || station.Action == "DREAM ALTAR") continue;
                 Vector3 screen = camera.WorldToScreenPoint(station.Marker.position + Vector3.down * (station.Action == "REROLL" ? 0.83f : 0.65f));
                 Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
-                point.x -= station.Focus * 84;
                 float scale = 1 + station.Focus * 0.09f;
                 Rect ticket = new Rect(point.x - 59 * scale, point.y - 20 * scale, 118 * scale, 40 * scale);
                 bool denied = Time.time < station.DeniedUntil;
@@ -348,6 +371,14 @@ namespace ArcaneBrigade
                 Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? owner.Content.HeartSprite : owner.Content.Arena.Coin;
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 GUI.Label(new Rect(ticket.x + 44, ticket.y + 3, ticket.width - 50, 34), station.Price.ToString(), priceStyle);
+                if (station.Offer != null)
+                {
+                    Rect category = new Rect(point.x - 45, ticket.y - 29, 90, 26);
+                    Color previous = GUI.color;
+                    GUI.color = station.Offer.Kind == OfferKind.Companion ? ArcadeSkin.Teal : ArcadeSkin.Cream;
+                    GUI.DrawTexture(category, Texture2D.whiteTexture); GUI.color = previous;
+                    GUI.Label(category, station.Offer.Kind == OfferKind.Companion ? "ALLY" : "RELIC", priceStyle);
+                }
                 if (denied) GUI.Label(new Rect(point.x - 140, point.y + 31, 280, 35), station.Denial, denialStyle);
             }
         }

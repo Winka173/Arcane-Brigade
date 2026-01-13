@@ -77,6 +77,7 @@ namespace ArcaneBrigade
                 title.alignment = TextAnchor.MiddleCenter;
                 button = new GUIStyle(GUI.skin.button) { fontSize = 22, font = ArcadeTypography.Heading };
                 numeric = ArcadeTypography.Style(20, false, true);
+                numeric.alignment = TextAnchor.MiddleCenter;
             }
             RunSession session = owner.Session;
             RunSnapshot state = session.State;
@@ -94,11 +95,11 @@ namespace ArcaneBrigade
             if (lastEggs != eggs) { eggsChanged = simulation.VisualElapsed; lastEggs = eggs; }
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
-            Sprite(new Rect(35, 28, 62, 62), owner.Content.Unit(state.ChampionId).Body);
+            Sprite(new Rect(35, 20, 62, 62), owner.Content.Unit(state.ChampionId).Body);
             ArcadeSkin.Line(new Rect(105, 36, 230, 30), new Color(0.06f, 0.07f, 0.12f, 0.85f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(1f, 0.68f, 0.28f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(0.94f, 0.24f, 0.36f));
-            GUI.Label(new Rect(135, 36, 200, 32), Mathf.CeilToInt(health) + " / " + maximum.ToString("0"), numeric);
+            GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
             if (owner.Content.HeroRevision > 0 && state.Phase == SessionPhase.Combat)
             {
                 float required = simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
@@ -108,9 +109,9 @@ namespace ArcaneBrigade
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
             float eggPulse = LivingUI.Press(simulation.VisualElapsed - eggsChanged, PresentationSettings.ReducedMotion) * 4;
             Sprite(new Rect(40 - goldPulse, 100 - goldPulse, 32 + goldPulse * 2, 32 + goldPulse * 2), owner.Content.Arena.Coin);
-            GUI.Label(new Rect(85, 102, 240, 30), gold.ToString(), numeric);
+            GUI.Label(new Rect(80, 100, 100, 32), gold.ToString(), numeric);
             Sprite(new Rect(40 - eggPulse, 140 - eggPulse, 32 + eggPulse * 2, 32 + eggPulse * 2), owner.Content.EggSprite);
-            GUI.Label(new Rect(85, 142, 240, 30), eggs.ToString(), numeric);
+            GUI.Label(new Rect(80, 140, 100, 32), eggs.ToString(), numeric);
             GUI.Label(state.Phase == SessionPhase.Shop ? new Rect(360, 28, 300, 42) : new Rect(810, 28, 300, 42), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
                 GUI.Label(new Rect(870, 74, 210, 32), CombatTimerCaption(simulation.IsBossOvertime, simulation.WaveDuration - simulation.Elapsed), numeric);
@@ -120,10 +121,10 @@ namespace ArcaneBrigade
                 if (owner.Content.LootRevision > 0 && PresentationSettings.LootIndicators) lootIndicators.Draw(simulation, owner.Content, camera, small);
                 if (simulation.Boss != null && simulation.Boss.Alive)
                 {
-                    Sprite(new Rect(360, 941, 48, 52), simulation.Boss.Definition.Body);
                     Fill(new Rect(420, 950, 1080, 38), Panel);
                     Fill(new Rect(425, 955, 1070 * simulation.Boss.Health / simulation.Boss.Definition.Health, 28), new Color(0.8f, 0.26f, 0.3f));
-                    GUI.Label(new Rect(810, 950, 440, 35), Mathf.CeilToInt(simulation.Boss.Health) + " / " + simulation.Boss.Definition.Health.ToString("0"), numeric);
+                    Sprite(new Rect(436, 954, 32, 30), simulation.Boss.Definition.Body);
+                    GUI.Label(new Rect(425, 950, 1070, 38), Mathf.CeilToInt(simulation.Boss.Health) + " / " + Mathf.CeilToInt(simulation.Boss.Definition.Health), numeric);
                 }
                 if (simulation.Phase == RunPhase.Paused)
                 {
@@ -191,14 +192,16 @@ namespace ArcaneBrigade
                 }
                 if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; }
                 string description = station.Offer != null ? shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                string synergy = shop.BondPreview(station.Offer);
+                if (!string.IsNullOrEmpty(synergy)) description = synergy + "\n" + description;
                 float contentHeight = GlossaryUI.Height(description, small, 670) + 8;
                 Rect panel = ShopTooltipBounds(contentHeight);
-                Fill(panel, Panel);
+                Fill(panel, string.IsNullOrEmpty(synergy) ? Panel : Color.Lerp(Panel, ArcadeSkin.Teal, 0.28f));
                 GUI.Label(new Rect(panel.x + 24, panel.y + 16, 690, 38), shop.DisplayName(station), text);
                 shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, 710, panel.height - 85), shopScroll, new Rect(0, 0, 675, contentHeight));
                 GlossaryUI.Text(new Rect(0, 0, 670, contentHeight), description, small);
                 GUI.EndScrollView();
-                if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · MUA" : RunUIHints.Device == RunUIDevice.Touch ? "MUA" : "Space · MUA", button)) shop.Interact();
+                if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · BUY" : RunUIHints.Device == RunUIDevice.Touch ? "BUY" : "Space · BUY", button)) shop.Interact();
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }

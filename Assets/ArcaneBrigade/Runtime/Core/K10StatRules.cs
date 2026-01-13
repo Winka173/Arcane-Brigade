@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         public static bool Percentage(ItemEffect effect) => effect != ItemEffect.CollisionDamage && effect != ItemEffect.MeleeDamage && effect != ItemEffect.RangedDamage && effect != ItemEffect.Income && effect != ItemEffect.BulletPierce && effect != ItemEffect.BulletSplit && effect != ItemEffect.HeartHealing;
         public static string Name(ItemEffect effect)
         {
+            if (effect == ItemEffect.ChestReach) return "Chest opening radius";
             int index = (int)effect - (int)ItemEffect.ScoreMultiplier;
             return index >= 0 && index < Names.Length ? Names[index] : "Invalid effect";
         }

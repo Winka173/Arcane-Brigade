@@ -21,6 +21,8 @@ namespace ArcaneBrigade
         private bool dreamMerchant;
         private bool inspecting;
         private bool speaking;
+        private bool companionDisplay;
+        private bool floorFixture;
         private ArenaController owner;
         private GroundShadow grounded;
         public void Configure(SpriteRenderer renderer, Sprite[] animation, float bodyHeight, ArenaController controller, float offset)
@@ -43,15 +45,25 @@ namespace ArcaneBrigade
         private void OnDestroy() { if (emergence != null) Destroy(emergence); }
         public void Inspect(bool active) { inspecting = active; }
         public void Speak(bool active) { speaking = active; }
+        public void SetCompanionDisplay(bool companion)
+        {
+            companionDisplay = companion;
+            if (companion) { height *= 1.3f; origin += Vector3.up * 0.12f; }
+        }
+        public void SetFloorFixture()
+        {
+            floorFixture = true;
+            emergence = new Material(Resources.Load<Shader>("MarketEmergence")); view.sharedMaterial = emergence;
+        }
         public void Arrive(float delay) { Arrive(delay, transform.parent.TransformPoint(origin + Vector3.up * 2)); }
         public void Arrive(float delay, Vector3 launch)
         {
             departing = false; arrivalStarted = owner.PresentationClock; arrivalDelay = delay;
             launchOffset = transform.parent.InverseTransformPoint(launch) - origin;
         }
-        public void Depart(Vector3 destination)
+        public void Depart(Vector3 destination, float delay = 0)
         {
-            departing = true; arrivalStarted = owner.PresentationClock; arrivalDelay = 0;
+            departing = true; arrivalStarted = owner.PresentationClock; arrivalDelay = delay;
             launchOffset = transform.parent.InverseTransformPoint(destination) - origin;
         }
         private void Update()
@@ -71,20 +83,22 @@ namespace ArcaneBrigade
                 view.sprite = frames[frame];
             }
             if (view.sprite == null) return;
-            float breathing = reduced ? 0 : Mathf.Sin(time * 2.5f) * 0.04f;
+            float breathing = reduced ? 0 : Mathf.Sin(time * (companionDisplay ? 2.1f : 2.5f)) * (companionDisplay ? 0.065f : 0.04f);
             if (speaking && !reduced) breathing += Mathf.Sin(owner.PresentationClock * 19) * 0.012f;
             float scale = Mathf.Min(height / view.sprite.bounds.size.y, height * 1.2f / view.sprite.bounds.size.x);
             float age = owner.PresentationClock - arrivalStarted - arrivalDelay;
-            float arrival = Mathf.Clamp01(age / (merchantActor ? 0.8f : 0.55f));
+            float duration = merchantActor ? 0.8f : 0.55f;
+            float arrival = Mathf.Clamp01(age / duration);
             float travel = departing ? arrival : 1 - arrival;
             Vector3 displacement;
-            if (merchantActor) displacement = Vector3.up * (dreamMerchant ? -height * Mathf.SmoothStep(0, 1, travel) : 6 * travel * travel);
+            if (floorFixture) displacement = Vector3.down * height * Mathf.SmoothStep(0, 1, travel);
+            else if (merchantActor) displacement = Vector3.up * (dreamMerchant ? -height * Mathf.SmoothStep(0, 1, travel) : 6 * travel * travel);
             else displacement = launchOffset * Mathf.SmoothStep(0, 1, travel) + Vector3.up * Mathf.Sin(arrival * Mathf.PI) * 1.2f;
-            float settle = !departing && !reduced ? Mathf.Sin(Mathf.Clamp01((age - 0.72f) / 0.22f) * Mathf.PI) * (merchantActor ? 0.12f : 0) : 0;
+            float settle = !departing && !reduced ? MarketMotion.Settle(age, duration, merchantActor ? 0.15f : 0.09f) : 0;
             if (reduced) displacement = Vector3.zero;
             transform.localScale = new Vector3(scale * (1 - breathing * 0.4f + settle), scale * (1 + breathing - settle), 1);
-            transform.localPosition = origin + displacement + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * 0.035f + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0), 0);
-            Color tint = view.color; tint.a = age < 0 ? 0 : reduced && departing ? 1 - travel : 1; view.color = tint;
+            transform.localPosition = origin + displacement + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * (merchantActor || companionDisplay ? 0.035f : 0.11f) + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0), 0);
+            Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : 1; view.color = tint;
             transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
             view.sortingOrder = 1000 - Mathf.RoundToInt(transform.position.y * 12);
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(view.sprite); }

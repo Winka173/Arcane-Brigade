@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         public Sprite[] RerollMachine;
         public Sprite[] HallDoor;
         public Sprite[] EnvironmentProps;
+        public Sprite[] DreamGardenProps;
         public Sprite[] MarketDecor;
         public Sprite[] MarketRugs;
     }

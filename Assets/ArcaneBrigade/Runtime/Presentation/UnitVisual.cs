@@ -27,8 +27,10 @@ namespace ArcaneBrigade
         private BodyPuppet puppet;
         private GroundShadow grounded;
         private GroundShadow groundedWeapon;
+        private Material entranceMaterial;
         private float lastDisplayTime;
         private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
+        private SpriteRenderer tierCrest;
         public void BeginArrival(Vector2 origin) { arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount; }
         public bool ReducedMotion { get; set; }
         public UnitState State => state;
@@ -126,7 +128,13 @@ namespace ArcaneBrigade
             if (flashProperties == null) flashProperties = new MaterialPropertyBlock();
             body.sprite = unit.Definition.Body;
             Material flash = Resources.Load<Material>("UnitFlash");
-            if (flash != null) body.sharedMaterial = flash;
+            if (entranceMaterial != null) { Destroy(entranceMaterial); entranceMaterial = null; }
+            if (unit.Definition.IsBoss && unit.Definition.BossPattern % 2 != 0)
+            {
+                entranceMaterial = new Material(Resources.Load<Shader>("MarketEmergence"));
+                body.sharedMaterial = entranceMaterial;
+            }
+            if (flash != null && entranceMaterial == null) body.sharedMaterial = flash;
             shadow.color = new Color(0.015f, 0.025f, 0.045f, 0.38f);
             shadowColor = shadow.color;
             hand.sprite = catalog.Hand;
@@ -196,6 +204,10 @@ namespace ArcaneBrigade
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+            float entrance = state.Definition.IsBoss ? Mathf.Clamp01((state.EntranceUntil - simulationTime) / 1.2f) : 0;
+            if (!ReducedMotion && entrance > 0)
+                transform.position += Vector3.up * (state.Definition.BossPattern % 2 == 0 ? 6 * entrance * entrance : -state.Definition.BodyHeight * entrance);
+            if (entranceMaterial != null) entranceMaterial.SetFloat("_FloorY", !ReducedMotion && entrance > 0 ? state.Position.y - state.Definition.BodyHeight * 0.5f : -10000);
             if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount) { arrivalAge += motionDelta; arrivalFrame = Time.frameCount; }
             float arrival = arrivalAge / 0.9f;
             if (arrival >= 0 && arrival < 1)
@@ -223,7 +235,8 @@ namespace ArcaneBrigade
             body.flipX = facing.x < -0.1f;
             float movement = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
             bool pursuit = state.TravelMode == CompanionTravelMode.Pursuit;
-            float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * (pursuit ? 17f : 13f) + state.Id) * (pursuit ? 0.035f : 0.025f) * movement;
+            var profile = new SpeciesMotionProfile(state.Definition);
+            float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * profile.GaitCadence * (pursuit ? 1.45f : 1) + state.Id) * profile.GaitAmplitude * (pursuit ? 1.3f : 1) * movement;
             float attackLean = attacking ? pose.Lean : 0;
             if (pursuit && !attacking && !ReducedMotion) attackLean += Mathf.Clamp(state.Velocity.x, -1, 1) * (facing.x < 0 ? -1 : 1) * -7;
             float impactSquash = attacking ? pose.Squash : 0;
@@ -247,8 +260,8 @@ namespace ArcaneBrigade
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
-            Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f);
-            grounded.Display(body.sprite, ground, height * 0.72f, arrivalAge < 0.4f ? 0.4f : 0);
+            Vector2 ground = new Vector2(state.Position.x, state.Position.y - height * 0.5f);
+            grounded.Display(body.sprite, ground, height * 0.72f, entrance > 0 ? entrance * 6 : arrivalAge < 0.4f ? 0.4f : 0);
             if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
             if (weapon.enabled && grip.gameObject.activeSelf) groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
             else groundedWeapon.Hide();
@@ -313,6 +326,16 @@ namespace ArcaneBrigade
         private void DisplayTier(int order, float height)
         {
             int tier = Mathf.Clamp(state.Definition.CombatTier, 1, 3);
+            bool showCrest = state.Alive && state.Faction == Faction.Companion && tier > 1;
+            if (showCrest && tierCrest == null) { tierCrest = CreateSprite("TierChestCrest", transform); tierCrest.sprite = K8Motion.TierStar(); }
+            if (tierCrest != null)
+            {
+                tierCrest.enabled = showCrest; tierCrest.sortingOrder = order + 4;
+                tierCrest.color = tier == 3 ? new Color(1, 0.77f, 0.25f) : new Color(0.7f, 0.93f, 1);
+                tierCrest.transform.localScale = Vector3.one * height * (tier == 3 ? 0.16f : 0.12f);
+                tierCrest.transform.localPosition = body.transform.localPosition + Vector3.down * height * 0.17f;
+                tierCrest.transform.localRotation = Quaternion.Euler(0, 0, tier == 2 ? 45 : 0);
+            }
             float top = body.transform.localPosition.y + body.sprite.bounds.max.y * body.transform.localScale.y;
             for (int index = 0; index < tierStars.Length; index++)
             {
@@ -367,6 +390,7 @@ namespace ArcaneBrigade
 
         private void OnDestroy()
         {
+            if (entranceMaterial != null) Destroy(entranceMaterial);
             if (bowMaterial != null) Destroy(bowMaterial);
             if (exposedMaterial != null) Destroy(exposedMaterial);
         }
@@ -378,6 +402,7 @@ namespace ArcaneBrigade
             if (groundedWeapon != null) groundedWeapon.Fade(alpha);
             if (puppet != null) puppet.Fade(alpha);
             if (tierBell != null) Fade(tierBell, alpha);
+            if (tierCrest != null) Fade(tierCrest, alpha);
             foreach (SpriteRenderer star in tierStars) if (star != null) Fade(star, alpha);
             foreach (SpriteRenderer pip in stampPips) if (pip != null) Fade(pip, alpha);
             foreach (LineRenderer corner in exposedCorners)

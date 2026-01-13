@@ -48,5 +48,5 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
-  Material: 0
+  Material: 2
   Motif: 0

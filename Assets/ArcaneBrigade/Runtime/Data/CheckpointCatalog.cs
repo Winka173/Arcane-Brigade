@@ -32,6 +32,7 @@ namespace ArcaneBrigade
         public int EnemyBudget = 18;
         public float SpawnSafetyRadius = 4f;
         public float CompanionLeash = 2.2f;
+        public float ChestOpenRadius = 0.85f;
         public float CompanionRoamInnerRadius = 0.9f;
         public float CompanionRoamOuterRadius = 1.9f;
         public float CompanionPatrolSpeed = 1.4f;

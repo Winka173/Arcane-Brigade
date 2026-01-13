@@ -124,6 +124,7 @@ namespace ArcaneBrigade
             ItemEffect.ArmorCorrection => "Multiplies armor bonuses before incoming-damage formulas. Not a directly added damage-immunity percentage.",
             ItemEffect.HealCorrection => "Multiplies continuous regeneration when compiling combat. Does not automatically multiply hearts, all procs or recorded healing.",
             ItemEffect.CollisionFrequency => "Divides outgoing collision-damage cooldown by 1+bonus, bounded to 0.15–4 seconds. Does not shorten enemy contact cooldown.",
+            ItemEffect.ChestReach => "Scales the distance needed to open a chest, from 0.5 to 4 times its base radius. Separate from Treasure Detection (frequency), chest quality and loose-loot attraction. Chests stay on the ground rather than flying into you.",
             _ => "Inspect the modifier's scope and source in the ledger; explanatory text grants no hidden bonuses."
         };
 

@@ -68,6 +68,11 @@ MonoBehaviour:
   - {fileID: -1245854615, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 1084724986, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 1007779352, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  DreamGardenProps:
+  - {fileID: 1589783128, guid: 20e1196875eb34c46bdb241fcf804cb1, type: 3}
+  - {fileID: -1054556068, guid: 20e1196875eb34c46bdb241fcf804cb1, type: 3}
+  - {fileID: -871196832, guid: 20e1196875eb34c46bdb241fcf804cb1, type: 3}
+  - {fileID: -392472235, guid: 20e1196875eb34c46bdb241fcf804cb1, type: 3}
   MarketDecor:
   - {fileID: 1008449346, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   - {fileID: -676605501, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}

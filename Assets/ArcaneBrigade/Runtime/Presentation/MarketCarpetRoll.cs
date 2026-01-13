@@ -55,11 +55,12 @@ namespace ArcaneBrigade
                 {
                     int index = row * (Columns + 1) + column;
                     float original = bounds.min.y + bounds.size.y * row / Rows;
-                    float angle = Mathf.Max(0, original - front) / radius;
+                    float unrolledDistance = Mathf.Max(0, original - front);
+                    float angle = Mathf.Min(Mathf.PI, unrolledDistance / radius);
                     float rise = angle > 0 ? radius * (1 - Mathf.Cos(angle)) : 0;
                     vertices[index] = new Vector3(bounds.min.x + bounds.size.x * column / Columns, angle > 0 ? front + Mathf.Sin(angle) * radius + rise * 0.65f : original, -rise);
                     float shade = angle > 0 ? 0.7f + Mathf.Cos(angle) * 0.25f : 1;
-                    colors[index] = new Color(tint.r * shade, tint.g * shade, tint.b * shade, opacity);
+                    colors[index] = new Color(tint.r * shade, tint.g * shade, tint.b * shade, unrolledDistance > radius * Mathf.PI ? 0 : opacity);
                 }
             mesh.vertices = vertices; mesh.colors = colors; mesh.RecalculateBounds();
         }

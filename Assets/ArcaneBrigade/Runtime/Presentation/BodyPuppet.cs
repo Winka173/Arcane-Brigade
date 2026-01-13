@@ -27,7 +27,7 @@ namespace ArcaneBrigade
             int legFrame = UnitVisual.AnimationFrame(time * (state.TravelMode == CompanionTravelMode.Pursuit ? 1.45f : 1), state.Id, moving, reduced);
             int idleFrame = reacting ? 0 : UnitVisual.AnimationFrame(time, state.Id, false, reduced);
             int headFrame = idleFrame == 1 ? 1 : legFrame;
-            if (state.Definition.IsBoss) headFrame = legFrame = K8Motion.BodyFrame(state, time, reduced);
+            if (state.Faction == Faction.Enemy) headFrame = legFrame = K8Motion.BodyFrame(state, time, reduced);
             Parts head = GetParts(state.Definition.AnimationFrames[headFrame]);
             Parts feet = GetParts(state.Definition.AnimationFrames[legFrame]);
             upper.sprite = head.Upper; lower.sprite = feet.Lower;
@@ -38,7 +38,9 @@ namespace ArcaneBrigade
                 upper.transform.localPosition = new Vector3(-head.UpperOffset.x, head.UpperOffset.y, 0);
                 lower.transform.localPosition = new Vector3(-feet.LowerOffset.x, feet.LowerOffset.y, 0);
             }
-            float breathing = reduced || reacting ? 0 : Mathf.Sin(time * 2.8f + state.Id * 0.8f) * 0.025f;
+            var profile = new SpeciesMotionProfile(state.Definition);
+            float cadence = profile.IdleCadence;
+            float breathing = reduced || reacting ? 0 : Mathf.Sin(time * cadence + state.Id * 0.8f) * (state.Definition.Material == BodyMaterial.Metal ? 0.012f : 0.025f);
             upper.transform.localScale = new Vector3(1 - breathing * 0.3f, 1 + breathing, 1);
             upper.transform.localPosition += new Vector3(reduced || reacting ? 0 : Mathf.Sin(time * 1.8f + state.Id) * 0.012f, breathing * 0.18f, 0);
             float windup = state.AttackWindup > 0 ? state.AttackWindup : state.Definition.Weapon.Windup;
@@ -47,9 +49,11 @@ namespace ArcaneBrigade
             float supportAge = time - state.LastSupport;
             float support = reduced || reacting || supportAge < 0 || supportAge >= 0.5f ? 0 : Mathf.Sin(supportAge / 0.5f * Mathf.PI);
             upper.transform.localPosition += Vector3.up * support * 0.035f;
-            float turn = reduced || reacting ? 0 : Mathf.Sin(time * (moving ? 7 : 2.2f) + state.Id) * (moving ? 1.6f : 1.4f);
+            float turn = reduced || reacting ? 0 : Mathf.Sin(time * (moving ? profile.GaitCadence * 0.6f : cadence) + state.Id) * profile.HeadTurn;
             upper.transform.localRotation = Quaternion.Euler(0, 0, turn + (pose.Lean * 0.25f + support * 4) * (reference.flipX ? -1 : 1));
-            lower.transform.localScale = Vector3.one;
+            float gait = reduced || !moving ? 0 : Mathf.Sin(time * profile.GaitCadence * (state.TravelMode == CompanionTravelMode.Pursuit ? 1.45f : 1) + state.Id) * profile.GaitAmplitude;
+            lower.transform.localScale = new Vector3(1 + gait, 1 - gait * 0.6f, 1);
+            lower.transform.localRotation = Quaternion.Euler(0, 0, state.Definition.Material == BodyMaterial.Glass || reduced ? 0 : gait * 28);
             upper.sharedMaterial = lower.sharedMaterial = reference.sharedMaterial;
             upper.color = lower.color = reference.color;
             upper.flipX = lower.flipX = reference.flipX;

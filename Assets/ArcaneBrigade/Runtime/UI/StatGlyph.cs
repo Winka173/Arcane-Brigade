@@ -16,7 +16,9 @@ namespace ArcaneBrigade
             var segments = new List<Vector4>();
             void Stroke(float startX, float startY, float endX, float endY) { segments.Add(new Vector4(startX, startY, endX, endY)); }
             Color tint = new Color(1, 0.86f, 0.45f);
-            if (effect == ItemEffect.Health || effect == ItemEffect.Heal || effect == ItemEffect.HeartHealing || effect == ItemEffect.HealthCorrection || effect == ItemEffect.HealCorrection)
+            if (effect == ItemEffect.ChestReach)
+            { Stroke(0.2f, 0.25f, 0.8f, 0.25f); Stroke(0.2f, 0.25f, 0.2f, 0.7f); Stroke(0.8f, 0.25f, 0.8f, 0.7f); Stroke(0.2f, 0.7f, 0.8f, 0.7f); Stroke(0.1f, 0.5f, 0.32f, 0.5f); Stroke(0.68f, 0.5f, 0.9f, 0.5f); Stroke(0.5f, 0.44f, 0.5f, 0.6f); }
+            else if (effect == ItemEffect.Health || effect == ItemEffect.Heal || effect == ItemEffect.HeartHealing || effect == ItemEffect.HealthCorrection || effect == ItemEffect.HealCorrection)
             { tint = new Color(1, 0.4f, 0.45f); Stroke(0.18f, 0.5f, 0.82f, 0.5f); Stroke(0.5f, 0.18f, 0.5f, 0.82f); }
             else if (effect == ItemEffect.BulletSplit || effect == ItemEffect.Projectiles)
             { Stroke(0.18f, 0.5f, 0.5f, 0.5f); for (int branch = -1; branch <= 1; branch++) Stroke(0.5f, 0.5f, 0.82f, 0.5f + branch * 0.26f); }

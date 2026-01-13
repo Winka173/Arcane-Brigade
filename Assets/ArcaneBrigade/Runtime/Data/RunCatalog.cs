@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection, ScoreMultiplier, CollisionDamage, MeleeDamage, RangedDamage, AttackRange, Dodge, Income, BulletPierce, BulletSplit, BulletBounce, BulletSize, BulletSpeed, BulletDistance, Knockback, BodySize, CompanionSize, EnemyCount, EnemyHealth, EnemySpeed, HeartHealing, ChestQuality, RecruitDiscount, RelicDiscount, ShopRarity, HealthCorrection, DamageCorrection, SpeedCorrection, ArmorCorrection, HealCorrection, CollisionFrequency }
+    public enum ItemEffect { Damage, AttackSpeed, Health, MoveSpeed, Pickup, Roam, Interceptor, Heal, Crit, Projectiles, Interest, Armor, ChampionDamage, CompanionDamage, CompanionAttackSpeed, Discount, Luck, TreasureDetection, ScoreMultiplier, CollisionDamage, MeleeDamage, RangedDamage, AttackRange, Dodge, Income, BulletPierce, BulletSplit, BulletBounce, BulletSize, BulletSpeed, BulletDistance, Knockback, BodySize, CompanionSize, EnemyCount, EnemyHealth, EnemySpeed, HeartHealing, ChestQuality, RecruitDiscount, RelicDiscount, ShopRarity, HealthCorrection, DamageCorrection, SpeedCorrection, ArmorCorrection, HealCorrection, CollisionFrequency, ChestReach }
     public enum ModifierScope { Team, Champion, Companions, Run }
     public enum ItemRarity { Common, Uncommon, Rare, Mythic }
     public enum StackPolicy { Additive, Unique }

@@ -246,7 +246,7 @@ namespace ArcaneBrigade
                 if (hallExitPending)
                 {
                     hallExitElapsed += Time.deltaTime;
-                    if (hallExitElapsed >= 0.9f) { hallExitPending = false; NextWave(); }
+                    if (hallExitElapsed >= MarketMotion.DepartureDuration) { hallExitPending = false; NextWave(); }
                 }
                 if (transitionRemaining > 0)
                 {
@@ -392,6 +392,7 @@ namespace ArcaneBrigade
         {
             if (pauseGate.Paused || hallExitPending || TransitionPending || session.State.Phase != SessionPhase.Shop) return false;
             hallExitPending = true; hallExitElapsed = 0; hallExitTarget = doorway + Vector2.down * 1.1f;
+            HallDepartureEffect.Play(this, doorway);
             if (Shop != null) Shop.Depart();
             CheckpointAudio.PlayInterface(20); return true;
         }

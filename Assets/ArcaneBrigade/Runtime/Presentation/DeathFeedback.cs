@@ -30,6 +30,7 @@ namespace ArcaneBrigade
             public float Weight;
             public bool Important;
             public BodyMaterial Material;
+            public int Identity;
         }
         private readonly List<Remnant> pool = new List<Remnant>();
         private Sprite fragmentSprite;
@@ -88,6 +89,7 @@ namespace ArcaneBrigade
             remnant.Weight = state.Definition.IsBoss ? 1.6f : state.Faction == Faction.Champion ? 1.3f : 1;
             remnant.Important = important;
             remnant.Material = state.Definition.Material;
+            remnant.Identity = state.Definition.BossPattern + state.Id % 3;
             remnant.Duration = state.Definition.IsBoss ? 1.1f : state.Faction == Faction.Champion ? 0.95f : 0.65f;
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
@@ -123,7 +125,8 @@ namespace ArcaneBrigade
             remnant.Root.position = (Vector3)(remnant.Position + remnant.Direction * (0.22f * Mathf.SmoothStep(0, 1, progress)));
             remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (kick * 0.17f * remnant.Weight - collapse * 0.09f);
             remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(1 + collapse * 0.3f, 1 - collapse * 0.75f, 1));
-            remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, remnant.Direction.x * (kick * 14 + collapse * 25));
+            float materialTilt = remnant.Material == BodyMaterial.Metal ? progress * 70 : remnant.Material == BodyMaterial.Fabric ? Mathf.Sin(progress * Mathf.PI) * 12 : kick * 14 + collapse * 25;
+            remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, (remnant.Direction.x < 0 ? -1 : 1) * materialTilt);
             remnant.Body.color = Color.Lerp(Color.white, remnant.BodyColor, Mathf.Clamp01(progress / 0.09f));
             Color bodyColor = remnant.Body.color; bodyColor.a = alpha; remnant.Body.color = bodyColor;
             remnant.Shadow.transform.localScale = remnant.ShadowScale * (1 - collapse * 0.45f);
@@ -137,7 +140,7 @@ namespace ArcaneBrigade
                 fragment.enabled = progress > 0.2f && fragment.sprite != null;
                 if (!fragment.enabled) continue;
                 float travel = Mathf.Clamp01((progress - 0.2f) / 0.8f);
-                float angle = index * 2.399963f;
+                float angle = index * 2.399963f + remnant.Identity * 0.7f;
                 Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                 fragment.transform.localPosition = remnant.BodyPosition + (Vector3)(direction * (travel * 0.65f * remnant.Weight) + Vector2.up * Mathf.Sin(travel * Mathf.PI) * 0.20f);
                 float size = (0.05f + index % 3 * 0.015f) * (1 - travel * 0.4f);

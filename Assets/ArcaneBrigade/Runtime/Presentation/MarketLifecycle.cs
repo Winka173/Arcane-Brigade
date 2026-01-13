@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -13,7 +14,9 @@ namespace ArcaneBrigade
         private SpriteRenderer[] wisps;
         private ShopDisplayActor[] fixtures;
         private Vector3[] fixtureOrigins;
-        public bool Busy => departing || owner != null && owner.PresentationClock - started < 1.15f;
+        private SpriteRenderer[] floorDecor;
+        private Color[] floorColors;
+        public bool Busy => departing || owner != null && owner.PresentationClock - started < MarketMotion.ArrivalDuration;
         public void Configure(ArenaController controller, bool special, bool entrance)
         {
             owner = controller; dream = special; started = owner.PresentationClock - (entrance ? 0 : 2);
@@ -21,6 +24,8 @@ namespace ArcaneBrigade
             if (rug != null) { carpet = rug.gameObject.AddComponent<MarketCarpetRoll>(); carpet.Configure(rug.GetComponent<SpriteRenderer>()); }
             fixtures = GetComponentsInChildren<ShopDisplayActor>(); fixtureOrigins = new Vector3[fixtures.Length];
             for (int index = 0; index < fixtures.Length; index++) fixtureOrigins[index] = fixtures[index].transform.localPosition;
+            floorDecor = GetComponentsInChildren<SpriteRenderer>().Where(renderer => renderer.GetComponentInParent<ShopDisplayActor>() == null && (renderer.gameObject.name == "ShopFloorContact" || renderer.gameObject.name == "MarketPennants" || renderer.sortingOrder == -75)).ToArray();
+            floorColors = floorDecor.Select(renderer => renderer.color).ToArray();
             if (!dream) return;
             wisps = new SpriteRenderer[8];
             for (int index = 0; index < wisps.Length; index++)
@@ -35,9 +40,16 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (owner == null || owner.Simulation == null) return;
-            float progress = Mathf.Clamp01((owner.PresentationClock - started) / (departing ? 0.78f : 0.9f));
+            float elapsed = owner.PresentationClock - started;
+            float progress = MarketMotion.Progress(elapsed, departing ? MarketMotion.CarpetDepartureDelay : 0, departing ? 0.75f : 0.9f);
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             if (carpet != null) carpet.Display(reduced ? 1 : Mathf.SmoothStep(0, 1, departing ? 1 - progress : progress), departing ? 1 - progress : 1);
+            for (int index = 0; index < floorDecor.Length; index++)
+            {
+                if (floorDecor[index] == null) continue;
+                Color color = floorColors[index]; color.a *= departing ? 1 - progress : progress;
+                floorDecor[index].color = color;
+            }
             for (int index = 0; index < fixtures.Length; index++)
             {
                 if (fixtures[index].enabled) continue;

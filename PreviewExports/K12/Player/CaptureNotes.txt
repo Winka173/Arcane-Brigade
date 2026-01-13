@@ -1,0 +1,40 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Native4K 01-horde-0
+PASS Dense combat freezes on pause
+PASS Native4K 01-horde-1
+PASS Native4K 01-horde-2
+PASS Native4K 01-horde-3
+PASS Native wave5 peak enemies=48
+PASS Both new large hostile identities naturally spawned
+PASS Boss starts protected entrance wave4
+PASS Native4K 02-boss-entry-4
+PASS Boss entrance completes without reload wave4
+PASS Native4K 03-boss-landed-4
+PASS Boss starts protected entrance wave8
+PASS Native4K 02-boss-entry-8
+PASS Boss entrance completes without reload wave8
+PASS Native4K 03-boss-landed-8
+PASS Native4K 04-market-carpet-start
+PASS Shop interactions locked during staged arrival
+PASS Native4K 04-market-stock-flight
+PASS Native world shop focus fixture
+PASS Native4K 04-compact-shop
+PASS Native short offer summary
+PASS Native candidate purchase highlights newly activated bond
+PASS Native4K 05-dream-market-rising
+PASS Dream exit focus
+PASS Dream exit begins staged handoff
+PASS Native4K 05-dream-stock-retreat
+PASS Dream market not swapped before departure completes
+PASS Native4K 05-dream-carpet-retreat
+PASS Native4K 05-gold-market-handoff
+PASS Gold market arrives after dream exit
+PASS Dream-to-gold handoff keeps scene loaded
+PASS Gold doorway starts world-space departure
+PASS Native4K 06-hall-departure
+PASS Combat waits for carpet and merchant exit
+PASS Native4K 06-next-wave-no-loading
+PASS Doorway continues next combat wave
+PASS Next wave keeps scene loaded
+Isolated saved wave5 tier2 six-variant party; natural enemies/combat, movement-only circle driver. Boss4/8 and shop5 use explicit separate saved fixtures. No HP/damage immunity/enemy budget/timer overrides. Not full-run victory, FPS certification, audio or human quality approval.
+PASS No Unity errors or failed runtime assertions during capture

@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
     public enum CompanionTravelMode { Patrol, Pursuit }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded }
 
     public readonly struct CombatEvent
     {
@@ -56,6 +56,7 @@ namespace ArcaneBrigade
         public float NextAttack;
         public float ImpactTime;
         public float NextContact;
+        public float ContactImpactAt;
         public bool PendingAttack;
         public Vector2 AttackDirection;
         public Vector2 RoamOffset;
@@ -70,6 +71,7 @@ namespace ArcaneBrigade
         public float NextPassive;
         public float TelegraphUntil;
         public float NextBossPattern = 2f;
+        public float EntranceUntil;
         public Vector2 TelegraphDirection;
         public Vector2 HitDirection;
         public CombatCause BurnCause;
@@ -218,7 +220,13 @@ namespace ArcaneBrigade
                 AddCompanion(catalog.Companion);
             else if (catalog.StartingCompanions != null)
                 for (int index = 0; index < catalog.StartingCompanions.Length; index++) AddCompanion(catalog.StartingCompanions[index]);
-            if (catalog.Boss != null) Boss = Spawn(catalog.Boss, Faction.Enemy, new Vector2(0f, catalog.ArenaSize.y * 0.35f));
+            if (catalog.Boss != null)
+            {
+                Boss = Spawn(catalog.Boss, Faction.Enemy, ClampPosition(Champion.Position + Vector2.up * 2.8f, catalog.Boss.Radius));
+                Boss.EntranceUntil = 1.2f;
+                Boss.NextContact = Boss.NextAttack = 1.45f;
+                Boss.NextBossPattern = 2.2f;
+            }
             spatial.Rebuild(units);
             Phase = RunPhase.Combat;
             ResetArenaToys(catalog.RunWave);
@@ -300,6 +308,9 @@ namespace ArcaneBrigade
             {
                 UnitState unit = units[index];
                 if (!unit.Alive) continue;
+                if (unit.EntranceUntil > Elapsed) continue;
+                if (unit.EntranceUntil > 0) events.Add(new CombatEvent(CombatEventKind.BossLanded, unit.Position, unit.Faction, subjectId: unit.Id, subject: unit));
+                unit.EntranceUntil = 0;
                 if (unit.Faction == Faction.Companion) FollowChampion(unit, deltaTime);
                 else if (unit.Faction == Faction.Enemy) MoveEnemy(unit, deltaTime);
                 spatial.Move(unit);
@@ -358,22 +369,28 @@ namespace ArcaneBrigade
             int enemyCount = 0;
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             if (enemyCount >= catalog.EnemyBudget) return;
-            Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 0.4f;
-            Vector2 position = Vector2.zero;
-            bool found = false;
-            for (int attempt = 0; attempt < 12; attempt++)
+            int batch = catalog.RunWave >= 5 ? 3 : catalog.RunWave == 4 ? 2 : 1;
+            for (int member = 0; member < batch && enemyCount + member < catalog.EnemyBudget; member++)
             {
-                float random = (float)spawnRandom.NextDouble() * 2f - 1f;
-                switch (spawnRandom.Next(4))
+                Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 0.4f;
+                if (catalog.RunWave >= 4) half = Vector2.Min(half, new Vector2(9, 5.6f));
+                Vector2 position = Vector2.zero;
+                bool found = false;
+                for (int attempt = 0; attempt < 12; attempt++)
                 {
-                    case 0: position = new Vector2(-half.x, random * half.y); break;
-                    case 1: position = new Vector2(half.x, random * half.y); break;
-                    case 2: position = new Vector2(random * half.x, -half.y); break;
-                    default: position = new Vector2(random * half.x, half.y); break;
+                    float random = (float)spawnRandom.NextDouble() * 2f - 1f;
+                    switch (spawnRandom.Next(4))
+                    {
+                        case 0: position = new Vector2(-half.x, random * half.y); break;
+                        case 1: position = new Vector2(half.x, random * half.y); break;
+                        case 2: position = new Vector2(random * half.x, -half.y); break;
+                        default: position = new Vector2(random * half.x, half.y); break;
+                    }
+                    if (catalog.RunWave >= 4) position = ClampPosition(position + Champion.Position, 0.6f);
+                    if ((position - Champion.Position).sqrMagnitude >= catalog.SpawnSafetyRadius * catalog.SpawnSafetyRadius) { found = true; break; }
                 }
-                if ((position - Champion.Position).sqrMagnitude >= catalog.SpawnSafetyRadius * catalog.SpawnSafetyRadius) { found = true; break; }
+                if (found) Spawn(catalog.ExpandedContent && catalog.EnemyPool.Length > 0 ? catalog.EnemyPool[spawnRandom.Next(catalog.EnemyPool.Length)] : spawnRandom.Next(3) == 0 ? catalog.RangedEnemy : catalog.MeleeEnemy, Faction.Enemy, position);
             }
-            if (found) Spawn(catalog.ExpandedContent && catalog.EnemyPool.Length > 0 ? catalog.EnemyPool[spawnRandom.Next(catalog.EnemyPool.Length)] : spawnRandom.Next(3) == 0 ? catalog.RangedEnemy : catalog.MeleeEnemy, Faction.Enemy, position);
         }
 
         private void FollowChampion(UnitState unit, float deltaTime)
@@ -515,7 +532,7 @@ namespace ArcaneBrigade
 
         private static bool CanHit(Faction source, UnitState target)
         {
-            return target.Alive && (source == Faction.Enemy ? target.Faction == Faction.Champion : target.Faction == Faction.Enemy);
+            return target.Alive && target.EntranceUntil <= 0 && (source == Faction.Enemy ? target.Faction == Faction.Champion : target.Faction == Faction.Enemy);
         }
 
         private void ProcessAttack(UnitState unit)
@@ -583,7 +600,7 @@ namespace ArcaneBrigade
             if (unit.Faction == Faction.Enemy) position = unit.Position + unit.AttackDirection * unit.Definition.Radius * 0.9f;
             for (int index = 0; index < Mathf.Clamp(weapon.ProjectileCount, 1, 96) && projectiles.Count < 4096; index++)
             {
-                float angle = (index - (weapon.ProjectileCount - 1) * 0.5f) * 0.14f;
+                float angle = (index - (weapon.ProjectileCount - 1) * 0.5f) * weapon.ProjectileSpread;
                 Vector2 direction = Quaternion.Euler(0f, 0f, angle * Mathf.Rad2Deg) * unit.AttackDirection;
                 projectiles.Add(new ProjectileState
                 {
@@ -618,7 +635,23 @@ namespace ArcaneBrigade
             if (!enemy.Alive || Elapsed < enemy.NextContact) return;
             if (catalog.ExpandedContent && enemy.Definition.Behavior == EnemyBehavior.Mimic && (!enemy.Awakened || enemy.BehaviorUntil > Elapsed)) return;
             float radius = enemy.Definition.Radius + Champion.Definition.Radius + 0.05f;
-            if ((enemy.Position - Champion.Position).sqrMagnitude > radius * radius) return;
+            if ((enemy.Position - Champion.Position).sqrMagnitude > radius * radius)
+            {
+                if (enemy.ContactImpactAt > 0) { enemy.ContactImpactAt = 0; enemy.NextContact = Elapsed + 0.15f; }
+                return;
+            }
+            if (enemy.ContactImpactAt == 0)
+            {
+                enemy.ContactImpactAt = Elapsed + 0.22f;
+                if (enemy.Definition.Weapon.Kind == WeaponKind.Contact)
+                {
+                    enemy.AttackStarted = Elapsed; enemy.AttackWindup = 0.22f;
+                    enemy.AttackDirection = (Champion.Position - enemy.Position).normalized;
+                }
+                return;
+            }
+            if (Elapsed < enemy.ContactImpactAt) return;
+            enemy.ContactImpactAt = 0;
             enemy.NextContact = Elapsed + enemy.Definition.ContactInterval;
             ApplyDamage(Champion, enemy.Definition.ContactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", (Champion.Position - enemy.Position).normalized, cause: NewCause(enemy.Id));
         }
@@ -651,6 +684,7 @@ namespace ArcaneBrigade
         private void ApplyDamage(UnitState target, float damage, Faction source, string sourceName = "", Vector2 direction = default, WeaponDefinition weapon = null, bool critical = false, DamageElement element = DamageElement.Physical, CombatCause cause = default, bool injectedDamage = false)
         {
             if (!target.Alive || target.Faction == Faction.Companion || !float.IsFinite(damage) || damage <= 0f) return;
+            if (target.EntranceUntil > Elapsed && !injectedDamage) return;
             damage = ExpandedDamage(target, damage, source, direction, weapon);
             if (cause.RootId == 0) cause = NewCause(0);
             if (target.Faction == Faction.Champion)
@@ -744,7 +778,7 @@ namespace ArcaneBrigade
                 Vector2 difference = Champion.Position - pickup.Position;
                 if (pickup.Kind == LootKind.Chest)
                 {
-                    if (difference.sqrMagnitude > 0.85f * 0.85f) continue;
+                    if (difference.sqrMagnitude > catalog.ChestOpenRadius * catalog.ChestOpenRadius) continue;
                     OpenChest(pickup);
                     pickups.RemoveAt(index);
                     continue;
