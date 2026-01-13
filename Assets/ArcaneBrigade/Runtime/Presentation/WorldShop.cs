@@ -211,7 +211,7 @@ namespace ArcaneBrigade
             {
                 merchant.Arrive(0); MerchantEntranceEffect.Play(owner, scenery.transform, merchant.transform.localPosition, Special);
                 dialogue.ResetFocus(); dialogue.Speak(Special, MerchantMoment.Enter, owner.PresentationClock);
-                CheckpointAudio.PlayInterface(20);
+                CheckpointAudio.PlayInterfaceId(Special ? "shop.keeper.enter.dream" : "shop.keeper.enter.gold");
             }
             List<ShopOffer> offers = Special ? state.SpecialOffers : state.Offers;
             for (int index = 0; index < offers.Count; index++)
