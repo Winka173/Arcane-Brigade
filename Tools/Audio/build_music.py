@@ -457,35 +457,105 @@ add(id='endless_neverclose', title='Never-Closing Time', bpm=132, bars=32, key=7
     bass=ostinato_bass, drums=drums_drive, extra=lambda *a: extra_arp(*a, name='marimba', step=0.25, gain=0.45), energy={})
 
 
+
+# ---------------------------------------------------------------- second wave: catchier hooks, rotate with the first set
+HOOK_B = ('sync', [4, 4, 6, 4, 2, 4, 5, 6, 4, 2], {})
+
+# 10. COMBAT EARLY B — "Spoon Brigade" : D mixolydian-ish major, bouncy two-note hook, answered by clarinet
+add(id='combat_spoons', title='Spoon Brigade', bpm=118, bars=32, key=62, scale='major', swing=0.0, lead='marimba', mel_gain=1.0,
+    scenes=['combat_early'], family='toyroom', trim={},
+    progs={'A': [(0, 'M'), (0, 'M'), (10, 'M'), (10, 'M'), (5, 'M'), (7, 'm'), (0, 'M'), (7, '7')],
+           'B': [(9, 'm'), (9, 'm'), (5, 'M'), (5, 'M'), (2, 'm'), (7, 'M'), (0, 'M'), (7, '7')]},
+    sections=[('A', [('sync', [4, 4, 6, 4, 2, 4, 5, 6, 4, 2], {}), ('call', [4, 5, 6, 5, 4, 2, 3, 1], {'inst': 'clarinet'}), ('sync', [4, 4, 6, 4, 2, 4, 5, 6, 7, 4], {}), ('long', [6, 5, 4, 2, 1, 0], {'inst': 'clarinet'})]),
+              ('A', [('sync', [4, 4, 6, 4, 2, 4, 5, 6, 4, 2], {'double': 'celesta'}), ('call', [8, 7, 6, 5, 6, 5, 4, 2], {'inst': 'clarinet'}), ('sync', [4, 4, 6, 4, 2, 4, 5, 6, 7, 8], {'double': 'celesta'}), ('long', [9, 8, 7, 6, 5, 4], {'inst': 'clarinet'})]),
+              ('B', [('lilt', [5, 6, 7, 6, 5, 4, 5, 3], {'inst': 'vibes'}), ('stab', [4, 4, 5, 4, 2, 4, 5, 4], {}), ('lilt', [5, 6, 7, 8, 9, 8, 7, 5], {'inst': 'vibes'}), ('call', [4, 3, 2, 1, 2, 1, 0, 0], {})]),
+              ('A', [('sync', [4, 4, 6, 4, 2, 4, 5, 6, 4, 2], {'double': 'celesta'}), ('call', [8, 7, 6, 5, 6, 5, 4, 2], {'inst': 'clarinet', 'double': 'celesta'}), ('run', [4, 5, 6, 7, 6, 5, 4, 3, 4, 5, 6, 7, 8, 7, 6, 5], {}), ('long', [4, 2, 0, 2, 1, 0], {'inst': 'clarinet'})])],
+    bass=tuba_bass, drums=drums_march, extra=lambda *a: extra_arp(*a, name='marimba', step=0.5, gain=0.45), energy={})
+
+# 11. COMBAT MID B — "Haunted Carousel" : A harmonic minor, galloping celesta/music-box hook
+add(id='combat_carousel', title='Haunted Carousel', bpm=126, bars=32, key=69, scale='harmmin', swing=0.0, lead='celesta', mel_gain=1.0,
+    scenes=['combat_mid'], family='toyroom', trim={'melody': 0.5},
+    progs={'A': [(0, 'm'), (0, 'm'), (7, '7'), (7, '7'), (5, 'M'), (7, '7'), (0, 'm'), (7, '7')],
+           'B': [(8, 'M'), (7, '7'), (0, 'm'), (0, 'm'), (5, 'M'), (3, 'dim'), (7, '7'), (7, '7')]},
+    sections=[('A', [('stab', [7, 6, 7, 5, 4, 5, 4, 2], {}), ('stab', [3, 4, 3, 2, 1, 2, 1, 0], {}), ('stab', [7, 6, 7, 8, 9, 8, 7, 5], {'double': 'musicbox'}), ('call', [4, 3, 2, 1, 2, 3, 4, 0], {})]),
+              ('A', [('stab', [7, 6, 7, 5, 4, 5, 4, 2], {'inst': 'clarinet'}), ('stab', [3, 4, 3, 2, 1, 2, 1, 0], {'inst': 'clarinet'}), ('sync', [7, 8, 9, 8, 7, 5, 4, 5, 6, 7], {'inst': 'clarinet'}), ('long', [6, 5, 4, 3, 2, 0], {'inst': 'clarinet'})]),
+              ('B', [('call', [9, 8, 7, 6, 7, 6, 5, 4], {}), ('sync', [4, 5, 6, 7, 6, 5, 4, 3, 2, 3], {}), ('call', [9, 10, 9, 8, 7, 6, 7, 5], {'double': 'musicbox'}), ('long', [4, 3, 2, 1, 0, 0], {})]),
+              ('A', [('stab', [7, 6, 7, 5, 4, 5, 4, 2], {'double': 'musicbox'}), ('stab', [3, 4, 3, 2, 1, 2, 1, 0], {'double': 'musicbox'}), ('stab', [7, 6, 7, 8, 9, 8, 7, 9], {'double': 'musicbox'}), ('long', [11, 9, 7, 5, 4, 2], {'double': 'musicbox'})])],
+    bass=ostinato_bass, drums=drums_tick, extra=extra_pulse, energy={})
+
+# 12. COMBAT LATE B — "Last Train Overtime" : C minor, driving riff hook on bass clarinet + clarinet
+add(id='combat_lasttrain', title='Last Train Overtime', bpm=142, bars=32, key=60, scale='minor', swing=0.0, lead='clarinet', mel_gain=0.95,
+    scenes=['combat_late'], family='office', trim={'melody': 0.5},
+    progs={'A': [(0, 'm'), (0, 'm'), (8, 'M'), (8, 'M'), (10, 'M'), (10, 'M'), (7, 'm'), (7, '7')],
+           'B': [(5, 'm'), (5, 'm'), (3, 'M'), (3, 'M'), (8, 'M'), (7, 'm'), (0, 'm'), (7, '7')]},
+    sections=[('A', [('stab', [4, 4, 6, 4, 7, 6, 4, 2], {}), ('stab', [4, 4, 6, 4, 8, 7, 6, 4], {}), ('stab', [4, 4, 6, 4, 7, 6, 4, 2], {'double': 'marimba'}), ('sync', [8, 7, 6, 4, 6, 4, 2, 1, 2, 0], {})]),
+              ('A', [('run', [4, 6, 4, 2, 4, 6, 7, 6, 4, 6, 7, 9, 8, 7, 6, 4], {'inst': 'marimba'}), ('stab', [4, 4, 6, 4, 8, 7, 6, 4], {}), ('run', [4, 6, 4, 2, 4, 6, 7, 6, 8, 7, 6, 4, 6, 4, 2, 1], {'inst': 'marimba'}), ('sync', [8, 7, 6, 4, 6, 4, 2, 1, 2, 0], {})]),
+              ('B', [('long', [7, 6, 4, 6, 7, 9], {'double': 'celesta'}), ('sync', [9, 8, 7, 6, 4, 6, 7, 6, 4, 2], {}), ('long', [9, 10, 9, 7, 6, 4], {'double': 'celesta'}), ('call', [6, 4, 2, 1, 2, 1, 0, 0], {})]),
+              ('A', [('stab', [4, 4, 6, 4, 7, 6, 4, 2], {'double': 'celesta'}), ('stab', [4, 4, 6, 4, 8, 7, 6, 4], {'double': 'celesta'}), ('stab', [8, 8, 9, 8, 11, 9, 8, 6], {'double': 'celesta'}), ('sync', [8, 7, 6, 4, 6, 7, 8, 9, 11, 9], {'double': 'marimba'})])],
+    bass=ostinato_bass, drums=drums_drive, extra=lambda *a: extra_arp(*a, name='marimba', step=0.25, gain=0.45), energy={})
+
+# 13. BOSS B — "Clown at the Cash Register" : E phrygian-dominant, stabbing hook, bells
+add(id='boss_clown', title='Clown at the Cash Register', bpm=152, bars=32, key=64, scale='phrygdom', swing=0.0, lead='bassclar', mel_gain=1.0,
+    scenes=['boss'], family='all', trim={},
+    progs={'A': [(0, 'm'), (1, 'M'), (0, 'm'), (6, 'dim'), (0, 'm'), (1, 'M'), (7, '7'), (0, 'm')],
+           'B': [(8, 'M'), (7, '7'), (5, 'm'), (1, 'M'), (0, 'm'), (6, 'dim'), (7, '7'), (7, '7')]},
+    sections=[('A', [('stab', [0, 0, 1, 0, 4, 3, 1, 0], {}), ('stab', [0, 0, 1, 0, 5, 4, 3, 1], {}), ('stab', [0, 0, 1, 0, 4, 3, 1, 0], {'inst': 'clarinet'}), ('sync', [4, 3, 2, 1, 2, 3, 4, 5, 4, 3], {'inst': 'clarinet'})]),
+              ('A', [('call', [7, 8, 7, 5, 4, 5, 4, 3], {'inst': 'clarinet', 'double': 'bell'}), ('stab', [7, 7, 8, 7, 11, 10, 8, 7], {'inst': 'clarinet'}), ('call', [7, 8, 7, 5, 4, 5, 4, 3], {'inst': 'clarinet', 'double': 'bell'}), ('long', [5, 4, 3, 2, 1, 0], {})]),
+              ('B', [('long', [8, 7, 5, 4, 5, 4], {'inst': 'clarinet', 'double': 'celesta'}), ('stab', [4, 3, 2, 1, 4, 3, 2, 1], {}), ('long', [9, 8, 7, 5, 7, 8], {'inst': 'clarinet', 'double': 'celesta'}), ('sync', [8, 7, 5, 4, 3, 2, 1, 2, 1, 0], {})]),
+              ('A', [('stab', [0, 0, 1, 0, 4, 3, 1, 0], {'double': 'celesta'}), ('stab', [0, 0, 1, 0, 5, 4, 3, 1], {'double': 'celesta'}), ('stab', [7, 7, 8, 7, 11, 10, 8, 7], {'inst': 'clarinet', 'double': 'celesta'}), ('sync', [8, 7, 5, 4, 3, 2, 1, 0, 1, 0], {'double': 'bell'})])],
+    bass=ostinato_bass, drums=drums_boss, extra=extra_boss, energy={})
+
+# 14. GOLD SHOP B — "Layaway Shuffle" : F major, relaxed shuffle, clarinet hook
+add(id='shop_layaway', title='Layaway Shuffle', bpm=98, bars=32, key=65, scale='major', swing=0.34, lead='clarinet', mel_gain=0.9,
+    scenes=['shop_gold'], family='toyroom', trim={'melody': 0.5},
+    progs={'A': [(0, 'M7'), (0, 'M7'), (5, '7'), (5, '7'), (2, 'm7'), (7, '7'), (0, 'M7'), (7, '7')],
+           'B': [(9, 'm7'), (2, 'm7'), (7, '7'), (0, 'M7'), (5, 'M7'), (5, 'm7'), (0, 'M7'), (7, '7')]},
+    sections=[('A', [('lilt', [4, 6, 5, 4, 2, 4, 5, 2], {}), ('call', [4, 5, 6, 4, 5, 4, 2, 0], {}), ('lilt', [4, 6, 5, 4, 2, 4, 7, 6], {}), ('long', [5, 4, 2, 1, 0, 0], {})]),
+              ('A', [('lilt', [4, 6, 5, 4, 2, 4, 5, 2], {'inst': 'vibes'}), ('call', [4, 5, 6, 4, 5, 4, 2, 0], {'inst': 'vibes'}), ('sync', [7, 6, 5, 4, 5, 6, 7, 8, 7, 5], {}), ('long', [6, 5, 4, 2, 1, 0], {})]),
+              ('B', [('call', [7, 6, 5, 4, 3, 4, 5, 3], {'inst': 'marimba'}), ('sync', [4, 5, 6, 7, 6, 5, 4, 3, 2, 3], {'inst': 'marimba'}), ('call', [7, 8, 7, 6, 5, 6, 5, 4], {'inst': 'marimba'}), ('long', [4, 2, 1, 0, 1, 0], {'inst': 'marimba'})]),
+              ('A', [('lilt', [4, 6, 5, 4, 2, 4, 5, 2], {'double': 'bell'}), ('call', [4, 5, 6, 4, 5, 4, 2, 0], {}), ('lilt', [4, 6, 5, 4, 2, 4, 7, 6], {'double': 'bell'}), ('long', [2, 4, 2, 1, 0, 0], {})])],
+    bass=walking_bass, drums=drums_swing, extra=extra_shop, energy={})
+
+# 15. ENDLESS B — "Encore Forever" : G dorian, big hook, relentless
+add(id='endless_encore', title='Encore Forever', bpm=136, bars=32, key=67, scale='dorian', swing=0.0, lead='marimba', mel_gain=0.95,
+    scenes=['endless'], family='all', trim={},
+    progs={'A': [(0, 'm7'), (0, 'm7'), (3, 'M7'), (3, 'M7'), (10, 'M'), (10, 'M'), (5, '7'), (7, 'm7')],
+           'B': [(8, 'M7'), (10, 'M'), (0, 'm7'), (0, 'm7'), (8, 'M7'), (10, 'M'), (7, 'm7'), (5, '7')]},
+    sections=[('A', [('sync', [4, 4, 6, 7, 6, 4, 2, 4, 5, 4], {}), ('stab', [4, 6, 7, 6, 4, 2, 4, 5], {}), ('sync', [4, 4, 6, 7, 6, 4, 8, 7, 6, 4], {'double': 'celesta'}), ('call', [5, 4, 3, 2, 1, 2, 3, 0], {})]),
+              ('A', [('run', [4, 6, 7, 6, 4, 6, 7, 9, 8, 7, 6, 4, 6, 4, 2, 4], {}), ('stab', [4, 6, 7, 6, 4, 2, 4, 5], {'inst': 'clarinet'}), ('sync', [8, 8, 9, 8, 6, 8, 9, 11, 9, 8], {'inst': 'clarinet'}), ('call', [7, 6, 5, 4, 3, 4, 2, 0], {'inst': 'clarinet'})]),
+              ('B', [('long', [7, 6, 7, 9, 8, 7], {'inst': 'clarinet', 'double': 'celesta'}), ('sync', [7, 7, 6, 5, 4, 5, 6, 7, 6, 5], {'inst': 'clarinet'}), ('long', [9, 10, 11, 10, 9, 8], {'inst': 'clarinet', 'double': 'celesta'}), ('call', [8, 7, 6, 5, 4, 3, 2, 0], {})]),
+              ('A', [('run', [4, 6, 7, 6, 4, 6, 7, 9, 8, 7, 6, 4, 6, 7, 9, 11], {'double': 'celesta'}), ('stab', [8, 10, 9, 8, 6, 8, 9, 8], {'double': 'celesta'}), ('sync', [8, 8, 9, 8, 6, 8, 9, 11, 9, 8], {'double': 'celesta'}), ('long', [7, 5, 4, 2, 1, 0], {})])],
+    bass=ostinato_bass, drums=drums_drive, extra=lambda *a: extra_arp(*a, name='marimba', step=0.25, gain=0.45), energy={})
+
+
 def encode(wav_path, ogg_path):
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', wav_path, '-c:a', 'libvorbis', '-q:a', '5', ogg_path], check=True)
 
 
+def entry(p):
+    return dict(id=p.id, title=p.title, bpm=p.bpm, beatsPerBar=p.bpb, bars=p.bars, loopSeconds=round(p.loop_seconds, 6),
+                loopSamples=p.n, sampleRate=SR, scenes=p.scenes, family=p.family,
+                stems=['Music/%s/%s_%s' % (p.id, p.id, k) for k in ('base', 'rhythm', 'melody', 'intensity')])
+
+
 def main(only):
-    manifest = []
     os.makedirs(OUT, exist_ok=True)
     for p in PIECES:
         if only and p.id not in only:
             continue
-        # bind piece methods
-        p.bass, p.drums, p.extra = p.bass, p.drums, p.extra
         stems = render_stems(p)
         d = os.path.join(OUT, p.id)
         os.makedirs(d, exist_ok=True)
-        names = []
         for k, buf in stems.items():
             wav = os.path.join(d, '%s_%s.wav' % (p.id, k))
             write_wav(wav, buf)
-            ogg = os.path.join(d, '%s_%s.ogg' % (p.id, k))
-            encode(wav, ogg)
+            encode(wav, os.path.join(d, '%s_%s.ogg' % (p.id, k)))
             os.remove(wav)
-            names.append('Music/%s/%s_%s' % (p.id, p.id, k))
-        manifest.append(dict(id=p.id, title=p.title, bpm=p.bpm, beatsPerBar=p.bpb, bars=p.bars, loopSeconds=round(p.loop_seconds, 6),
-                             loopSamples=p.n, sampleRate=SR, scenes=p.scenes, family=p.family, stems=names))
-        print('rendered', p.id, '%.1fs' % p.loop_seconds)
-    if not only:
-        with open(os.path.join(OUT, 'music.json'), 'w') as f:
-            json.dump({'version': 1, 'pieces': manifest}, f, indent=1)
+        print('rendered', p.id, '%.1fs' % p.loop_seconds, flush=True)
+    # manifest lists every piece whose stems exist on disk (so partial renders never drop earlier pieces)
+    present = [entry(p) for p in PIECES if all(os.path.exists(os.path.join(ROOT, 'Assets', 'ArcaneBrigade', 'Resources', 'Audio', 'Arcane', s + '.ogg')) for s in entry(p)['stems'])]
+    with open(os.path.join(OUT, 'music.json'), 'w') as f:
+        json.dump({'version': 1, 'pieces': present}, f, indent=1)
 
 
 if __name__ == '__main__':

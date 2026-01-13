@@ -180,6 +180,126 @@
     "Music/endless_neverclose/endless_neverclose_melody",
     "Music/endless_neverclose/endless_neverclose_intensity"
    ]
+  },
+  {
+   "id": "combat_spoons",
+   "title": "Spoon Brigade",
+   "bpm": 118,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 65.084739,
+   "loopSamples": 2870237,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_early"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/combat_spoons/combat_spoons_base",
+    "Music/combat_spoons/combat_spoons_rhythm",
+    "Music/combat_spoons/combat_spoons_melody",
+    "Music/combat_spoons/combat_spoons_intensity"
+   ]
+  },
+  {
+   "id": "combat_carousel",
+   "title": "Haunted Carousel",
+   "bpm": 126,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 60.952381,
+   "loopSamples": 2688000,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/combat_carousel/combat_carousel_base",
+    "Music/combat_carousel/combat_carousel_rhythm",
+    "Music/combat_carousel/combat_carousel_melody",
+    "Music/combat_carousel/combat_carousel_intensity"
+   ]
+  },
+  {
+   "id": "combat_lasttrain",
+   "title": "Last Train Overtime",
+   "bpm": 142,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 54.084512,
+   "loopSamples": 2385127,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late"
+   ],
+   "family": "office",
+   "stems": [
+    "Music/combat_lasttrain/combat_lasttrain_base",
+    "Music/combat_lasttrain/combat_lasttrain_rhythm",
+    "Music/combat_lasttrain/combat_lasttrain_melody",
+    "Music/combat_lasttrain/combat_lasttrain_intensity"
+   ]
+  },
+  {
+   "id": "boss_clown",
+   "title": "Clown at the Cash Register",
+   "bpm": 152,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 50.526327,
+   "loopSamples": 2228211,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss"
+   ],
+   "family": "all",
+   "stems": [
+    "Music/boss_clown/boss_clown_base",
+    "Music/boss_clown/boss_clown_rhythm",
+    "Music/boss_clown/boss_clown_melody",
+    "Music/boss_clown/boss_clown_intensity"
+   ]
+  },
+  {
+   "id": "shop_layaway",
+   "title": "Layaway Shuffle",
+   "bpm": 98,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 78.367347,
+   "loopSamples": 3456000,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_gold"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/shop_layaway/shop_layaway_base",
+    "Music/shop_layaway/shop_layaway_rhythm",
+    "Music/shop_layaway/shop_layaway_melody",
+    "Music/shop_layaway/shop_layaway_intensity"
+   ]
+  },
+  {
+   "id": "endless_encore",
+   "title": "Encore Forever",
+   "bpm": 136,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 56.47059,
+   "loopSamples": 2490353,
+   "sampleRate": 44100,
+   "scenes": [
+    "endless"
+   ],
+   "family": "all",
+   "stems": [
+    "Music/endless_encore/endless_encore_base",
+    "Music/endless_encore/endless_encore_rhythm",
+    "Music/endless_encore/endless_encore_melody",
+    "Music/endless_encore/endless_encore_intensity"
+   ]
   }
  ]
 }
