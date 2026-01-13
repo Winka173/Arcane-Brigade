@@ -17,6 +17,8 @@ namespace ArcaneBrigade
         public float Radius = 0.25f;
         public float BodyHeight = 0.8f;
         public float BodyScale = 1f;
+        [Range(0, 1)] public float KnockbackResistance;
+        public bool SpecialRecruit;
         public float ContactDamage = 4f;
         public float ContactInterval = 0.8f;
         public float CollisionDamage;

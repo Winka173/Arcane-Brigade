@@ -268,22 +268,19 @@ namespace ArcaneBrigade
             {
                 ItemDefinition item = catalog.Item(offer.Id);
                 int held = owner.Session.State.Items.Find(stack => stack.Id == item.Id)?.Count ?? 0;
-                string stats = RunModifierRules.Describe(item, 1).TrimEnd();
-                result = item.Description.Contains(stats) ? item.Description : item.Description + "\n" + stats;
-                result += "\nOwned: " + held + " · Sau mua: " + item.EffectiveStacks(held + 1);
+                result = ShortOfferCopy.Item(item) + "\nOwned ×" + held;
             }
             else
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count;
-                result = RunUICopy.PassiveDescription(unit.Passive) + ".\nWeapon rolled on recruitment · " + copies + "/3 tier-1 copies";
-                result += "\n" + RunModifierRules.DescribeCompanion(unit, 1);
+                result = ShortOfferCopy.Companion(unit) + "\nRandom weapon · " + copies + "/3 to merge";
                 if (copies >= 2) result += " · May merge after recruitment";
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
             }
-            if (offer.Currency == ShopCurrency.Health) result += "\nCosts current HP, not maximum HP; must leave at least 1 HP.";
+            if (offer.Currency == ShopCurrency.Health) result += "\nCosts HP · leaves at least 1";
             return result;
         }
         public void DrawMerchantDialogue()

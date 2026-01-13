@@ -60,6 +60,7 @@ namespace ArcaneBrigade
         public uint WeaponRandom;
         public int NextOffer;
         public int RerollsThisShop;
+        public int NewRecruitsThisWave;
         public int NextReceipt;
         public List<RunTransactionReceipt> Receipts = new List<RunTransactionReceipt>();
         public int LastIncome;
@@ -250,8 +251,8 @@ namespace ArcaneBrigade
             }
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[(State.Wave / catalog.BossEvery - 1) % catalog.Bosses.Length], scaling) : null;
             CombatCatalog.WaveDuration = Mathf.Min(catalog.WaveSeconds, catalog.FirstWaveSeconds + (State.Wave - 1) * catalog.WaveIncrement);
-            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * (1f + State.Difficulty * 0.12f));
-            CombatCatalog.SpawnInterval = Mathf.Max(0.32f, 1.4f - State.Wave * 0.035f);
+            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * (State.Wave >= 5 ? 4 : State.Wave == 4 ? 3 : 1) * (1f + State.Difficulty * 0.12f));
+            CombatCatalog.SpawnInterval = State.Wave >= 4 ? Mathf.Max(0.14f, 0.32f - (State.Wave - 4) * 0.012f) : 1.4f - State.Wave * 0.035f;
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
             CombatCatalog.PickupRadius = catalog.Arena.PickupRadius + Bonus(ItemEffect.Pickup);
@@ -340,6 +341,7 @@ namespace ArcaneBrigade
             if (!companion) unit.Health = Mathf.Max(1f, unit.Health + Bonus(ItemEffect.Health));
             if (companion) unit.BodyHeight *= CompanionTierScaling.Body(tier);
             K10StatRules.ApplyUnit(this, catalog, unit, source, weapon, tier, companion);
+            if (companion && source.SpecialRecruit) unit.Weapon.Damage *= 1.35f;
             if (unit.Weapon.Kind == WeaponKind.Melee)
             {
                 MeleeBalance.Apply(unit.Weapon);
@@ -359,8 +361,11 @@ namespace ArcaneBrigade
         {
             UnitDefinition unit = Clone(source);
             unit.Weapon = Clone(source.Weapon);
+            unit.KnockbackResistance = Mathf.Max(source.KnockbackResistance, source.IsBoss ? 0.85f : source.BodyHeight >= 1.2f ? 0.6f : 0.15f);
             unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
+            if (source.IsBoss) unit.Health *= 4f;
+            unit.Health *= 1 + Mathf.Max(0, State.Wave - 3) * 0.06f;
             unit.Speed *= Mathf.Min(1.6f, 1f + (State.Wave - 1) * 0.018f);
             unit.ContactDamage = Mathf.Min(14f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min(source.IsBoss ? 26f : 14f, source.Weapon.Damage + State.Wave * 0.35f);
@@ -401,6 +406,7 @@ namespace ArcaneBrigade
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
             State.Phase = SessionPhase.Shop;
             State.SpecialShopVisited = false;
+            State.NewRecruitsThisWave = 0;
             RollShop(true);
         }
 
@@ -449,7 +455,9 @@ namespace ArcaneBrigade
                     if (!State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
                 WeaponDefinition chosen = BalancedWeapon(choices);
+                bool newSpecies = !State.Roster.Exists(entry => entry.UnitId == offer.Id);
                 State.Roster.Add(new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id });
+                if (newSpecies) State.NewRecruitsThisWave++;
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 MergeTriples(offer.Id);
             }
@@ -473,6 +481,7 @@ namespace ArcaneBrigade
 
         public bool CanBuy(ShopOffer offer)
         {
+            if (offer != null && offer.Kind == OfferKind.Companion && State.NewRecruitsThisWave >= 3 && !State.Roster.Exists(entry => entry.UnitId == offer.Id)) return false;
             if (offer == null || offer.Sold || State.Phase != SessionPhase.Shop) return false;
             if (offer.Currency == ShopCurrency.Health ? State.Health - offer.Price < 1f : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
             if (offer.Kind == OfferKind.Item) return StackCount(offer.Id) < catalog.Item(offer.Id).StackLimit;
@@ -546,22 +555,34 @@ namespace ArcaneBrigade
 
         private int ItemWeight(ItemDefinition item) => catalog.EconomyRevision == 0 ? 1 : Mathf.Max(1, Mathf.RoundToInt(item.ShopWeight * K10StatRules.Factor((Bonus(ItemEffect.ShopRarity) + (catalog.StatRevision > 0 ? Bonus(ItemEffect.Luck) * 0.25f : 0)) * (int)item.Rarity, 0.1f, 4)));
 
+        public float NewRecruitChance
+        {
+            get
+            {
+                int count = State.Roster.Count;
+                float chance = count >= 20 ? 0.03f : count >= 16 ? 0.1f : count >= 14 ? 0.18f : count >= 12 ? 0.3f : count >= 10 ? 0.45f : 0.75f;
+                return Mathf.Clamp(chance * Mathf.Max(0.25f, 1 + Bonus(ItemEffect.Luck)), 0.01f, 0.95f);
+            }
+        }
+
         private void RollShop(bool rollSpecial = false)
         {
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
             for (int index = 0; index < catalog.ShopSlots; index++)
             {
-                bool recruit = units.Count > 0 && (index < catalog.ShopSlots / 2 || items.Count == 0);
-                int choice = recruit ? Next(ref State.ShopRandom, units.Count) : WeightedItem(items);
-                int basePrice = recruit ? units[choice].Price : items[choice].Price;
+                bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
+                var available = units.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id) || newRecruit);
+                bool recruit = available.Count > 0 && (items.Count == 0 || index == 0);
+                int choice = recruit ? Next(ref State.ShopRandom, available.Count) : WeightedItem(items);
+                int basePrice = recruit ? available[choice].Price : Mathf.CeilToInt(items[choice].Price * (1 + (int)items[choice].Rarity * 0.4f));
                 float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
-                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? units[choice].Id : items[choice].Id, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
+                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : items[choice].Id, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
             if (!rollSpecial) return;
             State.RerollsThisShop = 0;
@@ -581,10 +602,21 @@ namespace ArcaneBrigade
             foreach (ItemDefinition candidate in catalog.Items) if (Eligible(candidate, ShopPool.Eggs)) specialItems.Add(candidate);
             if (specialItems.Count == 0) throw new InvalidOperationException("No eligible altar offers");
             State.SpecialOffers.Clear();
+            var specialUnits = new List<UnitDefinition>();
+            foreach (UnitDefinition unit in catalog.Companions)
+                if (unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
             for (int index = 0; index < 3; index++)
             {
+                var recruits = specialUnits.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id));
+                if (Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
+                if (index == 0 && recruits.Count > 0)
+                {
+                    UnitDefinition recruit = recruits[Next(ref State.ShopRandom, recruits.Count)];
+                    State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Companion, Id = recruit.Id, Price = 4, Currency = ShopCurrency.Eggs });
+                    continue;
+                }
                 ItemDefinition item = specialItems[WeightedItem(specialItems)];
-                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
+                State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = Mathf.Max(1, Mathf.CeilToInt((catalog.AltarRevision > 0 ? item.AltarPrice : catalog.SpecialShopPrice) * (1 + (int)item.Rarity * 0.25f))), Currency = catalog.AltarRevision > 0 ? item.AltarCurrency : ShopCurrency.Eggs });
             }
         }
 

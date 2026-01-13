@@ -15,9 +15,9 @@ namespace ArcaneBrigade.Editor
             art.GiantGoldMerchant = Import("GiantGoldMerchant_v1"); art.GiantEggMerchant = Import("GiantEggMerchant_v1");
             EditorUtility.SetDirty(art); AssetDatabase.SaveAssets();
         }
-        private static Sprite[] Import(string name)
+        public static Sprite[] Import(string name, string folder = "K11")
         {
-            string path = "Assets/ArcaneBrigade/Art/K11/" + name + ".png";
+            string path = "Assets/ArcaneBrigade/Art/" + folder + "/" + name + ".png";
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Multiple;

@@ -354,7 +354,7 @@ namespace ArcaneBrigade
         {
             if (catalog.Boss != null && Elapsed >= catalog.WaveDuration) return;
             if (Elapsed < nextSpawn) return;
-            nextSpawn = Elapsed + Mathf.Max(0.3f, catalog.SpawnInterval * (1f - Elapsed / catalog.WaveDuration * 0.4f));
+            nextSpawn = Elapsed + Mathf.Max(0.08f, catalog.SpawnInterval * (1f - Elapsed / catalog.WaveDuration * 0.4f));
             int enemyCount = 0;
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             if (enemyCount >= catalog.EnemyBudget) return;
@@ -681,6 +681,11 @@ namespace ArcaneBrigade
             target.Health = Mathf.Max(0f, target.Health - damage);
             target.LastHit = Elapsed;
             target.HitDirection = direction;
+            if (target.Health > 0 && target.Faction == Faction.Enemy && source != Faction.Enemy && weapon != null && direction.sqrMagnitude > 0.001f)
+            {
+                target.Position = ClampPosition(target.Position + direction.normalized * Mathf.Clamp(weapon.PushDistance, 0, 0.8f) * (1 - Mathf.Clamp01(target.Definition.KnockbackResistance)), target.Definition.Radius);
+                spatial.Move(target);
+            }
             events.Add(new CombatEvent(CombatEventKind.Hit, target.Position, target.Faction, damage, direction, weapon, critical, element, target.Id, target, cause));
             NotifyArenaToyHit(events[events.Count - 1]);
             if (target.Health > 0f) return;

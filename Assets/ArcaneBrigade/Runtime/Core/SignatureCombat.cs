@@ -143,12 +143,6 @@ namespace ArcaneBrigade
                         target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.5f);
                         RecordActivation(pulse.Cause.Child("carbon-exposure"));
                     }
-                    if (target.Alive && weapon.Signature == SignatureWeapon.Umbrella)
-                    {
-                        float resistance = target.Definition.IsBoss ? 0.2f : 1;
-                        target.Position = ClampPosition(target.Position + delta.normalized * Mathf.Clamp(weapon.PushDistance, 0, 0.8f) * resistance, target.Definition.Radius);
-                        spatial.Move(target);
-                    }
                 }
             }
         }

@@ -26,6 +26,8 @@ MonoBehaviour:
   Radius: 0.8
   BodyHeight: 2.52
   BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
   ContactDamage: 8
   ContactInterval: 0.8
   CollisionDamage: 0

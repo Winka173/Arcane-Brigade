@@ -114,6 +114,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 73ccf3fce90ee8d44a97a20bb549ff0f, type: 2}
   - {fileID: 11400000, guid: 93f0be145dd0ce54e9f3193504751b16, type: 2}
   - {fileID: 11400000, guid: c9536099e4e0b5a4ea77f7ab5ebdb359, type: 2}
+  - {fileID: 11400000, guid: 4fbf22964b279df47ab1e7551a1be7fc, type: 2}
+  - {fileID: 11400000, guid: a8f093a57629d8b4791a2f4ead56b548, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}
