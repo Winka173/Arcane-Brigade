@@ -103,6 +103,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b786846ce06a5a84f9219410e266774f, type: 2}
   - {fileID: 11400000, guid: 6ac4ac855e2e7844d8c80d1f319a316f, type: 2}
   - {fileID: 11400000, guid: a9b27cddf2286b24bacaed7af9c6ba1f, type: 2}
+  - {fileID: 11400000, guid: 8c9aebe3727e73942aca0c12dd4236c4, type: 2}
+  - {fileID: 11400000, guid: 3ea9665ebbfa4d34bb7e69d150469f3f, type: 2}
+  - {fileID: 11400000, guid: cda2bf2449b03bb418574501dcd3441a, type: 2}
+  - {fileID: 11400000, guid: 78d9e96d89ace2f4090fcffd3bf65eaa, type: 2}
+  - {fileID: 11400000, guid: 21e1818c7b5bd9b48ae7f0e470c105b9, type: 2}
+  - {fileID: 11400000, guid: 4138d0a4f34677f4f8ba4f30f795c6d1, type: 2}
+  - {fileID: 11400000, guid: 69fbb91d0ef486742a063c9c8c2a8f2c, type: 2}
+  - {fileID: 11400000, guid: dcd4f5f556668894bad0537520c5196a, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}

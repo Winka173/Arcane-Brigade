@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -7,7 +6,6 @@ namespace ArcaneBrigade
     {
         private ArenaController owner;
         private Material floor;
-        private readonly List<SpriteRenderer> props = new List<SpriteRenderer>();
         private int theme = -1;
         private Color palette = Palettes[0];
         private static Sprite paper;
@@ -17,37 +15,6 @@ namespace ArcaneBrigade
         public void Configure(ArenaController controller)
         {
             owner = controller;
-            PaintedAnimationLibrary art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
-            if (art == null || art.EnvironmentProps == null || art.EnvironmentProps.Length < 4) return;
-            Vector2 bounds = owner.WorldBounds * 0.5f;
-            for (int index = 0; index < 12; index++)
-            {
-                bool horizontal = index < 8;
-                float along = horizontal ? -0.75f + index % 4 * 0.5f : -0.5f + index % 2;
-                Vector2 position = horizontal ? new Vector2(bounds.x * along, (index < 4 ? 1 : -1) * (bounds.y - 0.85f)) : new Vector2((index < 10 ? -1 : 1) * (bounds.x - 0.8f), bounds.y * along);
-                var child = new GameObject("DreamLandmark_" + index); child.transform.SetParent(transform, false); child.transform.localPosition = position;
-                SpriteRenderer renderer = child.AddComponent<SpriteRenderer>(); renderer.sprite = art.EnvironmentProps[index % 4];
-                float height = index % 4 == 0 ? 2.15f : 1.5f;
-                child.transform.localScale = Vector3.one * (height / renderer.sprite.bounds.size.y);
-                renderer.sortingOrder = 1000 - Mathf.RoundToInt(position.y * 12); props.Add(renderer);
-                child.AddComponent<StaticGroundShadow>();
-                ShopFloorShadow.Create(transform, position + Vector2.down * height * 0.44f, height * 0.7f, 0.38f);
-            }
-            for (int index = 0; index < 18; index++)
-            {
-                float angle = index * 2.399963f;
-                float radius = 6.8f + index % 4 * 1.25f;
-                Vector2 position = new Vector2(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius * 0.68f);
-                position.x = Mathf.Clamp(position.x, -bounds.x + 1.2f, bounds.x - 1.2f);
-                position.y = Mathf.Clamp(position.y, -bounds.y + 1.2f, bounds.y - 1.2f);
-                var child = new GameObject("DreamGarden_" + index); child.transform.SetParent(transform, false); child.transform.localPosition = position;
-                SpriteRenderer renderer = child.AddComponent<SpriteRenderer>(); renderer.sprite = art.DreamGardenProps != null && art.DreamGardenProps.Length == 4 ? art.DreamGardenProps[index % 4] : art.EnvironmentProps[(index + 1) % 4];
-                float height = index % 3 == 0 ? 1.25f : 0.82f;
-                child.transform.localScale = Vector3.one * (height / renderer.sprite.bounds.size.y);
-                renderer.sortingOrder = 1000 - Mathf.RoundToInt(position.y * 12); props.Add(renderer);
-                child.AddComponent<StaticGroundShadow>();
-                child.AddComponent<LivingScenery>();
-            }
             GameObject ground = GameObject.Find("HD_TiledFloor");
             if (ground != null) floor = ground.GetComponent<MeshRenderer>().material;
         }
@@ -64,8 +31,7 @@ namespace ArcaneBrigade
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             Color target = Color.Lerp(Palettes[theme], new Color(0.28f, 0.17f, 0.37f), owner.Shop != null && owner.Shop.Special ? 0.55f : 0);
             palette = Color.Lerp(palette, target, reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * 0.8f));
-            if (floor != null) { floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.28f); }
-            foreach (SpriteRenderer prop in props) prop.color = Color.Lerp(new Color(0.58f, 0.62f, 0.65f), palette, 0.42f);
+            if (floor != null) { floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.58f); }
         }
 
         public static void CreateMarketFloor(Transform parent, bool special)

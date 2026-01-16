@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 711971618, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 110
-  Speed: 5
+  Speed: 3.65
   Radius: 0.25
   BodyHeight: 0.92
   BodyScale: 1

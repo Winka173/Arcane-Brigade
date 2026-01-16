@@ -8,6 +8,9 @@ Shader "ArcaneBrigade/FloorHD"
         _Saturation ("Saturation", Range(0,2)) = 1.15
         _BaseColor ("Quiet ground", Color) = (0.12,0.25,0.34,1)
         _Detail ("Paint contrast", Range(0,1)) = 0.6
+        _PatinaTex ("Painted patina layer", 2D) = "black" {}
+        _PatinaStrength ("Patina blend", Range(0,1)) = 0
+        _MicroStrength ("Fine material grain", Range(0,1)) = 0.08
     }
     SubShader
     {
@@ -25,19 +28,27 @@ Shader "ArcaneBrigade/FloorHD"
             float _Saturation;
             fixed4 _BaseColor;
             float _Detail;
+            sampler2D _PatinaTex;
+            float _PatinaStrength;
+            float _MicroStrength;
             struct VertexInput { float4 vertex : POSITION; float2 uv : TEXCOORD0; };
-            struct VertexOutput { float4 vertex : SV_POSITION; float2 uv : TEXCOORD0; };
+            struct VertexOutput { float4 vertex : SV_POSITION; float2 uv : TEXCOORD0; float2 mapUV : TEXCOORD1; };
             VertexOutput vert(VertexInput input)
             {
                 VertexOutput output;
                 output.vertex = UnityObjectToClipPos(input.vertex);
                 output.uv = input.uv * _TileScale.xy;
+                output.mapUV = input.uv;
                 return output;
             }
             fixed4 frag(VertexOutput input) : SV_Target
             {
                 fixed4 color = tex2D(_MainTex, input.uv) * _Color;
                 color.rgb = lerp(_BaseColor.rgb, color.rgb, _Detail);
+                fixed4 patina = tex2D(_PatinaTex, input.mapUV);
+                color.rgb = lerp(color.rgb, patina.rgb * _Color.rgb, patina.a * _PatinaStrength);
+                float grain = dot(tex2D(_MainTex, input.uv * 3.3 + float2(0.17,0.31)).rgb, float3(0.2126,0.7152,0.0722));
+                color.rgb *= 1 + (grain - 0.25) * _MicroStrength;
                 float luminance = dot(color.rgb, float3(0.2126,0.7152,0.0722));
                 color.rgb = saturate(lerp(luminance.xxx, color.rgb, _Saturation));
                 color.a = 1;

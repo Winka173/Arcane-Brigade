@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbafebf9cab231d4ca006893cf516a93, type: 3}
+  m_Name: TwinSabres
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
+  Id: TwinSabres
+  Kind: 1
+  Sprite: {fileID: 240416887, guid: a4bf33a347b885a4fa769938a4a066cf, type: 3}
+  Damage: 18
+  Range: 1.9
+  Cooldown: 0.72
+  Windup: 0.16
+  Recovery: 0.24
+  ProjectileSpeed: 5
+  ProjectileSpread: 0.14
+  HomingOutbound: 0
+  SpecialOnly: 0
+  ProjectileLifetime: 2
+  VisualWidth: 0.94
+  MountDistance: 0.34
+  MuzzleDistance: 0.6
+  ConeDot: -0.15
+  ProjectileColor: {r: 1, g: 1, b: 1, a: 1}
+  Element: 3
+  Motion: 8
+  ProjectileCount: 1
+  ProjectilePierce: 0
+  ProjectileSplit: 0
+  ProjectileBounceChance: 0
+  ProjectileRadius: 0.075
+  SwingAngle: 85
+  RecoilDistance: 0.09
+  BodyAttackTilt: 10
+  HasMuzzleOffset: 1
+  ProjectileMuzzleOffset: {x: 0.69560003, y: 0.057438716}
+  ProjectileSprite: {fileID: 21300000, guid: 73c46aa0c6d777b489ee34565420ff09, type: 3}
+  ProjectileVisualWidth: 0.3
+  Signature: 0
+  SignatureBeats: 3
+  SignatureRadius: 2.2
+  SignatureScale: 0.65
+  SignatureDelay: 0.18
+  MarkLifetime: 2.4
+  PushDistance: 0.22
+  Family: 3

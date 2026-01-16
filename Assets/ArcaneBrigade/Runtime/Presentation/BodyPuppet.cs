@@ -39,20 +39,35 @@ namespace ArcaneBrigade
                 lower.transform.localPosition = new Vector3(-feet.LowerOffset.x, feet.LowerOffset.y, 0);
             }
             var profile = new SpeciesMotionProfile(state.Definition);
+            float hitAge = time - state.LastHit;
+            float recoil = reduced || hitAge < 0 || hitAge > 0.32f ? 0 : Mathf.Sin(hitAge / 0.32f * Mathf.PI) * Mathf.Exp(-hitAge * 6);
+            float gesturePhase = Mathf.Repeat(time + state.Id * 0.73f, 6.4f);
+            float gesture = reduced || reacting || moving || gesturePhase > 0.85f ? 0 : Mathf.Sin(gesturePhase / 0.85f * Mathf.PI);
             float cadence = profile.IdleCadence;
             float breathing = reduced || reacting ? 0 : Mathf.Sin(time * cadence + state.Id * 0.8f) * (state.Definition.Material == BodyMaterial.Metal ? 0.012f : 0.025f);
             upper.transform.localScale = new Vector3(1 - breathing * 0.3f, 1 + breathing, 1);
             upper.transform.localPosition += new Vector3(reduced || reacting ? 0 : Mathf.Sin(time * 1.8f + state.Id) * 0.012f, breathing * 0.18f, 0);
+            Vector2 hitDirection = state.HitDirection.sqrMagnitude > 0 ? state.HitDirection.normalized : Vector2.left;
+            upper.transform.localPosition += (Vector3)(hitDirection * recoil * profile.Recoil) + Vector3.up * gesture * profile.IdleGesture;
             float windup = state.AttackWindup > 0 ? state.AttackWindup : state.Definition.Weapon.Windup;
             K8Motion.Pose pose = K8Motion.Attack(state.Definition.Weapon, time - state.AttackStarted, windup, reduced);
             upper.transform.localPosition += Vector3.up * pose.Lift * 0.25f;
             float supportAge = time - state.LastSupport;
             float support = reduced || reacting || supportAge < 0 || supportAge >= 0.5f ? 0 : Mathf.Sin(supportAge / 0.5f * Mathf.PI);
             upper.transform.localPosition += Vector3.up * support * 0.035f;
+            float bossCharge = reduced || !state.Definition.IsBoss || state.TelegraphUntil <= time ? 0 : Mathf.SmoothStep(0, 1, 1 - (state.TelegraphUntil - time) / 0.85f);
+            if (bossCharge > 0)
+            {
+                float flourish = Mathf.Sin(bossCharge * Mathf.PI);
+                bool office = state.Definition.Motif == BossMotif.Office;
+                upper.transform.localPosition += new Vector3(office ? flourish * 0.025f : 0, flourish * (office ? 0.045f : 0.08f), 0);
+                upper.transform.localScale = Vector3.Scale(upper.transform.localScale, new Vector3(1 + flourish * (office ? 0.06f : -0.035f), 1 + flourish * (office ? -0.025f : 0.05f), 1));
+            }
             float turn = reduced || reacting ? 0 : Mathf.Sin(time * (moving ? profile.GaitCadence * 0.6f : cadence) + state.Id) * profile.HeadTurn;
-            upper.transform.localRotation = Quaternion.Euler(0, 0, turn + (pose.Lean * 0.25f + support * 4) * (reference.flipX ? -1 : 1));
+            upper.transform.localRotation = Quaternion.Euler(0, 0, turn + (pose.Lean * 0.4f + support * 4 + gesture * profile.HeadTurn * 2 + recoil * 7) * (reference.flipX ? -1 : 1));
             float gait = reduced || !moving ? 0 : Mathf.Sin(time * profile.GaitCadence * (state.TravelMode == CompanionTravelMode.Pursuit ? 1.45f : 1) + state.Id) * profile.GaitAmplitude;
-            lower.transform.localScale = new Vector3(1 + gait, 1 - gait * 0.6f, 1);
+            float squash = reduced ? 0 : pose.Squash * 0.4f + recoil * profile.LowerSquash - gesture * profile.LowerSquash * 0.5f;
+            lower.transform.localScale = new Vector3(1 + gait + squash, 1 - gait * 0.6f - squash, 1);
             lower.transform.localRotation = Quaternion.Euler(0, 0, state.Definition.Material == BodyMaterial.Glass || reduced ? 0 : gait * 28);
             upper.sharedMaterial = lower.sharedMaterial = reference.sharedMaterial;
             upper.color = lower.color = reference.color;

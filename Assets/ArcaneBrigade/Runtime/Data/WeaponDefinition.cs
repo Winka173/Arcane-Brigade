@@ -17,6 +17,8 @@ namespace ArcaneBrigade
         public float Recovery = 0.2f;
         public float ProjectileSpeed = 7f;
         public float ProjectileSpread = 0.14f;
+        public bool HomingOutbound;
+        public bool SpecialOnly;
         public float ProjectileLifetime = 2.4f;
         public float VisualWidth = 0.55f;
         public float MountDistance = 0.34f;

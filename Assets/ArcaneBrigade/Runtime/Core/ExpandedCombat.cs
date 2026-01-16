@@ -92,13 +92,13 @@ namespace ArcaneBrigade
             if (projectile.Weapon == null) return 0;
             ExpandedWeapon family = projectile.Weapon.Family;
             projectile.Age += delta;
-            if (family == ExpandedWeapon.MusicBox && projectile.Faction != Faction.Enemy)
+            if ((family == ExpandedWeapon.MusicBox || projectile.Weapon.HomingOutbound && !projectile.Returning) && projectile.Faction != Faction.Enemy)
             {
                 UnitState nearest = null; float best = 16;
                 foreach (UnitState enemy in units)
                 {
                     float distance = (enemy.Position - projectile.Position).sqrMagnitude;
-                    if (!enemy.Alive || enemy.Faction != Faction.Enemy || distance >= best) continue;
+                    if (!enemy.Alive || enemy.Faction != Faction.Enemy || projectile.Victims.Contains(enemy.Id) || distance >= best) continue;
                     nearest = enemy; best = distance;
                 }
                 if (nearest != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (nearest.Position - projectile.Position).normalized * projectile.Weapon.ProjectileSpeed, Mathf.Clamp01(delta * 4));

@@ -253,7 +253,7 @@ namespace ArcaneBrigade
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[(State.Wave / catalog.BossEvery - 1) % catalog.Bosses.Length], scaling) : null;
             CombatCatalog.WaveDuration = Mathf.Min(catalog.WaveSeconds, catalog.FirstWaveSeconds + (State.Wave - 1) * catalog.WaveIncrement);
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * (State.Wave >= 5 ? 4 : State.Wave == 4 ? 3 : 1) * (1f + State.Difficulty * 0.12f));
-            CombatCatalog.SpawnInterval = State.Wave >= 4 ? Mathf.Max(0.14f, 0.32f - (State.Wave - 4) * 0.012f) : 1.4f - State.Wave * 0.035f;
+            CombatCatalog.SpawnInterval = State.Wave >= 4 ? Mathf.Max(0.22f, 0.46f - (State.Wave - 4) * 0.012f) : 1.4f - State.Wave * 0.035f;
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
             CombatCatalog.PickupRadius = catalog.Arena.PickupRadius + Bonus(ItemEffect.Pickup);
@@ -369,8 +369,11 @@ namespace ArcaneBrigade
             if (source.IsBoss) unit.Health *= 4f;
             unit.Health *= 1 + Mathf.Max(0, State.Wave - 3) * 0.06f;
             unit.Speed *= 1 + 1.5f * (1 - Mathf.Exp(-(State.Wave - 1) * 0.015f));
-            unit.ContactDamage = Mathf.Min(14f, source.ContactDamage + State.Wave * 0.35f);
-            unit.Weapon.Damage = Mathf.Min(source.IsBoss ? 26f : 14f, source.Weapon.Damage + State.Wave * 0.35f);
+            float damageGrowth = Mathf.Max(0, State.Wave - 10);
+            unit.ContactDamage = Mathf.Min(14f + damageGrowth * 0.12f, source.ContactDamage + State.Wave * 0.35f);
+            unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
+            float pressure = 0.62f + State.Difficulty * 0.095f;
+            unit.ContactDamage *= pressure; unit.Weapon.Damage *= pressure;
             if (catalog.StatRevision > 0)
             {
                 float late = Mathf.Max(0, State.Wave - 10);
@@ -455,9 +458,9 @@ namespace ArcaneBrigade
             {
                 var choices = new List<WeaponDefinition>();
                 foreach (WeaponDefinition weapon in catalog.Weapons)
-                    if (!State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
+                    if (RecruitWeaponEligible(offer.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
-                WeaponDefinition chosen = BalancedWeapon(choices);
+                WeaponDefinition chosen = BalancedWeapon(choices, catalog.Unit(offer.Id).SpecialRecruit);
                 bool newSpecies = !State.Roster.Exists(entry => entry.UnitId == offer.Id);
                 State.Roster.Add(new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id });
                 if (newSpecies) State.NewRecruitsThisWave++;
@@ -488,7 +491,7 @@ namespace ArcaneBrigade
             if (offer == null || offer.Sold || State.Phase != SessionPhase.Shop) return false;
             if (offer.Currency == ShopCurrency.Health ? State.Health - offer.Price < 1f : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
             if (offer.Kind == OfferKind.Item) return StackCount(offer.Id) < catalog.Item(offer.Id).StackLimit;
-            return Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id));
+            return Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(offer.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id));
         }
 
         private void MergeTriples(string id)
@@ -501,7 +504,7 @@ namespace ArcaneBrigade
                     List<RosterEntry> consumed = materials.GetRange(0, 3);
                     var choices = new List<WeaponDefinition>();
                     foreach (WeaponDefinition weapon in catalog.Weapons)
-                        if (!State.Roster.Exists(entry => entry.UnitId == id && entry.WeaponId == weapon.Id && !consumed.Contains(entry))) choices.Add(weapon);
+                        if (RecruitWeaponEligible(id, weapon) && !State.Roster.Exists(entry => entry.UnitId == id && entry.WeaponId == weapon.Id && !consumed.Contains(entry))) choices.Add(weapon);
                     if (choices.Count == 0) break;
                     for (int index = 0; index < 3; index++) State.Roster.Remove(materials[index]);
                     materials.RemoveRange(0, 3);
@@ -576,7 +579,7 @@ namespace ArcaneBrigade
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
@@ -584,6 +587,8 @@ namespace ArcaneBrigade
             {
                 bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
                 var available = units.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id) || newRecruit);
+                var mergeReady = available.FindAll(unit => State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
+                if (mergeReady.Count > 0 && Next(ref State.ShopRandom, 100) < 85) available = mergeReady;
                 bool recruit = available.Count > 0 && (items.Count == 0 || index == 0);
                 int choice = recruit ? Next(ref State.ShopRandom, available.Count) : WeightedItem(items);
                 int basePrice = Mathf.CeilToInt((recruit ? available[choice].Price : items[choice].Price * (1 + (int)items[choice].Rarity * 0.4f)) * StagePriceFactor);
@@ -610,7 +615,7 @@ namespace ArcaneBrigade
             State.SpecialOffers.Clear();
             var specialUnits = new List<UnitDefinition>();
             foreach (UnitDefinition unit in catalog.Companions)
-                if (unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
+                if (unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
             for (int index = 0; index < 3; index++)
             {
                 var recruits = specialUnits.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id));
@@ -634,7 +639,7 @@ namespace ArcaneBrigade
             RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
             if (first == null || second == null) { Notice = "Altar needs both listed companions."; return false; }
             var choices = new List<WeaponDefinition>();
-            foreach (WeaponDefinition weapon in catalog.Weapons) if (!State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id)) choices.Add(weapon);
+            foreach (WeaponDefinition weapon in catalog.Weapons) if (RecruitWeaponEligible(recipe.ResultUnit, weapon) && !State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id)) choices.Add(weapon);
             if (choices.Count == 0) return false;
             float previousMaximum = MaximumHealth();
             State.Roster.Remove(first);
@@ -648,7 +653,9 @@ namespace ArcaneBrigade
             return true;
         }
 
-        private WeaponDefinition BalancedWeapon(List<WeaponDefinition> choices)
+        public bool RecruitWeaponEligible(string unitId, WeaponDefinition weapon) => !weapon.SpecialOnly || catalog.Unit(unitId).SpecialRecruit;
+
+        private WeaponDefinition BalancedWeapon(List<WeaponDefinition> choices, bool preferSpecial = false)
         {
             if (catalog.HeroRevision > 0)
             {
@@ -657,6 +664,11 @@ namespace ArcaneBrigade
                 WeaponKind kind = melee == ranged ? Next(ref State.WeaponRandom, 2) == 0 ? WeaponKind.Melee : WeaponKind.Projectile : melee < ranged ? WeaponKind.Melee : WeaponKind.Projectile;
                 List<WeaponDefinition> preferred = choices.FindAll(weapon => weapon.Kind == kind);
                 if (preferred.Count > 0) choices = preferred;
+            }
+            if (preferSpecial)
+            {
+                var special = choices.FindAll(weapon => weapon.SpecialOnly);
+                if (special.Count > 0) choices = special;
             }
             return choices[Next(ref State.WeaponRandom, choices.Count)];
         }
@@ -675,7 +687,7 @@ namespace ArcaneBrigade
             if (recipe == null || State.Phase != SessionPhase.Shop || State.Eggs < recipe.EggCost) return false;
             RosterEntry first = LowestTier(recipe.FirstUnit, null, recipe.MinimumMaterialTier);
             RosterEntry second = LowestTier(recipe.SecondUnit, first, recipe.MinimumMaterialTier);
-            return first != null && second != null && Array.Exists(catalog.Weapons, weapon => !State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id));
+            return first != null && second != null && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(recipe.ResultUnit, weapon) && !State.Roster.Exists(entry => entry != first && entry != second && entry.UnitId == recipe.ResultUnit && entry.WeaponId == weapon.Id));
         }
 
         public string RecipePreview(string recipeId)

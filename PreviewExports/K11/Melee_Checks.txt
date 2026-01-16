@@ -198,6 +198,46 @@ PASS Actual range multiplier RibbonHarp
 PASS Authored visual multiplier RibbonHarp
 PASS Recompilation never stacks balance buff RibbonHarp
 PASS Source weapon not mutated RibbonHarp
+PASS Compiled damage multiplier DreamOrbStaff
+PASS Actual range multiplier DreamOrbStaff
+PASS Authored visual multiplier DreamOrbStaff
+PASS Recompilation never stacks balance buff DreamOrbStaff
+PASS Source weapon not mutated DreamOrbStaff
+PASS Compiled damage multiplier FireExtinguisher
+PASS Actual range multiplier FireExtinguisher
+PASS Authored visual multiplier FireExtinguisher
+PASS Recompilation never stacks balance buff FireExtinguisher
+PASS Source weapon not mutated FireExtinguisher
+PASS Compiled damage multiplier PlasmaTrident
+PASS Actual range multiplier PlasmaTrident
+PASS Authored visual multiplier PlasmaTrident
+PASS Recompilation never stacks balance buff PlasmaTrident
+PASS Source weapon not mutated PlasmaTrident
+PASS Compiled damage multiplier MoonFeatherFan
+PASS Actual range multiplier MoonFeatherFan
+PASS Authored visual multiplier MoonFeatherFan
+PASS Recompilation never stacks balance buff MoonFeatherFan
+PASS Source weapon not mutated MoonFeatherFan
+PASS Compiled damage multiplier TwinSabres
+PASS Actual range multiplier TwinSabres
+PASS Authored visual multiplier TwinSabres
+PASS Recompilation never stacks balance buff TwinSabres
+PASS Source weapon not mutated TwinSabres
+PASS Compiled damage multiplier ClockCrescent
+PASS Actual range multiplier ClockCrescent
+PASS Authored visual multiplier ClockCrescent
+PASS Recompilation never stacks balance buff ClockCrescent
+PASS Source weapon not mutated ClockCrescent
+PASS Compiled damage multiplier ParasolNeedle
+PASS Actual range multiplier ParasolNeedle
+PASS Authored visual multiplier ParasolNeedle
+PASS Recompilation never stacks balance buff ParasolNeedle
+PASS Source weapon not mutated ParasolNeedle
+PASS Compiled damage multiplier StampHammer
+PASS Actual range multiplier StampHammer
+PASS Authored visual multiplier StampHammer
+PASS Recompilation never stacks balance buff StampHammer
+PASS Source weapon not mutated StampHammer
 PASS Melee movement speed rises30 percent
 PASS Melee leash adds2 units beyond ranged leash
 PASS Melee display can exceed body width
@@ -1016,6 +1056,78 @@ PASS Tier grows actual body, weapon and range RibbonHarp/3
 PASS Tier grows bullet collision radius RibbonHarp/3
 PASS Ledger reflects compiled melee/tier values RibbonHarp/3
 PASS Ledger remains read-only RibbonHarp/3
+PASS Ledger reflects compiled melee/tier values DreamOrbStaff/1
+PASS Ledger remains read-only DreamOrbStaff/1
+PASS Tier grows actual body, weapon and range DreamOrbStaff/2
+PASS Tier grows bullet collision radius DreamOrbStaff/2
+PASS Ledger reflects compiled melee/tier values DreamOrbStaff/2
+PASS Ledger remains read-only DreamOrbStaff/2
+PASS Tier grows actual body, weapon and range DreamOrbStaff/3
+PASS Tier grows bullet collision radius DreamOrbStaff/3
+PASS Ledger reflects compiled melee/tier values DreamOrbStaff/3
+PASS Ledger remains read-only DreamOrbStaff/3
+PASS Ledger reflects compiled melee/tier values FireExtinguisher/1
+PASS Ledger remains read-only FireExtinguisher/1
+PASS Tier grows actual body, weapon and range FireExtinguisher/2
+PASS Tier grows bullet collision radius FireExtinguisher/2
+PASS Ledger reflects compiled melee/tier values FireExtinguisher/2
+PASS Ledger remains read-only FireExtinguisher/2
+PASS Tier grows actual body, weapon and range FireExtinguisher/3
+PASS Tier grows bullet collision radius FireExtinguisher/3
+PASS Ledger reflects compiled melee/tier values FireExtinguisher/3
+PASS Ledger remains read-only FireExtinguisher/3
+PASS Ledger reflects compiled melee/tier values PlasmaTrident/1
+PASS Ledger remains read-only PlasmaTrident/1
+PASS Tier grows actual body, weapon and range PlasmaTrident/2
+PASS Tier grows bullet collision radius PlasmaTrident/2
+PASS Ledger reflects compiled melee/tier values PlasmaTrident/2
+PASS Ledger remains read-only PlasmaTrident/2
+PASS Tier grows actual body, weapon and range PlasmaTrident/3
+PASS Tier grows bullet collision radius PlasmaTrident/3
+PASS Ledger reflects compiled melee/tier values PlasmaTrident/3
+PASS Ledger remains read-only PlasmaTrident/3
+PASS Ledger reflects compiled melee/tier values MoonFeatherFan/1
+PASS Ledger remains read-only MoonFeatherFan/1
+PASS Tier grows actual body, weapon and range MoonFeatherFan/2
+PASS Tier grows bullet collision radius MoonFeatherFan/2
+PASS Ledger reflects compiled melee/tier values MoonFeatherFan/2
+PASS Ledger remains read-only MoonFeatherFan/2
+PASS Tier grows actual body, weapon and range MoonFeatherFan/3
+PASS Tier grows bullet collision radius MoonFeatherFan/3
+PASS Ledger reflects compiled melee/tier values MoonFeatherFan/3
+PASS Ledger remains read-only MoonFeatherFan/3
+PASS Ledger reflects compiled melee/tier values TwinSabres/1
+PASS Ledger remains read-only TwinSabres/1
+PASS Tier grows actual body, weapon and range TwinSabres/2
+PASS Ledger reflects compiled melee/tier values TwinSabres/2
+PASS Ledger remains read-only TwinSabres/2
+PASS Tier grows actual body, weapon and range TwinSabres/3
+PASS Ledger reflects compiled melee/tier values TwinSabres/3
+PASS Ledger remains read-only TwinSabres/3
+PASS Ledger reflects compiled melee/tier values ClockCrescent/1
+PASS Ledger remains read-only ClockCrescent/1
+PASS Tier grows actual body, weapon and range ClockCrescent/2
+PASS Ledger reflects compiled melee/tier values ClockCrescent/2
+PASS Ledger remains read-only ClockCrescent/2
+PASS Tier grows actual body, weapon and range ClockCrescent/3
+PASS Ledger reflects compiled melee/tier values ClockCrescent/3
+PASS Ledger remains read-only ClockCrescent/3
+PASS Ledger reflects compiled melee/tier values ParasolNeedle/1
+PASS Ledger remains read-only ParasolNeedle/1
+PASS Tier grows actual body, weapon and range ParasolNeedle/2
+PASS Ledger reflects compiled melee/tier values ParasolNeedle/2
+PASS Ledger remains read-only ParasolNeedle/2
+PASS Tier grows actual body, weapon and range ParasolNeedle/3
+PASS Ledger reflects compiled melee/tier values ParasolNeedle/3
+PASS Ledger remains read-only ParasolNeedle/3
+PASS Ledger reflects compiled melee/tier values StampHammer/1
+PASS Ledger remains read-only StampHammer/1
+PASS Tier grows actual body, weapon and range StampHammer/2
+PASS Ledger reflects compiled melee/tier values StampHammer/2
+PASS Ledger remains read-only StampHammer/2
+PASS Tier grows actual body, weapon and range StampHammer/3
+PASS Ledger reflects compiled melee/tier values StampHammer/3
+PASS Ledger remains read-only StampHammer/3
 PASS Sandbox uses same melee and star range rules
 PASS English unit content LanternKnight
 PASS English unit content Postmaster
@@ -1069,6 +1181,8 @@ PASS English unit content DoorBearer
 PASS English unit content MoonMagnet
 PASS English unit content SleepMimic
 PASS English unit content CurtainWisp
+PASS English unit content FurnaceToad
+PASS English unit content WardrobeCrab
 PASS English unit content UndeliveredKing
 PASS English unit content ScarletIndex
 PASS English unit content SleepCollector
@@ -1139,3 +1253,6 @@ PASS English relic content k10-speedcorrection
 PASS English relic content k10-armorcorrection
 PASS English relic content k10-healcorrection
 PASS English relic content k10-collisionfrequency
+PASS English relic content long-pocket
+PASS English relic content velvet-first-aid
+PASS English relic content brass-avalanche

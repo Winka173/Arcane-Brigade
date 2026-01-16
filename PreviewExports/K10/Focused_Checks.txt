@@ -28,6 +28,7 @@ PASS Localized stat SpeedCorrection
 PASS Localized stat ArmorCorrection
 PASS Localized stat HealCorrection
 PASS Localized stat CollisionFrequency
+PASS Localized stat ChestReach
 PASS Pierce derives from stacked run modifiers
 PASS Split derives from stacked run modifiers
 PASS Bullet collision size grows with visual size
@@ -57,17 +58,17 @@ PASS New stat sources include protagonist identity LanternKnight
 PASS New stat sources include protagonist identity Postmaster
 PASS New stat sources include protagonist identity DrowsySeer
 PASS Technical term has icon-linked explanation: split
-PASS Technical term has icon-linked explanation: xuyên
-PASS Technical term has icon-linked explanation: nảy
-PASS Technical term has icon-linked explanation: giáp
-PASS Technical term has icon-linked explanation: hệ
+PASS Technical term has icon-linked explanation: pierce
+PASS Technical term has icon-linked explanation: bounce
+PASS Technical term has icon-linked explanation: armor
+PASS Technical term has icon-linked explanation: bond
 PASS Technical term has icon-linked explanation: scope
 PASS Technical term has icon-linked explanation: merge
 PASS Technical term has icon-linked explanation: altar
 PASS Technical term has icon-linked explanation: reroll
-PASS Technical term has icon-linked explanation: hiệu chỉnh
-PASS Technical term has icon-linked explanation: thủ lĩnh
-PASS Technical term has icon-linked explanation: đồng minh
+PASS Technical term has icon-linked explanation: correction
+PASS Technical term has icon-linked explanation: champion
+PASS Technical term has icon-linked explanation: companions
 PASS All stat labels have definitions: Damage
 PASS All stat labels have definitions: AttackSpeed
 PASS All stat labels have definitions: Health
@@ -116,6 +117,7 @@ PASS All stat labels have definitions: SpeedCorrection
 PASS All stat labels have definitions: ArmorCorrection
 PASS All stat labels have definitions: HealCorrection
 PASS All stat labels have definitions: CollisionFrequency
+PASS All stat labels have definitions: ChestReach
 PASS Click route opens contextual definition
 PASS Dismiss clears glossary without fake unknown explanation
 PASS 32 new species and 24 new weapon identities loaded

@@ -122,6 +122,7 @@ namespace ArcaneBrigade.Editor
                     UnitDefinition[] pool = catalog.Companions.Where(unit => K11HeroRules.Eligible(hero, unit)).ToArray();
                     for (int recruit = 0; recruit < 60; recruit++)
                     {
+                        if (recruit % 3 == 0) session.State.NewRecruitsThisWave = 0;
                         session.State.Gold = 10000;
                         session.State.Offers.Clear();
                         var offer = new ShopOffer { Token = ++session.State.NextOffer, Id = pool[recruit % pool.Length].Id, Kind = OfferKind.Companion, Price = 1 };

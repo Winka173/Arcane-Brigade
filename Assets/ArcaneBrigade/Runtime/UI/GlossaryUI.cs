@@ -10,13 +10,13 @@ namespace ArcaneBrigade
     {
         public sealed class Entry { public string Name; public string Description; public ItemEffect Effect; }
         private static readonly Dictionary<string, Entry> entries = Build();
-        private static readonly Regex tokens = new Regex("((?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static readonly Regex tokens = new Regex("((?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         private static Entry selected;
         private static float openedAt;
         private static readonly Dictionary<GUIStyle, GUIStyle> wordStyles = new Dictionary<GUIStyle, GUIStyle>();
         public static bool Open => selected != null;
         public static void Close() { selected = null; }
-        public static Entry Find(string term) => entries.TryGetValue(term.Trim().TrimEnd('.', ',', ':', ';'), out Entry entry) ? entry : null;
+        public static Entry Find(string term) => entries.TryGetValue(term.Trim().TrimEnd('.', ',', ':', ';', '!', '?', ')'), out Entry entry) ? entry : null;
         public static bool Show(string term) { selected = Find(term); openedAt = Time.unscaledTime; return selected != null; }
         public static void BlockUnderlying(Vector2 viewport)
         {
@@ -40,6 +40,8 @@ namespace ArcaneBrigade
             {
                 string name = RunModifierRules.ModifierName(effect);
                 if (!result.ContainsKey(name)) result[name] = new Entry { Name = name, Effect = effect, Description = Definition(effect) + "\nScope: " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(effect)) + ". Lasts for this run; resets in a new run." };
+                string shortName = ShortOfferCopy.StatName(effect);
+                if (!result.ContainsKey(shortName)) result[shortName] = new Entry { Name = shortName, Effect = effect, Description = Definition(effect) + "\nScope: " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(effect)) + ". Lasts for this run; resets in a new run." };
             }
             Add(result, "pierce", "Bullet pierce", ItemEffect.BulletPierce, "Extra targets a projectile can pass through. Basic projectiles do not hit the same target twice. Adds weapon, tier and item bonuses, capped at 64 extra hits.", "pierce");
             Add(result, "split", "Bullet split", ItemEffect.BulletSplit, "Creates up to 6 child projectiles after the first impact. Children deal 35% damage, are smaller and cannot split again; lifetime is not reset.", "bullet split");

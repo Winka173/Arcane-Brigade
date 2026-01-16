@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbafebf9cab231d4ca006893cf516a93, type: 3}
+  m_Name: MoonFeatherFan
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
+  Id: MoonFeatherFan
+  Kind: 2
+  Sprite: {fileID: 1017995218, guid: 13aadae8bd33d8c49892c5ba64e89a1a, type: 3}
+  Damage: 4.5
+  Range: 6.5
+  Cooldown: 0.82
+  Windup: 0.16
+  Recovery: 0.24
+  ProjectileSpeed: 5
+  ProjectileSpread: 0.23
+  HomingOutbound: 0
+  SpecialOnly: 0
+  ProjectileLifetime: 2
+  VisualWidth: 0.78
+  MountDistance: 0.34
+  MuzzleDistance: 0.6
+  ConeDot: -0.15
+  ProjectileColor: {r: 1, g: 1, b: 1, a: 1}
+  Element: 3
+  Motion: 6
+  ProjectileCount: 4
+  ProjectilePierce: 1
+  ProjectileSplit: 0
+  ProjectileBounceChance: 0
+  ProjectileRadius: 0.075
+  SwingAngle: 85
+  RecoilDistance: 0.09
+  BodyAttackTilt: 10
+  HasMuzzleOffset: 1
+  ProjectileMuzzleOffset: {x: 0.5772, y: 0.16196132}
+  ProjectileSprite: {fileID: 2003532666, guid: be0d928f55eb51d4f8f452ff05210484, type: 3}
+  ProjectileVisualWidth: 0.3
+  Signature: 0
+  SignatureBeats: 3
+  SignatureRadius: 2.2
+  SignatureScale: 0.65
+  SignatureDelay: 0.18
+  MarkLifetime: 2.4
+  PushDistance: 0.22
+  Family: 0

@@ -34,6 +34,7 @@ namespace ArcaneBrigade
         private MerchantVoice voice;
         private GUIStyle priceStyle;
         private GUIStyle denialStyle;
+        private GUIStyle categoryStyle;
         private bool arrivingStock = true;
         private int displayedWave = -1;
         private bool displayedSpecial;
@@ -59,6 +60,7 @@ namespace ArcaneBrigade
         public int PlayedSpeechSyllables => voice == null ? 0 : voice.PlayedSyllables;
         public MergeReveal Reveal { get; private set; }
         public ShopPickupEffect ItemPickup { get; private set; }
+        public ShopMergePreview MergePreview { get; private set; }
         private readonly List<Station> stations = new List<Station>();
         public IReadOnlyList<Station> Stations => stations;
         public bool Special { get; private set; }
@@ -74,6 +76,7 @@ namespace ArcaneBrigade
             owner = controller; art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             Reveal = gameObject.AddComponent<MergeReveal>(); Reveal.Configure(controller);
             ItemPickup = gameObject.AddComponent<ShopPickupEffect>(); ItemPickup.Configure(controller);
+            MergePreview = gameObject.AddComponent<ShopMergePreview>(); MergePreview.Configure(controller);
             voice = gameObject.AddComponent<MerchantVoice>();
         }
         public void Display()
@@ -83,7 +86,7 @@ namespace ArcaneBrigade
             {
                 if (scenery != null) scenery.SetActive(false);
                 if (voice != null) voice.Silence();
-                Nearby = null; Special = false; signature = int.MinValue; arrivingStock = true; return;
+                Nearby = null; MergePreview.Observe(null, true); Special = false; signature = int.MinValue; arrivingStock = true; return;
             }
             RunSnapshot state = owner.Session.State;
             Special = state.SpecialOffers.Count > 0 && !state.SpecialShopVisited;
@@ -98,7 +101,7 @@ namespace ArcaneBrigade
             current = unchecked(current * 31 + state.Wave);
             if (current != signature) { Build(); signature = current; }
             scenery.SetActive(true); Nearby = null;
-            if (Animating || leavingSpecial || owner.HallExitPending) return;
+            if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
             if (merchant != null) merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
             float closest = InteractionRadius * InteractionRadius;
             foreach (Station station in stations)
@@ -110,18 +113,19 @@ namespace ArcaneBrigade
             if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.PresentationClock, true); return; }
             dialogue.Observe(Special, Nearby == null ? null : Nearby.Offer != null ? "offer:" + Nearby.Offer.Token : Nearby.Action, owner.PresentationClock);
             if (merchant != null) merchant.Inspect(Nearby != null);
+            MergePreview.Observe(Nearby, false);
             voice.Advance(dialogue, Special, owner.PresentationClock, false);
             if (merchant != null) merchant.Speak(dialogue.IsSpeaking(owner.PresentationClock));
             foreach (Station station in stations)
             {
                 float target = station == Nearby && !owner.HallExitPending ? 1 : 0;
-                if (target > 0 && station.Focus < 0.02f) station.EnteredAt = Time.time;
+                if (target > 0 && station.Focus < 0.02f) station.EnteredAt = owner.PresentationClock;
                 station.Focus = Mathf.SmoothDamp(station.Focus, target, ref station.FocusVelocity, 0.09f);
                 bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
-                float age = Time.time - station.EnteredAt;
+                float age = owner.PresentationClock - station.EnteredAt;
                 float bounce = reduced || age > 0.55f ? 0 : Mathf.Sin(age * 18f) * Mathf.Exp(-age * 7f) * 0.13f;
-                float denied = Mathf.Clamp01((station.DeniedUntil - Time.time) / 0.65f);
-                float shake = reduced ? 0 : Mathf.Sin(Time.time * 55) * denied * 0.1f;
+                float denied = Mathf.Clamp01((station.DeniedUntil - owner.PresentationClock) / 0.65f);
+                float shake = reduced ? 0 : Mathf.Sin(owner.PresentationClock * 55) * denied * 0.1f;
                 station.Marker.localScale = Vector3.one * (1 + station.Focus * (reduced ? 0.07f : 0.18f) + bounce);
                 station.Marker.localPosition = station.Position + new Vector2(shake, reduced ? 0 : station.Focus * 0.08f + Mathf.Max(0, bounce));
                 foreach (SpriteRenderer renderer in station.Renderers)
@@ -190,7 +194,7 @@ namespace ArcaneBrigade
                 if (station.Offer != null || station.Recipe != null || station.Action == "REROLL")
                     dialogue.Speak(Special, station.Recipe != null ? MerchantMoment.Fuse : station.Action == "REROLL" ? MerchantMoment.Reroll : station.Currency == ShopCurrency.Health ? MerchantMoment.BloodBuy : MerchantMoment.Buy, owner.PresentationClock);
                 if (merchant != null) merchant.Celebrate();
-                if (result != null) { result.ReactUntil = Time.time + 0.8f; if (result.Actor != null) result.Actor.Celebrate(); }
+                if (result != null) { result.ReactUntil = owner.PresentationClock + 0.8f; if (result.Actor != null) result.Actor.Celebrate(); }
             }
             else
             {
@@ -199,7 +203,7 @@ namespace ArcaneBrigade
                 DeniedCount++;
                 if (result != null)
                 {
-                    result.DeniedUntil = Time.time + 0.65f;
+                    result.DeniedUntil = owner.PresentationClock + 0.65f;
                     result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
                 }
             }
@@ -297,8 +301,7 @@ namespace ArcaneBrigade
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count;
-                result = ShortOfferCopy.Companion(unit) + "\nRandom weapon · " + copies + "/3 to merge";
-                if (copies >= 2) result += " · May merge after recruitment";
+                result = ShortOfferCopy.Companion(unit) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: tier " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
@@ -325,6 +328,14 @@ namespace ArcaneBrigade
             foreach (UnitState unit in owner.Simulation.Units)
             {
                 if (unit.Faction != Faction.Companion) continue;
+                if (MergePreview.Destination(unit, out Vector2 mergeDestination))
+                {
+                    Vector2 destination = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(mergeDestination - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
+                    unit.Position = Vector2.MoveTowards(unit.PreviousPosition, destination, Mathf.Max(1.5f, unit.Definition.Speed * 0.6f) * Time.fixedDeltaTime);
+                    unit.Velocity = (unit.Position - unit.PreviousPosition) / Time.fixedDeltaTime;
+                    if (unit.Velocity.sqrMagnitude > 0.001f) unit.Facing = unit.Velocity.normalized;
+                    continue;
+                }
                 Vector2 position = AvoidObstacle(unit.Position, MerchantCenter, Mathf.Min(2.2f, MerchantHeight * 0.45f), unit.Id);
                 foreach (Station station in stations) position = AvoidObstacle(position, station.Position, station.Action == "NEXT HALL" ? 0.55f : 0.65f, unit.Id);
                 position = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(position - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
@@ -358,26 +369,42 @@ namespace ArcaneBrigade
         public void DrawPriceTags(Camera camera)
         {
             if (scenery == null || !scenery.activeSelf || owner.HallExitPending || Animating || leavingSpecial) return;
-            if (priceStyle == null) { priceStyle = ArcadeTypography.Style(25, true); priceStyle.normal.textColor = ArcadeSkin.Ink; priceStyle.alignment = TextAnchor.MiddleLeft; denialStyle = ArcadeTypography.Style(20, true); denialStyle.alignment = TextAnchor.MiddleCenter; denialStyle.normal.textColor = new Color(1, 0.45f, 0.35f); }
+            if (priceStyle == null)
+            {
+                priceStyle = ArcadeTypography.Style(25, true); priceStyle.normal.textColor = ArcadeSkin.Ink; priceStyle.alignment = TextAnchor.MiddleLeft; priceStyle.wordWrap = false;
+                categoryStyle = ArcadeTypography.Style(16, true); categoryStyle.normal.textColor = ArcadeSkin.Ink; categoryStyle.alignment = TextAnchor.MiddleCenter; categoryStyle.wordWrap = false;
+                denialStyle = ArcadeTypography.Style(20, true); denialStyle.alignment = TextAnchor.MiddleCenter; denialStyle.normal.textColor = new Color(1, 0.45f, 0.35f);
+            }
             foreach (Station station in stations)
             {
                 if (station.Offer != null && station.Offer.Sold || station.Action == "NEXT HALL" || station.Action == "GOLD SHOP" || station.Action == "DREAM ALTAR") continue;
                 Vector3 screen = camera.WorldToScreenPoint(station.Marker.position + Vector3.down * (station.Action == "REROLL" ? 0.83f : 0.65f));
                 Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
                 float scale = 1 + station.Focus * 0.09f;
-                Rect ticket = new Rect(point.x - 59 * scale, point.y - 20 * scale, 118 * scale, 40 * scale);
-                bool denied = Time.time < station.DeniedUntil;
+                string price = station.Price.ToString();
+                float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
+                Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);
+                bool denied = owner.PresentationClock < station.DeniedUntil;
                 ArcadeSkin.Ticket(ticket, denied ? new Color(1, 0.48f, 0.4f) : ArcadeSkin.Cream, station.Currency == ShopCurrency.Eggs ? ArcadeSkin.Teal : new Color(1, 0.48f, 0.36f));
                 Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? owner.Content.HeartSprite : owner.Content.Arena.Coin;
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
-                GUI.Label(new Rect(ticket.x + 44, ticket.y + 3, ticket.width - 50, 34), station.Price.ToString(), priceStyle);
+                priceStyle.fontSize = 25;
+                while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;
+                GUI.Label(new Rect(ticket.x + 44, ticket.y + 3, ticket.width - 50, 34), price, priceStyle);
                 if (station.Offer != null)
                 {
-                    Rect category = new Rect(point.x - 45, ticket.y - 29, 90, 26);
+                    bool merge = ShopMergePreview.Ready(owner.Session, station.Offer);
+                    Rect category = new Rect(point.x - (merge ? 60 : 45), ticket.y - 29, merge ? 120 : 90, 26);
                     Color previous = GUI.color;
                     GUI.color = station.Offer.Kind == OfferKind.Companion ? ArcadeSkin.Teal : ArcadeSkin.Cream;
                     GUI.DrawTexture(category, Texture2D.whiteTexture); GUI.color = previous;
-                    GUI.Label(category, station.Offer.Kind == OfferKind.Companion ? "ALLY" : "RELIC", priceStyle);
+                    if (merge)
+                    {
+                        GUI.Label(new Rect(category.x + 3, category.y, 77, category.height), "MERGE", categoryStyle);
+                        int tier = ShopMergePreview.ProjectedTier(owner.Session, station.Offer);
+                        for (int star = 0; star < tier; star++) RunHud.Sprite(new Rect(category.x + 81 + star * 11, category.y + 7, 11, 11), K8Motion.TierStar());
+                    }
+                    else GUI.Label(category, station.Offer.Kind == OfferKind.Companion ? "ALLY" : "RELIC", categoryStyle);
                 }
                 if (denied) GUI.Label(new Rect(point.x - 140, point.y + 31, 280, 35), station.Denial, denialStyle);
             }

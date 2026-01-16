@@ -21,8 +21,8 @@ MonoBehaviour:
   - {fileID: -483576811, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: 1640786917, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   Weapon: {fileID: 11400000, guid: e1377fe9fd09ccb4ea0b8817b675a2a3, type: 2}
-  Health: 130
-  Speed: 4.5
+  Health: 150
+  Speed: 3.1
   Radius: 0.25
   BodyHeight: 0.95
   BodyScale: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags: []
   Passive: 1
-  PassiveStrength: 1
+  PassiveStrength: 3
   Description: A sleepy tuning-bell oracle. Stand still to chill nearby threats and
     erase a few hostile bullets.
   ChampionModifiers:
@@ -58,6 +58,9 @@ MonoBehaviour:
   - Effect: 36
     Scope: 3
     Value: 0.05
+  - Effect: 9
+    Scope: 1
+    Value: 1
   RecruitThemes:
   - frost
   - astral

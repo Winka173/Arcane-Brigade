@@ -55,7 +55,8 @@ namespace ArcaneBrigade
                 body.transform.rotation = Quaternion.Euler(0, 0, time * 650 + state.Id * 31);
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
-            halo.enabled = core.enabled = magic;
+            bool authored = state.Sprite != null && state.Sprite.texture.name == "DreamProjectiles_v1";
+            halo.enabled = core.enabled = magic && !authored;
             float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;
             if (hostile && body.sprite != null)
                 body.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, body.sprite.bounds.size.x));
@@ -75,7 +76,7 @@ namespace ArcaneBrigade
             streak.SetPosition(0, position - state.Velocity.normalized * (arrow ? 0.5f : 0.24f));
             streak.SetPosition(1, position);
             ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;
-            motif.enabled = family == ExpandedWeapon.MusicBox || family == ExpandedWeapon.Fish;
+            motif.enabled = family == ExpandedWeapon.MusicBox || family == ExpandedWeapon.Fish && !state.Weapon.HomingOutbound;
             if (motif.enabled)
             {
                 Vector2 direction = state.Velocity.normalized; Vector2 normal = new Vector2(-direction.y, direction.x);

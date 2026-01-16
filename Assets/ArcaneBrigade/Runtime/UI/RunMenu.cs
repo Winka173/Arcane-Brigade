@@ -41,6 +41,11 @@ namespace ArcaneBrigade
         private bool backgrounded;
         private float pageChangedAt;
         public RunMuseum Museum => museum;
+        public void SelectChampionForDiagnostics(int index)
+        {
+            if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Champion fixture requires isolated capture mode");
+            selection = index; rosterDescriptionScroll = Vector2.zero; ShowPage(Page.Roster);
+        }
         public void NavigateForDiagnostics(int direction, bool submit)
         {
             if (!RunPaths.K7Capture) throw new InvalidOperationException("Navigation fixture requires isolated mode");
@@ -323,7 +328,7 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, card.y + 12, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, index == selection, profile.ReducedMotion));
                 GUI.color = previousColor;
                 GUI.Label(new Rect(card.x + 10, card.y + 132, 180, 52), RunUICopy.UnitName(unit), caption);
-                GUI.Label(new Rect(card.x + 12, card.y + 192, 176, 38), unlocked ? "Unlocked" : "Locked · reach wave " + unit.UnlockWave, note);
+                GUI.Label(new Rect(card.x + 12, card.y + 192, 176, 38), unlocked ? "Unlocked" : "Unlock: wave " + unit.UnlockWave, note);
             }
             GUI.EndScrollView();
             UnitDefinition champion = catalog.Champions[selection];

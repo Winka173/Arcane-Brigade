@@ -57,7 +57,7 @@ namespace ArcaneBrigade
             {
                 case "KeyCleaver": return "Keyblade";
                 case "RuneStaff": return "Rune Staff";
-                case "UmbrellaLance": return "Umbrella Lance";
+                case "ParasolNeedle": return "Parasol Needle";
                 case "MailboxLauncher": return "Parcel Launcher";
                 case "BellFork": return "Tuning Bell";
                 case "DreamStamp": return "Dream Stamp";
@@ -70,12 +70,20 @@ namespace ArcaneBrigade
                 case "RubberHammer": return "Rubber Hammer";
                 case "AlarmMortar": return "Alarm Mortar";
                 case "MusicBox": return "Music Box";
+                case "DreamOrbStaff": return "Dream Orb Staff";
+                case "FireExtinguisher": return "Fire Extinguisher";
+                case "PlasmaTrident": return "Plasma Trident";
+                case "MoonFeatherFan": return "Moon Feather Fan";
+                case "TwinSabres": return "Twin Sabres";
+                case "ClockCrescent": return "Clock Crescent";
+                case "UmbrellaLance": return "Umbrella Lance";
+                case "StampHammer": return "Stamp Hammer";
                 default: return string.IsNullOrEmpty(id) ? "Unknown weapon" : id;
             }
         }
         public static string WeaponKindName(WeaponKind kind) => kind == WeaponKind.Projectile ? "Ranged" : kind == WeaponKind.Melee ? "Melee" : "Contact";
         public static string ElementName(DamageElement element) => element == DamageElement.Ember ? "Ember" : element == DamageElement.Frost ? "Frost" : element == DamageElement.Arcane ? "Arcane" : "Physical";
-        public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Unlocked" : "Reach wave " + unit.UnlockWave + " to unlock · current " + bestWave;
+        public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Unlocked" : "Unlock: wave " + unit.UnlockWave;
         public static string ChampionDescription(UnitDefinition unit)
         {
             if (unit.ChampionModifiers != null && unit.ChampionModifiers.Length > 0) return unit.Description + (unit.HeroMechanic == HeroMechanic.None ? "" : "\n\n" + K11HeroRules.Describe(unit));

@@ -92,7 +92,7 @@ namespace ArcaneBrigade.Editor
                     {
                         var starting = new RunSession(original); starting.Start(protagonist.Id, 7707);
                         RunBuildReadModel startingModel = RunBuildReadModel.Capture(starting, original, 5);
-                        require(startingModel.Stats.Any(row => row.Explanation.Contains("đặc tính riêng") && row.Explanation.Contains(RunUICopy.UnitName(protagonist))), "New stat sources include protagonist identity " + protagonist.Id);
+                        require(startingModel.Stats.Any(row => row.Explanation.Contains("personal trait") && row.Explanation.Contains(RunUICopy.UnitName(protagonist))), "New stat sources include protagonist identity " + protagonist.Id);
                     }
                     foreach (string term in new[] { "split", "pierce", "bounce", "armor", "bond", "scope", "merge", "altar", "reroll", "correction", "champion", "companions" })
                         require(GlossaryUI.Find(term) != null && GlossaryUI.Find(term).Description.Length > 40, "Technical term has icon-linked explanation: " + term);

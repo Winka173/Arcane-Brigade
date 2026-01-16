@@ -24,16 +24,22 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d8e6944e95711b243a2d2f242b89fd11, type: 3}
+        m_Texture: {fileID: 2800000, guid: 751cf7703c25f0646b3f5ed842a1b79a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatinaTex:
+        m_Texture: {fileID: 2800000, guid: becd37a62bd446445b644ca6fb4167ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Detail: 0.6
+    - _Detail: 0.58
+    - _MicroStrength: 0.08
+    - _PatinaStrength: 0.26
     - _Saturation: 1.12
     m_Colors:
     - _BaseColor: {r: 0.12, g: 0.25, b: 0.34, a: 1}
     - _Color: {r: 0.94, g: 1, b: 1.02, a: 1}
-    - _TileScale: {r: 5.6666665, g: 6.5150547, b: 0, a: 0}
+    - _TileScale: {r: 4.25, g: 4.4, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

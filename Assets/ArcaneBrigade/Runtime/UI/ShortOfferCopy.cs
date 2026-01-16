@@ -4,8 +4,21 @@ namespace ArcaneBrigade
 {
     public static class ShortOfferCopy
     {
-        private static string Modifiers(StatModifier[] modifiers) => string.Join(" · ", modifiers.Where(modifier => modifier.Value != 0).Select(modifier => RunModifierRules.ScopeName(modifier.Scope) + " " + RunModifierRules.ModifierName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)));
-        public static string Companion(UnitDefinition unit) => (unit.SpecialRecruit ? "Dream elite · " : "") + Modifiers(unit.CompanionModifiers) + "\n" + RunUICopy.PassiveDescription(unit.Passive);
+        public static string StatName(ItemEffect effect) => effect switch
+        {
+            ItemEffect.Health => "HP", ItemEffect.Damage => "ATK", ItemEffect.AttackSpeed => "ATK speed",
+            ItemEffect.MoveSpeed => "Speed", ItemEffect.Heal => "Heal", ItemEffect.Crit => "Crit",
+            ItemEffect.Projectiles => "Shots", ItemEffect.AttackRange => "Reach", ItemEffect.Pickup => "Pickup",
+            ItemEffect.ChampionDamage => "Hero ATK", ItemEffect.CompanionDamage => "Ally ATK", ItemEffect.CompanionAttackSpeed => "Ally ATK speed",
+            ItemEffect.BulletPierce => "Pierce", ItemEffect.BulletSplit => "Split", ItemEffect.EnemyHealth => "Enemy HP",
+            ItemEffect.EnemyCount => "Enemies", _ => RunModifierRules.ModifierName(effect)
+        };
+        private static string Modifiers(StatModifier[] modifiers) => string.Join(" · ", modifiers.Where(modifier => modifier.Value != 0).GroupBy(modifier => modifier.Scope).Select(group => (group.Key == ModifierScope.Champion ? "YOU: " : group.Key == ModifierScope.Companions ? "ALLIES: " : group.Key == ModifierScope.Team ? "TEAM: " : "") + string.Join(" / ", group.Select(modifier => StatName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)))));
+        public static string Companion(UnitDefinition unit) => (unit.SpecialRecruit ? "Dream elite · " : "") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
+        {
+            PassiveKind.HealChampion => "Heal you every 4s", PassiveKind.ChillAura => "Slow nearby foes",
+            PassiveKind.Rally => "ATK scales with brigade", PassiveKind.Scavenge => "Extra loot from kills", _ => "Auto attacks"
+        });
         public static string BondPreview(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
             if (offer == null || offer.Kind != OfferKind.Companion || !session.CanBuy(offer)) return "";
