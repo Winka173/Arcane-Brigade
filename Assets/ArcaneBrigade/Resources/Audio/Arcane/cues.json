@@ -1,0 +1,2311 @@
+{
+ "version": 1,
+ "cues": [
+  {
+   "id": "cmb.swing.blade",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_blade_00",
+    "Sfx/cmb_swing_blade_01",
+    "Sfx/cmb_swing_blade_02",
+    "Sfx/cmb_swing_blade_03",
+    "Sfx/cmb_swing_blade_04",
+    "Sfx/cmb_swing_blade_05"
+   ]
+  },
+  {
+   "id": "cmb.swing.spear",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_spear_00",
+    "Sfx/cmb_swing_spear_01",
+    "Sfx/cmb_swing_spear_02",
+    "Sfx/cmb_swing_spear_03",
+    "Sfx/cmb_swing_spear_04"
+   ]
+  },
+  {
+   "id": "cmb.swing.hammer",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_hammer_00",
+    "Sfx/cmb_swing_hammer_01",
+    "Sfx/cmb_swing_hammer_02",
+    "Sfx/cmb_swing_hammer_03"
+   ]
+  },
+  {
+   "id": "cmb.swing.scissors",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_scissors_00",
+    "Sfx/cmb_swing_scissors_01",
+    "Sfx/cmb_swing_scissors_02",
+    "Sfx/cmb_swing_scissors_03"
+   ]
+  },
+  {
+   "id": "cmb.swing.umbrella",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_umbrella_00",
+    "Sfx/cmb_swing_umbrella_01",
+    "Sfx/cmb_swing_umbrella_02",
+    "Sfx/cmb_swing_umbrella_03"
+   ]
+  },
+  {
+   "id": "cmb.swing.whip",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_whip_00",
+    "Sfx/cmb_swing_whip_01",
+    "Sfx/cmb_swing_whip_02",
+    "Sfx/cmb_swing_whip_03"
+   ]
+  },
+  {
+   "id": "cmb.windup",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_windup_00",
+    "Sfx/cmb_windup_01",
+    "Sfx/cmb_windup_02"
+   ]
+  },
+  {
+   "id": "cmb.miss",
+   "bus": "Combat",
+   "priority": 190,
+   "gainDb": -22,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_miss_00",
+    "Sfx/cmb_miss_01",
+    "Sfx/cmb_miss_02",
+    "Sfx/cmb_miss_03"
+   ]
+  },
+  {
+   "id": "cmb.hit.paper",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_paper_00",
+    "Sfx/cmb_hit_paper_01",
+    "Sfx/cmb_hit_paper_02",
+    "Sfx/cmb_hit_paper_03",
+    "Sfx/cmb_hit_paper_04",
+    "Sfx/cmb_hit_paper_05"
+   ]
+  },
+  {
+   "id": "enemy.die.paper",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_paper_00",
+    "Sfx/enemy_die_paper_01",
+    "Sfx/enemy_die_paper_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.metal",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_metal_00",
+    "Sfx/cmb_hit_metal_01",
+    "Sfx/cmb_hit_metal_02",
+    "Sfx/cmb_hit_metal_03",
+    "Sfx/cmb_hit_metal_04",
+    "Sfx/cmb_hit_metal_05"
+   ]
+  },
+  {
+   "id": "enemy.die.metal",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_metal_00",
+    "Sfx/enemy_die_metal_01",
+    "Sfx/enemy_die_metal_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.wax",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_wax_00",
+    "Sfx/cmb_hit_wax_01",
+    "Sfx/cmb_hit_wax_02",
+    "Sfx/cmb_hit_wax_03",
+    "Sfx/cmb_hit_wax_04",
+    "Sfx/cmb_hit_wax_05"
+   ]
+  },
+  {
+   "id": "enemy.die.wax",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_wax_00",
+    "Sfx/enemy_die_wax_01",
+    "Sfx/enemy_die_wax_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.fabric",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_fabric_00",
+    "Sfx/cmb_hit_fabric_01",
+    "Sfx/cmb_hit_fabric_02",
+    "Sfx/cmb_hit_fabric_03",
+    "Sfx/cmb_hit_fabric_04",
+    "Sfx/cmb_hit_fabric_05"
+   ]
+  },
+  {
+   "id": "enemy.die.fabric",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_fabric_00",
+    "Sfx/enemy_die_fabric_01",
+    "Sfx/enemy_die_fabric_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.glass",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_glass_00",
+    "Sfx/cmb_hit_glass_01",
+    "Sfx/cmb_hit_glass_02",
+    "Sfx/cmb_hit_glass_03",
+    "Sfx/cmb_hit_glass_04",
+    "Sfx/cmb_hit_glass_05"
+   ]
+  },
+  {
+   "id": "enemy.die.glass",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_glass_00",
+    "Sfx/enemy_die_glass_01",
+    "Sfx/enemy_die_glass_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.wood",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_wood_00",
+    "Sfx/cmb_hit_wood_01",
+    "Sfx/cmb_hit_wood_02",
+    "Sfx/cmb_hit_wood_03",
+    "Sfx/cmb_hit_wood_04",
+    "Sfx/cmb_hit_wood_05"
+   ]
+  },
+  {
+   "id": "enemy.die.wood",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_wood_00",
+    "Sfx/enemy_die_wood_01",
+    "Sfx/enemy_die_wood_02"
+   ]
+  },
+  {
+   "id": "cmb.crit",
+   "bus": "Combat",
+   "priority": 100,
+   "gainDb": -13,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_crit_00",
+    "Sfx/cmb_crit_01",
+    "Sfx/cmb_crit_02",
+    "Sfx/cmb_crit_03",
+    "Sfx/cmb_crit_04"
+   ]
+  },
+  {
+   "id": "wpn.bow.draw",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -20,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_bow_draw_00",
+    "Sfx/wpn_bow_draw_01",
+    "Sfx/wpn_bow_draw_02"
+   ]
+  },
+  {
+   "id": "wpn.bow.release",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -15,
+   "cooldown": 0.06,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_bow_release_00",
+    "Sfx/wpn_bow_release_01",
+    "Sfx/wpn_bow_release_02",
+    "Sfx/wpn_bow_release_03",
+    "Sfx/wpn_bow_release_04"
+   ]
+  },
+  {
+   "id": "wpn.gun.pop",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -15,
+   "cooldown": 0.06,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_gun_pop_00",
+    "Sfx/wpn_gun_pop_01",
+    "Sfx/wpn_gun_pop_02",
+    "Sfx/wpn_gun_pop_03"
+   ]
+  },
+  {
+   "id": "wpn.launcher",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -13,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_launcher_00",
+    "Sfx/wpn_launcher_01",
+    "Sfx/wpn_launcher_02"
+   ]
+  },
+  {
+   "id": "wpn.cast.fire",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -16,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_cast_fire_00",
+    "Sfx/wpn_cast_fire_01",
+    "Sfx/wpn_cast_fire_02",
+    "Sfx/wpn_cast_fire_03"
+   ]
+  },
+  {
+   "id": "wpn.cast.ice",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_cast_ice_00",
+    "Sfx/wpn_cast_ice_01",
+    "Sfx/wpn_cast_ice_02",
+    "Sfx/wpn_cast_ice_03"
+   ]
+  },
+  {
+   "id": "wpn.cast.arcane",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_cast_arcane_00",
+    "Sfx/wpn_cast_arcane_01",
+    "Sfx/wpn_cast_arcane_02",
+    "Sfx/wpn_cast_arcane_03"
+   ]
+  },
+  {
+   "id": "wpn.boomerang.fly",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -20,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_boomerang_fly_00",
+    "Sfx/wpn_boomerang_fly_01",
+    "Sfx/wpn_boomerang_fly_02"
+   ]
+  },
+  {
+   "id": "wpn.boomerang.return",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_boomerang_return_00",
+    "Sfx/wpn_boomerang_return_01",
+    "Sfx/wpn_boomerang_return_02"
+   ]
+  },
+  {
+   "id": "wpn.pierce",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -18,
+   "cooldown": 0.07,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_pierce_00",
+    "Sfx/wpn_pierce_01",
+    "Sfx/wpn_pierce_02",
+    "Sfx/wpn_pierce_03"
+   ]
+  },
+  {
+   "id": "wpn.split",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -18,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_split_00",
+    "Sfx/wpn_split_01",
+    "Sfx/wpn_split_02"
+   ]
+  },
+  {
+   "id": "wpn.bounce",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -19,
+   "cooldown": 0.06,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_bounce_00",
+    "Sfx/wpn_bounce_01",
+    "Sfx/wpn_bounce_02",
+    "Sfx/wpn_bounce_03"
+   ]
+  },
+  {
+   "id": "sig.bell",
+   "bus": "Combat",
+   "priority": 110,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_bell_00",
+    "Sfx/sig_bell_01",
+    "Sfx/sig_bell_02",
+    "Sfx/sig_bell_03"
+   ]
+  },
+  {
+   "id": "sig.umbrella",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -15,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_umbrella_00",
+    "Sfx/sig_umbrella_01",
+    "Sfx/sig_umbrella_02"
+   ]
+  },
+  {
+   "id": "sig.stamp",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_stamp_00",
+    "Sfx/sig_stamp_01",
+    "Sfx/sig_stamp_02"
+   ]
+  },
+  {
+   "id": "sig.scissors",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -17,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_scissors_00",
+    "Sfx/sig_scissors_01",
+    "Sfx/sig_scissors_02",
+    "Sfx/sig_scissors_03"
+   ]
+  },
+  {
+   "id": "sig.camera",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -15,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_camera_00",
+    "Sfx/sig_camera_01",
+    "Sfx/sig_camera_02"
+   ]
+  },
+  {
+   "id": "sig.musicbox",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_musicbox_00",
+    "Sfx/sig_musicbox_01",
+    "Sfx/sig_musicbox_02"
+   ]
+  },
+  {
+   "id": "sig.tea",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_tea_00",
+    "Sfx/sig_tea_01",
+    "Sfx/sig_tea_02"
+   ]
+  },
+  {
+   "id": "sig.fish",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -15,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_fish_00",
+    "Sfx/sig_fish_01",
+    "Sfx/sig_fish_02"
+   ]
+  },
+  {
+   "id": "sig.alarm",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -18,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_alarm_00",
+    "Sfx/sig_alarm_01"
+   ]
+  },
+  {
+   "id": "sig.iron",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -15,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_iron_00",
+    "Sfx/sig_iron_01",
+    "Sfx/sig_iron_02"
+   ]
+  },
+  {
+   "id": "sig.hammer",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_hammer_00",
+    "Sfx/sig_hammer_01",
+    "Sfx/sig_hammer_02"
+   ]
+  },
+  {
+   "id": "fx.burn",
+   "bus": "Combat",
+   "priority": 200,
+   "gainDb": -24,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.05,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_burn_00",
+    "Sfx/fx_burn_01",
+    "Sfx/fx_burn_02",
+    "Sfx/fx_burn_03"
+   ]
+  },
+  {
+   "id": "fx.chill",
+   "bus": "Combat",
+   "priority": 200,
+   "gainDb": -24,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_chill_00",
+    "Sfx/fx_chill_01",
+    "Sfx/fx_chill_02",
+    "Sfx/fx_chill_03"
+   ]
+  },
+  {
+   "id": "fx.knockback",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -19,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_knockback_00",
+    "Sfx/fx_knockback_01",
+    "Sfx/fx_knockback_02",
+    "Sfx/fx_knockback_03"
+   ]
+  },
+  {
+   "id": "fx.reaction.steam",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_reaction_steam_00",
+    "Sfx/fx_reaction_steam_01"
+   ]
+  },
+  {
+   "id": "fx.reaction.shatter",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_reaction_shatter_00",
+    "Sfx/fx_reaction_shatter_01"
+   ]
+  },
+  {
+   "id": "fx.reaction.arcane",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_reaction_arcane_00",
+    "Sfx/fx_reaction_arcane_01"
+   ]
+  },
+  {
+   "id": "chr.step",
+   "bus": "Foley",
+   "priority": 220,
+   "gainDb": -26,
+   "cooldown": 0.16,
+   "maxVoices": 2,
+   "pitchJitter": 0.05,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_step_00",
+    "Sfx/chr_step_01",
+    "Sfx/chr_step_02",
+    "Sfx/chr_step_03",
+    "Sfx/chr_step_04",
+    "Sfx/chr_step_05"
+   ]
+  },
+  {
+   "id": "chr.dash",
+   "bus": "Foley",
+   "priority": 190,
+   "gainDb": -20,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_dash_00",
+    "Sfx/chr_dash_01",
+    "Sfx/chr_dash_02",
+    "Sfx/chr_dash_03"
+   ]
+  },
+  {
+   "id": "chr.jump",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -22,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_jump_00",
+    "Sfx/chr_jump_01",
+    "Sfx/chr_jump_02"
+   ]
+  },
+  {
+   "id": "chr.land",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -22,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_land_00",
+    "Sfx/chr_land_01",
+    "Sfx/chr_land_02"
+   ]
+  },
+  {
+   "id": "plr.dodge",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/plr_dodge_00",
+    "Sfx/plr_dodge_01",
+    "Sfx/plr_dodge_02"
+   ]
+  },
+  {
+   "id": "plr.hurt",
+   "bus": "Combat",
+   "priority": 20,
+   "gainDb": -9,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/plr_hurt_00",
+    "Sfx/plr_hurt_01",
+    "Sfx/plr_hurt_02",
+    "Sfx/plr_hurt_03",
+    "Sfx/plr_hurt_04"
+   ]
+  },
+  {
+   "id": "plr.lowhp",
+   "bus": "Combat",
+   "priority": 30,
+   "gainDb": -11,
+   "cooldown": 0.7,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/plr_lowhp_00",
+    "Sfx/plr_lowhp_01"
+   ]
+  },
+  {
+   "id": "plr.heal",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/plr_heal_00",
+    "Sfx/plr_heal_01",
+    "Sfx/plr_heal_02"
+   ]
+  },
+  {
+   "id": "plr.death",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -8,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/plr_death_00",
+    "Sfx/plr_death_01"
+   ]
+  },
+  {
+   "id": "enemy.spit.windup",
+   "bus": "Combat",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/enemy_spit_windup_00",
+    "Sfx/enemy_spit_windup_01",
+    "Sfx/enemy_spit_windup_02",
+    "Sfx/enemy_spit_windup_03"
+   ]
+  },
+  {
+   "id": "enemy.spit.fire",
+   "bus": "Combat",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.06,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/enemy_spit_fire_00",
+    "Sfx/enemy_spit_fire_01",
+    "Sfx/enemy_spit_fire_02",
+    "Sfx/enemy_spit_fire_03",
+    "Sfx/enemy_spit_fire_04"
+   ]
+  },
+  {
+   "id": "enemy.lunge",
+   "bus": "Combat",
+   "priority": 50,
+   "gainDb": -14,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/enemy_lunge_00",
+    "Sfx/enemy_lunge_01",
+    "Sfx/enemy_lunge_02",
+    "Sfx/enemy_lunge_03"
+   ]
+  },
+  {
+   "id": "enemy.hurt",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -20,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_hurt_00",
+    "Sfx/enemy_hurt_01",
+    "Sfx/enemy_hurt_02",
+    "Sfx/enemy_hurt_03",
+    "Sfx/enemy_hurt_04",
+    "Sfx/enemy_hurt_05"
+   ]
+  },
+  {
+   "id": "enemy.big.step",
+   "bus": "Combat",
+   "priority": 80,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_big_step_00",
+    "Sfx/enemy_big_step_01",
+    "Sfx/enemy_big_step_02"
+   ]
+  },
+  {
+   "id": "enemy.big.roar",
+   "bus": "Combat",
+   "priority": 60,
+   "gainDb": -11,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_big_roar_00",
+    "Sfx/enemy_big_roar_01",
+    "Sfx/enemy_big_roar_02"
+   ]
+  },
+  {
+   "id": "enemy.die.large",
+   "bus": "Combat",
+   "priority": 70,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_large_00",
+    "Sfx/enemy_die_large_01",
+    "Sfx/enemy_die_large_02"
+   ]
+  },
+  {
+   "id": "boss.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_enter_00",
+    "Sfx/boss_enter_01"
+   ]
+  },
+  {
+   "id": "boss.telegraph",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_telegraph_00",
+    "Sfx/boss_telegraph_01",
+    "Sfx/boss_telegraph_02"
+   ]
+  },
+  {
+   "id": "boss.attack",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_attack_00",
+    "Sfx/boss_attack_01",
+    "Sfx/boss_attack_02"
+   ]
+  },
+  {
+   "id": "boss.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_phase_00",
+    "Sfx/boss_phase_01"
+   ]
+  },
+  {
+   "id": "boss.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_defeat_00",
+    "Sfx/boss_defeat_01"
+   ]
+  },
+  {
+   "id": "loot.coin.drop",
+   "bus": "Foley",
+   "priority": 190,
+   "gainDb": -22,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_drop_00",
+    "Sfx/loot_coin_drop_01",
+    "Sfx/loot_coin_drop_02",
+    "Sfx/loot_coin_drop_03"
+   ]
+  },
+  {
+   "id": "loot.coin.bounce",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -25,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_bounce_00",
+    "Sfx/loot_coin_bounce_01",
+    "Sfx/loot_coin_bounce_02",
+    "Sfx/loot_coin_bounce_03",
+    "Sfx/loot_coin_bounce_04"
+   ]
+  },
+  {
+   "id": "loot.coin.vacuum",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -27,
+   "cooldown": 0.05,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_vacuum_00",
+    "Sfx/loot_coin_vacuum_01",
+    "Sfx/loot_coin_vacuum_02"
+   ]
+  },
+  {
+   "id": "loot.coin.pickup",
+   "bus": "Foley",
+   "priority": 160,
+   "gainDb": -19,
+   "cooldown": 0.035,
+   "maxVoices": 3,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_pickup_00",
+    "Sfx/loot_coin_pickup_01",
+    "Sfx/loot_coin_pickup_02",
+    "Sfx/loot_coin_pickup_03",
+    "Sfx/loot_coin_pickup_04",
+    "Sfx/loot_coin_pickup_05"
+   ]
+  },
+  {
+   "id": "loot.egg",
+   "bus": "Foley",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.06,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_egg_00",
+    "Sfx/loot_egg_01",
+    "Sfx/loot_egg_02",
+    "Sfx/loot_egg_03"
+   ]
+  },
+  {
+   "id": "loot.heart",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -15,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_heart_00",
+    "Sfx/loot_heart_01",
+    "Sfx/loot_heart_02"
+   ]
+  },
+  {
+   "id": "loot.chest.appear",
+   "bus": "Foley",
+   "priority": 110,
+   "gainDb": -14,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_chest_appear_00",
+    "Sfx/loot_chest_appear_01"
+   ]
+  },
+  {
+   "id": "loot.chest.open",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -13,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_chest_open_00",
+    "Sfx/loot_chest_open_01",
+    "Sfx/loot_chest_open_02"
+   ]
+  },
+  {
+   "id": "up.merge",
+   "bus": "Foley",
+   "priority": 80,
+   "gainDb": -12,
+   "cooldown": 0.4,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_merge_00",
+    "Sfx/up_merge_01",
+    "Sfx/up_merge_02"
+   ]
+  },
+  {
+   "id": "up.star2",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -11,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_star2_00",
+    "Sfx/up_star2_01"
+   ]
+  },
+  {
+   "id": "up.star3",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -10,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_star3_00",
+    "Sfx/up_star3_01"
+   ]
+  },
+  {
+   "id": "up.ally.land",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -17,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_ally_land_00",
+    "Sfx/up_ally_land_01",
+    "Sfx/up_ally_land_02",
+    "Sfx/up_ally_land_03"
+   ]
+  },
+  {
+   "id": "up.bond.t1",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bond_t1_00",
+    "Sfx/up_bond_t1_01"
+   ]
+  },
+  {
+   "id": "up.bond.t2",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -13,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bond_t2_00",
+    "Sfx/up_bond_t2_01"
+   ]
+  },
+  {
+   "id": "up.chain",
+   "bus": "Foley",
+   "priority": 120,
+   "gainDb": -17,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_chain_00",
+    "Sfx/up_chain_01",
+    "Sfx/up_chain_02",
+    "Sfx/up_chain_03"
+   ]
+  },
+  {
+   "id": "up.rarity.blue",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_rarity_blue_00",
+    "Sfx/up_rarity_blue_01"
+   ]
+  },
+  {
+   "id": "up.rarity.purple",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_rarity_purple_00",
+    "Sfx/up_rarity_purple_01"
+   ]
+  },
+  {
+   "id": "up.rarity.gold",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_rarity_gold_00",
+    "Sfx/up_rarity_gold_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.enter.gold",
+   "bus": "Foley",
+   "priority": 60,
+   "gainDb": -11,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_enter_gold_00",
+    "Sfx/shop_keeper_enter_gold_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.enter.dream",
+   "bus": "Foley",
+   "priority": 60,
+   "gainDb": -11,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_enter_dream_00",
+    "Sfx/shop_keeper_enter_dream_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.exit.gold",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -15,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_exit_gold_00",
+    "Sfx/shop_keeper_exit_gold_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.exit.dream",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -15,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_exit_dream_00",
+    "Sfx/shop_keeper_exit_dream_01"
+   ]
+  },
+  {
+   "id": "shop.carpet.open",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -15,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_carpet_open_00",
+    "Sfx/shop_carpet_open_01"
+   ]
+  },
+  {
+   "id": "shop.carpet.roll",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -15,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_carpet_roll_00",
+    "Sfx/shop_carpet_roll_01"
+   ]
+  },
+  {
+   "id": "shop.stand.appear",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -18,
+   "cooldown": 0.07,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_stand_appear_00",
+    "Sfx/shop_stand_appear_01",
+    "Sfx/shop_stand_appear_02",
+    "Sfx/shop_stand_appear_03"
+   ]
+  },
+  {
+   "id": "shop.item.pop",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -18,
+   "cooldown": 0.07,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_item_pop_00",
+    "Sfx/shop_item_pop_01",
+    "Sfx/shop_item_pop_02",
+    "Sfx/shop_item_pop_03"
+   ]
+  },
+  {
+   "id": "shop.approach",
+   "bus": "UI",
+   "priority": 80,
+   "gainDb": -20,
+   "cooldown": 0.12,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_approach_00",
+    "Sfx/shop_approach_01",
+    "Sfx/shop_approach_02",
+    "Sfx/shop_approach_03"
+   ]
+  },
+  {
+   "id": "shop.focus",
+   "bus": "UI",
+   "priority": 80,
+   "gainDb": -22,
+   "cooldown": 0.06,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_focus_00",
+    "Sfx/shop_focus_01",
+    "Sfx/shop_focus_02",
+    "Sfx/shop_focus_03"
+   ]
+  },
+  {
+   "id": "shop.buy.gold",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_buy_gold_00",
+    "Sfx/shop_buy_gold_01",
+    "Sfx/shop_buy_gold_02",
+    "Sfx/shop_buy_gold_03"
+   ]
+  },
+  {
+   "id": "shop.buy.dream",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_buy_dream_00",
+    "Sfx/shop_buy_dream_01",
+    "Sfx/shop_buy_dream_02"
+   ]
+  },
+  {
+   "id": "shop.deny.gold",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_deny_gold_00",
+    "Sfx/shop_deny_gold_01"
+   ]
+  },
+  {
+   "id": "shop.deny.egg",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_deny_egg_00",
+    "Sfx/shop_deny_egg_01"
+   ]
+  },
+  {
+   "id": "shop.deny.hp",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_deny_hp_00",
+    "Sfx/shop_deny_hp_01"
+   ]
+  },
+  {
+   "id": "shop.invalid",
+   "bus": "UI",
+   "priority": 60,
+   "gainDb": -19,
+   "cooldown": 0.12,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_invalid_00",
+    "Sfx/shop_invalid_01",
+    "Sfx/shop_invalid_02"
+   ]
+  },
+  {
+   "id": "shop.reroll",
+   "bus": "UI",
+   "priority": 60,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_reroll_00",
+    "Sfx/shop_reroll_01",
+    "Sfx/shop_reroll_02"
+   ]
+  },
+  {
+   "id": "shop.fusion",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -10,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_fusion_00",
+    "Sfx/shop_fusion_01"
+   ]
+  },
+  {
+   "id": "shop.descend",
+   "bus": "UI",
+   "priority": 50,
+   "gainDb": -13,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_descend_00",
+    "Sfx/shop_descend_01"
+   ]
+  },
+  {
+   "id": "ui.hover",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -24,
+   "cooldown": 0.04,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_hover_00",
+    "Sfx/ui_hover_01",
+    "Sfx/ui_hover_02",
+    "Sfx/ui_hover_03"
+   ]
+  },
+  {
+   "id": "ui.select",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -18,
+   "cooldown": 0.05,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_select_00",
+    "Sfx/ui_select_01",
+    "Sfx/ui_select_02",
+    "Sfx/ui_select_03"
+   ]
+  },
+  {
+   "id": "ui.confirm",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -15,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_confirm_00",
+    "Sfx/ui_confirm_01",
+    "Sfx/ui_confirm_02"
+   ]
+  },
+  {
+   "id": "ui.back",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_back_00",
+    "Sfx/ui_back_01",
+    "Sfx/ui_back_02"
+   ]
+  },
+  {
+   "id": "ui.open",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_open_00",
+    "Sfx/ui_open_01"
+   ]
+  },
+  {
+   "id": "ui.close",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_close_00",
+    "Sfx/ui_close_01"
+   ]
+  },
+  {
+   "id": "ui.page",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -22,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_page_00",
+    "Sfx/ui_page_01",
+    "Sfx/ui_page_02"
+   ]
+  },
+  {
+   "id": "ui.tooltip",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -26,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_tooltip_00",
+    "Sfx/ui_tooltip_01"
+   ]
+  },
+  {
+   "id": "ui.tab",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -21,
+   "cooldown": 0.05,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_tab_00",
+    "Sfx/ui_tab_01",
+    "Sfx/ui_tab_02"
+   ]
+  },
+  {
+   "id": "ui.pause",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_pause_00"
+   ]
+  },
+  {
+   "id": "ui.resume",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_resume_00"
+   ]
+  },
+  {
+   "id": "ui.setting",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -23,
+   "cooldown": 0.04,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_setting_00",
+    "Sfx/ui_setting_01",
+    "Sfx/ui_setting_02"
+   ]
+  },
+  {
+   "id": "ui.unlock",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -13,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_unlock_00",
+    "Sfx/ui_unlock_01"
+   ]
+  },
+  {
+   "id": "ui.achievement",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -12,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_achievement_00",
+    "Sfx/ui_achievement_01"
+   ]
+  },
+  {
+   "id": "ui.receipt",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_receipt_00",
+    "Sfx/ui_receipt_01"
+   ]
+  },
+  {
+   "id": "sting.waveclear",
+   "bus": "Foley",
+   "priority": 30,
+   "gainDb": -12,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sting_waveclear_00",
+    "Sfx/sting_waveclear_01"
+   ]
+  },
+  {
+   "id": "sting.victory",
+   "bus": "Foley",
+   "priority": 5,
+   "gainDb": -9,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sting_victory_00"
+   ]
+  },
+  {
+   "id": "sting.defeat",
+   "bus": "Foley",
+   "priority": 5,
+   "gainDb": -9,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sting_defeat_00"
+   ]
+  },
+  {
+   "id": "amb.stage",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_stage_00"
+   ]
+  },
+  {
+   "id": "amb.office",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_office_00"
+   ]
+  },
+  {
+   "id": "amb.lostshop",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_lostshop_00"
+   ]
+  },
+  {
+   "id": "amb.goldshop",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_goldshop_00"
+   ]
+  },
+  {
+   "id": "amb.dreamshop",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_dreamshop_00"
+   ]
+  },
+  {
+   "id": "amb.toys",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_toys_00"
+   ]
+  },
+  {
+   "id": "amb.transition",
+   "bus": "Ambience",
+   "priority": 200,
+   "gainDb": -20,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Amb/amb_transition_00",
+    "Amb/amb_transition_01"
+   ]
+  },
+  {
+   "id": "voice.gold.syl",
+   "bus": "Voice",
+   "priority": 100,
+   "gainDb": -15,
+   "cooldown": 0.09,
+   "maxVoices": 1,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_syl_00",
+    "Voice/voice_gold_syl_01",
+    "Voice/voice_gold_syl_02",
+    "Voice/voice_gold_syl_03",
+    "Voice/voice_gold_syl_04",
+    "Voice/voice_gold_syl_05",
+    "Voice/voice_gold_syl_06",
+    "Voice/voice_gold_syl_07"
+   ]
+  },
+  {
+   "id": "voice.gold.laugh",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_laugh_00",
+    "Voice/voice_gold_laugh_01"
+   ]
+  },
+  {
+   "id": "voice.gold.hmm",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_hmm_00",
+    "Voice/voice_gold_hmm_01"
+   ]
+  },
+  {
+   "id": "voice.gold.gasp",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_gasp_00",
+    "Voice/voice_gold_gasp_01"
+   ]
+  },
+  {
+   "id": "voice.gold.farewell",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_farewell_00",
+    "Voice/voice_gold_farewell_01"
+   ]
+  },
+  {
+   "id": "voice.dream.syl",
+   "bus": "Voice",
+   "priority": 100,
+   "gainDb": -15,
+   "cooldown": 0.09,
+   "maxVoices": 1,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_syl_00",
+    "Voice/voice_dream_syl_01",
+    "Voice/voice_dream_syl_02",
+    "Voice/voice_dream_syl_03",
+    "Voice/voice_dream_syl_04",
+    "Voice/voice_dream_syl_05",
+    "Voice/voice_dream_syl_06",
+    "Voice/voice_dream_syl_07"
+   ]
+  },
+  {
+   "id": "voice.dream.laugh",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_laugh_00",
+    "Voice/voice_dream_laugh_01"
+   ]
+  },
+  {
+   "id": "voice.dream.hmm",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_hmm_00",
+    "Voice/voice_dream_hmm_01"
+   ]
+  },
+  {
+   "id": "voice.dream.gasp",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_gasp_00",
+    "Voice/voice_dream_gasp_01"
+   ]
+  },
+  {
+   "id": "voice.dream.farewell",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_farewell_00",
+    "Voice/voice_dream_farewell_01"
+   ]
+  }
+ ]
+}

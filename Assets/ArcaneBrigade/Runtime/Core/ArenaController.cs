@@ -199,6 +199,7 @@ namespace ArcaneBrigade
             if (simulation == null) return;
             runHud.ReadNavigation(pauseGate.Manual || pauseGate.Navigation || session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat));
             if (music != null && session != null) music.SetPhase(TransitionPending ? SessionPhase.Combat : session.State.Phase, pauseGate.Paused || simulation.Phase == RunPhase.Paused, simulation.Boss != null && simulation.Boss.Alive);
+            if (music != null && session != null) music.SetContext(session.State.Wave, runCatalog.NormalWaves, session.State.Endless, Shop != null && Shop.Special, simulation.Units);
             if (Input.GetKeyDown(KeyCode.F3)) showCompanionRadius = !showCompanionRadius;
             if (session != null && (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3))) ToggleDetails();
             if (details.Open && Input.GetKeyDown(KeyCode.Tab)) details.SelectTab((details.Tab + 1) % RunDetails.TabCount);

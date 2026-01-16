@@ -40,6 +40,7 @@ namespace ArcaneBrigade
         private bool focusLost;
         private bool backgrounded;
         private float pageChangedAt;
+        private ArcadeMusic music;
         public RunMuseum Museum => museum;
         public void SelectChampionForDiagnostics(int index)
         {
@@ -126,7 +127,7 @@ namespace ArcaneBrigade
             ReloadSaveSummary();
             PresentationSettings.Apply(profile);
             if (FindAnyObjectByType<AudioListener>() == null) gameObject.AddComponent<AudioListener>();
-            gameObject.AddComponent<ArcadeMusic>();
+            music = gameObject.AddComponent<ArcadeMusic>();
             gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();
             Screen.orientation = ScreenOrientation.LandscapeLeft;
         }
@@ -149,6 +150,7 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            if (music != null) music.ForceScene(CurrentPage == Page.Roster ? ArcaneCueLibrary.SceneSelect : null);
             RunUIHints.Refresh();
             if (CurrentPage != Page.Museum && CurrentPage != Page.Records && CurrentPage != Page.WeaponSandbox)
             {

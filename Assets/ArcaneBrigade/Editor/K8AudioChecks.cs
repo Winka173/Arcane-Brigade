@@ -184,6 +184,7 @@ namespace ArcaneBrigade.Editor
             EditorApplication.update -= Advance;
             if (first != null) UnityEngine.Object.Destroy(first);
             if (second != null) UnityEngine.Object.Destroy(second);
+            ArcaneCueLibrary.Enabled = true;
             if (original != null) PresentationSettings.Apply(original);
             Time.timeScale = originalTimeScale;
             AudioListener.pause = originalPause;
@@ -203,6 +204,7 @@ namespace ArcaneBrigade.Editor
             PresentationSettings.Apply(settings);
             Time.timeScale = 1;
             AudioListener.pause = false;
+            ArcaneCueLibrary.Enabled = false; // this harness asserts the legacy K8 stream/voice behaviour
             first = new GameObject("K8Audio-First");
             CheckpointAudio firstAudio = first.AddComponent<CheckpointAudio>();
             ArcadeMusic firstMusic = first.AddComponent<ArcadeMusic>();

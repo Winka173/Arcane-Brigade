@@ -12,6 +12,8 @@ namespace ArcaneBrigade
         private readonly float[] nextPlayback = new float[39];
         private readonly float[] nextDangerPlayback = new float[39];
         private readonly float[] voiceGain = new float[8];
+        private readonly string[] voiceId = new string[8];
+        private readonly Dictionary<string, float> nextById = new Dictionary<string, float>();
         private float nextCosmetic;
         private float nextDanger;
         private float nextInterface;
@@ -67,6 +69,8 @@ namespace ArcaneBrigade
 
         public void Play(CombatEvent value)
         {
+            string id = ArcaneCueLibrary.Available ? ArcaneCueLibrary.EventId(value) : null;
+            if (id != null && PlayLibrary(ArcaneCueLibrary.Get(id))) return;
             bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit;
             PlayCue(EventCue(value), danger, value.Critical);
         }
@@ -93,6 +97,11 @@ namespace ArcaneBrigade
         private void PlayCueOnBus(int cue, bool danger, bool critical, bool ui)
         {
             if (interfaceOwners.Count == 0 || interfaceOwners[interfaceOwners.Count - 1] != this) return;
+            if (ArcaneCueLibrary.Available)
+            {
+                string libraryId = ArcaneCueLibrary.LegacyId(cue);
+                if (libraryId != null && PlayLibrary(ArcaneCueLibrary.Get(libraryId))) return;
+            }
             if (!isActiveAndEnabled || !focused || backgrounded || AudioListener.pause || (!ui && Time.timeScale <= 0)) return;
             if (cue < 0 || cue >= clips.Length || clips[cue] == null) return;
             danger |= IsDangerCue(cue);
@@ -125,6 +134,88 @@ namespace ArcaneBrigade
             voice.Play();
             PlayedCues++;
             if (danger) PresentationSettings.Danger();
+        }
+
+        /// <summary>Play any cue by stable id on the top audio owner (see Docs/Audio/Audio_Cue_Contract.md).</summary>
+        public static void PlayInterfaceId(string id)
+        {
+            if (interfaceOwners.Count > 0) interfaceOwners[interfaceOwners.Count - 1].PlayLibrary(ArcaneCueLibrary.Get(id));
+        }
+
+        public void PlayId(string id) { PlayLibrary(ArcaneCueLibrary.Get(id)); }
+
+        // Returns true when the cue was handled (played or deliberately dropped); false asks the caller to use the legacy path.
+        private bool PlayLibrary(ArcaneCueDef def)
+        {
+            if (!ArcaneCueLibrary.Enabled) return false;
+            if (def == null || def.clips == null || def.clips.Length == 0) return false;
+            if (interfaceOwners.Count == 0 || interfaceOwners[interfaceOwners.Count - 1] != this) return true;
+            bool danger = def.danger;
+            bool ui = def.busId == AudioBus.UI && !danger;
+            if (!isActiveAndEnabled || !focused || backgrounded || AudioListener.pause || (!ui && Time.timeScale <= 0)) return true;
+            bool reduced = PresentationSettings.ReducedAudio;
+            if (reduced && !danger && def.priority >= 180) return true;
+            float now = Time.unscaledTime;
+            if (nextById.TryGetValue(def.id, out float until) && now < until) { if (!danger) DroppedCosmeticCues++; return true; }
+            if (now < (danger ? nextDanger : ui ? nextInterface : nextCosmetic)) { if (!danger) DroppedCosmeticCues++; return true; }
+            int occupied = 0;
+            int sameCue = 0;
+            for (int index = 0; index < voices.Length; index++)
+            {
+                if (!voices[index].isPlaying) continue;
+                if (index >= 4) occupied |= 1 << index;
+                if (voiceId[index] == def.id) sameCue++;
+            }
+            if (!danger && sameCue >= Mathf.Max(1, def.maxVoices)) { DroppedCosmeticCues++; return true; }
+            AudioClip clip = ArcaneCueLibrary.Pick(def);
+            if (clip == null) return false;
+            int voiceIndex = AllocateVoice(danger, ui, reduced, danger ? dangerVoice : interfaceVoice, occupied);
+            if (voiceIndex < 0 && !danger && !ui && def.priority <= 120) voiceIndex = StealVoice(def.priority, reduced);
+            if (voiceIndex < 0) { DroppedCosmeticCues++; return true; }
+            if (danger) dangerVoice = (dangerVoice + 1) % 2;
+            else if (ui) interfaceVoice = (interfaceVoice + 1) % 2;
+            nextById[def.id] = now + def.cooldown * (reduced && !danger ? 2f : 1f);
+            if (danger) nextDanger = now + 0.06f;
+            else if (ui) nextInterface = now + 0.04f;
+            else nextCosmetic = now + CosmeticInterval(reduced);
+            AudioSource voice = voices[voiceIndex];
+            voice.Stop();
+            voice.clip = clip;
+            voiceId[voiceIndex] = def.id;
+            voiceGain[voiceIndex] = def.gain * BusTrim(def.busId);
+            voice.volume = PlaybackGain(voiceIndex);
+            voice.priority = Mathf.Clamp(def.priority, 0, 255);
+            voice.pitch = 1f + (def.pitchJitter > 0f ? UnityEngine.Random.Range(-def.pitchJitter, def.pitchJitter) : 0f);
+            voice.Play();
+            PlayedCues++;
+            if (danger) PresentationSettings.Danger();
+            return true;
+        }
+
+        // Software bus trims (no AudioMixer asset): relative level of each bus before master/SFX volume.
+        public static float BusTrim(AudioBus bus)
+        {
+            switch (bus)
+            {
+                case AudioBus.Combat: return 1f;
+                case AudioBus.UI: return 1f;
+                case AudioBus.Foley: return 0.9f;
+                case AudioBus.Voice: return 0.85f;
+                case AudioBus.Ambience: return 0.8f;
+                default: return 1f;
+            }
+        }
+
+        // Lets an important cue (merge, chest, star-up...) take the least important cosmetic lane instead of being dropped.
+        private int StealVoice(int priority, bool reduced)
+        {
+            int best = -1;
+            int bestPriority = priority;
+            for (int index = 4; index < 4 + (reduced ? 2 : 4); index++)
+            {
+                if (voices[index].isPlaying && voices[index].priority > bestPriority) { best = index; bestPriority = voices[index].priority; }
+            }
+            return best;
         }
 
         public static void PlayInterface(int cue)
