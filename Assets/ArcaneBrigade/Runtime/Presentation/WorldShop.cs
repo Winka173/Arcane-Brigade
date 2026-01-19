@@ -42,6 +42,7 @@ namespace ArcaneBrigade
         private int previewToken = -1;
         private int previewReceipt = -1;
         private string bondPreview = "";
+        private Station audioFocus;
         public string BondPreview(ShopOffer offer)
         {
             if (offer == null) return "";
@@ -111,6 +112,15 @@ namespace ArcaneBrigade
                 if (distance <= closest) { closest = distance; Nearby = station; }
             }
             if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.PresentationClock, true); return; }
+            if (Nearby != audioFocus)
+            {
+                if (Nearby != null)
+                {
+                    CheckpointAudio.PlayInterfaceId(audioFocus == null ? "shop.approach" : "shop.focus");
+                    if (voice != null) voice.Gesture("hmm", Special);
+                }
+                audioFocus = Nearby;
+            }
             dialogue.Observe(Special, Nearby == null ? null : Nearby.Offer != null ? "offer:" + Nearby.Offer.Token : Nearby.Action, owner.PresentationClock);
             if (merchant != null) merchant.Inspect(Nearby != null);
             MergePreview.Observe(Nearby, false);
@@ -150,6 +160,8 @@ namespace ArcaneBrigade
                 completed = owner.BuyOffer(station.Offer.Token);
                 if (completed)
                 {
+                    CheckpointAudio.PlayInterfaceId(station.Currency == ShopCurrency.Gold ? "shop.buy.gold" : "shop.buy.dream");
+                    PlayBondUnlocks(before);
                     if (station.Offer.Kind == OfferKind.Companion) owner.PlayCommittedArrival(before, position);
                     else ItemPickup.Play(icon, position + Vector2.up * 0.35f);
                     Reveal.EnqueueCommitted(before, owner.Session.State, true, position, false);
@@ -180,7 +192,7 @@ namespace ArcaneBrigade
             {
                 before = MergeReveal.Capture(owner.Session.State);
                 completed = owner.FuseAltar(station.Recipe);
-                if (completed) owner.PlayCommittedArrival(before, position);
+                if (completed) { owner.PlayCommittedArrival(before, position); PlayBondUnlocks(before); }
                 Reveal.EnqueueCommitted(before, owner.Session.State, completed, position, true);
             }
             else
@@ -191,14 +203,22 @@ namespace ArcaneBrigade
             Station result = stations.Find(candidate => candidate.Position == position);
             if (completed)
             {
+                if (station.Offer != null && station.Offer.Kind == OfferKind.Item)
+                {
+                    ItemRarity rarity = owner.Content.Item(station.Offer.Id).Rarity;
+                    if (rarity != ItemRarity.Common) CheckpointAudio.PlayInterfaceId(rarity == ItemRarity.Mythic ? "up.rarity.gold" : rarity == ItemRarity.Rare ? "up.rarity.purple" : "up.rarity.blue", 0.09f);
+                }
                 if (station.Offer != null || station.Recipe != null || station.Action == "REROLL")
                     dialogue.Speak(Special, station.Recipe != null ? MerchantMoment.Fuse : station.Action == "REROLL" ? MerchantMoment.Reroll : station.Currency == ShopCurrency.Health ? MerchantMoment.BloodBuy : MerchantMoment.Buy, owner.PresentationClock);
                 if (merchant != null) merchant.Celebrate();
+                if (voice != null) voice.Gesture(station.Recipe != null ? "gasp" : "laugh", Special);
                 if (result != null) { result.ReactUntil = owner.PresentationClock + 0.8f; if (result.Actor != null) result.Actor.Celebrate(); }
             }
             else
             {
                 dialogue.Speak(Special, MerchantMoment.Denied, owner.PresentationClock);
+                CheckpointAudio.PlayInterfaceId(!string.IsNullOrEmpty(owner.SaveError) ? "ui.error" : station.Recipe != null ? "shop.invalid" : station.Currency == ShopCurrency.Eggs ? "shop.deny.egg" : station.Currency == ShopCurrency.Health ? "shop.deny.hp" : "shop.deny.gold");
+                if (voice != null) voice.Gesture("hmm", Special);
                 if (merchant != null) merchant.Reject();
                 DeniedCount++;
                 if (result != null)
@@ -209,8 +229,30 @@ namespace ArcaneBrigade
             }
             return completed;
         }
+        private void PlayBondUnlocks(RunSnapshot before)
+        {
+            if (before == null) return;
+            int highest = 0;
+            foreach (BondDefinition bond in owner.Content.Bonds)
+            {
+                int previous = 0;
+                foreach (RosterEntry entry in before.Roster)
+                {
+                    UnitDefinition unit = owner.Content.Unit(entry.UnitId);
+                    if (unit != null && System.Array.IndexOf(unit.Tags, bond.Id) >= 0) previous++;
+                }
+                int current = owner.Session.BondCounts.TryGetValue(bond.Id, out int count) ? count : 0;
+                if (bond.ActiveLevel(current) > bond.ActiveLevel(previous)) highest = Mathf.Max(highest, bond.ActiveLevel(current));
+            }
+            if (highest > 0) CheckpointAudio.PlayInterfaceId(highest >= 2 ? "up.bond.t2" : "up.bond.t1", 0.18f);
+        }
+
         private void Build()
         {
+            CheckpointAudio.CancelScheduledPrefix("shop.item.");
+            CheckpointAudio.CancelScheduledPrefix("shop.stand.");
+            CheckpointAudio.CancelScheduledPrefix("up.rarity.");
+            audioFocus = null;
             if (scenery != null) { scenery.SetActive(false); Destroy(scenery); }
             scenery = new GameObject("NightMarketStations"); scenery.transform.SetParent(transform, false); stations.Clear();
             RunCatalog catalog = owner.Content; RunSnapshot state = owner.Session.State;
@@ -247,6 +289,16 @@ namespace ArcaneBrigade
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
                 station.Description = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Description : catalog.Item(offer.Id).Description;
                 if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(MarketMotion.StockArrivalDelay + index * MarketMotion.StockStagger, scenery.transform.TransformPoint(MerchantCenter));
+                if (!offer.Sold && arrival)
+                {
+                    float landingAt = MarketMotion.StockArrivalDelay + index * MarketMotion.StockStagger + 0.55f;
+                    CheckpointAudio.PlayInterfaceId(offer.Kind == OfferKind.Companion ? "shop.stand.appear" : "shop.item.pop", landingAt);
+                    if (offer.Kind == OfferKind.Item)
+                    {
+                        ItemRarity rarity = catalog.Item(offer.Id).Rarity;
+                        if (rarity != ItemRarity.Common) CheckpointAudio.PlayInterfaceId(rarity == ItemRarity.Mythic ? "up.rarity.gold" : rarity == ItemRarity.Rare ? "up.rarity.purple" : "up.rarity.blue", landingAt + 0.07f);
+                    }
+                }
                 if (offer.Currency == ShopCurrency.Health) station.Description += " · Costs current HP, not maximum HP; must leave at least 1 HP.";
                 if (!offer.Sold && offer.Kind == OfferKind.Item && catalog.Item(offer.Id).Rarity != ItemRarity.Common)
                 {
@@ -274,6 +326,7 @@ namespace ArcaneBrigade
         }
         public void Depart()
         {
+            if (voice != null) voice.Gesture("farewell", Special);
             if (lifecycle != null) lifecycle.Depart();
             int stock = 0;
             foreach (ShopDisplayActor actor in scenery.GetComponentsInChildren<ShopDisplayActor>())

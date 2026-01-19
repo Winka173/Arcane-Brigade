@@ -1,0 +1,1697 @@
+PASS cue manifest loads (153 cues)
+PASS unique cue id cmb.swing.blade
+PASS cue fields cmb.swing.blade
+PASS known bus for cmb.swing.blade
+PASS clip imports: Sfx/cmb_swing_blade_00
+PASS mono SFX/voice: Sfx/cmb_swing_blade_00
+PASS clip imports: Sfx/cmb_swing_blade_01
+PASS mono SFX/voice: Sfx/cmb_swing_blade_01
+PASS clip imports: Sfx/cmb_swing_blade_02
+PASS mono SFX/voice: Sfx/cmb_swing_blade_02
+PASS clip imports: Sfx/cmb_swing_blade_03
+PASS mono SFX/voice: Sfx/cmb_swing_blade_03
+PASS clip imports: Sfx/cmb_swing_blade_04
+PASS mono SFX/voice: Sfx/cmb_swing_blade_04
+PASS clip imports: Sfx/cmb_swing_blade_05
+PASS mono SFX/voice: Sfx/cmb_swing_blade_05
+PASS unique cue id cmb.swing.spear
+PASS cue fields cmb.swing.spear
+PASS known bus for cmb.swing.spear
+PASS clip imports: Sfx/cmb_swing_spear_00
+PASS mono SFX/voice: Sfx/cmb_swing_spear_00
+PASS clip imports: Sfx/cmb_swing_spear_01
+PASS mono SFX/voice: Sfx/cmb_swing_spear_01
+PASS clip imports: Sfx/cmb_swing_spear_02
+PASS mono SFX/voice: Sfx/cmb_swing_spear_02
+PASS clip imports: Sfx/cmb_swing_spear_03
+PASS mono SFX/voice: Sfx/cmb_swing_spear_03
+PASS clip imports: Sfx/cmb_swing_spear_04
+PASS mono SFX/voice: Sfx/cmb_swing_spear_04
+PASS unique cue id cmb.swing.hammer
+PASS cue fields cmb.swing.hammer
+PASS known bus for cmb.swing.hammer
+PASS clip imports: Sfx/cmb_swing_hammer_00
+PASS mono SFX/voice: Sfx/cmb_swing_hammer_00
+PASS clip imports: Sfx/cmb_swing_hammer_01
+PASS mono SFX/voice: Sfx/cmb_swing_hammer_01
+PASS clip imports: Sfx/cmb_swing_hammer_02
+PASS mono SFX/voice: Sfx/cmb_swing_hammer_02
+PASS clip imports: Sfx/cmb_swing_hammer_03
+PASS mono SFX/voice: Sfx/cmb_swing_hammer_03
+PASS unique cue id cmb.swing.scissors
+PASS cue fields cmb.swing.scissors
+PASS known bus for cmb.swing.scissors
+PASS clip imports: Sfx/cmb_swing_scissors_00
+PASS mono SFX/voice: Sfx/cmb_swing_scissors_00
+PASS clip imports: Sfx/cmb_swing_scissors_01
+PASS mono SFX/voice: Sfx/cmb_swing_scissors_01
+PASS clip imports: Sfx/cmb_swing_scissors_02
+PASS mono SFX/voice: Sfx/cmb_swing_scissors_02
+PASS clip imports: Sfx/cmb_swing_scissors_03
+PASS mono SFX/voice: Sfx/cmb_swing_scissors_03
+PASS unique cue id cmb.swing.umbrella
+PASS cue fields cmb.swing.umbrella
+PASS known bus for cmb.swing.umbrella
+PASS clip imports: Sfx/cmb_swing_umbrella_00
+PASS mono SFX/voice: Sfx/cmb_swing_umbrella_00
+PASS clip imports: Sfx/cmb_swing_umbrella_01
+PASS mono SFX/voice: Sfx/cmb_swing_umbrella_01
+PASS clip imports: Sfx/cmb_swing_umbrella_02
+PASS mono SFX/voice: Sfx/cmb_swing_umbrella_02
+PASS clip imports: Sfx/cmb_swing_umbrella_03
+PASS mono SFX/voice: Sfx/cmb_swing_umbrella_03
+PASS unique cue id cmb.swing.whip
+PASS cue fields cmb.swing.whip
+PASS known bus for cmb.swing.whip
+PASS clip imports: Sfx/cmb_swing_whip_00
+PASS mono SFX/voice: Sfx/cmb_swing_whip_00
+PASS clip imports: Sfx/cmb_swing_whip_01
+PASS mono SFX/voice: Sfx/cmb_swing_whip_01
+PASS clip imports: Sfx/cmb_swing_whip_02
+PASS mono SFX/voice: Sfx/cmb_swing_whip_02
+PASS clip imports: Sfx/cmb_swing_whip_03
+PASS mono SFX/voice: Sfx/cmb_swing_whip_03
+PASS unique cue id cmb.windup
+PASS cue fields cmb.windup
+PASS known bus for cmb.windup
+PASS clip imports: Sfx/cmb_windup_00
+PASS mono SFX/voice: Sfx/cmb_windup_00
+PASS clip imports: Sfx/cmb_windup_01
+PASS mono SFX/voice: Sfx/cmb_windup_01
+PASS clip imports: Sfx/cmb_windup_02
+PASS mono SFX/voice: Sfx/cmb_windup_02
+PASS unique cue id cmb.miss
+PASS cue fields cmb.miss
+PASS known bus for cmb.miss
+PASS clip imports: Sfx/cmb_miss_00
+PASS mono SFX/voice: Sfx/cmb_miss_00
+PASS clip imports: Sfx/cmb_miss_01
+PASS mono SFX/voice: Sfx/cmb_miss_01
+PASS clip imports: Sfx/cmb_miss_02
+PASS mono SFX/voice: Sfx/cmb_miss_02
+PASS clip imports: Sfx/cmb_miss_03
+PASS mono SFX/voice: Sfx/cmb_miss_03
+PASS unique cue id cmb.hit.paper
+PASS cue fields cmb.hit.paper
+PASS known bus for cmb.hit.paper
+PASS clip imports: Sfx/cmb_hit_paper_00
+PASS mono SFX/voice: Sfx/cmb_hit_paper_00
+PASS clip imports: Sfx/cmb_hit_paper_01
+PASS mono SFX/voice: Sfx/cmb_hit_paper_01
+PASS clip imports: Sfx/cmb_hit_paper_02
+PASS mono SFX/voice: Sfx/cmb_hit_paper_02
+PASS clip imports: Sfx/cmb_hit_paper_03
+PASS mono SFX/voice: Sfx/cmb_hit_paper_03
+PASS clip imports: Sfx/cmb_hit_paper_04
+PASS mono SFX/voice: Sfx/cmb_hit_paper_04
+PASS clip imports: Sfx/cmb_hit_paper_05
+PASS mono SFX/voice: Sfx/cmb_hit_paper_05
+PASS unique cue id enemy.die.paper
+PASS cue fields enemy.die.paper
+PASS known bus for enemy.die.paper
+PASS clip imports: Sfx/enemy_die_paper_00
+PASS mono SFX/voice: Sfx/enemy_die_paper_00
+PASS clip imports: Sfx/enemy_die_paper_01
+PASS mono SFX/voice: Sfx/enemy_die_paper_01
+PASS clip imports: Sfx/enemy_die_paper_02
+PASS mono SFX/voice: Sfx/enemy_die_paper_02
+PASS unique cue id cmb.hit.metal
+PASS cue fields cmb.hit.metal
+PASS known bus for cmb.hit.metal
+PASS clip imports: Sfx/cmb_hit_metal_00
+PASS mono SFX/voice: Sfx/cmb_hit_metal_00
+PASS clip imports: Sfx/cmb_hit_metal_01
+PASS mono SFX/voice: Sfx/cmb_hit_metal_01
+PASS clip imports: Sfx/cmb_hit_metal_02
+PASS mono SFX/voice: Sfx/cmb_hit_metal_02
+PASS clip imports: Sfx/cmb_hit_metal_03
+PASS mono SFX/voice: Sfx/cmb_hit_metal_03
+PASS clip imports: Sfx/cmb_hit_metal_04
+PASS mono SFX/voice: Sfx/cmb_hit_metal_04
+PASS clip imports: Sfx/cmb_hit_metal_05
+PASS mono SFX/voice: Sfx/cmb_hit_metal_05
+PASS unique cue id enemy.die.metal
+PASS cue fields enemy.die.metal
+PASS known bus for enemy.die.metal
+PASS clip imports: Sfx/enemy_die_metal_00
+PASS mono SFX/voice: Sfx/enemy_die_metal_00
+PASS clip imports: Sfx/enemy_die_metal_01
+PASS mono SFX/voice: Sfx/enemy_die_metal_01
+PASS clip imports: Sfx/enemy_die_metal_02
+PASS mono SFX/voice: Sfx/enemy_die_metal_02
+PASS unique cue id cmb.hit.wax
+PASS cue fields cmb.hit.wax
+PASS known bus for cmb.hit.wax
+PASS clip imports: Sfx/cmb_hit_wax_00
+PASS mono SFX/voice: Sfx/cmb_hit_wax_00
+PASS clip imports: Sfx/cmb_hit_wax_01
+PASS mono SFX/voice: Sfx/cmb_hit_wax_01
+PASS clip imports: Sfx/cmb_hit_wax_02
+PASS mono SFX/voice: Sfx/cmb_hit_wax_02
+PASS clip imports: Sfx/cmb_hit_wax_03
+PASS mono SFX/voice: Sfx/cmb_hit_wax_03
+PASS clip imports: Sfx/cmb_hit_wax_04
+PASS mono SFX/voice: Sfx/cmb_hit_wax_04
+PASS clip imports: Sfx/cmb_hit_wax_05
+PASS mono SFX/voice: Sfx/cmb_hit_wax_05
+PASS unique cue id enemy.die.wax
+PASS cue fields enemy.die.wax
+PASS known bus for enemy.die.wax
+PASS clip imports: Sfx/enemy_die_wax_00
+PASS mono SFX/voice: Sfx/enemy_die_wax_00
+PASS clip imports: Sfx/enemy_die_wax_01
+PASS mono SFX/voice: Sfx/enemy_die_wax_01
+PASS clip imports: Sfx/enemy_die_wax_02
+PASS mono SFX/voice: Sfx/enemy_die_wax_02
+PASS unique cue id cmb.hit.fabric
+PASS cue fields cmb.hit.fabric
+PASS known bus for cmb.hit.fabric
+PASS clip imports: Sfx/cmb_hit_fabric_00
+PASS mono SFX/voice: Sfx/cmb_hit_fabric_00
+PASS clip imports: Sfx/cmb_hit_fabric_01
+PASS mono SFX/voice: Sfx/cmb_hit_fabric_01
+PASS clip imports: Sfx/cmb_hit_fabric_02
+PASS mono SFX/voice: Sfx/cmb_hit_fabric_02
+PASS clip imports: Sfx/cmb_hit_fabric_03
+PASS mono SFX/voice: Sfx/cmb_hit_fabric_03
+PASS clip imports: Sfx/cmb_hit_fabric_04
+PASS mono SFX/voice: Sfx/cmb_hit_fabric_04
+PASS clip imports: Sfx/cmb_hit_fabric_05
+PASS mono SFX/voice: Sfx/cmb_hit_fabric_05
+PASS unique cue id enemy.die.fabric
+PASS cue fields enemy.die.fabric
+PASS known bus for enemy.die.fabric
+PASS clip imports: Sfx/enemy_die_fabric_00
+PASS mono SFX/voice: Sfx/enemy_die_fabric_00
+PASS clip imports: Sfx/enemy_die_fabric_01
+PASS mono SFX/voice: Sfx/enemy_die_fabric_01
+PASS clip imports: Sfx/enemy_die_fabric_02
+PASS mono SFX/voice: Sfx/enemy_die_fabric_02
+PASS unique cue id cmb.hit.glass
+PASS cue fields cmb.hit.glass
+PASS known bus for cmb.hit.glass
+PASS clip imports: Sfx/cmb_hit_glass_00
+PASS mono SFX/voice: Sfx/cmb_hit_glass_00
+PASS clip imports: Sfx/cmb_hit_glass_01
+PASS mono SFX/voice: Sfx/cmb_hit_glass_01
+PASS clip imports: Sfx/cmb_hit_glass_02
+PASS mono SFX/voice: Sfx/cmb_hit_glass_02
+PASS clip imports: Sfx/cmb_hit_glass_03
+PASS mono SFX/voice: Sfx/cmb_hit_glass_03
+PASS clip imports: Sfx/cmb_hit_glass_04
+PASS mono SFX/voice: Sfx/cmb_hit_glass_04
+PASS clip imports: Sfx/cmb_hit_glass_05
+PASS mono SFX/voice: Sfx/cmb_hit_glass_05
+PASS unique cue id enemy.die.glass
+PASS cue fields enemy.die.glass
+PASS known bus for enemy.die.glass
+PASS clip imports: Sfx/enemy_die_glass_00
+PASS mono SFX/voice: Sfx/enemy_die_glass_00
+PASS clip imports: Sfx/enemy_die_glass_01
+PASS mono SFX/voice: Sfx/enemy_die_glass_01
+PASS clip imports: Sfx/enemy_die_glass_02
+PASS mono SFX/voice: Sfx/enemy_die_glass_02
+PASS unique cue id cmb.hit.wood
+PASS cue fields cmb.hit.wood
+PASS known bus for cmb.hit.wood
+PASS clip imports: Sfx/cmb_hit_wood_00
+PASS mono SFX/voice: Sfx/cmb_hit_wood_00
+PASS clip imports: Sfx/cmb_hit_wood_01
+PASS mono SFX/voice: Sfx/cmb_hit_wood_01
+PASS clip imports: Sfx/cmb_hit_wood_02
+PASS mono SFX/voice: Sfx/cmb_hit_wood_02
+PASS clip imports: Sfx/cmb_hit_wood_03
+PASS mono SFX/voice: Sfx/cmb_hit_wood_03
+PASS clip imports: Sfx/cmb_hit_wood_04
+PASS mono SFX/voice: Sfx/cmb_hit_wood_04
+PASS clip imports: Sfx/cmb_hit_wood_05
+PASS mono SFX/voice: Sfx/cmb_hit_wood_05
+PASS unique cue id enemy.die.wood
+PASS cue fields enemy.die.wood
+PASS known bus for enemy.die.wood
+PASS clip imports: Sfx/enemy_die_wood_00
+PASS mono SFX/voice: Sfx/enemy_die_wood_00
+PASS clip imports: Sfx/enemy_die_wood_01
+PASS mono SFX/voice: Sfx/enemy_die_wood_01
+PASS clip imports: Sfx/enemy_die_wood_02
+PASS mono SFX/voice: Sfx/enemy_die_wood_02
+PASS unique cue id cmb.crit
+PASS cue fields cmb.crit
+PASS known bus for cmb.crit
+PASS clip imports: Sfx/cmb_crit_00
+PASS mono SFX/voice: Sfx/cmb_crit_00
+PASS clip imports: Sfx/cmb_crit_01
+PASS mono SFX/voice: Sfx/cmb_crit_01
+PASS clip imports: Sfx/cmb_crit_02
+PASS mono SFX/voice: Sfx/cmb_crit_02
+PASS clip imports: Sfx/cmb_crit_03
+PASS mono SFX/voice: Sfx/cmb_crit_03
+PASS clip imports: Sfx/cmb_crit_04
+PASS mono SFX/voice: Sfx/cmb_crit_04
+PASS unique cue id wpn.bow.draw
+PASS cue fields wpn.bow.draw
+PASS known bus for wpn.bow.draw
+PASS clip imports: Sfx/wpn_bow_draw_00
+PASS mono SFX/voice: Sfx/wpn_bow_draw_00
+PASS clip imports: Sfx/wpn_bow_draw_01
+PASS mono SFX/voice: Sfx/wpn_bow_draw_01
+PASS clip imports: Sfx/wpn_bow_draw_02
+PASS mono SFX/voice: Sfx/wpn_bow_draw_02
+PASS unique cue id wpn.bow.release
+PASS cue fields wpn.bow.release
+PASS known bus for wpn.bow.release
+PASS clip imports: Sfx/wpn_bow_release_00
+PASS mono SFX/voice: Sfx/wpn_bow_release_00
+PASS clip imports: Sfx/wpn_bow_release_01
+PASS mono SFX/voice: Sfx/wpn_bow_release_01
+PASS clip imports: Sfx/wpn_bow_release_02
+PASS mono SFX/voice: Sfx/wpn_bow_release_02
+PASS clip imports: Sfx/wpn_bow_release_03
+PASS mono SFX/voice: Sfx/wpn_bow_release_03
+PASS clip imports: Sfx/wpn_bow_release_04
+PASS mono SFX/voice: Sfx/wpn_bow_release_04
+PASS unique cue id wpn.gun.pop
+PASS cue fields wpn.gun.pop
+PASS known bus for wpn.gun.pop
+PASS clip imports: Sfx/wpn_gun_pop_00
+PASS mono SFX/voice: Sfx/wpn_gun_pop_00
+PASS clip imports: Sfx/wpn_gun_pop_01
+PASS mono SFX/voice: Sfx/wpn_gun_pop_01
+PASS clip imports: Sfx/wpn_gun_pop_02
+PASS mono SFX/voice: Sfx/wpn_gun_pop_02
+PASS clip imports: Sfx/wpn_gun_pop_03
+PASS mono SFX/voice: Sfx/wpn_gun_pop_03
+PASS unique cue id wpn.launcher
+PASS cue fields wpn.launcher
+PASS known bus for wpn.launcher
+PASS clip imports: Sfx/wpn_launcher_00
+PASS mono SFX/voice: Sfx/wpn_launcher_00
+PASS clip imports: Sfx/wpn_launcher_01
+PASS mono SFX/voice: Sfx/wpn_launcher_01
+PASS clip imports: Sfx/wpn_launcher_02
+PASS mono SFX/voice: Sfx/wpn_launcher_02
+PASS unique cue id wpn.cast.fire
+PASS cue fields wpn.cast.fire
+PASS known bus for wpn.cast.fire
+PASS clip imports: Sfx/wpn_cast_fire_00
+PASS mono SFX/voice: Sfx/wpn_cast_fire_00
+PASS clip imports: Sfx/wpn_cast_fire_01
+PASS mono SFX/voice: Sfx/wpn_cast_fire_01
+PASS clip imports: Sfx/wpn_cast_fire_02
+PASS mono SFX/voice: Sfx/wpn_cast_fire_02
+PASS clip imports: Sfx/wpn_cast_fire_03
+PASS mono SFX/voice: Sfx/wpn_cast_fire_03
+PASS unique cue id wpn.cast.ice
+PASS cue fields wpn.cast.ice
+PASS known bus for wpn.cast.ice
+PASS clip imports: Sfx/wpn_cast_ice_00
+PASS mono SFX/voice: Sfx/wpn_cast_ice_00
+PASS clip imports: Sfx/wpn_cast_ice_01
+PASS mono SFX/voice: Sfx/wpn_cast_ice_01
+PASS clip imports: Sfx/wpn_cast_ice_02
+PASS mono SFX/voice: Sfx/wpn_cast_ice_02
+PASS clip imports: Sfx/wpn_cast_ice_03
+PASS mono SFX/voice: Sfx/wpn_cast_ice_03
+PASS unique cue id wpn.cast.arcane
+PASS cue fields wpn.cast.arcane
+PASS known bus for wpn.cast.arcane
+PASS clip imports: Sfx/wpn_cast_arcane_00
+PASS mono SFX/voice: Sfx/wpn_cast_arcane_00
+PASS clip imports: Sfx/wpn_cast_arcane_01
+PASS mono SFX/voice: Sfx/wpn_cast_arcane_01
+PASS clip imports: Sfx/wpn_cast_arcane_02
+PASS mono SFX/voice: Sfx/wpn_cast_arcane_02
+PASS clip imports: Sfx/wpn_cast_arcane_03
+PASS mono SFX/voice: Sfx/wpn_cast_arcane_03
+PASS unique cue id wpn.boomerang.fly
+PASS cue fields wpn.boomerang.fly
+PASS known bus for wpn.boomerang.fly
+PASS clip imports: Sfx/wpn_boomerang_fly_00
+PASS mono SFX/voice: Sfx/wpn_boomerang_fly_00
+PASS clip imports: Sfx/wpn_boomerang_fly_01
+PASS mono SFX/voice: Sfx/wpn_boomerang_fly_01
+PASS clip imports: Sfx/wpn_boomerang_fly_02
+PASS mono SFX/voice: Sfx/wpn_boomerang_fly_02
+PASS unique cue id wpn.boomerang.return
+PASS cue fields wpn.boomerang.return
+PASS known bus for wpn.boomerang.return
+PASS clip imports: Sfx/wpn_boomerang_return_00
+PASS mono SFX/voice: Sfx/wpn_boomerang_return_00
+PASS clip imports: Sfx/wpn_boomerang_return_01
+PASS mono SFX/voice: Sfx/wpn_boomerang_return_01
+PASS clip imports: Sfx/wpn_boomerang_return_02
+PASS mono SFX/voice: Sfx/wpn_boomerang_return_02
+PASS unique cue id wpn.pierce
+PASS cue fields wpn.pierce
+PASS known bus for wpn.pierce
+PASS clip imports: Sfx/wpn_pierce_00
+PASS mono SFX/voice: Sfx/wpn_pierce_00
+PASS clip imports: Sfx/wpn_pierce_01
+PASS mono SFX/voice: Sfx/wpn_pierce_01
+PASS clip imports: Sfx/wpn_pierce_02
+PASS mono SFX/voice: Sfx/wpn_pierce_02
+PASS clip imports: Sfx/wpn_pierce_03
+PASS mono SFX/voice: Sfx/wpn_pierce_03
+PASS unique cue id wpn.split
+PASS cue fields wpn.split
+PASS known bus for wpn.split
+PASS clip imports: Sfx/wpn_split_00
+PASS mono SFX/voice: Sfx/wpn_split_00
+PASS clip imports: Sfx/wpn_split_01
+PASS mono SFX/voice: Sfx/wpn_split_01
+PASS clip imports: Sfx/wpn_split_02
+PASS mono SFX/voice: Sfx/wpn_split_02
+PASS unique cue id wpn.bounce
+PASS cue fields wpn.bounce
+PASS known bus for wpn.bounce
+PASS clip imports: Sfx/wpn_bounce_00
+PASS mono SFX/voice: Sfx/wpn_bounce_00
+PASS clip imports: Sfx/wpn_bounce_01
+PASS mono SFX/voice: Sfx/wpn_bounce_01
+PASS clip imports: Sfx/wpn_bounce_02
+PASS mono SFX/voice: Sfx/wpn_bounce_02
+PASS clip imports: Sfx/wpn_bounce_03
+PASS mono SFX/voice: Sfx/wpn_bounce_03
+PASS unique cue id sig.bell
+PASS cue fields sig.bell
+PASS known bus for sig.bell
+PASS clip imports: Sfx/sig_bell_00
+PASS mono SFX/voice: Sfx/sig_bell_00
+PASS clip imports: Sfx/sig_bell_01
+PASS mono SFX/voice: Sfx/sig_bell_01
+PASS clip imports: Sfx/sig_bell_02
+PASS mono SFX/voice: Sfx/sig_bell_02
+PASS clip imports: Sfx/sig_bell_03
+PASS mono SFX/voice: Sfx/sig_bell_03
+PASS unique cue id sig.umbrella
+PASS cue fields sig.umbrella
+PASS known bus for sig.umbrella
+PASS clip imports: Sfx/sig_umbrella_00
+PASS mono SFX/voice: Sfx/sig_umbrella_00
+PASS clip imports: Sfx/sig_umbrella_01
+PASS mono SFX/voice: Sfx/sig_umbrella_01
+PASS clip imports: Sfx/sig_umbrella_02
+PASS mono SFX/voice: Sfx/sig_umbrella_02
+PASS unique cue id sig.stamp
+PASS cue fields sig.stamp
+PASS known bus for sig.stamp
+PASS clip imports: Sfx/sig_stamp_00
+PASS mono SFX/voice: Sfx/sig_stamp_00
+PASS clip imports: Sfx/sig_stamp_01
+PASS mono SFX/voice: Sfx/sig_stamp_01
+PASS clip imports: Sfx/sig_stamp_02
+PASS mono SFX/voice: Sfx/sig_stamp_02
+PASS unique cue id sig.scissors
+PASS cue fields sig.scissors
+PASS known bus for sig.scissors
+PASS clip imports: Sfx/sig_scissors_00
+PASS mono SFX/voice: Sfx/sig_scissors_00
+PASS clip imports: Sfx/sig_scissors_01
+PASS mono SFX/voice: Sfx/sig_scissors_01
+PASS clip imports: Sfx/sig_scissors_02
+PASS mono SFX/voice: Sfx/sig_scissors_02
+PASS clip imports: Sfx/sig_scissors_03
+PASS mono SFX/voice: Sfx/sig_scissors_03
+PASS unique cue id sig.camera
+PASS cue fields sig.camera
+PASS known bus for sig.camera
+PASS clip imports: Sfx/sig_camera_00
+PASS mono SFX/voice: Sfx/sig_camera_00
+PASS clip imports: Sfx/sig_camera_01
+PASS mono SFX/voice: Sfx/sig_camera_01
+PASS clip imports: Sfx/sig_camera_02
+PASS mono SFX/voice: Sfx/sig_camera_02
+PASS unique cue id sig.musicbox
+PASS cue fields sig.musicbox
+PASS known bus for sig.musicbox
+PASS clip imports: Sfx/sig_musicbox_00
+PASS mono SFX/voice: Sfx/sig_musicbox_00
+PASS clip imports: Sfx/sig_musicbox_01
+PASS mono SFX/voice: Sfx/sig_musicbox_01
+PASS clip imports: Sfx/sig_musicbox_02
+PASS mono SFX/voice: Sfx/sig_musicbox_02
+PASS unique cue id sig.tea
+PASS cue fields sig.tea
+PASS known bus for sig.tea
+PASS clip imports: Sfx/sig_tea_00
+PASS mono SFX/voice: Sfx/sig_tea_00
+PASS clip imports: Sfx/sig_tea_01
+PASS mono SFX/voice: Sfx/sig_tea_01
+PASS clip imports: Sfx/sig_tea_02
+PASS mono SFX/voice: Sfx/sig_tea_02
+PASS unique cue id sig.fish
+PASS cue fields sig.fish
+PASS known bus for sig.fish
+PASS clip imports: Sfx/sig_fish_00
+PASS mono SFX/voice: Sfx/sig_fish_00
+PASS clip imports: Sfx/sig_fish_01
+PASS mono SFX/voice: Sfx/sig_fish_01
+PASS clip imports: Sfx/sig_fish_02
+PASS mono SFX/voice: Sfx/sig_fish_02
+PASS unique cue id sig.alarm
+PASS cue fields sig.alarm
+PASS known bus for sig.alarm
+PASS clip imports: Sfx/sig_alarm_00
+PASS mono SFX/voice: Sfx/sig_alarm_00
+PASS clip imports: Sfx/sig_alarm_01
+PASS mono SFX/voice: Sfx/sig_alarm_01
+PASS unique cue id sig.iron
+PASS cue fields sig.iron
+PASS known bus for sig.iron
+PASS clip imports: Sfx/sig_iron_00
+PASS mono SFX/voice: Sfx/sig_iron_00
+PASS clip imports: Sfx/sig_iron_01
+PASS mono SFX/voice: Sfx/sig_iron_01
+PASS clip imports: Sfx/sig_iron_02
+PASS mono SFX/voice: Sfx/sig_iron_02
+PASS unique cue id sig.hammer
+PASS cue fields sig.hammer
+PASS known bus for sig.hammer
+PASS clip imports: Sfx/sig_hammer_00
+PASS mono SFX/voice: Sfx/sig_hammer_00
+PASS clip imports: Sfx/sig_hammer_01
+PASS mono SFX/voice: Sfx/sig_hammer_01
+PASS clip imports: Sfx/sig_hammer_02
+PASS mono SFX/voice: Sfx/sig_hammer_02
+PASS unique cue id fx.burn
+PASS cue fields fx.burn
+PASS known bus for fx.burn
+PASS clip imports: Sfx/fx_burn_00
+PASS mono SFX/voice: Sfx/fx_burn_00
+PASS clip imports: Sfx/fx_burn_01
+PASS mono SFX/voice: Sfx/fx_burn_01
+PASS clip imports: Sfx/fx_burn_02
+PASS mono SFX/voice: Sfx/fx_burn_02
+PASS clip imports: Sfx/fx_burn_03
+PASS mono SFX/voice: Sfx/fx_burn_03
+PASS unique cue id fx.chill
+PASS cue fields fx.chill
+PASS known bus for fx.chill
+PASS clip imports: Sfx/fx_chill_00
+PASS mono SFX/voice: Sfx/fx_chill_00
+PASS clip imports: Sfx/fx_chill_01
+PASS mono SFX/voice: Sfx/fx_chill_01
+PASS clip imports: Sfx/fx_chill_02
+PASS mono SFX/voice: Sfx/fx_chill_02
+PASS clip imports: Sfx/fx_chill_03
+PASS mono SFX/voice: Sfx/fx_chill_03
+PASS unique cue id fx.knockback
+PASS cue fields fx.knockback
+PASS known bus for fx.knockback
+PASS clip imports: Sfx/fx_knockback_00
+PASS mono SFX/voice: Sfx/fx_knockback_00
+PASS clip imports: Sfx/fx_knockback_01
+PASS mono SFX/voice: Sfx/fx_knockback_01
+PASS clip imports: Sfx/fx_knockback_02
+PASS mono SFX/voice: Sfx/fx_knockback_02
+PASS clip imports: Sfx/fx_knockback_03
+PASS mono SFX/voice: Sfx/fx_knockback_03
+PASS unique cue id fx.reaction.steam
+PASS cue fields fx.reaction.steam
+PASS known bus for fx.reaction.steam
+PASS clip imports: Sfx/fx_reaction_steam_00
+PASS mono SFX/voice: Sfx/fx_reaction_steam_00
+PASS clip imports: Sfx/fx_reaction_steam_01
+PASS mono SFX/voice: Sfx/fx_reaction_steam_01
+PASS unique cue id fx.reaction.shatter
+PASS cue fields fx.reaction.shatter
+PASS known bus for fx.reaction.shatter
+PASS clip imports: Sfx/fx_reaction_shatter_00
+PASS mono SFX/voice: Sfx/fx_reaction_shatter_00
+PASS clip imports: Sfx/fx_reaction_shatter_01
+PASS mono SFX/voice: Sfx/fx_reaction_shatter_01
+PASS unique cue id fx.reaction.arcane
+PASS cue fields fx.reaction.arcane
+PASS known bus for fx.reaction.arcane
+PASS clip imports: Sfx/fx_reaction_arcane_00
+PASS mono SFX/voice: Sfx/fx_reaction_arcane_00
+PASS clip imports: Sfx/fx_reaction_arcane_01
+PASS mono SFX/voice: Sfx/fx_reaction_arcane_01
+PASS unique cue id chr.step
+PASS cue fields chr.step
+PASS known bus for chr.step
+PASS clip imports: Sfx/chr_step_00
+PASS mono SFX/voice: Sfx/chr_step_00
+PASS clip imports: Sfx/chr_step_01
+PASS mono SFX/voice: Sfx/chr_step_01
+PASS clip imports: Sfx/chr_step_02
+PASS mono SFX/voice: Sfx/chr_step_02
+PASS clip imports: Sfx/chr_step_03
+PASS mono SFX/voice: Sfx/chr_step_03
+PASS clip imports: Sfx/chr_step_04
+PASS mono SFX/voice: Sfx/chr_step_04
+PASS clip imports: Sfx/chr_step_05
+PASS mono SFX/voice: Sfx/chr_step_05
+PASS unique cue id chr.dash
+PASS cue fields chr.dash
+PASS known bus for chr.dash
+PASS clip imports: Sfx/chr_dash_00
+PASS mono SFX/voice: Sfx/chr_dash_00
+PASS clip imports: Sfx/chr_dash_01
+PASS mono SFX/voice: Sfx/chr_dash_01
+PASS clip imports: Sfx/chr_dash_02
+PASS mono SFX/voice: Sfx/chr_dash_02
+PASS clip imports: Sfx/chr_dash_03
+PASS mono SFX/voice: Sfx/chr_dash_03
+PASS unique cue id chr.jump
+PASS cue fields chr.jump
+PASS known bus for chr.jump
+PASS clip imports: Sfx/chr_jump_00
+PASS mono SFX/voice: Sfx/chr_jump_00
+PASS clip imports: Sfx/chr_jump_01
+PASS mono SFX/voice: Sfx/chr_jump_01
+PASS clip imports: Sfx/chr_jump_02
+PASS mono SFX/voice: Sfx/chr_jump_02
+PASS unique cue id chr.land
+PASS cue fields chr.land
+PASS known bus for chr.land
+PASS clip imports: Sfx/chr_land_00
+PASS mono SFX/voice: Sfx/chr_land_00
+PASS clip imports: Sfx/chr_land_01
+PASS mono SFX/voice: Sfx/chr_land_01
+PASS clip imports: Sfx/chr_land_02
+PASS mono SFX/voice: Sfx/chr_land_02
+PASS unique cue id plr.dodge
+PASS cue fields plr.dodge
+PASS known bus for plr.dodge
+PASS clip imports: Sfx/plr_dodge_00
+PASS mono SFX/voice: Sfx/plr_dodge_00
+PASS clip imports: Sfx/plr_dodge_01
+PASS mono SFX/voice: Sfx/plr_dodge_01
+PASS clip imports: Sfx/plr_dodge_02
+PASS mono SFX/voice: Sfx/plr_dodge_02
+PASS unique cue id plr.hurt
+PASS cue fields plr.hurt
+PASS known bus for plr.hurt
+PASS clip imports: Sfx/plr_hurt_00
+PASS mono SFX/voice: Sfx/plr_hurt_00
+PASS clip imports: Sfx/plr_hurt_01
+PASS mono SFX/voice: Sfx/plr_hurt_01
+PASS clip imports: Sfx/plr_hurt_02
+PASS mono SFX/voice: Sfx/plr_hurt_02
+PASS clip imports: Sfx/plr_hurt_03
+PASS mono SFX/voice: Sfx/plr_hurt_03
+PASS clip imports: Sfx/plr_hurt_04
+PASS mono SFX/voice: Sfx/plr_hurt_04
+PASS unique cue id plr.lowhp
+PASS cue fields plr.lowhp
+PASS known bus for plr.lowhp
+PASS clip imports: Sfx/plr_lowhp_00
+PASS mono SFX/voice: Sfx/plr_lowhp_00
+PASS clip imports: Sfx/plr_lowhp_01
+PASS mono SFX/voice: Sfx/plr_lowhp_01
+PASS unique cue id plr.heal
+PASS cue fields plr.heal
+PASS known bus for plr.heal
+PASS clip imports: Sfx/plr_heal_00
+PASS mono SFX/voice: Sfx/plr_heal_00
+PASS clip imports: Sfx/plr_heal_01
+PASS mono SFX/voice: Sfx/plr_heal_01
+PASS clip imports: Sfx/plr_heal_02
+PASS mono SFX/voice: Sfx/plr_heal_02
+PASS unique cue id plr.death
+PASS cue fields plr.death
+PASS known bus for plr.death
+PASS clip imports: Sfx/plr_death_00
+PASS mono SFX/voice: Sfx/plr_death_00
+PASS clip imports: Sfx/plr_death_01
+PASS mono SFX/voice: Sfx/plr_death_01
+PASS unique cue id enemy.spit.windup
+PASS cue fields enemy.spit.windup
+PASS known bus for enemy.spit.windup
+PASS clip imports: Sfx/enemy_spit_windup_00
+PASS mono SFX/voice: Sfx/enemy_spit_windup_00
+PASS clip imports: Sfx/enemy_spit_windup_01
+PASS mono SFX/voice: Sfx/enemy_spit_windup_01
+PASS clip imports: Sfx/enemy_spit_windup_02
+PASS mono SFX/voice: Sfx/enemy_spit_windup_02
+PASS clip imports: Sfx/enemy_spit_windup_03
+PASS mono SFX/voice: Sfx/enemy_spit_windup_03
+PASS unique cue id enemy.spit.fire
+PASS cue fields enemy.spit.fire
+PASS known bus for enemy.spit.fire
+PASS clip imports: Sfx/enemy_spit_fire_00
+PASS mono SFX/voice: Sfx/enemy_spit_fire_00
+PASS clip imports: Sfx/enemy_spit_fire_01
+PASS mono SFX/voice: Sfx/enemy_spit_fire_01
+PASS clip imports: Sfx/enemy_spit_fire_02
+PASS mono SFX/voice: Sfx/enemy_spit_fire_02
+PASS clip imports: Sfx/enemy_spit_fire_03
+PASS mono SFX/voice: Sfx/enemy_spit_fire_03
+PASS clip imports: Sfx/enemy_spit_fire_04
+PASS mono SFX/voice: Sfx/enemy_spit_fire_04
+PASS unique cue id enemy.lunge
+PASS cue fields enemy.lunge
+PASS known bus for enemy.lunge
+PASS clip imports: Sfx/enemy_lunge_00
+PASS mono SFX/voice: Sfx/enemy_lunge_00
+PASS clip imports: Sfx/enemy_lunge_01
+PASS mono SFX/voice: Sfx/enemy_lunge_01
+PASS clip imports: Sfx/enemy_lunge_02
+PASS mono SFX/voice: Sfx/enemy_lunge_02
+PASS clip imports: Sfx/enemy_lunge_03
+PASS mono SFX/voice: Sfx/enemy_lunge_03
+PASS unique cue id enemy.hurt
+PASS cue fields enemy.hurt
+PASS known bus for enemy.hurt
+PASS clip imports: Sfx/enemy_hurt_00
+PASS mono SFX/voice: Sfx/enemy_hurt_00
+PASS clip imports: Sfx/enemy_hurt_01
+PASS mono SFX/voice: Sfx/enemy_hurt_01
+PASS clip imports: Sfx/enemy_hurt_02
+PASS mono SFX/voice: Sfx/enemy_hurt_02
+PASS clip imports: Sfx/enemy_hurt_03
+PASS mono SFX/voice: Sfx/enemy_hurt_03
+PASS clip imports: Sfx/enemy_hurt_04
+PASS mono SFX/voice: Sfx/enemy_hurt_04
+PASS clip imports: Sfx/enemy_hurt_05
+PASS mono SFX/voice: Sfx/enemy_hurt_05
+PASS unique cue id enemy.big.step
+PASS cue fields enemy.big.step
+PASS known bus for enemy.big.step
+PASS clip imports: Sfx/enemy_big_step_00
+PASS mono SFX/voice: Sfx/enemy_big_step_00
+PASS clip imports: Sfx/enemy_big_step_01
+PASS mono SFX/voice: Sfx/enemy_big_step_01
+PASS clip imports: Sfx/enemy_big_step_02
+PASS mono SFX/voice: Sfx/enemy_big_step_02
+PASS unique cue id enemy.big.roar
+PASS cue fields enemy.big.roar
+PASS known bus for enemy.big.roar
+PASS clip imports: Sfx/enemy_big_roar_00
+PASS mono SFX/voice: Sfx/enemy_big_roar_00
+PASS clip imports: Sfx/enemy_big_roar_01
+PASS mono SFX/voice: Sfx/enemy_big_roar_01
+PASS clip imports: Sfx/enemy_big_roar_02
+PASS mono SFX/voice: Sfx/enemy_big_roar_02
+PASS unique cue id enemy.die.large
+PASS cue fields enemy.die.large
+PASS known bus for enemy.die.large
+PASS clip imports: Sfx/enemy_die_large_00
+PASS mono SFX/voice: Sfx/enemy_die_large_00
+PASS clip imports: Sfx/enemy_die_large_01
+PASS mono SFX/voice: Sfx/enemy_die_large_01
+PASS clip imports: Sfx/enemy_die_large_02
+PASS mono SFX/voice: Sfx/enemy_die_large_02
+PASS unique cue id boss.enter
+PASS cue fields boss.enter
+PASS known bus for boss.enter
+PASS clip imports: Sfx/boss_enter_00
+PASS mono SFX/voice: Sfx/boss_enter_00
+PASS clip imports: Sfx/boss_enter_01
+PASS mono SFX/voice: Sfx/boss_enter_01
+PASS unique cue id boss.telegraph
+PASS cue fields boss.telegraph
+PASS known bus for boss.telegraph
+PASS clip imports: Sfx/boss_telegraph_00
+PASS mono SFX/voice: Sfx/boss_telegraph_00
+PASS clip imports: Sfx/boss_telegraph_01
+PASS mono SFX/voice: Sfx/boss_telegraph_01
+PASS clip imports: Sfx/boss_telegraph_02
+PASS mono SFX/voice: Sfx/boss_telegraph_02
+PASS unique cue id boss.attack
+PASS cue fields boss.attack
+PASS known bus for boss.attack
+PASS clip imports: Sfx/boss_attack_00
+PASS mono SFX/voice: Sfx/boss_attack_00
+PASS clip imports: Sfx/boss_attack_01
+PASS mono SFX/voice: Sfx/boss_attack_01
+PASS clip imports: Sfx/boss_attack_02
+PASS mono SFX/voice: Sfx/boss_attack_02
+PASS unique cue id boss.phase
+PASS cue fields boss.phase
+PASS known bus for boss.phase
+PASS clip imports: Sfx/boss_phase_00
+PASS mono SFX/voice: Sfx/boss_phase_00
+PASS clip imports: Sfx/boss_phase_01
+PASS mono SFX/voice: Sfx/boss_phase_01
+PASS unique cue id boss.defeat
+PASS cue fields boss.defeat
+PASS known bus for boss.defeat
+PASS clip imports: Sfx/boss_defeat_00
+PASS mono SFX/voice: Sfx/boss_defeat_00
+PASS clip imports: Sfx/boss_defeat_01
+PASS mono SFX/voice: Sfx/boss_defeat_01
+PASS unique cue id sig.alarm.boom
+PASS cue fields sig.alarm.boom
+PASS known bus for sig.alarm.boom
+PASS clip imports: Sfx/sig_alarm_boom_00
+PASS mono SFX/voice: Sfx/sig_alarm_boom_00
+PASS clip imports: Sfx/sig_alarm_boom_01
+PASS mono SFX/voice: Sfx/sig_alarm_boom_01
+PASS clip imports: Sfx/sig_alarm_boom_02
+PASS mono SFX/voice: Sfx/sig_alarm_boom_02
+PASS unique cue id fx.field.zipper
+PASS cue fields fx.field.zipper
+PASS known bus for fx.field.zipper
+PASS clip imports: Sfx/fx_field_zipper_00
+PASS mono SFX/voice: Sfx/fx_field_zipper_00
+PASS clip imports: Sfx/fx_field_zipper_01
+PASS mono SFX/voice: Sfx/fx_field_zipper_01
+PASS clip imports: Sfx/fx_field_zipper_02
+PASS mono SFX/voice: Sfx/fx_field_zipper_02
+PASS unique cue id fx.hazard.warn
+PASS cue fields fx.hazard.warn
+PASS known bus for fx.hazard.warn
+PASS clip imports: Sfx/fx_hazard_warn_00
+PASS mono SFX/voice: Sfx/fx_hazard_warn_00
+PASS clip imports: Sfx/fx_hazard_warn_01
+PASS mono SFX/voice: Sfx/fx_hazard_warn_01
+PASS unique cue id fx.hazard.hit
+PASS cue fields fx.hazard.hit
+PASS known bus for fx.hazard.hit
+PASS clip imports: Sfx/fx_hazard_hit_00
+PASS mono SFX/voice: Sfx/fx_hazard_hit_00
+PASS clip imports: Sfx/fx_hazard_hit_01
+PASS mono SFX/voice: Sfx/fx_hazard_hit_01
+PASS clip imports: Sfx/fx_hazard_hit_02
+PASS mono SFX/voice: Sfx/fx_hazard_hit_02
+PASS unique cue id enemy.mimic.wake
+PASS cue fields enemy.mimic.wake
+PASS known bus for enemy.mimic.wake
+PASS clip imports: Sfx/enemy_mimic_wake_00
+PASS mono SFX/voice: Sfx/enemy_mimic_wake_00
+PASS clip imports: Sfx/enemy_mimic_wake_01
+PASS mono SFX/voice: Sfx/enemy_mimic_wake_01
+PASS unique cue id hero.pulse.ember
+PASS cue fields hero.pulse.ember
+PASS known bus for hero.pulse.ember
+PASS clip imports: Sfx/hero_pulse_ember_00
+PASS mono SFX/voice: Sfx/hero_pulse_ember_00
+PASS clip imports: Sfx/hero_pulse_ember_01
+PASS mono SFX/voice: Sfx/hero_pulse_ember_01
+PASS unique cue id hero.pulse.frost
+PASS cue fields hero.pulse.frost
+PASS known bus for hero.pulse.frost
+PASS clip imports: Sfx/hero_pulse_frost_00
+PASS mono SFX/voice: Sfx/hero_pulse_frost_00
+PASS clip imports: Sfx/hero_pulse_frost_01
+PASS mono SFX/voice: Sfx/hero_pulse_frost_01
+PASS unique cue id ui.locked
+PASS cue fields ui.locked
+PASS known bus for ui.locked
+PASS clip imports: Sfx/ui_locked_00
+PASS mono SFX/voice: Sfx/ui_locked_00
+PASS clip imports: Sfx/ui_locked_01
+PASS mono SFX/voice: Sfx/ui_locked_01
+PASS unique cue id ui.error
+PASS cue fields ui.error
+PASS known bus for ui.error
+PASS clip imports: Sfx/ui_error_00
+PASS mono SFX/voice: Sfx/ui_error_00
+PASS clip imports: Sfx/ui_error_01
+PASS mono SFX/voice: Sfx/ui_error_01
+PASS unique cue id loot.coin.drop
+PASS cue fields loot.coin.drop
+PASS known bus for loot.coin.drop
+PASS clip imports: Sfx/loot_coin_drop_00
+PASS mono SFX/voice: Sfx/loot_coin_drop_00
+PASS clip imports: Sfx/loot_coin_drop_01
+PASS mono SFX/voice: Sfx/loot_coin_drop_01
+PASS clip imports: Sfx/loot_coin_drop_02
+PASS mono SFX/voice: Sfx/loot_coin_drop_02
+PASS clip imports: Sfx/loot_coin_drop_03
+PASS mono SFX/voice: Sfx/loot_coin_drop_03
+PASS unique cue id loot.coin.bounce
+PASS cue fields loot.coin.bounce
+PASS known bus for loot.coin.bounce
+PASS clip imports: Sfx/loot_coin_bounce_00
+PASS mono SFX/voice: Sfx/loot_coin_bounce_00
+PASS clip imports: Sfx/loot_coin_bounce_01
+PASS mono SFX/voice: Sfx/loot_coin_bounce_01
+PASS clip imports: Sfx/loot_coin_bounce_02
+PASS mono SFX/voice: Sfx/loot_coin_bounce_02
+PASS clip imports: Sfx/loot_coin_bounce_03
+PASS mono SFX/voice: Sfx/loot_coin_bounce_03
+PASS clip imports: Sfx/loot_coin_bounce_04
+PASS mono SFX/voice: Sfx/loot_coin_bounce_04
+PASS unique cue id loot.coin.vacuum
+PASS cue fields loot.coin.vacuum
+PASS known bus for loot.coin.vacuum
+PASS clip imports: Sfx/loot_coin_vacuum_00
+PASS mono SFX/voice: Sfx/loot_coin_vacuum_00
+PASS clip imports: Sfx/loot_coin_vacuum_01
+PASS mono SFX/voice: Sfx/loot_coin_vacuum_01
+PASS clip imports: Sfx/loot_coin_vacuum_02
+PASS mono SFX/voice: Sfx/loot_coin_vacuum_02
+PASS unique cue id loot.coin.pickup
+PASS cue fields loot.coin.pickup
+PASS known bus for loot.coin.pickup
+PASS clip imports: Sfx/loot_coin_pickup_00
+PASS mono SFX/voice: Sfx/loot_coin_pickup_00
+PASS clip imports: Sfx/loot_coin_pickup_01
+PASS mono SFX/voice: Sfx/loot_coin_pickup_01
+PASS clip imports: Sfx/loot_coin_pickup_02
+PASS mono SFX/voice: Sfx/loot_coin_pickup_02
+PASS clip imports: Sfx/loot_coin_pickup_03
+PASS mono SFX/voice: Sfx/loot_coin_pickup_03
+PASS clip imports: Sfx/loot_coin_pickup_04
+PASS mono SFX/voice: Sfx/loot_coin_pickup_04
+PASS clip imports: Sfx/loot_coin_pickup_05
+PASS mono SFX/voice: Sfx/loot_coin_pickup_05
+PASS unique cue id loot.egg
+PASS cue fields loot.egg
+PASS known bus for loot.egg
+PASS clip imports: Sfx/loot_egg_00
+PASS mono SFX/voice: Sfx/loot_egg_00
+PASS clip imports: Sfx/loot_egg_01
+PASS mono SFX/voice: Sfx/loot_egg_01
+PASS clip imports: Sfx/loot_egg_02
+PASS mono SFX/voice: Sfx/loot_egg_02
+PASS clip imports: Sfx/loot_egg_03
+PASS mono SFX/voice: Sfx/loot_egg_03
+PASS unique cue id loot.heart
+PASS cue fields loot.heart
+PASS known bus for loot.heart
+PASS clip imports: Sfx/loot_heart_00
+PASS mono SFX/voice: Sfx/loot_heart_00
+PASS clip imports: Sfx/loot_heart_01
+PASS mono SFX/voice: Sfx/loot_heart_01
+PASS clip imports: Sfx/loot_heart_02
+PASS mono SFX/voice: Sfx/loot_heart_02
+PASS unique cue id loot.chest.appear
+PASS cue fields loot.chest.appear
+PASS known bus for loot.chest.appear
+PASS clip imports: Sfx/loot_chest_appear_00
+PASS mono SFX/voice: Sfx/loot_chest_appear_00
+PASS clip imports: Sfx/loot_chest_appear_01
+PASS mono SFX/voice: Sfx/loot_chest_appear_01
+PASS unique cue id loot.chest.open
+PASS cue fields loot.chest.open
+PASS known bus for loot.chest.open
+PASS clip imports: Sfx/loot_chest_open_00
+PASS mono SFX/voice: Sfx/loot_chest_open_00
+PASS clip imports: Sfx/loot_chest_open_01
+PASS mono SFX/voice: Sfx/loot_chest_open_01
+PASS clip imports: Sfx/loot_chest_open_02
+PASS mono SFX/voice: Sfx/loot_chest_open_02
+PASS unique cue id up.merge
+PASS cue fields up.merge
+PASS known bus for up.merge
+PASS clip imports: Sfx/up_merge_00
+PASS mono SFX/voice: Sfx/up_merge_00
+PASS clip imports: Sfx/up_merge_01
+PASS mono SFX/voice: Sfx/up_merge_01
+PASS clip imports: Sfx/up_merge_02
+PASS mono SFX/voice: Sfx/up_merge_02
+PASS unique cue id up.merge.gather
+PASS cue fields up.merge.gather
+PASS known bus for up.merge.gather
+PASS clip imports: Sfx/up_merge_gather_00
+PASS mono SFX/voice: Sfx/up_merge_gather_00
+PASS clip imports: Sfx/up_merge_gather_01
+PASS mono SFX/voice: Sfx/up_merge_gather_01
+PASS clip imports: Sfx/up_merge_gather_02
+PASS mono SFX/voice: Sfx/up_merge_gather_02
+PASS unique cue id up.star2
+PASS cue fields up.star2
+PASS known bus for up.star2
+PASS clip imports: Sfx/up_star2_00
+PASS mono SFX/voice: Sfx/up_star2_00
+PASS clip imports: Sfx/up_star2_01
+PASS mono SFX/voice: Sfx/up_star2_01
+PASS unique cue id up.star3
+PASS cue fields up.star3
+PASS known bus for up.star3
+PASS clip imports: Sfx/up_star3_00
+PASS mono SFX/voice: Sfx/up_star3_00
+PASS clip imports: Sfx/up_star3_01
+PASS mono SFX/voice: Sfx/up_star3_01
+PASS unique cue id up.ally.land
+PASS cue fields up.ally.land
+PASS known bus for up.ally.land
+PASS clip imports: Sfx/up_ally_land_00
+PASS mono SFX/voice: Sfx/up_ally_land_00
+PASS clip imports: Sfx/up_ally_land_01
+PASS mono SFX/voice: Sfx/up_ally_land_01
+PASS clip imports: Sfx/up_ally_land_02
+PASS mono SFX/voice: Sfx/up_ally_land_02
+PASS clip imports: Sfx/up_ally_land_03
+PASS mono SFX/voice: Sfx/up_ally_land_03
+PASS unique cue id up.bond.t1
+PASS cue fields up.bond.t1
+PASS known bus for up.bond.t1
+PASS clip imports: Sfx/up_bond_t1_00
+PASS mono SFX/voice: Sfx/up_bond_t1_00
+PASS clip imports: Sfx/up_bond_t1_01
+PASS mono SFX/voice: Sfx/up_bond_t1_01
+PASS unique cue id up.bond.t2
+PASS cue fields up.bond.t2
+PASS known bus for up.bond.t2
+PASS clip imports: Sfx/up_bond_t2_00
+PASS mono SFX/voice: Sfx/up_bond_t2_00
+PASS clip imports: Sfx/up_bond_t2_01
+PASS mono SFX/voice: Sfx/up_bond_t2_01
+PASS unique cue id up.chain
+PASS cue fields up.chain
+PASS known bus for up.chain
+PASS clip imports: Sfx/up_chain_00
+PASS mono SFX/voice: Sfx/up_chain_00
+PASS clip imports: Sfx/up_chain_01
+PASS mono SFX/voice: Sfx/up_chain_01
+PASS clip imports: Sfx/up_chain_02
+PASS mono SFX/voice: Sfx/up_chain_02
+PASS clip imports: Sfx/up_chain_03
+PASS mono SFX/voice: Sfx/up_chain_03
+PASS unique cue id up.rarity.blue
+PASS cue fields up.rarity.blue
+PASS known bus for up.rarity.blue
+PASS clip imports: Sfx/up_rarity_blue_00
+PASS mono SFX/voice: Sfx/up_rarity_blue_00
+PASS clip imports: Sfx/up_rarity_blue_01
+PASS mono SFX/voice: Sfx/up_rarity_blue_01
+PASS unique cue id up.rarity.purple
+PASS cue fields up.rarity.purple
+PASS known bus for up.rarity.purple
+PASS clip imports: Sfx/up_rarity_purple_00
+PASS mono SFX/voice: Sfx/up_rarity_purple_00
+PASS clip imports: Sfx/up_rarity_purple_01
+PASS mono SFX/voice: Sfx/up_rarity_purple_01
+PASS unique cue id up.rarity.gold
+PASS cue fields up.rarity.gold
+PASS known bus for up.rarity.gold
+PASS clip imports: Sfx/up_rarity_gold_00
+PASS mono SFX/voice: Sfx/up_rarity_gold_00
+PASS clip imports: Sfx/up_rarity_gold_01
+PASS mono SFX/voice: Sfx/up_rarity_gold_01
+PASS unique cue id shop.keeper.enter.gold
+PASS cue fields shop.keeper.enter.gold
+PASS known bus for shop.keeper.enter.gold
+PASS clip imports: Sfx/shop_keeper_enter_gold_00
+PASS mono SFX/voice: Sfx/shop_keeper_enter_gold_00
+PASS clip imports: Sfx/shop_keeper_enter_gold_01
+PASS mono SFX/voice: Sfx/shop_keeper_enter_gold_01
+PASS unique cue id shop.keeper.enter.dream
+PASS cue fields shop.keeper.enter.dream
+PASS known bus for shop.keeper.enter.dream
+PASS clip imports: Sfx/shop_keeper_enter_dream_00
+PASS mono SFX/voice: Sfx/shop_keeper_enter_dream_00
+PASS clip imports: Sfx/shop_keeper_enter_dream_01
+PASS mono SFX/voice: Sfx/shop_keeper_enter_dream_01
+PASS unique cue id shop.keeper.exit.gold
+PASS cue fields shop.keeper.exit.gold
+PASS known bus for shop.keeper.exit.gold
+PASS clip imports: Sfx/shop_keeper_exit_gold_00
+PASS mono SFX/voice: Sfx/shop_keeper_exit_gold_00
+PASS clip imports: Sfx/shop_keeper_exit_gold_01
+PASS mono SFX/voice: Sfx/shop_keeper_exit_gold_01
+PASS unique cue id shop.keeper.exit.dream
+PASS cue fields shop.keeper.exit.dream
+PASS known bus for shop.keeper.exit.dream
+PASS clip imports: Sfx/shop_keeper_exit_dream_00
+PASS mono SFX/voice: Sfx/shop_keeper_exit_dream_00
+PASS clip imports: Sfx/shop_keeper_exit_dream_01
+PASS mono SFX/voice: Sfx/shop_keeper_exit_dream_01
+PASS unique cue id shop.carpet.open
+PASS cue fields shop.carpet.open
+PASS known bus for shop.carpet.open
+PASS clip imports: Sfx/shop_carpet_open_00
+PASS mono SFX/voice: Sfx/shop_carpet_open_00
+PASS clip imports: Sfx/shop_carpet_open_01
+PASS mono SFX/voice: Sfx/shop_carpet_open_01
+PASS unique cue id shop.carpet.roll
+PASS cue fields shop.carpet.roll
+PASS known bus for shop.carpet.roll
+PASS clip imports: Sfx/shop_carpet_roll_00
+PASS mono SFX/voice: Sfx/shop_carpet_roll_00
+PASS clip imports: Sfx/shop_carpet_roll_01
+PASS mono SFX/voice: Sfx/shop_carpet_roll_01
+PASS unique cue id shop.stand.appear
+PASS cue fields shop.stand.appear
+PASS known bus for shop.stand.appear
+PASS clip imports: Sfx/shop_stand_appear_00
+PASS mono SFX/voice: Sfx/shop_stand_appear_00
+PASS clip imports: Sfx/shop_stand_appear_01
+PASS mono SFX/voice: Sfx/shop_stand_appear_01
+PASS clip imports: Sfx/shop_stand_appear_02
+PASS mono SFX/voice: Sfx/shop_stand_appear_02
+PASS clip imports: Sfx/shop_stand_appear_03
+PASS mono SFX/voice: Sfx/shop_stand_appear_03
+PASS unique cue id shop.item.pop
+PASS cue fields shop.item.pop
+PASS known bus for shop.item.pop
+PASS clip imports: Sfx/shop_item_pop_00
+PASS mono SFX/voice: Sfx/shop_item_pop_00
+PASS clip imports: Sfx/shop_item_pop_01
+PASS mono SFX/voice: Sfx/shop_item_pop_01
+PASS clip imports: Sfx/shop_item_pop_02
+PASS mono SFX/voice: Sfx/shop_item_pop_02
+PASS clip imports: Sfx/shop_item_pop_03
+PASS mono SFX/voice: Sfx/shop_item_pop_03
+PASS unique cue id shop.approach
+PASS cue fields shop.approach
+PASS known bus for shop.approach
+PASS clip imports: Sfx/shop_approach_00
+PASS mono SFX/voice: Sfx/shop_approach_00
+PASS clip imports: Sfx/shop_approach_01
+PASS mono SFX/voice: Sfx/shop_approach_01
+PASS clip imports: Sfx/shop_approach_02
+PASS mono SFX/voice: Sfx/shop_approach_02
+PASS clip imports: Sfx/shop_approach_03
+PASS mono SFX/voice: Sfx/shop_approach_03
+PASS unique cue id shop.focus
+PASS cue fields shop.focus
+PASS known bus for shop.focus
+PASS clip imports: Sfx/shop_focus_00
+PASS mono SFX/voice: Sfx/shop_focus_00
+PASS clip imports: Sfx/shop_focus_01
+PASS mono SFX/voice: Sfx/shop_focus_01
+PASS clip imports: Sfx/shop_focus_02
+PASS mono SFX/voice: Sfx/shop_focus_02
+PASS clip imports: Sfx/shop_focus_03
+PASS mono SFX/voice: Sfx/shop_focus_03
+PASS unique cue id shop.buy.gold
+PASS cue fields shop.buy.gold
+PASS known bus for shop.buy.gold
+PASS clip imports: Sfx/shop_buy_gold_00
+PASS mono SFX/voice: Sfx/shop_buy_gold_00
+PASS clip imports: Sfx/shop_buy_gold_01
+PASS mono SFX/voice: Sfx/shop_buy_gold_01
+PASS clip imports: Sfx/shop_buy_gold_02
+PASS mono SFX/voice: Sfx/shop_buy_gold_02
+PASS clip imports: Sfx/shop_buy_gold_03
+PASS mono SFX/voice: Sfx/shop_buy_gold_03
+PASS unique cue id shop.buy.dream
+PASS cue fields shop.buy.dream
+PASS known bus for shop.buy.dream
+PASS clip imports: Sfx/shop_buy_dream_00
+PASS mono SFX/voice: Sfx/shop_buy_dream_00
+PASS clip imports: Sfx/shop_buy_dream_01
+PASS mono SFX/voice: Sfx/shop_buy_dream_01
+PASS clip imports: Sfx/shop_buy_dream_02
+PASS mono SFX/voice: Sfx/shop_buy_dream_02
+PASS unique cue id shop.deny.gold
+PASS cue fields shop.deny.gold
+PASS known bus for shop.deny.gold
+PASS clip imports: Sfx/shop_deny_gold_00
+PASS mono SFX/voice: Sfx/shop_deny_gold_00
+PASS clip imports: Sfx/shop_deny_gold_01
+PASS mono SFX/voice: Sfx/shop_deny_gold_01
+PASS unique cue id shop.deny.egg
+PASS cue fields shop.deny.egg
+PASS known bus for shop.deny.egg
+PASS clip imports: Sfx/shop_deny_egg_00
+PASS mono SFX/voice: Sfx/shop_deny_egg_00
+PASS clip imports: Sfx/shop_deny_egg_01
+PASS mono SFX/voice: Sfx/shop_deny_egg_01
+PASS unique cue id shop.deny.hp
+PASS cue fields shop.deny.hp
+PASS known bus for shop.deny.hp
+PASS clip imports: Sfx/shop_deny_hp_00
+PASS mono SFX/voice: Sfx/shop_deny_hp_00
+PASS clip imports: Sfx/shop_deny_hp_01
+PASS mono SFX/voice: Sfx/shop_deny_hp_01
+PASS unique cue id shop.invalid
+PASS cue fields shop.invalid
+PASS known bus for shop.invalid
+PASS clip imports: Sfx/shop_invalid_00
+PASS mono SFX/voice: Sfx/shop_invalid_00
+PASS clip imports: Sfx/shop_invalid_01
+PASS mono SFX/voice: Sfx/shop_invalid_01
+PASS clip imports: Sfx/shop_invalid_02
+PASS mono SFX/voice: Sfx/shop_invalid_02
+PASS unique cue id shop.reroll
+PASS cue fields shop.reroll
+PASS known bus for shop.reroll
+PASS clip imports: Sfx/shop_reroll_00
+PASS mono SFX/voice: Sfx/shop_reroll_00
+PASS clip imports: Sfx/shop_reroll_01
+PASS mono SFX/voice: Sfx/shop_reroll_01
+PASS clip imports: Sfx/shop_reroll_02
+PASS mono SFX/voice: Sfx/shop_reroll_02
+PASS unique cue id shop.fusion
+PASS cue fields shop.fusion
+PASS known bus for shop.fusion
+PASS clip imports: Sfx/shop_fusion_00
+PASS mono SFX/voice: Sfx/shop_fusion_00
+PASS clip imports: Sfx/shop_fusion_01
+PASS mono SFX/voice: Sfx/shop_fusion_01
+PASS unique cue id shop.descend
+PASS cue fields shop.descend
+PASS known bus for shop.descend
+PASS clip imports: Sfx/shop_descend_00
+PASS mono SFX/voice: Sfx/shop_descend_00
+PASS clip imports: Sfx/shop_descend_01
+PASS mono SFX/voice: Sfx/shop_descend_01
+PASS unique cue id ui.hover
+PASS cue fields ui.hover
+PASS known bus for ui.hover
+PASS clip imports: Sfx/ui_hover_00
+PASS mono SFX/voice: Sfx/ui_hover_00
+PASS clip imports: Sfx/ui_hover_01
+PASS mono SFX/voice: Sfx/ui_hover_01
+PASS clip imports: Sfx/ui_hover_02
+PASS mono SFX/voice: Sfx/ui_hover_02
+PASS clip imports: Sfx/ui_hover_03
+PASS mono SFX/voice: Sfx/ui_hover_03
+PASS unique cue id ui.select
+PASS cue fields ui.select
+PASS known bus for ui.select
+PASS clip imports: Sfx/ui_select_00
+PASS mono SFX/voice: Sfx/ui_select_00
+PASS clip imports: Sfx/ui_select_01
+PASS mono SFX/voice: Sfx/ui_select_01
+PASS clip imports: Sfx/ui_select_02
+PASS mono SFX/voice: Sfx/ui_select_02
+PASS clip imports: Sfx/ui_select_03
+PASS mono SFX/voice: Sfx/ui_select_03
+PASS unique cue id ui.confirm
+PASS cue fields ui.confirm
+PASS known bus for ui.confirm
+PASS clip imports: Sfx/ui_confirm_00
+PASS mono SFX/voice: Sfx/ui_confirm_00
+PASS clip imports: Sfx/ui_confirm_01
+PASS mono SFX/voice: Sfx/ui_confirm_01
+PASS clip imports: Sfx/ui_confirm_02
+PASS mono SFX/voice: Sfx/ui_confirm_02
+PASS unique cue id ui.back
+PASS cue fields ui.back
+PASS known bus for ui.back
+PASS clip imports: Sfx/ui_back_00
+PASS mono SFX/voice: Sfx/ui_back_00
+PASS clip imports: Sfx/ui_back_01
+PASS mono SFX/voice: Sfx/ui_back_01
+PASS clip imports: Sfx/ui_back_02
+PASS mono SFX/voice: Sfx/ui_back_02
+PASS unique cue id ui.open
+PASS cue fields ui.open
+PASS known bus for ui.open
+PASS clip imports: Sfx/ui_open_00
+PASS mono SFX/voice: Sfx/ui_open_00
+PASS clip imports: Sfx/ui_open_01
+PASS mono SFX/voice: Sfx/ui_open_01
+PASS unique cue id ui.close
+PASS cue fields ui.close
+PASS known bus for ui.close
+PASS clip imports: Sfx/ui_close_00
+PASS mono SFX/voice: Sfx/ui_close_00
+PASS clip imports: Sfx/ui_close_01
+PASS mono SFX/voice: Sfx/ui_close_01
+PASS unique cue id ui.page
+PASS cue fields ui.page
+PASS known bus for ui.page
+PASS clip imports: Sfx/ui_page_00
+PASS mono SFX/voice: Sfx/ui_page_00
+PASS clip imports: Sfx/ui_page_01
+PASS mono SFX/voice: Sfx/ui_page_01
+PASS clip imports: Sfx/ui_page_02
+PASS mono SFX/voice: Sfx/ui_page_02
+PASS unique cue id ui.tooltip
+PASS cue fields ui.tooltip
+PASS known bus for ui.tooltip
+PASS clip imports: Sfx/ui_tooltip_00
+PASS mono SFX/voice: Sfx/ui_tooltip_00
+PASS clip imports: Sfx/ui_tooltip_01
+PASS mono SFX/voice: Sfx/ui_tooltip_01
+PASS unique cue id ui.tab
+PASS cue fields ui.tab
+PASS known bus for ui.tab
+PASS clip imports: Sfx/ui_tab_00
+PASS mono SFX/voice: Sfx/ui_tab_00
+PASS clip imports: Sfx/ui_tab_01
+PASS mono SFX/voice: Sfx/ui_tab_01
+PASS clip imports: Sfx/ui_tab_02
+PASS mono SFX/voice: Sfx/ui_tab_02
+PASS unique cue id ui.pause
+PASS cue fields ui.pause
+PASS known bus for ui.pause
+PASS clip imports: Sfx/ui_pause_00
+PASS mono SFX/voice: Sfx/ui_pause_00
+PASS unique cue id ui.resume
+PASS cue fields ui.resume
+PASS known bus for ui.resume
+PASS clip imports: Sfx/ui_resume_00
+PASS mono SFX/voice: Sfx/ui_resume_00
+PASS unique cue id ui.setting
+PASS cue fields ui.setting
+PASS known bus for ui.setting
+PASS clip imports: Sfx/ui_setting_00
+PASS mono SFX/voice: Sfx/ui_setting_00
+PASS clip imports: Sfx/ui_setting_01
+PASS mono SFX/voice: Sfx/ui_setting_01
+PASS clip imports: Sfx/ui_setting_02
+PASS mono SFX/voice: Sfx/ui_setting_02
+PASS unique cue id ui.unlock
+PASS cue fields ui.unlock
+PASS known bus for ui.unlock
+PASS clip imports: Sfx/ui_unlock_00
+PASS mono SFX/voice: Sfx/ui_unlock_00
+PASS clip imports: Sfx/ui_unlock_01
+PASS mono SFX/voice: Sfx/ui_unlock_01
+PASS unique cue id ui.achievement
+PASS cue fields ui.achievement
+PASS known bus for ui.achievement
+PASS clip imports: Sfx/ui_achievement_00
+PASS mono SFX/voice: Sfx/ui_achievement_00
+PASS clip imports: Sfx/ui_achievement_01
+PASS mono SFX/voice: Sfx/ui_achievement_01
+PASS unique cue id ui.receipt
+PASS cue fields ui.receipt
+PASS known bus for ui.receipt
+PASS clip imports: Sfx/ui_receipt_00
+PASS mono SFX/voice: Sfx/ui_receipt_00
+PASS clip imports: Sfx/ui_receipt_01
+PASS mono SFX/voice: Sfx/ui_receipt_01
+PASS unique cue id sting.waveclear
+PASS cue fields sting.waveclear
+PASS known bus for sting.waveclear
+PASS clip imports: Sfx/sting_waveclear_00
+PASS mono SFX/voice: Sfx/sting_waveclear_00
+PASS clip imports: Sfx/sting_waveclear_01
+PASS mono SFX/voice: Sfx/sting_waveclear_01
+PASS unique cue id sting.victory
+PASS cue fields sting.victory
+PASS known bus for sting.victory
+PASS clip imports: Sfx/sting_victory_00
+PASS mono SFX/voice: Sfx/sting_victory_00
+PASS unique cue id sting.defeat
+PASS cue fields sting.defeat
+PASS known bus for sting.defeat
+PASS clip imports: Sfx/sting_defeat_00
+PASS mono SFX/voice: Sfx/sting_defeat_00
+PASS unique cue id amb.stage
+PASS cue fields amb.stage
+PASS known bus for amb.stage
+PASS clip imports: Amb/amb_stage_00
+PASS mono SFX/voice: Amb/amb_stage_00
+PASS unique cue id amb.office
+PASS cue fields amb.office
+PASS known bus for amb.office
+PASS clip imports: Amb/amb_office_00
+PASS mono SFX/voice: Amb/amb_office_00
+PASS unique cue id amb.lostshop
+PASS cue fields amb.lostshop
+PASS known bus for amb.lostshop
+PASS clip imports: Amb/amb_lostshop_00
+PASS mono SFX/voice: Amb/amb_lostshop_00
+PASS unique cue id amb.goldshop
+PASS cue fields amb.goldshop
+PASS known bus for amb.goldshop
+PASS clip imports: Amb/amb_goldshop_00
+PASS mono SFX/voice: Amb/amb_goldshop_00
+PASS unique cue id amb.dreamshop
+PASS cue fields amb.dreamshop
+PASS known bus for amb.dreamshop
+PASS clip imports: Amb/amb_dreamshop_00
+PASS mono SFX/voice: Amb/amb_dreamshop_00
+PASS unique cue id amb.toys
+PASS cue fields amb.toys
+PASS known bus for amb.toys
+PASS clip imports: Amb/amb_toys_00
+PASS mono SFX/voice: Amb/amb_toys_00
+PASS unique cue id amb.transition
+PASS cue fields amb.transition
+PASS known bus for amb.transition
+PASS clip imports: Amb/amb_transition_00
+PASS mono SFX/voice: Amb/amb_transition_00
+PASS clip imports: Amb/amb_transition_01
+PASS mono SFX/voice: Amb/amb_transition_01
+PASS unique cue id voice.gold.syl
+PASS cue fields voice.gold.syl
+PASS known bus for voice.gold.syl
+PASS clip imports: Voice/voice_gold_syl_00
+PASS mono SFX/voice: Voice/voice_gold_syl_00
+PASS clip imports: Voice/voice_gold_syl_01
+PASS mono SFX/voice: Voice/voice_gold_syl_01
+PASS clip imports: Voice/voice_gold_syl_02
+PASS mono SFX/voice: Voice/voice_gold_syl_02
+PASS clip imports: Voice/voice_gold_syl_03
+PASS mono SFX/voice: Voice/voice_gold_syl_03
+PASS clip imports: Voice/voice_gold_syl_04
+PASS mono SFX/voice: Voice/voice_gold_syl_04
+PASS clip imports: Voice/voice_gold_syl_05
+PASS mono SFX/voice: Voice/voice_gold_syl_05
+PASS clip imports: Voice/voice_gold_syl_06
+PASS mono SFX/voice: Voice/voice_gold_syl_06
+PASS clip imports: Voice/voice_gold_syl_07
+PASS mono SFX/voice: Voice/voice_gold_syl_07
+PASS unique cue id voice.gold.laugh
+PASS cue fields voice.gold.laugh
+PASS known bus for voice.gold.laugh
+PASS clip imports: Voice/voice_gold_laugh_00
+PASS mono SFX/voice: Voice/voice_gold_laugh_00
+PASS clip imports: Voice/voice_gold_laugh_01
+PASS mono SFX/voice: Voice/voice_gold_laugh_01
+PASS unique cue id voice.gold.hmm
+PASS cue fields voice.gold.hmm
+PASS known bus for voice.gold.hmm
+PASS clip imports: Voice/voice_gold_hmm_00
+PASS mono SFX/voice: Voice/voice_gold_hmm_00
+PASS clip imports: Voice/voice_gold_hmm_01
+PASS mono SFX/voice: Voice/voice_gold_hmm_01
+PASS unique cue id voice.gold.gasp
+PASS cue fields voice.gold.gasp
+PASS known bus for voice.gold.gasp
+PASS clip imports: Voice/voice_gold_gasp_00
+PASS mono SFX/voice: Voice/voice_gold_gasp_00
+PASS clip imports: Voice/voice_gold_gasp_01
+PASS mono SFX/voice: Voice/voice_gold_gasp_01
+PASS unique cue id voice.gold.farewell
+PASS cue fields voice.gold.farewell
+PASS known bus for voice.gold.farewell
+PASS clip imports: Voice/voice_gold_farewell_00
+PASS mono SFX/voice: Voice/voice_gold_farewell_00
+PASS clip imports: Voice/voice_gold_farewell_01
+PASS mono SFX/voice: Voice/voice_gold_farewell_01
+PASS unique cue id voice.dream.syl
+PASS cue fields voice.dream.syl
+PASS known bus for voice.dream.syl
+PASS clip imports: Voice/voice_dream_syl_00
+PASS mono SFX/voice: Voice/voice_dream_syl_00
+PASS clip imports: Voice/voice_dream_syl_01
+PASS mono SFX/voice: Voice/voice_dream_syl_01
+PASS clip imports: Voice/voice_dream_syl_02
+PASS mono SFX/voice: Voice/voice_dream_syl_02
+PASS clip imports: Voice/voice_dream_syl_03
+PASS mono SFX/voice: Voice/voice_dream_syl_03
+PASS clip imports: Voice/voice_dream_syl_04
+PASS mono SFX/voice: Voice/voice_dream_syl_04
+PASS clip imports: Voice/voice_dream_syl_05
+PASS mono SFX/voice: Voice/voice_dream_syl_05
+PASS clip imports: Voice/voice_dream_syl_06
+PASS mono SFX/voice: Voice/voice_dream_syl_06
+PASS clip imports: Voice/voice_dream_syl_07
+PASS mono SFX/voice: Voice/voice_dream_syl_07
+PASS unique cue id voice.dream.laugh
+PASS cue fields voice.dream.laugh
+PASS known bus for voice.dream.laugh
+PASS clip imports: Voice/voice_dream_laugh_00
+PASS mono SFX/voice: Voice/voice_dream_laugh_00
+PASS clip imports: Voice/voice_dream_laugh_01
+PASS mono SFX/voice: Voice/voice_dream_laugh_01
+PASS unique cue id voice.dream.hmm
+PASS cue fields voice.dream.hmm
+PASS known bus for voice.dream.hmm
+PASS clip imports: Voice/voice_dream_hmm_00
+PASS mono SFX/voice: Voice/voice_dream_hmm_00
+PASS clip imports: Voice/voice_dream_hmm_01
+PASS mono SFX/voice: Voice/voice_dream_hmm_01
+PASS unique cue id voice.dream.gasp
+PASS cue fields voice.dream.gasp
+PASS known bus for voice.dream.gasp
+PASS clip imports: Voice/voice_dream_gasp_00
+PASS mono SFX/voice: Voice/voice_dream_gasp_00
+PASS clip imports: Voice/voice_dream_gasp_01
+PASS mono SFX/voice: Voice/voice_dream_gasp_01
+PASS unique cue id voice.dream.farewell
+PASS cue fields voice.dream.farewell
+PASS known bus for voice.dream.farewell
+PASS clip imports: Voice/voice_dream_farewell_00
+PASS mono SFX/voice: Voice/voice_dream_farewell_00
+PASS clip imports: Voice/voice_dream_farewell_01
+PASS mono SFX/voice: Voice/voice_dream_farewell_01
+PASS library clip count 471
+PASS stems import for menu_curtain
+PASS menu_curtain stem stereo 44.1k
+PASS menu_curtain stem menu_curtain_base has exact loop length
+PASS menu_curtain stems stream (mobile RAM)
+PASS menu_curtain stem stereo 44.1k
+PASS menu_curtain stem menu_curtain_rhythm has exact loop length
+PASS menu_curtain stems stream (mobile RAM)
+PASS menu_curtain stem stereo 44.1k
+PASS menu_curtain stem menu_curtain_melody has exact loop length
+PASS menu_curtain stems stream (mobile RAM)
+PASS menu_curtain stem stereo 44.1k
+PASS menu_curtain stem menu_curtain_intensity has exact loop length
+PASS menu_curtain stems stream (mobile RAM)
+PASS menu_curtain manifest fields
+PASS stems import for select_dressing
+PASS select_dressing stem stereo 44.1k
+PASS select_dressing stem select_dressing_base has exact loop length
+PASS select_dressing stems stream (mobile RAM)
+PASS select_dressing stem stereo 44.1k
+PASS select_dressing stem select_dressing_rhythm has exact loop length
+PASS select_dressing stems stream (mobile RAM)
+PASS select_dressing stem stereo 44.1k
+PASS select_dressing stem select_dressing_melody has exact loop length
+PASS select_dressing stems stream (mobile RAM)
+PASS select_dressing stem stereo 44.1k
+PASS select_dressing stem select_dressing_intensity has exact loop length
+PASS select_dressing stems stream (mobile RAM)
+PASS select_dressing manifest fields
+PASS stems import for combat_toys
+PASS combat_toys stem stereo 44.1k
+PASS combat_toys stem combat_toys_base has exact loop length
+PASS combat_toys stems stream (mobile RAM)
+PASS combat_toys stem stereo 44.1k
+PASS combat_toys stem combat_toys_rhythm has exact loop length
+PASS combat_toys stems stream (mobile RAM)
+PASS combat_toys stem stereo 44.1k
+PASS combat_toys stem combat_toys_melody has exact loop length
+PASS combat_toys stems stream (mobile RAM)
+PASS combat_toys stem stereo 44.1k
+PASS combat_toys stem combat_toys_intensity has exact loop length
+PASS combat_toys stems stream (mobile RAM)
+PASS combat_toys manifest fields
+PASS stems import for combat_clockwork
+PASS combat_clockwork stem stereo 44.1k
+PASS combat_clockwork stem combat_clockwork_base has exact loop length
+PASS combat_clockwork stems stream (mobile RAM)
+PASS combat_clockwork stem stereo 44.1k
+PASS combat_clockwork stem combat_clockwork_rhythm has exact loop length
+PASS combat_clockwork stems stream (mobile RAM)
+PASS combat_clockwork stem stereo 44.1k
+PASS combat_clockwork stem combat_clockwork_melody has exact loop length
+PASS combat_clockwork stems stream (mobile RAM)
+PASS combat_clockwork stem stereo 44.1k
+PASS combat_clockwork stem combat_clockwork_intensity has exact loop length
+PASS combat_clockwork stems stream (mobile RAM)
+PASS combat_clockwork manifest fields
+PASS stems import for combat_overtime
+PASS combat_overtime stem stereo 44.1k
+PASS combat_overtime stem combat_overtime_base has exact loop length
+PASS combat_overtime stems stream (mobile RAM)
+PASS combat_overtime stem stereo 44.1k
+PASS combat_overtime stem combat_overtime_rhythm has exact loop length
+PASS combat_overtime stems stream (mobile RAM)
+PASS combat_overtime stem stereo 44.1k
+PASS combat_overtime stem combat_overtime_melody has exact loop length
+PASS combat_overtime stems stream (mobile RAM)
+PASS combat_overtime stem stereo 44.1k
+PASS combat_overtime stem combat_overtime_intensity has exact loop length
+PASS combat_overtime stems stream (mobile RAM)
+PASS combat_overtime manifest fields
+PASS stems import for boss_ringmaster
+PASS boss_ringmaster stem stereo 44.1k
+PASS boss_ringmaster stem boss_ringmaster_base has exact loop length
+PASS boss_ringmaster stems stream (mobile RAM)
+PASS boss_ringmaster stem stereo 44.1k
+PASS boss_ringmaster stem boss_ringmaster_rhythm has exact loop length
+PASS boss_ringmaster stems stream (mobile RAM)
+PASS boss_ringmaster stem stereo 44.1k
+PASS boss_ringmaster stem boss_ringmaster_melody has exact loop length
+PASS boss_ringmaster stems stream (mobile RAM)
+PASS boss_ringmaster stem stereo 44.1k
+PASS boss_ringmaster stem boss_ringmaster_intensity has exact loop length
+PASS boss_ringmaster stems stream (mobile RAM)
+PASS boss_ringmaster manifest fields
+PASS stems import for shop_gold
+PASS shop_gold stem stereo 44.1k
+PASS shop_gold stem shop_gold_base has exact loop length
+PASS shop_gold stems stream (mobile RAM)
+PASS shop_gold stem stereo 44.1k
+PASS shop_gold stem shop_gold_rhythm has exact loop length
+PASS shop_gold stems stream (mobile RAM)
+PASS shop_gold stem stereo 44.1k
+PASS shop_gold stem shop_gold_melody has exact loop length
+PASS shop_gold stems stream (mobile RAM)
+PASS shop_gold stem stereo 44.1k
+PASS shop_gold stem shop_gold_intensity has exact loop length
+PASS shop_gold stems stream (mobile RAM)
+PASS shop_gold manifest fields
+PASS stems import for shop_dream
+PASS shop_dream stem stereo 44.1k
+PASS shop_dream stem shop_dream_base has exact loop length
+PASS shop_dream stems stream (mobile RAM)
+PASS shop_dream stem stereo 44.1k
+PASS shop_dream stem shop_dream_rhythm has exact loop length
+PASS shop_dream stems stream (mobile RAM)
+PASS shop_dream stem stereo 44.1k
+PASS shop_dream stem shop_dream_melody has exact loop length
+PASS shop_dream stems stream (mobile RAM)
+PASS shop_dream stem stereo 44.1k
+PASS shop_dream stem shop_dream_intensity has exact loop length
+PASS shop_dream stems stream (mobile RAM)
+PASS shop_dream manifest fields
+PASS stems import for endless_neverclose
+PASS endless_neverclose stem stereo 44.1k
+PASS endless_neverclose stem endless_neverclose_base has exact loop length
+PASS endless_neverclose stems stream (mobile RAM)
+PASS endless_neverclose stem stereo 44.1k
+PASS endless_neverclose stem endless_neverclose_rhythm has exact loop length
+PASS endless_neverclose stems stream (mobile RAM)
+PASS endless_neverclose stem stereo 44.1k
+PASS endless_neverclose stem endless_neverclose_melody has exact loop length
+PASS endless_neverclose stems stream (mobile RAM)
+PASS endless_neverclose stem stereo 44.1k
+PASS endless_neverclose stem endless_neverclose_intensity has exact loop length
+PASS endless_neverclose stems stream (mobile RAM)
+PASS endless_neverclose manifest fields
+PASS stems import for combat_spoons
+PASS combat_spoons stem stereo 44.1k
+PASS combat_spoons stem combat_spoons_base has exact loop length
+PASS combat_spoons stems stream (mobile RAM)
+PASS combat_spoons stem stereo 44.1k
+PASS combat_spoons stem combat_spoons_rhythm has exact loop length
+PASS combat_spoons stems stream (mobile RAM)
+PASS combat_spoons stem stereo 44.1k
+PASS combat_spoons stem combat_spoons_melody has exact loop length
+PASS combat_spoons stems stream (mobile RAM)
+PASS combat_spoons stem stereo 44.1k
+PASS combat_spoons stem combat_spoons_intensity has exact loop length
+PASS combat_spoons stems stream (mobile RAM)
+PASS combat_spoons manifest fields
+PASS stems import for combat_carousel
+PASS combat_carousel stem stereo 44.1k
+PASS combat_carousel stem combat_carousel_base has exact loop length
+PASS combat_carousel stems stream (mobile RAM)
+PASS combat_carousel stem stereo 44.1k
+PASS combat_carousel stem combat_carousel_rhythm has exact loop length
+PASS combat_carousel stems stream (mobile RAM)
+PASS combat_carousel stem stereo 44.1k
+PASS combat_carousel stem combat_carousel_melody has exact loop length
+PASS combat_carousel stems stream (mobile RAM)
+PASS combat_carousel stem stereo 44.1k
+PASS combat_carousel stem combat_carousel_intensity has exact loop length
+PASS combat_carousel stems stream (mobile RAM)
+PASS combat_carousel manifest fields
+PASS stems import for combat_lasttrain
+PASS combat_lasttrain stem stereo 44.1k
+PASS combat_lasttrain stem combat_lasttrain_base has exact loop length
+PASS combat_lasttrain stems stream (mobile RAM)
+PASS combat_lasttrain stem stereo 44.1k
+PASS combat_lasttrain stem combat_lasttrain_rhythm has exact loop length
+PASS combat_lasttrain stems stream (mobile RAM)
+PASS combat_lasttrain stem stereo 44.1k
+PASS combat_lasttrain stem combat_lasttrain_melody has exact loop length
+PASS combat_lasttrain stems stream (mobile RAM)
+PASS combat_lasttrain stem stereo 44.1k
+PASS combat_lasttrain stem combat_lasttrain_intensity has exact loop length
+PASS combat_lasttrain stems stream (mobile RAM)
+PASS combat_lasttrain manifest fields
+PASS stems import for boss_clown
+PASS boss_clown stem stereo 44.1k
+PASS boss_clown stem boss_clown_base has exact loop length
+PASS boss_clown stems stream (mobile RAM)
+PASS boss_clown stem stereo 44.1k
+PASS boss_clown stem boss_clown_rhythm has exact loop length
+PASS boss_clown stems stream (mobile RAM)
+PASS boss_clown stem stereo 44.1k
+PASS boss_clown stem boss_clown_melody has exact loop length
+PASS boss_clown stems stream (mobile RAM)
+PASS boss_clown stem stereo 44.1k
+PASS boss_clown stem boss_clown_intensity has exact loop length
+PASS boss_clown stems stream (mobile RAM)
+PASS boss_clown manifest fields
+PASS stems import for shop_layaway
+PASS shop_layaway stem stereo 44.1k
+PASS shop_layaway stem shop_layaway_base has exact loop length
+PASS shop_layaway stems stream (mobile RAM)
+PASS shop_layaway stem stereo 44.1k
+PASS shop_layaway stem shop_layaway_rhythm has exact loop length
+PASS shop_layaway stems stream (mobile RAM)
+PASS shop_layaway stem stereo 44.1k
+PASS shop_layaway stem shop_layaway_melody has exact loop length
+PASS shop_layaway stems stream (mobile RAM)
+PASS shop_layaway stem stereo 44.1k
+PASS shop_layaway stem shop_layaway_intensity has exact loop length
+PASS shop_layaway stems stream (mobile RAM)
+PASS shop_layaway manifest fields
+PASS stems import for endless_encore
+PASS endless_encore stem stereo 44.1k
+PASS endless_encore stem endless_encore_base has exact loop length
+PASS endless_encore stems stream (mobile RAM)
+PASS endless_encore stem stereo 44.1k
+PASS endless_encore stem endless_encore_rhythm has exact loop length
+PASS endless_encore stems stream (mobile RAM)
+PASS endless_encore stem stereo 44.1k
+PASS endless_encore stem endless_encore_melody has exact loop length
+PASS endless_encore stems stream (mobile RAM)
+PASS endless_encore stem stereo 44.1k
+PASS endless_encore stem endless_encore_intensity has exact loop length
+PASS endless_encore stems stream (mobile RAM)
+PASS endless_encore manifest fields
+PASS a composition exists for scene menu
+PASS a composition exists for scene select
+PASS a composition exists for scene combat_early
+PASS a composition exists for scene combat_mid
+PASS a composition exists for scene combat_late
+PASS a composition exists for scene boss
+PASS a composition exists for scene endless
+PASS a composition exists for scene shop_gold
+PASS a composition exists for scene shop_dream
+PASS legacy cue 0 maps to a real cue (cmb.swing.blade)
+PASS legacy cue 1 maps to a real cue (wpn.bow.release)
+PASS legacy cue 2 maps to a real cue (wpn.gun.pop)
+PASS legacy cue 3 maps to a real cue (cmb.hit.wood)
+PASS legacy cue 4 maps to a real cue (loot.coin.pickup)
+PASS legacy cue 5 maps to a real cue (enemy.die.wood)
+PASS legacy cue 6 maps to a real cue (boss.defeat)
+PASS legacy cue 7 maps to a real cue (sig.bell)
+PASS legacy cue 8 maps to a real cue (sig.stamp)
+PASS legacy cue 9 maps to a real cue (sig.umbrella)
+PASS legacy cue 10 maps to a real cue (sig.tea)
+PASS legacy cue 11 maps to a real cue (wpn.bow.release)
+PASS legacy cue 12 maps to a real cue (sig.scissors)
+PASS legacy cue 13 maps to a real cue (sig.camera)
+PASS legacy cue 14 maps to a real cue (sig.fish)
+PASS legacy cue 15 maps to a real cue (sig.iron)
+PASS legacy cue 16 maps to a real cue (sig.hammer)
+PASS legacy cue 17 maps to a real cue (sig.alarm)
+PASS legacy cue 18 maps to a real cue (sig.musicbox)
+PASS legacy cue 19 maps to a real cue (ui.select)
+PASS legacy cue 20 maps to a real cue (shop.buy.gold)
+PASS legacy cue 21 maps to a real cue (shop.reroll)
+PASS legacy cue 22 maps to a real cue (shop.invalid)
+PASS legacy cue 23 maps to a real cue (up.merge)
+PASS legacy cue 24 maps to a real cue (boss.telegraph)
+PASS legacy cue 25 maps to a real cue (plr.lowhp)
+PASS legacy cue 26 maps to a real cue (plr.hurt)
+PASS legacy cue 27 maps to a real cue (enemy.die.paper)
+PASS legacy cue 28 maps to a real cue (enemy.die.metal)
+PASS legacy cue 29 maps to a real cue (enemy.die.wax)
+PASS legacy cue 30 maps to a real cue (enemy.die.fabric)
+PASS legacy cue 31 maps to a real cue (enemy.die.glass)
+PASS legacy cue 32 maps to a real cue (enemy.die.wood)
+PASS legacy cue 33 maps to a real cue (cmb.hit.paper)
+PASS legacy cue 34 maps to a real cue (cmb.hit.metal)
+PASS legacy cue 35 maps to a real cue (cmb.hit.wax)
+PASS legacy cue 36 maps to a real cue (cmb.hit.fabric)
+PASS legacy cue 37 maps to a real cue (cmb.hit.glass)
+PASS legacy cue 38 maps to a real cue (cmb.hit.wood)
+PASS scene selection by phase/wave/boss/endless/dream shop
+PASS intensity layer follows enemy density
+PASS bare enemy Windup (boss pattern) is the boss telegraph
+PASS bare enemy Fire (boss pattern) is the boss attack
+PASS item proc maps to up.chain
+PASS hit on the champion is plr.hurt
+PASS secondary hit cause ember-status -> fx.burn
+PASS secondary hit cause element-reaction -> fx.reaction.steam
+PASS secondary hit cause arcane-chain -> fx.reaction.arcane
+PASS secondary hit cause expanded-fuse -> sig.alarm.boom
+PASS secondary hit cause zipper-link -> fx.field.zipper
+PASS secondary hit cause expanded-officehazard -> fx.hazard.hit
+PASS split fragments hit quieter than the primary impact
+PASS contract cue exists: up.merge.gather
+PASS contract cue exists: sig.alarm.boom
+PASS contract cue exists: fx.field.zipper
+PASS contract cue exists: fx.hazard.warn
+PASS contract cue exists: fx.hazard.hit
+PASS contract cue exists: enemy.mimic.wake
+PASS contract cue exists: hero.pulse.ember
+PASS contract cue exists: hero.pulse.frost
+PASS contract cue exists: ui.locked
+PASS contract cue exists: ui.error
+PASS contract cue exists: shop.reroll
+PASS legacy reroll cue 21 maps to the library
+PASS new event mapping ProjectileReturn
+PASS new event mapping ProjectilePierce
+PASS new event mapping ProjectileSplit
+PASS new event mapping ProjectileBounce
+PASS new event mapping Knockback
+PASS new event mapping BossPhase
+PASS new event mapping ContactWindup
+PASS new event mapping LootAttract
+PASS new event mapping MimicWake
+PASS chest spawn mapping
+PASS new chill application mapping

@@ -97,6 +97,17 @@ C('boss.attack', g.boss_attack, 3, 'Combat', 10, -9, 0.2, 1, 0.0, danger=True)
 C('boss.phase', g.phase_change, 2, 'Combat', 5, -8, 3.0, 1, 0.0, danger=True)
 C('boss.defeat', g.boss_defeat, 2, 'Combat', 5, -8, 3.0, 1, 0.0)
 
+# --- integration-contract additions (weapon payoffs, hazards, mimic, negative UI)
+C('sig.alarm.boom', g.alarm_boom, 3, 'Combat', 120, -12, 0.15, 2, 0.03)
+C('fx.field.zipper', g.zipper_link, 3, 'Combat', 160, -20, 0.1, 2, 0.03)
+C('fx.hazard.warn', g.hazard_warn, 2, 'Combat', 40, -12, 0.4, 1, 0.0, danger=True)
+C('fx.hazard.hit', g.hazard_hit, 3, 'Combat', 60, -12, 0.2, 2, 0.02)
+C('enemy.mimic.wake', g.mimic_wake, 2, 'Combat', 60, -13, 0.4, 1, 0.0)
+C('hero.pulse.ember', g.hero_pulse, 2, 'Combat', 90, -12, 1.0, 1, 0.0, element='ember')
+C('hero.pulse.frost', g.hero_pulse, 2, 'Combat', 90, -12, 1.0, 1, 0.0, element='frost')
+for _kind in ('locked', 'error'):
+    C('ui.' + _kind, g.ui_negative, 2, 'UI', 64, -17, 0.15, 1, 0.0, kind=_kind)
+
 # --- loot
 C('loot.coin.drop', g.coin, 4, 'Foley', 190, -22, 0.04, 3, 0.03, mode='drop')
 C('loot.coin.bounce', g.coin, 5, 'Foley', 200, -25, 0.05, 3, 0.04, mode='bounce')
@@ -108,7 +119,8 @@ C('loot.chest.appear', g.chest_appear, 2, 'Foley', 110, -14, 0.5, 1, 0.0)
 C('loot.chest.open', g.chest_open, 3, 'Foley', 100, -13, 0.5, 1, 0.0)
 
 # --- upgrades
-C('up.merge', g.merge, 3, 'Foley', 80, -12, 0.4, 1, 0.0)
+C('up.merge', g.merge, 3, 'Foley', 80, -13, 0.4, 1, 0.0)
+C('up.merge.gather', g.merge_gather, 3, 'Foley', 90, -16, 0.5, 1, 0.0)
 C('up.star2', g.star_up, 2, 'Foley', 70, -11, 0.5, 1, 0.0, stars=1)
 C('up.star3', g.star_up, 2, 'Foley', 70, -10, 0.5, 1, 0.0, stars=3)
 C('up.ally.land', g.ally_land, 4, 'Foley', 130, -17, 0.12, 2, 0.03)
@@ -184,12 +196,16 @@ def render(c, i):
 MATS_ENEMY = ['paper', 'wax', 'fabric', 'wood', 'metal', 'glass']  # enemy_die cycles in this order
 
 
-def main():
+def main(only=None):
     manifest = []
     total = 0
     for c in CUES:
         clips = []
         for i in range(c['n']):
+            rel = '%s/%s_%02d' % (folder(c), c['id'].replace('.', '_'), i)
+            if only and c['id'] not in only:
+                clips.append(rel)   # manifest stays complete; untouched binaries are not rewritten
+                continue
             x = render(c, i).astype(np.float64)
             if c['loop']:
                 y = x * 10 ** (-3 / 20) / max(np.max(np.abs(x)), 1e-6) * 0.6
@@ -209,4 +225,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(set(sys.argv[1:]) or None)

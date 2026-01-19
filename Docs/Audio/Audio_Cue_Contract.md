@@ -1,5 +1,7 @@
 # Audio cue contract
 
+> **Chi tiết từng cue, timing, vũ khí, điểm gọi và trạng thái tích hợp: xem `Audio_Integration_Contract.md` (căn cứ `main` @ `aac039b`).** Tài liệu này chỉ còn hướng dẫn thêm cue mới.
+
 ## Thêm cue mới
 1. Thêm một dòng `C('nhom.ten', generator, số_biến_thể, bus, priority, gainDb, cooldown, maxVoices, pitchJitter, ...)` trong `Tools/Audio/build_sfx.py`.
 2. `python3 Tools/Audio/build_sfx.py && python3 Tools/Audio/write_meta.py` (sinh wav + `cues.json` + `.meta` với GUID ổn định).

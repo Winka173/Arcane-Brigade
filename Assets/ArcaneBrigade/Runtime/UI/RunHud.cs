@@ -279,7 +279,11 @@ namespace ArcaneBrigade
             if (state.Receipts.Count == 0) return;
             RunTransactionReceipt receipt = state.Receipts[state.Receipts.Count - 1];
             if (receiptId != receipt.Id) { receiptId = receipt.Id; receiptScroll = Vector2.zero; receiptOpen = false; }
-            if (navigation.Button(new Rect(1460, 205, 370, 52), receiptOpen ? "CLOSE RECEIPT" : "RECEIPT SAVED", button)) receiptOpen = !receiptOpen;
+            if (navigation.Button(new Rect(1460, 205, 370, 52), receiptOpen ? "CLOSE RECEIPT" : "RECEIPT SAVED", button))
+            {
+                receiptOpen = !receiptOpen;
+                CheckpointAudio.PlayInterfaceId(receiptOpen ? "ui.receipt" : "ui.close", 0.08f);
+            }
             if (!receiptOpen) return;
             float contentHeight = small.CalcHeight(new GUIContent(receipt.Description), 425) + 20;
             float panelHeight = Mathf.Clamp(contentHeight + 110, 190, 470);

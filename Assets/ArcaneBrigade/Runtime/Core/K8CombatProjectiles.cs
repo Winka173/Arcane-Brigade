@@ -41,6 +41,7 @@ namespace ArcaneBrigade
                     projectile.RicochetsRemaining--;
                     projectile.Velocity = new Vector2(normal.x == 0f ? projectile.Velocity.x : -projectile.Velocity.x, normal.y == 0f ? projectile.Velocity.y : -projectile.Velocity.y);
                     projectile.Cause = projectile.Cause.Child("projectile-bounce");
+                    ProjectileAudioEvent(CombatEventKind.ProjectileBounce, projectile);
                 }
                 else
                 {
@@ -53,6 +54,7 @@ namespace ArcaneBrigade
                     if (projectile.SplitOnImpact) SplitCombatProjectile(projectile);
                     if (projectile.Weapon != null && projectile.Weapon.Family == ExpandedWeapon.Fish && projectile.Faction != Faction.Enemy)
                     {
+                        if (!projectile.Returning) ProjectileAudioEvent(CombatEventKind.ProjectileReturn, projectile);
                         projectile.Returning = true;
                         return projectile.Remaining > 0f;
                     }
@@ -62,6 +64,7 @@ namespace ArcaneBrigade
                     bool ricochet = (guaranteed || randomBounce) && TryCombatRicochet(projectile);
                     if (ricochet && randomBounce) projectile.RandomBounces--;
                     if (!ricochet && (projectile.Weapon == null || previousVictims >= projectile.Weapon.ProjectilePierce)) return false;
+                    if (!ricochet) ProjectileAudioEvent(CombatEventKind.ProjectilePierce, projectile);
                 }
                 start = projectile.Position;
                 destination = start + projectile.Velocity.normalized * travelLeft;
@@ -87,6 +90,7 @@ namespace ArcaneBrigade
             projectile.Velocity = (nearest.Position - projectile.Position).normalized * projectile.Velocity.magnitude;
             projectile.Damage *= 0.7f;
             projectile.Cause = projectile.Cause.Child("projectile-ricochet");
+            ProjectileAudioEvent(CombatEventKind.ProjectileBounce, projectile);
             return true;
         }
 
@@ -94,6 +98,7 @@ namespace ArcaneBrigade
         {
             projectile.SplitOnImpact = false;
             if (projectile.Remaining <= 0f) return;
+            ProjectileAudioEvent(CombatEventKind.ProjectileSplit, projectile);
             int count = Mathf.Clamp(projectile.SplitCount > 0 ? projectile.SplitCount : 2, 1, 6);
             for (int branch = 0; branch < count && projectiles.Count < 4096; branch++)
             {
@@ -112,6 +117,11 @@ namespace ArcaneBrigade
                 fragment.Victims.UnionWith(projectile.Victims);
                 projectiles.Add(fragment);
             }
+        }
+
+        private void ProjectileAudioEvent(CombatEventKind kind, ProjectileState projectile)
+        {
+            events.Add(new CombatEvent(kind, projectile.Position, projectile.Faction, weapon: projectile.Weapon, cause: projectile.Cause));
         }
 
         private static float ProjectileWallFraction(Vector2 start, Vector2 end, Vector2 half, out Vector2 normal)

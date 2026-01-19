@@ -11,6 +11,12 @@ namespace ArcaneBrigade.Editor
         [MenuItem("Arcane Brigade/K8/Combat focused checks")]
         public static void Run()
         {
+            RunFocused();
+            ReproduceBossTimeout();
+        }
+
+        public static void RunFocused()
+        {
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             string original = JsonUtility.ToJson(catalog);
             using (var fixture = new Fixture(catalog, ExpandedWeapon.None))
@@ -21,6 +27,7 @@ namespace ArcaneBrigade.Editor
                 fixture.Simulation.K8CombatProjectileFixture(fixture.Source, Vector2.zero, Vector2.right * 100, 10);
                 fixture.Tick();
                 Require(first.Health == 990 && second.Health == 990 && fixture.Simulation.Projectiles.Count == 0, "Swept pierce resolves both victims in one step");
+                Require(fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.ProjectilePierce), "Pierce audio event emitted by swept continuation");
                 fixture.Simulation.K8CombatIncomingDamageFixture(100000);
                 Require(fixture.Source.Alive && fixture.Simulation.LastDamageAmount <= Mathf.Min(14, fixture.Source.Definition.Health * 0.25f), "Incoming hit capped against Champion maximum HP");
                 fixture.Source.Health = 1;
@@ -35,6 +42,7 @@ namespace ArcaneBrigade.Editor
                 fixture.Tick();
                 Debug.Log("K8_RICOCHET_SAMPLE first=" + first.Health + " next=" + next.Health + " victims=" + projectile.Victims.Count + " depth=" + projectile.Cause.Depth);
                 Require(first.Health == 990 && next.Health < 1000 && projectile.Victims.Count == 2 && projectile.Cause.Depth > 0, "Ricochet changes direction and hits a new victim with child attribution");
+                Require(fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.ProjectileBounce), "Ricochet audio event emitted without changing damage attribution");
                 Require(fixture.Simulation.Events.Where(value => value.Kind == CombatEventKind.Hit && value.Subject == next).All(value => value.Cause.RootId == projectile.Cause.RootId && value.Cause.SourceUnitId == fixture.Source.Id), "Ricochet preserves root and owner attribution");
             }
             using (var fixture = new Fixture(catalog, ExpandedWeapon.Fish))
@@ -44,8 +52,10 @@ namespace ArcaneBrigade.Editor
                 ProjectileState projectile = fixture.Simulation.K8CombatProjectileFixture(fixture.Source, new Vector2(edge - 0.1f, 0), Vector2.right * 50, 10, 1);
                 fixture.Tick();
                 Require(target.Health == 990 && projectile.RicochetsRemaining == 0 && projectile.Returning, "Wall bounce uses reflected swept segment before Fish return");
+                Require(fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.ProjectileBounce) && fixture.Simulation.Events.Count(value => value.Kind == CombatEventKind.ProjectileReturn) == 1, "Fish wall bounce and return transition each emit their audio event");
                 fixture.Tick();
                 Require(target.Health == 990, "Returning Fish cannot repeat-hit the same victim");
+                Require(!fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.ProjectileReturn), "Returning Fish does not repeat its transition audio");
             }
             using (var fixture = new Fixture(catalog, ExpandedWeapon.Tea))
             {
@@ -141,7 +151,6 @@ namespace ArcaneBrigade.Editor
                 Require(fixture.Simulation.Phase == RunPhase.Victory && !fixture.Simulation.IsBossOvertime, "Boss death alone resolves overtime");
             }
             Require(original == JsonUtility.ToJson(catalog), "Focused checks leave authored catalog unchanged");
-            ReproduceBossTimeout();
             Debug.Log("K8_COMBAT_CHECKS_PASS");
         }
 

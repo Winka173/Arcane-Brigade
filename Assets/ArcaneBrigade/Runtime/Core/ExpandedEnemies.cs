@@ -12,6 +12,7 @@ namespace ArcaneBrigade
             {
                 if (offset.sqrMagnitude > 9f && enemy.Health >= enemy.Definition.Health) return true;
                 enemy.Awakened = true;
+                events.Add(new CombatEvent(CombatEventKind.MimicWake, enemy.Position, enemy.Faction, subject: enemy));
                 enemy.BehaviorUntil = Elapsed + 0.8f;
                 enemy.TelegraphUntil = enemy.BehaviorUntil;
             }
@@ -37,6 +38,7 @@ namespace ArcaneBrigade
         {
             if (!catalog.ExpandedContent || Boss == null || !Boss.Alive || bossMotifConsumed || Boss.Health > Boss.Definition.Health * 0.5f) return;
             bossMotifConsumed = true;
+            events.Add(new CombatEvent(CombatEventKind.BossPhase, Boss.Position, Boss.Faction, subject: Boss));
             CombatCause cause = NewCause(Boss.Id);
             if (Boss.Definition.Motif == BossMotif.Office)
             {

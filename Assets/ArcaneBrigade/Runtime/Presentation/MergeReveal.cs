@@ -97,6 +97,8 @@ namespace ArcaneBrigade
             {
                 if (queue.Count == 0) return;
                 active = queue.Dequeue(); age = 0;
+                CheckpointAudio.PlayInterfaceId("up.merge.gather");
+                if (active.Altar) CheckpointAudio.PlayInterfaceId("shop.fusion", 0.09f);
                 sounded = false;
                 stage = new GameObject(active.Altar ? "AltarRevealGhosts" : "MergeRevealGhosts");
                 stage.transform.SetParent(transform, false);
@@ -148,7 +150,12 @@ namespace ArcaneBrigade
                     confirmationSpark.transform.localScale = Vector3.one * (1.1f / confirmationSpark.sprite.bounds.size.x);
                     confirmationSpark.color = new Color(1, 1, 1, 1 - pulse);
                 }
-                if (!sounded) { CheckpointAudio.PlayInterface(23); sounded = true; }
+                if (!sounded)
+                {
+                    CheckpointAudio.PlayInterfaceId("up.merge");
+                    if (active.Result.Tier >= 2) CheckpointAudio.PlayInterfaceId(active.Result.Tier >= 3 ? "up.star3" : "up.star2", 0.07f);
+                    sounded = true;
+                }
             }
             if (age >= 0.9f) { CompletedCount++; ClearStage(); }
         }

@@ -181,8 +181,8 @@ namespace ArcaneBrigade
                 if (value.Kind == CombatEventKind.Hit) HitEvents++;
                 if (value.Kind == CombatEventKind.SignaturePulse || value.Kind == CombatEventKind.SignatureBurst) SignatureEvents++;
                 if (effects != null) effects.Play(value);
-                if (audioFeedback != null) audioFeedback.Play(value);
             }
+            if (audioFeedback != null) audioFeedback.PlayBatch(Simulation.Events);
             if (effects != null) effects.Advance(delta);
             if (world != null) HideRenderers();
         }

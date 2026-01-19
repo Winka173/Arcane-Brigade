@@ -1,4 +1,4 @@
-PASS cue manifest loads (143 cues)
+PASS cue manifest loads (153 cues)
 PASS unique cue id cmb.swing.blade
 PASS cue fields cmb.swing.blade
 PASS known bus for cmb.swing.blade
@@ -732,6 +732,75 @@ PASS clip imports: Sfx/boss_defeat_00
 PASS mono SFX/voice: Sfx/boss_defeat_00
 PASS clip imports: Sfx/boss_defeat_01
 PASS mono SFX/voice: Sfx/boss_defeat_01
+PASS unique cue id sig.alarm.boom
+PASS cue fields sig.alarm.boom
+PASS known bus for sig.alarm.boom
+PASS clip imports: Sfx/sig_alarm_boom_00
+PASS mono SFX/voice: Sfx/sig_alarm_boom_00
+PASS clip imports: Sfx/sig_alarm_boom_01
+PASS mono SFX/voice: Sfx/sig_alarm_boom_01
+PASS clip imports: Sfx/sig_alarm_boom_02
+PASS mono SFX/voice: Sfx/sig_alarm_boom_02
+PASS unique cue id fx.field.zipper
+PASS cue fields fx.field.zipper
+PASS known bus for fx.field.zipper
+PASS clip imports: Sfx/fx_field_zipper_00
+PASS mono SFX/voice: Sfx/fx_field_zipper_00
+PASS clip imports: Sfx/fx_field_zipper_01
+PASS mono SFX/voice: Sfx/fx_field_zipper_01
+PASS clip imports: Sfx/fx_field_zipper_02
+PASS mono SFX/voice: Sfx/fx_field_zipper_02
+PASS unique cue id fx.hazard.warn
+PASS cue fields fx.hazard.warn
+PASS known bus for fx.hazard.warn
+PASS clip imports: Sfx/fx_hazard_warn_00
+PASS mono SFX/voice: Sfx/fx_hazard_warn_00
+PASS clip imports: Sfx/fx_hazard_warn_01
+PASS mono SFX/voice: Sfx/fx_hazard_warn_01
+PASS unique cue id fx.hazard.hit
+PASS cue fields fx.hazard.hit
+PASS known bus for fx.hazard.hit
+PASS clip imports: Sfx/fx_hazard_hit_00
+PASS mono SFX/voice: Sfx/fx_hazard_hit_00
+PASS clip imports: Sfx/fx_hazard_hit_01
+PASS mono SFX/voice: Sfx/fx_hazard_hit_01
+PASS clip imports: Sfx/fx_hazard_hit_02
+PASS mono SFX/voice: Sfx/fx_hazard_hit_02
+PASS unique cue id enemy.mimic.wake
+PASS cue fields enemy.mimic.wake
+PASS known bus for enemy.mimic.wake
+PASS clip imports: Sfx/enemy_mimic_wake_00
+PASS mono SFX/voice: Sfx/enemy_mimic_wake_00
+PASS clip imports: Sfx/enemy_mimic_wake_01
+PASS mono SFX/voice: Sfx/enemy_mimic_wake_01
+PASS unique cue id hero.pulse.ember
+PASS cue fields hero.pulse.ember
+PASS known bus for hero.pulse.ember
+PASS clip imports: Sfx/hero_pulse_ember_00
+PASS mono SFX/voice: Sfx/hero_pulse_ember_00
+PASS clip imports: Sfx/hero_pulse_ember_01
+PASS mono SFX/voice: Sfx/hero_pulse_ember_01
+PASS unique cue id hero.pulse.frost
+PASS cue fields hero.pulse.frost
+PASS known bus for hero.pulse.frost
+PASS clip imports: Sfx/hero_pulse_frost_00
+PASS mono SFX/voice: Sfx/hero_pulse_frost_00
+PASS clip imports: Sfx/hero_pulse_frost_01
+PASS mono SFX/voice: Sfx/hero_pulse_frost_01
+PASS unique cue id ui.locked
+PASS cue fields ui.locked
+PASS known bus for ui.locked
+PASS clip imports: Sfx/ui_locked_00
+PASS mono SFX/voice: Sfx/ui_locked_00
+PASS clip imports: Sfx/ui_locked_01
+PASS mono SFX/voice: Sfx/ui_locked_01
+PASS unique cue id ui.error
+PASS cue fields ui.error
+PASS known bus for ui.error
+PASS clip imports: Sfx/ui_error_00
+PASS mono SFX/voice: Sfx/ui_error_00
+PASS clip imports: Sfx/ui_error_01
+PASS mono SFX/voice: Sfx/ui_error_01
 PASS unique cue id loot.coin.drop
 PASS cue fields loot.coin.drop
 PASS known bus for loot.coin.drop
@@ -825,6 +894,15 @@ PASS clip imports: Sfx/up_merge_01
 PASS mono SFX/voice: Sfx/up_merge_01
 PASS clip imports: Sfx/up_merge_02
 PASS mono SFX/voice: Sfx/up_merge_02
+PASS unique cue id up.merge.gather
+PASS cue fields up.merge.gather
+PASS known bus for up.merge.gather
+PASS clip imports: Sfx/up_merge_gather_00
+PASS mono SFX/voice: Sfx/up_merge_gather_00
+PASS clip imports: Sfx/up_merge_gather_01
+PASS mono SFX/voice: Sfx/up_merge_gather_01
+PASS clip imports: Sfx/up_merge_gather_02
+PASS mono SFX/voice: Sfx/up_merge_gather_02
 PASS unique cue id up.star2
 PASS cue fields up.star2
 PASS known bus for up.star2
@@ -1322,7 +1400,7 @@ PASS clip imports: Voice/voice_dream_farewell_00
 PASS mono SFX/voice: Voice/voice_dream_farewell_00
 PASS clip imports: Voice/voice_dream_farewell_01
 PASS mono SFX/voice: Voice/voice_dream_farewell_01
-PASS library clip count 447
+PASS library clip count 471
 PASS stems import for menu_curtain
 PASS menu_curtain stem stereo 44.1k
 PASS menu_curtain stem menu_curtain_base has exact loop length
@@ -1563,7 +1641,7 @@ PASS legacy cue 17 maps to a real cue (sig.alarm)
 PASS legacy cue 18 maps to a real cue (sig.musicbox)
 PASS legacy cue 19 maps to a real cue (ui.select)
 PASS legacy cue 20 maps to a real cue (shop.buy.gold)
-PASS legacy cue 21 maps to a real cue ()
+PASS legacy cue 21 maps to a real cue (shop.reroll)
 PASS legacy cue 22 maps to a real cue (shop.invalid)
 PASS legacy cue 23 maps to a real cue (up.merge)
 PASS legacy cue 24 maps to a real cue (boss.telegraph)
@@ -1583,3 +1661,37 @@ PASS legacy cue 37 maps to a real cue (cmb.hit.glass)
 PASS legacy cue 38 maps to a real cue (cmb.hit.wood)
 PASS scene selection by phase/wave/boss/endless/dream shop
 PASS intensity layer follows enemy density
+PASS bare enemy Windup (boss pattern) is the boss telegraph
+PASS bare enemy Fire (boss pattern) is the boss attack
+PASS item proc maps to up.chain
+PASS hit on the champion is plr.hurt
+PASS secondary hit cause ember-status -> fx.burn
+PASS secondary hit cause element-reaction -> fx.reaction.steam
+PASS secondary hit cause arcane-chain -> fx.reaction.arcane
+PASS secondary hit cause expanded-fuse -> sig.alarm.boom
+PASS secondary hit cause zipper-link -> fx.field.zipper
+PASS secondary hit cause expanded-officehazard -> fx.hazard.hit
+PASS split fragments hit quieter than the primary impact
+PASS contract cue exists: up.merge.gather
+PASS contract cue exists: sig.alarm.boom
+PASS contract cue exists: fx.field.zipper
+PASS contract cue exists: fx.hazard.warn
+PASS contract cue exists: fx.hazard.hit
+PASS contract cue exists: enemy.mimic.wake
+PASS contract cue exists: hero.pulse.ember
+PASS contract cue exists: hero.pulse.frost
+PASS contract cue exists: ui.locked
+PASS contract cue exists: ui.error
+PASS contract cue exists: shop.reroll
+PASS legacy reroll cue 21 maps to the library
+PASS new event mapping ProjectileReturn
+PASS new event mapping ProjectilePierce
+PASS new event mapping ProjectileSplit
+PASS new event mapping ProjectileBounce
+PASS new event mapping Knockback
+PASS new event mapping BossPhase
+PASS new event mapping ContactWindup
+PASS new event mapping LootAttract
+PASS new event mapping MimicWake
+PASS chest spawn mapping
+PASS new chill application mapping

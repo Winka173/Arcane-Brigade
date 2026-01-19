@@ -77,6 +77,7 @@ namespace ArcaneBrigade
         {
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
+            if (CurrentPage != page) CheckpointAudio.PlayInterfaceId(page == Page.Landing ? "ui.back" : "ui.open");
             CurrentPage = page;
             GlossaryUI.Close();
             navigation.Reset(); pageChangedAt = Time.unscaledTime;
@@ -186,6 +187,7 @@ namespace ArcaneBrigade
         private void Launch(bool resume)
         {
             if (resume && !CanResume || !resume && profile.BestWave < catalog.Champions[selection].UnlockWave) return;
+            CheckpointAudio.PlayInterfaceId("ui.confirm");
             if (!resume && existingSave)
             {
                 try
@@ -198,7 +200,7 @@ namespace ArcaneBrigade
                         if (File.Exists(source)) File.Copy(source, Path.Combine(archive, name));
                     }
                 }
-                catch (Exception exception) { error = "Cannot back up old run: " + exception.Message; return; }
+                catch (Exception exception) { error = "Cannot back up old run: " + exception.Message; CheckpointAudio.PlayInterfaceId("ui.error"); return; }
             }
             RunLaunch.Resume = resume;
             RunLaunch.ChampionId = catalog.Champions[selection].Id;
@@ -406,6 +408,7 @@ namespace ArcaneBrigade
             if (Button(new Rect(1135, top, 65, 42), "+")) changed = Mathf.Min(1, value + 0.1f);
             if (Mathf.Abs(changed - value) < 0.005f) return;
             setter(changed);
+            CheckpointAudio.PlayInterfaceId("ui.setting");
             if (!SaveProfile()) setter(value);
             PresentationSettings.Apply(profile);
         }
@@ -414,6 +417,7 @@ namespace ArcaneBrigade
         {
             if (!Button(rectangle, caption + (value ? ": ON" : ": OFF"))) return;
             setter(!value);
+            CheckpointAudio.PlayInterfaceId("ui.setting");
             if (!SaveProfile()) setter(value);
             PresentationSettings.Apply(profile);
         }
@@ -453,7 +457,7 @@ namespace ArcaneBrigade
         private bool SaveProfile()
         {
             try { storage.SaveProfile(profile); error = ""; return true; }
-            catch (Exception exception) { error = "Failed to save settings: " + exception.Message; return false; }
+            catch (Exception exception) { error = "Failed to save settings: " + exception.Message; CheckpointAudio.PlayInterfaceId("ui.error"); return false; }
         }
     }
 }

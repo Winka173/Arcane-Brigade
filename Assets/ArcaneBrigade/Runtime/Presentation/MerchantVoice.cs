@@ -11,6 +11,7 @@ namespace ArcaneBrigade
         private int utterance = -1;
         private int previousGlyph;
         private float nextSyllable;
+        private float gestureUntil;
         public int PlayedSyllables { get; private set; }
 
         private void Awake()
@@ -55,7 +56,7 @@ namespace ArcaneBrigade
                 {
                     bool trigger = wordLetters == 0 || wordLetters == 5;
                     wordLetters++;
-                    if (trigger && now >= nextSyllable && now >= pauseUntil && utteranceSyllables < MaxSyllablesPerLine) Speak(def, special, index, line);
+                    if (trigger && Time.unscaledTime >= gestureUntil && now >= nextSyllable && now >= pauseUntil && utteranceSyllables < MaxSyllablesPerLine) Speak(def, special, index, line);
                     continue;
                 }
                 wordLetters = 0;
@@ -91,7 +92,9 @@ namespace ArcaneBrigade
         {
             ArcaneCueDef def = ArcaneCueLibrary.Get((special ? "voice.dream." : "voice.gold.") + kind);
             AudioClip clip = def != null ? ArcaneCueLibrary.Pick(def) : null;
-            if (clip == null || source == null || !focused || backgrounded || PresentationSettings.ReducedAudio) return;
+            if (clip == null || source == null || !focused || backgrounded || AudioListener.pause || CheckpointAudio.SimulationPaused || PresentationSettings.ReducedAudio) return;
+            source.Stop();
+            gestureUntil = Time.unscaledTime + clip.length;
             source.pitch = 1f;
             source.PlayOneShot(clip, def.gain * CheckpointAudio.BusTrim(AudioBus.Voice) * PresentationSettings.SfxVolume);
         }

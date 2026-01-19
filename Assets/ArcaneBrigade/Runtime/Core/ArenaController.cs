@@ -220,7 +220,7 @@ namespace ArcaneBrigade
             if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); }
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
-            if (warning && !warningAudio && !pauseGate.Paused) audioFeedback.PlayCue(24, true);
+            if (warning && !warningAudio && !pauseGate.Paused && !ArcaneCueLibrary.Available) audioFeedback.PlayCue(24, true);
             warningAudio = warning;
             bool lowHealth = simulation.Champion.Alive && simulation.Champion.Health < simulation.Champion.Definition.Health * 0.25f;
             if (lowHealth && !lowHealthAudio && !pauseGate.Paused) audioFeedback.PlayCue(25, true);
@@ -289,7 +289,7 @@ namespace ArcaneBrigade
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
             if (audioFeedback != null)
-                for (int index = 0; index < simulation.Events.Count; index++) audioFeedback.Play(simulation.Events[index]);
+                audioFeedback.PlayBatch(simulation.Events);
             if (session != null && (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat))
             {
                 session.Settle(simulation);
@@ -308,6 +308,7 @@ namespace ArcaneBrigade
 
         private void SetPaused(bool paused)
         {
+            if (pauseGate.Manual != paused) CheckpointAudio.PlayInterfaceId(paused ? "ui.pause" : "ui.resume");
             pauseGate.Manual = paused;
             ApplyPause();
         }
@@ -343,8 +344,12 @@ namespace ArcaneBrigade
             try
             {
                 int before = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count;
+                int previousBestWave = profile.BestWave;
                 storage.RecordProgress(profile, session.State, runCatalog);
                 int delta = profile.Achievements.Count + profile.SeenWeapons.Count + profile.SeenBosses.Count + profile.SeenChains.Count - before;
+                if (delta > 0) CheckpointAudio.PlayInterfaceId("ui.achievement");
+                foreach (UnitDefinition champion in runCatalog.Champions)
+                    if (previousBestWave < champion.UnlockWave && profile.BestWave >= champion.UnlockWave) { CheckpointAudio.PlayInterfaceId("ui.unlock", 0.15f); break; }
                 MetaNotice = delta > 0 ? "SAVED " + delta + " NEW DISCOVERIES / ACHIEVEMENTS · VISIT MUSEUM" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
@@ -358,10 +363,10 @@ namespace ArcaneBrigade
             if (!committed)
             {
                 if (!string.IsNullOrEmpty(error)) SaveError = error;
-                CheckpointAudio.PlayInterface(22);
+                if (!string.IsNullOrEmpty(error)) CheckpointAudio.PlayInterfaceId("ui.error");
                 return false;
             }
-            CheckpointAudio.PlayInterface(cue);
+            if (cue >= 0) CheckpointAudio.PlayInterface(cue);
             if (session.State.Phase == SessionPhase.Shop)
             {
                 Vector2 position = simulation.Champion.Position;
@@ -371,7 +376,7 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public bool BuyOffer(int token) => Transaction("Shop purchase", () => session.Buy(token));
+        public bool BuyOffer(int token) => Transaction("Shop purchase", () => session.Buy(token), -1);
         public void PlayCommittedArrival(RunSnapshot before, Vector2 origin)
         {
             Render(1);
@@ -385,7 +390,7 @@ namespace ArcaneBrigade
         }
         public bool RerollShop() => Transaction("Reroll stock", () => session.Reroll(), 21);
         public bool RerollAltar() => Transaction("Reroll altar stock", () => session.RerollAltar(), 21);
-        public bool FuseAltar(string id) => Transaction("Altar fusion", () => session.Altar(id), 23);
+        public bool FuseAltar(string id) => Transaction("Altar fusion", () => session.Altar(id), -1);
         public void ShowReceiptFixture() => runHud.ShowReceiptFixture();
         public void ShowInvoiceEvidenceFixture() => runHud.ShowInvoiceEvidenceFixture();
         public void ShowOfferPreviewFixture() => runHud.ShowOfferPreviewFixture();
@@ -395,13 +400,13 @@ namespace ArcaneBrigade
             hallExitPending = true; hallExitElapsed = 0; hallExitTarget = doorway + Vector2.down * 1.1f;
             HallDepartureEffect.Play(this, doorway);
             if (Shop != null) Shop.Depart();
-            CheckpointAudio.PlayInterface(20); return true;
+            CheckpointAudio.PlayInterfaceId("shop.descend"); return true;
         }
         public bool FinishSpecialShop() => Transaction("Leave dream market", () =>
         {
             if (session.State.Phase != SessionPhase.Shop || session.State.SpecialShopVisited) return false;
             session.State.SpecialShopVisited = true; return true;
-        });
+        }, -1);
         public void NextWave()
         {
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;

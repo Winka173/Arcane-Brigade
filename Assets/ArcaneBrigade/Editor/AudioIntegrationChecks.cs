@@ -9,6 +9,7 @@ namespace ArcaneBrigade.Editor
         {
             ArcaneAudioChecks.Run();
             K8AudioChecks.Run();
+            K8CombatChecks.RunFocused();
             K13Builder.VerifyAndBuild();
             File.Copy("Docs/Audio/Provenance.md", "Builds/FullRun/ThirdPartyNotices/Arcane-Audio-Provenance.md", true);
             Directory.CreateDirectory("PreviewExports/AudioIntegration");

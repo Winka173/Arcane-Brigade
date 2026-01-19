@@ -19,7 +19,7 @@ namespace ArcaneBrigade
         private Vector2 scroll;
         private Vector2 detailScroll;
         public int Tab => tab;
-        public void SelectTab(int value) { tab = Mathf.Clamp(value, 0, 4); selection = 0; scroll = detailScroll = Vector2.zero; }
+        public void SelectTab(int value) { int next = Mathf.Clamp(value, 0, 4); if (tab != next) CheckpointAudio.PlayInterfaceId("ui.tab"); tab = next; selection = 0; scroll = detailScroll = Vector2.zero; }
         public void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.JoystickButton5)) SelectTab((tab + 1) % 5);
@@ -59,7 +59,7 @@ namespace ArcaneBrigade
                 Exhibit exhibit = exhibits[index];
                 Rect card = new Rect(index % 3 * 235, index / 3 * 130, 223, 118);
                 ArcadeSkin.Panel(card, index == selection ? new Color(0.27f, 0.22f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
-                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; detailScroll = Vector2.zero; }
+                if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
                 GUI.Label(new Rect(card.x + 12, card.y + 80, 200, 35), exhibit.Seen ? exhibit.Name : "?  UNDISCOVERED", body);
             }

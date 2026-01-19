@@ -34,11 +34,13 @@ namespace ArcaneBrigade
         {
             if (controls.Count == 0) return;
             keyboardFocus = true;
+            int previousSelection = selected;
             for (int attempt = 0; attempt < controls.Count; attempt++)
             {
                 selected = (selected + (direction < 0 ? -1 : 1) + controls.Count) % controls.Count;
                 if (controls[selected].Enabled) break;
             }
+            if (selected != previousSelection) CheckpointAudio.PlayInterfaceId("ui.hover");
         }
         public void Reset() { selected = 0; submit = false; controls.Clear(); keyboardFocus = false; }
         public void QueueSubmit() { submit = true; keyboardFocus = true; }
@@ -52,6 +54,7 @@ namespace ArcaneBrigade
             float amount = hover.TryGetValue(identity, out float value) ? value : 0;
             if (Event.current.type == EventType.Repaint)
             {
+                if (focused && amount <= 0f) CheckpointAudio.PlayInterfaceId("ui.hover");
                 amount = Mathf.MoveTowards(amount, focused ? 1 : 0, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * 7);
                 if (hover.Count > 256) hover.Clear();
                 hover[identity] = amount;

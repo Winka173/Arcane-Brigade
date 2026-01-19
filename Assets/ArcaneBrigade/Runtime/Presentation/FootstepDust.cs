@@ -8,6 +8,10 @@ namespace ArcaneBrigade
         private sealed class Puff { public SpriteRenderer View; public LineRenderer Streak; public Vector2 Origin; public Vector2 Direction; public bool Pursuit; public float Age = 1; }
         private readonly List<Puff> pool = new List<Puff>();
         private readonly Dictionary<int, float> nextStep = new Dictionary<int, float>();
+        private readonly HashSet<int> pursuing = new HashSet<int>();
+        private readonly HashSet<int> seenLarge = new HashSet<int>();
+        private readonly Dictionary<int, float> nextHeavyStep = new Dictionary<int, float>();
+        private CombatSimulation audioSimulation;
         private Sprite sprite;
         private Sprite[] frames;
         private Material streakMaterial;
@@ -22,6 +26,7 @@ namespace ArcaneBrigade
         public void Display(CombatSimulation simulation, float delta)
         {
             if (sprite == null || simulation == null || simulation.Phase == RunPhase.Paused) return;
+            if (audioSimulation != simulation) { pursuing.Clear(); seenLarge.Clear(); nextHeavyStep.Clear(); audioSimulation = simulation; }
             if (PresentationSettings.ReducedMotion) { Clear(); return; }
             delta = Mathf.Max(0, delta);
             foreach (Puff puff in pool)
@@ -44,10 +49,23 @@ namespace ArcaneBrigade
             if (delta <= 0 || (simulation.Phase != RunPhase.Combat && simulation.Phase != RunPhase.Rest)) return;
             foreach (UnitState unit in simulation.Units)
             {
+                if (unit.Alive && unit.Faction == Faction.Enemy && ArcaneCueLibrary.IsLargeEnemy(unit.Definition))
+                {
+                    if (seenLarge.Add(unit.Id)) CheckpointAudio.PlayWorldId("enemy.big.roar", unit.Position);
+                    if ((unit.Position - unit.PreviousPosition).sqrMagnitude > 0.00002f && (!nextHeavyStep.TryGetValue(unit.Id, out float heavyAt) || simulation.VisualElapsed >= heavyAt))
+                    {
+                        CheckpointAudio.PlayWorldId("enemy.big.step", unit.Position);
+                        nextHeavyStep[unit.Id] = simulation.VisualElapsed + 0.45f;
+                    }
+                }
+                bool chasing = unit.Alive && unit.Faction == Faction.Companion && unit.TravelMode == CompanionTravelMode.Pursuit;
+                if (chasing && pursuing.Add(unit.Id)) CheckpointAudio.PlayWorldId("chr.dash", unit.Position);
+                if (!chasing) pursuing.Remove(unit.Id);
                 if (!unit.Alive || unit.Faction == Faction.Enemy || (unit.Position - unit.PreviousPosition).sqrMagnitude < 0.00002f) continue;
                 if (nextStep.TryGetValue(unit.Id, out float at) && at > simulation.VisualElapsed) continue;
                 bool pursuit = unit.Faction == Faction.Companion && unit.TravelMode == CompanionTravelMode.Pursuit;
                 nextStep[unit.Id] = simulation.VisualElapsed + (pursuit ? 0.12f : unit.Faction == Faction.Companion ? 0.3f : 0.22f);
+                if (unit.Faction == Faction.Champion) CheckpointAudio.PlayWorldId("chr.step", unit.Position);
                 Puff puff = pool.Find(candidate => candidate.Age >= 0.4f);
                 if (puff == null)
                 {

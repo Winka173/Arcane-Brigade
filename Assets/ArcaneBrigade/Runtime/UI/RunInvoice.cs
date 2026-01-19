@@ -50,7 +50,7 @@ namespace ArcaneBrigade
         }
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)
         {
-            if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; cachedBuild = null; revealedAt = Time.unscaledTime; }
+            if (identity != run.RunId) { identity = run.RunId; scroll = Vector2.zero; cachedBuild = null; revealedAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.receipt"); }
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.PageDown) { scroll.y += 300; Event.current.Use(); }
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.PageUp) { scroll.y = Mathf.Max(0, scroll.y - 300); Event.current.Use(); }
             ArcadeSkin.Line(new Rect(rectangle.x + 5, rectangle.y + 7, rectangle.width, rectangle.height), ArcadeSkin.Ink);

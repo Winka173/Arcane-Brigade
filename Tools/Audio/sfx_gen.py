@@ -114,7 +114,7 @@ def miss(i, rng):
 
 
 def bow_draw(i, rng):
-    dur = 0.42 + 0.03 * i
+    dur = 0.2 + 0.012 * i   # matches weapon.Windup (0.15-0.24 s): string draws exactly during the windup pose
     n = int(dur * SR)
     t = np.arange(n) / SR
     creak = bp(rng.standard_normal(n), 300, 1200) * (0.4 + 0.6 * (t / dur)) * 0.4
@@ -532,14 +532,21 @@ def chest_open(i, rng):
 
 # ------------------------------------------------------------------ upgrades
 def merge(i, rng):
-    parts = []
-    for k in range(3):
-        parts.append((0.0, pizz(note(pent(60, k * 2)), 0.4, 0.5, rng), 1))
-    parts.append((0.18, sweep_bp(rng.standard_normal(int(0.25 * SR)), 400, 5000, 1.5) * 0.3, 1))
-    for k, s in enumerate([0, 2, 4, 7]):
-        parts.append((0.3 + 0.045 * k, celesta(note(pent(79, s)), 0.8, 0.6, rng), 1))
-    parts.append((0.3, impact(i, rng, 'wood', 1.2), 0.5))
-    return finish(seq(parts), 1.3, 0.2)
+    """MergeReveal flash (age 0.54 s): the impact only. The converging build-up is up.merge.gather, the star arpeggio is up.star2/3."""
+    parts = [(0, impact(i, rng, 'wood', 1.3), 1.0), (0.0, bell(note(79 + 2 * (i % 3)), 0.9, 0.55, rng), 1),
+             (0.02, hp(rng.standard_normal(int(0.3 * SR)), 5000) * np.exp(-np.arange(int(0.3 * SR)) / (0.07 * SR)) * 0.12, 1)]
+    return finish(seq(parts), 0.8, 0.15)
+
+
+def merge_gather(i, rng):
+    """MergeReveal 0..0.54 s: materials spiral together (gather 0.32 s), result appears at 0.36 s, flash at 0.54 s."""
+    n = int(0.54 * SR)
+    t = np.arange(n) / SR
+    sw = sweep_bp(rng.standard_normal(n), 300, 4200 + 300 * i, 1.4) * (t / 0.54) ** 1.5 * 0.45
+    tone = np.sin(TAU * np.cumsum(220 * (1 + 2.2 * (t / 0.54) ** 2)) / SR) * (t / 0.54) * 0.18
+    ticks = [(0.07 * k, woodblock(600 + 90 * k, 0.35, 0.04), 1) for k in range(7)]
+    parts = [(0, sw, 1), (0, tone, 1)] + ticks + [(0.36, pizz(note(60 + 2 * i), 0.3, 0.5, rng), 1)]
+    return finish(seq(parts, 0.55), 0.55, 0.03)
 
 
 def star_up(i, rng, stars=2):
@@ -553,9 +560,12 @@ def star_up(i, rng, stars=2):
 
 
 def ally_land(i, rng):
-    parts = [(0, sweep_bp(rng.standard_normal(int(0.3 * SR)), 2500, 500, 1.0) * np.linspace(0.3, 0.1, int(0.3 * SR)), 1),
-             (0.28, impact(i, rng, 'fabric', 1.4), 1.0), (0.29, marimba(note(50 + 2 * (i % 3)), 0.4, 0.6, rng), 1)]
-    return finish(seq(parts), 0.8, 0.1)
+    """UnitVisual.BeginArrival: the arc lasts 0.45*0.9 = 0.405 s, touchdown at 0.405 s. Call at BeginArrival."""
+    n = int(0.4 * SR)
+    t = np.arange(n) / SR
+    arc = sweep_bp(rng.standard_normal(n), 2500, 700, 1.0) * np.sin(np.pi * np.clip(t / 0.4, 0, 1)) * 0.25
+    parts = [(0, arc, 1), (0.405, impact(i, rng, 'fabric', 1.4), 1.0), (0.41, marimba(note(50 + 2 * (i % 3)), 0.4, 0.6, rng), 1)]
+    return finish(seq(parts), 1.0, 0.1)
 
 
 def bond_tier(i, rng, tier=1):
@@ -594,17 +604,24 @@ def rarity(i, rng, tier='blue'):
 
 # ----------------------------------------------------------------------- shop
 def keeper_enter(i, rng, special=False):
-    n = int(1.1 * SR)
+    """WorldShop.Build: merchant arrives after MerchantArrivalDelay 0.18 s over 0.8 s => landing at 0.98 s. Call at Build (t=0).
+    Gold giant drops from above (falling tone); the dream merchant rises out of the floor (swelling sweep)."""
+    n = int(1.0 * SR)
     t = np.arange(n) / SR
-    drop = np.sin(TAU * np.cumsum(260 * (1 - 0.7 * np.clip(t / 0.5, 0, 1))) / SR) * 0.25 * (t < 0.5) if not special else \
-        sweep_bp(rng.standard_normal(n), 300, 900, 1.0) * np.sin(np.pi * np.clip(t / 1.0, 0, 1)) * 0.5
-    land_t = 0.5 if not special else 0.95
+    span = np.clip((t - 0.18) / 0.8, 0, 1)
+    if not special:
+        drop = np.sin(TAU * np.cumsum(60 + 560 * (1 - span) ** 2 * (t > 0.18)) / SR) * 0.22 * span
+        drop += sweep_bp(rng.standard_normal(n), 2200, 400, 1.0) * span * (1 - span * 0.3) * 0.25
+    else:
+        drop = sweep_bp(rng.standard_normal(n), 250, 1100, 1.0) * np.sin(np.pi * span) * 0.45
+        drop += np.sin(TAU * np.cumsum(110 + 150 * span) / SR) * 0.12 * span
+    land_t = 0.98
     parts = [(0, drop, 1), (land_t, impact(i, rng, 'wood', 2.0, 0.5), 1), (land_t, upright(note(36 if not special else 34), 0.8, 0.8, rng), 0.8)]
     if not special:
         parts += [(land_t + 0.1, bell(note(79), 1.0, 0.4, rng), 1)]
     else:
         parts += [(land_t + 0.05, vibes(note(70), 1.8, 0.6, rng), 1), (land_t + 0.2, vibes(note(75), 1.8, 0.5, rng), 1)]
-    return finish(seq(parts), 2.4, 0.3)
+    return finish(seq(parts), 2.6, 0.3)
 
 
 def keeper_exit(i, rng, special=False):
@@ -616,16 +633,19 @@ def keeper_exit(i, rng, special=False):
 
 
 def carpet(i, rng, mode='open'):
-    n = int(0.7 * SR)
+    """MarketLifecycle: opening progress 0.9 s from Build; departure starts CarpetDepartureDelay 0.55 s after Depart and lasts 0.75 s."""
+    n = int(0.9 * SR)
     t = np.arange(n) / SR
     cloth = lp(rng.standard_normal(n), 900) * (np.sin(TAU * 7 * t) ** 2 * 0.3 + 0.1)
     if mode == 'open':
-        cloth = cloth * np.sin(np.pi * np.clip(t / 0.7, 0, 1))
+        cloth = cloth * np.sin(np.pi * np.clip(t / 0.9, 0, 1)) * 1.0
         flop = impact(i, rng, 'fabric', 1.6, 0.4)
-        return finish(seq([(0, cloth, 1), (0.55, flop, 0.9)]), 0.9, 0.12)
-    cloth = cloth * np.sin(np.pi * np.clip(t / 0.7, 0, 1)) ** 0.6
-    pop = woodblock(520, 0.6, 0.08)
-    return finish(seq([(0, cloth, 1), (0.62, pop, 0.8)]), 0.75, 0.1)
+        return finish(seq([(0, cloth, 1), (0.84, flop, 0.9)]), 1.1, 0.12)
+    n2 = int(0.75 * SR)
+    t2 = np.arange(n2) / SR
+    cl = lp(rng.standard_normal(n2), 900) * (np.sin(TAU * 8 * t2) ** 2 * 0.3 + 0.1) * np.sin(np.pi * np.clip(t2 / 0.75, 0, 1)) ** 0.6
+    pop = woodblock(520 + 30 * i, 0.6, 0.08)
+    return finish(seq([(0, cl, 1), (0.7, pop, 0.8)]), 0.85, 0.1)
 
 
 def stand_appear(i, rng):
@@ -882,3 +902,61 @@ def vocal_gesture(i, rng, keeper='gold', kind='laugh'):
         for k, ii in enumerate([4, 1, 6]):
             parts.append((0.14 * k, syllable(ii + i, rng, keeper), 1))
     return finish(seq(parts), 0.8, 0.05)
+
+
+# ----------------------------------------------------------- integration-contract additions
+def alarm_boom(i, rng):
+    """AlarmMortar Fuse field resolves 0.9 s after Fire: the burst (Hit with cause 'expanded-fuse')."""
+    n = int(0.5 * SR)
+    t = np.arange(n) / SR
+    thump = np.sin(TAU * np.cumsum(70 * (1 + 2.5 * np.exp(-t / 0.04))) / SR) * np.exp(-t / 0.14)
+    burst = lp(hp(rng.standard_normal(n), 250), 5000) * np.exp(-t / 0.05) * 0.6
+    ring = modal(note(76 + i), 0.5, [(1, 0.5, 0.25), (2.4, 0.3, 0.12), (3.9, 0.15, 0.08)], 0.5, 0.1, rng)
+    return finish(seq([(0, thump, 1), (0, burst, 1), (0.01, ring, 0.7)]), 0.5, 0.1)
+
+
+def zipper_link(i, rng):
+    n = int(0.26 * SR)
+    t = np.arange(n) / SR
+    zip_ = np.sin(TAU * np.cumsum(900 + 2600 * (t / 0.24) ** 1.5) / SR) * (np.sin(TAU * 60 * t) > 0) * 0.15 * (t < 0.24)
+    parts = [(0, zip_, 1), (0.22, pizz(note(84 + 2 * i), 0.15, 0.6, rng), 1)]
+    return finish(seq(parts, 0.3), 0.3, 0.05)
+
+
+def hazard_warn(i, rng):
+    n = int(0.6 * SR)
+    t = np.arange(n) / SR
+    wob = np.sin(TAU * np.cumsum((180 + 40 * i) + 120 * (t / 0.6) + 30 * np.sin(TAU * (7 + i) * t)) / SR) * (t / 0.6) * 0.4
+    ticks = [(0.1 * k, woodblock(800 + 90 * i + 120 * k, 0.5 + 0.06 * k, 0.05), 1) for k in range(5)]
+    return finish(seq([(0, wob, 1)] + ticks, 0.6), 0.6, 0.06)
+
+
+def hazard_hit(i, rng):
+    return finish(seq([(0, impact(i, rng, 'metal', 1.8, 0.4), 1), (0, bell(note(55 + 2 * i), 0.8, 0.5, rng), 1), (0, big_step(i, rng), 0.6)]), 0.7, 0.1)
+
+
+def mimic_wake(i, rng):
+    n = int(0.55 * SR)
+    t = np.arange(n) / SR
+    creak = bp(rng.standard_normal(n), 250, 1100) * np.sin(TAU * 12 * t) ** 2 * 0.3 * (t < 0.35)
+    gasp = bp(rng.standard_normal(int(0.2 * SR)), 800, 3500) * np.exp(-np.arange(int(0.2 * SR)) / (0.08 * SR)) * 0.5
+    return finish(seq([(0, creak, 1), (0.34, gasp, 1), (0.36, woodblock(420 + 40 * i, 0.9, 0.1), 1)]), 0.6, 0.08)
+
+
+def ui_negative(i, rng, kind='locked'):
+    if kind == 'locked':
+        return finish(seq([(0, woodblock(260 + 30 * i, 0.9, 0.09), 1), (0.07, woodblock(220 + 30 * i, 0.8, 0.09), 1)]), 0.2, 0.04)
+    return finish(seq([(0, marimba(note(62 - 2 * i), 0.3, 0.7, rng), 1), (0.09, marimba(note(55 - 2 * i), 0.4, 0.7, rng), 1), (0.09, felt_kick(0.5, 0.15), 0.6)]), 0.5, 0.08)
+
+
+def hero_pulse(i, rng, element='ember'):
+    """K11 hero mechanics (LanternStride ember burst / DreamBreath frost wave): rare (4-7 s cooldown), so it can be big."""
+    if element == 'ember':
+        base = fire_cast(i, rng)
+        body = gong(note(43 + 2 * i), 1.2, 0.45)
+        sw = sweep_bp(rng.standard_normal(int(0.5 * SR)), 300, 2200, 1.2) * np.sin(np.pi * np.clip(np.arange(int(0.5 * SR)) / (0.5 * SR), 0, 1)) * 0.3
+        return finish(seq([(0, base, 0.9), (0, body, 0.7), (0, sw, 1)]), 1.0, 0.25)
+    base = ice_cast(i, rng)
+    pad = saw_pad(note(60 + 2 * i), 0.9, 0.25, detune=0.01, cutoff=1800, a=0.15, r=0.5)
+    sh = hp(rng.standard_normal(int(0.6 * SR)), 5000) * np.exp(-np.arange(int(0.6 * SR)) / (0.2 * SR)) * 0.12
+    return finish(lp(seq([(0, base, 1), (0.0, pad, 1.4), (0.05, sh, 0.6)]), 5000), 1.0, 0.25)

@@ -104,7 +104,11 @@ namespace ArcaneBrigade
                 if (nearest != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (nearest.Position - projectile.Position).normalized * projectile.Weapon.ProjectileSpeed, Mathf.Clamp01(delta * 4));
             }
             if (family != ExpandedWeapon.Fish || projectile.Faction == Faction.Enemy) return 0;
-            if (projectile.Age > 0.7f) projectile.Returning = true;
+            if (projectile.Age > 0.7f && !projectile.Returning)
+            {
+                projectile.Returning = true;
+                ProjectileAudioEvent(CombatEventKind.ProjectileReturn, projectile);
+            }
             if (!projectile.Returning) return 0;
             UnitState owner = units.Find(unit => unit.Id == projectile.SourceUnitId && unit.Alive);
             if (owner == null) return -1;

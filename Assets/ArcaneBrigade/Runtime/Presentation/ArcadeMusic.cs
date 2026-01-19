@@ -154,6 +154,7 @@ namespace ArcaneBrigade
         {
             selected = PhaseTrack(phase, boss);
             this.paused = paused;
+            if (IsActiveOwner()) CheckpointAudio.SimulationPaused = paused;
             bool bossStarted = boss && !this.boss && hasPhase && phase == SessionPhase.Combat;
             if (hasPhase && phase != this.phase && IsActiveOwner())
             {
@@ -390,6 +391,7 @@ namespace ArcaneBrigade
         private void OnDisable()
         {
             owners.Remove(this);
+            CheckpointAudio.SimulationPaused = false;
             StopAll();
         }
     }

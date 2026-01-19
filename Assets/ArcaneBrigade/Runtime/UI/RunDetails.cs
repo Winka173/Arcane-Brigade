@@ -19,14 +19,21 @@ namespace ArcaneBrigade
         public bool Open => model != null;
         public int Tab => tab;
         public const int TabCount = 4;
-        public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; }
-        public void Close() { model = null; GlossaryUI.Close(); }
-        public void SelectTab(int index) { tab = Mathf.Clamp(index, 0, TabCount - 1); selection = 0; scroll = explanationScroll = Vector2.zero; selectedAt = Time.unscaledTime; }
+        public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { if (model == null) CheckpointAudio.PlayInterfaceId("ui.open"); model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; }
+        public void Close() { if (model != null) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; GlossaryUI.Close(); }
+        public void SelectTab(int index)
+        {
+            int next = Mathf.Clamp(index, 0, TabCount - 1);
+            if (tab != next) CheckpointAudio.PlayInterfaceId("ui.tab");
+            tab = next; selection = 0; scroll = explanationScroll = Vector2.zero; selectedAt = Time.unscaledTime;
+        }
         public void MoveSelection(int direction)
         {
             if (model == null) return;
             int count = tab == 0 ? model.Stats.Count : tab == 1 ? model.Companions.Count : tab == 2 ? model.Relics.Count : model.Links.Count;
+            int previousSelection = selection;
             selection = Mathf.Clamp(selection + direction, 0, Mathf.Max(0, count - 1));
+            if (selection != previousSelection) CheckpointAudio.PlayInterfaceId("ui.page");
             selectedAt = Time.unscaledTime;
             float height = tab == 0 ? 115 : 145;
             scroll.y = Mathf.Clamp(scroll.y, Mathf.Max(0, (selection + 1) * height - 670), selection * height);

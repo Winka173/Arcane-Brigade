@@ -14,6 +14,17 @@ namespace ArcaneBrigade
         private readonly float[] voiceGain = new float[8];
         private readonly string[] voiceId = new string[8];
         private readonly Dictionary<string, float> nextById = new Dictionary<string, float>();
+        private readonly Dictionary<string, float> nextByGroup = new Dictionary<string, float>();
+        private readonly List<PendingCue> pending = new List<PendingCue>();
+        private readonly Dictionary<int, float> recentHitRoots = new Dictionary<int, float>();
+        private Camera cullCamera;
+        private bool arenaOwner;
+
+        private struct PendingCue { public string Id; public float At; public bool Interface; }
+        private float scheduleClock;
+
+        /// <summary>True while the simulation is paused (pause menu, details, focus loss). Set every frame by ArcadeMusic.SetPhase.</summary>
+        public static bool SimulationPaused { get; set; }
         private float nextCosmetic;
         private float nextDanger;
         private float nextInterface;
@@ -34,6 +45,7 @@ namespace ArcaneBrigade
                 voices[index].spatialBlend = 0;
                 voices[index].volume = 0;
             }
+            arenaOwner = GetComponent<ArenaController>() != null;
             ConfigurePresentation();
         }
 
@@ -69,10 +81,66 @@ namespace ArcaneBrigade
 
         public void Play(CombatEvent value)
         {
-            string id = ArcaneCueLibrary.Available ? ArcaneCueLibrary.EventId(value) : null;
-            if (id != null && PlayLibrary(ArcaneCueLibrary.Get(id))) return;
+            if (ArcaneCueLibrary.Available)
+            {
+                string id = ArcaneCueLibrary.EventId(value, out float scale);
+                if (id != null)
+                {
+                    ArcaneCueDef def = ArcaneCueLibrary.Get(id);
+                    if (!def.danger && !OnScreen(value.Position)) { DroppedCosmeticCues++; return; }
+                    if (value.Kind == CombatEventKind.Hit && !def.danger && IsDuplicateHit(value)) { DroppedCosmeticCues++; return; }
+                    if (PlayLibrary(def, scale)) return;
+                }
+            }
             bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit;
             PlayCue(EventCue(value), danger, value.Critical);
+        }
+
+        /// <summary>
+        /// Preferred entry for a simulation step: plays every event and adds the one sound the event stream cannot express,
+        /// the hero's whiff (melee Fire with no Hit sharing its Cause.RootId in the same step).
+        /// </summary>
+        public void PlayBatch(IReadOnlyList<CombatEvent> events)
+        {
+            for (int index = 0; index < events.Count; index++)
+                if (events[index].Kind == CombatEventKind.Fire) Play(events[index]);
+            for (int index = 0; index < events.Count; index++)
+            {
+                CombatEvent value = events[index];
+                if (value.Kind != CombatEventKind.Fire) Play(value);
+                if (value.Kind == CombatEventKind.LootDrop && value.Loot == LootKind.Coin && OnScreen(value.Position)) PlayInterfaceId("loot.coin.bounce", 0.1f);
+                if (value.Kind == CombatEventKind.BossPhase) PlayInterfaceId("fx.hazard.warn", 0.1f);
+                if (value.Kind != CombatEventKind.Fire || value.Faction != Faction.Champion || value.Weapon == null || value.Weapon.Kind != WeaponKind.Melee || value.Cause.RootId == 0) continue;
+                bool connected = false;
+                for (int other = 0; other < events.Count && !connected; other++) connected = events[other].Kind == CombatEventKind.Hit && events[other].Cause.RootId == value.Cause.RootId;
+                if (!connected && ArcaneCueLibrary.Available) PlayInterfaceId("cmb.miss", 0.07f);
+            }
+        }
+
+        // One hit sound per attack: a cone swing that touches ten enemies shares one Cause.RootId.
+        private bool IsDuplicateHit(CombatEvent value)
+        {
+            if (value.Cause.RootId == 0 || value.Critical) return false;
+            float now = Time.unscaledTime;
+            if (recentHitRoots.TryGetValue(value.Cause.RootId, out float previous) && now - previous < 0.09f) return true;
+            if (recentHitRoots.Count >= 512) recentHitRoots.Clear();
+            recentHitRoots[value.Cause.RootId] = now;
+            return false;
+        }
+
+        // Arena only: sounds from outside the visible area (plus margin) are dropped unless they are danger cues.
+        private bool OnScreen(Vector2 position)
+        {
+            if (!arenaOwner) return true;
+            if (cullCamera == null)
+            {
+                ArenaCamera arena = FindAnyObjectByType<ArenaCamera>();
+                if (arena == null) return true;
+                cullCamera = arena.GetComponent<Camera>();
+                if (cullCamera == null) return true;
+            }
+            Vector3 view = cullCamera.WorldToViewportPoint(new Vector3(position.x, position.y, 0f));
+            return view.x > -0.12f && view.x < 1.12f && view.y > -0.12f && view.y < 1.12f;
         }
 
         public static bool IsDangerCue(int cue) => cue == 6 || cue == 24 || cue == 25 || cue == 26;
@@ -142,22 +210,61 @@ namespace ArcaneBrigade
             if (interfaceOwners.Count > 0) interfaceOwners[interfaceOwners.Count - 1].PlayLibrary(ArcaneCueLibrary.Get(id));
         }
 
+        /// <summary>Same as PlayInterfaceId but starts after <paramref name="delay"/> seconds (unscaled), to land a clip's impact on an animation beat.</summary>
+        public static void PlayInterfaceId(string id, float delay)
+        {
+            if (delay <= 0f) { PlayInterfaceId(id); return; }
+            if (interfaceOwners.Count > 0)
+            {
+                CheckpointAudio owner = interfaceOwners[interfaceOwners.Count - 1];
+                ArcaneCueDef def = ArcaneCueLibrary.Get(id);
+                if (def == null) return;
+                bool ui = def.busId == AudioBus.UI && !def.danger;
+                float at = (ui ? Time.unscaledTime : owner.scheduleClock) + delay;
+                if (owner.pending.Count >= 64 || owner.pending.Exists(cue => cue.Id == id && Mathf.Abs(cue.At - at) < 0.04f)) return;
+                owner.pending.Add(new PendingCue { Id = id, At = at, Interface = ui });
+            }
+        }
+
+        public static void CancelScheduledPrefix(string prefix)
+        {
+            if (interfaceOwners.Count > 0) interfaceOwners[interfaceOwners.Count - 1].pending.RemoveAll(cue => cue.Id.StartsWith(prefix, System.StringComparison.Ordinal));
+        }
+
+        /// <summary>World-positioned cue (culled when off-screen unless it is a danger cue). Use for projectile bounce/split/return, loot drop, knockback, hazards.</summary>
+        public static void PlayWorldId(string id, Vector2 position)
+        {
+            if (interfaceOwners.Count == 0) return;
+            CheckpointAudio owner = interfaceOwners[interfaceOwners.Count - 1];
+            ArcaneCueDef def = ArcaneCueLibrary.Get(id);
+            if (def == null) return;
+            if (!def.danger && !owner.OnScreen(position)) { owner.DroppedCosmeticCues++; return; }
+            owner.PlayLibrary(def);
+        }
+
         public void PlayId(string id) { PlayLibrary(ArcaneCueLibrary.Get(id)); }
 
         // Returns true when the cue was handled (played or deliberately dropped); false asks the caller to use the legacy path.
-        private bool PlayLibrary(ArcaneCueDef def)
+        private bool PlayLibrary(ArcaneCueDef def, float gainScale = 1f)
         {
             if (!ArcaneCueLibrary.Enabled) return false;
             if (def == null || def.clips == null || def.clips.Length == 0) return false;
             if (interfaceOwners.Count == 0 || interfaceOwners[interfaceOwners.Count - 1] != this) return true;
             bool danger = def.danger;
             bool ui = def.busId == AudioBus.UI && !danger;
-            if (!isActiveAndEnabled || !focused || backgrounded || AudioListener.pause || (!ui && Time.timeScale <= 0)) return true;
+            if (!isActiveAndEnabled || !focused || backgrounded || AudioListener.pause || (!ui && (Time.timeScale <= 0 || SimulationPaused))) return true;
             bool reduced = PresentationSettings.ReducedAudio;
             if (reduced && !danger && def.priority >= 180) return true;
             float now = Time.unscaledTime;
             if (nextById.TryGetValue(def.id, out float until) && now < until) { if (!danger) DroppedCosmeticCues++; return true; }
-            if (now < (danger ? nextDanger : ui ? nextInterface : nextCosmetic)) { if (!danger) DroppedCosmeticCues++; return true; }
+            bool choreography = def.id.StartsWith("shop.carpet.") || def.id.StartsWith("shop.keeper.") || def.id.StartsWith("up.ally.") || def.id.StartsWith("up.star") || def.id.StartsWith("up.merge");
+            if (!choreography && now < (danger ? nextDanger : ui ? nextInterface : nextCosmetic)) { if (!danger) DroppedCosmeticCues++; return true; }
+            string group = null;
+            if (!danger && !ui)
+            {
+                group = GroupOf(def.id);
+                if (nextByGroup.TryGetValue(group, out float groupUntil) && now < groupUntil) { DroppedCosmeticCues++; return true; }
+            }
             int occupied = 0;
             int sameCue = 0;
             for (int index = 0; index < voices.Length; index++)
@@ -175,6 +282,7 @@ namespace ArcaneBrigade
             if (danger) dangerVoice = (dangerVoice + 1) % 2;
             else if (ui) interfaceVoice = (interfaceVoice + 1) % 2;
             nextById[def.id] = now + def.cooldown * (reduced && !danger ? 2f : 1f);
+            if (group != null) nextByGroup[group] = now + GroupInterval(group, reduced);
             if (danger) nextDanger = now + 0.06f;
             else if (ui) nextInterface = now + 0.04f;
             else nextCosmetic = now + CosmeticInterval(reduced);
@@ -182,7 +290,7 @@ namespace ArcaneBrigade
             voice.Stop();
             voice.clip = clip;
             voiceId[voiceIndex] = def.id;
-            voiceGain[voiceIndex] = def.gain * BusTrim(def.busId);
+            voiceGain[voiceIndex] = def.gain * BusTrim(def.busId) * gainScale;
             voice.volume = PlaybackGain(voiceIndex);
             voice.priority = Mathf.Clamp(def.priority, 0, 255);
             voice.pitch = 1f + (def.pitchJitter > 0f ? UnityEngine.Random.Range(-def.pitchJitter, def.pitchJitter) : 0f);
@@ -190,6 +298,28 @@ namespace ArcaneBrigade
             PlayedCues++;
             if (danger) PresentationSettings.Danger();
             return true;
+        }
+
+        // Cue family = id without its last segment ("cmb.swing.blade" -> "cmb.swing"). A family never starts faster than its interval,
+        // so six swing variants or six hit materials cannot stack into a wall of identical transients.
+        private static string GroupOf(string id)
+        {
+            int dot = id.LastIndexOf('.');
+            return dot > 0 ? id.Substring(0, dot) : id;
+        }
+
+        private static float GroupInterval(string group, bool reduced)
+        {
+            float interval;
+            switch (group)
+            {
+                case "cmb.swing": case "cmb.hit": interval = 0.045f; break;
+                case "enemy.die": interval = 0.07f; break;
+                case "loot.coin": interval = 0.03f; break;
+                case "wpn.cast": case "sig": case "wpn": interval = 0.06f; break;
+                default: interval = 0.03f; break;
+            }
+            return interval * (reduced ? 2f : 1f);
         }
 
         // Software bus trims (no AudioMixer asset): relative level of each bus before master/SFX volume.
@@ -226,9 +356,20 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (interfaceOwners.Count == 0 || interfaceOwners[interfaceOwners.Count - 1] != this) { StopVoices(); return; }
+            if (!SimulationPaused && Time.timeScale > 0 && focused && !backgrounded && !AudioListener.pause) scheduleClock += Time.unscaledDeltaTime;
+            if (pending.Count > 0)
+            {
+                for (int index = pending.Count - 1; index >= 0; index--)
+                {
+                    if ((pending[index].Interface ? Time.unscaledTime : scheduleClock) < pending[index].At) continue;
+                    string id = pending[index].Id;
+                    pending.RemoveAt(index);
+                    PlayLibrary(ArcaneCueLibrary.Get(id));
+                }
+            }
             for (int index = 0; index < voices.Length; index++)
             {
-                if (Time.timeScale <= 0 && (index < 2 || index >= 4)) voices[index].Stop();
+                if ((Time.timeScale <= 0 || SimulationPaused) && (index < 2 || index >= 4)) voices[index].Stop();
                 if (PresentationSettings.ReducedAudio && index >= 6 && voices[index].isPlaying) voices[index].Stop();
                 voices[index].volume = PlaybackGain(index);
             }
@@ -239,7 +380,7 @@ namespace ArcaneBrigade
         private void OnApplicationFocus(bool focus) { focused = focus; if (!focus) StopVoices(); }
         private void OnApplicationPause(bool pause) { backgrounded = pause; if (pause) StopVoices(); }
         private void StopVoices() { foreach (AudioSource voice in voices) if (voice != null) voice.Stop(); }
-        private void OnDisable() { interfaceOwners.Remove(this); StopVoices(); }
+        private void OnDisable() { interfaceOwners.Remove(this); pending.Clear(); StopVoices(); }
 
         private void OnDestroy()
         {

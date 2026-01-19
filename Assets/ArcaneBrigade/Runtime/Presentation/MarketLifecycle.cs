@@ -20,6 +20,7 @@ namespace ArcaneBrigade
         public void Configure(ArenaController controller, bool special, bool entrance)
         {
             owner = controller; dream = special; started = owner.PresentationClock - (entrance ? 0 : 2);
+            if (entrance) CheckpointAudio.PlayInterfaceId("shop.carpet.open");
             rug = transform.Find("PaintedMarketRug");
             if (rug != null) { carpet = rug.gameObject.AddComponent<MarketCarpetRoll>(); carpet.Configure(rug.GetComponent<SpriteRenderer>()); }
             fixtures = GetComponentsInChildren<ShopDisplayActor>(); fixtureOrigins = new Vector3[fixtures.Length];
@@ -35,7 +36,15 @@ namespace ArcaneBrigade
                 renderer.sortingOrder = 450; renderer.color = new Color(0.66f, 0.42f, 0.92f, 0.1f); wisps[index] = renderer;
             }
         }
-        public void Depart() { if (departing) return; departing = true; started = owner.PresentationClock; }
+        public void Depart()
+        {
+            if (departing) return;
+            departing = true; started = owner.PresentationClock;
+            CheckpointAudio.CancelScheduledPrefix("shop.");
+            CheckpointAudio.CancelScheduledPrefix("up.rarity.");
+            CheckpointAudio.PlayInterfaceId("shop.carpet.roll", MarketMotion.CarpetDepartureDelay);
+            CheckpointAudio.PlayInterfaceId(dream ? "shop.keeper.exit.dream" : "shop.keeper.exit.gold", MarketMotion.MerchantDepartureDelay);
+        }
         public void Reenter() { departing = false; started = owner.PresentationClock; transform.localScale = Vector3.one; transform.localPosition = Vector3.zero; }
         private void Update()
         {

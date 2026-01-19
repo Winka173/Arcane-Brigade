@@ -78,6 +78,33 @@ namespace ArcaneBrigade.Editor
             ArcadeMusic.StemTargets(ArcaneCueLibrary.SceneCombatMid, 1f, levels);
             Require(calmIntensity < 0.01f && levels[3] > 0.99f && levels[0] == 1f, "intensity layer follows enemy density");
 
+            // Event contract (Docs/Audio/Audio_Integration_Contract.md): facts about CombatEvent that EventId relies on.
+            Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Windup, Vector2.zero, Faction.Enemy)) == "boss.telegraph", "bare enemy Windup (boss pattern) is the boss telegraph");
+            Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Fire, Vector2.zero, Faction.Enemy)) == "boss.attack", "bare enemy Fire (boss pattern) is the boss attack");
+            Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Proc, Vector2.zero, Faction.Champion)) == "up.chain", "item proc maps to up.chain");
+            Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Champion, 4f)) == "plr.hurt", "hit on the champion is plr.hurt");
+            foreach (string[] pair in new[] { new[] { "ember-status", "fx.burn" }, new[] { "element-reaction", "fx.reaction.steam" }, new[] { "arcane-chain", "fx.reaction.arcane" }, new[] { "expanded-fuse", "sig.alarm.boom" }, new[] { "zipper-link", "fx.field.zipper" }, new[] { "expanded-officehazard", "fx.hazard.hit" } })
+                Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 5f, cause: new CombatCause(1, 0, pair[0]))) == pair[1], "secondary hit cause " + pair[0] + " -> " + pair[1]);
+            ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 5f, cause: new CombatCause(1, 0, "projectile-split")), out float splitScale);
+            Require(splitScale < 1f, "split fragments hit quieter than the primary impact");
+            foreach (string id in new[] { "up.merge.gather", "sig.alarm.boom", "fx.field.zipper", "fx.hazard.warn", "fx.hazard.hit", "enemy.mimic.wake", "hero.pulse.ember", "hero.pulse.frost", "ui.locked", "ui.error", "shop.reroll" })
+                Require(ArcaneCueLibrary.Get(id) != null, "contract cue exists: " + id);
+            Require(ArcaneCueLibrary.LegacyId(21) == "shop.reroll", "legacy reroll cue 21 maps to the library");
+            foreach (var pair in new[]
+            {
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.ProjectileReturn, "wpn.boomerang.return"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.ProjectilePierce, "wpn.pierce"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.ProjectileSplit, "wpn.split"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.ProjectileBounce, "wpn.bounce"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.Knockback, "fx.knockback"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.BossPhase, "boss.phase"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.ContactWindup, "enemy.lunge"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.LootAttract, "loot.coin.vacuum"),
+                new KeyValuePair<CombatEventKind, string>(CombatEventKind.MimicWake, "enemy.mimic.wake")
+            }) Require(ArcaneCueLibrary.EventId(new CombatEvent(pair.Key, Vector2.zero, Faction.Champion)) == pair.Value, "new event mapping " + pair.Key);
+            Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.LootDrop, Vector2.zero, Faction.Champion, loot: LootKind.Chest)) == "loot.chest.appear", "chest spawn mapping");
+            Require(ArcaneCueLibrary.EventId(new CombatEvent(CombatEventKind.StatusApplied, Vector2.zero, Faction.Enemy, element: DamageElement.Frost)) == "fx.chill", "new chill application mapping");
+
             string text = string.Join("\n", notes);
             File.WriteAllText("Library/ArcaneAudioChecks.txt", text);
             Debug.Log("ARCANE_AUDIO_CHECKS_PASSED " + notes.Count + " assertions");

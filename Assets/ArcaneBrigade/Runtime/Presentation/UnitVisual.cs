@@ -31,7 +31,11 @@ namespace ArcaneBrigade
         private float lastDisplayTime;
         private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
         private SpriteRenderer tierCrest;
-        public void BeginArrival(Vector2 origin) { arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount; }
+        public void BeginArrival(Vector2 origin)
+        {
+            arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount;
+            CheckpointAudio.PlayWorldId("up.ally.land", origin);
+        }
         public bool ReducedMotion { get; set; }
         public UnitState State => state;
         public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;
@@ -208,7 +212,10 @@ namespace ArcaneBrigade
             if (!ReducedMotion && entrance > 0)
                 transform.position += Vector3.up * (state.Definition.BossPattern % 2 == 0 ? 6 * entrance * entrance : -state.Definition.BodyHeight * entrance);
             if (entranceMaterial != null) entranceMaterial.SetFloat("_FloorY", !ReducedMotion && entrance > 0 ? state.Position.y - state.Definition.BodyHeight * 0.5f : -10000);
-            if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount) { arrivalAge += motionDelta; arrivalFrame = Time.frameCount; }
+            if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount)
+            {
+                arrivalAge += motionDelta; arrivalFrame = Time.frameCount;
+            }
             float arrival = arrivalAge / 0.9f;
             if (arrival >= 0 && arrival < 1)
             {

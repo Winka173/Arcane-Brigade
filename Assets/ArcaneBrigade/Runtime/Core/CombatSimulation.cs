@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
     public enum CompanionTravelMode { Patrol, Pursuit }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake }
 
     public readonly struct CombatEvent
     {
@@ -643,6 +643,7 @@ namespace ArcaneBrigade
             if (enemy.ContactImpactAt == 0)
             {
                 enemy.ContactImpactAt = Elapsed + 0.22f;
+                events.Add(new CombatEvent(CombatEventKind.ContactWindup, enemy.Position, enemy.Faction, subject: enemy));
                 if (enemy.Definition.Weapon.Kind == WeaponKind.Contact)
                 {
                     enemy.AttackStarted = Elapsed; enemy.AttackWindup = 0.22f;
@@ -719,6 +720,7 @@ namespace ArcaneBrigade
             {
                 target.Position = ClampPosition(target.Position + direction.normalized * Mathf.Clamp(weapon.PushDistance, 0, 0.8f) * (1 - Mathf.Clamp01(target.Definition.KnockbackResistance)), target.Definition.Radius);
                 spatial.Move(target);
+                if (weapon.PushDistance >= 0.5f) events.Add(new CombatEvent(CombatEventKind.Knockback, target.Position, source, direction: direction, weapon: weapon, cause: cause));
             }
             events.Add(new CombatEvent(CombatEventKind.Hit, target.Position, target.Faction, damage, direction, weapon, critical, element, target.Id, target, cause));
             NotifyArenaToyHit(events[events.Count - 1]);
@@ -754,7 +756,12 @@ namespace ArcaneBrigade
                 ApplyDamage(target, damage * 0.5f, source, cause: cause.Child("element-reaction"));
             }
             else if (element == DamageElement.Ember) { target.BurnUntil = Elapsed + 2f; target.BurnCause = cause.Child("ember-status"); }
-            else if (element == DamageElement.Frost) target.ChillUntil = Elapsed + (target.Definition.IsBoss ? 0.6f : 1.5f);
+            else if (element == DamageElement.Frost)
+            {
+                bool newlyChilled = target.ChillUntil <= Elapsed;
+                target.ChillUntil = Elapsed + (target.Definition.IsBoss ? 0.6f : 1.5f);
+                if (newlyChilled) events.Add(new CombatEvent(CombatEventKind.StatusApplied, target.Position, target.Faction, element: element, cause: cause));
+            }
             else if (element == DamageElement.Arcane)
             {
                 foreach (UnitState enemy in units)
@@ -783,7 +790,11 @@ namespace ArcaneBrigade
                     pickups.RemoveAt(index);
                     continue;
                 }
-                if (difference.sqrMagnitude <= catalog.PickupRadius * catalog.PickupRadius) pickup.Attracting = true;
+                if (!pickup.Attracting && difference.sqrMagnitude <= catalog.PickupRadius * catalog.PickupRadius)
+                {
+                    pickup.Attracting = true;
+                    if (pickup.Kind == LootKind.Coin) events.Add(new CombatEvent(CombatEventKind.LootAttract, pickup.Position, Faction.Champion, subjectId: pickup.Id, loot: pickup.Kind));
+                }
                 if (!pickup.Attracting) continue;
                 pickup.Position = Vector2.MoveTowards(pickup.Position, Champion.Position, (7f + age * 2f) * deltaTime);
                 if ((pickup.Position - Champion.Position).sqrMagnitude > 0.045f) continue;
@@ -809,6 +820,7 @@ namespace ArcaneBrigade
             float angle = identifier * 2.399963f;
             Vector2 origin = ClampPosition(position, 0.3f);
             pickups.Add(new PickupState { Id = identifier, Kind = kind, Position = origin, PreviousPosition = origin, SpawnTime = Elapsed, Velocity = kind == LootKind.Chest ? Vector2.zero : new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 2.4f, Value = value });
+            events.Add(new CombatEvent(CombatEventKind.LootDrop, origin, Faction.Champion, subjectId: identifier, loot: kind));
         }
 
         private void SpawnTreasure()

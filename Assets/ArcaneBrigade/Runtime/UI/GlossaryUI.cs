@@ -15,9 +15,14 @@ namespace ArcaneBrigade
         private static float openedAt;
         private static readonly Dictionary<GUIStyle, GUIStyle> wordStyles = new Dictionary<GUIStyle, GUIStyle>();
         public static bool Open => selected != null;
-        public static void Close() { selected = null; }
+        public static void Close() { if (selected != null) CheckpointAudio.PlayInterfaceId("ui.close"); selected = null; }
         public static Entry Find(string term) => entries.TryGetValue(term.Trim().TrimEnd('.', ',', ':', ';', '!', '?', ')'), out Entry entry) ? entry : null;
-        public static bool Show(string term) { selected = Find(term); openedAt = Time.unscaledTime; return selected != null; }
+        public static bool Show(string term)
+        {
+            var next = Find(term);
+            if (next != null && next != selected) CheckpointAudio.PlayInterfaceId("ui.tooltip");
+            selected = next; openedAt = Time.unscaledTime; return selected != null;
+        }
         public static void BlockUnderlying(Vector2 viewport)
         {
             if (selected == null) return;

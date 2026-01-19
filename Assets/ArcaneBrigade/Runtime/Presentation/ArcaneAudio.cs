@@ -184,26 +184,45 @@ namespace ArcaneBrigade
 
         /// <summary>
         /// Gameplay event -> stable cue id. Returns null when the event has no sound (or the cue is missing), in which
-        /// case the caller falls back to the legacy cue table. Event contract: only reads fields of CombatEvent.
+        /// case the caller falls back to the legacy cue table. Full contract: Docs/Audio/Audio_Integration_Contract.md.
+        /// Facts this relies on (verified against CombatSimulation): Fire/Windup carry the ATTACKER's faction, Hit/Kill carry the
+        /// TARGET's faction; boss pattern events have no Weapon and no Subject; Hit.Cause.ItemId names secondary damage
+        /// ("ember-status", "element-reaction", "arcane-chain", "projectile-split", "expanded-fuse", ...); Cause.RootId is shared by one attack.
         /// </summary>
-        public static string EventId(CombatEvent value)
+        public static string EventId(CombatEvent value) => EventId(value, out _);
+
+        public static string EventId(CombatEvent value, out float gainScale)
         {
+            gainScale = 1f;
             bool boss = value.Subject != null && value.Subject.Definition != null && value.Subject.Definition.IsBoss;
             bool enemy = value.Faction == Faction.Enemy;
+            bool bossPattern = enemy && value.Weapon == null && value.Subject == null;   // ProcessBoss emits bare Windup/Fire
+            string cause = value.Cause.ItemId ?? "";
             string id = null;
             switch (value.Kind)
             {
                 case CombatEventKind.Windup:
-                    if (boss) id = "boss.telegraph";
-                    else if (enemy && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile) id = "enemy.spit.windup";
-                    else if (enemy) id = "cmb.windup";
+                    if (boss || bossPattern) id = "boss.telegraph";
+                    else if (enemy && value.Weapon != null) id = value.Weapon.Kind == WeaponKind.Projectile ? "enemy.spit.windup" : "cmb.windup";
+                    else if (value.Weapon != null && value.Weapon.Motion == WeaponMotion.Bow) id = "wpn.bow.draw";
+                    else if (value.Faction == Faction.Champion || value.Weapon != null && (value.Weapon.Motion == WeaponMotion.Slam || value.Weapon.Motion == WeaponMotion.Hammer)) id = "cmb.windup";
                     break;
                 case CombatEventKind.Fire:
-                    id = FireId(value, boss, enemy);
+                    if (boss || bossPattern) id = "boss.attack";
+                    else id = FireId(value, enemy);
+                    if (value.Faction == Faction.Companion) gainScale = 0.7f;   // crowd: allies sit under the hero
                     break;
                 case CombatEventKind.Hit:
-                    if (value.Faction == Faction.Champion) id = "plr.hurt";
-                    else if (value.Critical) id = "cmb.crit";
+                    if (value.Faction == Faction.Champion) { id = "plr.hurt"; break; }
+                    if (cause == "ember-status") { id = "fx.burn"; break; }
+                    if (cause == "element-reaction") { id = "fx.reaction.steam"; break; }
+                    if (cause == "arcane-chain") { id = "fx.reaction.arcane"; break; }
+                    if (cause == "expanded-fuse") { id = "sig.alarm.boom"; break; }
+                    if (cause == "zipper-link" || cause == "expanded-link") { id = "fx.field.zipper"; break; }
+                    if (cause == "expanded-officehazard" || cause == "expanded-toyhazard" || cause == "expanded-curtain") { id = "fx.hazard.hit"; break; }
+                    if (cause == "projectile-split") gainScale = 0.55f;
+                    else if (cause == "projectile-ricochet" || cause == "projectile-bounce") gainScale = 0.8f;
+                    if (value.Critical) id = "cmb.crit";
                     else if (value.Subject != null && value.Subject.Definition != null) id = "cmb.hit." + MaterialNames[(int)value.Subject.Definition.Material];
                     else id = "cmb.hit.wood";
                     break;
@@ -211,7 +230,7 @@ namespace ArcaneBrigade
                     if (value.Faction == Faction.Champion) id = "plr.death";
                     else if (boss) id = "boss.defeat";
                     else if (value.Subject != null && value.Subject.Definition != null)
-                        id = value.Subject.Definition.BodyScale >= 1.8f ? "enemy.die.large" : "enemy.die." + MaterialNames[(int)value.Subject.Definition.Material];
+                        id = IsLargeEnemy(value.Subject.Definition) ? "enemy.die.large" : "enemy.die." + MaterialNames[(int)value.Subject.Definition.Material];
                     else id = "enemy.die.wood";
                     break;
                 case CombatEventKind.Pickup:
@@ -222,26 +241,43 @@ namespace ArcaneBrigade
                 case CombatEventKind.Dodge: id = "plr.dodge"; break;
                 case CombatEventKind.SignaturePulse:
                 case CombatEventKind.SignatureBurst:
-                    if (value.Weapon != null)
+                    if (value.Weapon == null && value.Subject != null && value.Faction == Faction.Champion)   // K11 hero mechanic pulse
+                        id = value.Element == DamageElement.Ember ? "hero.pulse.ember" : value.Element == DamageElement.Frost ? "hero.pulse.frost" : null;
+                    else if (value.Weapon != null)
                         id = value.Weapon.Signature == SignatureWeapon.Bell ? "sig.bell" : value.Weapon.Signature == SignatureWeapon.Stamp ? "sig.stamp" : value.Weapon.Signature == SignatureWeapon.Umbrella ? "sig.umbrella" : null;
                     break;
                 case CombatEventKind.Proc:
-                    id = value.Element == DamageElement.Ember ? "fx.burn" : value.Element == DamageElement.Frost ? "fx.chill" : value.Element == DamageElement.Arcane ? "fx.reaction.arcane" : null;
+                    id = "up.chain";
+                    break;
+                case CombatEventKind.ProjectileReturn: id = "wpn.boomerang.return"; break;
+                case CombatEventKind.ProjectilePierce: id = "wpn.pierce"; break;
+                case CombatEventKind.ProjectileSplit: id = "wpn.split"; break;
+                case CombatEventKind.ProjectileBounce: id = "wpn.bounce"; break;
+                case CombatEventKind.Knockback: id = "fx.knockback"; break;
+                case CombatEventKind.BossPhase: id = "boss.phase"; break;
+                case CombatEventKind.ContactWindup: id = "enemy.lunge"; break;
+                case CombatEventKind.StatusApplied: id = value.Element == DamageElement.Frost ? "fx.chill" : "fx.burn"; break;
+                case CombatEventKind.LootAttract: id = "loot.coin.vacuum"; break;
+                case CombatEventKind.MimicWake: id = "enemy.mimic.wake"; break;
+                case CombatEventKind.LootDrop:
+                    id = value.Loot == LootKind.Coin ? "loot.coin.drop" : value.Loot == LootKind.Chest ? "loot.chest.appear" : null;
                     break;
             }
             return id != null && Get(id) != null ? id : null;
         }
 
-        private static string FireId(CombatEvent value, bool boss, bool enemy)
+        /// <summary>Large non-boss enemies (WardrobeCrab 0.55, FurnaceToad 0.48 radius). BodyScale is a player stat, not an enemy size.</summary>
+        public static bool IsLargeEnemy(UnitDefinition definition) => definition != null && !definition.IsBoss && definition.Radius >= 0.45f;
+
+        private static string FireId(CombatEvent value, bool enemy)
         {
             WeaponDefinition weapon = value.Weapon;
             if (weapon == null) return null;
-            if (boss) return "boss.attack";
             if (enemy) return weapon.Kind == WeaponKind.Projectile ? "enemy.spit.fire" : "enemy.lunge";
+            if (weapon.Family == ExpandedWeapon.Fish) return "wpn.boomerang.fly";   // TinFish, CrescentBoomerang, ClockCrescent all return to the owner
             switch (weapon.Family)
             {
                 case ExpandedWeapon.Tea: return "sig.tea";
-                case ExpandedWeapon.Fish: return "sig.fish";
                 case ExpandedWeapon.Alarm: return "sig.alarm";
                 case ExpandedWeapon.TetherBow: return "wpn.bow.release";
             }
@@ -250,7 +286,7 @@ namespace ArcaneBrigade
                 case WeaponMotion.Slash: return "cmb.swing.blade";
                 case WeaponMotion.Thrust: return "cmb.swing.spear";
                 case WeaponMotion.Slam: return "cmb.swing.hammer";
-                case WeaponMotion.Recoil: return weapon.ProjectileSpeed < 6f ? "wpn.launcher" : "wpn.gun.pop";
+                case WeaponMotion.Recoil: return weapon.ProjectileCount >= 3 || weapon.ProjectileRadius >= 0.08f ? "wpn.launcher" : "wpn.gun.pop";
                 case WeaponMotion.Bell: return "sig.bell";
                 case WeaponMotion.Bow: return "wpn.bow.release";
                 case WeaponMotion.Cast: return weapon.Element == DamageElement.Ember ? "wpn.cast.fire" : weapon.Element == DamageElement.Frost ? "wpn.cast.ice" : "wpn.cast.arcane";
@@ -290,6 +326,7 @@ namespace ArcaneBrigade
                 case 18: return "sig.musicbox";
                 case 19: return "ui.select";
                 case 20: return "shop.buy.gold";
+                case 21: return "shop.reroll";
                 case 22: return "shop.invalid";
                 case 23: return "up.merge";
                 case 24: return "boss.telegraph";

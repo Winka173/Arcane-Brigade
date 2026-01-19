@@ -1,5 +1,17 @@
 # Audio QA checklist và trạng thái bàn giao
 
+## Cập nhật tích hợp offline — 2026-10-14
+
+- Đã import bộ handoff: 153 cue / 471 clip; 15 bản nhạc / 60 stem.
+- Hợp đồng sinh lại từ source: 141 cue có hook, 0 pending, 12 reserved có lý do.
+- Unity compile/build và kiểm tra nguồn/import đã chạy tại máy Windows;
+  xem `PreviewExports/AudioHandoff` cho kết quả thực tế.
+- Playback tự động kiểm clip mới, simulation pause không dùng timeScale,
+  delayed UI/world, hủy lịch cũ, bốn stem select đồng bộ và crossfade dream shop.
+- Người dùng đã duyệt preview nhạc trước đó. Agent chưa nghe các phối hợp mới
+  trong game; không có video có tiếng, chưa nghiệm thu cảm giác/mix mới.
+- Các mục bên dưới là bản checklist bàn giao lịch sử, không phải số liệu mới.
+
 Quy ước: ✅ đã làm và kiểm bằng máy · 🟡 đã viết/tích hợp nhưng **chưa chạy Unity** · ⬜ **chưa nghe/chưa test** (cần người).
 
 Môi trường tạo ra bản này: Linux headless, không Unity, không loa, không quay được video gameplay. **Không có video in-game có tiếng trong bản bàn giao này.** Thay vào đó có preview offline ở `PreviewExports/Audio/` (mix từng bản nhạc + sfx_reel có mốc thời gian).

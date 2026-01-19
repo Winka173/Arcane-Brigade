@@ -304,6 +304,57 @@ namespace ArcaneBrigade.Editor
             PresentationSettings.Apply(settings);
             yield return 0.8f;
             Require(tracks.All(track => track.volume == 0) && voices.All(voice => voice.volume == 0), "Music and SFX bus mute applies to existing sources");
+            ArcaneCueLibrary.Enabled = true;
+            MethodInfo duplicateHit = typeof(CheckpointAudio).GetMethod("IsDuplicateHit", BindingFlags.NonPublic | BindingFlags.Instance);
+            var firstRoot = new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, cause: new CombatCause(501, 1));
+            var otherRoot = new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, cause: new CombatCause(502, 2));
+            Require(!(bool)duplicateHit.Invoke(firstAudio, new object[] { firstRoot }) && !(bool)duplicateHit.Invoke(firstAudio, new object[] { otherRoot }) && (bool)duplicateHit.Invoke(firstAudio, new object[] { firstRoot }), "Interleaved attack roots cannot bypass hit deduplication");
+            settings.SfxVolume = 1;
+            settings.ReducedAudio = false;
+            PresentationSettings.Apply(settings);
+            firstMusic.SetPhase(SessionPhase.Shop, false, false);
+            foreach (string id in new[] { "wpn.boomerang.return", "wpn.pierce", "wpn.split", "wpn.bounce", "fx.knockback", "loot.coin.drop", "shop.buy.dream", "up.star2", "up.star3" })
+            {
+                yield return 0.25f;
+                before = firstAudio.PlayedCues;
+                firstAudio.PlayId(id);
+                Require(firstAudio.PlayedCues == before + 1, "New library admits cue " + id);
+                Require(voices.Any(voice => voice.isPlaying && voice.clip != null && voice.clip.name.StartsWith(id.Replace('.', '_'))), "New library uses authored clip " + id);
+            }
+            yield return 0.3f;
+            firstMusic.SetPhase(SessionPhase.Shop, true, false);
+            before = firstAudio.PlayedCues;
+            firstAudio.PlayId("plr.hurt");
+            Require(firstAudio.PlayedCues == before, "Simulation pause rejects new danger cue without timeScale pause");
+            CheckpointAudio.PlayInterfaceId("ui.close", 0.1f);
+            yield return 0.2f;
+            Require(firstAudio.PlayedCues == before + 1, "Delayed UI remains available during simulation pause");
+            CheckpointAudio.PlayInterfaceId("up.star2", 0.1f);
+            before = firstAudio.PlayedCues;
+            yield return 0.2f;
+            Require(firstAudio.PlayedCues == before, "Delayed world choreography freezes during simulation pause");
+            firstMusic.SetPhase(SessionPhase.Shop, false, false);
+            yield return 0.25f;
+            Require(firstAudio.PlayedCues == before + 1, "Delayed choreography resumes after simulation pause");
+            yield return 0.3f;
+            CheckpointAudio.PlayInterfaceId("up.star3", 0.1f);
+            CheckpointAudio.CancelScheduledPrefix("up.star");
+            before = firstAudio.PlayedCues;
+            yield return 0.2f;
+            Require(firstAudio.PlayedCues == before, "Cancelled choreography does not leak into the next market");
+            second = new GameObject("AudioHandoff-AdaptiveMusic");
+            ArcadeMusic adaptive = second.AddComponent<ArcadeMusic>();
+            adaptive.ForceScene(ArcaneCueLibrary.SceneSelect);
+            yield return 0.9f;
+            AudioSource[] adaptiveSources = second.GetComponents<AudioSource>();
+            AudioSource[] selectStems = adaptiveSources.Where(voice => voice.isPlaying && voice.clip != null && voice.clip.name.StartsWith("select_dressing_")).ToArray();
+            Require(adaptive.CurrentScene == ArcaneCueLibrary.SceneSelect && selectStems.Length == 4, "Adaptive select scene plays all four authored stems");
+            Require(selectStems.Max(voice => voice.timeSamples) - selectStems.Min(voice => voice.timeSamples) <= 4096, "Scheduled select stems have aligned playheads");
+            adaptive.SetContext(5, 20, false, true, null);
+            adaptive.SetPhase(SessionPhase.Shop, false, false);
+            adaptive.ForceScene(null);
+            yield return 5f;
+            Require(adaptive.CurrentScene == ArcaneCueLibrary.SceneShopDream && adaptiveSources.Count(voice => voice.isPlaying && voice.clip != null && voice.clip.name.StartsWith("shop_dream_")) == 4, "Adaptive music crossfades to the dream shop stems");
         }
     }
 }

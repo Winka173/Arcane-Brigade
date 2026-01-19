@@ -1185,6 +1185,144 @@
    ]
   },
   {
+   "id": "sig.alarm.boom",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -12,
+   "cooldown": 0.15,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_alarm_boom_00",
+    "Sfx/sig_alarm_boom_01",
+    "Sfx/sig_alarm_boom_02"
+   ]
+  },
+  {
+   "id": "fx.field.zipper",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -20,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_field_zipper_00",
+    "Sfx/fx_field_zipper_01",
+    "Sfx/fx_field_zipper_02"
+   ]
+  },
+  {
+   "id": "fx.hazard.warn",
+   "bus": "Combat",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.4,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/fx_hazard_warn_00",
+    "Sfx/fx_hazard_warn_01"
+   ]
+  },
+  {
+   "id": "fx.hazard.hit",
+   "bus": "Combat",
+   "priority": 60,
+   "gainDb": -12,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_hazard_hit_00",
+    "Sfx/fx_hazard_hit_01",
+    "Sfx/fx_hazard_hit_02"
+   ]
+  },
+  {
+   "id": "enemy.mimic.wake",
+   "bus": "Combat",
+   "priority": 60,
+   "gainDb": -13,
+   "cooldown": 0.4,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_mimic_wake_00",
+    "Sfx/enemy_mimic_wake_01"
+   ]
+  },
+  {
+   "id": "hero.pulse.ember",
+   "bus": "Combat",
+   "priority": 90,
+   "gainDb": -12,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/hero_pulse_ember_00",
+    "Sfx/hero_pulse_ember_01"
+   ]
+  },
+  {
+   "id": "hero.pulse.frost",
+   "bus": "Combat",
+   "priority": 90,
+   "gainDb": -12,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/hero_pulse_frost_00",
+    "Sfx/hero_pulse_frost_01"
+   ]
+  },
+  {
+   "id": "ui.locked",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_locked_00",
+    "Sfx/ui_locked_01"
+   ]
+  },
+  {
+   "id": "ui.error",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_error_00",
+    "Sfx/ui_error_01"
+   ]
+  },
+  {
    "id": "loot.coin.drop",
    "bus": "Foley",
    "priority": 190,
@@ -1322,7 +1460,7 @@
    "id": "up.merge",
    "bus": "Foley",
    "priority": 80,
-   "gainDb": -12,
+   "gainDb": -13,
    "cooldown": 0.4,
    "maxVoices": 1,
    "pitchJitter": 0.0,
@@ -1332,6 +1470,22 @@
     "Sfx/up_merge_00",
     "Sfx/up_merge_01",
     "Sfx/up_merge_02"
+   ]
+  },
+  {
+   "id": "up.merge.gather",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -16,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_merge_gather_00",
+    "Sfx/up_merge_gather_01",
+    "Sfx/up_merge_gather_02"
    ]
   },
   {
