@@ -267,8 +267,9 @@ namespace ArcaneBrigade
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
-            Vector2 ground = new Vector2(state.Position.x, state.Position.y - height * 0.5f);
-            grounded.Display(body.sprite, ground, height * 0.72f, entrance > 0 ? entrance * 6 : arrivalAge < 0.4f ? 0.4f : 0);
+            float lift = entrance > 0 ? entrance * 6 : arrivalAge < 0.405f ? Mathf.Sin(Mathf.Clamp01(arrivalAge / 0.405f) * Mathf.PI) * 0.85f : 0;
+            Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f - (entrance > 0 ? transform.position.y - state.Position.y : lift));
+            grounded.Display(body.sprite, ground, height * 0.85f, lift, state.Definition.IsBoss ? 0.42f : 0.36f);
             if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
             if (weapon.enabled && grip.gameObject.activeSelf) groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
             else groundedWeapon.Hide();

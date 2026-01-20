@@ -16,7 +16,7 @@ namespace ArcaneBrigade
                     for (int horizontal = 0; horizontal < 96; horizontal++)
                     {
                         float distance = Vector2.Distance(new Vector2(horizontal, vertical), new Vector2(47.5f, 47.5f)) / 47.5f;
-                        pixels[vertical * 96 + horizontal] = new Color(1, 1, 1, Mathf.Pow(Mathf.Clamp01(1 - distance), 1.5f));
+                        pixels[vertical * 96 + horizontal] = new Color(1, 1, 1, 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.18f, 1, distance)));
                     }
                 texture.SetPixels(pixels); texture.Apply(false, true);
                 sprite = Sprite.Create(texture, new Rect(0, 0, 96, 96), new Vector2(0.5f, 0.5f), 96);

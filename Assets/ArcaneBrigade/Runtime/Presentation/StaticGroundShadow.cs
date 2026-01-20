@@ -13,9 +13,9 @@ namespace ArcaneBrigade
         }
         private void LateUpdate()
         {
-            if (view == null || view.sprite == null) return;
+            if (view == null || view.sprite == null || !view.enabled) { if (grounded != null) grounded.Hide(); return; }
             Bounds bounds = view.bounds;
-            grounded.Display(view.sprite, new Vector2(bounds.center.x, bounds.min.y + 0.05f), bounds.size.x * 0.8f, 0, 0.3f);
+            grounded.Display(view.sprite, new Vector2(bounds.center.x, bounds.min.y + 0.05f), bounds.size.x * 0.9f, 0, 0.36f * view.color.a);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace ArcaneBrigade
             public Transform Grip;
             public SpriteRenderer Body;
             public SpriteRenderer Shadow;
+            public GroundShadow Grounded;
             public SpriteRenderer Weapon;
             public SpriteRenderer Hand;
             public SpriteRenderer DrawHand;
@@ -58,6 +59,7 @@ namespace ArcaneBrigade
             var grip = new GameObject("FallingGrip").transform;
             grip.SetParent(root, false);
             remnant = new Remnant { Root = root, Grip = grip, Body = Part("Body", root), Shadow = Part("Shadow", root), Weapon = Part("Weapon", grip), Hand = Part("Hand", grip), DrawHand = Part("DrawHand", grip) };
+            remnant.Grounded = root.gameObject.AddComponent<GroundShadow>();
             for (int index = 0; index < remnant.Fragments.Length; index++) remnant.Fragments[index] = Part("PaperChip_" + index, root);
             pool.Add(remnant);
             return remnant;
@@ -131,6 +133,7 @@ namespace ArcaneBrigade
             Color bodyColor = remnant.Body.color; bodyColor.a = alpha; remnant.Body.color = bodyColor;
             remnant.Shadow.transform.localScale = remnant.ShadowScale * (1 - collapse * 0.45f);
             Color shadowColor = remnant.ShadowColor; shadowColor.a *= alpha; remnant.Shadow.color = shadowColor;
+            remnant.Grounded.Display(remnant.Body.sprite, new Vector2(remnant.Root.position.x, remnant.Position.y - remnant.BodyScale.y * remnant.Body.sprite.bounds.size.y * 0.5f), remnant.BodyScale.x * remnant.Body.sprite.bounds.size.x * 0.75f, kick * 0.17f, 0.34f * alpha);
             remnant.Grip.localPosition = remnant.GripPosition + new Vector3(remnant.Direction.x * progress * 0.22f, Mathf.Sin(progress * Mathf.PI) * 0.18f - progress * 0.20f, 0);
             remnant.Grip.localRotation = remnant.GripRotation * Quaternion.Euler(0, 0, progress * 80 * (remnant.Direction.x < 0 ? -1 : 1));
             SetAlpha(remnant.Weapon, alpha); SetAlpha(remnant.Hand, alpha); SetAlpha(remnant.DrawHand, alpha);

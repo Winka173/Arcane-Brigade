@@ -246,7 +246,9 @@ namespace ArcaneBrigade
 
         private void HideRenderers()
         {
-            foreach (Renderer renderer in world.GetComponentsInChildren<Renderer>())
+            renderers.Clear(); world.GetComponentsInChildren<Renderer>(true, renderers);
+            foreach (GroundShadow shadow in world.GetComponentsInChildren<GroundShadow>(true)) shadow.AddRenderers(renderers);
+            foreach (Renderer renderer in renderers)
             {
                 renderer.gameObject.layer = 31;
                 renderer.forceRenderingOff = true;
@@ -292,6 +294,7 @@ namespace ArcaneBrigade
             }
             expandedVisual.ReducedMotion = ReducedMotion; expandedVisual.Display(Simulation);
             renderers.Clear(); world.GetComponentsInChildren<Renderer>(true, renderers);
+            foreach (GroundShadow shadow in world.GetComponentsInChildren<GroundShadow>(true)) shadow.AddRenderers(renderers);
             RenderTexture previousActive = RenderTexture.active;
             try
             {
