@@ -289,6 +289,37 @@ namespace ArcaneBrigade
             GUI.skin = previousSkin;
         }
 
+        // Diegetic main menu: every entry is an object on the shop counter painted in LostShop_v1 (1280x720 design space).
+        private static readonly string[] SpotLabels = { "NEW RUN", "RESUME", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
+        private static readonly string[] SpotHints = { "Step onto the stage", "Back into tonight's show", "The display case", "The receipt printer", "Adjust the lights", "Ring for help" };
+        public static readonly Rect[] SpotAreas =
+        {
+            new Rect(505, 330, 230, 280),  // the champion on the lit counter
+            new Rect(752, 150, 135, 240),  // arched doorway into the night
+            new Rect(1105, 0, 150, 140),   // glass display jar
+            new Rect(1030, 380, 200, 190), // receipt printer
+            new Rect(548, 0, 200, 96),     // moon lamp
+            new Rect(292, 172, 86, 96),    // shop bell
+        };
+        private int hoveredSpot = -1;
+        private GUIStyle smallButton;
+        private GUIStyle spotHint;
+
+        private bool SpotEnabled(int index) => index != 1 || CanResume;
+        private void ActivateSpot(int index)
+        {
+            if (!SpotEnabled(index)) { CheckpointAudio.PlayInterfaceId("ui.locked"); return; }
+            switch (index)
+            {
+                case 0: ShowPage(Page.Roster); break;
+                case 1: ShowPage(Page.Resume); break;
+                case 2: ShowPage(Page.Museum); break;
+                case 3: ShowPage(Page.Records); break;
+                case 4: ShowPage(Page.Settings); break;
+                default: ShowPage(Page.Help); break;
+            }
+        }
+
         private void DrawLanding()
         {
             if (shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
@@ -297,34 +328,71 @@ namespace ArcaneBrigade
             {
                 landingShade = new Texture2D(64, 1, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
                 var pixels = new Color[64];
-                for (int index = 0; index < pixels.Length; index++) pixels[index] = new Color(0.035f, 0.05f, 0.08f, Mathf.Lerp(0.97f, 0, index / 63f));
+                for (int index = 0; index < pixels.Length; index++) pixels[index] = new Color(0.035f, 0.05f, 0.08f, Mathf.Lerp(0.85f, 0, index / 63f));
                 landingShade.SetPixels(pixels); landingShade.Apply(false, true);
             }
-            GUI.DrawTexture(new Rect(0, 0, 864, 720), landingShade);
-            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(72, true));
+            GUI.DrawTexture(new Rect(0, 0, 520, 200), landingShade);
+            ArcadeSkin.Line(new Rect(0, 650, 1280, 70), new Color(0.03f, 0.03f, 0.06f, 0.82f));
+            float kick = BeatPulse.Kick;
+            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(56, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
             if (logoShadow == null) { logoShadow = new GUIStyle(logo); logoShadow.normal.textColor = ArcadeSkin.Accent; }
-            float bob = profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.3f) * 2;
-            GUI.Label(new Rect(81, 61 + bob, 655, 190), "ARCANE\nBRIGADE", logoShadow);
+            GUI.Label(new Rect(45, 25 - kick * 3, 600, 150), "ARCANE\nBRIGADE", logoShadow);
             logo.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(75, 55 + bob, 655, 190), "ARCANE\nBRIGADE", logo);
-            ArcadeSkin.Slant(new Rect(78, 236, 300, 26), ArcadeSkin.Teal);
-            GUI.Label(new Rect(78, 236, 300, 26), "NIGHT CARNIVAL · AUTO-BRAWLER", chip);
+            GUI.Label(new Rect(40, 20 - kick * 3, 600, 150), "ARCANE\nBRIGADE", logo);
+
+            int mouseSpot = -1;
+            for (int index = 0; index < SpotAreas.Length; index++)
+                if (SpotEnabled(index) && SpotAreas[index].Contains(Event.current.mousePosition)) mouseSpot = index;
+            int focus = mouseSpot >= 0 ? mouseSpot : Mathf.Clamp(navigation.Selected, 0, SpotAreas.Length - 1);
+            if (Event.current.type == EventType.Repaint && mouseSpot >= 0 && mouseSpot != hoveredSpot) CheckpointAudio.PlayInterfaceId("ui.hover");
+            if (Event.current.type == EventType.Repaint) hoveredSpot = mouseSpot;
+
+            // idle twinkles walk across the objects on the beat so every object reads as interactive
+            for (int index = 1; index < SpotAreas.Length; index++)
+            {
+                Rect area = SpotAreas[index];
+                float twinkle = ((BeatPulse.Beat + index) % 5 == 0 ? kick : 0) + 0.15f;
+                if (!SpotEnabled(index)) twinkle = 0.05f;
+                ArcadeSkin.Glow(new Rect(area.center.x - 40, area.center.y - 40, 80, 80), new Color(1f, 0.85f, 0.5f, 0.35f * twinkle));
+            }
+            Rect focused = SpotAreas[focus];
+            float glowPad = 30 + kick * 8;
+            ArcadeSkin.Glow(new Rect(focused.x - glowPad, focused.y - glowPad, focused.width + glowPad * 2, focused.height + glowPad * 2), new Color(1f, 0.82f, 0.45f, 0.45f + kick * 0.15f));
+
             UnitDefinition hero = catalog.Champions[selection];
-            Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, false, profile.ReducedMotion)] : hero.Body;
-            float pulse = profile.ReducedMotion ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 2.1f);
-            ArcadeSkin.Glow(new Rect(720, 250, 500, 470), new Color(1f, 0.8f, 0.45f, 0.30f + 0.08f * pulse));
-            ArcadeSkin.Glow(new Rect(800, 560, 340, 90), new Color(0, 0, 0, 0.55f));
-            RunHud.Sprite(new Rect(820, 300 + (profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f) * 5), 300, 320), pose);
-            if (navigation.Button(new Rect(75, 290, 420, 74), "NEW RUN", primary)) ShowPage(Page.Roster);
-            GUI.enabled = CanResume;
-            if (Button(new Rect(75, 378, 400, 52), CanResume ? "RESUME · WAVE " + saved.Wave : "RESUME · NO SAVED RUN")) ShowPage(Page.Resume);
+            Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, focus == 0, profile.ReducedMotion)] : hero.Body;
+            Rect heroRect = new Rect(SpotAreas[0].x, SpotAreas[0].y + (profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f) * 5) - kick * 4, SpotAreas[0].width, SpotAreas[0].height - 20);
+            ArcadeSkin.Glow(new Rect(heroRect.x + 20, heroRect.yMax - 40, heroRect.width - 40, 60), new Color(0, 0, 0, 0.5f));
+            Matrix4x4 unflipped = GUI.matrix;
+            if (focus != 0 && SpotAreas[focus].center.x < heroRect.center.x) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), heroRect.center);
+            RunHud.Sprite(heroRect, pose);
+            GUI.matrix = unflipped;
+
+            if (spotHint == null) { spotHint = ArcadeTypography.Style(14, false); spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; }
+            Vector2 tagSize = new Vector2(Mathf.Max(170, chip.CalcSize(new GUIContent(SpotLabels[focus])).x + 44), 30);
+            bool below = focused.yMax < 300;
+            float tagY = below ? focused.yMax + 6 : focused.y - 58;
+            Rect tag = new Rect(Mathf.Clamp(focused.center.x - tagSize.x * 0.5f, 10, 1270 - tagSize.x), tagY - kick * 3, tagSize.x, tagSize.y);
+            ArcadeSkin.Slant(new Rect(tag.x + 3, tag.y + 4, tag.width, tag.height), new Color(0, 0, 0, 0.5f));
+            ArcadeSkin.Slant(tag, focus == 0 ? ArcadeSkin.Accent : ArcadeSkin.Cream);
+            chip.normal.textColor = focus == 0 ? ArcadeSkin.Cream : ArcadeSkin.Ink;
+            GUI.Label(tag, focus == 1 && CanResume ? "RESUME · WAVE " + saved.Wave : SpotLabels[focus], chip);
+            chip.normal.textColor = ArcadeSkin.Ink;
+            GUI.Label(new Rect(tag.x - 40, tag.yMax + 1, tag.width + 80, 20), SpotHints[focus], spotHint);
+
+            for (int index = 0; index < SpotAreas.Length; index++)
+                if (GUI.Button(SpotAreas[index], GUIContent.none, GUIStyle.none)) ActivateSpot(index);
+
+            // keyboard / controller / readability row mirrors the objects one-to-one
+            if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 15 };
+            for (int index = 0; index < SpotLabels.Length; index++)
+            {
+                GUI.enabled = SpotEnabled(index);
+                string caption = index == 1 && !CanResume ? "NO SAVED RUN" : SpotLabels[index];
+                if (navigation.Button(new Rect(36 + index * 204, 664, 196, 42), caption, index == 0 ? primary : smallButton)) ActivateSpot(index);
+            }
             GUI.enabled = true;
-            if (Button(new Rect(75, 442, 400, 52), "COLLECTION")) ShowPage(Page.Museum);
-            if (Button(new Rect(75, 506, 400, 52), "RECORDS")) ShowPage(Page.Records);
-            if (Button(new Rect(75, 578, 172, 46), "SETTINGS")) ShowPage(Page.Settings);
-            if (Button(new Rect(259, 578, 216, 46), "HOW TO PLAY")) ShowPage(Page.Help);
-            Label(new Rect(75, 660, 560, 28), "Just move. The objects take care of the rest.");
         }
 
         private void DrawRoster()

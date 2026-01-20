@@ -419,6 +419,31 @@ namespace ArcaneBrigade
             child.transform.localScale = Vector3.one * (height / sprite.bounds.size.y);
             ShopDisplayActor actor = child.AddComponent<ShopDisplayActor>(); actor.Configure(renderer, frames, height, owner, phase); return actor;
         }
+        private readonly System.Collections.Generic.Dictionary<int, float> soldAt = new System.Collections.Generic.Dictionary<int, float>();
+        private GUIStyle soldStyle;
+        private void DrawSoldTicket(Camera camera, Station station, float age)
+        {
+            Vector3 screen = camera.WorldToScreenPoint(station.Marker.position + Vector3.down * 0.65f);
+            Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
+            bool reduced = PresentationSettings.ReducedMotion;
+            float fall = reduced ? 0 : Mathf.Max(0, age - 0.45f) * Mathf.Max(0, age - 0.45f) * 900f;
+            float alpha = Mathf.Clamp01((1.1f - age) / 0.35f);
+            Rect ticket = new Rect(point.x - 62, point.y - 20 + fall, 124, 40);
+            Matrix4x4 unrotated = GUI.matrix;
+            GUIUtility.RotateAroundPivot(reduced ? 0 : Mathf.Min(age, 0.6f) * 25f, new Vector2(ticket.x, ticket.y));
+            Color previous = GUI.color; GUI.color = new Color(1, 1, 1, alpha);
+            ArcadeSkin.Ticket(ticket, ArcadeSkin.Cream, ArcadeSkin.Gold);
+            float slam = reduced ? 1 : Mathf.Lerp(1.8f, 1f, Mathf.Clamp01(age / 0.12f));
+            GUIUtility.ScaleAroundPivot(Vector2.one * slam, ticket.center);
+            GUIUtility.RotateAroundPivot(-12, ticket.center);
+            if (soldStyle == null) { soldStyle = ArcadeTypography.Style(26, true); soldStyle.alignment = TextAnchor.MiddleCenter; soldStyle.normal.textColor = ArcadeSkin.Danger; if (ArcadeTypography.Display != null) soldStyle.font = ArcadeTypography.Display; }
+            ArcadeSkin.Line(new Rect(ticket.x + 8, ticket.y + 6, ticket.width - 16, 3), ArcadeSkin.Danger);
+            ArcadeSkin.Line(new Rect(ticket.x + 8, ticket.yMax - 9, ticket.width - 16, 3), ArcadeSkin.Danger);
+            GUI.Label(ticket, "SOLD", soldStyle);
+            GUI.color = previous;
+            GUI.matrix = unrotated;
+        }
+
         public void DrawPriceTags(Camera camera)
         {
             if (scenery == null || !scenery.activeSelf || owner.HallExitPending || Animating || leavingSpecial) return;
@@ -428,37 +453,59 @@ namespace ArcaneBrigade
                 categoryStyle = ArcadeTypography.Style(16, true); categoryStyle.normal.textColor = ArcadeSkin.Ink; categoryStyle.alignment = TextAnchor.MiddleCenter; categoryStyle.wordWrap = false;
                 denialStyle = ArcadeTypography.Style(20, true); denialStyle.alignment = TextAnchor.MiddleCenter; denialStyle.normal.textColor = new Color(1, 0.45f, 0.35f);
             }
+            int order = 0;
             foreach (Station station in stations)
             {
-                if (station.Offer != null && station.Offer.Sold || station.Action == "NEXT HALL" || station.Action == "GOLD SHOP" || station.Action == "DREAM ALTAR") continue;
+                order++;
+                if (station.Action == "NEXT HALL" || station.Action == "GOLD SHOP" || station.Action == "DREAM ALTAR") continue;
+                if (station.Offer != null && station.Offer.Sold)
+                {
+                    if (!soldAt.ContainsKey(station.Offer.Token)) soldAt[station.Offer.Token] = Time.unscaledTime;
+                    float soldAge = Time.unscaledTime - soldAt[station.Offer.Token];
+                    if (soldAge > 1.1f) continue;
+                    DrawSoldTicket(camera, station, soldAge);
+                    continue;
+                }
                 Vector3 screen = camera.WorldToScreenPoint(station.Marker.position + Vector3.down * (station.Action == "REROLL" ? 0.83f : 0.65f));
                 Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
-                float scale = 1 + station.Focus * 0.09f;
+                float scale = 1 + station.Focus * 0.09f + BeatPulse.Kick * 0.035f;
                 string price = station.Price.ToString();
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
                 Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);
                 bool denied = owner.PresentationClock < station.DeniedUntil;
+                // Hanging ticket: a short string from a hook above, gentle sway, a hard shake when the purchase is denied.
+                bool reduced = PresentationSettings.ReducedMotion;
+                Vector2 hook = new Vector2(point.x, ticket.y - (station.Offer != null ? 44 : 18));
+                float sway = reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f + order * 1.3f) * (2.5f + station.Focus * 3f);
+                if (denied && !reduced) sway += Mathf.Sin(Time.unscaledTime * 48f) * 9f * Mathf.Clamp01((station.DeniedUntil - owner.PresentationClock) / 0.5f);
+                Matrix4x4 unrotated = GUI.matrix;
+                GUIUtility.RotateAroundPivot(sway, hook);
+                ArcadeSkin.Line(new Rect(hook.x - 1, hook.y - 10, 2, ticket.y - hook.y + 12), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, 0.85f));
+                ArcadeSkin.Line(new Rect(hook.x - 4, hook.y - 14, 8, 8), ArcadeSkin.Gold);
                 ArcadeSkin.Ticket(ticket, denied ? new Color(1, 0.48f, 0.4f) : ArcadeSkin.Cream, station.Currency == ShopCurrency.Eggs ? ArcadeSkin.Teal : new Color(1, 0.48f, 0.36f));
                 Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? owner.Content.HeartSprite : owner.Content.Arena.Coin;
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 priceStyle.fontSize = 25;
                 while (priceStyle.fontSize > 12 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--;
+                priceStyle.normal.textColor = station.Offer == null || owner.Session.CanBuy(station.Offer) ? ArcadeSkin.Ink : new Color(0.75f, 0.15f, 0.2f);
                 GUI.Label(new Rect(ticket.x + 44, ticket.y + 3, ticket.width - 50, 34), price, priceStyle);
+                priceStyle.normal.textColor = ArcadeSkin.Ink;
                 if (station.Offer != null)
                 {
                     bool merge = ShopMergePreview.Ready(owner.Session, station.Offer);
+                    bool item = station.Offer.Kind == OfferKind.Item;
+                    Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
                     Rect category = new Rect(point.x - (merge ? 60 : 45), ticket.y - 29, merge ? 120 : 90, 26);
-                    Color previous = GUI.color;
-                    GUI.color = station.Offer.Kind == OfferKind.Companion ? ArcadeSkin.Teal : ArcadeSkin.Cream;
-                    GUI.DrawTexture(category, Texture2D.whiteTexture); GUI.color = previous;
+                    ArcadeSkin.Slant(category, tagColor);
                     if (merge)
                     {
                         GUI.Label(new Rect(category.x + 3, category.y, 77, category.height), "MERGE", categoryStyle);
                         int tier = ShopMergePreview.ProjectedTier(owner.Session, station.Offer);
                         for (int star = 0; star < tier; star++) RunHud.Sprite(new Rect(category.x + 81 + star * 11, category.y + 7, 11, 11), K8Motion.TierStar());
                     }
-                    else GUI.Label(category, station.Offer.Kind == OfferKind.Companion ? "ALLY" : "RELIC", categoryStyle);
+                    else GUI.Label(category, item ? "RELIC" : "ALLY", categoryStyle);
                 }
+                GUI.matrix = unrotated;
                 if (denied) GUI.Label(new Rect(point.x - 140, point.y + 31, 280, 35), station.Denial, denialStyle);
             }
         }

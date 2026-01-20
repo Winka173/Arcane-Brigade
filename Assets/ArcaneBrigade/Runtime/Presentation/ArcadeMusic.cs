@@ -12,6 +12,14 @@ namespace ArcaneBrigade
     public sealed class ArcadeMusic : MonoBehaviour
     {
         private const int StemCount = 4;   // base, rhythm, melody, intensity
+        /// <summary>Beat clock of the audible piece for UI that moves with the music (see BeatPulse).</summary>
+        public static double BeatOriginDsp { get; private set; }
+        public static double BeatSeconds { get; private set; } = 0.5;
+        public static int BeatsPerBar { get; private set; } = 4;
+        public static bool BeatLive { get; private set; }
+        /// <summary>0..1 low-health danger: melody/intensity stems fall away so heartbeat and rhythm carry the moment.</summary>
+        public static float Danger { get; set; }
+        private float dangerSmooth;
         private static readonly List<ArcadeMusic> owners = new List<ArcadeMusic>();
 
         private sealed class Deck
@@ -282,6 +290,15 @@ namespace ArcaneBrigade
 
         private void UpdateDecks(double dsp, float bus, float dt)
         {
+            Deck audible = current >= 0 && current < decks.Length && decks[current].Live ? decks[current] : null;
+            BeatLive = audible != null;
+            if (audible != null)
+            {
+                BeatOriginDsp = audible.startDsp;
+                BeatsPerBar = Mathf.Max(1, audible.piece.beatsPerBar);
+                BeatSeconds = Math.Max(0.05, audible.piece.BarSeconds / BeatsPerBar);
+            }
+            dangerSmooth = Mathf.MoveTowards(dangerSmooth, Mathf.Clamp01(Danger), dt * 1.5f);
             for (int index = 0; index < decks.Length; index++)
             {
                 Deck deck = decks[index];
@@ -290,6 +307,7 @@ namespace ArcaneBrigade
                 float envelope = deck.fadingOut ? Mathf.Cos(progress * Mathf.PI * 0.5f) : Mathf.Sin(progress * Mathf.PI * 0.5f);
                 if (deck.fadingOut && progress >= 1f) { KillDeck(deck); if (current == index) current = -1; continue; }
                 StemTargets(deck.scene, density, targets);
+                if (dangerSmooth > 0f) { targets[2] *= 1f - 0.65f * dangerSmooth; targets[3] *= 1f - 0.85f * dangerSmooth; targets[0] *= 1f - 0.2f * dangerSmooth; }
                 float sceneLevel = SceneLevel(deck.scene);
                 for (int stem = 0; stem < StemCount; stem++)
                 {

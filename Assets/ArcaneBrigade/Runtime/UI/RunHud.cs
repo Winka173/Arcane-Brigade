@@ -24,6 +24,19 @@ namespace ArcaneBrigade
         private readonly RunInvoice invoice = new RunInvoice();
         private readonly ArcadeNavigation navigation = new ArcadeNavigation();
         private readonly RunBondFeedback bondFeedback = new RunBondFeedback();
+        private readonly StageCutIn cutIn = new StageCutIn();
+        private readonly WaveStamp waveStamp = new WaveStamp();
+        private readonly FirstRunCoach coach = new FirstRunCoach();
+        private readonly System.Collections.Generic.Dictionary<string, int> bondLevels = new System.Collections.Generic.Dictionary<string, int>();
+        private string momentsRun;
+        private UnitState seenBoss;
+        private bool bossWasAlive;
+        private int encoreCount = -1;
+        private float danger;
+        private string previewKey;
+        private System.Collections.Generic.List<(string name, string before, string after, bool better)> previewRows = new System.Collections.Generic.List<(string, string, string, bool)>();
+        private GUIStyle compareStyle;
+        private GUIStyle programStyle;
         private Vector2 shopScroll;
         private WorldShop.Station tooltipStation;
         private string walletRun;
@@ -109,6 +122,11 @@ namespace ArcaneBrigade
             if (walletRun != state.RunId) { walletRun = state.RunId; healthTrail = health; lastGold = gold; lastEggs = eggs; goldChanged = eggsChanged = -100; }
             if (lastGold != gold) { goldChanged = simulation.VisualElapsed; lastGold = gold; }
             if (lastEggs != eggs) { eggsChanged = simulation.VisualElapsed; lastEggs = eggs; }
+            bool fighting = state.Phase == SessionPhase.Combat && simulation.Champion.Alive;
+            danger = fighting ? Mathf.Clamp01(Mathf.InverseLerp(0.32f, 0.06f, health / maximum)) : 0f;
+            ArcadeMusic.Danger = danger;
+            LowHealthVignette.Draw(new Vector2(1920, 1080), danger);
+            if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
             ArcadeSkin.Plate(new Rect(22, 16, 340, 72), ArcadeSkin.Accent);
@@ -134,6 +152,7 @@ namespace ArcaneBrigade
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
             GUI.Label(new Rect(84, 146, 120, 32), eggs.ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
+            waveRect.y -= BeatPulse.Kick * 4;
             ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
             GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
@@ -198,6 +217,10 @@ namespace ArcaneBrigade
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
+            waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat);
+            if (state.Phase == SessionPhase.Combat) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
+            if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) coach.Draw(owner, camera);
+            cutIn.Draw(new Vector2(1920, 1080));
             navigation.End();
             GUI.matrix = previous;
             GUI.skin = previousSkin;
@@ -234,7 +257,9 @@ namespace ArcaneBrigade
                 string description = station.Offer != null ? shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
                 string synergy = shop.BondPreview(station.Offer);
                 if (!string.IsNullOrEmpty(synergy)) description = synergy + "\n" + description;
-                float contentHeight = GlossaryUI.Height(description, small, 670) + 8;
+                bool compare = station.Offer != null && BuildPreview(owner, station.Offer) > 0;
+                float textWidth = compare ? 470 : 670;
+                float contentHeight = GlossaryUI.Height(description, small, textWidth) + 8;
                 Rect panel = ShopTooltipBounds(contentHeight);
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
                 ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : ItemRarity.Common;
@@ -248,9 +273,10 @@ namespace ArcaneBrigade
                     GUI.Label(new Rect(panel.x + 22, panel.y - 14, 150, 26), kind, tagStyle);
                 }
                 GUI.Label(new Rect(panel.x + 24, panel.y + 16, 690, 38), shop.DisplayName(station), text);
-                shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, 710, panel.height - 85), shopScroll, new Rect(0, 0, 675, contentHeight));
-                GlossaryUI.Text(new Rect(0, 0, 670, contentHeight), description, small);
+                shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, textWidth + 40, panel.height - 85), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
+                GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, small);
                 GUI.EndScrollView();
+                if (compare) DrawPreview(new Rect(panel.x + 540, panel.y + 66, 390, panel.height - 80));
                 if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · BUY" : RunUIHints.Device == RunUIDevice.Touch ? "BUY" : "Space · BUY", primary)) shop.Interact();
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
@@ -285,42 +311,162 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(1413, 99, 410, 32), hint, small);
         }
 
+        private void ObserveMoments(ArenaController owner)
+        {
+            RunSnapshot state = owner.Session.State;
+            CombatSimulation simulation = owner.Simulation;
+            bool first = momentsRun != state.RunId;
+            if (first) { momentsRun = state.RunId; bondLevels.Clear(); encoreCount = -1; seenBoss = null; bossWasAlive = false; }
+            int encores = 0;
+            UnitDefinition encoreUnit = null;
+            foreach (RosterEntry entry in state.Roster) if (entry.Tier >= 3) { encores++; encoreUnit = owner.Content.Unit(entry.UnitId); }
+            if (encoreCount >= 0 && encores > encoreCount && encoreUnit != null)
+                cutIn.Show(RunUICopy.UnitName(encoreUnit).ToUpperInvariant(), "★★★  ENCORE FORM", encoreUnit.Body, ArcadeSkin.Gold);
+            encoreCount = encores;
+            foreach (BondDefinition bond in owner.Content.Bonds)
+            {
+                owner.Session.BondCounts.TryGetValue(bond.Id, out int count);
+                int level = bond.ActiveLevel(count);
+                if (bondLevels.TryGetValue(bond.Id, out int before) && level > before && !first)
+                    cutIn.Show(bond.Name.ToUpperInvariant(), "BOND LEVEL " + level + " · THE CROWD GOES WILD", bond.Icon, ArcadeSkin.Teal);
+                bondLevels[bond.Id] = level;
+            }
+            if (state.Phase != SessionPhase.Combat) { bossWasAlive = false; return; }
+            UnitState boss = simulation.Boss;
+            if (boss != null && boss.Alive && boss != seenBoss)
+            {
+                seenBoss = boss;
+                cutIn.Show(RunUICopy.UnitName(boss.Definition).ToUpperInvariant(), "TONIGHT'S HEADLINER ENTERS THE RING", boss.Definition.Body, ArcadeSkin.Danger);
+            }
+            bool alive = boss != null && boss.Alive;
+            if (bossWasAlive && !alive && simulation.Champion.Alive)
+                cutIn.Show("SHOWSTOPPER!", "HEADLINER DEFEATED", owner.Content.Unit(state.ChampionId).Body, ArcadeSkin.Gold);
+            bossWasAlive = alive;
+        }
+
+        /// <summary>Real before/after numbers for the focused offer (cached; recomputed only when the build changes).</summary>
+        private int BuildPreview(ArenaController owner, ShopOffer offer)
+        {
+            RunSnapshot state = owner.Session.State;
+            string key = offer.Token + ":" + state.Gold + ":" + state.Eggs + ":" + state.Roster.Count + ":" + state.Items.Count + ":" + Mathf.RoundToInt(state.Health);
+            if (key == previewKey) return previewRows.Count;
+            previewKey = key; previewRows.Clear();
+            if (offer.Kind == OfferKind.Companion)
+            {
+                previewRows.Add(("Brigade size", state.Roster.Count.ToString(), (state.Roster.Count + 1).ToString(), true));
+                return previewRows.Count;
+            }
+            string text;
+            try { text = RunOfferPreview.Capture(owner.Session, owner.Content, offer); } catch (System.Exception) { return 0; }
+            foreach (string line in text.Split('\n'))
+            {
+                int arrow = line.IndexOf(" → ");
+                int colon = arrow > 0 ? line.LastIndexOf(": ", arrow) : -1;
+                if (arrow < 0 || colon < 0) continue;
+                string name = line.Substring(0, colon), before = line.Substring(colon + 2, arrow - colon - 2), after = line.Substring(arrow + 3);
+                bool lowerIsBetter = name.IndexOf("cycle", System.StringComparison.OrdinalIgnoreCase) >= 0 || name.IndexOf("cooldown", System.StringComparison.OrdinalIgnoreCase) >= 0;
+                bool better = FirstNumber(after) >= FirstNumber(before) ^ lowerIsBetter;
+                previewRows.Add((name, before, after, better));
+                if (previewRows.Count >= 3) break;
+            }
+            return previewRows.Count;
+        }
+
+        private static float FirstNumber(string value)
+        {
+            int start = -1, end = -1;
+            for (int index = 0; index < value.Length; index++)
+            {
+                bool digit = char.IsDigit(value[index]) || value[index] == '.' || value[index] == '-' && start < 0;
+                if (digit && start < 0) start = index;
+                if (!digit && start >= 0) { end = index; break; }
+            }
+            if (start < 0) return 0;
+            float.TryParse(value.Substring(start, (end < 0 ? value.Length : end) - start), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float parsed);
+            return parsed;
+        }
+
+        private void DrawPreview(Rect area)
+        {
+            if (compareStyle == null) { compareStyle = ArcadeTypography.Style(17, false, true); compareStyle.wordWrap = false; compareStyle.alignment = TextAnchor.MiddleLeft; }
+            ArcadeSkin.Line(new Rect(area.x - 14, area.y, 2, area.height), new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, 0.3f));
+            caption.alignment = TextAnchor.MiddleLeft;
+            GUI.Label(new Rect(area.x, area.y - 4, area.width, 20), "IF YOU BUY", caption);
+            caption.alignment = TextAnchor.MiddleCenter;
+            float row = Mathf.Min(28, (area.height - 18) / Mathf.Max(1, previewRows.Count));
+            for (int index = 0; index < previewRows.Count; index++)
+            {
+                var entry = previewRows[index];
+                Rect line = new Rect(area.x, area.y + 18 + index * row, area.width, row);
+                GlossaryUI.Text(new Rect(line.x, line.y + 3, 170, row), entry.name, small);
+                compareStyle.normal.textColor = new Color(0.75f, 0.72f, 0.68f);
+                GUI.Label(new Rect(line.x + 172, line.y, 80, row), entry.before, compareStyle);
+                compareStyle.normal.textColor = entry.better ? new Color(0.45f, 1f, 0.6f) : ArcadeSkin.Danger;
+                GUI.Label(new Rect(line.x + 252, line.y, 140, row), (entry.better ? "▲ " : "▼ ") + entry.after, compareStyle);
+            }
+        }
+
+        /// <summary>Bonds as tonight's show programme: one line per act, pips toward the next threshold, stamped levels.</summary>
         private void DrawBonds(ArenaController owner)
         {
             bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, owner.Simulation.VisualElapsed);
+            if (programStyle == null) { programStyle = ArcadeTypography.Style(17, true); programStyle.normal.textColor = ArcadeSkin.Ink; programStyle.wordWrap = false; programStyle.alignment = TextAnchor.MiddleLeft; }
+            int rows = 0;
+            foreach (BondDefinition bond in owner.Content.Bonds) if (owner.Session.BondCounts.TryGetValue(bond.Id, out int c) && c > 0) rows++;
+            if (rows == 0) return;
+            const float rowHeight = 40, width = 330;
+            Rect card = new Rect(1570, 18 - BeatPulse.Kick * 2, width, 40 + rows * rowHeight);
+            ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
+            programStyle.fontSize = 13; programStyle.normal.textColor = ArcadeSkin.Accent;
+            GUI.Label(new Rect(card.x + 16, card.y + 6, width - 30, 24), "TONIGHT'S PROGRAM", programStyle);
+            programStyle.fontSize = 17; programStyle.normal.textColor = ArcadeSkin.Ink;
             int index = 0;
             string tooltip = null;
+            float tooltipTop = 0;
             foreach (BondDefinition bond in owner.Content.Bonds)
             {
                 if (!owner.Session.BondCounts.TryGetValue(bond.Id, out int count) || count <= 0) continue;
-                Rect badge = new Rect(1550 + index % 4 * 74, 38 + index / 4 * 88, 64, 76);
+                Rect line = new Rect(card.x + 10, card.y + 32 + index * rowHeight, width - 20, rowHeight - 4);
                 int level = bond.ActiveLevel(count);
-                bool active = level > 0;
+                int next = Mathf.Max(count, bond.NextThreshold(count));
                 bool flashing = bondFeedback.Flashing(bond.Id, owner.Simulation.VisualElapsed);
-                if (flashing) ArcadeSkin.Panel(badge, ArcadeSkin.Accent);
-                if (active) ArcadeSkin.Line(new Rect(badge.x + 7, badge.y + 8, 50, 43), new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.16f));
+                if (flashing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.55f));
+                else if (index % 2 == 1) ArcadeSkin.Line(line, new Color(0, 0, 0, 0.05f));
                 float burst = owner.Profile != null && owner.Profile.ReducedMotion ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
-                Rect icon = new Rect(badge.x + 4 - burst * 5, badge.y - burst * 5, 56 + burst * 10, 52 + burst * 10);
-                Sprite(icon, bond.Icon);
-                ArcadeSkin.Plate(new Rect(badge.x - 18, badge.y + 52, 90, 24), active ? ArcadeSkin.Teal : ArcadeSkin.Cream);
-                small.normal.textColor = active ? ArcadeSkin.Teal : ArcadeSkin.Cream;
-                small.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(badge.x - 4, badge.y + 52, 72, 24), count + "/" + bond.NextThreshold(count), small);
-                if (bondHit == null) bondHit = new GUIStyle();
-                if (GUI.Button(badge, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
-                if (badge.Contains(Event.current.mousePosition) || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
+                Sprite(new Rect(line.x + 2 - burst * 3, line.y + 2 - burst * 3, 32 + burst * 6, 32 + burst * 6), bond.Icon);
+                GUI.Label(new Rect(line.x + 42, line.y, 150, line.height), bond.Name, programStyle);
+                int pips = Mathf.Clamp(next, 1, 8);
+                for (int pip = 0; pip < pips; pip++)
                 {
-                    tooltip = RunUICopy.BondDescription(bond, count);
+                    Rect dot = new Rect(line.x + 196 + pip * 12, line.y + 13, 9, 11);
+                    ArcadeSkin.Slant(dot, pip < count ? (level > 0 ? ArcadeSkin.Teal : ArcadeSkin.Ink) : new Color(0, 0, 0, 0.18f));
+                }
+                if (level > 0)
+                {
+                    Matrix4x4 before = GUI.matrix;
+                    Rect stamp = new Rect(line.xMax - 46, line.y + 4, 44, 26);
+                    GUIUtility.RotateAroundPivot(-10, stamp.center);
+                    ArcadeSkin.Slant(stamp, ArcadeSkin.Accent);
+                    programStyle.fontSize = 13; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
+                    GUI.Label(stamp, "LV" + level, programStyle);
+                    programStyle.fontSize = 17; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
+                    GUI.matrix = before;
+                }
+                if (bondHit == null) bondHit = new GUIStyle();
+                if (GUI.Button(line, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
+                if (line.Contains(Event.current.mousePosition) || selectedBond == bond.Id && Time.unscaledTime < bondTooltipUntil)
+                {
+                    tooltip = count + "/" + bond.NextThreshold(count) + " · " + RunUICopy.BondDescription(bond, count);
+                    tooltipTop = line.y;
                 }
                 index++;
             }
             small.normal.textColor = ArcadeSkin.Cream; small.alignment = TextAnchor.UpperLeft;
             if (tooltip != null)
             {
-                float top = 50 + Mathf.CeilToInt(index / 4f) * 88;
                 float height = GlossaryUI.Height(tooltip, small, 385) + 24;
-                Fill(new Rect(1430, top, 420, height), Panel);
-                GlossaryUI.Text(new Rect(1445, top + 12, 385, height - 24), tooltip, small);
+                Fill(new Rect(1140, tooltipTop, 420, height), Panel);
+                GlossaryUI.Text(new Rect(1155, tooltipTop + 12, 385, height - 24), tooltip, small);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
         }
