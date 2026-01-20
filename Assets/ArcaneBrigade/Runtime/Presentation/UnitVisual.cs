@@ -278,7 +278,9 @@ namespace ArcaneBrigade
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
             body.GetPropertyBlock(flashProperties);
-            flashProperties.SetFloat("_Flash", ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.075f));
+            // Capped, flickering flash: a target under constant fire never turns into a solid white silhouette.
+            float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
+            flashProperties.SetFloat("_Flash", ReducedMotion ? 0 : flash);
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion ? 0.75f : 0.5f + Mathf.Sin(simulationTime * 22f) * 0.4f);
             if (puppet != null) puppet.Display(body, state, simulationTime, ReducedMotion);

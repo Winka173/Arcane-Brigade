@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ namespace ArcaneBrigade
             public int SubjectId;
             public float Amount;
             public bool Critical;
+            public float Life = 0.55f;
         }
         private readonly List<DamageNumber> numbers = new List<DamageNumber>();
         private Font font;
@@ -109,7 +111,7 @@ namespace ArcaneBrigade
             if (!PresentationSettings.DamageNumbers) return;
             if (combatEvent.SubjectId != 0)
             {
-                DamageNumber existing = numbers.Find(candidate => candidate.Age < 0.12f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
+                DamageNumber existing = numbers.Find(candidate => candidate.Age < 0.3f && candidate.SubjectId == combatEvent.SubjectId && candidate.Critical == combatEvent.Critical);
                 if (existing != null)
                 {
                     existing.Amount += combatEvent.Value;
@@ -118,8 +120,10 @@ namespace ArcaneBrigade
                     return;
                 }
             }
-            DamageNumber number = numbers.Find(candidate => candidate.Age >= 0.55f);
             bool champion = combatEvent.Faction == Faction.Champion;
+            // Readability: ordinary companion/champion hits stay small and few; crits and damage taken always read.
+            if (!champion && !combatEvent.Critical && numbers.Count(candidate => candidate.Age < candidate.Life && !candidate.Critical && !candidate.Champion) >= 12) return;
+            DamageNumber number = numbers.Find(candidate => candidate.Age >= candidate.Life);
             if (number == null && numbers.Count >= 32)
             {
                 if (!champion) return;
@@ -158,6 +162,9 @@ namespace ArcaneBrigade
             number.Position = combatEvent.Position + new Vector2((sequence % 3 - 1) * 0.12f, 0.55f);
             number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.white;
             number.Age = 0f;
+            number.Life = champion ? 0.7f : combatEvent.Critical ? 0.8f : 0.45f;
+            float size = champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.72f;
+            number.View.characterSize = number.Outline.characterSize = 0.055f * size;
             number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
             number.Outline.text = number.View.text;
             number.Outline.color = new Color(0.06f, 0.035f, 0.10f);
@@ -172,14 +179,14 @@ namespace ArcaneBrigade
             if (deltaTime <= 0 || !float.IsFinite(deltaTime)) return;
             foreach (DamageNumber number in numbers)
             {
-                if (number.Age >= 0.55f) continue;
+                if (number.Age >= number.Life) continue;
                 number.Age += deltaTime;
                 if (!PresentationSettings.ReducedMotion) number.Position += Vector2.up * deltaTime * 0.7f;
                 number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
                 number.View.transform.localScale = Vector3.one * (1f + (PresentationSettings.ReducedMotion ? 0 : 0.35f * Mathf.Clamp01(1f - number.Age / 0.08f)));
-                number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01(1f - number.Age / 0.55f));
+                number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01((1f - number.Age / number.Life) * 2.5f));
                 number.Outline.color = new Color(0.06f, 0.035f, 0.10f, number.View.color.a);
-                if (number.Age >= 0.55f) number.View.gameObject.SetActive(false);
+                if (number.Age >= number.Life) number.View.gameObject.SetActive(false);
             }
             foreach (Spark spark in sparks)
             {

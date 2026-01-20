@@ -7,6 +7,7 @@ namespace ArcaneBrigade
     {
         private RunBuildReadModel model;
         private int tab;
+        private GUIStyle tabStyle;
         private int selection;
         private Vector2 scroll;
         private Vector2 explanationScroll;
@@ -50,7 +51,7 @@ namespace ArcaneBrigade
             LivingUI.Enter(Time.unscaledTime - openedAt, new Vector2(960, 540));
             GlossaryUI.BlockUnderlying(new Vector2(1920, 1080));
             GUIStyle title = titleStyle ?? (titleStyle = ArcadeTypography.Style(44, true));
-            GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(25));
+            GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(23));
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
             GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
             RunHud.Fill(new Rect(30, 20, 1860, 1040), new Color(0.09f, 0.075f, 0.16f, 0.99f));
@@ -58,12 +59,18 @@ namespace ArcaneBrigade
             ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (GUI.Button(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
             string[] names = { "STATS", "COMPANIONS", "RELICS", "LINKS" };
+            int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
+            if (tabStyle == null) { tabStyle = ArcadeTypography.Style(26, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
             for (int index = 0; index < names.Length; index++)
             {
-                Color previousColor = GUI.color;
-                if (index == tab) GUI.color = ArcadeSkin.Teal;
-                if (GUI.Button(new Rect(75 + index * 440, 200, 420, 70), names[index], button)) SelectTab(index);
-                GUI.color = previousColor;
+                Rect tabRect = new Rect(75 + index * 360, 200, 340, 62);
+                bool current = index == tab;
+                bool hovered = tabRect.Contains(Event.current.mousePosition);
+                ArcadeSkin.Slant(new Rect(tabRect.x + 4, tabRect.y + 5, tabRect.width, tabRect.height), new Color(0, 0, 0, 0.45f));
+                ArcadeSkin.Slant(tabRect, current ? ArcadeSkin.Teal : hovered ? new Color(0.25f, 0.22f, 0.36f) : new Color(0.16f, 0.14f, 0.25f));
+                tabStyle.normal.textColor = current ? ArcadeSkin.Ink : ArcadeSkin.Cream;
+                GUI.Label(tabRect, names[index] + (counts[index] >= 0 ? "  " + counts[index] : ""), tabStyle);
+                if (GUI.Button(tabRect, GUIContent.none, GUIStyle.none)) SelectTab(index);
             }
             List<RunBuildReadModel.Row> rows = tab == 0 ? model.Stats : tab == 1 ? model.Companions : tab == 2 ? model.Relics : model.Links;
             float rowHeight = tab == 0 ? 115 : 145;
@@ -73,6 +80,7 @@ namespace ArcaneBrigade
                 RunBuildReadModel.Row row = rows[index];
                 Rect card = new Rect(5, index * rowHeight + 5, 990, rowHeight - 12);
                 RunHud.Fill(card, index == selection ? new Color(0.24f, 0.18f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
+                if (index == selection) ArcadeSkin.Line(new Rect(card.x + 2, card.y + 2, 8, card.height - 4), ArcadeSkin.Teal);
                 float contentLeft = row.Icon != null ? 120 : 28;
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(68, card.y + 62, 42, 48), row.WeaponIcon);

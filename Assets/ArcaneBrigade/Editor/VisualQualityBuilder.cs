@@ -124,7 +124,7 @@ namespace ArcaneBrigade.Editor
             if (floor == null) { floor = new Material(shader); AssetDatabase.CreateAsset(floor, Data + "FloorHD.mat"); }
             floor.shader = shader; floor.mainTexture = tile;
             floor.SetVector("_TileScale", new Vector4(catalog.WorldSize.x / 6f, catalog.WorldSize.y / (6f * tile.height / tile.width), 0, 0));
-            floor.SetColor("_Color", new Color(0.94f, 1.0f, 1.02f)); floor.SetFloat("_Saturation", 1.12f);
+            floor.SetColor("_Color", new Color(0.78f, 0.82f, 0.88f)); floor.SetFloat("_Saturation", 1.02f); // darker, calmer floor so units and bullets read on top
             floor.SetColor("_BaseColor", new Color(0.12f, 0.25f, 0.34f)); floor.SetFloat("_Detail", 0.6f); EditorUtility.SetDirty(floor);
             EditorSceneManager.OpenScene(Root + "Scenes/RunArena.unity");
             GameObject previous = GameObject.Find("HDWorld"); if (previous != null) UnityEngine.Object.DestroyImmediate(previous);

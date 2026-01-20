@@ -16,6 +16,9 @@ namespace ArcaneBrigade
         private GUIStyle heading;
         private GUIStyle text;
         private GUIStyle button;
+        private GUIStyle primary;
+        private GUIStyle logoShadow;
+        private GUIStyle chip;
         private int selection;
         private Vector2 scroll;
         private string error;
@@ -223,6 +226,10 @@ namespace ArcaneBrigade
                 heading = ArcadeTypography.Style(38, true);
                 text = ArcadeTypography.Style(19);
                 button = new GUIStyle(GUI.skin.button) { fontSize = 19, font = ArcadeTypography.Heading };
+                primary = ArcadeSkin.Primary(button);
+                chip = ArcadeTypography.Style(14, true);
+                chip.alignment = TextAnchor.MiddleCenter;
+                chip.normal.textColor = ArcadeSkin.Ink;
             }
             Matrix4x4 previous = ArcadeTypography.BeginViewport(new Rect(0, 0, Screen.width, Screen.height), 1280, 720);
             Color previousTint = GUI.color;
@@ -231,8 +238,10 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
             if (CurrentPage != Page.Landing)
             {
-                RunHud.Fill(new Rect(20, 15, 1240, 690), new Color(0.12f, 0.10f, 0.20f));
-                ArcadeSkin.Header(new Rect(60, 32, 940, 92), "", "ARCANE BRIGADE");
+                if (shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
+                if (shopIllustration != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), shopIllustration, ScaleMode.ScaleAndCrop);
+                ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0.05f, 0.04f, 0.09f, PresentationSettings.HighReadability ? 0.97f : 0.86f));
+                ArcadeSkin.Header(new Rect(60, 32, 940, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage));
             }
             if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "BACK"))
             {
@@ -246,13 +255,13 @@ namespace ArcaneBrigade
                 case Page.Resume:
                     Label(new Rect(110, 200, 1060, 230), CanResume ? RunUICopy.UnitName(catalog.Unit(saved.ChampionId)) + " · Wave " + saved.Wave + "\n" + RunUICopy.PhaseName(saved.Phase) + " · Gold " + saved.Gold + " · Eggs " + saved.Eggs + "\n" + saved.Roster.Count + " companions · " + saved.Items.Count + " relic types\n" + (saved.Phase == SessionPhase.Victory || saved.Phase == SessionPhase.Defeat ? "Reopens the settled receipt without claiming rewards twice. Victorious runs can still enter endless mode." : "Unfinished combat restarts at wave start; shops resume after the last transaction.") : "No valid saved boundary.");
                     GUI.enabled = CanResume;
-                    if (Button(new Rect(420, 490, 440, 70), "RESUME")) Launch(true);
+                    if (navigation.Button(new Rect(420, 490, 440, 70), "RESUME", primary)) Launch(true);
                     GUI.enabled = true;
                     break;
                 case Page.ConfirmOverwrite:
                     Label(new Rect(120, 210, 1040, 180), "A new run replaces the current resume boundary.\nThe old run is backed up before combat. Profile and records are not deleted.\nIf backup fails, the new run does not begin.");
                     if (Button(new Rect(180, 490, 400, 70), "KEEP OLD RUN")) ShowPage(Page.Roster);
-                    if (Button(new Rect(700, 490, 400, 70), "BACK UP AND START")) Launch(false);
+                    if (navigation.Button(new Rect(700, 490, 400, 70), "BACK UP AND START", primary)) Launch(false);
                     break;
                 case Page.Settings: DrawSettings(); break;
                 case Page.Help:
@@ -292,20 +301,29 @@ namespace ArcaneBrigade
                 landingShade.SetPixels(pixels); landingShade.Apply(false, true);
             }
             GUI.DrawTexture(new Rect(0, 0, 864, 720), landingShade);
-            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(60, true));
+            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(72, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
-            GUI.Label(new Rect(75, 85, 655, 165), "ARCANE\nBRIGADE", logo);
+            if (logoShadow == null) { logoShadow = new GUIStyle(logo); logoShadow.normal.textColor = ArcadeSkin.Accent; }
+            float bob = profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.3f) * 2;
+            GUI.Label(new Rect(81, 61 + bob, 655, 190), "ARCANE\nBRIGADE", logoShadow);
+            logo.normal.textColor = ArcadeSkin.Cream;
+            GUI.Label(new Rect(75, 55 + bob, 655, 190), "ARCANE\nBRIGADE", logo);
+            ArcadeSkin.Slant(new Rect(78, 236, 300, 26), ArcadeSkin.Teal);
+            GUI.Label(new Rect(78, 236, 300, 26), "NIGHT CARNIVAL · AUTO-BRAWLER", chip);
             UnitDefinition hero = catalog.Champions[selection];
             Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, false, profile.ReducedMotion)] : hero.Body;
-            RunHud.Sprite(new Rect(850, 340 + (profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f) * 5), 240, 260), pose);
-            if (Button(new Rect(75, 285, 390, 68), "NEW RUN")) ShowPage(Page.Roster);
+            float pulse = profile.ReducedMotion ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 2.1f);
+            ArcadeSkin.Glow(new Rect(720, 250, 500, 470), new Color(1f, 0.8f, 0.45f, 0.30f + 0.08f * pulse));
+            ArcadeSkin.Glow(new Rect(800, 560, 340, 90), new Color(0, 0, 0, 0.55f));
+            RunHud.Sprite(new Rect(820, 300 + (profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f) * 5), 300, 320), pose);
+            if (navigation.Button(new Rect(75, 290, 420, 74), "NEW RUN", primary)) ShowPage(Page.Roster);
             GUI.enabled = CanResume;
-            if (Button(new Rect(75, 365, 390, 52), "RESUME")) ShowPage(Page.Resume);
+            if (Button(new Rect(75, 378, 400, 52), CanResume ? "RESUME · WAVE " + saved.Wave : "RESUME · NO SAVED RUN")) ShowPage(Page.Resume);
             GUI.enabled = true;
-            if (Button(new Rect(75, 429, 390, 52), "COLLECTION")) ShowPage(Page.Museum);
-            if (Button(new Rect(75, 493, 390, 52), "RECORDS")) ShowPage(Page.Records);
-            if (Button(new Rect(75, 567, 185, 45), "SETTINGS")) ShowPage(Page.Settings);
-            if (Button(new Rect(280, 567, 185, 45), "HOW TO PLAY")) ShowPage(Page.Help);
+            if (Button(new Rect(75, 442, 400, 52), "COLLECTION")) ShowPage(Page.Museum);
+            if (Button(new Rect(75, 506, 400, 52), "RECORDS")) ShowPage(Page.Records);
+            if (Button(new Rect(75, 578, 172, 46), "SETTINGS")) ShowPage(Page.Settings);
+            if (Button(new Rect(259, 578, 216, 46), "HOW TO PLAY")) ShowPage(Page.Help);
             Label(new Rect(75, 660, 560, 28), "Just move. The objects take care of the rest.");
         }
 
@@ -324,7 +342,7 @@ namespace ArcaneBrigade
                 bool unlocked = profile.BestWave >= unit.UnlockWave;
                 Rect card = RosterCardBounds(index);
                 RunHud.Fill(card, index == selection ? new Color(0.27f, 0.20f, 0.38f) : new Color(0.17f, 0.13f, 0.25f));
-                if (index == selection) ArcadeSkin.Divider(new Rect(card.x + 10, card.y + 5, card.width - 20, 3), ArcadeSkin.Teal);
+                if (index == selection) { ArcadeSkin.Glow(new Rect(card.x + 10, card.y, card.width - 20, 150), new Color(0.28f, 0.94f, 0.86f, 0.22f)); ArcadeSkin.Slant(new Rect(card.x + 14, card.yMax - 16, card.width - 28, 8), ArcadeSkin.Teal); }
                 if (navigation.Button(card, "", GUIStyle.none)) { if (selection != index) rosterDescriptionScroll = Vector2.zero; selection = index; }
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
@@ -332,7 +350,7 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, card.y + 12, portraitSize, 115), RosterPortrait(unit, Time.unscaledTime, index, index == selection, profile.ReducedMotion));
                 GUI.color = previousColor;
                 GUI.Label(new Rect(card.x + 10, card.y + 132, 180, 52), RunUICopy.UnitName(unit), caption);
-                GUI.Label(new Rect(card.x + 12, card.y + 192, 176, 38), unlocked ? "Unlocked" : "Unlock: wave " + unit.UnlockWave, note);
+                if (!unlocked) { ArcadeSkin.Slant(new Rect(card.x + 20, card.y + 186, 160, 26), ArcadeSkin.Cream); GUI.Label(new Rect(card.x + 20, card.y + 186, 160, 26), "LOCKED · WAVE " + unit.UnlockWave, chip); }
             }
             GUI.EndScrollView();
             UnitDefinition champion = catalog.Champions[selection];
@@ -340,12 +358,17 @@ namespace ArcaneBrigade
             {
                 int iconIndex = 0;
                 foreach (BondDefinition bond in catalog.Bonds)
-                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) RunHud.Sprite(new Rect(660 - iconIndex++ * 34, 145, 28, 28), bond.Icon);
+                    if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) RunHud.Sprite(new Rect(690 - iconIndex++ * 34, 145, 28, 28), bond.Icon);
+                if (iconIndex > 0) GUI.Label(new Rect(690 - iconIndex * 34 - 130, 145, 125, 28), "RECRUIT THEMES", note);
             }
-            RunHud.Sprite(new Rect(784, 150, 122, 132), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
-            GUI.Label(new Rect(915, 166, 280, 70), RunUICopy.UnitName(champion), rosterTitle ?? (rosterTitle = ArcadeTypography.Style(24, true)));
-            GUI.Label(new Rect(915, 242, 280, 40), RunUICopy.WeaponName(champion.Weapon.Id), note);
-            GUI.Label(new Rect(775, 278, 420, 38), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
+            RunHud.Fill(new Rect(760, 135, 460, 445), new Color(0.12f, 0.10f, 0.20f));
+            ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
+            RunHud.Sprite(new Rect(775, 145, 132, 142), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
+            if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
+            GUI.Label(new Rect(918, 150, 290, 70), RunUICopy.UnitName(champion), rosterTitle);
+            ArcadeSkin.Slant(new Rect(918, 222, 280, 28), ArcadeSkin.Teal);
+            GUI.Label(new Rect(918, 222, 280, 28), RunUICopy.WeaponName(champion.Weapon.Id).ToUpperInvariant(), chip);
+            GUI.Label(new Rect(918, 256, 290, 34), RunUICopy.UnlockCondition(champion, profile.BestWave), note);
             string description = RunUICopy.ChampionDescription(champion);
             if (catalog.HeroRevision > 0)
             {
@@ -356,20 +379,35 @@ namespace ArcaneBrigade
             description += "\n\nSTARTING TRAITS\n";
             foreach (StatModifier modifier in champion.ChampionModifiers)
                 description += RunModifierRules.ScopeName(modifier.Scope) + " / " + RunModifierRules.ModifierName(modifier.Effect) + ": " + RunModifierRules.ValueText(modifier.Effect, modifier.Value) + "\n";
-            float descriptionHeight = Mathf.Max(115, GlossaryUI.Height(description, text, 400) + 8);
-            rosterDescriptionScroll = GUI.BeginScrollView(new Rect(775, 320, 430, 118), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
+            float descriptionHeight = Mathf.Max(180, GlossaryUI.Height(description, text, 400) + 8);
+            rosterDescriptionScroll = GUI.BeginScrollView(new Rect(780, 300, 425, 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
             GUI.EndScrollView();
             if (Button(new Rect(65, 595, 660, 55), "CHALLENGE: " + RunMeta.ChallengeNames[challenge].Replace("clear hall", "cleared waves"))) challenge = (challenge + 1) % RunMeta.ChallengeIds.Length;
             GUI.enabled = challenge == 0;
-            if (Button(new Rect(775, 444, 420, 50), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
+            if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
             GUI.enabled = true;
-            GUI.Label(new Rect(775, 507, 430, 55), challenge > 0 ? "Same seeded conditions · tier 1 · records per champion" : "Win the previous difficulty to unlock the next. No permanent stat growth.", note);
+            GUI.Label(new Rect(780, 540, 430, 40), challenge > 0 ? "Same seeded conditions · tier 1 · records per champion" : "Win the previous difficulty to unlock the next. No permanent stat growth.", note);
             GUI.enabled = profile.BestWave >= champion.UnlockWave;
-            if (Button(new Rect(775, 585, 420, 65), "START")) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
+            if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "START ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
             GUI.Label(new Rect(65, 660, 1130, 30), RunUIHints.Menu, note);
         }
+        private static string PageTitle(Page page)
+        {
+            switch (page)
+            {
+                case Page.Roster: return "PICK YOUR CREW";
+                case Page.Resume: return "RESUME RUN";
+                case Page.ConfirmOverwrite: return "START OVER?";
+                case Page.Settings: return "SETTINGS";
+                case Page.Help: return "HOW TO PLAY";
+                case Page.Records: return "RECORDS";
+                case Page.Museum: return "COLLECTION";
+                default: return "ARCANE BRIGADE";
+            }
+        }
+        private static string PageEyebrow(Page page) => page == Page.Roster ? "ARCANE BRIGADE / NEW RUN" : "ARCANE BRIGADE";
         public static Rect RosterCardBounds(int index) => new Rect(index % 3 * 210, index / 3 * 245, 200, 235);
         public static Sprite RosterPortrait(UnitDefinition unit, float time, int identity, bool focused, bool reducedMotion)
         {

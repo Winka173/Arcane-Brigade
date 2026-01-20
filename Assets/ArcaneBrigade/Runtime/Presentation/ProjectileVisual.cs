@@ -64,15 +64,17 @@ namespace ArcaneBrigade
             {
                 float pulse = PresentationSettings.ReducedMotion ? 1 : 1f + Mathf.Sin(time * 18f + state.Id) * 0.08f;
                 float local = width / Mathf.Max(0.001f, Mathf.Abs(body.transform.localScale.x)) / Mathf.Max(0.01f, halo.sprite.bounds.size.x);
-                halo.transform.localScale = Vector3.one * local * 1.85f * pulse;
+                halo.transform.localScale = Vector3.one * local * (hostile ? 2.15f : 1.85f) * pulse;
                 core.transform.localScale = Vector3.one * local * 0.45f;
-                halo.color = hostile ? new Color(1, 0.3f, 0.15f, 0.42f) : new Color(state.Color.r, state.Color.g, state.Color.b, 0.18f);
+                halo.color = hostile ? new Color(1f, 0.12f, 0.45f, 0.6f) : new Color(state.Color.r, state.Color.g, state.Color.b, 0.18f);
                 core.color = new Color(1f, 0.96f, 0.89f, 0.9f);
             }
             streak.enabled = hostile || !PresentationSettings.ReducedMotion && (arrow || magic);
             streak.widthMultiplier = arrow ? 0.024f : 0.065f;
-            streak.startColor = new Color(state.Color.r, state.Color.g, state.Color.b, 0.03f);
-            streak.endColor = new Color(state.Color.r, state.Color.g, state.Color.b, 0.65f);
+            // One danger hue for every hostile shot so it never reads like an allied ember bolt.
+            Color trail = hostile ? new Color(1f, 0.16f, 0.48f) : state.Color;
+            streak.startColor = new Color(trail.r, trail.g, trail.b, 0.03f);
+            streak.endColor = new Color(trail.r, trail.g, trail.b, hostile ? 0.8f : 0.65f);
             streak.SetPosition(0, position - state.Velocity.normalized * (arrow ? 0.5f : 0.24f));
             streak.SetPosition(1, position);
             ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;

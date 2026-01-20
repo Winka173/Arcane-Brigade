@@ -68,7 +68,7 @@ namespace ArcaneBrigade
             if (accepted) submit = false;
             if (keyboardFocus && selected == index && GUI.enabled)
             {
-                ArcadeSkin.Line(new Rect(bounds.x + 8, bounds.y + 8, 5, bounds.height - 16), ArcadeSkin.Accent);
+                ArcadeSkin.Focus(bounds);
             }
             if (clicked || accepted) { submit = false; selected = index; if (pressed.Count > 256) pressed.Clear(); pressed[identity] = Time.unscaledTime; CheckpointAudio.PlayInterface(19); }
             return clicked || accepted;
