@@ -3,7 +3,7 @@
  "pieces": [
   {
    "id": "menu_curtain",
-   "title": "Curtain Call",
+   "title": "Neon Marquee",
    "bpm": 88,
    "beatsPerBar": 4,
    "bars": 32,
@@ -23,12 +23,12 @@
   },
   {
    "id": "select_dressing",
-   "title": "Dressing Room",
-   "bpm": 76,
+   "title": "Pick Your Crew",
+   "bpm": 96,
    "beatsPerBar": 4,
    "bars": 16,
-   "loopSeconds": 50.526327,
-   "loopSamples": 2228211,
+   "loopSeconds": 40.0,
+   "loopSamples": 1764000,
    "sampleRate": 44100,
    "scenes": [
     "select"
@@ -43,12 +43,12 @@
   },
   {
    "id": "combat_toys",
-   "title": "Toys on Parade",
-   "bpm": 112,
+   "title": "Wind-Up Riot",
+   "bpm": 120,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 68.571429,
-   "loopSamples": 3024000,
+   "loopSeconds": 64.0,
+   "loopSamples": 2822400,
    "sampleRate": 44100,
    "scenes": [
     "combat_early"
@@ -63,7 +63,7 @@
   },
   {
    "id": "combat_clockwork",
-   "title": "Clockwork Conga",
+   "title": "Gearbox Groove",
    "bpm": 124,
    "beatsPerBar": 4,
    "bars": 32,
@@ -83,12 +83,12 @@
   },
   {
    "id": "combat_overtime",
-   "title": "Midnight Overtime",
-   "bpm": 138,
+   "title": "Overtime Rush",
+   "bpm": 174,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 55.652177,
-   "loopSamples": 2454261,
+   "loopSeconds": 44.137937,
+   "loopSamples": 1946483,
    "sampleRate": 44100,
    "scenes": [
     "combat_late"
@@ -103,12 +103,12 @@
   },
   {
    "id": "boss_ringmaster",
-   "title": "Ringmaster of Drawers",
-   "bpm": 148,
+   "title": "Ringmaster Breakdown",
+   "bpm": 150,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 51.891882,
-   "loopSamples": 2288432,
+   "loopSeconds": 51.2,
+   "loopSamples": 2257920,
    "sampleRate": 44100,
    "scenes": [
     "boss"
@@ -123,12 +123,12 @@
   },
   {
    "id": "shop_gold",
-   "title": "Cash Register Rag",
-   "bpm": 104,
+   "title": "Cash Rules the Carnival",
+   "bpm": 100,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 73.846145,
-   "loopSamples": 3256615,
+   "loopSeconds": 76.8,
+   "loopSamples": 3386880,
    "sampleRate": 44100,
    "scenes": [
     "shop_gold"
@@ -143,12 +143,12 @@
   },
   {
    "id": "shop_dream",
-   "title": "Lullaby Till Open",
-   "bpm": 80,
+   "title": "Velvet Daydream",
+   "bpm": 84,
    "beatsPerBar": 3,
    "bars": 24,
-   "loopSeconds": 54.0,
-   "loopSamples": 2381400,
+   "loopSeconds": 51.428571,
+   "loopSamples": 2268000,
    "sampleRate": 44100,
    "scenes": [
     "shop_dream"
@@ -163,12 +163,12 @@
   },
   {
    "id": "endless_neverclose",
-   "title": "Never-Closing Time",
-   "bpm": 132,
+   "title": "Neon Never Closes",
+   "bpm": 128,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 58.181814,
-   "loopSamples": 2565818,
+   "loopSeconds": 60.0,
+   "loopSamples": 2646000,
    "sampleRate": 44100,
    "scenes": [
     "endless"
@@ -183,12 +183,12 @@
   },
   {
    "id": "combat_spoons",
-   "title": "Spoon Brigade",
-   "bpm": 118,
+   "title": "Spoon Bandits",
+   "bpm": 116,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 65.084739,
-   "loopSamples": 2870237,
+   "loopSeconds": 66.206893,
+   "loopSamples": 2919724,
    "sampleRate": 44100,
    "scenes": [
     "combat_early"
@@ -203,12 +203,12 @@
   },
   {
    "id": "combat_carousel",
-   "title": "Haunted Carousel",
-   "bpm": 126,
+   "title": "Carousel Heist",
+   "bpm": 124,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 60.952381,
-   "loopSamples": 2688000,
+   "loopSeconds": 61.935488,
+   "loopSamples": 2731355,
    "sampleRate": 44100,
    "scenes": [
     "combat_mid"
@@ -223,12 +223,12 @@
   },
   {
    "id": "combat_lasttrain",
-   "title": "Last Train Overtime",
-   "bpm": 142,
+   "title": "Last Train Breakbeat",
+   "bpm": 166,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 54.084512,
-   "loopSamples": 2385127,
+   "loopSeconds": 46.265057,
+   "loopSamples": 2040289,
    "sampleRate": 44100,
    "scenes": [
     "combat_late"
@@ -243,12 +243,12 @@
   },
   {
    "id": "boss_clown",
-   "title": "Clown at the Cash Register",
-   "bpm": 152,
+   "title": "Clown Kingpin",
+   "bpm": 150,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 50.526327,
-   "loopSamples": 2228211,
+   "loopSeconds": 51.2,
+   "loopSamples": 2257920,
    "sampleRate": 44100,
    "scenes": [
     "boss"
@@ -263,12 +263,12 @@
   },
   {
    "id": "shop_layaway",
-   "title": "Layaway Shuffle",
-   "bpm": 98,
+   "title": "Layaway Lounge",
+   "bpm": 104,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 78.367347,
-   "loopSamples": 3456000,
+   "loopSeconds": 73.846145,
+   "loopSamples": 3256615,
    "sampleRate": 44100,
    "scenes": [
     "shop_gold"
@@ -283,12 +283,12 @@
   },
   {
    "id": "endless_encore",
-   "title": "Encore Forever",
-   "bpm": 136,
+   "title": "Encore Overdrive",
+   "bpm": 138,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 56.47059,
-   "loopSamples": 2490353,
+   "loopSeconds": 55.652177,
+   "loopSamples": 2454261,
    "sampleRate": 44100,
    "scenes": [
     "endless"

@@ -1,11 +1,12 @@
 # Tools/Audio
 
-Build-time tổng hợp âm thanh Arcane Brigade (Python 3, numpy, scipy, ffmpeg có libvorbis).
+Build-time tổng hợp âm thanh Arcane Brigade — bộ "Neon Carnival Funk" v2 (Python 3, numpy, scipy, soundfile; không cần ffmpeg). Nhạc cụ dùng chung ở `kit.py`; hướng âm thanh ở `Docs/Audio/Audio_Direction_Palette.md`.
 
 ```
-pip install numpy scipy
-python3 Tools/Audio/build_sfx.py        # wav + cues.json   (~1 phút)
-python3 Tools/Audio/build_music.py      # 15 bản x 4 stem ogg + music.json (~15 phút; có thể truyền id: build_music.py shop_gold)
+pip install numpy scipy soundfile
+python3 Tools/Audio/build_sfx.py        # wav + cues.json   (~15 giây)
+python3 Tools/Audio/build_music.py      # 15 bản x 4 stem ogg + music.json (~2–3 phút; truyền id để render một bài, -j N để chạy song song)
+python3 Tools/Audio/audit_harmony.py    # liệt kê nốt giai điệu nghịch với hợp âm (kiểm tra bản phổ, không phải nghe)
 python3 Tools/Audio/write_meta.py       # .meta với GUID ổn định + import settings
 python3 Tools/Audio/verify_audio.py     # kiểm kỹ thuật (KHÔNG phải nghe)
 python3 Tools/Audio/render_previews.py  # PreviewExports/Audio

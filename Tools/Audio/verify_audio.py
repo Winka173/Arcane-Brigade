@@ -41,15 +41,14 @@ for c in man['cues']:
 print('clips', len(rows), 'cues', len(man['cues']), 'total seconds %.0f' % sum(r[1] for r in rows))
 print('bytes', sum(os.path.getsize(os.path.join(A, r[0] + '.wav')) for r in rows))
 
-# ---- music: decode each stem with ffmpeg, check identical length == manifest, peak, sum headroom, loop-seam continuity
-import subprocess
+# ---- music: decode each stem (soundfile/libsndfile), check identical length == manifest, peak, sum headroom, loop-seam continuity
+import soundfile as sf
 mp = os.path.join(A, 'Music', '..', 'Music', 'music.json')
 if os.path.exists(mp):
     for pc in json.load(open(mp))['pieces']:
         dec = []
         for st in pc['stems']:
-            raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', os.path.join(A, st + '.ogg'), '-f', 's16le', '-ac', '2', '-ar', '44100', '-'], capture_output=True).stdout
-            x = np.frombuffer(raw, '<i2').astype(np.float32).reshape(-1, 2) / 32768
+            x, _ = sf.read(os.path.join(A, st + '.ogg'), dtype='float32', always_2d=True)
             dec.append(x)
             if abs(len(x) - pc['loopSamples']) > 1: fails.append('%s length %d != manifest %d' % (st, len(x), pc['loopSamples']))
             seam = float(np.abs(x[0] - x[-1]).max()); step = float(np.abs(np.diff(x, axis=0)).mean()) + 1e-6

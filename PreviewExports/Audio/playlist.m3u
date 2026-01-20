@@ -1,0 +1,33 @@
+#EXTM3U
+#EXTINF:-1,menu_curtain - Neon Marquee (88 BPM, 87s, scene menu; intensity layer enters at 35%)
+music_menu_curtain.ogg
+#EXTINF:-1,select_dressing - Pick Your Crew (96 BPM, 40s, scene select; intensity layer enters at 35%)
+music_select_dressing.ogg
+#EXTINF:-1,combat_toys - Wind-Up Riot (120 BPM, 64s, scene combat_early; intensity layer enters at 35%)
+music_combat_toys.ogg
+#EXTINF:-1,combat_clockwork - Gearbox Groove (124 BPM, 62s, scene combat_mid; intensity layer enters at 35%)
+music_combat_clockwork.ogg
+#EXTINF:-1,combat_overtime - Overtime Rush (174 BPM, 44s, scene combat_late; intensity layer enters at 35%)
+music_combat_overtime.ogg
+#EXTINF:-1,boss_ringmaster - Ringmaster Breakdown (150 BPM, 51s, scene boss; intensity layer enters at 35%)
+music_boss_ringmaster.ogg
+#EXTINF:-1,shop_gold - Cash Rules the Carnival (100 BPM, 77s, scene shop_gold; intensity layer enters at 35%)
+music_shop_gold.ogg
+#EXTINF:-1,shop_dream - Velvet Daydream (84 BPM, 51s, scene shop_dream; intensity layer enters at 35%)
+music_shop_dream.ogg
+#EXTINF:-1,endless_neverclose - Neon Never Closes (128 BPM, 60s, scene endless; intensity layer enters at 35%)
+music_endless_neverclose.ogg
+#EXTINF:-1,combat_spoons - Spoon Bandits (116 BPM, 66s, scene combat_early; intensity layer enters at 35%)
+music_combat_spoons.ogg
+#EXTINF:-1,combat_carousel - Carousel Heist (124 BPM, 62s, scene combat_mid; intensity layer enters at 35%)
+music_combat_carousel.ogg
+#EXTINF:-1,combat_lasttrain - Last Train Breakbeat (166 BPM, 46s, scene combat_late; intensity layer enters at 35%)
+music_combat_lasttrain.ogg
+#EXTINF:-1,boss_clown - Clown Kingpin (150 BPM, 51s, scene boss; intensity layer enters at 35%)
+music_boss_clown.ogg
+#EXTINF:-1,shop_layaway - Layaway Lounge (104 BPM, 74s, scene shop_gold; intensity layer enters at 35%)
+music_shop_layaway.ogg
+#EXTINF:-1,endless_encore - Encore Overdrive (138 BPM, 56s, scene endless; intensity layer enters at 35%)
+music_endless_encore.ogg
+#EXTINF:-1,Every cue (first variation) in manifest order; see sfx_reel.txt for timestamps
+sfx_reel.ogg
