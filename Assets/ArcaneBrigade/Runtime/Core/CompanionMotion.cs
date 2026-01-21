@@ -38,10 +38,18 @@ namespace ArcaneBrigade
             unit.TravelMode = pursuing ? CompanionTravelMode.Pursuit : CompanionTravelMode.Patrol;
             if (pursuing)
             {
-                float orbit = elapsed * 0.35f + unit.Id * 2.4f;
+                float orbit = unit.Id * 2.399963f + Mathf.Sin(elapsed * 0.7f + unit.Id) * 0.22f;
                 float distance = Mathf.Max(unit.Definition.Radius + target.Definition.Radius, unit.Definition.Weapon.Range * 0.65f);
                 destination = target.Position + new Vector2(Mathf.Cos(orbit), Mathf.Sin(orbit)) * distance;
                 destination = champion.Position + Vector2.ClampMagnitude(destination - champion.Position, leash * 0.96f);
+            }
+            else if (target != null && unit.Definition.Weapon.Kind == WeaponKind.Projectile && !resting)
+            {
+                Vector2 away = unit.Position - target.Position;
+                if (away.sqrMagnitude < 0.001f) away = new Vector2(Mathf.Cos(unit.Id * 2.4f), Mathf.Sin(unit.Id * 2.4f));
+                float preferred = Mathf.Clamp(unit.Definition.Weapon.Range * 0.6f, 1.3f, 4.2f);
+                Vector2 firingPosition = target.Position + away.normalized * preferred;
+                destination = champion.Position + Vector2.ClampMagnitude(firingPosition - champion.Position, leash * 0.85f);
             }
             Vector2 toDestination = destination - unit.Position;
             float fromChampion = (unit.Position - champion.Position).magnitude;
@@ -58,7 +66,7 @@ namespace ArcaneBrigade
                 if (other == unit || !other.Alive || other.Faction == Faction.Enemy) continue;
                 Vector2 offset = unit.PreviousPosition - other.PreviousPosition;
                 float distance = offset.magnitude;
-                float personalSpace = other.Faction == Faction.Champion ? Mathf.Max(separation, unit.Definition.Radius + other.Definition.Radius + 0.35f) : separation;
+                float personalSpace = Mathf.Max(separation, unit.Definition.Radius + other.Definition.Radius + (other.Faction == Faction.Champion ? 0.35f : 0.12f));
                 if (distance >= personalSpace) continue;
                 Vector2 direction = distance > 0.001f ? offset / distance : new Vector2(Mathf.Cos(unit.Id * 2.4f), Mathf.Sin(unit.Id * 2.4f));
                 float strength = other.Faction == Faction.Champion ? 5f : 3f;

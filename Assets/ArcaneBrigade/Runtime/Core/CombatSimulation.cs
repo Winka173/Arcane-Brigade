@@ -77,6 +77,10 @@ namespace ArcaneBrigade
         public CombatCause BurnCause;
         public int AttackBeat;
         public int AttackTargetId;
+        public int TacticalTargetId;
+        public float TacticalRetargetAt;
+        public int BossVolley;
+        public float BossRecoveryUntil;
         public int VisibleMarks;
         public float MarkVisibleUntil;
         public float ExposedUntil;
@@ -370,6 +374,8 @@ namespace ArcaneBrigade
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             if (enemyCount >= catalog.EnemyBudget) return;
             int batch = catalog.RunWave >= 5 ? 3 : catalog.RunWave == 4 ? 2 : 1;
+            Vector2 packAnchor = Vector2.zero;
+            bool packStarted = false;
             for (int member = 0; member < batch && enemyCount + member < catalog.EnemyBudget; member++)
             {
                 Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 0.4f;
@@ -387,16 +393,32 @@ namespace ArcaneBrigade
                         default: position = new Vector2(random * half.x, half.y); break;
                     }
                     if (catalog.RunWave >= 4) position = ClampPosition(position + Champion.Position, 0.6f);
+                    if (packStarted && catalog.RunWave >= 5) position = ClampPosition(packAnchor + new Vector2((member - 1) * 0.7f, member * 0.45f), 0.6f);
                     if ((position - Champion.Position).sqrMagnitude >= catalog.SpawnSafetyRadius * catalog.SpawnSafetyRadius) { found = true; break; }
                 }
-                if (found) Spawn(catalog.ExpandedContent && catalog.EnemyPool.Length > 0 ? catalog.EnemyPool[spawnRandom.Next(catalog.EnemyPool.Length)] : spawnRandom.Next(3) == 0 ? catalog.RangedEnemy : catalog.MeleeEnemy, Faction.Enemy, position);
+                if (found)
+                {
+                    if (!packStarted) { packAnchor = position; packStarted = true; }
+                    UnitDefinition definition = catalog.ExpandedContent && catalog.EnemyPool.Length > 0 ? catalog.EnemyPool[spawnRandom.Next(catalog.EnemyPool.Length)] : spawnRandom.Next(3) == 0 ? catalog.RangedEnemy : catalog.MeleeEnemy;
+                    if (catalog.RunWave >= 5 && member == 2)
+                    {
+                        UnitDefinition support = System.Array.Find(catalog.EnemyPool, enemy => enemy.Weapon.Kind == WeaponKind.Projectile);
+                        if (support != null) definition = support;
+                    }
+                    if (catalog.RunWave >= 5 && member == 0 && enemyCount / 3 % 3 == 0)
+                    {
+                        UnitDefinition shield = System.Array.Find(catalog.EnemyPool, enemy => enemy.Behavior == EnemyBehavior.Door);
+                        if (shield != null) definition = shield;
+                    }
+                    Spawn(definition, Faction.Enemy, position);
+                }
             }
         }
 
         private void FollowChampion(UnitState unit, float deltaTime)
         {
             float leash = CompanionMotion.Leash(unit, catalog);
-            UnitState target = unit.Definition.Weapon.Kind == WeaponKind.Melee ? FindPursuitTarget(unit, leash + unit.Definition.Weapon.Range * 0.65f) : FindTarget(unit, unit.Definition.Weapon.Range);
+            UnitState target = SelectCompanionTarget(unit, unit.Definition.Weapon.Kind == WeaponKind.Melee ? leash + unit.Definition.Weapon.Range * 0.65f : unit.Definition.Weapon.Range);
             float neighborhood = Mathf.Max(catalog.CompanionSeparation, unit.Definition.Radius + maximumRadius + 0.35f) + maximumSpeed * deltaTime;
             spatial.Query(unit.PreviousPosition - Vector2.one * neighborhood, unit.PreviousPosition + Vector2.one * neighborhood, separationCandidates);
             Vector2 next = CompanionMotion.Step(unit, Champion, separationCandidates, target, catalog, Elapsed, deltaTime);
@@ -422,14 +444,21 @@ namespace ArcaneBrigade
         {
             if (MoveExpandedEnemy(unit, deltaTime)) return;
             if (unit.TelegraphUntil > Elapsed) return;
+            if (unit.Definition.IsBoss && unit.BossRecoveryUntil > Elapsed) return;
             Vector2 direction = Champion.Position - unit.Position;
             float distance = direction.magnitude;
             unit.Facing = distance > 0.001f ? direction / distance : unit.Facing;
+            Vector2 travelDirection = unit.Facing;
+            if (catalog.RunWave >= 5 && !unit.Definition.IsBoss && unit.Definition.Weapon.Kind == WeaponKind.Contact && unit.Definition.Behavior == EnemyBehavior.Standard && distance > 2.2f && unit.Id % 3 == 1)
+            {
+                Vector2 tangent = new Vector2(-unit.Facing.y, unit.Facing.x) * (unit.Id % 2 == 0 ? 1 : -1);
+                travelDirection = (unit.Facing + tangent * 0.45f).normalized;
+            }
             bool ranged = unit.Definition.Weapon.Kind == WeaponKind.Projectile;
             float stopDistance = ranged ? 4.8f : unit.Definition.Radius + Champion.Definition.Radius;
             float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f);
             if (distance > stopDistance)
-                unit.Position = ClampPosition(unit.Position + unit.Facing * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
+                unit.Position = ClampPosition(unit.Position + travelDirection * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
             else if (ranged && distance < 3f)
                 unit.Position = ClampPosition(unit.Position - unit.Facing * speed * deltaTime, unit.Definition.Radius);
         }
@@ -495,7 +524,11 @@ namespace ArcaneBrigade
                     float speed = catalog.RunWave > 0 ? pattern == 2 ? 1.8f + index % 4 * 0.2f : pattern == 4 ? 2f + index % 2 * 0.4f : 2.4f : pattern == 3 ? 7f : pattern == 2 ? 3.5f + index % 4 * 0.7f : pattern == 4 ? 3.5f + index % 2 * 1.8f : 4.2f;
                     projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = boss.Position, PreviousPosition = boss.Position, Velocity = direction * speed, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
                 }
-                boss.NextBossPattern = Elapsed + 3.5f;
+                boss.BossVolley++;
+                bool enraged = boss.Health < boss.Definition.Health * 0.5f;
+                float recovery = boss.BossVolley % 3 == 0 ? 2.2f : 0.55f;
+                boss.BossRecoveryUntil = Elapsed + recovery;
+                boss.NextBossPattern = Elapsed + (enraged ? 2.7f : 3.5f) + (boss.BossVolley % 3 == 0 ? 0.8f : 0);
                 events.Add(new CombatEvent(CombatEventKind.Fire, boss.Position, Faction.Enemy));
             }
             if (Elapsed < boss.NextBossPattern || boss.TelegraphUntil > 0f) return;
@@ -577,7 +610,7 @@ namespace ArcaneBrigade
                 events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
-            UnitState nearest = FindTarget(unit, weapon.Range);
+            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range, true) : FindTarget(unit, weapon.Range);
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;
             unit.AttackTargetId = nearest.Id;

@@ -86,6 +86,12 @@ PASS Four authored frames and body MirrorNewt
 PASS Idle/travel/recoil motion profile MirrorNewt
 PASS Four authored frames and body RibbonSpider
 PASS Idle/travel/recoil motion profile RibbonSpider
+PASS Four authored frames and body CoilKettle
+PASS Idle/travel/recoil motion profile CoilKettle
+PASS Four authored frames and body ThimbleMoth
+PASS Idle/travel/recoil motion profile ThimbleMoth
+PASS Four authored frames and body ReelOwl
+PASS Idle/travel/recoil motion profile ReelOwl
 PASS Four authored frames and body HushMite
 PASS Idle/travel/recoil motion profile HushMite
 PASS Four authored frames and body ClockBat

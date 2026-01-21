@@ -22,6 +22,12 @@ namespace ArcaneBrigade
             {
                 weapon.ConeDot = Mathf.Max(-1, weapon.ConeDot - steps * 0.1f);
                 weapon.Cooldown /= 1 + steps * 0.12f;
+                if (weapon.Family == ExpandedWeapon.Fish)
+                {
+                    weapon.ProjectileRadius *= range;
+                    weapon.ProjectileVisualWidth *= range;
+                    weapon.ProjectileLifetime *= range;
+                }
             }
         }
     }

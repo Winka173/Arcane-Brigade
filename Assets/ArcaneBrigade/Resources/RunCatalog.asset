@@ -62,6 +62,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61cef4349d8476d45a855c601689e0e8, type: 2}
   - {fileID: 11400000, guid: 1bc194bd8884d6b44bd8d621cf597427, type: 2}
   - {fileID: 11400000, guid: 5fd1ef354ddd67c48a238849096815bc, type: 2}
+  - {fileID: 11400000, guid: b877f79de0494fe4892d8031a1f4705f, type: 2}
+  - {fileID: 11400000, guid: c12167dde16942645bb1432b191f0e72, type: 2}
+  - {fileID: 11400000, guid: 0e8e367cd5f036943823cbb6c2600385, type: 2}
   Weapons:
   - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
@@ -111,6 +114,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4138d0a4f34677f4f8ba4f30f795c6d1, type: 2}
   - {fileID: 11400000, guid: 69fbb91d0ef486742a063c9c8c2a8f2c, type: 2}
   - {fileID: 11400000, guid: dcd4f5f556668894bad0537520c5196a, type: 2}
+  - {fileID: 11400000, guid: 3605d3f33436ef3449607d9e76ab9358, type: 2}
+  - {fileID: 11400000, guid: 5a813431a10c10d428ac35d7fe898fe3, type: 2}
+  - {fileID: 11400000, guid: 015f03d51fcddeb4ba68078faeb87f48, type: 2}
+  - {fileID: 11400000, guid: 62d61a913b26ec545bdc8bce3ad47e6b, type: 2}
+  - {fileID: 11400000, guid: c2b119ee6aabfd4409ae924d7c4101e1, type: 2}
+  - {fileID: 11400000, guid: 65a98235ab525564cb6441701d3de77c, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}

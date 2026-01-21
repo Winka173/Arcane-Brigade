@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         private readonly List<LineRenderer> lines = new List<LineRenderer>();
         private Material material;
         private Mesh disc;
+        private Mesh beam;
         private readonly List<MeshRenderer> fills = new List<MeshRenderer>();
         private MaterialPropertyBlock tint;
         public bool ReducedMotion;
@@ -21,8 +22,10 @@ namespace ArcaneBrigade
                 foreach (ExpandedField field in simulation.ExpandedFields)
                 {
                     bool hazard = field.Kind == ExpandedFieldKind.Curtain || field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard;
+                    bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether;
+                    if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
                     if (hazard != (priority == 0)) continue;
-                    if (!hazard && (field.Kind != ExpandedFieldKind.Link || field.Radius != 0) && field.Kind != ExpandedFieldKind.Strike) continue;
+                    if (!hazard && !carnival && (field.Kind != ExpandedFieldKind.Link || field.Radius != 0) && field.Kind != ExpandedFieldKind.Strike && field.Kind != ExpandedFieldKind.Echo) continue;
                     if (VisibleCount >= 96) break;
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
@@ -31,14 +34,16 @@ namespace ArcaneBrigade
                     Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
                     color.a = warning ? 0.65f + (ReducedMotion ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
                     line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;
-                    if (field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
+                    if (field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
                     {
+                        Vector2 start = field.Source == null ? field.Start : field.Source.Position;
+                        Vector2 end = field.Projectile != null ? field.Projectile.Position : field.Target != null ? field.Target.Position : field.Position;
                         line.loop = false; line.positionCount = 12;
                         for (int point = 0; point < 12; point++)
                         {
                             float fraction = point / 11f;
-                            Vector2 normal = new Vector2(-(field.Position - field.Start).y, (field.Position - field.Start).x).normalized;
-                            line.SetPosition(point, Vector2.Lerp(field.Start, field.Position, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 8f) * (ReducedMotion ? 0 : 0.055f) * (1 - progress));
+                            Vector2 normal = new Vector2(-(end - start).y, (end - start).x).normalized;
+                            line.SetPosition(point, Vector2.Lerp(start, end, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 8f) * (ReducedMotion ? 0 : 0.055f) * (1 - progress));
                         }
                     }
                     else if (field.Kind == ExpandedFieldKind.Iron)
@@ -55,23 +60,45 @@ namespace ArcaneBrigade
                         for (int point = 0; point < 64; point++)
                         {
                             float angle = point * Mathf.PI * 2 / 64;
-                            if (field.Kind == ExpandedFieldKind.Strike) angle = Mathf.Atan2(field.Direction.y, field.Direction.x) - 0.65f + point / 63f * 1.3f;
+                            if (field.Kind == ExpandedFieldKind.Strike || field.Kind == ExpandedFieldKind.MagnetCone) angle = Mathf.Atan2(field.Direction.y, field.Direction.x) - 0.65f + point / 63f * 1.3f;
                             line.SetPosition(point, field.Position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius);
                         }
                         if (field.Kind == ExpandedFieldKind.Strike) line.loop = false;
                     }
-                    line.enabled = hazard || field.Kind == ExpandedFieldKind.Link && field.Radius == 0 || field.Kind == ExpandedFieldKind.Strike;
+                    line.enabled = hazard || carnival || field.Kind == ExpandedFieldKind.Link && field.Radius == 0 || field.Kind == ExpandedFieldKind.Strike || field.Kind == ExpandedFieldKind.Echo;
+                    if (field.Kind == ExpandedFieldKind.Projector) line.enabled = false;
                     MeshRenderer fill = fills[slot];
-                    fill.enabled = hazard && field.Radius > 0;
+                    fill.enabled = (hazard || field.Kind == ExpandedFieldKind.Projector) && field.Radius > 0;
                     if (fill.enabled)
                     {
                         fill.transform.position = field.Position; fill.transform.localScale = Vector3.one * field.Radius;
-                        Color wash = color; wash.a *= hazard ? 0.14f : 0.1f;
+                        fill.GetComponent<MeshFilter>().sharedMesh = disc;
+                        fill.transform.rotation = Quaternion.identity;
+                        if (field.Kind == ExpandedFieldKind.Projector && field.Source != null)
+                        {
+                            if (beam == null)
+                            {
+                                beam = new Mesh { name = "CarnivalProjectorBeam", vertices = new[] { Vector3.zero, new Vector3(1, 1, 0), new Vector3(1, -1, 0) }, triangles = new[] { 0, 1, 2 }, colors = new[] { new Color(1, 1, 1, 0.65f), new Color(1, 1, 1, 0), new Color(1, 1, 1, 0) } };
+                                beam.RecalculateBounds();
+                            }
+                            Vector2 direction = field.Position - field.Source.Position;
+                            fill.GetComponent<MeshFilter>().sharedMesh = beam;
+                            fill.transform.position = field.Source.Position;
+                            fill.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+                            fill.transform.localScale = new Vector3(direction.magnitude + field.Radius, field.Radius, 1);
+                        }
+                        Color wash = color; wash.a *= hazard ? 0.14f : 0.65f;
                         tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
                     }
                 }
             for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; }
         }
+        private static bool ContainsProjectile(CombatSimulation simulation, ProjectileState projectile)
+        {
+            foreach (ProjectileState active in simulation.Projectiles) if (active == projectile) return true;
+            return false;
+        }
+
         private LineRenderer Acquire(int index)
         {
             if (index < lines.Count) return lines[index];
@@ -94,6 +121,6 @@ namespace ArcaneBrigade
             wash.AddComponent<MeshFilter>().sharedMesh = disc; MeshRenderer renderer = wash.AddComponent<MeshRenderer>();
             renderer.sharedMaterial = material; renderer.sortingOrder = 61; fills.Add(renderer); return line;
         }
-        private void OnDestroy() { if (material != null) Destroy(material); if (disc != null) Destroy(disc); }
+        private void OnDestroy() { if (material != null) Destroy(material); if (disc != null) Destroy(disc); if (beam != null) Destroy(beam); }
     }
 }

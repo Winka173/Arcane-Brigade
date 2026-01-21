@@ -117,5 +117,5 @@ PASS Large hostile with original four-state art FurnaceToad
 PASS True alpha enemy art FurnaceToad
 PASS Large hostile with original four-state art WardrobeCrab
 PASS True alpha enemy art WardrobeCrab
-PASS Two exclusive dream recruits
+PASS Exclusive dream recruits remain available as roster expands
 PASS Compact shop stat descriptions

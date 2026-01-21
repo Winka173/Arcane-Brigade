@@ -240,7 +240,7 @@ namespace ArcaneBrigade
                 RosterEntry entry = State.Roster[index];
                 CombatCatalog.StartingCompanions[index] = BuildUnit(catalog.Unit(entry.UnitId), catalog.Weapon(entry.WeaponId), entry.Tier, true);
             }
-            float scaling = (1f + (State.Wave - 1) * 0.10f) * (1f + State.Difficulty * 0.18f);
+            float scaling = (1f + (State.Wave - 1) * 0.10f) * (1f + State.Difficulty * 0.18f) * (1f + State.Difficulty * State.Difficulty * 0.07f);
             CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
             CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
             if (State.Wave == 1)
@@ -615,7 +615,7 @@ namespace ArcaneBrigade
             State.SpecialOffers.Clear();
             var specialUnits = new List<UnitDefinition>();
             foreach (UnitDefinition unit in catalog.Companions)
-                if (unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
+                if (unit.SpecialRecruit && (!unit.RecruitThemeLocked || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && unit.UnlockWave <= State.Wave && (State.NewRecruitsThisWave < 3 || State.Roster.Exists(entry => entry.UnitId == unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
             for (int index = 0; index < 3; index++)
             {
                 var recruits = specialUnits.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id));

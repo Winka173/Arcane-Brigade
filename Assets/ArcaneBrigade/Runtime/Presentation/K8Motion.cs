@@ -54,6 +54,7 @@ namespace ArcaneBrigade
             float windup = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;
             float age = time - unit.AttackStarted;
             if (unit.TelegraphUntil > time || unit.PendingAttack && age >= 0 && age < windup) return 2;
+            if (unit.BossRecoveryUntil > time) return 1;
             if (!unit.Alive || time - unit.LastHit >= 0 && time - unit.LastHit < 0.18f || Attacking(unit, time) && age >= windup) return 3;
             return UnitVisual.AnimationFrame(time, unit.Id, false, reduced);
         }
@@ -121,6 +122,22 @@ namespace ArcaneBrigade
                 recoil = preparing ? 0.08f * charge : Mathf.Lerp(0.08f, -0.12f, release) * settle;
             }
             float lean = weapon.BodyAttackTilt * (preparing ? -0.4f * charge : Mathf.Lerp(-0.4f, 1, release) * settle);
+            if (weapon.Mechanic == CarnivalWeapon.SpringHammer)
+            {
+                recoil = preparing ? charge * 0.22f : Mathf.Lerp(0.22f, -0.32f, release) * settle;
+                angle = preparing ? -48 * charge : Mathf.Lerp(-48, 30, release) * settle;
+                lift = preparing ? charge * 0.1f : -0.08f * release * settle;
+            }
+            else if (weapon.Mechanic == CarnivalWeapon.RibbonWheel)
+                angle = preparing ? -25 * charge : recovery * 300 * settle;
+            else if (weapon.Mechanic == CarnivalWeapon.YoYo)
+            { angle = preparing ? -38 * charge : Mathf.Lerp(-38, 65, release) * settle; recoil = -0.15f * release * settle; }
+            else if (weapon.Mechanic == CarnivalWeapon.Sewing)
+                lift = preparing ? 0 : Mathf.Sin(recovery * Mathf.PI * 12) * 0.035f * settle;
+            else if (weapon.Mechanic == CarnivalWeapon.Projector)
+            { angle = preparing ? -8 * charge : 5 * settle; recoil = -0.05f * release * settle; }
+            else if (weapon.Mechanic == CarnivalWeapon.Magnet)
+                recoil = preparing ? -0.04f * charge : 0.14f * settle;
             return new Pose(angle, recoil, lean, preparing ? -0.025f * charge : Mathf.Lerp(-0.025f, 0.055f, release) * settle, lift);
         }
 

@@ -1,0 +1,57 @@
+PASS Six distinct weapons balanced three melee / three ranged
+PASS Authored art and motion ClockworkYoYo
+PASS Actual combat damage ClockworkYoYo
+PASS No champion damage in isolated weapon fixture ClockworkYoYo
+PASS Weapon has distinct windup ClockworkYoYo
+PASS Reduced motion ClockworkYoYo
+PASS Authored art and motion ScrapMagnet
+PASS Actual combat damage ScrapMagnet
+PASS No champion damage in isolated weapon fixture ScrapMagnet
+PASS Weapon has distinct windup ScrapMagnet
+PASS Reduced motion ScrapMagnet
+PASS Authored art and motion NeedleSinger
+PASS Actual combat damage NeedleSinger
+PASS No champion damage in isolated weapon fixture NeedleSinger
+PASS Weapon has distinct windup NeedleSinger
+PASS Reduced motion NeedleSinger
+PASS Authored art and motion SpringKnocker
+PASS Actual combat damage SpringKnocker
+PASS No champion damage in isolated weapon fixture SpringKnocker
+PASS Weapon has distinct windup SpringKnocker
+PASS Reduced motion SpringKnocker
+PASS Authored art and motion DreamProjector
+PASS Actual combat damage DreamProjector
+PASS No champion damage in isolated weapon fixture DreamProjector
+PASS Weapon has distinct windup DreamProjector
+PASS Reduced motion DreamProjector
+PASS Authored art and motion RibbonWheel
+PASS Actual combat damage RibbonWheel
+PASS No champion damage in isolated weapon fixture RibbonWheel
+PASS Weapon has distinct windup RibbonWheel
+PASS Reduced motion RibbonWheel
+PASS Spring hammer impact applies weapon knockback
+PASS Spring hammer respects full knockback resistance
+PASS Four painted poses CoilKettle
+PASS Recruit has bonus and tradeoff CoilKettle
+PASS Recruit matches champion theme CoilKettle
+PASS New recruit keeps its theme in the dream pool CoilKettle
+PASS Four painted poses ThimbleMoth
+PASS Recruit has bonus and tradeoff ThimbleMoth
+PASS Recruit matches champion theme ThimbleMoth
+PASS New recruit keeps its theme in the dream pool ThimbleMoth
+PASS Four painted poses ReelOwl
+PASS Recruit has bonus and tradeoff ReelOwl
+PASS Recruit matches champion theme ReelOwl
+PASS New recruit keeps its theme in the dream pool ReelOwl
+PASS Companions distribute enemy claims
+PASS Companions separate instead of stacking
+PASS Pursuit stays within leash
+PASS Pause freezes tactics
+PASS Boss completes a readable three-volley sequence
+PASS Third volley opens a longer recovery window
+PASS Recovery rewards counterattack by 15 percent
+PASS Difficulty increases boss durability 0
+PASS Difficulty increases boss durability 1
+PASS Difficulty increases boss durability 2
+PASS Difficulty increases boss durability 3
+PASS Difficulty increases boss durability 4

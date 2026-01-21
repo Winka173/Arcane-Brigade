@@ -55,7 +55,7 @@ namespace ArcaneBrigade
                 body.transform.rotation = Quaternion.Euler(0, 0, time * 650 + state.Id * 31);
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
-            bool authored = state.Sprite != null && state.Sprite.texture.name == "DreamProjectiles_v1";
+            bool authored = state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
             halo.enabled = core.enabled = magic && !authored;
             float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;
             if (hostile && body.sprite != null)
@@ -70,7 +70,7 @@ namespace ArcaneBrigade
                 core.color = new Color(1f, 0.96f, 0.89f, 0.9f);
             }
             streak.enabled = hostile || !PresentationSettings.ReducedMotion && (arrow || magic);
-            streak.widthMultiplier = arrow ? 0.024f : 0.065f;
+            streak.widthMultiplier = arrow || state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.Sewing ? 0.024f : 0.065f;
             // One danger hue for every hostile shot so it never reads like an allied ember bolt.
             Color trail = hostile ? new Color(1f, 0.16f, 0.48f) : state.Color;
             streak.startColor = new Color(trail.r, trail.g, trail.b, 0.03f);

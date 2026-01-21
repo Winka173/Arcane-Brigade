@@ -238,6 +238,36 @@ PASS Actual range multiplier StampHammer
 PASS Authored visual multiplier StampHammer
 PASS Recompilation never stacks balance buff StampHammer
 PASS Source weapon not mutated StampHammer
+PASS Compiled damage multiplier ClockworkYoYo
+PASS Actual range multiplier ClockworkYoYo
+PASS Authored visual multiplier ClockworkYoYo
+PASS Recompilation never stacks balance buff ClockworkYoYo
+PASS Source weapon not mutated ClockworkYoYo
+PASS Compiled damage multiplier ScrapMagnet
+PASS Actual range multiplier ScrapMagnet
+PASS Authored visual multiplier ScrapMagnet
+PASS Recompilation never stacks balance buff ScrapMagnet
+PASS Source weapon not mutated ScrapMagnet
+PASS Compiled damage multiplier NeedleSinger
+PASS Actual range multiplier NeedleSinger
+PASS Authored visual multiplier NeedleSinger
+PASS Recompilation never stacks balance buff NeedleSinger
+PASS Source weapon not mutated NeedleSinger
+PASS Compiled damage multiplier SpringKnocker
+PASS Actual range multiplier SpringKnocker
+PASS Authored visual multiplier SpringKnocker
+PASS Recompilation never stacks balance buff SpringKnocker
+PASS Source weapon not mutated SpringKnocker
+PASS Compiled damage multiplier DreamProjector
+PASS Actual range multiplier DreamProjector
+PASS Authored visual multiplier DreamProjector
+PASS Recompilation never stacks balance buff DreamProjector
+PASS Source weapon not mutated DreamProjector
+PASS Compiled damage multiplier RibbonWheel
+PASS Actual range multiplier RibbonWheel
+PASS Authored visual multiplier RibbonWheel
+PASS Recompilation never stacks balance buff RibbonWheel
+PASS Source weapon not mutated RibbonWheel
 PASS Melee movement speed rises30 percent
 PASS Melee leash adds2 units beyond ranged leash
 PASS Melee display can exceed body width
@@ -1128,6 +1158,60 @@ PASS Ledger remains read-only StampHammer/2
 PASS Tier grows actual body, weapon and range StampHammer/3
 PASS Ledger reflects compiled melee/tier values StampHammer/3
 PASS Ledger remains read-only StampHammer/3
+PASS Ledger reflects compiled melee/tier values ClockworkYoYo/1
+PASS Ledger remains read-only ClockworkYoYo/1
+PASS Tier grows actual body, weapon and range ClockworkYoYo/2
+PASS Ledger reflects compiled melee/tier values ClockworkYoYo/2
+PASS Ledger remains read-only ClockworkYoYo/2
+PASS Tier grows actual body, weapon and range ClockworkYoYo/3
+PASS Ledger reflects compiled melee/tier values ClockworkYoYo/3
+PASS Ledger remains read-only ClockworkYoYo/3
+PASS Ledger reflects compiled melee/tier values ScrapMagnet/1
+PASS Ledger remains read-only ScrapMagnet/1
+PASS Tier grows actual body, weapon and range ScrapMagnet/2
+PASS Tier grows bullet collision radius ScrapMagnet/2
+PASS Ledger reflects compiled melee/tier values ScrapMagnet/2
+PASS Ledger remains read-only ScrapMagnet/2
+PASS Tier grows actual body, weapon and range ScrapMagnet/3
+PASS Tier grows bullet collision radius ScrapMagnet/3
+PASS Ledger reflects compiled melee/tier values ScrapMagnet/3
+PASS Ledger remains read-only ScrapMagnet/3
+PASS Ledger reflects compiled melee/tier values NeedleSinger/1
+PASS Ledger remains read-only NeedleSinger/1
+PASS Tier grows actual body, weapon and range NeedleSinger/2
+PASS Tier grows bullet collision radius NeedleSinger/2
+PASS Ledger reflects compiled melee/tier values NeedleSinger/2
+PASS Ledger remains read-only NeedleSinger/2
+PASS Tier grows actual body, weapon and range NeedleSinger/3
+PASS Tier grows bullet collision radius NeedleSinger/3
+PASS Ledger reflects compiled melee/tier values NeedleSinger/3
+PASS Ledger remains read-only NeedleSinger/3
+PASS Ledger reflects compiled melee/tier values SpringKnocker/1
+PASS Ledger remains read-only SpringKnocker/1
+PASS Tier grows actual body, weapon and range SpringKnocker/2
+PASS Ledger reflects compiled melee/tier values SpringKnocker/2
+PASS Ledger remains read-only SpringKnocker/2
+PASS Tier grows actual body, weapon and range SpringKnocker/3
+PASS Ledger reflects compiled melee/tier values SpringKnocker/3
+PASS Ledger remains read-only SpringKnocker/3
+PASS Ledger reflects compiled melee/tier values DreamProjector/1
+PASS Ledger remains read-only DreamProjector/1
+PASS Tier grows actual body, weapon and range DreamProjector/2
+PASS Tier grows bullet collision radius DreamProjector/2
+PASS Ledger reflects compiled melee/tier values DreamProjector/2
+PASS Ledger remains read-only DreamProjector/2
+PASS Tier grows actual body, weapon and range DreamProjector/3
+PASS Tier grows bullet collision radius DreamProjector/3
+PASS Ledger reflects compiled melee/tier values DreamProjector/3
+PASS Ledger remains read-only DreamProjector/3
+PASS Ledger reflects compiled melee/tier values RibbonWheel/1
+PASS Ledger remains read-only RibbonWheel/1
+PASS Tier grows actual body, weapon and range RibbonWheel/2
+PASS Ledger reflects compiled melee/tier values RibbonWheel/2
+PASS Ledger remains read-only RibbonWheel/2
+PASS Tier grows actual body, weapon and range RibbonWheel/3
+PASS Ledger reflects compiled melee/tier values RibbonWheel/3
+PASS Ledger remains read-only RibbonWheel/3
 PASS Sandbox uses same melee and star range rules
 PASS English unit content LanternKnight
 PASS English unit content Postmaster
@@ -1171,6 +1255,9 @@ PASS English unit content MaskPepper
 PASS English unit content CrayonGremlin
 PASS English unit content MirrorNewt
 PASS English unit content RibbonSpider
+PASS English unit content CoilKettle
+PASS English unit content ThimbleMoth
+PASS English unit content ReelOwl
 PASS English unit content HushMite
 PASS English unit content ClockBat
 PASS English unit content BristleImp

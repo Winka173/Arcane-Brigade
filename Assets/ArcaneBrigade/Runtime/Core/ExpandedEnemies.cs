@@ -63,6 +63,7 @@ namespace ArcaneBrigade
         private float ExpandedDamage(UnitState target, float damage, Faction source, Vector2 direction, WeaponDefinition weapon)
         {
             if (!catalog.ExpandedContent) return damage;
+            if (target.Definition.IsBoss && target.BossRecoveryUntil > Elapsed && source != Faction.Enemy) damage *= 1.15f;
             if (source != Faction.Enemy && weapon != null && target.Definition.Behavior == EnemyBehavior.Door && direction.sqrMagnitude > 0.01f && Vector2.Dot(direction.normalized, target.Facing) < -0.45f)
                 damage *= 0.5f;
             return damage;

@@ -54,7 +54,7 @@ namespace ArcaneBrigade.Editor
                 require(unit.AnimationFrames.Length == 4 && unit.BodyHeight > 1.5f && unit.KnockbackResistance >= 0.6f, "Large hostile with original four-state art " + id);
                 require(unit.Body.texture.GetPixel(0, 0).a < 0.01f, "True alpha enemy art " + id);
             }
-            require(catalog.Companions.Count(unit => unit.SpecialRecruit) == 2, "Two exclusive dream recruits");
+            require(catalog.Companions.Count(unit => unit.SpecialRecruit) >= 2, "Exclusive dream recruits remain available as roster expands");
             require(catalog.Items.All(item => ShortOfferCopy.Item(item).Length < 400), "Compact shop stat descriptions");
             File.WriteAllLines("PreviewExports/K12/Core_Checks.txt", notes); Debug.Log("K12_CHECKS_PASSED " + notes.Count);
         }

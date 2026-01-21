@@ -47,7 +47,11 @@ namespace ArcaneBrigade
         public float MarkLifetime = 2.4f;
         public float PushDistance = 0.35f;
         public ExpandedWeapon Family;
+        public CarnivalWeapon Mechanic;
+        public string GameplaySummary;
     }
+
+    public enum CarnivalWeapon { None, YoYo, Magnet, Sewing, SpringHammer, Projector, RibbonWheel }
 
     public enum ExpandedWeapon { None, Tea, TetherBow, Scissors, Camera, Fish, Iron, Hammer, Alarm, MusicBox }
 

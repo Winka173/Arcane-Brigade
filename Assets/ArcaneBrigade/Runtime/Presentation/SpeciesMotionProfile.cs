@@ -11,6 +11,7 @@ namespace ArcaneBrigade
         public readonly float Recoil;
         public readonly float IdleGesture;
         public readonly float LowerSquash;
+        public readonly int GestureKind;
         public SpeciesMotionProfile(UnitDefinition unit)
         {
             uint identity = 2166136261;
@@ -24,6 +25,7 @@ namespace ArcaneBrigade
             Recoil = unit.Material == BodyMaterial.Metal ? 0.028f : unit.Material == BodyMaterial.Fabric ? 0.075f : 0.045f + variation * 0.025f;
             IdleGesture = unit.Material == BodyMaterial.Wood ? 0.018f : unit.Material == BodyMaterial.Glass ? 0.035f : 0.025f + variation * 0.025f;
             LowerSquash = unit.Material == BodyMaterial.Metal || unit.Material == BodyMaterial.Wood ? 0.018f : 0.05f + variation * 0.02f;
+            GestureKind = (int)(identity % 4);
         }
     }
 }

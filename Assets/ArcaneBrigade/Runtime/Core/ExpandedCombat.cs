@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink }
+    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether }
     public sealed class ExpandedField
     {
         public ExpandedFieldKind Kind;
@@ -19,6 +19,8 @@ namespace ArcaneBrigade
         public UnitState Target;
         public CombatCause Cause;
         public bool Resolved;
+        public ProjectileState Projectile;
+        public WeaponDefinition ImpactWeapon;
     }
 
     public sealed partial class CombatSimulation
@@ -41,6 +43,7 @@ namespace ArcaneBrigade
         private bool ResolveExpandedAttack(UnitState source, float damage, bool critical, CombatCause cause)
         {
             WeaponDefinition weapon = source.Definition.Weapon;
+            if (weapon.Mechanic != CarnivalWeapon.None && source.Faction != Faction.Enemy) return ResolveCarnivalAttack(source, damage, critical, cause);
             if (weapon.Family == ExpandedWeapon.None || source.Faction == Faction.Enemy) return false;
             source.ExpandedBeat++;
             if (weapon.Family == ExpandedWeapon.Tea || weapon.Family == ExpandedWeapon.TetherBow || weapon.Family == ExpandedWeapon.Fish || weapon.Family == ExpandedWeapon.MusicBox)
@@ -124,6 +127,12 @@ namespace ArcaneBrigade
             UnitState source = units.Find(unit => unit.Id == projectile.SourceUnitId);
             if (source == null) return;
             ExpandedWeapon family = projectile.Weapon.Family;
+            if (projectile.Weapon.Mechanic == CarnivalWeapon.Sewing && target.Alive)
+            {
+                bool freshlyPinned = target.ChillUntil <= Elapsed;
+                target.ChillUntil = Mathf.Max(target.ChillUntil, Elapsed + (target.Definition.IsBoss ? 0.15f : 0.35f));
+                if (freshlyPinned) events.Add(new CombatEvent(CombatEventKind.StatusApplied, target.Position, target.Faction, element: DamageElement.Frost, cause: projectile.Cause));
+            }
             if (family == ExpandedWeapon.Tea && !projectile.IsFragment)
                 Field(ExpandedFieldKind.Tea, source, target.Position, Vector2.zero, 0.7f * (catalog.TeaCoasterStacks > 0 ? 1.4f : 1), projectile.Damage * 0.25f * (catalog.TeaCoasterStacks > 0 ? 0.8f : 1), 0, 1.8f, projectile.Cause);
             if (family == ExpandedWeapon.TetherBow && projectile.Victims.Count == 1)
@@ -164,7 +173,7 @@ namespace ArcaneBrigade
                 bool ink = field.Kind == ExpandedFieldKind.Ink;
                 if (Elapsed < field.At || field.Resolved || Elapsed < field.NextTick || (field.Damage <= 0 && !ink)) continue;
                 bool heat = field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron;
-                field.NextTick = Elapsed + 0.4f; field.Resolved = !heat && !ink;
+                field.NextTick = Elapsed + 0.4f; field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector;
                 ExpandedPayoffs++;
                 if (field.Source == null || field.Source.Faction != Faction.Enemy) RecordActivation(field.Cause);
                 if (field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard || field.Kind == ExpandedFieldKind.Curtain)
@@ -181,7 +190,7 @@ namespace ArcaneBrigade
                     if (field.Kind == ExpandedFieldKind.Strike) inside &= Vector2.Dot(offset.normalized, field.Direction) >= 0.8f;
                     if (!inside) continue;
                     if (ink) { enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + 0.6f); continue; }
-                    ApplyDamage(enemy, field.Damage, field.Source == null ? Faction.Companion : field.Source.Faction, field.Cause.ItemId, field.Direction, field.Cause.Depth == 0 && field.Source != null ? field.Source.Definition.Weapon : null, cause: field.Cause);
+                    ApplyDamage(enemy, field.Damage, field.Source == null ? Faction.Companion : field.Source.Faction, field.Cause.ItemId, field.Direction, field.ImpactWeapon != null ? field.ImpactWeapon : field.Cause.Depth == 0 && field.Source != null ? field.Source.Definition.Weapon : null, cause: field.Cause);
                     if (heat && enemy.Alive)
                     {
                         enemy.BurnUntil = Mathf.Max(enemy.BurnUntil, Elapsed + 0.6f); enemy.BurnCause = field.Cause.Child("heat-status");
