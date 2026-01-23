@@ -8,6 +8,9 @@ namespace ArcaneBrigade
         private Material floor;
         private int theme = -1;
         private Color palette = Palettes[0];
+        private CarnivalStageAssets stages;
+        private int floorTheme;
+        private float floorBlend;
         private static Sprite paper;
         private static Texture2D paperTexture;
         private static readonly Color[] Palettes = { new Color(0.11f, 0.23f, 0.3f), new Color(0.19f, 0.19f, 0.28f), new Color(0.13f, 0.27f, 0.26f) };
@@ -15,6 +18,7 @@ namespace ArcaneBrigade
         public void Configure(ArenaController controller)
         {
             owner = controller;
+            stages = Resources.Load<CarnivalStageAssets>("CarnivalStageAssets");
             GameObject ground = GameObject.Find("HD_TiledFloor");
             if (ground != null) floor = ground.GetComponent<MeshRenderer>().material;
         }
@@ -26,6 +30,12 @@ namespace ArcaneBrigade
             if (theme != next)
             {
                 theme = next;
+                floorBlend = 0;
+                if (floor != null && stages != null && stages.Floors.Length == 3)
+                {
+                    floor.SetTexture("_MainTex", stages.Floors[floorTheme]);
+                    floor.SetTexture("_NextTex", stages.Floors[theme]);
+                }
             }
             if (owner.Simulation.Phase == RunPhase.Paused) return;
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
@@ -33,6 +43,9 @@ namespace ArcaneBrigade
             palette = Color.Lerp(palette, target, reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * 0.8f));
             if (floor != null)
             {
+                floorBlend = Mathf.Min(1, floorBlend + (reduced ? 1 : Time.deltaTime * 0.65f));
+                floor.SetFloat("_FloorBlend", stages != null && stages.Floors.Length == 3 ? floorBlend : 0);
+                if (floorBlend >= 1) floorTheme = theme;
                 floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.54f);
                 floor.SetVector("_ArenaSize", owner.WorldBounds);
                 floor.SetFloat("_StageTime", reduced ? 0 : owner.PresentationClock);
@@ -45,9 +58,10 @@ namespace ArcaneBrigade
             PaintedAnimationLibrary art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             if (art != null && art.MarketDecor != null && art.MarketDecor.Length >= 4)
             {
-                var rug = new GameObject("PaintedMarketRug"); rug.transform.SetParent(parent, false); rug.transform.localPosition = new Vector2(0, 0.72f);
+                var rug = new GameObject("PaintedMarketRug"); rug.transform.SetParent(parent, false); rug.transform.localPosition = new Vector2(0, -0.15f);
                 SpriteRenderer renderer = rug.AddComponent<SpriteRenderer>(); renderer.sprite = art.MarketRugs != null && art.MarketRugs.Length == 2 ? art.MarketRugs[special ? 1 : 0] : art.MarketDecor[special ? 1 : 0]; renderer.sortingOrder = -77;
-                rug.transform.localScale = Vector3.one * (10.5f / renderer.sprite.bounds.size.x);
+                float clothScale = 10.5f / renderer.sprite.bounds.size.x;
+                rug.transform.localScale = new Vector3(clothScale, clothScale * 2.3f, 1);
                 var garland = new GameObject("MarketPennants"); garland.transform.SetParent(parent, false); garland.transform.localPosition = new Vector2(0, 4.65f);
                 SpriteRenderer flags = garland.AddComponent<SpriteRenderer>(); flags.sprite = art.MarketDecor[special ? 3 : 2]; flags.sortingOrder = 300;
                 garland.transform.localScale = Vector3.one * (3.7f / flags.sprite.bounds.size.x);

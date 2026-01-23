@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -950050135, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   - {fileID: -341863724, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
   - {fileID: -1148076488, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
   Speed: 1.7
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 5
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -48,5 +51,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 2
+  Shot: 0
   Material: 1
   Motif: 0

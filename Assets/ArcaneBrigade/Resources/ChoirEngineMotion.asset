@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ChoirEngineMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1268701900, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 1107171016, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  Walk:
+  - {fileID: 1692623471, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 60403076, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: -1618275892, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 2003892678, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  Windup:
+  - {fileID: -1341440163, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: -1530954069, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  Release:
+  - {fileID: -878754632, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 940338386, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  Recovery:
+  - {fileID: -820041969, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 1183102294, guid: 45e1527ecac625448a9b7162d951c539, type: 3}

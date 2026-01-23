@@ -29,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 2
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8
@@ -40,7 +41,12 @@ MonoBehaviour:
   - hearth
   Passive: 1
   PassiveStrength: 0.45
-  Description: 'YOU: +4% knockback, -1% speed. Heals every 4s.'
+  Description: 'RARE ally. Attacks deal 36% more damage.
+
+    Your Knockback +4%,
+    Movement speed -1%
+
+    Heal you every 4s'
   ChampionModifiers: []
   RecruitThemes:
   - hearth
@@ -58,5 +64,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 1
   Motif: 0

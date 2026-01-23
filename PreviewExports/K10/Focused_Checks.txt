@@ -57,6 +57,13 @@ PASS All protagonists have authored new starting-stat identities
 PASS New stat sources include protagonist identity LanternKnight
 PASS New stat sources include protagonist identity Postmaster
 PASS New stat sources include protagonist identity DrowsySeer
+PASS New stat sources include protagonist identity RootOracle
+PASS New stat sources include protagonist identity LoneJelly
+PASS New stat sources include protagonist identity GlassDice
+PASS New stat sources include protagonist identity TideSinger
+PASS New stat sources include protagonist identity CometRunner
+PASS New stat sources include protagonist identity MirrorKeeper
+PASS New stat sources include protagonist identity TreasureAcorn
 PASS Technical term has icon-linked explanation: split
 PASS Technical term has icon-linked explanation: pierce
 PASS Technical term has icon-linked explanation: bounce

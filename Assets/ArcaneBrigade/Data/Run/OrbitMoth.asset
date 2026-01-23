@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 306178121, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
   - {fileID: 1339157263, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
   - {fileID: 1492482736, guid: e04d3c2c651edbf4b846a217bc9c267e, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: b8b75c39f98614a439f9995a95828421, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - astral
   Passive: 4
   PassiveStrength: 0.5
-  Description: "Chills nearby enemies\nChampion / Heart healing: +1\nChampion / Maximum
-    health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n"
+  Description: 'Your Heart healing +1, Maximum health -1
+
+    Slow nearby foes'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: CometRunner
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: CometRunner
+  DisplayName: The Comet Courier
+  Body: {fileID: -1529324380, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
+  AnimationFrames:
+  - {fileID: -1529324380, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
+  - {fileID: -331314746, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
+  - {fileID: 1204188615, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
+  - {fileID: -361823737, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
+  AuthoredMotion: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 4138d0a4f34677f4f8ba4f30f795c6d1, type: 2}
+  Health: 120
+  Speed: 3.8
+  Radius: 0.25
+  BodyHeight: 1.08
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - astral
+  Passive: 0
+  PassiveStrength: 0.5
+  Description: Travel 10 units to release a slowing pulse. Moving charges it; shops
+    do not.
+  ChampionModifiers:
+  - Effect: 44
+    Scope: 0
+    Value: -0.05
+  RecruitThemes:
+  - astral
+  HeroMechanic: 8
+  CompanionModifiers: []
+  Price: 24
+  UnlockWave: 0
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0

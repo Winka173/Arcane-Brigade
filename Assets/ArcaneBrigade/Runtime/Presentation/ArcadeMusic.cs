@@ -93,12 +93,12 @@ namespace ArcaneBrigade
         {
             switch (scene)
             {
-                case ArcaneCueLibrary.SceneMenu: return 0.62f;
-                case ArcaneCueLibrary.SceneSelect: return 0.55f;
-                case ArcaneCueLibrary.SceneBoss: return 0.6f;
-                case ArcaneCueLibrary.SceneShopGold: return 0.6f;
-                case ArcaneCueLibrary.SceneShopDream: return 0.55f;
-                default: return 0.5f;
+                case ArcaneCueLibrary.SceneMenu: return 0.4f;
+                case ArcaneCueLibrary.SceneSelect: return 0.35f;
+                case ArcaneCueLibrary.SceneBoss: return 0.36f;
+                case ArcaneCueLibrary.SceneShopGold: return 0.38f;
+                case ArcaneCueLibrary.SceneShopDream: return 0.35f;
+                default: return 0.3f;
             }
         }
 

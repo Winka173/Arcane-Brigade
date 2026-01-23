@@ -8,6 +8,20 @@ PASS Four authored frames and body Postmaster
 PASS Idle/travel/recoil motion profile Postmaster
 PASS Four authored frames and body DrowsySeer
 PASS Idle/travel/recoil motion profile DrowsySeer
+PASS Four authored frames and body RootOracle
+PASS Idle/travel/recoil motion profile RootOracle
+PASS Four authored frames and body LoneJelly
+PASS Idle/travel/recoil motion profile LoneJelly
+PASS Four authored frames and body GlassDice
+PASS Idle/travel/recoil motion profile GlassDice
+PASS Four authored frames and body TideSinger
+PASS Idle/travel/recoil motion profile TideSinger
+PASS Four authored frames and body CometRunner
+PASS Idle/travel/recoil motion profile CometRunner
+PASS Four authored frames and body MirrorKeeper
+PASS Idle/travel/recoil motion profile MirrorKeeper
+PASS Four authored frames and body TreasureAcorn
+PASS Idle/travel/recoil motion profile TreasureAcorn
 PASS Four authored frames and body TeapotPilgrim
 PASS Idle/travel/recoil motion profile TeapotPilgrim
 PASS Four authored frames and body CandleSnail
@@ -116,6 +130,22 @@ PASS Four authored frames and body FurnaceToad
 PASS Idle/travel/recoil motion profile FurnaceToad
 PASS Four authored frames and body WardrobeCrab
 PASS Idle/travel/recoil motion profile WardrobeCrab
+PASS Four authored frames and body HopperKeg
+PASS Idle/travel/recoil motion profile HopperKeg
+PASS Four authored frames and body ChargerRam
+PASS Idle/travel/recoil motion profile ChargerRam
+PASS Four authored frames and body CoinLeech
+PASS Idle/travel/recoil motion profile CoinLeech
+PASS Four authored frames and body BlastPuffer
+PASS Idle/travel/recoil motion profile BlastPuffer
+PASS Four authored frames and body SporeBishop
+PASS Idle/travel/recoil motion profile SporeBishop
+PASS Four authored frames and body BroomSkater
+PASS Idle/travel/recoil motion profile BroomSkater
+PASS Four authored frames and body RibbonHydra
+PASS Idle/travel/recoil motion profile RibbonHydra
+PASS Four authored frames and body BurrowBell
+PASS Idle/travel/recoil motion profile BurrowBell
 PASS Four authored frames and body UndeliveredKing
 PASS Idle/travel/recoil motion profile UndeliveredKing
 PASS Four authored frames and body ScarletIndex
@@ -126,6 +156,16 @@ PASS Four authored frames and body WaxAdmiral
 PASS Idle/travel/recoil motion profile WaxAdmiral
 PASS Four authored frames and body LastLantern
 PASS Idle/travel/recoil motion profile LastLantern
+PASS Four authored frames and body MarqueeMaw
+PASS Idle/travel/recoil motion profile MarqueeMaw
+PASS Four authored frames and body UmbraCradle
+PASS Idle/travel/recoil motion profile UmbraCradle
+PASS Four authored frames and body CoinWidow
+PASS Idle/travel/recoil motion profile CoinWidow
+PASS Four authored frames and body ChoirEngine
+PASS Idle/travel/recoil motion profile ChoirEngine
+PASS Four authored frames and body SuitcaseLeviathan
+PASS Idle/travel/recoil motion profile SuitcaseLeviathan
 PASS Slower authored speed and fixed weapon LanternKnight
 PASS Merge-ready recruitment appears often LanternKnight count=91
 PASS Merge preview does not consume weapon randomness LanternKnight

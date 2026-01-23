@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: RibbonHydra
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: RibbonHydra
+  DisplayName: Ribbon Hydra
+  Body: {fileID: -1920348642, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  AnimationFrames:
+  - {fileID: -1920348642, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: 321148124, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -219697699, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -1636377939, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c1c5a95a8f429744cb9632edcc3cb382, type: 2}
+  Weapon: {fileID: 11400000, guid: eb40c07ca3a68454681821474c562ceb, type: 2}
+  Health: 74
+  Speed: 0.85
+  Radius: 0.3
+  BodyHeight: 1.05
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Spits three curving streams.
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 8
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 11
+  Shot: 3
+  Material: 3
+  Motif: 0

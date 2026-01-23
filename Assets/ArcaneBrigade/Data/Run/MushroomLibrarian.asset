@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -2102499276, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   - {fileID: -408783478, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   - {fileID: -698028735, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 3b296350d6f02654f98a89ca62bf43e3, type: 2}
   Health: 120
   Speed: 5.1
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - orchard
   Passive: 1
   PassiveStrength: 0.5
-  Description: "Automatically heals the champion every 4 seconds\nRun / Luck: +0.025\nCompanions
-    / Attack speed: -0.5%\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'Luck +0.025. Allies: Attack speed -0.5%
+
+    Heal you every 4s'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

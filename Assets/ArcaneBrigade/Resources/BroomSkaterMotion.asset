@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BroomSkaterMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1448893968, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 20444608, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  Walk:
+  - {fileID: 1508455627, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 1900993267, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 405183079, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: -1564815931, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  Windup:
+  - {fileID: -2068283494, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 2087838460, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  Release:
+  - {fileID: -1741666402, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 1181624816, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  Recovery:
+  - {fileID: 397708190, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 1494169579, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}

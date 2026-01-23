@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -1280012910, guid: 6b33e573f6faed54791e4a2f05f069c0, type: 3}
   - {fileID: -1058477984, guid: 6b33e573f6faed54791e4a2f05f069c0, type: 3}
   - {fileID: 1255176253, guid: 6b33e573f6faed54791e4a2f05f069c0, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 14f017f6a49b0934082a86682332d43e, type: 2}
   Health: 100
   Speed: 4.6
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - orchard
   Passive: 4
   PassiveStrength: 0.5
-  Description: "Chills nearby enemies\nChampion / Champion size: +2.5%\nChampion
-    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'Your Champion size +2.5%, Maximum health -1
+
+    Slow nearby foes'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

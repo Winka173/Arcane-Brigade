@@ -23,6 +23,7 @@ namespace ArcaneBrigade
         private bool speaking;
         private bool companionDisplay;
         private bool floorFixture;
+        private bool pedestalDisplay;
         private ArenaController owner;
         private GroundShadow grounded;
         public void Configure(SpriteRenderer renderer, Sprite[] animation, float bodyHeight, ArenaController controller, float offset)
@@ -44,6 +45,7 @@ namespace ArcaneBrigade
         }
         private void OnDestroy() { if (emergence != null) Destroy(emergence); }
         public void Inspect(bool active) { inspecting = active; }
+        public void SetPedestalDisplay() { pedestalDisplay = true; }
         public void Speak(bool active) { speaking = active; }
         public void SetCompanionDisplay(bool companion)
         {
@@ -80,6 +82,7 @@ namespace ArcaneBrigade
                 if (frames.Length == 4 && denied && !reduced) frame = 1;
                 else if (frames.Length == 4 && inspecting && !cheer && !reduced) frame = 2;
                 if (frames.Length == 4 && speaking && !cheer && !denied && !reduced) frame = 2 + Mathf.FloorToInt(owner.PresentationClock * 9.5f) % 2;
+                if (pedestalDisplay) frame = reduced ? 0 : Mathf.FloorToInt(time * 3) % frames.Length;
                 view.sprite = frames[frame];
             }
             if (view.sprite == null) return;

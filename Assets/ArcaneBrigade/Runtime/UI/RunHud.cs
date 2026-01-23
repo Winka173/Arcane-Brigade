@@ -20,7 +20,6 @@ namespace ArcaneBrigade
         private bool receiptOpen;
         private int receiptId;
         private Vector2 receiptScroll;
-        private readonly LootIndicators lootIndicators = new LootIndicators();
         private readonly RunInvoice invoice = new RunInvoice();
         private readonly ArcadeNavigation navigation = new ArcadeNavigation();
         private readonly RunBondFeedback bondFeedback = new RunBondFeedback();
@@ -169,7 +168,6 @@ namespace ArcaneBrigade
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
             {
-                if (owner.Content.LootRevision > 0 && PresentationSettings.LootIndicators) lootIndicators.Draw(simulation, owner.Content, camera, small);
                 if (simulation.Boss != null && simulation.Boss.Alive)
                 {
                     float bossShare = Mathf.Clamp01(simulation.Boss.Health / simulation.Boss.Definition.Health);
@@ -262,8 +260,8 @@ namespace ArcaneBrigade
                 float contentHeight = GlossaryUI.Height(description, small, textWidth) + 8;
                 Rect panel = ShopTooltipBounds(contentHeight);
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
-                ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : ItemRarity.Common;
-                Color tag = item ? ArcadeSkin.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
+                ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Rarity : ItemRarity.Common;
+                Color tag = rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
                 Fill(panel, string.IsNullOrEmpty(synergy) ? Color.Lerp(Panel, tag, 0.12f) : Color.Lerp(Panel, ArcadeSkin.Teal, 0.28f));
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
                 string kind = item ? ArcadeSkin.RarityName(rarity) : station.Offer != null && station.Offer.Kind == OfferKind.Companion ? "COMPANION" : null;

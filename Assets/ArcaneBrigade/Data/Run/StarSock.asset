@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 1129484278, guid: 826a3faeba63ccf4fafc26f09aaf590e, type: 3}
   - {fileID: 1445055818, guid: 826a3faeba63ccf4fafc26f09aaf590e, type: 3}
   - {fileID: -2040018015, guid: 826a3faeba63ccf4fafc26f09aaf590e, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: b26b42583b43d0c4ba23a33460a7ca62, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 1
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,12 @@ MonoBehaviour:
   - astral
   Passive: 1
   PassiveStrength: 0.5
-  Description: "Automatically heals the champion every 4 seconds\nRun / Enemy count:
-    +10%\nRun / Score multiplier: +10%\nChampion / Maximum health: -1\nTier 1/2/3
-    traits \xD71/2/4; merging three units reduces support sources.\n"
+  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
+
+    Enemy count +10%,
+    Score multiplier +10%. Your Maximum health -1
+
+    Heal you every 4s'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -60,5 +66,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

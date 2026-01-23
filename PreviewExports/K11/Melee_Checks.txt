@@ -720,6 +720,739 @@ PASS Actual balanced purchase DrowsySeer/59
 PASS Adaptive roster balance; merge fixture allows temporary imbalance DrowsySeer/59
 PASS Blood purchase still spends current HP DrowsySeer
 PASS Recompile is not a free full heal DrowsySeer
+PASS Actual balanced purchase RootOracle/0
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/0
+PASS Actual balanced purchase RootOracle/1
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/1
+PASS Actual balanced purchase RootOracle/2
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/2
+PASS Actual balanced purchase RootOracle/3
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/3
+PASS Actual balanced purchase RootOracle/4
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/4
+PASS Actual balanced purchase RootOracle/5
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/5
+PASS Actual balanced purchase RootOracle/6
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/6
+PASS Actual balanced purchase RootOracle/7
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/7
+PASS Actual balanced purchase RootOracle/8
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/8
+PASS Actual balanced purchase RootOracle/9
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/9
+PASS Actual balanced purchase RootOracle/10
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/10
+PASS Actual balanced purchase RootOracle/11
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/11
+PASS Actual balanced purchase RootOracle/12
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/12
+PASS Actual balanced purchase RootOracle/13
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/13
+PASS Actual balanced purchase RootOracle/14
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/14
+PASS Actual balanced purchase RootOracle/15
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/15
+PASS Actual balanced purchase RootOracle/16
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/16
+PASS Actual balanced purchase RootOracle/17
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/17
+PASS Actual balanced purchase RootOracle/18
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/18
+PASS Actual balanced purchase RootOracle/19
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/19
+PASS Actual balanced purchase RootOracle/20
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/20
+PASS Actual balanced purchase RootOracle/21
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/21
+PASS Actual balanced purchase RootOracle/22
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/22
+PASS Actual balanced purchase RootOracle/23
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/23
+PASS Actual balanced purchase RootOracle/24
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/24
+PASS Actual balanced purchase RootOracle/25
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/25
+PASS Actual balanced purchase RootOracle/26
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/26
+PASS Actual balanced purchase RootOracle/27
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/27
+PASS Actual balanced purchase RootOracle/28
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/28
+PASS Actual balanced purchase RootOracle/29
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/29
+PASS Actual balanced purchase RootOracle/30
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/30
+PASS Actual balanced purchase RootOracle/31
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/31
+PASS Actual balanced purchase RootOracle/32
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/32
+PASS Actual balanced purchase RootOracle/33
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/33
+PASS Actual balanced purchase RootOracle/34
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/34
+PASS Actual balanced purchase RootOracle/35
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/35
+PASS Actual balanced purchase RootOracle/36
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/36
+PASS Actual balanced purchase RootOracle/37
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/37
+PASS Actual balanced purchase RootOracle/38
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/38
+PASS Actual balanced purchase RootOracle/39
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/39
+PASS Actual balanced purchase RootOracle/40
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/40
+PASS Actual balanced purchase RootOracle/41
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/41
+PASS Actual balanced purchase RootOracle/42
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/42
+PASS Actual balanced purchase RootOracle/43
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/43
+PASS Actual balanced purchase RootOracle/44
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/44
+PASS Actual balanced purchase RootOracle/45
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/45
+PASS Actual balanced purchase RootOracle/46
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/46
+PASS Actual balanced purchase RootOracle/47
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/47
+PASS Actual balanced purchase RootOracle/48
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/48
+PASS Actual balanced purchase RootOracle/49
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/49
+PASS Actual balanced purchase RootOracle/50
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/50
+PASS Actual balanced purchase RootOracle/51
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/51
+PASS Actual balanced purchase RootOracle/52
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/52
+PASS Actual balanced purchase RootOracle/53
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/53
+PASS Actual balanced purchase RootOracle/54
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/54
+PASS Actual balanced purchase RootOracle/55
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/55
+PASS Actual balanced purchase RootOracle/56
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/56
+PASS Actual balanced purchase RootOracle/57
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/57
+PASS Actual balanced purchase RootOracle/58
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/58
+PASS Actual balanced purchase RootOracle/59
+PASS Adaptive roster balance; merge fixture allows temporary imbalance RootOracle/59
+PASS Blood purchase still spends current HP RootOracle
+PASS Recompile is not a free full heal RootOracle
+PASS Solo hero cannot recruit companions
+PASS Actual balanced purchase GlassDice/0
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/0
+PASS Actual balanced purchase GlassDice/1
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/1
+PASS Actual balanced purchase GlassDice/2
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/2
+PASS Actual balanced purchase GlassDice/3
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/3
+PASS Actual balanced purchase GlassDice/4
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/4
+PASS Actual balanced purchase GlassDice/5
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/5
+PASS Actual balanced purchase GlassDice/6
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/6
+PASS Actual balanced purchase GlassDice/7
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/7
+PASS Actual balanced purchase GlassDice/8
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/8
+PASS Actual balanced purchase GlassDice/9
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/9
+PASS Actual balanced purchase GlassDice/10
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/10
+PASS Actual balanced purchase GlassDice/11
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/11
+PASS Actual balanced purchase GlassDice/12
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/12
+PASS Actual balanced purchase GlassDice/13
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/13
+PASS Actual balanced purchase GlassDice/14
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/14
+PASS Actual balanced purchase GlassDice/15
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/15
+PASS Actual balanced purchase GlassDice/16
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/16
+PASS Actual balanced purchase GlassDice/17
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/17
+PASS Actual balanced purchase GlassDice/18
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/18
+PASS Actual balanced purchase GlassDice/19
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/19
+PASS Actual balanced purchase GlassDice/20
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/20
+PASS Actual balanced purchase GlassDice/21
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/21
+PASS Actual balanced purchase GlassDice/22
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/22
+PASS Actual balanced purchase GlassDice/23
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/23
+PASS Actual balanced purchase GlassDice/24
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/24
+PASS Actual balanced purchase GlassDice/25
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/25
+PASS Actual balanced purchase GlassDice/26
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/26
+PASS Actual balanced purchase GlassDice/27
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/27
+PASS Actual balanced purchase GlassDice/28
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/28
+PASS Actual balanced purchase GlassDice/29
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/29
+PASS Actual balanced purchase GlassDice/30
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/30
+PASS Actual balanced purchase GlassDice/31
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/31
+PASS Actual balanced purchase GlassDice/32
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/32
+PASS Actual balanced purchase GlassDice/33
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/33
+PASS Actual balanced purchase GlassDice/34
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/34
+PASS Actual balanced purchase GlassDice/35
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/35
+PASS Actual balanced purchase GlassDice/36
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/36
+PASS Actual balanced purchase GlassDice/37
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/37
+PASS Actual balanced purchase GlassDice/38
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/38
+PASS Actual balanced purchase GlassDice/39
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/39
+PASS Actual balanced purchase GlassDice/40
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/40
+PASS Actual balanced purchase GlassDice/41
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/41
+PASS Actual balanced purchase GlassDice/42
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/42
+PASS Actual balanced purchase GlassDice/43
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/43
+PASS Actual balanced purchase GlassDice/44
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/44
+PASS Actual balanced purchase GlassDice/45
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/45
+PASS Actual balanced purchase GlassDice/46
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/46
+PASS Actual balanced purchase GlassDice/47
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/47
+PASS Actual balanced purchase GlassDice/48
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/48
+PASS Actual balanced purchase GlassDice/49
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/49
+PASS Actual balanced purchase GlassDice/50
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/50
+PASS Actual balanced purchase GlassDice/51
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/51
+PASS Actual balanced purchase GlassDice/52
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/52
+PASS Actual balanced purchase GlassDice/53
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/53
+PASS Actual balanced purchase GlassDice/54
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/54
+PASS Actual balanced purchase GlassDice/55
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/55
+PASS Actual balanced purchase GlassDice/56
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/56
+PASS Actual balanced purchase GlassDice/57
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/57
+PASS Actual balanced purchase GlassDice/58
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/58
+PASS Actual balanced purchase GlassDice/59
+PASS Adaptive roster balance; merge fixture allows temporary imbalance GlassDice/59
+PASS Blood purchase still spends current HP GlassDice
+PASS Recompile is not a free full heal GlassDice
+PASS Actual balanced purchase TideSinger/0
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/0
+PASS Actual balanced purchase TideSinger/1
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/1
+PASS Actual balanced purchase TideSinger/2
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/2
+PASS Actual balanced purchase TideSinger/3
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/3
+PASS Actual balanced purchase TideSinger/4
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/4
+PASS Actual balanced purchase TideSinger/5
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/5
+PASS Actual balanced purchase TideSinger/6
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/6
+PASS Actual balanced purchase TideSinger/7
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/7
+PASS Actual balanced purchase TideSinger/8
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/8
+PASS Actual balanced purchase TideSinger/9
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/9
+PASS Actual balanced purchase TideSinger/10
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/10
+PASS Actual balanced purchase TideSinger/11
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/11
+PASS Actual balanced purchase TideSinger/12
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/12
+PASS Actual balanced purchase TideSinger/13
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/13
+PASS Actual balanced purchase TideSinger/14
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/14
+PASS Actual balanced purchase TideSinger/15
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/15
+PASS Actual balanced purchase TideSinger/16
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/16
+PASS Actual balanced purchase TideSinger/17
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/17
+PASS Actual balanced purchase TideSinger/18
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/18
+PASS Actual balanced purchase TideSinger/19
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/19
+PASS Actual balanced purchase TideSinger/20
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/20
+PASS Actual balanced purchase TideSinger/21
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/21
+PASS Actual balanced purchase TideSinger/22
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/22
+PASS Actual balanced purchase TideSinger/23
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/23
+PASS Actual balanced purchase TideSinger/24
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/24
+PASS Actual balanced purchase TideSinger/25
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/25
+PASS Actual balanced purchase TideSinger/26
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/26
+PASS Actual balanced purchase TideSinger/27
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/27
+PASS Actual balanced purchase TideSinger/28
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/28
+PASS Actual balanced purchase TideSinger/29
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/29
+PASS Actual balanced purchase TideSinger/30
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/30
+PASS Actual balanced purchase TideSinger/31
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/31
+PASS Actual balanced purchase TideSinger/32
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/32
+PASS Actual balanced purchase TideSinger/33
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/33
+PASS Actual balanced purchase TideSinger/34
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/34
+PASS Actual balanced purchase TideSinger/35
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/35
+PASS Actual balanced purchase TideSinger/36
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/36
+PASS Actual balanced purchase TideSinger/37
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/37
+PASS Actual balanced purchase TideSinger/38
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/38
+PASS Actual balanced purchase TideSinger/39
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/39
+PASS Actual balanced purchase TideSinger/40
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/40
+PASS Actual balanced purchase TideSinger/41
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/41
+PASS Actual balanced purchase TideSinger/42
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/42
+PASS Actual balanced purchase TideSinger/43
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/43
+PASS Actual balanced purchase TideSinger/44
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/44
+PASS Actual balanced purchase TideSinger/45
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/45
+PASS Actual balanced purchase TideSinger/46
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/46
+PASS Actual balanced purchase TideSinger/47
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/47
+PASS Actual balanced purchase TideSinger/48
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/48
+PASS Actual balanced purchase TideSinger/49
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/49
+PASS Actual balanced purchase TideSinger/50
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/50
+PASS Actual balanced purchase TideSinger/51
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/51
+PASS Actual balanced purchase TideSinger/52
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/52
+PASS Actual balanced purchase TideSinger/53
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/53
+PASS Actual balanced purchase TideSinger/54
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/54
+PASS Actual balanced purchase TideSinger/55
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/55
+PASS Actual balanced purchase TideSinger/56
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/56
+PASS Actual balanced purchase TideSinger/57
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/57
+PASS Actual balanced purchase TideSinger/58
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/58
+PASS Actual balanced purchase TideSinger/59
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TideSinger/59
+PASS Blood purchase still spends current HP TideSinger
+PASS Recompile is not a free full heal TideSinger
+PASS Actual balanced purchase CometRunner/0
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/0
+PASS Actual balanced purchase CometRunner/1
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/1
+PASS Actual balanced purchase CometRunner/2
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/2
+PASS Actual balanced purchase CometRunner/3
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/3
+PASS Actual balanced purchase CometRunner/4
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/4
+PASS Actual balanced purchase CometRunner/5
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/5
+PASS Actual balanced purchase CometRunner/6
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/6
+PASS Actual balanced purchase CometRunner/7
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/7
+PASS Actual balanced purchase CometRunner/8
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/8
+PASS Actual balanced purchase CometRunner/9
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/9
+PASS Actual balanced purchase CometRunner/10
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/10
+PASS Actual balanced purchase CometRunner/11
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/11
+PASS Actual balanced purchase CometRunner/12
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/12
+PASS Actual balanced purchase CometRunner/13
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/13
+PASS Actual balanced purchase CometRunner/14
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/14
+PASS Actual balanced purchase CometRunner/15
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/15
+PASS Actual balanced purchase CometRunner/16
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/16
+PASS Actual balanced purchase CometRunner/17
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/17
+PASS Actual balanced purchase CometRunner/18
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/18
+PASS Actual balanced purchase CometRunner/19
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/19
+PASS Actual balanced purchase CometRunner/20
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/20
+PASS Actual balanced purchase CometRunner/21
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/21
+PASS Actual balanced purchase CometRunner/22
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/22
+PASS Actual balanced purchase CometRunner/23
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/23
+PASS Actual balanced purchase CometRunner/24
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/24
+PASS Actual balanced purchase CometRunner/25
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/25
+PASS Actual balanced purchase CometRunner/26
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/26
+PASS Actual balanced purchase CometRunner/27
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/27
+PASS Actual balanced purchase CometRunner/28
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/28
+PASS Actual balanced purchase CometRunner/29
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/29
+PASS Actual balanced purchase CometRunner/30
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/30
+PASS Actual balanced purchase CometRunner/31
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/31
+PASS Actual balanced purchase CometRunner/32
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/32
+PASS Actual balanced purchase CometRunner/33
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/33
+PASS Actual balanced purchase CometRunner/34
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/34
+PASS Actual balanced purchase CometRunner/35
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/35
+PASS Actual balanced purchase CometRunner/36
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/36
+PASS Actual balanced purchase CometRunner/37
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/37
+PASS Actual balanced purchase CometRunner/38
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/38
+PASS Actual balanced purchase CometRunner/39
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/39
+PASS Actual balanced purchase CometRunner/40
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/40
+PASS Actual balanced purchase CometRunner/41
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/41
+PASS Actual balanced purchase CometRunner/42
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/42
+PASS Actual balanced purchase CometRunner/43
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/43
+PASS Actual balanced purchase CometRunner/44
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/44
+PASS Actual balanced purchase CometRunner/45
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/45
+PASS Actual balanced purchase CometRunner/46
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/46
+PASS Actual balanced purchase CometRunner/47
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/47
+PASS Actual balanced purchase CometRunner/48
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/48
+PASS Actual balanced purchase CometRunner/49
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/49
+PASS Actual balanced purchase CometRunner/50
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/50
+PASS Actual balanced purchase CometRunner/51
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/51
+PASS Actual balanced purchase CometRunner/52
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/52
+PASS Actual balanced purchase CometRunner/53
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/53
+PASS Actual balanced purchase CometRunner/54
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/54
+PASS Actual balanced purchase CometRunner/55
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/55
+PASS Actual balanced purchase CometRunner/56
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/56
+PASS Actual balanced purchase CometRunner/57
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/57
+PASS Actual balanced purchase CometRunner/58
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/58
+PASS Actual balanced purchase CometRunner/59
+PASS Adaptive roster balance; merge fixture allows temporary imbalance CometRunner/59
+PASS Blood purchase still spends current HP CometRunner
+PASS Recompile is not a free full heal CometRunner
+PASS Actual balanced purchase MirrorKeeper/0
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/0
+PASS Actual balanced purchase MirrorKeeper/1
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/1
+PASS Actual balanced purchase MirrorKeeper/2
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/2
+PASS Actual balanced purchase MirrorKeeper/3
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/3
+PASS Actual balanced purchase MirrorKeeper/4
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/4
+PASS Actual balanced purchase MirrorKeeper/5
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/5
+PASS Actual balanced purchase MirrorKeeper/6
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/6
+PASS Actual balanced purchase MirrorKeeper/7
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/7
+PASS Actual balanced purchase MirrorKeeper/8
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/8
+PASS Actual balanced purchase MirrorKeeper/9
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/9
+PASS Actual balanced purchase MirrorKeeper/10
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/10
+PASS Actual balanced purchase MirrorKeeper/11
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/11
+PASS Actual balanced purchase MirrorKeeper/12
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/12
+PASS Actual balanced purchase MirrorKeeper/13
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/13
+PASS Actual balanced purchase MirrorKeeper/14
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/14
+PASS Actual balanced purchase MirrorKeeper/15
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/15
+PASS Actual balanced purchase MirrorKeeper/16
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/16
+PASS Actual balanced purchase MirrorKeeper/17
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/17
+PASS Actual balanced purchase MirrorKeeper/18
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/18
+PASS Actual balanced purchase MirrorKeeper/19
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/19
+PASS Actual balanced purchase MirrorKeeper/20
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/20
+PASS Actual balanced purchase MirrorKeeper/21
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/21
+PASS Actual balanced purchase MirrorKeeper/22
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/22
+PASS Actual balanced purchase MirrorKeeper/23
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/23
+PASS Actual balanced purchase MirrorKeeper/24
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/24
+PASS Actual balanced purchase MirrorKeeper/25
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/25
+PASS Actual balanced purchase MirrorKeeper/26
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/26
+PASS Actual balanced purchase MirrorKeeper/27
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/27
+PASS Actual balanced purchase MirrorKeeper/28
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/28
+PASS Actual balanced purchase MirrorKeeper/29
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/29
+PASS Actual balanced purchase MirrorKeeper/30
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/30
+PASS Actual balanced purchase MirrorKeeper/31
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/31
+PASS Actual balanced purchase MirrorKeeper/32
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/32
+PASS Actual balanced purchase MirrorKeeper/33
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/33
+PASS Actual balanced purchase MirrorKeeper/34
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/34
+PASS Actual balanced purchase MirrorKeeper/35
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/35
+PASS Actual balanced purchase MirrorKeeper/36
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/36
+PASS Actual balanced purchase MirrorKeeper/37
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/37
+PASS Actual balanced purchase MirrorKeeper/38
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/38
+PASS Actual balanced purchase MirrorKeeper/39
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/39
+PASS Actual balanced purchase MirrorKeeper/40
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/40
+PASS Actual balanced purchase MirrorKeeper/41
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/41
+PASS Actual balanced purchase MirrorKeeper/42
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/42
+PASS Actual balanced purchase MirrorKeeper/43
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/43
+PASS Actual balanced purchase MirrorKeeper/44
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/44
+PASS Actual balanced purchase MirrorKeeper/45
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/45
+PASS Actual balanced purchase MirrorKeeper/46
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/46
+PASS Actual balanced purchase MirrorKeeper/47
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/47
+PASS Actual balanced purchase MirrorKeeper/48
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/48
+PASS Actual balanced purchase MirrorKeeper/49
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/49
+PASS Actual balanced purchase MirrorKeeper/50
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/50
+PASS Actual balanced purchase MirrorKeeper/51
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/51
+PASS Actual balanced purchase MirrorKeeper/52
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/52
+PASS Actual balanced purchase MirrorKeeper/53
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/53
+PASS Actual balanced purchase MirrorKeeper/54
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/54
+PASS Actual balanced purchase MirrorKeeper/55
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/55
+PASS Actual balanced purchase MirrorKeeper/56
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/56
+PASS Actual balanced purchase MirrorKeeper/57
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/57
+PASS Actual balanced purchase MirrorKeeper/58
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/58
+PASS Actual balanced purchase MirrorKeeper/59
+PASS Adaptive roster balance; merge fixture allows temporary imbalance MirrorKeeper/59
+PASS Blood purchase still spends current HP MirrorKeeper
+PASS Recompile is not a free full heal MirrorKeeper
+PASS Actual balanced purchase TreasureAcorn/0
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/0
+PASS Actual balanced purchase TreasureAcorn/1
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/1
+PASS Actual balanced purchase TreasureAcorn/2
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/2
+PASS Actual balanced purchase TreasureAcorn/3
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/3
+PASS Actual balanced purchase TreasureAcorn/4
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/4
+PASS Actual balanced purchase TreasureAcorn/5
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/5
+PASS Actual balanced purchase TreasureAcorn/6
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/6
+PASS Actual balanced purchase TreasureAcorn/7
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/7
+PASS Actual balanced purchase TreasureAcorn/8
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/8
+PASS Actual balanced purchase TreasureAcorn/9
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/9
+PASS Actual balanced purchase TreasureAcorn/10
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/10
+PASS Actual balanced purchase TreasureAcorn/11
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/11
+PASS Actual balanced purchase TreasureAcorn/12
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/12
+PASS Actual balanced purchase TreasureAcorn/13
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/13
+PASS Actual balanced purchase TreasureAcorn/14
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/14
+PASS Actual balanced purchase TreasureAcorn/15
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/15
+PASS Actual balanced purchase TreasureAcorn/16
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/16
+PASS Actual balanced purchase TreasureAcorn/17
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/17
+PASS Actual balanced purchase TreasureAcorn/18
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/18
+PASS Actual balanced purchase TreasureAcorn/19
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/19
+PASS Actual balanced purchase TreasureAcorn/20
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/20
+PASS Actual balanced purchase TreasureAcorn/21
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/21
+PASS Actual balanced purchase TreasureAcorn/22
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/22
+PASS Actual balanced purchase TreasureAcorn/23
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/23
+PASS Actual balanced purchase TreasureAcorn/24
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/24
+PASS Actual balanced purchase TreasureAcorn/25
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/25
+PASS Actual balanced purchase TreasureAcorn/26
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/26
+PASS Actual balanced purchase TreasureAcorn/27
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/27
+PASS Actual balanced purchase TreasureAcorn/28
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/28
+PASS Actual balanced purchase TreasureAcorn/29
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/29
+PASS Actual balanced purchase TreasureAcorn/30
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/30
+PASS Actual balanced purchase TreasureAcorn/31
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/31
+PASS Actual balanced purchase TreasureAcorn/32
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/32
+PASS Actual balanced purchase TreasureAcorn/33
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/33
+PASS Actual balanced purchase TreasureAcorn/34
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/34
+PASS Actual balanced purchase TreasureAcorn/35
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/35
+PASS Actual balanced purchase TreasureAcorn/36
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/36
+PASS Actual balanced purchase TreasureAcorn/37
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/37
+PASS Actual balanced purchase TreasureAcorn/38
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/38
+PASS Actual balanced purchase TreasureAcorn/39
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/39
+PASS Actual balanced purchase TreasureAcorn/40
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/40
+PASS Actual balanced purchase TreasureAcorn/41
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/41
+PASS Actual balanced purchase TreasureAcorn/42
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/42
+PASS Actual balanced purchase TreasureAcorn/43
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/43
+PASS Actual balanced purchase TreasureAcorn/44
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/44
+PASS Actual balanced purchase TreasureAcorn/45
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/45
+PASS Actual balanced purchase TreasureAcorn/46
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/46
+PASS Actual balanced purchase TreasureAcorn/47
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/47
+PASS Actual balanced purchase TreasureAcorn/48
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/48
+PASS Actual balanced purchase TreasureAcorn/49
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/49
+PASS Actual balanced purchase TreasureAcorn/50
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/50
+PASS Actual balanced purchase TreasureAcorn/51
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/51
+PASS Actual balanced purchase TreasureAcorn/52
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/52
+PASS Actual balanced purchase TreasureAcorn/53
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/53
+PASS Actual balanced purchase TreasureAcorn/54
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/54
+PASS Actual balanced purchase TreasureAcorn/55
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/55
+PASS Actual balanced purchase TreasureAcorn/56
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/56
+PASS Actual balanced purchase TreasureAcorn/57
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/57
+PASS Actual balanced purchase TreasureAcorn/58
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/58
+PASS Actual balanced purchase TreasureAcorn/59
+PASS Adaptive roster balance; merge fixture allows temporary imbalance TreasureAcorn/59
+PASS Blood purchase still spends current HP TreasureAcorn
+PASS Recompile is not a free full heal TreasureAcorn
 PASS Ledger reflects compiled melee/tier values KeyCleaver/1
 PASS Ledger remains read-only KeyCleaver/1
 PASS Tier grows actual body, weapon and range KeyCleaver/2
@@ -1212,6 +1945,13 @@ PASS Sandbox uses same melee and star range rules
 PASS English unit content LanternKnight
 PASS English unit content Postmaster
 PASS English unit content DrowsySeer
+PASS English unit content RootOracle
+PASS English unit content LoneJelly
+PASS English unit content GlassDice
+PASS English unit content TideSinger
+PASS English unit content CometRunner
+PASS English unit content MirrorKeeper
+PASS English unit content TreasureAcorn
 PASS English unit content TeapotPilgrim
 PASS English unit content CandleSnail
 PASS English unit content MailboxImp
@@ -1266,11 +2006,24 @@ PASS English unit content SleepMimic
 PASS English unit content CurtainWisp
 PASS English unit content FurnaceToad
 PASS English unit content WardrobeCrab
+PASS English unit content HopperKeg
+PASS English unit content ChargerRam
+PASS English unit content CoinLeech
+PASS English unit content BlastPuffer
+PASS English unit content SporeBishop
+PASS English unit content BroomSkater
+PASS English unit content RibbonHydra
+PASS English unit content BurrowBell
 PASS English unit content UndeliveredKing
 PASS English unit content ScarletIndex
 PASS English unit content SleepCollector
 PASS English unit content WaxAdmiral
 PASS English unit content LastLantern
+PASS English unit content MarqueeMaw
+PASS English unit content UmbraCradle
+PASS English unit content CoinWidow
+PASS English unit content ChoirEngine
+PASS English unit content SuitcaseLeviathan
 PASS English relic content key-oil
 PASS English relic content clock-spring
 PASS English relic content honey-pot

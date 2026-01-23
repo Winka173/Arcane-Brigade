@@ -120,6 +120,11 @@ namespace ArcaneBrigade.Editor
                 {
                     session.Start(hero.Id, 11217); session.State.Phase = SessionPhase.Shop;
                     UnitDefinition[] pool = catalog.Companions.Where(unit => K11HeroRules.Eligible(hero, unit)).ToArray();
+                    if (hero.HeroMechanic == HeroMechanic.SoloMaw)
+                    {
+                        require(pool.Length == 0 && session.State.Roster.Count == 0, "Solo hero cannot recruit companions");
+                        continue;
+                    }
                     for (int recruit = 0; recruit < 60; recruit++)
                     {
                         if (recruit % 3 == 0) session.State.NewRecruitsThisWave = 0;

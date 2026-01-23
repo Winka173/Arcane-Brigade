@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 479076234, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 301046218, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 874408747, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 047722544859a9b4ab3b93a7f5cfde07, type: 2}
   Health: 650
   Speed: 0.65
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 8
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -37,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: 
+  Description: Rotating volleys, stage bites and thrown tickets.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -48,5 +51,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 3
   Motif: 0

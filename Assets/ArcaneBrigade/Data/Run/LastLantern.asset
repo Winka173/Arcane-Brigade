@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -530819054, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 814488608, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: -209994236, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: ff8886242d47ac447b7b4c76112fbefd, type: 2}
   Health: 1210
   Speed: 0.65
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 8
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -37,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: 
+  Description: Paired volleys and falling luggage.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -48,5 +51,6 @@ MonoBehaviour:
   BossPattern: 4
   CombatTier: 1
   Behavior: 0
+  Shot: 4
   Material: 0
   Motif: 1

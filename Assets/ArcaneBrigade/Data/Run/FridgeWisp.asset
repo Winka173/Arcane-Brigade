@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 751742431, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
   - {fileID: -1371812118, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
   - {fileID: 1411502499, guid: 86826caed67b7c3448b414d3be82fcab, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 1665e13a7f88ef1489fa9c5cf023f24b, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - frost
   Passive: 0
   PassiveStrength: 0.5
-  Description: "No personal passive\nTeam / Bullet size: +2.5%\nChampion / Maximum
-    health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n"
+  Description: 'Team: Bullet size +2.5%. Your Maximum health -1
+
+    Auto attacks'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

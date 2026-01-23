@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -2008201169, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   - {fileID: 340090513, guid: 0743278481018c349a3e22939d2414ae, type: 3}
   - {fileID: -1990760485, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 120
   Speed: 5.1
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - archive
   Passive: 2
   PassiveStrength: 0.8
-  Description: "Scavenges extra gold every 4 seconds in combat\nRun / Pickup radius:
-    +0.08\nRun / Luck: -0.01\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'Pickup radius +0.08, Luck -0.01
+
+    Extra loot from kills'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

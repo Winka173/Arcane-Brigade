@@ -29,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 2
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8
@@ -40,7 +41,12 @@ MonoBehaviour:
   - archive
   Passive: 0
   PassiveStrength: 0.45
-  Description: 'ALLIES: +4% attack speed, -3% damage. Fast stitch support.'
+  Description: 'RARE ally. Attacks deal 36% more damage.
+
+    Allies: Attack speed
+    +4%, Damage -3%
+
+    Auto attacks'
   ChampionModifiers: []
   RecruitThemes:
   - archive
@@ -58,5 +64,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 3
   Motif: 0

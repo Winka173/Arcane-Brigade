@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -288303049, guid: 6134beef57028014982bbcc7e54dcd5e, type: 3}
   - {fileID: -2107533774, guid: 6134beef57028014982bbcc7e54dcd5e, type: 3}
   - {fileID: -691489725, guid: 6134beef57028014982bbcc7e54dcd5e, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: a90f7c5f27b31c746a18531a28f165f1, type: 2}
   Health: 100
   Speed: 4.2
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - clock
   Passive: 1
   PassiveStrength: 0.5
-  Description: "Automatically heals the champion every 4 seconds\nRun / Income: +2\nChampion
-    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'Income +2. Your Maximum health -1
+
+    Heal you every 4s'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

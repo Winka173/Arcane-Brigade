@@ -22,6 +22,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fff0e650e26b8ab42991de6cb7640207, type: 2}
   - {fileID: 11400000, guid: b1de2139305b7b542bd5c76f0e20ce5c, type: 2}
   - {fileID: 11400000, guid: 8e0445ae0fc6df34d8b93d5060a77328, type: 2}
+  - {fileID: 11400000, guid: fc6dfd48948d2de46956c7a89ef2a3b6, type: 2}
+  - {fileID: 11400000, guid: 10f45e990a42b634c83edb02c036ca64, type: 2}
+  - {fileID: 11400000, guid: fa4309dce65fb6e4297273634ab45cbb, type: 2}
+  - {fileID: 11400000, guid: cd33197bf62982646aaa42b1b2e8338b, type: 2}
+  - {fileID: 11400000, guid: c665a2059494ce94f8611d8cfe1c089b, type: 2}
+  - {fileID: 11400000, guid: 01b8c8a9b184b494dab7bc35eae479f2, type: 2}
+  - {fileID: 11400000, guid: dbbfff78a9043664197484421d5e43f0, type: 2}
   Companions:
   - {fileID: 11400000, guid: f00fa9512cd6d764aa9fc9c575393d44, type: 2}
   - {fileID: 11400000, guid: b3f868644b82b21428287215c111ce5f, type: 2}
@@ -133,17 +140,29 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9536099e4e0b5a4ea77f7ab5ebdb359, type: 2}
   - {fileID: 11400000, guid: 4fbf22964b279df47ab1e7551a1be7fc, type: 2}
   - {fileID: 11400000, guid: a8f093a57629d8b4791a2f4ead56b548, type: 2}
+  - {fileID: 11400000, guid: 149afc2e07c3f424198e6241aab69bd5, type: 2}
+  - {fileID: 11400000, guid: d65a16015a76dca4bbaad20fb73de9aa, type: 2}
+  - {fileID: 11400000, guid: 531f429c0a7de874cbb9a963a6fb3cc1, type: 2}
+  - {fileID: 11400000, guid: 225d5d0d1db9b624186a468db8803ad4, type: 2}
+  - {fileID: 11400000, guid: 10f7d2862f6e0684e85bf7005f04c97e, type: 2}
+  - {fileID: 11400000, guid: 86be348e46b1c2445a6b15c5975a9de3, type: 2}
+  - {fileID: 11400000, guid: 7aa809c69dd6b4841b72d73f8cd13f9a, type: 2}
+  - {fileID: 11400000, guid: 77b1380cd7ac49f4caa068ec0cbdc99d, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}
   - {fileID: 11400000, guid: 702de46723763c548a90996192823bd2, type: 2}
   - {fileID: 11400000, guid: c100c725a20a5f24a81eb9c3863f71c6, type: 2}
   - {fileID: 11400000, guid: 6b6b33f0630a726459aa6dfae91e9a36, type: 2}
+  - {fileID: 11400000, guid: 906b89f39f6a8c24983db98ea820d79e, type: 2}
+  - {fileID: 11400000, guid: 60dded12a52a11246bf5f84d3e891b25, type: 2}
+  - {fileID: 11400000, guid: ed97025e585181f4881e8d6bc6e35dc0, type: 2}
+  - {fileID: 11400000, guid: f28410482a5bffc49951afa497060d60, type: 2}
+  - {fileID: 11400000, guid: a513ef19038ba9d4f970f052d56c4e2a, type: 2}
   Items:
   - Id: key-oil
     Name: Key Oil
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nTeam / Damage: +12% \xD7 1 = +12%\n"
+    Description: "COMMON \xB7 Stacks\nTeam: Damage +12%"
     Price: 18
     Effect: 0
     Value: 0.12
@@ -163,8 +182,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: clock-spring
     Name: Clock Spring
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nTeam / Attack speed: +10% \xD7 1 = +10%\n"
+    Description: "COMMON \xB7 Stacks\nTeam: Attack speed +10%"
     Price: 20
     Effect: 1
     Value: 0.1
@@ -184,8 +202,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: honey-pot
     Name: Honey Pot
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nChampion / Maximum health: +20 \xD7 1 = +20\n"
+    Description: "COMMON \xB7 Stacks\nYour Maximum health +20"
     Price: 22
     Effect: 2
     Value: 20
@@ -205,8 +222,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: felt-boots
     Name: Felt Boots
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nTeam / Movement speed: +6% \xD7 1 = +6%\n"
+    Description: "COMMON \xB7 Stacks\nTeam: Movement speed +6%"
     Price: 18
     Effect: 3
     Value: 0.06
@@ -226,8 +242,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: coin-compass
     Name: Coin Compass
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nRun / Pickup radius: +0.25 \xD7 1 = +0.25\n"
+    Description: "COMMON \xB7 Stacks\nPickup radius +0.25"
     Price: 15
     Effect: 4
     Value: 0.25
@@ -247,8 +262,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: wandering-map
     Name: Wandering Map
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nRun / Patrol radius: +0.4 \xD7 1 = +0.4\n"
+    Description: "COMMON \xB7 Stacks\nPatrol radius +0.4"
     Price: 18
     Effect: 5
     Value: 0.4
@@ -268,9 +282,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: guardian-canopy
     Name: Guardian Canopy
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nRun / Companion bullet interception: +1 \xD7 1 =
-      +1\n"
+    Description: "RARE \xB7 Stacks\nCompanion bullet interception +1"
     Price: 45
     Effect: 6
     Value: 1
@@ -290,9 +302,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: warm-tea
     Name: Warm Tea
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nChampion / Healing per second: +0.15 \xD7 1 =
-      +0.15\n"
+    Description: "COMMON \xB7 Stacks\nYour Healing per second +0.15"
     Price: 24
     Effect: 7
     Value: 0.15
@@ -312,8 +322,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: oracle-lens
     Name: Oracle Lens
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nTeam / Critical chance: +4% \xD7 1 = +4%\n"
+    Description: "COMMON \xB7 Stacks\nTeam: Critical chance +4%"
     Price: 22
     Effect: 8
     Value: 0.04
@@ -333,8 +342,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: twin-seal
     Name: Twin Seal
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Projectile count: +1 \xD7 1 = +1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Projectile count +1"
     Price: 35
     Effect: 9
     Value: 1
@@ -354,8 +362,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: piggy-mail
     Name: Piggy Mail
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nRun / Interest cap: +2 \xD7 1 = +2\n"
+    Description: "COMMON \xB7 Stacks\nInterest cap +2"
     Price: 18
     Effect: 10
     Value: 2
@@ -375,8 +382,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: pillow-mail
     Name: Pillow Mail
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nChampion / Armor: +0.12 \xD7 1 = +0.12\n"
+    Description: "COMMON \xB7 Stacks\nYour Armor +0.12"
     Price: 20
     Effect: 11
     Value: 0.12
@@ -396,8 +402,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: royal-key
     Name: Royal Key
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nChampion / Damage: +22% \xD7 1 = +22%\n"
+    Description: "UNCOMMON \xB7 Stacks\nYour Damage +22%"
     Price: 28
     Effect: 12
     Value: 0.22
@@ -417,8 +422,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: brigade-banner
     Name: Brigade Banner
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nCompanions / Damage: +15% \xD7 1 = +15%\n"
+    Description: "UNCOMMON \xB7 Stacks\nAllies: Damage +15%"
     Price: 30
     Effect: 13
     Value: 0.15
@@ -438,8 +442,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: marching-bell
     Name: Marching Bell
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nCompanions / Attack speed: +12% \xD7 1 = +12%\n"
+    Description: "UNCOMMON \xB7 Stacks\nAllies: Attack speed +12%"
     Price: 26
     Effect: 14
     Value: 0.12
@@ -459,8 +462,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: coupon-book
     Name: Coupon Book
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nCOMMON \xB7 Stackable\nRun / Gold shop discount: +5% \xD7 1 = +5%\n"
+    Description: "COMMON \xB7 Stacks\nGold shop discount +5%"
     Price: 24
     Effect: 15
     Value: 0.05
@@ -480,9 +482,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: long-atlas
     Name: Long Atlas
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nRun / Patrol radius: +1 \xD7 1 = +1\nTeam / Movement
-      speed: -4% \xD7 1 = -4%\n"
+    Description: "MYTHIC \xB7 Stacks\nPatrol radius +1. Team: Movement speed -4%"
     Price: 36
     Effect: 5
     Value: 1
@@ -505,8 +505,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: starlight-quilt
     Name: Starlight Quilt
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nChampion / Maximum health: +45 \xD7 1 = +45\n"
+    Description: "MYTHIC \xB7 Stacks\nYour Maximum health +45"
     Price: 42
     Effect: 2
     Value: 45
@@ -526,9 +525,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: echo-postage
     Name: Echo Postage
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nTeam / Projectile count: +2 \xD7 1 = +2\nTeam
-      / Attack speed: -8% \xD7 1 = -8%\n"
+    Description: "MYTHIC \xB7 Stacks\nTeam: Projectile count +2, Attack speed -8%"
     Price: 60
     Effect: 9
     Value: 2
@@ -551,8 +548,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: tarnished-crown
     Name: Tarnished Crown
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nChampion / Damage: +40% \xD7 1 = +40%\n"
+    Description: "MYTHIC \xB7 Stacks\nYour Damage +40%"
     Price: 48
     Effect: 12
     Value: 0.4
@@ -572,8 +568,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: fortune-egg
     Name: Fortune Egg
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nRun / Luck: +0.2 \xD7 1 = +0.2\n"
+    Description: "RARE \xB7 Stacks\nLuck +0.2"
     Price: 24
     Effect: 16
     Value: 0.2
@@ -590,8 +585,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: treasure-whisper
     Name: Treasure Whisper
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nRun / Treasure detection: +0.35 \xD7 1 = +0.35\n"
+    Description: "RARE \xB7 Stacks\nTreasure detection +0.35"
     Price: 30
     Effect: 17
     Value: 0.35
@@ -608,8 +602,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: coin-salve
     Name: Coin Salve
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\n"
+    Description: "RARE \xB7 Stacks\n"
     Price: 28
     Effect: 7
     Value: 0
@@ -626,8 +619,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: chest-thunder
     Name: Chest Thunder
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\n"
+    Description: "RARE \xB7 Stacks\n"
     Price: 42
     Effect: 0
     Value: 0
@@ -644,9 +636,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: altar-ember
     Name: Altar Ember
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nChampion / Damage: +18% \xD7 1 = +18%\nTeam / Movement
-      speed: -3% \xD7 1 = -3%\n"
+    Description: "RARE \xB7 Stacks\nYour Damage +18%. Team: Movement speed -3%"
     Price: 36
     Effect: 12
     Value: 0.18
@@ -669,8 +659,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: harvest-receipt
     Name: Harvest Receipt
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nRun / Pickup radius: -0.15 \xD7 1 = -0.15\n"
+    Description: "UNCOMMON \xB7 Stacks\nPickup radius -0.15\nChest harvest bonus"
     Price: 28
     Effect: 0
     Value: 0
@@ -690,8 +679,7 @@ MonoBehaviour:
     SignatureRole: 1
   - Id: reflective-ink
     Name: Reflective Ink
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Unique\n"
+    Description: "UNCOMMON \xB7 Unique\n\nReflected attacks empower marks"
     Price: 32
     Effect: 0
     Value: 0
@@ -711,8 +699,8 @@ MonoBehaviour:
     SignatureRole: 2
   - Id: carbon-ribbon
     Name: Carbon Ribbon
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Unique\nTeam / Critical chance: -4% \xD7 1 = -4%\n"
+    Description: "RARE \xB7 Unique\nTeam: Critical chance -4%\nSpread marks; expose
+      enemies"
     Price: 40
     Effect: 0
     Value: 0
@@ -732,9 +720,8 @@ MonoBehaviour:
     SignatureRole: 3
   - Id: office-lens
     Name: Office Lens
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nCompanions / Critical chance: +15% \xD7 1 = +15%\nCompanions
-      / Attack speed: -5% \xD7 1 = -5%\n"
+    Description: "RARE \xB7 Stacks\nAllies: Critical chance +15%, Attack speed -5%\nCritical
+      hits punish exposed targets"
     Price: 38
     Effect: 0
     Value: 0
@@ -757,8 +744,8 @@ MonoBehaviour:
     SignatureRole: 4
   - Id: tea-coaster
     Name: Tea Coaster
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Unique\nTeam / Movement speed: -2% \xD7 1 = -2%\n"
+    Description: "UNCOMMON \xB7 Unique\nTeam: Movement speed -2%\nWider, weaker tea
+      trails"
     Price: 32
     Effect: 0
     Value: 0
@@ -778,8 +765,8 @@ MonoBehaviour:
     SignatureRole: 5
   - Id: scratch-record
     Name: Scratch Record
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nTeam / Attack speed: -4% \xD7 1 = -4%\n"
+    Description: "UNCOMMON \xB7 Stacks\nTeam: Attack speed -4%\nOne delayed musical
+      echo"
     Price: 32
     Effect: 0
     Value: 0
@@ -799,8 +786,8 @@ MonoBehaviour:
     SignatureRole: 6
   - Id: treasure-ribbon
     Name: Treasure Ribbon
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nTeam / Damage: -3% \xD7 1 = -3%\n"
+    Description: "UNCOMMON \xB7 Stacks\nTeam: Damage -3%\nChest opening empowers
+      bows"
     Price: 32
     Effect: 0
     Value: 0
@@ -820,8 +807,8 @@ MonoBehaviour:
     SignatureRole: 7
   - Id: patch-spring
     Name: Patch Spring
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Unique\nCompanions / Attack speed: -6% \xD7 1 = -6%\n"
+    Description: "UNCOMMON \xB7 Unique\nAllies: Attack speed -6%\nRepair connects
+      signature effects"
     Price: 32
     Effect: 0
     Value: 0
@@ -841,8 +828,8 @@ MonoBehaviour:
     SignatureRole: 8
   - Id: thermal-ink
     Name: Thermal Ink
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Unique\nTeam / Critical chance: -3% \xD7 1 = -3%\n"
+    Description: "UNCOMMON \xB7 Unique\nTeam: Critical chance -3%\nConnect active
+      hot trails"
     Price: 32
     Effect: 0
     Value: 0
@@ -862,8 +849,7 @@ MonoBehaviour:
     SignatureRole: 9
   - Id: repair-coupon
     Name: Repair Coupon
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nRun / Pickup radius: -0.1 \xD7 1 = -0.1\n"
+    Description: "UNCOMMON \xB7 Stacks\nPickup radius -0.1\nRepair synergy"
     Price: 32
     Effect: 0
     Value: 0
@@ -883,9 +869,8 @@ MonoBehaviour:
     SignatureRole: 10
   - Id: k10-scoremultiplier
     Name: "Contract \xB7 Score multiplier"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nRun / Score multiplier: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nScore multiplier +8%. Your Maximum health
+      -1"
     Price: 24
     Effect: 18
     Value: 0.08
@@ -908,9 +893,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-collisiondamage
     Name: "Contract \xB7 Collision damage"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Collision damage: +2 \xD7 1 = +2\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Collision damage +2. Your Maximum health
+      -1"
     Price: 27
     Effect: 19
     Value: 2
@@ -933,9 +917,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-meleedamage
     Name: "Contract \xB7 Flat melee damage"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nTeam / Flat melee damage: +2 \xD7 1 = +2\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nTeam: Flat melee damage +2. Your Maximum health
+      -1"
     Price: 18
     Effect: 20
     Value: 2
@@ -958,9 +941,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-rangeddamage
     Name: "Contract \xB7 Flat ranged damage"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nTeam / Flat ranged damage: +2 \xD7 1 = +2\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nTeam: Flat ranged damage +2. Your Maximum
+      health -1"
     Price: 21
     Effect: 21
     Value: 2
@@ -983,9 +965,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-attackrange
     Name: "Contract \xB7 Attack range"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Attack range: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Attack range +8%. Your Maximum health -1"
     Price: 24
     Effect: 22
     Value: 0.08
@@ -1008,9 +988,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-dodge
     Name: "Contract \xB7 Dodge"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nChampion / Dodge: +8% \xD7 1 = +8%\nChampion /
-      Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nYour Dodge +8%, Maximum health -1"
     Price: 27
     Effect: 23
     Value: 0.08
@@ -1033,9 +1011,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-income
     Name: "Contract \xB7 Income"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nRun / Income: +4 \xD7 1 = +4\nChampion / Maximum
-      health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nIncome +4. Your Maximum health -1"
     Price: 18
     Effect: 24
     Value: 4
@@ -1058,9 +1034,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bulletpierce
     Name: "Contract \xB7 Bullet pierce"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Bullet pierce: +1 \xD7 1 = +1\nChampion /
-      Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Bullet pierce +1. Your Maximum health -1"
     Price: 21
     Effect: 25
     Value: 1
@@ -1083,9 +1057,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bulletsplit
     Name: "Contract \xB7 Bullet split"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nTeam / Bullet split: +1 \xD7 1 = +1\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nTeam: Bullet split +1. Your Maximum health
+      -1"
     Price: 24
     Effect: 26
     Value: 1
@@ -1108,9 +1081,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bulletbounce
     Name: "Contract \xB7 Bullet bounce chance"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nTeam / Bullet bounce chance: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nTeam: Bullet bounce chance +8%. Your Maximum
+      health -1"
     Price: 27
     Effect: 27
     Value: 0.08
@@ -1133,9 +1105,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bulletsize
     Name: "Contract \xB7 Bullet size"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Bullet size: +8% \xD7 1 = +8%\nChampion /
-      Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Bullet size +8%. Your Maximum health -1"
     Price: 18
     Effect: 28
     Value: 0.08
@@ -1158,9 +1128,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bulletspeed
     Name: "Contract \xB7 Bullet speed"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nTeam / Bullet speed: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nTeam: Bullet speed +8%. Your Maximum health
+      -1"
     Price: 21
     Effect: 29
     Value: 0.08
@@ -1183,9 +1152,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bulletdistance
     Name: "Contract \xB7 Bullet travel distance"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nTeam / Bullet travel distance: +8% \xD7 1 =
-      +8%\nChampion / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nTeam: Bullet travel distance +8%. Your Maximum
+      health -1"
     Price: 24
     Effect: 30
     Value: 0.08
@@ -1208,9 +1176,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-knockback
     Name: "Contract \xB7 Knockback"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Knockback: +8% \xD7 1 = +8%\nChampion / Maximum
-      health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Knockback +8%. Your Maximum health -1"
     Price: 27
     Effect: 31
     Value: 0.08
@@ -1233,9 +1199,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-bodysize
     Name: "Contract \xB7 Champion size"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nChampion / Champion size: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nYour Champion size +8%, Maximum health -1"
     Price: 18
     Effect: 32
     Value: 0.08
@@ -1258,9 +1222,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-companionsize
     Name: "Contract \xB7 Companion size"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nCompanions / Companion size: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nAllies: Companion size +8%. Your Maximum
+      health -1"
     Price: 21
     Effect: 33
     Value: 0.08
@@ -1283,9 +1246,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-enemycount
     Name: "Contract \xB7 Enemy count"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nRun / Enemy count: +10% \xD7 1 = +10%\nRun / Score
-      multiplier: +20% \xD7 1 = +20%\nChampion / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nEnemy count +10%, Score multiplier +20%. Your
+      Maximum health -1"
     Price: 24
     Effect: 34
     Value: 0.08
@@ -1311,10 +1273,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-enemyhealth
     Name: "Contract \xB7 Enemy health"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nRun / Enemy health: +10% \xD7 1 = +10%\nRun /
-      Score multiplier: +20% \xD7 1 = +20%\nChampion / Maximum health: -1 \xD7 1
-      = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nEnemy health +10%, Score multiplier +20%. Your
+      Maximum health -1"
     Price: 27
     Effect: 35
     Value: 0.08
@@ -1340,10 +1300,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-enemyspeed
     Name: "Contract \xB7 Enemy speed"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nRun / Enemy speed: +10% \xD7 1 = +10%\nRun /
-      Score multiplier: +20% \xD7 1 = +20%\nChampion / Maximum health: -1 \xD7 1
-      = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nEnemy speed +10%, Score multiplier +20%.
+      Your Maximum health -1"
     Price: 18
     Effect: 36
     Value: 0.08
@@ -1369,9 +1327,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-hearthealing
     Name: "Contract \xB7 Heart healing"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nChampion / Heart healing: +2 \xD7 1 = +2\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nYour Heart healing +2, Maximum health -1"
     Price: 21
     Effect: 37
     Value: 2
@@ -1394,9 +1350,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-chestquality
     Name: "Contract \xB7 Chest quality"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nRun / Chest quality: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nChest quality +8%. Your Maximum health -1"
     Price: 24
     Effect: 38
     Value: 0.08
@@ -1419,9 +1373,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-recruitdiscount
     Name: "Contract \xB7 Recruit discount"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nRun / Recruit discount: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nRecruit discount +8%. Your Maximum health
+      -1"
     Price: 27
     Effect: 39
     Value: 0.08
@@ -1444,9 +1397,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-relicdiscount
     Name: "Contract \xB7 Relic discount"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nRun / Relic discount: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nRelic discount +8%. Your Maximum health -1"
     Price: 18
     Effect: 40
     Value: 0.08
@@ -1469,9 +1420,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-shoprarity
     Name: "Contract \xB7 Shop rarity"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nRun / Shop rarity: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nShop rarity +8%. Your Maximum health -1"
     Price: 21
     Effect: 41
     Value: 0.08
@@ -1494,9 +1443,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-healthcorrection
     Name: "Contract \xB7 Health correction"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nChampion / Health correction: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nYour Health correction +8%, Maximum health
+      -1"
     Price: 24
     Effect: 42
     Value: 0.08
@@ -1519,9 +1467,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-damagecorrection
     Name: "Contract \xB7 Damage correction"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nTeam / Damage correction: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nTeam: Damage correction +8%. Your Maximum health
+      -1"
     Price: 27
     Effect: 43
     Value: 0.08
@@ -1544,9 +1491,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-speedcorrection
     Name: "Contract \xB7 Speed correction"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nTeam / Speed correction: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nTeam: Speed correction +8%. Your Maximum health
+      -1"
     Price: 18
     Effect: 44
     Value: 0.08
@@ -1569,9 +1515,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-armorcorrection
     Name: "Contract \xB7 Armor correction"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nUNCOMMON \xB7 Stackable\nChampion / Armor correction: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "UNCOMMON \xB7 Stacks\nYour Armor correction +8%, Maximum health
+      -1"
     Price: 21
     Effect: 45
     Value: 0.08
@@ -1594,9 +1539,7 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-healcorrection
     Name: "Contract \xB7 Healing correction"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nRARE \xB7 Stackable\nChampion / Healing correction: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "RARE \xB7 Stacks\nYour Healing correction +8%, Maximum health -1"
     Price: 24
     Effect: 46
     Value: 0.08
@@ -1619,9 +1562,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: k10-collisionfrequency
     Name: "Contract \xB7 Collision frequency"
-    Description: "Lasts for this run, including waves and endless. Resets in a new
-      run.\nMYTHIC \xB7 Stackable\nTeam / Collision frequency: +8% \xD7 1 = +8%\nChampion
-      / Maximum health: -1 \xD7 1 = -1\n"
+    Description: "MYTHIC \xB7 Stacks\nTeam: Collision frequency +8%. Your Maximum
+      health -1"
     Price: 27
     Effect: 47
     Value: 0.08
@@ -1644,7 +1586,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: long-pocket
     Name: Long Pocket
-    Description: Chest reach +35%. Champion speed -2%.
+    Description: "UNCOMMON \xB7 Stacks\nChest opening radius +35%. Your Movement
+      speed -2%"
     Price: 24
     Effect: 48
     Value: 0.35
@@ -1667,7 +1610,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: velvet-first-aid
     Name: Velvet First Aid
-    Description: 'Chest: heal4 HP/stack (2s CD). More chests; speed -2%.'
+    Description: "RARE \xB7 Stacks\nTreasure detection +0.1. Your Movement speed
+      -2%\nChest: heal4 HP/stack \xB7 2s CD"
     Price: 24
     Effect: 17
     Value: 0.1
@@ -1690,7 +1634,8 @@ MonoBehaviour:
     SignatureRole: 0
   - Id: brass-avalanche
     Name: Brass Avalanche
-    Description: 'Kill: nearby pulse3 DMG/stack (2s CD). Knockback +10%; speed -2%.'
+    Description: "MYTHIC \xB7 Stacks\nTeam: Knockback +10%. Your Movement speed -2%\nKill:
+      nearby pulse3 DMG/stack \xB7 2s CD"
     Price: 24
     Effect: 31
     Value: 0.1

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: CoinLeech
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: CoinLeech
+  DisplayName: Coin Leech
+  Body: {fileID: -288726719, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  AnimationFrames:
+  - {fileID: -288726719, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1696779420, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: -1588837531, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1948493564, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f2db5d8638963d54fbbbd26a301078c3, type: 2}
+  Weapon: {fileID: 11400000, guid: 5a64ce7a112531a40948021e61ba5bf7, type: 2}
+  Health: 46
+  Speed: 1.09
+  Radius: 0.3
+  BodyHeight: 1.05
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Steals loose coins. Defeat it to recover them.
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 4
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 7
+  Shot: 3
+  Material: 3
+  Motif: 0

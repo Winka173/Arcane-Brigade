@@ -94,6 +94,11 @@ namespace ArcaneBrigade
         public float NextBehavior;
         public bool Awakened;
         public float NextThermal;
+        public Vector2 AbilityOrigin;
+        public Vector2 AbilityTarget;
+        public float BodyLift;
+        public int StolenCoins;
+        public float AbilityFireAt;
     }
 
     public sealed class ProjectileState
@@ -124,6 +129,9 @@ namespace ArcaneBrigade
         public float Radius = 0.055f;
         public int SplitCount;
         public int RandomBounces = 8;
+        public HostileShot HostileMotion;
+        public float HostileAge;
+        public Vector2 LaunchVelocity;
         public readonly HashSet<int> Victims = new HashSet<int>();
     }
 
@@ -301,6 +309,7 @@ namespace ArcaneBrigade
             if (!float.IsFinite(movement.x) || !float.IsFinite(movement.y)) movement = Vector2.zero;
             movement = Vector2.ClampMagnitude(movement, 1f);
             Elapsed += deltaTime;
+            if (Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle) movement = Vector2.zero;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
             Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * deltaTime, Champion.Definition.Radius);
             float beforeRegeneration = Champion.Health;
@@ -523,12 +532,13 @@ namespace ArcaneBrigade
                 boss.TelegraphUntil = 0f;
                 int pattern = boss.Definition.BossPattern;
                 int count = BossBulletCount(pattern);
-                for (int index = 0; index < count; index++)
+                if (catalog.ExpandedContent && ResolveBossBodyAttack(boss)) count = 0;
+                for (int index = 0; index < count && projectiles.Count < 4096; index++)
                 {
                     float angle = BossBulletAngle(boss, index, launchTime);
                     Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                     float speed = catalog.RunWave > 0 ? pattern == 2 ? 1.8f + index % 4 * 0.2f : pattern == 4 ? 2f + index % 2 * 0.4f : 2.4f : pattern == 3 ? 7f : pattern == 2 ? 3.5f + index % 4 * 0.7f : pattern == 4 ? 3.5f + index % 2 * 1.8f : 4.2f;
-                    projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = boss.Position, PreviousPosition = boss.Position, Velocity = direction * speed, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
+                    projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = boss.Position, PreviousPosition = boss.Position, Velocity = direction * speed, LaunchVelocity = direction * speed, HostileMotion = catalog.RunWave > 0 ? boss.Definition.Shot : HostileShot.Straight, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, VisualWidth = 0.34f, Radius = 0.1f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
                 }
                 boss.BossVolley++;
                 boss.AttackStarted = Elapsed - 0.85f; boss.AttackWindup = 0.85f;
@@ -665,7 +675,9 @@ namespace ArcaneBrigade
                     Weapon = weapon,
                     RicochetsRemaining = weapon.Family == ExpandedWeapon.TetherBow ? unit.Definition.CombatTier >= 2 ? 3 : 2 : weapon.Family == ExpandedWeapon.Fish ? 1 : 0,
                     SplitOnImpact = weapon.Family == ExpandedWeapon.Tea || weapon.ProjectileSplit > 0,
-                    FinalNote = weapon.Family == ExpandedWeapon.MusicBox && unit.ExpandedBeat % 3 == 0
+                    FinalNote = weapon.Family == ExpandedWeapon.MusicBox && unit.ExpandedBeat % 3 == 0,
+                    HostileMotion = unit.Faction == Faction.Enemy ? unit.Definition.Shot : HostileShot.Straight,
+                    LaunchVelocity = direction * Mathf.Min(2.4f, weapon.ProjectileSpeed)
                 });
             }
         }
@@ -702,6 +714,7 @@ namespace ArcaneBrigade
             for (int index = projectiles.Count - 1; index >= 0 && Phase == RunPhase.Combat; index--)
             {
                 ProjectileState projectile = projectiles[index];
+                if (projectile.Faction == Faction.Enemy) HostileBallistics.Advance(projectile, deltaTime);
                 int expandedMotion = MoveExpandedProjectile(projectile, deltaTime);
                 if (expandedMotion != 0) { if (expandedMotion < 0) projectiles.RemoveAt(index); continue; }
                 if (!AdvanceCombatProjectile(projectile, deltaTime)) projectiles.RemoveAt(index);
@@ -775,6 +788,7 @@ namespace ArcaneBrigade
                 Kills++;
                 if (source != Faction.Enemy) RecordKill(cause);
                 DropLoot(LootKind.Coin, target.Position, catalog.GoldPerKill);
+                if (target.StolenCoins > 0) { DropLoot(LootKind.Coin, target.Position, target.StolenCoins); target.StolenCoins = 0; }
                 if (catalog.ExtendedLoot)
                 {
                     if (lootRandom.NextDouble() < Mathf.Clamp01(catalog.EggDropChance * (1f + catalog.Luck))) DropLoot(LootKind.Egg, target.Position, 1);

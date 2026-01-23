@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BurrowBellMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -404396611, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -625295435, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  Walk:
+  - {fileID: -381945861, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -88283760, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: 38661334, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: 722069377, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  Windup:
+  - {fileID: 731761712, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -1663284685, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  Release:
+  - {fileID: -909403365, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: 503591952, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  Recovery:
+  - {fileID: 699232127, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -510783538, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}

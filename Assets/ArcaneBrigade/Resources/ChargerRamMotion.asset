@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ChargerRamMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 8208466, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -155489759, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  Walk:
+  - {fileID: 245172229, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: 1128241617, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -799615969, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: 1029496099, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  Windup:
+  - {fileID: -831778288, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -1926268001, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  Release:
+  - {fileID: 1297496231, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: 1910147465, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  Recovery:
+  - {fileID: 15218932, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: 396136512, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}

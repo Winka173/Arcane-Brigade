@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -1061027673, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
   - {fileID: 885402445, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
   - {fileID: -1913645117, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 842c8b3c2d1512940b012f06c97790fb, type: 2}
   Health: 100
   Speed: 4.2
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,10 @@ MonoBehaviour:
   - oddity
   Passive: 2
   PassiveStrength: 0.5
-  Description: "Scavenges extra gold every 4 seconds in combat\nChampion / Armor
-    correction: +2.5%\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4;
-    merging three units reduces support sources.\n"
+  Description: 'Your Armor correction +2.5%, Maximum health -1
+
+    Extra loot from
+    kills'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +61,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

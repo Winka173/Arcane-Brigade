@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe45a985f9f3bb24f94490427644b436, type: 3}
+  m_Name: CarnivalStageAssets
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.CarnivalStageAssets
+  Floors:
+  - {fileID: 2800000, guid: 751cf7703c25f0646b3f5ed842a1b79a, type: 3}
+  - {fileID: 2800000, guid: 6ac428706381141468ad971af7c8bc5b, type: 3}
+  - {fileID: 2800000, guid: 4f986ccc3273c9c40bb5a6b9d2b48efd, type: 3}
+  Stands:
+  - {fileID: -243842694, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: 162588072, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: -1297480376, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: 1319912215, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: 282403810, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: -260427455, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: 436555811, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: -568034091, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: -1943463588, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: 2071058099, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: -854119361, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  - {fileID: 1493596197, guid: fa51b0d63590a3d419064fb81ca81df5, type: 3}
+  Courier:
+  - {fileID: 1423351384, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 1628168347, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 946001262, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 1042753550, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 738861057, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 1941679130, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: -826727657, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 840081835, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: -224705591, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 658393189, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 1064558986, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}
+  - {fileID: 966862500, guid: 240f2c7c76ff45b4da7037d0d88f1d2c, type: 3}

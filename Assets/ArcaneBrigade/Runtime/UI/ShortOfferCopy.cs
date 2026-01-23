@@ -13,11 +13,11 @@ namespace ArcaneBrigade
             ItemEffect.BulletPierce => "Pierce", ItemEffect.BulletSplit => "Split", ItemEffect.EnemyHealth => "Enemy HP",
             ItemEffect.EnemyCount => "Enemies", _ => RunModifierRules.ModifierName(effect)
         };
-        private static string Modifiers(StatModifier[] modifiers) => string.Join(" · ", modifiers.Where(modifier => modifier.Value != 0).GroupBy(modifier => modifier.Scope).Select(group => (group.Key == ModifierScope.Champion ? "YOU: " : group.Key == ModifierScope.Companions ? "ALLIES: " : group.Key == ModifierScope.Team ? "TEAM: " : "") + string.Join(" / ", group.Select(modifier => StatName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)))));
-        public static string Companion(UnitDefinition unit) => (unit.SpecialRecruit ? "Dream elite · " : "") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
+        private static string Modifiers(StatModifier[] modifiers) => string.Join(". ", modifiers.Where(modifier => modifier.Value != 0).GroupBy(modifier => modifier.Scope).Select(group => (group.Key == ModifierScope.Champion ? "Your " : group.Key == ModifierScope.Companions ? "Allies: " : group.Key == ModifierScope.Team ? "Team: " : "") + string.Join(", ", group.Select(modifier => RunModifierRules.ModifierName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)))));
+        public static string Companion(UnitDefinition unit) => (unit.Rarity == ItemRarity.Common ? "" : RunModifierRules.RarityName(unit.Rarity) + " ally. Attacks deal " + ((int)unit.Rarity * 18) + "% more damage.\n") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
         {
             PassiveKind.HealChampion => "Heal you every 4s", PassiveKind.ChillAura => "Slow nearby foes",
-            PassiveKind.Rally => "ATK scales with brigade", PassiveKind.Scavenge => "Extra loot from kills", _ => "Auto attacks"
+            PassiveKind.Rally => "More allies increase attack", PassiveKind.Scavenge => "Extra loot from kills", _ => "Auto attacks"
         });
         public static string BondPreview(RunSession session, RunCatalog catalog, ShopOffer offer)
         {

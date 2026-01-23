@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 659177622, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
   - {fileID: 1631050211, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
   - {fileID: -1384891847, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: c49101b482dca144bb87b559088a45ca, type: 2}
   Health: 100
   Speed: 4.2
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - archive
   Passive: 0
   PassiveStrength: 0.5
-  Description: "No personal passive\nRun / Score multiplier: +2.5%\nChampion / Maximum
-    health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n"
+  Description: 'Score multiplier +2.5%. Your Maximum health -1
+
+    Auto attacks'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

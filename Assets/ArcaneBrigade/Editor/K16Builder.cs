@@ -39,6 +39,10 @@ namespace ArcaneBrigade.Editor
             string path = "Assets/ArcaneBrigade/Art/K16/" + id + "_v1.png";
             string revised = "Assets/ArcaneBrigade/Art/K16/" + id + "_v2.png";
             if (File.Exists(revised)) path = revised;
+            return ImportSheet(id, path);
+        }
+        public static Sprite[] ImportSheet(string id, string path)
+        {
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Multiple;

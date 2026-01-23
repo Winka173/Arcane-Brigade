@@ -86,6 +86,7 @@ namespace ArcaneBrigade
         public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Unlocked" : "Unlock: wave " + unit.UnlockWave;
         public static string ChampionDescription(UnitDefinition unit)
         {
+            if (unit.HeroMechanic >= HeroMechanic.RootedOracle) return K11HeroRules.Describe(unit);
             if (unit.ChampionModifiers != null && unit.ChampionModifiers.Length > 0) return unit.Description + (unit.HeroMechanic == HeroMechanic.None ? "" : "\n\n" + K11HeroRules.Describe(unit));
             switch (unit.Id)
             {

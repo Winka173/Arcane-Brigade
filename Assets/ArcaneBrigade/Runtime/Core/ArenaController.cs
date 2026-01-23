@@ -20,7 +20,7 @@ namespace ArcaneBrigade
         public RunDetails Details => details;
         public bool MenuConfirmation => pauseGate.Navigation;
         public Vector2 WorldBounds => catalog.ArenaSize;
-        public Vector2 VisualChampionPosition => Vector2.Lerp(simulation.Champion.PreviousPosition, simulation.Champion.Position, Mathf.Clamp01((Time.time - Time.fixedTime) / Time.fixedDeltaTime));
+        public Vector2 VisualChampionPosition => stageTransfer != null && stageTransfer.Active ? stageTransfer.VisualPlayerPosition : Vector2.Lerp(simulation.Champion.PreviousPosition, simulation.Champion.Position, Mathf.Clamp01((Time.time - Time.fixedTime) / Time.fixedDeltaTime));
         public RunSession Session => session;
         public RunCatalog Content => runCatalog;
         public PlayerProfile Profile => profile;
@@ -55,7 +55,9 @@ namespace ArcaneBrigade
         private bool hallExitPending;
         private float hallExitElapsed;
         private Vector2 hallExitTarget;
-        public bool TransitionPending => transitionRemaining > 0;
+        private StageTransfer stageTransfer;
+        public bool PresentationPaused => pauseGate.Paused;
+        public bool TransitionPending => transitionRemaining > 0 || stageTransfer != null && stageTransfer.Active;
         public bool HallExitPending => hallExitPending;
         public float HallCurtain => 0;
         public bool ResultsReady => resultRevealRemaining <= 0;
@@ -264,6 +266,7 @@ namespace ArcaneBrigade
         private void FixedUpdate()
         {
             if (simulation == null) return;
+            if (stageTransfer != null && stageTransfer.Active) return;
             if (session != null && session.State.Phase == SessionPhase.Shop)
             {
                 simulation.StepRest(Time.fixedDeltaTime, moveIntent);
@@ -421,7 +424,14 @@ namespace ArcaneBrigade
             session.ContinueWave();
             if (session.State.Phase != SessionPhase.Combat) { if (Shop != null) Shop.CancelDeparture(); return; }
             if (!PersistBoundary()) { session.Restore(before); if (Shop != null) Shop.CancelDeparture(); return; }
-            Begin(true);
+            if (Shop != null) Shop.Display();
+            if (StageTransfer.ChangesMap(session.State.Wave))
+            {
+                var carrier = new GameObject("PaperMantaStageTransfer");
+                stageTransfer = carrier.AddComponent<StageTransfer>();
+                stageTransfer.Configure(this, () => { stageTransfer = null; Begin(true); });
+            }
+            else Begin(true);
         }
         public void ContinueEndless()
         {

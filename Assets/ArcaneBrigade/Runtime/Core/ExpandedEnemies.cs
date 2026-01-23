@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         {
             if (!catalog.ExpandedContent || enemy.Definition.Behavior == EnemyBehavior.Standard) return false;
             Vector2 offset = Champion.Position - enemy.Position;
+            if (enemy.Definition.Behavior >= EnemyBehavior.Hopper) return MoveCarnivalEnemy(enemy, offset, delta);
             if (enemy.Definition.Behavior == EnemyBehavior.Mimic && !enemy.Awakened)
             {
                 if (offset.sqrMagnitude > 9f && enemy.Health >= enemy.Definition.Health) return true;

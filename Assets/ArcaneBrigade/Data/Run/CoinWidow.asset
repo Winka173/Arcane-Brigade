@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: CoinWidow
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: CoinWidow
+  DisplayName: The Coin Widow
+  Body: {fileID: 1406923284, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  AnimationFrames:
+  - {fileID: 1406923284, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  - {fileID: -1466910035, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  - {fileID: 1183159862, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  - {fileID: -461278252, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: d898dc9f9c3eeff4f8ce81e746b2f712, type: 2}
+  Weapon: {fileID: 11400000, guid: 1394aea6f3682b24a8750a55899e84eb, type: 2}
+  Health: 850
+  Speed: 0.62
+  Radius: 0.85
+  BodyHeight: 2.94
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 8
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Pulls loose coins and releases shockwaves.
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 0
+  IsBoss: 1
+  BossPattern: 7
+  CombatTier: 1
+  Behavior: 0
+  Shot: 2
+  Material: 1
+  Motif: 2

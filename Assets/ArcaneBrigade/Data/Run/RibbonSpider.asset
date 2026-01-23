@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -1818185478, guid: eb6795e341668264a887ca90bb906b69, type: 3}
   - {fileID: 522386957, guid: eb6795e341668264a887ca90bb906b69, type: 3}
   - {fileID: -1648424491, guid: eb6795e341668264a887ca90bb906b69, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 7f5c0f391f15f844b99467e2edbff077, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,10 @@ MonoBehaviour:
   - oddity
   Passive: 1
   PassiveStrength: 0.5
-  Description: "Automatically heals the champion every 4 seconds\nTeam / Collision
-    damage: +1\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging
-    three units reduces support sources.\n"
+  Description: 'Team: Collision damage +1. Your Maximum health -1
+
+    Heal you every
+    4s'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +61,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

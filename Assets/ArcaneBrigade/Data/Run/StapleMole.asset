@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 1053070649, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
   - {fileID: 699344708, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
   - {fileID: -216271835, guid: 25d0b3a5b50d1fd49a5328687f830934, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 7f5c0f391f15f844b99467e2edbff077, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,10 @@ MonoBehaviour:
   - clock
   Passive: 2
   PassiveStrength: 0.5
-  Description: "Scavenges extra gold every 4 seconds in combat\nTeam / Bullet pierce:
-    +1\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three
-    units reduces support sources.\n"
+  Description: 'Team: Bullet pierce +1. Your Maximum health -1
+
+    Extra loot from
+    kills'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +61,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

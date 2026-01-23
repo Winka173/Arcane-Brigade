@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CoinLeechMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -288726719, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1696779420, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  Walk:
+  - {fileID: -1588837531, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1957528282, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1948493564, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: -188112763, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  Windup:
+  - {fileID: 485177220, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: -1283383516, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  Release:
+  - {fileID: 547606118, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 753413899, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  Recovery:
+  - {fileID: 472786925, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 284942524, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}

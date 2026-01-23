@@ -33,11 +33,11 @@ namespace ArcaneBrigade.Editor
                 UnitDefinition unseen = catalog.Companions.First(unit => session.State.Roster.All(entry => entry.UnitId != unit.Id));
                 var blocked = new ShopOffer { Kind = OfferKind.Companion, Id = unseen.Id, Price = 1 };
                 require(!session.CanBuy(blocked), "Three new-species purchases cap enforced even on old offers");
-                require(session.CanBuy(new ShopOffer { Kind = OfferKind.Companion, Id = session.State.Roster[0].UnitId, Price = 1 }), "Existing species remain upgradeable after quota");
+                require(!session.CanBuy(new ShopOffer { Kind = OfferKind.Companion, Id = session.State.Roster[0].UnitId, Price = 1 }), "Existing species cannot bypass purchase quota");
                 for (int roll = 0; roll < 30; roll++)
                 {
                     require(session.Reroll(), "Quota reroll " + roll);
-                    require(session.State.Offers.All(offer => offer.Kind == OfferKind.Item || session.State.Roster.Any(entry => entry.UnitId == offer.Id)), "Quota excludes new species, keeps items/copies");
+                    require(session.State.Offers.All(offer => offer.Kind == OfferKind.Item), "Quota rerolls produce items only");
                     require(session.State.Offers.All(offer => offer.Kind != OfferKind.Companion || !catalog.Unit(offer.Id).SpecialRecruit), "Special recruits excluded from gold shop");
                 }
                 require(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State)).NewRecruitsThisWave == 3, "Recruit quota persists in save");

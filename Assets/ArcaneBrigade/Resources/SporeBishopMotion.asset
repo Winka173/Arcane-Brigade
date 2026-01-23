@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SporeBishopMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1720168144, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: 1394105539, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  Walk:
+  - {fileID: 1406503491, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: 765099993, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: -1698362224, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: -831044929, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  Windup:
+  - {fileID: -808454445, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: -1709700514, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  Release:
+  - {fileID: -1854193591, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: 32711252, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  Recovery:
+  - {fileID: -369666687, guid: 2e2773356800c354cbcf02098a254532, type: 3}
+  - {fileID: 1180628078, guid: 2e2773356800c354cbcf02098a254532, type: 3}

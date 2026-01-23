@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -370232648, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
   - {fileID: 1267589678, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
   - {fileID: -1339419936, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: a9b27cddf2286b24bacaed7af9c6ba1f, type: 2}
   Health: 100
   Speed: 4.6
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,10 @@ MonoBehaviour:
   - tidal
   Passive: 3
   PassiveStrength: 0.5
-  Description: "Damage scales with companion count\nRun / Shop rarity: +2.5%\nChampion
-    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'Shop rarity +2.5%. Your Maximum health -1
+
+    More allies increase
+    attack'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +61,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

@@ -14,6 +14,7 @@ namespace ArcaneBrigade
         {
             if (!catalog.EnableHeroMechanics || !Champion.Alive || Phase != RunPhase.Combat) return;
             HeroMechanic mechanic = Champion.Definition.HeroMechanic;
+            if (mechanic >= HeroMechanic.RootedOracle) { ProcessCarnivalHero(deltaTime, mechanic); return; }
             if (mechanic == HeroMechanic.None) return;
             float moved = Vector2.Distance(Champion.Position, Champion.PreviousPosition);
             if (mechanic == HeroMechanic.LanternStride) heroCharge = Mathf.Min(12, heroCharge + moved);

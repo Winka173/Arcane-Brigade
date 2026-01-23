@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 453745029, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 329348947, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
   - {fileID: 210252917, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 760bf72e211c5ed4b9c785e1b5a99e2f, type: 2}
   Health: 930
   Speed: 0.65
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 8
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -37,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: 
+  Description: Cross volleys and expanding shockwaves.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -48,5 +51,6 @@ MonoBehaviour:
   BossPattern: 2
   CombatTier: 1
   Behavior: 0
+  Shot: 2
   Material: 5
   Motif: 2

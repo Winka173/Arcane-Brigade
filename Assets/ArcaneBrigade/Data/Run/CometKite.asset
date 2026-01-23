@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -331314746, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
   - {fileID: 1204188615, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
   - {fileID: -361823737, guid: b36778c41b4147f4c8511897971f1d67, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: d767d8709a798c54b9186acd9c644e90, type: 2}
   Health: 100
   Speed: 4.6
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,10 @@ MonoBehaviour:
   - astral
   Passive: 2
   PassiveStrength: 0.5
-  Description: "Scavenges extra gold every 4 seconds in combat\nRun / Enemy health:
-    +10%\nRun / Score multiplier: +10%\nChampion / Maximum health: -1\nTier 1/2/3
-    traits \xD71/2/4; merging three units reduces support sources.\n"
+  Description: 'Enemy health +10%, Score multiplier +10%. Your Maximum health -1
+
+    Extra
+    loot from kills'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -60,5 +64,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

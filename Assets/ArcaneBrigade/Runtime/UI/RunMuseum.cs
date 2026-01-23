@@ -12,6 +12,7 @@ namespace ArcaneBrigade
             public string Detail;
             public Sprite Icon;
             public bool Seen;
+            public UnitDefinition Unit;
         }
         private readonly List<Exhibit> exhibits = new List<Exhibit>();
         private int tab;
@@ -42,12 +43,12 @@ namespace ArcaneBrigade
             if (tab == 1)
                 foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = item.Description + "\n\n" + item.Rarity + " · " + item.Stacking + " · max " + item.StackLimit });
             if (tab == 2)
-                foreach (UnitDefinition unit in catalog.Companions) exhibits.Add(new Exhibit { Id = unit.Id, Name = unit.DisplayName, Icon = unit.Body, Seen = profile.SeenUnits.Contains(unit.Id), Detail = unit.Description + "\nWeapons roll on purchase, not fixed by body." });
+                foreach (UnitDefinition unit in catalog.Companions) exhibits.Add(new Exhibit { Id = unit.Id, Name = unit.DisplayName, Icon = unit.Body, Unit = unit, Seen = profile.SeenUnits.Contains(unit.Id), Detail = unit.Description + "\nWeapons roll on purchase, not fixed by body." });
             if (tab == 3)
                 foreach (BuildLinkRule link in catalog.BuildLinks)
                     if (link.Id.StartsWith("signature-", System.StringComparison.Ordinal)) exhibits.Add(new Exhibit { Id = link.Id, Name = link.Name, Seen = profile.SeenChains.Contains(link.Id), Detail = link.Description + "\n\nDiscoveries require recorded activations/damage/healing, not merely equipping or viewing a graph." });
             if (tab == 4)
-                foreach (UnitDefinition boss in catalog.Bosses) exhibits.Add(new Exhibit { Id = boss.Id, Name = boss.DisplayName, Icon = boss.Body, Seen = profile.SeenBosses.Contains(boss.Id), Detail = boss.Description + "\n" + boss.Motif + " / " + boss.Material + "\nActually defeated, not previewed." });
+                foreach (UnitDefinition boss in catalog.Bosses) exhibits.Add(new Exhibit { Id = boss.Id, Name = boss.DisplayName, Icon = boss.Body, Unit = boss, Seen = profile.SeenBosses.Contains(boss.Id), Detail = boss.Description + "\n" + boss.Motif + " / " + boss.Material + "\nActually defeated, not previewed." });
             string[] tabs = { "WEAPONS", "RELICS", "COMPANIONS", "CHAINS", "BOSS" };
             for (int index = 0; index < tabs.Length; index++)
                 if (GUI.Button(new Rect(60 + index * 233, 160, 218, 45), (index == tab ? "• " : "") + tabs[index])) { SelectTab(index); exhibits.Clear(); return; }
@@ -69,7 +70,19 @@ namespace ArcaneBrigade
             if (exhibits.Count > 0)
             {
                 Exhibit exhibit = exhibits[selection];
-                if (exhibit.Seen) RunHud.Sprite(new Rect(952, 245, 150, 110), exhibit.Icon);
+                if (exhibit.Seen)
+                {
+                    float time = Time.unscaledTime;
+                    Sprite preview = exhibit.Icon;
+                    if (exhibit.Unit != null && !PresentationSettings.ReducedMotion)
+                    {
+                        AuthoredMotionSet motion = exhibit.Unit.AuthoredMotion;
+                        Sprite[] frames = motion != null ? motion.Walk : exhibit.Unit.AnimationFrames;
+                        if (frames.Length > 0) preview = frames[Mathf.FloorToInt(time * 5) % frames.Length];
+                    }
+                    float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(time * 2.4f) * 4;
+                    RunHud.Sprite(new Rect(952, 245 + bob, 150, 110), preview);
+                }
                 GUI.Label(new Rect(865, 365, 320, 65), exhibit.Seen ? exhibit.Name : "Empty shelf", title);
                 string description = exhibit.Seen ? exhibit.Detail : tab == 4 ? "Defeat this boss in a real hall to unlock its display." : tab == 3 ? "Activate the chain in actual combat. Owning its set is not enough." : "Find this item during a run. Viewing or testing does not unlock it.";
                 float height = Mathf.Max(135, body.CalcHeight(new GUIContent(description), 290));

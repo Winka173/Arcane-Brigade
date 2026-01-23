@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -1206272685, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
   - {fileID: 928063171, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
   - {fileID: -132174254, guid: 3b77163b86d594c49801d0239fa37586, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: c49101b482dca144bb87b559088a45ca, type: 2}
   Health: 100
   Speed: 4.2
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 1
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,12 @@ MonoBehaviour:
   - tidal
   Passive: 4
   PassiveStrength: 0.5
-  Description: "Chills nearby enemies\nChampion / Health correction: +2.5%\nChampion
-    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
+
+    Your Health correction
+    +2.5%, Maximum health -1
+
+    Slow nearby foes'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +63,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: TideSinger
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: TideSinger
+  DisplayName: The Tide Singer
+  Body: {fileID: 1159631122, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
+  AnimationFrames:
+  - {fileID: 1159631122, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
+  - {fileID: -370232648, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
+  - {fileID: 1267589678, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
+  - {fileID: -1339419936, guid: 437fc201f535fd449a7edd6c6a316721, type: 3}
+  AuthoredMotion: {fileID: 0}
+  Weapon: {fileID: 11400000, guid: 3a552c526a3998a428518fbbccaa188b, type: 2}
+  Health: 120
+  Speed: 3.1
+  Radius: 0.25
+  BodyHeight: 1.08
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - tidal
+  Passive: 0
+  PassiveStrength: 0.5
+  Description: Collect 8 gold to heal 3 health and push nearby enemies back.
+  ChampionModifiers:
+  - Effect: 37
+    Scope: 1
+    Value: 4
+  RecruitThemes:
+  - tidal
+  HeroMechanic: 7
+  CompanionModifiers: []
+  Price: 27
+  UnlockWave: 0
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0

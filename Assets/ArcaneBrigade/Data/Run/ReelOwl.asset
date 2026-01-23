@@ -29,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 1
+  Rarity: 3
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8
@@ -40,7 +41,12 @@ MonoBehaviour:
   - astral
   Passive: 0
   PassiveStrength: 0.45
-  Description: 'ALLIES: +6% range, -2% attack speed. Dream recruit.'
+  Description: 'MYTHIC ally. Attacks deal 54% more damage.
+
+    Allies: Attack range
+    +6%, Attack speed -2%
+
+    Auto attacks'
   ChampionModifiers: []
   RecruitThemes:
   - astral
@@ -58,5 +64,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 4
   Motif: 0

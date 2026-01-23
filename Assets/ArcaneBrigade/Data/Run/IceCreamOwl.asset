@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 230980776, guid: ec0255328786e6549be495b9e1c700d9, type: 3}
   - {fileID: -544982971, guid: ec0255328786e6549be495b9e1c700d9, type: 3}
   - {fileID: 517694979, guid: ec0255328786e6549be495b9e1c700d9, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: b851de8e90261f941b7e58cc4bd81cc8, type: 2}
   Health: 100
   Speed: 4.2
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 1
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,12 @@ MonoBehaviour:
   - frost
   Passive: 4
   PassiveStrength: 0.5
-  Description: "Chills nearby enemies\nTeam / Bullet bounce chance: +2.5%\nChampion
-    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n"
+  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
+
+    Team: Bullet bounce
+    chance +2.5%. Your Maximum health -1
+
+    Slow nearby foes'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +63,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

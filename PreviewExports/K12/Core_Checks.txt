@@ -14,96 +14,96 @@ PASS No first-wave hostile shooters
 PASS Boss substantially enlarged health pool
 PASS Wave5 actually produces dense hostile population
 PASS Three new-species purchases cap enforced even on old offers
-PASS Existing species remain upgradeable after quota
+PASS Existing species cannot bypass purchase quota
 PASS Quota reroll 0
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 1
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 2
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 3
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 4
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 5
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 6
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 7
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 8
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 9
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 10
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 11
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 12
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 13
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 14
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 15
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 16
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 17
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 18
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 19
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 20
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 21
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 22
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 23
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 24
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 25
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 26
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 27
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 28
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Quota reroll 29
-PASS Quota excludes new species, keeps items/copies
+PASS Quota rerolls produce items only
 PASS Special recruits excluded from gold shop
 PASS Recruit quota persists in save
 PASS Soft cap chance remains nonzero 9

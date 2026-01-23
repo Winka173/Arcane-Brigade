@@ -29,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
   RecruitThemeLocked: 0
   ContactDamage: 8
   ContactInterval: 0.8
@@ -39,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: 
+  Description: Spread shots and paired shockwaves.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,5 +51,6 @@ MonoBehaviour:
   BossPattern: 3
   CombatTier: 1
   Behavior: 0
+  Shot: 3
   Material: 3
   Motif: 0

@@ -21,6 +21,7 @@ namespace ArcaneBrigade
         private static void Initialize()
         {
             string[] args = Environment.GetCommandLineArgs();
+            if (Array.IndexOf(args, "-arcane-k17-art") >= 0) return;
             if (!RunPaths.K7Capture || Array.IndexOf(args, "-arcane-k16-art") < 0 || FindAnyObjectByType<K16ArtCapture>() != null) return;
             int path = Array.IndexOf(args, "-capturePath"); if (path < 0 || path + 1 >= args.Length) return;
             var child = new GameObject("K16ArtCapture"); DontDestroyOnLoad(child);

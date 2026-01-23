@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -1671116084, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: -1087326964, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: 1439430984, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 1
   Speed: 5.1
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,9 @@ MonoBehaviour:
   - oddity
   Passive: 0
   PassiveStrength: 1
-  Description: "No personal passive\nCompanions / Damage: +2.5%\nCompanions / Movement
-    speed: -0.5%\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n"
+  Description: 'Allies: Damage +2.5%, Movement speed -0.5%
+
+    Auto attacks'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +60,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

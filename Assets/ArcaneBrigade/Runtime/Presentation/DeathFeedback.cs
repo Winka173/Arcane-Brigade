@@ -92,7 +92,7 @@ namespace ArcaneBrigade
             remnant.Important = important;
             remnant.Material = state.Definition.Material;
             remnant.Identity = state.Definition.BossPattern + state.Id % 3;
-            remnant.Duration = state.Definition.IsBoss ? 1.1f : state.Faction == Faction.Champion ? 0.95f : 0.65f;
+            remnant.Duration = state.Definition.IsBoss ? 2f : state.Faction == Faction.Champion ? 0.95f : 0.65f;
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
             remnant.Root.gameObject.SetActive(true);

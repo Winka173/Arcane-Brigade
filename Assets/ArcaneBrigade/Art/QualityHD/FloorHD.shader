@@ -3,6 +3,8 @@ Shader "ArcaneBrigade/FloorHD"
     Properties
     {
         _MainTex ("Painted floor tile", 2D) = "white" {}
+        _NextTex ("Next stage floor", 2D) = "white" {}
+        _FloorBlend ("Stage material dissolve", Range(0,1)) = 0
         _TileScale ("World tiling", Vector) = (1,1,0,0)
         _Color ("Palette", Color) = (1,1,1,1)
         _Saturation ("Saturation", Range(0,2)) = 1.15
@@ -25,6 +27,8 @@ Shader "ArcaneBrigade/FloorHD"
             #pragma fragment frag
             #include "UnityCG.cginc"
             sampler2D _MainTex;
+            sampler2D _NextTex;
+            float _FloorBlend;
             float4 _TileScale;
             fixed4 _Color;
             float _Saturation;
@@ -47,7 +51,7 @@ Shader "ArcaneBrigade/FloorHD"
             }
             fixed4 frag(VertexOutput input) : SV_Target
             {
-                fixed4 color = tex2D(_MainTex, input.uv) * _Color;
+                fixed4 color = lerp(tex2D(_MainTex, input.uv), tex2D(_NextTex, input.uv), _FloorBlend) * _Color;
                 color.rgb = lerp(_BaseColor.rgb, color.rgb, _Detail);
                 fixed4 patina = tex2D(_PatinaTex, input.mapUV);
                 color.rgb = lerp(color.rgb, patina.rgb * _Color.rgb, patina.a * _PatinaStrength);

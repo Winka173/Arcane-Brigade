@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: BurrowBell
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: BurrowBell
+  DisplayName: Burrow Bell
+  Body: {fileID: -404396611, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  AnimationFrames:
+  - {fileID: -404396611, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -625295435, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -381945861, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: 38661334, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 3c469b4f3c721d94ba13c1332776ad8f, type: 2}
+  Weapon: {fileID: 11400000, guid: 1dde8a785a1ea5c4a8ecf51469d0a6e3, type: 2}
+  Health: 81
+  Speed: 0.97
+  Radius: 0.3
+  BodyHeight: 1.05
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Burrows, then erupts at a marked spot.
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 9
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 12
+  Shot: 4
+  Material: 1
+  Motif: 0

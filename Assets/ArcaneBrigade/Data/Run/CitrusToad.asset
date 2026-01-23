@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 848141951, guid: 99f27a4403819684b8f04fb96b980544, type: 3}
   - {fileID: 458710441, guid: 99f27a4403819684b8f04fb96b980544, type: 3}
   - {fileID: -1631045771, guid: 99f27a4403819684b8f04fb96b980544, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: d4c1c7772ddea7b4888b8e5cc0de4665, type: 2}
   Health: 100
   Speed: 4.2
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 1
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,12 @@ MonoBehaviour:
   - orchard
   Passive: 2
   PassiveStrength: 0.5
-  Description: "Scavenges extra gold every 4 seconds in combat\nTeam / Bullet travel
-    distance: +2.5%\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4;
-    merging three units reduces support sources.\n"
+  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
+
+    Team: Bullet travel
+    distance +2.5%. Your Maximum health -1
+
+    Extra loot from kills'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +63,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

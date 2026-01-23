@@ -1,0 +1,15 @@
+PASS BlastPuffer
+PASS BroomSkater
+PASS BurrowBell
+PASS ChargerRam
+PASS ChoirEngine
+PASS CoinLeech
+PASS CoinWidow
+PASS HopperKeg
+PASS MarketStands
+PASS MarqueeMaw
+PASS RibbonHydra
+PASS SporeBishop
+PASS StageCourier
+PASS SuitcaseLeviathan
+PASS UmbraCradle

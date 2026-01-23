@@ -36,6 +36,7 @@ namespace ArcaneBrigade
         private float nextHold;
         private float celebrateAt = -100;
         private Material paintedMaterial;
+        private SpriteRenderer championBeacon;
         public void HoldImpact(float time, float duration)
         {
             if (ReducedMotion || state == null || !state.Alive || time < nextHold) return;
@@ -209,6 +210,15 @@ namespace ArcaneBrigade
             if (state != null && state.Faction == Faction.Champion && choice == 1)
                 shadowColor = shadow.color = new Color(0.015f, 0.025f, 0.045f, 0.38f);
         }
+        public void TransportShadow(Vector2 offset, float lift)
+        {
+            if (state == null || grounded == null) return;
+            float height = K8Motion.BodyHeight(state);
+            Vector2 ground = state.Position + offset - Vector2.up * (height * 0.5f + lift);
+            grounded.Display(body.sprite, ground, height * 0.85f, lift, 0.3f);
+            if (groundedWeapon != null && weapon.enabled && grip.gameObject.activeSelf)
+                groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y), K8Motion.WeaponWidth(state), lift, 0.1f);
+        }
 
         public void Display(float simulationTime, float interpolation)
         {
@@ -284,7 +294,7 @@ namespace ArcaneBrigade
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
             float celebrationAge = simulationTime - celebrateAt;
             float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
-            body.transform.localPosition += Vector3.up * celebrationLift;
+            body.transform.localPosition += Vector3.up * (celebrationLift + (ReducedMotion ? 0 : state.BodyLift));
             float personality = state.Id % 2 == 0 ? -1 : 1;
             body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
@@ -292,7 +302,7 @@ namespace ArcaneBrigade
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
             float lift = entrance > 0 ? entrance * 6 : arrivalAge < 0.405f ? Mathf.Sin(Mathf.Clamp01(arrivalAge / 0.405f) * Mathf.PI) * 0.85f : 0;
             Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f - (entrance > 0 ? transform.position.y - state.Position.y : lift));
-            grounded.Display(body.sprite, ground, height * 0.85f, lift + celebrationLift + Mathf.Abs(bob), state.Definition.IsBoss ? 0.42f : 0.36f);
+            grounded.Display(body.sprite, ground, height * 0.85f, lift + celebrationLift + Mathf.Abs(bob) + Mathf.Max(0, state.BodyLift), state.Definition.IsBoss ? 0.42f : 0.36f);
             if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
             if (weapon.enabled && grip.gameObject.activeSelf) groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
             else groundedWeapon.Hide();
@@ -305,12 +315,30 @@ namespace ArcaneBrigade
             float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
             flashProperties.SetFloat("_Flash", ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : flash);
             SpriteLighting.Apply(body, flashProperties, state.Faction == Faction.Enemy);
+            if (state.Faction == Faction.Champion)
+            {
+                flashProperties.SetColor("_RimColor", new Color(0.45f, 1, 0.85f));
+                flashProperties.SetFloat("_RimAmount", 0.4f);
+            }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
             if (puppet != null) puppet.Display(body, state, simulationTime, ReducedMotion);
             flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true); weapon.SetPropertyBlock(flashProperties);
             DisplayWeakspot(simulationTime, order);
             DisplayTier(order, height);
+            if (state.Faction == Faction.Champion && championBeacon == null)
+            {
+                championBeacon = CreateSprite("ChampionBeacon", transform); championBeacon.sprite = K8Motion.TierStar();
+            }
+            if (championBeacon != null)
+            {
+                championBeacon.enabled = state.Alive && state.Faction == Faction.Champion;
+                championBeacon.sortingOrder = 2900;
+                float top = body.transform.localPosition.y + body.sprite.bounds.max.y * body.transform.localScale.y;
+                championBeacon.transform.localPosition = Vector3.up * (top + 0.2f + (ReducedMotion ? 0 : Mathf.Sin(simulationTime * 2.5f) * 0.035f));
+                championBeacon.transform.localScale = Vector3.one * (0.19f / Mathf.Max(0.01f, championBeacon.sprite.bounds.size.x));
+                championBeacon.color = new Color(0.5f, 1, 0.86f, 0.95f);
+            }
 
             float angleOffset = !ReducedMotion && definition.Kind == WeaponKind.Melee ? Mathf.Sin(simulationTime * 1.8f + state.Id * 0.4f) * 9f : 0f;
             float recoil = 0f;

@@ -1,0 +1,11 @@
+K17 Windows review
+Editor assertions: 7907 passing
+Selected authored atlas source audits: 15 passing
+Native authored pose gallery: 171 passing
+Native normal shop/map/body-effects checks: 18 passing
+Native Reduced Motion shop/map checks: 16 passing
+Campaign seed 171077: 10 routes, 5 victory, 5 defeat, 0 timeout
+Windows build: Succeeded, 0 errors, 0 warnings
+Native screenshot surface: 3840x2160
+Human playfeel/audio approval: not inferred from these checks
+Android/iOS device and publishing gates: open as agreed

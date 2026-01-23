@@ -20,6 +20,7 @@ namespace ArcaneBrigade
         public float BodyScale = 1f;
         [Range(0, 1)] public float KnockbackResistance;
         public bool SpecialRecruit;
+        public ItemRarity Rarity;
         public bool RecruitThemeLocked;
         public float ContactDamage = 4f;
         public float ContactInterval = 0.8f;
@@ -42,13 +43,15 @@ namespace ArcaneBrigade
         public int BossPattern;
         public int CombatTier = 1;
         public EnemyBehavior Behavior;
+        public HostileShot Shot;
         public BodyMaterial Material;
         public BossMotif Motif;
     }
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }
-    public enum HeroMechanic { None, LanternStride, ParcelExpress, DreamBreath }
-    public enum EnemyBehavior { Standard, Door, Magnet, Mimic, Curtain }
+    public enum HeroMechanic { None, LanternStride, ParcelExpress, DreamBreath, RootedOracle, SoloMaw, GlassGambler, TideCollector, ClockRunner, MirrorGuard, TreasureTax }
+    public enum EnemyBehavior { Standard, Door, Magnet, Mimic, Curtain, Hopper, Charger, CoinThief, Puffer, Spore, Sweeper, Hydra, Burrower }
+    public enum HostileShot { Straight, Weave, Hook, Drift, Accelerate }
     public enum BodyMaterial { Paper, Metal, Wax, Fabric, Glass, Wood }
     public enum BossMotif { Stage, Office, Toys }
 }

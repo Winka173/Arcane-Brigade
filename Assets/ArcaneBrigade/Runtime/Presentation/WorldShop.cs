@@ -36,6 +36,7 @@ namespace ArcaneBrigade
         private GUIStyle denialStyle;
         private GUIStyle categoryStyle;
         private bool arrivingStock = true;
+        private bool pedestalEntrance;
         private int displayedWave = -1;
         private bool displayedSpecial;
         private MarketLifecycle lifecycle;
@@ -224,7 +225,7 @@ namespace ArcaneBrigade
                 if (result != null)
                 {
                     result.DeniedUntil = owner.PresentationClock + 0.65f;
-                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
+                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : station.Offer != null && station.Offer.Kind == OfferKind.Companion && owner.Session.State.NewRecruitsThisWave >= 3 ? "3 ALLIES BOUGHT THIS WAVE" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
                 }
             }
             return completed;
@@ -257,6 +258,7 @@ namespace ArcaneBrigade
             scenery = new GameObject("NightMarketStations"); scenery.transform.SetParent(transform, false); stations.Clear();
             RunCatalog catalog = owner.Content; RunSnapshot state = owner.Session.State;
             bool arrival = arrivingStock || displayedWave != state.Wave;
+            pedestalEntrance = arrival;
             bool merchantEntrance = displayedWave != state.Wave || displayedSpecial != Special || dialogue.CurrentLine == null;
             arrivingStock = false; displayedWave = state.Wave;
             displayedSpecial = Special;
@@ -284,7 +286,8 @@ namespace ArcaneBrigade
                 string name = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).DisplayName : catalog.Item(offer.Id).Name;
                 Sprite icon = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
                 Sprite[] frames = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).AnimationFrames : null;
-                Station station = AddStation(new Vector2((index - 1) * 3f, 0.5f), name, offer.Sold ? null : icon, frames, true);
+                float stockRow = Mathf.Min(-1.1f, MerchantCenter.y - MerchantHeight * 0.5f - 1.75f);
+                Station station = AddStation(new Vector2((index - 1) * 3.2f, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
                 station.Description = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Description : catalog.Item(offer.Id).Description;
@@ -300,10 +303,11 @@ namespace ArcaneBrigade
                     }
                 }
                 if (offer.Currency == ShopCurrency.Health) station.Description += " · Costs current HP, not maximum HP; must leave at least 1 HP.";
-                if (!offer.Sold && offer.Kind == OfferKind.Item && catalog.Item(offer.Id).Rarity != ItemRarity.Common)
+                ItemRarity offerRarity = offer.Kind == OfferKind.Item ? catalog.Item(offer.Id).Rarity : catalog.Unit(offer.Id).Rarity;
+                if (!offer.Sold && offerRarity != ItemRarity.Common)
                 {
                     var glow = new GameObject("ItemRarityAura"); glow.transform.SetParent(station.Marker, false); glow.transform.localPosition = new Vector2(0, 0.4f);
-                    glow.AddComponent<ShopRarityGlow>().Configure(catalog.Item(offer.Id).Rarity, owner, index * 1.1f);
+                    glow.AddComponent<ShopRarityGlow>().Configure(offerRarity, owner, index * 1.1f);
                 }
                 if (offer.Sold)
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
@@ -314,13 +318,15 @@ namespace ArcaneBrigade
             if (merchantEntrance)
                 foreach (Station fixture in stations)
                     if (fixture.Offer == null && fixture.Actor != null) fixture.Actor.Arrive(0.45f);
-            if (!Special && state.Wave >= 4)
+            if (Special && state.Wave >= 4)
                 for (int index = 0; index < catalog.Recipes.Length; index++)
                 {
                     AltarRecipe recipe = catalog.Recipes[index];
+                    if (!owner.Session.CanAltar(recipe.Id)) continue;
                     Station station = AddStation(new Vector2(index % 2 == 0 ? -4.4f : 4.4f, -1.4f - index / 2 * 1.75f), "FUSE " + catalog.Unit(recipe.ResultUnit).DisplayName, catalog.Unit(recipe.ResultUnit).Body, catalog.Unit(recipe.ResultUnit).AnimationFrames, true);
                     station.Recipe = recipe.Id; station.Price = recipe.EggCost; station.Currency = ShopCurrency.Eggs;
                     station.Description = owner.Session.RecipePreview(recipe.Id);
+                    break;
                 }
             lifecycle = scenery.AddComponent<MarketLifecycle>(); lifecycle.Configure(owner, Special, merchantEntrance);
         }
@@ -405,7 +411,19 @@ namespace ArcaneBrigade
         private Station AddStation(Vector2 position, string action, Sprite sprite, Sprite[] frames, bool pedestal)
         {
             var marker = new GameObject(action); marker.transform.SetParent(scenery.transform, false); marker.transform.localPosition = position;
-            if (pedestal) AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0).enabled = false;
+            if (pedestal)
+            {
+                CarnivalStageAssets stage = Resources.Load<CarnivalStageAssets>("CarnivalStageAssets");
+                if (stage != null && stage.Stands.Length == 12)
+                {
+                    int variant = Special ? 1 : stations.Count % 2 == 0 ? 0 : 2;
+                    var poses = new Sprite[4]; System.Array.Copy(stage.Stands, variant * 4, poses, 0, 4);
+                    ShopDisplayActor stand = AddActor(marker.transform, poses[0], poses, new Vector2(0, -0.1f), 0.85f, stations.Count * 0.9f);
+                    stand.SetPedestalDisplay();
+                    if (pedestalEntrance) stand.Arrive(0.7f + stations.Count * MarketMotion.StockStagger);
+                }
+                else AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0).enabled = false;
+            }
             ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
             if (!pedestal && actor != null) actor.SetFloorFixture();
             ShopFloorShadow.Create(marker.transform, new Vector2(0, pedestal ? -0.48f : action == "NEXT HALL" ? -0.72f : -0.56f), pedestal ? 1.55f : 1.65f, 0.7f);
@@ -494,7 +512,7 @@ namespace ArcaneBrigade
                 {
                     bool merge = ShopMergePreview.Ready(owner.Session, station.Offer);
                     bool item = station.Offer.Kind == OfferKind.Item;
-                    Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
+                    Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : owner.Content.Unit(station.Offer.Id).Rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(owner.Content.Unit(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
                     Rect category = new Rect(point.x - (merge ? 60 : 45), ticket.y - 29, merge ? 120 : 90, 26);
                     ArcadeSkin.Slant(category, tagColor);
                     if (merge)

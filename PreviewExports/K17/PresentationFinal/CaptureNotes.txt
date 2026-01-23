@@ -1,0 +1,20 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Rare, gold and rare-companion auras exist in actual shop
+PASS Three authored animated pedestals render in actual shop
+PASS Normal shop has three stock choices and no unusable recipe clutter
+PASS Stock body stays below merchant 1
+PASS Stock body stays below merchant 2
+PASS Stock body stays below merchant 3
+PASS Physical proximity focuses middle stock
+PASS Item purchase commits through normal interaction
+PASS Purchased item appears in inventory
+PASS Physical downward exit starts choreography
+PASS Camera follows passenger during flight
+PASS Map transfer completes and next combat starts
+PASS Same loaded scene throughout shop, exit and map transfer
+PASS Different painted map material finishes dissolving
+PASS Actual body-attack fields render in native player
+PASS Thrown objects have visible native sprites
+Final effect frame uses five simultaneous boss fixtures and boosted fixture health. It is not a normal encounter, difficulty or performance claim.
+Seeded presentation fixture; screenshots and runtime invariants are not human animation/audio approval.
+PASS No runtime errors in shop and seamless transport

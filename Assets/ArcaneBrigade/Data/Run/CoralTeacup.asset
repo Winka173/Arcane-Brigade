@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -978590145, guid: bcae160395c7985499b4e677e1d98906, type: 3}
   - {fileID: -1895669322, guid: bcae160395c7985499b4e677e1d98906, type: 3}
   - {fileID: 429044185, guid: bcae160395c7985499b4e677e1d98906, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 6ac4ac855e2e7844d8c80d1f319a316f, type: 2}
   Health: 100
   Speed: 4.3999996
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 1
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -38,9 +41,12 @@ MonoBehaviour:
   - tidal
   Passive: 2
   PassiveStrength: 0.5
-  Description: "Scavenges extra gold every 4 seconds in combat\nRun / Relic discount:
-    +2.5%\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three
-    units reduces support sources.\n"
+  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
+
+    Relic discount
+    +2.5%. Your Maximum health -1
+
+    Extra loot from kills'
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -57,5 +63,6 @@ MonoBehaviour:
   BossPattern: 0
   CombatTier: 1
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0

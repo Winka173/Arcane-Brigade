@@ -10,6 +10,9 @@ namespace ArcaneBrigade
         private Mesh disc;
         private Mesh beam;
         private readonly List<MeshRenderer> fills = new List<MeshRenderer>();
+        private readonly List<SpriteRenderer> props = new List<SpriteRenderer>();
+        private readonly List<GroundShadow> propShadows = new List<GroundShadow>();
+        private CarnivalStageAssets stageArt;
         private MaterialPropertyBlock tint;
         public bool ReducedMotion;
         public int VisibleCount { get; private set; }
@@ -21,7 +24,7 @@ namespace ArcaneBrigade
                 for (int priority = 0; priority < 2; priority++)
                 foreach (ExpandedField field in simulation.ExpandedFields)
                 {
-                    bool hazard = field.Kind == ExpandedFieldKind.Curtain || field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard;
+                    bool hazard = CarnivalHazards.IsHostile(field.Kind);
                     bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink;
                     if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
                     if (hazard != (priority == 0)) continue;
@@ -29,12 +32,30 @@ namespace ArcaneBrigade
                     if (VisibleCount >= (hazard ? 96 : EffectDensity.Limit(96))) break;
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
+                    SpriteRenderer prop = props[slot];
+                    prop.enabled = field.Kind == ExpandedFieldKind.FallingProp && field.Source != null && field.Source.Definition.IsBoss;
+                    if (prop.enabled)
+                    {
+                        if (stageArt != null && stageArt.Stands.Length == 12)
+                        {
+                            int variant = field.Source.Definition.BossPattern % 5 == 0 ? 8 : 0;
+                            prop.sprite = stageArt.Stands[variant + (ReducedMotion ? 0 : Mathf.FloorToInt(simulation.Elapsed * 8) % 4)];
+                        }
+                        float flight = Mathf.Clamp01((simulation.Elapsed - field.Created) / Mathf.Max(0.05f, field.At - field.Created));
+                        prop.transform.position = ReducedMotion ? field.Position : Vector2.Lerp(field.Start, field.Position, flight) + Vector2.up * Mathf.Sin(flight * Mathf.PI) * 2.5f;
+                        prop.transform.rotation = Quaternion.Euler(0, 0, ReducedMotion ? 0 : flight * 210);
+                        prop.transform.localScale = Vector3.one * (0.7f / Mathf.Max(0.01f, prop.sprite.bounds.size.x));
+                        prop.color = new Color(1, 0.7f, 0.6f, simulation.Elapsed < field.At ? 1 : Mathf.Clamp01((field.Until - simulation.Elapsed) / 0.4f));
+                        propShadows[slot].Display(prop.sprite, Vector2.Lerp(field.Start, field.Position, flight), 0.7f, ReducedMotion ? 0 : Mathf.Sin(flight * Mathf.PI) * 2.5f, 0.3f * prop.color.a);
+                    }
+                    else propShadows[slot].Hide();
                     bool warning = simulation.Elapsed < field.At;
                     float progress = Mathf.Clamp01((simulation.Elapsed - field.At) / Mathf.Max(0.05f, field.Until - field.At));
                     Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
                     color.a = warning ? 0.65f + (ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
                     if (!hazard) color.a *= EffectDensity.AlliedAlpha;
                     line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;
+                    if (field.Kind == ExpandedFieldKind.Shockwave && !warning) line.widthMultiplier = 0.44f;
                     if (field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink || field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
                     {
                         Vector2 start = field.Anchor != null ? field.Anchor.Position : field.Source == null ? field.Start : field.Source.Position;
@@ -45,6 +66,18 @@ namespace ArcaneBrigade
                             float fraction = point / 11f;
                             Vector2 normal = new Vector2(-(end - start).y, (end - start).x).normalized;
                             line.SetPosition(point, Vector2.Lerp(start, end, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 8f) * (ReducedMotion ? 0 : 0.055f) * (1 - progress));
+                        }
+                    }
+                    else if (field.Kind == ExpandedFieldKind.Tentacle)
+                    {
+                        line.loop = false; line.positionCount = 16;
+                        line.widthMultiplier = warning ? 0.06f : field.Radius * 2;
+                        Vector2 end = field.Position;
+                        Vector2 normal = new Vector2(-(end - field.Start).y, (end - field.Start).x).normalized;
+                        for (int point = 0; point < 16; point++)
+                        {
+                            float fraction = point / 15f;
+                            line.SetPosition(point, Vector2.Lerp(field.Start, end, fraction) + normal * Mathf.Sin(fraction * Mathf.PI * 3) * (warning || ReducedMotion ? 0 : 0.12f));
                         }
                     }
                     else if (field.Kind == ExpandedFieldKind.Iron)
@@ -58,6 +91,7 @@ namespace ArcaneBrigade
                     {
                         line.positionCount = 64;
                         float radius = field.Radius * (ReducedMotion || hazard || warning ? 1 : Mathf.Lerp(0.75f, 1.08f, progress));
+                        if (field.Kind == ExpandedFieldKind.Shockwave && !warning) radius = CarnivalHazards.ShockRadius(field, simulation.Elapsed);
                         for (int point = 0; point < 64; point++)
                         {
                             float angle = point * Mathf.PI * 2 / 64;
@@ -70,6 +104,7 @@ namespace ArcaneBrigade
                     if (field.Kind == ExpandedFieldKind.Projector) line.enabled = false;
                     MeshRenderer fill = fills[slot];
                     fill.enabled = (hazard || field.Kind == ExpandedFieldKind.Projector) && field.Radius > 0;
+                    if (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave) fill.enabled = false;
                     if (fill.enabled)
                     {
                         fill.transform.position = field.Position; fill.transform.localScale = Vector3.one * field.Radius;
@@ -92,7 +127,7 @@ namespace ArcaneBrigade
                         tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
                     }
                 }
-            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; }
+            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); }
         }
         private static bool ContainsProjectile(CombatSimulation simulation, ProjectileState projectile)
         {
@@ -107,6 +142,11 @@ namespace ArcaneBrigade
             var child = new GameObject("ExpandedFieldCue"); child.transform.SetParent(transform, false);
             LineRenderer line = child.AddComponent<LineRenderer>(); line.sharedMaterial = material; line.useWorldSpace = true;
             line.sortingOrder = 65; line.numCapVertices = 5; line.numCornerVertices = 5; lines.Add(line);
+            var falling = new GameObject("ThrownLuggage"); falling.transform.SetParent(transform, false);
+            if (stageArt == null) stageArt = Resources.Load<CarnivalStageAssets>("CarnivalStageAssets");
+            SpriteRenderer prop = falling.AddComponent<SpriteRenderer>(); prop.sprite = Resources.Load<RunCatalog>("RunCatalog").ChestSprite;
+            prop.sortingOrder = 2450; props.Add(prop);
+            GroundShadow shadow = falling.AddComponent<GroundShadow>(); shadow.Configure(prop.sprite); propShadows.Add(shadow);
             if (disc == null)
             {
                 var vertices = new Vector3[65]; var colors = new Color[65]; var triangles = new int[192]; colors[0] = Color.white;

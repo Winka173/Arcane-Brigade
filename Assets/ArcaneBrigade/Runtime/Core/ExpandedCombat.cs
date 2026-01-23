@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether, SewingLink }
+    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether, SewingLink, Tentacle, Shockwave, FallingProp, ShadowPool }
     public sealed class ExpandedField
     {
         public ExpandedFieldKind Kind;
@@ -12,6 +12,7 @@ namespace ArcaneBrigade
         public Vector2 Direction;
         public float Radius;
         public float At;
+        public float Created;
         public float Until;
         public float NextTick;
         public float Damage;
@@ -39,7 +40,7 @@ namespace ArcaneBrigade
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
             int depth = kind == ExpandedFieldKind.Fuse || kind == ExpandedFieldKind.Strike ? cause.Depth : cause.Depth + 1;
-            fields.Add(new ExpandedField { Kind = kind, Source = source, Position = position, Start = source == null ? position : source.Position, Direction = direction, Radius = radius, Damage = damage, At = Elapsed + delay, Until = Elapsed + delay + duration, NextTick = Elapsed + delay, Cause = new CombatCause(cause.RootId, cause.SourceUnitId, "expanded-" + kind.ToString().ToLowerInvariant(), depth), Target = target });
+            fields.Add(new ExpandedField { Kind = kind, Source = source, Position = position, Start = source == null ? position : source.Position, Direction = direction, Radius = radius, Damage = damage, Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration, NextTick = Elapsed + delay, Cause = new CombatCause(cause.RootId, cause.SourceUnitId, "expanded-" + kind.ToString().ToLowerInvariant(), depth), Target = target });
         }
 
         private bool ResolveExpandedAttack(UnitState source, float damage, bool critical, CombatCause cause)
@@ -177,13 +178,16 @@ namespace ArcaneBrigade
                 if (Elapsed < field.At || field.Resolved || Elapsed < field.NextTick || (field.Damage <= 0 && !ink)) continue;
                 bool heat = field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron;
                 if (field.Kind == ExpandedFieldKind.Strike && field.Source != null && field.Source.Definition.Weapon.Mechanic == CarnivalWeapon.RibbonWheel) field.Position = field.Source.Position;
-                field.NextTick = Elapsed + 0.4f; field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector;
+                field.NextTick = Elapsed + (field.Kind == ExpandedFieldKind.Shockwave ? 0.05f : 0.4f); field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector && field.Kind != ExpandedFieldKind.Shockwave && field.Kind != ExpandedFieldKind.ShadowPool;
                 ExpandedPayoffs++;
                 if (field.Source == null || field.Source.Faction != Faction.Enemy) RecordActivation(field.Cause);
-                if (field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard || field.Kind == ExpandedFieldKind.Curtain)
+                if (CarnivalHazards.IsHostile(field.Kind))
                 {
-                    if (Champion.Alive && (Champion.Position - field.Position).sqrMagnitude <= (field.Radius + Champion.Definition.Radius) * (field.Radius + Champion.Definition.Radius))
+                    if (Champion.Alive && CarnivalHazards.Contains(field, Champion.Position, Champion.Definition.Radius, Elapsed))
+                    {
                         ApplyDamage(Champion, Mathf.Min(field.Damage, Champion.Definition.Health * 0.08f), Faction.Enemy, field.Kind.ToString(), cause: field.Cause);
+                        field.Resolved = true;
+                    }
                     continue;
                 }
                 foreach (UnitState enemy in units)

@@ -26,6 +26,7 @@ namespace ArcaneBrigade.Editor
             }
             foreach (UnitDefinition hero in catalog.Champions)
             {
+                if (hero.HeroMechanic >= HeroMechanic.RootedOracle) continue;
                 string weaponId = hero.Id == "LanternKnight" ? "KeyCleaver" : hero.Id == "Postmaster" ? "MailboxLauncher" : "BellFork";
                 Require(hero.Speed >= 2.9f && hero.Speed <= 3.7f && hero.Weapon.Id == weaponId, "Slower authored speed and fixed weapon " + hero.Id);
                 using var session = new RunSession(catalog); session.Start(hero.Id, 13077);
