@@ -18,6 +18,8 @@ namespace ArcaneBrigade
 
     [Serializable]
     public sealed class ItemStack { public string Id; public int Count; }
+    [Serializable]
+    public sealed class MergeDroughtEntry { public string UnitId; public int Misses; }
 
     [Serializable]
     public sealed class ShopOffer
@@ -71,6 +73,7 @@ namespace ArcaneBrigade
         public float LastDamageAmount;
         public List<RosterEntry> Roster = new List<RosterEntry>();
         public List<ItemStack> Items = new List<ItemStack>();
+        public List<MergeDroughtEntry> MergeDrought = new List<MergeDroughtEntry>();
         public List<ShopOffer> Offers = new List<ShopOffer>();
         public List<ShopOffer> SpecialOffers = new List<ShopOffer>();
         public List<ContributionEntry> Contributions = new List<ContributionEntry>();
@@ -135,6 +138,7 @@ namespace ArcaneBrigade
             if (snapshot.SchemaRevision < 3) foreach (RosterEntry entry in State.Roster) RememberVariant(entry);
             State.SchemaRevision = RunSnapshot.CurrentSchemaRevision;
             if (State.Receipts == null) State.Receipts = new List<RunTransactionReceipt>();
+            if (State.MergeDrought == null) State.MergeDrought = new List<MergeDroughtEntry>();
             if (State.SpecialOffers == null) State.SpecialOffers = new List<ShopOffer>();
             if (State.Contributions == null) State.Contributions = new List<ContributionEntry>();
             if (State.Offers.Count > catalog.ShopSlots) State.Offers.RemoveRange(catalog.ShopSlots, State.Offers.Count - catalog.ShopSlots);
@@ -161,6 +165,12 @@ namespace ArcaneBrigade
             if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
             if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
             if (snapshot.NewRecruitsThisWave < 0 || snapshot.NewRecruitsThisWave > 3) throw new InvalidOperationException("Invalid wave recruitment quota");
+            if (snapshot.MergeDrought != null)
+            {
+                var mergeKeys = new HashSet<string>();
+                foreach (MergeDroughtEntry entry in snapshot.MergeDrought)
+                    if (entry == null || entry.Misses < 0 || entry.Misses > 6 || !Array.Exists(catalog.Companions, unit => unit.Id == entry.UnitId) || !mergeKeys.Add(entry.UnitId)) throw new InvalidOperationException("Invalid merge assistance journal");
+            }
             var rosterKeys = new HashSet<string>();
             if (snapshot.Contributions != null)
             {
@@ -298,6 +308,7 @@ namespace ArcaneBrigade
             CombatCatalog.RunWave = State.Wave;
             CombatCatalog.EnableBossArenaPhase = catalog.SignatureRevision > 0;
             CombatCatalog.ExpandedContent = catalog.ExpansionRevision > 0;
+            CombatCatalog.EnableSpectacles = catalog.ExpansionRevision > 0;
             if (CombatCatalog.ExpandedContent)
             {
                 var pool = new List<UnitDefinition>();
@@ -479,6 +490,7 @@ namespace ArcaneBrigade
                 State.NewRecruitsThisWave++;
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 MergeTriples(offer.Id);
+                TrackMergeDrought(false);
             }
             else
             {
@@ -550,6 +562,7 @@ namespace ArcaneBrigade
         {
             if (State.Phase != SessionPhase.Shop || State.SpecialOffers.Count == 0 || State.Gold < RerollCost || State.RerollsThisShop == int.MaxValue) return false;
             State.Gold -= RerollCost;
+            TrackMergeDrought(true, State.SpecialOffers);
             RollSpecialOffers();
             State.RerollsThisShop++;
             Notice = "Altar refreshed with gold. Eggs and HP unchanged.";
@@ -588,9 +601,28 @@ namespace ArcaneBrigade
         public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave);
         public float SpecialStagePriceFactor => 1 + 0.08f * Mathf.Max(0, State.Wave - 1);
         public float CompanionOfferChance => State.NewRecruitsThisWave >= 3 ? 0 : State.NewRecruitsThisWave >= 2 ? 0.15f : 1;
+        public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
+        private void TrackMergeDrought(bool paidRefresh, List<ShopOffer> offers = null)
+        {
+            State.MergeDrought.RemoveAll(entry => State.Roster.FindAll(unit => unit.UnitId == entry.UnitId && unit.Tier == 1).Count < 2);
+            if (!paidRefresh || State.NewRecruitsThisWave >= 3 || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return;
+            foreach (RosterEntry unit in State.Roster)
+            {
+                if (unit.Tier != 1 || State.Roster.FindAll(entry => entry.UnitId == unit.UnitId && entry.Tier == 1).Count < 2) continue;
+                MergeDroughtEntry drought = State.MergeDrought.Find(entry => entry.UnitId == unit.UnitId);
+                if (drought == null) { drought = new MergeDroughtEntry { UnitId = unit.UnitId }; State.MergeDrought.Add(drought); }
+            }
+            foreach (MergeDroughtEntry drought in State.MergeDrought)
+            {
+                UnitDefinition unit = catalog.Unit(drought.UnitId);
+                if (unit.SpecialRecruit != (offers == State.SpecialOffers) || unit.UnlockWave > State.Wave || !Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) continue;
+                drought.Misses = (offers ?? State.Offers).Exists(offer => !offer.Sold && offer.Kind == OfferKind.Companion && offer.Id == drought.UnitId) ? 0 : Mathf.Min(6, drought.Misses + 1);
+            }
+        }
 
         private void RollShop(bool rollSpecial = false)
         {
+            TrackMergeDrought(!rollSpecial);
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
@@ -604,7 +636,8 @@ namespace ArcaneBrigade
                 var available = units.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id) || newRecruit);
                 if (available.Count == 0 && State.NewRecruitsThisWave < 2) available = units;
                 var mergeReady = available.FindAll(unit => State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
-                if (mergeReady.Count > 0 && Next(ref State.ShopRandom, 100) < 85) available = mergeReady;
+                int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
+                if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) available = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
                 bool recruit = available.Count > 0 && (items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 int choice = recruit ? Next(ref State.ShopRandom, available.Count) : WeightedItem(items);
                 int basePrice = Mathf.CeilToInt((recruit ? available[choice].Price : items[choice].Price * (1 + (int)items[choice].Rarity * 0.4f)) * StagePriceFactor);
@@ -637,6 +670,9 @@ namespace ArcaneBrigade
                 var recruits = specialUnits.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id));
                 if (Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
                 if (recruits.Count == 0 && State.NewRecruitsThisWave < 2) recruits = specialUnits;
+                var mergeReady = recruits.FindAll(unit => State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
+                int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
+                if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) recruits = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
                 if (index == 0 && recruits.Count > 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000)
                 {
                     UnitDefinition recruit = recruits[Next(ref State.ShopRandom, recruits.Count)];

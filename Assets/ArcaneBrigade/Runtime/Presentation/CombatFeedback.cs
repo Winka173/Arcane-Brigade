@@ -55,7 +55,8 @@ namespace ArcaneBrigade
             if (hit && combatEvent.Value > 0f) ShowDamage(combatEvent);
             if (sprite == null || PresentationSettings.ReducedMotion || (!hit && !kill && !pickup) || hit && combatEvent.Value <= 0) return;
             bool important = combatEvent.Faction == Faction.Champion || combatEvent.Critical;
-            int count = kill ? 7 : pickup ? 2 : important ? 5 : 3;
+            bool heavy = combatEvent.Weapon != null && (combatEvent.Weapon.Motion == WeaponMotion.Hammer || combatEvent.Weapon.Motion == WeaponMotion.Slam);
+            int count = kill ? combatEvent.Critical ? 10 : 7 : pickup ? 2 : heavy ? 6 : important ? 5 : 3;
             if (PresentationSettings.ReducedEffects && !important) count = Mathf.Max(1, count / 2);
             Color color = pickup ? new Color(1f, 0.78f, 0.3f) : combatEvent.Faction == Faction.Champion && hit ? new Color(1f, 0.34f, 0.33f) : new Color(1f, 0.94f, 0.75f);
             if (hit && combatEvent.Faction != Faction.Champion)

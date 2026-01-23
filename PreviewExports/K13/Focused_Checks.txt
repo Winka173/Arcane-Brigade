@@ -167,21 +167,21 @@ PASS Idle/travel/recoil motion profile ChoirEngine
 PASS Four authored frames and body SuitcaseLeviathan
 PASS Idle/travel/recoil motion profile SuitcaseLeviathan
 PASS Slower authored speed and fixed weapon LanternKnight
-PASS Merge-ready recruitment appears often LanternKnight count=93
+PASS Merge-ready recruitment appears often LanternKnight count=94
 PASS Merge preview does not consume weapon randomness LanternKnight
 PASS Purchase actually creates two-star ally LanternKnight
 PASS Sold offer clears preview LanternKnight
 PASS Preview predicts cascade to three stars LanternKnight
 PASS Actual cascade matches three-star preview LanternKnight
 PASS Slower authored speed and fixed weapon Postmaster
-PASS Merge-ready recruitment appears often Postmaster count=89
+PASS Merge-ready recruitment appears often Postmaster count=90
 PASS Merge preview does not consume weapon randomness Postmaster
 PASS Purchase actually creates two-star ally Postmaster
 PASS Sold offer clears preview Postmaster
 PASS Preview predicts cascade to three stars Postmaster
 PASS Actual cascade matches three-star preview Postmaster
 PASS Slower authored speed and fixed weapon DrowsySeer
-PASS Merge-ready recruitment appears often DrowsySeer count=92
+PASS Merge-ready recruitment appears often DrowsySeer count=93
 PASS Merge preview does not consume weapon randomness DrowsySeer
 PASS Purchase actually creates two-star ally DrowsySeer
 PASS Sold offer clears preview DrowsySeer

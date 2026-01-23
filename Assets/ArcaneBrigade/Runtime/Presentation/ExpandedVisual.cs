@@ -52,6 +52,8 @@ namespace ArcaneBrigade
                     bool warning = simulation.Elapsed < field.At;
                     float progress = Mathf.Clamp01((simulation.Elapsed - field.At) / Mathf.Max(0.05f, field.Until - field.At));
                     Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
+                    if (!hazard && field.ImpactWeapon != null && field.ImpactWeapon.Mechanic == CarnivalWeapon.BloomOrb) color = new Color(0.55f, 1, 0.8f);
+                    else if (!hazard && field.ImpactWeapon != null && field.ImpactWeapon.Mechanic == CarnivalWeapon.EchoBlade) color = new Color(0.65f, 0.8f, 1);
                     color.a = warning ? 0.65f + (ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
                     if (!hazard) color.a *= EffectDensity.AlliedAlpha;
                     line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;

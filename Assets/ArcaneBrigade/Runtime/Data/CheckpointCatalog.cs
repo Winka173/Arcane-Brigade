@@ -57,6 +57,7 @@ namespace ArcaneBrigade
         public bool CarbonRibbon;
         public int OfficeLensStacks;
         public bool ExpandedContent;
+        public bool EnableSpectacles;
         public UnitDefinition[] EnemyPool = new UnitDefinition[0];
         public int TeaCoasterStacks;
         public int ChorusStacks;

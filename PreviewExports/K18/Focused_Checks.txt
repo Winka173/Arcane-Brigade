@@ -1,0 +1,91 @@
+PASS Authored variant exists MoonseedOrb
+PASS Collection and sandbox explain the new mechanic MoonseedOrb
+PASS Variant deals actual attributed damage MoonseedOrb
+PASS Variant cannot hurt its player MoonseedOrb
+PASS Variant contribution values remain nonnegative MoonseedOrb
+PASS Authored variant exists AfterimageSabre
+PASS Collection and sandbox explain the new mechanic AfterimageSabre
+PASS Variant deals actual attributed damage AfterimageSabre
+PASS Variant cannot hurt its player AfterimageSabre
+PASS Variant contribution values remain nonnegative AfterimageSabre
+PASS Authored variant exists SatelliteDisc
+PASS Collection and sandbox explain the new mechanic SatelliteDisc
+PASS Variant deals actual attributed damage SatelliteDisc
+PASS Variant cannot hurt its player SatelliteDisc
+PASS Variant contribution values remain nonnegative SatelliteDisc
+PASS Pity refresh remains paid
+PASS Eligible ally slot favors drought-ready merge
+PASS Merge drought persists through save and restore
+PASS Refreshing dream market cannot advance normal-market merge assistance
+PASS Pity cannot bypass three-body quota
+PASS Default item preview is compact and delta-based
+PASS Reading purchase preview changes neither RNG nor save state
+PASS Failed reroll cannot advance assistance
+PASS Purchase preview detects a cascading three-star merge
+PASS Merge preview shows net support reduction, not fictitious addition
+PASS Projected cascade actually commits
+PASS Projected support delta matches committed merge
+PASS Merge assistance resets when merge completes
+PASS Opener is lighter than climax 3
+PASS Recovery after climax 3
+PASS Opener is lighter than climax 4
+PASS Recovery after climax 4
+PASS Opener is lighter than climax 5
+PASS Recovery after climax 5
+PASS Opener is lighter than climax 10
+PASS Recovery after climax 10
+PASS Opener is lighter than climax 20
+PASS Recovery after climax 20
+PASS Pacing retains expected spawn and coin volume for 35 seconds
+PASS Pacing retains expected spawn and coin volume for 45 seconds
+PASS Pacing retains expected spawn and coin volume for 55 seconds
+PASS No early-wave or boss event overload
+PASS Three event types rotate deterministically
+PASS Event starts in actual simulation 5
+PASS Event warning never damages player GildedTrap
+PASS Pause freezes event timeline GildedTrap
+PASS Event contact is real, small and capped GildedTrap
+PASS Event contact has a one-second cooldown GildedTrap
+PASS Event cannot advance through invalid rest stepping 5
+PASS Event expires with bounded reward budget 5
+PASS Shop clears event hazards 5
+PASS Event starts in actual simulation 7
+PASS Event warning never damages player WanderingEclipse
+PASS Pause freezes event timeline WanderingEclipse
+PASS Event contact is real, small and capped WanderingEclipse
+PASS Event contact has a one-second cooldown WanderingEclipse
+PASS Event cannot advance through invalid rest stepping 7
+PASS Event expires with bounded reward budget 7
+PASS Shop clears event hazards 7
+PASS Event starts in actual simulation 9
+PASS Event warning never damages player PaperParade
+PASS Pause freezes event timeline PaperParade
+PASS Event contact is real, small and capped PaperParade
+PASS Event contact has a one-second cooldown PaperParade
+PASS Event cannot advance through invalid rest stepping 9
+PASS Event expires with bounded reward budget 9
+PASS Shop clears event hazards 9
+PASS Dense combat dims only allied cosmetic layers
+PASS Impact presentation cannot pause global gameplay clock
+PASS Continuous idle-to-run transition 0
+PASS Continuous idle-to-run transition 1
+PASS Continuous idle-to-run transition 2
+PASS Continuous idle-to-run transition 3
+PASS Continuous idle-to-run transition 4
+PASS Continuous idle-to-run transition 5
+PASS Continuous idle-to-run transition 6
+PASS Continuous idle-to-run transition 7
+PASS Continuous idle-to-run transition 8
+PASS Continuous idle-to-run transition 9
+PASS Continuous idle-to-run transition 10
+PASS Continuous idle-to-run transition 11
+PASS Continuous idle-to-run transition 12
+PASS Continuous idle-to-run transition 13
+PASS Continuous idle-to-run transition 14
+PASS Continuous idle-to-run transition 15
+PASS Continuous idle-to-run transition 16
+PASS Continuous idle-to-run transition 17
+PASS Continuous idle-to-run transition 18
+PASS Continuous idle-to-run transition 19
+PASS Run gait reaches full weight promptly
+PASS Run-to-idle settles without indefinite wobble

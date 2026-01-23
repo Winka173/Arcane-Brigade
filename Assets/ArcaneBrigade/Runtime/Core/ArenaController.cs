@@ -75,6 +75,7 @@ namespace ArcaneBrigade
         private bool lowHealthAudio;
         private FootstepDust footDust;
         private PaintedEffects paintedEffects;
+        private MidwaveSpectacleVisual spectacleVisual;
         private readonly CombatFeel combatFeel = new CombatFeel();
         public Vector2 CameraAccent => combatFeel.CameraOffset;
         public CombatSimulation Simulation => simulation;
@@ -108,6 +109,7 @@ namespace ArcaneBrigade
             combatFeedback.Configure(catalog.ImpactSprite);
             footDust = gameObject.AddComponent<FootstepDust>(); footDust.Configure(catalog.ImpactSprite);
             paintedEffects = gameObject.AddComponent<PaintedEffects>();
+            spectacleVisual = gameObject.AddComponent<MidwaveSpectacleVisual>();
             deathFeedback = gameObject.AddComponent<DeathFeedback>();
             deathFeedback.Configure(catalog.ImpactSprite);
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
@@ -387,6 +389,8 @@ namespace ArcaneBrigade
         }
 
         public bool BuyOffer(int token) => Transaction("Shop purchase", () => session.Buy(token), -1);
+        public void SetShopDetails(bool expanded) { runHud.SetShopDetails(expanded); }
+        public bool ShopDetailsOpen => runHud.ShopDetailsOpen;
         public void PlayCommittedArrival(RunSnapshot before, Vector2 origin)
         {
             Render(1);
@@ -501,6 +505,8 @@ namespace ArcaneBrigade
 
         private void Render(float interpolation)
         {
+            EffectDensity.SetSceneLoad(simulation.Projectiles.Count, simulation.Units.Count);
+            if (spectacleVisual != null) spectacleVisual.Display(simulation);
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
             if (expandedVisual != null) { expandedVisual.ReducedMotion = profile != null && profile.ReducedMotion; expandedVisual.Display(simulation); }
             liveIds.Clear();
@@ -551,6 +557,7 @@ namespace ArcaneBrigade
                 view.transform.localScale = Vector3.one * (projectileSize / view.sprite.bounds.size.x);
                 view.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(state.Velocity.y, state.Velocity.x) * Mathf.Rad2Deg);
                 Color projectileColor = state.Color;
+                if (state.Faction != Faction.Enemy) projectileColor.a *= EffectDensity.AlliedAlpha;
                 projectileColor.a *= Mathf.Clamp01(1 - terminalVisualAge / 0.25f);
                 view.color = projectileColor;
                 ProjectileVisual projectileVisual = view.GetComponent<ProjectileVisual>();

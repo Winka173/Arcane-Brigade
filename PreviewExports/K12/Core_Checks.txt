@@ -13,7 +13,7 @@ PASS Increasing wave density 20
 PASS No first-wave hostile shooters
 PASS Boss substantially enlarged health pool
 PASS Wave3-to-5 population increases gradually, without batch cliff
-PASS Late waves retain substantially denser hostile population: 8/11/31
+PASS Late waves retain substantially denser hostile population: 8/11/30
 PASS Three new-species purchases cap enforced even on old offers
 PASS Existing species cannot bypass purchase quota
 PASS Quota reroll 0

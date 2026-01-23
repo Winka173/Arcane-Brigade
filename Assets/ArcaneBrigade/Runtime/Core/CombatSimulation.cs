@@ -131,6 +131,8 @@ namespace ArcaneBrigade
         public int RandomBounces = 8;
         public HostileShot HostileMotion;
         public float HostileAge;
+        public int OrbitTargetId;
+        public Vector2 OrbitCenter;
         public Vector2 LaunchVelocity;
         public readonly HashSet<int> Victims = new HashSet<int>();
     }
@@ -349,6 +351,7 @@ namespace ArcaneBrigade
                     CollectPickups(deltaTime);
                     SpawnTreasure();
                     ProcessHeroMechanic(deltaTime);
+                    ProcessSpectacle();
                     ProcessSignatureRelics();
                     ProcessSignatures();
                     ProcessArenaToys(deltaTime);
@@ -384,7 +387,7 @@ namespace ArcaneBrigade
         {
             if (catalog.Boss != null && Elapsed >= catalog.WaveDuration) return;
             if (Elapsed < nextSpawn) return;
-            nextSpawn = Elapsed + Mathf.Max(0.08f, catalog.SpawnInterval * WaveCadence.IntervalMultiplier(catalog.RunWave, Elapsed) * (1f - Elapsed / catalog.WaveDuration * 0.4f));
+            nextSpawn = Elapsed + Mathf.Max(0.12f, catalog.SpawnInterval * WaveCadence.Envelope(catalog.RunWave, Elapsed, catalog.WaveDuration));
             int enemyCount = 0;
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             if (enemyCount >= catalog.EnemyBudget) return;
@@ -671,6 +674,8 @@ namespace ArcaneBrigade
                     SplitCount = weapon.ProjectileSplit,
                     Critical = critical,
                     SourceUnitId = unit.Id,
+                    OrbitTargetId = unit.AttackTargetId,
+                    OrbitCenter = position + direction,
                     Cause = cause,
                     Weapon = weapon,
                     RicochetsRemaining = weapon.Family == ExpandedWeapon.TetherBow ? unit.Definition.CombatTier >= 2 ? 3 : 2 : weapon.Family == ExpandedWeapon.Fish ? 1 : 0,

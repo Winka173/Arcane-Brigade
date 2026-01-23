@@ -160,6 +160,15 @@ PASS Painted weapon size DreamProjector tier 3
 PASS Painted weapon size RibbonWheel tier 1
 PASS Painted weapon size RibbonWheel tier 2
 PASS Painted weapon size RibbonWheel tier 3
+PASS Painted weapon size MoonseedOrb tier 1
+PASS Painted weapon size MoonseedOrb tier 2
+PASS Painted weapon size MoonseedOrb tier 3
+PASS Painted weapon size AfterimageSabre tier 1
+PASS Painted weapon size AfterimageSabre tier 2
+PASS Painted weapon size AfterimageSabre tier 3
+PASS Painted weapon size SatelliteDisc tier 1
+PASS Painted weapon size SatelliteDisc tier 2
+PASS Painted weapon size SatelliteDisc tier 3
 PASS No abrupt health cliff wave 1
 PASS No abrupt spawn-rate cliff wave 1
 PASS Bounded enemy pressure wave 1

@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         private static void Initialize()
         {
             string[] args = Environment.GetCommandLineArgs();
+            if (Array.IndexOf(args, "-arcane-k18-experience") >= 0) return;
             if (!RunPaths.K7Capture || Array.IndexOf(args, "-arcane-k17-presentation") < 0 || FindAnyObjectByType<K17PresentationCapture>() != null) return;
             int path = Array.IndexOf(args, "-capturePath"); if (path < 0 || path + 1 >= args.Length) return;
             var child = new GameObject("K17PresentationCapture"); DontDestroyOnLoad(child);
@@ -96,6 +97,10 @@ namespace ArcaneBrigade
             owner.SetPresentationMoveTarget(middle.Position); yield return new WaitForSecondsRealtime(1);
             Check(owner.Shop.Nearby == middle, "Physical proximity focuses middle stock");
             yield return Capture("shop-focus-gold");
+            Check(owner.Shop.DescribeOffer(middle.Offer).Contains("Owned:"), "Focused shop defaults to actual purchase delta");
+            owner.SetShopDetails(true); yield return Capture("shop-expanded-details");
+            Check(owner.ShopDetailsOpen, "Optional details remain accessible without opening another shop screen");
+            owner.SetShopDetails(false);
             int count = owner.Session.State.Items.Sum(item => item.Count);
             Check(owner.Shop.Interact(), "Item purchase commits through normal interaction");
             yield return new WaitForSecondsRealtime(0.3f); yield return Capture("purchased-item-flight");

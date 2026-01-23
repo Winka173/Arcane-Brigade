@@ -49,6 +49,11 @@ namespace ArcaneBrigade
             grounded.Display(body.sprite, position + Vector2.down * 0.18f, Mathf.Max(0.13f, state.VisualWidth), 0.18f, hostile ? 0.22f : 0.13f);
             int order = hostile ? 2400 : 2100;
             body.sortingOrder = order;
+            if (hostile)
+            {
+                Color danger = Color.Lerp(body.color, new Color(1, 0.24f, 0.42f, body.color.a), 0.65f);
+                body.color = danger;
+            }
             halo.sortingOrder = order - 1; core.sortingOrder = order + 1;
             streak.sortingOrder = order - 2; motif.sortingOrder = order + 2;
             if (!PresentationSettings.ReducedMotion && state.Weapon != null && state.Weapon.Family == ExpandedWeapon.Fish)
@@ -67,7 +72,7 @@ namespace ArcaneBrigade
                 halo.transform.localScale = Vector3.one * local * (hostile ? 2.15f : 1.85f) * pulse;
                 core.transform.localScale = Vector3.one * local * 0.45f;
                 halo.color = hostile ? new Color(1f, 0.12f, 0.45f, 0.6f) : new Color(state.Color.r, state.Color.g, state.Color.b, 0.18f);
-                core.color = new Color(1f, 0.96f, 0.89f, 0.9f);
+                core.color = new Color(1f, 0.96f, 0.89f, hostile ? 0.95f : 0.9f * Mathf.Lerp(1, 0.65f, EffectDensity.CrowdPressure));
             }
             streak.enabled = hostile || !PresentationSettings.ReducedMotion && EffectDensity.CosmeticProjectile(state.Id) && (arrow || magic);
             streak.widthMultiplier = arrow || state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.Sewing ? 0.024f : 0.065f;
@@ -86,6 +91,19 @@ namespace ArcaneBrigade
                 motif.loop = family == ExpandedWeapon.Fish; motif.positionCount = 5;
                 Vector2[] points = family == ExpandedWeapon.Fish ? FishMotif : NoteMotif;
                 for (int index = 0; index < points.Length; index++) motif.SetPosition(index, position + direction * points[index].x + normal * points[index].y);
+            }
+            if (state.Weapon != null && (state.Weapon.Mechanic == CarnivalWeapon.BloomOrb || state.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc))
+            {
+                motif.enabled = EffectDensity.CosmeticProjectile(state.Id); motif.loop = true; motif.positionCount = 12;
+                Color color = state.Weapon.Mechanic == CarnivalWeapon.BloomOrb ? new Color(0.55f, 1, 0.8f, EffectDensity.AlliedAlpha) : new Color(1, 0.78f, 0.3f, EffectDensity.AlliedAlpha);
+                motif.startColor = motif.endColor = color;
+                float turn = PresentationSettings.ReducedMotion ? 0 : time * (state.Weapon.Mechanic == CarnivalWeapon.BloomOrb ? 0.8f : 3);
+                for (int index = 0; index < 12; index++)
+                {
+                    float angle = index * Mathf.PI / 6 + turn;
+                    float radius = state.VisualWidth * (index % 2 == 0 ? 0.7f : 0.48f);
+                    motif.SetPosition(index, position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius);
+                }
             }
         }
 

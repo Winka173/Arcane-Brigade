@@ -8,6 +8,22 @@ namespace ArcaneBrigade
         {
             WeaponDefinition weapon = source.Definition.Weapon;
             source.ExpandedBeat++;
+            if (weapon.Mechanic == CarnivalWeapon.BloomOrb || weapon.Mechanic == CarnivalWeapon.SatelliteDisc)
+            {
+                EmitProjectile(source, damage, critical, cause); return true;
+            }
+            if (weapon.Mechanic == CarnivalWeapon.EchoBlade)
+            {
+                foreach (UnitState target in units)
+                {
+                    Vector2 offset = target.Position - source.Position;
+                    if (CanHit(source.Faction, target) && offset.magnitude <= weapon.Range + target.Definition.Radius && Vector2.Dot(offset.normalized, source.AttackDirection) >= weapon.ConeDot)
+                        ApplyWeaponDamage(target, damage * 0.7f, source.Faction, weapon.Element, weapon.Id, source.AttackDirection, weapon, critical, cause);
+                }
+                Field(ExpandedFieldKind.Strike, source, source.Position, source.AttackDirection, weapon.Range, damage * 0.45f, 0.24f, 0.2f, cause);
+                fields[fields.Count - 1].ImpactWeapon = weapon; fields[fields.Count - 1].Critical = critical;
+                return true;
+            }
             if (weapon.Mechanic == CarnivalWeapon.YoYo)
             {
                 int previous = projectiles.Count;

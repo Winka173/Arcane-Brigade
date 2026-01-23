@@ -35,7 +35,7 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; }
+        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
@@ -110,6 +110,20 @@ namespace ArcaneBrigade
                 if (nearest != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (nearest.Position - projectile.Position).normalized * projectile.Weapon.ProjectileSpeed, Mathf.Clamp01(delta * 4));
             }
             if (family != ExpandedWeapon.Fish || projectile.Faction == Faction.Enemy) return 0;
+            if (projectile.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)
+            {
+                if (projectile.Age < 0.55f) return 0;
+                if (projectile.Age < 1.55f)
+                {
+                    UnitState target = units.Find(unit => unit.Id == projectile.OrbitTargetId && unit.Alive);
+                    if (target != null) projectile.OrbitCenter = target.Position;
+                    Vector2 radius = projectile.Position - projectile.OrbitCenter;
+                    Vector2 outward = radius.sqrMagnitude < 0.001f ? Vector2.right : radius.normalized;
+                    Vector2 tangent = new Vector2(-outward.y, outward.x);
+                    projectile.Velocity = (tangent + outward * Mathf.Clamp((0.85f - radius.magnitude) * 2, -1.5f, 1.5f)).normalized * projectile.Weapon.ProjectileSpeed;
+                    return 0;
+                }
+            }
             if (projectile.Age > 0.7f && !projectile.Returning)
             {
                 projectile.Returning = true;
@@ -130,6 +144,12 @@ namespace ArcaneBrigade
             UnitState source = units.Find(unit => unit.Id == projectile.SourceUnitId);
             if (source == null) return;
             ApplyCarnivalProjectilePayoff(projectile, target, source);
+            if (projectile.Weapon.Mechanic == CarnivalWeapon.BloomOrb && !projectile.IsFragment)
+            {
+                Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.5f, projectile.Damage * 0.45f, 0.28f, 0.35f, projectile.Cause.Child("moonseed-bloom"));
+                fields[fields.Count - 1].Critical = projectile.Critical;
+                fields[fields.Count - 1].ImpactWeapon = projectile.Weapon;
+            }
             ExpandedWeapon family = projectile.Weapon.Family;
             if (projectile.Weapon.Mechanic == CarnivalWeapon.Sewing && target.Alive)
             {

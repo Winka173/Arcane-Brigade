@@ -37,6 +37,14 @@ namespace ArcaneBrigade
         private float celebrateAt = -100;
         private Material paintedMaterial;
         private SpriteRenderer championBeacon;
+        private float gaitBlend;
+        public float GaitWeight => gaitBlend;
+        private float previousGait;
+        private float transitionSquash;
+        public static float BlendGait(float current, float target, float delta)
+        {
+            return Mathf.Lerp(current, target, 1 - Mathf.Exp(-Mathf.Clamp(delta, 0, 0.05f) * (target > current ? 13 : 9)));
+        }
         public void HoldImpact(float time, float duration)
         {
             if (ReducedMotion || state == null || !state.Alive || time < nextHold) return;
@@ -149,6 +157,7 @@ namespace ArcaneBrigade
             state = unit;
             holdUntil = nextHold = 0; celebrateAt = -100;
             lastDisplayTime = 0;
+            gaitBlend = previousGait = transitionSquash = 0;
             if (puppet == null) puppet = body.gameObject.AddComponent<BodyPuppet>();
             arrivalAge = 10;
             facingAngle = Mathf.Atan2(unit.Facing.y, unit.Facing.x) * Mathf.Rad2Deg;
@@ -169,6 +178,9 @@ namespace ArcaneBrigade
             hand.sprite = catalog.Hand;
             weapon.sprite = unit.Definition.Weapon.Sprite;
             weapon.color = hand.color = Color.white;
+            if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.BloomOrb) weapon.color = new Color(0.65f, 1, 0.85f);
+            else if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.EchoBlade) weapon.color = new Color(0.65f, 0.8f, 1);
+            else if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc) weapon.color = new Color(1, 0.85f, 0.55f);
             if (drawHand != null) drawHand.color = Color.white;
             bool armed = unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind != WeaponKind.Contact && weapon.sprite != null;
             grip.gameObject.SetActive(armed);
@@ -276,13 +288,21 @@ namespace ArcaneBrigade
             hand.sortingOrder = order + (behind ? -1 : 3);
             if (tierBell != null) tierBell.sortingOrder = weapon.sortingOrder;
             body.flipX = facing.x < -0.1f;
-            float movement = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
+            float desiredGait = Mathf.Clamp01((state.Position - state.PreviousPosition).magnitude * 20f);
+            float blendDelta = Mathf.Min(0.05f, motionDelta);
+            gaitBlend = BlendGait(gaitBlend, desiredGait, blendDelta);
+            transitionSquash = Mathf.Lerp(transitionSquash, (gaitBlend - previousGait) * 0.65f, 1 - Mathf.Exp(-blendDelta * 18));
+            previousGait = gaitBlend;
+            float movement = ReducedMotion ? desiredGait : gaitBlend;
             bool pursuit = state.TravelMode == CompanionTravelMode.Pursuit;
             var profile = new SpeciesMotionProfile(state.Definition);
             float bob = ReducedMotion ? 0 : Mathf.Sin(simulationTime * profile.GaitCadence * (pursuit ? 1.45f : 1) + state.Id) * profile.GaitAmplitude * (pursuit ? 1.3f : 1) * movement;
             float attackLean = attacking ? pose.Lean : 0;
             if (pursuit && !attacking && !ReducedMotion) attackLean += Mathf.Clamp(state.Velocity.x, -1, 1) * (facing.x < 0 ? -1 : 1) * -7;
             float impactSquash = attacking ? pose.Squash : 0;
+            if (!ReducedMotion) impactSquash += transitionSquash;
+            float landingAge = arrivalAge - 0.3825f;
+            if (!ReducedMotion && landingAge > 0 && landingAge < 0.18f) impactSquash += Mathf.Sin(landingAge / 0.18f * Mathf.PI) * 0.1f;
             if (state.Faction == Faction.Enemy && attacking && !ReducedMotion)
             {
                 float charge = Mathf.Clamp01(age / Mathf.Max(0.01f, poseWindup));
@@ -388,7 +408,7 @@ namespace ArcaneBrigade
             float attachmentScale = state.Faction == Faction.Companion ? 0.72f : 1;
             grip.localPosition = facing.normalized * ((definition.MountDistance - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale);
             float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-            facingAngle = attacking || ReducedMotion ? targetAngle : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
+            facingAngle = ReducedMotion ? targetAngle : attacking ? Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-motionDelta * 35)) : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
             grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset);
         }
 

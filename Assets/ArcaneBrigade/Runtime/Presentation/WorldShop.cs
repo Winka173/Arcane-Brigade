@@ -349,6 +349,11 @@ namespace ArcaneBrigade
         public string DescribeOffer(ShopOffer offer)
         {
             if (offer == null) return "";
+            return ShortOfferCopy.PurchaseDelta(owner.Session, owner.Content, offer) + (offer.Currency == ShopCurrency.Health ? "\nPay current HP. Leave at least 1 HP" : "");
+        }
+        public string DescribeOfferDetails(ShopOffer offer)
+        {
+            if (offer == null) return "";
             RunCatalog catalog = owner.Content;
             string result;
             if (offer.Kind == OfferKind.Item)

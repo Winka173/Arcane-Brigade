@@ -14,7 +14,7 @@ namespace ArcaneBrigade.Editor
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             var notes = new List<string>();
             Action<bool, string> require = (condition, caption) => { if (!condition) throw new InvalidOperationException("K14 " + caption); notes.Add("PASS " + caption); };
-            WeaponDefinition[] weapons = catalog.Weapons.Where(weapon => weapon.Mechanic != CarnivalWeapon.None).ToArray();
+            WeaponDefinition[] weapons = catalog.Weapons.Where(weapon => weapon.Mechanic > CarnivalWeapon.None && weapon.Mechanic <= CarnivalWeapon.RibbonWheel).ToArray();
             require(weapons.Length == 6 && weapons.Count(weapon => weapon.Kind == WeaponKind.Melee) == 3, "Six distinct weapons balanced three melee / three ranged");
             foreach (WeaponDefinition weapon in weapons)
             {

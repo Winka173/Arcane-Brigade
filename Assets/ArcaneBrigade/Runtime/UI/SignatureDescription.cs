@@ -4,6 +4,9 @@ namespace ArcaneBrigade
     {
         public static string Describe(WeaponDefinition weapon, int tier, bool reflectiveInk = false)
         {
+            if (weapon.Mechanic == CarnivalWeapon.BloomOrb) return weapon.GameplaySummary + "\nOne delayed bloom per primary hit; fragments cannot bloom again.";
+            if (weapon.Mechanic == CarnivalWeapon.EchoBlade) return weapon.GameplaySummary + "\nThe echo stays where the first slash was cast.";
+            if (weapon.Mechanic == CarnivalWeapon.SatelliteDisc) return weapon.GameplaySummary + "\nEach target takes one hit per throw, including the return path.";
             if (weapon.Id == "DreamOrbStaff") return "Dream elite weapon. One giant, slow orb; pierces three targets before tier/stat bonuses.";
             if (weapon.Id == "FireExtinguisher") return "Six weak foam pellets in a short cone. Reach is limited by their short lifetime.";
             if (weapon.Id == "PlasmaTrident") return "Three plasma bolts; each pierces one additional target before tier/stat bonuses.";

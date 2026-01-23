@@ -37,6 +37,9 @@ namespace ArcaneBrigade
         private GUIStyle compareStyle;
         private GUIStyle programStyle;
         private Vector2 shopScroll;
+        private bool shopDetails;
+        public bool ShopDetailsOpen => shopDetails;
+        public void SetShopDetails(bool expanded) { shopDetails = expanded; shopScroll = Vector2.zero; }
         private WorldShop.Station tooltipStation;
         private string walletRun;
         private float healthTrail;
@@ -251,18 +254,18 @@ namespace ArcaneBrigade
                     if (navigation.Button(new Rect(850, 778, 220, 52), "CONTINUE ↓", primary)) shop.Interact();
                     return;
                 }
-                if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; }
-                string description = station.Offer != null ? shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; shopDetails = false; }
+                string description = station.Offer != null ? shopDetails ? shop.DescribeOfferDetails(station.Offer) : shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
                 string synergy = shop.BondPreview(station.Offer);
                 if (!string.IsNullOrEmpty(synergy)) description = synergy + "\n" + description;
-                bool compare = station.Offer != null && BuildPreview(owner, station.Offer) > 0;
+                bool compare = shopDetails && station.Offer != null && BuildPreview(owner, station.Offer) > 0;
                 float textWidth = compare ? 470 : 670;
                 float contentHeight = GlossaryUI.Height(description, small, textWidth) + 8;
                 Rect panel = ShopTooltipBounds(contentHeight);
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
                 ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Rarity : ItemRarity.Common;
                 Color tag = rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
-                Fill(panel, string.IsNullOrEmpty(synergy) ? Color.Lerp(Panel, tag, 0.12f) : Color.Lerp(Panel, ArcadeSkin.Teal, 0.28f));
+                Fill(panel, string.IsNullOrEmpty(synergy) ? Color.Lerp(Panel, tag, 0.12f) : Color.Lerp(Panel, synergy.Contains("BOND DOWN:") ? ArcadeSkin.Danger : ArcadeSkin.Teal, 0.28f));
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
                 string kind = item ? ArcadeSkin.RarityName(rarity) : station.Offer != null && station.Offer.Kind == OfferKind.Companion ? "COMPANION" : null;
                 if (kind != null)
@@ -270,7 +273,8 @@ namespace ArcaneBrigade
                     ArcadeSkin.Slant(new Rect(panel.x + 22, panel.y - 14, 150, 26), tag);
                     GUI.Label(new Rect(panel.x + 22, panel.y - 14, 150, 26), kind, tagStyle);
                 }
-                GUI.Label(new Rect(panel.x + 24, panel.y + 16, 690, 38), shop.DisplayName(station), text);
+                GUI.Label(new Rect(panel.x + 24, panel.y + 16, 460, 38), shop.DisplayName(station), text);
+                if (station.Offer != null && navigation.Button(new Rect(panel.xMax - 340, panel.y + 18, 100, 36), shopDetails ? "BACK" : "INFO", button)) SetShopDetails(!shopDetails);
                 shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, textWidth + 40, panel.height - 85), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
                 GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, small);
                 GUI.EndScrollView();
@@ -351,7 +355,9 @@ namespace ArcaneBrigade
             previewKey = key; previewRows.Clear();
             if (offer.Kind == OfferKind.Companion)
             {
-                previewRows.Add(("Brigade size", state.Roster.Count.ToString(), (state.Roster.Count + 1).ToString(), true));
+                using var preview = new RunSession(owner.Content); preview.Restore(state);
+                if (!preview.Buy(offer.Token)) return 0;
+                previewRows.Add(("Brigade size", state.Roster.Count.ToString(), preview.State.Roster.Count.ToString(), preview.State.Roster.Count >= state.Roster.Count));
                 return previewRows.Count;
             }
             string text;
@@ -362,6 +368,12 @@ namespace ArcaneBrigade
                 int colon = arrow > 0 ? line.LastIndexOf(": ", arrow) : -1;
                 if (arrow < 0 || colon < 0) continue;
                 string name = line.Substring(0, colon), before = line.Substring(colon + 2, arrow - colon - 2), after = line.Substring(arrow + 3);
+                if (name == "Companion roaming range")
+                {
+                    name = "Ranged roam";
+                    before = before.Split('/')[0].Replace("Ranged ", "").Trim();
+                    after = after.Split('/')[0].Replace("Ranged ", "").Trim();
+                }
                 bool lowerIsBetter = name.IndexOf("cycle", System.StringComparison.OrdinalIgnoreCase) >= 0 || name.IndexOf("cooldown", System.StringComparison.OrdinalIgnoreCase) >= 0;
                 bool better = FirstNumber(after) >= FirstNumber(before) ^ lowerIsBetter;
                 previewRows.Add((name, before, after, better));
@@ -386,7 +398,7 @@ namespace ArcaneBrigade
 
         private void DrawPreview(Rect area)
         {
-            if (compareStyle == null) { compareStyle = ArcadeTypography.Style(17, false, true); compareStyle.wordWrap = false; compareStyle.alignment = TextAnchor.MiddleLeft; }
+            if (compareStyle == null) { compareStyle = ArcadeTypography.Style(17, false, true); compareStyle.wordWrap = false; compareStyle.clipping = TextClipping.Clip; compareStyle.alignment = TextAnchor.MiddleLeft; }
             ArcadeSkin.Line(new Rect(area.x - 14, area.y, 2, area.height), new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, 0.3f));
             caption.alignment = TextAnchor.MiddleLeft;
             GUI.Label(new Rect(area.x, area.y - 4, area.width, 20), "IF YOU BUY", caption);
@@ -396,11 +408,14 @@ namespace ArcaneBrigade
             {
                 var entry = previewRows[index];
                 Rect line = new Rect(area.x, area.y + 18 + index * row, area.width, row);
-                GlossaryUI.Text(new Rect(line.x, line.y + 3, 170, row), entry.name, small);
                 compareStyle.normal.textColor = new Color(0.75f, 0.72f, 0.68f);
-                GUI.Label(new Rect(line.x + 172, line.y, 80, row), entry.before, compareStyle);
+                string name = entry.name;
+                int slash = name.LastIndexOf(" / ", System.StringComparison.Ordinal);
+                if (slash >= 0) name = "Ally " + name.Substring(slash + 3);
+                GUI.Label(new Rect(line.x, line.y, 165, row), name, compareStyle);
+                GUI.Label(new Rect(line.x + 180, line.y, 70, row), entry.before, compareStyle);
                 compareStyle.normal.textColor = entry.better ? new Color(0.45f, 1f, 0.6f) : ArcadeSkin.Danger;
-                GUI.Label(new Rect(line.x + 252, line.y, 140, row), (entry.better ? "▲ " : "▼ ") + entry.after, compareStyle);
+                GUI.Label(new Rect(line.x + 260, line.y, 130, row), (entry.better ? "▲ " : "▼ ") + entry.after, compareStyle);
             }
         }
 

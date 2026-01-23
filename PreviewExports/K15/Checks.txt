@@ -65,6 +65,9 @@ PASS Bounded weapon feel NeedleSinger
 PASS Bounded weapon feel SpringKnocker
 PASS Bounded weapon feel DreamProjector
 PASS Bounded weapon feel RibbonWheel
+PASS Bounded weapon feel MoonseedOrb
+PASS Bounded weapon feel AfterimageSabre
+PASS Bounded weapon feel SatelliteDisc
 PASS Camera accent has a small bounded displacement
 PASS Independent reduced shake removes accents
 PASS Reduced motion also removes accents

@@ -1,0 +1,20 @@
+Selected proposals implemented: 2, 5, 6, 8, 9, 10, 7, 3
+K18 focused checks: 91 passes
+Ink and weapon checks: 268 passes
+Shop and carpet checks: 2247 passes
+K17/K16/K15/K14/K8/K12/market/K11/K13/K10 regressions: passed
+Actual protected population at waves 3/5/20 after 10 seconds: 8/11/30
+Cadence-volume checks at 35/45/55 seconds: within 94-106 percent of prior cadence
+Native 3840x2160 shop/transport: 793 passes / 0 failures
+Native 3840x2160 shop/transport Reduced Motion: 748 passes / 0 failures
+Native 3840x2160 weapon/event/readability: 25 passes / 0 failures
+Native 3840x2160 weapon/event/readability Reduced Motion: 25 passes / 0 failures
+Ten-hero campaign, seed 171077: 4 victories / 6 defeats / 0 timeouts
+Campaign is one deterministic bot observation, not human difficulty acceptance.
+Crowded projectile and boss frames use explicit diagnostic fixtures, not normal encounters or performance benchmarks.
+Final Windows build: Succeeded / 0 errors / 0 warnings / 652560967 bytes
+Runtime assembly SHA256: F5CA84A821E0FCDAB94A9EBC269FE554937607EC1F339372A852355C35E4C4FF
+Resource data SHA256: A651AE51E002FC29A13FD4029B165C60FA3EBD9E4FC74A04F9116A94ADBC20A6
+Assets: existing project-owned sprites plus new procedural motion/flourishes; no new hand-drawn sheet or native-4K-source claim
+Audio clips, manifests and audio-agent working documents/tools: untouched by this checkpoint
+Playtest checklist: Docs/K18_Experience_Checkpoint.md

@@ -268,6 +268,21 @@ PASS Actual range multiplier RibbonWheel
 PASS Authored visual multiplier RibbonWheel
 PASS Recompilation never stacks balance buff RibbonWheel
 PASS Source weapon not mutated RibbonWheel
+PASS Compiled damage multiplier MoonseedOrb
+PASS Actual range multiplier MoonseedOrb
+PASS Authored visual multiplier MoonseedOrb
+PASS Recompilation never stacks balance buff MoonseedOrb
+PASS Source weapon not mutated MoonseedOrb
+PASS Compiled damage multiplier AfterimageSabre
+PASS Actual range multiplier AfterimageSabre
+PASS Authored visual multiplier AfterimageSabre
+PASS Recompilation never stacks balance buff AfterimageSabre
+PASS Source weapon not mutated AfterimageSabre
+PASS Compiled damage multiplier SatelliteDisc
+PASS Actual range multiplier SatelliteDisc
+PASS Authored visual multiplier SatelliteDisc
+PASS Recompilation never stacks balance buff SatelliteDisc
+PASS Source weapon not mutated SatelliteDisc
 PASS Melee movement speed rises30 percent
 PASS Melee leash adds2 units beyond ranged leash
 PASS Melee display can exceed body width
@@ -1941,6 +1956,34 @@ PASS Ledger remains read-only RibbonWheel/2
 PASS Tier grows actual body, weapon and range RibbonWheel/3
 PASS Ledger reflects compiled melee/tier values RibbonWheel/3
 PASS Ledger remains read-only RibbonWheel/3
+PASS Ledger reflects compiled melee/tier values MoonseedOrb/1
+PASS Ledger remains read-only MoonseedOrb/1
+PASS Tier grows actual body, weapon and range MoonseedOrb/2
+PASS Tier grows bullet collision radius MoonseedOrb/2
+PASS Ledger reflects compiled melee/tier values MoonseedOrb/2
+PASS Ledger remains read-only MoonseedOrb/2
+PASS Tier grows actual body, weapon and range MoonseedOrb/3
+PASS Tier grows bullet collision radius MoonseedOrb/3
+PASS Ledger reflects compiled melee/tier values MoonseedOrb/3
+PASS Ledger remains read-only MoonseedOrb/3
+PASS Ledger reflects compiled melee/tier values AfterimageSabre/1
+PASS Ledger remains read-only AfterimageSabre/1
+PASS Tier grows actual body, weapon and range AfterimageSabre/2
+PASS Ledger reflects compiled melee/tier values AfterimageSabre/2
+PASS Ledger remains read-only AfterimageSabre/2
+PASS Tier grows actual body, weapon and range AfterimageSabre/3
+PASS Ledger reflects compiled melee/tier values AfterimageSabre/3
+PASS Ledger remains read-only AfterimageSabre/3
+PASS Ledger reflects compiled melee/tier values SatelliteDisc/1
+PASS Ledger remains read-only SatelliteDisc/1
+PASS Tier grows actual body, weapon and range SatelliteDisc/2
+PASS Tier grows bullet collision radius SatelliteDisc/2
+PASS Ledger reflects compiled melee/tier values SatelliteDisc/2
+PASS Ledger remains read-only SatelliteDisc/2
+PASS Tier grows actual body, weapon and range SatelliteDisc/3
+PASS Tier grows bullet collision radius SatelliteDisc/3
+PASS Ledger reflects compiled melee/tier values SatelliteDisc/3
+PASS Ledger remains read-only SatelliteDisc/3
 PASS Sandbox uses same melee and star range rules
 PASS English unit content LanternKnight
 PASS English unit content Postmaster
