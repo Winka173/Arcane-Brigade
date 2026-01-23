@@ -49,6 +49,7 @@ namespace ArcaneBrigade
         }
         public bool ReducedMotion { get; set; }
         public UnitState State => state;
+        public Sprite DisplayedBody => body == null ? null : body.sprite;
         public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;
         public static bool IsWeakspotVisible(UnitState unit, float time) => unit != null && unit.Alive && unit.Faction == Faction.Enemy && unit.ExposedUntil > time && unit.TelegraphUntil <= time;
 
@@ -215,7 +216,9 @@ namespace ArcaneBrigade
             float motionDelta = Mathf.Clamp(simulationTime - lastDisplayTime, 0, 0.05f);
             lastDisplayTime = simulationTime;
             if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
-            if (state.Definition.AnimationFrames.Length >= 4)
+            if (state.Definition.AuthoredMotion != null)
+                body.sprite = state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion);
+            else if (state.Definition.AnimationFrames.Length >= 4)
                 body.sprite = state.Definition.AnimationFrames[K8Motion.BodyFrame(state, simulationTime, ReducedMotion)];
             weapon.color = hand.color = Color.white;
             shadow.color = state.Faction == Faction.Enemy ? new Color(0.02f, 0.02f, 0.04f, 0.3f) : shadowColor;
@@ -271,7 +274,8 @@ namespace ArcaneBrigade
                 attackLean += age < poseWindup ? -charge * 8 : Mathf.Sin(release * Mathf.PI) * 12;
             }
             float height = K8Motion.BodyHeight(state);
-            float scale = height / Mathf.Max(0.01f, body.sprite.bounds.size.y);
+            float referenceHeight = state.Definition.AuthoredMotion != null ? state.Definition.AuthoredMotion.ReferenceHeight : body.sprite.bounds.size.y;
+            float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
             float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
             impactSquash += hurt * 0.09f;

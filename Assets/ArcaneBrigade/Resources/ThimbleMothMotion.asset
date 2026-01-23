@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ThimbleMothMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 153266968, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: 1533450860, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  Walk:
+  - {fileID: 785068935, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: -988552766, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: -1856385056, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: -1012532963, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  Windup:
+  - {fileID: 938792992, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: 751180427, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  Release:
+  - {fileID: -1052960341, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: -90302131, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  Recovery:
+  - {fileID: -506399102, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: 212812029, guid: e8411c25dbf835946b0844cb85de1704, type: 3}

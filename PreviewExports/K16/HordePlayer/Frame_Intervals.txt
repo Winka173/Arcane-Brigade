@@ -1,0 +1,2 @@
+Windows Unity framebuffer4K; single diagnostic wave5 tier2 party, not stress/device certification. Samples exclude first0.5s after screenshots and pause.
+Samples=1202 median_ms=16.67 p95_ms=16.68 peak_enemies=35 GPU=NVIDIA GeForce RTX 5070 Ti

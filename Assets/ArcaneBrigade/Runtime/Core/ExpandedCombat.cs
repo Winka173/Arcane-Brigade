@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether }
+    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether, SewingLink }
     public sealed class ExpandedField
     {
         public ExpandedFieldKind Kind;
@@ -21,6 +21,8 @@ namespace ArcaneBrigade
         public bool Resolved;
         public ProjectileState Projectile;
         public WeaponDefinition ImpactWeapon;
+        public bool Critical;
+        public UnitState Anchor;
     }
 
     public sealed partial class CombatSimulation
@@ -126,6 +128,7 @@ namespace ArcaneBrigade
             if (projectile.Weapon == null || projectile.Faction == Faction.Enemy) return;
             UnitState source = units.Find(unit => unit.Id == projectile.SourceUnitId);
             if (source == null) return;
+            ApplyCarnivalProjectilePayoff(projectile, target, source);
             ExpandedWeapon family = projectile.Weapon.Family;
             if (projectile.Weapon.Mechanic == CarnivalWeapon.Sewing && target.Alive)
             {
@@ -173,6 +176,7 @@ namespace ArcaneBrigade
                 bool ink = field.Kind == ExpandedFieldKind.Ink;
                 if (Elapsed < field.At || field.Resolved || Elapsed < field.NextTick || (field.Damage <= 0 && !ink)) continue;
                 bool heat = field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron;
+                if (field.Kind == ExpandedFieldKind.Strike && field.Source != null && field.Source.Definition.Weapon.Mechanic == CarnivalWeapon.RibbonWheel) field.Position = field.Source.Position;
                 field.NextTick = Elapsed + 0.4f; field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector;
                 ExpandedPayoffs++;
                 if (field.Source == null || field.Source.Faction != Faction.Enemy) RecordActivation(field.Cause);
@@ -190,7 +194,12 @@ namespace ArcaneBrigade
                     if (field.Kind == ExpandedFieldKind.Strike) inside &= Vector2.Dot(offset.normalized, field.Direction) >= 0.8f;
                     if (!inside) continue;
                     if (ink) { enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + 0.6f); continue; }
-                    ApplyDamage(enemy, field.Damage, field.Source == null ? Faction.Companion : field.Source.Faction, field.Cause.ItemId, field.Direction, field.ImpactWeapon != null ? field.ImpactWeapon : field.Cause.Depth == 0 && field.Source != null ? field.Source.Definition.Weapon : null, cause: field.Cause);
+                    if (field.Kind == ExpandedFieldKind.Projector && field.Source != null && field.Source.Definition.CombatTier >= 2 && !enemy.Definition.IsBoss)
+                    {
+                        enemy.Position = ClampPosition(Vector2.MoveTowards(enemy.Position, field.Position, 0.12f * (1 - Mathf.Clamp01(enemy.Definition.KnockbackResistance))), enemy.Definition.Radius);
+                        enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + 0.25f); spatial.Move(enemy);
+                    }
+                    ApplyDamage(enemy, field.Damage, field.Source == null ? Faction.Companion : field.Source.Faction, field.Cause.ItemId, field.Direction, field.ImpactWeapon != null ? field.ImpactWeapon : field.Cause.Depth == 0 && field.Source != null ? field.Source.Definition.Weapon : null, critical: field.Critical, cause: field.Cause);
                     if (heat && enemy.Alive)
                     {
                         enemy.BurnUntil = Mathf.Max(enemy.BurnUntil, Elapsed + 0.6f); enemy.BurnCause = field.Cause.Child("heat-status");

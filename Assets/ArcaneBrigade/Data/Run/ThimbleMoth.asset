@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ThimbleMoth
   DisplayName: Thimble Moth
-  Body: {fileID: 551851872, guid: cb8f04bd119ccd043b6225daa2bcaf91, type: 3}
+  Body: {fileID: 153266968, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
   AnimationFrames:
-  - {fileID: 551851872, guid: cb8f04bd119ccd043b6225daa2bcaf91, type: 3}
-  - {fileID: -818875347, guid: cb8f04bd119ccd043b6225daa2bcaf91, type: 3}
-  - {fileID: -1222994297, guid: cb8f04bd119ccd043b6225daa2bcaf91, type: 3}
-  - {fileID: -669595568, guid: cb8f04bd119ccd043b6225daa2bcaf91, type: 3}
+  - {fileID: 153266968, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: 1533450860, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: 785068935, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  - {fileID: -1856385056, guid: e8411c25dbf835946b0844cb85de1704, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 9d85bbfa8703c06428fc7c597e268c98, type: 2}
   Weapon: {fileID: 11400000, guid: 015f03d51fcddeb4ba68078faeb87f48, type: 2}
   Health: 100
   Speed: 5.1

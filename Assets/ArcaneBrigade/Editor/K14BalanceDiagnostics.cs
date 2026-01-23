@@ -64,6 +64,10 @@ namespace ArcaneBrigade.Editor
         }
         public static void Measure()
         {
+            MeasureInto("PreviewExports/K14");
+        }
+        public static void MeasureInto(string directory)
+        {
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             var rows = new List<string> { "weapon,kind,tier,targets,moving,dps,range,cooldown,mechanic" };
             foreach (WeaponDefinition weapon in catalog.Weapons)
@@ -76,7 +80,7 @@ namespace ArcaneBrigade.Editor
                     if (!float.IsFinite(dps)) throw new InvalidOperationException("Invalid damage for " + weapon.Id);
                     rows.Add(string.Format(CultureInfo.InvariantCulture, "{0},{1},{2},{3},{4},{5:0.000},{6:0.00},{7:0.00},{8}", weapon.Id, weapon.Kind, tier, count, moving, dps, sample.Ally.Definition.Weapon.Range, sample.Ally.Definition.Weapon.Cooldown, weapon.Mechanic));
                 }
-            Directory.CreateDirectory("PreviewExports/K14"); File.WriteAllLines("PreviewExports/K14/Weapon_Balance.csv", rows);
+            Directory.CreateDirectory(directory); File.WriteAllLines(Path.Combine(directory, "Weapon_Balance.csv"), rows);
             var recruits = new List<string> { "ally,tier,price,currency,special,theme_locked,passive,passive_strength,scoped_modifiers" };
             foreach (UnitDefinition unit in catalog.Companions)
             for (int tier = 1; tier <= 3; tier++)
@@ -84,7 +88,7 @@ namespace ArcaneBrigade.Editor
                 string modifiers = string.Join(";", unit.CompanionModifiers.Select(modifier => modifier.Scope + ":" + modifier.Effect + "=" + (modifier.Value * UnitDefinition.ModifierScale(tier)).ToString("0.####", CultureInfo.InvariantCulture)));
                 recruits.Add(string.Format(CultureInfo.InvariantCulture, "{0},{1},{2},{3},{4},{5},{6},{7:0.####},{8}", unit.Id, tier, unit.SpecialRecruit ? 4 : unit.Price, unit.SpecialRecruit ? "Eggs" : "Gold", unit.SpecialRecruit, unit.RecruitThemeLocked, unit.Passive, unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1), modifiers));
             }
-            File.WriteAllLines("PreviewExports/K14/Recruit_Balance.csv", recruits);
+            File.WriteAllLines(Path.Combine(directory, "Recruit_Balance.csv"), recruits);
             Debug.Log("K14_WEAPON_MEASUREMENTS " + (rows.Count - 1) + " controlled immortal-target samples; not human balance approval");
         }
     }

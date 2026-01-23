@@ -28,7 +28,7 @@ namespace ArcaneBrigade
                 {
                     Vector2 offset = enemy.Position - source.Position;
                     if (!CanHit(source.Faction, enemy) || offset.magnitude > weapon.Range || Vector2.Dot(offset.normalized, source.AttackDirection) < 0.55f) continue;
-                    if (pulled++ >= 4) break;
+                    if (pulled++ >= 3 + Mathf.Clamp(source.Definition.CombatTier, 1, 3)) break;
                     float resistance = enemy.Definition.IsBoss ? 1 : Mathf.Clamp01(enemy.Definition.KnockbackResistance);
                     enemy.Position = ClampPosition(Vector2.MoveTowards(enemy.Position, source.Position + source.AttackDirection * 1.4f, 0.65f * (1 - resistance)), enemy.Definition.Radius);
                     spatial.Move(enemy);
@@ -41,17 +41,21 @@ namespace ArcaneBrigade
                 Vector2 point = source.Position + source.AttackDirection * Mathf.Min(weapon.Range * 0.7f, 2.3f);
                 Field(ExpandedFieldKind.Echo, source, point, source.AttackDirection, weapon.Range * 0.6f, damage, 0, 0.18f, cause);
                 fields[fields.Count - 1].ImpactWeapon = weapon;
+                fields[fields.Count - 1].Cause = cause; fields[fields.Count - 1].Critical = critical;
             }
             else if (weapon.Mechanic == CarnivalWeapon.Projector)
             {
                 UnitState target = units.Find(candidate => candidate.Id == source.AttackTargetId && candidate.Alive);
                 Vector2 point = target == null ? source.Position + source.AttackDirection * weapon.Range * 0.6f : target.Position;
                 Field(ExpandedFieldKind.Projector, source, point, source.AttackDirection, 1.15f * CompanionTierScaling.Body(source.Definition.CombatTier), damage * 0.4f, 0, 1.15f, cause);
+                fields[fields.Count - 1].Critical = critical;
             }
             else
             {
                 Field(ExpandedFieldKind.Strike, source, source.Position, Quaternion.Euler(0, 0, -35) * source.AttackDirection, weapon.Range, damage * 0.55f, 0, 0.08f, cause);
+                fields[fields.Count - 1].Critical = critical;
                 Field(ExpandedFieldKind.Strike, source, source.Position, Quaternion.Euler(0, 0, 35) * source.AttackDirection, weapon.Range, damage * 0.55f, 0.18f, 0.1f, cause);
+                fields[fields.Count - 1].Critical = critical;
             }
             return true;
         }

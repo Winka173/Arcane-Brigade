@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LanternKnight
   DisplayName: Lantern Knight
-  Body: {fileID: -186974807, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  Body: {fileID: 2111567150, guid: cab0ce9e471fe2943bd7c9f3ccd2dd96, type: 3}
   AnimationFrames:
-  - {fileID: -186974807, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
-  - {fileID: 1435386198, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
-  - {fileID: -1384713947, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
-  - {fileID: -1236638076, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  - {fileID: 2111567150, guid: cab0ce9e471fe2943bd7c9f3ccd2dd96, type: 3}
+  - {fileID: -1599542956, guid: cab0ce9e471fe2943bd7c9f3ccd2dd96, type: 3}
+  - {fileID: 89810871, guid: cab0ce9e471fe2943bd7c9f3ccd2dd96, type: 3}
+  - {fileID: -941332043, guid: cab0ce9e471fe2943bd7c9f3ccd2dd96, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: dc0ba3424d331f44ba55ffd9bfc021da, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 120
   Speed: 3.3
@@ -28,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0

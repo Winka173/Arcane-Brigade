@@ -38,9 +38,8 @@ namespace ArcaneBrigade
             unit.TravelMode = pursuing ? CompanionTravelMode.Pursuit : CompanionTravelMode.Patrol;
             if (pursuing)
             {
-                float orbit = unit.Id * 2.399963f + Mathf.Sin(elapsed * 0.7f + unit.Id) * 0.22f;
-                float distance = Mathf.Max(unit.Definition.Radius + target.Definition.Radius, unit.Definition.Weapon.Range * 0.65f);
-                destination = target.Position + new Vector2(Mathf.Cos(orbit), Mathf.Sin(orbit)) * distance;
+                destination = MeleeTactics.Engage(unit, target);
+                MeleeTactics.Aim(unit, target, deltaTime);
                 destination = champion.Position + Vector2.ClampMagnitude(destination - champion.Position, leash * 0.96f);
             }
             else if (target != null && unit.Definition.Weapon.Kind == WeaponKind.Projectile && !resting)

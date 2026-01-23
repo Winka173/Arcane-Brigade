@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WaxAdmiral
   DisplayName: Wax Admiral
-  Body: {fileID: -123257345, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  Body: {fileID: 32922707, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
   AnimationFrames:
-  - {fileID: -123257345, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 1241637567, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: -1747686466, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 406254443, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  - {fileID: 32922707, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -1682232327, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: 1341643232, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -870794049, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 852dc54e60bb903499b46521725f88c6, type: 2}
   Weapon: {fileID: 11400000, guid: d336dbf131d47394d94256398c418143, type: 2}
   Health: 1070
   Speed: 0.65
@@ -28,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  RecruitThemeLocked: 0
   ContactDamage: 8
   ContactInterval: 0.8
   CollisionDamage: 0

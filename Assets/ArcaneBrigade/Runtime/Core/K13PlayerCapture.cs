@@ -18,7 +18,7 @@ namespace ArcaneBrigade
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Initialize()
         {
-            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k14") >= 0) return;
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k14") >= 0 || Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k16-art") >= 0) return;
             if (!RunPaths.K7Capture || Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k13") < 0 || FindAnyObjectByType<K13PlayerCapture>() != null) return;
             var child = new GameObject("K13PlayerCapture"); DontDestroyOnLoad(child); child.AddComponent<K13PlayerCapture>();
         }

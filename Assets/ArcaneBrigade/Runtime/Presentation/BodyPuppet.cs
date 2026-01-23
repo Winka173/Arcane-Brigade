@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public void Display(SpriteRenderer reference, UnitState state, float time, bool reduced)
         {
             if (properties == null) properties = new MaterialPropertyBlock();
-            if (state.Definition.AnimationFrames.Length < 4)
+            if (state.Definition.AuthoredMotion != null || state.Definition.AnimationFrames.Length < 4)
             {
                 reference.enabled = true;
                 if (upper != null) { upper.enabled = false; lower.enabled = false; }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CoilKettleMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1205671639, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: 908658978, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  Walk:
+  - {fileID: 67453445, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: 305196339, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: 644603686, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: -1454286926, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  Windup:
+  - {fileID: -1481294076, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: -783344924, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  Release:
+  - {fileID: 241113087, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: -1007577841, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  Recovery:
+  - {fileID: -198620213, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
+  - {fileID: -1926680984, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}

@@ -4,6 +4,15 @@ namespace ArcaneBrigade
     {
         public static string Describe(WeaponDefinition weapon, int tier)
         {
+            if (weapon.Mechanic != CarnivalWeapon.None) return weapon.Mechanic switch
+            {
+                CarnivalWeapon.YoYo => tier >= 2 ? "Returning yo-yo. Pulls its victim; the string slows up to " + tier + " nearby foes." : "Returning yo-yo. Pulls and briefly slows its victim.",
+                CarnivalWeapon.Sewing => tier >= 2 ? "Three piercing needles. Stitches " + (tier - 1) + " nearby foes for 18% damage each; no recursive chains." : "Three piercing needles. Briefly slows victims.",
+                CarnivalWeapon.Projector => tier >= 2 ? "Lingering spotlight. Gathers and slows ordinary foes; bosses resist the pull." : "Lingering spotlight. Repeated area damage.",
+                CarnivalWeapon.Magnet => "Pulls and strikes up to " + (3 + UnityEngine.Mathf.Clamp(tier, 1, 3)) + " foes. Bosses resist the pull.",
+                CarnivalWeapon.SpringHammer => "Charged splash and knockback. Crits and primary-hit relics apply.",
+                _ => "Two crossing cuts. The follow-up moves with its wielder."
+            };
             string text = weapon.Family switch
             {
                 ExpandedWeapon.Tea => "Tea splits into two droplets on impact, each dealing 35% damage without further splitting. The main droplet leaves a hot zone for 1.8 seconds, ticking every 0.4 seconds. Coasters widen but weaken the zone. Burning targets let hammers create steam.",

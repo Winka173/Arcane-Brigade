@@ -22,7 +22,7 @@ namespace ArcaneBrigade
                 foreach (ExpandedField field in simulation.ExpandedFields)
                 {
                     bool hazard = field.Kind == ExpandedFieldKind.Curtain || field.Kind == ExpandedFieldKind.OfficeHazard || field.Kind == ExpandedFieldKind.ToyHazard;
-                    bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether;
+                    bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink;
                     if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
                     if (hazard != (priority == 0)) continue;
                     if (!hazard && !carnival && (field.Kind != ExpandedFieldKind.Link || field.Radius != 0) && field.Kind != ExpandedFieldKind.Strike && field.Kind != ExpandedFieldKind.Echo) continue;
@@ -35,9 +35,9 @@ namespace ArcaneBrigade
                     color.a = warning ? 0.65f + (ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
                     if (!hazard) color.a *= EffectDensity.AlliedAlpha;
                     line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;
-                    if (field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
+                    if (field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink || field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
                     {
-                        Vector2 start = field.Source == null ? field.Start : field.Source.Position;
+                        Vector2 start = field.Anchor != null ? field.Anchor.Position : field.Source == null ? field.Start : field.Source.Position;
                         Vector2 end = field.Projectile != null ? field.Projectile.Position : field.Target != null ? field.Target.Position : field.Position;
                         line.loop = false; line.positionCount = 12;
                         for (int point = 0; point < 12; point++)

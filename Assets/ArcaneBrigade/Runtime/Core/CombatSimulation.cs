@@ -79,6 +79,8 @@ namespace ArcaneBrigade
         public int AttackTargetId;
         public int TacticalTargetId;
         public float TacticalRetargetAt;
+        public int MeleeApproachTarget;
+        public float MeleeApproachAngle;
         public int BossVolley;
         public float BossRecoveryUntil;
         public int VisibleMarks;
@@ -316,7 +318,11 @@ namespace ArcaneBrigade
                 if (unit.EntranceUntil > 0) events.Add(new CombatEvent(CombatEventKind.BossLanded, unit.Position, unit.Faction, subjectId: unit.Id, subject: unit));
                 unit.EntranceUntil = 0;
                 if (unit.Faction == Faction.Companion) FollowChampion(unit, deltaTime);
-                else if (unit.Faction == Faction.Enemy) MoveEnemy(unit, deltaTime);
+                else if (unit.Faction == Faction.Enemy)
+                {
+                    MoveEnemy(unit, deltaTime);
+                    unit.Velocity = (unit.Position - unit.PreviousPosition) / deltaTime;
+                }
                 spatial.Move(unit);
                 ProcessStatusAndPassive(unit);
                 if (!unit.Alive) continue;
@@ -525,6 +531,7 @@ namespace ArcaneBrigade
                     projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = boss.Position, PreviousPosition = boss.Position, Velocity = direction * speed, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
                 }
                 boss.BossVolley++;
+                boss.AttackStarted = Elapsed - 0.85f; boss.AttackWindup = 0.85f;
                 bool enraged = boss.Health < boss.Definition.Health * 0.5f;
                 float recovery = boss.BossVolley % 3 == 0 ? 2.2f : 0.55f;
                 boss.BossRecoveryUntil = Elapsed + recovery;
@@ -610,7 +617,7 @@ namespace ArcaneBrigade
                 events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
-            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range, true) : FindTarget(unit, weapon.Range);
+            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0), true) : FindTarget(unit, weapon.Range);
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;
             unit.AttackTargetId = nearest.Id;

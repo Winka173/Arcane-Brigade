@@ -340,10 +340,6 @@ PASS Pursuit remains bounded tick65
 PASS Pursuit remains bounded tick66
 PASS Pursuit remains bounded tick67
 PASS Pursuit remains bounded tick68
-PASS Pursuit remains bounded tick69
-PASS Pursuit remains bounded tick70
-PASS Pursuit remains bounded tick71
-PASS Pursuit remains bounded tick72
 PASS Melee leaves ranged patrol radius and actually kills distant enemy
 PASS Pursuit mode emits live painted foot smoke and speed trails
 PASS Pause freezes foot smoke

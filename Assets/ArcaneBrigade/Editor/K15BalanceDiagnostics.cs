@@ -11,6 +11,10 @@ namespace ArcaneBrigade.Editor
     {
         public static void Run()
         {
+            RunInto("PreviewExports/K15");
+        }
+        public static void RunInto(string directory)
+        {
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             var rows = new List<string> { "wave,roster,composition,boss,phase,seconds,kills,damage_taken,ally_damage,first_ally_hit,mean_melee_distance,mean_ranged_distance" };
             foreach (int wave in new[] { 2, 8, 16 })
@@ -18,7 +22,7 @@ namespace ArcaneBrigade.Editor
             foreach (string kind in new[] { "melee", "ranged", "mixed" }) Measure(catalog, rows, wave, count, kind, false);
             foreach (int count in new[] { 2, 12, 20 })
             foreach (string kind in new[] { "melee", "ranged" }) Measure(catalog, rows, 8, count, kind, true);
-            Directory.CreateDirectory("PreviewExports/K15"); File.WriteAllLines("PreviewExports/K15/Encounter_Balance.csv", rows);
+            Directory.CreateDirectory(directory); File.WriteAllLines(Path.Combine(directory, "Encounter_Balance.csv"), rows);
             Debug.Log("K15_ENCOUNTER_MEASUREMENTS " + (rows.Count - 1) + " authored-roster encounters; not natural shop builds or human approval");
         }
         private static void Measure(RunCatalog catalog, List<string> rows, int wave, int count, string kind, bool boss)

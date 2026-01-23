@@ -10,6 +10,12 @@ namespace ArcaneBrigade
         private int tacticalGeneration = -1;
         private UnitState SelectCompanionTarget(UnitState source, float radius, bool attackOnly = false)
         {
+            bool melee = source.Definition.Weapon.Kind == WeaponKind.Melee;
+            if (!attackOnly && melee && source.PendingAttack)
+            {
+                UnitState locked = units.Find(unit => unit.Id == source.AttackTargetId);
+                if (locked != null && CanHit(source.Faction, locked) && (locked.Position - Champion.Position).magnitude <= CompanionMotion.Leash(source, catalog) + source.Definition.Weapon.Range * 0.65f) return locked;
+            }
             if (tacticalClaimTime != Elapsed || tacticalGeneration != Generation)
             {
                 tacticalClaimTime = Elapsed; tacticalGeneration = Generation; tacticalClaims.Clear(); tacticalDamage.Clear();
@@ -27,6 +33,7 @@ namespace ArcaneBrigade
             foreach (UnitState enemy in targetCandidates)
             {
                 if (!CanHit(source.Faction, enemy) || (enemy.Position - center).sqrMagnitude > radius * radius) continue;
+                if (attackOnly && melee && (enemy.Position - source.Position).magnitude > source.Definition.Weapon.Range + enemy.Definition.Radius) continue;
                 float claims = tacticalClaims.TryGetValue(enemy.Id, out int assignments) ? assignments : 0;
                 if (source.TacticalTargetId == enemy.Id) claims = Mathf.Max(0, claims - 1);
                 float committedDamage = tacticalDamage.TryGetValue(enemy.Id, out float expected) ? expected : 0;
@@ -47,6 +54,7 @@ namespace ArcaneBrigade
                     source.TacticalRetargetAt = Elapsed + 0.55f;
                 }
                 source.TacticalTargetId = identifier;
+                if (melee && source.PendingAttack && best != null) source.AttackTargetId = best.Id;
             }
             return best;
         }
