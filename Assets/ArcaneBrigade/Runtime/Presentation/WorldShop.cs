@@ -412,6 +412,7 @@ namespace ArcaneBrigade
         private Station AddStation(Vector2 position, string action, Sprite sprite, Sprite[] frames, bool pedestal)
         {
             var marker = new GameObject(action); marker.transform.SetParent(scenery.transform, false); marker.transform.localPosition = position;
+            ShopDisplayActor support = null;
             if (pedestal)
             {
                 CarnivalStageAssets stage = Resources.Load<CarnivalStageAssets>("CarnivalStageAssets");
@@ -421,12 +422,13 @@ namespace ArcaneBrigade
                     var poses = new Sprite[4]; System.Array.Copy(stage.Stands, variant * 4, poses, 0, 4);
                     ShopDisplayActor stand = AddActor(marker.transform, poses[0], poses, new Vector2(0, -0.1f), 0.85f, stations.Count * 0.9f);
                     stand.SetPedestalDisplay();
+                    support = stand;
                     if (pedestalEntrance) stand.Arrive(0.7f + stations.Count * MarketMotion.StockStagger);
                 }
-                else AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0).enabled = false;
+                else { support = AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0); support.enabled = false; }
             }
             ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
-            if (pedestal && actor != null) actor.MountMerchandise();
+            if (pedestal && actor != null) actor.MountMerchandise(support);
             if (!pedestal && actor != null) actor.SetFloorFixture();
             ShopFloorShadow.Create(marker.transform, new Vector2(0, pedestal ? -0.48f : action == "NEXT HALL" ? -0.72f : -0.56f), pedestal ? 1.55f : 1.65f, 0.7f);
             var station = new Station { Position = position, Action = action, Marker = marker.transform, Icon = sprite, Actor = actor, Renderers = marker.GetComponentsInChildren<SpriteRenderer>() };

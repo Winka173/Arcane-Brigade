@@ -25,10 +25,19 @@ namespace ArcaneBrigade.Editor
                     require(combat.EnemyPool.All(enemy => wave > 1 || enemy.Weapon.Kind == WeaponKind.Contact), "No first-wave hostile shooters");
                     if (combat.Boss != null) require(combat.Boss.Health > catalog.Bosses[0].Health * 2, "Boss substantially enlarged health pool");
                 }
-                session.State.Wave = 5; var arena = session.PrepareCombat(); arena.Boss = null; arena.WaveDuration = 60;
-                var simulation = new CombatSimulation(arena); simulation.Start(12077);
-                for (int tick = 0; tick < 600; tick++) simulation.Step(1f / 60, Vector2.right);
-                require(simulation.Units.Count(unit => unit.Faction == Faction.Enemy) > 15, "Wave5 actually produces dense hostile population");
+                int Population(int wave)
+                {
+                    session.State.Wave = wave; var arena = session.PrepareCombat(); arena.Boss = null; arena.WaveDuration = 60;
+                    var simulation = new CombatSimulation(arena); simulation.Start(12077);
+                    simulation.Champion.Definition.Health = simulation.Champion.Health = 1000000;
+                    foreach (UnitState unit in simulation.Units) if (unit.Faction != Faction.Enemy) unit.NextAttack = float.PositiveInfinity;
+                    for (int tick = 0; tick < 600; tick++) simulation.Step(1f / 60, Vector2.right);
+                    return simulation.Units.Count(unit => unit.Faction == Faction.Enemy);
+                }
+                int early = Population(3), middle = Population(5), late = Population(20);
+                require(middle > early && middle <= early * 1.6f, "Wave3-to-5 population increases gradually, without batch cliff");
+                require(late >= middle * 2, "Late waves retain substantially denser hostile population: " + early + "/" + middle + "/" + late);
+                session.State.Wave = 5;
                 session.State.Phase = SessionPhase.Shop; session.State.Gold = 100000; session.State.NewRecruitsThisWave = 3;
                 UnitDefinition unseen = catalog.Companions.First(unit => session.State.Roster.All(entry => entry.UnitId != unit.Id));
                 var blocked = new ShopOffer { Kind = OfferKind.Companion, Id = unseen.Id, Price = 1 };

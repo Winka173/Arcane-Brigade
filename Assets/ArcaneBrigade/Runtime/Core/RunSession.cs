@@ -258,8 +258,8 @@ namespace ArcaneBrigade
             if (catalog.Bosses.Length == 10) bossIndex = Mathf.Max(0, bossStage) % 5 + (((State.Seed ^ bossStage) & 1) == 0 ? 0 : 5);
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
             CombatCatalog.WaveDuration = Mathf.Min(catalog.WaveSeconds, catalog.FirstWaveSeconds + (State.Wave - 1) * catalog.WaveIncrement);
-            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * (State.Wave >= 5 ? 4 : State.Wave == 4 ? 3 : 1) * (1f + State.Difficulty * 0.12f));
-            CombatCatalog.SpawnInterval = State.Wave >= 4 ? Mathf.Max(0.22f, 0.46f - (State.Wave - 4) * 0.012f) : 1.4f - State.Wave * 0.035f;
+            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * (1f + State.Difficulty * 0.12f));
+            CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
             CombatCatalog.PickupRadius = catalog.Arena.PickupRadius + Bonus(ItemEffect.Pickup);
@@ -327,8 +327,8 @@ namespace ArcaneBrigade
             WaveModifier active = ActiveModifier;
             if (active != null)
             {
-                CombatCatalog.SpawnInterval *= active.SpawnMultiplier;
-                CombatCatalog.EnemyBudget = Mathf.CeilToInt(CombatCatalog.EnemyBudget * active.BudgetMultiplier);
+                CombatCatalog.SpawnInterval = Mathf.Max(0.25f, CombatCatalog.SpawnInterval * Mathf.Lerp(1, active.SpawnMultiplier, 0.5f));
+                CombatCatalog.EnemyBudget = Mathf.CeilToInt(CombatCatalog.EnemyBudget * Mathf.Lerp(1, active.BudgetMultiplier, 0.5f));
                 CombatCatalog.GoldPerKill = active.GoldPerKill;
                 CombatCatalog.PassiveHeal += active.Healing;
             }
@@ -379,7 +379,8 @@ namespace ArcaneBrigade
             unit.KnockbackResistance = Mathf.Max(source.KnockbackResistance, source.IsBoss ? 0.85f : source.BodyHeight >= 1.2f ? 0.6f : 0.15f);
             unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
-            if (source.IsBoss) { unit.Health *= 10f; unit.BodyHeight *= 1.35f; unit.Radius *= 1.15f; }
+            if (source.IsBoss) { unit.Health *= CarnivalBalance.BossBulk(State.Wave); unit.BodyHeight *= 1.35f; unit.Radius *= 1.15f; }
+            else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.8f;
             unit.Health *= CarnivalBalance.EnemyHealth(State.Wave);
             unit.Speed *= CarnivalBalance.EnemySpeed(State.Wave);
             float damageGrowth = Mathf.Max(0, State.Wave - 10);

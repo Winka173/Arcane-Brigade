@@ -27,11 +27,31 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private GroundShadow grounded;
         private bool merchandise;
+        private ShopDisplayActor support;
+        private Vector3 presentationOffset;
+        private Vector3 travelOffset;
         public SpriteRenderer View => view;
-        public void MountMerchandise()
+        public void MountMerchandise(ShopDisplayActor pedestal = null)
         {
             merchandise = true;
-            origin.y = 0.72f + height * view.sprite.pivot.y / view.sprite.rect.height;
+            if (pedestal != null) support = pedestal;
+            origin.y = 0.4f + height * view.sprite.pivot.y / view.sprite.rect.height;
+        }
+        public Vector3 SeatPosition
+        {
+            get
+            {
+                Rect ink = SpriteInkMetrics.BoundsOf(view.sprite);
+                return transform.TransformPoint(new Vector3(ink.center.x, Mathf.Lerp(ink.yMin, ink.yMax, 0.78f), 0)) - transform.parent.TransformVector(travelOffset);
+            }
+        }
+        private void LateUpdate()
+        {
+            if (!merchandise || support == null || view.sprite == null) return;
+            Rect ink = SpriteInkMetrics.BoundsOf(view.sprite);
+            Vector3 foot = transform.TransformVector(new Vector3(ink.center.x, ink.yMin, 0));
+            transform.position = support.SeatPosition - foot + transform.parent.TransformVector(presentationOffset);
+            if (grounded != null) grounded.Display(view.sprite, support.SeatPosition, height * 0.72f, Mathf.Abs(presentationOffset.y), 0.34f * view.color.a);
         }
         public void Configure(SpriteRenderer renderer, Sprite[] animation, float bodyHeight, ArenaController controller, float offset)
         {
@@ -107,8 +127,10 @@ namespace ArcaneBrigade
             else displacement = launchOffset * Mathf.SmoothStep(0, 1, travel) + Vector3.up * Mathf.Sin(arrival * Mathf.PI) * 1.2f;
             float settle = !departing && !reduced ? MarketMotion.Settle(age, duration, merchantActor ? 0.15f : 0.09f) : 0;
             if (reduced) displacement = Vector3.zero;
+            travelOffset = displacement;
             transform.localScale = new Vector3(scale * (1 - breathing * 0.4f + settle), scale * (1 + breathing - settle), 1);
             transform.localPosition = origin + displacement + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * (merchantActor || companionDisplay ? 0.035f : 0.11f) + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0), 0);
+            presentationOffset = transform.localPosition - origin;
             Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : 1; view.color = tint;
             transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
             view.sortingOrder = merchandise || pedestalDisplay

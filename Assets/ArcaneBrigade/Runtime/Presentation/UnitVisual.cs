@@ -52,6 +52,14 @@ namespace ArcaneBrigade
         public UnitState State => state;
         public Sprite DisplayedBody => body == null ? null : body.sprite;
         public SpriteRenderer BodyRenderer => body;
+        public SpriteRenderer WeaponRenderer => weapon;
+        public static Vector3 FitCompanionWeapon(Vector3 scale, Rect ink, float bodyHeight, bool melee)
+        {
+            float longest = Mathf.Max(ink.width * scale.x, ink.height * scale.y);
+            float minimum = bodyHeight * (melee ? 1.05f : 0.65f);
+            float maximum = bodyHeight * (melee ? 1.75f : 0.95f);
+            return scale * (Mathf.Clamp(longest, minimum, maximum) / Mathf.Max(0.01f, longest));
+        }
         public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;
         public static bool IsWeakspotVisible(UnitState unit, float time) => unit != null && unit.Alive && unit.Faction == Faction.Enemy && unit.ExposedUntil > time && unit.TelegraphUntil <= time;
 
@@ -172,10 +180,8 @@ namespace ArcaneBrigade
                 weapon.transform.localScale = new Vector3(weaponScale * shape.x, weaponScale * shape.y, 1);
                 if (unit.Faction == Faction.Companion)
                 {
-                    Vector3 size = Vector3.Scale(weapon.sprite.bounds.size, weapon.transform.localScale);
-                    float longest = Mathf.Max(size.x, size.y);
-                    float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.75f : 0.95f;
-                    weapon.transform.localScale *= Mathf.Min(1, K8Motion.BodyHeight(unit) * limit / Mathf.Max(0.01f, longest));
+                    Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
+                    weapon.transform.localScale = FitCompanionWeapon(weapon.transform.localScale, ink, K8Motion.BodyHeight(unit), unit.Definition.Weapon.Kind == WeaponKind.Melee);
                 }
                 if (hand.sprite != null) hand.transform.localScale = Vector3.one * ((unit.Faction == Faction.Companion ? 0.095f : 0.13f) / Mathf.Max(0.01f, hand.sprite.bounds.size.x));
                 muzzle.localPosition = unit.Definition.Weapon.HasMuzzleOffset ? (Vector3)unit.Definition.Weapon.ProjectileMuzzleOffset : Vector3.right * unit.Definition.Weapon.MuzzleDistance;
@@ -334,10 +340,9 @@ namespace ArcaneBrigade
             if (championBeacon != null)
             {
                 championBeacon.enabled = state.Alive && state.Faction == Faction.Champion;
-                championBeacon.sortingOrder = 2900;
-                float top = body.transform.localPosition.y + body.sprite.bounds.max.y * body.transform.localScale.y;
-                championBeacon.transform.localPosition = Vector3.up * (top + 0.2f + (ReducedMotion ? 0 : Mathf.Sin(simulationTime * 2.5f) * 0.035f));
-                championBeacon.transform.localScale = Vector3.one * (0.19f / Mathf.Max(0.01f, championBeacon.sprite.bounds.size.x));
+                championBeacon.sortingOrder = order - 1;
+                championBeacon.transform.localPosition = new Vector3(0, -height * 0.5f - 0.06f, 0);
+                championBeacon.transform.localScale = new Vector3(0.8f, 0.26f, 1) * (height / Mathf.Max(0.01f, championBeacon.sprite.bounds.size.x));
                 championBeacon.color = new Color(0.5f, 1, 0.86f, 0.95f);
             }
 

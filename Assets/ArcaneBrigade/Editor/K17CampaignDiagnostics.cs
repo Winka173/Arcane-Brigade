@@ -9,7 +9,8 @@ namespace ArcaneBrigade.Editor
 {
     public static class K17CampaignDiagnostics
     {
-        public static void Run()
+        public static void Run() => RunInto("PreviewExports/K17");
+        public static void RunInto(string root)
         {
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             var runs = new List<string> { "hero,seed,outcome,wave,kills,allies,gold,seconds" };
@@ -39,9 +40,9 @@ namespace ArcaneBrigade.Editor
                 runs.Add(string.Format(CultureInfo.InvariantCulture, "{0},{1},{2},{3},{4},{5},{6},{7:0.0}", hero.Id, seed, outcome, session.State.Wave, session.State.TotalKills, session.State.Roster.Count, session.State.Gold, session.State.CombatSeconds));
                 Debug.Log("K17_ROUTE " + runs[runs.Count - 1]);
             }
-            Directory.CreateDirectory("PreviewExports/K17");
-            File.WriteAllLines("PreviewExports/K17/Campaign.csv", runs);
-            File.WriteAllLines("PreviewExports/K17/Economy.csv", economy);
+            Directory.CreateDirectory(root);
+            File.WriteAllLines(Path.Combine(root, "Campaign.csv"), runs);
+            File.WriteAllLines(Path.Combine(root, "Economy.csv"), economy);
             Debug.Log("K17_CAMPAIGN_REPORT_FINISHED; outcomes are bot observations, not human balance acceptance");
         }
         private static Vector2 Steer(CombatSimulation simulation)

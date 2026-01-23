@@ -78,11 +78,20 @@ namespace ArcaneBrigade
                 foreach (SpriteRenderer stand in station.Marker.GetComponentsInChildren<SpriteRenderer>().Where(renderer => renderer.sprite != null && renderer.sprite.texture.name == "MarketStands_v1"))
                 {
                     Check(station.Actor.View.sortingOrder > stand.sortingOrder, "Pedestal cannot paint over merchandise " + station.Offer.Token);
-                    Check(station.Actor.View.bounds.min.y > stand.bounds.center.y, "Merchandise sits above pedestal body " + station.Offer.Token);
+                    Rect ink = SpriteInkMetrics.BoundsOf(station.Actor.View.sprite);
+                    Vector3 foot = station.Actor.transform.TransformPoint(new Vector3(ink.center.x, ink.yMin, 0));
+                    ShopDisplayActor support = stand.GetComponent<ShopDisplayActor>();
+                    Check(Mathf.Abs(foot.x - support.SeatPosition.x) < 0.07f && Mathf.Abs(foot.y - support.SeatPosition.y) < 0.2f, "Painted merchandise foot aligns to painted cushion " + station.Offer.Token);
                 }
             }
             Transform rug = GameObject.Find("PaintedMarketRug").transform;
             Check(Mathf.Abs(rug.localScale.x - rug.localScale.y) < 0.001f, "Carpet preserves illustrated aspect ratio without stretching");
+            SpriteRenderer beacon = FindObjectsByType<SpriteRenderer>().First(renderer => renderer.name == "ChampionBeacon");
+            Check(beacon.transform.localPosition.y < -K8Motion.BodyHeight(owner.Simulation.Champion) * 0.5f && beacon.transform.localScale.x > beacon.transform.localScale.y, "Player identification rests below feet, not above head");
+            ShopRarityGlow livingGlow = FindObjectsByType<ShopRarityGlow>().First();
+            Transform mote = livingGlow.transform.Find("RarityMote0"); Vector3 previousMote = mote.localPosition;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Check(PresentationSettings.ReducedMotion || Vector3.Distance(previousMote, mote.localPosition) > 0.001f, "Rarity motes animate during shop rest");
             WorldShop.Station middle = owner.Shop.Stations.First(station => station.Offer != null && station.Offer.Kind == OfferKind.Item && catalog.Item(station.Offer.Id).Rarity == ItemRarity.Mythic);
             owner.SetPresentationMoveTarget(middle.Position); yield return new WaitForSecondsRealtime(1);
             Check(owner.Shop.Nearby == middle, "Physical proximity focuses middle stock");
@@ -98,6 +107,16 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(0.3f); yield return Capture("recruited-ally-arrival");
             owner.SetPresentationMoveTarget(Vector2.zero); yield return new WaitForSecondsRealtime(0.9f); yield return Capture("recruited-ally-walking");
             Check(FindObjectsByType<ShopRarityGlow>().Any(glow => glow.name == "RecruitedAllyRarity"), "Purchased rare ally carries aura while walking");
+            foreach (UnitVisual visual in FindObjectsByType<UnitVisual>().Where(candidate => candidate.State != null && candidate.State.Faction == Faction.Companion))
+            {
+                SpriteRenderer weapon = visual.WeaponRenderer;
+                if (weapon.sprite == null || visual.State.Definition.Weapon.Kind == WeaponKind.Contact) continue;
+                Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
+                Vector3 scale = weapon.transform.localScale;
+                float longest = Mathf.Max(ink.width * scale.x, ink.height * scale.y);
+                bool melee = visual.State.Definition.Weapon.Kind == WeaponKind.Melee;
+                Check(longest >= K8Motion.BodyHeight(visual.State) * (melee ? 1.05f : 0.65f) - 0.001f, "Actual ally weapon avoids undersized painted silhouette");
+            }
             WorldShop.Station reroll = owner.Shop.Stations.First(station => station.Action == "REROLL");
             owner.SetPresentationMoveTarget(reroll.Position); yield return new WaitForSecondsRealtime(2.5f);
             Check(owner.Shop.Interact(), "Physical reroll commits");

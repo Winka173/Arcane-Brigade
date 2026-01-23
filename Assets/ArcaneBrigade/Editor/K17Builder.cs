@@ -255,7 +255,8 @@ namespace ArcaneBrigade.Editor
                 session.State.Wave = 20;
                 combat = session.PrepareCombat();
                 Require(combat.Boss != null && combat.Boss.BodyHeight > catalog.Bosses.First(boss => boss.Id == combat.Boss.Id).BodyHeight, "Boss visibly enlarged");
-                Require(combat.MeleeEnemy.Health >= catalog.Enemies[19 % catalog.Enemies.Length].Health * 15, "Late health at least x15");
+                float lateHealth = combat.MeleeEnemy.Health / catalog.Enemies[19 % catalog.Enemies.Length].Health;
+                Require(lateHealth >= 10 && lateHealth <= 15, "Rebalanced late health grows gradually to x10-x15");
                 Require(combat.MeleeEnemy.Speed < catalog.Enemies[19 % catalog.Enemies.Length].Speed * 2.8f, "Speed remains readable");
                 session.State.Wave = 1; combat = session.PrepareCombat();
                 Require(combat.EnemyPool.All(unit => unit.Weapon.Kind == WeaponKind.Contact), "No first-wave projectile enemies");

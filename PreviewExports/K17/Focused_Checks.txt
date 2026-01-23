@@ -53,7 +53,7 @@ PASS Insufficient gold does not refresh
 PASS Rare bonus survives stat compilation
 PASS No repeated rarity stacking
 PASS Boss visibly enlarged
-PASS Late health at least x15
+PASS Rebalanced late health grows gradually to x10-x15
 PASS Speed remains readable
 PASS No first-wave projectile enemies
 PASS Safe hostile velocity Straight/0

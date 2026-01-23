@@ -1,0 +1,12 @@
+Ink bounds baked: 253 sprites
+Focused ink / weapon / 30-wave checks: 259 passes
+Shop / carpet checks: 2247 passes
+Existing regression suites: passed
+Native Windows 3840x2160: 762 passes / 0 failures
+Reduced Motion Windows 3840x2160: 704 passes / 0 failures
+Final Windows build: Succeeded / 0 errors / 0 warnings / 652532693 bytes
+Runtime assembly SHA256: EF233D46D1B609E82F9CF4277CC58C562B293D1DE4A484429BA6F48C6EAC1E82
+Protected spawn fixture, 10 seconds, waves 3/5/20: 8/11/31 enemies
+Campaign seed 171077, ten heroes: 5 victories / 5 defeats / 0 timeouts
+Campaign is bot observation, not human difficulty approval.
+No overall UI redesign or audio-asset replacement.

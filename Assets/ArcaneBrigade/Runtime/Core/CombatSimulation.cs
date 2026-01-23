@@ -388,13 +388,13 @@ namespace ArcaneBrigade
             int enemyCount = 0;
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             if (enemyCount >= catalog.EnemyBudget) return;
-            int batch = catalog.RunWave >= 5 ? 3 : catalog.RunWave == 4 ? 2 : 1;
+            int batch = 1;
             Vector2 packAnchor = Vector2.zero;
             bool packStarted = false;
             for (int member = 0; member < batch && enemyCount + member < catalog.EnemyBudget; member++)
             {
                 Vector2 half = catalog.ArenaSize * 0.5f - Vector2.one * 0.4f;
-                if (catalog.RunWave >= 4) half = Vector2.Min(half, new Vector2(9, 5.6f));
+                if (catalog.RunWave >= 4) half = Vector2.Lerp(half, Vector2.Min(half, new Vector2(9, 5.6f)), Mathf.Clamp01((catalog.RunWave - 3) / 7f));
                 Vector2 position = Vector2.zero;
                 bool found = false;
                 for (int attempt = 0; attempt < 12; attempt++)
