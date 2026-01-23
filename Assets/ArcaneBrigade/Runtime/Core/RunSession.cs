@@ -586,6 +586,7 @@ namespace ArcaneBrigade
 
         public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave);
         public float SpecialStagePriceFactor => 1 + 0.08f * Mathf.Max(0, State.Wave - 1);
+        public float CompanionOfferChance => State.NewRecruitsThisWave >= 3 ? 0 : State.NewRecruitsThisWave >= 2 ? 0.15f : 1;
 
         private void RollShop(bool rollSpecial = false)
         {
@@ -600,9 +601,10 @@ namespace ArcaneBrigade
             {
                 bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
                 var available = units.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id) || newRecruit);
+                if (available.Count == 0 && State.NewRecruitsThisWave < 2) available = units;
                 var mergeReady = available.FindAll(unit => State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
                 if (mergeReady.Count > 0 && Next(ref State.ShopRandom, 100) < 85) available = mergeReady;
-                bool recruit = available.Count > 0 && (items.Count == 0 || index == 0);
+                bool recruit = available.Count > 0 && (items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
                 int choice = recruit ? Next(ref State.ShopRandom, available.Count) : WeightedItem(items);
                 int basePrice = Mathf.CeilToInt((recruit ? available[choice].Price : items[choice].Price * (1 + (int)items[choice].Rarity * 0.4f)) * StagePriceFactor);
                 float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
@@ -633,7 +635,8 @@ namespace ArcaneBrigade
             {
                 var recruits = specialUnits.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id));
                 if (Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
-                if (index == 0 && recruits.Count > 0)
+                if (recruits.Count == 0 && State.NewRecruitsThisWave < 2) recruits = specialUnits;
+                if (index == 0 && recruits.Count > 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000)
                 {
                     UnitDefinition recruit = recruits[Next(ref State.ShopRandom, recruits.Count)];
                     State.SpecialOffers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = OfferKind.Companion, Id = recruit.Id, Price = Mathf.CeilToInt(4 * SpecialStagePriceFactor), Currency = ShopCurrency.Eggs });

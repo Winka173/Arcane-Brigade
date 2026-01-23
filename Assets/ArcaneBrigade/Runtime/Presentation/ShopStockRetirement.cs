@@ -10,7 +10,7 @@ namespace ArcaneBrigade
         private Vector3 origin;
         private Vector3 scale;
         private float started;
-        public static void Play(ArenaController controller, SpriteRenderer source)
+        public static void Play(ArenaController controller, SpriteRenderer source, ItemRarity rarity = ItemRarity.Common)
         {
             if (source == null || source.sprite == null || controller.Profile != null && controller.Profile.ReducedMotion) return;
             var child = new GameObject("RetiringStock"); child.transform.SetParent(controller.transform, true);
@@ -18,6 +18,11 @@ namespace ArcaneBrigade
             SpriteRenderer renderer = child.AddComponent<SpriteRenderer>(); renderer.sprite = source.sprite; renderer.color = source.color; renderer.sortingOrder = source.sortingOrder;
             ShopStockRetirement motion = child.AddComponent<ShopStockRetirement>(); motion.owner = controller; motion.view = renderer; motion.origin = child.transform.position; motion.scale = child.transform.localScale; motion.started = controller.PresentationClock;
             motion.shadow = child.AddComponent<GroundShadow>();
+            if (rarity != ItemRarity.Common)
+            {
+                var glow = new GameObject("RetiringStockRarity"); glow.transform.SetParent(controller.transform, false);
+                glow.AddComponent<ShopRarityGlow>().Configure(rarity, controller, 0, renderer);
+            }
         }
         private void Update()
         {

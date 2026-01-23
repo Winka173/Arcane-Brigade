@@ -1,0 +1,208 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Rarity follows merchandise: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Rarity follows merchandise: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Rarity follows merchandise: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Aura stays behind merchandise: shop-arrival-early
+PASS Hidden merchandise has no orphan aura: shop-arrival-early
+PASS Rarity follows merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Rarity follows merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Hidden merchandise has no orphan aura: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Hidden merchandise has no orphan aura: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Hidden merchandise has no orphan aura: carpet-left-to-right
+PASS Rarity follows merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Aura stays behind merchandise: carpet-left-to-right
+PASS Rarity follows merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Rarity follows merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Rarity follows merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Aura stays behind merchandise: shop-arrival-curl
+PASS Rarity follows merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Rarity follows merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Rarity follows merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Aura stays behind merchandise: shop-ready
+PASS Rare, gold and rare-companion auras exist in actual shop
+PASS Three authored animated pedestals render in actual shop
+PASS Normal shop has three stock choices and no unusable recipe clutter
+PASS Stock body stays below merchant 1
+PASS Pedestal cannot paint over merchandise 1
+PASS Merchandise sits above pedestal body 1
+PASS Stock body stays below merchant 2
+PASS Pedestal cannot paint over merchandise 2
+PASS Merchandise sits above pedestal body 2
+PASS Stock body stays below merchant 3
+PASS Pedestal cannot paint over merchandise 3
+PASS Merchandise sits above pedestal body 3
+PASS Carpet preserves illustrated aspect ratio without stretching
+PASS Physical proximity focuses middle stock
+PASS Rarity follows merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Rarity follows merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Rarity follows merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Aura stays behind merchandise: shop-focus-gold
+PASS Item purchase commits through normal interaction
+PASS Rarity follows merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Rarity follows merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Rarity follows merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Aura stays behind merchandise: purchased-item-flight
+PASS Purchased item appears in inventory
+PASS Rare ally purchase commits
+PASS Rarity follows merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Hidden merchandise has no orphan aura: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Hidden merchandise has no orphan aura: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Hidden merchandise has no orphan aura: recruited-ally-arrival
+PASS Rarity follows merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Rarity follows merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Aura stays behind merchandise: recruited-ally-arrival
+PASS Rarity follows merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Hidden merchandise has no orphan aura: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Hidden merchandise has no orphan aura: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Hidden merchandise has no orphan aura: recruited-ally-walking
+PASS Rarity follows merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Rarity follows merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Aura stays behind merchandise: recruited-ally-walking
+PASS Purchased rare ally carries aura while walking
+PASS Physical reroll commits
+PASS Rarity follows merchandise: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Hidden merchandise has no orphan aura: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Hidden merchandise has no orphan aura: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Hidden merchandise has no orphan aura: rarity-reroll-retirement
+PASS Rarity follows merchandise: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Rarity follows merchandise: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Hidden merchandise has no orphan aura: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Hidden merchandise has no orphan aura: rarity-reroll-retirement
+PASS Aura stays behind merchandise: rarity-reroll-retirement
+PASS Hidden merchandise has no orphan aura: rarity-reroll-retirement
+PASS Retired stock aura disappears with stock
+PASS Physical downward exit starts choreography
+PASS Rarity follows merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Hidden merchandise has no orphan aura: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Hidden merchandise has no orphan aura: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Hidden merchandise has no orphan aura: shop-exit
+PASS Rarity follows merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Rarity follows merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Aura stays behind merchandise: shop-exit
+PASS Rarity follows merchandise: courier-pickup
+PASS Aura stays behind merchandise: courier-pickup
+PASS Hidden merchandise has no orphan aura: courier-pickup
+PASS Aura stays behind merchandise: courier-pickup
+PASS Hidden merchandise has no orphan aura: courier-pickup
+PASS Aura stays behind merchandise: courier-pickup
+PASS Hidden merchandise has no orphan aura: courier-pickup
+PASS Rarity follows merchandise: courier-pickup
+PASS Aura stays behind merchandise: courier-pickup
+PASS Aura stays behind merchandise: courier-pickup
+PASS Aura stays behind merchandise: courier-pickup
+PASS Rarity follows merchandise: courier-flight
+PASS Aura stays behind merchandise: courier-flight
+PASS Hidden merchandise has no orphan aura: courier-flight
+PASS Aura stays behind merchandise: courier-flight
+PASS Hidden merchandise has no orphan aura: courier-flight
+PASS Aura stays behind merchandise: courier-flight
+PASS Hidden merchandise has no orphan aura: courier-flight
+PASS Rarity follows merchandise: courier-flight
+PASS Aura stays behind merchandise: courier-flight
+PASS Aura stays behind merchandise: courier-flight
+PASS Aura stays behind merchandise: courier-flight
+PASS Camera follows passenger during flight
+PASS Rarity follows merchandise: new-map-combat
+PASS Aura stays behind merchandise: new-map-combat
+PASS Aura stays behind merchandise: new-map-combat
+PASS Aura stays behind merchandise: new-map-combat
+PASS Rarity follows merchandise: new-map-combat
+PASS Aura stays behind merchandise: new-map-combat
+PASS Hidden merchandise has no orphan aura: new-map-combat
+PASS Aura stays behind merchandise: new-map-combat
+PASS Hidden merchandise has no orphan aura: new-map-combat
+PASS Aura stays behind merchandise: new-map-combat
+PASS Hidden merchandise has no orphan aura: new-map-combat
+PASS Map transfer completes and next combat starts
+PASS Same loaded scene throughout shop, exit and map transfer
+PASS Different painted map material finishes dissolving
+Seeded presentation fixture; screenshots and runtime invariants are not human animation/audio approval.
+PASS No runtime errors in shop and seamless transport

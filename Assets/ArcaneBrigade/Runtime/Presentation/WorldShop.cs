@@ -164,7 +164,7 @@ namespace ArcaneBrigade
                     CheckpointAudio.PlayInterfaceId(station.Currency == ShopCurrency.Gold ? "shop.buy.gold" : "shop.buy.dream");
                     PlayBondUnlocks(before);
                     if (station.Offer.Kind == OfferKind.Companion) owner.PlayCommittedArrival(before, position);
-                    else ItemPickup.Play(icon, position + Vector2.up * 0.35f);
+                    else ItemPickup.Play(icon, position + Vector2.up * 0.9f, owner.Content.Item(station.Offer.Id).Rarity);
                     Reveal.EnqueueCommitted(before, owner.Session.State, true, position, false);
                 }
             }
@@ -185,7 +185,8 @@ namespace ArcaneBrigade
                 if (completed)
                 {
                     foreach (Station old in stations)
-                        if (old.Offer != null && !old.Offer.Sold && old.Actor != null) ShopStockRetirement.Play(owner, old.Actor.GetComponent<SpriteRenderer>());
+                        if (old.Offer != null && !old.Offer.Sold && old.Actor != null)
+                            ShopStockRetirement.Play(owner, old.Actor.View, old.Offer.Kind == OfferKind.Item ? owner.Content.Item(old.Offer.Id).Rarity : owner.Content.Unit(old.Offer.Id).Rarity);
                     arrivingStock = true;
                 }
             }
@@ -286,7 +287,7 @@ namespace ArcaneBrigade
                 string name = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).DisplayName : catalog.Item(offer.Id).Name;
                 Sprite icon = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
                 Sprite[] frames = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).AnimationFrames : null;
-                float stockRow = Mathf.Min(-1.1f, MerchantCenter.y - MerchantHeight * 0.5f - 1.75f);
+                float stockRow = Mathf.Min(-1.1f, MerchantCenter.y - MerchantHeight * 0.5f - 2.05f);
                 Station station = AddStation(new Vector2((index - 1) * 3.2f, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
@@ -306,8 +307,8 @@ namespace ArcaneBrigade
                 ItemRarity offerRarity = offer.Kind == OfferKind.Item ? catalog.Item(offer.Id).Rarity : catalog.Unit(offer.Id).Rarity;
                 if (!offer.Sold && offerRarity != ItemRarity.Common)
                 {
-                    var glow = new GameObject("ItemRarityAura"); glow.transform.SetParent(station.Marker, false); glow.transform.localPosition = new Vector2(0, 0.4f);
-                    glow.AddComponent<ShopRarityGlow>().Configure(offerRarity, owner, index * 1.1f);
+                    var glow = new GameObject("ItemRarityAura"); glow.transform.SetParent(station.Marker, false);
+                    glow.AddComponent<ShopRarityGlow>().Configure(offerRarity, owner, index * 1.1f, station.Actor.View);
                 }
                 if (offer.Sold)
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
@@ -425,6 +426,7 @@ namespace ArcaneBrigade
                 else AddActor(marker.transform, art.ShopFixtures[Special ? 1 : 0], null, new Vector2(0, -0.1f), 0.85f, 0).enabled = false;
             }
             ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
+            if (pedestal && actor != null) actor.MountMerchandise();
             if (!pedestal && actor != null) actor.SetFloorFixture();
             ShopFloorShadow.Create(marker.transform, new Vector2(0, pedestal ? -0.48f : action == "NEXT HALL" ? -0.72f : -0.56f), pedestal ? 1.55f : 1.65f, 0.7f);
             var station = new Station { Position = position, Action = action, Marker = marker.transform, Icon = sprite, Actor = actor, Renderers = marker.GetComponentsInChildren<SpriteRenderer>() };

@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
+    [DefaultExecutionOrder(500)]
     public sealed class ShopRarityGlow : MonoBehaviour
     {
         private static Sprite radial;
@@ -13,8 +14,11 @@ namespace ArcaneBrigade
         private float strength;
         private readonly LineRenderer[] rays = new LineRenderer[8];
         private Material rayMaterial;
-        public void Configure(ItemRarity rarity, ArenaController controller, float offset)
+        private SpriteRenderer target;
+        public SpriteRenderer Target => target;
+        public void Configure(ItemRarity rarity, ArenaController controller, float offset, SpriteRenderer merchandise)
         {
+            target = merchandise;
             owner = controller; phase = offset; tint = RunModifierRules.RarityColor(rarity);
             strength = rarity == ItemRarity.Mythic ? 1.4f : rarity == ItemRarity.Rare ? 1.15f : 0.8f;
             rayMaterial = new Material(Shader.Find("Sprites/Default"));
@@ -44,15 +48,19 @@ namespace ArcaneBrigade
                 lights[index] = child.AddComponent<SpriteRenderer>(); lights[index].sprite = radial; lights[index].sortingOrder = 309 + index;
             }
         }
-        private void Update()
+        private void LateUpdate()
         {
+            if (target == null) { Destroy(gameObject); return; }
+            transform.position = target.bounds.center;
+            float visibility = target.enabled && target.gameObject.activeInHierarchy ? target.color.a : 0;
             if (owner == null || owner.Simulation.Phase == RunPhase.Paused) return;
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             float time = owner.Simulation.VisualElapsed + phase;
             float pulse = reduced ? 1 : 0.88f + Mathf.Sin(time * 2.6f) * 0.12f;
             for (int index = 0; index < lights.Length; index++)
             {
-                lights[index].color = new Color(tint.r, tint.g, tint.b, (index == 0 ? 0.85f : 0.5f) * pulse);
+                lights[index].sortingOrder = target.sortingOrder - 4 + index;
+                lights[index].color = new Color(tint.r, tint.g, tint.b, (index == 0 ? 0.85f : 0.5f) * pulse * visibility);
                 lights[index].transform.localScale = (index == 0 ? new Vector3(2.1f, 1.5f, 1) * pulse : new Vector3(0.42f, 2.2f, 1)) * strength;
                 lights[index].transform.localPosition = index == 0 ? Vector3.zero : new Vector3(index == 1 ? -0.2f : 0.2f, 0.38f, 0);
                 lights[index].transform.localRotation = Quaternion.Euler(0, 0, index == 0 ? 0 : (index == 1 ? -1 : 1) * (16 + (reduced ? 0 : Mathf.Sin(time * 1.4f) * 8)));
@@ -63,8 +71,9 @@ namespace ArcaneBrigade
                 Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                 rays[index].SetPosition(0, direction * 0.28f);
                 rays[index].SetPosition(1, direction * (0.62f + strength * 0.26f) * pulse);
-                rays[index].startColor = new Color(tint.r, tint.g, tint.b, 0.72f);
-                rays[index].endColor = new Color(tint.r, tint.g, tint.b, 0.12f);
+                rays[index].sortingOrder = target.sortingOrder - 1;
+                rays[index].startColor = new Color(tint.r, tint.g, tint.b, 0.72f * visibility);
+                rays[index].endColor = new Color(tint.r, tint.g, tint.b, 0.12f * visibility);
             }
         }
         private void OnDestroy() { if (rayMaterial != null) Destroy(rayMaterial); }

@@ -395,7 +395,15 @@ namespace ArcaneBrigade
                 UnitState unit = visual.State;
                 if (unit.Faction != Faction.Companion) continue;
                 bool existed = before.Roster.Exists(entry => entry.UnitId == unit.Definition.Id && entry.WeaponId == unit.Definition.Weapon.Id && entry.Tier == unit.Definition.CombatTier);
-                if (!existed) visual.BeginArrival(origin);
+                if (!existed)
+                {
+                    visual.BeginArrival(origin);
+                    if (unit.Definition.Rarity != ItemRarity.Common)
+                    {
+                        var glow = new GameObject("RecruitedAllyRarity"); glow.transform.SetParent(visual.transform.parent, false);
+                        glow.AddComponent<ShopRarityGlow>().Configure(unit.Definition.Rarity, this, 0, visual.BodyRenderer);
+                    }
+                }
             }
         }
         public bool RerollShop() => Transaction("Reroll stock", () => session.Reroll(), 21);

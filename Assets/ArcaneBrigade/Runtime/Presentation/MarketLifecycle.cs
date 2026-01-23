@@ -50,9 +50,9 @@ namespace ArcaneBrigade
         {
             if (owner == null || owner.Simulation == null) return;
             float elapsed = owner.PresentationClock - started;
-            float progress = MarketMotion.Progress(elapsed, departing ? MarketMotion.CarpetDepartureDelay : 0, departing ? 0.75f : 0.9f);
+            float progress = MarketMotion.Progress(elapsed, departing ? MarketMotion.CarpetDepartureDelay : 0, departing ? 0.75f : 1.25f);
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
-            if (carpet != null) carpet.Display(reduced ? 1 : Mathf.SmoothStep(0, 1, departing ? 1 - progress : progress), departing ? 1 - progress : 1);
+            if (carpet != null) carpet.Display(reduced ? 1 : Mathf.SmoothStep(0, 1, departing ? 1 - progress : progress), departing ? reduced ? 1 - progress : progress >= 1 ? 0 : 1 : 1);
             for (int index = 0; index < floorDecor.Length; index++)
             {
                 if (floorDecor[index] == null) continue;

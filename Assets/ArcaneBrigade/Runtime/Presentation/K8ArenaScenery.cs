@@ -58,10 +58,10 @@ namespace ArcaneBrigade
             PaintedAnimationLibrary art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             if (art != null && art.MarketDecor != null && art.MarketDecor.Length >= 4)
             {
-                var rug = new GameObject("PaintedMarketRug"); rug.transform.SetParent(parent, false); rug.transform.localPosition = new Vector2(0, -0.15f);
+                var rug = new GameObject("PaintedMarketRug"); rug.transform.SetParent(parent, false); rug.transform.localPosition = new Vector2(0, -0.8f);
                 SpriteRenderer renderer = rug.AddComponent<SpriteRenderer>(); renderer.sprite = art.MarketRugs != null && art.MarketRugs.Length == 2 ? art.MarketRugs[special ? 1 : 0] : art.MarketDecor[special ? 1 : 0]; renderer.sortingOrder = -77;
                 float clothScale = 10.5f / renderer.sprite.bounds.size.x;
-                rug.transform.localScale = new Vector3(clothScale, clothScale * 2.3f, 1);
+                rug.transform.localScale = new Vector3(clothScale, clothScale, 1);
                 var garland = new GameObject("MarketPennants"); garland.transform.SetParent(parent, false); garland.transform.localPosition = new Vector2(0, 4.65f);
                 SpriteRenderer flags = garland.AddComponent<SpriteRenderer>(); flags.sprite = art.MarketDecor[special ? 3 : 2]; flags.sortingOrder = 300;
                 garland.transform.localScale = Vector3.one * (3.7f / flags.sprite.bounds.size.x);

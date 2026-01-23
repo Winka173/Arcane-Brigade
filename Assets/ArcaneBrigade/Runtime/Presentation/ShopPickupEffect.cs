@@ -5,13 +5,13 @@ namespace ArcaneBrigade
 {
     public sealed class ShopPickupEffect : MonoBehaviour
     {
-        private sealed class Flight { public SpriteRenderer View; public GroundShadow Shadow; public Vector2 Origin; public float Age = 2; }
+        private sealed class Flight { public SpriteRenderer View; public GroundShadow Shadow; public ShopRarityGlow Glow; public Vector2 Origin; public float Age = 2; }
         private readonly List<Flight> flights = new List<Flight>();
         private ArenaController owner;
         public int CompletedCount { get; private set; }
         public int ActiveCount { get { int count = 0; foreach (Flight flight in flights) if (flight.Age < 0.85f) count++; return count; } }
         public void Configure(ArenaController controller) { owner = controller; }
-        public void Play(Sprite sprite, Vector2 origin)
+        public void Play(Sprite sprite, Vector2 origin, ItemRarity rarity = ItemRarity.Common)
         {
             if (sprite == null) return;
             Flight flight = flights.Find(candidate => candidate.Age >= 0.85f);
@@ -22,6 +22,13 @@ namespace ArcaneBrigade
                 flight.Shadow = child.AddComponent<GroundShadow>();
             }
             flight.View.sprite = sprite; flight.Origin = origin; flight.Age = 0; flight.View.enabled = true;
+            if (flight.Glow != null) Destroy(flight.Glow.gameObject);
+            if (rarity != ItemRarity.Common)
+            {
+                var glow = new GameObject("PurchasedItemRarity"); glow.transform.SetParent(transform, false);
+                flight.Glow = glow.AddComponent<ShopRarityGlow>();
+                flight.Glow.Configure(rarity, owner, 0, flight.View);
+            }
         }
         private void Update()
         {

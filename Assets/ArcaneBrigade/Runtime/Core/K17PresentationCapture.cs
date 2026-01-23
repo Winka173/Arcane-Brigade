@@ -29,6 +29,16 @@ namespace ArcaneBrigade
         private IEnumerator Capture(string name)
         {
             yield return new WaitForEndOfFrame();
+            foreach (ShopRarityGlow glow in FindObjectsByType<ShopRarityGlow>())
+            {
+                if (glow.Target == null) continue;
+                Check(Vector3.Distance(glow.transform.position, glow.Target.bounds.center) < 0.001f, "Rarity follows merchandise: " + name);
+                foreach (SpriteRenderer light in glow.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    Check(light.sortingOrder < glow.Target.sortingOrder, "Aura stays behind merchandise: " + name);
+                    if (!glow.Target.enabled || glow.Target.color.a == 0) Check(light.color.a == 0, "Hidden merchandise has no orphan aura: " + name);
+                }
+            }
             Texture2D image = ScreenCapture.CaptureScreenshotAsTexture();
             File.WriteAllBytes(Path.Combine(root, name + ".png"), image.EncodeToPNG()); Destroy(image);
         }
@@ -56,23 +66,48 @@ namespace ArcaneBrigade
             owner = FindAnyObjectByType<ArenaController>();
             var scene = SceneManager.GetActiveScene().handle;
             yield return new WaitForSecondsRealtime(0.15f); yield return Capture("shop-arrival-early");
-            yield return new WaitForSecondsRealtime(0.6f); yield return Capture("shop-arrival-curl");
+            yield return new WaitForSecondsRealtime(0.3f); yield return Capture("carpet-left-to-right");
+            yield return new WaitForSecondsRealtime(0.3f); yield return Capture("shop-arrival-curl");
             yield return new WaitForSecondsRealtime(1.3f); yield return Capture("shop-ready");
             Check(FindObjectsByType<ShopRarityGlow>().Length >= 3, "Rare, gold and rare-companion auras exist in actual shop");
             Check(FindObjectsByType<ShopDisplayActor>().Count(actor => actor.GetComponent<SpriteRenderer>()?.sprite?.texture.name == "MarketStands_v1") == 3, "Three authored animated pedestals render in actual shop");
             Check(owner.Shop.Stations.Count(station => station.Offer != null) == 3 && owner.Shop.Stations.All(station => station.Recipe == null), "Normal shop has three stock choices and no unusable recipe clutter");
             foreach (WorldShop.Station station in owner.Shop.Stations.Where(station => station.Offer != null))
+            {
                 Check(station.Actor.GetComponent<SpriteRenderer>().bounds.max.y < owner.Shop.MerchantCenter.y - owner.Shop.MerchantHeight * 0.5f, "Stock body stays below merchant " + station.Offer.Token);
+                foreach (SpriteRenderer stand in station.Marker.GetComponentsInChildren<SpriteRenderer>().Where(renderer => renderer.sprite != null && renderer.sprite.texture.name == "MarketStands_v1"))
+                {
+                    Check(station.Actor.View.sortingOrder > stand.sortingOrder, "Pedestal cannot paint over merchandise " + station.Offer.Token);
+                    Check(station.Actor.View.bounds.min.y > stand.bounds.center.y, "Merchandise sits above pedestal body " + station.Offer.Token);
+                }
+            }
+            Transform rug = GameObject.Find("PaintedMarketRug").transform;
+            Check(Mathf.Abs(rug.localScale.x - rug.localScale.y) < 0.001f, "Carpet preserves illustrated aspect ratio without stretching");
             WorldShop.Station middle = owner.Shop.Stations.First(station => station.Offer != null && station.Offer.Kind == OfferKind.Item && catalog.Item(station.Offer.Id).Rarity == ItemRarity.Mythic);
             owner.SetPresentationMoveTarget(middle.Position); yield return new WaitForSecondsRealtime(1);
             Check(owner.Shop.Nearby == middle, "Physical proximity focuses middle stock");
             yield return Capture("shop-focus-gold");
             int count = owner.Session.State.Items.Sum(item => item.Count);
             Check(owner.Shop.Interact(), "Item purchase commits through normal interaction");
+            yield return new WaitForSecondsRealtime(0.3f); yield return Capture("purchased-item-flight");
             yield return new WaitForSecondsRealtime(1.7f);
             Check(owner.Session.State.Items.Sum(item => item.Count) == count + 1, "Purchased item appears in inventory");
+            WorldShop.Station ally = owner.Shop.Stations.First(station => station.Offer != null && station.Offer.Kind == OfferKind.Companion);
+            owner.SetPresentationMoveTarget(ally.Position); yield return new WaitForSecondsRealtime(1.4f);
+            Check(owner.Shop.Interact(), "Rare ally purchase commits");
+            yield return new WaitForSecondsRealtime(0.3f); yield return Capture("recruited-ally-arrival");
+            owner.SetPresentationMoveTarget(Vector2.zero); yield return new WaitForSecondsRealtime(0.9f); yield return Capture("recruited-ally-walking");
+            Check(FindObjectsByType<ShopRarityGlow>().Any(glow => glow.name == "RecruitedAllyRarity"), "Purchased rare ally carries aura while walking");
+            WorldShop.Station reroll = owner.Shop.Stations.First(station => station.Action == "REROLL");
+            owner.SetPresentationMoveTarget(reroll.Position); yield return new WaitForSecondsRealtime(2.5f);
+            Check(owner.Shop.Interact(), "Physical reroll commits");
+            yield return new WaitForSecondsRealtime(0.08f); yield return Capture("rarity-reroll-retirement");
+            if (!PresentationSettings.ReducedMotion)
+                Check(FindObjectsByType<ShopRarityGlow>().Any(glow => glow.name == "RetiringStockRarity"), "Retiring rare stock retains its moving aura");
+            yield return new WaitForSecondsRealtime(2);
+            Check(!FindObjectsByType<ShopRarityGlow>().Any(glow => glow.name == "RetiringStockRarity"), "Retired stock aura disappears with stock");
             WorldShop.Station doorway = owner.Shop.Stations.First(station => station.Action == "NEXT HALL");
-            owner.SetPresentationMoveTarget(doorway.Position); yield return new WaitForSecondsRealtime(1.3f);
+            owner.SetPresentationMoveTarget(doorway.Position); yield return new WaitForSecondsRealtime(2.5f);
             Check(owner.Shop.Interact(), "Physical downward exit starts choreography");
             owner.SetPresentationMoveTarget(Vector2.zero);
             yield return new WaitForSecondsRealtime(0.4f); yield return Capture("shop-exit");

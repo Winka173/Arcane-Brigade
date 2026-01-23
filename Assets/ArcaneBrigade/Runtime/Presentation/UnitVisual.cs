@@ -51,6 +51,7 @@ namespace ArcaneBrigade
         public bool ReducedMotion { get; set; }
         public UnitState State => state;
         public Sprite DisplayedBody => body == null ? null : body.sprite;
+        public SpriteRenderer BodyRenderer => body;
         public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;
         public static bool IsWeakspotVisible(UnitState unit, float time) => unit != null && unit.Alive && unit.Faction == Faction.Enemy && unit.ExposedUntil > time && unit.TelegraphUntil <= time;
 

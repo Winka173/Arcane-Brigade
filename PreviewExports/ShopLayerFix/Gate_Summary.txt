@@ -1,0 +1,11 @@
+Focused shop and carpet checks: 2247 passes
+Two-purchase offer fixture: 30 companion offers / 200 rerolls
+K17/K16/K15/K14/K8/K12/K11/K13/K10 regressions: passed
+Native Windows 3840x2160: 225 passes / 0 failures
+Reduced Motion Windows 3840x2160: 207 passes / 0 failures
+Final Windows build: Succeeded / 0 errors / 0 warnings / 652518484 bytes
+Runtime assembly SHA256: EBFE13853AF5688E0D346B7F2B711A905808555718689F7EAEFEDCD605800837
+Carpet: uniform scale; physical cylinder unrolls left to right; reverse departure
+Art: existing original carpet texture; no upscaling or native-4K source claim
+Audio/UI redesign: out of scope
+Native boss frame is an explicit fixture, not normal encounter or balance acceptance.
