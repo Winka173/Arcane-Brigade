@@ -31,7 +31,12 @@ namespace ArcaneBrigade
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             Color target = Color.Lerp(Palettes[theme], new Color(0.28f, 0.17f, 0.37f), owner.Shop != null && owner.Shop.Special ? 0.55f : 0);
             palette = Color.Lerp(palette, target, reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * 0.8f));
-            if (floor != null) { floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.58f); }
+            if (floor != null)
+            {
+                floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.54f);
+                floor.SetVector("_ArenaSize", owner.WorldBounds);
+                floor.SetFloat("_StageTime", reduced ? 0 : owner.PresentationClock);
+            }
         }
 
         public static void CreateMarketFloor(Transform parent, bool special)

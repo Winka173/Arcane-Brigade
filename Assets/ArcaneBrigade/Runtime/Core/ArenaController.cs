@@ -73,6 +73,8 @@ namespace ArcaneBrigade
         private bool lowHealthAudio;
         private FootstepDust footDust;
         private PaintedEffects paintedEffects;
+        private readonly CombatFeel combatFeel = new CombatFeel();
+        public Vector2 CameraAccent => combatFeel.CameraOffset;
         public CombatSimulation Simulation => simulation;
 
         public void Configure(CheckpointCatalog definition, Camera camera) { catalog = definition; arenaCamera = camera; }
@@ -141,6 +143,7 @@ namespace ArcaneBrigade
 
         private void Begin(bool preserveEffects = false)
         {
+            combatFeel.Clear();
             var positions = new Dictionary<string, Vector2>();
             Vector2? championPosition = null;
             if (preserveEffects && simulation != null)
@@ -237,6 +240,7 @@ namespace ArcaneBrigade
             if (!pauseGate.Paused && simulation.Phase != RunPhase.Paused)
             {
                 PresentationClock += Time.deltaTime;
+                combatFeel.Advance(Time.deltaTime);
                 if (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat) terminalVisualAge += Time.deltaTime;
                 if (combatFeedback != null) combatFeedback.Advance(Time.deltaTime);
                 if (arcadeEffects != null) arcadeEffects.Advance(Time.deltaTime);
@@ -268,6 +272,7 @@ namespace ArcaneBrigade
             }
             if (session != null && session.State.Phase != SessionPhase.Combat) return;
             simulation.Step(Time.fixedDeltaTime, moveIntent);
+            combatFeel.Play(simulation.Events, units, simulation.VisualElapsed);
             foreach (CombatEvent value in simulation.Events)
             {
                 if (value.Kind == CombatEventKind.Pickup && value.Value > 0 && (value.Loot == LootKind.Coin || value.Loot == LootKind.Egg)) WalletPulse = 1;
@@ -295,6 +300,8 @@ namespace ArcaneBrigade
                 session.Settle(simulation);
                 if (simulation.Phase == RunPhase.Victory)
                 {
+                    foreach (UnitVisual visual in units.Values)
+                        if (visual.State.Faction != Faction.Enemy) visual.Celebrate(simulation.VisualElapsed);
                     float restored = session.State.Health - simulation.Champion.Health;
                     simulation.Champion.Health = session.State.Health;
                     if (restored > 0 && paintedEffects != null) paintedEffects.Play(new CombatEvent(CombatEventKind.Heal, simulation.Champion.Position, Faction.Champion, restored));

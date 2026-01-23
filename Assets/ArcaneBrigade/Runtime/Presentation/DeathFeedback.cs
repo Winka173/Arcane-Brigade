@@ -126,10 +126,11 @@ namespace ArcaneBrigade
             float alpha = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.45f) / 0.5f));
             remnant.Root.position = (Vector3)(remnant.Position + remnant.Direction * (0.22f * Mathf.SmoothStep(0, 1, progress)));
             remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (kick * 0.17f * remnant.Weight - collapse * 0.09f);
-            remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(1 + collapse * 0.3f, 1 - collapse * 0.75f, 1));
+            Vector2 shape = MaterialDeathPose.Shape(remnant.Material, collapse);
+            remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(shape.x, shape.y, 1));
             float materialTilt = remnant.Material == BodyMaterial.Metal ? progress * 70 : remnant.Material == BodyMaterial.Fabric ? Mathf.Sin(progress * Mathf.PI) * 12 : kick * 14 + collapse * 25;
             remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, (remnant.Direction.x < 0 ? -1 : 1) * materialTilt);
-            remnant.Body.color = Color.Lerp(Color.white, remnant.BodyColor, Mathf.Clamp01(progress / 0.09f));
+            remnant.Body.color = PresentationSettings.ReducedFlashes ? remnant.BodyColor : Color.Lerp(Color.white, remnant.BodyColor, Mathf.Clamp01(progress / 0.09f));
             Color bodyColor = remnant.Body.color; bodyColor.a = alpha; remnant.Body.color = bodyColor;
             remnant.Shadow.transform.localScale = remnant.ShadowScale * (1 - collapse * 0.45f);
             Color shadowColor = remnant.ShadowColor; shadowColor.a *= alpha; remnant.Shadow.color = shadowColor;
@@ -140,7 +141,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < remnant.Fragments.Length; index++)
             {
                 SpriteRenderer fragment = remnant.Fragments[index];
-                fragment.enabled = progress > 0.2f && fragment.sprite != null;
+                fragment.enabled = !PresentationSettings.ReducedMotion && (!PresentationSettings.ReducedEffects || index < 2) && progress > 0.2f && fragment.sprite != null;
                 if (!fragment.enabled) continue;
                 float travel = Mathf.Clamp01((progress - 0.2f) / 0.8f);
                 float angle = index * 2.399963f + remnant.Identity * 0.7f;

@@ -1,0 +1,140 @@
+PASS Original four-family atlas imported
+PASS Four different authored frames
+PASS Fixed cell/pivot prevents frame size popping
+PASS Four different authored frames
+PASS Fixed cell/pivot prevents frame size popping
+PASS Four different authored frames
+PASS Fixed cell/pivot prevents frame size popping
+PASS Four different authored frames
+PASS Fixed cell/pivot prevents frame size popping
+PASS Spring hammer uses heavy impact
+PASS Needles use pinpoint impact
+PASS Ribbon uses cut impact
+PASS Projector uses arcane impact
+PASS Bounded weapon feel KeyCleaver
+PASS Bounded weapon feel TeapotPopgun
+PASS Bounded weapon feel UmbrellaLance
+PASS Bounded weapon feel MailboxLauncher
+PASS Bounded weapon feel BellFork
+PASS Bounded weapon feel BookPaddle
+PASS Bounded weapon feel CrescentBow
+PASS Bounded weapon feel RuneStaff
+PASS Bounded weapon feel DreamStamp
+PASS Bounded weapon feel CloudScissors
+PASS Bounded weapon feel SleepCamera
+PASS Bounded weapon feel TinFish
+PASS Bounded weapon feel DreamIron
+PASS Bounded weapon feel RubberHammer
+PASS Bounded weapon feel AlarmMortar
+PASS Bounded weapon feel MusicBox
+PASS Bounded weapon feel SpoonSabre
+PASS Bounded weapon feel ToastCleaver
+PASS Bounded weapon feel LollipopLance
+PASS Bounded weapon feel PaperFan
+PASS Bounded weapon feel CorkscrewRapier
+PASS Bounded weapon feel TeabagFlail
+PASS Bounded weapon feel UmbrellaHook
+PASS Bounded weapon feel PizzaWheel
+PASS Bounded weapon feel MoonScythe
+PASS Bounded weapon feel ForkTrident
+PASS Bounded weapon feel MaracaHammer
+PASS Bounded weapon feel TapeWhip
+PASS Bounded weapon feel ButtonBow
+PASS Bounded weapon feel LeafCrossbow
+PASS Bounded weapon feel InkPistol
+PASS Bounded weapon feel BubbleWand
+PASS Bounded weapon feel StarKazoo
+PASS Bounded weapon feel ShellCannon
+PASS Bounded weapon feel AcornSling
+PASS Bounded weapon feel CrescentBoomerang
+PASS Bounded weapon feel DartCompass
+PASS Bounded weapon feel LanternStaff
+PASS Bounded weapon feel SnowGlobeOrb
+PASS Bounded weapon feel RibbonHarp
+PASS Bounded weapon feel DreamOrbStaff
+PASS Bounded weapon feel FireExtinguisher
+PASS Bounded weapon feel PlasmaTrident
+PASS Bounded weapon feel MoonFeatherFan
+PASS Bounded weapon feel TwinSabres
+PASS Bounded weapon feel ClockCrescent
+PASS Bounded weapon feel ParasolNeedle
+PASS Bounded weapon feel StampHammer
+PASS Bounded weapon feel ClockworkYoYo
+PASS Bounded weapon feel ScrapMagnet
+PASS Bounded weapon feel NeedleSinger
+PASS Bounded weapon feel SpringKnocker
+PASS Bounded weapon feel DreamProjector
+PASS Bounded weapon feel RibbonWheel
+PASS Camera accent has a small bounded displacement
+PASS Independent reduced shake removes accents
+PASS Reduced motion also removes accents
+PASS Reduced effects caps cosmetic work
+PASS Real painted pool obeys reduced density, including reuse
+PASS Full painted pool stays bounded
+PASS Expired impact sprites return to pool
+PASS No lasting camera offset or global time-scale change
+PASS Existing version3 profiles keep new defaults
+PASS New accessibility fields survive serialization
+PASS Bounded pressure cycle wave 1
+PASS Bounded pressure cycle wave 2
+PASS Bounded pressure cycle wave 3
+PASS Bounded pressure cycle wave 4
+PASS Bounded pressure cycle wave 5
+PASS Bounded pressure cycle wave 6
+PASS Bounded pressure cycle wave 7
+PASS Bounded pressure cycle wave 8
+PASS Bounded pressure cycle wave 9
+PASS Bounded pressure cycle wave 10
+PASS Bounded pressure cycle wave 11
+PASS Bounded pressure cycle wave 12
+PASS Bounded pressure cycle wave 13
+PASS Bounded pressure cycle wave 14
+PASS Bounded pressure cycle wave 15
+PASS Bounded pressure cycle wave 16
+PASS Bounded pressure cycle wave 17
+PASS Bounded pressure cycle wave 18
+PASS Bounded pressure cycle wave 19
+PASS Bounded pressure cycle wave 20
+PASS First two waves retain introduction cadence
+PASS Higher waves have a recovery beat
+PASS Curved loot converges without overshooting 0
+PASS Curved loot converges without overshooting 1
+PASS Curved loot converges without overshooting 2
+PASS Curved loot converges without overshooting 3
+PASS Curved loot converges without overshooting 4
+PASS Curved loot converges without overshooting 5
+PASS Curved loot converges without overshooting 6
+PASS Curved loot converges without overshooting 7
+PASS Curved loot converges without overshooting 8
+PASS Curved loot converges without overshooting 9
+PASS Curved loot converges without overshooting 10
+PASS Curved loot converges without overshooting 11
+PASS Curved loot converges without overshooting 12
+PASS Curved loot converges without overshooting 13
+PASS Curved loot converges without overshooting 14
+PASS Curved loot converges without overshooting 15
+PASS Curved loot converges without overshooting 16
+PASS Curved loot converges without overshooting 17
+PASS Curved loot converges without overshooting 18
+PASS Curved loot converges without overshooting 19
+PASS Curved loot converges without overshooting 20
+PASS Curved loot converges without overshooting 21
+PASS Curved loot converges without overshooting 22
+PASS Curved loot converges without overshooting 23
+PASS Curved loot converges without overshooting 24
+PASS Curved loot converges without overshooting 25
+PASS Curved loot converges without overshooting 26
+PASS Curved loot converges without overshooting 27
+PASS Curved loot converges without overshooting 28
+PASS Curved loot converges without overshooting 29
+PASS Curved loot converges without overshooting 30
+PASS Curved loot converges without overshooting 31
+PASS Finite material death silhouette Paper
+PASS Finite material death silhouette Metal
+PASS Finite material death silhouette Wax
+PASS Finite material death silhouette Fabric
+PASS Finite material death silhouette Glass
+PASS Finite material death silhouette Wood
+PASS Wax puddle differs from folded fabric
+PASS Wave1 remains free of ranged attackers
+PASS Simulation pause still blocks movement

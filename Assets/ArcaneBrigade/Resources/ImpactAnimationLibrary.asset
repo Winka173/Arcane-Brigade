@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8793f312c9590a34b94188221fdb0c03, type: 3}
+  m_Name: ImpactAnimationLibrary
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.ImpactAnimationLibrary
+  Cut:
+  - {fileID: 6670378, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: -735425657, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 136325052, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: -621004243, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  Slam:
+  - {fileID: -1128472966, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 1198420556, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 319110902, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: -773460300, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  Pierce:
+  - {fileID: 1428315502, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 764772662, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: -664206391, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 2045365495, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  Orb:
+  - {fileID: -1703212328, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 1385152481, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: 74934481, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}
+  - {fileID: -931321, guid: 7dd5f0be97930164a95c754e095c2b0f, type: 3}

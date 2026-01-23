@@ -1,0 +1,3 @@
+E83058C236F35A720C27E465DC42D1549F13B25A8573DCE464438B855764E7AF  C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Builds\FullRun\ArcaneBrigade.exe
+C61FE79E4A5FED107D70CABEE0F9B782FB2EEDA486F000EAD5F2D5144040C912  C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Builds\FullRun\ArcaneBrigade_Data\Managed\ArcaneBrigade.Runtime.dll
+6D04F2B5AC813D27BD6AB49C29A9031ED426AEF6169498A965CE3367C81BDA2A  C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Builds\FullRun\ArcaneBrigade_Data\resources.assets

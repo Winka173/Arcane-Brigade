@@ -111,7 +111,7 @@ namespace ArcaneBrigade
                 UnitState target = owner.Simulation.AddExpandedPresentationFixture(owner.Session.CombatCatalog.MeleeEnemy, new Vector2(1.8f, 0), 10000);
                 target.Health = 10000; target.Definition.Speed = 0; target.NextAttack = target.NextContact = 1000;
                 owner.Simulation.Champion.NextAttack = 1000;
-                yield return new WaitForSecondsRealtime(0.9f); yield return Shot("08-weapon-" + arms[index]);
+                yield return new WaitForSecondsRealtime(Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k15") >= 0 ? 2.1f : 0.9f); yield return Shot("08-weapon-" + arms[index]);
                 Check(owner.Simulation.Units.Any(unit => unit.Faction == Faction.Companion && unit.Definition.Weapon.Id == arms[index]), "Native weapon body and delivery " + arms[index]);
             }
             yield return Load(catalog, storage, false); owner.TogglePause(); float time = owner.PresentationClock;

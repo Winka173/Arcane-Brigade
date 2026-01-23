@@ -129,7 +129,7 @@ namespace ArcaneBrigade
             Burst burst = bursts.Find(candidate => candidate.Age >= candidate.Duration);
             if (burst == null)
             {
-                if (bursts.Count >= 96) return;
+                if (bursts.Count >= EffectDensity.Limit(96)) return;
                 var child = new GameObject("Arcade" + shape);
                 child.transform.SetParent(transform, false);
                 var mesh = new Mesh { name = "PooledArcadeCue" };

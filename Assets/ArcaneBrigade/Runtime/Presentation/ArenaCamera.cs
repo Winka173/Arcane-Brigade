@@ -9,6 +9,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private Vector3 velocity;
         private float heightVelocity;
+        private Vector3 trackedPosition;
         private void Awake() { arenaCamera = GetComponent<Camera>(); Refresh(); }
         private void Update() { Refresh(); }
         public void Follow(ArenaController controller, bool snap = true) { owner = controller; if (snap) Snap(); }
@@ -20,6 +21,7 @@ namespace ArcaneBrigade
             Vector2 target = owner.Session.State.Phase == SessionPhase.Shop ? Vector2.zero : owner.Simulation.Champion.Position;
             Vector2 position = ClampCenter(target, owner.WorldBounds, arenaCamera.orthographicSize, 16f / 9f);
             transform.position = new Vector3(position.x, position.y, transform.position.z);
+            trackedPosition = transform.position;
             velocity = Vector3.zero;
             heightVelocity = 0;
         }
@@ -32,9 +34,11 @@ namespace ArcaneBrigade
             height = arenaCamera.orthographicSize;
             Vector2 target = owner.Session.State.Phase == SessionPhase.Shop ? Vector2.zero : owner.VisualChampionPosition;
             Vector2 center = ClampCenter(target, owner.WorldBounds, height, 16f / 9f);
-            Vector3 next = Vector3.SmoothDamp(transform.position, new Vector3(center.x, center.y, transform.position.z), ref velocity, 0.16f, Mathf.Infinity, Time.deltaTime);
+            Vector3 next = Vector3.SmoothDamp(trackedPosition, new Vector3(center.x, center.y, transform.position.z), ref velocity, 0.16f, Mathf.Infinity, Time.deltaTime);
             Vector2 clamped = ClampCenter(next, owner.WorldBounds, height, 16f / 9f);
-            transform.position = new Vector3(clamped.x, clamped.y, next.z);
+            trackedPosition = new Vector3(clamped.x, clamped.y, next.z);
+            Vector2 accented = ClampCenter(clamped + owner.CameraAccent, owner.WorldBounds, height, 16f / 9f);
+            transform.position = new Vector3(accented.x, accented.y, next.z);
         }
         public static Vector2 ClampCenter(Vector2 target, Vector2 bounds, float halfHeight, float aspect)
         {

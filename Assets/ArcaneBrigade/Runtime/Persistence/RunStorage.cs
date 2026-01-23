@@ -24,6 +24,9 @@ namespace ArcaneBrigade
         public bool ShowDamageNumbers = true;
         public bool ShowLootIndicators = true;
         public bool HighReadability;
+        public bool ReducedShake;
+        public bool ReducedFlashes;
+        public bool ReducedEffects;
         public bool TutorialSeen;
         public List<string> CompletedRuns = new List<string>();
         public List<string> SeenUnits = new List<string>();

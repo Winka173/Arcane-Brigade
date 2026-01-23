@@ -76,6 +76,14 @@ namespace ArcaneBrigade
             }
             float turn = reduced || reacting ? 0 : Mathf.Sin(time * (moving ? profile.GaitCadence * 0.6f : cadence) + state.Id) * profile.HeadTurn;
             upper.transform.localRotation = Quaternion.Euler(0, 0, turn + (pose.Lean * 0.4f + support * 4 + gesture * profile.HeadTurn * 2 + recoil * 7) * (reference.flipX ? -1 : 1));
+            if (!reduced && !reacting && state.Definition.IsBoss)
+            {
+                bool resting = state.BossRecoveryUntil > time;
+                bool enraged = state.Health < state.Definition.Health * 0.5f;
+                float acting = Mathf.Sin(time * (resting ? 2.2f : enraged ? 5 : 3) + state.Definition.BossPattern);
+                upper.transform.localPosition += Vector3.up * acting * (resting ? 0.035f : 0.018f);
+                upper.transform.localRotation *= Quaternion.Euler(0, 0, acting * (state.Definition.Motif == BossMotif.Office ? 1.5f : 3.5f));
+            }
             float gait = reduced || !moving ? 0 : Mathf.Sin(time * profile.GaitCadence * (state.TravelMode == CompanionTravelMode.Pursuit ? 1.45f : 1) + state.Id) * profile.GaitAmplitude;
             float squash = reduced ? 0 : pose.Squash * 0.4f + recoil * profile.LowerSquash - gesture * profile.LowerSquash * 0.5f;
             lower.transform.localScale = new Vector3(1 + gait + squash, 1 - gait * 0.6f - squash, 1);
@@ -85,6 +93,10 @@ namespace ArcaneBrigade
                 lower.transform.localPosition += Vector3.up * footLift;
             }
             lower.transform.localRotation = Quaternion.Euler(0, 0, state.Definition.Material == BodyMaterial.Glass || reduced ? 0 : gait * 28);
+            if (!reduced && moving && state.Definition.Material == BodyMaterial.Fabric)
+                upper.transform.localRotation *= Quaternion.Euler(0, 0, -gait * 35);
+            if (!reduced && moving && state.Definition.Material == BodyMaterial.Wax)
+                lower.transform.localScale = Vector3.Scale(lower.transform.localScale, new Vector3(1 + Mathf.Abs(gait), 1 - Mathf.Abs(gait) * 0.5f, 1));
             upper.sharedMaterial = lower.sharedMaterial = reference.sharedMaterial;
             upper.color = lower.color = reference.color;
             upper.flipX = lower.flipX = reference.flipX;

@@ -64,12 +64,12 @@ namespace ArcaneBrigade
                 if (!unit.Alive || unit.Faction == Faction.Enemy || (unit.Position - unit.PreviousPosition).sqrMagnitude < 0.00002f) continue;
                 if (nextStep.TryGetValue(unit.Id, out float at) && at > simulation.VisualElapsed) continue;
                 bool pursuit = unit.Faction == Faction.Companion && unit.TravelMode == CompanionTravelMode.Pursuit;
-                nextStep[unit.Id] = simulation.VisualElapsed + (pursuit ? 0.12f : unit.Faction == Faction.Companion ? 0.3f : 0.22f);
+                nextStep[unit.Id] = simulation.VisualElapsed + (pursuit ? 0.12f : unit.Faction == Faction.Companion ? 0.3f : 0.22f) * (PresentationSettings.ReducedEffects ? 2 : 1);
                 if (unit.Faction == Faction.Champion) CheckpointAudio.PlayWorldId("chr.step", unit.Position);
                 Puff puff = pool.Find(candidate => candidate.Age >= 0.4f);
                 if (puff == null)
                 {
-                    if (pool.Count >= 96) continue;
+                    if (pool.Count >= EffectDensity.Limit(96)) continue;
                     var child = new GameObject("FootDust"); child.transform.SetParent(transform, false);
                     puff = new Puff { View = child.AddComponent<SpriteRenderer>(), Streak = child.AddComponent<LineRenderer>() }; pool.Add(puff);
                     puff.Streak.sharedMaterial = streakMaterial; puff.Streak.positionCount = 2; puff.Streak.useWorldSpace = true;

@@ -503,7 +503,10 @@ namespace ArcaneBrigade
             ToggleOption(new Rect(645, 425, 560, 55), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
             ToggleOption(new Rect(75, 500, 540, 55), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
             ToggleOption(new Rect(645, 500, 560, 55), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
-            Label(new Rect(75, 580, 1130, 85), RunUIHints.Menu + "\nNight Office: wave 5; Paper Stage: defeat 3 different bosses. Cosmetic only; no gameplay changes.\nBe Vietnam Pro + Noto Sans Mono · SIL OFL 1.1.");
+            ToggleOption(new Rect(75, 565, 365, 44), "REDUCED SHAKE", profile.ReducedShake, value => profile.ReducedShake = value);
+            ToggleOption(new Rect(460, 565, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
+            ToggleOption(new Rect(845, 565, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
+            Label(new Rect(75, 620, 1130, 65), RunUIHints.Menu + "\nCosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
         }
 
         private void DrawVolume(float top, string caption, float value, Action<float> setter)

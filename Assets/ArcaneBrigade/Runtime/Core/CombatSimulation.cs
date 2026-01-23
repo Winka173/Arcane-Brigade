@@ -369,7 +369,7 @@ namespace ArcaneBrigade
         {
             if (catalog.Boss != null && Elapsed >= catalog.WaveDuration) return;
             if (Elapsed < nextSpawn) return;
-            nextSpawn = Elapsed + Mathf.Max(0.08f, catalog.SpawnInterval * (1f - Elapsed / catalog.WaveDuration * 0.4f));
+            nextSpawn = Elapsed + Mathf.Max(0.08f, catalog.SpawnInterval * WaveCadence.IntervalMultiplier(catalog.RunWave, Elapsed) * (1f - Elapsed / catalog.WaveDuration * 0.4f));
             int enemyCount = 0;
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             if (enemyCount >= catalog.EnemyBudget) return;
@@ -829,7 +829,7 @@ namespace ArcaneBrigade
                     if (pickup.Kind == LootKind.Coin) events.Add(new CombatEvent(CombatEventKind.LootAttract, pickup.Position, Faction.Champion, subjectId: pickup.Id, loot: pickup.Kind));
                 }
                 if (!pickup.Attracting) continue;
-                pickup.Position = Vector2.MoveTowards(pickup.Position, Champion.Position, (7f + age * 2f) * deltaTime);
+                pickup.Position = WaveCadence.Attract(pickup.Position, Champion.Position, (7f + age * 2f) * deltaTime, pickup.Id);
                 if ((pickup.Position - Champion.Position).sqrMagnitude > 0.045f) continue;
                 CombatCause pickupCause = NewCause(Champion.Id);
                 if (pickup.Kind == LootKind.Coin)

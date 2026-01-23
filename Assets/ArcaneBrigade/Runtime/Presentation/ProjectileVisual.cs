@@ -56,7 +56,7 @@ namespace ArcaneBrigade
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
             bool authored = state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
-            halo.enabled = core.enabled = magic && !authored;
+            halo.enabled = core.enabled = magic && !authored && (hostile || EffectDensity.CosmeticProjectile(state.Id));
             float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;
             if (hostile && body.sprite != null)
                 body.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, body.sprite.bounds.size.x));
@@ -69,12 +69,12 @@ namespace ArcaneBrigade
                 halo.color = hostile ? new Color(1f, 0.12f, 0.45f, 0.6f) : new Color(state.Color.r, state.Color.g, state.Color.b, 0.18f);
                 core.color = new Color(1f, 0.96f, 0.89f, 0.9f);
             }
-            streak.enabled = hostile || !PresentationSettings.ReducedMotion && (arrow || magic);
+            streak.enabled = hostile || !PresentationSettings.ReducedMotion && EffectDensity.CosmeticProjectile(state.Id) && (arrow || magic);
             streak.widthMultiplier = arrow || state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.Sewing ? 0.024f : 0.065f;
             // One danger hue for every hostile shot so it never reads like an allied ember bolt.
             Color trail = hostile ? new Color(1f, 0.16f, 0.48f) : state.Color;
             streak.startColor = new Color(trail.r, trail.g, trail.b, 0.03f);
-            streak.endColor = new Color(trail.r, trail.g, trail.b, hostile ? 0.8f : 0.65f);
+            streak.endColor = new Color(trail.r, trail.g, trail.b, hostile ? 0.8f : EffectDensity.AlliedAlpha);
             streak.SetPosition(0, position - state.Velocity.normalized * (arrow ? 0.5f : 0.24f));
             streak.SetPosition(1, position);
             ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;

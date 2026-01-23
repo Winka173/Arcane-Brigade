@@ -31,6 +31,17 @@ namespace ArcaneBrigade
         private float lastDisplayTime;
         private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
         private SpriteRenderer tierCrest;
+        private float holdUntil;
+        private float holdPose;
+        private float nextHold;
+        private float celebrateAt = -100;
+        private Material paintedMaterial;
+        public void HoldImpact(float time, float duration)
+        {
+            if (ReducedMotion || state == null || !state.Alive || time < nextHold) return;
+            holdPose = time; holdUntil = time + Mathf.Clamp(duration, 0, 0.045f); nextHold = time + 0.12f;
+        }
+        public void Celebrate(float time) { celebrateAt = time + (state.Id % 4) * 0.035f; }
         public void BeginArrival(Vector2 origin)
         {
             arrivalOrigin = origin; arrivalAge = 0; arrivalFrame = Time.frameCount;
@@ -125,6 +136,7 @@ namespace ArcaneBrigade
         public void Bind(UnitState unit, CheckpointCatalog catalog)
         {
             state = unit;
+            holdUntil = nextHold = 0; celebrateAt = -100;
             lastDisplayTime = 0;
             if (puppet == null) puppet = body.gameObject.AddComponent<BodyPuppet>();
             arrivalAge = 10;
@@ -132,6 +144,8 @@ namespace ArcaneBrigade
             if (flashProperties == null) flashProperties = new MaterialPropertyBlock();
             body.sprite = unit.Definition.Body;
             Material flash = Resources.Load<Material>("UnitFlash");
+            paintedMaterial = flash;
+            if (flash != null) weapon.sharedMaterial = hand.sharedMaterial = flash;
             if (entranceMaterial != null) { Destroy(entranceMaterial); entranceMaterial = null; }
             if (unit.Definition.IsBoss && unit.Definition.BossPattern % 2 != 0)
             {
@@ -200,6 +214,7 @@ namespace ArcaneBrigade
             if (state == null) return;
             float motionDelta = Mathf.Clamp(simulationTime - lastDisplayTime, 0, 0.05f);
             lastDisplayTime = simulationTime;
+            if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
             if (state.Definition.AnimationFrames.Length >= 4)
                 body.sprite = state.Definition.AnimationFrames[K8Motion.BodyFrame(state, simulationTime, ReducedMotion)];
             weapon.color = hand.color = Color.white;
@@ -212,6 +227,7 @@ namespace ArcaneBrigade
             if (!ReducedMotion && entrance > 0)
                 transform.position += Vector3.up * (state.Definition.BossPattern % 2 == 0 ? 6 * entrance * entrance : -state.Definition.BodyHeight * entrance);
             if (entranceMaterial != null) entranceMaterial.SetFloat("_FloorY", !ReducedMotion && entrance > 0 ? state.Position.y - state.Definition.BodyHeight * 0.5f : -10000);
+            if (entrance <= 0 && paintedMaterial != null) body.sharedMaterial = paintedMaterial;
             if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount)
             {
                 arrivalAge += motionDelta; arrivalFrame = Time.frameCount;
@@ -262,6 +278,9 @@ namespace ArcaneBrigade
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
+            float celebrationAge = simulationTime - celebrateAt;
+            float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
+            body.transform.localPosition += Vector3.up * celebrationLift;
             float personality = state.Id % 2 == 0 ? -1 : 1;
             body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
@@ -269,21 +288,23 @@ namespace ArcaneBrigade
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
             float lift = entrance > 0 ? entrance * 6 : arrivalAge < 0.405f ? Mathf.Sin(Mathf.Clamp01(arrivalAge / 0.405f) * Mathf.PI) * 0.85f : 0;
             Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f - (entrance > 0 ? transform.position.y - state.Position.y : lift));
-            grounded.Display(body.sprite, ground, height * 0.85f, lift, state.Definition.IsBoss ? 0.42f : 0.36f);
+            grounded.Display(body.sprite, ground, height * 0.85f, lift + celebrationLift + Mathf.Abs(bob), state.Definition.IsBoss ? 0.42f : 0.36f);
             if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
             if (weapon.enabled && grip.gameObject.activeSelf) groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
             else groundedWeapon.Hide();
             shadow.enabled = false;
-            body.color = ReducedMotion ? state.Definition.Tint : Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
+            body.color = ReducedMotion || PresentationSettings.ReducedFlashes ? state.Definition.Tint : Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
             body.GetPropertyBlock(flashProperties);
             // Capped, flickering flash: a target under constant fire never turns into a solid white silhouette.
             float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
-            flashProperties.SetFloat("_Flash", ReducedMotion ? 0 : flash);
+            flashProperties.SetFloat("_Flash", ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : flash);
+            SpriteLighting.Apply(body, flashProperties, state.Faction == Faction.Enemy);
             body.SetPropertyBlock(flashProperties);
-            if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion ? 0.75f : 0.5f + Mathf.Sin(simulationTime * 22f) * 0.4f);
+            if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
             if (puppet != null) puppet.Display(body, state, simulationTime, ReducedMotion);
+            flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true); weapon.SetPropertyBlock(flashProperties);
             DisplayWeakspot(simulationTime, order);
             DisplayTier(order, height);
 

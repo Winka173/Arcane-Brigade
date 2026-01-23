@@ -13,6 +13,10 @@ namespace ArcaneBrigade.Editor
         [MenuItem("Arcane Brigade/K14/Campaign diagnostics")]
         public static void Run()
         {
+            RunInto("PreviewExports/K14");
+        }
+        public static void RunInto(string directory)
+        {
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             string original = JsonUtility.ToJson(catalog);
             var rows = new List<string> { "champion,difficulty,seed,outcome,hall,kills,bosses,seconds,allies,score,endless_hall" };
@@ -61,7 +65,7 @@ namespace ArcaneBrigade.Editor
                     }
                 }
             if (original != JsonUtility.ToJson(catalog)) throw new InvalidOperationException("Balance diagnostics mutated authored catalog");
-            Directory.CreateDirectory("PreviewExports/K14"); File.WriteAllLines("PreviewExports/K14/Movement_Bot_Balance.csv", rows);
+            Directory.CreateDirectory(directory); File.WriteAllLines(Path.Combine(directory, "Movement_Bot_Balance.csv"), rows);
             foreach (UnitDefinition champion in catalog.Champions)
                 if (!rows.Any(row => row.StartsWith(champion.Id + ",0,") && row.Contains(",VICTORY,"))) throw new InvalidOperationException("No complete normal route for " + champion.Id);
             Debug.Log("K14_CAMPAIGN_DIAGNOSTICS_FINISHED " + (rows.Count - 1) + "; not human balance approval");

@@ -1,0 +1,35 @@
+K15_CHECKS_PASSED 140
+K14_CHECKS_PASSED 57
+K8_COMBAT_PASS Swept pierce resolves both victims in one step
+K8_COMBAT_PASS Pierce audio event emitted by swept continuation
+K8_COMBAT_PASS Incoming hit capped against Champion maximum HP
+K8_COMBAT_PASS Damage cap does not grant immortality at low HP
+K8_COMBAT_PASS Ricochet changes direction and hits a new victim with child attribution
+K8_COMBAT_PASS Ricochet audio event emitted without changing damage attribution
+K8_COMBAT_PASS Ricochet preserves root and owner attribution
+K8_COMBAT_PASS Wall bounce uses reflected swept segment before Fish return
+K8_COMBAT_PASS Fish wall bounce and return transition each emit their audio event
+K8_COMBAT_PASS Returning Fish cannot repeat-hit the same victim
+K8_COMBAT_PASS Returning Fish does not repeat its transition audio
+K8_COMBAT_PASS Impact creates exactly two nonrecursive owned child fragments
+K8_COMBAT_PASS Split fragments hit diverging targets without multiplying Tea fields
+K8_COMBAT_PASS Secondary projectile hits remain ineligible for root-only procs
+K8_COMBAT_PASS Enemy split keeps ownership and never damages hostile units
+K8_COMBAT_PASS Wave one blocks hostile fragments at simulation boundary
+K8_COMBAT_PASS Companion interception consumes hostile projectile before split or ricochet
+K8_COMBAT_PASS Child projectile kills cannot recursively trigger item procs
+K8_COMBAT_PASS Root projectile kill still triggers an eligible item proc once
+K8_COMBAT_PASS Wave one blocks real enemy attack and boss pattern emitters
+K8_COMBAT_PASS Wave two restores ranged fire with enemy-only speed cap
+K8_COMBAT_PASS Signature payoff increments secondary cause depth rather than resetting it
+K8_COMBAT_PASS Boss overtime stops reinforcements without granting timer victory
+K8_COMBAT_PASS Paused boss overtime remains visible and frozen for UI
+K8_COMBAT_PASS Boss death alone resolves overtime
+K8_COMBAT_PASS Focused checks leave authored catalog unchanged
+K12_CHECKS_PASSED 121
+K12_POLISH_CHECKS_PASSED 1223
+MARKET_POLISH_CHECKS_PASSED 496
+K11_FOCUSED_CHECKS_PASSED 22
+K13_CHECKS_PASSED 222
+K11_MELEE_CHECKS_PASSED 1345
+K10_FOCUSED_CHECKS_PASSED 165

@@ -26,13 +26,14 @@ namespace ArcaneBrigade
                     if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
                     if (hazard != (priority == 0)) continue;
                     if (!hazard && !carnival && (field.Kind != ExpandedFieldKind.Link || field.Radius != 0) && field.Kind != ExpandedFieldKind.Strike && field.Kind != ExpandedFieldKind.Echo) continue;
-                    if (VisibleCount >= 96) break;
+                    if (VisibleCount >= (hazard ? 96 : EffectDensity.Limit(96))) break;
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
                     bool warning = simulation.Elapsed < field.At;
                     float progress = Mathf.Clamp01((simulation.Elapsed - field.At) / Mathf.Max(0.05f, field.Until - field.At));
                     Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
-                    color.a = warning ? 0.65f + (ReducedMotion ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
+                    color.a = warning ? 0.65f + (ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
+                    if (!hazard) color.a *= EffectDensity.AlliedAlpha;
                     line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;
                     if (field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.Link && field.Radius == 0)
                     {
