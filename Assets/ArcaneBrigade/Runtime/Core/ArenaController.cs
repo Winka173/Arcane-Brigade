@@ -43,6 +43,7 @@ namespace ArcaneBrigade
             presentationMoveTarget = target;
         }
         private CheckpointAudio audioFeedback;
+        private readonly ToyboxAudioObserver toyboxAudio = new ToyboxAudioObserver();
         private CombatFeedback combatFeedback;
         private BossTelegraph bossTelegraph;
         private ArcadeEffects arcadeEffects;
@@ -299,7 +300,10 @@ namespace ArcaneBrigade
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
             if (audioFeedback != null)
+            {
                 audioFeedback.PlayBatch(simulation.Events);
+                toyboxAudio.Observe(simulation);
+            }
             if (session != null && (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat))
             {
                 session.Settle(simulation);

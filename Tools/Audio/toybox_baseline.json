@@ -1,0 +1,4652 @@
+{
+ "cues": [
+  {
+   "id": "cmb.swing.blade",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_blade_00",
+    "Sfx/cmb_swing_blade_01",
+    "Sfx/cmb_swing_blade_02",
+    "Sfx/cmb_swing_blade_03",
+    "Sfx/cmb_swing_blade_04",
+    "Sfx/cmb_swing_blade_05"
+   ]
+  },
+  {
+   "id": "cmb.swing.spear",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_spear_00",
+    "Sfx/cmb_swing_spear_01",
+    "Sfx/cmb_swing_spear_02",
+    "Sfx/cmb_swing_spear_03",
+    "Sfx/cmb_swing_spear_04"
+   ]
+  },
+  {
+   "id": "cmb.swing.hammer",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_hammer_00",
+    "Sfx/cmb_swing_hammer_01",
+    "Sfx/cmb_swing_hammer_02",
+    "Sfx/cmb_swing_hammer_03"
+   ]
+  },
+  {
+   "id": "cmb.swing.scissors",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_scissors_00",
+    "Sfx/cmb_swing_scissors_01",
+    "Sfx/cmb_swing_scissors_02",
+    "Sfx/cmb_swing_scissors_03"
+   ]
+  },
+  {
+   "id": "cmb.swing.umbrella",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_umbrella_00",
+    "Sfx/cmb_swing_umbrella_01",
+    "Sfx/cmb_swing_umbrella_02",
+    "Sfx/cmb_swing_umbrella_03"
+   ]
+  },
+  {
+   "id": "cmb.swing.whip",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -14,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_swing_whip_00",
+    "Sfx/cmb_swing_whip_01",
+    "Sfx/cmb_swing_whip_02",
+    "Sfx/cmb_swing_whip_03"
+   ]
+  },
+  {
+   "id": "cmb.windup",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_windup_00",
+    "Sfx/cmb_windup_01",
+    "Sfx/cmb_windup_02"
+   ]
+  },
+  {
+   "id": "cmb.miss",
+   "bus": "Combat",
+   "priority": 190,
+   "gainDb": -22,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_miss_00",
+    "Sfx/cmb_miss_01",
+    "Sfx/cmb_miss_02",
+    "Sfx/cmb_miss_03"
+   ]
+  },
+  {
+   "id": "cmb.hit.paper",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_paper_00",
+    "Sfx/cmb_hit_paper_01",
+    "Sfx/cmb_hit_paper_02",
+    "Sfx/cmb_hit_paper_03",
+    "Sfx/cmb_hit_paper_04",
+    "Sfx/cmb_hit_paper_05"
+   ]
+  },
+  {
+   "id": "enemy.die.paper",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_paper_00",
+    "Sfx/enemy_die_paper_01",
+    "Sfx/enemy_die_paper_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.metal",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_metal_00",
+    "Sfx/cmb_hit_metal_01",
+    "Sfx/cmb_hit_metal_02",
+    "Sfx/cmb_hit_metal_03",
+    "Sfx/cmb_hit_metal_04",
+    "Sfx/cmb_hit_metal_05"
+   ]
+  },
+  {
+   "id": "enemy.die.metal",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_metal_00",
+    "Sfx/enemy_die_metal_01",
+    "Sfx/enemy_die_metal_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.wax",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_wax_00",
+    "Sfx/cmb_hit_wax_01",
+    "Sfx/cmb_hit_wax_02",
+    "Sfx/cmb_hit_wax_03",
+    "Sfx/cmb_hit_wax_04",
+    "Sfx/cmb_hit_wax_05"
+   ]
+  },
+  {
+   "id": "enemy.die.wax",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_wax_00",
+    "Sfx/enemy_die_wax_01",
+    "Sfx/enemy_die_wax_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.fabric",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_fabric_00",
+    "Sfx/cmb_hit_fabric_01",
+    "Sfx/cmb_hit_fabric_02",
+    "Sfx/cmb_hit_fabric_03",
+    "Sfx/cmb_hit_fabric_04",
+    "Sfx/cmb_hit_fabric_05"
+   ]
+  },
+  {
+   "id": "enemy.die.fabric",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_fabric_00",
+    "Sfx/enemy_die_fabric_01",
+    "Sfx/enemy_die_fabric_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.glass",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_glass_00",
+    "Sfx/cmb_hit_glass_01",
+    "Sfx/cmb_hit_glass_02",
+    "Sfx/cmb_hit_glass_03",
+    "Sfx/cmb_hit_glass_04",
+    "Sfx/cmb_hit_glass_05"
+   ]
+  },
+  {
+   "id": "enemy.die.glass",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_glass_00",
+    "Sfx/enemy_die_glass_01",
+    "Sfx/enemy_die_glass_02"
+   ]
+  },
+  {
+   "id": "cmb.hit.wood",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -15,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_hit_wood_00",
+    "Sfx/cmb_hit_wood_01",
+    "Sfx/cmb_hit_wood_02",
+    "Sfx/cmb_hit_wood_03",
+    "Sfx/cmb_hit_wood_04",
+    "Sfx/cmb_hit_wood_05"
+   ]
+  },
+  {
+   "id": "enemy.die.wood",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.07,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_wood_00",
+    "Sfx/enemy_die_wood_01",
+    "Sfx/enemy_die_wood_02"
+   ]
+  },
+  {
+   "id": "cmb.crit",
+   "bus": "Combat",
+   "priority": 100,
+   "gainDb": -13,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/cmb_crit_00",
+    "Sfx/cmb_crit_01",
+    "Sfx/cmb_crit_02",
+    "Sfx/cmb_crit_03",
+    "Sfx/cmb_crit_04"
+   ]
+  },
+  {
+   "id": "wpn.bow.draw",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -20,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_bow_draw_00",
+    "Sfx/wpn_bow_draw_01",
+    "Sfx/wpn_bow_draw_02"
+   ]
+  },
+  {
+   "id": "wpn.bow.release",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -15,
+   "cooldown": 0.06,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_bow_release_00",
+    "Sfx/wpn_bow_release_01",
+    "Sfx/wpn_bow_release_02",
+    "Sfx/wpn_bow_release_03",
+    "Sfx/wpn_bow_release_04"
+   ]
+  },
+  {
+   "id": "wpn.gun.pop",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -15,
+   "cooldown": 0.06,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_gun_pop_00",
+    "Sfx/wpn_gun_pop_01",
+    "Sfx/wpn_gun_pop_02",
+    "Sfx/wpn_gun_pop_03"
+   ]
+  },
+  {
+   "id": "wpn.launcher",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_launcher_00",
+    "Sfx/wpn_launcher_01",
+    "Sfx/wpn_launcher_02"
+   ]
+  },
+  {
+   "id": "wpn.cast.fire",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -19,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_cast_fire_00",
+    "Sfx/wpn_cast_fire_01",
+    "Sfx/wpn_cast_fire_02",
+    "Sfx/wpn_cast_fire_03"
+   ]
+  },
+  {
+   "id": "wpn.cast.ice",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_cast_ice_00",
+    "Sfx/wpn_cast_ice_01",
+    "Sfx/wpn_cast_ice_02",
+    "Sfx/wpn_cast_ice_03"
+   ]
+  },
+  {
+   "id": "wpn.cast.arcane",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_cast_arcane_00",
+    "Sfx/wpn_cast_arcane_01",
+    "Sfx/wpn_cast_arcane_02",
+    "Sfx/wpn_cast_arcane_03"
+   ]
+  },
+  {
+   "id": "wpn.boomerang.fly",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -20,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_boomerang_fly_00",
+    "Sfx/wpn_boomerang_fly_01",
+    "Sfx/wpn_boomerang_fly_02"
+   ]
+  },
+  {
+   "id": "wpn.boomerang.return",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_boomerang_return_00",
+    "Sfx/wpn_boomerang_return_01",
+    "Sfx/wpn_boomerang_return_02"
+   ]
+  },
+  {
+   "id": "wpn.pierce",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -18,
+   "cooldown": 0.07,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_pierce_00",
+    "Sfx/wpn_pierce_01",
+    "Sfx/wpn_pierce_02",
+    "Sfx/wpn_pierce_03"
+   ]
+  },
+  {
+   "id": "wpn.split",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -18,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_split_00",
+    "Sfx/wpn_split_01",
+    "Sfx/wpn_split_02"
+   ]
+  },
+  {
+   "id": "wpn.bounce",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -19,
+   "cooldown": 0.06,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/wpn_bounce_00",
+    "Sfx/wpn_bounce_01",
+    "Sfx/wpn_bounce_02",
+    "Sfx/wpn_bounce_03"
+   ]
+  },
+  {
+   "id": "sig.bell",
+   "bus": "Combat",
+   "priority": 110,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_bell_00",
+    "Sfx/sig_bell_01",
+    "Sfx/sig_bell_02",
+    "Sfx/sig_bell_03"
+   ]
+  },
+  {
+   "id": "sig.umbrella",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -15,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_umbrella_00",
+    "Sfx/sig_umbrella_01",
+    "Sfx/sig_umbrella_02"
+   ]
+  },
+  {
+   "id": "sig.stamp",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_stamp_00",
+    "Sfx/sig_stamp_01",
+    "Sfx/sig_stamp_02"
+   ]
+  },
+  {
+   "id": "sig.scissors",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -17,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_scissors_00",
+    "Sfx/sig_scissors_01",
+    "Sfx/sig_scissors_02",
+    "Sfx/sig_scissors_03"
+   ]
+  },
+  {
+   "id": "sig.camera",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -15,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_camera_00",
+    "Sfx/sig_camera_01",
+    "Sfx/sig_camera_02"
+   ]
+  },
+  {
+   "id": "sig.musicbox",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_musicbox_00",
+    "Sfx/sig_musicbox_01",
+    "Sfx/sig_musicbox_02"
+   ]
+  },
+  {
+   "id": "sig.tea",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_tea_00",
+    "Sfx/sig_tea_01",
+    "Sfx/sig_tea_02"
+   ]
+  },
+  {
+   "id": "sig.fish",
+   "bus": "Combat",
+   "priority": 150,
+   "gainDb": -15,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_fish_00",
+    "Sfx/sig_fish_01",
+    "Sfx/sig_fish_02"
+   ]
+  },
+  {
+   "id": "sig.alarm",
+   "bus": "Combat",
+   "priority": 140,
+   "gainDb": -18,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_alarm_00",
+    "Sfx/sig_alarm_01"
+   ]
+  },
+  {
+   "id": "sig.iron",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -15,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_iron_00",
+    "Sfx/sig_iron_01",
+    "Sfx/sig_iron_02"
+   ]
+  },
+  {
+   "id": "sig.hammer",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -13,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_hammer_00",
+    "Sfx/sig_hammer_01",
+    "Sfx/sig_hammer_02"
+   ]
+  },
+  {
+   "id": "fx.burn",
+   "bus": "Combat",
+   "priority": 200,
+   "gainDb": -24,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.05,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_burn_00",
+    "Sfx/fx_burn_01",
+    "Sfx/fx_burn_02",
+    "Sfx/fx_burn_03"
+   ]
+  },
+  {
+   "id": "fx.chill",
+   "bus": "Combat",
+   "priority": 200,
+   "gainDb": -24,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_chill_00",
+    "Sfx/fx_chill_01",
+    "Sfx/fx_chill_02",
+    "Sfx/fx_chill_03"
+   ]
+  },
+  {
+   "id": "fx.knockback",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -19,
+   "cooldown": 0.08,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_knockback_00",
+    "Sfx/fx_knockback_01",
+    "Sfx/fx_knockback_02",
+    "Sfx/fx_knockback_03"
+   ]
+  },
+  {
+   "id": "fx.reaction.steam",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_reaction_steam_00",
+    "Sfx/fx_reaction_steam_01"
+   ]
+  },
+  {
+   "id": "fx.reaction.shatter",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_reaction_shatter_00",
+    "Sfx/fx_reaction_shatter_01"
+   ]
+  },
+  {
+   "id": "fx.reaction.arcane",
+   "bus": "Combat",
+   "priority": 130,
+   "gainDb": -16,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_reaction_arcane_00",
+    "Sfx/fx_reaction_arcane_01"
+   ]
+  },
+  {
+   "id": "chr.step",
+   "bus": "Foley",
+   "priority": 220,
+   "gainDb": -26,
+   "cooldown": 0.16,
+   "maxVoices": 2,
+   "pitchJitter": 0.05,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_step_00",
+    "Sfx/chr_step_01",
+    "Sfx/chr_step_02",
+    "Sfx/chr_step_03",
+    "Sfx/chr_step_04",
+    "Sfx/chr_step_05"
+   ]
+  },
+  {
+   "id": "chr.dash",
+   "bus": "Foley",
+   "priority": 190,
+   "gainDb": -20,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_dash_00",
+    "Sfx/chr_dash_01",
+    "Sfx/chr_dash_02",
+    "Sfx/chr_dash_03"
+   ]
+  },
+  {
+   "id": "chr.jump",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -22,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_jump_00",
+    "Sfx/chr_jump_01",
+    "Sfx/chr_jump_02"
+   ]
+  },
+  {
+   "id": "chr.land",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -22,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/chr_land_00",
+    "Sfx/chr_land_01",
+    "Sfx/chr_land_02"
+   ]
+  },
+  {
+   "id": "plr.dodge",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/plr_dodge_00",
+    "Sfx/plr_dodge_01",
+    "Sfx/plr_dodge_02"
+   ]
+  },
+  {
+   "id": "plr.hurt",
+   "bus": "Combat",
+   "priority": 20,
+   "gainDb": -9,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/plr_hurt_00",
+    "Sfx/plr_hurt_01",
+    "Sfx/plr_hurt_02",
+    "Sfx/plr_hurt_03",
+    "Sfx/plr_hurt_04"
+   ]
+  },
+  {
+   "id": "plr.lowhp",
+   "bus": "Combat",
+   "priority": 30,
+   "gainDb": -11,
+   "cooldown": 0.7,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/plr_lowhp_00",
+    "Sfx/plr_lowhp_01"
+   ]
+  },
+  {
+   "id": "plr.heal",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/plr_heal_00",
+    "Sfx/plr_heal_01",
+    "Sfx/plr_heal_02"
+   ]
+  },
+  {
+   "id": "plr.death",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -8,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/plr_death_00",
+    "Sfx/plr_death_01"
+   ]
+  },
+  {
+   "id": "enemy.spit.windup",
+   "bus": "Combat",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/enemy_spit_windup_00",
+    "Sfx/enemy_spit_windup_01",
+    "Sfx/enemy_spit_windup_02",
+    "Sfx/enemy_spit_windup_03"
+   ]
+  },
+  {
+   "id": "enemy.spit.fire",
+   "bus": "Combat",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.06,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/enemy_spit_fire_00",
+    "Sfx/enemy_spit_fire_01",
+    "Sfx/enemy_spit_fire_02",
+    "Sfx/enemy_spit_fire_03",
+    "Sfx/enemy_spit_fire_04"
+   ]
+  },
+  {
+   "id": "enemy.lunge",
+   "bus": "Combat",
+   "priority": 50,
+   "gainDb": -14,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/enemy_lunge_00",
+    "Sfx/enemy_lunge_01",
+    "Sfx/enemy_lunge_02",
+    "Sfx/enemy_lunge_03"
+   ]
+  },
+  {
+   "id": "enemy.hurt",
+   "bus": "Combat",
+   "priority": 170,
+   "gainDb": -20,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_hurt_00",
+    "Sfx/enemy_hurt_01",
+    "Sfx/enemy_hurt_02",
+    "Sfx/enemy_hurt_03",
+    "Sfx/enemy_hurt_04",
+    "Sfx/enemy_hurt_05"
+   ]
+  },
+  {
+   "id": "enemy.big.step",
+   "bus": "Combat",
+   "priority": 80,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_big_step_00",
+    "Sfx/enemy_big_step_01",
+    "Sfx/enemy_big_step_02"
+   ]
+  },
+  {
+   "id": "enemy.big.roar",
+   "bus": "Combat",
+   "priority": 60,
+   "gainDb": -11,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_big_roar_00",
+    "Sfx/enemy_big_roar_01",
+    "Sfx/enemy_big_roar_02"
+   ]
+  },
+  {
+   "id": "enemy.die.large",
+   "bus": "Combat",
+   "priority": 70,
+   "gainDb": -11,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_die_large_00",
+    "Sfx/enemy_die_large_01",
+    "Sfx/enemy_die_large_02"
+   ]
+  },
+  {
+   "id": "boss.enter",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_enter_00",
+    "Sfx/boss_enter_01"
+   ]
+  },
+  {
+   "id": "boss.telegraph",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_telegraph_00",
+    "Sfx/boss_telegraph_01",
+    "Sfx/boss_telegraph_02"
+   ]
+  },
+  {
+   "id": "boss.attack",
+   "bus": "Combat",
+   "priority": 10,
+   "gainDb": -9,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_attack_00",
+    "Sfx/boss_attack_01",
+    "Sfx/boss_attack_02"
+   ]
+  },
+  {
+   "id": "boss.phase",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/boss_phase_00",
+    "Sfx/boss_phase_01"
+   ]
+  },
+  {
+   "id": "boss.defeat",
+   "bus": "Combat",
+   "priority": 5,
+   "gainDb": -8,
+   "cooldown": 3.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/boss_defeat_00",
+    "Sfx/boss_defeat_01"
+   ]
+  },
+  {
+   "id": "sig.alarm.boom",
+   "bus": "Combat",
+   "priority": 120,
+   "gainDb": -12,
+   "cooldown": 0.15,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sig_alarm_boom_00",
+    "Sfx/sig_alarm_boom_01",
+    "Sfx/sig_alarm_boom_02"
+   ]
+  },
+  {
+   "id": "fx.field.zipper",
+   "bus": "Combat",
+   "priority": 160,
+   "gainDb": -20,
+   "cooldown": 0.1,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_field_zipper_00",
+    "Sfx/fx_field_zipper_01",
+    "Sfx/fx_field_zipper_02"
+   ]
+  },
+  {
+   "id": "fx.hazard.warn",
+   "bus": "Combat",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.4,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": true,
+   "clips": [
+    "Sfx/fx_hazard_warn_00",
+    "Sfx/fx_hazard_warn_01"
+   ]
+  },
+  {
+   "id": "fx.hazard.hit",
+   "bus": "Combat",
+   "priority": 60,
+   "gainDb": -12,
+   "cooldown": 0.2,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/fx_hazard_hit_00",
+    "Sfx/fx_hazard_hit_01",
+    "Sfx/fx_hazard_hit_02"
+   ]
+  },
+  {
+   "id": "enemy.mimic.wake",
+   "bus": "Combat",
+   "priority": 60,
+   "gainDb": -13,
+   "cooldown": 0.4,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/enemy_mimic_wake_00",
+    "Sfx/enemy_mimic_wake_01"
+   ]
+  },
+  {
+   "id": "hero.pulse.ember",
+   "bus": "Combat",
+   "priority": 90,
+   "gainDb": -15,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/hero_pulse_ember_00",
+    "Sfx/hero_pulse_ember_01"
+   ]
+  },
+  {
+   "id": "hero.pulse.frost",
+   "bus": "Combat",
+   "priority": 90,
+   "gainDb": -12,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/hero_pulse_frost_00",
+    "Sfx/hero_pulse_frost_01"
+   ]
+  },
+  {
+   "id": "ui.locked",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_locked_00",
+    "Sfx/ui_locked_01"
+   ]
+  },
+  {
+   "id": "ui.error",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_error_00",
+    "Sfx/ui_error_01"
+   ]
+  },
+  {
+   "id": "loot.coin.drop",
+   "bus": "Foley",
+   "priority": 190,
+   "gainDb": -22,
+   "cooldown": 0.04,
+   "maxVoices": 3,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_drop_00",
+    "Sfx/loot_coin_drop_01",
+    "Sfx/loot_coin_drop_02",
+    "Sfx/loot_coin_drop_03"
+   ]
+  },
+  {
+   "id": "loot.coin.bounce",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -25,
+   "cooldown": 0.05,
+   "maxVoices": 3,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_bounce_00",
+    "Sfx/loot_coin_bounce_01",
+    "Sfx/loot_coin_bounce_02",
+    "Sfx/loot_coin_bounce_03",
+    "Sfx/loot_coin_bounce_04"
+   ]
+  },
+  {
+   "id": "loot.coin.vacuum",
+   "bus": "Foley",
+   "priority": 200,
+   "gainDb": -27,
+   "cooldown": 0.05,
+   "maxVoices": 2,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_vacuum_00",
+    "Sfx/loot_coin_vacuum_01",
+    "Sfx/loot_coin_vacuum_02"
+   ]
+  },
+  {
+   "id": "loot.coin.pickup",
+   "bus": "Foley",
+   "priority": 160,
+   "gainDb": -19,
+   "cooldown": 0.035,
+   "maxVoices": 3,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_coin_pickup_00",
+    "Sfx/loot_coin_pickup_01",
+    "Sfx/loot_coin_pickup_02",
+    "Sfx/loot_coin_pickup_03",
+    "Sfx/loot_coin_pickup_04",
+    "Sfx/loot_coin_pickup_05"
+   ]
+  },
+  {
+   "id": "loot.egg",
+   "bus": "Foley",
+   "priority": 150,
+   "gainDb": -17,
+   "cooldown": 0.06,
+   "maxVoices": 2,
+   "pitchJitter": 0.02,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_egg_00",
+    "Sfx/loot_egg_01",
+    "Sfx/loot_egg_02",
+    "Sfx/loot_egg_03"
+   ]
+  },
+  {
+   "id": "loot.heart",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -15,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_heart_00",
+    "Sfx/loot_heart_01",
+    "Sfx/loot_heart_02"
+   ]
+  },
+  {
+   "id": "loot.chest.appear",
+   "bus": "Foley",
+   "priority": 110,
+   "gainDb": -14,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_chest_appear_00",
+    "Sfx/loot_chest_appear_01"
+   ]
+  },
+  {
+   "id": "loot.chest.open",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -13,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/loot_chest_open_00",
+    "Sfx/loot_chest_open_01",
+    "Sfx/loot_chest_open_02"
+   ]
+  },
+  {
+   "id": "up.merge",
+   "bus": "Foley",
+   "priority": 80,
+   "gainDb": -13,
+   "cooldown": 0.4,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_merge_00",
+    "Sfx/up_merge_01",
+    "Sfx/up_merge_02"
+   ]
+  },
+  {
+   "id": "up.merge.gather",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -16,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_merge_gather_00",
+    "Sfx/up_merge_gather_01",
+    "Sfx/up_merge_gather_02"
+   ]
+  },
+  {
+   "id": "up.star2",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -11,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_star2_00",
+    "Sfx/up_star2_01"
+   ]
+  },
+  {
+   "id": "up.star3",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -10,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_star3_00",
+    "Sfx/up_star3_01"
+   ]
+  },
+  {
+   "id": "up.ally.land",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -17,
+   "cooldown": 0.12,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_ally_land_00",
+    "Sfx/up_ally_land_01",
+    "Sfx/up_ally_land_02",
+    "Sfx/up_ally_land_03"
+   ]
+  },
+  {
+   "id": "up.bond.t1",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bond_t1_00",
+    "Sfx/up_bond_t1_01"
+   ]
+  },
+  {
+   "id": "up.bond.t2",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -13,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_bond_t2_00",
+    "Sfx/up_bond_t2_01"
+   ]
+  },
+  {
+   "id": "up.chain",
+   "bus": "Foley",
+   "priority": 120,
+   "gainDb": -17,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_chain_00",
+    "Sfx/up_chain_01",
+    "Sfx/up_chain_02",
+    "Sfx/up_chain_03"
+   ]
+  },
+  {
+   "id": "up.rarity.blue",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_rarity_blue_00",
+    "Sfx/up_rarity_blue_01"
+   ]
+  },
+  {
+   "id": "up.rarity.purple",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_rarity_purple_00",
+    "Sfx/up_rarity_purple_01"
+   ]
+  },
+  {
+   "id": "up.rarity.gold",
+   "bus": "Foley",
+   "priority": 100,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/up_rarity_gold_00",
+    "Sfx/up_rarity_gold_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.enter.gold",
+   "bus": "Foley",
+   "priority": 60,
+   "gainDb": -11,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_enter_gold_00",
+    "Sfx/shop_keeper_enter_gold_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.enter.dream",
+   "bus": "Foley",
+   "priority": 60,
+   "gainDb": -11,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_enter_dream_00",
+    "Sfx/shop_keeper_enter_dream_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.exit.gold",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -15,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_exit_gold_00",
+    "Sfx/shop_keeper_exit_gold_01"
+   ]
+  },
+  {
+   "id": "shop.keeper.exit.dream",
+   "bus": "Foley",
+   "priority": 70,
+   "gainDb": -15,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_keeper_exit_dream_00",
+    "Sfx/shop_keeper_exit_dream_01"
+   ]
+  },
+  {
+   "id": "shop.carpet.open",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -15,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_carpet_open_00",
+    "Sfx/shop_carpet_open_01"
+   ]
+  },
+  {
+   "id": "shop.carpet.roll",
+   "bus": "Foley",
+   "priority": 90,
+   "gainDb": -15,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_carpet_roll_00",
+    "Sfx/shop_carpet_roll_01"
+   ]
+  },
+  {
+   "id": "shop.stand.appear",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -18,
+   "cooldown": 0.07,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_stand_appear_00",
+    "Sfx/shop_stand_appear_01",
+    "Sfx/shop_stand_appear_02",
+    "Sfx/shop_stand_appear_03"
+   ]
+  },
+  {
+   "id": "shop.item.pop",
+   "bus": "Foley",
+   "priority": 130,
+   "gainDb": -18,
+   "cooldown": 0.07,
+   "maxVoices": 2,
+   "pitchJitter": 0.03,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_item_pop_00",
+    "Sfx/shop_item_pop_01",
+    "Sfx/shop_item_pop_02",
+    "Sfx/shop_item_pop_03"
+   ]
+  },
+  {
+   "id": "shop.approach",
+   "bus": "UI",
+   "priority": 80,
+   "gainDb": -20,
+   "cooldown": 0.12,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_approach_00",
+    "Sfx/shop_approach_01",
+    "Sfx/shop_approach_02",
+    "Sfx/shop_approach_03"
+   ]
+  },
+  {
+   "id": "shop.focus",
+   "bus": "UI",
+   "priority": 80,
+   "gainDb": -22,
+   "cooldown": 0.06,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_focus_00",
+    "Sfx/shop_focus_01",
+    "Sfx/shop_focus_02",
+    "Sfx/shop_focus_03"
+   ]
+  },
+  {
+   "id": "shop.buy.gold",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_buy_gold_00",
+    "Sfx/shop_buy_gold_01",
+    "Sfx/shop_buy_gold_02",
+    "Sfx/shop_buy_gold_03"
+   ]
+  },
+  {
+   "id": "shop.buy.dream",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -12,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_buy_dream_00",
+    "Sfx/shop_buy_dream_01",
+    "Sfx/shop_buy_dream_02"
+   ]
+  },
+  {
+   "id": "shop.deny.gold",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_deny_gold_00",
+    "Sfx/shop_deny_gold_01"
+   ]
+  },
+  {
+   "id": "shop.deny.egg",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_deny_egg_00",
+    "Sfx/shop_deny_egg_01"
+   ]
+  },
+  {
+   "id": "shop.deny.hp",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -14,
+   "cooldown": 0.25,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_deny_hp_00",
+    "Sfx/shop_deny_hp_01"
+   ]
+  },
+  {
+   "id": "shop.invalid",
+   "bus": "UI",
+   "priority": 60,
+   "gainDb": -19,
+   "cooldown": 0.12,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_invalid_00",
+    "Sfx/shop_invalid_01",
+    "Sfx/shop_invalid_02"
+   ]
+  },
+  {
+   "id": "shop.reroll",
+   "bus": "UI",
+   "priority": 60,
+   "gainDb": -14,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_reroll_00",
+    "Sfx/shop_reroll_01",
+    "Sfx/shop_reroll_02"
+   ]
+  },
+  {
+   "id": "shop.fusion",
+   "bus": "UI",
+   "priority": 40,
+   "gainDb": -10,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_fusion_00",
+    "Sfx/shop_fusion_01"
+   ]
+  },
+  {
+   "id": "shop.descend",
+   "bus": "UI",
+   "priority": 50,
+   "gainDb": -16,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/shop_descend_00",
+    "Sfx/shop_descend_01"
+   ]
+  },
+  {
+   "id": "ui.hover",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -24,
+   "cooldown": 0.04,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_hover_00",
+    "Sfx/ui_hover_01",
+    "Sfx/ui_hover_02",
+    "Sfx/ui_hover_03"
+   ]
+  },
+  {
+   "id": "ui.select",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -18,
+   "cooldown": 0.05,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_select_00",
+    "Sfx/ui_select_01",
+    "Sfx/ui_select_02",
+    "Sfx/ui_select_03"
+   ]
+  },
+  {
+   "id": "ui.confirm",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -15,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_confirm_00",
+    "Sfx/ui_confirm_01",
+    "Sfx/ui_confirm_02"
+   ]
+  },
+  {
+   "id": "ui.back",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_back_00",
+    "Sfx/ui_back_01",
+    "Sfx/ui_back_02"
+   ]
+  },
+  {
+   "id": "ui.open",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_open_00",
+    "Sfx/ui_open_01"
+   ]
+  },
+  {
+   "id": "ui.close",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -18,
+   "cooldown": 0.2,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_close_00",
+    "Sfx/ui_close_01"
+   ]
+  },
+  {
+   "id": "ui.page",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -22,
+   "cooldown": 0.1,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_page_00",
+    "Sfx/ui_page_01",
+    "Sfx/ui_page_02"
+   ]
+  },
+  {
+   "id": "ui.tooltip",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -26,
+   "cooldown": 0.15,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_tooltip_00",
+    "Sfx/ui_tooltip_01"
+   ]
+  },
+  {
+   "id": "ui.tab",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -21,
+   "cooldown": 0.05,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_tab_00",
+    "Sfx/ui_tab_01",
+    "Sfx/ui_tab_02"
+   ]
+  },
+  {
+   "id": "ui.pause",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_pause_00"
+   ]
+  },
+  {
+   "id": "ui.resume",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.3,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_resume_00"
+   ]
+  },
+  {
+   "id": "ui.setting",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -23,
+   "cooldown": 0.04,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_setting_00",
+    "Sfx/ui_setting_01",
+    "Sfx/ui_setting_02"
+   ]
+  },
+  {
+   "id": "ui.unlock",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -13,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_unlock_00",
+    "Sfx/ui_unlock_01"
+   ]
+  },
+  {
+   "id": "ui.achievement",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -12,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_achievement_00",
+    "Sfx/ui_achievement_01"
+   ]
+  },
+  {
+   "id": "ui.receipt",
+   "bus": "UI",
+   "priority": 64,
+   "gainDb": -17,
+   "cooldown": 0.5,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/ui_receipt_00",
+    "Sfx/ui_receipt_01"
+   ]
+  },
+  {
+   "id": "sting.waveclear",
+   "bus": "Foley",
+   "priority": 30,
+   "gainDb": -12,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sting_waveclear_00",
+    "Sfx/sting_waveclear_01"
+   ]
+  },
+  {
+   "id": "sting.victory",
+   "bus": "Foley",
+   "priority": 5,
+   "gainDb": -9,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sting_victory_00"
+   ]
+  },
+  {
+   "id": "sting.defeat",
+   "bus": "Foley",
+   "priority": 5,
+   "gainDb": -9,
+   "cooldown": 5.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Sfx/sting_defeat_00"
+   ]
+  },
+  {
+   "id": "amb.stage",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_stage_00"
+   ]
+  },
+  {
+   "id": "amb.office",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_office_00"
+   ]
+  },
+  {
+   "id": "amb.lostshop",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_lostshop_00"
+   ]
+  },
+  {
+   "id": "amb.goldshop",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_goldshop_00"
+   ]
+  },
+  {
+   "id": "amb.dreamshop",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_dreamshop_00"
+   ]
+  },
+  {
+   "id": "amb.toys",
+   "bus": "Ambience",
+   "priority": 240,
+   "gainDb": -30,
+   "cooldown": 0.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": true,
+   "danger": false,
+   "clips": [
+    "Amb/amb_toys_00"
+   ]
+  },
+  {
+   "id": "amb.transition",
+   "bus": "Ambience",
+   "priority": 200,
+   "gainDb": -20,
+   "cooldown": 1.0,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Amb/amb_transition_00",
+    "Amb/amb_transition_01"
+   ]
+  },
+  {
+   "id": "voice.gold.syl",
+   "bus": "Voice",
+   "priority": 100,
+   "gainDb": -15,
+   "cooldown": 0.09,
+   "maxVoices": 1,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_syl_00",
+    "Voice/voice_gold_syl_01",
+    "Voice/voice_gold_syl_02",
+    "Voice/voice_gold_syl_03",
+    "Voice/voice_gold_syl_04",
+    "Voice/voice_gold_syl_05",
+    "Voice/voice_gold_syl_06",
+    "Voice/voice_gold_syl_07"
+   ]
+  },
+  {
+   "id": "voice.gold.laugh",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_laugh_00",
+    "Voice/voice_gold_laugh_01"
+   ]
+  },
+  {
+   "id": "voice.gold.hmm",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_hmm_00",
+    "Voice/voice_gold_hmm_01"
+   ]
+  },
+  {
+   "id": "voice.gold.gasp",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_gasp_00",
+    "Voice/voice_gold_gasp_01"
+   ]
+  },
+  {
+   "id": "voice.gold.farewell",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_gold_farewell_00",
+    "Voice/voice_gold_farewell_01"
+   ]
+  },
+  {
+   "id": "voice.dream.syl",
+   "bus": "Voice",
+   "priority": 100,
+   "gainDb": -15,
+   "cooldown": 0.09,
+   "maxVoices": 1,
+   "pitchJitter": 0.04,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_syl_00",
+    "Voice/voice_dream_syl_01",
+    "Voice/voice_dream_syl_02",
+    "Voice/voice_dream_syl_03",
+    "Voice/voice_dream_syl_04",
+    "Voice/voice_dream_syl_05",
+    "Voice/voice_dream_syl_06",
+    "Voice/voice_dream_syl_07"
+   ]
+  },
+  {
+   "id": "voice.dream.laugh",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_laugh_00",
+    "Voice/voice_dream_laugh_01"
+   ]
+  },
+  {
+   "id": "voice.dream.hmm",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_hmm_00",
+    "Voice/voice_dream_hmm_01"
+   ]
+  },
+  {
+   "id": "voice.dream.gasp",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_gasp_00",
+    "Voice/voice_dream_gasp_01"
+   ]
+  },
+  {
+   "id": "voice.dream.farewell",
+   "bus": "Voice",
+   "priority": 90,
+   "gainDb": -14,
+   "cooldown": 0.8,
+   "maxVoices": 1,
+   "pitchJitter": 0.0,
+   "loop": false,
+   "danger": false,
+   "clips": [
+    "Voice/voice_dream_farewell_00",
+    "Voice/voice_dream_farewell_01"
+   ]
+  }
+ ],
+ "music": [
+  {
+   "id": "menu_curtain",
+   "title": "Neon Marquee",
+   "bpm": 88,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 87.272721,
+   "loopSamples": 3848727,
+   "sampleRate": 44100,
+   "scenes": [
+    "menu"
+   ],
+   "family": "stage",
+   "stems": [
+    "Music/menu_curtain/menu_curtain_base",
+    "Music/menu_curtain/menu_curtain_rhythm",
+    "Music/menu_curtain/menu_curtain_melody",
+    "Music/menu_curtain/menu_curtain_intensity"
+   ]
+  },
+  {
+   "id": "select_dressing",
+   "title": "Pick Your Crew",
+   "bpm": 96,
+   "beatsPerBar": 4,
+   "bars": 16,
+   "loopSeconds": 40.0,
+   "loopSamples": 1764000,
+   "sampleRate": 44100,
+   "scenes": [
+    "select"
+   ],
+   "family": "stage",
+   "stems": [
+    "Music/select_dressing/select_dressing_base",
+    "Music/select_dressing/select_dressing_rhythm",
+    "Music/select_dressing/select_dressing_melody",
+    "Music/select_dressing/select_dressing_intensity"
+   ]
+  },
+  {
+   "id": "combat_toys",
+   "title": "Wind-Up Riot",
+   "bpm": 120,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 64.0,
+   "loopSamples": 2822400,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_early"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/combat_toys/combat_toys_base",
+    "Music/combat_toys/combat_toys_rhythm",
+    "Music/combat_toys/combat_toys_melody",
+    "Music/combat_toys/combat_toys_intensity"
+   ]
+  },
+  {
+   "id": "combat_clockwork",
+   "title": "Gearbox Groove",
+   "bpm": 124,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 61.935488,
+   "loopSamples": 2731355,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid"
+   ],
+   "family": "workshop",
+   "stems": [
+    "Music/combat_clockwork/combat_clockwork_base",
+    "Music/combat_clockwork/combat_clockwork_rhythm",
+    "Music/combat_clockwork/combat_clockwork_melody",
+    "Music/combat_clockwork/combat_clockwork_intensity"
+   ]
+  },
+  {
+   "id": "combat_overtime",
+   "title": "Overtime Rush",
+   "bpm": 174,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 44.137937,
+   "loopSamples": 1946483,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late"
+   ],
+   "family": "office",
+   "stems": [
+    "Music/combat_overtime/combat_overtime_base",
+    "Music/combat_overtime/combat_overtime_rhythm",
+    "Music/combat_overtime/combat_overtime_melody",
+    "Music/combat_overtime/combat_overtime_intensity"
+   ]
+  },
+  {
+   "id": "boss_ringmaster",
+   "title": "Ringmaster Breakdown",
+   "bpm": 150,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 51.2,
+   "loopSamples": 2257920,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss"
+   ],
+   "family": "all",
+   "stems": [
+    "Music/boss_ringmaster/boss_ringmaster_base",
+    "Music/boss_ringmaster/boss_ringmaster_rhythm",
+    "Music/boss_ringmaster/boss_ringmaster_melody",
+    "Music/boss_ringmaster/boss_ringmaster_intensity"
+   ]
+  },
+  {
+   "id": "shop_gold",
+   "title": "Cash Rules the Carnival",
+   "bpm": 100,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 76.8,
+   "loopSamples": 3386880,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_gold"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/shop_gold/shop_gold_base",
+    "Music/shop_gold/shop_gold_rhythm",
+    "Music/shop_gold/shop_gold_melody",
+    "Music/shop_gold/shop_gold_intensity"
+   ]
+  },
+  {
+   "id": "shop_dream",
+   "title": "Velvet Daydream",
+   "bpm": 84,
+   "beatsPerBar": 3,
+   "bars": 24,
+   "loopSeconds": 51.428571,
+   "loopSamples": 2268000,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_dream"
+   ],
+   "family": "dream",
+   "stems": [
+    "Music/shop_dream/shop_dream_base",
+    "Music/shop_dream/shop_dream_rhythm",
+    "Music/shop_dream/shop_dream_melody",
+    "Music/shop_dream/shop_dream_intensity"
+   ]
+  },
+  {
+   "id": "endless_neverclose",
+   "title": "Neon Never Closes",
+   "bpm": 128,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 60.0,
+   "loopSamples": 2646000,
+   "sampleRate": 44100,
+   "scenes": [
+    "endless"
+   ],
+   "family": "all",
+   "stems": [
+    "Music/endless_neverclose/endless_neverclose_base",
+    "Music/endless_neverclose/endless_neverclose_rhythm",
+    "Music/endless_neverclose/endless_neverclose_melody",
+    "Music/endless_neverclose/endless_neverclose_intensity"
+   ]
+  },
+  {
+   "id": "combat_spoons",
+   "title": "Spoon Bandits",
+   "bpm": 116,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 66.206893,
+   "loopSamples": 2919724,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_early"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/combat_spoons/combat_spoons_base",
+    "Music/combat_spoons/combat_spoons_rhythm",
+    "Music/combat_spoons/combat_spoons_melody",
+    "Music/combat_spoons/combat_spoons_intensity"
+   ]
+  },
+  {
+   "id": "combat_carousel",
+   "title": "Carousel Heist",
+   "bpm": 124,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 61.935488,
+   "loopSamples": 2731355,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/combat_carousel/combat_carousel_base",
+    "Music/combat_carousel/combat_carousel_rhythm",
+    "Music/combat_carousel/combat_carousel_melody",
+    "Music/combat_carousel/combat_carousel_intensity"
+   ]
+  },
+  {
+   "id": "combat_lasttrain",
+   "title": "Last Train Breakbeat",
+   "bpm": 166,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 46.265057,
+   "loopSamples": 2040289,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late"
+   ],
+   "family": "office",
+   "stems": [
+    "Music/combat_lasttrain/combat_lasttrain_base",
+    "Music/combat_lasttrain/combat_lasttrain_rhythm",
+    "Music/combat_lasttrain/combat_lasttrain_melody",
+    "Music/combat_lasttrain/combat_lasttrain_intensity"
+   ]
+  },
+  {
+   "id": "boss_clown",
+   "title": "Clown Kingpin",
+   "bpm": 150,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 51.2,
+   "loopSamples": 2257920,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss"
+   ],
+   "family": "all",
+   "stems": [
+    "Music/boss_clown/boss_clown_base",
+    "Music/boss_clown/boss_clown_rhythm",
+    "Music/boss_clown/boss_clown_melody",
+    "Music/boss_clown/boss_clown_intensity"
+   ]
+  },
+  {
+   "id": "shop_layaway",
+   "title": "Layaway Lounge",
+   "bpm": 104,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 73.846145,
+   "loopSamples": 3256615,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_gold"
+   ],
+   "family": "toyroom",
+   "stems": [
+    "Music/shop_layaway/shop_layaway_base",
+    "Music/shop_layaway/shop_layaway_rhythm",
+    "Music/shop_layaway/shop_layaway_melody",
+    "Music/shop_layaway/shop_layaway_intensity"
+   ]
+  },
+  {
+   "id": "endless_encore",
+   "title": "Encore Overdrive",
+   "bpm": 138,
+   "beatsPerBar": 4,
+   "bars": 32,
+   "loopSeconds": 55.652177,
+   "loopSamples": 2454261,
+   "sampleRate": 44100,
+   "scenes": [
+    "endless"
+   ],
+   "family": "all",
+   "stems": [
+    "Music/endless_encore/endless_encore_base",
+    "Music/endless_encore/endless_encore_rhythm",
+    "Music/endless_encore/endless_encore_melody",
+    "Music/endless_encore/endless_encore_intensity"
+   ]
+  }
+ ],
+ "assets": {
+  "Sfx/cmb_swing_blade_00": {
+   "frames": 8820,
+   "sha256": "3f9a5c87ecabc8ab3992cc2345cae3a2adf6424ae7d1825769dd08e066502073"
+  },
+  "Sfx/cmb_swing_blade_01": {
+   "frames": 9261,
+   "sha256": "6ce5d5540bd1eee7d72ff08cb2c60c8967269377c0f1d10bb4ed5ad924edb24d"
+  },
+  "Sfx/cmb_swing_blade_02": {
+   "frames": 9702,
+   "sha256": "68369fc713e91981885f0bb99899dfb139739f281592bad03b411f6505534885"
+  },
+  "Sfx/cmb_swing_blade_03": {
+   "frames": 8820,
+   "sha256": "cba33fb94b9d1815dbef6e808b02ca46e6f4f86e7a65ea9116d824c7d66554ca"
+  },
+  "Sfx/cmb_swing_blade_04": {
+   "frames": 9261,
+   "sha256": "39cf8020843766eeed3fdb11e5c33a9d96d30b8d2994560a59ad44669717926b"
+  },
+  "Sfx/cmb_swing_blade_05": {
+   "frames": 9702,
+   "sha256": "ddbaa96bde726c410ffe91d2e7f5fef948adc5857be11df4dd5b373ca0e8551d"
+  },
+  "Sfx/cmb_swing_spear_00": {
+   "frames": 7056,
+   "sha256": "f49421eeff7b72828e965572ceff8348f4a364a30113164c9cdc8af58eacd9e8"
+  },
+  "Sfx/cmb_swing_spear_01": {
+   "frames": 7409,
+   "sha256": "5e6ad4c42f70613744f723458fc2db53e08ad498a4ec442ca17a8bdcd7b60589"
+  },
+  "Sfx/cmb_swing_spear_02": {
+   "frames": 7762,
+   "sha256": "56b50d2a190d2f9d806adc8990f306c0b9cae41c9733e8f9c0b967eaf7d33369"
+  },
+  "Sfx/cmb_swing_spear_03": {
+   "frames": 7056,
+   "sha256": "436eaddbbe9b7b2be285a3810e1bc0179252a591cd7122e1f852b1573ec7d015"
+  },
+  "Sfx/cmb_swing_spear_04": {
+   "frames": 7409,
+   "sha256": "14caa6c6b841af8250e9df7cfada40083d986d5882f36579d88b111285275ffa"
+  },
+  "Sfx/cmb_swing_hammer_00": {
+   "frames": 11025,
+   "sha256": "a46471898bd85ca3e97a97ea54817321c2e39d15f25eaea45b9ee495b5a99d3d"
+  },
+  "Sfx/cmb_swing_hammer_01": {
+   "frames": 11576,
+   "sha256": "7a499a61aadeab2dff26fdba3d23bb065d126081068494a31af72c061b04a67f"
+  },
+  "Sfx/cmb_swing_hammer_02": {
+   "frames": 12128,
+   "sha256": "38e38cbef9cf9bd995115fe809e7d167722d272ccf7597d9a20ced45c3adee71"
+  },
+  "Sfx/cmb_swing_hammer_03": {
+   "frames": 11025,
+   "sha256": "5a0b68e80e5c6c3c065f4b22ee406512f8e30abda34dc0430b5f35e0574d69b3"
+  },
+  "Sfx/cmb_swing_scissors_00": {
+   "frames": 5292,
+   "sha256": "a7ed715fb46bd883df1f6db586c60e7d645d0276524d6ca7e4ba12ddf9e82bc7"
+  },
+  "Sfx/cmb_swing_scissors_01": {
+   "frames": 5557,
+   "sha256": "e07edabdfe981408eebfe7b5597db70051113a11292883e40bfeba83fdf738fb"
+  },
+  "Sfx/cmb_swing_scissors_02": {
+   "frames": 5821,
+   "sha256": "f924516388333e4703bfa23613e1c9094ff7505c5aa3b6ff38e721b5ae7cce28"
+  },
+  "Sfx/cmb_swing_scissors_03": {
+   "frames": 5292,
+   "sha256": "016adefdc50bc5e7e234fa7f6c473c97c2ec053410cf83c1128fd17e3200483a"
+  },
+  "Sfx/cmb_swing_umbrella_00": {
+   "frames": 9702,
+   "sha256": "55e11951786d66f83f2a5e1ba72d754d442f40b7bb3c4e66ffbb1d5c8e1cd180"
+  },
+  "Sfx/cmb_swing_umbrella_01": {
+   "frames": 10187,
+   "sha256": "e96cc32fe8a38abe04443029d11fc7e4b346e00394c650147df87be4c632d12a"
+  },
+  "Sfx/cmb_swing_umbrella_02": {
+   "frames": 10672,
+   "sha256": "736ad0c39c3c894d0ee36a5de77c0469418369244cc96be6e0839decf301c122"
+  },
+  "Sfx/cmb_swing_umbrella_03": {
+   "frames": 9702,
+   "sha256": "535d14036ec1d183a74b616be3972ae95a7ea4f736ce25053027154fe9dc35ef"
+  },
+  "Sfx/cmb_swing_whip_00": {
+   "frames": 6615,
+   "sha256": "a6fa0a522784459032985bc775dd88c09792ada8f02c64adfea5d69165b72cd6"
+  },
+  "Sfx/cmb_swing_whip_01": {
+   "frames": 6946,
+   "sha256": "f3559424168d2309705f0dba2b435aa3498427fcd87572a718813e046e3f0f2e"
+  },
+  "Sfx/cmb_swing_whip_02": {
+   "frames": 7276,
+   "sha256": "425f2744908c87811ae56a7cede05a60464842eac7291adf39687f5bca4050c5"
+  },
+  "Sfx/cmb_swing_whip_03": {
+   "frames": 6615,
+   "sha256": "2472426a973aafc65c84c2def2aa456ee66a7d2a44c6c786e874aa317b90dcbc"
+  },
+  "Sfx/cmb_windup_00": {
+   "frames": 7497,
+   "sha256": "b4344d630bed83484de2ec9a063fd71965670ea417b0d73a8077c6d31b3bd935"
+  },
+  "Sfx/cmb_windup_01": {
+   "frames": 8379,
+   "sha256": "7f8adc0af2095b95c78969f5eaa4f86e726e20d63fecc881b4cd7dc34fb1e019"
+  },
+  "Sfx/cmb_windup_02": {
+   "frames": 9261,
+   "sha256": "916f280e64d8ec987eebab6c4e2048469c9b49a1060137348d6b3924943907fb"
+  },
+  "Sfx/cmb_miss_00": {
+   "frames": 5742,
+   "sha256": "9318ed5b7bdcf1c2f6252d6c51a74566988e9fd6dbc8276f5ae6ab6ca01b38d8"
+  },
+  "Sfx/cmb_miss_01": {
+   "frames": 4812,
+   "sha256": "175f0f17c388e8b443562ab10c5581874dfbad40ea8aff4490d6a5164fd815af"
+  },
+  "Sfx/cmb_miss_02": {
+   "frames": 5468,
+   "sha256": "1c1e7156214903790e4373c83e5c415402cbbee1b4728866ee2be91174a409a5"
+  },
+  "Sfx/cmb_miss_03": {
+   "frames": 6316,
+   "sha256": "940a449586946c5cefc46f1e83cbd2f82aa1770e4a1a47b3d48fa524c520ef9f"
+  },
+  "Sfx/cmb_hit_paper_00": {
+   "frames": 12348,
+   "sha256": "c9e6a872954b0f4016a049522e1c0f782403ecfd057f0ae7f26120a8af2480f7"
+  },
+  "Sfx/cmb_hit_paper_01": {
+   "frames": 12348,
+   "sha256": "bd84e7a7442b17576038ba43dce7418ab33ad12c867da10b9ec7906873c4ac1f"
+  },
+  "Sfx/cmb_hit_paper_02": {
+   "frames": 12348,
+   "sha256": "b0a126b314b6b297e82503644199cd5426758fcbd1c18ae1751aab902b7223db"
+  },
+  "Sfx/cmb_hit_paper_03": {
+   "frames": 12348,
+   "sha256": "3f87c27882e3900e8f023c367343627c6c0b4b369604fcd79faf89d4b6abf819"
+  },
+  "Sfx/cmb_hit_paper_04": {
+   "frames": 12348,
+   "sha256": "53d1c5b5117515eeff060b830976deb531560686a8fad0d2bc8f3809cf5a8a72"
+  },
+  "Sfx/cmb_hit_paper_05": {
+   "frames": 12348,
+   "sha256": "f7f5a4d3b4b092e3f79c1c2144b3e698a8ca996b23f2e31986e12309c79fc596"
+  },
+  "Sfx/enemy_die_paper_00": {
+   "frames": 14994,
+   "sha256": "38759f9386fec52844df98d144c088cefb5dd1268aec79922318fd300ccad071"
+  },
+  "Sfx/enemy_die_paper_01": {
+   "frames": 14994,
+   "sha256": "1fdfd5bbd6682caa4df3164045a0b60392be080683a230cb24a475f90850cd2e"
+  },
+  "Sfx/enemy_die_paper_02": {
+   "frames": 14994,
+   "sha256": "da197e5d560f4cbfbe3497707ec55fcb7bc017f6633e56bb411bbe91fe370243"
+  },
+  "Sfx/cmb_hit_metal_00": {
+   "frames": 12348,
+   "sha256": "2309ea4c141f54d07ddf8a833cf29b0de99ba441ee0fe855e5c413902f36c67b"
+  },
+  "Sfx/cmb_hit_metal_01": {
+   "frames": 12348,
+   "sha256": "939624e270fd6ff7fb4bace098c65639327a3579ce9d10708f9c49e28ae0a66f"
+  },
+  "Sfx/cmb_hit_metal_02": {
+   "frames": 12348,
+   "sha256": "7d6d5999bf9575fd2a576d38b3d4531b908dbffc9df5f70f2d7999e9a283f464"
+  },
+  "Sfx/cmb_hit_metal_03": {
+   "frames": 12348,
+   "sha256": "3915a8f47857cf86b5c3f9518589f52ddf76c542ec0cc9a53d2781c9cb71757d"
+  },
+  "Sfx/cmb_hit_metal_04": {
+   "frames": 12348,
+   "sha256": "c84d2bfd312464b649dda68e3546f69d00d0d32a1f57d01c2594623575a93961"
+  },
+  "Sfx/cmb_hit_metal_05": {
+   "frames": 12348,
+   "sha256": "5379124cd23e550c4ace6e40c29aa19398f9792b7e7a26ebe3f14a64225e58cc"
+  },
+  "Sfx/enemy_die_metal_00": {
+   "frames": 14994,
+   "sha256": "5f751faf761a0df067d1b7bff4934ae67abef15c26a67d847d0d2d75cef0cfee"
+  },
+  "Sfx/enemy_die_metal_01": {
+   "frames": 14994,
+   "sha256": "8426fa1656370f850921f611b60568a40700ef05a21f483cf3016e12064272de"
+  },
+  "Sfx/enemy_die_metal_02": {
+   "frames": 14994,
+   "sha256": "9140df7473acea053a1ce8770410b99272257225cd723454252f3935d1f64209"
+  },
+  "Sfx/cmb_hit_wax_00": {
+   "frames": 12348,
+   "sha256": "76bfaf15621ed44f4241c77ba18ee8bda5f6f4d59681b31774f38091b7886c50"
+  },
+  "Sfx/cmb_hit_wax_01": {
+   "frames": 12348,
+   "sha256": "fc6551f4013a29d186e73cd57f47914910db61ec50e34d48e81996eee2fdd24d"
+  },
+  "Sfx/cmb_hit_wax_02": {
+   "frames": 12348,
+   "sha256": "ab73dcb6755c0312aeaabfad7b3796b277a2481c37e4233deef86691b1327486"
+  },
+  "Sfx/cmb_hit_wax_03": {
+   "frames": 12348,
+   "sha256": "aea8808f8226110d8f1e7afe483d4538db53a8949425cac8269f98a143650412"
+  },
+  "Sfx/cmb_hit_wax_04": {
+   "frames": 12348,
+   "sha256": "873a52dea9dd5cf4e93cb2e9b10557091392b12ca17328aaec20bf5d9e6fdbe0"
+  },
+  "Sfx/cmb_hit_wax_05": {
+   "frames": 12348,
+   "sha256": "fe2b909c8196fa8c4864b0195edeed18740348015410c32c931b28bc556188f5"
+  },
+  "Sfx/enemy_die_wax_00": {
+   "frames": 14994,
+   "sha256": "f7696edb9c650cdcbcd84df10817d1d2baa4075ce8dff1746b21271f1438e0dd"
+  },
+  "Sfx/enemy_die_wax_01": {
+   "frames": 14994,
+   "sha256": "812ce6d34fb952a24b7e33ca2e2ae8588260015fd8c4eb83bcd3212b676007fa"
+  },
+  "Sfx/enemy_die_wax_02": {
+   "frames": 14994,
+   "sha256": "d2114fcb14cd7855affe2510754a795f4f8170a31f654a36778e1b19f7c1209b"
+  },
+  "Sfx/cmb_hit_fabric_00": {
+   "frames": 12348,
+   "sha256": "2502f15d2f8429b4083ed3af39972b172f5135afb276cb47633ecd19b36ea196"
+  },
+  "Sfx/cmb_hit_fabric_01": {
+   "frames": 12348,
+   "sha256": "1622f471526a699b47de32571758b1d20872ec25df9ed597b43a912d961d4593"
+  },
+  "Sfx/cmb_hit_fabric_02": {
+   "frames": 12348,
+   "sha256": "fa0155ff3908060e87a53eb85af6452daedd3f645179ac18b66f6daed0a7c333"
+  },
+  "Sfx/cmb_hit_fabric_03": {
+   "frames": 12348,
+   "sha256": "c038c693e03114b40cfe31baa56824095bb4433b8c86fa841fbe7becd21c19e2"
+  },
+  "Sfx/cmb_hit_fabric_04": {
+   "frames": 12348,
+   "sha256": "1e641aa2273e6e6ee993b32d6decc99f674118393aa697d5eb70a0ee149f01ff"
+  },
+  "Sfx/cmb_hit_fabric_05": {
+   "frames": 12348,
+   "sha256": "60ee1e5b1e508b89164c1e5d895ab9dfb7246c2103bc2490153fd0596fc31d1f"
+  },
+  "Sfx/enemy_die_fabric_00": {
+   "frames": 14994,
+   "sha256": "b28ad942bde3a902b9b474404b8e812a82647ff46fa20ff5820aff6c5331baff"
+  },
+  "Sfx/enemy_die_fabric_01": {
+   "frames": 14994,
+   "sha256": "38a47d4c58f34e1c86e9e585c6f31f8b581add80386ce85666adeab80f289fdc"
+  },
+  "Sfx/enemy_die_fabric_02": {
+   "frames": 14994,
+   "sha256": "b087b795d646e0fc94f4e53719035c4928eb81255a2cf89bd4f1f23bed5630a2"
+  },
+  "Sfx/cmb_hit_glass_00": {
+   "frames": 12348,
+   "sha256": "ab4b15c3379c3e02f1001ee3c769b2f7e54301febb397911d164d748efa988de"
+  },
+  "Sfx/cmb_hit_glass_01": {
+   "frames": 12348,
+   "sha256": "8439d88e7e3f8b03ae42e1e25b173c82fc7d5dc009795304f533b0ceaed5b2b0"
+  },
+  "Sfx/cmb_hit_glass_02": {
+   "frames": 12348,
+   "sha256": "f96e33ca20f3168ecc24c62876181134856934b5c52be5dee38e4f9b75bdc193"
+  },
+  "Sfx/cmb_hit_glass_03": {
+   "frames": 12348,
+   "sha256": "0e6c44904c79d3e937ab17f32dc77112afd0833da12624c64b7add8532a09773"
+  },
+  "Sfx/cmb_hit_glass_04": {
+   "frames": 12348,
+   "sha256": "40d58b35ed72516601686ca06ef381abdf7446d8dbe5dda1d522e5161db2a2d3"
+  },
+  "Sfx/cmb_hit_glass_05": {
+   "frames": 12348,
+   "sha256": "2ac4ea900bbf3b3cbabaeae8de4c6f04701f557d55f10ee6d09566774db6b625"
+  },
+  "Sfx/enemy_die_glass_00": {
+   "frames": 14994,
+   "sha256": "5388ad61d71a44f2560bac04e161ec08f68ae7a413a5fe961d11b0618903fe61"
+  },
+  "Sfx/enemy_die_glass_01": {
+   "frames": 14994,
+   "sha256": "45bb5e7349450b2849f1ec56cc2d1a1d6a0bbb209bbf2df93f00945a52c68c5d"
+  },
+  "Sfx/enemy_die_glass_02": {
+   "frames": 14994,
+   "sha256": "ba3f895038785e206f80417034a10d219e7cfda31afb56474ffe749d93ba2d98"
+  },
+  "Sfx/cmb_hit_wood_00": {
+   "frames": 12348,
+   "sha256": "4ca2c6fbda23790504cbb9b79f530f9cef589f58810ba52a3b55d784a6a42032"
+  },
+  "Sfx/cmb_hit_wood_01": {
+   "frames": 12348,
+   "sha256": "134fa81a7bc883bcea53ab3ecae2ccdb3ac57fa8b1a4cad456bc9e26f33fbe1f"
+  },
+  "Sfx/cmb_hit_wood_02": {
+   "frames": 12348,
+   "sha256": "9ca753172e67b80c623577a57ec1f6e88f9ada8e55091de069a0bdc18e107659"
+  },
+  "Sfx/cmb_hit_wood_03": {
+   "frames": 12348,
+   "sha256": "80b4058ee343b2bbfa5b11ab5273073435534fbbf706b41fae6d023c2a2c4cbd"
+  },
+  "Sfx/cmb_hit_wood_04": {
+   "frames": 12348,
+   "sha256": "199ac897af4b3133a2dc26f2771434af7e681e39715f35c5bf98b889bb20322e"
+  },
+  "Sfx/cmb_hit_wood_05": {
+   "frames": 12348,
+   "sha256": "69d6562acff0d27ce0204b2a7ebb834381f3cd423e837e6c3f4153007818e98f"
+  },
+  "Sfx/enemy_die_wood_00": {
+   "frames": 14994,
+   "sha256": "16ce9cedc3a24a674af185b54eece5b63c4726b5c73a9b4ac66603c27c0ec33d"
+  },
+  "Sfx/enemy_die_wood_01": {
+   "frames": 14994,
+   "sha256": "3c993ca0ca0a2885733aefa0cb787dd86b46dcf7c515b6cd3bd153634d07a0f0"
+  },
+  "Sfx/enemy_die_wood_02": {
+   "frames": 14994,
+   "sha256": "f89f2eae4afb6606e37b498bdf14cdd41e25b4ce0f379b3faba8f6132aab67d2"
+  },
+  "Sfx/cmb_crit_00": {
+   "frames": 20021,
+   "sha256": "9f421a0199bbedc28df8764ec9c401c57266b93685dc321851c8082b4f991a91"
+  },
+  "Sfx/cmb_crit_01": {
+   "frames": 20021,
+   "sha256": "33c7a27efef9920dea08eeae44f1f17028b6557b81a5800fb1c9e534a95a2c5f"
+  },
+  "Sfx/cmb_crit_02": {
+   "frames": 20021,
+   "sha256": "8841b0d900118d9f1c0f30ca5e27a787d4e799700f1b548b83fc47b010b01d9a"
+  },
+  "Sfx/cmb_crit_03": {
+   "frames": 20021,
+   "sha256": "91ababaccae5c7222113b40e40cb2abf2931b1252bf57090f3bf77fbab8185f1"
+  },
+  "Sfx/cmb_crit_04": {
+   "frames": 20021,
+   "sha256": "db1c45e7b1168bd067ff28a343a105652802710b33783bf90476221695f09fed"
+  },
+  "Sfx/wpn_bow_draw_00": {
+   "frames": 8820,
+   "sha256": "d1672ab24879d8f1913c38ba7f362492d7435458376546576796b1defedb17c2"
+  },
+  "Sfx/wpn_bow_draw_01": {
+   "frames": 9349,
+   "sha256": "3e773e56806b89d306c6b9f0ac18a887583f566668f3815e2f0c4c0c9dc9adcd"
+  },
+  "Sfx/wpn_bow_draw_02": {
+   "frames": 9878,
+   "sha256": "f9d8723deb48c00a025261d2c3b019aec02d9134e0e00357a01bc2f0f350218f"
+  },
+  "Sfx/wpn_bow_release_00": {
+   "frames": 14112,
+   "sha256": "0107e94f92da545d00d0327fc116e2e5c87ad88c3b0a39a6b4c1efb484ac7580"
+  },
+  "Sfx/wpn_bow_release_01": {
+   "frames": 14112,
+   "sha256": "f4e4dd5378509d55df9f1b6da8cc808580d38e754734d2c50a0b689c9d169937"
+  },
+  "Sfx/wpn_bow_release_02": {
+   "frames": 14112,
+   "sha256": "44f507c74a1a38d57bb023c28862bffde302d6166a75b13f9da2f6341ab19d3e"
+  },
+  "Sfx/wpn_bow_release_03": {
+   "frames": 14112,
+   "sha256": "25bf9b888c1874bbfb62ae1585cd2e552f2d10a6b6ab3bd210def2fe830c9758"
+  },
+  "Sfx/wpn_bow_release_04": {
+   "frames": 14112,
+   "sha256": "b39c87c6a0bf47ea6dae0bb019ce02836cbaf0db7637f38052663a0fefa44d6d"
+  },
+  "Sfx/wpn_gun_pop_00": {
+   "frames": 5733,
+   "sha256": "1f6a1079a9a32343a0468de31299bb72c6828403bf48178da115a3e226d06e84"
+  },
+  "Sfx/wpn_gun_pop_01": {
+   "frames": 5733,
+   "sha256": "ec7f1b00507d0879b5471a462fbe2c2e012ea946d229e6b0dd06e0403734d123"
+  },
+  "Sfx/wpn_gun_pop_02": {
+   "frames": 5733,
+   "sha256": "d4ad3d1ef0c6377e3d28dcb43e12fd937f799833a6c5c64f618416873ecbe60a"
+  },
+  "Sfx/wpn_gun_pop_03": {
+   "frames": 5733,
+   "sha256": "dd898492072513d1f834d09486100c2e19a9af49f5ca51a5a5daae75d39e6797"
+  },
+  "Sfx/wpn_launcher_00": {
+   "frames": 14112,
+   "sha256": "8166842001f6d80a3c5884fd1ca76fe50e515c340dd21eb225822acb277676d0"
+  },
+  "Sfx/wpn_launcher_01": {
+   "frames": 14112,
+   "sha256": "72e22a697389c133c3ccf59f28cf35d2669e8d129dbdcd63f3055e53cbf71c5b"
+  },
+  "Sfx/wpn_launcher_02": {
+   "frames": 14112,
+   "sha256": "5dd082654b453c0544eca7f587eae985c1ea1b49644f61ac6d1906c33f259044"
+  },
+  "Sfx/wpn_cast_fire_00": {
+   "frames": 19845,
+   "sha256": "1e1fc01b5a49bf8f652d26f59ec173edb1bd98e20b8276d041be2c8c2e179550"
+  },
+  "Sfx/wpn_cast_fire_01": {
+   "frames": 19845,
+   "sha256": "72468c03153a1e6fabd0ca3ccb4c5b26b8d205182fb408ae6347b83d5f27c9d7"
+  },
+  "Sfx/wpn_cast_fire_02": {
+   "frames": 19845,
+   "sha256": "a8dc7b37d9203e77e036cba38bd6af9201f6ac67efd1a1dd2ed9d4205e38b78a"
+  },
+  "Sfx/wpn_cast_fire_03": {
+   "frames": 19845,
+   "sha256": "9e97e7bb903d1c9d024b3821068d22d0a18c855283191479e4dd6cd0baaf4065"
+  },
+  "Sfx/wpn_cast_ice_00": {
+   "frames": 22050,
+   "sha256": "2c5ada82c66fb6f875981e27502cb8f752eee95dd9fed8de13b4f9faa99c96b4"
+  },
+  "Sfx/wpn_cast_ice_01": {
+   "frames": 22050,
+   "sha256": "fb5779a38b837ba0533f489395efedac6c1902cad152a2794a632d2edeb540ed"
+  },
+  "Sfx/wpn_cast_ice_02": {
+   "frames": 22050,
+   "sha256": "d4fc5e88af0ebb9ce8f6b699cfeb8f23dfd6883e868ca54040084973fdfe8400"
+  },
+  "Sfx/wpn_cast_ice_03": {
+   "frames": 22050,
+   "sha256": "d0ee7a40d888c4fefc2079940b56a1568f22089c9176d654a92fe63472459f70"
+  },
+  "Sfx/wpn_cast_arcane_00": {
+   "frames": 27342,
+   "sha256": "614cb4f4cc55d2c383672e782459611c7ff24d15a375d79b9a867694f98c0a0f"
+  },
+  "Sfx/wpn_cast_arcane_01": {
+   "frames": 27342,
+   "sha256": "3ad2b6e839c3f479600d459888172b8abfc73c7cbe45f526d745517189be30c4"
+  },
+  "Sfx/wpn_cast_arcane_02": {
+   "frames": 27342,
+   "sha256": "1d34afdfc7cb5989f787ec77c1de39ca0b3a2e095ea3f986d6422b19e40559d5"
+  },
+  "Sfx/wpn_cast_arcane_03": {
+   "frames": 27342,
+   "sha256": "fe2976d2acb6342c4dbd8fb0a8a36b41b0353c7bca14d214ca3e42da62cc5db3"
+  },
+  "Sfx/wpn_boomerang_fly_00": {
+   "frames": 26460,
+   "sha256": "8fb2fc82ac3781e5e4fe225a6d39a87735b0a40f703056cf70643ee6a962920d"
+  },
+  "Sfx/wpn_boomerang_fly_01": {
+   "frames": 26460,
+   "sha256": "b7bc32e6f20917d46ddf14582ac4b0f86851b161c29fb20a2c601a7a08976463"
+  },
+  "Sfx/wpn_boomerang_fly_02": {
+   "frames": 26460,
+   "sha256": "e4799b3c4249ccfb61e97ac84d5bd9b83f66480618286d871566fbe3d86442cd"
+  },
+  "Sfx/wpn_boomerang_return_00": {
+   "frames": 22050,
+   "sha256": "6aef935a0b108b37d8e56a9749bd7b42eca139f7bbb17d586c405c8a08203672"
+  },
+  "Sfx/wpn_boomerang_return_01": {
+   "frames": 22050,
+   "sha256": "0616e1783eb56d429ed8d5cbece5782848d718df700e896039c0aff87de7d437"
+  },
+  "Sfx/wpn_boomerang_return_02": {
+   "frames": 22050,
+   "sha256": "b25c1cb7f552ca534d45dde2334be3036b560d1acfcd4edf194b4f5c994f2ff2"
+  },
+  "Sfx/wpn_pierce_00": {
+   "frames": 10584,
+   "sha256": "a52fdb66dee0ddf617bf49cbde585c48189542196a4a83911930d4b5f0220452"
+  },
+  "Sfx/wpn_pierce_01": {
+   "frames": 10584,
+   "sha256": "356463ae0e9602bdc26f446a9659daf322d42297f305655ec1a9c79df537de18"
+  },
+  "Sfx/wpn_pierce_02": {
+   "frames": 10584,
+   "sha256": "232da51ed4c6c40fafe3fd12526f5afb0d8afa4efa628cdcd2182594bb55e25a"
+  },
+  "Sfx/wpn_pierce_03": {
+   "frames": 10584,
+   "sha256": "cfff3d94c3d5f99a463a1663382d9a503881f9603cb191d7c7751c712e04da6c"
+  },
+  "Sfx/wpn_split_00": {
+   "frames": 7056,
+   "sha256": "814613aac0e2180cee1b8a845e10f32a28bb453e1fd051886632c3e9a43dba67"
+  },
+  "Sfx/wpn_split_01": {
+   "frames": 7056,
+   "sha256": "28209c3143fa4f716d25c89dbb03f4b70fd2d1ff8fa611131dc480e7bbb580f6"
+  },
+  "Sfx/wpn_split_02": {
+   "frames": 7056,
+   "sha256": "c7a2fd3f2f6b6bec5395b18bc2b719da40fc1f04057c50b370464333eec5e474"
+  },
+  "Sfx/wpn_bounce_00": {
+   "frames": 11025,
+   "sha256": "2e6bab08dc31d91b8b62c9acc91b565dfe308b8673cc513f348035a517b70f48"
+  },
+  "Sfx/wpn_bounce_01": {
+   "frames": 11025,
+   "sha256": "4c86d327d0c4f4c5c113ca72d0517c1e202e3b1d5d29e18674b3a3820d13416e"
+  },
+  "Sfx/wpn_bounce_02": {
+   "frames": 11025,
+   "sha256": "554a465919a81fa7d7f61303084f8425f90650262505d49b52c0aa9507231b26"
+  },
+  "Sfx/wpn_bounce_03": {
+   "frames": 11025,
+   "sha256": "d459f7748528b775dedcad7914fca732cd112b1856a34a0dfcd5af17b3e7927c"
+  },
+  "Sfx/sig_bell_00": {
+   "frames": 61740,
+   "sha256": "05c5865915b7b82ccfd1db2d2f7fe5aceb4ade935ae4febd199f4fab46aad292"
+  },
+  "Sfx/sig_bell_01": {
+   "frames": 61740,
+   "sha256": "1f32cf96449cbf1fea0897fe290031f25f3349d01b090c65306a17d8ea48a112"
+  },
+  "Sfx/sig_bell_02": {
+   "frames": 61740,
+   "sha256": "e690f04a78510599428b86f28b12c4fc204a1ed1d8276e84768190dc50a0686d"
+  },
+  "Sfx/sig_bell_03": {
+   "frames": 61740,
+   "sha256": "86128bdd0c83b737a4cdbf739b1585a666a33b038f11c6115150d2de4307596d"
+  },
+  "Sfx/sig_umbrella_00": {
+   "frames": 13230,
+   "sha256": "c31d42bf2633e47ec702d7a2e608bfec8a3c1af5e69249a95af09a8464dd1628"
+  },
+  "Sfx/sig_umbrella_01": {
+   "frames": 13230,
+   "sha256": "7e45f90f63628559af1b5e0c7111ec6c7f42008caccea52b742111ab75642592"
+  },
+  "Sfx/sig_umbrella_02": {
+   "frames": 13230,
+   "sha256": "0bfcf35a6122991c21c7eb2958c74cb1c1b3e3490f865d89174b52f07cc093a8"
+  },
+  "Sfx/sig_stamp_00": {
+   "frames": 12348,
+   "sha256": "abe200ea7d402f33a53f6739dd00b70a2f2c7e9f7951bdda500c0dbb561d10af"
+  },
+  "Sfx/sig_stamp_01": {
+   "frames": 12348,
+   "sha256": "d08811007cb1473ff3cf5b7ad80829a617c572dd56a9d42828f5c1e105f562ba"
+  },
+  "Sfx/sig_stamp_02": {
+   "frames": 12348,
+   "sha256": "96e7c952760dfdc002460dae5db2b8f5914698d65242066f838a09ad669a6755"
+  },
+  "Sfx/sig_scissors_00": {
+   "frames": 9702,
+   "sha256": "c82f131c64759a8d6922c04ba52deb526a2c0e974146ca7631e0ceac19e38686"
+  },
+  "Sfx/sig_scissors_01": {
+   "frames": 9702,
+   "sha256": "d23e0d08134c880308cd5fef59fc093802d35cf5de3914fdc0b67486258a207a"
+  },
+  "Sfx/sig_scissors_02": {
+   "frames": 9702,
+   "sha256": "2ee53b0e284eb34091dc23985ce5b2a08281b1ffc57120bb9bc8f9de757daf7b"
+  },
+  "Sfx/sig_scissors_03": {
+   "frames": 9702,
+   "sha256": "80097dcb047476c994f717e7317d1a2ae318baea986f4c3eb48c52d28415283b"
+  },
+  "Sfx/sig_camera_00": {
+   "frames": 13009,
+   "sha256": "79601274fb68bb535bb76ec3e7d5a77d6aefc5bf3c808b9529f70a97158e6e6d"
+  },
+  "Sfx/sig_camera_01": {
+   "frames": 13009,
+   "sha256": "37123299311bfd8a481e507627384fb7fc5a82936ae700f8e1e1e5e8d25bdaa8"
+  },
+  "Sfx/sig_camera_02": {
+   "frames": 13009,
+   "sha256": "6a26aada6540fa92cef22d8b7e4727e4514f0463245fc42d41dbff2687195e0e"
+  },
+  "Sfx/sig_musicbox_00": {
+   "frames": 35280,
+   "sha256": "d1216f8ba6a6f849a8ab2ea2706fe901eb0ff9a8db0746b11e559b7f7c5c5120"
+  },
+  "Sfx/sig_musicbox_01": {
+   "frames": 35280,
+   "sha256": "ac917909f014b2d808baff767efeddbdaeb69e53e9dc42264993d317a9233703"
+  },
+  "Sfx/sig_musicbox_02": {
+   "frames": 35280,
+   "sha256": "f8b80fbcbdac42aa588a54a0489585f2780a560a735956b938ffd687fffdc2fb"
+  },
+  "Sfx/sig_tea_00": {
+   "frames": 13230,
+   "sha256": "2e4219d7af0e5342a39105d171824e3132ef67c8e236b53caf62205dc609e3fb"
+  },
+  "Sfx/sig_tea_01": {
+   "frames": 13230,
+   "sha256": "cb0ad367a7cc16888b8c0b7f8c59962ec439712d1238678004ae157220daa50a"
+  },
+  "Sfx/sig_tea_02": {
+   "frames": 13230,
+   "sha256": "d65ce38c32ea38fe9d0f380717b64de3dfb6d0589eab97e3b4a1f34ab1e62599"
+  },
+  "Sfx/sig_fish_00": {
+   "frames": 7938,
+   "sha256": "7b296227e2734d912108def447dfe1ea18853c11487b9de3ded492e97b5be31a"
+  },
+  "Sfx/sig_fish_01": {
+   "frames": 7938,
+   "sha256": "d107c8063f2251a656027c025997afe112908ce3ad69d4c2008cbad18e4dd598"
+  },
+  "Sfx/sig_fish_02": {
+   "frames": 7938,
+   "sha256": "4e481e33b8562c792f7f9ea56adb99f95db1b80e7ddfefa00da61163a64ebb67"
+  },
+  "Sfx/sig_alarm_00": {
+   "frames": 14773,
+   "sha256": "ef8a17f2be5511fcf834fd0d744b5e1b4f84fc9efb41e7a15695879e932ccc0f"
+  },
+  "Sfx/sig_alarm_01": {
+   "frames": 14773,
+   "sha256": "93a91f2b8ec9c0bd85171af9676739ce93b8b718a9c35ad24f890909a0dff000"
+  },
+  "Sfx/sig_iron_00": {
+   "frames": 15346,
+   "sha256": "d526d982f0613cf8e58ae785f66b6275f014defe1188aa75155161f34542a760"
+  },
+  "Sfx/sig_iron_01": {
+   "frames": 15346,
+   "sha256": "ce97d9a059bf596c4046693dc985fb224887dc29fd8a6ce3e03239b725d3cf6f"
+  },
+  "Sfx/sig_iron_02": {
+   "frames": 15346,
+   "sha256": "baa8a093a0fcd454462d9b90f023fbf9a10645dabb56391b41bc39df9ca7a75b"
+  },
+  "Sfx/sig_hammer_00": {
+   "frames": 22050,
+   "sha256": "bc3c59fd990f7258d46a1ba877620795c89df700a71abd074211f9fb80345a1c"
+  },
+  "Sfx/sig_hammer_01": {
+   "frames": 22050,
+   "sha256": "ab09e2d4e6bb19b0208ddd39d4f5a774231a82a1d77ca5f35753c0c693dc1d90"
+  },
+  "Sfx/sig_hammer_02": {
+   "frames": 22050,
+   "sha256": "9de602d50d66100ac0abc808fac60be8530eef5cd8828e93b8549da09dfc35ff"
+  },
+  "Sfx/fx_burn_00": {
+   "frames": 5292,
+   "sha256": "70540cd6476dd872013b3a43076cc920b020dd335adc8dca34665247e4d38af0"
+  },
+  "Sfx/fx_burn_01": {
+   "frames": 5292,
+   "sha256": "8502d483c809d030d7f2269ac499791126479b770325c1f977660807c3dbf04b"
+  },
+  "Sfx/fx_burn_02": {
+   "frames": 5292,
+   "sha256": "8d439b2b280f72f16389266b8f0637fe7d355858e5d4e167cf86d825ad0d7399"
+  },
+  "Sfx/fx_burn_03": {
+   "frames": 5292,
+   "sha256": "6ccfc70341dc0d2f88c31c4c58613b61e66302dc9ccc143a314d047776497919"
+  },
+  "Sfx/fx_chill_00": {
+   "frames": 9702,
+   "sha256": "b499b7a4b8fd98d252df38b91a2398599c213594664bc399df2a1a786301bbdc"
+  },
+  "Sfx/fx_chill_01": {
+   "frames": 9702,
+   "sha256": "aa67ce2dbb4b0d3b4ee0f5ff066d4d2caec2381b0c23164140a4eae84d57dfe2"
+  },
+  "Sfx/fx_chill_02": {
+   "frames": 9702,
+   "sha256": "7577e2bb97ba410a74763f29a5059bbb12191b9e679fa7333c621131b30fe00b"
+  },
+  "Sfx/fx_chill_03": {
+   "frames": 9702,
+   "sha256": "a163348b18d570b4856d6990d924d34b65f8c9f8790a7a2dff3ea6ce31a90862"
+  },
+  "Sfx/fx_knockback_00": {
+   "frames": 9702,
+   "sha256": "24258b5cdd80163d4a3ced25c09f6992c02754607f4fed636571aa8a44e1e436"
+  },
+  "Sfx/fx_knockback_01": {
+   "frames": 9702,
+   "sha256": "94a72e54b568aea2a1fa528094d1eac3883d370135d1f72636fd11e43949bd32"
+  },
+  "Sfx/fx_knockback_02": {
+   "frames": 9702,
+   "sha256": "57b83b2466c223b9cebda7b839726ba8193887d107274425f39a56de5436de9d"
+  },
+  "Sfx/fx_knockback_03": {
+   "frames": 9702,
+   "sha256": "6a98ab1bb64f87d9868fd0ecd0d5c66cd7ebd1305609342011a58ed2f2146a87"
+  },
+  "Sfx/fx_reaction_steam_00": {
+   "frames": 22050,
+   "sha256": "511bc6a66b8e8e00dc3073acf49f238e6702e083dd101e24d89c2d0d95d0a11d"
+  },
+  "Sfx/fx_reaction_steam_01": {
+   "frames": 22050,
+   "sha256": "27f806e4d47438d03f4284483a6e7c3326f5e483beb2da54a22053100691e8a2"
+  },
+  "Sfx/fx_reaction_shatter_00": {
+   "frames": 22050,
+   "sha256": "dd15b1164885a847c37c0fde969d86c955f41900e1a654cc83acb874eaaeccda"
+  },
+  "Sfx/fx_reaction_shatter_01": {
+   "frames": 22050,
+   "sha256": "fcdd0ed69d96f5ded0213765d97cab34c2aa59cc114777816555ee93452a6204"
+  },
+  "Sfx/fx_reaction_arcane_00": {
+   "frames": 22050,
+   "sha256": "4311a6dad3361e3ad3f6b000fb4049d942f8b7e4730fecbeac36bc21b4916ee7"
+  },
+  "Sfx/fx_reaction_arcane_01": {
+   "frames": 22050,
+   "sha256": "62d52e9aedf3d220f04fe18c0c795b849dc5087bb9d755be4e9afb91b2a01e30"
+  },
+  "Sfx/chr_step_00": {
+   "frames": 3969,
+   "sha256": "36a45a099cade9a3cb37b98c39a8c785063df700644c6e2563f3dcb9cd93b26b"
+  },
+  "Sfx/chr_step_01": {
+   "frames": 3969,
+   "sha256": "84f6c8918dd7a740b2ee088937fabce9960abbc248beb7cac24c7e4dde6046c4"
+  },
+  "Sfx/chr_step_02": {
+   "frames": 3969,
+   "sha256": "922c82a227ee64c12dab1f39c2b08adc293d75c538b1cbf470443a928e1a0fa4"
+  },
+  "Sfx/chr_step_03": {
+   "frames": 3969,
+   "sha256": "72fa2d3345b19cbf08bb42999898aad4e9ed4860a6d609b925263cd5f0730bf9"
+  },
+  "Sfx/chr_step_04": {
+   "frames": 3969,
+   "sha256": "55d6ef4a74dc356a9c03f5b6a5d43dc514ceaed184d4b531e7bed9e9ed4cb539"
+  },
+  "Sfx/chr_step_05": {
+   "frames": 3969,
+   "sha256": "874cd75d4bd96f789f0b68829b9c76be8349e7d38e4978d39fdf67bb089d8527"
+  },
+  "Sfx/chr_dash_00": {
+   "frames": 12348,
+   "sha256": "e5458a9f06835e2a4cd10fed15d308f2a34c917a21c0412ef807159000ef4143"
+  },
+  "Sfx/chr_dash_01": {
+   "frames": 12348,
+   "sha256": "c883ec80fc73a61596a2e4c494e8251231cdb2c660b83ff0e8691ec3233b80e2"
+  },
+  "Sfx/chr_dash_02": {
+   "frames": 12348,
+   "sha256": "774a7a8b7d5d406b370071243da5496a3529c67cbf410fdd95d99e4d77198442"
+  },
+  "Sfx/chr_dash_03": {
+   "frames": 12348,
+   "sha256": "ea29a688a4a5d62e02ad8f4e892c695f11bb0b29c65a79d63e9dbb32c5bd548a"
+  },
+  "Sfx/chr_jump_00": {
+   "frames": 8820,
+   "sha256": "914de29a0c8d754f372cb1c78773bca1d7c3de41c06adfd5159bd84f3ba43085"
+  },
+  "Sfx/chr_jump_01": {
+   "frames": 8820,
+   "sha256": "efe57492f9453cdbbd7f16fcf3abeb236d7fcd75b5c86b1b95198c64e8f99ec9"
+  },
+  "Sfx/chr_jump_02": {
+   "frames": 8820,
+   "sha256": "3660f52f1d7df9ca2ced06f893655ff6bc5e937428c72361af990776a413a5e1"
+  },
+  "Sfx/chr_land_00": {
+   "frames": 8820,
+   "sha256": "b4a760888638b8c7309ecdde543a633bb7e3f3db8e38cd9efe2c42d20fd885a2"
+  },
+  "Sfx/chr_land_01": {
+   "frames": 8820,
+   "sha256": "ca21bbdae08e6a25b48789b5eace62cb9b48d3c3b2497056ed162962d63161db"
+  },
+  "Sfx/chr_land_02": {
+   "frames": 8820,
+   "sha256": "5cca0b212502160c533a817b7b9766bf94cc77cbda720355d15bf0c3d8252f90"
+  },
+  "Sfx/plr_dodge_00": {
+   "frames": 13230,
+   "sha256": "fb8c96c9a193cc7426a8a8d5e64a90ee012a46018d81410e5e968f8eeecba636"
+  },
+  "Sfx/plr_dodge_01": {
+   "frames": 13230,
+   "sha256": "0a12998e971e1f2395deba7b92ec9428291cdd3696b5511e13ba2e8996200da0"
+  },
+  "Sfx/plr_dodge_02": {
+   "frames": 13230,
+   "sha256": "9981c673b96b80937df813993bac6e20626b5eb2ccdc9b29041652379ec5b768"
+  },
+  "Sfx/plr_hurt_00": {
+   "frames": 11466,
+   "sha256": "8e44c8a643a91c3ae9a36744f79e3b560d84bf83bbbde8f564c34d170899b90f"
+  },
+  "Sfx/plr_hurt_01": {
+   "frames": 11466,
+   "sha256": "51b0d7fb02089c08cd4bd67ce0dfbcf56ebb0a6cbc83e3bf307191bcbc21cd51"
+  },
+  "Sfx/plr_hurt_02": {
+   "frames": 11466,
+   "sha256": "a56591679f447388d89d6beda2d10d589e590fb927905af62624db2c3067002b"
+  },
+  "Sfx/plr_hurt_03": {
+   "frames": 11466,
+   "sha256": "d3b36a959af322de0e9d30d1520a41f4030d1c947d6f285dff5ac6112cdcf12c"
+  },
+  "Sfx/plr_hurt_04": {
+   "frames": 11466,
+   "sha256": "a3523fb33a3f167228277cf647626f95201c9f6179c0a6d34715906325034f77"
+  },
+  "Sfx/plr_lowhp_00": {
+   "frames": 19404,
+   "sha256": "a330daf9ca76ee49bd53b39729c8d096a404999ddf1a3d05c133d45e623edd89"
+  },
+  "Sfx/plr_lowhp_01": {
+   "frames": 19404,
+   "sha256": "4ae45cc6eb3dc608cf71bc9b936b0bb9cb7b91d74980ffb4c6102082a4dee24f"
+  },
+  "Sfx/plr_heal_00": {
+   "frames": 35280,
+   "sha256": "f1fdd47c0da97c29ff56a94dc983c0df67d6200ea43488c83aa4b5c5a662da24"
+  },
+  "Sfx/plr_heal_01": {
+   "frames": 35280,
+   "sha256": "4bae7b849ceecb0b8716d36fa100f67c41c4cd8f479b7a069e0fda851a89ebec"
+  },
+  "Sfx/plr_heal_02": {
+   "frames": 35280,
+   "sha256": "b5b0574f6536fb8d885df2dc482fcddb8a268374ee159ee5de8d05a96f5d9ca1"
+  },
+  "Sfx/plr_death_00": {
+   "frames": 56889,
+   "sha256": "e9e5485984b1da8443ceffd25dd363d382822c08ba24973a362972c361482fb1"
+  },
+  "Sfx/plr_death_01": {
+   "frames": 56889,
+   "sha256": "cad1bc1f09888816b7e56cf3fc82ab50fb0a920d049ab4bd5d671b2803e426f8"
+  },
+  "Sfx/enemy_spit_windup_00": {
+   "frames": 13230,
+   "sha256": "86704ef43eabbb4bcaf273f759e99fb056cd4a8cd0f09ce34cfe3c35b06754d6"
+  },
+  "Sfx/enemy_spit_windup_01": {
+   "frames": 13230,
+   "sha256": "36dc0b2ab82628666d335f8ec33f05e044702f8f8c6f30a6cc50c69175316a2f"
+  },
+  "Sfx/enemy_spit_windup_02": {
+   "frames": 13230,
+   "sha256": "156a79930a7fbe9f8641691a66f61ae98249d07c1efb421ea3b3df14b25717eb"
+  },
+  "Sfx/enemy_spit_windup_03": {
+   "frames": 13230,
+   "sha256": "fe1fd6742e2deb0104f510e78e72ee435b62cfd77457832875b67155fd560810"
+  },
+  "Sfx/enemy_spit_fire_00": {
+   "frames": 9702,
+   "sha256": "27d50876caccd49317fc4d935106943afb1116f3bc8894a99d114e080e193e4c"
+  },
+  "Sfx/enemy_spit_fire_01": {
+   "frames": 9702,
+   "sha256": "6986a7dd643bff1b3adac550aa8417b01770a34548acc276d129affc3ddbd1b8"
+  },
+  "Sfx/enemy_spit_fire_02": {
+   "frames": 9702,
+   "sha256": "915fd5fb24cfc376907c1f716cf29243f17090b0910d885704bdc9340082ba4a"
+  },
+  "Sfx/enemy_spit_fire_03": {
+   "frames": 9702,
+   "sha256": "385b88179d9d2c8331cd65632f9ee432087da349656e8569856514e1b2432739"
+  },
+  "Sfx/enemy_spit_fire_04": {
+   "frames": 9702,
+   "sha256": "4451169d1f073fa3b2793ffdf5e83857f977c32f6f70345fc7d1d046c64e68d8"
+  },
+  "Sfx/enemy_lunge_00": {
+   "frames": 13230,
+   "sha256": "7f1acdd12596d881b6421c92e9d43292497be189a4d0e114a9d930d3712191eb"
+  },
+  "Sfx/enemy_lunge_01": {
+   "frames": 13230,
+   "sha256": "532b14482bfcbba90256023d7474a1e9afdb955e5b5df4183a7c88308d6d8a85"
+  },
+  "Sfx/enemy_lunge_02": {
+   "frames": 13230,
+   "sha256": "75b6fb59c3f87f95a60c4473abb028190a2cff95ddd8d847a1bd21c9a9eeb3a0"
+  },
+  "Sfx/enemy_lunge_03": {
+   "frames": 13230,
+   "sha256": "1d38952b09dc36ac1de21f3d9851eb47ad289980fac2c5a87877a47bd6f525d1"
+  },
+  "Sfx/enemy_hurt_00": {
+   "frames": 8114,
+   "sha256": "c92acc6aa409e1d52e2d345db8645155ed319bc78534371356752e6c70fcb6d5"
+  },
+  "Sfx/enemy_hurt_01": {
+   "frames": 8114,
+   "sha256": "b70d4e05bfdc05c39f434744d683fa113a63c64a52cef9f7300a1aee8b4e6a9b"
+  },
+  "Sfx/enemy_hurt_02": {
+   "frames": 8114,
+   "sha256": "c9d5430c1aa90900befa97fae33cb73deb774be961028f0cac90ac72615aeecf"
+  },
+  "Sfx/enemy_hurt_03": {
+   "frames": 8114,
+   "sha256": "8ba13d0c8f4c43872b144bf38cc9dcfc560fc0e2357522883855efbfb2997eee"
+  },
+  "Sfx/enemy_hurt_04": {
+   "frames": 8114,
+   "sha256": "aa37ee396f9354e7909560e39cff737b861cbea9b96629e6db822666bf529e8a"
+  },
+  "Sfx/enemy_hurt_05": {
+   "frames": 8114,
+   "sha256": "f396712eb104d8d4308bab173b2441c831cac098fbc20ffda7e0ce2570e0b612"
+  },
+  "Sfx/enemy_big_step_00": {
+   "frames": 15435,
+   "sha256": "b1a9e81fe16b92656cc6c8d19fd56a2af1aee6025507fadbb54d78b315b8f3e0"
+  },
+  "Sfx/enemy_big_step_01": {
+   "frames": 15435,
+   "sha256": "f812763e7a66cdc856bfd6731168231cb7d2006ec6abdabb4aa0c3c3832d559e"
+  },
+  "Sfx/enemy_big_step_02": {
+   "frames": 15435,
+   "sha256": "3f34bbb3cce5249b390ea18cb01826e789fa2afb005f81455136fc54fa3a4118"
+  },
+  "Sfx/enemy_big_roar_00": {
+   "frames": 39690,
+   "sha256": "88bfeef742f0ff2d2b7a0840d06cdcb7057d20dd03eca0ed01222e37d8b6fab6"
+  },
+  "Sfx/enemy_big_roar_01": {
+   "frames": 39690,
+   "sha256": "ea7e92d1276b05a842c536a33c92c24a664a4268955b9ab1ee8ceab5c9b034c3"
+  },
+  "Sfx/enemy_big_roar_02": {
+   "frames": 39690,
+   "sha256": "11a95c175923630e71bc551df416de437bd9fd13357153fdce9c71c852c4805b"
+  },
+  "Sfx/enemy_die_large_00": {
+   "frames": 26460,
+   "sha256": "a4c0ee7ccb861210e8c0555ac2e8a97ce66e4497162cd879b2dac0a4da5c6793"
+  },
+  "Sfx/enemy_die_large_01": {
+   "frames": 26460,
+   "sha256": "b864a0eb516de6e910cd87a2573fdc085873cb13ac28c563387c059da04ea978"
+  },
+  "Sfx/enemy_die_large_02": {
+   "frames": 26460,
+   "sha256": "9e85340a5698d8249c505fd498103703f30fac8b211d058f33fc9faa4965c811"
+  },
+  "Sfx/boss_enter_00": {
+   "frames": 130095,
+   "sha256": "f2d70c2b62d01c07369a8f744f0670ad263b2069fda8035f4944e806d434a479"
+  },
+  "Sfx/boss_enter_01": {
+   "frames": 130095,
+   "sha256": "cb4bcdef0d66963279278093a48a785f3577d8c64e185d886582d3ff40b3baf5"
+  },
+  "Sfx/boss_telegraph_00": {
+   "frames": 22050,
+   "sha256": "324ed3de71e398354a4ebdb8af92746ce3d0219a323e3b6c35008a72949fd077"
+  },
+  "Sfx/boss_telegraph_01": {
+   "frames": 22050,
+   "sha256": "2a544b6881d65ee7c7107a9e9011c847ee887fc7f8d9ed2f7b9bbdf6f7626060"
+  },
+  "Sfx/boss_telegraph_02": {
+   "frames": 22050,
+   "sha256": "152517e92539e8bb8f45459db78e34d8a2919dffe910e4c23e0993cb84ce680a"
+  },
+  "Sfx/boss_attack_00": {
+   "frames": 26460,
+   "sha256": "d3e37fdfabbb20feb558d5c57343d6808de62f7161a05ee79a2fd1bfadd204e6"
+  },
+  "Sfx/boss_attack_01": {
+   "frames": 26460,
+   "sha256": "cd90737b1ac1c1fa24d436b4c099b3cd90bcd73f379bf2288a84eca02c179fa3"
+  },
+  "Sfx/boss_attack_02": {
+   "frames": 26460,
+   "sha256": "443ca89bd65eb2fb2e8391279d5f728f028b6fe90228857fc3ef55781f86a30c"
+  },
+  "Sfx/boss_phase_00": {
+   "frames": 97020,
+   "sha256": "75959637c31f8ed0308249acc4887862ed58972c3e3b7968815f612f554b0d07"
+  },
+  "Sfx/boss_phase_01": {
+   "frames": 97020,
+   "sha256": "72b923bf73f667b3102c36b873f99144adeb5bd9b391e3ecb164a7b8ffdbbe93"
+  },
+  "Sfx/boss_defeat_00": {
+   "frames": 132300,
+   "sha256": "c140dace88fb36c753456bd4e2bec2d9df01e023b1b55c36260e02ed39c3fdad"
+  },
+  "Sfx/boss_defeat_01": {
+   "frames": 132300,
+   "sha256": "76979c34e64a1b831fc3fba0d91d05747e0da199c8effdf77ef3a366adfc4a3f"
+  },
+  "Sfx/sig_alarm_boom_00": {
+   "frames": 22050,
+   "sha256": "34c01f67940b3b073ec515224c53cb1d4e5f681015bebf7e9b9a6dc9d271cf3a"
+  },
+  "Sfx/sig_alarm_boom_01": {
+   "frames": 22050,
+   "sha256": "56457964bea9fbbc49a8b70489cd64d3a2cf5e6b9fe4345e708dba6b0b2f5b54"
+  },
+  "Sfx/sig_alarm_boom_02": {
+   "frames": 22050,
+   "sha256": "c33d7a3d23893a8c6c5e00cbe89da5993112d0a69058d686f7be7ace41c2eef9"
+  },
+  "Sfx/fx_field_zipper_00": {
+   "frames": 13230,
+   "sha256": "ea896cacb03007b42674d6fcad6d298dde0a4cdfdcfe78dd6313d290550ba163"
+  },
+  "Sfx/fx_field_zipper_01": {
+   "frames": 13230,
+   "sha256": "f598f6e0f4063027f49abf929f334b63c288c7372c176a6acd1a2819415453af"
+  },
+  "Sfx/fx_field_zipper_02": {
+   "frames": 13230,
+   "sha256": "4fd60000a6754bc8c436da158fd97daf2b4d11b8b8074bf0469e29fe8606b6d3"
+  },
+  "Sfx/fx_hazard_warn_00": {
+   "frames": 26460,
+   "sha256": "6b6553563907ff4c7be0b744a278ece0377271651ce97a7a1d5a8f2cffaa8023"
+  },
+  "Sfx/fx_hazard_warn_01": {
+   "frames": 26460,
+   "sha256": "f453c2ec0b0d47a15378f9526c9f00e8d0f131691100fc43a5a04d4e82633f09"
+  },
+  "Sfx/fx_hazard_hit_00": {
+   "frames": 30870,
+   "sha256": "ec61281a99ab518b279da074ad471d87fae0fc822d6bc0327a897f7507d20828"
+  },
+  "Sfx/fx_hazard_hit_01": {
+   "frames": 30870,
+   "sha256": "134c7757cea15576451693a23b18573e6ad43855e95e80f42f3674629341004b"
+  },
+  "Sfx/fx_hazard_hit_02": {
+   "frames": 30870,
+   "sha256": "4d76f1df4abfa9d74ca70fdeb68ed78591f427d56ff8d065d2f5a326f87920c6"
+  },
+  "Sfx/enemy_mimic_wake_00": {
+   "frames": 26019,
+   "sha256": "9d69a6a63d3ba2802876d1e45dffb69e8a3a9f8f969bf38e388362ba211b5cd0"
+  },
+  "Sfx/enemy_mimic_wake_01": {
+   "frames": 26019,
+   "sha256": "cde7a2e7f915ddd4a399d72d146c9c5c3fbd7ac7afe44af26a4acc85bbfc40ce"
+  },
+  "Sfx/hero_pulse_ember_00": {
+   "frames": 44100,
+   "sha256": "c57b9cfd21345bac197e7b0b6d6596bc957a2b47f457384f004fa43441389e74"
+  },
+  "Sfx/hero_pulse_ember_01": {
+   "frames": 44100,
+   "sha256": "9e8da51a0f1958bf8bb9f4daf095fec207cffb9b4654a1f39808fdeaf576649f"
+  },
+  "Sfx/hero_pulse_frost_00": {
+   "frames": 44100,
+   "sha256": "04194fa697d0ccabf9ec065af36130e5893e9970520d39bd975b8754c2bd4729"
+  },
+  "Sfx/hero_pulse_frost_01": {
+   "frames": 44100,
+   "sha256": "9f4e065c846967319abb323fee9701286d04f5789ea213f737c3fc5dd59e21fe"
+  },
+  "Sfx/ui_locked_00": {
+   "frames": 7056,
+   "sha256": "011d80b63a24927b9fa7a52681109969a9c96f7cb35bab0d7bb92560d91b8d30"
+  },
+  "Sfx/ui_locked_01": {
+   "frames": 7056,
+   "sha256": "4f12f32fce50c8feb5c8b73953e5b139e9a63badc1e0cea182dba11c60d50fba"
+  },
+  "Sfx/ui_error_00": {
+   "frames": 15435,
+   "sha256": "d9cb3921ed4e4ce29e9f33a219ffee7f124ac817c77fab568caff6df8363b69a"
+  },
+  "Sfx/ui_error_01": {
+   "frames": 15435,
+   "sha256": "846377329a949c5ff827317b7a03b198669ac3c6f3968c3a1e20d23d8e1244d3"
+  },
+  "Sfx/loot_coin_drop_00": {
+   "frames": 11025,
+   "sha256": "9a541e3f80b3b9aab456c04ca0c7ee3e888842516ccb1d1530628f55d3de908a"
+  },
+  "Sfx/loot_coin_drop_01": {
+   "frames": 11025,
+   "sha256": "2d3e590051a2fbce6f48b356d3bae3e0bda29b97d69f4f3cb6d0ec40eb5ccbb3"
+  },
+  "Sfx/loot_coin_drop_02": {
+   "frames": 11025,
+   "sha256": "8bba12d0abbf4adb3cd15f66b046a4d4f7b3bfa32148dfa54d9f48ccb24622a9"
+  },
+  "Sfx/loot_coin_drop_03": {
+   "frames": 11025,
+   "sha256": "c89d8f1764aadfdd39343b4fb63c62b8761aa252f962d6634e04cafdc2bacaed"
+  },
+  "Sfx/loot_coin_bounce_00": {
+   "frames": 5733,
+   "sha256": "c05cf8c46d461ff4fcdccec2c6ff00bb7899be7c0a311c5ce1be2839c2a62da6"
+  },
+  "Sfx/loot_coin_bounce_01": {
+   "frames": 5733,
+   "sha256": "e9dd06bcfa105be4b4b9db2ebceeef01f2ac2d4385b0fe821f362af5d7f940c4"
+  },
+  "Sfx/loot_coin_bounce_02": {
+   "frames": 5733,
+   "sha256": "b29e35fc023d7d42ef91a492676734897be9173f14fbcaee71195978a6cda3e4"
+  },
+  "Sfx/loot_coin_bounce_03": {
+   "frames": 5733,
+   "sha256": "b052172c4aa9a23d0f3ed8c000c132ded967067e6afb72c8ac12db0b7e4f52fb"
+  },
+  "Sfx/loot_coin_bounce_04": {
+   "frames": 5733,
+   "sha256": "0da58b6cdc9c69bc8caa920d3f033716c39158c94723dd225810d9cec3d485a7"
+  },
+  "Sfx/loot_coin_vacuum_00": {
+   "frames": 6174,
+   "sha256": "ebb0da528207181a48ce578876b528a5192cadc11630b58560f7447e9a2d4b37"
+  },
+  "Sfx/loot_coin_vacuum_01": {
+   "frames": 6174,
+   "sha256": "17d282dc2bab23bbec7ed29f047778ccb3dce09caafa895d62f5a3ec5f0cee88"
+  },
+  "Sfx/loot_coin_vacuum_02": {
+   "frames": 6174,
+   "sha256": "24dd100110f752d27ff748123579de4870801ba316de8c7b76f28e5172d0e327"
+  },
+  "Sfx/loot_coin_pickup_00": {
+   "frames": 11686,
+   "sha256": "16905065b12b1aef77f01de07ed74f229ba8e5168c8321eadd7a7a6ccb78cb78"
+  },
+  "Sfx/loot_coin_pickup_01": {
+   "frames": 11686,
+   "sha256": "c9e27a3477e54a759d94f3ed495cac3daef95aab9591098c04d4894360ce9bbc"
+  },
+  "Sfx/loot_coin_pickup_02": {
+   "frames": 11686,
+   "sha256": "16045464a4ce721d18589fe5787d73f7b6d36ebad6a0714e84dce34cbb577253"
+  },
+  "Sfx/loot_coin_pickup_03": {
+   "frames": 11686,
+   "sha256": "cc4f2508a73c04f125dba441ef948499b4124fb8d9c7ef1769e7ca8cf9b8bc8c"
+  },
+  "Sfx/loot_coin_pickup_04": {
+   "frames": 11686,
+   "sha256": "04d3a3adf687cc0ae69ca195b76c8d0938c32931bd04b8245b54f0edb6e3a57e"
+  },
+  "Sfx/loot_coin_pickup_05": {
+   "frames": 11686,
+   "sha256": "a7182d9f49d58471bfe96d14809a08acb66e477102d1d2fa267aed2776e59ec7"
+  },
+  "Sfx/loot_egg_00": {
+   "frames": 14994,
+   "sha256": "67f61bacbb79c001f28992b807bb5580db28f2fa854cbfaa0225346be042fb17"
+  },
+  "Sfx/loot_egg_01": {
+   "frames": 14994,
+   "sha256": "035d66bf26b09e2b266b4bf3ead3f88abcd9c9907acd76866fb22c7bf4efdb8d"
+  },
+  "Sfx/loot_egg_02": {
+   "frames": 14994,
+   "sha256": "23e64d6f00f8c683e04b95567a11ce66303b3a919cd5c1b77ff91aa8c3bfc9df"
+  },
+  "Sfx/loot_egg_03": {
+   "frames": 14994,
+   "sha256": "083c4db3396d4d2553a75f4a9636f00a07ccd8c65ea993372c031c2606248938"
+  },
+  "Sfx/loot_heart_00": {
+   "frames": 35280,
+   "sha256": "db1e54644fb3b71b736c20b3235402c5dba65bee11836571b4af9ce7049ad662"
+  },
+  "Sfx/loot_heart_01": {
+   "frames": 35280,
+   "sha256": "5e54b52814330fc6cad43778fb5510adff79132fcc44913ae5aa8dd188af6ab7"
+  },
+  "Sfx/loot_heart_02": {
+   "frames": 35280,
+   "sha256": "7c7e84d5e2c671a7ed53564e253202d9a62d6ce2e133001f28761d63700b678e"
+  },
+  "Sfx/loot_chest_appear_00": {
+   "frames": 35280,
+   "sha256": "bdf51c8550303a2bfb55194c74d6a36b60a5958b4060e485141a3a2d27981ca5"
+  },
+  "Sfx/loot_chest_appear_01": {
+   "frames": 35280,
+   "sha256": "43196a8bb5f859a091159f39fb3b0a03454ae8c2bc462d206026e0901e9b89be"
+  },
+  "Sfx/loot_chest_open_00": {
+   "frames": 52920,
+   "sha256": "8345790ac47f3fc1c7e9e04e48f9f81125ef89c256fe31e5d7e659974ed1d029"
+  },
+  "Sfx/loot_chest_open_01": {
+   "frames": 52920,
+   "sha256": "ecf9300012b4bc2aa994d8b62a5afb20139edd2a28668e2baf0a1747192d6254"
+  },
+  "Sfx/loot_chest_open_02": {
+   "frames": 52920,
+   "sha256": "36e0515231c8d3d9aa31c700fec2f6d592b757b6061a1a7fb1c25c569b7e7479"
+  },
+  "Sfx/up_merge_00": {
+   "frames": 35280,
+   "sha256": "1917eaa6620a1b9c3f76abfd4419eff357c2dc745fd02c4fdf54210968bb1fd0"
+  },
+  "Sfx/up_merge_01": {
+   "frames": 35280,
+   "sha256": "c41ac070054e697e06cad11cba22338ce26959101ed825287ab1a7c0dd48a5ee"
+  },
+  "Sfx/up_merge_02": {
+   "frames": 35280,
+   "sha256": "77f9cb790309866e4d3875e1fff5f20bb9d32c8161c7f2b1e57ef0b5a9025246"
+  },
+  "Sfx/up_merge_gather_00": {
+   "frames": 24255,
+   "sha256": "f8e94b9e0af66c995fd95d581d5264ca3e5b19ddb6218920ab67bdcc29501d81"
+  },
+  "Sfx/up_merge_gather_01": {
+   "frames": 24255,
+   "sha256": "2f65fd48d4cece7cdae8cda8a391b74527778eae197dbd347b9888525d2c5fdd"
+  },
+  "Sfx/up_merge_gather_02": {
+   "frames": 24255,
+   "sha256": "a899db2437e888a5a3554312d048caf4b8cd5b40ad94c9a8a280d74267165a80"
+  },
+  "Sfx/up_star2_00": {
+   "frames": 78498,
+   "sha256": "f2432d6dde254d85fc9c37bbac840412b06d7c91a44ff7d8672aefb1f1d24d2c"
+  },
+  "Sfx/up_star2_01": {
+   "frames": 78498,
+   "sha256": "c8b66dee3f5287cdbb925d994b3a04c8db0617a8f6f3c119e530f5fb02d04011"
+  },
+  "Sfx/up_star3_00": {
+   "frames": 79380,
+   "sha256": "dda2ea418b1fcaa79ada7c91a7d2858469ca91bcbdcabbd867c0e9d228149d61"
+  },
+  "Sfx/up_star3_01": {
+   "frames": 79380,
+   "sha256": "28865a01f5c079afa40fc467a5bc9b3d32c35bb0c659c140b99f73be53c9762b"
+  },
+  "Sfx/up_ally_land_00": {
+   "frames": 44100,
+   "sha256": "b8768fe723a99edb6aa76773fc868b20a11614494a739467089b41f50d5effa8"
+  },
+  "Sfx/up_ally_land_01": {
+   "frames": 44100,
+   "sha256": "fe9a7150b85f7a4994e7e4efffeb6a24e5d6d9cdd9ca6dac4885bceaec496d08"
+  },
+  "Sfx/up_ally_land_02": {
+   "frames": 44100,
+   "sha256": "795e91fe7073c35bab50877e621ca3a9d4556887fa8ff711e5f241cc083b529b"
+  },
+  "Sfx/up_ally_land_03": {
+   "frames": 44100,
+   "sha256": "0e15bd902115c46e12f4db396fdc28ed73a9d4fbf074ca6fa49f7445ba3f0dc5"
+  },
+  "Sfx/up_bond_t1_00": {
+   "frames": 61740,
+   "sha256": "c21572e191e139874cf6df7da3e7402404c488c5bd4a2fe93208ec6c6f9277e7"
+  },
+  "Sfx/up_bond_t1_01": {
+   "frames": 61740,
+   "sha256": "4e461fd428eb4319206cc9bb02be64f941e7e7768a9c8e5ad118fc76b5101a02"
+  },
+  "Sfx/up_bond_t2_00": {
+   "frames": 61740,
+   "sha256": "9888d374d104a48a52e7658212020d913e6b0f6be33d5e598365dfc4e590b32e"
+  },
+  "Sfx/up_bond_t2_01": {
+   "frames": 61740,
+   "sha256": "b3825549f38ceb0b7ef7a0e92ba81b12f6f668dfa2f84e2b8ec08530f427636f"
+  },
+  "Sfx/up_chain_00": {
+   "frames": 35280,
+   "sha256": "d669a4ddd058fb8188ea97003a8fe62c4699de66b47c491d3f09e3467d948009"
+  },
+  "Sfx/up_chain_01": {
+   "frames": 35280,
+   "sha256": "1f8b7a0dec93c30329f3d1c24d12b46866a28630b54a5defb9d45ecbef9894f8"
+  },
+  "Sfx/up_chain_02": {
+   "frames": 35280,
+   "sha256": "3a0aab9a4b877ef6f561d5a448938a162836982eaf8a8147e183ecc822e0056d"
+  },
+  "Sfx/up_chain_03": {
+   "frames": 35280,
+   "sha256": "8336fad5d8b75b160d53015849e6b5e80c903991e7ebef08c04da1054df54c46"
+  },
+  "Sfx/up_rarity_blue_00": {
+   "frames": 44100,
+   "sha256": "b03caccddedb96b1ff313405017898c4f894189f39012667f8b8e6533714d42f"
+  },
+  "Sfx/up_rarity_blue_01": {
+   "frames": 44100,
+   "sha256": "05fd3670314c8356c56a4834f62ca43fc4c381909ef81eb11fd5d378cba83dec"
+  },
+  "Sfx/up_rarity_purple_00": {
+   "frames": 61740,
+   "sha256": "9171178eb608a7e3008843e8563ac97429078e39c5558ba3ecd2d276155ddc11"
+  },
+  "Sfx/up_rarity_purple_01": {
+   "frames": 61740,
+   "sha256": "e79b56062b7093eb9d170456b107084da1244312043ec22ee19f49fa6ded3ec4"
+  },
+  "Sfx/up_rarity_gold_00": {
+   "frames": 88200,
+   "sha256": "e848986a47d9c75bb5a57ce469865209809a41578f08e7cde0aea8b7f627653d"
+  },
+  "Sfx/up_rarity_gold_01": {
+   "frames": 88200,
+   "sha256": "e29d36b96a2b09a677ede508161cf376702be4b3b72ba338eb7a84f8b3ba7954"
+  },
+  "Sfx/shop_keeper_enter_gold_00": {
+   "frames": 113778,
+   "sha256": "d9b2f15e25253c0dee2487294712f64526d579e7fba4b14df0829cee4bdf81ec"
+  },
+  "Sfx/shop_keeper_enter_gold_01": {
+   "frames": 113778,
+   "sha256": "d87246663ba6e43a6470c5d4301e8845ff2d2677b48d77d31a48047004cb7601"
+  },
+  "Sfx/shop_keeper_enter_dream_00": {
+   "frames": 114660,
+   "sha256": "32da35e8c4db4c38afa156bcb6e9f041e99cc74c5f3068b3cb19bd38ae15adff"
+  },
+  "Sfx/shop_keeper_enter_dream_01": {
+   "frames": 114660,
+   "sha256": "dd79b7a8252628fe7367861e458439ee957e5e11d36c0e09eb4ced116bfeb271"
+  },
+  "Sfx/shop_keeper_exit_gold_00": {
+   "frames": 35280,
+   "sha256": "cc04b0d86398ee6c2bccefcd6d45d66dca0d762a83d0f3da32426015aac9b76c"
+  },
+  "Sfx/shop_keeper_exit_gold_01": {
+   "frames": 35280,
+   "sha256": "0a4af8a3fc7654e8b4bb1f659f6325dddee2a3eb3b2c21b7c5af4fe8d7234e93"
+  },
+  "Sfx/shop_keeper_exit_dream_00": {
+   "frames": 35280,
+   "sha256": "1505e47b6bf7d7eee123af7d5cc074ea1851373148e54e0bd0ac394a4c0f98c2"
+  },
+  "Sfx/shop_keeper_exit_dream_01": {
+   "frames": 35280,
+   "sha256": "9b9afbb08d684b7bd7c6e80d5332093d0da7fd3ab2fb510867f0352c44e7f0fc"
+  },
+  "Sfx/shop_carpet_open_00": {
+   "frames": 48510,
+   "sha256": "e424906e7b23e8753ed03fc1dbe316d7fd1368d0a76c2f692a6e26040731ebe2"
+  },
+  "Sfx/shop_carpet_open_01": {
+   "frames": 48510,
+   "sha256": "8d19795c38ee0ba0b0c5e6bbe766f042f90e5d0a061d9b5f9c66297c70e0195c"
+  },
+  "Sfx/shop_carpet_roll_00": {
+   "frames": 35279,
+   "sha256": "af29bb17be6a6b5f998f6c9d38ecccfc813e9d9b61f1d7bf05f4863ea9bae0cd"
+  },
+  "Sfx/shop_carpet_roll_01": {
+   "frames": 35279,
+   "sha256": "dd95d77983a6e192b2423883671462de6c0dcc074e90feda5916b44a365fca35"
+  },
+  "Sfx/shop_stand_appear_00": {
+   "frames": 22050,
+   "sha256": "082867d2e224c138264b215874481e77b37744f21a3056ef66020a73d8487022"
+  },
+  "Sfx/shop_stand_appear_01": {
+   "frames": 22050,
+   "sha256": "18fdc82b9914a0a3c15061d59e6cc91c0c83fdd849cefb158c119a977089e207"
+  },
+  "Sfx/shop_stand_appear_02": {
+   "frames": 22050,
+   "sha256": "dcbf4c1558e571cd5c996ad06a35284e7ca15b54f9a2a05aa9cb9a0869db0a85"
+  },
+  "Sfx/shop_stand_appear_03": {
+   "frames": 22050,
+   "sha256": "adfc7b5787b247bd51d875a57276401a10ef9a2330cca47038dfb6b3ee5c24e6"
+  },
+  "Sfx/shop_item_pop_00": {
+   "frames": 15435,
+   "sha256": "47fb9a7bf3ba767969668a5b9992e1d07e1b12b166dcfde8c1b5007c00acd7f0"
+  },
+  "Sfx/shop_item_pop_01": {
+   "frames": 15435,
+   "sha256": "e7eaa64443fd0a6ed4541f6ba1622d5779594e18fa7be3d9b2460ff893c6c946"
+  },
+  "Sfx/shop_item_pop_02": {
+   "frames": 15435,
+   "sha256": "07afdd0f9cf3d04b3a995f74d8133ca507219099d9dbee11cf3b43b1ad919f35"
+  },
+  "Sfx/shop_item_pop_03": {
+   "frames": 15435,
+   "sha256": "088a7e89b632eae7026a2d9fcfd820b7edbcf994dc9ab05dc73659daff3d84d3"
+  },
+  "Sfx/shop_approach_00": {
+   "frames": 13230,
+   "sha256": "d3a6ab9df54d1c9e39c20568030853282f75a1501d3791119bd6ec5d0dadcaec"
+  },
+  "Sfx/shop_approach_01": {
+   "frames": 13230,
+   "sha256": "26202dc55ad54eda302c7d253519638c8366d9cdd84b63d7d755ee4439b1b0b2"
+  },
+  "Sfx/shop_approach_02": {
+   "frames": 13230,
+   "sha256": "d873a3f1c248fd70ce6c6883eb639d8dceee0f94ea8f428afa8cdf22f2eea73a"
+  },
+  "Sfx/shop_approach_03": {
+   "frames": 13230,
+   "sha256": "cb5eb94c5757483f738bca3d7c302f969b267f213cedccccf319fabb9bbf7f39"
+  },
+  "Sfx/shop_focus_00": {
+   "frames": 1764,
+   "sha256": "4823361017db56aca8b0878161a0d39cfc8a9bb1d8515a05c9de0d0558ba0fcf"
+  },
+  "Sfx/shop_focus_01": {
+   "frames": 1764,
+   "sha256": "ba69733cb3c07d0fcc0a14592d3e158b97aa40f7b8d9f6905da612b635f18b28"
+  },
+  "Sfx/shop_focus_02": {
+   "frames": 1764,
+   "sha256": "3b44c8c11e6aafeefe25b4115f6f7b44d10cb9e525a105a17099e348790d6443"
+  },
+  "Sfx/shop_focus_03": {
+   "frames": 1764,
+   "sha256": "66daf426c5d1b9e23171a4bb09ea00f3ee53cfb9e938d7e1d885fa2fb7ffb35d"
+  },
+  "Sfx/shop_buy_gold_00": {
+   "frames": 39690,
+   "sha256": "fa0dfc934e5fa633237a3a406ca25a8baf2994530b53c35427aa95a5fa5e4446"
+  },
+  "Sfx/shop_buy_gold_01": {
+   "frames": 39690,
+   "sha256": "20a419939cf32b6b28b22f1a88149778e3f1214eb8ba9ce3a4bde313d6559bb1"
+  },
+  "Sfx/shop_buy_gold_02": {
+   "frames": 39690,
+   "sha256": "ac46e1e3b466b4e279d7fdbd6ef4dd99c11d896a93a0f7151754547817180fd4"
+  },
+  "Sfx/shop_buy_gold_03": {
+   "frames": 39690,
+   "sha256": "02f45eec9874297e92b9d06132a13d3ae375496305ab80fb2ad22b159e8a4b26"
+  },
+  "Sfx/shop_buy_dream_00": {
+   "frames": 70560,
+   "sha256": "f140d294dff198356f577db1de4f7541066f620156c27cac7605eb35c72d2c79"
+  },
+  "Sfx/shop_buy_dream_01": {
+   "frames": 70560,
+   "sha256": "d0b218a1d8e7653d97f7643e54918672f205c6a275e730db24cdc0a4ed9eba2e"
+  },
+  "Sfx/shop_buy_dream_02": {
+   "frames": 70560,
+   "sha256": "d8cfc667a9c6e3ec2f0616a8ce9e4b8aa9ef20a5256d8092f61ab96e2f60905b"
+  },
+  "Sfx/shop_deny_gold_00": {
+   "frames": 10584,
+   "sha256": "e9d6389a7a201782dd23ffbcc47d79a34a7fba3f9419b655e5dadb29ee68d876"
+  },
+  "Sfx/shop_deny_gold_01": {
+   "frames": 10584,
+   "sha256": "70ffeb2891e302f0bfae32a290999ebc842df39bb42c5fb0c46d0aadff8e03a3"
+  },
+  "Sfx/shop_deny_egg_00": {
+   "frames": 8820,
+   "sha256": "5e01f593b0bcb2f1ccb3a268a5642665e7e23959f525cc269abd8ae668e866de"
+  },
+  "Sfx/shop_deny_egg_01": {
+   "frames": 8820,
+   "sha256": "f8b26a3506651042ea3a4f491143aae6e3ef159927ec8fdf90dc1058fa61c257"
+  },
+  "Sfx/shop_deny_hp_00": {
+   "frames": 11025,
+   "sha256": "585e80a298e6a90818de0f12d20168f040cde7a77e1a9c73edc77b36bc7eb83e"
+  },
+  "Sfx/shop_deny_hp_01": {
+   "frames": 11025,
+   "sha256": "c07fa8a10ac7c5349bac3f91607fa5220029f19bbbda36cdb58a0f3b7be21f48"
+  },
+  "Sfx/shop_invalid_00": {
+   "frames": 3528,
+   "sha256": "795e8f55c81f211e813770c934390fd6812e44517e2d97876cbfc1732654d069"
+  },
+  "Sfx/shop_invalid_01": {
+   "frames": 3528,
+   "sha256": "28151ffed8f034522219fe5f86a35514fac2fec03a21d0f0f9715e4c177dd049"
+  },
+  "Sfx/shop_invalid_02": {
+   "frames": 3528,
+   "sha256": "cb17d21328c33a53ed4e4c1779f265e707377a62a6962dc4ed30ba50bb9eb35a"
+  },
+  "Sfx/shop_reroll_00": {
+   "frames": 37044,
+   "sha256": "c9ead61c33f1bec44d8002f2419cf8a4bba6f983081c01efd2bcc94a0f2a104b"
+  },
+  "Sfx/shop_reroll_01": {
+   "frames": 37044,
+   "sha256": "9e478d315236cdba78296e692015df167e3b73de7d2186c64e5eae286717937d"
+  },
+  "Sfx/shop_reroll_02": {
+   "frames": 37044,
+   "sha256": "863edd385b2cf57624e12139f2ff59268aaddac658e15e514e029d7c7a36fb5d"
+  },
+  "Sfx/shop_fusion_00": {
+   "frames": 88200,
+   "sha256": "dee7db6da8ba28fecd7bb0500bda5cb0a41c6d72d6711462bc6bbde25d980240"
+  },
+  "Sfx/shop_fusion_01": {
+   "frames": 88200,
+   "sha256": "c5551f5b74cb702e18cca9d094f2ff89c267abc427ceb4dec25e82ca10928ba9"
+  },
+  "Sfx/shop_descend_00": {
+   "frames": 44100,
+   "sha256": "a6b707b53b6a67cbe25ae87431494096319fc2d6611549dced0a3dc4141a27fc"
+  },
+  "Sfx/shop_descend_01": {
+   "frames": 44100,
+   "sha256": "973e143f065b4dda8135f19b91bbeb811c29ee78be797bff5e48a638b59c3362"
+  },
+  "Sfx/ui_hover_00": {
+   "frames": 1323,
+   "sha256": "9e2dc103057c47ab50273285a8a6b95609f2f6d4594fac2127f9cc08f791e170"
+  },
+  "Sfx/ui_hover_01": {
+   "frames": 1323,
+   "sha256": "0b494dfd34159e015a33c8b6860b4ffff5f204bb058d5ad48372d190aaa07200"
+  },
+  "Sfx/ui_hover_02": {
+   "frames": 1323,
+   "sha256": "35aefd66fbe0f79c3d4730d18167a03b834b7fc8b5ceaa1d3b026f71cc8fdd02"
+  },
+  "Sfx/ui_hover_03": {
+   "frames": 1323,
+   "sha256": "7400342ec52a9a6abbf9d33918d12a64e190eb6ccd1c2480da06b345a0e57383"
+  },
+  "Sfx/ui_select_00": {
+   "frames": 5292,
+   "sha256": "319ea7248d79d53977a2a6df86a8ea1c5c38285c4aadcb71849932dbd15562b6"
+  },
+  "Sfx/ui_select_01": {
+   "frames": 5292,
+   "sha256": "d012211a9eba6e794a68a41fea35b35afe23fd9380c2b4759e21cb4f470e6223"
+  },
+  "Sfx/ui_select_02": {
+   "frames": 5292,
+   "sha256": "47314bd52b92f021bb4d7abc2efbb3070c43eef8f348adc1c09267d788a23d12"
+  },
+  "Sfx/ui_select_03": {
+   "frames": 5292,
+   "sha256": "0414a6b86742a32c2df5b30315767638bf187b39644d078ecbedfd3354e8b0ad"
+  },
+  "Sfx/ui_confirm_00": {
+   "frames": 13891,
+   "sha256": "d7fc32c6f2939ff10668760392686c4cfca626794c6c2a48b713c22ec8c61d48"
+  },
+  "Sfx/ui_confirm_01": {
+   "frames": 13891,
+   "sha256": "930a47384c4e3c5e783e9c905e26b28400b75028afb5c07192962ad1da3147ab"
+  },
+  "Sfx/ui_confirm_02": {
+   "frames": 13891,
+   "sha256": "f4f8bce430dde0f7261423bbaaaf8b79fa2da3c823c62a896f4bfccbb6bcf3e4"
+  },
+  "Sfx/ui_back_00": {
+   "frames": 9922,
+   "sha256": "83aecd75df056c9f06b999d7c256306dd1762429c08da15beefe36a5782f7616"
+  },
+  "Sfx/ui_back_01": {
+   "frames": 9922,
+   "sha256": "dc56c222172999f6ae270f041f994af6dc1faf0064bc68e956402ac232568cae"
+  },
+  "Sfx/ui_back_02": {
+   "frames": 9922,
+   "sha256": "9044e4def91e653e082221b799ffbee33057a24086542bc0dd355906619ea779"
+  },
+  "Sfx/ui_open_00": {
+   "frames": 11907,
+   "sha256": "576b71fdbf5ce35e8dcafd6dd63a736c04f9ace9410a0268d6c79769ac00e70e"
+  },
+  "Sfx/ui_open_01": {
+   "frames": 11907,
+   "sha256": "18a52cd7311333472078f6a48e1a830b08bfada287fe342e51e8117ae9edb1f8"
+  },
+  "Sfx/ui_close_00": {
+   "frames": 7497,
+   "sha256": "45f55b4d39f5160157147b99330587f26fb9613b7cd15649153402d5c6f8bff1"
+  },
+  "Sfx/ui_close_01": {
+   "frames": 7497,
+   "sha256": "e8bac855a4b616fb1d73728ffd30e8eace09d4074f8d647e6f85681dffa8245a"
+  },
+  "Sfx/ui_page_00": {
+   "frames": 6174,
+   "sha256": "142d04c2e65417186481b0e2de8398df32897ca1c8f22d3e4fabfbd93bc49386"
+  },
+  "Sfx/ui_page_01": {
+   "frames": 6174,
+   "sha256": "66341b746be569311d27068c1d13fa86c1f1c81c63e9524752243f76fc957e68"
+  },
+  "Sfx/ui_page_02": {
+   "frames": 6174,
+   "sha256": "527990e09dc17f7e325cac71a736b7ac21ce3a2f37255740fa161f453cddf5e0"
+  },
+  "Sfx/ui_tooltip_00": {
+   "frames": 4410,
+   "sha256": "c7b5668a0226aece2dd78039f7e91f41729022605309bd797d4d9b69df41d2e9"
+  },
+  "Sfx/ui_tooltip_01": {
+   "frames": 4410,
+   "sha256": "f4b643167d38e77f2fdae9a54ce2ff9926851a9f3431f6720abf268b295aaebc"
+  },
+  "Sfx/ui_tab_00": {
+   "frames": 2646,
+   "sha256": "90dce3153c28a7ccaf46f46d7c54d62e2370a2d84d709b6cda47847cf05e743e"
+  },
+  "Sfx/ui_tab_01": {
+   "frames": 2646,
+   "sha256": "6e48175ba66e3c7971a1dc0934ce815b8dcb2f229d5ace8ae2e436886d63bb5c"
+  },
+  "Sfx/ui_tab_02": {
+   "frames": 2646,
+   "sha256": "b65ff2f7350ad6d6982aad94d299d18f57f53ffdf905756198d2cb41ceeb1cb2"
+  },
+  "Sfx/ui_pause_00": {
+   "frames": 22050,
+   "sha256": "44733f9ff3558f44e70da05b40b99a26c7f489c063f81fb558e7b66d92bada35"
+  },
+  "Sfx/ui_resume_00": {
+   "frames": 17199,
+   "sha256": "b605322a7ed68c43dc5dadf19aed9210d481a1cf7f52be64188569a12ebdaf6f"
+  },
+  "Sfx/ui_setting_00": {
+   "frames": 1323,
+   "sha256": "541918175ee4512f4f89ebfaaa356742f33950e6d3ad85312a7343e701feb9f2"
+  },
+  "Sfx/ui_setting_01": {
+   "frames": 1323,
+   "sha256": "33fd50ea7a688b997655113c32fefa07bca861a185d79aa2e24c673abf2d5bb5"
+  },
+  "Sfx/ui_setting_02": {
+   "frames": 1323,
+   "sha256": "ec8f675f8ba2433e31c9f214e4284adc1ccf580fdeec4570e3e05bce840496b8"
+  },
+  "Sfx/ui_unlock_00": {
+   "frames": 52920,
+   "sha256": "18bbef2911cb3b0a9603ccc97e25a600c60adb30cb83f82f6d520b042023c9dd"
+  },
+  "Sfx/ui_unlock_01": {
+   "frames": 52920,
+   "sha256": "d42f92441ed08e3f66b8a69b556e9dd5f246545831e3ac1218b87596f98b8779"
+  },
+  "Sfx/ui_achievement_00": {
+   "frames": 79380,
+   "sha256": "1dd2e2225057e9d9da477d71b038976a240c88bd43277ed75499b91ad25bb8da"
+  },
+  "Sfx/ui_achievement_01": {
+   "frames": 79380,
+   "sha256": "a86ca730124a0e5b26dce2a0da550fab549776e1abd6867efbf6f15e7549ad81"
+  },
+  "Sfx/ui_receipt_00": {
+   "frames": 39690,
+   "sha256": "6b6ce59660e0957066f499e42834be6d0e5dee5129dc3665e7d67992f3ac10c2"
+  },
+  "Sfx/ui_receipt_01": {
+   "frames": 39690,
+   "sha256": "40a68630333800d9638295723e217f87dab50453499515b07b0fa04fa1f4457c"
+  },
+  "Sfx/sting_waveclear_00": {
+   "frames": 83790,
+   "sha256": "901195ddc69c798dfb58ad422778bfa80c860b705b325a92e94bbed0b8674269"
+  },
+  "Sfx/sting_waveclear_01": {
+   "frames": 83790,
+   "sha256": "3fb0ca7095d51792926654d69bfbe04db967ceb90bf40c4260ffb4d2cc0f8306"
+  },
+  "Sfx/sting_victory_00": {
+   "frames": 158760,
+   "sha256": "9ce2de780e8cd0e72a96261222f7a892de2d51c4cd08fad8a8c852a03ea7c6a3"
+  },
+  "Sfx/sting_defeat_00": {
+   "frames": 167580,
+   "sha256": "47c498f847fcf67aa7b1ce2a93d5bc187f1218bf6812e19766853fb2237d07ac"
+  },
+  "Amb/amb_stage_00": {
+   "frames": 1058400,
+   "sha256": "c3d6dd7e398adccbc90d4fe160cb98912c0ecf6057729b71ca6134aa63a47694"
+  },
+  "Amb/amb_office_00": {
+   "frames": 1058400,
+   "sha256": "bac31ccd322c1d5b69d78d14d621dcaae85d2019a54f88764d4bc1d23a83bbfb"
+  },
+  "Amb/amb_lostshop_00": {
+   "frames": 1058400,
+   "sha256": "7011675a7bcfee991a7e9b3da6b67136adb66e6436a7bc5797a402f05a14f653"
+  },
+  "Amb/amb_goldshop_00": {
+   "frames": 1058400,
+   "sha256": "dc79d751a2f462723e319d4c9ec2211260f6b8239bff2b222b8ca11528dd37a6"
+  },
+  "Amb/amb_dreamshop_00": {
+   "frames": 1058400,
+   "sha256": "4385b601ee00551d31c362cca09995f75624a18725fa1408e1987a36fb1f2dee"
+  },
+  "Amb/amb_toys_00": {
+   "frames": 1058400,
+   "sha256": "2610fd330794646447c61da0027ed2e73fe72078c3b1aa8edcffdfbd7002da7b"
+  },
+  "Amb/amb_transition_00": {
+   "frames": 61740,
+   "sha256": "5b5bc0619c16384a2dd043b91617f93c2be18ccd86870672d05dd18b50c6c68a"
+  },
+  "Amb/amb_transition_01": {
+   "frames": 61740,
+   "sha256": "922e181ffcccebb8d19f7b53871945396f7b08e24912c7f2eff13b1e11c6e6ba"
+  },
+  "Voice/voice_gold_syl_00": {
+   "frames": 4278,
+   "sha256": "d8c2a0220a1e5b78b8dadb304bda9d1ae21cb4a915a1825d093f1a3c625d2796"
+  },
+  "Voice/voice_gold_syl_01": {
+   "frames": 6218,
+   "sha256": "475f085c1394011f4aac72e244b8ccbf5998ba0ff3eecef35ed1fc646a76c344"
+  },
+  "Voice/voice_gold_syl_02": {
+   "frames": 4719,
+   "sha256": "5f085d782ecaef44a4b8f2815087dac9cce2fd78983df1d38a850507d3abe1de"
+  },
+  "Voice/voice_gold_syl_03": {
+   "frames": 6218,
+   "sha256": "b878cb251c36d8e16bd17323fa59b6b7e573b847f1925e31875dcd4bd7b9480f"
+  },
+  "Voice/voice_gold_syl_04": {
+   "frames": 5910,
+   "sha256": "7155a9792d890706f20777f0ef991353e1a65b085bea0bf16139c6dc56b175a5"
+  },
+  "Voice/voice_gold_syl_05": {
+   "frames": 4631,
+   "sha256": "ae60fbf34e9f54d2ed811d7831a96816eb2819f9fcd30f8e1f2ee10c8d7e75a6"
+  },
+  "Voice/voice_gold_syl_06": {
+   "frames": 5689,
+   "sha256": "48b960d5d5f6ab4f8bd254954319251faa658aba7949db22415e7f6129edfbd3"
+  },
+  "Voice/voice_gold_syl_07": {
+   "frames": 4719,
+   "sha256": "ad52fd945bfc73154d618ca3fc4612730a44f83d28b4f8e56605fb5b5aab5c2d"
+  },
+  "Voice/voice_gold_laugh_00": {
+   "frames": 20285,
+   "sha256": "fd18a09623420ff7817e84e8a24b6a1fb632988fca33d55acebcf7022b35dac5"
+  },
+  "Voice/voice_gold_laugh_01": {
+   "frames": 21608,
+   "sha256": "a56b6836828c8ef4b34783c90ffac0d79631f6a154d41170dcaec8f466b7a14b"
+  },
+  "Voice/voice_gold_hmm_00": {
+   "frames": 22050,
+   "sha256": "f73647858142da201e83d688d87f62d56d34cafd2f9e825b4e5f2751d52abafc"
+  },
+  "Voice/voice_gold_hmm_01": {
+   "frames": 22050,
+   "sha256": "78261c02c3ec0d2c8cf6ae428f57f281323a9b0df44c77abda941676deac9f3b"
+  },
+  "Voice/voice_gold_gasp_00": {
+   "frames": 14112,
+   "sha256": "37075d2907a8f36ee4e6bacf0a0afd37b7b6d65d28513f4d1d4d99b82e787691"
+  },
+  "Voice/voice_gold_gasp_01": {
+   "frames": 14112,
+   "sha256": "aac75ec068f23102767c66a08d74737a0e113586853dcc226c40ad46a248cc4b"
+  },
+  "Voice/voice_gold_farewell_00": {
+   "frames": 22491,
+   "sha256": "74ccd599367a167435ea2743bbb329a0be78c16b70f6ec78203fc0bad93afc5e"
+  },
+  "Voice/voice_gold_farewell_01": {
+   "frames": 23506,
+   "sha256": "dc824aecb47f8be4249cee6890b7dddb0afb0bf24d511670743a3b5ca50aba5b"
+  },
+  "Voice/voice_dream_syl_00": {
+   "frames": 4498,
+   "sha256": "f7d441c7e450ac282567ce8f8d2c31d3b335c9e08a9aab4361d94b76aafbe914"
+  },
+  "Voice/voice_dream_syl_01": {
+   "frames": 4851,
+   "sha256": "5c46bd0ee1dae409deb481b205d2c630db682dc2795f744d34cd7e8382fd20ad"
+  },
+  "Voice/voice_dream_syl_02": {
+   "frames": 4410,
+   "sha256": "1dcf8b8409e97fe29e405b1ed5af1a530a46b3acad5b0eaa99130fa370b9ab80"
+  },
+  "Voice/voice_dream_syl_03": {
+   "frames": 4322,
+   "sha256": "ac6956efba917ef04a6af4933f647497198fa29a802e4cd0b94f925d7d3d53f0"
+  },
+  "Voice/voice_dream_syl_04": {
+   "frames": 5072,
+   "sha256": "84165a16be90c92b68c1a58864f65b2bbb6288a335fa6ed7cef387a6f90ccefc"
+  },
+  "Voice/voice_dream_syl_05": {
+   "frames": 4851,
+   "sha256": "0e99bb09321fed8d1b6e43f84a445c274011f21583e2790c124baad5718dd588"
+  },
+  "Voice/voice_dream_syl_06": {
+   "frames": 4322,
+   "sha256": "81833fc365ce36734ca8b7989bb1fd00f66270f8b561837d77aaa7e63dc39521"
+  },
+  "Voice/voice_dream_syl_07": {
+   "frames": 4410,
+   "sha256": "264c29f90c3ed4537883f0961a5a45a050aec69b6347b755f158e99dba90030d"
+  },
+  "Voice/voice_dream_laugh_00": {
+   "frames": 20285,
+   "sha256": "9076fa80198bdc40ab1ff653b6e0e5f48d996a2d4703ad8137b7cd8bde1702d9"
+  },
+  "Voice/voice_dream_laugh_01": {
+   "frames": 21608,
+   "sha256": "3b1291e39ddcec87a32457570216f73cd3be3a477e19491472715433f1696991"
+  },
+  "Voice/voice_dream_hmm_00": {
+   "frames": 22050,
+   "sha256": "bdf2c4f61d1488de874d57616e21f8bec21eeec5102136a46637c90dc8374e2f"
+  },
+  "Voice/voice_dream_hmm_01": {
+   "frames": 22050,
+   "sha256": "6239343f377055e1860aa12c1a884d6d4c2fd2482bd2fc43076e0a313eb3ca0a"
+  },
+  "Voice/voice_dream_gasp_00": {
+   "frames": 14112,
+   "sha256": "5fbaed81ea1ecb333f52daa684c32ee875b03fdd1e8c3c8d0ba34bad05fda4aa"
+  },
+  "Voice/voice_dream_gasp_01": {
+   "frames": 14112,
+   "sha256": "4f89f8b068b7ec1afb9d53be223755833171b34bb190e3122d17240b2017013f"
+  },
+  "Voice/voice_dream_farewell_00": {
+   "frames": 22491,
+   "sha256": "fa1648122de6765a3a74f35e1e82627ad7f1ca803b97b0b0aa917e68068b8fa1"
+  },
+  "Voice/voice_dream_farewell_01": {
+   "frames": 23506,
+   "sha256": "c866084ade277747fdcd09f9d7acab8a12baaeccdf0f1193b20c0964a81f459b"
+  }
+ }
+}

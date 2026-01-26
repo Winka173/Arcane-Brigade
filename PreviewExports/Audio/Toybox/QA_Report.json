@@ -1,0 +1,5646 @@
+{
+  "status": "PASS",
+  "cueCount": 206,
+  "clipCount": 582,
+  "musicPieces": 15,
+  "musicStems": 60,
+  "replacedExistingClips": 471,
+  "failures": [],
+  "warnings": [],
+  "listeningReview": "Not performed. Technical QA cannot certify subjective quality.",
+  "assets": [
+    {
+      "file": "Sfx/cmb_swing_blade_00.wav",
+      "frames": 8820,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9931338813044412,
+      "rmsDb": -17.803471309643378,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_blade_01.wav",
+      "frames": 9261,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.848981129922412,
+      "rmsDb": -16.43616493625268,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_blade_02.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.622874448044165,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_blade_03.wav",
+      "frames": 8820,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9565660784713037,
+      "rmsDb": -17.19554454634605,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_blade_04.wav",
+      "frames": 9261,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9125378602899676,
+      "rmsDb": -17.480037450509755,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_blade_05.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.963228088252681,
+      "rmsDb": -17.944192981161752,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_spear_00.wav",
+      "frames": 7056,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9926165468190273,
+      "rmsDb": -18.626741823930338,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_spear_01.wav",
+      "frames": 7409,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9783318797778815,
+      "rmsDb": -17.561108929564927,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_spear_02.wav",
+      "frames": 7762,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9858808589597485,
+      "rmsDb": -17.060190446697586,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_spear_03.wav",
+      "frames": 7056,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.926136715989035,
+      "rmsDb": -16.174283936368635,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_spear_04.wav",
+      "frames": 7409,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9606477002300857,
+      "rmsDb": -18.75153141211026,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_hammer_00.wav",
+      "frames": 11025,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9737395836427587,
+      "rmsDb": -14.838366394991498,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_hammer_01.wav",
+      "frames": 11576,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.210732921975552,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_hammer_02.wav",
+      "frames": 12128,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.991850100813294,
+      "rmsDb": -13.781405115874145,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_hammer_03.wav",
+      "frames": 11025,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.992060519673742,
+      "rmsDb": -12.814874333578555,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_scissors_00.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.931951833566251,
+      "rmsDb": -15.714718452311962,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_scissors_01.wav",
+      "frames": 5557,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.79595983435674,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_scissors_02.wav",
+      "frames": 5821,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.899123625506842,
+      "rmsDb": -16.3309618273197,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_scissors_03.wav",
+      "frames": 5292,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.845477770184786,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_umbrella_00.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.680524837800213,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_umbrella_01.wav",
+      "frames": 10187,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9944543930547143,
+      "rmsDb": -18.759075186951616,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_umbrella_02.wav",
+      "frames": 10672,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9531627971697554,
+      "rmsDb": -19.547638860204252,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_umbrella_03.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9918281824751434,
+      "rmsDb": -17.61037350469173,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_whip_00.wav",
+      "frames": 6615,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.978053953870312,
+      "rmsDb": -15.602054639539523,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_whip_01.wav",
+      "frames": 6946,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.350535161420357,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_whip_02.wav",
+      "frames": 7276,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.983620731657521,
+      "rmsDb": -15.72422258282642,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_swing_whip_03.wav",
+      "frames": 6615,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9814743012594374,
+      "rmsDb": -16.752305159244727,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_windup_00.wav",
+      "frames": 7497,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -17.514119769141328,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_windup_01.wav",
+      "frames": 8379,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.33882293600281,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_windup_02.wav",
+      "frames": 9261,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.834032248531006,
+      "rmsDb": -17.584253248055234,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_miss_00.wav",
+      "frames": 5742,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8535920510246813,
+      "rmsDb": -16.236172268951982,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_miss_01.wav",
+      "frames": 4812,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.890189409263292,
+      "rmsDb": -15.69192250443421,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_miss_02.wav",
+      "frames": 5468,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.81426608193494,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_miss_03.wav",
+      "frames": 6316,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.58686700233196,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_paper_00.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9615147823573067,
+      "rmsDb": -21.22564729948483,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_paper_01.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -21.029141724455084,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_paper_02.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9027726360577812,
+      "rmsDb": -22.222621117523357,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_paper_03.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.10959285501551,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_paper_04.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9630081720334944,
+      "rmsDb": -21.65200766578868,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_paper_05.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9157796843525716,
+      "rmsDb": -22.29458368514473,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_paper_00.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9047261047839172,
+      "rmsDb": -22.316304947905614,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_paper_01.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9784179583718084,
+      "rmsDb": -21.485038867123087,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_paper_02.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.985508510706068,
+      "rmsDb": -22.557264351293675,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_metal_00.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9841484800736096,
+      "rmsDb": -18.91172450182679,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_metal_01.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.895460973742529,
+      "rmsDb": -18.802605013359642,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_metal_02.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.042514971381518,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_metal_03.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9436889417153727,
+      "rmsDb": -19.090767924559366,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_metal_04.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.98240914844912,
+      "rmsDb": -19.022075596701402,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_metal_05.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9335700526577453,
+      "rmsDb": -18.94303355972276,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_metal_00.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9097090414438083,
+      "rmsDb": -19.616530810021253,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_metal_01.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.964190833401646,
+      "rmsDb": -19.757593825102006,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_metal_02.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9897746795436264,
+      "rmsDb": -19.814732687425746,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wax_00.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.973059368918766,
+      "rmsDb": -20.150891498839144,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wax_01.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9850668241617155,
+      "rmsDb": -20.279294513621405,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wax_02.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.918763140301117,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wax_03.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9928730181151577,
+      "rmsDb": -20.011610365009766,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wax_04.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9765003586669643,
+      "rmsDb": -20.591369794461766,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wax_05.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.988361397692824,
+      "rmsDb": -20.734486389062802,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_wax_00.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.98754566989778,
+      "rmsDb": -20.645311213159196,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_wax_01.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -20.439655917318827,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_wax_02.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.985238385688903,
+      "rmsDb": -20.649721235204062,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_fabric_00.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.78223334740691,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_fabric_01.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.694064688338997,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_fabric_02.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.986397792408924,
+      "rmsDb": -19.908361351010765,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_fabric_03.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9849543984456357,
+      "rmsDb": -19.61855706882606,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_fabric_04.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.811477149295097,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_fabric_05.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.950997728396363,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_fabric_00.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.98270545981457,
+      "rmsDb": -20.35723572397898,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_fabric_01.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -20.51070826881045,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_fabric_02.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -20.437841229195087,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_glass_00.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.895672683255363,
+      "rmsDb": -18.626367229044217,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_glass_01.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9407337482318754,
+      "rmsDb": -18.601332544759156,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_glass_02.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.61261178526454,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_glass_03.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9438335308136403,
+      "rmsDb": -18.423313865641862,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_glass_04.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.954755145660386,
+      "rmsDb": -17.782144227854122,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_glass_05.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9812692467522908,
+      "rmsDb": -18.055631750941863,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_glass_00.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9741398635049743,
+      "rmsDb": -19.688388797010294,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_glass_01.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.893680794806359,
+      "rmsDb": -18.908335490892647,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_glass_02.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.981613682709326,
+      "rmsDb": -18.591260812597707,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wood_00.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.924354413324117,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wood_01.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.704030677370312,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wood_02.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9941525649778167,
+      "rmsDb": -21.81914543541689,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wood_03.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.785815534587538,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wood_04.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9934502889081283,
+      "rmsDb": -21.942059129582987,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_hit_wood_05.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.964454489311347,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_wood_00.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.66297022447986,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_wood_01.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.33132553811178,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_wood_02.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.88038124987328,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_crit_00.wav",
+      "frames": 20021,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.096554451652096,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_crit_01.wav",
+      "frames": 20021,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.815527122583504,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_crit_02.wav",
+      "frames": 20021,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9415312898900856,
+      "rmsDb": -20.1357462772202,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_crit_03.wav",
+      "frames": 20021,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9215784483819167,
+      "rmsDb": -19.147924994522285,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/cmb_crit_04.wav",
+      "frames": 20021,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.954246639016774,
+      "rmsDb": -19.645852307515387,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_draw_00.wav",
+      "frames": 8820,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9924974473390358,
+      "rmsDb": -16.217603971692654,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_draw_01.wav",
+      "frames": 9349,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9810131178509587,
+      "rmsDb": -20.301708666559634,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_draw_02.wav",
+      "frames": 9878,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.929945080160641,
+      "rmsDb": -16.043881449205458,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_release_00.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.032233695692536,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_release_01.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9805884421281537,
+      "rmsDb": -18.7333541481653,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_release_02.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9478168533087907,
+      "rmsDb": -19.2293913617094,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_release_03.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.19918571557882,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bow_release_04.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9928459823223132,
+      "rmsDb": -18.880212733812105,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_gun_pop_00.wav",
+      "frames": 5733,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9587704109288158,
+      "rmsDb": -16.775699751471002,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_gun_pop_01.wav",
+      "frames": 5733,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9897009056552233,
+      "rmsDb": -14.116292187559873,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_gun_pop_02.wav",
+      "frames": 5733,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -15.547857432312469,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_gun_pop_03.wav",
+      "frames": 5733,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.725487685110293,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_launcher_00.wav",
+      "frames": 14112,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -13.225285275829624,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_launcher_01.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.46123838986147,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_launcher_02.wav",
+      "frames": 14112,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -13.253569787532776,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_fire_00.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9900237623504906,
+      "rmsDb": -16.213363754933198,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_fire_01.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9807591855414732,
+      "rmsDb": -15.395754573099119,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_fire_02.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.988702463268929,
+      "rmsDb": -16.488309563483806,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_fire_03.wav",
+      "frames": 19845,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.956821487483028,
+      "rmsDb": -15.619968833597753,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_ice_00.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8239040722663806,
+      "rmsDb": -22.665984218507198,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_ice_01.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9273702081600965,
+      "rmsDb": -22.636499616656064,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_ice_02.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.907952713017468,
+      "rmsDb": -22.532744442280837,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_ice_03.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.772419389785269,
+      "rmsDb": -22.47351366191683,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_arcane_00.wav",
+      "frames": 27342,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.988474597844584,
+      "rmsDb": -17.533360785733002,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_arcane_01.wav",
+      "frames": 27342,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9841499400030527,
+      "rmsDb": -19.27275129177172,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_arcane_02.wav",
+      "frames": 27342,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9931901469410387,
+      "rmsDb": -16.946960458024456,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_cast_arcane_03.wav",
+      "frames": 27342,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9889427509129862,
+      "rmsDb": -17.248607791405476,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_boomerang_fly_00.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.39514777429409,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_boomerang_fly_01.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.83007166994608,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_boomerang_fly_02.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9406785476938495,
+      "rmsDb": -18.407274114147526,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_boomerang_return_00.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.855903685804392,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_boomerang_return_01.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.97287638348228,
+      "rmsDb": -22.22539161171828,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_boomerang_return_02.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -23.31401930414024,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_pierce_00.wav",
+      "frames": 10584,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9720745007377274,
+      "rmsDb": -16.469553549076615,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_pierce_01.wav",
+      "frames": 10584,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.206959396940157,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_pierce_02.wav",
+      "frames": 10584,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9191987769946808,
+      "rmsDb": -16.49974526405695,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_pierce_03.wav",
+      "frames": 10584,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9172703012175205,
+      "rmsDb": -18.631132086577573,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_split_00.wav",
+      "frames": 7056,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9335910987484457,
+      "rmsDb": -16.828898152027925,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_split_01.wav",
+      "frames": 7056,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.959063733383502,
+      "rmsDb": -18.431465872880047,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_split_02.wav",
+      "frames": 7056,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.916175853477122,
+      "rmsDb": -17.55762212553813,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bounce_00.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9803060661562393,
+      "rmsDb": -19.262574469980592,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bounce_01.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.836994521848307,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bounce_02.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.927693657199994,
+      "rmsDb": -18.45620681819249,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_bounce_03.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9915534773276384,
+      "rmsDb": -18.640370820458514,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_bell_00.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -17.915956286288267,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_bell_01.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9865007446932106,
+      "rmsDb": -18.880894838911544,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_bell_02.wav",
+      "frames": 61740,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.047355736503004,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_bell_03.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.993969865426642,
+      "rmsDb": -16.812780191101172,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_umbrella_00.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9509947919391486,
+      "rmsDb": -19.587232673656302,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_umbrella_01.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9799346864125575,
+      "rmsDb": -19.664729695127484,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_umbrella_02.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9886842046011584,
+      "rmsDb": -19.371128065768765,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_stamp_00.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9816684142567156,
+      "rmsDb": -14.948254611854885,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_stamp_01.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.97715823219792,
+      "rmsDb": -14.24500264735984,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_stamp_02.wav",
+      "frames": 12348,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.660123620301952,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_scissors_00.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.7667812600541946,
+      "rmsDb": -20.192447285160092,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_scissors_01.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.952923963008168,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_scissors_02.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.974796829089197,
+      "rmsDb": -20.601286544946422,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_scissors_03.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8036687818079353,
+      "rmsDb": -20.480193000399282,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_camera_00.wav",
+      "frames": 13009,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -21.60970324354555,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_camera_01.wav",
+      "frames": 13009,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.752382440991388,
+      "rmsDb": -22.650152868539756,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_camera_02.wav",
+      "frames": 13009,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -21.632022860471952,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_musicbox_00.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9801397094157562,
+      "rmsDb": -15.80486179318926,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_musicbox_01.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9914007859358542,
+      "rmsDb": -16.04891348716277,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_musicbox_02.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -15.913239041546694,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_tea_00.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8077886063167434,
+      "rmsDb": -17.97756754867362,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_tea_01.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9479244377971185,
+      "rmsDb": -19.002892862910965,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_tea_02.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.877783742663426,
+      "rmsDb": -19.498015767092742,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_fish_00.wav",
+      "frames": 7938,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9770612255409072,
+      "rmsDb": -16.968237117554608,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_fish_01.wav",
+      "frames": 7938,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.958713639984926,
+      "rmsDb": -16.990588354489525,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_fish_02.wav",
+      "frames": 7938,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9412581708405217,
+      "rmsDb": -16.200693954053296,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_alarm_00.wav",
+      "frames": 14773,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.972300478383221,
+      "rmsDb": -18.75064361448959,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_alarm_01.wav",
+      "frames": 14773,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.952537285575185,
+      "rmsDb": -17.9996827601355,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_iron_00.wav",
+      "frames": 15346,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.484195264205063,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_iron_01.wav",
+      "frames": 15346,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.989982126310795,
+      "rmsDb": -18.954913134244954,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_iron_02.wav",
+      "frames": 15346,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9901282185565936,
+      "rmsDb": -19.113308420082486,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_hammer_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9821077386379895,
+      "rmsDb": -14.874686107288683,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_hammer_01.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.982806178787486,
+      "rmsDb": -14.796594925320335,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_hammer_02.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.5123164477457,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_burn_00.wav",
+      "frames": 5292,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.963879859420679,
+      "rmsDb": -18.54262991634674,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_burn_01.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.373317635932363,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_burn_02.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9689267332632285,
+      "rmsDb": -19.49447196724662,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_burn_03.wav",
+      "frames": 5292,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.981561140748288,
+      "rmsDb": -19.986922421956596,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_chill_00.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9853157719973855,
+      "rmsDb": -18.069704768902273,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_chill_01.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9320418073401737,
+      "rmsDb": -18.378250834972064,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_chill_02.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9454009148408784,
+      "rmsDb": -18.846359191139424,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_chill_03.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.980591360790783,
+      "rmsDb": -18.926239647171517,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_knockback_00.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.89845955841637,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_knockback_01.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.849172663658798,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_knockback_02.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.438433650969795,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_knockback_03.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.992758299248883,
+      "rmsDb": -15.326299334600437,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_reaction_steam_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9909127759458487,
+      "rmsDb": -19.040389829389216,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_reaction_steam_01.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9642702173023716,
+      "rmsDb": -18.869204631064086,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_reaction_shatter_00.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.75967655499138,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_reaction_shatter_01.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.875209867579275,
+      "rmsDb": -19.716904386424357,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_reaction_arcane_00.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.986847578744405,
+      "rmsDb": -17.859707225058262,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_reaction_arcane_01.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9705387374662067,
+      "rmsDb": -17.40896581444699,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_step_00.wav",
+      "frames": 3969,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.696444735389296,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_step_01.wav",
+      "frames": 3969,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9900069618192266,
+      "rmsDb": -16.552812855342314,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_step_02.wav",
+      "frames": 3969,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -15.737885781492878,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_step_03.wav",
+      "frames": 3969,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.257052906957185,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_step_04.wav",
+      "frames": 3969,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.560299647397585,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_step_05.wav",
+      "frames": 3969,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9747909956578154,
+      "rmsDb": -17.85524002404206,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_dash_00.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9581692400296875,
+      "rmsDb": -17.853113929658868,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_dash_01.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.898538856300789,
+      "rmsDb": -16.124597699973947,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_dash_02.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.953065435980056,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_dash_03.wav",
+      "frames": 12348,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.50556008463058,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_jump_00.wav",
+      "frames": 8820,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.990378041990499,
+      "rmsDb": -17.786808722272717,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_jump_01.wav",
+      "frames": 8820,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.038520132117043,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_jump_02.wav",
+      "frames": 8820,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.993429097276621,
+      "rmsDb": -20.02807322094676,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_land_00.wav",
+      "frames": 8820,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.98962932366939,
+      "rmsDb": -15.925599751949306,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_land_01.wav",
+      "frames": 8820,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.045157860961314,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/chr_land_02.wav",
+      "frames": 8820,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.522048291316269,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_dodge_00.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.645303938016625,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_dodge_01.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.379265690311712,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_dodge_02.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8271452377050146,
+      "rmsDb": -20.51635800456188,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_hurt_00.wav",
+      "frames": 11466,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9867380507057257,
+      "rmsDb": -13.226492199499988,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_hurt_01.wav",
+      "frames": 11466,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.985991836428869,
+      "rmsDb": -13.291111644470341,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_hurt_02.wav",
+      "frames": 11466,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.967854172900098,
+      "rmsDb": -13.806989500121489,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_hurt_03.wav",
+      "frames": 11466,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9597071850779932,
+      "rmsDb": -13.517961758065294,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_hurt_04.wav",
+      "frames": 11466,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.979626796188951,
+      "rmsDb": -13.36793171445785,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_lowhp_00.wav",
+      "frames": 19404,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.21973288565452,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_lowhp_01.wav",
+      "frames": 19404,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.500338797381039,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_heal_00.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8295636395904107,
+      "rmsDb": -17.23646515372445,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_heal_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.729793106145348,
+      "rmsDb": -16.86349593504898,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_heal_02.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.970540611091364,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_death_00.wav",
+      "frames": 56889,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.452809780344214,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/plr_death_01.wav",
+      "frames": 56889,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.08054641866791,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_windup_00.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -13.203000996219052,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_windup_01.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9923644670272487,
+      "rmsDb": -13.068869560339827,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_windup_02.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -12.821806025729334,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_windup_03.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9858888901763674,
+      "rmsDb": -12.544891996625706,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_fire_00.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -17.652535246970714,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_fire_01.wav",
+      "frames": 9702,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9912298332084792,
+      "rmsDb": -17.73040140995165,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_fire_02.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.976892742869425,
+      "rmsDb": -18.833299007096336,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_fire_03.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9702100450586615,
+      "rmsDb": -18.314141349544347,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_spit_fire_04.wav",
+      "frames": 9702,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.989776870856825,
+      "rmsDb": -17.677009401329144,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_lunge_00.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.989019439858267,
+      "rmsDb": -17.972720592582153,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_lunge_01.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.099703807174958,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_lunge_02.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.92020755727055,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_lunge_03.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.731407393608826,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_hurt_00.wav",
+      "frames": 8114,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.500493560551412,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_hurt_01.wav",
+      "frames": 8114,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9853420542967317,
+      "rmsDb": -15.957954096881583,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_hurt_02.wav",
+      "frames": 8114,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.593700862341343,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_hurt_03.wav",
+      "frames": 8114,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.749036630216242,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_hurt_04.wav",
+      "frames": 8114,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9763245937969125,
+      "rmsDb": -17.00158258025272,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_hurt_05.wav",
+      "frames": 8114,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.945916171452594,
+      "rmsDb": -17.739748291916335,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_big_step_00.wav",
+      "frames": 15435,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.907362485644205,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_big_step_01.wav",
+      "frames": 15435,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.585308195049826,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_big_step_02.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.273327909535105,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_big_roar_00.wav",
+      "frames": 39690,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.372379163561757,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_big_roar_01.wav",
+      "frames": 39690,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.217723715661734,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_big_roar_02.wav",
+      "frames": 39690,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.605532417806575,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_large_00.wav",
+      "frames": 26460,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.808286507266693,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_large_01.wav",
+      "frames": 26460,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9763617885557068,
+      "rmsDb": -15.08714377604839,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_die_large_02.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9915512855661848,
+      "rmsDb": -14.928054445969874,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_enter_00.wav",
+      "frames": 130095,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.963123226844391,
+      "rmsDb": -19.09142480020177,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_enter_01.wav",
+      "frames": 130095,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.960156319315528,
+      "rmsDb": -18.791636204856207,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_telegraph_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -13.715259241110818,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_telegraph_01.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.293096366931117,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_telegraph_02.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9024725307774375,
+      "rmsDb": -14.851364960579541,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_attack_00.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.549247520435161,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_attack_01.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.991321153691242,
+      "rmsDb": -15.198021276662345,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_attack_02.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.81992041848146,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_phase_00.wav",
+      "frames": 97020,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.29299323930415,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_phase_01.wav",
+      "frames": 97020,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8036652070407304,
+      "rmsDb": -16.634756874087063,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_defeat_00.wav",
+      "frames": 132300,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9209602798259002,
+      "rmsDb": -20.004050027234648,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_defeat_01.wav",
+      "frames": 132300,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9004046172612616,
+      "rmsDb": -18.451561842905377,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_alarm_boom_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -15.009266023647642,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_alarm_boom_01.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994311882123057,
+      "rmsDb": -15.299758181038673,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sig_alarm_boom_02.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.978400450792072,
+      "rmsDb": -14.858411086724995,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_field_zipper_00.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.719163299874105,
+      "rmsDb": -16.914033212154976,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_field_zipper_01.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8713973201138026,
+      "rmsDb": -17.34950937023393,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_field_zipper_02.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.736478464576801,
+      "rmsDb": -18.604526135536293,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_hazard_warn_00.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.97846410986829,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_hazard_warn_01.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.910975670881228,
+      "rmsDb": -15.35242913877683,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_hazard_hit_00.wav",
+      "frames": 30870,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -17.874875623905687,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_hazard_hit_01.wav",
+      "frames": 30870,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.110312956810123,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/fx_hazard_hit_02.wav",
+      "frames": 30870,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.78903881601631,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_mimic_wake_00.wav",
+      "frames": 26019,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9253833639632316,
+      "rmsDb": -20.296699677450295,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_mimic_wake_01.wav",
+      "frames": 26019,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.41404851321884,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_pulse_ember_00.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.017677691743522,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_pulse_ember_01.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.98094671529459,
+      "rmsDb": -16.943211853792658,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_pulse_frost_00.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.150158984298525,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_pulse_frost_01.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.967257472809413,
+      "rmsDb": -19.13335940986807,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_locked_00.wav",
+      "frames": 7056,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.35365898053831,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_locked_01.wav",
+      "frames": 7056,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.70135403900817,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_error_00.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.06506167563754,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_error_01.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.472207641342163,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_drop_00.wav",
+      "frames": 11025,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8694477299339365,
+      "rmsDb": -18.468400859311302,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_drop_01.wav",
+      "frames": 11025,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.8190322339348,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_drop_02.wav",
+      "frames": 11025,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.457948870846685,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_drop_03.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.072407178347564,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_bounce_00.wav",
+      "frames": 5733,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9393269702924996,
+      "rmsDb": -17.772998021272336,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_bounce_01.wav",
+      "frames": 5733,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9841951979374914,
+      "rmsDb": -17.012154880018798,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_bounce_02.wav",
+      "frames": 5733,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.917746222573865,
+      "rmsDb": -19.09396242710733,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_bounce_03.wav",
+      "frames": 5733,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.855444585013418,
+      "rmsDb": -18.75588035300244,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_bounce_04.wav",
+      "frames": 5733,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9430205208861726,
+      "rmsDb": -17.90209338917296,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_vacuum_00.wav",
+      "frames": 6174,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.990357588339885,
+      "rmsDb": -14.106981407045572,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_vacuum_01.wav",
+      "frames": 6174,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9914482734016943,
+      "rmsDb": -15.488216905082142,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_vacuum_02.wav",
+      "frames": 6174,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.931771163238237,
+      "rmsDb": -15.492048098927517,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_pickup_00.wav",
+      "frames": 11686,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.825220799811188,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_pickup_01.wav",
+      "frames": 11686,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.969632859222563,
+      "rmsDb": -18.116813013559398,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_pickup_02.wav",
+      "frames": 11686,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.988089723347662,
+      "rmsDb": -17.585124553896435,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_pickup_03.wav",
+      "frames": 11686,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9471204940510765,
+      "rmsDb": -18.372856909308922,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_pickup_04.wav",
+      "frames": 11686,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.760283115726225,
+      "rmsDb": -17.713647489099962,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_coin_pickup_05.wav",
+      "frames": 11686,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.09700965741752,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_egg_00.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.965822354740801,
+      "rmsDb": -14.601959817466685,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_egg_01.wav",
+      "frames": 14994,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9904131055036087,
+      "rmsDb": -14.493516019789038,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_egg_02.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9457439313563056,
+      "rmsDb": -14.236102173239741,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_egg_03.wav",
+      "frames": 14994,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8102352521779217,
+      "rmsDb": -14.690276817051291,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_heart_00.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.673288912177746,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_heart_01.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.791378126818472,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_heart_02.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.46896364855737,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_chest_appear_00.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.689710009155068,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_chest_appear_01.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9714614748623975,
+      "rmsDb": -19.633549466108533,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_chest_open_00.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.08206040064678,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_chest_open_01.wav",
+      "frames": 52920,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.983679125478549,
+      "rmsDb": -19.957211094567874,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/loot_chest_open_02.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9758097180087058,
+      "rmsDb": -20.466341396606378,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_merge_00.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.17582704939675,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_merge_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.378071932618816,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_merge_02.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.993246412942118,
+      "rmsDb": -19.93955403590744,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_merge_gather_00.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.791500934047219,
+      "rmsDb": -20.911002230052777,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_merge_gather_01.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.642045888063242,
+      "rmsDb": -18.380152309134555,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_merge_gather_02.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8946430864903143,
+      "rmsDb": -18.90244483052045,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_star2_00.wav",
+      "frames": 78498,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8628601142832903,
+      "rmsDb": -21.70859969721,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_star2_01.wav",
+      "frames": 78498,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.719387040707877,
+      "rmsDb": -21.783576679031498,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_star3_00.wav",
+      "frames": 79380,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.237258939206576,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_star3_01.wav",
+      "frames": 79380,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.924443034493844,
+      "rmsDb": -21.32645293185904,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_ally_land_00.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.986964410174667,
+      "rmsDb": -21.013369753151288,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_ally_land_01.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -21.4285612345479,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_ally_land_02.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9877355370292857,
+      "rmsDb": -20.421075690406187,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_ally_land_03.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.8940543112497,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_bond_t1_00.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -21.202825017028406,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_bond_t1_01.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9761641476432263,
+      "rmsDb": -16.436790952846422,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_bond_t2_00.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9542590057779403,
+      "rmsDb": -18.363118327635746,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_bond_t2_01.wav",
+      "frames": 61740,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.589074458971243,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_chain_00.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.892363957268507,
+      "rmsDb": -17.093953545388512,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_chain_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.392628804296876,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_chain_02.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.786456894976003,
+      "rmsDb": -19.44890232324711,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_chain_03.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -18.33035161843013,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_rarity_blue_00.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -23.52142965252338,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_rarity_blue_01.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -24.562045250145104,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_rarity_purple_00.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9154088806294585,
+      "rmsDb": -21.2766920625749,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_rarity_purple_01.wav",
+      "frames": 61740,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.025031469135413,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_rarity_gold_00.wav",
+      "frames": 88200,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.992756107183388,
+      "rmsDb": -20.65859477653998,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/up_rarity_gold_01.wav",
+      "frames": 88200,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9761021578775964,
+      "rmsDb": -20.445485768317802,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_enter_gold_00.wav",
+      "frames": 113778,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9839170843586382,
+      "rmsDb": -19.305640153248397,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_enter_gold_01.wav",
+      "frames": 113778,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.690131515615015,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_enter_dream_00.wav",
+      "frames": 114660,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9356778178037963,
+      "rmsDb": -20.734451176481112,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_enter_dream_01.wav",
+      "frames": 114660,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9930271968123945,
+      "rmsDb": -20.692119900262117,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_exit_gold_00.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.934366210990802,
+      "rmsDb": -18.929939452806334,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_exit_gold_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9888879735094753,
+      "rmsDb": -18.84416989370688,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_exit_dream_00.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.115267869385708,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_keeper_exit_dream_01.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.958608105241922,
+      "rmsDb": -17.013440499483238,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_carpet_open_00.wav",
+      "frames": 48510,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.992833560499761,
+      "rmsDb": -19.97161380488453,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_carpet_open_01.wav",
+      "frames": 48510,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.61305826891788,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_carpet_roll_00.wav",
+      "frames": 35279,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9241914755581924,
+      "rmsDb": -21.35916308751833,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_carpet_roll_01.wav",
+      "frames": 35279,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9655644957109946,
+      "rmsDb": -22.29258980751565,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_stand_appear_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.988552743326225,
+      "rmsDb": -18.763435765382262,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_stand_appear_01.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9708317287668953,
+      "rmsDb": -16.706589090128116,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_stand_appear_02.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9665886928566843,
+      "rmsDb": -17.420271148776617,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_stand_appear_03.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9746670361671237,
+      "rmsDb": -18.039466106877455,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_item_pop_00.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.538658245536993,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_item_pop_01.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.404269618874128,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_item_pop_02.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.35925145213611,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_item_pop_03.wav",
+      "frames": 15435,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.354877570556283,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_approach_00.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9619283331185464,
+      "rmsDb": -21.052158789152205,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_approach_01.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9862488423277203,
+      "rmsDb": -20.989798001317496,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_approach_02.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.93607402048584,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_approach_03.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.968379506909906,
+      "rmsDb": -20.502964306603904,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_focus_00.wav",
+      "frames": 1764,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9454459713222123,
+      "rmsDb": -16.194262004517004,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_focus_01.wav",
+      "frames": 1764,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.962959354133751,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_focus_02.wav",
+      "frames": 1764,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.973943002251155,
+      "rmsDb": -15.795426198273104,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_focus_03.wav",
+      "frames": 1764,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9711137968935337,
+      "rmsDb": -15.927657397248954,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_gold_00.wav",
+      "frames": 39690,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.992188380846119,
+      "rmsDb": -18.844226545587986,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_gold_01.wav",
+      "frames": 39690,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9153234242033865,
+      "rmsDb": -19.292532892742447,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_gold_02.wav",
+      "frames": 39690,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.704097426753242,
+      "rmsDb": -20.206599542342193,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_gold_03.wav",
+      "frames": 39690,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.736107125266663,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_dream_00.wav",
+      "frames": 70560,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9779255711520047,
+      "rmsDb": -16.982917860559333,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_dream_01.wav",
+      "frames": 70560,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9216697642309546,
+      "rmsDb": -17.396130009921883,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_buy_dream_02.wav",
+      "frames": 70560,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.93929471154548,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_deny_gold_00.wav",
+      "frames": 10584,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.993470749842781,
+      "rmsDb": -17.156294387303564,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_deny_gold_01.wav",
+      "frames": 10584,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9924389942039626,
+      "rmsDb": -16.911380762584432,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_deny_egg_00.wav",
+      "frames": 8820,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.988159832042614,
+      "rmsDb": -17.169084943521625,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_deny_egg_01.wav",
+      "frames": 8820,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9923330488992637,
+      "rmsDb": -17.18776214614125,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_deny_hp_00.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994746730488589,
+      "rmsDb": -16.606780252627352,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_deny_hp_01.wav",
+      "frames": 11025,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.215071312929258,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_invalid_00.wav",
+      "frames": 3528,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9876515568246163,
+      "rmsDb": -17.678026775640383,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_invalid_01.wav",
+      "frames": 3528,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.514304350794763,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_invalid_02.wav",
+      "frames": 3528,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9925617462419623,
+      "rmsDb": -17.47183932178476,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_reroll_00.wav",
+      "frames": 37044,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.250862334708387,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_reroll_01.wav",
+      "frames": 37044,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.31880021462785,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_reroll_02.wav",
+      "frames": 37044,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9798456743733155,
+      "rmsDb": -21.514915950989092,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_fusion_00.wav",
+      "frames": 88200,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -20.69725356837596,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_fusion_01.wav",
+      "frames": 88200,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9315933989126868,
+      "rmsDb": -20.289225727774717,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_descend_00.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9244662333793245,
+      "rmsDb": -16.630019204615888,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_descend_01.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8345359181174827,
+      "rmsDb": -17.66470039718425,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_hover_00.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -12.895298022255528,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_hover_01.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.805212008396367,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_hover_02.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.185319064131988,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_hover_03.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.992034217037416,
+      "rmsDb": -14.198649019749254,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_select_00.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.237822207591513,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_select_01.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.560257621518463,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_select_02.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.508704440715974,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_select_03.wav",
+      "frames": 5292,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.224491352700277,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_confirm_00.wav",
+      "frames": 13891,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.63357624574769,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_confirm_01.wav",
+      "frames": 13891,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.869895927496888,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_confirm_02.wav",
+      "frames": 13891,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.83576213496039,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_back_00.wav",
+      "frames": 9922,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.597046022824877,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_back_01.wav",
+      "frames": 9922,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9897052882449486,
+      "rmsDb": -17.291978891850373,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_back_02.wav",
+      "frames": 9922,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9884935864016287,
+      "rmsDb": -18.136132128034316,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_open_00.wav",
+      "frames": 11907,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.93956817446682,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_open_01.wav",
+      "frames": 11907,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.894031092139194,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_close_00.wav",
+      "frames": 7497,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.901763882489277,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_close_01.wav",
+      "frames": 7497,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.989684836178481,
+      "rmsDb": -16.520561594942173,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_page_00.wav",
+      "frames": 6174,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9520754541779297,
+      "rmsDb": -17.08660864490635,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_page_01.wav",
+      "frames": 6174,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.980510368266823,
+      "rmsDb": -15.524926364416046,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_page_02.wav",
+      "frames": 6174,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9909792547355414,
+      "rmsDb": -16.246101808792044,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_tooltip_00.wav",
+      "frames": 4410,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.62912083671347,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_tooltip_01.wav",
+      "frames": 4410,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.73982811230108,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_tab_00.wav",
+      "frames": 2646,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.816135728234588,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_tab_01.wav",
+      "frames": 2646,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9881065201709465,
+      "rmsDb": -14.579427955776698,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_tab_02.wav",
+      "frames": 2646,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.255750330983926,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_pause_00.wav",
+      "frames": 22050,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.68743424877117,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_resume_00.wav",
+      "frames": 17199,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.987667570345106,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_setting_00.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -12.980559921273986,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_setting_01.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.848402166327379,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_setting_02.wav",
+      "frames": 1323,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9933099866546273,
+      "rmsDb": -12.932925916787294,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_unlock_00.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -23.34852326572261,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_unlock_01.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9878217088659293,
+      "rmsDb": -22.934009853982115,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_achievement_00.wav",
+      "frames": 79380,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -25.10830734742763,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_achievement_01.wav",
+      "frames": 79380,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.987805642865448,
+      "rmsDb": -24.693776063634346,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_receipt_00.wav",
+      "frames": 39690,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.952191091546135,
+      "rmsDb": -24.387879626987853,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_receipt_01.wav",
+      "frames": 39690,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9806059541186407,
+      "rmsDb": -22.73525404993339,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sting_waveclear_00.wav",
+      "frames": 83790,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9893532272498873,
+      "rmsDb": -23.261938173738642,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sting_waveclear_01.wav",
+      "frames": 83790,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -23.253803101494995,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sting_victory_00.wav",
+      "frames": 158760,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9893532272498873,
+      "rmsDb": -26.00771102055665,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/sting_defeat_00.wav",
+      "frames": 167580,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -27.06367838627144,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Amb/amb_stage_00.wav",
+      "frames": 1058400,
+      "peakDb": -6.9999572425557846,
+      "truePeakDbTP": -6.9944298796209035,
+      "rmsDb": -19.67131853847513,
+      "loopSeam": 0.001953125
+    },
+    {
+      "file": "Amb/amb_office_00.wav",
+      "frames": 1058400,
+      "peakDb": -7.0005506829029605,
+      "truePeakDbTP": -6.995022942432928,
+      "rmsDb": -20.057971674795503,
+      "loopSeam": 0.004638671875
+    },
+    {
+      "file": "Amb/amb_lostshop_00.wav",
+      "frames": 1058400,
+      "peakDb": -6.9999572425557846,
+      "truePeakDbTP": -6.9944298796209035,
+      "rmsDb": -21.57166969317562,
+      "loopSeam": 0.00396728515625
+    },
+    {
+      "file": "Amb/amb_goldshop_00.wav",
+      "frames": 1058400,
+      "peakDb": -6.9999572425557846,
+      "truePeakDbTP": -6.9944298796209035,
+      "rmsDb": -21.154923623733364,
+      "loopSeam": 0.0062255859375
+    },
+    {
+      "file": "Amb/amb_dreamshop_00.wav",
+      "frames": 1058400,
+      "peakDb": -7.0005506829029605,
+      "truePeakDbTP": -6.975417742357913,
+      "rmsDb": -18.087402937803407,
+      "loopSeam": 0.004486083984375
+    },
+    {
+      "file": "Amb/amb_toys_00.wav",
+      "frames": 1058400,
+      "peakDb": -6.9999572425557846,
+      "truePeakDbTP": -6.9944298796209035,
+      "rmsDb": -20.960756387675286,
+      "loopSeam": 0.002777099609375
+    },
+    {
+      "file": "Amb/amb_transition_00.wav",
+      "frames": 61740,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.846233282254497,
+      "rmsDb": -18.133835410567826,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Amb/amb_transition_01.wav",
+      "frames": 61740,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.879970397440328,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_00.wav",
+      "frames": 4278,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -15.313230272771284,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_01.wav",
+      "frames": 6218,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9917602359783677,
+      "rmsDb": -11.951341810031659,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_02.wav",
+      "frames": 4719,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.938411261228387,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_03.wav",
+      "frames": 6218,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -12.560360650630301,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_04.wav",
+      "frames": 5910,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -12.85475032061138,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_05.wav",
+      "frames": 4631,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -13.96717679481081,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_06.wav",
+      "frames": 5689,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -13.655145137512818,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_syl_07.wav",
+      "frames": 4719,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.988862410839391,
+      "rmsDb": -16.46405997557344,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_laugh_00.wav",
+      "frames": 20285,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.946078056388995,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_laugh_01.wav",
+      "frames": 21608,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.988251850563524,
+      "rmsDb": -17.48661606561195,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_hmm_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -10.932736066896764,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_hmm_01.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -12.293354362049895,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_gasp_00.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.544497485584055,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_gasp_01.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9940268672741572,
+      "rmsDb": -17.246497841513275,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_farewell_00.wav",
+      "frames": 22491,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9919377747189966,
+      "rmsDb": -13.620904425869737,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_gold_farewell_01.wav",
+      "frames": 23506,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9936622080669055,
+      "rmsDb": -13.387056573369447,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_00.wav",
+      "frames": 4498,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8601661620352994,
+      "rmsDb": -14.336377549878137,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_01.wav",
+      "frames": 4851,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994253416776209,
+      "rmsDb": -11.965946978579378,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_02.wav",
+      "frames": 4410,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.98570344397747,
+      "rmsDb": -13.88028847969557,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_03.wav",
+      "frames": 4322,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.931282088114322,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_04.wav",
+      "frames": 5072,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.989779792608616,
+      "rmsDb": -13.028110318587398,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_05.wav",
+      "frames": 4851,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.985860415896408,
+      "rmsDb": -13.472196840142098,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_06.wav",
+      "frames": 4322,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9824514780253075,
+      "rmsDb": -15.25313766433953,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_syl_07.wav",
+      "frames": 4410,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9499397124368354,
+      "rmsDb": -15.387420271395605,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_laugh_00.wav",
+      "frames": 20285,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.969793913533487,
+      "rmsDb": -17.040431006185262,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_laugh_01.wav",
+      "frames": 21608,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.854554478431883,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_hmm_00.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -11.895374700591738,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_hmm_01.wav",
+      "frames": 22050,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.992105088211563,
+      "rmsDb": -12.340371485708525,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_gasp_00.wav",
+      "frames": 14112,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9855187318176113,
+      "rmsDb": -15.355168140537675,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_gasp_01.wav",
+      "frames": 14112,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.991110022191252,
+      "rmsDb": -16.591662441963468,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_farewell_00.wav",
+      "frames": 22491,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -14.7991449136882,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Voice/voice_dream_farewell_01.wav",
+      "frames": 23506,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -12.449112884787164,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_boss_00.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.992350584584591,
+      "rmsDb": -25.78697303670278,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_boss_01.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9894028947414624,
+      "rmsDb": -26.27540917443492,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_showstopper_00.wav",
+      "frames": 61740,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.989082982640154,
+      "rmsDb": -27.911251226561546,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_showstopper_01.wav",
+      "frames": 61740,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -26.60356178536082,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_encore_00.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.989082982640154,
+      "rmsDb": -27.229196096548044,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_encore_01.wav",
+      "frames": 52920,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -25.944627642250765,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_bond_00.wav",
+      "frames": 48510,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.990357588339885,
+      "rmsDb": -27.15431500747033,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_bond_01.wav",
+      "frames": 48510,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -25.865708375755787,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_cutin_bond_02.wav",
+      "frames": 48510,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -26.114570151914723,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_wave_stamp_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9312814131778535,
+      "rmsDb": -22.58058623206739,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_wave_stamp_01.wav",
+      "frames": 17640,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9315237453118668,
+      "rmsDb": -22.248820618096076,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_ticket_sold_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.922475704460787,
+      "rmsDb": -22.64164799184004,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_ticket_sold_01.wav",
+      "frames": 17640,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.970597772231733,
+      "rmsDb": -22.319545005863546,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_ticket_sold_02.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9373112520446636,
+      "rmsDb": -23.54841273375086,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_ticket_sway_00.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9209023061333954,
+      "rmsDb": -20.429184818593043,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_ticket_sway_01.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9230352680994685,
+      "rmsDb": -20.263156789212587,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/shop_ticket_sway_02.wav",
+      "frames": 13230,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8789433170975265,
+      "rmsDb": -21.07908751648747,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_coach_pop_00.wav",
+      "frames": 9922,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.577441019624242,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_coach_pop_01.wav",
+      "frames": 9922,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.091102064291615,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_coach_pop_02.wav",
+      "frames": 9922,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.665765644770158,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_hero_00.wav",
+      "frames": 19845,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994557440877304,
+      "rmsDb": -19.892815864287684,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_hero_01.wav",
+      "frames": 19845,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9939684038457264,
+      "rmsDb": -16.750781592104175,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_door_00.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9878450776469507,
+      "rmsDb": -24.226553333498046,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_door_01.wav",
+      "frames": 26460,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9874412447445136,
+      "rmsDb": -24.28692775913534,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_jar_00.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.26284061044619,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_jar_01.wav",
+      "frames": 19845,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.836968579832231,
+      "rmsDb": -19.702666783578305,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_printer_00.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9718652944165442,
+      "rmsDb": -15.137632913462562,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_printer_01.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9756266746221156,
+      "rmsDb": -17.0294914215952,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_lamp_00.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -24.991542200898675,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_lamp_01.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -24.753922179398483,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_bell_00.wav",
+      "frames": 28665,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.778124625462542,
+      "rmsDb": -25.42712426882506,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/menu_spot_bell_01.wav",
+      "frames": 28665,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8926145960956666,
+      "rmsDb": -25.49241611346579,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_yoyo_throw_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.18561075802406,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_yoyo_throw_01.wav",
+      "frames": 17640,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -16.366092288244523,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_yoyo_throw_02.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.50603316956068,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_yoyo_return_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.988904771876493,
+      "rmsDb": -23.037241982437923,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_yoyo_return_01.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9929307434680217,
+      "rmsDb": -23.02551813214577,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_yoyo_return_02.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9932668733965144,
+      "rmsDb": -22.820281233117896,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_magnet_pull_00.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9664896187244407,
+      "rmsDb": -15.323966046616029,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_magnet_pull_01.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.521350679634995,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_magnet_pull_02.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.628176304721283,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_needle_volley_00.wav",
+      "frames": 12128,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.965116538478783,
+      "rmsDb": -16.889617567218874,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_needle_volley_01.wav",
+      "frames": 12128,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9831842502797405,
+      "rmsDb": -16.426126497553167,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_needle_volley_02.wav",
+      "frames": 12128,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.905621621606607,
+      "rmsDb": -15.713152296963333,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_needle_volley_03.wav",
+      "frames": 12128,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8542392423725933,
+      "rmsDb": -15.824708928817062,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_spring_slam_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.983328038545076,
+      "rmsDb": -22.096268474689914,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_spring_slam_01.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9921854582840175,
+      "rmsDb": -21.46645078397475,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_spring_slam_02.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.98954021222562,
+      "rmsDb": -22.175464547254084,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_projector_cast_00.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -15.716351284224091,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_projector_cast_01.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9922702129842245,
+      "rmsDb": -16.803987484120515,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_projector_cast_02.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.64674697028304,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_ribbon_cut_00.wav",
+      "frames": 12128,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.131644046304146,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_ribbon_cut_01.wav",
+      "frames": 12128,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.176770573255858,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_ribbon_cut_02.wav",
+      "frames": 12128,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.879756349396583,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/wpn_ribbon_cut_03.wav",
+      "frames": 12128,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.790612108378357,
+      "rmsDb": -19.005143892957857,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_encore_ready_00.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9891085459593922,
+      "rmsDb": -25.495557744006916,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_encore_ready_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -24.199257498723696,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_lantern_stride_00.wav",
+      "frames": 28665,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.36960584390191,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_lantern_stride_01.wav",
+      "frames": 28665,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9489145684220377,
+      "rmsDb": -18.14509351298241,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_parcel_express_00.wav",
+      "frames": 24255,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9756295916179503,
+      "rmsDb": -22.18278590071451,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_parcel_express_01.wav",
+      "frames": 24255,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9728508678910086,
+      "rmsDb": -20.432606215941078,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_dream_breath_00.wav",
+      "frames": 35280,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -17.4014812348231,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_dream_breath_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.913026554613162,
+      "rmsDb": -17.045056251524322,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_rooted_oracle_00.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -26.26309788590207,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_rooted_oracle_01.wav",
+      "frames": 35280,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -26.1918645943993,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_solo_maw_00.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.072223977740165,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_solo_maw_01.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.89488492600347,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_solo_maw_02.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.743306831317216,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_glass_gambler_00.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.958231829732438,
+      "rmsDb": -19.61286034871509,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_glass_gambler_01.wav",
+      "frames": 24255,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -19.8015514923943,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_tide_collector_00.wav",
+      "frames": 30870,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.476311859328106,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_tide_collector_01.wav",
+      "frames": 30870,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9243995367505713,
+      "rmsDb": -19.579691101403156,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_clock_runner_00.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.37474110151461,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_clock_runner_01.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9932573738938366,
+      "rmsDb": -18.113465135162475,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_mirror_guard_00.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.206438052845797,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_mirror_guard_01.wav",
+      "frames": 24255,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.8884745652419586,
+      "rmsDb": -21.60788311192527,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_treasure_tax_00.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -21.36118313534727,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_treasure_tax_01.wav",
+      "frames": 19845,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9823033254111504,
+      "rmsDb": -21.231927335561686,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_charge_ready_00.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -19.16687661830757,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/hero_charge_ready_01.wav",
+      "frames": 13230,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.949783279607985,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_warn_00.wav",
+      "frames": 83790,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.03426077391827,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_warn_01.wav",
+      "frames": 83790,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.978261850364672,
+      "rmsDb": -21.735363410563878,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_parade_start_00.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.8307562391836285,
+      "rmsDb": -20.056161392530598,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_parade_start_01.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9302932904560826,
+      "rmsDb": -20.07248188808587,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_trap_start_00.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9129237455236727,
+      "rmsDb": -24.04063948472639,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_trap_start_01.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9458972757478086,
+      "rmsDb": -24.037813358529355,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_eclipse_start_00.wav",
+      "frames": 44100,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.956111308936937,
+      "rmsDb": -18.445663337305035,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_eclipse_start_01.wav",
+      "frames": 44100,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9763873144627273,
+      "rmsDb": -18.037481330931172,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_reward_00.wav",
+      "frames": 30870,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.73015534006149,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_reward_01.wav",
+      "frames": 30870,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.943167278443779,
+      "rmsDb": -17.023260979640238,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_reward_02.wav",
+      "frames": 30870,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9881532593284232,
+      "rmsDb": -17.132688840868983,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_end_00.wav",
+      "frames": 28665,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.226517747012142,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/event_end_01.wav",
+      "frames": 28665,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.929425692410392,
+      "rmsDb": -19.52818953664009,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_choirengine_00.wav",
+      "frames": 55125,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -17.32667691432577,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_coinwidow_00.wav",
+      "frames": 55125,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9938565936347943,
+      "rmsDb": -19.715168187576833,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_lastlantern_00.wav",
+      "frames": 55125,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.993739669463567,
+      "rmsDb": -20.218976823390825,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_marqueemaw_00.wav",
+      "frames": 55125,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -24.421976439009093,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_scarletindex_00.wav",
+      "frames": 55125,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9339053447196,
+      "rmsDb": -17.852407368714587,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_sleepcollector_00.wav",
+      "frames": 55125,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -15.615844850734938,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_suitcaseleviathan_00.wav",
+      "frames": 55125,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -25.261399352330987,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_umbracradle_00.wav",
+      "frames": 55125,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -24.882985418944045,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_undeliveredking_00.wav",
+      "frames": 55125,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.9383916653275843,
+      "rmsDb": -23.744560194466352,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/boss_voice_waxadmiral_00.wav",
+      "frames": 55125,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -18.607779890587835,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_shot_arc_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.70826733695214,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_shot_arc_01.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -22.88779756583692,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_shot_spiral_00.wav",
+      "frames": 17640,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.994834433637406,
+      "rmsDb": -14.633244712992557,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_shot_spiral_01.wav",
+      "frames": 17640,
+      "peakDb": -3.0003622493859567,
+      "truePeakDbTP": -2.9734669081067584,
+      "rmsDb": -14.678823564782416,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_shot_burst_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.710593691363805,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/enemy_shot_burst_01.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -20.736690276466273,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_merge_hint_00.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -17.91920901963169,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Sfx/ui_merge_hint_01.wav",
+      "frames": 17640,
+      "peakDb": -2.9999878172428636,
+      "truePeakDbTP": -2.99446023970697,
+      "rmsDb": -16.370708581999047,
+      "loopSeam": 0.0
+    },
+    {
+      "file": "Music/menu_curtain/menu_curtain_base.ogg",
+      "frames": 3024000,
+      "peakDb": -11.799095739265418,
+      "rmsDb": -24.223678703699875,
+      "loopSeam": 0.0009280671365559101
+    },
+    {
+      "file": "Music/menu_curtain/menu_curtain_rhythm.ogg",
+      "frames": 3024000,
+      "peakDb": -4.169612424437755,
+      "rmsDb": -23.457086336789285,
+      "loopSeam": 0.0007436573505401611
+    },
+    {
+      "file": "Music/menu_curtain/menu_curtain_melody.ogg",
+      "frames": 3024000,
+      "peakDb": -6.632082975334419,
+      "rmsDb": -20.397922250021562,
+      "loopSeam": 0.004228934645652771
+    },
+    {
+      "file": "Music/menu_curtain/menu_curtain_intensity.ogg",
+      "frames": 3024000,
+      "peakDb": -5.596544130321379,
+      "rmsDb": -29.226025245366824,
+      "loopSeam": 9.12100076675415e-05
+    },
+    {
+      "file": "Music/select_dressing/select_dressing_base.ogg",
+      "frames": 1411200,
+      "peakDb": -12.029068818089437,
+      "rmsDb": -24.20180282038458,
+      "loopSeam": 0.0005723340436816216
+    },
+    {
+      "file": "Music/select_dressing/select_dressing_rhythm.ogg",
+      "frames": 1411200,
+      "peakDb": -4.9147513068683795,
+      "rmsDb": -23.245408586826475,
+      "loopSeam": 0.001321611925959587
+    },
+    {
+      "file": "Music/select_dressing/select_dressing_melody.ogg",
+      "frames": 1411200,
+      "peakDb": -5.5163685615514035,
+      "rmsDb": -20.43059170595159,
+      "loopSeam": 0.0008427686989307404
+    },
+    {
+      "file": "Music/select_dressing/select_dressing_intensity.ogg",
+      "frames": 1411200,
+      "peakDb": -4.7273121015093365,
+      "rmsDb": -28.587861753185262,
+      "loopSeam": 0.001254325732588768
+    },
+    {
+      "file": "Music/combat_toys/combat_toys_base.ogg",
+      "frames": 2565818,
+      "peakDb": -10.871126817694421,
+      "rmsDb": -24.12360363010443,
+      "loopSeam": 0.0029193460941314697
+    },
+    {
+      "file": "Music/combat_toys/combat_toys_rhythm.ogg",
+      "frames": 2565818,
+      "peakDb": -4.99126455470244,
+      "rmsDb": -23.205269957533456,
+      "loopSeam": 0.00020739436149597168
+    },
+    {
+      "file": "Music/combat_toys/combat_toys_melody.ogg",
+      "frames": 2565818,
+      "peakDb": -5.099401932685435,
+      "rmsDb": -20.488213774686642,
+      "loopSeam": 0.00037292391061782837
+    },
+    {
+      "file": "Music/combat_toys/combat_toys_intensity.ogg",
+      "frames": 2565818,
+      "peakDb": -4.684607928024262,
+      "rmsDb": -28.29796589710986,
+      "loopSeam": 0.001382291316986084
+    },
+    {
+      "file": "Music/combat_clockwork/combat_clockwork_base.ogg",
+      "frames": 2419200,
+      "peakDb": -11.044737759696838,
+      "rmsDb": -24.224781181752327,
+      "loopSeam": 0.0006088335067033768
+    },
+    {
+      "file": "Music/combat_clockwork/combat_clockwork_rhythm.ogg",
+      "frames": 2419200,
+      "peakDb": -5.179625632130088,
+      "rmsDb": -23.14479836957046,
+      "loopSeam": 0.0018148571252822876
+    },
+    {
+      "file": "Music/combat_clockwork/combat_clockwork_melody.ogg",
+      "frames": 2419200,
+      "peakDb": -6.868206967166688,
+      "rmsDb": -20.349139563387645,
+      "loopSeam": 0.0017154812812805176
+    },
+    {
+      "file": "Music/combat_clockwork/combat_clockwork_intensity.ogg",
+      "frames": 2419200,
+      "peakDb": -6.2419714613290616,
+      "rmsDb": -28.46304911725113,
+      "loopSeam": 0.0008623227477073669
+    },
+    {
+      "file": "Music/combat_overtime/combat_overtime_base.ogg",
+      "frames": 1992282,
+      "peakDb": -11.037086782104836,
+      "rmsDb": -24.335152733678562,
+      "loopSeam": 0.0008747410029172897
+    },
+    {
+      "file": "Music/combat_overtime/combat_overtime_rhythm.ogg",
+      "frames": 1992282,
+      "peakDb": -7.660725923952504,
+      "rmsDb": -23.019230160984627,
+      "loopSeam": 0.0011639893054962158
+    },
+    {
+      "file": "Music/combat_overtime/combat_overtime_melody.ogg",
+      "frames": 1992282,
+      "peakDb": -5.621748933226444,
+      "rmsDb": -20.56357707295828,
+      "loopSeam": 0.00039904937148094177
+    },
+    {
+      "file": "Music/combat_overtime/combat_overtime_intensity.ogg",
+      "frames": 1992282,
+      "peakDb": -6.440383137947622,
+      "rmsDb": -28.597222986419645,
+      "loopSeam": 0.0005407044664025307
+    },
+    {
+      "file": "Music/boss_ringmaster/boss_ringmaster_base.ogg",
+      "frames": 2257920,
+      "peakDb": -10.308852804617128,
+      "rmsDb": -24.33632489287179,
+      "loopSeam": 0.0010878164321184158
+    },
+    {
+      "file": "Music/boss_ringmaster/boss_ringmaster_rhythm.ogg",
+      "frames": 2257920,
+      "peakDb": -5.395924467684624,
+      "rmsDb": -23.184969765241362,
+      "loopSeam": 0.001405276358127594
+    },
+    {
+      "file": "Music/boss_ringmaster/boss_ringmaster_melody.ogg",
+      "frames": 2257920,
+      "peakDb": -5.788796248708653,
+      "rmsDb": -20.460538478668514,
+      "loopSeam": 0.0025517046451568604
+    },
+    {
+      "file": "Music/boss_ringmaster/boss_ringmaster_intensity.ogg",
+      "frames": 2257920,
+      "peakDb": -5.953267094282645,
+      "rmsDb": -28.491931116608455,
+      "loopSeam": 0.0003375587984919548
+    },
+    {
+      "file": "Music/shop_gold/shop_gold_base.ogg",
+      "frames": 2919724,
+      "peakDb": -10.737564252554659,
+      "rmsDb": -24.16426916389474,
+      "loopSeam": 0.00017682090401649475
+    },
+    {
+      "file": "Music/shop_gold/shop_gold_rhythm.ogg",
+      "frames": 2919724,
+      "peakDb": -4.2365538437166155,
+      "rmsDb": -23.548856752187945,
+      "loopSeam": 0.0017192214727401733
+    },
+    {
+      "file": "Music/shop_gold/shop_gold_melody.ogg",
+      "frames": 2919724,
+      "peakDb": -4.481983366913449,
+      "rmsDb": -20.318779531903274,
+      "loopSeam": 0.0054915957152843475
+    },
+    {
+      "file": "Music/shop_gold/shop_gold_intensity.ogg",
+      "frames": 2919724,
+      "peakDb": -7.5084492829345875,
+      "rmsDb": -28.20294401248496,
+      "loopSeam": 0.0006897393614053726
+    },
+    {
+      "file": "Music/shop_dream/shop_dream_base.ogg",
+      "frames": 1840696,
+      "peakDb": -12.58064063203135,
+      "rmsDb": -24.261717337865658,
+      "loopSeam": 0.0007588495500385761
+    },
+    {
+      "file": "Music/shop_dream/shop_dream_rhythm.ogg",
+      "frames": 1840696,
+      "peakDb": -4.556596514702727,
+      "rmsDb": -23.29633288041355,
+      "loopSeam": 0.00200478732585907
+    },
+    {
+      "file": "Music/shop_dream/shop_dream_melody.ogg",
+      "frames": 1840696,
+      "peakDb": -5.477057494032433,
+      "rmsDb": -20.404772982787513,
+      "loopSeam": 0.0038297325372695923
+    },
+    {
+      "file": "Music/shop_dream/shop_dream_intensity.ogg",
+      "frames": 1840696,
+      "peakDb": -6.972803243105986,
+      "rmsDb": -28.281008922486667,
+      "loopSeam": 0.0006652511656284332
+    },
+    {
+      "file": "Music/endless_neverclose/endless_neverclose_base.ogg",
+      "frames": 2646000,
+      "peakDb": -11.572768636731235,
+      "rmsDb": -24.284308093075254,
+      "loopSeam": 0.0013440735638141632
+    },
+    {
+      "file": "Music/endless_neverclose/endless_neverclose_rhythm.ogg",
+      "frames": 2646000,
+      "peakDb": -5.544222696746636,
+      "rmsDb": -23.11709270370397,
+      "loopSeam": 0.0027781277894973755
+    },
+    {
+      "file": "Music/endless_neverclose/endless_neverclose_melody.ogg",
+      "frames": 2646000,
+      "peakDb": -6.211302476442668,
+      "rmsDb": -20.520909850421315,
+      "loopSeam": 0.0013944320380687714
+    },
+    {
+      "file": "Music/endless_neverclose/endless_neverclose_intensity.ogg",
+      "frames": 2646000,
+      "peakDb": -6.528288670060281,
+      "rmsDb": -28.369994352876404,
+      "loopSeam": 0.000661234837025404
+    },
+    {
+      "file": "Music/combat_spoons/combat_spoons_base.ogg",
+      "frames": 2646000,
+      "peakDb": -11.67036890653306,
+      "rmsDb": -24.369106999005332,
+      "loopSeam": 0.00035653263330459595
+    },
+    {
+      "file": "Music/combat_spoons/combat_spoons_rhythm.ogg",
+      "frames": 2646000,
+      "peakDb": -6.924187201337377,
+      "rmsDb": -23.135935565912177,
+      "loopSeam": 0.0024787932634353638
+    },
+    {
+      "file": "Music/combat_spoons/combat_spoons_melody.ogg",
+      "frames": 2646000,
+      "peakDb": -7.697232291526484,
+      "rmsDb": -20.476029525439145,
+      "loopSeam": 0.0028813332319259644
+    },
+    {
+      "file": "Music/combat_spoons/combat_spoons_intensity.ogg",
+      "frames": 2646000,
+      "peakDb": -5.083798027218354,
+      "rmsDb": -28.564504449656095,
+      "loopSeam": 0.00019730860367417336
+    },
+    {
+      "file": "Music/combat_carousel/combat_carousel_base.ogg",
+      "frames": 2419200,
+      "peakDb": -12.188031105026107,
+      "rmsDb": -24.260411994955916,
+      "loopSeam": 0.0013070069253444672
+    },
+    {
+      "file": "Music/combat_carousel/combat_carousel_rhythm.ogg",
+      "frames": 2419200,
+      "peakDb": -5.248068352828148,
+      "rmsDb": -23.12071711505865,
+      "loopSeam": 0.0012028664350509644
+    },
+    {
+      "file": "Music/combat_carousel/combat_carousel_melody.ogg",
+      "frames": 2419200,
+      "peakDb": -5.909542502548943,
+      "rmsDb": -20.453233858497146,
+      "loopSeam": 0.006075283512473106
+    },
+    {
+      "file": "Music/combat_carousel/combat_carousel_intensity.ogg",
+      "frames": 2419200,
+      "peakDb": -7.731781724424999,
+      "rmsDb": -28.3568232001385,
+      "loopSeam": 0.0004170611500740051
+    },
+    {
+      "file": "Music/combat_lasttrain/combat_lasttrain_base.ogg",
+      "frames": 2016000,
+      "peakDb": -11.22631082715156,
+      "rmsDb": -24.38252573499799,
+      "loopSeam": 0.002521669026464224
+    },
+    {
+      "file": "Music/combat_lasttrain/combat_lasttrain_rhythm.ogg",
+      "frames": 2016000,
+      "peakDb": -8.150992727982679,
+      "rmsDb": -23.0347222995975,
+      "loopSeam": 0.00043708086013793945
+    },
+    {
+      "file": "Music/combat_lasttrain/combat_lasttrain_melody.ogg",
+      "frames": 2016000,
+      "peakDb": -5.9638078613344545,
+      "rmsDb": -20.53079390326313,
+      "loopSeam": 0.008615166880190372
+    },
+    {
+      "file": "Music/combat_lasttrain/combat_lasttrain_intensity.ogg",
+      "frames": 2016000,
+      "peakDb": -6.114147948888454,
+      "rmsDb": -28.511643877188515,
+      "loopSeam": 0.00023091072216629982
+    },
+    {
+      "file": "Music/boss_clown/boss_clown_base.ogg",
+      "frames": 2257920,
+      "peakDb": -10.732068590744326,
+      "rmsDb": -24.229959701245875,
+      "loopSeam": 0.002799682319164276
+    },
+    {
+      "file": "Music/boss_clown/boss_clown_rhythm.ogg",
+      "frames": 2257920,
+      "peakDb": -5.323927725988485,
+      "rmsDb": -23.054875420403853,
+      "loopSeam": 0.0017092712223529816
+    },
+    {
+      "file": "Music/boss_clown/boss_clown_melody.ogg",
+      "frames": 2257920,
+      "peakDb": -4.7875195417632535,
+      "rmsDb": -20.46562717115426,
+      "loopSeam": 0.0020199832506477833
+    },
+    {
+      "file": "Music/boss_clown/boss_clown_intensity.ogg",
+      "frames": 2257920,
+      "peakDb": -7.189628349671247,
+      "rmsDb": -28.429614154556436,
+      "loopSeam": 0.0020775124430656433
+    },
+    {
+      "file": "Music/shop_layaway/shop_layaway_base.ogg",
+      "frames": 3024000,
+      "peakDb": -10.402219024572982,
+      "rmsDb": -24.169718687275555,
+      "loopSeam": 0.0002830810844898224
+    },
+    {
+      "file": "Music/shop_layaway/shop_layaway_rhythm.ogg",
+      "frames": 3024000,
+      "peakDb": -5.037703027903397,
+      "rmsDb": -23.252228570710393,
+      "loopSeam": 0.0013184845447540283
+    },
+    {
+      "file": "Music/shop_layaway/shop_layaway_melody.ogg",
+      "frames": 3024000,
+      "peakDb": -3.7821662499468567,
+      "rmsDb": -20.484500115391846,
+      "loopSeam": 0.0021274788305163383
+    },
+    {
+      "file": "Music/shop_layaway/shop_layaway_intensity.ogg",
+      "frames": 3024000,
+      "peakDb": -5.218398736750029,
+      "rmsDb": -28.333123786820376,
+      "loopSeam": 0.001076091080904007
+    },
+    {
+      "file": "Music/endless_encore/endless_encore_base.ogg",
+      "frames": 2419200,
+      "peakDb": -10.285177430576638,
+      "rmsDb": -24.2915563710633,
+      "loopSeam": 0.0018802173435688019
+    },
+    {
+      "file": "Music/endless_encore/endless_encore_rhythm.ogg",
+      "frames": 2419200,
+      "peakDb": -5.535547542318754,
+      "rmsDb": -23.1770071858676,
+      "loopSeam": 0.0008954927325248718
+    },
+    {
+      "file": "Music/endless_encore/endless_encore_melody.ogg",
+      "frames": 2419200,
+      "peakDb": -5.229895943059557,
+      "rmsDb": -20.52320247673602,
+      "loopSeam": 0.00446246936917305
+    },
+    {
+      "file": "Music/endless_encore/endless_encore_intensity.ogg",
+      "frames": 2419200,
+      "peakDb": -4.798812597536121,
+      "rmsDb": -28.493792666921323,
+      "loopSeam": 0.0016595721244812012
+    }
+  ],
+  "mixes": [
+    {
+      "piece": "menu_curtain",
+      "mix": "all",
+      "truePeakDbTP": -2.5542994779361723,
+      "rmsDb": -17.21699908132237,
+      "lufsIntegrated": -14.600741261462838
+    },
+    {
+      "piece": "menu_curtain",
+      "mix": "sparse",
+      "truePeakDbTP": -3.0773035715964028,
+      "rmsDb": -18.22811450520591
+    },
+    {
+      "piece": "menu_curtain",
+      "mix": "menu",
+      "truePeakDbTP": -2.5503835332001996,
+      "rmsDb": -17.939893474041714
+    },
+    {
+      "piece": "menu_curtain",
+      "mix": "select",
+      "truePeakDbTP": -3.0773035715964028,
+      "rmsDb": -18.22811450520591
+    },
+    {
+      "piece": "menu_curtain",
+      "mix": "shop",
+      "truePeakDbTP": -2.990917159147084,
+      "rmsDb": -17.571606127807776
+    },
+    {
+      "piece": "menu_curtain",
+      "mix": "danger",
+      "truePeakDbTP": -3.467528062349329,
+      "rmsDb": -20.9477448964272
+    },
+    {
+      "piece": "select_dressing",
+      "mix": "all",
+      "truePeakDbTP": -2.548309589509914,
+      "rmsDb": -17.218983475282606,
+      "lufsIntegrated": -13.547463372422792
+    },
+    {
+      "piece": "select_dressing",
+      "mix": "sparse",
+      "truePeakDbTP": -3.1618915670972587,
+      "rmsDb": -18.194428012293514
+    },
+    {
+      "piece": "select_dressing",
+      "mix": "menu",
+      "truePeakDbTP": -2.767178522584542,
+      "rmsDb": -17.89101573096807
+    },
+    {
+      "piece": "select_dressing",
+      "mix": "select",
+      "truePeakDbTP": -3.1618915670972587,
+      "rmsDb": -18.194428012293514
+    },
+    {
+      "piece": "select_dressing",
+      "mix": "shop",
+      "truePeakDbTP": -2.9485423474877615,
+      "rmsDb": -17.5803016159105
+    },
+    {
+      "piece": "select_dressing",
+      "mix": "danger",
+      "truePeakDbTP": -4.200238907395123,
+      "rmsDb": -20.814910724538485
+    },
+    {
+      "piece": "combat_toys",
+      "mix": "all",
+      "truePeakDbTP": -2.240576295491116,
+      "rmsDb": -17.22040439947079,
+      "lufsIntegrated": -14.09611128939755
+    },
+    {
+      "piece": "combat_toys",
+      "mix": "sparse",
+      "truePeakDbTP": -3.018493242295444,
+      "rmsDb": -18.21587140424325
+    },
+    {
+      "piece": "combat_toys",
+      "mix": "menu",
+      "truePeakDbTP": -2.6186984264756386,
+      "rmsDb": -17.910644953437004
+    },
+    {
+      "piece": "combat_toys",
+      "mix": "select",
+      "truePeakDbTP": -3.018493242295444,
+      "rmsDb": -18.21587140424325
+    },
+    {
+      "piece": "combat_toys",
+      "mix": "shop",
+      "truePeakDbTP": -2.9144174929479694,
+      "rmsDb": -17.58925881213739
+    },
+    {
+      "piece": "combat_toys",
+      "mix": "danger",
+      "truePeakDbTP": -4.106617089554751,
+      "rmsDb": -20.80097025341415
+    },
+    {
+      "piece": "combat_clockwork",
+      "mix": "all",
+      "truePeakDbTP": -2.6490573249554865,
+      "rmsDb": -17.203799184309887,
+      "lufsIntegrated": -14.857878269445424
+    },
+    {
+      "piece": "combat_clockwork",
+      "mix": "sparse",
+      "truePeakDbTP": -3.6483103653857105,
+      "rmsDb": -18.131102486863504
+    },
+    {
+      "piece": "combat_clockwork",
+      "mix": "menu",
+      "truePeakDbTP": -3.239222931797393,
+      "rmsDb": -17.823986430755102
+    },
+    {
+      "piece": "combat_clockwork",
+      "mix": "select",
+      "truePeakDbTP": -3.6483103653857105,
+      "rmsDb": -18.131102486863504
+    },
+    {
+      "piece": "combat_clockwork",
+      "mix": "shop",
+      "truePeakDbTP": -2.95315843297933,
+      "rmsDb": -17.556632433152878
+    },
+    {
+      "piece": "combat_clockwork",
+      "mix": "danger",
+      "truePeakDbTP": -4.271378744368417,
+      "rmsDb": -20.759630072495376
+    },
+    {
+      "piece": "combat_overtime",
+      "mix": "all",
+      "truePeakDbTP": -2.4941730810095484,
+      "rmsDb": -17.206096764099023,
+      "lufsIntegrated": -14.565392767650113
+    },
+    {
+      "piece": "combat_overtime",
+      "mix": "sparse",
+      "truePeakDbTP": -3.6821406957867167,
+      "rmsDb": -18.236673719856395
+    },
+    {
+      "piece": "combat_overtime",
+      "mix": "menu",
+      "truePeakDbTP": -3.2508951955264394,
+      "rmsDb": -17.90795490026065
+    },
+    {
+      "piece": "combat_overtime",
+      "mix": "select",
+      "truePeakDbTP": -3.6821406957867167,
+      "rmsDb": -18.236673719856395
+    },
+    {
+      "piece": "combat_overtime",
+      "mix": "shop",
+      "truePeakDbTP": -2.8635468710705196,
+      "rmsDb": -17.583106668274333
+    },
+    {
+      "piece": "combat_overtime",
+      "mix": "danger",
+      "truePeakDbTP": -5.64633678879166,
+      "rmsDb": -20.67037247368832
+    },
+    {
+      "piece": "boss_ringmaster",
+      "mix": "all",
+      "truePeakDbTP": -2.6153004289544994,
+      "rmsDb": -17.213633601103936,
+      "lufsIntegrated": -14.42854103567414
+    },
+    {
+      "piece": "boss_ringmaster",
+      "mix": "sparse",
+      "truePeakDbTP": -3.4681771196455156,
+      "rmsDb": -18.212331315654673
+    },
+    {
+      "piece": "boss_ringmaster",
+      "mix": "menu",
+      "truePeakDbTP": -2.8717266178230187,
+      "rmsDb": -17.89951573948074
+    },
+    {
+      "piece": "boss_ringmaster",
+      "mix": "select",
+      "truePeakDbTP": -3.4681771196455156,
+      "rmsDb": -18.212331315654673
+    },
+    {
+      "piece": "boss_ringmaster",
+      "mix": "shop",
+      "truePeakDbTP": -2.948635401225937,
+      "rmsDb": -17.582060178851137
+    },
+    {
+      "piece": "boss_ringmaster",
+      "mix": "danger",
+      "truePeakDbTP": -4.214554401171464,
+      "rmsDb": -20.79554940069416
+    },
+    {
+      "piece": "shop_gold",
+      "mix": "all",
+      "truePeakDbTP": -2.605447736953297,
+      "rmsDb": -17.21989877943531,
+      "lufsIntegrated": -14.544767363617042
+    },
+    {
+      "piece": "shop_gold",
+      "mix": "sparse",
+      "truePeakDbTP": -3.3004015444605135,
+      "rmsDb": -18.135667410114916
+    },
+    {
+      "piece": "shop_gold",
+      "mix": "menu",
+      "truePeakDbTP": -2.766784819673614,
+      "rmsDb": -17.850205167680702
+    },
+    {
+      "piece": "shop_gold",
+      "mix": "select",
+      "truePeakDbTP": -3.3004015444605135,
+      "rmsDb": -18.135667410114916
+    },
+    {
+      "piece": "shop_gold",
+      "mix": "shop",
+      "truePeakDbTP": -2.912580574697171,
+      "rmsDb": -17.569160897049937
+    },
+    {
+      "piece": "shop_gold",
+      "mix": "danger",
+      "truePeakDbTP": -3.777867797779172,
+      "rmsDb": -20.902824270512582
+    },
+    {
+      "piece": "shop_dream",
+      "mix": "all",
+      "truePeakDbTP": -2.691408251087131,
+      "rmsDb": -17.215745914542133,
+      "lufsIntegrated": -13.655935917120146
+    },
+    {
+      "piece": "shop_dream",
+      "mix": "sparse",
+      "truePeakDbTP": -3.4041361909969146,
+      "rmsDb": -18.209882180721507
+    },
+    {
+      "piece": "shop_dream",
+      "mix": "menu",
+      "truePeakDbTP": -3.2032248884370498,
+      "rmsDb": -17.910431265198092
+    },
+    {
+      "piece": "shop_dream",
+      "mix": "select",
+      "truePeakDbTP": -3.4041361909969146,
+      "rmsDb": -18.209882180721507
+    },
+    {
+      "piece": "shop_dream",
+      "mix": "shop",
+      "truePeakDbTP": -3.132842774280083,
+      "rmsDb": -17.583231118757002
+    },
+    {
+      "piece": "shop_dream",
+      "mix": "danger",
+      "truePeakDbTP": -3.993897119078037,
+      "rmsDb": -20.87751168057907
+    },
+    {
+      "piece": "endless_neverclose",
+      "mix": "all",
+      "truePeakDbTP": -2.6828641364760903,
+      "rmsDb": -17.2031059955891,
+      "lufsIntegrated": -14.431255889065252
+    },
+    {
+      "piece": "endless_neverclose",
+      "mix": "sparse",
+      "truePeakDbTP": -3.4759371481232906,
+      "rmsDb": -18.219978112602856
+    },
+    {
+      "piece": "endless_neverclose",
+      "mix": "menu",
+      "truePeakDbTP": -2.996615730051144,
+      "rmsDb": -17.899824691838646
+    },
+    {
+      "piece": "endless_neverclose",
+      "mix": "select",
+      "truePeakDbTP": -3.4759371481232906,
+      "rmsDb": -18.219978112602856
+    },
+    {
+      "piece": "endless_neverclose",
+      "mix": "shop",
+      "truePeakDbTP": -3.009464744329481,
+      "rmsDb": -17.5778705848906
+    },
+    {
+      "piece": "endless_neverclose",
+      "mix": "danger",
+      "truePeakDbTP": -3.9683538027730187,
+      "rmsDb": -20.716560531400884
+    },
+    {
+      "piece": "combat_spoons",
+      "mix": "all",
+      "truePeakDbTP": -2.5779298188017647,
+      "rmsDb": -17.200512891046955,
+      "lufsIntegrated": -14.994535522478014
+    },
+    {
+      "piece": "combat_spoons",
+      "mix": "sparse",
+      "truePeakDbTP": -4.187619508470742,
+      "rmsDb": -18.19831106599745
+    },
+    {
+      "piece": "combat_spoons",
+      "mix": "menu",
+      "truePeakDbTP": -3.657942338912324,
+      "rmsDb": -17.877297972598075
+    },
+    {
+      "piece": "combat_spoons",
+      "mix": "select",
+      "truePeakDbTP": -4.187619508470742,
+      "rmsDb": -18.19831106599745
+    },
+    {
+      "piece": "combat_spoons",
+      "mix": "shop",
+      "truePeakDbTP": -3.389794633125491,
+      "rmsDb": -17.569106109847883
+    },
+    {
+      "piece": "combat_spoons",
+      "mix": "danger",
+      "truePeakDbTP": -5.181915498938261,
+      "rmsDb": -20.714725711461213
+    },
+    {
+      "piece": "combat_carousel",
+      "mix": "all",
+      "truePeakDbTP": -2.6643150032478715,
+      "rmsDb": -17.205228884872053,
+      "lufsIntegrated": -14.681675116546641
+    },
+    {
+      "piece": "combat_carousel",
+      "mix": "sparse",
+      "truePeakDbTP": -3.7715747594364855,
+      "rmsDb": -18.225125967921308
+    },
+    {
+      "piece": "combat_carousel",
+      "mix": "menu",
+      "truePeakDbTP": -3.2799448971615828,
+      "rmsDb": -17.91562130561013
+    },
+    {
+      "piece": "combat_carousel",
+      "mix": "select",
+      "truePeakDbTP": -3.7715747594364855,
+      "rmsDb": -18.225125967921308
+    },
+    {
+      "piece": "combat_carousel",
+      "mix": "shop",
+      "truePeakDbTP": -3.1898410739998315,
+      "rmsDb": -17.579278972008957
+    },
+    {
+      "piece": "combat_carousel",
+      "mix": "danger",
+      "truePeakDbTP": -4.340817022304001,
+      "rmsDb": -20.803881074246743
+    },
+    {
+      "piece": "combat_lasttrain",
+      "mix": "all",
+      "truePeakDbTP": -2.7406062830416476,
+      "rmsDb": -17.203756034276918,
+      "lufsIntegrated": -14.781875867754538
+    },
+    {
+      "piece": "combat_lasttrain",
+      "mix": "sparse",
+      "truePeakDbTP": -3.4705939532677017,
+      "rmsDb": -18.28655707532767
+    },
+    {
+      "piece": "combat_lasttrain",
+      "mix": "menu",
+      "truePeakDbTP": -2.9823463842848215,
+      "rmsDb": -17.96721978661796
+    },
+    {
+      "piece": "combat_lasttrain",
+      "mix": "select",
+      "truePeakDbTP": -3.4705939532677017,
+      "rmsDb": -18.28655707532767
+    },
+    {
+      "piece": "combat_lasttrain",
+      "mix": "shop",
+      "truePeakDbTP": -3.0594014824793296,
+      "rmsDb": -17.590348340793255
+    },
+    {
+      "piece": "combat_lasttrain",
+      "mix": "danger",
+      "truePeakDbTP": -5.3614704839924086,
+      "rmsDb": -20.781656938293484
+    },
+    {
+      "piece": "boss_clown",
+      "mix": "all",
+      "truePeakDbTP": -2.6986941739900274,
+      "rmsDb": -17.20933166820678,
+      "lufsIntegrated": -14.951475362708853
+    },
+    {
+      "piece": "boss_clown",
+      "mix": "sparse",
+      "truePeakDbTP": -3.4528588812479075,
+      "rmsDb": -18.183489084266448
+    },
+    {
+      "piece": "boss_clown",
+      "mix": "menu",
+      "truePeakDbTP": -3.037689635347282,
+      "rmsDb": -17.86625389714994
+    },
+    {
+      "piece": "boss_clown",
+      "mix": "select",
+      "truePeakDbTP": -3.4528588812479075,
+      "rmsDb": -18.183489084266448
+    },
+    {
+      "piece": "boss_clown",
+      "mix": "shop",
+      "truePeakDbTP": -3.092106830830404,
+      "rmsDb": -17.574779398100116
+    },
+    {
+      "piece": "boss_clown",
+      "mix": "danger",
+      "truePeakDbTP": -4.109036319310228,
+      "rmsDb": -20.70670161205243
+    },
+    {
+      "piece": "shop_layaway",
+      "mix": "all",
+      "truePeakDbTP": -2.4505408008329606,
+      "rmsDb": -17.220728650856692,
+      "lufsIntegrated": -13.807891404407583
+    },
+    {
+      "piece": "shop_layaway",
+      "mix": "sparse",
+      "truePeakDbTP": -2.7967686463994568,
+      "rmsDb": -18.214362251218454
+    },
+    {
+      "piece": "shop_layaway",
+      "mix": "menu",
+      "truePeakDbTP": -2.640741389868764,
+      "rmsDb": -17.909721043968418
+    },
+    {
+      "piece": "shop_layaway",
+      "mix": "select",
+      "truePeakDbTP": -2.7967686463994568,
+      "rmsDb": -18.214362251218454
+    },
+    {
+      "piece": "shop_layaway",
+      "mix": "shop",
+      "truePeakDbTP": -2.6442188493064473,
+      "rmsDb": -17.589334319616846
+    },
+    {
+      "piece": "shop_layaway",
+      "mix": "danger",
+      "truePeakDbTP": -3.865815760737389,
+      "rmsDb": -20.80910965700253
+    },
+    {
+      "piece": "endless_encore",
+      "mix": "all",
+      "truePeakDbTP": -2.6308843439534075,
+      "rmsDb": -17.207159917043473,
+      "lufsIntegrated": -14.649871128346032
+    },
+    {
+      "piece": "endless_encore",
+      "mix": "sparse",
+      "truePeakDbTP": -3.7716083272673746,
+      "rmsDb": -18.215366567586074
+    },
+    {
+      "piece": "endless_encore",
+      "mix": "menu",
+      "truePeakDbTP": -3.507001812094128,
+      "rmsDb": -17.89727311544213
+    },
+    {
+      "piece": "endless_encore",
+      "mix": "select",
+      "truePeakDbTP": -3.7716083272673746,
+      "rmsDb": -18.215366567586074
+    },
+    {
+      "piece": "endless_encore",
+      "mix": "shop",
+      "truePeakDbTP": -3.1438308252160283,
+      "rmsDb": -17.578298561550774
+    },
+    {
+      "piece": "endless_encore",
+      "mix": "danger",
+      "truePeakDbTP": -4.114556878936288,
+      "rmsDb": -20.721736798180327
+    }
+  ]
+}

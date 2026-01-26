@@ -323,14 +323,14 @@ namespace ArcaneBrigade
             UnitDefinition encoreUnit = null;
             foreach (RosterEntry entry in state.Roster) if (entry.Tier >= 3) { encores++; encoreUnit = owner.Content.Unit(entry.UnitId); }
             if (encoreCount >= 0 && encores > encoreCount && encoreUnit != null)
-                cutIn.Show(RunUICopy.UnitName(encoreUnit).ToUpperInvariant(), "★★★  ENCORE FORM", encoreUnit.Body, ArcadeSkin.Gold);
+                cutIn.Show(RunUICopy.UnitName(encoreUnit).ToUpperInvariant(), "★★★  ENCORE FORM", encoreUnit.Body, ArcadeSkin.Gold, "ui.cutin.encore");
             encoreCount = encores;
             foreach (BondDefinition bond in owner.Content.Bonds)
             {
                 owner.Session.BondCounts.TryGetValue(bond.Id, out int count);
                 int level = bond.ActiveLevel(count);
                 if (bondLevels.TryGetValue(bond.Id, out int before) && level > before && !first)
-                    cutIn.Show(bond.Name.ToUpperInvariant(), "BOND LEVEL " + level + " · THE CROWD GOES WILD", bond.Icon, ArcadeSkin.Teal);
+                    cutIn.Show(bond.Name.ToUpperInvariant(), "BOND LEVEL " + level + " · THE CROWD GOES WILD", bond.Icon, ArcadeSkin.Teal, "ui.cutin.bond");
                 bondLevels[bond.Id] = level;
             }
             if (state.Phase != SessionPhase.Combat) { bossWasAlive = false; return; }
@@ -338,11 +338,11 @@ namespace ArcaneBrigade
             if (boss != null && boss.Alive && boss != seenBoss)
             {
                 seenBoss = boss;
-                cutIn.Show(RunUICopy.UnitName(boss.Definition).ToUpperInvariant(), "TONIGHT'S HEADLINER ENTERS THE RING", boss.Definition.Body, ArcadeSkin.Danger);
+                cutIn.Show(RunUICopy.UnitName(boss.Definition).ToUpperInvariant(), "TONIGHT'S HEADLINER ENTERS THE RING", boss.Definition.Body, ArcadeSkin.Danger, "ui.cutin.boss");
             }
             bool alive = boss != null && boss.Alive;
             if (bossWasAlive && !alive && simulation.Champion.Alive)
-                cutIn.Show("SHOWSTOPPER!", "HEADLINER DEFEATED", owner.Content.Unit(state.ChampionId).Body, ArcadeSkin.Gold);
+                cutIn.Show("SHOWSTOPPER!", "HEADLINER DEFEATED", owner.Content.Unit(state.ChampionId).Body, ArcadeSkin.Gold, "ui.cutin.showstopper");
             bossWasAlive = alive;
         }
 

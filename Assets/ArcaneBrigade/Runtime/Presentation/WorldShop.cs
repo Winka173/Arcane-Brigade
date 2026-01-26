@@ -118,6 +118,7 @@ namespace ArcaneBrigade
                 if (Nearby != null)
                 {
                     CheckpointAudio.PlayInterfaceId(audioFocus == null ? "shop.approach" : "shop.focus");
+                    if (Nearby.Offer != null) CheckpointAudio.PlayWorldId("shop.ticket.sway", Nearby.Position);
                     if (voice != null) voice.Gesture("hmm", Special);
                 }
                 audioFocus = Nearby;
@@ -162,6 +163,7 @@ namespace ArcaneBrigade
                 if (completed)
                 {
                     CheckpointAudio.PlayInterfaceId(station.Currency == ShopCurrency.Gold ? "shop.buy.gold" : "shop.buy.dream");
+                    CheckpointAudio.PlayInterfaceId("shop.ticket.sold", 0.07f);
                     PlayBondUnlocks(before);
                     if (station.Offer.Kind == OfferKind.Companion) owner.PlayCommittedArrival(before, position);
                     else ItemPickup.Play(icon, position + Vector2.up * 0.9f, owner.Content.Item(station.Offer.Id).Rarity);

@@ -294,6 +294,7 @@ namespace ArcaneBrigade
         // Diegetic main menu: every entry is an object on the shop counter painted in LostShop_v1 (1280x720 design space).
         private static readonly string[] SpotLabels = { "NEW RUN", "RESUME", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
         private static readonly string[] SpotHints = { "Step onto the stage", "Back into tonight's show", "The display case", "The receipt printer", "Adjust the lights", "Ring for help" };
+        private static readonly string[] SpotCues = { "menu.spot.hero", "menu.spot.door", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
         public static readonly Rect[] SpotAreas =
         {
             new Rect(505, 330, 230, 280),  // the champion on the lit counter
@@ -347,7 +348,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < SpotAreas.Length; index++)
                 if (SpotEnabled(index) && SpotAreas[index].Contains(Event.current.mousePosition)) mouseSpot = index;
             int focus = mouseSpot >= 0 ? mouseSpot : Mathf.Clamp(navigation.Selected, 0, SpotAreas.Length - 1);
-            if (Event.current.type == EventType.Repaint && mouseSpot >= 0 && mouseSpot != hoveredSpot) CheckpointAudio.PlayInterfaceId("ui.hover");
+            if (Event.current.type == EventType.Repaint && mouseSpot >= 0 && mouseSpot != hoveredSpot) CheckpointAudio.PlayInterfaceId(SpotCues[mouseSpot]);
             if (Event.current.type == EventType.Repaint) hoveredSpot = mouseSpot;
 
             // idle twinkles walk across the objects on the beat so every object reads as interactive

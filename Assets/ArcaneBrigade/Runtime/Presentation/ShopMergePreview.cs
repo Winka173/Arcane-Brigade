@@ -10,6 +10,7 @@ namespace ArcaneBrigade
         private readonly LineRenderer[] links = new LineRenderer[2];
         private Material material;
         private Vector2 stock;
+        private int hintedToken = -1;
         public int ApproachingCount => identities.Count;
         public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && session.CanBuy(offer) && session.State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == 1).Count >= 2;
         public static int ProjectedTier(RunSession session, ShopOffer offer)
@@ -36,9 +37,11 @@ namespace ArcaneBrigade
         }
         public void Observe(WorldShop.Station station, bool blocked)
         {
+            if (blocked || station == null) CheckpointAudio.CancelScheduledPrefix("ui.merge.hint");
             identities.Clear();
             if (!blocked && station != null && Ready(owner.Session, station.Offer))
             {
+                if (hintedToken != station.Offer.Token) { CheckpointAudio.PlayInterfaceId("ui.merge.hint", 0.13f); hintedToken = station.Offer.Token; }
                 stock = station.Position;
                 foreach (UnitState unit in owner.Simulation.Units)
                 {

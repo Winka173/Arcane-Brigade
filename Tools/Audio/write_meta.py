@@ -19,6 +19,7 @@ def audio_meta(rel, load, quality, background, note):
 
 def put(path, text):
     if os.path.exists(path + '.meta'): return
+    text = '\n'.join(line.rstrip() for line in text.splitlines()) + '\n'
     open(path + '.meta', 'w', newline='\n').write(text)
 
 def main():

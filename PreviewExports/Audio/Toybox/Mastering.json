@@ -1,0 +1,287 @@
+{
+  "menu_curtain": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "321c15575ec520b4da684a30fed0d5fb627113b4b8185dda778f99fb18bc9b70",
+      "6810ff26dba695be9bb2bb1b0bd0e7953a99e6206480d1ee1daff182e084f281",
+      "ffd5ed8ad3ee4a0acf94e41ea519a94a1e25f25a612cab10164e064bf68bb1d4",
+      "3a7232ebdf028a0c52ed8da7515f773db838340992df6dbd73f75f29c0ca2508"
+    ],
+    "outputHashes": [
+      "aef13defa5c2808110caba3996d627683531b9ebc01111061bac55d1e94113a9",
+      "18add5134997baa065edb85f026233632e9c92b2513a7d22b9eec0070cff0dcb",
+      "eabe09350a2506b7c84696690c87fe0c168267d255c8b0712f20862752ac554d",
+      "d13f3d5ef4cf9e979659fcc6cf45916651155d7dea24ef91b9333db7f6fffa48"
+    ],
+    "maxReductionDb": 0.12135275370747307,
+    "sumPeakDb": -2.8533500713740807,
+    "sumRmsDb": -17.261765090099946
+  },
+  "select_dressing": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "22d79d076af1a4da162100c661dcdf34d7b99fb2caefbcfef578ec82691b0cfc",
+      "42b1703008700d23cdefa033cc2fb86ee22c0f2aa828c892b00c2ac41904c725",
+      "504566ae3f34f2ce5b3865e431cd840e604c90c131ee17bad5e5315400355f37",
+      "bc49a6778dc0fdd240845d845f4cd864a36dcfe7e4e56d35f929e0592d48c446"
+    ],
+    "outputHashes": [
+      "e5654924e89fc3bf926420249d0382cdafd384b9df4741624833065ad8c163bc",
+      "6213eaaff5377c7713174a4cd1fedac9770d658aa6bc8c1d4ffc293b7f6ff0b6",
+      "14b0bd1da22ee63310902611da5e2c78237c55472175d9f19a96c7764ded838a",
+      "5f2f18b9dd41ad5115ba3c1bd20e17682b13cd40f64ced6714050f6bf3d26a43"
+    ],
+    "maxReductionDb": 0.08217556816211685,
+    "sumPeakDb": -2.853350071372976,
+    "sumRmsDb": -17.25760992143001
+  },
+  "combat_toys": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "8a5fba8a3e28f6fd3fdf872e5e6cb8009f242bbea2b4f9d57d120f01a79629e6",
+      "df4d748eb5339052df9a5dc96fbd51afd6c3ab89b2a6abcc09b2f139fb4ad80b",
+      "64260ba89b83281f926672833e476e603b87f1a0cb5f848c29fad533559ef520",
+      "a744582b2efad4789e9744b724cb1d284deb7f8bec406608aa6c185f50e96acb"
+    ],
+    "outputHashes": [
+      "3d4309d4654ecac4634bcf615ddb78900c9758be1a54e31cdc8eb8f299aa43b1",
+      "56f7cb533d921ba84112b6e9c7a051ccda6c261f287f88b3ae3075503e699ad3",
+      "2fb86a68c30c243ee8866b1a521e8c94faa4733d6549a199ab8a7a2ecb8c0a32",
+      "debb12ddc2eec669f5cc911c59fe2b19217e32292783731b1213ae4cd03a2581"
+    ],
+    "maxReductionDb": 0.10424383415023641,
+    "sumPeakDb": -2.8533500713712585,
+    "sumRmsDb": -17.261085920629885
+  },
+  "combat_clockwork": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "3c6d72cad2bd2bb1fcb0779b4dfa8da02478baec5960fc9aaaba08161a4679b7",
+      "f6ca27c823a0cc5f3782b3651cc6cf6ffc5e0f4ba3dd39d584e645f4c4b738e0",
+      "9e5105b745a395e498be08a2f2cc4c091d3bf2608de5b257b543fb9df05c5fcc",
+      "7c97c52df93b5a37ee8620ad31a9842dcff08a1be1ef2e0cbd113179c3b74b63"
+    ],
+    "outputHashes": [
+      "6db475d23c12037f3e0d123bc6a1cf6f20978f4f2aca1cf339e43dc56705f988",
+      "88a107342d0e30398f394568a6f06a738f36e07711ba15cb4e47b2e450b4fb55",
+      "ead897713e116a4c7b3ae787fa40d6e5ee5cda949347d001e571a0351fb827e2",
+      "b1831ff222e956416facaea313216858fb2fbcc452a0d1e9e82a8adc1259c370"
+    ],
+    "maxReductionDb": 0.035675406540255854,
+    "sumPeakDb": -2.853350071372629,
+    "sumRmsDb": -17.251232807297274
+  },
+  "combat_overtime": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "9e3dce202dc8ac6d6ff73d7076896da322972e99dfefa48b449be3acb471184f",
+      "15a74d32e4bf4fcbb96b5801db9e63c91757bae3c6968500760237da4072f578",
+      "88506c499cc379a4a04d5fb3ccbd9da53f3484e18ef89aaf360b2262c7018513",
+      "1637c174a9ccaee008ca10b6da38278558908ef29c3111c3e5508369cea13593"
+    ],
+    "outputHashes": [
+      "2c31c941d00995a47347643c373852741ccf447dd327a733133f23e15832ad25",
+      "59630f802c148d0f28c09d98c08b45b2a187a2af97ee36a3843fb4fc220b799e",
+      "1b52e43fad834876429214397c7301d9e29246e6eaea44b27fdd5b56eb2db57d",
+      "dcb56d4c11b57fd06e8839d90e91221968bdeb2c0db788aff2828353364e5dc9"
+    ],
+    "maxReductionDb": 0.04324728649567868,
+    "sumPeakDb": -2.8533500713705244,
+    "sumRmsDb": -17.25101925316943
+  },
+  "boss_ringmaster": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "5043592239c0ad1795d5fb6f64512b2d592c7d4336033c88644d121ae30b7841",
+      "4285d5cb71e38f1cef367be8bee3c261be8e7411395229c0c3188b6574a59410",
+      "c1a44ef7ed78e415deada875b1a805000d23599e59ad328a26dab488d65518f4",
+      "400a80a105ce50fd993e400a0249fd13072fdcd671961286b8fd755fee81d608"
+    ],
+    "outputHashes": [
+      "f2d96cf8f237d0286548d25c79fb0a16271c3315375837b23298764a28b79dba",
+      "ebbec20c339e3b911a8a5270babd768a4d1d3ce0103b0609bd77bce73074146f",
+      "5c70bd47ef0124c433cf3b74e997d54f1302c69df5134413a288bbf02d6dcfc7",
+      "63dc2b4524b8345d195d97d6d03fae026acef3d27b9cd7cf576c953c64a861d8"
+    ],
+    "maxReductionDb": 0.02115108426853174,
+    "sumPeakDb": -2.8533500713737006,
+    "sumRmsDb": -17.25053012238585
+  },
+  "shop_gold": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "e746e9d06c46ded21b2aa9b27289d85ffcd7f5935f22be7164d910d5a9c95ba7",
+      "174cda8b09fbeff2e1fe41a0385285a0beb7c19fd9701fa8f930e9cf60eb28b8",
+      "cf72dd7854452a7f6d75d89c39acb60989f7c8f0af20e01822b6ae552709d9c1",
+      "b99fe6183caa90d4a55d122a77e57ec94d383155f808f3443ac6db2f24c4d562"
+    ],
+    "outputHashes": [
+      "0ecb3b234af6bca9f15c87e503eab3257e5bc690597e09de91fc351259bbb912",
+      "62d853ce6553a708c17421d0bd4383d1b1a929c2c087bd1224daaee3d19b9806",
+      "5873241f9e949f1ed4fac2036fa7bdc60bf11ba00ca2b892ea68e550f10b4b29",
+      "94f4d4270789361397951db3d46abd93429d6d7c3bcaac83f81295eac62bc57d"
+    ],
+    "maxReductionDb": 0.14489568132945127,
+    "sumPeakDb": -2.853350071371339,
+    "sumRmsDb": -17.263531001027268
+  },
+  "shop_dream": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "dc849499ccdae183b307288a1ad2cc8e6123010a42481416c5690e604c4161e7",
+      "cb9c96784f95d2c3caa5137f41ff0f627760860e7622fdd730b3a3f1ba718aa6",
+      "18031107ede1ae834d9151fe4a28669ce38c6586f3a7e1540b56db035c51459c",
+      "c3252a5ec4074d55fc0acb581a4b85c9d6b1812e3df776fe27e3a33a906c489a"
+    ],
+    "outputHashes": [
+      "6e4c43c315374e9420bceaad5bbec3b034e6eab7a15c325ff7591e4147a3de15",
+      "a675d4d38be54fb8576479a6c5894adf1be9705e991a621a14d0592a22f03cdf",
+      "1afaf15281faa65a751aeb9fec9d2042308a7de1eab97d490eb978d92933d90b",
+      "b605b9f5db33073233d5e630c33dd7874176ad6d0af39b0105f4930b94e31f31"
+    ],
+    "maxReductionDb": 0.04079848146813316,
+    "sumPeakDb": -2.853350071373079,
+    "sumRmsDb": -17.25156462923073
+  },
+  "endless_neverclose": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "39c345b2722eb63e14fd06a1440c883c32cc5cb8bbe0c2b87a2e31aca61fef24",
+      "d1a2a35b8add493393cf0179b942d451d63bb4a96da9d511550ea585e527644e",
+      "d63ef4455226296fe5e06a2340dc9f9ffb33b6259ce1b044cd3acb057ce6ca6b",
+      "783c8fbfb44f5a1e6fb1b5c5af139862234e6c9a9f20eba9df0bbe1725f80460"
+    ],
+    "outputHashes": [
+      "99ed40e70197c8fd1184a8f51912840c7ad5c9f54bcb4652f0ec9ac4bf77b00c",
+      "683f7f6bd40132924599e169e5c4556ecc0307273eeaebc750039a20f0cb1f3e",
+      "cb57b6384d144e4d0d1d7a850528c7f6abf8c06ba2e50a22adb3047d15854998",
+      "51f14f48c9980a9b0e5e163b4f0fc44c2b973a8fa02975a82f3ac3b8a6c57b53"
+    ],
+    "maxReductionDb": 0.03856577217872407,
+    "sumPeakDb": -2.853350071372247,
+    "sumRmsDb": -17.252010274265672
+  },
+  "combat_spoons": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "abc1b63f12e2e77bf8cf9b172554c901344a715b94853354cb65b0401f03f646",
+      "5d49ffd866c59b7c1827648f0e2bff8c067673060d7c8b83e80dbe449288a7df",
+      "10bc550affae651a28351acb1ba4c58adedfbc2291fec39cc63f4caf76300d46",
+      "2bf61f4864c4d87457c8853e7ace900264ff22e66820987685b05d78bad99bd9"
+    ],
+    "outputHashes": [
+      "52ab3c72eda0ca3a6288a5a38af8bc33f6dac4fd29b46fb580013647058e274e",
+      "dce7ed3862d50d81dd348ba0dcc1dfe01f7cdb498b2b41bbb172debb03e90223",
+      "de29762a46e16c3887b73ef150cf4a337e6818778449478ee275abdb078ff575",
+      "d3e6d89d1f2ff6a6120e2110d9ea9f7f585f7a6729f836800ae663513d5caa74"
+    ],
+    "maxReductionDb": 0.023450947631016125,
+    "sumPeakDb": -2.8533500713713162,
+    "sumRmsDb": -17.250475449738293
+  },
+  "combat_carousel": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "01331d65494610d2b71dc8c15a618dbbf9cd55bd33ae413b9272f9f434bfcb9c",
+      "7e01f5112011df25880ed43eb055541db245e75a556a98dff18868edbadc306c",
+      "27a07f452a26089e67b70c069637fc56747713860e06bae19f8dcc317547747a",
+      "a29d2e49fa07faecc1391db5d1dd76fa90af3251130dc83503534b0694edf408"
+    ],
+    "outputHashes": [
+      "92f262de59862169793f195895f0d669789d42a6d827f1a189843656a76f45c8",
+      "0cb306c56545f55a056bec9dba227ba30462021fca7ab207914ae1684b09f1a8",
+      "234681bb0c58137f1c6602ac6bfdb393bb2f9f1ffd7b22e23c3959a7dc4d11e0",
+      "e52bf2e2451fcd50bc440d2738f986ab66311d61746163cbee79ed8ea8cbabd5"
+    ],
+    "maxReductionDb": 0.03400227941944365,
+    "sumPeakDb": -2.85335007137334,
+    "sumRmsDb": -17.25116503198968
+  },
+  "combat_lasttrain": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "8816be34836644d9da6e27a2219bcc67dbbb3655f9d0999d6fb09f1c40ba6600",
+      "e9c2f1ce9ae3e3e21a15cdc19b0056b1c807d2b9bde9f458e41333f9fc35faaa",
+      "b7b8ec5bd1ccf864b1b387d9ba139299e4059cdbc380dec02f297767f340b65f",
+      "e85754d64bfdaf66e3a9ec434a8539c2e6f8bedb11e8fa65108a76e37d5b8744"
+    ],
+    "outputHashes": [
+      "693be02910d7829ddf82e155a3b0c49ea1efc322bd1b96436db3625a1d29e20b",
+      "eb57a948f06972803b16c4d992ea6e3e0deac315705a233fe6575339f6cd5fc9",
+      "dcd6f288cb03d25c7689d7d73a00f324dd42b5faee9c8d0a1976100d2e378054",
+      "ad2057de6d5373aa98c6fdcfc5d06163d0ae08d67d6e0c6ce198dbbe3ee1938c"
+    ],
+    "maxReductionDb": 0.008087920253270207,
+    "sumPeakDb": -2.853350071374094,
+    "sumRmsDb": -17.250123178002323
+  },
+  "boss_clown": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "cfd67f6f4c97cfbaf7ada90f67df10f52d9a0845c9b1d308f893fb1cf7eb6a4d",
+      "0e7a5402698ee2360016e99d6c3b4b751fca107795dbe68485a6116a3df5dfe1",
+      "3545fd82ab31809633db6a995a1c2854f250cf1ef52f26dd999a72bea90089bb",
+      "11e35efe2da2136ce60bcc311bb9a729a4b1bfe666b82f1e789df12923067c3d"
+    ],
+    "outputHashes": [
+      "d903eef3dcb61229b5594f7a841c17f71e9d97c2431df5e8e9515674cc50a6c0",
+      "6f650956698ea19ffaad8dad0755c410996508ee64c21e1903487aa138de4cd8",
+      "6a63386ceab07727f8042d277f71980f2989fe422495235112797f97d9438994",
+      "ed8131b1287f74eacc7f199c8e6dbd55e01a90c05f316a0f1a6ff7156f8f9e47"
+    ],
+    "maxReductionDb": 0.04978423384434509,
+    "sumPeakDb": -2.853350071374346,
+    "sumRmsDb": -17.252432179730064
+  },
+  "shop_layaway": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "6d33934ab90378decf4026d305d9bcaacefecd6c1b7f40262de959754f49fd9f",
+      "69586846d92716bd802f000b1c471bff9fdea916f68181a9cd1799521aa3968c",
+      "d46a9c9fa56b80305ec44cdf73171161e3e0fe4837a0df161ba22f4bb93208e6",
+      "1244068632ae1dec043d3cc998f1ed7d84005eb0b321148450d9c4187c07dc94"
+    ],
+    "outputHashes": [
+      "c8f2fc640c231c400c8ecd577c8e28a4eea47a259884f6fa1bb0e4ffdf33e840",
+      "824b5d12efe1b424276adce47fb01c14507b544790701ee662ee7872a9f66554",
+      "65e63cf7365a14c9cc96318662d79f5283e9b3031986bb518b3fca15d7ef2d6c",
+      "f45d0b93f2a85cbee61da574c9886ed45d787461131d1d6a1aaa304c99ef659c"
+    ],
+    "maxReductionDb": 0.1271767152787747,
+    "sumPeakDb": -2.853350071374604,
+    "sumRmsDb": -17.262180878937354
+  },
+  "endless_encore": {
+    "version": 2,
+    "boundaryRepairMilliseconds": 3,
+    "inputHashes": [
+      "93046041cc37c91e4666ab40defcc0991b84df77a31202e9a351377376c9c6d3",
+      "8dd29523ed179849bdd841d847eb921b12fc532a9b76ae91c57b0153fa9e9ca3",
+      "aa60e38a061ff50bc4976d34eb3b4a9ca58b7ef1810765240dc4c1970da6215c",
+      "f76dcad37bdf133071e3865f22d36e390d1722c5718aeac34845d35193e87ebe"
+    ],
+    "outputHashes": [
+      "4e7117f9830ec3d1dde09ff54f352079c84ed989d45a6d6ef6c15590e189cfa0",
+      "290fd2dfba4476ff9f54bef86f109d1d7860e9ecc11f54578333b2be3ae43d73",
+      "d5f4fcb4e0b75778a5b4e815db6e7f7a5421631d8834f993408e695d338db62b",
+      "9d466a893d777f9000412fda72b370b89a5e532a784b8f90d02db69f8e98a31a"
+    ],
+    "maxReductionDb": 0.042805172424906376,
+    "sumPeakDb": -2.8533500713732756,
+    "sumRmsDb": -17.25184621390913
+  }
+}

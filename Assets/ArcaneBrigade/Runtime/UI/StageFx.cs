@@ -21,24 +21,23 @@ namespace ArcaneBrigade
     /// <summary>Full-width "on stage" cut-in banner for big moments (boss entrance/defeat, encore merge, bond level).</summary>
     public sealed class StageCutIn
     {
-        private sealed class Entry { public string Title, Subtitle; public Sprite Sprite; public Color Color; public float Started; }
+        private sealed class Entry { public string Title, Subtitle, Cue; public Sprite Sprite; public Color Color; public float Started; }
         private readonly Queue<Entry> queue = new Queue<Entry>();
         private Entry live;
         private GUIStyle title, subtitle;
         private const float Duration = 1.35f;
         public bool Busy => live != null || queue.Count > 0;
 
-        public void Show(string heading, string caption, Sprite sprite, Color color)
+        public void Show(string heading, string caption, Sprite sprite, Color color, string cue = "ui.unlock")
         {
             if (queue.Count >= 3) return;
-            queue.Enqueue(new Entry { Title = heading, Subtitle = caption, Sprite = sprite, Color = color });
-            CheckpointAudio.PlayInterfaceId("ui.unlock");
+            queue.Enqueue(new Entry { Title = heading, Subtitle = caption, Sprite = sprite, Color = color, Cue = cue });
         }
 
         public void Draw(Vector2 design)
         {
             float now = Time.unscaledTime;
-            if (live == null && queue.Count > 0) { live = queue.Dequeue(); live.Started = now; }
+            if (live == null && queue.Count > 0) { live = queue.Dequeue(); live.Started = now; CheckpointAudio.PlayInterfaceId(live.Cue); }
             if (live == null) return;
             float age = now - live.Started;
             if (age >= Duration) { live = null; return; }
@@ -87,7 +86,7 @@ namespace ArcaneBrigade
         public void Observe(string runId, int wave, bool combat)
         {
             if (run != runId) { run = runId; shownWave = combat ? wave : -1; return; }
-            if (combat && wave != shownWave) { shownWave = wave; started = Time.unscaledTime; }
+            if (combat && wave != shownWave) { shownWave = wave; started = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.wave.stamp"); }
         }
         public void Draw(string caption)
         {
@@ -152,6 +151,7 @@ namespace ArcaneBrigade
         private int startRoster = -1;
         private GUIStyle copy;
         private bool done;
+        private string lastSpokenMessage;
         private static bool Forced => System.Array.IndexOf(System.Environment.GetCommandLineArgs(), "-arcane-coach") >= 0;
 
         public void Draw(ArenaController owner, Camera camera)
@@ -199,7 +199,8 @@ namespace ArcaneBrigade
                     if (age > 6f) { Finish(owner); return; }
                     break;
             }
-            if (message == null) return;
+            if (message == null) { lastSpokenMessage = null; return; }
+            if (message != lastSpokenMessage) { CheckpointAudio.PlayInterfaceId("ui.coach.pop"); lastSpokenMessage = message; }
             Bubble(owner, camera, message, Mathf.Clamp01(age / 0.2f));
         }
 

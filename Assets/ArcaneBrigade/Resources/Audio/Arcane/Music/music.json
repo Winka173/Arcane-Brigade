@@ -3,17 +3,17 @@
  "pieces": [
   {
    "id": "menu_curtain",
-   "title": "Neon Marquee",
-   "bpm": 88,
+   "title": "Midnight Overture",
+   "bpm": 112,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 87.272721,
-   "loopSamples": 3848727,
+   "loopSeconds": 68.57142857142857,
+   "loopSamples": 3024000,
    "sampleRate": 44100,
    "scenes": [
     "menu"
    ],
-   "family": "stage",
+   "family": "midnight_toybox",
    "stems": [
     "Music/menu_curtain/menu_curtain_base",
     "Music/menu_curtain/menu_curtain_rhythm",
@@ -23,17 +23,17 @@
   },
   {
    "id": "select_dressing",
-   "title": "Pick Your Crew",
-   "bpm": 96,
+   "title": "Roll Call",
+   "bpm": 120,
    "beatsPerBar": 4,
    "bars": 16,
-   "loopSeconds": 40.0,
-   "loopSamples": 1764000,
+   "loopSeconds": 32.0,
+   "loopSamples": 1411200,
    "sampleRate": 44100,
    "scenes": [
     "select"
    ],
-   "family": "stage",
+   "family": "midnight_toybox",
    "stems": [
     "Music/select_dressing/select_dressing_base",
     "Music/select_dressing/select_dressing_rhythm",
@@ -43,17 +43,17 @@
   },
   {
    "id": "combat_toys",
-   "title": "Wind-Up Riot",
-   "bpm": 120,
+   "title": "Wind-Up Parade",
+   "bpm": 132,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 64.0,
-   "loopSamples": 2822400,
+   "loopSeconds": 58.18181405895692,
+   "loopSamples": 2565818,
    "sampleRate": 44100,
    "scenes": [
     "combat_early"
    ],
-   "family": "toyroom",
+   "family": "midnight_toybox",
    "stems": [
     "Music/combat_toys/combat_toys_base",
     "Music/combat_toys/combat_toys_rhythm",
@@ -63,17 +63,17 @@
   },
   {
    "id": "combat_clockwork",
-   "title": "Gearbox Groove",
-   "bpm": 124,
+   "title": "Gearworks",
+   "bpm": 140,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 61.935488,
-   "loopSamples": 2731355,
+   "loopSeconds": 54.857142857142854,
+   "loopSamples": 2419200,
    "sampleRate": 44100,
    "scenes": [
     "combat_mid"
    ],
-   "family": "workshop",
+   "family": "midnight_toybox",
    "stems": [
     "Music/combat_clockwork/combat_clockwork_base",
     "Music/combat_clockwork/combat_clockwork_rhythm",
@@ -83,17 +83,17 @@
   },
   {
    "id": "combat_overtime",
-   "title": "Overtime Rush",
-   "bpm": 174,
+   "title": "Midnight Stampede",
+   "bpm": 170,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 44.137937,
-   "loopSamples": 1946483,
+   "loopSeconds": 45.17646258503402,
+   "loopSamples": 1992282,
    "sampleRate": 44100,
    "scenes": [
     "combat_late"
    ],
-   "family": "office",
+   "family": "midnight_toybox",
    "stems": [
     "Music/combat_overtime/combat_overtime_base",
     "Music/combat_overtime/combat_overtime_rhythm",
@@ -103,7 +103,7 @@
   },
   {
    "id": "boss_ringmaster",
-   "title": "Ringmaster Breakdown",
+   "title": "The Ringmaster",
    "bpm": 150,
    "beatsPerBar": 4,
    "bars": 32,
@@ -113,7 +113,7 @@
    "scenes": [
     "boss"
    ],
-   "family": "all",
+   "family": "midnight_toybox",
    "stems": [
     "Music/boss_ringmaster/boss_ringmaster_base",
     "Music/boss_ringmaster/boss_ringmaster_rhythm",
@@ -123,17 +123,17 @@
   },
   {
    "id": "shop_gold",
-   "title": "Cash Rules the Carnival",
-   "bpm": 100,
+   "title": "Ka-Ching Swing",
+   "bpm": 116,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 76.8,
-   "loopSamples": 3386880,
+   "loopSeconds": 66.20689342403628,
+   "loopSamples": 2919724,
    "sampleRate": 44100,
    "scenes": [
     "shop_gold"
    ],
-   "family": "toyroom",
+   "family": "midnight_toybox",
    "stems": [
     "Music/shop_gold/shop_gold_base",
     "Music/shop_gold/shop_gold_rhythm",
@@ -143,17 +143,17 @@
   },
   {
    "id": "shop_dream",
-   "title": "Velvet Daydream",
-   "bpm": 84,
+   "title": "The Dream Counter",
+   "bpm": 138,
    "beatsPerBar": 3,
-   "bars": 24,
-   "loopSeconds": 51.428571,
-   "loopSamples": 2268000,
+   "bars": 32,
+   "loopSeconds": 41.73913832199546,
+   "loopSamples": 1840696,
    "sampleRate": 44100,
    "scenes": [
     "shop_dream"
    ],
-   "family": "dream",
+   "family": "midnight_toybox",
    "stems": [
     "Music/shop_dream/shop_dream_base",
     "Music/shop_dream/shop_dream_rhythm",
@@ -163,7 +163,7 @@
   },
   {
    "id": "endless_neverclose",
-   "title": "Neon Never Closes",
+   "title": "Open All Night",
    "bpm": 128,
    "beatsPerBar": 4,
    "bars": 32,
@@ -173,7 +173,7 @@
    "scenes": [
     "endless"
    ],
-   "family": "all",
+   "family": "midnight_toybox",
    "stems": [
     "Music/endless_neverclose/endless_neverclose_base",
     "Music/endless_neverclose/endless_neverclose_rhythm",
@@ -183,17 +183,17 @@
   },
   {
    "id": "combat_spoons",
-   "title": "Spoon Bandits",
-   "bpm": 116,
+   "title": "Cutlery Brigade",
+   "bpm": 128,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 66.206893,
-   "loopSamples": 2919724,
+   "loopSeconds": 60.0,
+   "loopSamples": 2646000,
    "sampleRate": 44100,
    "scenes": [
     "combat_early"
    ],
-   "family": "toyroom",
+   "family": "midnight_toybox",
    "stems": [
     "Music/combat_spoons/combat_spoons_base",
     "Music/combat_spoons/combat_spoons_rhythm",
@@ -203,17 +203,17 @@
   },
   {
    "id": "combat_carousel",
-   "title": "Carousel Heist",
-   "bpm": 124,
+   "title": "Carousel Chase",
+   "bpm": 140,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 61.935488,
-   "loopSamples": 2731355,
+   "loopSeconds": 54.857142857142854,
+   "loopSamples": 2419200,
    "sampleRate": 44100,
    "scenes": [
     "combat_mid"
    ],
-   "family": "toyroom",
+   "family": "midnight_toybox",
    "stems": [
     "Music/combat_carousel/combat_carousel_base",
     "Music/combat_carousel/combat_carousel_rhythm",
@@ -223,17 +223,17 @@
   },
   {
    "id": "combat_lasttrain",
-   "title": "Last Train Breakbeat",
-   "bpm": 166,
+   "title": "Toy Train Express",
+   "bpm": 168,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 46.265057,
-   "loopSamples": 2040289,
+   "loopSeconds": 45.714285714285715,
+   "loopSamples": 2016000,
    "sampleRate": 44100,
    "scenes": [
     "combat_late"
    ],
-   "family": "office",
+   "family": "midnight_toybox",
    "stems": [
     "Music/combat_lasttrain/combat_lasttrain_base",
     "Music/combat_lasttrain/combat_lasttrain_rhythm",
@@ -243,7 +243,7 @@
   },
   {
    "id": "boss_clown",
-   "title": "Clown Kingpin",
+   "title": "Jack-in-the-Box",
    "bpm": 150,
    "beatsPerBar": 4,
    "bars": 32,
@@ -253,7 +253,7 @@
    "scenes": [
     "boss"
    ],
-   "family": "all",
+   "family": "midnight_toybox",
    "stems": [
     "Music/boss_clown/boss_clown_base",
     "Music/boss_clown/boss_clown_rhythm",
@@ -263,17 +263,17 @@
   },
   {
    "id": "shop_layaway",
-   "title": "Layaway Lounge",
-   "bpm": 104,
+   "title": "Window Shopping",
+   "bpm": 112,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 73.846145,
-   "loopSamples": 3256615,
+   "loopSeconds": 68.57142857142857,
+   "loopSamples": 3024000,
    "sampleRate": 44100,
    "scenes": [
     "shop_gold"
    ],
-   "family": "toyroom",
+   "family": "midnight_toybox",
    "stems": [
     "Music/shop_layaway/shop_layaway_base",
     "Music/shop_layaway/shop_layaway_rhythm",
@@ -283,17 +283,17 @@
   },
   {
    "id": "endless_encore",
-   "title": "Encore Overdrive",
-   "bpm": 138,
+   "title": "One More Encore",
+   "bpm": 140,
    "beatsPerBar": 4,
    "bars": 32,
-   "loopSeconds": 55.652177,
-   "loopSamples": 2454261,
+   "loopSeconds": 54.857142857142854,
+   "loopSamples": 2419200,
    "sampleRate": 44100,
    "scenes": [
     "endless"
    ],
-   "family": "all",
+   "family": "midnight_toybox",
    "stems": [
     "Music/endless_encore/endless_encore_base",
     "Music/endless_encore/endless_encore_rhythm",

@@ -208,7 +208,8 @@ namespace ArcaneBrigade
                     else if (value.Faction == Faction.Champion || value.Weapon != null && (value.Weapon.Motion == WeaponMotion.Slam || value.Weapon.Motion == WeaponMotion.Hammer)) id = "cmb.windup";
                     break;
                 case CombatEventKind.Fire:
-                    if (boss || bossPattern) id = "boss.attack";
+                    if (cause == "hero-ParcelExpress") id = "hero.parcel.express";
+                    else if (boss || bossPattern) id = "boss.attack";
                     else id = FireId(value, enemy);
                     if (value.Faction == Faction.Companion) gainScale = 0.7f;   // crowd: allies sit under the hero
                     break;
@@ -241,15 +242,15 @@ namespace ArcaneBrigade
                 case CombatEventKind.Dodge: id = "plr.dodge"; break;
                 case CombatEventKind.SignaturePulse:
                 case CombatEventKind.SignatureBurst:
-                    if (value.Weapon == null && value.Subject != null && value.Faction == Faction.Champion)   // K11 hero mechanic pulse
-                        id = value.Element == DamageElement.Ember ? "hero.pulse.ember" : value.Element == DamageElement.Frost ? "hero.pulse.frost" : null;
+                    if (value.Weapon == null && value.Subject != null && value.Subject.Definition != null && value.Faction == Faction.Champion)
+                        id = HeroCue(value.Subject.Definition.HeroMechanic) ?? (value.Element == DamageElement.Ember ? "hero.pulse.ember" : value.Element == DamageElement.Frost ? "hero.pulse.frost" : null);
                     else if (value.Weapon != null)
                         id = value.Weapon.Signature == SignatureWeapon.Bell ? "sig.bell" : value.Weapon.Signature == SignatureWeapon.Stamp ? "sig.stamp" : value.Weapon.Signature == SignatureWeapon.Umbrella ? "sig.umbrella" : null;
                     break;
                 case CombatEventKind.Proc:
                     id = "up.chain";
                     break;
-                case CombatEventKind.ProjectileReturn: id = "wpn.boomerang.return"; break;
+                case CombatEventKind.ProjectileReturn: id = value.Weapon != null && value.Weapon.Mechanic == CarnivalWeapon.YoYo ? "wpn.yoyo.return" : "wpn.boomerang.return"; break;
                 case CombatEventKind.ProjectilePierce: id = "wpn.pierce"; break;
                 case CombatEventKind.ProjectileSplit: id = "wpn.split"; break;
                 case CombatEventKind.ProjectileBounce: id = "wpn.bounce"; break;
@@ -259,6 +260,7 @@ namespace ArcaneBrigade
                 case CombatEventKind.StatusApplied: id = value.Element == DamageElement.Frost ? "fx.chill" : "fx.burn"; break;
                 case CombatEventKind.LootAttract: id = "loot.coin.vacuum"; break;
                 case CombatEventKind.MimicWake: id = "enemy.mimic.wake"; break;
+                case CombatEventKind.BossLanded: id = value.Subject == null || value.Subject.Definition == null ? null : BossVoiceId(value.Subject.Definition.Id); break;
                 case CombatEventKind.LootDrop:
                     id = value.Loot == LootKind.Coin ? "loot.coin.drop" : value.Loot == LootKind.Chest ? "loot.chest.appear" : null;
                     break;
@@ -269,11 +271,49 @@ namespace ArcaneBrigade
         /// <summary>Large non-boss enemies (WardrobeCrab 0.55, FurnaceToad 0.48 radius). BodyScale is a player stat, not an enemy size.</summary>
         public static bool IsLargeEnemy(UnitDefinition definition) => definition != null && !definition.IsBoss && definition.Radius >= 0.45f;
 
+        public static string HeroCue(HeroMechanic mechanic) => mechanic switch
+        {
+            HeroMechanic.LanternStride => "hero.lantern.stride",
+            HeroMechanic.ParcelExpress => "hero.parcel.express",
+            HeroMechanic.DreamBreath => "hero.dream.breath",
+            HeroMechanic.RootedOracle => "hero.rooted.oracle",
+            HeroMechanic.SoloMaw => "hero.solo.maw",
+            HeroMechanic.GlassGambler => "hero.glass.gambler",
+            HeroMechanic.TideCollector => "hero.tide.collector",
+            HeroMechanic.ClockRunner => "hero.clock.runner",
+            HeroMechanic.MirrorGuard => "hero.mirror.guard",
+            HeroMechanic.TreasureTax => "hero.treasure.tax",
+            _ => null
+        };
+
+        public static string BossVoiceId(string unitId)
+        {
+            if (string.IsNullOrEmpty(unitId)) return null;
+            string id = "boss.voice." + unitId.ToLowerInvariant();
+            return Get(id) == null ? null : id;
+        }
+
         private static string FireId(CombatEvent value, bool enemy)
         {
             WeaponDefinition weapon = value.Weapon;
             if (weapon == null) return null;
-            if (enemy) return weapon.Kind == WeaponKind.Projectile ? "enemy.spit.fire" : "enemy.lunge";
+            if (enemy)
+            {
+                if (weapon.Kind != WeaponKind.Projectile) return "enemy.lunge";
+                if (weapon.ProjectileCount >= 3) return "enemy.shot.burst";
+                if (value.Subject != null && value.Subject.Definition != null && value.Subject.Definition.Shot == HostileShot.Hook) return "enemy.shot.arc";
+                if (value.Subject != null && value.Subject.Definition != null && value.Subject.Definition.Shot == HostileShot.Weave) return "enemy.shot.spiral";
+                return "enemy.spit.fire";
+            }
+            switch (weapon.Mechanic)
+            {
+                case CarnivalWeapon.YoYo: return "wpn.yoyo.throw";
+                case CarnivalWeapon.Magnet: return "wpn.magnet.pull";
+                case CarnivalWeapon.Sewing: return "wpn.needle.volley";
+                case CarnivalWeapon.SpringHammer: return "wpn.spring.slam";
+                case CarnivalWeapon.Projector: return "wpn.projector.cast";
+                case CarnivalWeapon.RibbonWheel: return "wpn.ribbon.cut";
+            }
             if (weapon.Family == ExpandedWeapon.Fish) return "wpn.boomerang.fly";   // TinFish, CrescentBoomerang, ClockCrescent all return to the owner
             switch (weapon.Family)
             {

@@ -1,0 +1,677 @@
+{
+ "menu_curtain": {
+  "id": "menu_curtain",
+  "title": "Midnight Overture",
+  "bpm": 112,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 68.57142857142857,
+  "loopSamples": 3024000,
+  "sampleRate": 44100,
+  "scenes": [
+   "menu"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/menu_curtain/menu_curtain_base",
+   "Music/menu_curtain/menu_curtain_rhythm",
+   "Music/menu_curtain/menu_curtain_melody",
+   "Music/menu_curtain/menu_curtain_intensity"
+  ],
+  "key": "F major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 675,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.8533500713740807,
+  "sumRmsDb": -17.261765090099946
+ },
+ "select_dressing": {
+  "id": "select_dressing",
+  "title": "Roll Call",
+  "bpm": 120,
+  "beatsPerBar": 4,
+  "bars": 16,
+  "loopSeconds": 32.0,
+  "loopSamples": 1411200,
+  "sampleRate": 44100,
+  "scenes": [
+   "select"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/select_dressing/select_dressing_base",
+   "Music/select_dressing/select_dressing_rhythm",
+   "Music/select_dressing/select_dressing_melody",
+   "Music/select_dressing/select_dressing_intensity"
+  ],
+  "key": "Bb major",
+  "sections": {
+   "sting": 0,
+   "hook": 1,
+   "answer": 5,
+   "bridge": 9,
+   "return": 13
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 128,
+   "rhythm": 371,
+   "melody": 115,
+   "intensity": 167
+  },
+  "sumPeakDb": -2.853350071372976,
+  "sumRmsDb": -17.25760992143001
+ },
+ "combat_toys": {
+  "id": "combat_toys",
+  "title": "Wind-Up Parade",
+  "bpm": 132,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 58.18181405895692,
+  "loopSamples": 2565818,
+  "sampleRate": 44100,
+  "scenes": [
+   "combat_early"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/combat_toys/combat_toys_base",
+   "Music/combat_toys/combat_toys_rhythm",
+   "Music/combat_toys/combat_toys_melody",
+   "Music/combat_toys/combat_toys_intensity"
+  ],
+  "key": "A minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 739,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.8533500713712585,
+  "sumRmsDb": -17.261085920629885
+ },
+ "combat_spoons": {
+  "id": "combat_spoons",
+  "title": "Cutlery Brigade",
+  "bpm": 128,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 60.0,
+  "loopSamples": 2646000,
+  "sampleRate": 44100,
+  "scenes": [
+   "combat_early"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/combat_spoons/combat_spoons_base",
+   "Music/combat_spoons/combat_spoons_rhythm",
+   "Music/combat_spoons/combat_spoons_melody",
+   "Music/combat_spoons/combat_spoons_intensity"
+  ],
+  "key": "D major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 288,
+   "rhythm": 643,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.8533500713713162,
+  "sumRmsDb": -17.250475449738293
+ },
+ "combat_clockwork": {
+  "id": "combat_clockwork",
+  "title": "Gearworks",
+  "bpm": 140,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 54.857142857142854,
+  "loopSamples": 2419200,
+  "sampleRate": 44100,
+  "scenes": [
+   "combat_mid"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/combat_clockwork/combat_clockwork_base",
+   "Music/combat_clockwork/combat_clockwork_rhythm",
+   "Music/combat_clockwork/combat_clockwork_melody",
+   "Music/combat_clockwork/combat_clockwork_intensity"
+  ],
+  "key": "E minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 867,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.853350071372629,
+  "sumRmsDb": -17.251232807297274
+ },
+ "combat_carousel": {
+  "id": "combat_carousel",
+  "title": "Carousel Chase",
+  "bpm": 140,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 54.857142857142854,
+  "loopSamples": 2419200,
+  "sampleRate": 44100,
+  "scenes": [
+   "combat_mid"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/combat_carousel/combat_carousel_base",
+   "Music/combat_carousel/combat_carousel_rhythm",
+   "Music/combat_carousel/combat_carousel_melody",
+   "Music/combat_carousel/combat_carousel_intensity"
+  ],
+  "key": "A harmonic minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 288,
+   "rhythm": 867,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.85335007137334,
+  "sumRmsDb": -17.25116503198968
+ },
+ "boss_ringmaster": {
+  "id": "boss_ringmaster",
+  "title": "The Ringmaster",
+  "bpm": 150,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 51.2,
+  "loopSamples": 2257920,
+  "sampleRate": 44100,
+  "scenes": [
+   "boss"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/boss_ringmaster/boss_ringmaster_base",
+   "Music/boss_ringmaster/boss_ringmaster_rhythm",
+   "Music/boss_ringmaster/boss_ringmaster_melody",
+   "Music/boss_ringmaster/boss_ringmaster_intensity"
+  ],
+  "key": "D minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 675,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.8533500713737006,
+  "sumRmsDb": -17.25053012238585
+ },
+ "combat_lasttrain": {
+  "id": "combat_lasttrain",
+  "title": "Toy Train Express",
+  "bpm": 168,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 45.714285714285715,
+  "loopSamples": 2016000,
+  "sampleRate": 44100,
+  "scenes": [
+   "combat_late"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/combat_lasttrain/combat_lasttrain_base",
+   "Music/combat_lasttrain/combat_lasttrain_rhythm",
+   "Music/combat_lasttrain/combat_lasttrain_melody",
+   "Music/combat_lasttrain/combat_lasttrain_intensity"
+  ],
+  "key": "C minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 739,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.853350071374094,
+  "sumRmsDb": -17.250123178002323
+ },
+ "combat_overtime": {
+  "id": "combat_overtime",
+  "title": "Midnight Stampede",
+  "bpm": 170,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 45.17646258503402,
+  "loopSamples": 1992282,
+  "sampleRate": 44100,
+  "scenes": [
+   "combat_late"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/combat_overtime/combat_overtime_base",
+   "Music/combat_overtime/combat_overtime_rhythm",
+   "Music/combat_overtime/combat_overtime_melody",
+   "Music/combat_overtime/combat_overtime_intensity"
+  ],
+  "key": "G minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 739,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.8533500713705244,
+  "sumRmsDb": -17.25101925316943
+ },
+ "boss_clown": {
+  "id": "boss_clown",
+  "title": "Jack-in-the-Box",
+  "bpm": 150,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 51.2,
+  "loopSamples": 2257920,
+  "sampleRate": 44100,
+  "scenes": [
+   "boss"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/boss_clown/boss_clown_base",
+   "Music/boss_clown/boss_clown_rhythm",
+   "Music/boss_clown/boss_clown_melody",
+   "Music/boss_clown/boss_clown_intensity"
+  ],
+  "key": "E minor",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 675,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.853350071374346,
+  "sumRmsDb": -17.252432179730064
+ },
+ "shop_layaway": {
+  "id": "shop_layaway",
+  "title": "Window Shopping",
+  "bpm": 112,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 68.57142857142857,
+  "loopSamples": 3024000,
+  "sampleRate": 44100,
+  "scenes": [
+   "shop_gold"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/shop_layaway/shop_layaway_base",
+   "Music/shop_layaway/shop_layaway_rhythm",
+   "Music/shop_layaway/shop_layaway_melody",
+   "Music/shop_layaway/shop_layaway_intensity"
+  ],
+  "key": "F major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 288,
+   "rhythm": 643,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.853350071374604,
+  "sumRmsDb": -17.262180878937354
+ },
+ "shop_gold": {
+  "id": "shop_gold",
+  "title": "Ka-Ching Swing",
+  "bpm": 116,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 66.20689342403628,
+  "loopSamples": 2919724,
+  "sampleRate": 44100,
+  "scenes": [
+   "shop_gold"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/shop_gold/shop_gold_base",
+   "Music/shop_gold/shop_gold_rhythm",
+   "Music/shop_gold/shop_gold_melody",
+   "Music/shop_gold/shop_gold_intensity"
+  ],
+  "key": "C major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 288,
+   "rhythm": 867,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.853350071371339,
+  "sumRmsDb": -17.263531001027268
+ },
+ "shop_dream": {
+  "id": "shop_dream",
+  "title": "The Dream Counter",
+  "bpm": 138,
+  "beatsPerBar": 3,
+  "bars": 32,
+  "loopSeconds": 41.73913832199546,
+  "loopSamples": 1840696,
+  "sampleRate": 44100,
+  "scenes": [
+   "shop_dream"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/shop_dream/shop_dream_base",
+   "Music/shop_dream/shop_dream_rhythm",
+   "Music/shop_dream/shop_dream_melody",
+   "Music/shop_dream/shop_dream_intensity"
+  ],
+  "key": "Ab major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 192,
+   "rhythm": 323,
+   "melody": 201,
+   "intensity": 273
+  },
+  "sumPeakDb": -2.853350071373079,
+  "sumRmsDb": -17.25156462923073
+ },
+ "endless_encore": {
+  "id": "endless_encore",
+  "title": "One More Encore",
+  "bpm": 140,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 54.857142857142854,
+  "loopSamples": 2419200,
+  "sampleRate": 44100,
+  "scenes": [
+   "endless"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/endless_encore/endless_encore_base",
+   "Music/endless_encore/endless_encore_rhythm",
+   "Music/endless_encore/endless_encore_melody",
+   "Music/endless_encore/endless_encore_intensity"
+  ],
+  "key": "G major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 675,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.8533500713732756,
+  "sumRmsDb": -17.25184621390913
+ },
+ "endless_neverclose": {
+  "id": "endless_neverclose",
+  "title": "Open All Night",
+  "bpm": 128,
+  "beatsPerBar": 4,
+  "bars": 32,
+  "loopSeconds": 60.0,
+  "loopSamples": 2646000,
+  "sampleRate": 44100,
+  "scenes": [
+   "endless"
+  ],
+  "family": "midnight_toybox",
+  "stems": [
+   "Music/endless_neverclose/endless_neverclose_base",
+   "Music/endless_neverclose/endless_neverclose_rhythm",
+   "Music/endless_neverclose/endless_neverclose_melody",
+   "Music/endless_neverclose/endless_neverclose_intensity"
+  ],
+  "key": "Bb major",
+  "sections": {
+   "sting": 0,
+   "hook": 2,
+   "answer": 10,
+   "bridge": 18,
+   "return": 26
+  },
+  "motifDegrees": [
+   -3,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0
+  ],
+  "sampleEvents": {
+   "base": 256,
+   "rhythm": 867,
+   "melody": 239,
+   "intensity": 337
+  },
+  "sumPeakDb": -2.853350071372247,
+  "sumRmsDb": -17.252010274265672
+ }
+}

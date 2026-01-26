@@ -1,5 +1,14 @@
 # Tools/Audio
 
+## Current production entry: Midnight Toybox Band
+
+Use `setup_toybox.py`, then `build_toybox.py --install`, then `toybox_preview.py`.
+See `Docs/Audio/Toybox_Delivery.md` for the complete reproducible workflow,
+offline dependency licenses, new hooks, validation and listening limitations.
+The legacy scripts below produce the preceding v2 palette.
+
+## Previous palette: Neon Carnival Funk v2
+
 Build-time tổng hợp âm thanh Arcane Brigade — bộ "Neon Carnival Funk" v2 (Python 3, numpy, scipy, soundfile; không cần ffmpeg). Nhạc cụ dùng chung ở `kit.py`; hướng âm thanh ở `Docs/Audio/Audio_Direction_Palette.md`.
 
 ```
