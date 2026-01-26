@@ -61,7 +61,7 @@ namespace ArcaneBrigade.Editor
             importer.isReadable = false; importer.SaveAndReimport();
             return AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(sprite => sprite.name).ToArray();
         }
-        private static RectInt[] ComponentBounds(Color32[] pixels, int width, int height)
+        public static RectInt[] ComponentBounds(Color32[] pixels, int width, int height)
         {
             var result = new RectInt[16]; var seen = new bool[pixels.Length]; var queue = new Queue<int>();
             for (int index = 0; index < pixels.Length; index++) seen[index] = pixels[index].a < 33;

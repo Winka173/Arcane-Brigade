@@ -32,6 +32,7 @@ namespace ArcaneBrigade
             public bool Important;
             public BodyMaterial Material;
             public int Identity;
+            public BossPartDeathScatter[] BossDebris = System.Array.Empty<BossPartDeathScatter>();
         }
         private readonly List<Remnant> pool = new List<Remnant>();
         private Sprite fragmentSprite;
@@ -69,7 +70,10 @@ namespace ArcaneBrigade
             bool important = state.Definition.IsBoss || state.Faction == Faction.Champion;
             Remnant remnant = Acquire(important);
             if (remnant == null) return;
+            foreach (BossPartDeathScatter debris in remnant.BossDebris)
+                if (debris != null) { debris.gameObject.SetActive(false); debris.transform.SetParent(null); Destroy(debris.gameObject); }
             visual.CopyDeathPose(remnant.Body, remnant.Shadow, remnant.Weapon, remnant.Hand, remnant.DrawHand, remnant.Grip);
+            remnant.BossDebris = state.Definition.IsBoss ? remnant.Body.GetComponentsInChildren<BossPartDeathScatter>() : System.Array.Empty<BossPartDeathScatter>();
             if (important)
             {
                 remnant.Body.sortingOrder = 2300;
@@ -114,6 +118,7 @@ namespace ArcaneBrigade
                 if (remnant.Age >= remnant.Duration) { remnant.Root.gameObject.SetActive(false); continue; }
                 ActiveCount++;
                 Draw(remnant);
+                foreach (BossPartDeathScatter debris in remnant.BossDebris) if (debris != null) debris.Step(delta);
             }
         }
         private static void Draw(Remnant remnant)

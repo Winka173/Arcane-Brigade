@@ -63,11 +63,11 @@ namespace ArcaneBrigade.Editor
                 Require(!boss.LeftPartBroken && !boss.RightPartBroken, "Part survives partial damage " + source.Id);
                 Hit(simulation, boss, BossPartRules.Durability(boss) * 0.51f, Vector2.right);
                 Require(boss.LeftPartBroken && !boss.RightPartBroken, "Left organ breaks independently " + source.Id);
-                Require(BossPartRules.BulletCount(boss) < CombatSimulation.BossBulletCount(source.BossPattern), "Left break reduces shots " + source.Id);
-                Require(!BossPartRules.Allows(boss, ExpandedFieldKind.Tentacle), "Broken lash organ cannot attack " + source.Id);
-                Require(BossPartRules.Allows(boss, ExpandedFieldKind.FallingProp), "Other organ still attacks " + source.Id);
+                Require(BossPartRules.BulletCount(boss) > 0, "Boss keeps a readable core volley after side break " + source.Id);
+                Require(BossPartRules.NextOrgan(boss) != 0, "Broken organ is excluded from attack selection " + source.Id);
+                Require(!boss.RightPartBroken && boss.CenterPartBrokenAt < 0, "Other organs remain independently intact " + source.Id);
                 Hit(simulation, boss, BossPartRules.Durability(boss) * 1.01f, Vector2.left);
-                Require(boss.RightPartBroken && !BossPartRules.Allows(boss, ExpandedFieldKind.FallingProp) && !BossPartRules.Allows(boss, ExpandedFieldKind.ShadowPool), "Right break removes props and pools " + source.Id);
+                Require(boss.RightPartBroken && boss.CenterPartBrokenAt < 0, "Right side breaks without destroying the centre " + source.Id);
                 Require(boss.Alive && boss.Health > originalHealth * 0.5f, "Breaking both is not instant boss kill " + source.Id);
                 Require(simulation.Events.Count(value => value.Kind == CombatEventKind.BossPhase && value.Subject == boss) == 2, "Exactly two attributed break events " + source.Id);
                 Hit(simulation, boss, 1, Vector2.left);

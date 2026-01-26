@@ -24,18 +24,24 @@ namespace ArcaneBrigade
 
     public sealed partial class CombatSimulation
     {
-        private void Danger(ExpandedFieldKind kind, UnitState source, Vector2 destination, float radius, float delay, float duration)
+        private void Danger(ExpandedFieldKind kind, UnitState source, Vector2 destination, float radius, float delay, float duration, int organ = -1)
         {
             if (!BossPartRules.Allows(source, kind)) return;
-            if (source.Definition.IsBoss && source.RightPartBroken && kind == ExpandedFieldKind.Shockwave) radius *= 0.8f;
+            if (source.Definition.IsBoss && (BossPartRules.Has(source, BossOrganRole.Pulse, true) || BossAnatomy.For(source.Definition) == null && source.RightPartBroken) && kind == ExpandedFieldKind.Shockwave) radius *= 0.8f;
             int count = 0;
             foreach (ExpandedField field in fields) if (CarnivalHazards.IsHostile(field.Kind)) count++;
             if (count >= 48) return;
             Field(kind, source, ClampPosition(destination, radius), (destination - source.Position).normalized, radius, source.Definition.Weapon.Damage, delay, duration, NewCause(source.Id));
+            if (organ >= 0)
+            {
+                ExpandedField field = fields[fields.Count - 1]; field.SourceOrgan = organ; field.Start = BossPartRules.Position(source, organ);
+                field.Direction = (field.Position - field.Start).normalized;
+            }
         }
 
         private bool ResolveBossBodyAttack(UnitState boss)
         {
+            if (BossAnatomy.For(boss.Definition) != null) return ResolveAnatomyAttack(boss);
             if (boss.LeftPartBroken && boss.RightPartBroken)
             {
                 Danger(ExpandedFieldKind.Shockwave, boss, boss.Position, 4.5f, 0.9f, 1.4f);

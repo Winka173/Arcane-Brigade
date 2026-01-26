@@ -103,6 +103,11 @@ namespace ArcaneBrigade
         public float RightPartDamage;
         public float LeftPartBrokenAt = -100;
         public float RightPartBrokenAt = -100;
+        public float CenterPartDamage;
+        public float CenterPartBrokenAt = -100;
+        public int ActiveBossOrgan = -1;
+        public float BossOrganReleaseAt = -100;
+        public float LastBossVacuumTime;
         public bool LeftPartBroken => LeftPartBrokenAt >= 0;
         public bool RightPartBroken => RightPartBrokenAt >= 0;
     }
@@ -481,7 +486,7 @@ namespace ArcaneBrigade
             }
             bool ranged = unit.Definition.Weapon.Kind == WeaponKind.Projectile;
             float stopDistance = ranged ? 4.8f : unit.Definition.Radius + Champion.Definition.Radius;
-            float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f);
+            float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1);
             if (distance > stopDistance)
                 unit.Position = ClampPosition(unit.Position + travelDirection * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
             else if (ranged && distance < 3f)
@@ -536,6 +541,7 @@ namespace ArcaneBrigade
         private void ProcessBoss(UnitState boss)
         {
             if (catalog.RunWave == 1) return;
+            ProcessBossVacuum(boss);
             if (boss.TelegraphUntil > 0f && Elapsed >= boss.TelegraphUntil)
             {
                 float launchTime = boss.TelegraphUntil;
@@ -545,21 +551,24 @@ namespace ArcaneBrigade
                 if (catalog.ExpandedContent && ResolveBossBodyAttack(boss)) count = 0;
                 for (int index = 0; index < count && projectiles.Count < 4096; index++)
                 {
-                    float angle = BossBulletAngle(boss, index, launchTime);
+                    float angle = BossPartRules.VolleyAngle(boss, index, count, launchTime);
                     Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                     float speed = catalog.RunWave > 0 ? pattern == 2 ? 1.8f + index % 4 * 0.2f : pattern == 4 ? 2f + index % 2 * 0.4f : 2.4f : pattern == 3 ? 7f : pattern == 2 ? 3.5f + index % 4 * 0.7f : pattern == 4 ? 3.5f + index % 2 * 1.8f : 4.2f;
-                    projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = boss.Position, PreviousPosition = boss.Position, Velocity = direction * speed, LaunchVelocity = direction * speed, HostileMotion = catalog.RunWave > 0 ? boss.Definition.Shot : HostileShot.Straight, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, VisualWidth = 0.34f, Radius = 0.1f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
+                    Vector2 origin = ClampPosition(BossPartRules.VolleyOrigin(boss), 0.1f);
+                    projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Enemy, Position = origin, PreviousPosition = origin, Velocity = direction * speed, LaunchVelocity = direction * speed, HostileMotion = catalog.RunWave > 0 ? boss.Definition.Shot : HostileShot.Straight, Damage = boss.Definition.Weapon.Damage, Remaining = 7f, VisualWidth = 0.34f, Radius = 0.1f, Color = new Color(1f, 0.38f, 0.3f), SourceName = boss.Definition.DisplayName + " pattern", SourceUnitId = boss.Id });
                 }
                 boss.BossVolley++;
+                boss.BossOrganReleaseAt = Elapsed;
                 boss.AttackStarted = Elapsed - 0.85f; boss.AttackWindup = 0.85f;
                 bool enraged = boss.Health < boss.Definition.Health * 0.5f;
                 float recovery = boss.BossVolley % 3 == 0 ? 2.2f : 0.55f;
                 boss.BossRecoveryUntil = Elapsed + recovery;
-                boss.NextBossPattern = Elapsed + (enraged ? 2.7f : 3.5f) + (boss.BossVolley % 3 == 0 ? 0.8f : 0);
+                boss.NextBossPattern = Elapsed + (enraged ? 2.7f : 3.5f) + (boss.BossVolley % 3 == 0 ? 0.8f : 0) + BossPartRules.CycleAdjustment(boss);
                 events.Add(new CombatEvent(CombatEventKind.Fire, boss.Position, Faction.Enemy));
             }
             if (Elapsed < boss.NextBossPattern || boss.TelegraphUntil > 0f) return;
             boss.TelegraphUntil = Elapsed + 0.85f;
+            boss.ActiveBossOrgan = BossPartRules.NextOrgan(boss);
             boss.TelegraphDirection = (Champion.Position - boss.Position).normalized;
             events.Add(new CombatEvent(CombatEventKind.Windup, boss.Position, Faction.Enemy));
         }

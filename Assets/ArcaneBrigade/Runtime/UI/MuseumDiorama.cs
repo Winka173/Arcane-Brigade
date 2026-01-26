@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         private int tier;
         private float triggered = -100;
         public int Pose { get; set; }
+        public int BrokenMask { get; set; }
         public void Draw(Rect rect, UnitDefinition unit, CheckpointCatalog catalog, int stars)
         {
             if (unit != source || stars != tier) Create(unit, catalog, stars);
@@ -26,6 +27,13 @@ namespace ArcaneBrigade
                 state.Position = Pose == 1 && !PresentationSettings.ReducedMotion ? new Vector2(Mathf.Sin(time * 1.5f) * 0.1f, 0) : Vector2.zero;
                 state.Velocity = Pose == 1 ? Vector2.right : Vector2.zero;
                 state.Facing = Vector2.right;
+                if (definition.IsBoss)
+                {
+                    if ((BrokenMask & 1) != 0) { if (!state.LeftPartBroken) state.LeftPartBrokenAt = time; } else state.LeftPartBrokenAt = -100;
+                    if ((BrokenMask & 2) != 0) { if (!state.RightPartBroken) state.RightPartBrokenAt = time; } else state.RightPartBrokenAt = -100;
+                    if ((BrokenMask & 4) != 0) { if (state.CenterPartBrokenAt < 0) state.CenterPartBrokenAt = time; } else state.CenterPartBrokenAt = -100;
+                    state.ActiveBossOrgan = Mathf.FloorToInt(time / 2.4f) % 3;
+                }
                 if (Pose == 2)
                 {
                     if (time - triggered > 2.4f) triggered = time;
@@ -33,6 +41,7 @@ namespace ArcaneBrigade
                     state.PendingAttack = time - triggered < definition.Weapon.Windup;
                     state.AttackDirection = Vector2.right;
                     if (definition.IsBoss) state.TelegraphUntil = time - triggered < 0.85f ? triggered + 0.85f : 0;
+                    if (definition.IsBoss) state.BossOrganReleaseAt = triggered + 0.85f;
                 }
                 else { state.PendingAttack = false; state.AttackStarted = -100; state.TelegraphUntil = 0; }
                 if (Pose == 3)
@@ -55,7 +64,7 @@ namespace ArcaneBrigade
         }
         private void Create(UnitDefinition unit, CheckpointCatalog catalog, int stars)
         {
-            Dispose(); source = unit; tier = stars;
+            Dispose(); source = unit; tier = stars; BrokenMask = 0;
             definition = UnityEngine.Object.Instantiate(unit);
             weapon = UnityEngine.Object.Instantiate(unit.Weapon); definition.Weapon = weapon;
             definition.CombatTier = stars;

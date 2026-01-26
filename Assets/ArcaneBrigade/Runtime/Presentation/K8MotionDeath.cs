@@ -31,7 +31,7 @@ namespace ArcaneBrigade
             transform.localPosition = bodyPosition; transform.localScale = bodyScale; transform.localRotation = bodyRotation;
             shadow.localScale = shadowScale;
             grip.localPosition = gripPosition; grip.localRotation = gripRotation;
-            foreach (SpriteRenderer fragment in fragments) if (fragment.name.StartsWith("PaperChip_")) fragment.enabled = false;
+            foreach (SpriteRenderer fragment in fragments) if (fragment != null && fragment.name.StartsWith("PaperChip_")) fragment.enabled = false;
         }
     }
 }

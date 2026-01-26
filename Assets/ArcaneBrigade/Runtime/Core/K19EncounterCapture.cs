@@ -34,7 +34,7 @@ namespace ArcaneBrigade
             yield return new WaitForSecondsRealtime(1.3f);
             yield return capture("Boss-organs-intact");
             UnitVisual bossView = UnityEngine.Object.FindObjectsByType<UnitVisual>().First(view => view.State == boss);
-            check(bossView.GetComponent<EvolutionAdornment>()?.PieceCount == 4, "Boss has two outlined breakable organs");
+            check(bossView.GetComponent<BossAnatomyVisual>()?.PartCount == 3, "Boss has three dedicated breakable parts");
             UnitState ally = owner.Simulation.Units.First(unit => unit.Faction == Faction.Companion);
             UnitDefinition hitter = UnityEngine.Object.Instantiate(ally.Definition);
             WeaponDefinition blade = UnityEngine.Object.Instantiate(catalog.Weapon("SpoonSabre"));

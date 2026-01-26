@@ -96,6 +96,17 @@ namespace ArcaneBrigade
                         if (!exhibit.Unit.IsBoss)
                             for (int stars = 1; stars <= 3; stars++)
                                 if (GUI.Button(new Rect(866 + (stars - 1) * 109, 380, 101, 24), stars + " STAR" + (stars > 1 ? "S" : ""))) previewTier = stars;
+                        if (exhibit.Unit.IsBoss)
+                        {
+                            BossAnatomyEntry anatomy = BossAnatomy.For(exhibit.Unit);
+                            if (anatomy != null)
+                                for (int part = 0; part < 3; part++)
+                                {
+                                    bool broken = (diorama.BrokenMask & 1 << part) != 0;
+                                    var label = new GUIContent((broken ? "FIX " : "BREAK ") + (part + 1), anatomy.Organs[part].Name + ": " + anatomy.Organs[part].BreakSummary);
+                                    if (GUI.Button(new Rect(866 + part * 109, 380, 101, 24), label)) diorama.BrokenMask ^= 1 << part;
+                                }
+                        }
                     }
                     else
                     {
@@ -124,7 +135,7 @@ namespace ArcaneBrigade
                 else diorama.Dispose();
                 GUI.Label(new Rect(865, exhibit.Unit != null && exhibit.Seen ? 406 : 365, 320, 30), exhibit.Seen ? exhibit.Name : "Empty shelf", title);
                 string description = exhibit.Seen ? exhibit.Detail : tab == 4 ? "Defeat this boss in a real hall to unlock its display." : tab == 3 ? "Activate the chain in actual combat. Owning its set is not enough." : "Find this item during a run. Viewing or testing does not unlock it.";
-                if (exhibit.Seen && exhibit.Unit != null && exhibit.Unit.IsBoss) description += "\n\n" + BossPartRules.Description;
+                if (exhibit.Seen && exhibit.Unit != null && exhibit.Unit.IsBoss) description += "\n\n" + BossPartRules.Describe(exhibit.Unit);
                 float height = Mathf.Max(135, body.CalcHeight(new GUIContent(description), 290));
                 detailScroll = GUI.BeginScrollView(new Rect(865, 430, 325, 155), detailScroll, new Rect(0, 0, 295, height));
                 GUI.Label(new Rect(0, 0, 290, height), description, body);

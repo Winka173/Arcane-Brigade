@@ -24,6 +24,7 @@ namespace ArcaneBrigade
         public WeaponDefinition ImpactWeapon;
         public bool Critical;
         public UnitState Anchor;
+        public int SourceOrgan = -1;
         public readonly HashSet<int> CollateralVictims = new HashSet<int>();
     }
 

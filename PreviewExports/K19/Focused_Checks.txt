@@ -206,10 +206,10 @@ PASS Boss additional bulk at least +15%, wave 40
 PASS No HP cliff, wave 40
 PASS Part survives partial damage UndeliveredKing
 PASS Left organ breaks independently UndeliveredKing
-PASS Left break reduces shots UndeliveredKing
-PASS Broken lash organ cannot attack UndeliveredKing
-PASS Other organ still attacks UndeliveredKing
-PASS Right break removes props and pools UndeliveredKing
+PASS Boss keeps a readable core volley after side break UndeliveredKing
+PASS Broken organ is excluded from attack selection UndeliveredKing
+PASS Other organs remain independently intact UndeliveredKing
+PASS Right side breaks without destroying the centre UndeliveredKing
 PASS Breaking both is not instant boss kill UndeliveredKing
 PASS Exactly two attributed break events UndeliveredKing
 PASS Broken part cannot retrigger rewards or effects UndeliveredKing
@@ -217,10 +217,10 @@ PASS Exposed core gains telegraphed shockwave UndeliveredKing
 PASS Shop clears boss hazards UndeliveredKing
 PASS Part survives partial damage ScarletIndex
 PASS Left organ breaks independently ScarletIndex
-PASS Left break reduces shots ScarletIndex
-PASS Broken lash organ cannot attack ScarletIndex
-PASS Other organ still attacks ScarletIndex
-PASS Right break removes props and pools ScarletIndex
+PASS Boss keeps a readable core volley after side break ScarletIndex
+PASS Broken organ is excluded from attack selection ScarletIndex
+PASS Other organs remain independently intact ScarletIndex
+PASS Right side breaks without destroying the centre ScarletIndex
 PASS Breaking both is not instant boss kill ScarletIndex
 PASS Exactly two attributed break events ScarletIndex
 PASS Broken part cannot retrigger rewards or effects ScarletIndex
@@ -228,10 +228,10 @@ PASS Exposed core gains telegraphed shockwave ScarletIndex
 PASS Shop clears boss hazards ScarletIndex
 PASS Part survives partial damage SleepCollector
 PASS Left organ breaks independently SleepCollector
-PASS Left break reduces shots SleepCollector
-PASS Broken lash organ cannot attack SleepCollector
-PASS Other organ still attacks SleepCollector
-PASS Right break removes props and pools SleepCollector
+PASS Boss keeps a readable core volley after side break SleepCollector
+PASS Broken organ is excluded from attack selection SleepCollector
+PASS Other organs remain independently intact SleepCollector
+PASS Right side breaks without destroying the centre SleepCollector
 PASS Breaking both is not instant boss kill SleepCollector
 PASS Exactly two attributed break events SleepCollector
 PASS Broken part cannot retrigger rewards or effects SleepCollector
@@ -239,10 +239,10 @@ PASS Exposed core gains telegraphed shockwave SleepCollector
 PASS Shop clears boss hazards SleepCollector
 PASS Part survives partial damage WaxAdmiral
 PASS Left organ breaks independently WaxAdmiral
-PASS Left break reduces shots WaxAdmiral
-PASS Broken lash organ cannot attack WaxAdmiral
-PASS Other organ still attacks WaxAdmiral
-PASS Right break removes props and pools WaxAdmiral
+PASS Boss keeps a readable core volley after side break WaxAdmiral
+PASS Broken organ is excluded from attack selection WaxAdmiral
+PASS Other organs remain independently intact WaxAdmiral
+PASS Right side breaks without destroying the centre WaxAdmiral
 PASS Breaking both is not instant boss kill WaxAdmiral
 PASS Exactly two attributed break events WaxAdmiral
 PASS Broken part cannot retrigger rewards or effects WaxAdmiral
@@ -250,10 +250,10 @@ PASS Exposed core gains telegraphed shockwave WaxAdmiral
 PASS Shop clears boss hazards WaxAdmiral
 PASS Part survives partial damage LastLantern
 PASS Left organ breaks independently LastLantern
-PASS Left break reduces shots LastLantern
-PASS Broken lash organ cannot attack LastLantern
-PASS Other organ still attacks LastLantern
-PASS Right break removes props and pools LastLantern
+PASS Boss keeps a readable core volley after side break LastLantern
+PASS Broken organ is excluded from attack selection LastLantern
+PASS Other organs remain independently intact LastLantern
+PASS Right side breaks without destroying the centre LastLantern
 PASS Breaking both is not instant boss kill LastLantern
 PASS Exactly two attributed break events LastLantern
 PASS Broken part cannot retrigger rewards or effects LastLantern
@@ -261,10 +261,10 @@ PASS Exposed core gains telegraphed shockwave LastLantern
 PASS Shop clears boss hazards LastLantern
 PASS Part survives partial damage MarqueeMaw
 PASS Left organ breaks independently MarqueeMaw
-PASS Left break reduces shots MarqueeMaw
-PASS Broken lash organ cannot attack MarqueeMaw
-PASS Other organ still attacks MarqueeMaw
-PASS Right break removes props and pools MarqueeMaw
+PASS Boss keeps a readable core volley after side break MarqueeMaw
+PASS Broken organ is excluded from attack selection MarqueeMaw
+PASS Other organs remain independently intact MarqueeMaw
+PASS Right side breaks without destroying the centre MarqueeMaw
 PASS Breaking both is not instant boss kill MarqueeMaw
 PASS Exactly two attributed break events MarqueeMaw
 PASS Broken part cannot retrigger rewards or effects MarqueeMaw
@@ -272,10 +272,10 @@ PASS Exposed core gains telegraphed shockwave MarqueeMaw
 PASS Shop clears boss hazards MarqueeMaw
 PASS Part survives partial damage UmbraCradle
 PASS Left organ breaks independently UmbraCradle
-PASS Left break reduces shots UmbraCradle
-PASS Broken lash organ cannot attack UmbraCradle
-PASS Other organ still attacks UmbraCradle
-PASS Right break removes props and pools UmbraCradle
+PASS Boss keeps a readable core volley after side break UmbraCradle
+PASS Broken organ is excluded from attack selection UmbraCradle
+PASS Other organs remain independently intact UmbraCradle
+PASS Right side breaks without destroying the centre UmbraCradle
 PASS Breaking both is not instant boss kill UmbraCradle
 PASS Exactly two attributed break events UmbraCradle
 PASS Broken part cannot retrigger rewards or effects UmbraCradle
@@ -283,10 +283,10 @@ PASS Exposed core gains telegraphed shockwave UmbraCradle
 PASS Shop clears boss hazards UmbraCradle
 PASS Part survives partial damage CoinWidow
 PASS Left organ breaks independently CoinWidow
-PASS Left break reduces shots CoinWidow
-PASS Broken lash organ cannot attack CoinWidow
-PASS Other organ still attacks CoinWidow
-PASS Right break removes props and pools CoinWidow
+PASS Boss keeps a readable core volley after side break CoinWidow
+PASS Broken organ is excluded from attack selection CoinWidow
+PASS Other organs remain independently intact CoinWidow
+PASS Right side breaks without destroying the centre CoinWidow
 PASS Breaking both is not instant boss kill CoinWidow
 PASS Exactly two attributed break events CoinWidow
 PASS Broken part cannot retrigger rewards or effects CoinWidow
@@ -294,10 +294,10 @@ PASS Exposed core gains telegraphed shockwave CoinWidow
 PASS Shop clears boss hazards CoinWidow
 PASS Part survives partial damage ChoirEngine
 PASS Left organ breaks independently ChoirEngine
-PASS Left break reduces shots ChoirEngine
-PASS Broken lash organ cannot attack ChoirEngine
-PASS Other organ still attacks ChoirEngine
-PASS Right break removes props and pools ChoirEngine
+PASS Boss keeps a readable core volley after side break ChoirEngine
+PASS Broken organ is excluded from attack selection ChoirEngine
+PASS Other organs remain independently intact ChoirEngine
+PASS Right side breaks without destroying the centre ChoirEngine
 PASS Breaking both is not instant boss kill ChoirEngine
 PASS Exactly two attributed break events ChoirEngine
 PASS Broken part cannot retrigger rewards or effects ChoirEngine
@@ -305,10 +305,10 @@ PASS Exposed core gains telegraphed shockwave ChoirEngine
 PASS Shop clears boss hazards ChoirEngine
 PASS Part survives partial damage SuitcaseLeviathan
 PASS Left organ breaks independently SuitcaseLeviathan
-PASS Left break reduces shots SuitcaseLeviathan
-PASS Broken lash organ cannot attack SuitcaseLeviathan
-PASS Other organ still attacks SuitcaseLeviathan
-PASS Right break removes props and pools SuitcaseLeviathan
+PASS Boss keeps a readable core volley after side break SuitcaseLeviathan
+PASS Broken organ is excluded from attack selection SuitcaseLeviathan
+PASS Other organs remain independently intact SuitcaseLeviathan
+PASS Right side breaks without destroying the centre SuitcaseLeviathan
 PASS Breaking both is not instant boss kill SuitcaseLeviathan
 PASS Exactly two attributed break events SuitcaseLeviathan
 PASS Broken part cannot retrigger rewards or effects SuitcaseLeviathan

@@ -1,0 +1,417 @@
+PASS All ten bosses have authored anatomy
+PASS Thirty individually identified organs
+PASS Every boss part has its own rest and charged artwork
+PASS Boss anatomy never reuses relic illustrations
+PASS Every organ has poses, scar and consequence copy
+PASS Directional hits independently address all three organs
+PASS Every exposed core reduces its volley, including bosses without a projectile organ
+PASS Mapped anatomy UndeliveredKing
+PASS Collection explains third organ UndeliveredKing
+PASS Volley tied to correct organ UndeliveredKing-0
+PASS Part attack has source attribution and safe warning UndeliveredKing-0
+PASS Attack starts at visible attachment UndeliveredKing-0
+PASS Non-volley organ creates real telegraphed attack UndeliveredKing-0
+PASS Partial damage cannot detach UndeliveredKing-0
+PASS Selected organ detaches without killing boss UndeliveredKing-0
+PASS Other two organs survive UndeliveredKing-0
+PASS Broken organ cannot be selected UndeliveredKing-0
+PASS One break feedback event UndeliveredKing-0
+PASS Repeated hit cannot replay break or rewards UndeliveredKing-0
+PASS Corresponding attack disabled UndeliveredKing-0
+PASS Shop clears anatomy hazards UndeliveredKing-0
+PASS Volley tied to correct organ UndeliveredKing-1
+PASS Non-volley organ creates real telegraphed attack UndeliveredKing-1
+PASS Partial damage cannot detach UndeliveredKing-1
+PASS Selected organ detaches without killing boss UndeliveredKing-1
+PASS Other two organs survive UndeliveredKing-1
+PASS Broken organ cannot be selected UndeliveredKing-1
+PASS One break feedback event UndeliveredKing-1
+PASS Repeated hit cannot replay break or rewards UndeliveredKing-1
+PASS Projectile budget reduced UndeliveredKing-1
+PASS Shop clears anatomy hazards UndeliveredKing-1
+PASS Volley tied to correct organ UndeliveredKing-2
+PASS Part attack has source attribution and safe warning UndeliveredKing-2
+PASS Attack starts at visible attachment UndeliveredKing-2
+PASS Part attack has source attribution and safe warning UndeliveredKing-2
+PASS Attack starts at visible attachment UndeliveredKing-2
+PASS Non-volley organ creates real telegraphed attack UndeliveredKing-2
+PASS Partial damage cannot detach UndeliveredKing-2
+PASS Selected organ detaches without killing boss UndeliveredKing-2
+PASS Other two organs survive UndeliveredKing-2
+PASS Broken organ cannot be selected UndeliveredKing-2
+PASS One break feedback event UndeliveredKing-2
+PASS Repeated hit cannot replay break or rewards UndeliveredKing-2
+PASS Tempo break extends recovery UndeliveredKing-2
+PASS Shop clears anatomy hazards UndeliveredKing-2
+PASS Mapped anatomy ScarletIndex
+PASS Collection explains third organ ScarletIndex
+PASS Volley tied to correct organ ScarletIndex-0
+PASS Part attack has source attribution and safe warning ScarletIndex-0
+PASS Attack starts at visible attachment ScarletIndex-0
+PASS Non-volley organ creates real telegraphed attack ScarletIndex-0
+PASS Partial damage cannot detach ScarletIndex-0
+PASS Selected organ detaches without killing boss ScarletIndex-0
+PASS Other two organs survive ScarletIndex-0
+PASS Broken organ cannot be selected ScarletIndex-0
+PASS One break feedback event ScarletIndex-0
+PASS Repeated hit cannot replay break or rewards ScarletIndex-0
+PASS Corresponding attack disabled ScarletIndex-0
+PASS Shop clears anatomy hazards ScarletIndex-0
+PASS Volley tied to correct organ ScarletIndex-1
+PASS Part attack has source attribution and safe warning ScarletIndex-1
+PASS Attack starts at visible attachment ScarletIndex-1
+PASS Part attack has source attribution and safe warning ScarletIndex-1
+PASS Attack starts at visible attachment ScarletIndex-1
+PASS Non-volley organ creates real telegraphed attack ScarletIndex-1
+PASS Partial damage cannot detach ScarletIndex-1
+PASS Selected organ detaches without killing boss ScarletIndex-1
+PASS Other two organs survive ScarletIndex-1
+PASS Broken organ cannot be selected ScarletIndex-1
+PASS One break feedback event ScarletIndex-1
+PASS Repeated hit cannot replay break or rewards ScarletIndex-1
+PASS Corresponding attack disabled ScarletIndex-1
+PASS Shop clears anatomy hazards ScarletIndex-1
+PASS Volley tied to correct organ ScarletIndex-2
+PASS Part attack has source attribution and safe warning ScarletIndex-2
+PASS Attack starts at visible attachment ScarletIndex-2
+PASS Part attack has source attribution and safe warning ScarletIndex-2
+PASS Attack starts at visible attachment ScarletIndex-2
+PASS Part attack has source attribution and safe warning ScarletIndex-2
+PASS Attack starts at visible attachment ScarletIndex-2
+PASS Non-volley organ creates real telegraphed attack ScarletIndex-2
+PASS Partial damage cannot detach ScarletIndex-2
+PASS Selected organ detaches without killing boss ScarletIndex-2
+PASS Other two organs survive ScarletIndex-2
+PASS Broken organ cannot be selected ScarletIndex-2
+PASS One break feedback event ScarletIndex-2
+PASS Repeated hit cannot replay break or rewards ScarletIndex-2
+PASS Corresponding attack disabled ScarletIndex-2
+PASS Shop clears anatomy hazards ScarletIndex-2
+PASS Mapped anatomy SleepCollector
+PASS Collection explains third organ SleepCollector
+PASS Volley tied to correct organ SleepCollector-0
+PASS Part attack has source attribution and safe warning SleepCollector-0
+PASS Attack starts at visible attachment SleepCollector-0
+PASS Non-volley organ creates real telegraphed attack SleepCollector-0
+PASS Partial damage cannot detach SleepCollector-0
+PASS Selected organ detaches without killing boss SleepCollector-0
+PASS Other two organs survive SleepCollector-0
+PASS Broken organ cannot be selected SleepCollector-0
+PASS One break feedback event SleepCollector-0
+PASS Repeated hit cannot replay break or rewards SleepCollector-0
+PASS Corresponding attack disabled SleepCollector-0
+PASS Locomotion break changes actual speed SleepCollector-0
+PASS Shop clears anatomy hazards SleepCollector-0
+PASS Volley tied to correct organ SleepCollector-1
+PASS Part attack has source attribution and safe warning SleepCollector-1
+PASS Attack starts at visible attachment SleepCollector-1
+PASS Part attack has source attribution and safe warning SleepCollector-1
+PASS Attack starts at visible attachment SleepCollector-1
+PASS Non-volley organ creates real telegraphed attack SleepCollector-1
+PASS Partial damage cannot detach SleepCollector-1
+PASS Selected organ detaches without killing boss SleepCollector-1
+PASS Other two organs survive SleepCollector-1
+PASS Broken organ cannot be selected SleepCollector-1
+PASS One break feedback event SleepCollector-1
+PASS Repeated hit cannot replay break or rewards SleepCollector-1
+PASS Shop clears anatomy hazards SleepCollector-1
+PASS Volley tied to correct organ SleepCollector-2
+PASS Part attack has source attribution and safe warning SleepCollector-2
+PASS Attack starts at visible attachment SleepCollector-2
+PASS Non-volley organ creates real telegraphed attack SleepCollector-2
+PASS Partial damage cannot detach SleepCollector-2
+PASS Selected organ detaches without killing boss SleepCollector-2
+PASS Other two organs survive SleepCollector-2
+PASS Broken organ cannot be selected SleepCollector-2
+PASS One break feedback event SleepCollector-2
+PASS Repeated hit cannot replay break or rewards SleepCollector-2
+PASS Corresponding attack disabled SleepCollector-2
+PASS Shop clears anatomy hazards SleepCollector-2
+PASS Mapped anatomy WaxAdmiral
+PASS Collection explains third organ WaxAdmiral
+PASS Volley tied to correct organ WaxAdmiral-0
+PASS Part attack has source attribution and safe warning WaxAdmiral-0
+PASS Attack starts at visible attachment WaxAdmiral-0
+PASS Non-volley organ creates real telegraphed attack WaxAdmiral-0
+PASS Partial damage cannot detach WaxAdmiral-0
+PASS Selected organ detaches without killing boss WaxAdmiral-0
+PASS Other two organs survive WaxAdmiral-0
+PASS Broken organ cannot be selected WaxAdmiral-0
+PASS One break feedback event WaxAdmiral-0
+PASS Repeated hit cannot replay break or rewards WaxAdmiral-0
+PASS Corresponding attack disabled WaxAdmiral-0
+PASS Shop clears anatomy hazards WaxAdmiral-0
+PASS Volley tied to correct organ WaxAdmiral-1
+PASS Non-volley organ creates real telegraphed attack WaxAdmiral-1
+PASS Partial damage cannot detach WaxAdmiral-1
+PASS Selected organ detaches without killing boss WaxAdmiral-1
+PASS Other two organs survive WaxAdmiral-1
+PASS Broken organ cannot be selected WaxAdmiral-1
+PASS One break feedback event WaxAdmiral-1
+PASS Repeated hit cannot replay break or rewards WaxAdmiral-1
+PASS Projectile budget reduced WaxAdmiral-1
+PASS Shop clears anatomy hazards WaxAdmiral-1
+PASS Volley tied to correct organ WaxAdmiral-2
+PASS Part attack has source attribution and safe warning WaxAdmiral-2
+PASS Attack starts at visible attachment WaxAdmiral-2
+PASS Non-volley organ creates real telegraphed attack WaxAdmiral-2
+PASS Partial damage cannot detach WaxAdmiral-2
+PASS Selected organ detaches without killing boss WaxAdmiral-2
+PASS Other two organs survive WaxAdmiral-2
+PASS Broken organ cannot be selected WaxAdmiral-2
+PASS One break feedback event WaxAdmiral-2
+PASS Repeated hit cannot replay break or rewards WaxAdmiral-2
+PASS Corresponding attack disabled WaxAdmiral-2
+PASS Shop clears anatomy hazards WaxAdmiral-2
+PASS Mapped anatomy LastLantern
+PASS Collection explains third organ LastLantern
+PASS Volley tied to correct organ LastLantern-0
+PASS Part attack has source attribution and safe warning LastLantern-0
+PASS Attack starts at visible attachment LastLantern-0
+PASS Non-volley organ creates real telegraphed attack LastLantern-0
+PASS Partial damage cannot detach LastLantern-0
+PASS Selected organ detaches without killing boss LastLantern-0
+PASS Other two organs survive LastLantern-0
+PASS Broken organ cannot be selected LastLantern-0
+PASS One break feedback event LastLantern-0
+PASS Repeated hit cannot replay break or rewards LastLantern-0
+PASS Corresponding attack disabled LastLantern-0
+PASS Shop clears anatomy hazards LastLantern-0
+PASS Volley tied to correct organ LastLantern-1
+PASS Non-volley organ creates real telegraphed attack LastLantern-1
+PASS Partial damage cannot detach LastLantern-1
+PASS Selected organ detaches without killing boss LastLantern-1
+PASS Other two organs survive LastLantern-1
+PASS Broken organ cannot be selected LastLantern-1
+PASS One break feedback event LastLantern-1
+PASS Repeated hit cannot replay break or rewards LastLantern-1
+PASS Projectile budget reduced LastLantern-1
+PASS Shop clears anatomy hazards LastLantern-1
+PASS Volley tied to correct organ LastLantern-2
+PASS Part attack has source attribution and safe warning LastLantern-2
+PASS Attack starts at visible attachment LastLantern-2
+PASS Part attack has source attribution and safe warning LastLantern-2
+PASS Attack starts at visible attachment LastLantern-2
+PASS Part attack has source attribution and safe warning LastLantern-2
+PASS Attack starts at visible attachment LastLantern-2
+PASS Non-volley organ creates real telegraphed attack LastLantern-2
+PASS Partial damage cannot detach LastLantern-2
+PASS Selected organ detaches without killing boss LastLantern-2
+PASS Other two organs survive LastLantern-2
+PASS Broken organ cannot be selected LastLantern-2
+PASS One break feedback event LastLantern-2
+PASS Repeated hit cannot replay break or rewards LastLantern-2
+PASS Corresponding attack disabled LastLantern-2
+PASS Shop clears anatomy hazards LastLantern-2
+PASS Mapped anatomy MarqueeMaw
+PASS Collection explains third organ MarqueeMaw
+PASS Volley tied to correct organ MarqueeMaw-0
+PASS Part attack has source attribution and safe warning MarqueeMaw-0
+PASS Attack starts at visible attachment MarqueeMaw-0
+PASS Non-volley organ creates real telegraphed attack MarqueeMaw-0
+PASS Partial damage cannot detach MarqueeMaw-0
+PASS Selected organ detaches without killing boss MarqueeMaw-0
+PASS Other two organs survive MarqueeMaw-0
+PASS Broken organ cannot be selected MarqueeMaw-0
+PASS One break feedback event MarqueeMaw-0
+PASS Repeated hit cannot replay break or rewards MarqueeMaw-0
+PASS Corresponding attack disabled MarqueeMaw-0
+PASS Shop clears anatomy hazards MarqueeMaw-0
+PASS Volley tied to correct organ MarqueeMaw-1
+PASS Non-volley organ creates real telegraphed attack MarqueeMaw-1
+PASS Partial damage cannot detach MarqueeMaw-1
+PASS Selected organ detaches without killing boss MarqueeMaw-1
+PASS Other two organs survive MarqueeMaw-1
+PASS Broken organ cannot be selected MarqueeMaw-1
+PASS One break feedback event MarqueeMaw-1
+PASS Repeated hit cannot replay break or rewards MarqueeMaw-1
+PASS Projectile budget reduced MarqueeMaw-1
+PASS Shop clears anatomy hazards MarqueeMaw-1
+PASS Volley tied to correct organ MarqueeMaw-2
+PASS Part attack has source attribution and safe warning MarqueeMaw-2
+PASS Attack starts at visible attachment MarqueeMaw-2
+PASS Part attack has source attribution and safe warning MarqueeMaw-2
+PASS Attack starts at visible attachment MarqueeMaw-2
+PASS Non-volley organ creates real telegraphed attack MarqueeMaw-2
+PASS Partial damage cannot detach MarqueeMaw-2
+PASS Selected organ detaches without killing boss MarqueeMaw-2
+PASS Other two organs survive MarqueeMaw-2
+PASS Broken organ cannot be selected MarqueeMaw-2
+PASS One break feedback event MarqueeMaw-2
+PASS Repeated hit cannot replay break or rewards MarqueeMaw-2
+PASS Corresponding attack disabled MarqueeMaw-2
+PASS Shop clears anatomy hazards MarqueeMaw-2
+PASS Mapped anatomy UmbraCradle
+PASS Collection explains third organ UmbraCradle
+PASS Volley tied to correct organ UmbraCradle-0
+PASS Part attack has source attribution and safe warning UmbraCradle-0
+PASS Attack starts at visible attachment UmbraCradle-0
+PASS Part attack has source attribution and safe warning UmbraCradle-0
+PASS Attack starts at visible attachment UmbraCradle-0
+PASS Part attack has source attribution and safe warning UmbraCradle-0
+PASS Attack starts at visible attachment UmbraCradle-0
+PASS Non-volley organ creates real telegraphed attack UmbraCradle-0
+PASS Partial damage cannot detach UmbraCradle-0
+PASS Selected organ detaches without killing boss UmbraCradle-0
+PASS Other two organs survive UmbraCradle-0
+PASS Broken organ cannot be selected UmbraCradle-0
+PASS One break feedback event UmbraCradle-0
+PASS Repeated hit cannot replay break or rewards UmbraCradle-0
+PASS Corresponding attack disabled UmbraCradle-0
+PASS Locomotion break changes actual speed UmbraCradle-0
+PASS Shop clears anatomy hazards UmbraCradle-0
+PASS Volley tied to correct organ UmbraCradle-1
+PASS Part attack has source attribution and safe warning UmbraCradle-1
+PASS Attack starts at visible attachment UmbraCradle-1
+PASS Part attack has source attribution and safe warning UmbraCradle-1
+PASS Attack starts at visible attachment UmbraCradle-1
+PASS Non-volley organ creates real telegraphed attack UmbraCradle-1
+PASS Partial damage cannot detach UmbraCradle-1
+PASS Selected organ detaches without killing boss UmbraCradle-1
+PASS Other two organs survive UmbraCradle-1
+PASS Broken organ cannot be selected UmbraCradle-1
+PASS One break feedback event UmbraCradle-1
+PASS Repeated hit cannot replay break or rewards UmbraCradle-1
+PASS Shop clears anatomy hazards UmbraCradle-1
+PASS Volley tied to correct organ UmbraCradle-2
+PASS Part attack has source attribution and safe warning UmbraCradle-2
+PASS Attack starts at visible attachment UmbraCradle-2
+PASS Part attack has source attribution and safe warning UmbraCradle-2
+PASS Attack starts at visible attachment UmbraCradle-2
+PASS Non-volley organ creates real telegraphed attack UmbraCradle-2
+PASS Partial damage cannot detach UmbraCradle-2
+PASS Selected organ detaches without killing boss UmbraCradle-2
+PASS Other two organs survive UmbraCradle-2
+PASS Broken organ cannot be selected UmbraCradle-2
+PASS One break feedback event UmbraCradle-2
+PASS Repeated hit cannot replay break or rewards UmbraCradle-2
+PASS Corresponding attack disabled UmbraCradle-2
+PASS Shop clears anatomy hazards UmbraCradle-2
+PASS Mapped anatomy CoinWidow
+PASS Collection explains third organ CoinWidow
+PASS Volley tied to correct organ CoinWidow-0
+PASS Part attack has source attribution and safe warning CoinWidow-0
+PASS Attack starts at visible attachment CoinWidow-0
+PASS Non-volley organ creates real telegraphed attack CoinWidow-0
+PASS Partial damage cannot detach CoinWidow-0
+PASS Selected organ detaches without killing boss CoinWidow-0
+PASS Other two organs survive CoinWidow-0
+PASS Broken organ cannot be selected CoinWidow-0
+PASS One break feedback event CoinWidow-0
+PASS Repeated hit cannot replay break or rewards CoinWidow-0
+PASS Corresponding attack disabled CoinWidow-0
+PASS Locomotion break changes actual speed CoinWidow-0
+PASS Shop clears anatomy hazards CoinWidow-0
+PASS Volley tied to correct organ CoinWidow-1
+PASS Non-volley organ creates real telegraphed attack CoinWidow-1
+PASS Partial damage cannot detach CoinWidow-1
+PASS Selected organ detaches without killing boss CoinWidow-1
+PASS Other two organs survive CoinWidow-1
+PASS Broken organ cannot be selected CoinWidow-1
+PASS One break feedback event CoinWidow-1
+PASS Repeated hit cannot replay break or rewards CoinWidow-1
+PASS Projectile budget reduced CoinWidow-1
+PASS Shop clears anatomy hazards CoinWidow-1
+PASS Volley tied to correct organ CoinWidow-2
+PASS Part attack has source attribution and safe warning CoinWidow-2
+PASS Attack starts at visible attachment CoinWidow-2
+PASS Non-volley organ creates real telegraphed attack CoinWidow-2
+PASS Partial damage cannot detach CoinWidow-2
+PASS Selected organ detaches without killing boss CoinWidow-2
+PASS Other two organs survive CoinWidow-2
+PASS Broken organ cannot be selected CoinWidow-2
+PASS One break feedback event CoinWidow-2
+PASS Repeated hit cannot replay break or rewards CoinWidow-2
+PASS Rupture produces a faster exposed phase CoinWidow-2
+PASS Shop clears anatomy hazards CoinWidow-2
+PASS Mapped anatomy ChoirEngine
+PASS Collection explains third organ ChoirEngine
+PASS Volley tied to correct organ ChoirEngine-0
+PASS Part attack has source attribution and safe warning ChoirEngine-0
+PASS Attack starts at visible attachment ChoirEngine-0
+PASS Part attack has source attribution and safe warning ChoirEngine-0
+PASS Attack starts at visible attachment ChoirEngine-0
+PASS Part attack has source attribution and safe warning ChoirEngine-0
+PASS Attack starts at visible attachment ChoirEngine-0
+PASS Non-volley organ creates real telegraphed attack ChoirEngine-0
+PASS Partial damage cannot detach ChoirEngine-0
+PASS Selected organ detaches without killing boss ChoirEngine-0
+PASS Other two organs survive ChoirEngine-0
+PASS Broken organ cannot be selected ChoirEngine-0
+PASS One break feedback event ChoirEngine-0
+PASS Repeated hit cannot replay break or rewards ChoirEngine-0
+PASS Shop clears anatomy hazards ChoirEngine-0
+PASS Volley tied to correct organ ChoirEngine-1
+PASS Non-volley organ creates real telegraphed attack ChoirEngine-1
+PASS Partial damage cannot detach ChoirEngine-1
+PASS Selected organ detaches without killing boss ChoirEngine-1
+PASS Other two organs survive ChoirEngine-1
+PASS Broken organ cannot be selected ChoirEngine-1
+PASS One break feedback event ChoirEngine-1
+PASS Repeated hit cannot replay break or rewards ChoirEngine-1
+PASS Projectile budget reduced ChoirEngine-1
+PASS Shop clears anatomy hazards ChoirEngine-1
+PASS Volley tied to correct organ ChoirEngine-2
+PASS Part attack has source attribution and safe warning ChoirEngine-2
+PASS Attack starts at visible attachment ChoirEngine-2
+PASS Non-volley organ creates real telegraphed attack ChoirEngine-2
+PASS Partial damage cannot detach ChoirEngine-2
+PASS Selected organ detaches without killing boss ChoirEngine-2
+PASS Other two organs survive ChoirEngine-2
+PASS Broken organ cannot be selected ChoirEngine-2
+PASS One break feedback event ChoirEngine-2
+PASS Repeated hit cannot replay break or rewards ChoirEngine-2
+PASS Tempo break extends recovery ChoirEngine-2
+PASS Shop clears anatomy hazards ChoirEngine-2
+PASS Mapped anatomy SuitcaseLeviathan
+PASS Collection explains third organ SuitcaseLeviathan
+PASS Volley tied to correct organ SuitcaseLeviathan-0
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-0
+PASS Attack starts at visible attachment SuitcaseLeviathan-0
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-0
+PASS Attack starts at visible attachment SuitcaseLeviathan-0
+PASS Non-volley organ creates real telegraphed attack SuitcaseLeviathan-0
+PASS Partial damage cannot detach SuitcaseLeviathan-0
+PASS Selected organ detaches without killing boss SuitcaseLeviathan-0
+PASS Other two organs survive SuitcaseLeviathan-0
+PASS Broken organ cannot be selected SuitcaseLeviathan-0
+PASS One break feedback event SuitcaseLeviathan-0
+PASS Repeated hit cannot replay break or rewards SuitcaseLeviathan-0
+PASS Corresponding attack disabled SuitcaseLeviathan-0
+PASS Shop clears anatomy hazards SuitcaseLeviathan-0
+PASS Volley tied to correct organ SuitcaseLeviathan-1
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-1
+PASS Attack starts at visible attachment SuitcaseLeviathan-1
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-1
+PASS Attack starts at visible attachment SuitcaseLeviathan-1
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-1
+PASS Attack starts at visible attachment SuitcaseLeviathan-1
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-1
+PASS Attack starts at visible attachment SuitcaseLeviathan-1
+PASS Non-volley organ creates real telegraphed attack SuitcaseLeviathan-1
+PASS Partial damage cannot detach SuitcaseLeviathan-1
+PASS Selected organ detaches without killing boss SuitcaseLeviathan-1
+PASS Other two organs survive SuitcaseLeviathan-1
+PASS Broken organ cannot be selected SuitcaseLeviathan-1
+PASS One break feedback event SuitcaseLeviathan-1
+PASS Repeated hit cannot replay break or rewards SuitcaseLeviathan-1
+PASS Corresponding attack disabled SuitcaseLeviathan-1
+PASS Shop clears anatomy hazards SuitcaseLeviathan-1
+PASS Volley tied to correct organ SuitcaseLeviathan-2
+PASS Part attack has source attribution and safe warning SuitcaseLeviathan-2
+PASS Attack starts at visible attachment SuitcaseLeviathan-2
+PASS Non-volley organ creates real telegraphed attack SuitcaseLeviathan-2
+PASS Partial damage cannot detach SuitcaseLeviathan-2
+PASS Selected organ detaches without killing boss SuitcaseLeviathan-2
+PASS Other two organs survive SuitcaseLeviathan-2
+PASS Broken organ cannot be selected SuitcaseLeviathan-2
+PASS One break feedback event SuitcaseLeviathan-2
+PASS Repeated hit cannot replay break or rewards SuitcaseLeviathan-2
+PASS Corresponding attack disabled SuitcaseLeviathan-2
+PASS Rupture produces a faster exposed phase SuitcaseLeviathan-2
+PASS Shop clears anatomy hazards SuitcaseLeviathan-2
+PASS Vault actually captures loose coins during its windup
+PASS Breaking vault returns exactly stolen gold, without minting money
+PASS Destroyed vault cannot recapture its returned coins
+PASS Pause freezes organ hazards and simulation clock
+PASS Rest removes anatomy hazards and cannot leak attacks into shopping

@@ -42,6 +42,7 @@ namespace ArcaneBrigade
         private float previousGait;
         private float transitionSquash;
         private EvolutionAdornment adornment;
+        private BossAnatomyVisual anatomyVisual;
         public static float BlendGait(float current, float target, float delta)
         {
             return Mathf.Lerp(current, target, 1 - Mathf.Exp(-Mathf.Clamp(delta, 0, 0.05f) * (target > current ? 13 : 9)));
@@ -100,6 +101,7 @@ namespace ArcaneBrigade
 
         public void CopyDeathPose(SpriteRenderer targetBody, SpriteRenderer targetShadow, SpriteRenderer targetWeapon, SpriteRenderer targetHand, SpriteRenderer targetDrawHand, Transform targetGrip)
         {
+            if (anatomyVisual != null) anatomyVisual.CopyDeathParts(targetBody.transform);
             CopyPart(body, targetBody);
             targetBody.enabled = body.sprite != null && state.Faction != Faction.Companion;
             CopyPart(shadow, targetShadow);
@@ -155,6 +157,7 @@ namespace ArcaneBrigade
 
         public void Bind(UnitState unit, CheckpointCatalog catalog)
         {
+            if (anatomyVisual != null) anatomyVisual.Clear();
             if (adornment != null) { adornment.Clear(); if (Application.isPlaying) Destroy(adornment); else DestroyImmediate(adornment); adornment = null; }
             state = unit;
             holdUntil = nextHold = 0; celebrateAt = -100;
@@ -179,7 +182,12 @@ namespace ArcaneBrigade
             shadowColor = shadow.color;
             hand.sprite = catalog.Hand;
             weapon.sprite = unit.Definition.Weapon.Sprite;
-            if (adornment == null && (unit.Definition.IsBoss || unit.Faction == Faction.Companion && unit.Definition.CombatTier > 1))
+            if (unit.Definition.IsBoss)
+            {
+                if (anatomyVisual == null) anatomyVisual = gameObject.AddComponent<BossAnatomyVisual>();
+                anatomyVisual.Build(unit, body);
+            }
+            if (adornment == null && unit.Faction == Faction.Companion && unit.Definition.CombatTier > 1)
             {
                 adornment = gameObject.AddComponent<EvolutionAdornment>(); adornment.Build(unit, body, weapon);
             }
@@ -360,6 +368,7 @@ namespace ArcaneBrigade
             DisplayWeakspot(simulationTime, order);
             DisplayTier(order, height);
             if (adornment != null) adornment.Display(state, simulationTime, order, ReducedMotion);
+            if (anatomyVisual != null) anatomyVisual.Display(state, simulationTime, order, ReducedMotion);
             if (state.Faction == Faction.Champion && championBeacon == null)
             {
                 championBeacon = CreateSprite("ChampionBeacon", transform); championBeacon.sprite = K8Motion.TierStar();
@@ -493,6 +502,7 @@ namespace ArcaneBrigade
 
         public void SetTerminalFade(float alpha)
         {
+            if (anatomyVisual != null) anatomyVisual.Fade(alpha);
             if (adornment != null) adornment.Fade(alpha);
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
             if (grounded != null) grounded.Fade(alpha);

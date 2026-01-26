@@ -1,0 +1,335 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40e1daff5ad9e84783cd1f1998d8240, type: 3}
+  m_Name: BossAnatomy
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.BossAnatomy
+  Bosses:
+  - BossId: UndeliveredKing
+    Organs:
+    - Id: UndeliveredKing-0
+      Name: Stamp Jaw
+      BreakSummary: No envelope bites.
+      Role: 1
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 602138482, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Charged: {fileID: 1421921156, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Scar: {fileID: -1980260961, guid: e958d317cdde042449685ab6110319b2, type: 3}
+    - Id: UndeliveredKing-1
+      Name: Dead Letter Cannon
+      BreakSummary: Smaller letter volleys.
+      Role: 2
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 685349117, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Charged: {fileID: 92594681, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Scar: {fileID: -1980260961, guid: e958d317cdde042449685ab6110319b2, type: 3}
+    - Id: UndeliveredKing-2
+      Name: Pendulum Crown
+      BreakSummary: Slower attacks; no pendulum pulse.
+      Role: 128
+      Offset: {x: 0, y: 0.34}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: -1137482600, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Charged: {fileID: -1492030088, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Scar: {fileID: -1980260961, guid: e958d317cdde042449685ab6110319b2, type: 3}
+  - BossId: ScarletIndex
+    Organs:
+    - Id: ScarletIndex-0
+      Name: Quill Talon
+      BreakSummary: No quill lashes.
+      Role: 1
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -745228386, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Charged: {fileID: 262020150, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Scar: {fileID: 121166419, guid: e958d317cdde042449685ab6110319b2, type: 3}
+    - Id: ScarletIndex-1
+      Name: Binder Maw
+      BreakSummary: No falling paper traps.
+      Role: 4
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 136825291, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Charged: {fileID: -1992921234, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Scar: {fileID: 121166419, guid: e958d317cdde042449685ab6110319b2, type: 3}
+    - Id: ScarletIndex-2
+      Name: Ink Bladder
+      BreakSummary: No ink pools.
+      Role: 8
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: 1819749356, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Charged: {fileID: 715461814, guid: e958d317cdde042449685ab6110319b2, type: 3}
+      Scar: {fileID: 121166419, guid: e958d317cdde042449685ab6110319b2, type: 3}
+  - BossId: SleepCollector
+    Organs:
+    - Id: SleepCollector-0
+      Name: Rocking Claw
+      BreakSummary: No claw lashes; slower walking.
+      Role: 65
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -81910593, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Charged: {fileID: 85533071, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Scar: {fileID: 1731698809, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+    - Id: SleepCollector-1
+      Name: Drowsing Bell
+      BreakSummary: No paired sleep rings.
+      Role: 16
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 241542341, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Charged: {fileID: -688404978, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Scar: {fileID: 1731698809, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+    - Id: SleepCollector-2
+      Name: Dream Sack
+      BreakSummary: No dream pools.
+      Role: 8
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: 1221666120, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Charged: {fileID: 606766741, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Scar: {fileID: 1731698809, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+  - BossId: WaxAdmiral
+    Organs:
+    - Id: WaxAdmiral-0
+      Name: Anchor Claw
+      BreakSummary: No anchor sweep.
+      Role: 1
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 1759423659, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Charged: {fileID: -867421237, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Scar: {fileID: 287531964, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+    - Id: WaxAdmiral-1
+      Name: Molten Broadside
+      BreakSummary: Smaller molten volleys.
+      Role: 2
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 330863417, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Charged: {fileID: 1262394935, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Scar: {fileID: 287531964, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+    - Id: WaxAdmiral-2
+      Name: Wick Cluster
+      BreakSummary: No molten wax pools.
+      Role: 8
+      Offset: {x: 0, y: 0.34}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: 1434243230, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Charged: {fileID: -135487890, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+      Scar: {fileID: 287531964, guid: df21290ff1276eb498704a9fd197c416, type: 3}
+  - BossId: LastLantern
+    Organs:
+    - Id: LastLantern-0
+      Name: Wick Tendril
+      BreakSummary: No needle lashes.
+      Role: 1
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -1512672558, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Charged: {fileID: 114965730, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Scar: {fileID: -495383648, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+    - Id: LastLantern-1
+      Name: Shutter Eye
+      BreakSummary: Smaller light volleys.
+      Role: 2
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -2104656992, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Charged: {fileID: -1729833737, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Scar: {fileID: -495383648, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+    - Id: LastLantern-2
+      Name: Fuel Chamber
+      BreakSummary: No falling fuel traps.
+      Role: 4
+      Offset: {x: 0, y: 0.34}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: -1465707783, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Charged: {fileID: 993608397, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Scar: {fileID: -495383648, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+  - BossId: MarqueeMaw
+    Organs:
+    - Id: MarqueeMaw-0
+      Name: Stage Jaw
+      BreakSummary: No stage bite.
+      Role: 1
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -763603723, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Charged: {fileID: -1127537463, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Scar: {fileID: 1792046287, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+    - Id: MarqueeMaw-1
+      Name: Spotlight Eyes
+      BreakSummary: Fewer aimed spotlight shots.
+      Role: 2
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 1656524175, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Charged: {fileID: -1414407231, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Scar: {fileID: 1792046287, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+    - Id: MarqueeMaw-2
+      Name: Curtain Tendon
+      BreakSummary: No thrown stage debris.
+      Role: 4
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: -1655421969, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Charged: {fileID: -310786135, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+      Scar: {fileID: 1792046287, guid: 91457be804c720e44a6b72ba43fb6804, type: 3}
+  - BossId: UmbraCradle
+    Organs:
+    - Id: UmbraCradle-0
+      Name: Rocking Arm
+      BreakSummary: No shadow lashes; cradle tilts and slows.
+      Role: 65
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -475428204, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Charged: {fileID: -1451355923, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Scar: {fileID: 352744130, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+    - Id: UmbraCradle-1
+      Name: Nursery Bell
+      BreakSummary: No nursery rings.
+      Role: 16
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -1006889274, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Charged: {fileID: -262839293, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Scar: {fileID: 352744130, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+    - Id: UmbraCradle-2
+      Name: Shadow Pouch
+      BreakSummary: No shadow pools.
+      Role: 8
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: 1910320235, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Charged: {fileID: 1080593800, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Scar: {fileID: 352744130, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+  - BossId: CoinWidow
+    Organs:
+    - Id: CoinWidow-0
+      Name: Coin Hook
+      BreakSummary: No hook sweeps; slower crawling.
+      Role: 65
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 769653890, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Charged: {fileID: 56500930, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Scar: {fileID: 1262314727, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+    - Id: CoinWidow-1
+      Name: Coin Spitter
+      BreakSummary: Fewer coin shots.
+      Role: 2
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -1741819572, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Charged: {fileID: 2059491109, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Scar: {fileID: 1262314727, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+    - Id: CoinWidow-2
+      Name: Vault Abdomen
+      BreakSummary: Returns stolen coins; no suction. Attacks faster.
+      Role: 288
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: 1227423329, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Charged: {fileID: 2026714376, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+      Scar: {fileID: 1262314727, guid: a892ff0b1af3a9847ad934c3761e8950, type: 3}
+  - BossId: ChoirEngine
+    Organs:
+    - Id: ChoirEngine-0
+      Name: Bass Mouth
+      BreakSummary: No triple bass rings.
+      Role: 16
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 1503582744, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Charged: {fileID: 787862901, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Scar: {fileID: -54289877, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+    - Id: ChoirEngine-1
+      Name: Choir Pipes
+      BreakSummary: Fewer choir shots.
+      Role: 2
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: 162160659, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Charged: {fileID: -1021059, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Scar: {fileID: -54289877, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+    - Id: ChoirEngine-2
+      Name: Bellows Heart
+      BreakSummary: Slower rhythm; no bellows pulse.
+      Role: 128
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: -447469519, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Charged: {fileID: 2121356146, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Scar: {fileID: -54289877, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+  - BossId: SuitcaseLeviathan
+    Organs:
+    - Id: SuitcaseLeviathan-0
+      Name: Zipper Jaw
+      BreakSummary: No zipper bite.
+      Role: 1
+      Offset: {x: -0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -720859286, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Charged: {fileID: -1333447608, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Scar: {fileID: 399474990, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+    - Id: SuitcaseLeviathan-1
+      Name: Handle Tentacle
+      BreakSummary: No thrown luggage.
+      Role: 4
+      Offset: {x: 0.39, y: -0.03}
+      Height: 0.29
+      Durability: 0.18
+      Rest: {fileID: -965443564, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Charged: {fileID: -1049448763, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Scar: {fileID: 399474990, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+    - Id: SuitcaseLeviathan-2
+      Name: Luggage Chamber
+      BreakSummary: No tongue pools; burst suitcase attacks faster.
+      Role: 264
+      Offset: {x: 0, y: -0.3}
+      Height: 0.23
+      Durability: 0.16
+      Rest: {fileID: -2134640979, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Charged: {fileID: -136225096, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
+      Scar: {fileID: 399474990, guid: 2926c048b0d6cf549912977cd0c05b5a, type: 3}
