@@ -26,6 +26,8 @@ namespace ArcaneBrigade
     {
         private void Danger(ExpandedFieldKind kind, UnitState source, Vector2 destination, float radius, float delay, float duration)
         {
+            if (!BossPartRules.Allows(source, kind)) return;
+            if (source.Definition.IsBoss && source.RightPartBroken && kind == ExpandedFieldKind.Shockwave) radius *= 0.8f;
             int count = 0;
             foreach (ExpandedField field in fields) if (CarnivalHazards.IsHostile(field.Kind)) count++;
             if (count >= 48) return;
@@ -34,6 +36,11 @@ namespace ArcaneBrigade
 
         private bool ResolveBossBodyAttack(UnitState boss)
         {
+            if (boss.LeftPartBroken && boss.RightPartBroken)
+            {
+                Danger(ExpandedFieldKind.Shockwave, boss, boss.Position, 4.5f, 0.9f, 1.4f);
+                return false;
+            }
             int pattern = boss.Definition.BossPattern;
             if (pattern < 5 && boss.BossVolley % 3 != 2) return false;
             Vector2 target = ClampPosition(Champion.Position, 1.2f);

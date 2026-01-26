@@ -1,0 +1,149 @@
+item_id,name,reason,sprite,asset,description
+"key-oil","Key Oil","unit-or-weapon","KeyCleaver","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","COMMON · Stacks
+Team: Damage +12%"
+"clock-spring","Clock Spring","unit-or-weapon","MailboxLauncher","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","COMMON · Stacks
+Team: Attack speed +10%"
+"honey-pot","Honey Pot","unique","TeapotPilgrim","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","COMMON · Stacks
+Your Maximum health +20"
+"felt-boots","Felt Boots","unique","CandleSnail","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","COMMON · Stacks
+Team: Movement speed +6%"
+"coin-compass","Coin Compass","unique","Coin","Assets/ArcaneBrigade/Art/Checkpoint/ModularArcade_Atlas.png","COMMON · Stacks
+Pickup radius +0.25"
+"wandering-map","Wandering Map","unit-or-weapon","BookPaddle","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","COMMON · Stacks
+Patrol radius +0.4"
+"guardian-canopy","Guardian Canopy","unit-or-weapon","UmbrellaLance","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","RARE · Stacks
+Companion bullet interception +1"
+"warm-tea","Warm Tea","duplicate-relic","TeapotPilgrim","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","COMMON · Stacks
+Your Healing per second +0.15"
+"oracle-lens","Oracle Lens","unique","PillowOracle","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","COMMON · Stacks
+Team: Critical chance +4%"
+"twin-seal","Twin Seal","unit-or-weapon","BellFork","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","RARE · Stacks
+Team: Projectile count +1"
+"piggy-mail","Piggy Mail","unique","MailboxImp","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","COMMON · Stacks
+Interest cap +2"
+"pillow-mail","Pillow Mail","duplicate-relic","PillowOracle","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","COMMON · Stacks
+Your Armor +0.12"
+"royal-key","Royal Key","unit-or-weapon","KeyCleaver","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","UNCOMMON · Stacks
+Your Damage +22%"
+"brigade-banner","Brigade Banner","duplicate-relic","MailboxImp","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","UNCOMMON · Stacks
+Allies: Damage +15%"
+"marching-bell","Marching Bell","unit-or-weapon","BellFork","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","UNCOMMON · Stacks
+Allies: Attack speed +12%"
+"coupon-book","Coupon Book","unit-or-weapon","BookPaddle","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","COMMON · Stacks
+Gold shop discount +5%"
+"long-atlas","Long Atlas","unit-or-weapon","BookPaddle","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","MYTHIC · Stacks
+Patrol radius +1. Team: Movement speed -4%"
+"starlight-quilt","Starlight Quilt","duplicate-relic","PillowOracle","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","MYTHIC · Stacks
+Your Maximum health +45"
+"echo-postage","Echo Postage","unit-or-weapon","MailboxLauncher","Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png","MYTHIC · Stacks
+Team: Projectile count +2, Attack speed -8%"
+"tarnished-crown","Tarnished Crown","unique","LanternKnight","Assets/ArcaneBrigade/Art/QualityHD/Characters_v2.png","MYTHIC · Stacks
+Your Damage +40%"
+"fortune-egg","Fortune Egg","unique","Egg","Assets/ArcaneBrigade/Art/K3Loot/Egg.png","RARE · Stacks
+Luck +0.2"
+"treasure-whisper","Treasure Whisper","unique","Chest","Assets/ArcaneBrigade/Art/K3Loot/Chest.png","RARE · Stacks
+Treasure detection +0.35"
+"coin-salve","Coin Salve","unique","Heart","Assets/ArcaneBrigade/Art/K3Loot/Heart.png","RARE · Stacks
+"
+"chest-thunder","Chest Thunder","duplicate-relic","Chest","Assets/ArcaneBrigade/Art/K3Loot/Chest.png","RARE · Stacks
+"
+"altar-ember","Altar Ember","duplicate-relic","Heart","Assets/ArcaneBrigade/Art/K3Loot/Heart.png","RARE · Stacks
+Your Damage +18%. Team: Movement speed -3%"
+"harvest-receipt","Harvest Receipt","unique","harvest-receipt","Assets/ArcaneBrigade/Art/QualityHD/SignatureRelics_v1.png","UNCOMMON · Stacks
+Pickup radius -0.15
+Chest harvest bonus"
+"reflective-ink","Reflective Ink","unique","reflective-ink","Assets/ArcaneBrigade/Art/QualityHD/SignatureRelics_v1.png","UNCOMMON · Unique
+
+Reflected attacks empower marks"
+"carbon-ribbon","Carbon Ribbon","unique","carbon-ribbon","Assets/ArcaneBrigade/Art/QualityHD/SignatureRelics_v1.png","RARE · Unique
+Team: Critical chance -4%
+Spread marks; expose enemies"
+"office-lens","Office Lens","unique","office-lens","Assets/ArcaneBrigade/Art/QualityHD/SignatureRelics_v1.png","RARE · Stacks
+Allies: Critical chance +15%, Attack speed -5%
+Critical hits punish exposed targets"
+"tea-coaster","Tea Coaster","unique","tea-coaster","Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png","UNCOMMON · Unique
+Team: Movement speed -2%
+Wider, weaker tea trails"
+"scratch-record","Scratch Record","unique","scratch-record","Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png","UNCOMMON · Stacks
+Team: Attack speed -4%
+One delayed musical echo"
+"treasure-ribbon","Treasure Ribbon","unique","treasure-ribbon","Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png","UNCOMMON · Stacks
+Team: Damage -3%
+Chest opening empowers bows"
+"patch-spring","Patch Spring","unique","patch-spring","Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png","UNCOMMON · Unique
+Allies: Attack speed -6%
+Repair connects signature effects"
+"thermal-ink","Thermal Ink","unique","thermal-ink","Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png","UNCOMMON · Unique
+Team: Critical chance -3%
+Connect active hot trails"
+"repair-coupon","Repair Coupon","unique","repair-coupon","Assets/ArcaneBrigade/Art/QualityHD/ExpandedProps_v1.png","UNCOMMON · Stacks
+Pickup radius -0.1
+Repair synergy"
+"k10-scoremultiplier","Contract · Score multiplier","unit-or-weapon","SpoonSabre","Assets/ArcaneBrigade/Art/K10/SpoonSabre.png","UNCOMMON · Stacks
+Score multiplier +8%. Your Maximum health -1"
+"k10-collisiondamage","Contract · Collision damage","unit-or-weapon","ToastCleaver","Assets/ArcaneBrigade/Art/K10/ToastCleaver.png","RARE · Stacks
+Team: Collision damage +2. Your Maximum health -1"
+"k10-meleedamage","Contract · Flat melee damage","unit-or-weapon","LollipopLance","Assets/ArcaneBrigade/Art/K10/LollipopLance.png","MYTHIC · Stacks
+Team: Flat melee damage +2. Your Maximum health -1"
+"k10-rangeddamage","Contract · Flat ranged damage","unit-or-weapon","PaperFan","Assets/ArcaneBrigade/Art/K10/PaperFan.png","UNCOMMON · Stacks
+Team: Flat ranged damage +2. Your Maximum health -1"
+"k10-attackrange","Contract · Attack range","unit-or-weapon","CorkscrewRapier","Assets/ArcaneBrigade/Art/K10/CorkscrewRapier.png","RARE · Stacks
+Team: Attack range +8%. Your Maximum health -1"
+"k10-dodge","Contract · Dodge","unit-or-weapon","TeabagFlail","Assets/ArcaneBrigade/Art/K10/TeabagFlail.png","MYTHIC · Stacks
+Your Dodge +8%, Maximum health -1"
+"k10-income","Contract · Income","unit-or-weapon","UmbrellaHook","Assets/ArcaneBrigade/Art/K10/UmbrellaHook.png","UNCOMMON · Stacks
+Income +4. Your Maximum health -1"
+"k10-bulletpierce","Contract · Bullet pierce","unit-or-weapon","PizzaWheel","Assets/ArcaneBrigade/Art/K10/PizzaWheel.png","RARE · Stacks
+Team: Bullet pierce +1. Your Maximum health -1"
+"k10-bulletsplit","Contract · Bullet split","unit-or-weapon","MoonScythe","Assets/ArcaneBrigade/Art/K10/MoonScythe.png","MYTHIC · Stacks
+Team: Bullet split +1. Your Maximum health -1"
+"k10-bulletbounce","Contract · Bullet bounce chance","unit-or-weapon","ForkTrident","Assets/ArcaneBrigade/Art/K10/ForkTrident.png","UNCOMMON · Stacks
+Team: Bullet bounce chance +8%. Your Maximum health -1"
+"k10-bulletsize","Contract · Bullet size","unit-or-weapon","MaracaHammer","Assets/ArcaneBrigade/Art/K10/MaracaHammer.png","RARE · Stacks
+Team: Bullet size +8%. Your Maximum health -1"
+"k10-bulletspeed","Contract · Bullet speed","unit-or-weapon","TapeWhip","Assets/ArcaneBrigade/Art/K10/TapeWhip.png","MYTHIC · Stacks
+Team: Bullet speed +8%. Your Maximum health -1"
+"k10-bulletdistance","Contract · Bullet travel distance","unit-or-weapon","ButtonBow","Assets/ArcaneBrigade/Art/K10/ButtonBow.png","UNCOMMON · Stacks
+Team: Bullet travel distance +8%. Your Maximum health -1"
+"k10-knockback","Contract · Knockback","unit-or-weapon","LeafCrossbow","Assets/ArcaneBrigade/Art/K10/LeafCrossbow.png","RARE · Stacks
+Team: Knockback +8%. Your Maximum health -1"
+"k10-bodysize","Contract · Champion size","unit-or-weapon","InkPistol","Assets/ArcaneBrigade/Art/K10/InkPistol.png","MYTHIC · Stacks
+Your Champion size +8%, Maximum health -1"
+"k10-companionsize","Contract · Companion size","unit-or-weapon","BubbleWand","Assets/ArcaneBrigade/Art/K10/BubbleWand.png","UNCOMMON · Stacks
+Allies: Companion size +8%. Your Maximum health -1"
+"k10-enemycount","Contract · Enemy count","unit-or-weapon","StarKazoo","Assets/ArcaneBrigade/Art/K10/StarKazoo.png","RARE · Stacks
+Enemy count +10%, Score multiplier +20%. Your Maximum health -1"
+"k10-enemyhealth","Contract · Enemy health","unit-or-weapon","ShellCannon","Assets/ArcaneBrigade/Art/K10/ShellCannon.png","MYTHIC · Stacks
+Enemy health +10%, Score multiplier +20%. Your Maximum health -1"
+"k10-enemyspeed","Contract · Enemy speed","unit-or-weapon","AcornSling","Assets/ArcaneBrigade/Art/K10/AcornSling.png","UNCOMMON · Stacks
+Enemy speed +10%, Score multiplier +20%. Your Maximum health -1"
+"k10-hearthealing","Contract · Heart healing","unit-or-weapon","CrescentBoomerang","Assets/ArcaneBrigade/Art/K10/CrescentBoomerang.png","RARE · Stacks
+Your Heart healing +2, Maximum health -1"
+"k10-chestquality","Contract · Chest quality","unit-or-weapon","DartCompass","Assets/ArcaneBrigade/Art/K10/DartCompass.png","MYTHIC · Stacks
+Chest quality +8%. Your Maximum health -1"
+"k10-recruitdiscount","Contract · Recruit discount","unit-or-weapon","LanternStaff","Assets/ArcaneBrigade/Art/K10/LanternStaff.png","UNCOMMON · Stacks
+Recruit discount +8%. Your Maximum health -1"
+"k10-relicdiscount","Contract · Relic discount","unit-or-weapon","SnowGlobeOrb","Assets/ArcaneBrigade/Art/K10/SnowGlobeOrb.png","RARE · Stacks
+Relic discount +8%. Your Maximum health -1"
+"k10-shoprarity","Contract · Shop rarity","unit-or-weapon","RibbonHarp","Assets/ArcaneBrigade/Art/K10/RibbonHarp.png","MYTHIC · Stacks
+Shop rarity +8%. Your Maximum health -1"
+"k10-healthcorrection","Contract · Health correction","unit-or-weapon","SpoonSabre","Assets/ArcaneBrigade/Art/K10/SpoonSabre.png","UNCOMMON · Stacks
+Your Health correction +8%, Maximum health -1"
+"k10-damagecorrection","Contract · Damage correction","unit-or-weapon","ToastCleaver","Assets/ArcaneBrigade/Art/K10/ToastCleaver.png","RARE · Stacks
+Team: Damage correction +8%. Your Maximum health -1"
+"k10-speedcorrection","Contract · Speed correction","unit-or-weapon","LollipopLance","Assets/ArcaneBrigade/Art/K10/LollipopLance.png","MYTHIC · Stacks
+Team: Speed correction +8%. Your Maximum health -1"
+"k10-armorcorrection","Contract · Armor correction","unit-or-weapon","PaperFan","Assets/ArcaneBrigade/Art/K10/PaperFan.png","UNCOMMON · Stacks
+Your Armor correction +8%, Maximum health -1"
+"k10-healcorrection","Contract · Healing correction","unit-or-weapon","CorkscrewRapier","Assets/ArcaneBrigade/Art/K10/CorkscrewRapier.png","RARE · Stacks
+Your Healing correction +8%, Maximum health -1"
+"k10-collisionfrequency","Contract · Collision frequency","unit-or-weapon","TeabagFlail","Assets/ArcaneBrigade/Art/K10/TeabagFlail.png","MYTHIC · Stacks
+Team: Collision frequency +8%. Your Maximum health -1"
+"long-pocket","Long Pocket","unit-or-weapon","TapeWhip","Assets/ArcaneBrigade/Art/K10/TapeWhip.png","UNCOMMON · Stacks
+Chest opening radius +35%. Your Movement speed -2%"
+"velvet-first-aid","Velvet First Aid","unit-or-weapon","TeabagFlail","Assets/ArcaneBrigade/Art/K10/TeabagFlail.png","RARE · Stacks
+Treasure detection +0.1. Your Movement speed -2%
+Chest: heal4 HP/stack · 2s CD"
+"brass-avalanche","Brass Avalanche","unit-or-weapon","MaracaHammer","Assets/ArcaneBrigade/Art/K10/MaracaHammer.png","MYTHIC · Stacks
+Team: Knockback +10%. Your Movement speed -2%
+Kill: nearby pulse3 DMG/stack · 2s CD"

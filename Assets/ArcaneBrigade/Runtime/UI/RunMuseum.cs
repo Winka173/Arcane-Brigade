@@ -19,10 +19,22 @@ namespace ArcaneBrigade
         private int selection;
         private Vector2 scroll;
         private Vector2 detailScroll;
+        private readonly MuseumDiorama diorama = new MuseumDiorama();
+        private int previewTier = 1;
+        private float touchedAt = -100;
+        public void Close() => diorama.Dispose();
+        public void SetPreview(int stars, int pose) { previewTier = Mathf.Clamp(stars, 1, 3); diorama.Pose = Mathf.Clamp(pose, 0, 3); }
+        public void SelectExhibitForDiagnostics(int index)
+        {
+            if (!RunPaths.K7Capture) throw new System.InvalidOperationException("Exhibit fixture requires isolated capture mode");
+            selection = Mathf.Max(0, index); scroll.y = Mathf.Max(0, selection / 3 * 130 - 260); detailScroll = Vector2.zero;
+        }
         public int Tab => tab;
         public void SelectTab(int value) { int next = Mathf.Clamp(value, 0, 4); if (tab != next) CheckpointAudio.PlayInterfaceId("ui.tab"); tab = next; selection = 0; scroll = detailScroll = Vector2.zero; }
         public void HandleInput()
         {
+            if ((tab == 2 || tab == 4) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) diorama.Pose = (diorama.Pose + 1) % 4;
+            if (tab == 2 && Input.GetKeyDown(KeyCode.T)) previewTier = previewTier % 3 + 1;
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.JoystickButton5)) SelectTab((tab + 1) % 5);
             if (Input.GetKeyDown(KeyCode.JoystickButton4)) SelectTab((tab + 4) % 5);
             int move = Input.GetKeyDown(KeyCode.DownArrow) ? 3 : Input.GetKeyDown(KeyCode.UpArrow) ? -3 : Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton3) ? 1 : Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton2) ? -1 : 0;
@@ -54,6 +66,8 @@ namespace ArcaneBrigade
                 if (GUI.Button(new Rect(60 + index * 233, 160, 218, 45), (index == tab ? "• " : "") + tabs[index])) { SelectTab(index); exhibits.Clear(); return; }
             GUIStyle title = ArcadeTypography.Style(18, true);
             GUIStyle body = ArcadeTypography.Style(16);
+            GUIStyle cardText = ArcadeTypography.Style(14);
+            cardText.wordWrap = true; cardText.clipping = TextClipping.Clip;
             scroll = GUI.BeginScrollView(new Rect(60, 225, 745, 385), scroll, new Rect(0, 0, 710, Mathf.Max(380, Mathf.CeilToInt(exhibits.Count / 3f) * 130)));
             for (int index = 0; index < exhibits.Count; index++)
             {
@@ -62,7 +76,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Panel(card, index == selection ? new Color(0.27f, 0.22f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
-                GUI.Label(new Rect(card.x + 12, card.y + 80, 200, 35), exhibit.Seen ? exhibit.Name : "?  UNDISCOVERED", body);
+                GUI.Label(new Rect(card.x + 12, card.y + 78, 200, 38), exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : "?  UNDISCOVERED", cardText);
             }
             GUI.EndScrollView();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));
@@ -73,25 +87,51 @@ namespace ArcaneBrigade
                 if (exhibit.Seen)
                 {
                     float time = Time.unscaledTime;
-                    Sprite preview = exhibit.Icon;
-                    if (exhibit.Unit != null && !PresentationSettings.ReducedMotion)
+                    if (exhibit.Unit != null)
                     {
-                        AuthoredMotionSet motion = exhibit.Unit.AuthoredMotion;
-                        Sprite[] frames = motion != null ? motion.Walk : exhibit.Unit.AnimationFrames;
-                        if (frames.Length > 0) preview = frames[Mathf.FloorToInt(time * 5) % frames.Length];
+                        diorama.Draw(new Rect(850, 230, 355, 125), exhibit.Unit, catalog.Arena, exhibit.Unit.IsBoss ? 1 : previewTier);
+                        string[] poses = { "IDLE", "WALK", "ATTACK", "HIT" };
+                        for (int pose = 0; pose < poses.Length; pose++)
+                            if (GUI.Button(new Rect(852 + pose * 88, 350, 84, 25), (diorama.Pose == pose ? "> " : "") + poses[pose])) diorama.Pose = pose;
+                        if (!exhibit.Unit.IsBoss)
+                            for (int stars = 1; stars <= 3; stars++)
+                                if (GUI.Button(new Rect(866 + (stars - 1) * 109, 380, 101, 24), stars + " STAR" + (stars > 1 ? "S" : ""))) previewTier = stars;
                     }
-                    float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(time * 2.4f) * 4;
-                    RunHud.Sprite(new Rect(952, 245 + bob, 150, 110), preview);
+                    else
+                    {
+                        diorama.Dispose();
+                        float bob = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(time * 2.4f) * 4;
+                        Rect icon = new Rect(952, 245 + bob, 150, 110);
+                        if (GUI.Button(icon, GUIContent.none, GUIStyle.none)) { touchedAt = time; CheckpointAudio.PlayInterfaceId("ui.page"); }
+                        float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01((time - touchedAt) / 0.4f) * Mathf.PI) * 12;
+                        icon = new Rect(icon.x - pop * 0.5f, icon.y - pop * 0.5f, icon.width + pop, icon.height + pop);
+                        Matrix4x4 previous = GUI.matrix;
+                        if (!PresentationSettings.ReducedMotion)
+                        {
+                            float breathe = Mathf.Sin(time * 1.7f) * 2;
+                            icon = new Rect(icon.x - breathe, icon.y + breathe, icon.width + breathe * 2, icon.height - breathe * 2);
+                        }
+                        if (exhibit.Icon != null) RunHud.Sprite(icon, exhibit.Icon);
+                        else
+                            for (int link = 0; link < 3; link++)
+                            {
+                                float lift = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(time * 3 - link * 0.8f) * 8;
+                                RunHud.Sprite(new Rect(icon.x + link * 52, icon.y + 34 + lift, 38, 38), K8Motion.TierStar());
+                            }
+                        GUI.matrix = previous;
+                    }
                 }
-                GUI.Label(new Rect(865, 365, 320, 65), exhibit.Seen ? exhibit.Name : "Empty shelf", title);
+                else diorama.Dispose();
+                GUI.Label(new Rect(865, exhibit.Unit != null && exhibit.Seen ? 406 : 365, 320, 30), exhibit.Seen ? exhibit.Name : "Empty shelf", title);
                 string description = exhibit.Seen ? exhibit.Detail : tab == 4 ? "Defeat this boss in a real hall to unlock its display." : tab == 3 ? "Activate the chain in actual combat. Owning its set is not enough." : "Find this item during a run. Viewing or testing does not unlock it.";
+                if (exhibit.Seen && exhibit.Unit != null && exhibit.Unit.IsBoss) description += "\n\n" + BossPartRules.Description;
                 float height = Mathf.Max(135, body.CalcHeight(new GUIContent(description), 290));
                 detailScroll = GUI.BeginScrollView(new Rect(865, 430, 325, 155), detailScroll, new Rect(0, 0, 295, height));
                 GUI.Label(new Rect(0, 0, 290, height), description, body);
                 GUI.EndScrollView();
             }
             int found = exhibits.FindAll(exhibit => exhibit.Seen).Count;
-            GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + " · Tab / LB/RB: category · arrows / X/Y: sample · Enter/A: try", body);
+            GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + (tab == 2 || tab == 4 ? " · Arrows: sample · Enter/A: pose · T: tier" : " · Tab / LB/RB: category · arrows / X/Y: sample · Enter/A: try"), body);
         }
     }
 }

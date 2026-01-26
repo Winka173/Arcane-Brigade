@@ -78,6 +78,7 @@ namespace ArcaneBrigade
         public void Configure(RunCatalog definition) { catalog = definition; }
         public void ShowPage(Page page)
         {
+            if (page != Page.Museum) museum.Close();
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();
             if (CurrentPage != page) CheckpointAudio.PlayInterfaceId(page == Page.Landing ? "ui.back" : "ui.open");
@@ -103,6 +104,7 @@ namespace ArcaneBrigade
         private void EnterWeaponSandbox(RunCatalog definition, PlayerProfile readOnlyProfile,
             RunSnapshot readOnlySaved, string weaponId, int tier, bool moving)
         {
+            museum.Close();
             if (CurrentPage != Page.WeaponSandbox) { sandboxReturnPage = CurrentPage; sandboxReturnScroll = scroll; }
             if (sandbox == null) sandbox = gameObject.AddComponent<WeaponSandbox>();
             sandbox.Open(definition, readOnlyProfile, readOnlySaved, weaponId, tier, moving);
@@ -117,7 +119,7 @@ namespace ArcaneBrigade
             pageChangedAt = Time.unscaledTime;
             scroll = sandboxReturnScroll;
         }
-        private void OnDisable() { CloseWeaponSandbox(); }
+        private void OnDisable() { CloseWeaponSandbox(); museum.Close(); }
         public static bool CanResumeSnapshot(RunSnapshot snapshot) => snapshot != null && Enum.IsDefined(typeof(SessionPhase), snapshot.Phase);
         private bool CanResume => CanResumeSnapshot(saved);
 

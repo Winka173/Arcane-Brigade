@@ -26,7 +26,8 @@ namespace ArcaneBrigade
                 foreach (UnitState target in projectileCandidates)
                 {
                     bool interceptor = projectile.Faction == Faction.Enemy && target.Alive && target.Faction == Faction.Companion && catalog.CompanionInterceptor;
-                    if ((!CanHit(projectile.Faction, target) && !interceptor) || projectile.Victims.Contains(target.Id)) continue;
+                    bool blocker = catalog.ExpandedContent && EnemyInteractionRules.CanBlock(projectile, target);
+                    if ((!CanHit(projectile.Faction, target) && !interceptor && !blocker) || projectile.Victims.Contains(target.Id)) continue;
                     float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + projectile.Radius);
                     if (fraction >= 0f && fraction < hitFraction) { hitFraction = fraction; hit = target; }
                 }
@@ -47,6 +48,11 @@ namespace ArcaneBrigade
                 {
                     int previousVictims = projectile.Victims.Count;
                     projectile.Victims.Add(hit.Id);
+                    if (EnemyInteractionRules.CanBlock(projectile, hit))
+                    {
+                        ApplyDamage(hit, Mathf.Min(projectile.Damage * 0.35f, hit.Definition.Health * 0.015f), Faction.Enemy, "Blocked hostile shot", projectile.Velocity.normalized, cause: projectile.Cause.Child("hostile-block"));
+                        return false;
+                    }
                     ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, projectile.Weapon, projectile.Critical, projectile.Cause);
                     OnExpandedProjectileHit(projectile, hit);
                     if (Phase != RunPhase.Combat) return false;

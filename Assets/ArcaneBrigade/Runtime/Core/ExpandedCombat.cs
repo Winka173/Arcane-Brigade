@@ -24,6 +24,7 @@ namespace ArcaneBrigade
         public WeaponDefinition ImpactWeapon;
         public bool Critical;
         public UnitState Anchor;
+        public readonly HashSet<int> CollateralVictims = new HashSet<int>();
     }
 
     public sealed partial class CombatSimulation
@@ -35,7 +36,7 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); }
+        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
@@ -189,6 +190,7 @@ namespace ArcaneBrigade
 
         private void ProcessExpansion(float delta)
         {
+            ProcessDeathReactions();
             ProcessExpandedRelics(); ProcessBossMotif();
             for (int index = fields.Count - 1; index >= 0; index--)
             {
@@ -203,6 +205,7 @@ namespace ArcaneBrigade
                 if (field.Source == null || field.Source.Faction != Faction.Enemy) RecordActivation(field.Cause);
                 if (CarnivalHazards.IsHostile(field.Kind))
                 {
+                    ProcessHostileCollateral(field);
                     if (Champion.Alive && CarnivalHazards.Contains(field, Champion.Position, Champion.Definition.Radius, Elapsed))
                     {
                         ApplyDamage(Champion, Mathf.Min(field.Damage, Champion.Definition.Health * 0.08f), Faction.Enemy, field.Kind.ToString(), cause: field.Cause);

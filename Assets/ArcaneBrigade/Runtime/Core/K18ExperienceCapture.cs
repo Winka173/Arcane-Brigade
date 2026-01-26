@@ -43,6 +43,11 @@ namespace ArcaneBrigade
             var storage = new RunStorage(RunPaths.Root);
             bool reduced = Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k17-reduced") >= 0;
             storage.SaveProfile(new PlayerProfile { ReducedMotion = reduced, ReducedEffects = reduced, ReducedShake = reduced, ReducedFlashes = reduced });
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k19-encounters") >= 0)
+            {
+                yield return K19EncounterCapture.Run(Check, Capture);
+                Check(!failed, "No native runtime errors"); File.WriteAllLines(Path.Combine(root, "CaptureNotes.txt"), notes); Application.Quit(failed ? 1 : 0); yield break;
+            }
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             foreach (int wave in new[] { 5, 7, 9 })
             {

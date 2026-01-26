@@ -41,6 +41,7 @@ namespace ArcaneBrigade
         public float GaitWeight => gaitBlend;
         private float previousGait;
         private float transitionSquash;
+        private EvolutionAdornment adornment;
         public static float BlendGait(float current, float target, float delta)
         {
             return Mathf.Lerp(current, target, 1 - Mathf.Exp(-Mathf.Clamp(delta, 0, 0.05f) * (target > current ? 13 : 9)));
@@ -154,6 +155,7 @@ namespace ArcaneBrigade
 
         public void Bind(UnitState unit, CheckpointCatalog catalog)
         {
+            if (adornment != null) { adornment.Clear(); if (Application.isPlaying) Destroy(adornment); else DestroyImmediate(adornment); adornment = null; }
             state = unit;
             holdUntil = nextHold = 0; celebrateAt = -100;
             lastDisplayTime = 0;
@@ -177,6 +179,10 @@ namespace ArcaneBrigade
             shadowColor = shadow.color;
             hand.sprite = catalog.Hand;
             weapon.sprite = unit.Definition.Weapon.Sprite;
+            if (adornment == null && (unit.Definition.IsBoss || unit.Faction == Faction.Companion && unit.Definition.CombatTier > 1))
+            {
+                adornment = gameObject.AddComponent<EvolutionAdornment>(); adornment.Build(unit, body, weapon);
+            }
             weapon.color = hand.color = Color.white;
             if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.BloomOrb) weapon.color = new Color(0.65f, 1, 0.85f);
             else if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.EchoBlade) weapon.color = new Color(0.65f, 0.8f, 1);
@@ -353,6 +359,7 @@ namespace ArcaneBrigade
             flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true); weapon.SetPropertyBlock(flashProperties);
             DisplayWeakspot(simulationTime, order);
             DisplayTier(order, height);
+            if (adornment != null) adornment.Display(state, simulationTime, order, ReducedMotion);
             if (state.Faction == Faction.Champion && championBeacon == null)
             {
                 championBeacon = CreateSprite("ChampionBeacon", transform); championBeacon.sprite = K8Motion.TierStar();
@@ -415,7 +422,7 @@ namespace ArcaneBrigade
         private void DisplayTier(int order, float height)
         {
             int tier = Mathf.Clamp(state.Definition.CombatTier, 1, 3);
-            bool showCrest = state.Alive && state.Faction == Faction.Companion && tier > 1;
+            bool showCrest = state.Alive && state.Faction == Faction.Companion && tier > 1 && (adornment == null || adornment.PieceCount == 0);
             if (showCrest && tierCrest == null) { tierCrest = CreateSprite("TierChestCrest", transform); tierCrest.sprite = K8Motion.TierStar(); }
             if (tierCrest != null)
             {
@@ -486,6 +493,7 @@ namespace ArcaneBrigade
 
         public void SetTerminalFade(float alpha)
         {
+            if (adornment != null) adornment.Fade(alpha);
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
             if (grounded != null) grounded.Fade(alpha);
             if (groundedWeapon != null) groundedWeapon.Fade(alpha);

@@ -99,6 +99,12 @@ namespace ArcaneBrigade
         public float BodyLift;
         public int StolenCoins;
         public float AbilityFireAt;
+        public float LeftPartDamage;
+        public float RightPartDamage;
+        public float LeftPartBrokenAt = -100;
+        public float RightPartBrokenAt = -100;
+        public bool LeftPartBroken => LeftPartBrokenAt >= 0;
+        public bool RightPartBroken => RightPartBrokenAt >= 0;
     }
 
     public sealed class ProjectileState
@@ -332,6 +338,7 @@ namespace ArcaneBrigade
                 else if (unit.Faction == Faction.Enemy)
                 {
                     MoveEnemy(unit, deltaTime);
+                    SeparateFromHeavyEnemy(unit, deltaTime);
                     unit.Velocity = (unit.Position - unit.PreviousPosition) / deltaTime;
                 }
                 spatial.Move(unit);
@@ -534,7 +541,7 @@ namespace ArcaneBrigade
                 float launchTime = boss.TelegraphUntil;
                 boss.TelegraphUntil = 0f;
                 int pattern = boss.Definition.BossPattern;
-                int count = BossBulletCount(pattern);
+                int count = BossPartRules.BulletCount(boss);
                 if (catalog.ExpandedContent && ResolveBossBodyAttack(boss)) count = 0;
                 for (int index = 0; index < count && projectiles.Count < 4096; index++)
                 {
@@ -771,6 +778,7 @@ namespace ArcaneBrigade
                 if (extra > 0) RecordDamage(cause.Child("office-lens"), extra);
             }
             if (target.Faction == Faction.Champion) { LastDamageSource = string.IsNullOrEmpty(sourceName) ? "Enemy damage" : sourceName; LastDamageAmount = damage; LastDamageKind = element + " / " + (weapon == null ? "Contact / arena" : weapon.Kind.ToString()); }
+            DamageBossPart(target, damage, source, direction, cause);
             target.Health = Mathf.Max(0f, target.Health - damage);
             target.LastHit = Elapsed;
             target.HitDirection = direction;
@@ -785,6 +793,7 @@ namespace ArcaneBrigade
             if (target.Health > 0f) return;
             target.Alive = false;
             target.PendingAttack = false;
+            QueueDeathReaction(target);
             events.Add(new CombatEvent(CombatEventKind.Kill, target.Position, target.Faction, direction: direction, subjectId: target.Id, subject: target, cause: cause));
             if (target.Faction == Faction.Champion) Phase = RunPhase.Defeat;
             else

@@ -391,7 +391,7 @@ namespace ArcaneBrigade
             unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
             if (source.IsBoss) { unit.Health *= CarnivalBalance.BossBulk(State.Wave); unit.BodyHeight *= 1.35f; unit.Radius *= 1.15f; }
-            else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.8f;
+            else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.9f;
             unit.Health *= CarnivalBalance.EnemyHealth(State.Wave);
             unit.Speed *= CarnivalBalance.EnemySpeed(State.Wave);
             float damageGrowth = Mathf.Max(0, State.Wave - 10);
