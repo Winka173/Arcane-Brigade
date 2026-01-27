@@ -1,0 +1,531 @@
+{
+ "id": "shop_gold",
+ "title": "Ka-Ching Swing \u2014 Coins on the Counter",
+ "key": "C major",
+ "bpm": 118,
+ "meter": 4,
+ "swing": 0.11,
+ "identity": "A cheeky honky-tonk pickup, falling chromatic approach notes and a muted-trumpet reply over a walking jazz bass; an eight-bar piano solo opens the till.",
+ "instruments": {
+  "piano": {
+   "program": 3,
+   "stem": "melody",
+   "velocity": 91,
+   "pan": -0.08
+  },
+  "trumpet": {
+   "program": 59,
+   "stem": "melody",
+   "velocity": 86,
+   "pan": 0.16
+  },
+  "bass": {
+   "program": 32,
+   "stem": "base",
+   "velocity": 105
+  },
+  "rhodes": {
+   "program": 4,
+   "stem": "base",
+   "velocity": 51,
+   "pan": -0.18
+  },
+  "guitar": {
+   "program": 24,
+   "stem": "rhythm",
+   "velocity": 66,
+   "pan": 0.25
+  },
+  "coins": {
+   "program": 9,
+   "stem": "intensity",
+   "velocity": 68,
+   "pan": 0.28
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "brush": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "counter": [
+   "C6",
+   "A7",
+   "Dm9",
+   "G13",
+   "Em7",
+   "A7",
+   "Dm7",
+   "G9"
+  ],
+  "window": [
+   "Fmaj7",
+   "Fm6",
+   "Cmaj7/E",
+   "A7b9",
+   "Dm9",
+   "G9",
+   "C6",
+   "G7"
+  ],
+  "till": [
+   "C6",
+   "C#dim7",
+   "Dm7",
+   "G9"
+  ]
+ },
+ "bass": {
+  "walk": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.7,
+      99
+     ],
+     [
+      1,
+      "chord:1",
+      0.65,
+      86
+     ],
+     [
+      2,
+      7,
+      0.65,
+      91
+     ],
+     [
+      3,
+      9,
+      0.65,
+      82
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.65,
+      101
+     ],
+     [
+      1,
+      7,
+      0.7,
+      91
+     ],
+     [
+      2,
+      10,
+      0.65,
+      85
+     ],
+     [
+      3,
+      11,
+      0.6,
+      82
+     ]
+    ]
+   ]
+  },
+  "bounce": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.8,
+      98
+     ],
+     [
+      1.5,
+      7,
+      0.4,
+      85
+     ],
+     [
+      2,
+      12,
+      0.7,
+      96
+     ],
+     [
+      3.5,
+      7,
+      0.3,
+      86
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.8,
+      99
+     ],
+     [
+      1,
+      "chord:1",
+      0.65,
+      86
+     ],
+     [
+      2,
+      7,
+      0.75,
+      92
+     ],
+     [
+      3,
+      6,
+      0.65,
+      80
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "jazz": {
+   "instrument": "rhodes",
+   "octave": 3,
+   "voicing": [
+    1,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0.5,
+      0.75,
+      54
+     ],
+     [
+      2.75,
+      0.5,
+      57
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      51
+     ],
+     [
+      3.25,
+      0.45,
+      58
+     ]
+    ]
+   ]
+  },
+  "four": {
+   "instrument": "guitar",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.18,
+      56
+     ],
+     [
+      1,
+      0.18,
+      62
+     ],
+     [
+      2,
+      0.18,
+      55
+     ],
+     [
+      3,
+      0.18,
+      67
+     ]
+    ]
+   ]
+  },
+  "coin": {
+   "instrument": "coins",
+   "octave": 4,
+   "voicing": [
+    1,
+    2
+   ],
+   "grid": [
+    [],
+    [],
+    [],
+    [
+     [
+      3.25,
+      0.2,
+      66
+     ],
+     [
+      3.75,
+      0.2,
+      72
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "shuffle": {
+   "kick": {
+    "note": 36,
+    "velocity": 76,
+    "patterns": [
+     "X.......x.......",
+     "X.....x.X......."
+    ]
+   },
+   "snare": {
+    "note": 37,
+    "velocity": 75,
+    "patterns": [
+     "....X.......X...",
+     "....X..o....X..."
+    ]
+   },
+   "brush": {
+    "note": 51,
+    "velocity": 47,
+    "patterns": [
+     "X...X.x.X...X.x.",
+     "X.x.X...X.x.X..."
+    ]
+   }
+  },
+  "solo": {
+   "kick": {
+    "note": 36,
+    "velocity": 80,
+    "patterns": [
+     "X.......X.....x."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 63,
+    "patterns": [
+     "....x.......X.o.",
+     "....X..o....x..."
+    ]
+   },
+   "brush": {
+    "note": 42,
+    "velocity": 42,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   }
+  }
+ },
+ "objects": {
+  "drawer": {
+   "material": "wood",
+   "duration": 0.055,
+   "pan": 0.25,
+   "grid": [
+    [],
+    [
+     [
+      3.75,
+      0.022
+     ]
+    ],
+    [],
+    [
+     [
+      0,
+      0.025
+     ]
+    ]
+   ]
+  }
+ },
+ "phrases": {
+  "hook": [
+   "r:0.5 G4:0.25 A4:0.25 C5:0.75 E5:0.25 D5:0.5 C5:0.5 A4:1",
+   "C#5:0.5 E5:0.25 G5:0.25 A5:0.75 G5:0.25 E5:0.5 C#5:0.5 A4:0.5 r:0.5",
+   "F5:0.75 E5:0.25 D5:0.5 A4:0.5 C5:0.5 D5:0.5 F5:0.5 r:0.5",
+   "B4:0.25 Bb4:0.25 A4:0.5 G4:0.75 D5:0.25 F5:0.5 E5:0.5 D5:1",
+   "G5:0.5 E5:0.5 D5:0.5 B4:0.5 E5:0.75 G5:0.25 B5:1",
+   "A5:0.75 G5:0.25 E5:0.5 C#5:0.5 B4:0.5 A4:0.5 G4:0.5 r:0.5",
+   "D5:0.5 F5:0.5 A5:0.75 G5:0.25 F5:0.5 E5:0.5 D5:1",
+   "F5:0.5 E5:0.25 D5:0.25 B4:0.5 G4:0.5 A4:0.75 B4:0.25 D5:0.5 r:0.5"
+  ],
+  "reply": [
+   "E5:0.75 G5:0.25 A5:1 G5:0.5 E5:0.5 C5:0.5 r:0.5",
+   "G5:0.75 E5:0.25 C#5:1 E5:0.5 G5:0.5 A5:1",
+   "A5:0.5 F5:0.5 E5:0.75 D5:0.25 C5:1 A4:1",
+   "B4:0.5 D5:0.5 F5:0.5 G5:0.5 A5:0.75 G5:0.25 F5:0.5 r:0.5",
+   "B5:0.5 G5:0.5 E5:0.75 D5:0.25 B4:1 G4:1",
+   "C#5:0.5 E5:0.5 G5:0.75 Bb5:0.25 A5:1 G5:1",
+   "F5:0.5 A5:0.5 C6:0.75 A5:0.25 F5:0.5 E5:0.5 D5:1",
+   "B4:0.5 D5:0.5 F5:0.75 A5:0.25 G5:1 r:1"
+  ],
+  "solo": [
+   "A4:0.25 C5:0.25 E5:0.5 G5:0.75 A5:0.25 C6:0.5 A5:0.5 G5:0.5 E5:0.5",
+   "Ab5:0.5 F5:0.25 D5:0.25 C5:0.75 Ab4:0.25 C5:0.5 D5:0.5 F5:1",
+   "G4:0.5 B4:0.25 D5:0.25 E5:0.5 G5:0.5 B5:0.75 A5:0.25 G5:1",
+   "Bb5:0.25 A5:0.25 G5:0.5 E5:0.5 C#5:0.5 Bb4:0.5 A4:0.5 E5:0.5 r:0.5",
+   "A4:0.25 D5:0.25 F5:0.5 A5:0.75 C6:0.25 A5:0.5 F5:0.5 D5:1",
+   "B4:0.5 D5:0.25 F5:0.25 A5:0.75 G5:0.25 F5:0.5 D5:0.5 B4:1",
+   "G4:0.5 C5:0.25 E5:0.25 A5:0.75 G5:0.25 E5:0.5 C5:0.5 A4:1",
+   "B4:0.25 D5:0.25 F5:0.5 G5:0.75 F5:0.25 D5:1 r:1"
+  ],
+  "coin": [
+   "r:3 C6:0.25 E6:0.25 G6:0.5",
+   "r:4",
+   "r:3 A5:0.25 C6:0.25 F6:0.5",
+   "r:4"
+  ]
+ },
+ "form": [
+  {
+   "name": "Coins on the counter",
+   "bars": 8,
+   "harmony": "counter",
+   "bass": "walk",
+   "comp": [
+    "jazz",
+    "four"
+   ],
+   "drums": "shuffle",
+   "lines": [
+    {
+     "instrument": "piano",
+     "phrase": "hook",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Merchant answers",
+   "bars": 8,
+   "harmony": "counter",
+   "bass": "walk",
+   "comp": [
+    "jazz",
+    "coin"
+   ],
+   "drums": "shuffle",
+   "objects": [
+    "drawer"
+   ],
+   "lines": [
+    {
+     "instrument": "trumpet",
+     "phrase": "reply",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Window-shopping solo",
+   "bars": 8,
+   "harmony": "window",
+   "bass": "bounce",
+   "comp": [
+    "four"
+   ],
+   "drums": "solo",
+   "lines": [
+    {
+     "instrument": "piano",
+     "phrase": "solo",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "A particularly good deal",
+   "bars": 8,
+   "harmony": "counter",
+   "bass": "walk",
+   "comp": [
+    "jazz",
+    "four",
+    "coin"
+   ],
+   "drums": "shuffle",
+   "lines": [
+    {
+     "instrument": "piano",
+     "phrase": "hook",
+     "primary": true
+    },
+    {
+     "instrument": "coins",
+     "phrase": "coin",
+     "velocity": 65
+    }
+   ]
+  },
+  {
+   "name": "Close and reopen the till",
+   "bars": 4,
+   "harmony": "till",
+   "bass": "bounce",
+   "comp": [
+    "four"
+   ],
+   "drums": "solo",
+   "objects": [
+    "drawer"
+   ],
+   "lines": [
+    {
+     "instrument": "trumpet",
+     "phrase": "reply",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -24.8,
+   "rhythm": -25.2,
+   "melody": -22.4,
+   "intensity": -32
+  },
+  "reverb": {
+   "base": 0.05,
+   "rhythm": 0.015,
+   "melody": 0.07,
+   "intensity": 0.1
+  },
+  "room": 0.48,
+  "lowpass": 11900
+ }
+}

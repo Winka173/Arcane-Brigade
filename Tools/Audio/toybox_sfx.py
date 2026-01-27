@@ -1,4 +1,6 @@
-"""Object-led redesign of every cue, plus all 53 requested additions.
+"""Historical v3 renderer. Current production is render_foley.py / SfxDesigns.json.
+
+Object-led redesign of every cue, plus all 53 requested additions.
 
 Existing event lengths and animation landing offsets are preserved. Frequent
 sounds use small dry resonators; rewards use sampled toy instruments. Synthetic

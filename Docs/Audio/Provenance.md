@@ -2,6 +2,10 @@
 
 ## Hiện tại: Midnight Toybox Band, 2026-10-15
 
+Music revision 4 thay toàn bộ 15 bài bằng các bản soạn độc lập trong `Tools/Audio/Scores/`; không dùng khuôn motif/hòa âm/bridge của revision trước. Nhạc runtime gồm 60 stem mới. [Thiết kế từng bài](Toybox_Individual_Compositions.md) và báo cáo `PreviewExports/Audio/Toybox/Composition_Audit.json` mô tả phạm vi đối chiếu bản phổ.
+
+Foley revision 5 tiếp tục thay **582/582 clip ngoài nhạc** bằng tổng hợp nguyên gốc trong `foley_engine.py`, từ 206 thiết kế trong `Tools/Audio/SfxDesigns.json`. Không dùng sample, soundfont, đầu vào studio hay cách dựng SFX v3. Giọng là âm thanh tổng hợp không lời, không phải bản thu của người thật. Nguồn/hash thiết kế và renderer được ghi cho từng WAV trong manifest; chi tiết ở [Toybox_Foley_Designs.md](Toybox_Foley_Designs.md). Nhạc vẫn dùng GeneralUser GS như mô tả bên dưới.
+
 Thư viện đang dùng đã được thay bằng 582 clip SFX/voice/ambience và 60 stem của 15 bản Toybox. Nhạc gốc được soạn/render bằng code với sample instruments **GeneralUser GS 2.0.3** cùng object synthesis; không dùng các file studio trong repo. Chi tiết nguồn, license, giới hạn, pipeline và kiểm tra: [Toybox_Delivery.md](Toybox_Delivery.md). Provenance/SHA-256 từng file: [Toybox_Asset_Manifest.json](Toybox_Asset_Manifest.json). Toàn văn license sample: [GeneralUser-GS-LICENSE.txt](ThirdParty/GeneralUser-GS-LICENSE.txt).
 
 Các tuyên bố bên dưới chỉ mô tả bộ cũ v2; không áp dụng cho audio Toybox có sample bên thứ ba.

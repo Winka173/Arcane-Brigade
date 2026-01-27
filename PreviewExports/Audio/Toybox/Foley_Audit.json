@@ -1,0 +1,760 @@
+{
+  "status": "PASS",
+  "revision": 5,
+  "changedPreviousToyboxClips": 582,
+  "framesPreserved": 582,
+  "designCount": 206,
+  "designFileSha256": "5435ad0f5d88bc2180c0bccb23ff8edd095a0a49c55b3ac65a0cc8fd811737c9",
+  "failures": [],
+  "variations": [
+    {
+      "cue": "cmb.swing.blade",
+      "maximumAbsoluteWaveformCorrelation": 0.11760353049354072
+    },
+    {
+      "cue": "cmb.swing.spear",
+      "maximumAbsoluteWaveformCorrelation": 0.04026593647415537
+    },
+    {
+      "cue": "cmb.swing.hammer",
+      "maximumAbsoluteWaveformCorrelation": 0.06341307534124785
+    },
+    {
+      "cue": "cmb.swing.scissors",
+      "maximumAbsoluteWaveformCorrelation": 0.5855167805059631
+    },
+    {
+      "cue": "cmb.swing.umbrella",
+      "maximumAbsoluteWaveformCorrelation": 0.19233698963772428
+    },
+    {
+      "cue": "cmb.swing.whip",
+      "maximumAbsoluteWaveformCorrelation": 0.08984337864387053
+    },
+    {
+      "cue": "cmb.windup",
+      "maximumAbsoluteWaveformCorrelation": 0.7542908106765082
+    },
+    {
+      "cue": "cmb.miss",
+      "maximumAbsoluteWaveformCorrelation": 0.13176548611417252
+    },
+    {
+      "cue": "cmb.hit.paper",
+      "maximumAbsoluteWaveformCorrelation": 0.7462390953234457
+    },
+    {
+      "cue": "enemy.die.paper",
+      "maximumAbsoluteWaveformCorrelation": 0.6667051436833137
+    },
+    {
+      "cue": "cmb.hit.metal",
+      "maximumAbsoluteWaveformCorrelation": 0.9505225821768489
+    },
+    {
+      "cue": "enemy.die.metal",
+      "maximumAbsoluteWaveformCorrelation": 0.36115468536360057
+    },
+    {
+      "cue": "cmb.hit.wax",
+      "maximumAbsoluteWaveformCorrelation": 0.8782180314532053
+    },
+    {
+      "cue": "enemy.die.wax",
+      "maximumAbsoluteWaveformCorrelation": 0.6564782541219825
+    },
+    {
+      "cue": "cmb.hit.fabric",
+      "maximumAbsoluteWaveformCorrelation": 0.9726916141081189
+    },
+    {
+      "cue": "enemy.die.fabric",
+      "maximumAbsoluteWaveformCorrelation": 0.6736212173996008
+    },
+    {
+      "cue": "cmb.hit.glass",
+      "maximumAbsoluteWaveformCorrelation": 0.7898052281037149
+    },
+    {
+      "cue": "enemy.die.glass",
+      "maximumAbsoluteWaveformCorrelation": 0.060396129276101246
+    },
+    {
+      "cue": "cmb.hit.wood",
+      "maximumAbsoluteWaveformCorrelation": 0.9614486364074628
+    },
+    {
+      "cue": "enemy.die.wood",
+      "maximumAbsoluteWaveformCorrelation": 0.5293315943240066
+    },
+    {
+      "cue": "cmb.crit",
+      "maximumAbsoluteWaveformCorrelation": 0.5706614395242828
+    },
+    {
+      "cue": "wpn.bow.draw",
+      "maximumAbsoluteWaveformCorrelation": 0.6222167159614445
+    },
+    {
+      "cue": "wpn.bow.release",
+      "maximumAbsoluteWaveformCorrelation": 0.02997410961471696
+    },
+    {
+      "cue": "wpn.gun.pop",
+      "maximumAbsoluteWaveformCorrelation": 0.9643730804916593
+    },
+    {
+      "cue": "wpn.launcher",
+      "maximumAbsoluteWaveformCorrelation": 0.8345316039366661
+    },
+    {
+      "cue": "wpn.cast.fire",
+      "maximumAbsoluteWaveformCorrelation": 0.7185937226202674
+    },
+    {
+      "cue": "wpn.cast.ice",
+      "maximumAbsoluteWaveformCorrelation": 0.07082180533253234
+    },
+    {
+      "cue": "wpn.cast.arcane",
+      "maximumAbsoluteWaveformCorrelation": 0.06031202721161108
+    },
+    {
+      "cue": "wpn.boomerang.fly",
+      "maximumAbsoluteWaveformCorrelation": 0.016595881035830075
+    },
+    {
+      "cue": "wpn.boomerang.return",
+      "maximumAbsoluteWaveformCorrelation": 0.7140051222186738
+    },
+    {
+      "cue": "wpn.pierce",
+      "maximumAbsoluteWaveformCorrelation": 0.11336349525211345
+    },
+    {
+      "cue": "wpn.split",
+      "maximumAbsoluteWaveformCorrelation": 0.3163799490759269
+    },
+    {
+      "cue": "wpn.bounce",
+      "maximumAbsoluteWaveformCorrelation": 0.621807054786172
+    },
+    {
+      "cue": "sig.bell",
+      "maximumAbsoluteWaveformCorrelation": 0.008886753039762081
+    },
+    {
+      "cue": "sig.umbrella",
+      "maximumAbsoluteWaveformCorrelation": 0.3719315796293711
+    },
+    {
+      "cue": "sig.stamp",
+      "maximumAbsoluteWaveformCorrelation": 0.662280532843844
+    },
+    {
+      "cue": "sig.scissors",
+      "maximumAbsoluteWaveformCorrelation": 0.5355265765813403
+    },
+    {
+      "cue": "sig.camera",
+      "maximumAbsoluteWaveformCorrelation": 0.921691849044927
+    },
+    {
+      "cue": "sig.musicbox",
+      "maximumAbsoluteWaveformCorrelation": 0.022044841001014462
+    },
+    {
+      "cue": "sig.tea",
+      "maximumAbsoluteWaveformCorrelation": 0.03168621807832695
+    },
+    {
+      "cue": "sig.fish",
+      "maximumAbsoluteWaveformCorrelation": 0.7008051788647506
+    },
+    {
+      "cue": "sig.alarm",
+      "maximumAbsoluteWaveformCorrelation": 0.18188955838066034
+    },
+    {
+      "cue": "sig.iron",
+      "maximumAbsoluteWaveformCorrelation": 0.2148711002694091
+    },
+    {
+      "cue": "sig.hammer",
+      "maximumAbsoluteWaveformCorrelation": 0.93532862736607
+    },
+    {
+      "cue": "fx.burn",
+      "maximumAbsoluteWaveformCorrelation": 0.13540637910565656
+    },
+    {
+      "cue": "fx.chill",
+      "maximumAbsoluteWaveformCorrelation": 0.07997971100363756
+    },
+    {
+      "cue": "fx.knockback",
+      "maximumAbsoluteWaveformCorrelation": 0.9373633419492451
+    },
+    {
+      "cue": "fx.reaction.steam",
+      "maximumAbsoluteWaveformCorrelation": 0.018079841855199872
+    },
+    {
+      "cue": "fx.reaction.shatter",
+      "maximumAbsoluteWaveformCorrelation": 0.04095749595055331
+    },
+    {
+      "cue": "fx.reaction.arcane",
+      "maximumAbsoluteWaveformCorrelation": 0.0020709392218114142
+    },
+    {
+      "cue": "chr.step",
+      "maximumAbsoluteWaveformCorrelation": 0.9847328061545101
+    },
+    {
+      "cue": "chr.dash",
+      "maximumAbsoluteWaveformCorrelation": 0.24356185588962093
+    },
+    {
+      "cue": "chr.jump",
+      "maximumAbsoluteWaveformCorrelation": 0.3986440887815507
+    },
+    {
+      "cue": "chr.land",
+      "maximumAbsoluteWaveformCorrelation": 0.9043764684435796
+    },
+    {
+      "cue": "plr.dodge",
+      "maximumAbsoluteWaveformCorrelation": 0.014824679561835013
+    },
+    {
+      "cue": "plr.hurt",
+      "maximumAbsoluteWaveformCorrelation": 0.9932944248433335
+    },
+    {
+      "cue": "plr.lowhp",
+      "maximumAbsoluteWaveformCorrelation": 0.8435545637884764
+    },
+    {
+      "cue": "plr.heal",
+      "maximumAbsoluteWaveformCorrelation": 0.2713355388819582
+    },
+    {
+      "cue": "plr.death",
+      "maximumAbsoluteWaveformCorrelation": 0.8190208242496696
+    },
+    {
+      "cue": "enemy.spit.windup",
+      "maximumAbsoluteWaveformCorrelation": 0.6642193144706937
+    },
+    {
+      "cue": "enemy.spit.fire",
+      "maximumAbsoluteWaveformCorrelation": 0.29679400040286485
+    },
+    {
+      "cue": "enemy.lunge",
+      "maximumAbsoluteWaveformCorrelation": 0.12892900497779206
+    },
+    {
+      "cue": "enemy.hurt",
+      "maximumAbsoluteWaveformCorrelation": 0.2181249273940495
+    },
+    {
+      "cue": "enemy.big.step",
+      "maximumAbsoluteWaveformCorrelation": 0.7701770576259194
+    },
+    {
+      "cue": "enemy.big.roar",
+      "maximumAbsoluteWaveformCorrelation": 0.1578579911079729
+    },
+    {
+      "cue": "enemy.die.large",
+      "maximumAbsoluteWaveformCorrelation": 0.8539103636005331
+    },
+    {
+      "cue": "boss.enter",
+      "maximumAbsoluteWaveformCorrelation": 0.26264219530856836
+    },
+    {
+      "cue": "boss.telegraph",
+      "maximumAbsoluteWaveformCorrelation": 0.5780805847755413
+    },
+    {
+      "cue": "boss.attack",
+      "maximumAbsoluteWaveformCorrelation": 0.9386688918671884
+    },
+    {
+      "cue": "boss.phase",
+      "maximumAbsoluteWaveformCorrelation": 0.8790677768569152
+    },
+    {
+      "cue": "boss.defeat",
+      "maximumAbsoluteWaveformCorrelation": 0.16827209505677448
+    },
+    {
+      "cue": "sig.alarm.boom",
+      "maximumAbsoluteWaveformCorrelation": 0.6683504228379992
+    },
+    {
+      "cue": "fx.field.zipper",
+      "maximumAbsoluteWaveformCorrelation": 0.20803632294645816
+    },
+    {
+      "cue": "fx.hazard.warn",
+      "maximumAbsoluteWaveformCorrelation": 0.33850900978968523
+    },
+    {
+      "cue": "fx.hazard.hit",
+      "maximumAbsoluteWaveformCorrelation": 0.7829909428590426
+    },
+    {
+      "cue": "enemy.mimic.wake",
+      "maximumAbsoluteWaveformCorrelation": 0.8546894323800835
+    },
+    {
+      "cue": "hero.pulse.ember",
+      "maximumAbsoluteWaveformCorrelation": 0.017681902665694787
+    },
+    {
+      "cue": "hero.pulse.frost",
+      "maximumAbsoluteWaveformCorrelation": 0.0026933263478727413
+    },
+    {
+      "cue": "ui.locked",
+      "maximumAbsoluteWaveformCorrelation": 0.3037559407292574
+    },
+    {
+      "cue": "ui.error",
+      "maximumAbsoluteWaveformCorrelation": 0.20156594553652665
+    },
+    {
+      "cue": "loot.coin.drop",
+      "maximumAbsoluteWaveformCorrelation": 0.09245822530483137
+    },
+    {
+      "cue": "loot.coin.bounce",
+      "maximumAbsoluteWaveformCorrelation": 0.8715335997533415
+    },
+    {
+      "cue": "loot.coin.vacuum",
+      "maximumAbsoluteWaveformCorrelation": 0.07767311257300846
+    },
+    {
+      "cue": "loot.coin.pickup",
+      "maximumAbsoluteWaveformCorrelation": 0.006506529945363998
+    },
+    {
+      "cue": "loot.egg",
+      "maximumAbsoluteWaveformCorrelation": 0.047838976603608606
+    },
+    {
+      "cue": "loot.heart",
+      "maximumAbsoluteWaveformCorrelation": 0.288192989386405
+    },
+    {
+      "cue": "loot.chest.appear",
+      "maximumAbsoluteWaveformCorrelation": 0.1272519716658728
+    },
+    {
+      "cue": "loot.chest.open",
+      "maximumAbsoluteWaveformCorrelation": 0.13156165249214707
+    },
+    {
+      "cue": "up.merge",
+      "maximumAbsoluteWaveformCorrelation": 0.11682844542925243
+    },
+    {
+      "cue": "up.merge.gather",
+      "maximumAbsoluteWaveformCorrelation": 0.04329606012968894
+    },
+    {
+      "cue": "up.star2",
+      "maximumAbsoluteWaveformCorrelation": 0.020090543135931085
+    },
+    {
+      "cue": "up.star3",
+      "maximumAbsoluteWaveformCorrelation": 0.11932404093634238
+    },
+    {
+      "cue": "up.ally.land",
+      "maximumAbsoluteWaveformCorrelation": 0.9094527592694427
+    },
+    {
+      "cue": "up.bond.t1",
+      "maximumAbsoluteWaveformCorrelation": 0.020308170308360973
+    },
+    {
+      "cue": "up.bond.t2",
+      "maximumAbsoluteWaveformCorrelation": 0.02988593934080242
+    },
+    {
+      "cue": "up.chain",
+      "maximumAbsoluteWaveformCorrelation": 0.06099091195977765
+    },
+    {
+      "cue": "up.rarity.blue",
+      "maximumAbsoluteWaveformCorrelation": 0.03204377525319615
+    },
+    {
+      "cue": "up.rarity.purple",
+      "maximumAbsoluteWaveformCorrelation": 0.08702318512832781
+    },
+    {
+      "cue": "up.rarity.gold",
+      "maximumAbsoluteWaveformCorrelation": 0.07253020066851766
+    },
+    {
+      "cue": "shop.keeper.enter.gold",
+      "maximumAbsoluteWaveformCorrelation": 0.41598331021199597
+    },
+    {
+      "cue": "shop.keeper.enter.dream",
+      "maximumAbsoluteWaveformCorrelation": 0.6381319810159184
+    },
+    {
+      "cue": "shop.keeper.exit.gold",
+      "maximumAbsoluteWaveformCorrelation": 0.03538731764302129
+    },
+    {
+      "cue": "shop.keeper.exit.dream",
+      "maximumAbsoluteWaveformCorrelation": 0.05658719336717796
+    },
+    {
+      "cue": "shop.carpet.open",
+      "maximumAbsoluteWaveformCorrelation": 0.6438302711099826
+    },
+    {
+      "cue": "shop.carpet.roll",
+      "maximumAbsoluteWaveformCorrelation": 0.15744950355841655
+    },
+    {
+      "cue": "shop.stand.appear",
+      "maximumAbsoluteWaveformCorrelation": 0.940242759417776
+    },
+    {
+      "cue": "shop.item.pop",
+      "maximumAbsoluteWaveformCorrelation": 0.7901786915194053
+    },
+    {
+      "cue": "shop.approach",
+      "maximumAbsoluteWaveformCorrelation": 0.007762023390718271
+    },
+    {
+      "cue": "shop.focus",
+      "maximumAbsoluteWaveformCorrelation": 0.8080168635925268
+    },
+    {
+      "cue": "shop.buy.gold",
+      "maximumAbsoluteWaveformCorrelation": 0.5736265462117917
+    },
+    {
+      "cue": "shop.buy.dream",
+      "maximumAbsoluteWaveformCorrelation": 0.004828566190732597
+    },
+    {
+      "cue": "shop.deny.gold",
+      "maximumAbsoluteWaveformCorrelation": 0.1394712032891735
+    },
+    {
+      "cue": "shop.deny.egg",
+      "maximumAbsoluteWaveformCorrelation": 0.15079304758865367
+    },
+    {
+      "cue": "shop.deny.hp",
+      "maximumAbsoluteWaveformCorrelation": 0.16426919794436798
+    },
+    {
+      "cue": "shop.invalid",
+      "maximumAbsoluteWaveformCorrelation": 0.561699493144028
+    },
+    {
+      "cue": "shop.reroll",
+      "maximumAbsoluteWaveformCorrelation": 0.11582633187088963
+    },
+    {
+      "cue": "shop.fusion",
+      "maximumAbsoluteWaveformCorrelation": 0.0018881361126742737
+    },
+    {
+      "cue": "shop.descend",
+      "maximumAbsoluteWaveformCorrelation": 0.6589575737620303
+    },
+    {
+      "cue": "ui.hover",
+      "maximumAbsoluteWaveformCorrelation": 0.8958893654739956
+    },
+    {
+      "cue": "ui.select",
+      "maximumAbsoluteWaveformCorrelation": 0.38520809291459945
+    },
+    {
+      "cue": "ui.confirm",
+      "maximumAbsoluteWaveformCorrelation": 0.030821571719562343
+    },
+    {
+      "cue": "ui.back",
+      "maximumAbsoluteWaveformCorrelation": 0.28975635192722515
+    },
+    {
+      "cue": "ui.open",
+      "maximumAbsoluteWaveformCorrelation": 0.02146791720647225
+    },
+    {
+      "cue": "ui.close",
+      "maximumAbsoluteWaveformCorrelation": 0.3837552388388701
+    },
+    {
+      "cue": "ui.page",
+      "maximumAbsoluteWaveformCorrelation": 0.295833021255196
+    },
+    {
+      "cue": "ui.tooltip",
+      "maximumAbsoluteWaveformCorrelation": 0.6110429878791585
+    },
+    {
+      "cue": "ui.tab",
+      "maximumAbsoluteWaveformCorrelation": 0.2735642917493106
+    },
+    {
+      "cue": "ui.setting",
+      "maximumAbsoluteWaveformCorrelation": 0.9072178615203118
+    },
+    {
+      "cue": "ui.unlock",
+      "maximumAbsoluteWaveformCorrelation": 0.012892615095776234
+    },
+    {
+      "cue": "ui.achievement",
+      "maximumAbsoluteWaveformCorrelation": 0.1337749131046228
+    },
+    {
+      "cue": "ui.receipt",
+      "maximumAbsoluteWaveformCorrelation": 0.1488439884341532
+    },
+    {
+      "cue": "sting.waveclear",
+      "maximumAbsoluteWaveformCorrelation": 0.02051728952517114
+    },
+    {
+      "cue": "amb.transition",
+      "maximumAbsoluteWaveformCorrelation": 0.02474311721599937
+    },
+    {
+      "cue": "voice.gold.syl",
+      "maximumAbsoluteWaveformCorrelation": 0.7543198270385123
+    },
+    {
+      "cue": "voice.gold.laugh",
+      "maximumAbsoluteWaveformCorrelation": 0.1426984861301318
+    },
+    {
+      "cue": "voice.gold.hmm",
+      "maximumAbsoluteWaveformCorrelation": 0.03736061380128004
+    },
+    {
+      "cue": "voice.gold.gasp",
+      "maximumAbsoluteWaveformCorrelation": 0.0031258583928376483
+    },
+    {
+      "cue": "voice.gold.farewell",
+      "maximumAbsoluteWaveformCorrelation": 0.00821098118579241
+    },
+    {
+      "cue": "voice.dream.syl",
+      "maximumAbsoluteWaveformCorrelation": 0.6300902972352106
+    },
+    {
+      "cue": "voice.dream.laugh",
+      "maximumAbsoluteWaveformCorrelation": 0.03453267384465868
+    },
+    {
+      "cue": "voice.dream.hmm",
+      "maximumAbsoluteWaveformCorrelation": 0.007264944441807843
+    },
+    {
+      "cue": "voice.dream.gasp",
+      "maximumAbsoluteWaveformCorrelation": 0.022486744634431077
+    },
+    {
+      "cue": "voice.dream.farewell",
+      "maximumAbsoluteWaveformCorrelation": 0.03410733038769052
+    },
+    {
+      "cue": "ui.cutin.boss",
+      "maximumAbsoluteWaveformCorrelation": 0.8002919454372545
+    },
+    {
+      "cue": "ui.cutin.showstopper",
+      "maximumAbsoluteWaveformCorrelation": 0.018242684831509842
+    },
+    {
+      "cue": "ui.cutin.encore",
+      "maximumAbsoluteWaveformCorrelation": 0.04047596784809777
+    },
+    {
+      "cue": "ui.cutin.bond",
+      "maximumAbsoluteWaveformCorrelation": 0.04469125017630712
+    },
+    {
+      "cue": "ui.wave.stamp",
+      "maximumAbsoluteWaveformCorrelation": 0.6050646082146053
+    },
+    {
+      "cue": "shop.ticket.sold",
+      "maximumAbsoluteWaveformCorrelation": 0.6250918747832882
+    },
+    {
+      "cue": "shop.ticket.sway",
+      "maximumAbsoluteWaveformCorrelation": 0.04055017284074261
+    },
+    {
+      "cue": "ui.coach.pop",
+      "maximumAbsoluteWaveformCorrelation": 0.8118143483093936
+    },
+    {
+      "cue": "menu.spot.hero",
+      "maximumAbsoluteWaveformCorrelation": 0.056369803628846867
+    },
+    {
+      "cue": "menu.spot.door",
+      "maximumAbsoluteWaveformCorrelation": 0.2969272019832314
+    },
+    {
+      "cue": "menu.spot.jar",
+      "maximumAbsoluteWaveformCorrelation": 0.02026742847925224
+    },
+    {
+      "cue": "menu.spot.printer",
+      "maximumAbsoluteWaveformCorrelation": 0.2530139761604219
+    },
+    {
+      "cue": "menu.spot.lamp",
+      "maximumAbsoluteWaveformCorrelation": 0.2266169776370292
+    },
+    {
+      "cue": "menu.spot.bell",
+      "maximumAbsoluteWaveformCorrelation": 0.10668775451573423
+    },
+    {
+      "cue": "wpn.yoyo.throw",
+      "maximumAbsoluteWaveformCorrelation": 0.26503119799025876
+    },
+    {
+      "cue": "wpn.yoyo.return",
+      "maximumAbsoluteWaveformCorrelation": 0.17043970316526136
+    },
+    {
+      "cue": "wpn.magnet.pull",
+      "maximumAbsoluteWaveformCorrelation": 0.269572759391312
+    },
+    {
+      "cue": "wpn.needle.volley",
+      "maximumAbsoluteWaveformCorrelation": 0.3253449907159738
+    },
+    {
+      "cue": "wpn.spring.slam",
+      "maximumAbsoluteWaveformCorrelation": 0.7513584919931833
+    },
+    {
+      "cue": "wpn.projector.cast",
+      "maximumAbsoluteWaveformCorrelation": 0.5653115080034273
+    },
+    {
+      "cue": "wpn.ribbon.cut",
+      "maximumAbsoluteWaveformCorrelation": 0.15469729313992467
+    },
+    {
+      "cue": "ui.encore.ready",
+      "maximumAbsoluteWaveformCorrelation": 0.02724217908454074
+    },
+    {
+      "cue": "hero.lantern.stride",
+      "maximumAbsoluteWaveformCorrelation": 0.20996138992924646
+    },
+    {
+      "cue": "hero.parcel.express",
+      "maximumAbsoluteWaveformCorrelation": 0.31615672138361484
+    },
+    {
+      "cue": "hero.dream.breath",
+      "maximumAbsoluteWaveformCorrelation": 0.002700927759757173
+    },
+    {
+      "cue": "hero.rooted.oracle",
+      "maximumAbsoluteWaveformCorrelation": 0.00028778691634574684
+    },
+    {
+      "cue": "hero.solo.maw",
+      "maximumAbsoluteWaveformCorrelation": 0.49426361923739914
+    },
+    {
+      "cue": "hero.glass.gambler",
+      "maximumAbsoluteWaveformCorrelation": 0.021265260583538916
+    },
+    {
+      "cue": "hero.tide.collector",
+      "maximumAbsoluteWaveformCorrelation": 0.01658729018440183
+    },
+    {
+      "cue": "hero.clock.runner",
+      "maximumAbsoluteWaveformCorrelation": 0.18259040793664136
+    },
+    {
+      "cue": "hero.mirror.guard",
+      "maximumAbsoluteWaveformCorrelation": 0.00032697621405944805
+    },
+    {
+      "cue": "hero.treasure.tax",
+      "maximumAbsoluteWaveformCorrelation": 0.13064719609675884
+    },
+    {
+      "cue": "hero.charge.ready",
+      "maximumAbsoluteWaveformCorrelation": 0.011585547744428113
+    },
+    {
+      "cue": "event.warn",
+      "maximumAbsoluteWaveformCorrelation": 0.8147894909864003
+    },
+    {
+      "cue": "event.parade.start",
+      "maximumAbsoluteWaveformCorrelation": 0.27307955104874254
+    },
+    {
+      "cue": "event.trap.start",
+      "maximumAbsoluteWaveformCorrelation": 0.16452502798090704
+    },
+    {
+      "cue": "event.eclipse.start",
+      "maximumAbsoluteWaveformCorrelation": 0.32496891126186855
+    },
+    {
+      "cue": "event.reward",
+      "maximumAbsoluteWaveformCorrelation": 0.0873676746743011
+    },
+    {
+      "cue": "event.end",
+      "maximumAbsoluteWaveformCorrelation": 0.012346351577575382
+    },
+    {
+      "cue": "enemy.shot.arc",
+      "maximumAbsoluteWaveformCorrelation": 0.9244298405245208
+    },
+    {
+      "cue": "enemy.shot.spiral",
+      "maximumAbsoluteWaveformCorrelation": 0.5801167960713333
+    },
+    {
+      "cue": "enemy.shot.burst",
+      "maximumAbsoluteWaveformCorrelation": 0.7036129339576948
+    },
+    {
+      "cue": "ui.merge.hint",
+      "maximumAbsoluteWaveformCorrelation": 0.005618478371704877
+    }
+  ],
+  "listeningReview": "Not performed. Waveform correlation cannot establish perceptual quality.",
+  "installed": true,
+  "protectedFilesVerified": 725,
+  "protectedMusicFiles": 137,
+  "metadataFilesVerified": 663
+}

@@ -3,17 +3,17 @@
  "pieces": [
   {
    "id": "menu_curtain",
-   "title": "Midnight Overture",
+   "title": "Midnight Overture \u2014 The Shop Wakes",
    "bpm": 112,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 68.57142857142857,
-   "loopSamples": 3024000,
+   "bars": 40,
+   "loopSeconds": 85.71428571428571,
+   "loopSamples": 3780000,
    "sampleRate": 44100,
    "scenes": [
     "menu"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/menu_curtain/menu_curtain_base",
     "Music/menu_curtain/menu_curtain_rhythm",
@@ -23,17 +23,17 @@
   },
   {
    "id": "select_dressing",
-   "title": "Roll Call",
+   "title": "Roll Call \u2014 Pocket-Sized Heroes",
    "bpm": 120,
    "beatsPerBar": 4,
-   "bars": 16,
-   "loopSeconds": 32.0,
-   "loopSamples": 1411200,
+   "bars": 24,
+   "loopSeconds": 48.0,
+   "loopSamples": 2116800,
    "sampleRate": 44100,
    "scenes": [
     "select"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/select_dressing/select_dressing_base",
     "Music/select_dressing/select_dressing_rhythm",
@@ -43,17 +43,17 @@
   },
   {
    "id": "combat_toys",
-   "title": "Wind-Up Parade",
+   "title": "Wind-Up Parade \u2014 Ratchet Riot",
    "bpm": 132,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 58.18181405895692,
-   "loopSamples": 2565818,
+   "bars": 40,
+   "loopSeconds": 72.72727891156462,
+   "loopSamples": 3207273,
    "sampleRate": 44100,
    "scenes": [
     "combat_early"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/combat_toys/combat_toys_base",
     "Music/combat_toys/combat_toys_rhythm",
@@ -62,18 +62,38 @@
    ]
   },
   {
-   "id": "combat_clockwork",
-   "title": "Gearworks",
-   "bpm": 140,
+   "id": "combat_spoons",
+   "title": "Cutlery Brigade \u2014 Drawer Funk",
+   "bpm": 126,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 54.857142857142854,
-   "loopSamples": 2419200,
+   "bars": 36,
+   "loopSeconds": 68.57142857142857,
+   "loopSamples": 3024000,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_early"
+   ],
+   "family": "toybox_individual_v4",
+   "stems": [
+    "Music/combat_spoons/combat_spoons_base",
+    "Music/combat_spoons/combat_spoons_rhythm",
+    "Music/combat_spoons/combat_spoons_melody",
+    "Music/combat_spoons/combat_spoons_intensity"
+   ]
+  },
+  {
+   "id": "combat_clockwork",
+   "title": "Gearworks \u2014 Escapement",
+   "bpm": 142,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 67.60562358276644,
+   "loopSamples": 2981408,
    "sampleRate": 44100,
    "scenes": [
     "combat_mid"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/combat_clockwork/combat_clockwork_base",
     "Music/combat_clockwork/combat_clockwork_rhythm",
@@ -82,18 +102,38 @@
    ]
   },
   {
-   "id": "combat_overtime",
-   "title": "Midnight Stampede",
-   "bpm": 170,
+   "id": "combat_carousel",
+   "title": "Carousel Chase \u2014 Crooked Horses",
+   "bpm": 138,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 45.17646258503402,
-   "loopSamples": 1992282,
+   "bars": 36,
+   "loopSeconds": 62.60868480725624,
+   "loopSamples": 2761043,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_mid"
+   ],
+   "family": "toybox_individual_v4",
+   "stems": [
+    "Music/combat_carousel/combat_carousel_base",
+    "Music/combat_carousel/combat_carousel_rhythm",
+    "Music/combat_carousel/combat_carousel_melody",
+    "Music/combat_carousel/combat_carousel_intensity"
+   ]
+  },
+  {
+   "id": "combat_overtime",
+   "title": "Midnight Stampede \u2014 Porcelain Rush",
+   "bpm": 172,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 55.81394557823129,
+   "loopSamples": 2461395,
    "sampleRate": 44100,
    "scenes": [
     "combat_late"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/combat_overtime/combat_overtime_base",
     "Music/combat_overtime/combat_overtime_rhythm",
@@ -102,18 +142,38 @@
    ]
   },
   {
+   "id": "combat_lasttrain",
+   "title": "Toy Train Express \u2014 No More Stops",
+   "bpm": 166,
+   "beatsPerBar": 4,
+   "bars": 40,
+   "loopSeconds": 57.831315192743766,
+   "loopSamples": 2550361,
+   "sampleRate": 44100,
+   "scenes": [
+    "combat_late"
+   ],
+   "family": "toybox_individual_v4",
+   "stems": [
+    "Music/combat_lasttrain/combat_lasttrain_base",
+    "Music/combat_lasttrain/combat_lasttrain_rhythm",
+    "Music/combat_lasttrain/combat_lasttrain_melody",
+    "Music/combat_lasttrain/combat_lasttrain_intensity"
+   ]
+  },
+  {
    "id": "boss_ringmaster",
-   "title": "The Ringmaster",
+   "title": "The Ringmaster \u2014 Velvet & Iron",
    "bpm": 150,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 51.2,
-   "loopSamples": 2257920,
+   "bars": 40,
+   "loopSeconds": 64.0,
+   "loopSamples": 2822400,
    "sampleRate": 44100,
    "scenes": [
     "boss"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/boss_ringmaster/boss_ringmaster_base",
     "Music/boss_ringmaster/boss_ringmaster_rhythm",
@@ -122,18 +182,38 @@
    ]
   },
   {
-   "id": "shop_gold",
-   "title": "Ka-Ching Swing",
-   "bpm": 116,
+   "id": "boss_clown",
+   "title": "Jack-in-the-Box \u2014 Smile with Teeth",
+   "bpm": 148,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 66.20689342403628,
-   "loopSamples": 2919724,
+   "bars": 40,
+   "loopSeconds": 64.86487528344671,
+   "loopSamples": 2860541,
+   "sampleRate": 44100,
+   "scenes": [
+    "boss"
+   ],
+   "family": "toybox_individual_v4",
+   "stems": [
+    "Music/boss_clown/boss_clown_base",
+    "Music/boss_clown/boss_clown_rhythm",
+    "Music/boss_clown/boss_clown_melody",
+    "Music/boss_clown/boss_clown_intensity"
+   ]
+  },
+  {
+   "id": "shop_gold",
+   "title": "Ka-Ching Swing \u2014 Coins on the Counter",
+   "bpm": 118,
+   "beatsPerBar": 4,
+   "bars": 36,
+   "loopSeconds": 73.22034013605442,
+   "loopSamples": 3229017,
    "sampleRate": 44100,
    "scenes": [
     "shop_gold"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/shop_gold/shop_gold_base",
     "Music/shop_gold/shop_gold_rhythm",
@@ -142,18 +222,38 @@
    ]
   },
   {
+   "id": "shop_layaway",
+   "title": "Window Shopping \u2014 After-Hours Neon",
+   "bpm": 110,
+   "beatsPerBar": 4,
+   "bars": 36,
+   "loopSeconds": 78.54546485260771,
+   "loopSamples": 3463855,
+   "sampleRate": 44100,
+   "scenes": [
+    "shop_gold"
+   ],
+   "family": "toybox_individual_v4",
+   "stems": [
+    "Music/shop_layaway/shop_layaway_base",
+    "Music/shop_layaway/shop_layaway_rhythm",
+    "Music/shop_layaway/shop_layaway_melody",
+    "Music/shop_layaway/shop_layaway_intensity"
+   ]
+  },
+  {
    "id": "shop_dream",
-   "title": "The Dream Counter",
-   "bpm": 138,
+   "title": "The Dream Counter \u2014 A Waltz through Glass",
+   "bpm": 132,
    "beatsPerBar": 3,
-   "bars": 32,
-   "loopSeconds": 41.73913832199546,
-   "loopSamples": 1840696,
+   "bars": 36,
+   "loopSeconds": 49.09090702947846,
+   "loopSamples": 2164909,
    "sampleRate": 44100,
    "scenes": [
     "shop_dream"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/shop_dream/shop_dream_base",
     "Music/shop_dream/shop_dream_rhythm",
@@ -163,17 +263,17 @@
   },
   {
    "id": "endless_neverclose",
-   "title": "Open All Night",
+   "title": "Open All Night \u2014 Lights on the Roof",
    "bpm": 128,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 60.0,
-   "loopSamples": 2646000,
+   "bars": 36,
+   "loopSeconds": 67.5,
+   "loopSamples": 2976750,
    "sampleRate": 44100,
    "scenes": [
     "endless"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/endless_neverclose/endless_neverclose_base",
     "Music/endless_neverclose/endless_neverclose_rhythm",
@@ -182,118 +282,18 @@
    ]
   },
   {
-   "id": "combat_spoons",
-   "title": "Cutlery Brigade",
-   "bpm": 128,
-   "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 60.0,
-   "loopSamples": 2646000,
-   "sampleRate": 44100,
-   "scenes": [
-    "combat_early"
-   ],
-   "family": "midnight_toybox",
-   "stems": [
-    "Music/combat_spoons/combat_spoons_base",
-    "Music/combat_spoons/combat_spoons_rhythm",
-    "Music/combat_spoons/combat_spoons_melody",
-    "Music/combat_spoons/combat_spoons_intensity"
-   ]
-  },
-  {
-   "id": "combat_carousel",
-   "title": "Carousel Chase",
-   "bpm": 140,
-   "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 54.857142857142854,
-   "loopSamples": 2419200,
-   "sampleRate": 44100,
-   "scenes": [
-    "combat_mid"
-   ],
-   "family": "midnight_toybox",
-   "stems": [
-    "Music/combat_carousel/combat_carousel_base",
-    "Music/combat_carousel/combat_carousel_rhythm",
-    "Music/combat_carousel/combat_carousel_melody",
-    "Music/combat_carousel/combat_carousel_intensity"
-   ]
-  },
-  {
-   "id": "combat_lasttrain",
-   "title": "Toy Train Express",
-   "bpm": 168,
-   "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 45.714285714285715,
-   "loopSamples": 2016000,
-   "sampleRate": 44100,
-   "scenes": [
-    "combat_late"
-   ],
-   "family": "midnight_toybox",
-   "stems": [
-    "Music/combat_lasttrain/combat_lasttrain_base",
-    "Music/combat_lasttrain/combat_lasttrain_rhythm",
-    "Music/combat_lasttrain/combat_lasttrain_melody",
-    "Music/combat_lasttrain/combat_lasttrain_intensity"
-   ]
-  },
-  {
-   "id": "boss_clown",
-   "title": "Jack-in-the-Box",
-   "bpm": 150,
-   "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 51.2,
-   "loopSamples": 2257920,
-   "sampleRate": 44100,
-   "scenes": [
-    "boss"
-   ],
-   "family": "midnight_toybox",
-   "stems": [
-    "Music/boss_clown/boss_clown_base",
-    "Music/boss_clown/boss_clown_rhythm",
-    "Music/boss_clown/boss_clown_melody",
-    "Music/boss_clown/boss_clown_intensity"
-   ]
-  },
-  {
-   "id": "shop_layaway",
-   "title": "Window Shopping",
-   "bpm": 112,
-   "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 68.57142857142857,
-   "loopSamples": 3024000,
-   "sampleRate": 44100,
-   "scenes": [
-    "shop_gold"
-   ],
-   "family": "midnight_toybox",
-   "stems": [
-    "Music/shop_layaway/shop_layaway_base",
-    "Music/shop_layaway/shop_layaway_rhythm",
-    "Music/shop_layaway/shop_layaway_melody",
-    "Music/shop_layaway/shop_layaway_intensity"
-   ]
-  },
-  {
    "id": "endless_encore",
-   "title": "One More Encore",
+   "title": "One More Encore \u2014 Brass on the Barricade",
    "bpm": 140,
    "beatsPerBar": 4,
-   "bars": 32,
-   "loopSeconds": 54.857142857142854,
-   "loopSamples": 2419200,
+   "bars": 36,
+   "loopSeconds": 61.714285714285715,
+   "loopSamples": 2721600,
    "sampleRate": 44100,
    "scenes": [
     "endless"
    ],
-   "family": "midnight_toybox",
+   "family": "toybox_individual_v4",
    "stems": [
     "Music/endless_encore/endless_encore_base",
     "Music/endless_encore/endless_encore_rhythm",

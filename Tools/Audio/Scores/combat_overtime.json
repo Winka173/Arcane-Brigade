@@ -1,0 +1,529 @@
+{
+ "id": "combat_overtime",
+ "title": "Midnight Stampede \u2014 Porcelain Rush",
+ "key": "G minor",
+ "bpm": 172,
+ "meter": 4,
+ "identity": "A bell riff that leaps up a ninth then tumbles into a fast two-step break; long string answers and a half-time tom passage create pressure without a repeated march.",
+ "instruments": {
+  "bells": {
+   "program": 9,
+   "stem": "melody",
+   "velocity": 103,
+   "pan": -0.12
+  },
+  "strings": {
+   "program": 48,
+   "stem": "melody",
+   "velocity": 80,
+   "pan": 0.1
+  },
+  "bass": {
+   "program": 39,
+   "stem": "base",
+   "velocity": 100
+  },
+  "bed": {
+   "program": 90,
+   "stem": "base",
+   "velocity": 42,
+   "pan": 0.25
+  },
+  "brass": {
+   "program": 62,
+   "stem": "intensity",
+   "velocity": 75,
+   "pan": 0.15
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "tom": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "rush": [
+   "Gm9",
+   "Ebmaj7",
+   "Bbmaj7",
+   "F6",
+   "Cm9",
+   "Ebmaj7",
+   "D7sus4",
+   "D7"
+  ],
+  "flight": [
+   "Ebmaj9",
+   "F6",
+   "Gm9",
+   "Gm9",
+   "Cm9",
+   "Bb/D",
+   "Ebmaj7",
+   "D7b9"
+  ],
+  "alarm": [
+   "Gm",
+   "Gm",
+   "Eb",
+   "D7"
+  ]
+ },
+ "bass": {
+  "reese": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.85,
+      106
+     ],
+     [
+      1.25,
+      12,
+      0.32,
+      90
+     ],
+     [
+      2.5,
+      0,
+      0.65,
+      100
+     ],
+     [
+      3.5,
+      7,
+      0.32,
+      87
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.65,
+      103
+     ],
+     [
+      1.5,
+      7,
+      0.5,
+      89
+     ],
+     [
+      2.75,
+      12,
+      0.6,
+      98
+     ]
+    ]
+   ]
+  },
+  "long": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      2.5,
+      100
+     ],
+     [
+      3,
+      7,
+      0.7,
+      90
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      1.35,
+      102
+     ],
+     [
+      2,
+      12,
+      1.4,
+      92
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "air": {
+   "instrument": "bed",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.8,
+      45
+     ]
+    ]
+   ]
+  },
+  "hits": {
+   "instrument": "brass",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.28,
+      78
+     ],
+     [
+      2.5,
+      0.28,
+      65
+     ]
+    ],
+    [
+     [
+      1.75,
+      0.28,
+      68
+     ],
+     [
+      3.5,
+      0.28,
+      80
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "break": {
+   "kick": {
+    "note": 36,
+    "velocity": 115,
+    "patterns": [
+     "X.....x...X.....",
+     "X....x....X..x.."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 110,
+    "patterns": [
+     "....X..o....X...",
+     "....X....o..X.oo"
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 59,
+    "patterns": [
+     "x.xox.X.x.xox.X.",
+     "xox.X.x.x.x.X.ox"
+    ]
+   },
+   "fills": {
+    "every": 8,
+    "bars": {
+     "7": [
+      [
+       "snare",
+       38,
+       2.75,
+       0.1,
+       57
+      ],
+      [
+       "snare",
+       38,
+       3.25,
+       0.1,
+       78
+      ],
+      [
+       "snare",
+       40,
+       3.5,
+       0.1,
+       96
+      ],
+      [
+       "snare",
+       38,
+       3.75,
+       0.1,
+       109
+      ]
+     ]
+    }
+   }
+  },
+  "half": {
+   "kick": {
+    "note": 36,
+    "velocity": 115,
+    "patterns": [
+     "X.....x.........",
+     "X........x......"
+    ]
+   },
+   "snare": {
+    "note": 40,
+    "velocity": 104,
+    "patterns": [
+     "........X......."
+    ]
+   },
+   "hat": {
+    "note": 51,
+    "velocity": 50,
+    "patterns": [
+     "x...x...x...x..."
+    ]
+   },
+   "tom": {
+    "note": 45,
+    "velocity": 72,
+    "patterns": [
+     "......x.......x.",
+     "...x.......x..x."
+    ]
+   }
+  }
+ },
+ "objects": {
+  "porcelain": {
+   "material": "glass",
+   "duration": 0.035,
+   "pan": 0.3,
+   "grid": [
+    [
+     [
+      1.75,
+      0.021
+     ],
+     [
+      3.25,
+      0.018
+     ]
+    ],
+    [
+     [
+      0.75,
+      0.02
+     ],
+     [
+      2.25,
+      0.02
+     ],
+     [
+      3.75,
+      0.017
+     ]
+    ]
+   ]
+  }
+ },
+ "phrases": {
+  "rush": [
+   "G5:0.25 A6:0.25 G6:0.5 D6:0.75 Bb5:0.25 A5:0.5 G5:0.5 D5:0.5 r:0.5",
+   "Bb5:0.5 G5:0.25 F5:0.25 Eb5:0.75 G5:0.25 Bb5:0.5 D6:0.5 Eb6:0.5 r:0.5",
+   "D6:0.75 F6:0.25 D6:0.5 Bb5:0.5 A5:0.75 F5:0.25 D5:1",
+   "C6:0.5 A5:0.5 G5:0.25 F5:0.25 C5:0.5 F5:0.75 G5:0.25 A5:0.5 r:0.5",
+   "G5:0.5 C6:0.25 D6:0.25 Eb6:0.75 D6:0.25 C6:0.5 Bb5:0.5 G5:1",
+   "Bb5:0.5 Eb6:0.5 G6:0.75 F6:0.25 Eb6:0.5 D6:0.5 Bb5:1",
+   "G5:0.5 A5:0.5 C6:0.75 D6:0.25 G6:0.5 F6:0.5 E6:1",
+   "F#6:0.25 D6:0.25 C6:0.5 A5:0.75 F#5:0.25 D5:0.5 A5:0.5 D6:0.5 r:0.5"
+  ],
+  "chase": [
+   "G5:0.5 C6:0.25 Eb6:0.25 D6:0.5 C6:0.5 Bb5:0.75 G5:0.25 Eb5:0.5 r:0.5",
+   "G5:0.25 Bb5:0.25 D6:0.5 Eb6:1 D6:0.5 Bb5:0.5 G5:1",
+   "A5:0.5 D6:0.5 G6:0.75 F6:0.25 E6:0.5 D6:0.5 A5:0.5 r:0.5",
+   "F#5:0.25 A5:0.25 C6:0.5 D6:0.75 C6:0.25 A5:0.5 F#5:0.5 D5:0.5 r:0.5",
+   "Eb5:0.5 G5:0.25 Bb5:0.25 C6:0.75 Bb5:0.25 G5:0.5 Eb5:0.5 C5:1",
+   "Eb6:0.5 D6:0.5 Bb5:0.75 G5:0.25 Eb5:0.5 G5:0.5 Bb5:1",
+   "A5:0.5 C6:0.5 D6:0.75 G6:0.25 F6:0.5 E6:0.5 D6:1",
+   "A5:0.25 C6:0.25 D6:0.5 F#6:0.75 Eb6:0.25 D6:0.5 A5:0.5 F#5:0.5 r:0.5"
+  ],
+  "flight": [
+   "G5:1 Bb5:1 D6:1 Eb6:1",
+   "C6:1 A5:0.5 G5:0.5 F5:1 A5:1",
+   "Bb5:1 A5:0.5 G5:0.5 D6:1 F6:1",
+   "D6:1 Bb5:0.75 A5:0.25 G5:1 r:1",
+   "Eb6:1 C6:0.5 Bb5:0.5 G5:1 Eb5:1",
+   "F5:1 Bb5:0.5 D6:0.5 F6:1 D6:1",
+   "G5:0.75 Bb5:0.25 D6:1 Eb6:0.5 D6:0.5 Bb5:1",
+   "F#5:1 A5:0.5 C6:0.5 Eb6:1 D6:0.5 r:0.5"
+  ],
+  "accent": [
+   "r:2 D5:0.5 G5:0.5 Bb5:1",
+   "r:1 G5:0.5 Bb5:0.5 Eb6:1 r:1"
+  ]
+ },
+ "form": [
+  {
+   "name": "Porcelain rush",
+   "bars": 8,
+   "harmony": "rush",
+   "bass": "reese",
+   "comp": [
+    "air"
+   ],
+   "drums": "break",
+   "objects": [
+    "porcelain"
+   ],
+   "lines": [
+    {
+     "instrument": "bells",
+     "phrase": "rush",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Crowded staircase",
+   "bars": 8,
+   "harmony": "rush",
+   "bass": "reese",
+   "comp": [
+    "hits"
+   ],
+   "drums": "break",
+   "lines": [
+    {
+     "instrument": "bells",
+     "phrase": "chase",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Over the rooftops",
+   "bars": 8,
+   "harmony": "flight",
+   "bass": "long",
+   "comp": [
+    "air"
+   ],
+   "drums": "half",
+   "lines": [
+    {
+     "instrument": "strings",
+     "phrase": "flight",
+     "primary": true,
+     "gate": 0.94
+    }
+   ]
+  },
+  {
+   "name": "Alarm clocks answer",
+   "bars": 4,
+   "harmony": "alarm",
+   "bass": "reese",
+   "comp": [
+    "hits"
+   ],
+   "drums": "break",
+   "objects": [
+    "porcelain"
+   ],
+   "lines": [
+    {
+     "instrument": "bells",
+     "phrase": "chase",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Final stampede",
+   "bars": 8,
+   "harmony": "rush",
+   "bass": "reese",
+   "comp": [
+    "air",
+    "hits"
+   ],
+   "drums": "break",
+   "objects": [
+    "porcelain"
+   ],
+   "lines": [
+    {
+     "instrument": "bells",
+     "phrase": "rush",
+     "primary": true
+    },
+    {
+     "instrument": "brass",
+     "phrase": "accent",
+     "velocity": 72
+    }
+   ]
+  },
+  {
+   "name": "Escape hatch",
+   "bars": 4,
+   "harmony": "alarm",
+   "bass": "reese",
+   "comp": [
+    "air"
+   ],
+   "drums": "break",
+   "lines": [
+    {
+     "instrument": "bells",
+     "phrase": "chase",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -24.5,
+   "rhythm": -22,
+   "melody": -23,
+   "intensity": -29.5
+  },
+  "reverb": {
+   "base": 0.025,
+   "rhythm": 0.015,
+   "melody": 0.08,
+   "intensity": 0.06
+  },
+  "room": 0.65,
+  "lowpass": 12300
+ }
+}

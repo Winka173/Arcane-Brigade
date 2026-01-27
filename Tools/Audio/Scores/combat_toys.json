@@ -1,0 +1,564 @@
+{
+ "id": "combat_toys",
+ "title": "Wind-Up Parade \u2014 Ratchet Riot",
+ "key": "A minor",
+ "bpm": 132,
+ "meter": 4,
+ "identity": "A low toy-piano riff in a 3+3+2 accent, springy octave bass and answering brass; the B theme opens into a broad minor-key melody.",
+ "instruments": {
+  "toy": {
+   "program": 3,
+   "stem": "melody",
+   "velocity": 103,
+   "pan": -0.08
+  },
+  "brass": {
+   "program": 61,
+   "stem": "melody",
+   "velocity": 78,
+   "pan": 0.18
+  },
+  "clav": {
+   "program": 7,
+   "stem": "rhythm",
+   "velocity": 64,
+   "pan": -0.25
+  },
+  "bass": {
+   "program": 38,
+   "stem": "base",
+   "velocity": 94
+  },
+  "pad": {
+   "program": 89,
+   "stem": "base",
+   "velocity": 40,
+   "pan": 0.12
+  },
+  "glock": {
+   "program": 9,
+   "stem": "intensity",
+   "velocity": 73,
+   "pan": 0.23
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "riff": [
+   "Am7",
+   "Am7",
+   "Fmaj7",
+   "E7",
+   "Am7",
+   "C6",
+   "Dm7",
+   "E7"
+  ],
+  "wide": [
+   "Fmaj7",
+   "Cmaj7",
+   "G",
+   "Am",
+   "Dm7",
+   "Am/C",
+   "F6",
+   "E7b9"
+  ],
+  "turn": [
+   "Dm7",
+   "E7",
+   "Am",
+   "E7"
+  ]
+ },
+ "bass": {
+  "bounce": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.4,
+      100
+     ],
+     [
+      0.75,
+      12,
+      0.3,
+      80
+     ],
+     [
+      1.5,
+      0,
+      0.4,
+      94
+     ],
+     [
+      2.5,
+      7,
+      0.3,
+      82
+     ],
+     [
+      3,
+      12,
+      0.45,
+      87
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.45,
+      102
+     ],
+     [
+      1.25,
+      0,
+      0.2,
+      76
+     ],
+     [
+      1.75,
+      12,
+      0.3,
+      88
+     ],
+     [
+      2.5,
+      7,
+      0.25,
+      81
+     ],
+     [
+      3.5,
+      10,
+      0.3,
+      80
+     ]
+    ]
+   ]
+  },
+  "wide": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.2,
+      97
+     ],
+     [
+      1.5,
+      7,
+      0.45,
+      84
+     ],
+     [
+      2.75,
+      12,
+      0.55,
+      87
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.8,
+      95
+     ],
+     [
+      2,
+      7,
+      0.8,
+      82
+     ],
+     [
+      3.25,
+      12,
+      0.4,
+      85
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "stabs": {
+   "instrument": "clav",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    3
+   ],
+   "grid": [
+    [
+     [
+      0.75,
+      0.16,
+      73
+     ],
+     [
+      2.25,
+      0.16,
+      61
+     ],
+     [
+      3.5,
+      0.16,
+      66
+     ]
+    ],
+    [
+     [
+      0.5,
+      0.16,
+      58
+     ],
+     [
+      1.75,
+      0.16,
+      68
+     ],
+     [
+      3.25,
+      0.16,
+      72
+     ]
+    ]
+   ]
+  },
+  "floor": {
+   "instrument": "pad",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.6,
+      42
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "riot": {
+   "kick": {
+    "note": 36,
+    "velocity": 105,
+    "patterns": [
+     "X..x..X...x.X...",
+     "X.....X..x..X.x."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 96,
+    "patterns": [
+     "....X.....o.X...",
+     "....X..o....X.o."
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 50,
+    "patterns": [
+     "x.x.x.X.x.x.x.X.",
+     "x.x.x.X.x.oxx.X."
+    ]
+   },
+   "fills": {
+    "every": 8,
+    "bars": {
+     "7": [
+      [
+       "snare",
+       38,
+       3,
+       0.12,
+       65
+      ],
+      [
+       "snare",
+       38,
+       3.25,
+       0.12,
+       78
+      ],
+      [
+       "snare",
+       38,
+       3.5,
+       0.12,
+       89
+      ],
+      [
+       "snare",
+       40,
+       3.75,
+       0.12,
+       96
+      ]
+     ]
+    }
+   }
+  },
+  "wide": {
+   "kick": {
+    "note": 36,
+    "velocity": 104,
+    "patterns": [
+     "X.......X.x.....",
+     "X.....x.X.....x."
+    ]
+   },
+   "snare": {
+    "note": 39,
+    "velocity": 87,
+    "patterns": [
+     "....X.......X..."
+    ]
+   },
+   "hat": {
+    "note": 46,
+    "velocity": 45,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   }
+  }
+ },
+ "objects": {
+  "ratchet": {
+   "material": "spring",
+   "duration": 0.075,
+   "pan": 0.35,
+   "grid": [
+    [
+     [
+      0.75,
+      0.021
+     ],
+     [
+      1.5,
+      0.025
+     ],
+     [
+      3,
+      0.019
+     ]
+    ],
+    [
+     [
+      1.75,
+      0.023
+     ],
+     [
+      3.5,
+      0.026
+     ]
+    ]
+   ]
+  }
+ },
+ "phrases": {
+  "hook": [
+   "A4:0.5 A4:0.25 r:0.25 C5:0.5 E5:0.5 r:0.25 G5:0.25 E5:0.5 C5:1",
+   "B4:0.5 A4:0.5 G4:0.25 A4:0.25 C5:0.5 E5:0.75 C5:0.25 r:1",
+   "A4:0.75 C5:0.25 F5:0.5 E5:0.5 C5:1 A4:0.5 r:0.5",
+   "G#4:0.5 B4:0.5 E5:0.75 D5:0.25 B4:0.5 G#4:0.5 E4:0.5 r:0.5",
+   "A4:0.25 C5:0.25 E5:0.5 A5:0.75 G5:0.25 E5:0.5 C5:0.5 A4:1",
+   "G4:0.5 C5:0.5 E5:0.75 G5:0.25 A5:0.5 G5:0.5 E5:0.5 r:0.5",
+   "F5:0.5 A5:0.5 C6:0.75 A5:0.25 F5:0.5 D5:0.5 C5:1",
+   "B4:0.25 D5:0.25 E5:0.5 G#5:0.75 F5:0.25 E5:0.5 B4:0.5 E5:0.5 r:0.5"
+  ],
+  "answer": [
+   "r:1 E5:0.25 E5:0.25 C5:0.5 A4:1 r:1",
+   "r:0.5 C5:0.5 E5:0.75 G5:0.25 A5:1 G5:0.5 E5:0.5",
+   "F5:0.5 A5:0.5 E5:0.5 F5:0.5 D5:1 C5:0.5 A4:0.5",
+   "B4:0.75 D5:0.25 E5:1 G#5:0.5 E5:0.5 B4:0.5 r:0.5",
+   "C5:0.5 E5:0.5 G5:0.75 A5:0.25 C6:0.5 A5:0.5 G5:1",
+   "G5:0.75 E5:0.25 C5:1 E5:0.5 G5:0.5 A5:1",
+   "A5:0.5 F5:0.5 D5:1 C5:0.5 A4:0.5 F5:0.5 r:0.5",
+   "G#5:0.5 B5:0.5 D6:0.75 B5:0.25 G#5:0.5 E5:0.5 B4:1"
+  ],
+  "wide": [
+   "A5:1 G5:0.5 E5:0.5 F5:1 E5:0.5 C5:0.5",
+   "G5:0.75 E5:0.25 D5:0.5 E5:0.5 C5:1 G4:1",
+   "D5:0.5 G5:0.5 A5:1 B5:0.75 A5:0.25 G5:1",
+   "E5:1 C5:0.5 B4:0.5 A4:1 r:1",
+   "F5:1 A5:0.5 C6:0.5 D6:1 C6:1",
+   "E6:0.75 C6:0.25 A5:0.5 E5:0.5 C5:1 A4:1",
+   "F5:0.5 A5:0.5 D6:1 C6:0.5 A5:0.5 F5:1",
+   "G#5:1 F5:0.5 E5:0.5 B4:1 r:1"
+  ],
+  "bells": [
+   "r:2 A5:0.25 C6:0.25 E6:0.5 C6:1",
+   "r:1 E6:0.5 C6:0.5 A5:0.5 G5:0.5 E5:1"
+  ]
+ },
+ "form": [
+  {
+   "name": "Ratchet ignition",
+   "bars": 4,
+   "harmony": "riff",
+   "bass": "bounce",
+   "comp": [
+    "stabs"
+   ],
+   "drums": "riot",
+   "objects": [
+    "ratchet"
+   ],
+   "lines": [
+    {
+     "instrument": "toy",
+     "phrase": "hook",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Wind-up riot",
+   "bars": 8,
+   "harmony": "riff",
+   "bass": "bounce",
+   "comp": [
+    "stabs",
+    "floor"
+   ],
+   "drums": "riot",
+   "lines": [
+    {
+     "instrument": "toy",
+     "phrase": "hook",
+     "primary": true
+    },
+    {
+     "instrument": "glock",
+     "phrase": "bells",
+     "velocity": 62
+    }
+   ]
+  },
+  {
+   "name": "Tin soldiers answer",
+   "bars": 8,
+   "harmony": "riff",
+   "bass": "bounce",
+   "comp": [
+    "stabs"
+   ],
+   "drums": "riot",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "answer",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Across the counter",
+   "bars": 8,
+   "harmony": "wide",
+   "bass": "wide",
+   "comp": [
+    "floor"
+   ],
+   "drums": "wide",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "wide",
+     "primary": true,
+     "gate": 0.9
+    }
+   ]
+  },
+  {
+   "name": "Double-time toys",
+   "bars": 8,
+   "harmony": "riff",
+   "bass": "bounce",
+   "comp": [
+    "stabs",
+    "floor"
+   ],
+   "drums": "riot",
+   "objects": [
+    "ratchet"
+   ],
+   "lines": [
+    {
+     "instrument": "toy",
+     "phrase": "hook",
+     "primary": true
+    },
+    {
+     "instrument": "glock",
+     "phrase": "bells",
+     "velocity": 80
+    }
+   ]
+  },
+  {
+   "name": "Quick spring turn",
+   "bars": 4,
+   "harmony": "turn",
+   "bass": "bounce",
+   "comp": [
+    "stabs"
+   ],
+   "drums": "riot",
+   "lines": [
+    {
+     "instrument": "toy",
+     "phrase": "answer",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -24.5,
+   "rhythm": -22.8,
+   "melody": -22,
+   "intensity": -29.5
+  },
+  "reverb": {
+   "base": 0.025,
+   "rhythm": 0.01,
+   "melody": 0.055,
+   "intensity": 0.09
+  },
+  "room": 0.48,
+  "lowpass": 13000
+ }
+}

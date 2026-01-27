@@ -1,18 +1,29 @@
 # Midnight Toybox Band — bàn giao audio
 
-Ngày sản xuất: 2026-10-15. Creative brief chính: `Music_Prompts_Toybox.md`.
+Ngày sản xuất: 2026-10-15. Music revision 4: soạn lại riêng từng bài theo phản hồi các bản cũ nghe giống nhau. Palette lấy từ `Music_Prompts_Toybox.md`; bản phổ hiện tại nằm trong `Tools/Audio/Scores/`.
+
+Foley revision 5: làm lại tiếp toàn bộ **582 clip ngoài nhạc**, gồm SFX, giọng không lời và ambience. 206 thiết kế riêng nằm trong `Tools/Audio/SfxDesigns.json`; xem [danh mục thiết kế](Toybox_Foley_Designs.md). Toàn bộ 60 stem nhạc revision 4, manifest cue, đường dẫn và GUID giữ nguyên qua lần thay Foley này.
 
 ## Phạm vi
 
-- 15 bản nhạc gốc, 60 stem stereo đồng bộ ở 44.1 kHz. Cùng motif sol–đô–rê–mi, trả lời mi–rê–đô; mỗi bản có hook, bass, bridge và cách phối riêng.
-- 471 clip cũ được thay một-một, giữ tên file, GUID Unity, số biến thể và số sample. Bao gồm SFX, tiếng nhân vật không lời và ambience.
-- Bổ sung đủ 111 clip cho 53 cue trong phần NEW: tổng cộng 206 cue / 582 clip ngoài nhạc.
+- 15 bản nhạc được soạn lại từ đầu trong 15 file bản phổ độc lập, 60 stem stereo đồng bộ ở 44.1 kHz. Không ép chung motif, chuỗi hòa âm hay câu bridge. Mỗi bài có câu giai điệu, đoạn tiếp nối, bass, drum chart, form và mix riêng; xem [thiết kế từng bài](Toybox_Individual_Compositions.md).
+- 582/582 clip Toybox trước đã được thay mới, bao gồm cả 111 clip từng bổ sung cho 53 cue NEW. Giữ tên file, GUID Unity, số biến thể và số sample của tất cả clip; tổng cộng 206 cue.
 - Không dùng, cắt, phối lại hoặc phân tích nội dung của các MP3 trong `generate audio/`. Chúng thuộc theme khác và được giữ nguyên.
-- Không dùng dịch vụ tạo nhạc/audio. Nhạc được soạn bằng score trong `toybox_music.py`, render bằng nhạc cụ sample, kết hợp sound design vật lý/tổng hợp bằng code.
+- Không dùng dịch vụ tạo nhạc/audio. Bản phổ là `Tools/Audio/Scores/<piece>.json`; `score_player.py` chỉ đọc ký âm và sắp event, `toybox_music.py` render/encode. Nhạc cụ sample kết hợp sound design vật lý/tổng hợp bằng code. Foley v5 được dựng mới hoàn toàn bằng code, không dùng soundfont, sample bên ngoài hay renderer SFX cũ; các hook gameplay giữ nguyên.
+
+## SFX, giọng và ambience v5
+
+`foley_engine.py` dựng tại 88.2 kHz rồi lọc và hạ xuống 44.1 kHz. Các mô hình gồm vật liệu cộng hưởng nhiều mode, dây có suy hao, hạt tiếp xúc, dòng hơi, giọt nước và nguồn giọng glottal/formant. Đầu ra runtime vẫn mono WAV PCM 16-bit theo contract; master 24-bit nằm trong `PreviewExports/Audio/Toybox/Masters/Foley/` tại local.
+
+Giấy, thiếc, sáp, vải, thủy tinh và gỗ có tiếp xúc/thân/đuôi riêng; tiếng vỡ có mảnh rơi nối tiếp. Vũ khí có cơ chế riêng: dây cung, nút chai, lưỡi kéo, trục yo-yo, cuộn nam châm, kim khâu, lò xo, bánh răng máy chiếu và lụa. Hiệu ứng thường xuyên được giữ khô và ngắn; phần thưởng dùng tines/porcelain có cao độ; danger dùng nhịp/reed/áp lực khác tiếng nhặt tiền.
+
+Mỗi hero và 10 boss có phối lớp riêng trong catalogue. Hai chủ tiệm dùng tám âm tiết với nguyên âm khác nhau, laugh/hmm/gasp/farewell; toàn bộ là tiếng nhân vật tổng hợp không lời, không phải diễn viên lồng tiếng. Sáu ambience có nền nhiễu tuần hoàn và vật thể thưa riêng cho từng phòng; không chèn giai điệu lặp chung. Biến thể thay điểm tiếp xúc, độ suy hao và diễn tấu; cảnh báo giữ cấu trúc nhịp và cao độ hẹp.
+
+`Foley_Audit.json` kiểm tra thay đủ 582 file so với snapshot trước lần làm lại, giữ độ dài, tính duy nhất và tương quan waveform giữa biến thể. Tương quan không đo độ khác biệt cảm nhận. `QA_Report.json` kiểm tra audio sau encode; mốc merchant 0.98 s và ally 0.405 s được kiểm riêng. `Foley_Timelines.json` ghi chính xác từng cue trong tám reel nghe thử; các loop dùng trích đoạn sáu giây, từng loop đủ 24 giây vẫn nghe được ở nút biến thể.
 
 ## Nhạc và mastering
 
-`Assets/ArcaneBrigade/Resources/Audio/Arcane/Music/music.json` là manifest đang dùng trong game. ID và scene routing giữ nguyên; tempo, meter, tiêu đề và số sample được cập nhật theo Toybox. Thời lượng ghi bằng giây tròn trong prompt là số gần đúng: số sample được tính bằng `round(bars × beatsPerBar × 60 / BPM × 44100)`. Không kéo giãn toàn bản để ép vào số giây làm tròn.
+`Assets/ArcaneBrigade/Resources/Audio/Arcane/Music/music.json` là manifest đang dùng trong game. ID và scene routing giữ nguyên; tempo, meter, tiêu đề, cấu trúc và số sample theo bản phổ riêng mới. Các chỉ dẫn motif/form/thời lượng của prompt ban đầu được thay theo phản hồi mới: mỗi bài được phát triển độc lập, dài khoảng 48–86 giây. Số sample tính bằng `round(bars × beatsPerBar × 60 / BPM × 44100)`, không kéo giãn toàn bản.
 
 Mỗi bản gồm base / rhythm / melody / intensity. Hook chính nằm trong melody, percussion chính nằm trong rhythm; không phụ thuộc intensity để nghe đầy đủ ở menu/select hay combat thưa. Bridge vẫn có trống. Nhạc cụ gồm music box, celesta, glockenspiel, honky-tonk piano, calliope, harmonica/melodica-like reeds, brass, bass và drums; percussion gỗ, lò xo, kim loại tạo nhận diện đồ vật.
 
@@ -35,6 +46,8 @@ Reverb và lọc được xử lý vòng; tiếng nhả phím từ vòng trướ
 
 Mở `PreviewExports/Audio/Toybox/index.html` để nghe 15 bản và từng biến thể SFX, hoặc dùng `playlist.m3u`. Thư mục `Masters/` chứa 60 master stem 24-bit và 15 full mix. `combat_mix_simulation.ogg` là bản phối kiểm thử 24 giây bằng script, **không phải recording trong game**.
 
+`individual_themes_comparison.ogg` nối tám giây đầu của mỗi bài, cách nhau 0,4 giây; thứ tự và mốc thời gian trong `comparison_timeline.json`. `MIDI/` chứa 15 bản ký âm chỉnh sửa được (âm sắc khi phát MIDI phụ thuộc soundfont trên máy). `Composition_Audit.json` đối chiếu 105 cặp: chuỗi hòa âm, drum chart và cửa sổ bảy nốt theo quãng/nhịp không phụ thuộc tông. Kết quả ít trùng không phải chứng nhận hấp dẫn hoặc hoàn toàn khác nhau khi nghe.
+
 Audio runtime, preview, báo cáo và source pipeline được lưu trong Git. `Masters/` là export lossless sinh lại được (khoảng 1 GB), giữ ở local và được gitignore; chạy pipeline để tái tạo trên máy checkout mới.
 
 `QA_Report.json` ghi kết quả kiểm tra âm thanh sau encode: số lượng/file, định dạng, sample alignment, thay hết 471 file cũ, trùng nội dung, DC, peak, seam và true peak oversample 4× trong các tổ hợp stem. `ToyboxAudioChecks.cs` kiểm tra import/routing thực trong Unity, kết quả được chép vào `Unity_Checks.txt` khi chạy thành công.
@@ -55,9 +68,15 @@ Trên Windows x64, Python 3.11 với numpy, scipy, soundfile >= 0.13 và imageio
 
 ```powershell
 python Tools/Audio/setup_toybox.py
-python Tools/Audio/build_toybox.py --install
+python Tools/Audio/render_song.py --remaining
+python Tools/Audio/render_song.py --assemble
+python Tools/Audio/build_toybox.py --music-only --install-only
+python Tools/Audio/audit_individual_scores.py
+python Tools/Audio/render_foley.py --install
 python Tools/Audio/toybox_preview.py
 python Tools/Audio/verify_toybox.py
 ```
 
-`build_toybox.py` dựng vào staging trước, mastering và QA toàn bộ rồi mới chép vào Unity. Có thể rebuild một bản bằng `--music <id>` hoặc chỉ SFX bằng `--sfx`, sau đó `--install-only` để xác minh và cài bộ staging đầy đủ. `toybox_baseline.json` lưu manifest/hash/độ dài cũ để kiểm chứng thay thế. Không chạy legacy `build_music.py` / `build_sfx.py` để rebuild bộ Toybox: hai script đó dựng palette v2.
+`render_song.py <id>` dựng một bài riêng; `--remaining` chỉ dựng bản phổ đã thay đổi/chưa render, `--assemble` gom đủ 15 bài thành manifest staging. `build_toybox.py --music-only --install-only` mastering/QA rồi chỉ cài nhạc. Với checkout mới chưa có staging SFX, dùng `build_toybox.py --music-only --install` để dựng/cài nhạc; pipeline kiểm SFX trực tiếp từ project. Audit/export MIDI cần thêm package `mido`; LUFS dùng `pyloudnorm` nếu có. `toybox_baseline.json` lưu manifest/hash/độ dài cũ. Không chạy legacy `build_music.py` / `build_sfx.py` để dựng bộ hiện tại.
+
+`render_foley.py --install` dựng và kiểm 582 clip từ `SfxDesigns.json` trước khi chép vào Unity; không cần FluidSynth/soundfont để làm lại Foley. `build_toybox.py --sfx --install` chuyển tới cùng pipeline này. `author_foley.py` là phần biên soạn để xuất catalogue khi muốn sửa thiết kế; không cần chạy lại khi chỉ tái tạo audio. Giọng, SFX và ambience v5 không còn dùng sampled accents của v3. License GeneralUser GS vẫn áp dụng cho 60 stem nhạc.

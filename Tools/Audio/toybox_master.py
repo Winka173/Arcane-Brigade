@@ -53,6 +53,7 @@ def main():
         paths=[folder/f'{pid}_{st}.wav' for st in STEMS]
         hashes=[sha(p) for p in paths]
         if pid in ledger and ledger[pid].get('version')==2 and ledger[pid]['outputHashes']==hashes:
+            scores[pid].update({k:ledger[pid][k] for k in ('sumPeakDb','sumRmsDb')})
             print('MASTER unchanged',pid,flush=True); continue
         bufs=[repair_boundary(sf.read(str(p),always_2d=True)[0]) for p in paths]
         mix=sum(bufs)
@@ -69,7 +70,9 @@ def main():
         for st,path,x in zip(STEMS,paths,mastered):
             sf.write(str(path),x,SR,subtype='PCM_24')
             encode_vorbis(path,stage/'Music'/pid/f'{pid}_{st}.ogg')
-        levels=[1,.85,1,0] if pid=='menu_curtain' else [1,.7,1,0] if pid=='select_dressing' else [1,1,1,.75]
+        scene=piece['scenes'][0]
+        levels={'menu':[1,.85,1,0],'select':[1,.7,1,0],'shop_gold':[1,.9,1,.75],
+                'shop_dream':[1,.8,1,.7],'boss':[1,1,1,.8]}.get(scene,[1,1,1,.75])
         normal=sum(x*v for x,v in zip(mastered,levels))
         sf.write(str(P/'Masters'/f'{pid}_mix.wav'),normal,SR,subtype='PCM_24')
         encode_vorbis(P/'Masters'/f'{pid}_mix.wav',P/f'{pid}.ogg')
@@ -83,6 +86,7 @@ def main():
         (stage/'scores.json').write_text(json.dumps(scores,indent=1)+'\n')
         print(f'MASTER {pid}: RMS {result["sumRmsDb"]:.2f} dB, peak {result["sumPeakDb"]:.2f} dB',flush=True)
     (P/'Mastering.json').write_text(json.dumps(ledger,indent=2)+'\n')
+    (stage/'scores.json').write_text(json.dumps(scores,indent=1)+'\n')
 
 
 if __name__=='__main__': main()

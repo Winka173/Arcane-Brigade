@@ -1,0 +1,504 @@
+{
+ "id": "shop_layaway",
+ "title": "Window Shopping \u2014 After-Hours Neon",
+ "key": "F major",
+ "bpm": 110,
+ "meter": 4,
+ "identity": "A relaxed city-pop chorus with a vocal-shaped electric-piano melody, suspended guitar voicings and a warm descending bass; marimba takes a luminous middle eight.",
+ "instruments": {
+  "ep": {
+   "program": 5,
+   "stem": "melody",
+   "velocity": 102,
+   "pan": -0.1
+  },
+  "marimba": {
+   "program": 12,
+   "stem": "melody",
+   "velocity": 95,
+   "pan": 0.16
+  },
+  "bass": {
+   "program": 33,
+   "stem": "base",
+   "velocity": 100
+  },
+  "pad": {
+   "program": 89,
+   "stem": "base",
+   "velocity": 43,
+   "pan": 0.2
+  },
+  "guitar": {
+   "program": 26,
+   "stem": "rhythm",
+   "velocity": 75,
+   "pan": -0.27
+  },
+  "chimes": {
+   "program": 8,
+   "stem": "intensity",
+   "velocity": 60,
+   "pan": 0.25
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "shaker": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "city": [
+   "Bbmaj9",
+   "C13",
+   "Am9",
+   "Dm9",
+   "Gm9",
+   "C9",
+   "Fmaj9",
+   "Fmaj9/E"
+  ],
+  "avenue": [
+   "Dm9",
+   "G13",
+   "Gm9",
+   "C13",
+   "Am7",
+   "D7",
+   "Gm9",
+   "C9"
+  ],
+  "sign": [
+   "Bbmaj9",
+   "C13",
+   "Fmaj9",
+   "F7"
+  ]
+ },
+ "bass": {
+  "round": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.85,
+      100
+     ],
+     [
+      1.5,
+      7,
+      0.4,
+      85
+     ],
+     [
+      2.25,
+      12,
+      0.6,
+      92
+     ],
+     [
+      3.5,
+      7,
+      0.3,
+      81
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.85,
+      98
+     ],
+     [
+      1.25,
+      7,
+      0.35,
+      86
+     ],
+     [
+      2,
+      12,
+      0.55,
+      93
+     ],
+     [
+      3.25,
+      2,
+      0.45,
+      82
+     ]
+    ]
+   ]
+  },
+  "flow": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.2,
+      100
+     ],
+     [
+      1.75,
+      7,
+      0.4,
+      83
+     ],
+     [
+      2.5,
+      12,
+      0.7,
+      91
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.9,
+      100
+     ],
+     [
+      2,
+      7,
+      0.7,
+      85
+     ],
+     [
+      3,
+      12,
+      0.65,
+      88
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "silk": {
+   "instrument": "pad",
+   "octave": 3,
+   "voicing": [
+    1,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.8,
+      43
+     ]
+    ]
+   ]
+  },
+  "guitar": {
+   "instrument": "guitar",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "strum": 0.025,
+   "grid": [
+    [
+     [
+      0.5,
+      0.65,
+      66
+     ],
+     [
+      2.75,
+      0.5,
+      71
+     ]
+    ],
+    [
+     [
+      0.75,
+      0.6,
+      70
+     ],
+     [
+      2.5,
+      0.65,
+      64
+     ],
+     [
+      3.5,
+      0.3,
+      59
+     ]
+    ]
+   ]
+  },
+  "neon": {
+   "instrument": "chimes",
+   "octave": 4,
+   "voicing": [
+    1,
+    3,
+    4
+   ],
+   "grid": [
+    [],
+    [
+     [
+      2,
+      0.4,
+      62
+     ]
+    ],
+    [],
+    [
+     [
+      0,
+      0.5,
+      59
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "city": {
+   "kick": {
+    "note": 36,
+    "velocity": 96,
+    "patterns": [
+     "X......xX.......",
+     "X.....x.X..x...."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 87,
+    "patterns": [
+     "....X.......X...",
+     "....X......oX..."
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 45,
+    "patterns": [
+     "x.x.X.x.x.x.X.x.",
+     "x.x.X.xox.x.X.x."
+    ]
+   },
+   "shaker": {
+    "note": 70,
+    "velocity": 35,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   }
+  },
+  "middle": {
+   "kick": {
+    "note": 36,
+    "velocity": 90,
+    "patterns": [
+     "X.......X.....x."
+    ]
+   },
+   "snare": {
+    "note": 37,
+    "velocity": 80,
+    "patterns": [
+     "....X.......X..."
+    ]
+   },
+   "hat": {
+    "note": 46,
+    "velocity": 37,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   },
+   "shaker": {
+    "note": 69,
+    "velocity": 41,
+    "patterns": [
+     "x.x.x.x.x.x.x.x."
+    ]
+   }
+  }
+ },
+ "phrases": {
+  "chorus": [
+   "D5:0.75 F5:0.25 A5:1 C6:0.75 A5:0.25 F5:1",
+   "E5:0.5 G5:0.5 A5:0.75 G5:0.25 E5:1 D5:0.5 r:0.5",
+   "E5:0.75 G5:0.25 B5:1 A5:0.5 G5:0.5 E5:1",
+   "F5:1 E5:0.5 D5:0.5 A4:1 r:1",
+   "D5:0.5 F5:0.5 A5:1 Bb5:0.75 A5:0.25 G5:1",
+   "E5:0.75 G5:0.25 Bb5:0.5 A5:0.5 G5:1 C5:0.5 r:0.5",
+   "A5:1 G5:0.5 F5:0.5 E5:0.75 F5:0.25 C5:1",
+   "C5:0.5 E5:0.5 G5:1 A5:0.75 G5:0.25 F5:0.5 r:0.5"
+  ],
+  "answer": [
+   "r:1 A5:0.5 C6:0.5 D6:0.75 C6:0.25 A5:1",
+   "Bb5:0.75 A5:0.25 G5:0.5 E5:0.5 D5:1 C5:1",
+   "B5:0.5 A5:0.5 G5:0.75 E5:0.25 D5:0.5 E5:0.5 G5:1",
+   "A5:0.5 F5:0.5 E5:0.75 D5:0.25 F5:1 A5:0.5 r:0.5",
+   "A5:0.75 F5:0.25 D5:1 G5:0.5 Bb5:0.5 D6:1",
+   "E6:0.75 C6:0.25 Bb5:0.5 A5:0.5 G5:1 E5:1",
+   "E5:0.5 A5:0.5 C6:0.75 G5:0.25 F5:1 E5:1",
+   "G5:0.5 A5:0.5 C6:0.75 E6:0.25 D6:1 r:1"
+  ],
+  "middle": [
+   "A4:0.25 D5:0.25 F5:0.5 A5:0.75 E5:0.25 F5:0.5 D5:0.5 A4:1",
+   "B4:0.5 E5:0.5 F5:0.75 E5:0.25 D5:0.5 B4:0.5 A4:0.5 r:0.5",
+   "D5:0.5 F5:0.25 A5:0.25 Bb5:0.5 A5:0.5 F5:0.75 D5:0.25 G4:1",
+   "G4:0.5 C5:0.25 E5:0.25 Bb5:0.75 A5:0.25 G5:0.5 E5:0.5 C5:1",
+   "G4:0.5 C5:0.25 E5:0.25 A5:0.75 G5:0.25 E5:0.5 C5:0.5 A4:1",
+   "F#4:0.5 A4:0.25 C5:0.25 D5:0.75 F#5:0.25 A5:0.5 C6:0.5 D6:1",
+   "D6:0.5 Bb5:0.25 A5:0.25 G5:0.75 F5:0.25 D5:0.5 Bb4:0.5 A4:1",
+   "Bb4:0.5 E5:0.25 G5:0.25 A5:0.75 G5:0.25 E5:1 r:1"
+  ],
+  "spark": [
+   "r:3 A6:0.5 F6:0.5",
+   "r:4",
+   "r:2 E6:0.5 G6:0.5 B6:1",
+   "r:4"
+  ]
+ },
+ "form": [
+  {
+   "name": "After-hours neon",
+   "bars": 8,
+   "harmony": "city",
+   "bass": "round",
+   "comp": [
+    "silk",
+    "guitar"
+   ],
+   "drums": "city",
+   "lines": [
+    {
+     "instrument": "ep",
+     "phrase": "chorus",
+     "primary": true,
+     "gate": 0.92
+    }
+   ]
+  },
+  {
+   "name": "Light in the window",
+   "bars": 8,
+   "harmony": "city",
+   "bass": "round",
+   "comp": [
+    "guitar",
+    "neon"
+   ],
+   "drums": "city",
+   "lines": [
+    {
+     "instrument": "ep",
+     "phrase": "answer",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Marimba avenue",
+   "bars": 8,
+   "harmony": "avenue",
+   "bass": "flow",
+   "comp": [
+    "silk",
+    "guitar"
+   ],
+   "drums": "middle",
+   "lines": [
+    {
+     "instrument": "marimba",
+     "phrase": "middle",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "The chorus comes home",
+   "bars": 8,
+   "harmony": "city",
+   "bass": "round",
+   "comp": [
+    "silk",
+    "guitar",
+    "neon"
+   ],
+   "drums": "city",
+   "lines": [
+    {
+     "instrument": "ep",
+     "phrase": "chorus",
+     "primary": true,
+     "gate": 0.92
+    },
+    {
+     "instrument": "chimes",
+     "phrase": "spark",
+     "velocity": 55
+    }
+   ]
+  },
+  {
+   "name": "Turn the open sign",
+   "bars": 4,
+   "harmony": "sign",
+   "bass": "flow",
+   "comp": [
+    "guitar"
+   ],
+   "drums": "middle",
+   "lines": [
+    {
+     "instrument": "marimba",
+     "phrase": "answer",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -25,
+   "rhythm": -24.8,
+   "melody": -22,
+   "intensity": -33
+  },
+  "reverb": {
+   "base": 0.065,
+   "rhythm": 0.02,
+   "melody": 0.13,
+   "intensity": 0.18
+  },
+  "room": 0.92,
+  "lowpass": 12000
+ }
+}

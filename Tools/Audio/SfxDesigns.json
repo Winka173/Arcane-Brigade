@@ -1,0 +1,11498 @@
+{
+ "revision": 5,
+ "renderRate": 88200,
+ "outputRate": 44100,
+ "designs": [
+  {
+   "id": "cmb.swing.blade",
+   "identity": "Narrow tin edge passing the microphone",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.18,
+     "gain": 0.62,
+     "from": 1900,
+     "to": 5800
+    },
+    {
+     "kind": "body",
+     "at": 0.025,
+     "dur": 0.11,
+     "gain": 0.11,
+     "material": "steel",
+     "pitch": 1.4,
+     "decay": 0.26
+    }
+   ],
+   "room": 0,
+   "frames": 8820,
+   "variationFrames": [
+    8820,
+    9261,
+    9702,
+    8820,
+    9261,
+    9702
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_swing_blade_00",
+    "Sfx/cmb_swing_blade_01",
+    "Sfx/cmb_swing_blade_02",
+    "Sfx/cmb_swing_blade_03",
+    "Sfx/cmb_swing_blade_04",
+    "Sfx/cmb_swing_blade_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.swing.spear",
+   "identity": "Pointed bamboo thrust, accelerating air",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.15,
+     "gain": 0.8,
+     "from": 700,
+     "to": 4200,
+     "curve": 2.2
+    },
+    {
+     "kind": "string",
+     "at": 0.008,
+     "dur": 0.1,
+     "gain": 0.1,
+     "hz": 330,
+     "feedback": 0.91
+    }
+   ],
+   "room": 0,
+   "frames": 7056,
+   "variationFrames": [
+    7056,
+    7409,
+    7762,
+    7056,
+    7409
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_swing_spear_00",
+    "Sfx/cmb_swing_spear_01",
+    "Sfx/cmb_swing_spear_02",
+    "Sfx/cmb_swing_spear_03",
+    "Sfx/cmb_swing_spear_04"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.swing.hammer",
+   "identity": "Broad mallet head displacing air",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 1.2,
+     "from": 170,
+     "to": 780,
+     "shape": 0.85
+    },
+    {
+     "kind": "grain",
+     "at": 0.015,
+     "dur": 0.18,
+     "gain": 0.17,
+     "material": "felt"
+    }
+   ],
+   "room": 0,
+   "frames": 11025,
+   "variationFrames": [
+    11025,
+    11576,
+    12128,
+    11025
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_swing_hammer_00",
+    "Sfx/cmb_swing_hammer_01",
+    "Sfx/cmb_swing_hammer_02",
+    "Sfx/cmb_swing_hammer_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.swing.scissors",
+   "identity": "Two shearing contacts around a tiny air cut",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.65,
+     "material": "tin",
+     "pitch": 1.7,
+     "decay": 0.22
+    },
+    {
+     "kind": "body",
+     "at": 0.042,
+     "dur": 0.065,
+     "gain": 0.4,
+     "material": "steel",
+     "pitch": 1.1,
+     "decay": 0.18
+    },
+    {
+     "kind": "air",
+     "at": 0.014,
+     "dur": 0.09,
+     "gain": 0.32,
+     "from": 1700,
+     "to": 6300
+    }
+   ],
+   "room": 0,
+   "frames": 5292,
+   "variationFrames": [
+    5292,
+    5557,
+    5821,
+    5292
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_swing_scissors_00",
+    "Sfx/cmb_swing_scissors_01",
+    "Sfx/cmb_swing_scissors_02",
+    "Sfx/cmb_swing_scissors_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.swing.umbrella",
+   "identity": "Canvas flap and rib flex",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.21,
+     "gain": 0.75,
+     "material": "felt",
+     "rate": 37
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.21,
+     "gain": 0.42,
+     "from": 260,
+     "to": 1300
+    },
+    {
+     "kind": "spring",
+     "at": 0.018,
+     "dur": 0.14,
+     "gain": 0.08,
+     "hz": 154
+    }
+   ],
+   "room": 0,
+   "frames": 9702,
+   "variationFrames": [
+    9702,
+    10187,
+    10672,
+    9702
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_swing_umbrella_00",
+    "Sfx/cmb_swing_umbrella_01",
+    "Sfx/cmb_swing_umbrella_02",
+    "Sfx/cmb_swing_umbrella_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.swing.whip",
+   "identity": "Silk whistle resolving into a tip crack",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.65,
+     "from": 800,
+     "to": 5100,
+     "whistle": 0.08
+    },
+    {
+     "kind": "grain",
+     "at": 0.103,
+     "dur": 0.04,
+     "gain": 0.7,
+     "material": "paper",
+     "rate": 330
+    }
+   ],
+   "room": 0,
+   "frames": 6615,
+   "variationFrames": [
+    6615,
+    6946,
+    7276,
+    6615
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_swing_whip_00",
+    "Sfx/cmb_swing_whip_01",
+    "Sfx/cmb_swing_whip_02",
+    "Sfx/cmb_swing_whip_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.windup",
+   "identity": "A tightening key ratchets toward the attack",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.025,
+     "gain": 0.23,
+     "material": "tin",
+     "pitch": 0.75,
+     "decay": 0.12,
+     "each": [
+      0.006,
+      0.057,
+      0.094,
+      0.121,
+      0.143
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.165,
+     "gain": 0.5,
+     "from": 300,
+     "to": 2400,
+     "curve": 2.8
+    }
+   ],
+   "room": 0,
+   "frames": 7497,
+   "variationFrames": [
+    7497,
+    8379,
+    9261
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_windup_00",
+    "Sfx/cmb_windup_01",
+    "Sfx/cmb_windup_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.miss",
+   "identity": "Unloaded fabric swish",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.125,
+     "gain": 0.7,
+     "from": 1200,
+     "to": 800,
+     "shape": 2.5
+    }
+   ],
+   "room": 0,
+   "frames": 5742,
+   "variationFrames": [
+    5742,
+    4812,
+    5468,
+    6316
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_miss_00",
+    "Sfx/cmb_miss_01",
+    "Sfx/cmb_miss_02",
+    "Sfx/cmb_miss_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.hit.paper",
+   "identity": "Close paper impact: contact, body, short material tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.58,
+     "material": "paper"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.26,
+     "hz": 115
+    },
+    {
+     "kind": "grain",
+     "at": 0.005,
+     "dur": 0.18,
+     "gain": 0.66,
+     "material": "paper",
+     "rate": 113
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_hit_paper_00",
+    "Sfx/cmb_hit_paper_01",
+    "Sfx/cmb_hit_paper_02",
+    "Sfx/cmb_hit_paper_03",
+    "Sfx/cmb_hit_paper_04",
+    "Sfx/cmb_hit_paper_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.paper",
+   "identity": "Collapsing paper toy with scattering fragments",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "paper",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.23,
+     "material": "paper",
+     "pitch": 1.65,
+     "each": [
+      0.065,
+      0.108,
+      0.171,
+      0.226
+     ],
+     "jitter": 0.005
+    },
+    {
+     "kind": "grain",
+     "at": 0.022,
+     "dur": 0.27,
+     "gain": 0.34,
+     "material": "paper",
+     "rate": 92
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.22,
+     "hz": 156,
+     "to": 65
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_paper_00",
+    "Sfx/enemy_die_paper_01",
+    "Sfx/enemy_die_paper_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.hit.metal",
+   "identity": "Close metal impact: contact, body, short material tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.58,
+     "material": "tin"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.26,
+     "hz": 115
+    },
+    {
+     "kind": "body",
+     "at": 0.003,
+     "dur": 0.22,
+     "gain": 0.16,
+     "material": "steel",
+     "pitch": 0.72,
+     "decay": 0.46
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_hit_metal_00",
+    "Sfx/cmb_hit_metal_01",
+    "Sfx/cmb_hit_metal_02",
+    "Sfx/cmb_hit_metal_03",
+    "Sfx/cmb_hit_metal_04",
+    "Sfx/cmb_hit_metal_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.metal",
+   "identity": "Collapsing metal toy with scattering fragments",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "tin",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.23,
+     "material": "tin",
+     "pitch": 1.65,
+     "each": [
+      0.065,
+      0.108,
+      0.171,
+      0.226
+     ],
+     "jitter": 0.005
+    },
+    {
+     "kind": "grain",
+     "at": 0.022,
+     "dur": 0.27,
+     "gain": 0.34,
+     "material": "tin",
+     "rate": 92
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.22,
+     "hz": 156,
+     "to": 65
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_metal_00",
+    "Sfx/enemy_die_metal_01",
+    "Sfx/enemy_die_metal_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.hit.wax",
+   "identity": "Close wax impact: contact, body, short material tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.58,
+     "material": "wax"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.26,
+     "hz": 115
+    },
+    {
+     "kind": "bubble",
+     "at": 0.004,
+     "dur": 0.18,
+     "gain": 0.32,
+     "count": 5,
+     "pitch": 0.58
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_hit_wax_00",
+    "Sfx/cmb_hit_wax_01",
+    "Sfx/cmb_hit_wax_02",
+    "Sfx/cmb_hit_wax_03",
+    "Sfx/cmb_hit_wax_04",
+    "Sfx/cmb_hit_wax_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.wax",
+   "identity": "Collapsing wax toy with scattering fragments",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "wax",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.23,
+     "material": "wax",
+     "pitch": 1.65,
+     "each": [
+      0.065,
+      0.108,
+      0.171,
+      0.226
+     ],
+     "jitter": 0.005
+    },
+    {
+     "kind": "grain",
+     "at": 0.022,
+     "dur": 0.27,
+     "gain": 0.34,
+     "material": "wax",
+     "rate": 92
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.22,
+     "hz": 156,
+     "to": 65
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_wax_00",
+    "Sfx/enemy_die_wax_01",
+    "Sfx/enemy_die_wax_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.hit.fabric",
+   "identity": "Close fabric impact: contact, body, short material tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.58,
+     "material": "felt"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.26,
+     "hz": 115
+    },
+    {
+     "kind": "grain",
+     "at": 0.006,
+     "dur": 0.11,
+     "gain": 0.43,
+     "material": "felt",
+     "rate": 48
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_hit_fabric_00",
+    "Sfx/cmb_hit_fabric_01",
+    "Sfx/cmb_hit_fabric_02",
+    "Sfx/cmb_hit_fabric_03",
+    "Sfx/cmb_hit_fabric_04",
+    "Sfx/cmb_hit_fabric_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.fabric",
+   "identity": "Collapsing fabric toy with scattering fragments",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "felt",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.23,
+     "material": "felt",
+     "pitch": 1.65,
+     "each": [
+      0.065,
+      0.108,
+      0.171,
+      0.226
+     ],
+     "jitter": 0.005
+    },
+    {
+     "kind": "grain",
+     "at": 0.022,
+     "dur": 0.27,
+     "gain": 0.34,
+     "material": "felt",
+     "rate": 92
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.22,
+     "hz": 156,
+     "to": 65
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_fabric_00",
+    "Sfx/enemy_die_fabric_01",
+    "Sfx/enemy_die_fabric_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.hit.glass",
+   "identity": "Close glass impact: contact, body, short material tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.58,
+     "material": "glass"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.26,
+     "hz": 115
+    },
+    {
+     "kind": "body",
+     "at": 0.016,
+     "dur": 0.22,
+     "gain": 0.21,
+     "material": "porcelain",
+     "pitch": 1.32
+    },
+    {
+     "kind": "body",
+     "at": 0.048,
+     "dur": 0.13,
+     "gain": 0.1,
+     "material": "glass",
+     "pitch": 1.71
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_hit_glass_00",
+    "Sfx/cmb_hit_glass_01",
+    "Sfx/cmb_hit_glass_02",
+    "Sfx/cmb_hit_glass_03",
+    "Sfx/cmb_hit_glass_04",
+    "Sfx/cmb_hit_glass_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.glass",
+   "identity": "Collapsing glass toy with scattering fragments",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "glass",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.23,
+     "material": "glass",
+     "pitch": 1.65,
+     "each": [
+      0.065,
+      0.108,
+      0.171,
+      0.226
+     ],
+     "jitter": 0.005
+    },
+    {
+     "kind": "grain",
+     "at": 0.022,
+     "dur": 0.27,
+     "gain": 0.34,
+     "material": "tin",
+     "rate": 92
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.22,
+     "hz": 156,
+     "to": 65
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_glass_00",
+    "Sfx/enemy_die_glass_01",
+    "Sfx/enemy_die_glass_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.hit.wood",
+   "identity": "Close wood impact: contact, body, short material tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.58,
+     "material": "hollow"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.26,
+     "hz": 115
+    },
+    {
+     "kind": "grain",
+     "at": 0.002,
+     "dur": 0.07,
+     "gain": 0.22,
+     "material": "oak",
+     "rate": 160
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_hit_wood_00",
+    "Sfx/cmb_hit_wood_01",
+    "Sfx/cmb_hit_wood_02",
+    "Sfx/cmb_hit_wood_03",
+    "Sfx/cmb_hit_wood_04",
+    "Sfx/cmb_hit_wood_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.wood",
+   "identity": "Collapsing wood toy with scattering fragments",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "hollow",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.23,
+     "material": "hollow",
+     "pitch": 1.65,
+     "each": [
+      0.065,
+      0.108,
+      0.171,
+      0.226
+     ],
+     "jitter": 0.005
+    },
+    {
+     "kind": "grain",
+     "at": 0.022,
+     "dur": 0.27,
+     "gain": 0.34,
+     "material": "oak",
+     "rate": 92
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.22,
+     "hz": 156,
+     "to": 65
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_wood_00",
+    "Sfx/enemy_die_wood_01",
+    "Sfx/enemy_die_wood_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "cmb.crit",
+   "identity": "A split oak crack, compressed body and single reward pin",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.85,
+     "material": "oak",
+     "pitch": 0.67
+    },
+    {
+     "kind": "body",
+     "at": 0.003,
+     "dur": 0.08,
+     "gain": 0.35,
+     "material": "paper"
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.21,
+     "gain": 0.55,
+     "hz": 158
+    },
+    {
+     "kind": "body",
+     "at": 0.012,
+     "dur": 0.35,
+     "gain": 0.31,
+     "material": "tine",
+     "notes": [
+      91,
+      93,
+      95,
+      96,
+      98
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 20021,
+   "variationFrames": [
+    20021,
+    20021,
+    20021,
+    20021,
+    20021
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/cmb_crit_00",
+    "Sfx/cmb_crit_01",
+    "Sfx/cmb_crit_02",
+    "Sfx/cmb_crit_03",
+    "Sfx/cmb_crit_04"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.bow.draw",
+   "identity": "Rosined string tension climbing under a wooden bow",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.19,
+     "gain": 0.5,
+     "material": "oak",
+     "rate": 153
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.195,
+     "gain": 0.2,
+     "hz": 130,
+     "rate": 11,
+     "bend": 4
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.19,
+     "gain": 0.18,
+     "from": 350,
+     "to": 1800
+    }
+   ],
+   "room": 0,
+   "frames": 8820,
+   "variationFrames": [
+    8820,
+    9349,
+    9878
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_bow_draw_00",
+    "Sfx/wpn_bow_draw_01",
+    "Sfx/wpn_bow_draw_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.bow.release",
+   "identity": "Unwinding string, bamboo click and narrow thwip",
+   "layers": [
+    {
+     "kind": "string",
+     "at": 0,
+     "dur": 0.3,
+     "gain": 0.65,
+     "hz": 198,
+     "feedback": 0.985
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.21,
+     "material": "oak",
+     "pitch": 1.7
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.42,
+     "from": 900,
+     "to": 4800
+    }
+   ],
+   "room": 0,
+   "frames": 14112,
+   "variationFrames": [
+    14112,
+    14112,
+    14112,
+    14112,
+    14112
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_bow_release_00",
+    "Sfx/wpn_bow_release_01",
+    "Sfx/wpn_bow_release_02",
+    "Sfx/wpn_bow_release_03",
+    "Sfx/wpn_bow_release_04"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.gun.pop",
+   "identity": "Cork leaves a short wooden barrel",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.7,
+     "material": "hollow",
+     "pitch": 1.6
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.095,
+     "gain": 0.45,
+     "hz": 310,
+     "to": 110
+    },
+    {
+     "kind": "air",
+     "at": 0.002,
+     "dur": 0.065,
+     "gain": 0.38,
+     "from": 600,
+     "to": 2300
+    }
+   ],
+   "room": 0,
+   "frames": 5733,
+   "variationFrames": [
+    5733,
+    5733,
+    5733,
+    5733
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_gun_pop_00",
+    "Sfx/wpn_gun_pop_01",
+    "Sfx/wpn_gun_pop_02",
+    "Sfx/wpn_gun_pop_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.launcher",
+   "identity": "Spring latch, hollow tube pressure and spent gear",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.04,
+     "gain": 0.26,
+     "material": "tin",
+     "pitch": 0.6
+    },
+    {
+     "kind": "rumble",
+     "at": 0.012,
+     "dur": 0.27,
+     "gain": 0.65,
+     "hz": 104
+    },
+    {
+     "kind": "body",
+     "at": 0.009,
+     "dur": 0.17,
+     "gain": 0.65,
+     "material": "hollow",
+     "pitch": 0.53
+    },
+    {
+     "kind": "body",
+     "at": 0.115,
+     "dur": 0.13,
+     "gain": 0.21,
+     "material": "tin",
+     "pitch": 0.82
+    }
+   ],
+   "room": 0,
+   "frames": 14112,
+   "variationFrames": [
+    14112,
+    14112,
+    14112
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_launcher_00",
+    "Sfx/wpn_launcher_01",
+    "Sfx/wpn_launcher_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.cast.fire",
+   "identity": "Bellows ignite with a warm pressure puff and cinders",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.39,
+     "gain": 0.9,
+     "from": 180,
+     "to": 1650,
+     "shape": 0.55
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.22,
+     "gain": 0.65,
+     "hz": 138
+    },
+    {
+     "kind": "grain",
+     "at": 0.03,
+     "dur": 0.36,
+     "gain": 0.34,
+     "material": "paper",
+     "rate": 129
+    }
+   ],
+   "room": 0,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845,
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_cast_fire_00",
+    "Sfx/wpn_cast_fire_01",
+    "Sfx/wpn_cast_fire_02",
+    "Sfx/wpn_cast_fire_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.cast.ice",
+   "identity": "Cold porcelain facets fan outward",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.22,
+     "gain": 0.22,
+     "material": "tin",
+     "rate": 263
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.39,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.035,
+     "dur": 0.39,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.079,
+     "dur": 0.39,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      98
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050,
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_cast_ice_00",
+    "Sfx/wpn_cast_ice_01",
+    "Sfx/wpn_cast_ice_02",
+    "Sfx/wpn_cast_ice_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.cast.arcane",
+   "identity": "Bowed glass winds inward, then three asymmetrical tines",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.35,
+     "from": 4200,
+     "to": 450,
+     "flutter": 17
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.31,
+     "gain": 0.24,
+     "hz": 410,
+     "bend": 5,
+     "rate": 71
+    },
+    {
+     "kind": "body",
+     "at": 0.024,
+     "dur": 0.43,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.084,
+     "dur": 0.43,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.152,
+     "dur": 0.43,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      90
+     ]
+    }
+   ],
+   "room": 0.3,
+   "frames": 27342,
+   "variationFrames": [
+    27342,
+    27342,
+    27342,
+    27342
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_cast_arcane_00",
+    "Sfx/wpn_cast_arcane_01",
+    "Sfx/wpn_cast_arcane_02",
+    "Sfx/wpn_cast_arcane_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.boomerang.fly",
+   "identity": "Spinning maple propeller with four blade passes",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.57,
+     "gain": 0.8,
+     "from": 1900,
+     "to": 470,
+     "flutter": 15,
+     "shape": 0.7
+    },
+    {
+     "kind": "string",
+     "at": 0,
+     "dur": 0.56,
+     "gain": 0.13,
+     "hz": 120,
+     "feedback": 0.99
+    }
+   ],
+   "room": 0,
+   "frames": 26460,
+   "variationFrames": [
+    26460,
+    26460,
+    26460
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_boomerang_fly_00",
+    "Sfx/wpn_boomerang_fly_01",
+    "Sfx/wpn_boomerang_fly_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.boomerang.return",
+   "identity": "Returning wooden propeller caught in a glove",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.41,
+     "gain": 0.65,
+     "from": 500,
+     "to": 2400,
+     "flutter": 13,
+     "curve": 1.9
+    },
+    {
+     "kind": "body",
+     "at": 0.405,
+     "dur": 0.09,
+     "gain": 0.7,
+     "material": "felt"
+    },
+    {
+     "kind": "body",
+     "at": 0.405,
+     "dur": 0.07,
+     "gain": 0.3,
+     "material": "oak",
+     "pitch": 1.3
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_boomerang_return_00",
+    "Sfx/wpn_boomerang_return_01",
+    "Sfx/wpn_boomerang_return_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.pierce",
+   "identity": "A needle passes through taut card",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.23,
+     "gain": 0.65,
+     "from": 4200,
+     "to": 1700,
+     "whistle": 0.08
+    },
+    {
+     "kind": "grain",
+     "at": 0.015,
+     "dur": 0.09,
+     "gain": 0.18,
+     "material": "paper",
+     "rate": 330
+    }
+   ],
+   "room": 0,
+   "frames": 10584,
+   "variationFrames": [
+    10584,
+    10584,
+    10584,
+    10584
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_pierce_00",
+    "Sfx/wpn_pierce_01",
+    "Sfx/wpn_pierce_02",
+    "Sfx/wpn_pierce_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.split",
+   "identity": "Three cork chambers branch in a fast fan",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.6,
+     "material": "hollow",
+     "pitch": 2,
+     "each": [
+      0,
+      0.033,
+      0.068
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0.015,
+     "dur": 0.13,
+     "gain": 0.22,
+     "from": 1500,
+     "to": 4700
+    }
+   ],
+   "room": 0,
+   "frames": 7056,
+   "variationFrames": [
+    7056,
+    7056,
+    7056
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_split_00",
+    "Sfx/wpn_split_01",
+    "Sfx/wpn_split_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.bounce",
+   "identity": "Taut ruler rebounds against a tin rim",
+   "layers": [
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 0.65,
+     "hz": 330,
+     "bend": 7,
+     "rate": 29
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.21,
+     "material": "tin",
+     "pitch": 1.46,
+     "decay": 0.4
+    }
+   ],
+   "room": 0,
+   "frames": 11025,
+   "variationFrames": [
+    11025,
+    11025,
+    11025,
+    11025
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_bounce_00",
+    "Sfx/wpn_bounce_01",
+    "Sfx/wpn_bounce_02",
+    "Sfx/wpn_bounce_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.bell",
+   "identity": "Large handbell with beating partials",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 1.39,
+     "gain": 0.7,
+     "material": "bell",
+     "pitch": 0.62,
+     "decay": 1.65
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.1,
+     "material": "oak",
+     "pitch": 1.9
+    }
+   ],
+   "room": 0.35,
+   "frames": 61740,
+   "variationFrames": [
+    61740,
+    61740,
+    61740,
+    61740
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_bell_00",
+    "Sfx/sig_bell_01",
+    "Sfx/sig_bell_02",
+    "Sfx/sig_bell_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.umbrella",
+   "identity": "Canvas canopy pops over eight steel ribs",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.27,
+     "gain": 0.9,
+     "material": "felt",
+     "rate": 46
+    },
+    {
+     "kind": "body",
+     "at": 0.02,
+     "dur": 0.13,
+     "gain": 0.22,
+     "material": "tin",
+     "pitch": 0.64
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.65,
+     "from": 320,
+     "to": 1800
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_umbrella_00",
+    "Sfx/sig_umbrella_01",
+    "Sfx/sig_umbrella_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.stamp",
+   "identity": "Rubber seal compresses onto a stack of receipts",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.22,
+     "gain": 0.8,
+     "material": "hollow",
+     "pitch": 0.66
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.11,
+     "gain": 0.45,
+     "material": "felt"
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 0.55,
+     "material": "paper",
+     "rate": 117
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_stamp_00",
+    "Sfx/sig_stamp_01",
+    "Sfx/sig_stamp_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.scissors",
+   "identity": "Two deliberate oversized shear cuts",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.38,
+     "material": "steel",
+     "pitch": 0.7,
+     "decay": 0.3,
+     "each": [
+      0,
+      0.105
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.08,
+     "gain": 0.7,
+     "material": "tin",
+     "rate": 237,
+     "each": [
+      0,
+      0.105
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 9702,
+   "variationFrames": [
+    9702,
+    9702,
+    9702,
+    9702
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_scissors_00",
+    "Sfx/sig_scissors_01",
+    "Sfx/sig_scissors_02",
+    "Sfx/sig_scissors_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.camera",
+   "identity": "Flash capacitor winds up and mechanical shutter snaps at .2s",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.197,
+     "gain": 0.17,
+     "from": 1500,
+     "to": 5100,
+     "whistle": 0.3,
+     "shape": 0.6
+    },
+    {
+     "kind": "body",
+     "at": 0.2,
+     "dur": 0.065,
+     "gain": 0.65,
+     "material": "tin",
+     "pitch": 1.6,
+     "decay": 0.25
+    },
+    {
+     "kind": "grain",
+     "at": 0.2,
+     "dur": 0.09,
+     "gain": 0.25,
+     "material": "paper",
+     "rate": 440
+    }
+   ],
+   "room": 0,
+   "frames": 13009,
+   "variationFrames": [
+    13009,
+    13009,
+    13009
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_camera_00",
+    "Sfx/sig_camera_01",
+    "Sfx/sig_camera_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.musicbox",
+   "identity": "Three hand-pinned music-box teeth, spacious final note",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.5,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      76
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.12,
+     "dur": 0.5,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.29,
+     "dur": 0.5,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.1,
+     "material": "oak",
+     "pitch": 2.2
+    }
+   ],
+   "room": 0.3,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_musicbox_00",
+    "Sfx/sig_musicbox_01",
+    "Sfx/sig_musicbox_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.tea",
+   "identity": "A ceramic cup empties in a hot splash",
+   "layers": [
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.65,
+     "count": 15,
+     "pitch": 1.2
+    },
+    {
+     "kind": "air",
+     "at": 0.035,
+     "dur": 0.25,
+     "gain": 0.38,
+     "from": 1700,
+     "to": 4200
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.2,
+     "material": "porcelain",
+     "pitch": 0.82,
+     "decay": 0.4
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_tea_00",
+    "Sfx/sig_tea_01",
+    "Sfx/sig_tea_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.fish",
+   "identity": "Wet felt slap with tiny water droplets",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.16,
+     "gain": 0.85,
+     "material": "felt",
+     "pitch": 0.8
+    },
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.5,
+     "count": 7,
+     "pitch": 0.7
+    },
+    {
+     "kind": "grain",
+     "at": 0.003,
+     "dur": 0.13,
+     "gain": 0.35,
+     "material": "wax",
+     "rate": 150
+    }
+   ],
+   "room": 0,
+   "frames": 7938,
+   "variationFrames": [
+    7938,
+    7938,
+    7938
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_fish_00",
+    "Sfx/sig_fish_01",
+    "Sfx/sig_fish_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.alarm",
+   "identity": "Twin mechanical alarm bells, alternating mallets",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.38,
+     "material": "steel",
+     "pitch": 0.72,
+     "each": [
+      0,
+      0.072,
+      0.144,
+      0.216
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.11,
+     "gain": 0.35,
+     "material": "tin",
+     "pitch": 1.35,
+     "each": [
+      0.036,
+      0.108,
+      0.18,
+      0.252
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 14773,
+   "variationFrames": [
+    14773,
+    14773
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_alarm_00",
+    "Sfx/sig_alarm_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.iron",
+   "identity": "Heavy soleplate presses down and vents steam",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.4,
+     "material": "tin",
+     "pitch": 0.46
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.4,
+     "material": "hollow",
+     "pitch": 0.55
+    },
+    {
+     "kind": "air",
+     "at": 0.02,
+     "dur": 0.32,
+     "gain": 0.9,
+     "from": 2200,
+     "to": 5500,
+     "shape": 0.55
+    }
+   ],
+   "room": 0,
+   "frames": 15346,
+   "variationFrames": [
+    15346,
+    15346,
+    15346
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_iron_00",
+    "Sfx/sig_iron_01",
+    "Sfx/sig_iron_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.hammer",
+   "identity": "Oversized hardwood mallet, split grain and floor bounce",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.31,
+     "gain": 0.8,
+     "material": "oak",
+     "pitch": 0.5,
+     "decay": 1.7
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.38,
+     "gain": 0.7,
+     "hz": 115
+    },
+    {
+     "kind": "body",
+     "at": 0.17,
+     "dur": 0.18,
+     "gain": 0.22,
+     "material": "hollow",
+     "pitch": 0.65
+    },
+    {
+     "kind": "grain",
+     "at": 0.006,
+     "dur": 0.19,
+     "gain": 0.3,
+     "material": "oak",
+     "rate": 187
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_hammer_00",
+    "Sfx/sig_hammer_01",
+    "Sfx/sig_hammer_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.burn",
+   "identity": "Tiny crinkled cinder, no tonal tail",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.115,
+     "gain": 0.9,
+     "material": "paper",
+     "rate": 217
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.22,
+     "from": 500,
+     "to": 1600
+    }
+   ],
+   "room": 0,
+   "frames": 5292,
+   "variationFrames": [
+    5292,
+    5292,
+    5292,
+    5292
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_burn_00",
+    "Sfx/fx_burn_01",
+    "Sfx/fx_burn_02",
+    "Sfx/fx_burn_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.chill",
+   "identity": "One damped frost facet",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.6,
+     "material": "porcelain",
+     "pitch": 1.95,
+     "decay": 0.28
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.1,
+     "material": "tin",
+     "rate": 310
+    }
+   ],
+   "room": 0,
+   "frames": 9702,
+   "variationFrames": [
+    9702,
+    9702,
+    9702,
+    9702
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_chill_00",
+    "Sfx/fx_chill_01",
+    "Sfx/fx_chill_02",
+    "Sfx/fx_chill_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.knockback",
+   "identity": "Soft pressure slap pushing a cloth body",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.19,
+     "gain": 0.65,
+     "from": 470,
+     "to": 1100
+    },
+    {
+     "kind": "body",
+     "at": 0.014,
+     "dur": 0.17,
+     "gain": 0.6,
+     "material": "felt",
+     "pitch": 0.65
+    },
+    {
+     "kind": "rumble",
+     "at": 0.014,
+     "dur": 0.15,
+     "gain": 0.25,
+     "hz": 110
+    }
+   ],
+   "room": 0,
+   "frames": 9702,
+   "variationFrames": [
+    9702,
+    9702,
+    9702,
+    9702
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_knockback_00",
+    "Sfx/fx_knockback_01",
+    "Sfx/fx_knockback_02",
+    "Sfx/fx_knockback_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.reaction.steam",
+   "identity": "Pressure release across a wet hot plate",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.49,
+     "gain": 0.9,
+     "from": 4100,
+     "to": 1600,
+     "shape": 0.55
+    },
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.3,
+     "gain": 0.2,
+     "count": 13,
+     "pitch": 0.55
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_reaction_steam_00",
+    "Sfx/fx_reaction_steam_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.reaction.shatter",
+   "identity": "Frozen porcelain bursts into receding shards",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.6,
+     "material": "glass",
+     "pitch": 0.62
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.2,
+     "material": "porcelain",
+     "pitch": 1.9,
+     "each": [
+      0.035,
+      0.074,
+      0.122,
+      0.189,
+      0.278,
+      0.337
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0.008,
+     "dur": 0.3,
+     "gain": 0.3,
+     "material": "tin",
+     "rate": 267
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_reaction_shatter_00",
+    "Sfx/fx_reaction_shatter_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.reaction.arcane",
+   "identity": "Reverse glass suction closes on a resonant knot",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 0.6,
+     "from": 5000,
+     "to": 700
+    },
+    {
+     "kind": "body",
+     "at": 0.225,
+     "dur": 0.27,
+     "gain": 0.58,
+     "material": "porcelain",
+     "pitch": 0.58
+    },
+    {
+     "kind": "body",
+     "at": 0.24,
+     "dur": 0.16,
+     "gain": 0.24,
+     "material": "tine",
+     "notes": [
+      94
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.286,
+     "dur": 0.16,
+     "gain": 0.24,
+     "material": "tine",
+     "notes": [
+      90
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.327,
+     "dur": 0.16,
+     "gain": 0.24,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_reaction_arcane_00",
+    "Sfx/fx_reaction_arcane_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "chr.step",
+   "identity": "Felt shoe presses into rug, wooden heel contact",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.08,
+     "gain": 0.7,
+     "material": "felt",
+     "pitch": 1.5
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.4,
+     "material": "felt",
+     "rate": 93
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.045,
+     "gain": 0.08,
+     "material": "oak",
+     "pitch": 1.3
+    }
+   ],
+   "room": 0,
+   "frames": 3969,
+   "variationFrames": [
+    3969,
+    3969,
+    3969,
+    3969,
+    3969,
+    3969
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/chr_step_00",
+    "Sfx/chr_step_01",
+    "Sfx/chr_step_02",
+    "Sfx/chr_step_03",
+    "Sfx/chr_step_04",
+    "Sfx/chr_step_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "chr.dash",
+   "identity": "Coat hem sweeps out with a short foot push",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 0.38,
+     "material": "felt",
+     "rate": 38
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.27,
+     "gain": 0.8,
+     "from": 300,
+     "to": 2600
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.25,
+     "material": "felt"
+    }
+   ],
+   "room": 0,
+   "frames": 12348,
+   "variationFrames": [
+    12348,
+    12348,
+    12348,
+    12348
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/chr_dash_00",
+    "Sfx/chr_dash_01",
+    "Sfx/chr_dash_02",
+    "Sfx/chr_dash_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "chr.jump",
+   "identity": "Toe push and rising spring lift",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.45,
+     "material": "felt",
+     "pitch": 1.7
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.18,
+     "gain": 0.32,
+     "hz": 210,
+     "bend": 4,
+     "rate": 14
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.18,
+     "gain": 0.3,
+     "from": 450,
+     "to": 1600
+    }
+   ],
+   "room": 0,
+   "frames": 8820,
+   "variationFrames": [
+    8820,
+    8820,
+    8820
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/chr_jump_00",
+    "Sfx/chr_jump_01",
+    "Sfx/chr_jump_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "chr.land",
+   "identity": "Two cushioned soles and a floorboard",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.75,
+     "material": "felt"
+    },
+    {
+     "kind": "body",
+     "at": 0.008,
+     "dur": 0.16,
+     "gain": 0.34,
+     "material": "hollow",
+     "pitch": 0.7
+    },
+    {
+     "kind": "grain",
+     "at": 0.007,
+     "dur": 0.11,
+     "gain": 0.25,
+     "material": "felt",
+     "rate": 67
+    }
+   ],
+   "room": 0,
+   "frames": 8820,
+   "variationFrames": [
+    8820,
+    8820,
+    8820
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/chr_land_00",
+    "Sfx/chr_land_01",
+    "Sfx/chr_land_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "plr.dodge",
+   "identity": "Air displaced to the side, single small safety tine",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.8,
+     "from": 4000,
+     "to": 650
+    },
+    {
+     "kind": "body",
+     "at": 0.07,
+     "dur": 0.22,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      93,
+      95,
+      98
+     ],
+     "decay": 0.35
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/plr_dodge_00",
+    "Sfx/plr_dodge_01",
+    "Sfx/plr_dodge_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "plr.hurt",
+   "identity": "Low chest hit plus two rough alarm reeds; never a reward chime",
+   "layers": [
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.23,
+     "gain": 0.6,
+     "hz": 138,
+     "to": 55
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "felt"
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.06,
+     "gain": 0.45,
+     "hz": 740,
+     "brightness": 3,
+     "each": [
+      0.008,
+      0.096
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0.005,
+     "dur": 0.12,
+     "gain": 0.28,
+     "material": "tin",
+     "rate": 71
+    }
+   ],
+   "room": 0,
+   "frames": 11466,
+   "variationFrames": [
+    11466,
+    11466,
+    11466,
+    11466,
+    11466
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/plr_hurt_00",
+    "Sfx/plr_hurt_01",
+    "Sfx/plr_hurt_02",
+    "Sfx/plr_hurt_03",
+    "Sfx/plr_hurt_04"
+   ],
+   "danger": true
+  },
+  {
+   "id": "plr.lowhp",
+   "identity": "Gentle lub-dub with a low breath warning",
+   "layers": [
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.23,
+     "gain": 0.8,
+     "hz": 74,
+     "to": 46
+    },
+    {
+     "kind": "rumble",
+     "at": 0.18,
+     "dur": 0.25,
+     "gain": 0.52,
+     "hz": 69,
+     "to": 42,
+     "variantDelay": [
+      0,
+      0.018
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.02,
+     "dur": 0.34,
+     "gain": 0.08,
+     "hz": 349,
+     "brightness": 1.5
+    }
+   ],
+   "room": 0,
+   "frames": 19404,
+   "variationFrames": [
+    19404,
+    19404
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/plr_lowhp_00",
+    "Sfx/plr_lowhp_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "plr.heal",
+   "identity": "Warm ceramic third resolves upward through water",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.44,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      69
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.13,
+     "dur": 0.44,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      73
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.31,
+     "dur": 0.44,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      78
+     ]
+    },
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.47,
+     "gain": 0.24,
+     "count": 7,
+     "pitch": 0.7
+    }
+   ],
+   "room": 0.4,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/plr_heal_00",
+    "Sfx/plr_heal_01",
+    "Sfx/plr_heal_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "plr.death",
+   "identity": "Puppet breath drops with a stalled winding mechanism",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.58,
+     "gain": 0.34,
+     "hz": 110,
+     "vowel": "o",
+     "contour": [
+      1.6,
+      1,
+      0.4
+     ],
+     "rasp": true
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.26,
+     "hz": 125,
+     "bend": 18,
+     "rate": 8
+    },
+    {
+     "kind": "rumble",
+     "at": 0.39,
+     "dur": 0.8,
+     "gain": 0.75,
+     "hz": 90,
+     "to": 27
+    },
+    {
+     "kind": "grain",
+     "at": 0.35,
+     "dur": 0.58,
+     "gain": 0.27,
+     "material": "oak",
+     "rate": 25
+    }
+   ],
+   "room": 0,
+   "frames": 56889,
+   "variationFrames": [
+    56889,
+    56889
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/plr_death_00",
+    "Sfx/plr_death_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "enemy.spit.windup",
+   "identity": "Wet throat pressure interrupted by three reed pulses",
+   "layers": [
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.38,
+     "count": 7,
+     "pitch": 0.5
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.055,
+     "gain": 0.4,
+     "hz": 880,
+     "brightness": 3,
+     "each": [
+      0,
+      0.095,
+      0.19
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.29,
+     "gain": 0.35,
+     "from": 400,
+     "to": 2800
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_spit_windup_00",
+    "Sfx/enemy_spit_windup_01",
+    "Sfx/enemy_spit_windup_02",
+    "Sfx/enemy_spit_windup_03"
+   ],
+   "danger": true
+  },
+  {
+   "id": "enemy.spit.fire",
+   "identity": "Sharp spit pop and recognisable nasal launch",
+   "layers": [
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.5,
+     "count": 5,
+     "pitch": 1.1
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.25,
+     "hz": 230,
+     "vowel": "u",
+     "contour": [
+      1.4,
+      1,
+      0.65
+     ],
+     "formant": 1.2
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.4,
+     "from": 1400,
+     "to": 3900
+    }
+   ],
+   "room": 0,
+   "frames": 9702,
+   "variationFrames": [
+    9702,
+    9702,
+    9702,
+    9702,
+    9702
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_spit_fire_00",
+    "Sfx/enemy_spit_fire_01",
+    "Sfx/enemy_spit_fire_02",
+    "Sfx/enemy_spit_fire_03",
+    "Sfx/enemy_spit_fire_04"
+   ],
+   "danger": true
+  },
+  {
+   "id": "enemy.lunge",
+   "identity": "Cloth puppet growl surges into a breath swipe",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.27,
+     "gain": 0.35,
+     "hz": 100,
+     "vowel": "ae",
+     "contour": [
+      0.7,
+      1.35,
+      0.9
+     ],
+     "rasp": true
+    },
+    {
+     "kind": "air",
+     "at": 0.025,
+     "dur": 0.26,
+     "gain": 0.65,
+     "from": 450,
+     "to": 1900
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_lunge_00",
+    "Sfx/enemy_lunge_01",
+    "Sfx/enemy_lunge_02",
+    "Sfx/enemy_lunge_03"
+   ],
+   "danger": true
+  },
+  {
+   "id": "enemy.hurt",
+   "identity": "Small stuffing grunt, intentionally no ringing metal",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.5,
+     "hz": 180,
+     "vowel": "ouea",
+     "contour": [
+      1.15,
+      0.9,
+      0.6
+     ],
+     "formant": 1.25,
+     "rasp": true
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.32,
+     "material": "felt",
+     "rate": 45
+    }
+   ],
+   "room": 0,
+   "frames": 8114,
+   "variationFrames": [
+    8114,
+    8114,
+    8114,
+    8114,
+    8114,
+    8114
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_hurt_00",
+    "Sfx/enemy_hurt_01",
+    "Sfx/enemy_hurt_02",
+    "Sfx/enemy_hurt_03",
+    "Sfx/enemy_hurt_04",
+    "Sfx/enemy_hurt_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.big.step",
+   "identity": "Padded giant foot with a shelf-rattling aftershock",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.8,
+     "material": "felt",
+     "pitch": 0.55
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.32,
+     "gain": 0.65,
+     "hz": 92,
+     "to": 37
+    },
+    {
+     "kind": "body",
+     "at": 0.013,
+     "dur": 0.25,
+     "gain": 0.45,
+     "material": "hollow",
+     "pitch": 0.46
+    },
+    {
+     "kind": "body",
+     "at": 0.09,
+     "dur": 0.14,
+     "gain": 0.12,
+     "material": "tin",
+     "pitch": 0.6
+    }
+   ],
+   "room": 0,
+   "frames": 15435,
+   "variationFrames": [
+    15435,
+    15435,
+    15435
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_big_step_00",
+    "Sfx/enemy_big_step_01",
+    "Sfx/enemy_big_step_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.big.roar",
+   "identity": "Large wooden puppet throat, rising then falling",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.88,
+     "gain": 0.65,
+     "hz": 72,
+     "vowel": "ao",
+     "formant": 0.73,
+     "contour": [
+      0.7,
+      1.1,
+      1.4,
+      0.7
+     ],
+     "rasp": true,
+     "breath": 0.14
+    },
+    {
+     "kind": "grain",
+     "at": 0.05,
+     "dur": 0.73,
+     "gain": 0.24,
+     "material": "oak",
+     "rate": 32
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.2,
+     "hz": 73
+    }
+   ],
+   "room": 0,
+   "frames": 39690,
+   "variationFrames": [
+    39690,
+    39690,
+    39690
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_big_roar_00",
+    "Sfx/enemy_big_roar_01",
+    "Sfx/enemy_big_roar_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.die.large",
+   "identity": "Toy chassis breaks, heavy body settles, scattered fittings",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.43,
+     "gain": 0.8,
+     "material": "hollow",
+     "pitch": 0.39
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.5,
+     "gain": 0.7,
+     "hz": 118
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.43,
+     "gain": 0.45,
+     "material": "oak",
+     "rate": 149
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.2,
+     "material": "tin",
+     "pitch": 0.67,
+     "each": [
+      0.076,
+      0.154,
+      0.27,
+      0.39,
+      0.47
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 26460,
+   "variationFrames": [
+    26460,
+    26460,
+    26460
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_die_large_00",
+    "Sfx/enemy_die_large_01",
+    "Sfx/enemy_die_large_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.enter",
+   "identity": "Ratchet drum escalation, stage gong lands at one second",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.2,
+     "material": "skin",
+     "hz": 175,
+     "each": [
+      0,
+      0.2,
+      0.37,
+      0.52,
+      0.65,
+      0.76,
+      0.85,
+      0.92
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 1,
+     "gain": 0.35,
+     "from": 500,
+     "to": 3400
+    },
+    {
+     "kind": "body",
+     "at": 1,
+     "dur": 1.9,
+     "gain": 0.6,
+     "material": "bell",
+     "pitch": 0.21,
+     "decay": 4
+    },
+    {
+     "kind": "rumble",
+     "at": 1,
+     "dur": 1.2,
+     "gain": 0.7,
+     "hz": 115
+    },
+    {
+     "kind": "reed",
+     "at": 1,
+     "dur": 0.7,
+     "gain": 0.2,
+     "notes": [
+      38
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1,
+     "dur": 0.7,
+     "gain": 0.2,
+     "notes": [
+      45
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1,
+     "dur": 0.7,
+     "gain": 0.2,
+     "notes": [
+      50
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0.7,
+   "frames": 130095,
+   "variationFrames": [
+    130095,
+    130095
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_enter_00",
+    "Sfx/boss_enter_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "boss.telegraph",
+   "identity": "Three clipped warning blasts, consistent rhythm",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.58,
+     "hz": 1174,
+     "brightness": 4,
+     "each": [
+      0,
+      0.145,
+      0.29
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.045,
+     "gain": 0.15,
+     "material": "tin",
+     "pitch": 1.05,
+     "each": [
+      0,
+      0.145,
+      0.29
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_telegraph_00",
+    "Sfx/boss_telegraph_01",
+    "Sfx/boss_telegraph_02"
+   ],
+   "danger": true
+  },
+  {
+   "id": "boss.attack",
+   "identity": "Broken stage skin, heavy air pressure and tin debris",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.49,
+     "gain": 0.65,
+     "material": "skin",
+     "hz": 63,
+     "decay": 2
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.55,
+     "gain": 0.8,
+     "hz": 148
+    },
+    {
+     "kind": "grain",
+     "at": 0.005,
+     "dur": 0.43,
+     "gain": 0.45,
+     "material": "tin",
+     "rate": 98
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.6,
+     "from": 450,
+     "to": 2500
+    }
+   ],
+   "room": 0,
+   "frames": 26460,
+   "variationFrames": [
+    26460,
+    26460,
+    26460
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_attack_00",
+    "Sfx/boss_attack_01",
+    "Sfx/boss_attack_02"
+   ],
+   "danger": true
+  },
+  {
+   "id": "boss.phase",
+   "identity": "Clock mechanism slows, then the scene turns at .95s",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.18,
+     "material": "tin",
+     "pitch": 0.7,
+     "each": [
+      0,
+      0.07,
+      0.16,
+      0.28,
+      0.44,
+      0.64,
+      0.87
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.93,
+     "gain": 0.35,
+     "from": 2700,
+     "to": 240
+    },
+    {
+     "kind": "body",
+     "at": 0.95,
+     "dur": 0.7,
+     "gain": 0.8,
+     "material": "hollow",
+     "pitch": 0.4
+    },
+    {
+     "kind": "body",
+     "at": 0.95,
+     "dur": 1.2,
+     "gain": 0.38,
+     "material": "bell",
+     "pitch": 0.28,
+     "decay": 3
+    },
+    {
+     "kind": "reed",
+     "at": 1.02,
+     "dur": 0.7,
+     "gain": 0.15,
+     "notes": [
+      41
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.02,
+     "dur": 0.7,
+     "gain": 0.15,
+     "notes": [
+      44
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.02,
+     "dur": 0.7,
+     "gain": 0.15,
+     "notes": [
+      48
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0.5,
+   "frames": 97020,
+   "variationFrames": [
+    97020,
+    97020
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_phase_00",
+    "Sfx/boss_phase_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "boss.defeat",
+   "identity": "Tin tower collapses before an independent rising brass answer",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.7,
+     "gain": 0.7,
+     "material": "hollow",
+     "pitch": 0.33
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.8,
+     "gain": 0.8,
+     "hz": 103
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "tin",
+     "rate": 94
+    },
+    {
+     "kind": "reed",
+     "at": 0.75,
+     "dur": 0.35,
+     "gain": 0.2,
+     "notes": [
+      55
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.75,
+     "dur": 0.35,
+     "gain": 0.2,
+     "notes": [
+      62
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.75,
+     "dur": 0.35,
+     "gain": 0.2,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.13,
+     "dur": 0.32,
+     "gain": 0.22,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.13,
+     "dur": 0.32,
+     "gain": 0.22,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.13,
+     "dur": 0.32,
+     "gain": 0.22,
+     "notes": [
+      69
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.57,
+     "dur": 0.8,
+     "gain": 0.24,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.57,
+     "dur": 0.8,
+     "gain": 0.24,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.57,
+     "dur": 0.8,
+     "gain": 0.24,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.57,
+     "dur": 0.8,
+     "gain": 0.24,
+     "notes": [
+      72
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 1.78,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.9,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 2.02,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      84
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 2.14,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 2.26,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      76
+     ]
+    }
+   ],
+   "room": 0.7,
+   "frames": 132300,
+   "variationFrames": [
+    132300,
+    132300
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_defeat_00",
+    "Sfx/boss_defeat_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sig.alarm.boom",
+   "identity": "Alarm bell is abruptly swallowed by a pressure burst",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.055,
+     "gain": 0.33,
+     "material": "steel",
+     "pitch": 0.75,
+     "each": [
+      0,
+      0.04,
+      0.08
+     ]
+    },
+    {
+     "kind": "rumble",
+     "at": 0.1,
+     "dur": 0.39,
+     "gain": 0.9,
+     "hz": 160
+    },
+    {
+     "kind": "grain",
+     "at": 0.1,
+     "dur": 0.27,
+     "gain": 0.5,
+     "material": "paper",
+     "rate": 270
+    },
+    {
+     "kind": "body",
+     "at": 0.1,
+     "dur": 0.35,
+     "gain": 0.25,
+     "material": "tin",
+     "pitch": 0.4
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sig_alarm_boom_00",
+    "Sfx/sig_alarm_boom_01",
+    "Sfx/sig_alarm_boom_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.field.zipper",
+   "identity": "A row of metal teeth zip taut",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.025,
+     "gain": 0.22,
+     "material": "tin",
+     "pitch": 1.4,
+     "repeat": 13,
+     "until": 0.25
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.48,
+     "from": 900,
+     "to": 4200,
+     "shape": 0.6
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_field_zipper_00",
+    "Sfx/fx_field_zipper_01",
+    "Sfx/fx_field_zipper_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "fx.hazard.warn",
+   "identity": "Three escalating warning reeds with a tension rattle",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.11,
+     "gain": 0.5,
+     "hz": 1046,
+     "each": [
+      0,
+      0.17,
+      0.34
+     ],
+     "brightness": 3
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.57,
+     "gain": 0.13,
+     "material": "tin",
+     "rate": 38
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.59,
+     "gain": 0.2,
+     "from": 600,
+     "to": 2500
+    }
+   ],
+   "room": 0,
+   "frames": 26460,
+   "variationFrames": [
+    26460,
+    26460
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_hazard_warn_00",
+    "Sfx/fx_hazard_warn_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "fx.hazard.hit",
+   "identity": "Falling mechanism crushes a tin and oak platform",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.45,
+     "gain": 0.8,
+     "material": "oak",
+     "pitch": 0.41
+    },
+    {
+     "kind": "body",
+     "at": 0.002,
+     "dur": 0.58,
+     "gain": 0.38,
+     "material": "tin",
+     "pitch": 0.45,
+     "decay": 1.7
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.56,
+     "gain": 0.7,
+     "hz": 110
+    },
+    {
+     "kind": "grain",
+     "at": 0.04,
+     "dur": 0.5,
+     "gain": 0.34,
+     "material": "paper",
+     "rate": 135
+    }
+   ],
+   "room": 0,
+   "frames": 30870,
+   "variationFrames": [
+    30870,
+    30870,
+    30870
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/fx_hazard_hit_00",
+    "Sfx/fx_hazard_hit_01",
+    "Sfx/fx_hazard_hit_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.mimic.wake",
+   "identity": "A hinged chest inhales, then its lid bites shut",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.36,
+     "gain": 0.38,
+     "material": "oak",
+     "rate": 64
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.32,
+     "gain": 0.23,
+     "hz": 148,
+     "bend": 8,
+     "rate": 12
+    },
+    {
+     "kind": "body",
+     "at": 0.37,
+     "dur": 0.2,
+     "gain": 0.85,
+     "material": "oak",
+     "pitch": 0.63
+    },
+    {
+     "kind": "body",
+     "at": 0.37,
+     "dur": 0.14,
+     "gain": 0.29,
+     "material": "tin",
+     "pitch": 0.8
+    },
+    {
+     "kind": "voice",
+     "at": 0.05,
+     "dur": 0.25,
+     "gain": 0.15,
+     "hz": 96,
+     "vowel": "o"
+    }
+   ],
+   "room": 0,
+   "frames": 26019,
+   "variationFrames": [
+    26019,
+    26019
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_mimic_wake_00",
+    "Sfx/enemy_mimic_wake_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.pulse.ember",
+   "identity": "Expanding furnace ring with cinder flecks",
+   "layers": [
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.46,
+     "gain": 0.5,
+     "hz": 190,
+     "to": 58
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.84,
+     "gain": 0.8,
+     "from": 350,
+     "to": 2100,
+     "shape": 0.6
+    },
+    {
+     "kind": "grain",
+     "at": 0.045,
+     "dur": 0.85,
+     "gain": 0.32,
+     "material": "paper",
+     "rate": 181
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.9,
+     "gain": 0.16,
+     "material": "bell",
+     "pitch": 0.49
+    }
+   ],
+   "room": 0,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_pulse_ember_00",
+    "Sfx/hero_pulse_ember_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.pulse.frost",
+   "identity": "A slow expanding glass ring with falling frost",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.96,
+     "gain": 0.45,
+     "material": "glass",
+     "pitch": 0.47,
+     "decay": 2.4
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.18,
+     "gain": 0.16,
+     "material": "porcelain",
+     "pitch": 2.1,
+     "each": [
+      0.07,
+      0.19,
+      0.32,
+      0.51,
+      0.68
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.9,
+     "gain": 0.27,
+     "from": 4800,
+     "to": 1700
+    }
+   ],
+   "room": 0.5,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_pulse_frost_00",
+    "Sfx/hero_pulse_frost_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.locked",
+   "identity": "Two dull latch knocks, no reward harmonics",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.062,
+     "gain": 0.6,
+     "material": "hollow",
+     "pitch": 1.3,
+     "decay": 0.4,
+     "each": [
+      0,
+      0.075
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 7056,
+   "variationFrames": [
+    7056,
+    7056
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_locked_00",
+    "Sfx/ui_locked_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.error",
+   "identity": "A double reed rasp behind the blocked latch",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.11,
+     "gain": 0.4,
+     "hz": 233,
+     "brightness": 5,
+     "each": [
+      0,
+      0.14
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.06,
+     "gain": 0.32,
+     "material": "tin",
+     "rate": 77,
+     "each": [
+      0,
+      0.14
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 15435,
+   "variationFrames": [
+    15435,
+    15435
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_error_00",
+    "Sfx/ui_error_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.coin.drop",
+   "identity": "One brass disk settles in two contacts",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.22,
+     "gain": 0.6,
+     "material": "coin"
+    },
+    {
+     "kind": "body",
+     "at": 0.088,
+     "dur": 0.12,
+     "gain": 0.25,
+     "material": "coin",
+     "pitch": 1.08,
+     "decay": 0.5
+    }
+   ],
+   "room": 0,
+   "frames": 11025,
+   "variationFrames": [
+    11025,
+    11025,
+    11025,
+    11025
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_coin_drop_00",
+    "Sfx/loot_coin_drop_01",
+    "Sfx/loot_coin_drop_02",
+    "Sfx/loot_coin_drop_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.coin.bounce",
+   "identity": "A short edge bounce with no extra jingle",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.6,
+     "material": "coin",
+     "pitch": 1.24,
+     "decay": 0.48
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.035,
+     "gain": 0.1,
+     "material": "oak",
+     "pitch": 2.2
+    }
+   ],
+   "room": 0,
+   "frames": 5733,
+   "variationFrames": [
+    5733,
+    5733,
+    5733,
+    5733,
+    5733
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_coin_bounce_00",
+    "Sfx/loot_coin_bounce_01",
+    "Sfx/loot_coin_bounce_02",
+    "Sfx/loot_coin_bounce_03",
+    "Sfx/loot_coin_bounce_04"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.coin.vacuum",
+   "identity": "Tiny suction trail ending in a damped tine",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.65,
+     "from": 600,
+     "to": 3800,
+     "shape": 1
+    },
+    {
+     "kind": "body",
+     "at": 0.065,
+     "dur": 0.07,
+     "gain": 0.19,
+     "material": "tine",
+     "pitch": 1.8,
+     "decay": 0.18
+    }
+   ],
+   "room": 0,
+   "frames": 6174,
+   "variationFrames": [
+    6174,
+    6174,
+    6174
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_coin_vacuum_00",
+    "Sfx/loot_coin_vacuum_01",
+    "Sfx/loot_coin_vacuum_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.coin.pickup",
+   "identity": "Six ascending pentatonic reward pins, short muted contact",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      84,
+      86,
+      88,
+      91,
+      93,
+      96
+     ],
+     "decay": 0.53
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.055,
+     "gain": 0.12,
+     "material": "coin",
+     "decay": 0.25
+    }
+   ],
+   "room": 0,
+   "frames": 11686,
+   "variationFrames": [
+    11686,
+    11686,
+    11686,
+    11686,
+    11686,
+    11686
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_coin_pickup_00",
+    "Sfx/loot_coin_pickup_01",
+    "Sfx/loot_coin_pickup_02",
+    "Sfx/loot_coin_pickup_03",
+    "Sfx/loot_coin_pickup_04",
+    "Sfx/loot_coin_pickup_05"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.egg",
+   "identity": "A hollow porcelain bubble with two soft droplets",
+   "layers": [
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.31,
+     "gain": 0.7,
+     "count": 3,
+     "pitch": 1.6
+    },
+    {
+     "kind": "body",
+     "at": 0.025,
+     "dur": 0.29,
+     "gain": 0.18,
+     "material": "porcelain",
+     "notes": [
+      79,
+      83,
+      86,
+      88
+     ],
+     "decay": 0.6
+    }
+   ],
+   "room": 0,
+   "frames": 14994,
+   "variationFrames": [
+    14994,
+    14994,
+    14994,
+    14994
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_egg_00",
+    "Sfx/loot_egg_01",
+    "Sfx/loot_egg_02",
+    "Sfx/loot_egg_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.heart",
+   "identity": "A warm third over two cushioned heart pulses",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.58,
+     "gain": 0.4,
+     "material": "porcelain",
+     "notes": [
+      69
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.18,
+     "dur": 0.58,
+     "gain": 0.4,
+     "material": "porcelain",
+     "notes": [
+      73
+     ]
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.22,
+     "hz": 100,
+     "to": 75
+    },
+    {
+     "kind": "rumble",
+     "at": 0.16,
+     "dur": 0.18,
+     "gain": 0.17,
+     "hz": 100,
+     "to": 75
+    }
+   ],
+   "room": 0.35,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_heart_00",
+    "Sfx/loot_heart_01",
+    "Sfx/loot_heart_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.chest.appear",
+   "identity": "A wooden box materialises below a falling glass dust trail",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.35,
+     "gain": 0.3,
+     "from": 4100,
+     "to": 700
+    },
+    {
+     "kind": "body",
+     "at": 0.18,
+     "dur": 0.43,
+     "gain": 0.72,
+     "material": "hollow",
+     "pitch": 0.63
+    },
+    {
+     "kind": "body",
+     "at": 0.02,
+     "dur": 0.38,
+     "gain": 0.23,
+     "material": "tine",
+     "notes": [
+      96
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.09,
+     "dur": 0.38,
+     "gain": 0.23,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.16,
+     "dur": 0.38,
+     "gain": 0.23,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_chest_appear_00",
+    "Sfx/loot_chest_appear_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "loot.chest.open",
+   "identity": "Hinge lifts, latch releases, hand-cranked reward teeth",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.35,
+     "gain": 0.34,
+     "material": "oak",
+     "rate": 57
+    },
+    {
+     "kind": "body",
+     "at": 0.22,
+     "dur": 0.13,
+     "gain": 0.27,
+     "material": "tin",
+     "pitch": 0.6
+    },
+    {
+     "kind": "body",
+     "at": 0.28,
+     "dur": 0.48,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      76
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.37,
+     "dur": 0.48,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.5,
+     "dur": 0.48,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.66,
+     "dur": 0.48,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.5,
+     "gain": 0.13,
+     "notes": [
+      55
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.5,
+     "gain": 0.13,
+     "notes": [
+      62
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.5,
+     "gain": 0.13,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0.4,
+   "frames": 52920,
+   "variationFrames": [
+    52920,
+    52920,
+    52920
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/loot_chest_open_00",
+    "Sfx/loot_chest_open_01",
+    "Sfx/loot_chest_open_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.merge",
+   "identity": "Three contacts fuse into one wood-and-porcelain body",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.6,
+     "material": "hollow",
+     "pitch": 0.7
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.45,
+     "material": "porcelain",
+     "notes": [
+      81,
+      83,
+      86
+     ],
+     "decay": 1.6
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.34,
+     "gain": 0.45,
+     "hz": 150
+    },
+    {
+     "kind": "body",
+     "at": 0.018,
+     "dur": 0.45,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.074,
+     "dur": 0.45,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      95
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.15,
+     "dur": 0.45,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      100
+     ]
+    }
+   ],
+   "room": 0.4,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_merge_00",
+    "Sfx/up_merge_01",
+    "Sfx/up_merge_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.merge.gather",
+   "identity": "Three converging air ribbons wind a taut glass knot",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.45,
+     "from": 400,
+     "to": 3900,
+     "curve": 2
+    },
+    {
+     "kind": "air",
+     "at": 0.05,
+     "dur": 0.48,
+     "gain": 0.28,
+     "from": 800,
+     "to": 4600,
+     "curve": 2
+    },
+    {
+     "kind": "string",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.16,
+     "hz": 293,
+     "feedback": 0.995
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.08,
+     "gain": 0.13,
+     "material": "tine",
+     "pitch": 1.7,
+     "each": [
+      0.04,
+      0.15,
+      0.24,
+      0.31,
+      0.37,
+      0.42,
+      0.46
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_merge_gather_00",
+    "Sfx/up_merge_gather_01",
+    "Sfx/up_merge_gather_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.star2",
+   "identity": "Two articulated bell pins answered by a small brass chord",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.38,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.12,
+     "dur": 0.65,
+     "gain": 0.38,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.31,
+     "dur": 0.65,
+     "gain": 0.38,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.34,
+     "dur": 0.7,
+     "gain": 0.2,
+     "notes": [
+      55
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.34,
+     "dur": 0.7,
+     "gain": 0.2,
+     "notes": [
+      62
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.34,
+     "dur": 0.7,
+     "gain": 0.2,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0.34,
+     "dur": 0.3,
+     "gain": 0.25,
+     "material": "skin",
+     "hz": 120
+    }
+   ],
+   "room": 0.5,
+   "frames": 78498,
+   "variationFrames": [
+    78498,
+    78498
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_star2_00",
+    "Sfx/up_star2_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.star3",
+   "identity": "Three spotlight knocks and a high independent brass flourish",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.28,
+     "material": "oak",
+     "each": [
+      0,
+      0.1,
+      0.2
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.03,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      84
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.14,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.25,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.43,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      96
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.43,
+     "dur": 0.85,
+     "gain": 0.25,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.43,
+     "dur": 0.85,
+     "gain": 0.25,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.43,
+     "dur": 0.85,
+     "gain": 0.25,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.43,
+     "dur": 0.85,
+     "gain": 0.25,
+     "notes": [
+      74
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "rumble",
+     "at": 0.43,
+     "dur": 0.4,
+     "gain": 0.3,
+     "hz": 110
+    }
+   ],
+   "room": 0.65,
+   "frames": 79380,
+   "variationFrames": [
+    79380,
+    79380
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_star3_00",
+    "Sfx/up_star3_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.ally.land",
+   "identity": "An ally falls through air and bounces precisely at .405s",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.402,
+     "gain": 0.3,
+     "from": 2500,
+     "to": 500
+    },
+    {
+     "kind": "body",
+     "at": 0.405,
+     "dur": 0.3,
+     "gain": 0.85,
+     "material": "hollow",
+     "pitch": 0.64
+    },
+    {
+     "kind": "body",
+     "at": 0.405,
+     "dur": 0.2,
+     "gain": 0.4,
+     "material": "felt"
+    },
+    {
+     "kind": "spring",
+     "at": 0.405,
+     "dur": 0.48,
+     "gain": 0.18,
+     "hz": 270,
+     "bend": 9,
+     "rate": 15
+    },
+    {
+     "kind": "body",
+     "at": 0.63,
+     "dur": 0.18,
+     "gain": 0.15,
+     "material": "oak",
+     "pitch": 0.85
+    }
+   ],
+   "room": 0,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100,
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_ally_land_00",
+    "Sfx/up_ally_land_01",
+    "Sfx/up_ally_land_02",
+    "Sfx/up_ally_land_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.bond.t1",
+   "identity": "Two connected tines lead a close major-sixth reed voicing",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.5,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.14,
+     "dur": 0.5,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.23,
+     "dur": 0.72,
+     "gain": 0.21,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.23,
+     "dur": 0.72,
+     "gain": 0.21,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.23,
+     "dur": 0.72,
+     "gain": 0.21,
+     "notes": [
+      69
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0.45,
+   "frames": 61740,
+   "variationFrames": [
+    61740,
+    61740
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_bond_t1_00",
+    "Sfx/up_bond_t1_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.bond.t2",
+   "identity": "Layered toy brass with an answered upper chord",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0.01,
+     "dur": 0.35,
+     "gain": 0.24,
+     "notes": [
+      55
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.01,
+     "dur": 0.35,
+     "gain": 0.24,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.01,
+     "dur": 0.35,
+     "gain": 0.24,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.01,
+     "dur": 0.35,
+     "gain": 0.24,
+     "notes": [
+      69
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.7,
+     "gain": 0.25,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.7,
+     "gain": 0.25,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.7,
+     "gain": 0.25,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.32,
+     "dur": 0.7,
+     "gain": 0.25,
+     "notes": [
+      74
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0.36,
+     "dur": 0.64,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.52,
+     "dur": 0.64,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      96
+     ]
+    }
+   ],
+   "room": 0.55,
+   "frames": 61740,
+   "variationFrames": [
+    61740,
+    61740
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_bond_t2_00",
+    "Sfx/up_bond_t2_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.chain",
+   "identity": "Four linked ceramic dominoes accelerate",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      81
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.11,
+     "dur": 0.4,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.2,
+     "dur": 0.4,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      90
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.27,
+     "dur": 0.4,
+     "gain": 0.38,
+     "material": "porcelain",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.055,
+     "gain": 0.17,
+     "material": "oak",
+     "pitch": 1.6,
+     "each": [
+      0,
+      0.11,
+      0.2,
+      0.27
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280,
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_chain_00",
+    "Sfx/up_chain_01",
+    "Sfx/up_chain_02",
+    "Sfx/up_chain_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.rarity.blue",
+   "identity": "An uncommon glass lid and a delicate sixth",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.76,
+     "gain": 0.25,
+     "material": "glass",
+     "pitch": 0.73
+    },
+    {
+     "kind": "body",
+     "at": 0.07,
+     "dur": 0.65,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.25,
+     "dur": 0.65,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    }
+   ],
+   "room": 0.35,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_rarity_blue_00",
+    "Sfx/up_rarity_blue_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.rarity.purple",
+   "identity": "A richer bowed jar opens on suspended ceramic tones",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.27,
+     "from": 650,
+     "to": 2700
+    },
+    {
+     "kind": "body",
+     "at": 0.18,
+     "dur": 0.83,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      81
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.33,
+     "dur": 0.83,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.49,
+     "dur": 0.83,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      95
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.23,
+     "dur": 0.73,
+     "gain": 0.11,
+     "notes": [
+      57
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.23,
+     "dur": 0.73,
+     "gain": 0.11,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.23,
+     "dur": 0.73,
+     "gain": 0.11,
+     "notes": [
+      71
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0.6,
+   "frames": 61740,
+   "variationFrames": [
+    61740,
+    61740
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_rarity_purple_00",
+    "Sfx/up_rarity_purple_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "up.rarity.gold",
+   "identity": "Latch tension, brass reveal and a descending golden crown",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.46,
+     "gain": 0.4,
+     "from": 400,
+     "to": 4100
+    },
+    {
+     "kind": "body",
+     "at": 0.45,
+     "dur": 0.3,
+     "gain": 0.5,
+     "material": "hollow",
+     "pitch": 0.55
+    },
+    {
+     "kind": "rumble",
+     "at": 0.45,
+     "dur": 0.4,
+     "gain": 0.4,
+     "hz": 118
+    },
+    {
+     "kind": "reed",
+     "at": 0.45,
+     "dur": 0.75,
+     "gain": 0.25,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.45,
+     "dur": 0.75,
+     "gain": 0.25,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.45,
+     "dur": 0.75,
+     "gain": 0.25,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.45,
+     "dur": 0.75,
+     "gain": 0.25,
+     "notes": [
+      74
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0.55,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "tine",
+     "notes": [
+      100
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.67,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "tine",
+     "notes": [
+      98
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.8,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "tine",
+     "notes": [
+      95
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.94,
+     "dur": 0.8,
+     "gain": 0.3,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    }
+   ],
+   "room": 0.7,
+   "frames": 88200,
+   "variationFrames": [
+    88200,
+    88200
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/up_rarity_gold_00",
+    "Sfx/up_rarity_gold_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.keeper.enter.gold",
+   "identity": "A heavy merchant lands at .98s, drawer and coins follow",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.94,
+     "gain": 0.23,
+     "from": 1800,
+     "to": 320
+    },
+    {
+     "kind": "body",
+     "at": 0.98,
+     "dur": 0.48,
+     "gain": 0.9,
+     "material": "hollow",
+     "pitch": 0.43
+    },
+    {
+     "kind": "rumble",
+     "at": 0.98,
+     "dur": 0.35,
+     "gain": 0.42,
+     "hz": 115
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.15,
+     "gain": 0.24,
+     "material": "coin",
+     "each": [
+      1.01,
+      1.11,
+      1.2,
+      1.36,
+      1.53
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 1.02,
+     "dur": 0.5,
+     "gain": 0.22,
+     "material": "oak",
+     "rate": 34
+    }
+   ],
+   "room": 0.25,
+   "frames": 113778,
+   "variationFrames": [
+    113778,
+    113778
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_keeper_enter_gold_00",
+    "Sfx/shop_keeper_enter_gold_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.keeper.enter.dream",
+   "identity": "A silk portal lands in porcelain at .98s",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.96,
+     "gain": 0.35,
+     "from": 3800,
+     "to": 750,
+     "shape": 0.65
+    },
+    {
+     "kind": "body",
+     "at": 0.98,
+     "dur": 1.5,
+     "gain": 0.65,
+     "material": "porcelain",
+     "pitch": 0.48,
+     "decay": 2.8
+    },
+    {
+     "kind": "body",
+     "at": 0.98,
+     "dur": 0.18,
+     "gain": 0.4,
+     "material": "felt"
+    },
+    {
+     "kind": "body",
+     "at": 1.08,
+     "dur": 0.88,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      96
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.27,
+     "dur": 0.88,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.48,
+     "dur": 0.88,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    }
+   ],
+   "room": 0.7,
+   "frames": 114660,
+   "variationFrames": [
+    114660,
+    114660
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_keeper_enter_dream_00",
+    "Sfx/shop_keeper_enter_dream_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.keeper.exit.gold",
+   "identity": "Coat tails, closing till and departing loose change",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.62,
+     "gain": 0.4,
+     "material": "felt",
+     "rate": 27
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.55,
+     "from": 600,
+     "to": 2200
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.24,
+     "material": "coin",
+     "each": [
+      0.1,
+      0.2,
+      0.34,
+      0.51
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.52,
+     "dur": 0.22,
+     "gain": 0.3,
+     "material": "oak",
+     "pitch": 0.75
+    }
+   ],
+   "room": 0,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_keeper_exit_gold_00",
+    "Sfx/shop_keeper_exit_gold_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.keeper.exit.dream",
+   "identity": "Silk portal folds inward around a fading jar",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.75,
+     "gain": 0.5,
+     "from": 3300,
+     "to": 650
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.77,
+     "gain": 0.2,
+     "material": "glass",
+     "pitch": 0.53,
+     "decay": 1.8
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.43,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.16,
+     "dur": 0.43,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.32,
+     "dur": 0.43,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      81
+     ]
+    }
+   ],
+   "room": 0.65,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_keeper_exit_dream_00",
+    "Sfx/shop_keeper_exit_dream_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.carpet.open",
+   "identity": "Rolled canvas cascades to a weighted flop at .84s",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.85,
+     "gain": 0.7,
+     "material": "felt",
+     "rate": 34
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.8,
+     "gain": 0.38,
+     "from": 700,
+     "to": 220
+    },
+    {
+     "kind": "body",
+     "at": 0.84,
+     "dur": 0.25,
+     "gain": 0.75,
+     "material": "felt",
+     "pitch": 0.6
+    },
+    {
+     "kind": "body",
+     "at": 0.84,
+     "dur": 0.14,
+     "gain": 0.13,
+     "material": "oak",
+     "pitch": 0.65
+    }
+   ],
+   "room": 0,
+   "frames": 48510,
+   "variationFrames": [
+    48510,
+    48510
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_carpet_open_00",
+    "Sfx/shop_carpet_open_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.carpet.roll",
+   "identity": "Canvas gathers around a spindle that clacks at .7s",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.69,
+     "gain": 0.7,
+     "material": "felt",
+     "rate": 48
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.68,
+     "gain": 0.35,
+     "from": 250,
+     "to": 1500
+    },
+    {
+     "kind": "body",
+     "at": 0.7,
+     "dur": 0.09,
+     "gain": 0.6,
+     "material": "oak",
+     "pitch": 0.8
+    }
+   ],
+   "room": 0,
+   "frames": 35279,
+   "variationFrames": [
+    35279,
+    35279
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_carpet_roll_00",
+    "Sfx/shop_carpet_roll_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.stand.appear",
+   "identity": "A hollow counter snaps onto felt feet",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.36,
+     "gain": 0.75,
+     "material": "hollow",
+     "pitch": 0.72
+    },
+    {
+     "kind": "body",
+     "at": 0.014,
+     "dur": 0.19,
+     "gain": 0.45,
+     "material": "felt"
+    },
+    {
+     "kind": "body",
+     "at": 0.093,
+     "dur": 0.14,
+     "gain": 0.16,
+     "material": "oak",
+     "pitch": 1.4
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050,
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_stand_appear_00",
+    "Sfx/shop_stand_appear_01",
+    "Sfx/shop_stand_appear_02",
+    "Sfx/shop_stand_appear_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.item.pop",
+   "identity": "A small item springs onto its display pad",
+   "layers": [
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.27,
+     "gain": 0.45,
+     "hz": 380,
+     "bend": 4,
+     "rate": 32
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.11,
+     "gain": 0.4,
+     "material": "felt",
+     "pitch": 1.6
+    },
+    {
+     "kind": "body",
+     "at": 0.025,
+     "dur": 0.26,
+     "gain": 0.14,
+     "material": "porcelain",
+     "pitch": 1.2,
+     "decay": 0.5
+    }
+   ],
+   "room": 0,
+   "frames": 15435,
+   "variationFrames": [
+    15435,
+    15435,
+    15435,
+    15435
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_item_pop_00",
+    "Sfx/shop_item_pop_01",
+    "Sfx/shop_item_pop_02",
+    "Sfx/shop_item_pop_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.approach",
+   "identity": "One muted toy key invites attention",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      81,
+      83,
+      86,
+      88
+     ],
+     "decay": 0.5
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.04,
+     "gain": 0.1,
+     "material": "oak",
+     "pitch": 1.7
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_approach_00",
+    "Sfx/shop_approach_01",
+    "Sfx/shop_approach_02",
+    "Sfx/shop_approach_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.focus",
+   "identity": "A felt-damped counter key, four contact positions",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.038,
+     "gain": 0.6,
+     "material": "oak",
+     "pitch": 2.1,
+     "decay": 0.2
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.037,
+     "gain": 0.16,
+     "material": "tine",
+     "notes": [
+      88,
+      91,
+      93,
+      95
+     ],
+     "decay": 0.08
+    }
+   ],
+   "room": 0,
+   "frames": 1764,
+   "variationFrames": [
+    1764,
+    1764,
+    1764,
+    1764
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_focus_00",
+    "Sfx/shop_focus_01",
+    "Sfx/shop_focus_02",
+    "Sfx/shop_focus_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.buy.gold",
+   "identity": "The till unlocks, brass bell rings and coins land in a tray",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.5,
+     "material": "oak",
+     "pitch": 0.82
+    },
+    {
+     "kind": "body",
+     "at": 0.09,
+     "dur": 0.26,
+     "gain": 0.45,
+     "material": "hollow",
+     "pitch": 0.62
+    },
+    {
+     "kind": "body",
+     "at": 0.1,
+     "dur": 0.69,
+     "gain": 0.34,
+     "material": "bell",
+     "pitch": 1.33,
+     "decay": 0.6
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.17,
+     "material": "coin",
+     "each": [
+      0.14,
+      0.21,
+      0.32,
+      0.45
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.12,
+     "dur": 0.24,
+     "gain": 0.14,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.12,
+     "dur": 0.24,
+     "gain": 0.14,
+     "notes": [
+      71
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0,
+   "frames": 39690,
+   "variationFrames": [
+    39690,
+    39690,
+    39690,
+    39690
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_buy_gold_00",
+    "Sfx/shop_buy_gold_01",
+    "Sfx/shop_buy_gold_02",
+    "Sfx/shop_buy_gold_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.buy.dream",
+   "identity": "Glass counter blooms with a breathy nonverbal offering",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 1.4,
+     "gain": 0.3,
+     "material": "glass",
+     "pitch": 0.61,
+     "decay": 2.8
+    },
+    {
+     "kind": "body",
+     "at": 0.05,
+     "dur": 0.9,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.2,
+     "dur": 0.9,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.39,
+     "dur": 0.9,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      98
+     ]
+    },
+    {
+     "kind": "voice",
+     "at": 0.12,
+     "dur": 0.9,
+     "gain": 0.22,
+     "hz": 310,
+     "vowel": "a",
+     "formant": 1.3,
+     "breath": 0.17,
+     "contour": [
+      0.98,
+      1.04,
+      1
+     ]
+    }
+   ],
+   "room": 0.8,
+   "frames": 70560,
+   "variationFrames": [
+    70560,
+    70560,
+    70560
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_buy_dream_00",
+    "Sfx/shop_buy_dream_01",
+    "Sfx/shop_buy_dream_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.deny.gold",
+   "identity": "Two blocked latch contacts, tin payment refused",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.45,
+     "material": "tin",
+     "pitch": 0.7,
+     "decay": 0.25,
+     "each": [
+      0,
+      0.095
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.008,
+     "dur": 0.17,
+     "gain": 0.3,
+     "hz": 247,
+     "brightness": 2.4
+    }
+   ],
+   "room": 0,
+   "frames": 10584,
+   "variationFrames": [
+    10584,
+    10584
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_deny_gold_00",
+    "Sfx/shop_deny_gold_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.deny.egg",
+   "identity": "Two blocked latch contacts, porcelain payment refused",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.45,
+     "material": "porcelain",
+     "pitch": 0.7,
+     "decay": 0.25,
+     "each": [
+      0,
+      0.095
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.008,
+     "dur": 0.17,
+     "gain": 0.3,
+     "hz": 293,
+     "brightness": 2.4
+    }
+   ],
+   "room": 0,
+   "frames": 8820,
+   "variationFrames": [
+    8820,
+    8820
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_deny_egg_00",
+    "Sfx/shop_deny_egg_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.deny.hp",
+   "identity": "Two blocked latch contacts, felt payment refused",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.45,
+     "material": "felt",
+     "pitch": 0.7,
+     "decay": 0.25,
+     "each": [
+      0,
+      0.095
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.008,
+     "dur": 0.17,
+     "gain": 0.3,
+     "hz": 196,
+     "brightness": 2.4
+    }
+   ],
+   "room": 0,
+   "frames": 11025,
+   "variationFrames": [
+    11025,
+    11025
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_deny_hp_00",
+    "Sfx/shop_deny_hp_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.invalid",
+   "identity": "Single blocked felt key",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.75,
+     "material": "felt",
+     "pitch": 1.7
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.2,
+     "hz": 190,
+     "bend": 2,
+     "rate": 50
+    }
+   ],
+   "room": 0,
+   "frames": 3528,
+   "variationFrames": [
+    3528,
+    3528,
+    3528
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_invalid_00",
+    "Sfx/shop_invalid_01",
+    "Sfx/shop_invalid_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.reroll",
+   "identity": "Three stock drums spin out of sync, latch into a tine",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.035,
+     "gain": 0.2,
+     "material": "oak",
+     "pitch": 1.4,
+     "each": [
+      0,
+      0.03,
+      0.075,
+      0.13,
+      0.2,
+      0.29,
+      0.4,
+      0.53
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.6,
+     "gain": 0.27,
+     "material": "paper",
+     "rate": 43
+    },
+    {
+     "kind": "body",
+     "at": 0.59,
+     "dur": 0.24,
+     "gain": 0.45,
+     "material": "tine",
+     "notes": [
+      91,
+      93,
+      95
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 37044,
+   "variationFrames": [
+    37044,
+    37044,
+    37044
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_reroll_00",
+    "Sfx/shop_reroll_01",
+    "Sfx/shop_reroll_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.fusion",
+   "identity": "Three wooden sockets wind in, reveal a sustained brass chord",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.06,
+     "gain": 0.19,
+     "material": "oak",
+     "pitch": 1.4,
+     "each": [
+      0,
+      0.12,
+      0.23,
+      0.33,
+      0.42,
+      0.5
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.58,
+     "gain": 0.4,
+     "from": 300,
+     "to": 3300
+    },
+    {
+     "kind": "body",
+     "at": 0.59,
+     "dur": 1.35,
+     "gain": 0.45,
+     "material": "porcelain",
+     "pitch": 0.57,
+     "decay": 3
+    },
+    {
+     "kind": "rumble",
+     "at": 0.59,
+     "dur": 0.3,
+     "gain": 0.35,
+     "hz": 130
+    },
+    {
+     "kind": "reed",
+     "at": 0.6,
+     "dur": 0.85,
+     "gain": 0.22,
+     "notes": [
+      57
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.6,
+     "dur": 0.85,
+     "gain": 0.22,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.6,
+     "dur": 0.85,
+     "gain": 0.22,
+     "notes": [
+      69
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.6,
+     "dur": 0.85,
+     "gain": 0.22,
+     "notes": [
+      73
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0.69,
+     "dur": 0.7,
+     "gain": 0.26,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.83,
+     "dur": 0.7,
+     "gain": 0.26,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.03,
+     "dur": 0.7,
+     "gain": 0.26,
+     "material": "tine",
+     "notes": [
+      100
+     ]
+    }
+   ],
+   "room": 0.65,
+   "frames": 88200,
+   "variationFrames": [
+    88200,
+    88200
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_fusion_00",
+    "Sfx/shop_fusion_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.descend",
+   "identity": "Three padded stair steps dissolve downward",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.19,
+     "gain": 0.45,
+     "material": "hollow",
+     "pitch": 0.65,
+     "each": [
+      0,
+      0.23,
+      0.47
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.45,
+     "material": "felt",
+     "each": [
+      0,
+      0.23,
+      0.47
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.95,
+     "gain": 0.48,
+     "from": 2100,
+     "to": 260
+    }
+   ],
+   "room": 0,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_descend_00",
+    "Sfx/shop_descend_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.hover",
+   "identity": "Damped ivory key touch, no pitched tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.029,
+     "gain": 0.55,
+     "material": "oak",
+     "pitch": 2.8,
+     "decay": 0.14
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.025,
+     "gain": 0.22,
+     "material": "felt",
+     "pitch": 2.1
+    }
+   ],
+   "room": 0,
+   "frames": 1323,
+   "variationFrames": [
+    1323,
+    1323,
+    1323,
+    1323
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_hover_00",
+    "Sfx/ui_hover_01",
+    "Sfx/ui_hover_02",
+    "Sfx/ui_hover_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.select",
+   "identity": "Latch click and one short music-box tooth",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.06,
+     "gain": 0.37,
+     "material": "oak",
+     "pitch": 1.9
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.115,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      84,
+      86,
+      88,
+      91
+     ],
+     "decay": 0.25
+    }
+   ],
+   "room": 0,
+   "frames": 5292,
+   "variationFrames": [
+    5292,
+    5292,
+    5292,
+    5292
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_select_00",
+    "Sfx/ui_select_01",
+    "Sfx/ui_select_02",
+    "Sfx/ui_select_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.confirm",
+   "identity": "Clean rising perfect fifth on ceramic keys",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 0.5,
+     "material": "porcelain",
+     "notes": [
+      81
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.073,
+     "dur": 0.24,
+     "gain": 0.5,
+     "material": "porcelain",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.18,
+     "material": "oak",
+     "pitch": 2
+    }
+   ],
+   "room": 0,
+   "frames": 13891,
+   "variationFrames": [
+    13891,
+    13891,
+    13891
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_confirm_00",
+    "Sfx/ui_confirm_01",
+    "Sfx/ui_confirm_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.back",
+   "identity": "Two muted descending toy-piano teeth",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.15,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.066,
+     "dur": 0.15,
+     "gain": 0.5,
+     "material": "tine",
+     "notes": [
+      76
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.2,
+     "material": "felt",
+     "pitch": 1.6
+    }
+   ],
+   "room": 0,
+   "frames": 9922,
+   "variationFrames": [
+    9922,
+    9922,
+    9922
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_back_00",
+    "Sfx/ui_back_01",
+    "Sfx/ui_back_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.open",
+   "identity": "A hinged miniature drawer slides and seats",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.45,
+     "material": "oak",
+     "pitch": 0.95
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.22,
+     "gain": 0.4,
+     "material": "oak",
+     "rate": 75
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.33,
+     "from": 550,
+     "to": 1800
+    }
+   ],
+   "room": 0,
+   "frames": 11907,
+   "variationFrames": [
+    11907,
+    11907
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_open_00",
+    "Sfx/ui_open_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.close",
+   "identity": "Drawer retracts and closes on a soft stop",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.37,
+     "material": "oak",
+     "rate": 96
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.27,
+     "from": 1800,
+     "to": 400
+    },
+    {
+     "kind": "body",
+     "at": 0.112,
+     "dur": 0.055,
+     "gain": 0.55,
+     "material": "oak",
+     "pitch": 0.82
+    }
+   ],
+   "room": 0,
+   "frames": 7497,
+   "variationFrames": [
+    7497,
+    7497
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_close_00",
+    "Sfx/ui_close_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.page",
+   "identity": "Receipt stock flicked with a crisp fold",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.132,
+     "gain": 0.8,
+     "material": "paper",
+     "rate": 109
+    },
+    {
+     "kind": "body",
+     "at": 0.008,
+     "dur": 0.06,
+     "gain": 0.3,
+     "material": "paper",
+     "pitch": 1.8
+    }
+   ],
+   "room": 0,
+   "frames": 6174,
+   "variationFrames": [
+    6174,
+    6174,
+    6174
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_page_00",
+    "Sfx/ui_page_01",
+    "Sfx/ui_page_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.tooltip",
+   "identity": "Small cork bubble rising through a cloth surface",
+   "layers": [
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.095,
+     "gain": 0.5,
+     "count": 1,
+     "pitch": 1.6
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.045,
+     "gain": 0.35,
+     "material": "felt",
+     "pitch": 2
+    }
+   ],
+   "room": 0,
+   "frames": 4410,
+   "variationFrames": [
+    4410,
+    4410
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_tooltip_00",
+    "Sfx/ui_tooltip_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.tab",
+   "identity": "One dry typewriter ratchet tooth",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.056,
+     "gain": 0.4,
+     "material": "tin",
+     "pitch": 1.6,
+     "decay": 0.14
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.36,
+     "material": "oak",
+     "pitch": 2.2
+    }
+   ],
+   "room": 0,
+   "frames": 2646,
+   "variationFrames": [
+    2646,
+    2646,
+    2646
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_tab_00",
+    "Sfx/ui_tab_01",
+    "Sfx/ui_tab_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.pause",
+   "identity": "The miniature tape spindle slows down",
+   "layers": [
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.48,
+     "gain": 0.45,
+     "hz": 164,
+     "rate": 7,
+     "bend": 14
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.46,
+     "gain": 0.38,
+     "from": 2100,
+     "to": 240
+    },
+    {
+     "kind": "body",
+     "at": 0.34,
+     "dur": 0.07,
+     "gain": 0.2,
+     "material": "oak",
+     "pitch": 0.8
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_pause_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.resume",
+   "identity": "A spool catch releases and air accelerates",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.35,
+     "material": "oak",
+     "pitch": 1.2
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.37,
+     "gain": 0.6,
+     "from": 300,
+     "to": 2900
+    },
+    {
+     "kind": "string",
+     "at": 0,
+     "dur": 0.32,
+     "gain": 0.25,
+     "hz": 260,
+     "feedback": 0.99
+    }
+   ],
+   "room": 0,
+   "frames": 17199,
+   "variationFrames": [
+    17199
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_resume_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.setting",
+   "identity": "A single felted detent on a wooden dial",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.028,
+     "gain": 0.6,
+     "material": "oak",
+     "pitch": 2.7,
+     "decay": 0.11
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.025,
+     "gain": 0.2,
+     "material": "felt",
+     "rate": 213
+    }
+   ],
+   "room": 0,
+   "frames": 1323,
+   "variationFrames": [
+    1323,
+    1323,
+    1323
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_setting_00",
+    "Sfx/ui_setting_01",
+    "Sfx/ui_setting_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.unlock",
+   "identity": "A key turns, latch opens, three teeth sing a new door",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.06,
+     "gain": 0.2,
+     "material": "tin",
+     "pitch": 0.8,
+     "each": [
+      0,
+      0.055,
+      0.11
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.16,
+     "dur": 0.13,
+     "gain": 0.4,
+     "material": "oak",
+     "pitch": 0.9
+    },
+    {
+     "kind": "body",
+     "at": 0.17,
+     "dur": 0.65,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      76
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.28,
+     "dur": 0.65,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.43,
+     "dur": 0.65,
+     "gain": 0.4,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    }
+   ],
+   "room": 0.3,
+   "frames": 52920,
+   "variationFrames": [
+    52920,
+    52920
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_unlock_00",
+    "Sfx/ui_unlock_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.achievement",
+   "identity": "Toy-band medal flourish with an answering high bell",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.63,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.115,
+     "dur": 0.63,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.23,
+     "dur": 0.63,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.42,
+     "dur": 0.63,
+     "gain": 0.32,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.42,
+     "dur": 0.7,
+     "gain": 0.21,
+     "notes": [
+      55
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.42,
+     "dur": 0.7,
+     "gain": 0.21,
+     "notes": [
+      62
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.42,
+     "dur": 0.7,
+     "gain": 0.21,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.42,
+     "dur": 0.7,
+     "gain": 0.21,
+     "notes": [
+      71
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0.74,
+     "dur": 0.9,
+     "gain": 0.19,
+     "material": "bell",
+     "notes": [
+      98
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.42,
+     "dur": 0.23,
+     "gain": 0.25,
+     "material": "skin",
+     "hz": 140
+    }
+   ],
+   "room": 0.6,
+   "frames": 79380,
+   "variationFrames": [
+    79380,
+    79380
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_achievement_00",
+    "Sfx/ui_achievement_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.receipt",
+   "identity": "A dot-matrix carriage prints in three bursts then cuts paper",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.018,
+     "gain": 0.16,
+     "material": "oak",
+     "pitch": 2.3,
+     "each": [
+      0,
+      0.025,
+      0.05,
+      0.075,
+      0.1,
+      0.125,
+      0.21,
+      0.235,
+      0.26,
+      0.285,
+      0.31,
+      0.335,
+      0.42,
+      0.445,
+      0.47,
+      0.495
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.63,
+     "gain": 0.25,
+     "material": "paper",
+     "rate": 54
+    },
+    {
+     "kind": "body",
+     "at": 0.65,
+     "dur": 0.07,
+     "gain": 0.28,
+     "material": "tin",
+     "pitch": 1.4
+    },
+    {
+     "kind": "body",
+     "at": 0.66,
+     "dur": 0.23,
+     "gain": 0.21,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 39690,
+   "variationFrames": [
+    39690,
+    39690
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_receipt_00",
+    "Sfx/ui_receipt_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sting.waveclear",
+   "identity": "Syncopated wooden band answers a four-note brass pickup",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.3,
+     "material": "skin",
+     "hz": 120,
+     "each": [
+      0,
+      0.24,
+      0.36,
+      0.72
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.6,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.13,
+     "dur": 0.6,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.32,
+     "dur": 0.6,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.48,
+     "dur": 0.6,
+     "gain": 0.35,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.65,
+     "gain": 0.21,
+     "notes": [
+      55
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.65,
+     "gain": 0.21,
+     "notes": [
+      62
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.65,
+     "gain": 0.21,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "string",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.24,
+     "hz": 98
+    }
+   ],
+   "room": 0.5,
+   "frames": 83790,
+   "variationFrames": [
+    83790,
+    83790
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sting_waveclear_00",
+    "Sfx/sting_waveclear_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sting.victory",
+   "identity": "Three toy-band chord punches and a high victory crown",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.3,
+     "material": "skin",
+     "hz": 145,
+     "each": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.4,
+     "gain": 0.22,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.4,
+     "gain": 0.22,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.4,
+     "gain": 0.22,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.96,
+     "dur": 0.4,
+     "gain": 0.23,
+     "notes": [
+      65
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.96,
+     "dur": 0.4,
+     "gain": 0.23,
+     "notes": [
+      69
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.96,
+     "dur": 0.4,
+     "gain": 0.23,
+     "notes": [
+      72
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.44,
+     "dur": 0.4,
+     "gain": 0.23,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.44,
+     "dur": 0.4,
+     "gain": 0.23,
+     "notes": [
+      71
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.44,
+     "dur": 0.4,
+     "gain": 0.23,
+     "notes": [
+      74
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.98,
+     "dur": 1.2,
+     "gain": 0.25,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.98,
+     "dur": 1.2,
+     "gain": 0.25,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.98,
+     "dur": 1.2,
+     "gain": 0.25,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 1.98,
+     "dur": 1.2,
+     "gain": 0.25,
+     "notes": [
+      72
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 1.5,
+     "dur": 1.1,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.65,
+     "dur": 1.1,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.8,
+     "dur": 1.1,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      95
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.98,
+     "dur": 1.1,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      100
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 1.98,
+     "dur": 1.6,
+     "gain": 0.15,
+     "material": "bell",
+     "pitch": 1.3,
+     "decay": 2
+    }
+   ],
+   "room": 0.75,
+   "frames": 158760,
+   "variationFrames": [
+    158760
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sting_victory_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "sting.defeat",
+   "identity": "Drooping puppet horn, winding key stalls, final empty tin gong",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.7,
+     "gain": 0.27,
+     "hz": 150,
+     "vowel": "o",
+     "contour": [
+      1,
+      0.7,
+      0.45
+     ],
+     "formant": 0.85
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.55,
+     "gain": 0.3,
+     "notes": [
+      67
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.59,
+     "dur": 0.55,
+     "gain": 0.32,
+     "notes": [
+      64
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 1.18,
+     "dur": 0.68,
+     "gain": 0.34,
+     "notes": [
+      60
+     ]
+    },
+    {
+     "kind": "spring",
+     "at": 0.5,
+     "dur": 1.35,
+     "gain": 0.18,
+     "hz": 120,
+     "bend": 15,
+     "rate": 5
+    },
+    {
+     "kind": "body",
+     "at": 1.87,
+     "dur": 1.88,
+     "gain": 0.3,
+     "material": "bell",
+     "pitch": 0.25,
+     "decay": 4
+    },
+    {
+     "kind": "rumble",
+     "at": 1.87,
+     "dur": 0.8,
+     "gain": 0.3,
+     "hz": 83
+    }
+   ],
+   "room": 0.65,
+   "frames": 167580,
+   "variationFrames": [
+    167580
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/sting_defeat_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.stage",
+   "identity": "Canvas hall: distant wordless crowd, rope and loose lighting rigs",
+   "layers": [
+    {
+     "kind": "bed",
+     "at": 0,
+     "dur": 24,
+     "gain": 0.13,
+     "cutoff": 1800
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.7,
+     "gain": 0.1,
+     "material": "felt",
+     "rate": 17,
+     "each": [
+      1.3,
+      8.6,
+      17.4,
+      23.8
+     ]
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 1.4,
+     "gain": 0.05,
+     "hz": 140,
+     "vowel": "oa",
+     "breath": 0.5,
+     "formant": 0.85,
+     "each": [
+      3.2,
+      11.5,
+      19.3
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.022,
+     "material": "tin",
+     "pitch": 0.6,
+     "each": [
+      6.8,
+      16.4,
+      22.7
+     ]
+    }
+   ],
+   "room": 0.8,
+   "frames": 1058400,
+   "variationFrames": [
+    1058400
+   ],
+   "loop": true,
+   "clips": [
+    "Amb/amb_stage_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.office",
+   "identity": "Night desk: quiet fluorescent air, scattered keyboard bursts",
+   "layers": [
+    {
+     "kind": "bed",
+     "at": 0,
+     "dur": 24,
+     "gain": 0.12,
+     "cutoff": 2500,
+     "hum": 50
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.028,
+     "gain": 0.025,
+     "material": "oak",
+     "pitch": 2,
+     "each": [
+      2.1,
+      2.24,
+      2.35,
+      2.54,
+      7.1,
+      7.23,
+      7.39,
+      14.3,
+      14.47,
+      14.64,
+      14.8,
+      21.4,
+      21.56,
+      21.7
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.55,
+     "gain": 0.045,
+     "material": "paper",
+     "rate": 41,
+     "each": [
+      4.6,
+      16.8
+     ]
+    }
+   ],
+   "room": 0.35,
+   "frames": 1058400,
+   "variationFrames": [
+    1058400
+   ],
+   "loop": true,
+   "clips": [
+    "Amb/amb_office_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.lostshop",
+   "identity": "Dusty clock shop: two unsynchronised clocks and settling shelves",
+   "layers": [
+    {
+     "kind": "bed",
+     "at": 0,
+     "dur": 24,
+     "gain": 0.11,
+     "cutoff": 1250
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.032,
+     "gain": 0.025,
+     "material": "oak",
+     "pitch": 1.8,
+     "repeat": 48,
+     "until": 23.5
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.035,
+     "gain": 0.012,
+     "material": "tin",
+     "pitch": 0.85,
+     "each": [
+      0.37,
+      1.46,
+      2.5500000000000003,
+      3.6400000000000006,
+      4.73,
+      5.82,
+      6.910000000000001,
+      8.0,
+      9.09,
+      10.18,
+      11.27,
+      12.36,
+      13.450000000000001,
+      14.540000000000001,
+      15.63,
+      16.720000000000002,
+      17.810000000000002,
+      18.900000000000002,
+      19.990000000000002,
+      21.080000000000002,
+      22.17,
+      23.26
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.065,
+     "material": "oak",
+     "rate": 21,
+     "each": [
+      4.1,
+      12.7,
+      21.8
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 9.4,
+     "dur": 0.8,
+     "gain": 0.018,
+     "material": "tine",
+     "hz": 1630,
+     "decay": 2
+    }
+   ],
+   "room": 0.7,
+   "frames": 1058400,
+   "variationFrames": [
+    1058400
+   ],
+   "loop": true,
+   "clips": [
+    "Amb/amb_lostshop_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.goldshop",
+   "identity": "Warm counter: drawer friction, soft coin sorting, low electric air",
+   "layers": [
+    {
+     "kind": "bed",
+     "at": 0,
+     "dur": 24,
+     "gain": 0.12,
+     "cutoff": 1400,
+     "hum": 50
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.037,
+     "material": "coin",
+     "each": [
+      2.3,
+      2.52,
+      6.7,
+      7.02,
+      13.5,
+      13.74,
+      19.6,
+      19.95
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.63,
+     "gain": 0.06,
+     "material": "oak",
+     "rate": 43,
+     "each": [
+      5.4,
+      16.9
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 11.3,
+     "dur": 0.8,
+     "gain": 0.02,
+     "material": "bell",
+     "pitch": 1.4,
+     "decay": 1.1
+    }
+   ],
+   "room": 0.45,
+   "frames": 1058400,
+   "variationFrames": [
+    1058400
+   ],
+   "loop": true,
+   "clips": [
+    "Amb/amb_goldshop_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.dreamshop",
+   "identity": "Suspended glass room: drifting filtered air and sparse unpitched facets",
+   "layers": [
+    {
+     "kind": "bed",
+     "at": 0,
+     "dur": 24,
+     "gain": 0.12,
+     "cutoff": 3400
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 5.2,
+     "gain": 0.1,
+     "from": 1700,
+     "to": 4200,
+     "each": [
+      1.2,
+      9.8,
+      20.7
+     ],
+     "jitter": 0.12
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 1.5,
+     "gain": 0.025,
+     "material": "glass",
+     "hz": 1373,
+     "decay": 3,
+     "each": [
+      3.3,
+      14.4,
+      23.5
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 1.3,
+     "gain": 0.018,
+     "material": "porcelain",
+     "hz": 2197,
+     "decay": 3,
+     "each": [
+      7.1,
+      18.6
+     ]
+    }
+   ],
+   "room": 1,
+   "frames": 1058400,
+   "variationFrames": [
+    1058400
+   ],
+   "loop": true,
+   "clips": [
+    "Amb/amb_dreamshop_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.toys",
+   "identity": "Sleeping toy room: winding keys, miniature footsteps and one loose ruler",
+   "layers": [
+    {
+     "kind": "bed",
+     "at": 0,
+     "dur": 24,
+     "gain": 0.11,
+     "cutoff": 1700
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.027,
+     "gain": 0.035,
+     "material": "tin",
+     "pitch": 0.8,
+     "each": [
+      2.2,
+      2.25,
+      2.3,
+      2.35,
+      9.1,
+      9.15,
+      9.2,
+      9.25,
+      18.3,
+      18.35,
+      18.4
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.075,
+     "gain": 0.047,
+     "material": "felt",
+     "pitch": 1.6,
+     "each": [
+      5.7,
+      5.95,
+      6.2,
+      13.5,
+      13.75,
+      14,
+      21.3,
+      21.55
+     ]
+    },
+    {
+     "kind": "spring",
+     "at": 16.2,
+     "dur": 0.55,
+     "gain": 0.027,
+     "hz": 155,
+     "bend": 12,
+     "rate": 13
+    }
+   ],
+   "room": 0.55,
+   "frames": 1058400,
+   "variationFrames": [
+    1058400
+   ],
+   "loop": true,
+   "clips": [
+    "Amb/amb_toys_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "amb.transition",
+   "identity": "A canvas curtain rises through glass air then settles to felt",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.7,
+     "gain": 0.5,
+     "from": 300,
+     "to": 3600
+    },
+    {
+     "kind": "air",
+     "at": 0.57,
+     "dur": 0.8,
+     "gain": 0.4,
+     "from": 3400,
+     "to": 300
+    },
+    {
+     "kind": "grain",
+     "at": 0.65,
+     "dur": 0.7,
+     "gain": 0.25,
+     "material": "felt",
+     "rate": 24
+    },
+    {
+     "kind": "body",
+     "at": 0.34,
+     "dur": 0.95,
+     "gain": 0.15,
+     "material": "glass",
+     "pitch": 0.7,
+     "decay": 2
+    }
+   ],
+   "room": 0.5,
+   "frames": 61740,
+   "variationFrames": [
+    61740,
+    61740
+   ],
+   "loop": false,
+   "clips": [
+    "Amb/amb_transition_00",
+    "Amb/amb_transition_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.gold.syl",
+   "identity": "gold puppet: eight clean single vowel gestures",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.09700680272108844,
+     "gain": 0.6,
+     "hz": 142,
+     "vowel": "aoeuieom",
+     "formant": 0.92,
+     "breath": 0.065,
+     "rasp": true,
+     "contour": [
+      0.9,
+      1.1,
+      0.95
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 4278,
+   "variationFrames": [
+    4278,
+    6218,
+    4719,
+    6218,
+    5910,
+    4631,
+    5689,
+    4719
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_gold_syl_00",
+    "Voice/voice_gold_syl_01",
+    "Voice/voice_gold_syl_02",
+    "Voice/voice_gold_syl_03",
+    "Voice/voice_gold_syl_04",
+    "Voice/voice_gold_syl_05",
+    "Voice/voice_gold_syl_06",
+    "Voice/voice_gold_syl_07"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.gold.laugh",
+   "identity": "gold puppet: three clipped glottal chuckles",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.115,
+     "gain": 0.55,
+     "hz": 149.1,
+     "vowel": "a",
+     "formant": 0.92,
+     "breath": 0.065,
+     "rasp": true,
+     "contour": [
+      1.15,
+      0.83
+     ],
+     "each": [
+      0,
+      0.145,
+      0.285
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 20285,
+   "variationFrames": [
+    20285,
+    21608
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_gold_laugh_00",
+    "Voice/voice_gold_laugh_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.gold.hmm",
+   "identity": "gold puppet: thoughtful nasal hum with a lifted question",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.49,
+     "gain": 0.65,
+     "hz": 142,
+     "vowel": "m",
+     "formant": 0.92,
+     "breath": 0.0195,
+     "contour": [
+      0.92,
+      0.89,
+      1.16
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_gold_hmm_00",
+    "Voice/voice_gold_hmm_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.gold.gasp",
+   "identity": "gold puppet: breath-first open astonishment",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.3,
+     "from": 1800,
+     "to": 3500
+    },
+    {
+     "kind": "voice",
+     "at": 0.035,
+     "dur": 0.27,
+     "gain": 0.5,
+     "hz": 167.56,
+     "vowel": "o",
+     "formant": 0.92,
+     "breath": 0.0845,
+     "contour": [
+      0.75,
+      1.2,
+      0.95
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 14112,
+   "variationFrames": [
+    14112,
+    14112
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_gold_gasp_00",
+    "Voice/voice_gold_gasp_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.gold.farewell",
+   "identity": "gold puppet: three differently articulated falling gestures",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.135,
+     "gain": 0.5,
+     "hz": 159.04000000000002,
+     "vowel": "e",
+     "formant": 0.92,
+     "breath": 0.065
+    },
+    {
+     "kind": "voice",
+     "at": 0.165,
+     "dur": 0.135,
+     "gain": 0.5,
+     "hz": 142,
+     "vowel": "a",
+     "formant": 0.92,
+     "breath": 0.065
+    },
+    {
+     "kind": "voice",
+     "at": 0.33,
+     "dur": 0.175,
+     "gain": 0.45,
+     "hz": 115.02000000000001,
+     "vowel": "u",
+     "formant": 0.92,
+     "breath": 0.065
+    }
+   ],
+   "room": 0,
+   "frames": 22491,
+   "variationFrames": [
+    22491,
+    23506
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_gold_farewell_00",
+    "Voice/voice_gold_farewell_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.dream.syl",
+   "identity": "dream puppet: eight clean single vowel gestures",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.10199546485260771,
+     "gain": 0.6,
+     "hz": 335,
+     "vowel": "aoeuieom",
+     "formant": 1.29,
+     "breath": 0.22,
+     "rasp": false,
+     "contour": [
+      0.9,
+      1.1,
+      0.95
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 4498,
+   "variationFrames": [
+    4498,
+    4851,
+    4410,
+    4322,
+    5072,
+    4851,
+    4322,
+    4410
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_dream_syl_00",
+    "Voice/voice_dream_syl_01",
+    "Voice/voice_dream_syl_02",
+    "Voice/voice_dream_syl_03",
+    "Voice/voice_dream_syl_04",
+    "Voice/voice_dream_syl_05",
+    "Voice/voice_dream_syl_06",
+    "Voice/voice_dream_syl_07"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.dream.laugh",
+   "identity": "dream puppet: three clipped glottal chuckles",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.115,
+     "gain": 0.55,
+     "hz": 351.75,
+     "vowel": "a",
+     "formant": 1.29,
+     "breath": 0.22,
+     "rasp": false,
+     "contour": [
+      1.15,
+      0.83
+     ],
+     "each": [
+      0,
+      0.145,
+      0.285
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 20285,
+   "variationFrames": [
+    20285,
+    21608
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_dream_laugh_00",
+    "Voice/voice_dream_laugh_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.dream.hmm",
+   "identity": "dream puppet: thoughtful nasal hum with a lifted question",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.49,
+     "gain": 0.65,
+     "hz": 335,
+     "vowel": "m",
+     "formant": 1.29,
+     "breath": 0.066,
+     "contour": [
+      0.92,
+      0.89,
+      1.16
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 22050,
+   "variationFrames": [
+    22050,
+    22050
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_dream_hmm_00",
+    "Voice/voice_dream_hmm_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.dream.gasp",
+   "identity": "dream puppet: breath-first open astonishment",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.3,
+     "from": 1800,
+     "to": 3500
+    },
+    {
+     "kind": "voice",
+     "at": 0.035,
+     "dur": 0.27,
+     "gain": 0.5,
+     "hz": 395.29999999999995,
+     "vowel": "o",
+     "formant": 1.29,
+     "breath": 0.28600000000000003,
+     "contour": [
+      0.75,
+      1.2,
+      0.95
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 14112,
+   "variationFrames": [
+    14112,
+    14112
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_dream_gasp_00",
+    "Voice/voice_dream_gasp_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "voice.dream.farewell",
+   "identity": "dream puppet: three differently articulated falling gestures",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.135,
+     "gain": 0.5,
+     "hz": 375.20000000000005,
+     "vowel": "e",
+     "formant": 1.29,
+     "breath": 0.22
+    },
+    {
+     "kind": "voice",
+     "at": 0.165,
+     "dur": 0.135,
+     "gain": 0.5,
+     "hz": 335,
+     "vowel": "a",
+     "formant": 1.29,
+     "breath": 0.22
+    },
+    {
+     "kind": "voice",
+     "at": 0.33,
+     "dur": 0.175,
+     "gain": 0.45,
+     "hz": 271.35,
+     "vowel": "u",
+     "formant": 1.29,
+     "breath": 0.22
+    }
+   ],
+   "room": 0,
+   "frames": 22491,
+   "variationFrames": [
+    22491,
+    23506
+   ],
+   "loop": false,
+   "clips": [
+    "Voice/voice_dream_farewell_00",
+    "Voice/voice_dream_farewell_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.cutin.boss",
+   "identity": "Two low hostile brass knocks and a held stage gasp",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.22,
+     "notes": [
+      50
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.22,
+     "notes": [
+      53
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.22,
+     "notes": [
+      57
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.28,
+     "dur": 0.45,
+     "gain": 0.24,
+     "notes": [
+      49
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.28,
+     "dur": 0.45,
+     "gain": 0.24,
+     "notes": [
+      52
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.28,
+     "dur": 0.45,
+     "gain": 0.24,
+     "notes": [
+      56
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.4,
+     "material": "skin",
+     "hz": 105,
+     "each": [
+      0,
+      0.28
+     ]
+    },
+    {
+     "kind": "voice",
+     "at": 0.1,
+     "dur": 0.55,
+     "gain": 0.2,
+     "hz": 150,
+     "vowel": "o",
+     "breath": 0.3,
+     "contour": [
+      1.2,
+      1,
+      0.8
+     ]
+    }
+   ],
+   "room": 0.5,
+   "frames": 52920,
+   "variationFrames": [
+    52920,
+    52920
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_cutin_boss_00",
+    "Sfx/ui_cutin_boss_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "ui.cutin.showstopper",
+   "identity": "Brass victory punctuation and rising crowd breath",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0.02,
+     "dur": 0.67,
+     "gain": 0.26,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.02,
+     "dur": 0.67,
+     "gain": 0.26,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.02,
+     "dur": 0.67,
+     "gain": 0.26,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.02,
+     "dur": 0.67,
+     "gain": 0.26,
+     "notes": [
+      72
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "voice",
+     "at": 0.01,
+     "dur": 0.85,
+     "gain": 0.22,
+     "hz": 230,
+     "vowel": "a",
+     "breath": 0.4,
+     "formant": 1.2,
+     "contour": [
+      0.8,
+      1.2,
+      1
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.7,
+     "gain": 0.24,
+     "material": "paper",
+     "rate": 33
+    },
+    {
+     "kind": "body",
+     "at": 0.1,
+     "dur": 1.2,
+     "gain": 0.15,
+     "material": "bell",
+     "pitch": 1.2
+    }
+   ],
+   "room": 0.8,
+   "frames": 61740,
+   "variationFrames": [
+    61740,
+    61740
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_cutin_showstopper_00",
+    "Sfx/ui_cutin_showstopper_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.cutin.encore",
+   "identity": "A spotlight latch opens on a six-note ceramic flourish",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.6,
+     "material": "oak",
+     "pitch": 0.66
+    },
+    {
+     "kind": "body",
+     "at": 0.03,
+     "dur": 0.64,
+     "gain": 0.28,
+     "material": "porcelain",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.11,
+     "dur": 0.64,
+     "gain": 0.28,
+     "material": "porcelain",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.19,
+     "dur": 0.64,
+     "gain": 0.28,
+     "material": "porcelain",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.27,
+     "dur": 0.64,
+     "gain": 0.28,
+     "material": "porcelain",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.36,
+     "dur": 0.64,
+     "gain": 0.28,
+     "material": "porcelain",
+     "notes": [
+      95
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.48,
+     "dur": 0.64,
+     "gain": 0.28,
+     "material": "porcelain",
+     "notes": [
+      98
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.6,
+     "gain": 0.15,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.6,
+     "gain": 0.15,
+     "notes": [
+      67
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.48,
+     "dur": 0.6,
+     "gain": 0.15,
+     "notes": [
+      76
+     ],
+     "brightness": 6
+    }
+   ],
+   "room": 0.55,
+   "frames": 52920,
+   "variationFrames": [
+    52920,
+    52920
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_cutin_encore_00",
+    "Sfx/ui_cutin_encore_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.cutin.bond",
+   "identity": "Applause-like paper palms over joined voices",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.85,
+     "gain": 0.4,
+     "material": "paper",
+     "rate": 27
+    },
+    {
+     "kind": "reed",
+     "at": 0.11,
+     "dur": 0.65,
+     "gain": 0.22,
+     "notes": [
+      60
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.11,
+     "dur": 0.65,
+     "gain": 0.22,
+     "notes": [
+      64
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.11,
+     "dur": 0.65,
+     "gain": 0.22,
+     "notes": [
+      69
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "body",
+     "at": 0.05,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      86
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.23,
+     "dur": 0.65,
+     "gain": 0.25,
+     "material": "tine",
+     "notes": [
+      91
+     ]
+    }
+   ],
+   "room": 0.6,
+   "frames": 48510,
+   "variationFrames": [
+    48510,
+    48510,
+    48510
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_cutin_bond_00",
+    "Sfx/ui_cutin_bond_01",
+    "Sfx/ui_cutin_bond_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.wave.stamp",
+   "identity": "A heavy rubber wave seal with a broad receipt slap",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.7,
+     "material": "hollow",
+     "pitch": 0.57
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.45,
+     "material": "felt"
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.3,
+     "gain": 0.5,
+     "material": "paper",
+     "rate": 151
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_wave_stamp_00",
+    "Sfx/ui_wave_stamp_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.ticket.sold",
+   "identity": "Small SOLD seal and a falling price ticket",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.15,
+     "gain": 0.6,
+     "material": "oak",
+     "pitch": 1.15
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.09,
+     "gain": 0.55,
+     "material": "paper"
+    },
+    {
+     "kind": "grain",
+     "at": 0.08,
+     "dur": 0.3,
+     "gain": 0.33,
+     "material": "paper",
+     "rate": 61
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_ticket_sold_00",
+    "Sfx/shop_ticket_sold_01",
+    "Sfx/shop_ticket_sold_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "shop.ticket.sway",
+   "identity": "Twine creaks under one soft card flutter",
+   "layers": [
+    {
+     "kind": "string",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.25,
+     "hz": 182,
+     "feedback": 0.95
+    },
+    {
+     "kind": "grain",
+     "at": 0.014,
+     "dur": 0.26,
+     "gain": 0.42,
+     "material": "paper",
+     "rate": 34
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/shop_ticket_sway_00",
+    "Sfx/shop_ticket_sway_01",
+    "Sfx/shop_ticket_sway_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.coach.pop",
+   "identity": "A friendly rubber speech bubble opens",
+   "layers": [
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.21,
+     "gain": 0.5,
+     "hz": 410,
+     "bend": 5,
+     "rate": 16
+    },
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.18,
+     "gain": 0.4,
+     "count": 2,
+     "pitch": 1.6
+    }
+   ],
+   "room": 0,
+   "frames": 9922,
+   "variationFrames": [
+    9922,
+    9922,
+    9922
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_coach_pop_00",
+    "Sfx/ui_coach_pop_01",
+    "Sfx/ui_coach_pop_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "menu.spot.hero",
+   "identity": "A cloth puppet calls a tiny nonverbal greeting",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.23,
+     "gain": 0.55,
+     "hz": 215,
+     "vowel": "ea",
+     "contour": [
+      0.8,
+      1.3,
+      0.9
+     ],
+     "formant": 1.15
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.42,
+     "gain": 0.08,
+     "hz": 110,
+     "brightness": 1.5
+    }
+   ],
+   "room": 0,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/menu_spot_hero_00",
+    "Sfx/menu_spot_hero_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "menu.spot.door",
+   "identity": "A shop hinge creaks over distant wordless room breath",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.54,
+     "gain": 0.42,
+     "material": "oak",
+     "rate": 38
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.22,
+     "hz": 108,
+     "bend": 5,
+     "rate": 13
+    },
+    {
+     "kind": "voice",
+     "at": 0.07,
+     "dur": 0.48,
+     "gain": 0.12,
+     "hz": 145,
+     "vowel": "o",
+     "breath": 0.5,
+     "formant": 0.85
+    }
+   ],
+   "room": 0.8,
+   "frames": 26460,
+   "variationFrames": [
+    26460,
+    26460
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/menu_spot_door_00",
+    "Sfx/menu_spot_door_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "menu.spot.jar",
+   "identity": "A finger taps a small hollow glass display jar",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.43,
+     "gain": 0.6,
+     "material": "glass",
+     "pitch": 0.64,
+     "decay": 1.6
+    },
+    {
+     "kind": "body",
+     "at": 0.018,
+     "dur": 0.37,
+     "gain": 0.17,
+     "material": "porcelain",
+     "pitch": 0.79
+    }
+   ],
+   "room": 0.25,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/menu_spot_jar_00",
+    "Sfx/menu_spot_jar_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "menu.spot.printer",
+   "identity": "A short carriage scan, feed roller and paper edge",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.019,
+     "gain": 0.2,
+     "material": "oak",
+     "pitch": 2.1,
+     "each": [
+      0,
+      0.027,
+      0.054,
+      0.081,
+      0.108,
+      0.18,
+      0.207,
+      0.234,
+      0.261,
+      0.288
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.42,
+     "gain": 0.35,
+     "material": "paper",
+     "rate": 65
+    },
+    {
+     "kind": "body",
+     "at": 0.32,
+     "dur": 0.1,
+     "gain": 0.22,
+     "material": "tin",
+     "pitch": 1.3
+    }
+   ],
+   "room": 0,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/menu_spot_printer_00",
+    "Sfx/menu_spot_printer_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "menu.spot.lamp",
+   "identity": "Bulb switch and warm buzzing filament",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.045,
+     "gain": 0.4,
+     "material": "tin",
+     "pitch": 1.5,
+     "decay": 0.14
+    },
+    {
+     "kind": "reed",
+     "at": 0.02,
+     "dur": 0.41,
+     "gain": 0.25,
+     "hz": 100,
+     "brightness": 2
+    },
+    {
+     "kind": "grain",
+     "at": 0.02,
+     "dur": 0.4,
+     "gain": 0.12,
+     "material": "felt",
+     "rate": 100
+    }
+   ],
+   "room": 0,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/menu_spot_lamp_00",
+    "Sfx/menu_spot_lamp_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "menu.spot.bell",
+   "identity": "One small counter bell with a damped contact button",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.64,
+     "gain": 0.6,
+     "material": "bell",
+     "pitch": 1.7,
+     "decay": 0.75
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.035,
+     "gain": 0.14,
+     "material": "oak",
+     "pitch": 2
+    }
+   ],
+   "room": 0,
+   "frames": 28665,
+   "variationFrames": [
+    28665,
+    28665
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/menu_spot_bell_00",
+    "Sfx/menu_spot_bell_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.yoyo.throw",
+   "identity": "Key ratchet releases into a wooden axle whirr",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.03,
+     "gain": 0.28,
+     "material": "tin",
+     "pitch": 0.65,
+     "each": [
+      0,
+      0.022,
+      0.042,
+      0.06
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0.045,
+     "dur": 0.34,
+     "gain": 0.65,
+     "from": 550,
+     "to": 2500,
+     "flutter": 32
+    },
+    {
+     "kind": "string",
+     "at": 0.01,
+     "dur": 0.23,
+     "gain": 0.12,
+     "hz": 240
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_yoyo_throw_00",
+    "Sfx/wpn_yoyo_throw_01",
+    "Sfx/wpn_yoyo_throw_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.yoyo.return",
+   "identity": "String zips inward, then a precise palm catch",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.32,
+     "gain": 0.8,
+     "from": 2800,
+     "to": 700,
+     "curve": 0.55
+    },
+    {
+     "kind": "body",
+     "at": 0.325,
+     "dur": 0.07,
+     "gain": 0.6,
+     "material": "oak",
+     "pitch": 1.25
+    },
+    {
+     "kind": "body",
+     "at": 0.325,
+     "dur": 0.07,
+     "gain": 0.38,
+     "material": "felt"
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_yoyo_return_00",
+    "Sfx/wpn_yoyo_return_01",
+    "Sfx/wpn_yoyo_return_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.magnet.pull",
+   "identity": "Energised coil gathers rattling scrap",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.42,
+     "gain": 0.18,
+     "hz": 98,
+     "brightness": 2
+    },
+    {
+     "kind": "spring",
+     "at": 0.01,
+     "dur": 0.31,
+     "gain": 0.2,
+     "hz": 148,
+     "rate": 52,
+     "bend": 3
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.08,
+     "gain": 0.25,
+     "material": "tin",
+     "each": [
+      0.07,
+      0.14,
+      0.205,
+      0.253,
+      0.29,
+      0.32,
+      0.338
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.4,
+     "from": 400,
+     "to": 1700
+    }
+   ],
+   "room": 0,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_magnet_pull_00",
+    "Sfx/wpn_magnet_pull_01",
+    "Sfx/wpn_magnet_pull_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.needle.volley",
+   "identity": "Three plucked needle darts with distinct sewing clicks",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.45,
+     "material": "tine",
+     "notes": [
+      94
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.056,
+     "dur": 0.13,
+     "gain": 0.45,
+     "material": "tine",
+     "notes": [
+      98
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.112,
+     "dur": 0.13,
+     "gain": 0.45,
+     "material": "tine",
+     "notes": [
+      101
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.05,
+     "gain": 0.18,
+     "material": "steel",
+     "pitch": 1.9,
+     "decay": 0.2,
+     "each": [
+      0,
+      0.056,
+      0.112
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.24,
+     "gain": 0.22,
+     "from": 3200,
+     "to": 5100
+    }
+   ],
+   "room": 0,
+   "frames": 12128,
+   "variationFrames": [
+    12128,
+    12128,
+    12128,
+    12128
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_needle_volley_00",
+    "Sfx/wpn_needle_volley_01",
+    "Sfx/wpn_needle_volley_02",
+    "Sfx/wpn_needle_volley_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.spring.slam",
+   "identity": "Spring compression, then a broad wooden floor impact",
+   "layers": [
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.45,
+     "hz": 170,
+     "bend": 19,
+     "rate": 14
+    },
+    {
+     "kind": "body",
+     "at": 0.125,
+     "dur": 0.26,
+     "gain": 0.8,
+     "material": "oak",
+     "pitch": 0.6
+    },
+    {
+     "kind": "rumble",
+     "at": 0.125,
+     "dur": 0.26,
+     "gain": 0.5,
+     "hz": 94
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_spring_slam_00",
+    "Sfx/wpn_spring_slam_01",
+    "Sfx/wpn_spring_slam_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.projector.cast",
+   "identity": "Film sprockets run up beneath a diffuse glass beam",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.021,
+     "gain": 0.13,
+     "material": "oak",
+     "pitch": 1.8,
+     "repeat": 19,
+     "until": 0.42
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.35,
+     "from": 750,
+     "to": 3800,
+     "flutter": 24,
+     "shape": 0.6
+    },
+    {
+     "kind": "body",
+     "at": 0.04,
+     "dur": 0.5,
+     "gain": 0.18,
+     "material": "glass",
+     "pitch": 0.41,
+     "decay": 1.8
+    }
+   ],
+   "room": 0.6,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_projector_cast_00",
+    "Sfx/wpn_projector_cast_01",
+    "Sfx/wpn_projector_cast_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "wpn.ribbon.cut",
+   "identity": "Two silk cuts with offset porcelain plucks",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.7,
+     "from": 1200,
+     "to": 4600
+    },
+    {
+     "kind": "air",
+     "at": 0.127,
+     "dur": 0.14,
+     "gain": 0.6,
+     "from": 3500,
+     "to": 1000
+    },
+    {
+     "kind": "body",
+     "at": 0.011,
+     "dur": 0.14,
+     "gain": 0.17,
+     "material": "porcelain",
+     "pitch": 1.4,
+     "decay": 0.38
+    },
+    {
+     "kind": "body",
+     "at": 0.14,
+     "dur": 0.13,
+     "gain": 0.14,
+     "material": "porcelain",
+     "pitch": 1.72,
+     "decay": 0.38
+    }
+   ],
+   "room": 0,
+   "frames": 12128,
+   "variationFrames": [
+    12128,
+    12128,
+    12128,
+    12128
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/wpn_ribbon_cut_00",
+    "Sfx/wpn_ribbon_cut_01",
+    "Sfx/wpn_ribbon_cut_02",
+    "Sfx/wpn_ribbon_cut_03"
+   ],
+   "danger": false
+  },
+  {
+   "id": "ui.encore.ready",
+   "identity": "A stage switch clacks under a nonverbal crowd swell",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.7,
+     "material": "oak",
+     "pitch": 0.8
+    },
+    {
+     "kind": "voice",
+     "at": 0.04,
+     "dur": 0.6,
+     "gain": 0.2,
+     "hz": 220,
+     "vowel": "a",
+     "formant": 1.2,
+     "breath": 0.35,
+     "contour": [
+      0.7,
+      1.2,
+      1
+     ]
+    },
+    {
+     "kind": "voice",
+     "at": 0.07,
+     "dur": 0.6,
+     "gain": 0.18,
+     "hz": 160,
+     "vowel": "o",
+     "formant": 0.9,
+     "breath": 0.35
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.76,
+     "gain": 0.3,
+     "from": 400,
+     "to": 2200
+    }
+   ],
+   "room": 0.8,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_encore_ready_00",
+    "Sfx/ui_encore_ready_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.lantern.stride",
+   "identity": "Warm lantern valve ignites, bronze casing rings",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.59,
+     "gain": 0.65,
+     "from": 250,
+     "to": 1600
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.27,
+     "gain": 0.5,
+     "hz": 145
+    },
+    {
+     "kind": "grain",
+     "at": 0.04,
+     "dur": 0.53,
+     "gain": 0.23,
+     "material": "paper",
+     "rate": 173
+    },
+    {
+     "kind": "body",
+     "at": 0.02,
+     "dur": 0.61,
+     "gain": 0.27,
+     "material": "bell",
+     "pitch": 0.76,
+     "decay": 0.9
+    }
+   ],
+   "room": 0,
+   "frames": 28665,
+   "variationFrames": [
+    28665,
+    28665
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_lantern_stride_00",
+    "Sfx/hero_lantern_stride_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.parcel.express",
+   "identity": "Three cardboard parcels leave a metal mail slot",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.5,
+     "material": "paper",
+     "each": [
+      0,
+      0.09,
+      0.18
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.08,
+     "gain": 0.3,
+     "material": "oak",
+     "pitch": 1.6,
+     "each": [
+      0,
+      0.09,
+      0.18
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0.025,
+     "dur": 0.49,
+     "gain": 0.5,
+     "from": 550,
+     "to": 2900
+    },
+    {
+     "kind": "body",
+     "at": 0.01,
+     "dur": 0.12,
+     "gain": 0.2,
+     "material": "tin",
+     "pitch": 0.72
+    }
+   ],
+   "room": 0,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_parcel_express_00",
+    "Sfx/hero_parcel_express_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.dream.breath",
+   "identity": "Airy puppet yawn freezes into suspended porcelain",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.55,
+     "gain": 0.27,
+     "hz": 320,
+     "vowel": "a",
+     "formant": 1.3,
+     "breath": 0.28,
+     "contour": [
+      0.9,
+      1.1,
+      0.7
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.77,
+     "gain": 0.42,
+     "from": 3000,
+     "to": 900
+    },
+    {
+     "kind": "body",
+     "at": 0.09,
+     "dur": 0.68,
+     "gain": 0.25,
+     "material": "porcelain",
+     "pitch": 1.4,
+     "decay": 1.5
+    }
+   ],
+   "room": 0.65,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_dream_breath_00",
+    "Sfx/hero_dream_breath_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.rooted.oracle",
+   "identity": "Deep wooden roots stretch under a nasal ward hum",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.76,
+     "gain": 0.5,
+     "material": "oak",
+     "rate": 32
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.4,
+     "material": "hollow",
+     "pitch": 0.4,
+     "decay": 2.3
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.73,
+     "gain": 0.24,
+     "hz": 82,
+     "vowel": "m",
+     "formant": 0.78,
+     "contour": [
+      1,
+      1.06,
+      1
+     ]
+    }
+   ],
+   "room": 0.3,
+   "frames": 35280,
+   "variationFrames": [
+    35280,
+    35280
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_rooted_oracle_00",
+    "Sfx/hero_rooted_oracle_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.solo.maw",
+   "identity": "A felt jaw clamps before a rotating devouring breath",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.17,
+     "gain": 0.55,
+     "material": "hollow",
+     "pitch": 0.64
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.6,
+     "material": "felt"
+    },
+    {
+     "kind": "air",
+     "at": 0.025,
+     "dur": 0.5,
+     "gain": 0.75,
+     "from": 1400,
+     "to": 320,
+     "flutter": 23
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.26,
+     "gain": 0.2,
+     "hz": 102,
+     "vowel": "o",
+     "rasp": true
+    }
+   ],
+   "room": 0,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_solo_maw_00",
+    "Sfx/hero_solo_maw_01",
+    "Sfx/hero_solo_maw_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.glass.gambler",
+   "identity": "Dice bounce twice, glass breaks and one coin escapes",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.37,
+     "material": "oak",
+     "pitch": 2,
+     "each": [
+      0,
+      0.04,
+      0.075,
+      0.104
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.13,
+     "dur": 0.41,
+     "gain": 0.55,
+     "material": "glass",
+     "pitch": 0.76
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.17,
+     "material": "porcelain",
+     "pitch": 1.9,
+     "each": [
+      0.16,
+      0.21,
+      0.29
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.25,
+     "dur": 0.24,
+     "gain": 0.32,
+     "material": "coin"
+    }
+   ],
+   "room": 0,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_glass_gambler_00",
+    "Sfx/hero_glass_gambler_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.tide.collector",
+   "identity": "A low water push, droplets and a warm healing third",
+   "layers": [
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 0.65,
+     "gain": 0.65,
+     "count": 25,
+     "pitch": 0.7
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.61,
+     "gain": 0.48,
+     "from": 250,
+     "to": 1300
+    },
+    {
+     "kind": "body",
+     "at": 0.08,
+     "dur": 0.41,
+     "gain": 0.25,
+     "material": "porcelain",
+     "notes": [
+      76
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.27,
+     "dur": 0.41,
+     "gain": 0.25,
+     "material": "porcelain",
+     "notes": [
+      80
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 30870,
+   "variationFrames": [
+    30870,
+    30870
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_tide_collector_00",
+    "Sfx/hero_tide_collector_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.clock.runner",
+   "identity": "Three clock teeth stretch apart into reverse air",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.08,
+     "gain": 0.38,
+     "material": "tin",
+     "pitch": 0.8,
+     "each": [
+      0,
+      0.07,
+      0.19
+     ]
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 0.4,
+     "gain": 0.2,
+     "hz": 210,
+     "bend": 12,
+     "rate": 5
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.45,
+     "from": 3400,
+     "to": 350,
+     "curve": 0.6
+    }
+   ],
+   "room": 0,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_clock_runner_00",
+    "Sfx/hero_clock_runner_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.mirror.guard",
+   "identity": "Broad mirror flex and three reflected glass darts",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.52,
+     "gain": 0.42,
+     "material": "glass",
+     "pitch": 0.59,
+     "decay": 1.6
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.46,
+     "gain": 0.4,
+     "from": 3300,
+     "to": 1400
+    },
+    {
+     "kind": "body",
+     "at": 0.025,
+     "dur": 0.28,
+     "gain": 0.27,
+     "material": "porcelain",
+     "notes": [
+      98
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.096,
+     "dur": 0.28,
+     "gain": 0.27,
+     "material": "porcelain",
+     "notes": [
+      91
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.18,
+     "dur": 0.28,
+     "gain": 0.27,
+     "material": "porcelain",
+     "notes": [
+      100
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 24255,
+   "variationFrames": [
+    24255,
+    24255
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_mirror_guard_00",
+    "Sfx/hero_mirror_guard_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.treasure.tax",
+   "identity": "A small coin drawer acknowledges a healing payment",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.4,
+     "material": "hollow",
+     "pitch": 0.88
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.13,
+     "gain": 0.28,
+     "material": "coin",
+     "each": [
+      0.03,
+      0.11,
+      0.19
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.03,
+     "dur": 0.27,
+     "gain": 0.3,
+     "material": "tine",
+     "notes": [
+      83
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.17,
+     "dur": 0.27,
+     "gain": 0.3,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 19845,
+   "variationFrames": [
+    19845,
+    19845
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_treasure_tax_00",
+    "Sfx/hero_treasure_tax_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "hero.charge.ready",
+   "identity": "A single damped bright bell pin, no celebration tail",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.29,
+     "gain": 0.5,
+     "material": "bell",
+     "notes": [
+      93,
+      96
+     ],
+     "decay": 0.26
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.04,
+     "gain": 0.13,
+     "material": "oak",
+     "pitch": 1.9
+    }
+   ],
+   "room": 0,
+   "frames": 13230,
+   "variationFrames": [
+    13230,
+    13230
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/hero_charge_ready_00",
+    "Sfx/hero_charge_ready_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "event.warn",
+   "identity": "A circus skin roll accelerates into a clear rising whistle",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.07,
+     "gain": 0.23,
+     "material": "skin",
+     "hz": 180,
+     "each": [
+      0,
+      0.22,
+      0.42,
+      0.6,
+      0.76,
+      0.9,
+      1.02,
+      1.13,
+      1.23,
+      1.32,
+      1.4,
+      1.47,
+      1.53,
+      1.59,
+      1.65,
+      1.71,
+      1.77,
+      1.83
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 1.88,
+     "gain": 0.45,
+     "from": 550,
+     "to": 2200,
+     "whistle": 0.2,
+     "shape": 0.6
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 1.86,
+     "gain": 0.12,
+     "material": "tin",
+     "rate": 36
+    }
+   ],
+   "room": 0,
+   "frames": 83790,
+   "variationFrames": [
+    83790,
+    83790
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/event_warn_00",
+    "Sfx/event_warn_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "event.parade.start",
+   "identity": "Paper boots march to a tiny two-note horn call",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.1,
+     "gain": 0.3,
+     "material": "skin",
+     "hz": 190,
+     "each": [
+      0,
+      0.12,
+      0.24,
+      0.36,
+      0.48
+     ]
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.8,
+     "gain": 0.4,
+     "material": "paper",
+     "rate": 55
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.25,
+     "gain": 0.27,
+     "notes": [
+      72
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.27,
+     "dur": 0.38,
+     "gain": 0.27,
+     "notes": [
+      79
+     ]
+    }
+   ],
+   "room": 0.3,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/event_parade_start_00",
+    "Sfx/event_parade_start_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "event.trap.start",
+   "identity": "A gilded pedestal ratchets upward and locks",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.5,
+     "gain": 0.38,
+     "material": "tin",
+     "rate": 47
+    },
+    {
+     "kind": "body",
+     "at": 0.43,
+     "dur": 0.5,
+     "gain": 0.5,
+     "material": "tin",
+     "pitch": 0.46,
+     "decay": 1.8
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.22,
+     "material": "coin",
+     "each": [
+      0.49,
+      0.61,
+      0.74
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.48,
+     "gain": 0.32,
+     "from": 350,
+     "to": 1800
+    }
+   ],
+   "room": 0,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/event_trap_start_00",
+    "Sfx/event_trap_start_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "event.eclipse.start",
+   "identity": "A dark pressure shadow passes a resonating jar",
+   "layers": [
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.9,
+     "gain": 0.5,
+     "hz": 80,
+     "to": 43,
+     "decay": 0.3
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.95,
+     "gain": 0.5,
+     "from": 2800,
+     "to": 250
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.95,
+     "gain": 0.33,
+     "material": "glass",
+     "pitch": 0.34,
+     "decay": 2.6
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.8,
+     "gain": 0.13,
+     "hz": 72,
+     "vowel": "u",
+     "breath": 0.3,
+     "formant": 0.75
+    }
+   ],
+   "room": 0.7,
+   "frames": 44100,
+   "variationFrames": [
+    44100,
+    44100
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/event_eclipse_start_00",
+    "Sfx/event_eclipse_start_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "event.reward",
+   "identity": "Loose coin shower answered by a wordless little ooh",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.14,
+     "gain": 0.27,
+     "material": "coin",
+     "each": [
+      0,
+      0.04,
+      0.09,
+      0.15,
+      0.23,
+      0.32,
+      0.42
+     ]
+    },
+    {
+     "kind": "voice",
+     "at": 0.04,
+     "dur": 0.47,
+     "gain": 0.25,
+     "hz": 270,
+     "vowel": "o",
+     "formant": 1.25,
+     "contour": [
+      0.8,
+      1.2,
+      1
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.07,
+     "dur": 0.6,
+     "gain": 0.2,
+     "material": "tine",
+     "notes": [
+      91,
+      93,
+      96
+     ]
+    }
+   ],
+   "room": 0.3,
+   "frames": 30870,
+   "variationFrames": [
+    30870,
+    30870,
+    30870
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/event_reward_00",
+    "Sfx/event_reward_01",
+    "Sfx/event_reward_02"
+   ],
+   "danger": false
+  },
+  {
+   "id": "event.end",
+   "identity": "Canvas air folds into one small closing porcelain tone",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.51,
+     "gain": 0.55,
+     "from": 3100,
+     "to": 500
+    },
+    {
+     "kind": "body",
+     "at": 0.22,
+     "dur": 0.4,
+     "gain": 0.3,
+     "material": "porcelain",
+     "notes": [
+      79,
+      81
+     ],
+     "decay": 0.6
+    }
+   ],
+   "room": 0,
+   "frames": 28665,
+   "variationFrames": [
+    28665,
+    28665
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/event_end_00",
+    "Sfx/event_end_01"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.choirengine",
+   "identity": "Three mechanical choir pipes engage an iron chassis",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 1.17,
+     "gain": 0.3,
+     "hz": 65,
+     "vowel": "o",
+     "formant": 0.75,
+     "contour": [
+      0.8,
+      1,
+      1
+     ],
+     "rasp": true
+    },
+    {
+     "kind": "voice",
+     "at": 0.03,
+     "dur": 1.1,
+     "gain": 0.2,
+     "hz": 98,
+     "vowel": "a",
+     "formant": 0.9,
+     "contour": [
+      0.8,
+      1,
+      1
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.06,
+     "dur": 1,
+     "gain": 0.18,
+     "notes": [
+      38
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.06,
+     "dur": 1,
+     "gain": 0.18,
+     "notes": [
+      45
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.06,
+     "dur": 1,
+     "gain": 0.18,
+     "notes": [
+      50
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "reed",
+     "at": 0.06,
+     "dur": 1,
+     "gain": 0.18,
+     "notes": [
+      53
+     ],
+     "brightness": 6
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.7,
+     "gain": 0.22,
+     "material": "tin",
+     "rate": 33
+    }
+   ],
+   "room": 0.6,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_choirengine_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.coinwidow",
+   "identity": "Three descending coin-throat cackles and scuttling disks",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.22,
+     "gain": 0.37,
+     "hz": 210,
+     "vowel": "a",
+     "formant": 1.08,
+     "rasp": true,
+     "contour": [
+      1.35,
+      0.8
+     ],
+     "each": [
+      0,
+      0.29,
+      0.61
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.15,
+     "gain": 0.23,
+     "material": "coin",
+     "each": [
+      0.02,
+      0.08,
+      0.17,
+      0.3,
+      0.41,
+      0.52,
+      0.66,
+      0.79,
+      0.94,
+      1.06
+     ]
+    }
+   ],
+   "room": 0.35,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_coinwidow_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.lastlantern",
+   "identity": "A roaring bellows takes a single cracked bronze breath",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 1.21,
+     "gain": 0.75,
+     "from": 250,
+     "to": 2100,
+     "shape": 0.6
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 1.13,
+     "gain": 0.3,
+     "hz": 85,
+     "vowel": "ao",
+     "formant": 0.8,
+     "rasp": true,
+     "breath": 0.2,
+     "contour": [
+      0.6,
+      1.2,
+      0.8
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.07,
+     "dur": 1.17,
+     "gain": 0.3,
+     "material": "bell",
+     "pitch": 0.38,
+     "decay": 2.5
+    },
+    {
+     "kind": "grain",
+     "at": 0.03,
+     "dur": 1.16,
+     "gain": 0.22,
+     "material": "paper",
+     "rate": 179
+    }
+   ],
+   "room": 0,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_lastlantern_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.marqueemaw",
+   "identity": "Tin signage snaps twice under a buzzing neon bellow",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.35,
+     "gain": 0.55,
+     "material": "tin",
+     "pitch": 0.32,
+     "each": [
+      0,
+      0.38
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.27,
+     "gain": 0.65,
+     "material": "hollow",
+     "pitch": 0.37,
+     "each": [
+      0,
+      0.38
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 1.18,
+     "gain": 0.17,
+     "hz": 60,
+     "brightness": 3
+    },
+    {
+     "kind": "voice",
+     "at": 0.08,
+     "dur": 0.98,
+     "gain": 0.4,
+     "hz": 76,
+     "vowel": "ae",
+     "formant": 0.7,
+     "rasp": true,
+     "contour": [
+      0.8,
+      1.1,
+      0.6
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_marqueemaw_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.scarletindex",
+   "identity": "Furious index cards shred through a sharp paper screech",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 1.18,
+     "gain": 0.85,
+     "material": "paper",
+     "rate": 117
+    },
+    {
+     "kind": "voice",
+     "at": 0.02,
+     "dur": 0.91,
+     "gain": 0.25,
+     "hz": 240,
+     "vowel": "ie",
+     "formant": 1.4,
+     "breath": 0.25,
+     "contour": [
+      0.7,
+      1.6,
+      0.8
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.06,
+     "gain": 0.18,
+     "material": "oak",
+     "pitch": 1.8,
+     "repeat": 17,
+     "until": 0.94
+    }
+   ],
+   "room": 0,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_scarletindex_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.sleepcollector",
+   "identity": "Deep inhaled yawn followed by two cracked lullaby teeth",
+   "layers": [
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 0.98,
+     "gain": 0.55,
+     "hz": 66,
+     "vowel": "ao",
+     "formant": 0.7,
+     "breath": 0.24,
+     "contour": [
+      0.65,
+      1.15,
+      1.3,
+      0.55
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.94,
+     "gain": 0.27,
+     "from": 1600,
+     "to": 250
+    },
+    {
+     "kind": "body",
+     "at": 0.57,
+     "dur": 0.4,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      79
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.81,
+     "dur": 0.4,
+     "gain": 0.18,
+     "material": "tine",
+     "notes": [
+      75
+     ]
+    }
+   ],
+   "room": 0.7,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_sleepcollector_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.suitcaseleviathan",
+   "identity": "Two brass latches snap around a whale-like leather groan",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.36,
+     "material": "tin",
+     "pitch": 0.48,
+     "each": [
+      0,
+      0.16
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.17,
+     "dur": 0.48,
+     "gain": 0.7,
+     "material": "hollow",
+     "pitch": 0.26
+    },
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.98,
+     "gain": 0.25,
+     "material": "felt",
+     "rate": 17
+    },
+    {
+     "kind": "voice",
+     "at": 0.04,
+     "dur": 1.17,
+     "gain": 0.55,
+     "hz": 49,
+     "vowel": "ou",
+     "formant": 0.55,
+     "contour": [
+      1.4,
+      1,
+      0.7,
+      1.15
+     ],
+     "rasp": true
+    }
+   ],
+   "room": 0.5,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_suitcaseleviathan_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.umbracradle",
+   "identity": "Rocking cradle joints and an unvoiced shadow breath",
+   "layers": [
+    {
+     "kind": "grain",
+     "at": 0,
+     "dur": 0.31,
+     "gain": 0.45,
+     "material": "oak",
+     "rate": 29,
+     "each": [
+      0,
+      0.4,
+      0.79
+     ]
+    },
+    {
+     "kind": "spring",
+     "at": 0,
+     "dur": 1.15,
+     "gain": 0.22,
+     "hz": 84,
+     "bend": 6,
+     "rate": 4
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 1.22,
+     "gain": 0.6,
+     "from": 3200,
+     "to": 500,
+     "shape": 0.7
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 1.2,
+     "gain": 0.15,
+     "hz": 58,
+     "vowel": "u",
+     "formant": 0.6,
+     "breath": 0.4
+    }
+   ],
+   "room": 0.9,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_umbracradle_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.undeliveredking",
+   "identity": "Royal postal horn goes sour before a giant stamp",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.35,
+     "notes": [
+      55
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.21,
+     "dur": 0.2,
+     "gain": 0.35,
+     "notes": [
+      62
+     ]
+    },
+    {
+     "kind": "reed",
+     "at": 0.42,
+     "dur": 0.35,
+     "gain": 0.4,
+     "notes": [
+      58
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.78,
+     "dur": 0.45,
+     "gain": 0.8,
+     "material": "hollow",
+     "pitch": 0.38
+    },
+    {
+     "kind": "grain",
+     "at": 0.78,
+     "dur": 0.4,
+     "gain": 0.5,
+     "material": "paper",
+     "rate": 121
+    },
+    {
+     "kind": "rumble",
+     "at": 0.78,
+     "dur": 0.4,
+     "gain": 0.45,
+     "hz": 100
+    }
+   ],
+   "room": 0.45,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_undeliveredking_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "boss.voice.waxadmiral",
+   "identity": "A low double foghorn exhales through melting wax",
+   "layers": [
+    {
+     "kind": "reed",
+     "at": 0,
+     "dur": 0.53,
+     "gain": 0.43,
+     "hz": 55,
+     "brightness": 3
+    },
+    {
+     "kind": "reed",
+     "at": 0.55,
+     "dur": 0.65,
+     "gain": 0.37,
+     "hz": 52,
+     "brightness": 3
+    },
+    {
+     "kind": "voice",
+     "at": 0,
+     "dur": 1.2,
+     "gain": 0.23,
+     "hz": 55,
+     "vowel": "o",
+     "formant": 0.65,
+     "rasp": true
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 1.23,
+     "gain": 0.45,
+     "from": 1300,
+     "to": 4100,
+     "shape": 0.55
+    },
+    {
+     "kind": "bubble",
+     "at": 0,
+     "dur": 1.18,
+     "gain": 0.24,
+     "count": 17,
+     "pitch": 0.45
+    }
+   ],
+   "room": 0.5,
+   "frames": 55125,
+   "variationFrames": [
+    55125
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/boss_voice_waxadmiral_00"
+   ],
+   "danger": false
+  },
+  {
+   "id": "enemy.shot.arc",
+   "identity": "Hollow mortar thoonk followed by an ascending whistle",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.18,
+     "gain": 0.72,
+     "material": "hollow",
+     "pitch": 0.56
+    },
+    {
+     "kind": "rumble",
+     "at": 0,
+     "dur": 0.2,
+     "gain": 0.28,
+     "hz": 200,
+     "to": 72
+    },
+    {
+     "kind": "air",
+     "at": 0.015,
+     "dur": 0.36,
+     "gain": 0.48,
+     "from": 700,
+     "to": 2350,
+     "whistle": 0.2
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_shot_arc_00",
+    "Sfx/enemy_shot_arc_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "enemy.shot.spiral",
+   "identity": "Three intertwined reed zips rotate away",
+   "layers": [
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.3,
+     "gain": 0.46,
+     "from": 950,
+     "to": 2850,
+     "whistle": 0.3,
+     "flutter": 27
+    },
+    {
+     "kind": "air",
+     "at": 0.045,
+     "dur": 0.3,
+     "gain": 0.3,
+     "from": 1300,
+     "to": 3300,
+     "whistle": 0.24
+    },
+    {
+     "kind": "air",
+     "at": 0.09,
+     "dur": 0.3,
+     "gain": 0.23,
+     "from": 1600,
+     "to": 3700,
+     "whistle": 0.2
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_shot_spiral_00",
+    "Sfx/enemy_shot_spiral_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "enemy.shot.burst",
+   "identity": "Radial air pops over a double tin warning",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.12,
+     "gain": 0.42,
+     "material": "tin",
+     "pitch": 0.7,
+     "each": [
+      0,
+      0.095
+     ]
+    },
+    {
+     "kind": "air",
+     "at": 0,
+     "dur": 0.19,
+     "gain": 0.7,
+     "from": 1000,
+     "to": 3800
+    },
+    {
+     "kind": "air",
+     "at": 0.09,
+     "dur": 0.26,
+     "gain": 0.4,
+     "from": 3300,
+     "to": 1500
+    },
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.19,
+     "gain": 0.35,
+     "material": "hollow",
+     "pitch": 1.3
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/enemy_shot_burst_00",
+    "Sfx/enemy_shot_burst_01"
+   ],
+   "danger": true
+  },
+  {
+   "id": "ui.merge.hint",
+   "identity": "Two quiet upward counter tines leave room for buying",
+   "layers": [
+    {
+     "kind": "body",
+     "at": 0,
+     "dur": 0.28,
+     "gain": 0.45,
+     "material": "tine",
+     "notes": [
+      88
+     ]
+    },
+    {
+     "kind": "body",
+     "at": 0.105,
+     "dur": 0.28,
+     "gain": 0.45,
+     "material": "tine",
+     "notes": [
+      93
+     ]
+    }
+   ],
+   "room": 0,
+   "frames": 17640,
+   "variationFrames": [
+    17640,
+    17640
+   ],
+   "loop": false,
+   "clips": [
+    "Sfx/ui_merge_hint_00",
+    "Sfx/ui_merge_hint_01"
+   ],
+   "danger": false
+  }
+ ]
+}

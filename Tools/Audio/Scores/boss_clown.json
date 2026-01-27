@@ -1,0 +1,499 @@
+{
+ "id": "boss_clown",
+ "title": "Jack-in-the-Box \u2014 Smile with Teeth",
+ "key": "E minor",
+ "bpm": 148,
+ "meter": 4,
+ "identity": "A lopsided descending music-box hook with delayed spring accents, deep half-time 808 and bass clarinet taunts; a short crooked waltz-like phrase interrupts the grin.",
+ "instruments": {
+  "box": {
+   "program": 10,
+   "stem": "melody",
+   "velocity": 103,
+   "pan": -0.12
+  },
+  "reed": {
+   "program": 68,
+   "stem": "melody",
+   "velocity": 89,
+   "pan": 0.12
+  },
+  "bass": {
+   "program": 39,
+   "stem": "base",
+   "velocity": 102
+  },
+  "pad": {
+   "program": 95,
+   "stem": "base",
+   "velocity": 39,
+   "pan": 0.15
+  },
+  "stabs": {
+   "program": 81,
+   "stem": "intensity",
+   "velocity": 57,
+   "pan": 0.25
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "clap": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "grin": [
+   "Em",
+   "Em",
+   "Fmaj7",
+   "B7b9",
+   "Em",
+   "Cmaj7",
+   "Am",
+   "B7"
+  ],
+  "crooked": [
+   "Am6",
+   "Em/G",
+   "Fmaj7",
+   "B7",
+   "Cmaj7",
+   "Am6",
+   "F#dim7",
+   "B7b9"
+  ],
+  "spring": [
+   "Em",
+   "F",
+   "Em",
+   "B7"
+  ]
+ },
+ "bass": {
+  "sub": {
+   "instrument": "bass",
+   "octave": 0,
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.7,
+      105
+     ],
+     [
+      2.75,
+      12,
+      0.4,
+      83
+     ],
+     [
+      3.5,
+      0,
+      0.32,
+      98
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.6,
+      107
+     ],
+     [
+      1.75,
+      7,
+      0.45,
+      89
+     ],
+     [
+      2.5,
+      0,
+      1.15,
+      103
+     ]
+    ]
+   ]
+  },
+  "crawl": {
+   "instrument": "bass",
+   "octave": 0,
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.25,
+      104
+     ],
+     [
+      1.75,
+      12,
+      0.5,
+      85
+     ],
+     [
+      3,
+      7,
+      0.65,
+      91
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      2.7,
+      104
+     ],
+     [
+      3.25,
+      12,
+      0.4,
+      86
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "dark": {
+   "instrument": "pad",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.7,
+      41
+     ]
+    ]
+   ]
+  },
+  "stab": {
+   "instrument": "stabs",
+   "octave": 3,
+   "voicing": [
+    0,
+    1
+   ],
+   "grid": [
+    [
+     [
+      0.75,
+      0.16,
+      62
+     ],
+     [
+      2.75,
+      0.16,
+      68
+     ]
+    ],
+    [
+     [
+      1.5,
+      0.18,
+      62
+     ],
+     [
+      3.75,
+      0.15,
+      74
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "half": {
+   "kick": {
+    "note": 36,
+    "velocity": 117,
+    "patterns": [
+     "X..........x..X.",
+     "X......x.....X.."
+    ]
+   },
+   "clap": {
+    "note": 39,
+    "velocity": 104,
+    "patterns": [
+     "........X.......",
+     "........X.....o."
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 50,
+    "patterns": [
+     "x.x.x.x.xxX.x.x.",
+     "x.x.X.oxx.x.x.ox"
+    ]
+   }
+  },
+  "crooked": {
+   "kick": {
+    "note": 36,
+    "velocity": 112,
+    "patterns": [
+     "X.....X.....X...",
+     "X...........X..."
+    ]
+   },
+   "clap": {
+    "note": 37,
+    "velocity": 87,
+    "patterns": [
+     "........X......."
+    ]
+   },
+   "hat": {
+    "note": 46,
+    "velocity": 44,
+    "patterns": [
+     "...x.....x.....x",
+     "..x...x...x...x."
+    ]
+   }
+  }
+ },
+ "objects": {
+  "boing": {
+   "material": "spring",
+   "duration": 0.16,
+   "pan": 0.34,
+   "grid": [
+    [
+     [
+      1.75,
+      0.035
+     ]
+    ],
+    [
+     [
+      3.5,
+      0.042
+     ]
+    ]
+   ]
+  },
+  "key": {
+   "material": "metal",
+   "duration": 0.025,
+   "pan": -0.32,
+   "grid": [
+    [
+     [
+      0.5,
+      0.015
+     ],
+     [
+      1,
+      0.018
+     ]
+    ],
+    [
+     [
+      2.75,
+      0.016
+     ],
+     [
+      3.25,
+      0.02
+     ]
+    ]
+   ]
+  }
+ },
+ "phrases": {
+  "grin": [
+   "B5:0.75 G5:0.25 E5:0.5 r:0.25 D#5:0.25 E5:0.5 B4:0.5 r:1",
+   "G5:0.5 E5:0.75 B4:0.25 r:0.5 D5:0.5 E5:0.5 G5:0.5 E5:0.5",
+   "C6:0.75 A5:0.25 F5:0.5 E5:0.5 C5:0.75 F5:0.25 A5:0.5 r:0.5",
+   "D#5:0.25 F#5:0.25 A5:0.5 C6:0.75 B5:0.25 A5:0.5 F#5:0.5 D#5:0.5 r:0.5",
+   "B5:0.5 G5:0.75 E5:0.25 r:0.5 D5:0.5 B4:0.5 E5:1",
+   "E5:0.75 G5:0.25 C6:0.5 B5:0.5 G5:1 E5:1",
+   "C6:0.5 A5:0.5 E5:0.75 D5:0.25 C5:0.5 E5:0.5 A5:0.5 r:0.5",
+   "D#6:0.25 B5:0.25 A5:0.5 F#5:0.75 D#5:0.25 B4:1 r:1"
+  ],
+  "taunt": [
+   "E4:0.5 G4:0.5 B4:0.75 D5:0.25 E5:0.5 G5:0.5 E5:0.5 r:0.5",
+   "E5:0.5 C5:0.5 B4:0.5 G4:0.5 E4:1 r:1",
+   "C5:0.75 A4:0.25 E4:1 G4:0.5 A4:0.5 C5:0.5 r:0.5",
+   "B4:0.5 D#5:0.25 F#5:0.25 A5:0.5 F#5:0.5 D#5:0.75 B4:0.25 r:1",
+   "G4:0.75 B4:0.25 E5:1 D5:0.5 B4:0.5 G4:1",
+   "E4:0.5 G4:0.5 C5:0.75 E5:0.25 D5:1 C5:1",
+   "E5:0.5 C5:0.5 A4:0.75 G4:0.25 E4:0.5 A4:0.5 C5:1",
+   "F#5:0.5 D#5:0.5 B4:0.75 A4:0.25 F#4:0.5 B4:0.5 D#5:0.5 r:0.5"
+  ],
+  "crooked": [
+   "E5:0.75 A5:0.75 C6:0.75 B5:0.75 A5:0.5 r:0.5",
+   "B5:0.75 G5:0.75 E5:0.75 D5:0.75 B4:0.5 r:0.5",
+   "A5:0.75 F5:0.75 C5:0.75 E5:0.75 F5:0.5 r:0.5",
+   "F#5:0.75 A5:0.75 C6:0.75 D#6:0.75 B5:0.5 r:0.5",
+   "G5:0.75 C6:0.75 E6:0.75 D6:0.75 C6:0.5 r:0.5",
+   "E6:0.75 C6:0.75 A5:0.75 F#5:0.75 E5:0.5 r:0.5",
+   "C6:0.75 A5:0.75 F#5:0.75 Eb5:0.75 C5:0.5 r:0.5",
+   "D#5:0.75 F#5:0.75 A5:0.75 C6:0.75 B5:0.5 r:0.5"
+  ]
+ },
+ "form": [
+  {
+   "name": "Smile with teeth",
+   "bars": 8,
+   "harmony": "grin",
+   "bass": "sub",
+   "comp": [
+    "dark"
+   ],
+   "drums": "half",
+   "objects": [
+    "boing"
+   ],
+   "lines": [
+    {
+     "instrument": "box",
+     "phrase": "grin",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "The low taunt",
+   "bars": 8,
+   "harmony": "grin",
+   "bass": "sub",
+   "comp": [
+    "stab"
+   ],
+   "drums": "half",
+   "objects": [
+    "key"
+   ],
+   "lines": [
+    {
+     "instrument": "reed",
+     "phrase": "taunt",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Crooked clockwork dance",
+   "bars": 8,
+   "harmony": "crooked",
+   "bass": "crawl",
+   "comp": [
+    "dark"
+   ],
+   "drums": "crooked",
+   "objects": [
+    "boing"
+   ],
+   "lines": [
+    {
+     "instrument": "box",
+     "phrase": "crooked",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Spring ambush",
+   "bars": 4,
+   "harmony": "spring",
+   "bass": "sub",
+   "comp": [
+    "stab"
+   ],
+   "drums": "half",
+   "objects": [
+    "boing",
+    "key"
+   ],
+   "lines": [
+    {
+     "instrument": "reed",
+     "phrase": "taunt",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "A wider grin",
+   "bars": 8,
+   "harmony": "grin",
+   "bass": "sub",
+   "comp": [
+    "dark",
+    "stab"
+   ],
+   "drums": "half",
+   "objects": [
+    "boing"
+   ],
+   "lines": [
+    {
+     "instrument": "box",
+     "phrase": "grin",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Wind the handle",
+   "bars": 4,
+   "harmony": "spring",
+   "bass": "crawl",
+   "comp": [
+    "dark"
+   ],
+   "drums": "crooked",
+   "objects": [
+    "key"
+   ],
+   "lines": [
+    {
+     "instrument": "reed",
+     "phrase": "crooked",
+     "primary": true,
+     "transpose": -12
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -23.5,
+   "rhythm": -23,
+   "melody": -23.3,
+   "intensity": -31
+  },
+  "reverb": {
+   "base": 0.025,
+   "rhythm": 0,
+   "melody": 0.095,
+   "intensity": 0.05
+  },
+  "room": 0.7,
+  "damping": 4800,
+  "lowpass": 11500
+ }
+}

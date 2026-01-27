@@ -1,0 +1,588 @@
+{
+ "id": "combat_spoons",
+ "title": "Cutlery Brigade \u2014 Drawer Funk",
+ "key": "D mixolydian",
+ "bpm": 126,
+ "meter": 4,
+ "swing": 0.035,
+ "identity": "Muted-trumpet funk built around a falling sixth, syncopated slap bass and offbeat spoon knocks; a clavinet solo makes room between the hooks.",
+ "instruments": {
+  "horn": {
+   "program": 59,
+   "stem": "melody",
+   "velocity": 91,
+   "pan": -0.1
+  },
+  "clavlead": {
+   "program": 7,
+   "stem": "melody",
+   "velocity": 98,
+   "pan": 0.1
+  },
+  "guitar": {
+   "program": 27,
+   "stem": "rhythm",
+   "velocity": 72,
+   "pan": -0.3
+  },
+  "bass": {
+   "program": 36,
+   "stem": "base",
+   "velocity": 100
+  },
+  "organ": {
+   "program": 16,
+   "stem": "base",
+   "velocity": 41,
+   "pan": 0.22
+  },
+  "brass": {
+   "program": 61,
+   "stem": "intensity",
+   "velocity": 74,
+   "pan": 0.18
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "conga": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "funk": [
+   "D9",
+   "D9",
+   "G9",
+   "G9",
+   "D9",
+   "B7",
+   "Em7",
+   "A9"
+  ],
+  "solo": [
+   "Bm7",
+   "E9",
+   "Em9",
+   "A9",
+   "F#m7",
+   "B7",
+   "Em7",
+   "A7"
+  ],
+  "tag": [
+   "G9",
+   "A9",
+   "D9",
+   "A7"
+  ]
+ },
+ "bass": {
+  "slap": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.25,
+      108
+     ],
+     [
+      0.75,
+      12,
+      0.18,
+      84
+     ],
+     [
+      1.25,
+      0,
+      0.25,
+      98
+     ],
+     [
+      2,
+      10,
+      0.2,
+      87
+     ],
+     [
+      2.75,
+      12,
+      0.28,
+      99
+     ],
+     [
+      3.5,
+      7,
+      0.25,
+      83
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.3,
+      104
+     ],
+     [
+      1,
+      7,
+      0.2,
+      90
+     ],
+     [
+      1.75,
+      12,
+      0.22,
+      100
+     ],
+     [
+      2.5,
+      0,
+      0.3,
+      96
+     ],
+     [
+      3.25,
+      10,
+      0.2,
+      87
+     ],
+     [
+      3.75,
+      12,
+      0.17,
+      96
+     ]
+    ]
+   ]
+  },
+  "solo": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.45,
+      98
+     ],
+     [
+      1.25,
+      7,
+      0.3,
+      88
+     ],
+     [
+      2,
+      12,
+      0.4,
+      97
+     ],
+     [
+      3,
+      10,
+      0.25,
+      79
+     ],
+     [
+      3.5,
+      7,
+      0.22,
+      86
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.45,
+      100
+     ],
+     [
+      1.5,
+      12,
+      0.3,
+      94
+     ],
+     [
+      2.25,
+      7,
+      0.4,
+      85
+     ],
+     [
+      3.5,
+      0,
+      0.25,
+      97
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "chop": {
+   "instrument": "guitar",
+   "octave": 3,
+   "voicing": [
+    1,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0.75,
+      0.12,
+      82
+     ],
+     [
+      1.75,
+      0.12,
+      63
+     ],
+     [
+      2.5,
+      0.15,
+      75
+     ],
+     [
+      3.75,
+      0.12,
+      73
+     ]
+    ],
+    [
+     [
+      0.5,
+      0.12,
+      62
+     ],
+     [
+      1.5,
+      0.12,
+      78
+     ],
+     [
+      2.75,
+      0.15,
+      80
+     ]
+    ]
+   ]
+  },
+  "hold": {
+   "instrument": "organ",
+   "octave": 3,
+   "voicing": [
+    1,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0.25,
+      1.5,
+      39
+     ],
+     [
+      2.75,
+      0.6,
+      43
+     ]
+    ]
+   ]
+  },
+  "hornhit": {
+   "instrument": "brass",
+   "octave": 3,
+   "voicing": [
+    1,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      2.75,
+      0.23,
+      80
+     ]
+    ],
+    [
+     [
+      0.75,
+      0.23,
+      65
+     ],
+     [
+      3.5,
+      0.2,
+      81
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "pocket": {
+   "kick": {
+    "note": 36,
+    "velocity": 103,
+    "patterns": [
+     "X..x....X..x....",
+     "X.....x..X....x."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 100,
+    "patterns": [
+     "....X..o....X...",
+     "....X.....o.X..o"
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 55,
+    "patterns": [
+     "x.xoX.x.x.x.X.ox",
+     "x.x.X.xox.x.X.x."
+    ]
+   },
+   "conga": {
+    "note": 63,
+    "velocity": 57,
+    "patterns": [
+     "......x....x....",
+     "..x......x....x."
+    ]
+   }
+  },
+  "loose": {
+   "kick": {
+    "note": 36,
+    "velocity": 97,
+    "patterns": [
+     "X......x..X.....",
+     "X.....x.X......."
+    ]
+   },
+   "snare": {
+    "note": 37,
+    "velocity": 89,
+    "patterns": [
+     "....X.......X..."
+    ]
+   },
+   "hat": {
+    "note": 46,
+    "velocity": 44,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   },
+   "conga": {
+    "note": 64,
+    "velocity": 66,
+    "patterns": [
+     "x.....x....x..x.",
+     "...x..x...x.x..."
+    ]
+   }
+  }
+ },
+ "objects": {
+  "spoons": {
+   "material": "metal",
+   "duration": 0.043,
+   "pan": 0.34,
+   "grid": [
+    [
+     [
+      0.75,
+      0.025
+     ],
+     [
+      2.5,
+      0.033
+     ]
+    ],
+    [
+     [
+      1.25,
+      0.029
+     ],
+     [
+      3.75,
+      0.02
+     ]
+    ]
+   ]
+  }
+ },
+ "phrases": {
+  "hook": [
+   "B5:0.5 D5:0.25 r:0.25 F#5:0.75 E5:0.25 D5:0.5 C5:0.5 A4:0.5 r:0.5",
+   "r:0.5 D5:0.25 E5:0.25 F#5:0.5 A5:0.5 C6:0.75 A5:0.25 F#5:0.5 E5:0.5",
+   "B5:0.75 G5:0.25 F5:0.5 D5:0.5 G5:1 A5:0.5 r:0.5",
+   "D6:0.25 B5:0.25 G5:0.5 F5:0.75 D5:0.25 B4:0.5 D5:0.5 F5:0.5 r:0.5",
+   "A5:0.5 F#5:0.25 D5:0.25 r:0.5 C5:0.5 D5:0.75 F#5:0.25 A5:1",
+   "D#6:0.5 B5:0.25 A5:0.25 F#5:0.75 D#5:0.25 B4:0.5 D#5:0.5 F#5:1",
+   "G5:0.75 E5:0.25 B4:0.5 D5:0.5 E5:1 G5:0.5 r:0.5",
+   "C#6:0.25 B5:0.25 A5:0.5 G5:0.75 E5:0.25 C#5:0.5 E5:0.5 A5:0.5 r:0.5"
+  ],
+  "turn": [
+   "F#5:0.5 A5:0.5 C6:0.75 A5:0.25 F#5:0.5 E5:0.5 D5:1",
+   "F#5:0.75 A5:0.25 B5:0.5 A5:0.5 F#5:1 D#5:0.5 r:0.5",
+   "G5:0.5 B5:0.5 D6:0.5 E6:0.5 D6:0.75 B5:0.25 G5:1",
+   "C#6:0.75 A5:0.25 G5:0.5 E5:0.5 C#5:1 A4:0.5 r:0.5",
+   "C6:0.5 A5:0.5 F#5:0.75 E5:0.25 D5:1 A4:1",
+   "D#5:0.5 F#5:0.5 A5:0.75 C#6:0.25 B5:0.5 A5:0.5 F#5:1",
+   "B5:0.5 G5:0.5 E5:0.75 D5:0.25 B4:0.5 D5:0.5 E5:1",
+   "C#5:0.5 E5:0.5 G5:0.75 B5:0.25 A5:1 r:1"
+  ],
+  "solo": [
+   "B4:0.25 D5:0.25 F#5:0.5 A5:0.25 F#5:0.25 D5:0.5 B4:0.5 r:0.5 A4:0.25 B4:0.25 D5:0.5",
+   "G#5:0.5 E5:0.25 D5:0.25 B4:0.75 G#4:0.25 B4:0.5 D5:0.5 E5:1",
+   "G5:0.25 B5:0.25 D6:0.5 B5:0.75 G5:0.25 F#5:0.5 E5:0.5 D5:0.5 r:0.5",
+   "E5:0.5 G5:0.5 C#6:0.75 B5:0.25 A5:0.5 G5:0.25 E5:0.25 C#5:0.5 r:0.5",
+   "A4:0.25 C#5:0.25 E5:0.5 F#5:0.75 A5:0.25 C#6:0.5 A5:0.5 F#5:1",
+   "D#5:0.5 F#5:0.25 A5:0.25 B5:0.75 A5:0.25 F#5:0.5 D#5:0.5 B4:1",
+   "E5:0.25 G5:0.25 B5:0.5 D6:0.75 B5:0.25 G5:0.5 E5:0.5 D5:1",
+   "G5:0.5 E5:0.5 C#5:0.75 A4:0.25 G4:0.5 A4:0.5 C#5:0.5 r:0.5"
+  ]
+ },
+ "form": [
+  {
+   "name": "Spoons on the backbeat",
+   "bars": 8,
+   "harmony": "funk",
+   "bass": "slap",
+   "comp": [
+    "chop",
+    "hold"
+   ],
+   "drums": "pocket",
+   "objects": [
+    "spoons"
+   ],
+   "lines": [
+    {
+     "instrument": "horn",
+     "phrase": "hook",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Cash-drawer answers",
+   "bars": 8,
+   "harmony": "funk",
+   "bass": "slap",
+   "comp": [
+    "chop"
+   ],
+   "drums": "pocket",
+   "lines": [
+    {
+     "instrument": "horn",
+     "phrase": "turn",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Clavinet kitchen solo",
+   "bars": 8,
+   "harmony": "solo",
+   "bass": "solo",
+   "comp": [
+    "hold"
+   ],
+   "drums": "loose",
+   "objects": [
+    "spoons"
+   ],
+   "lines": [
+    {
+     "instrument": "clavlead",
+     "phrase": "solo",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Full drawer funk",
+   "bars": 8,
+   "harmony": "funk",
+   "bass": "slap",
+   "comp": [
+    "chop",
+    "hornhit"
+   ],
+   "drums": "pocket",
+   "objects": [
+    "spoons"
+   ],
+   "lines": [
+    {
+     "instrument": "horn",
+     "phrase": "hook",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Turn the spoon over",
+   "bars": 4,
+   "harmony": "tag",
+   "bass": "solo",
+   "comp": [
+    "chop"
+   ],
+   "drums": "pocket",
+   "lines": [
+    {
+     "instrument": "clavlead",
+     "phrase": "turn",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -24,
+   "rhythm": -23,
+   "melody": -22.8,
+   "intensity": -30
+  },
+  "reverb": {
+   "base": 0.025,
+   "rhythm": 0,
+   "melody": 0.045,
+   "intensity": 0.06
+  },
+  "room": 0.36,
+  "lowpass": 12000
+ }
+}

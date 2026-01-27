@@ -1,0 +1,584 @@
+{
+ "id": "boss_ringmaster",
+ "title": "The Ringmaster \u2014 Velvet & Iron",
+ "key": "D minor",
+ "bpm": 150,
+ "meter": 4,
+ "identity": "An organ ostinato in descending half-steps answered by low brass; heavy half-time toms turn into a rock charge and a rising theatrical second subject.",
+ "instruments": {
+  "organ": {
+   "program": 19,
+   "stem": "melody",
+   "velocity": 77,
+   "pan": -0.1
+  },
+  "brass": {
+   "program": 61,
+   "stem": "melody",
+   "velocity": 87,
+   "pan": 0.15
+  },
+  "guitar": {
+   "program": 30,
+   "stem": "rhythm",
+   "velocity": 70,
+   "pan": -0.28
+  },
+  "bass": {
+   "program": 34,
+   "stem": "base",
+   "velocity": 99
+  },
+  "strings": {
+   "program": 48,
+   "stem": "base",
+   "velocity": 57,
+   "pan": 0.2
+  },
+  "timp": {
+   "program": 47,
+   "stem": "intensity",
+   "velocity": 83
+  },
+  "bells": {
+   "program": 14,
+   "stem": "intensity",
+   "velocity": 69,
+   "pan": 0.22
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "tom": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "crash": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "throne": [
+   "Dm",
+   "Dm",
+   "Bbmaj7",
+   "A7b9",
+   "Dm",
+   "C",
+   "Bb",
+   "A7"
+  ],
+  "balcony": [
+   "Gm",
+   "Dm/F",
+   "Ebmaj7",
+   "A7b9",
+   "Bbmaj7",
+   "Gm",
+   "A7sus4",
+   "A7"
+  ],
+  "iron": [
+   "Dm",
+   "Eb",
+   "Dm",
+   "A7"
+  ],
+  "rise": [
+   "Gm",
+   "Bb",
+   "Dm/A",
+   "A7"
+  ]
+ },
+ "bass": {
+  "heavy": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.1,
+      109
+     ],
+     [
+      1.5,
+      0,
+      0.35,
+      93
+     ],
+     [
+      2.5,
+      7,
+      0.75,
+      98
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.8,
+      108
+     ],
+     [
+      1.25,
+      12,
+      0.35,
+      90
+     ],
+     [
+      2,
+      0,
+      0.8,
+      103
+     ],
+     [
+      3.5,
+      7,
+      0.25,
+      91
+     ]
+    ]
+   ]
+  },
+  "charge": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.35,
+      106
+     ],
+     [
+      0.5,
+      0,
+      0.3,
+      87
+     ],
+     [
+      1,
+      12,
+      0.3,
+      96
+     ],
+     [
+      1.5,
+      0,
+      0.3,
+      89
+     ],
+     [
+      2,
+      0,
+      0.35,
+      108
+     ],
+     [
+      2.5,
+      7,
+      0.3,
+      92
+     ],
+     [
+      3,
+      12,
+      0.3,
+      98
+     ],
+     [
+      3.5,
+      7,
+      0.3,
+      88
+     ]
+    ]
+   ]
+  },
+  "sustain": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      2.65,
+      107
+     ],
+     [
+      3,
+      7,
+      0.6,
+      95
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "iron": {
+   "instrument": "guitar",
+   "octave": 2,
+   "voicing": [
+    0,
+    2
+   ],
+   "bottom": 38,
+   "top": 62,
+   "grid": [
+    [
+     [
+      0,
+      0.32,
+      78
+     ],
+     [
+      0.75,
+      0.25,
+      64
+     ],
+     [
+      1.5,
+      0.25,
+      73
+     ],
+     [
+      2.5,
+      0.35,
+      80
+     ],
+     [
+      3.5,
+      0.25,
+      70
+     ]
+    ]
+   ]
+  },
+  "curtain": {
+   "instrument": "strings",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.75,
+      58
+     ]
+    ]
+   ]
+  },
+  "doom": {
+   "instrument": "timp",
+   "octave": 2,
+   "voicing": [
+    0
+   ],
+   "bottom": 36,
+   "top": 55,
+   "grid": [
+    [
+     [
+      0,
+      0.65,
+      91
+     ],
+     [
+      2.75,
+      0.4,
+      71
+     ]
+    ],
+    [
+     [
+      0,
+      0.65,
+      87
+     ],
+     [
+      3.5,
+      0.3,
+      81
+     ]
+    ]
+   ]
+  },
+  "toll": {
+   "instrument": "bells",
+   "octave": 3,
+   "voicing": [
+    0,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.5,
+      64
+     ]
+    ],
+    [],
+    [],
+    [
+     [
+      2,
+      0.5,
+      63
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "stalk": {
+   "kick": {
+    "note": 36,
+    "velocity": 117,
+    "patterns": [
+     "X.....x...X.....",
+     "X.......X.....x."
+    ]
+   },
+   "snare": {
+    "note": 40,
+    "velocity": 111,
+    "patterns": [
+     "........X......."
+    ]
+   },
+   "tom": {
+    "note": 45,
+    "velocity": 82,
+    "patterns": [
+     "...x..x.......x.",
+     "......x....x...x"
+    ]
+   },
+   "crash": {
+    "note": 49,
+    "velocity": 53,
+    "patterns": [
+     "X...............",
+     "................"
+    ]
+   }
+  },
+  "charge": {
+   "kick": {
+    "note": 36,
+    "velocity": 118,
+    "patterns": [
+     "X..x....X.X.....",
+     "X.....x.X..x..x."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 110,
+    "patterns": [
+     "....X.......X...",
+     "....X..o....X.oo"
+    ]
+   },
+   "tom": {
+    "note": 51,
+    "velocity": 63,
+    "patterns": [
+     "x.x.x.x.x.x.x.x."
+    ]
+   },
+   "crash": {
+    "note": 57,
+    "velocity": 48,
+    "patterns": [
+     "X...............",
+     "........X......."
+    ]
+   }
+  }
+ },
+ "phrases": {
+  "crown": [
+   "D5:0.75 C#5:0.25 D5:0.5 A4:0.5 F4:1 E4:0.5 r:0.5",
+   "D4:0.5 A4:0.5 D5:0.75 F5:0.25 E5:0.5 D5:0.5 C#5:1",
+   "D5:0.5 F5:0.5 Bb5:0.75 A5:0.25 F5:0.5 D5:0.5 C5:1",
+   "Bb4:0.5 A4:0.5 G4:0.75 E4:0.25 C#5:0.5 Bb4:0.5 A4:0.5 r:0.5",
+   "A4:0.5 D5:0.5 F5:0.75 A5:0.25 G5:0.5 F5:0.5 D5:1",
+   "E5:0.5 G5:0.5 C6:0.75 B5:0.25 G5:0.5 E5:0.5 C5:1",
+   "F5:0.75 D5:0.25 Bb4:1 D5:0.5 F5:0.5 Bb5:1",
+   "C#6:0.5 Bb5:0.5 A5:0.75 G5:0.25 E5:0.5 C#5:0.5 A4:0.5 r:0.5"
+  ],
+  "command": [
+   "A4:0.5 D5:0.5 F5:1 E5:0.5 D5:0.5 A4:1",
+   "G4:0.5 C5:0.5 E5:0.75 G5:0.25 F5:1 E5:0.5 C5:0.5",
+   "D5:0.75 F5:0.25 Bb5:1 A5:0.5 F5:0.5 D5:1",
+   "C#5:0.5 E5:0.5 A5:0.75 Bb5:0.25 A5:0.5 G5:0.5 E5:0.5 r:0.5",
+   "F5:0.5 A5:0.5 D6:1 C6:0.5 A5:0.5 F5:1",
+   "G5:0.5 C6:0.5 E6:0.75 D6:0.25 C6:1 G5:1",
+   "F5:0.75 Bb5:0.25 D6:1 C6:0.5 Bb5:0.5 F5:1",
+   "E5:0.5 A5:0.5 C#6:0.75 Bb5:0.25 A5:1 r:1"
+  ],
+  "balcony": [
+   "Bb4:1 D5:0.5 G5:0.5 A5:1 Bb5:1",
+   "A5:1 F5:0.75 E5:0.25 D5:1 A4:1",
+   "G4:0.5 Bb4:0.5 Eb5:1 F5:0.75 G5:0.25 Bb5:1",
+   "A5:0.75 Bb5:0.25 A5:0.5 G5:0.5 E5:1 C#5:1",
+   "D5:1 F5:0.5 A5:0.5 Bb5:1 D6:1",
+   "D6:0.75 Bb5:0.25 G5:0.5 F5:0.5 D5:1 Bb4:1",
+   "E5:0.5 A5:0.5 D6:1 C6:0.5 Bb5:0.5 A5:1",
+   "C#6:0.75 Bb5:0.25 A5:0.5 G5:0.5 E5:1 r:1"
+  ],
+  "iron": [
+   "D4:0.75 A4:0.25 D5:0.5 r:0.5 F5:0.5 E5:0.5 D5:1",
+   "Eb5:0.5 Bb4:0.5 G4:0.75 F4:0.25 Eb4:1 r:1",
+   "F5:0.5 E5:0.5 D5:0.75 A4:0.25 D5:0.5 F5:0.5 A5:1",
+   "G5:0.5 E5:0.5 C#5:1 A4:0.5 E5:0.5 G5:0.5 r:0.5"
+  ]
+ },
+ "form": [
+  {
+   "name": "Velvet throne",
+   "bars": 8,
+   "harmony": "throne",
+   "bass": "heavy",
+   "comp": [
+    "curtain",
+    "doom"
+   ],
+   "drums": "stalk",
+   "lines": [
+    {
+     "instrument": "organ",
+     "phrase": "crown",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Iron command",
+   "bars": 8,
+   "harmony": "throne",
+   "bass": "charge",
+   "comp": [
+    "iron",
+    "doom"
+   ],
+   "drums": "charge",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "command",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "The balcony bows",
+   "bars": 8,
+   "harmony": "balcony",
+   "bass": "sustain",
+   "comp": [
+    "curtain",
+    "toll"
+   ],
+   "drums": "stalk",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "balcony",
+     "primary": true,
+     "gate": 0.93
+    }
+   ]
+  },
+  {
+   "name": "Mechanism exposed",
+   "bars": 4,
+   "harmony": "iron",
+   "bass": "heavy",
+   "comp": [
+    "iron"
+   ],
+   "drums": "stalk",
+   "lines": [
+    {
+     "instrument": "organ",
+     "phrase": "iron",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "The crown returns",
+   "bars": 8,
+   "harmony": "throne",
+   "bass": "charge",
+   "comp": [
+    "iron",
+    "curtain",
+    "doom"
+   ],
+   "drums": "charge",
+   "lines": [
+    {
+     "instrument": "organ",
+     "phrase": "crown",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Refuse the final bow",
+   "bars": 4,
+   "harmony": "rise",
+   "bass": "heavy",
+   "comp": [
+    "curtain",
+    "toll"
+   ],
+   "drums": "charge",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "command",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -25,
+   "rhythm": -22.7,
+   "melody": -23,
+   "intensity": -29.5
+  },
+  "reverb": {
+   "base": 0.08,
+   "rhythm": 0.025,
+   "melody": 0.12,
+   "intensity": 0.12
+  },
+  "room": 1.05,
+  "lowpass": 11500
+ }
+}

@@ -3,6 +3,17 @@
 ## Current production entry: Midnight Toybox Band
 
 Use `setup_toybox.py`, then `build_toybox.py --install`, then `toybox_preview.py`.
+Music revision 4 is authored separately in `Scores/<piece>.json`. Render one song
+with `render_song.py <id>`, or `render_song.py --remaining`, then `--assemble`.
+Install just the soundtrack with `build_toybox.py --music-only --install-only`.
+Run `audit_individual_scores.py` for the 105-pair composition audit and editable MIDI.
+Foley revision 5: `render_foley.py --install` rebuilds every one of the 582 SFX,
+voice and ambience clips from `SfxDesigns.json`, validates them and replaces only
+their WAV data. It preserves all music, cue parameters and Unity GUIDs. It needs
+NumPy, SciPy and soundfile, with no sample bank. `author_foley.py` exports the
+authored source catalogue when revising designs; it is not needed for rendering.
+`build_toybox.py --sfx --install` also uses this current Foley pipeline.
+`toybox_preview.py` adds eight category reels and the full 206-cue audition desk.
 See `Docs/Audio/Toybox_Delivery.md` for the complete reproducible workflow,
 offline dependency licenses, new hooks, validation and listening limitations.
 The legacy scripts below produce the preceding v2 palette.

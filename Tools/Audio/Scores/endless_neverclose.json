@@ -1,0 +1,539 @@
+{
+ "id": "endless_neverclose",
+ "title": "Open All Night \u2014 Lights on the Roof",
+ "key": "Bb major",
+ "bpm": 128,
+ "meter": 4,
+ "identity": "A sustained supersaw chorus shaped around repeated high F notes and a wide answering leap; piano offbeats and octave disco bass drive a new bright dance theme.",
+ "instruments": {
+  "lead": {
+   "program": 81,
+   "stem": "melody",
+   "velocity": 75,
+   "pan": -0.06
+  },
+  "piano": {
+   "program": 2,
+   "stem": "melody",
+   "velocity": 101,
+   "pan": 0.13
+  },
+  "bass": {
+   "program": 38,
+   "stem": "base",
+   "velocity": 98
+  },
+  "pad": {
+   "program": 89,
+   "stem": "base",
+   "velocity": 43,
+   "pan": 0.2
+  },
+  "chop": {
+   "program": 2,
+   "stem": "rhythm",
+   "velocity": 75,
+   "pan": -0.22
+  },
+  "arp": {
+   "program": 87,
+   "stem": "intensity",
+   "velocity": 59,
+   "pan": 0.25
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "clap": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "tamb": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "roof": [
+   "Ebmaj9",
+   "F6",
+   "Dm7",
+   "Gm9",
+   "Cm9",
+   "F9",
+   "Bbmaj9",
+   "Bbmaj9/D"
+  ],
+  "night": [
+   "Gm9",
+   "Ebmaj9",
+   "Bbmaj9",
+   "F6",
+   "Cm9",
+   "Ebmaj7",
+   "F7sus4",
+   "F7"
+  ],
+  "sky": [
+   "Cm9",
+   "Dm7",
+   "Ebmaj9",
+   "F6",
+   "Gm9",
+   "Dm7",
+   "Cm9",
+   "F7"
+  ],
+  "sign": [
+   "Ebmaj9",
+   "F6",
+   "Bbmaj9",
+   "F7"
+  ]
+ },
+ "bass": {
+  "octave": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.3,
+      102
+     ],
+     [
+      0.5,
+      12,
+      0.3,
+      88
+     ],
+     [
+      1,
+      0,
+      0.3,
+      98
+     ],
+     [
+      1.5,
+      12,
+      0.3,
+      92
+     ],
+     [
+      2,
+      0,
+      0.3,
+      105
+     ],
+     [
+      2.5,
+      12,
+      0.3,
+      88
+     ],
+     [
+      3,
+      7,
+      0.3,
+      93
+     ],
+     [
+      3.5,
+      12,
+      0.3,
+      95
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.3,
+      102
+     ],
+     [
+      0.5,
+      12,
+      0.3,
+      90
+     ],
+     [
+      1.25,
+      7,
+      0.2,
+      84
+     ],
+     [
+      1.75,
+      12,
+      0.2,
+      91
+     ],
+     [
+      2.5,
+      0,
+      0.35,
+      100
+     ],
+     [
+      3.25,
+      12,
+      0.4,
+      93
+     ]
+    ]
+   ]
+  },
+  "sky": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.35,
+      99
+     ],
+     [
+      1.75,
+      12,
+      0.45,
+      86
+     ],
+     [
+      2.5,
+      7,
+      0.7,
+      91
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.8,
+      101
+     ],
+     [
+      1.5,
+      7,
+      0.45,
+      85
+     ],
+     [
+      2.5,
+      12,
+      0.8,
+      95
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "bed": {
+   "instrument": "pad",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.75,
+      43
+     ]
+    ]
+   ]
+  },
+  "offbeat": {
+   "instrument": "chop",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3
+   ],
+   "grid": [
+    [
+     [
+      0.5,
+      0.28,
+      79
+     ],
+     [
+      1.5,
+      0.28,
+      70
+     ],
+     [
+      2.5,
+      0.28,
+      79
+     ],
+     [
+      3.5,
+      0.28,
+      73
+     ]
+    ]
+   ]
+  },
+  "spark": {
+   "instrument": "arp",
+   "octave": 4,
+   "voicing": [
+    0,
+    2,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0.75,
+      0.2,
+      60
+     ],
+     [
+      2.75,
+      0.2,
+      64
+     ]
+    ],
+    [
+     [
+      1.25,
+      0.2,
+      64
+     ],
+     [
+      3.25,
+      0.2,
+      60
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "house": {
+   "kick": {
+    "note": 36,
+    "velocity": 112,
+    "patterns": [
+     "X...X...X...X..."
+    ]
+   },
+   "clap": {
+    "note": 39,
+    "velocity": 91,
+    "patterns": [
+     "....X.......X..."
+    ]
+   },
+   "hat": {
+    "note": 46,
+    "velocity": 49,
+    "patterns": [
+     "..X...X...X...X."
+    ]
+   },
+   "tamb": {
+    "note": 54,
+    "velocity": 40,
+    "patterns": [
+     "x.x.x.x.x.x.x.x.",
+     "x.xox.x.x.xox.x."
+    ]
+   }
+  },
+  "sky": {
+   "kick": {
+    "note": 36,
+    "velocity": 106,
+    "patterns": [
+     "X...X...X...X..."
+    ]
+   },
+   "clap": {
+    "note": 37,
+    "velocity": 76,
+    "patterns": [
+     "....X.......X..."
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 43,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   }
+  }
+ },
+ "phrases": {
+  "chorus": [
+   "F5:0.5 F5:0.5 G5:0.75 Bb5:0.25 D6:1 Bb5:1",
+   "C6:1 A5:0.5 G5:0.5 F5:1 r:1",
+   "A5:0.75 F5:0.25 D5:0.5 F5:0.5 A5:1 C6:1",
+   "Bb5:1 A5:0.5 G5:0.5 D6:1 F6:1",
+   "Eb6:0.75 D6:0.25 C6:0.5 Bb5:0.5 G5:1 Eb5:1",
+   "A5:0.5 C6:0.5 Eb6:1 D6:0.5 C6:0.5 A5:1",
+   "D6:1 C6:0.5 Bb5:0.5 A5:0.75 Bb5:0.25 F5:1",
+   "F5:0.5 Bb5:0.5 D6:0.75 F6:0.25 D6:1 C6:0.5 r:0.5"
+  ],
+  "piano": [
+   "G4:0.5 Bb4:0.25 D5:0.25 F5:0.75 D5:0.25 Bb4:0.5 G4:0.5 F4:1",
+   "G4:0.5 Bb4:0.5 D5:0.75 F5:0.25 G5:1 F5:0.5 D5:0.5",
+   "D5:0.25 F5:0.25 A5:0.5 Bb5:0.75 A5:0.25 F5:0.5 D5:0.5 Bb4:1",
+   "C5:0.5 F5:0.25 A5:0.25 C6:0.75 A5:0.25 F5:1 r:1",
+   "Eb5:0.5 G5:0.25 Bb5:0.25 C6:0.75 Bb5:0.25 G5:0.5 Eb5:0.5 C5:1",
+   "G5:0.5 Bb5:0.5 D6:0.75 F6:0.25 Eb6:1 D6:0.5 Bb5:0.5",
+   "C6:0.5 F6:0.5 G6:0.75 F6:0.25 Eb6:0.5 C6:0.5 A5:1",
+   "A5:0.5 C6:0.5 Eb6:0.75 D6:0.25 C6:1 r:1"
+  ],
+  "sky": [
+   "G5:1 C6:0.5 D6:0.5 Eb6:1 D6:1",
+   "C6:0.75 A5:0.25 F5:1 E5:0.5 F5:0.5 A5:1",
+   "G5:1 Bb5:0.5 D6:0.5 F6:1 Eb6:1",
+   "C6:1 A5:0.5 G5:0.5 F5:1 r:1",
+   "D6:1 Bb5:0.5 A5:0.5 G5:1 F5:1",
+   "A5:0.75 F5:0.25 D5:1 C5:0.5 D5:0.5 F5:1",
+   "Eb5:0.5 G5:0.5 Bb5:0.75 C6:0.25 D6:1 Eb6:1",
+   "C6:1 A5:0.5 G5:0.5 F5:1 r:1"
+  ],
+  "spark": [
+   "r:2 Bb6:0.25 G6:0.25 F6:0.5 Eb6:1",
+   "r:3 C6:0.25 F6:0.25 A6:0.5"
+  ]
+ },
+ "form": [
+  {
+   "name": "Lights on the roof",
+   "bars": 8,
+   "harmony": "roof",
+   "bass": "octave",
+   "comp": [
+    "bed",
+    "offbeat"
+   ],
+   "drums": "house",
+   "lines": [
+    {
+     "instrument": "lead",
+     "phrase": "chorus",
+     "primary": true,
+     "gate": 0.92
+    }
+   ]
+  },
+  {
+   "name": "Piano after midnight",
+   "bars": 8,
+   "harmony": "night",
+   "bass": "octave",
+   "comp": [
+    "offbeat",
+    "spark"
+   ],
+   "drums": "house",
+   "lines": [
+    {
+     "instrument": "piano",
+     "phrase": "piano",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "The open sky",
+   "bars": 8,
+   "harmony": "sky",
+   "bass": "sky",
+   "comp": [
+    "bed"
+   ],
+   "drums": "sky",
+   "lines": [
+    {
+     "instrument": "lead",
+     "phrase": "sky",
+     "primary": true,
+     "gate": 0.95
+    }
+   ]
+  },
+  {
+   "name": "All the lights return",
+   "bars": 8,
+   "harmony": "roof",
+   "bass": "octave",
+   "comp": [
+    "bed",
+    "offbeat",
+    "spark"
+   ],
+   "drums": "house",
+   "lines": [
+    {
+     "instrument": "lead",
+     "phrase": "chorus",
+     "primary": true,
+     "gate": 0.92
+    },
+    {
+     "instrument": "arp",
+     "phrase": "spark",
+     "velocity": 53
+    }
+   ]
+  },
+  {
+   "name": "Open sign still glowing",
+   "bars": 4,
+   "harmony": "sign",
+   "bass": "octave",
+   "comp": [
+    "offbeat"
+   ],
+   "drums": "house",
+   "lines": [
+    {
+     "instrument": "piano",
+     "phrase": "piano",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -24.5,
+   "rhythm": -22.8,
+   "melody": -23.5,
+   "intensity": -31
+  },
+  "reverb": {
+   "base": 0.055,
+   "rhythm": 0.015,
+   "melody": 0.09,
+   "intensity": 0.13
+  },
+  "room": 0.78,
+  "lowpass": 12200
+ }
+}

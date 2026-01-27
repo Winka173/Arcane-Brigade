@@ -1,0 +1,77 @@
+[
+  {
+    "piece": "menu_curtain",
+    "title": "Midnight Overture \u2014 The Shop Wakes",
+    "at": 0
+  },
+  {
+    "piece": "select_dressing",
+    "title": "Roll Call \u2014 Pocket-Sized Heroes",
+    "at": 8.4
+  },
+  {
+    "piece": "combat_toys",
+    "title": "Wind-Up Parade \u2014 Ratchet Riot",
+    "at": 16.8
+  },
+  {
+    "piece": "combat_spoons",
+    "title": "Cutlery Brigade \u2014 Drawer Funk",
+    "at": 25.200000000000003
+  },
+  {
+    "piece": "combat_clockwork",
+    "title": "Gearworks \u2014 Escapement",
+    "at": 33.6
+  },
+  {
+    "piece": "combat_carousel",
+    "title": "Carousel Chase \u2014 Crooked Horses",
+    "at": 42.0
+  },
+  {
+    "piece": "combat_overtime",
+    "title": "Midnight Stampede \u2014 Porcelain Rush",
+    "at": 50.4
+  },
+  {
+    "piece": "combat_lasttrain",
+    "title": "Toy Train Express \u2014 No More Stops",
+    "at": 58.8
+  },
+  {
+    "piece": "boss_ringmaster",
+    "title": "The Ringmaster \u2014 Velvet & Iron",
+    "at": 67.2
+  },
+  {
+    "piece": "boss_clown",
+    "title": "Jack-in-the-Box \u2014 Smile with Teeth",
+    "at": 75.60000000000001
+  },
+  {
+    "piece": "shop_gold",
+    "title": "Ka-Ching Swing \u2014 Coins on the Counter",
+    "at": 84.00000000000001
+  },
+  {
+    "piece": "shop_layaway",
+    "title": "Window Shopping \u2014 After-Hours Neon",
+    "at": 92.40000000000002
+  },
+  {
+    "piece": "shop_dream",
+    "title": "The Dream Counter \u2014 A Waltz through Glass",
+    "at": 100.80000000000003
+  },
+  {
+    "piece": "endless_neverclose",
+    "title": "Open All Night \u2014 Lights on the Roof",
+    "at": 109.20000000000003
+  },
+  {
+    "piece": "endless_encore",
+    "title": "One More Encore \u2014 Brass on the Barricade",
+    "at": 117.60000000000004
+  }
+]

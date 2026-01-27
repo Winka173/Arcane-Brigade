@@ -1,0 +1,597 @@
+{
+ "id": "endless_encore",
+ "title": "One More Encore \u2014 Brass on the Barricade",
+ "key": "G major",
+ "bpm": 140,
+ "meter": 4,
+ "identity": "A brass anthem with an anacrusis and a long held high D; live-rock drums and straight eighth guitar chords turn into a stomping half-time singalong before the final refrain.",
+ "instruments": {
+  "brass": {
+   "program": 61,
+   "stem": "melody",
+   "velocity": 89,
+   "pan": -0.08
+  },
+  "calliope": {
+   "program": 82,
+   "stem": "melody",
+   "velocity": 80,
+   "pan": 0.15
+  },
+  "bass": {
+   "program": 34,
+   "stem": "base",
+   "velocity": 100
+  },
+  "organ": {
+   "program": 18,
+   "stem": "base",
+   "velocity": 46,
+   "pan": 0.2
+  },
+  "guitar": {
+   "program": 29,
+   "stem": "rhythm",
+   "velocity": 81,
+   "pan": -0.26
+  },
+  "glock": {
+   "program": 9,
+   "stem": "intensity",
+   "velocity": 70,
+   "pan": 0.26
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "ride": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "tom": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "anthem": [
+   "Gadd9",
+   "D/F#",
+   "Em7",
+   "Cadd9",
+   "G/B",
+   "Am7",
+   "C6",
+   "D7"
+  ],
+  "march": [
+   "Em7",
+   "Cmaj7",
+   "Gadd9",
+   "D6",
+   "Am7",
+   "Cadd9",
+   "D7sus4",
+   "D7"
+  ],
+  "sing": [
+   "Cadd9",
+   "G/B",
+   "Am7",
+   "Em7",
+   "Cmaj7",
+   "Am7",
+   "D7sus4",
+   "D7"
+  ],
+  "again": [
+   "C6",
+   "D7",
+   "Gadd9",
+   "D7"
+  ]
+ },
+ "bass": {
+  "drive": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.35,
+      106
+     ],
+     [
+      0.5,
+      0,
+      0.3,
+      83
+     ],
+     [
+      1,
+      7,
+      0.3,
+      93
+     ],
+     [
+      1.5,
+      12,
+      0.3,
+      87
+     ],
+     [
+      2,
+      0,
+      0.35,
+      106
+     ],
+     [
+      2.5,
+      0,
+      0.3,
+      88
+     ],
+     [
+      3,
+      7,
+      0.3,
+      95
+     ],
+     [
+      3.5,
+      12,
+      0.3,
+      86
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.4,
+      106
+     ],
+     [
+      0.75,
+      7,
+      0.25,
+      84
+     ],
+     [
+      1.5,
+      12,
+      0.3,
+      94
+     ],
+     [
+      2,
+      0,
+      0.4,
+      102
+     ],
+     [
+      3,
+      7,
+      0.3,
+      93
+     ],
+     [
+      3.5,
+      12,
+      0.3,
+      87
+     ]
+    ]
+   ]
+  },
+  "stomp": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.4,
+      107
+     ],
+     [
+      2,
+      7,
+      1.2,
+      95
+     ],
+     [
+      3.5,
+      12,
+      0.3,
+      89
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      1.3,
+      104
+     ],
+     [
+      1.75,
+      7,
+      0.5,
+      92
+     ],
+     [
+      2.5,
+      12,
+      0.8,
+      94
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "power": {
+   "instrument": "guitar",
+   "octave": 2,
+   "voicing": [
+    0,
+    2
+   ],
+   "bottom": 40,
+   "top": 64,
+   "strum": 0.014,
+   "grid": [
+    [
+     [
+      0,
+      0.32,
+      86
+     ],
+     [
+      0.5,
+      0.25,
+      67
+     ],
+     [
+      1,
+      0.25,
+      77
+     ],
+     [
+      1.5,
+      0.25,
+      68
+     ],
+     [
+      2,
+      0.32,
+      88
+     ],
+     [
+      2.5,
+      0.25,
+      69
+     ],
+     [
+      3,
+      0.25,
+      79
+     ],
+     [
+      3.5,
+      0.25,
+      73
+     ]
+    ]
+   ]
+  },
+  "organ": {
+   "instrument": "organ",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      3.7,
+      47
+     ]
+    ]
+   ]
+  },
+  "stomp": {
+   "instrument": "guitar",
+   "octave": 3,
+   "voicing": [
+    0,
+    2,
+    3
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.7,
+      83
+     ],
+     [
+      2,
+      0.7,
+      85
+     ]
+    ],
+    [
+     [
+      0,
+      0.7,
+      80
+     ],
+     [
+      2.5,
+      0.5,
+      88
+     ]
+    ]
+   ]
+  },
+  "star": {
+   "instrument": "glock",
+   "octave": 4,
+   "voicing": [
+    0,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.3,
+      65
+     ]
+    ],
+    [
+     [
+      2.75,
+      0.3,
+      71
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "rock": {
+   "kick": {
+    "note": 36,
+    "velocity": 112,
+    "patterns": [
+     "X..x....X.x.....",
+     "X.....x.X..x..x."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 110,
+    "patterns": [
+     "....X.......X...",
+     "....X......oX..."
+    ]
+   },
+   "ride": {
+    "note": 51,
+    "velocity": 59,
+    "patterns": [
+     "X.x.X.x.X.x.X.x."
+    ]
+   },
+   "tom": {
+    "note": 45,
+    "velocity": 78,
+    "patterns": [
+     "................",
+     ".............x.x"
+    ]
+   }
+  },
+  "stomp": {
+   "kick": {
+    "note": 36,
+    "velocity": 114,
+    "patterns": [
+     "X...x...........",
+     "X......x....x..."
+    ]
+   },
+   "snare": {
+    "note": 39,
+    "velocity": 108,
+    "patterns": [
+     "........X......."
+    ]
+   },
+   "ride": {
+    "note": 46,
+    "velocity": 51,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   },
+   "tom": {
+    "note": 41,
+    "velocity": 77,
+    "patterns": [
+     "......x.......x."
+    ]
+   }
+  }
+ },
+ "phrases": {
+  "anthem": [
+   "r:0.5 D5:0.5 G5:0.75 B5:0.25 D6:2",
+   "A5:1 F#5:0.5 E5:0.5 D5:1 r:1",
+   "G5:0.75 B5:0.25 E6:1 D6:0.5 B5:0.5 G5:1",
+   "E5:0.5 G5:0.5 C6:1 B5:0.75 G5:0.25 E5:1",
+   "D5:0.5 G5:0.5 B5:0.75 D6:0.25 E6:1 D6:1",
+   "C6:0.75 B5:0.25 A5:0.5 G5:0.5 E5:1 C5:1",
+   "E5:0.5 G5:0.5 A5:0.75 C6:0.25 D6:1 C6:1",
+   "A5:0.5 F#5:0.5 E5:0.75 D5:0.25 A5:1 D6:0.5 r:0.5"
+  ],
+  "march": [
+   "B4:0.5 E5:0.5 G5:0.75 B5:0.25 E6:1 D6:0.5 B5:0.5",
+   "G5:0.75 E5:0.25 D5:0.5 C5:0.5 E5:1 G5:1",
+   "B5:0.5 D6:0.5 G6:0.75 F#6:0.25 E6:0.5 D6:0.5 B5:1",
+   "A5:0.5 F#5:0.5 E5:0.5 D5:0.5 F#5:0.75 A5:0.25 D6:0.5 r:0.5",
+   "C6:0.5 A5:0.5 G5:0.75 E5:0.25 C5:1 A4:1",
+   "G4:0.5 C5:0.5 E5:0.75 G5:0.25 C6:1 B5:1",
+   "A5:0.5 D6:0.5 G6:0.75 F#6:0.25 E6:0.5 D6:0.5 A5:1",
+   "F#5:0.5 A5:0.5 C6:0.75 D6:0.25 A5:1 r:1"
+  ],
+  "sing": [
+   "G5:1 E5:1 C5:1 E5:1",
+   "D5:1 G5:0.5 B5:0.5 A5:1 G5:1",
+   "E5:0.5 G5:0.5 A5:1 C6:1 B5:1",
+   "B5:1 G5:0.5 F#5:0.5 E5:1 r:1",
+   "B5:1 G5:0.5 E5:0.5 C5:1 E5:1",
+   "C5:1 E5:0.5 G5:0.5 A5:1 C6:1",
+   "D6:1 C6:0.5 A5:0.5 G5:1 E5:1",
+   "F#5:0.5 A5:0.5 C6:1 D6:1 r:1"
+  ],
+  "shine": [
+   "r:2 D6:0.5 G6:0.5 B6:1",
+   "r:4",
+   "r:2 E6:0.5 G6:0.5 B6:1",
+   "r:4"
+  ]
+ },
+ "form": [
+  {
+   "name": "Brass on the barricade",
+   "bars": 8,
+   "harmony": "anthem",
+   "bass": "drive",
+   "comp": [
+    "power",
+    "organ"
+   ],
+   "drums": "rock",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "anthem",
+     "primary": true,
+     "gate": 0.91
+    }
+   ]
+  },
+  {
+   "name": "Calliope overdrive",
+   "bars": 8,
+   "harmony": "march",
+   "bass": "drive",
+   "comp": [
+    "power",
+    "star"
+   ],
+   "drums": "rock",
+   "lines": [
+    {
+     "instrument": "calliope",
+     "phrase": "march",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "One room sings together",
+   "bars": 8,
+   "harmony": "sing",
+   "bass": "stomp",
+   "comp": [
+    "organ",
+    "stomp"
+   ],
+   "drums": "stomp",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "sing",
+     "primary": true,
+     "gate": 0.96
+    }
+   ]
+  },
+  {
+   "name": "One more encore",
+   "bars": 8,
+   "harmony": "anthem",
+   "bass": "drive",
+   "comp": [
+    "power",
+    "organ",
+    "star"
+   ],
+   "drums": "rock",
+   "lines": [
+    {
+     "instrument": "brass",
+     "phrase": "anthem",
+     "primary": true,
+     "gate": 0.91
+    },
+    {
+     "instrument": "glock",
+     "phrase": "shine",
+     "velocity": 66
+    }
+   ]
+  },
+  {
+   "name": "Never take the final bow",
+   "bars": 4,
+   "harmony": "again",
+   "bass": "drive",
+   "comp": [
+    "power"
+   ],
+   "drums": "rock",
+   "lines": [
+    {
+     "instrument": "calliope",
+     "phrase": "march",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -25,
+   "rhythm": -22.7,
+   "melody": -23.2,
+   "intensity": -31
+  },
+  "reverb": {
+   "base": 0.055,
+   "rhythm": 0.03,
+   "melody": 0.09,
+   "intensity": 0.13
+  },
+  "room": 0.9,
+  "lowpass": 12300
+ }
+}

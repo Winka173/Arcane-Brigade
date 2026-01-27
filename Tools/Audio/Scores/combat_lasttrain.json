@@ -1,0 +1,529 @@
+{
+ "id": "combat_lasttrain",
+ "title": "Toy Train Express \u2014 No More Stops",
+ "key": "C minor",
+ "bpm": 166,
+ "meter": 4,
+ "identity": "A train-flute pickup rising through a minor sixth over rolling jungle drums; plucked strings reply in a lower register while the train keeps moving.",
+ "instruments": {
+  "flute": {
+   "program": 72,
+   "stem": "melody",
+   "velocity": 99,
+   "pan": -0.06
+  },
+  "pizzlead": {
+   "program": 45,
+   "stem": "melody",
+   "velocity": 100,
+   "pan": 0.18
+  },
+  "bass": {
+   "program": 38,
+   "stem": "base",
+   "velocity": 101
+  },
+  "bed": {
+   "program": 4,
+   "stem": "base",
+   "velocity": 47,
+   "pan": 0.2
+  },
+  "brass": {
+   "program": 60,
+   "stem": "intensity",
+   "velocity": 74,
+   "pan": 0.1
+  },
+  "click": {
+   "program": 115,
+   "stem": "rhythm",
+   "velocity": 66,
+   "pan": -0.35
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "ride": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "track": [
+   "Cm9",
+   "Abmaj7",
+   "Fm9",
+   "G7",
+   "Cm9",
+   "Eb6",
+   "Abmaj7",
+   "G7b9"
+  ],
+  "horizon": [
+   "Ebmaj9",
+   "Bb6",
+   "Fm9",
+   "Abmaj7",
+   "Cm7",
+   "Fm7",
+   "G7sus4",
+   "G7"
+  ],
+  "points": [
+   "Fm7",
+   "Abmaj7",
+   "G7",
+   "G7"
+  ]
+ },
+ "bass": {
+  "rail": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.55,
+      105
+     ],
+     [
+      0.75,
+      7,
+      0.2,
+      83
+     ],
+     [
+      1.5,
+      12,
+      0.5,
+      99
+     ],
+     [
+      2.75,
+      0,
+      0.55,
+      102
+     ],
+     [
+      3.5,
+      7,
+      0.25,
+      88
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.7,
+      105
+     ],
+     [
+      1.25,
+      12,
+      0.25,
+      88
+     ],
+     [
+      2,
+      7,
+      0.5,
+      94
+     ],
+     [
+      3.25,
+      0,
+      0.5,
+      99
+     ]
+    ]
+   ]
+  },
+  "horizon": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      1.4,
+      102
+     ],
+     [
+      2,
+      7,
+      0.9,
+      88
+     ],
+     [
+      3.25,
+      12,
+      0.45,
+      90
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.8,
+      104
+     ],
+     [
+      1.5,
+      7,
+      0.7,
+      88
+     ],
+     [
+      2.75,
+      12,
+      0.8,
+      94
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "windows": {
+   "instrument": "bed",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "grid": [
+    [
+     [
+      0,
+      2.6,
+      48
+     ],
+     [
+      3,
+      0.6,
+      44
+     ]
+    ]
+   ]
+  },
+  "chug": {
+   "instrument": "click",
+   "octave": 3,
+   "voicing": [
+    0
+   ],
+   "grid": [
+    [
+     [
+      0.25,
+      0.1,
+      62
+     ],
+     [
+      0.75,
+      0.1,
+      76
+     ],
+     [
+      1.25,
+      0.1,
+      61
+     ],
+     [
+      1.75,
+      0.1,
+      76
+     ],
+     [
+      2.25,
+      0.1,
+      64
+     ],
+     [
+      2.75,
+      0.1,
+      78
+     ],
+     [
+      3.25,
+      0.1,
+      61
+     ],
+     [
+      3.75,
+      0.1,
+      80
+     ]
+    ]
+   ]
+  },
+  "signal": {
+   "instrument": "brass",
+   "octave": 3,
+   "voicing": [
+    0,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.35,
+      76
+     ]
+    ],
+    [
+     [
+      2.5,
+      0.3,
+      70
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "jungle": {
+   "kick": {
+    "note": 36,
+    "velocity": 109,
+    "patterns": [
+     "X......x..X...x.",
+     "X..x......X....."
+    ]
+   },
+   "snare": {
+    "note": 40,
+    "velocity": 109,
+    "patterns": [
+     "....X..o...oX...",
+     "....X.o..o..X.oo"
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 57,
+    "patterns": [
+     "X.x.xoX.x.x.X.ox",
+     "x.oxX.x.X.x.x.X."
+    ]
+   },
+   "ride": {
+    "note": 51,
+    "velocity": 42,
+    "patterns": [
+     "x.......x.......",
+     "....x.......x..."
+    ]
+   }
+  },
+  "rolling": {
+   "kick": {
+    "note": 36,
+    "velocity": 108,
+    "patterns": [
+     "X.....x...X.....",
+     "X.......x.X..x.."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 104,
+    "patterns": [
+     "....X.......X...",
+     "....X..o....X.o."
+    ]
+   },
+   "hat": {
+    "note": 46,
+    "velocity": 44,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   }
+  }
+ },
+ "phrases": {
+  "whistle": [
+   "r:0.25 G4:0.25 C5:0.5 Eb5:0.75 Ab5:0.25 G5:1 Eb5:0.5 C5:0.5",
+   "Eb5:0.5 C5:0.5 Ab4:0.75 C5:0.25 Eb5:0.5 G5:0.5 Ab5:0.5 r:0.5",
+   "G5:0.5 Ab5:0.5 C6:0.75 Ab5:0.25 G5:0.5 F5:0.5 Eb5:1",
+   "D5:0.25 F5:0.25 G5:0.5 B5:0.75 Ab5:0.25 G5:1 D5:0.5 r:0.5",
+   "G5:0.25 C6:0.25 Eb6:0.5 D6:0.75 C6:0.25 G5:1 Eb5:1",
+   "G5:0.5 Bb5:0.5 C6:0.75 Bb5:0.25 G5:0.5 Eb5:0.5 C5:1",
+   "C6:0.5 Eb6:0.5 G6:0.75 Eb6:0.25 C6:0.5 Bb5:0.5 Ab5:1",
+   "B5:0.25 D6:0.25 F6:0.5 Ab6:0.75 G6:0.25 D6:1 B5:0.5 r:0.5"
+  ],
+  "reply": [
+   "G4:0.5 C5:0.25 Eb5:0.25 G5:0.75 F5:0.25 Eb5:0.5 C5:0.5 G4:0.5 r:0.5",
+   "G4:0.25 Bb4:0.25 Eb5:0.5 G5:0.5 Bb5:0.5 G5:0.75 F5:0.25 Eb5:1",
+   "Ab4:0.5 C5:0.5 Eb5:0.75 G5:0.25 Ab5:0.5 G5:0.5 Eb5:0.5 r:0.5",
+   "D5:0.5 B4:0.5 G4:0.5 F4:0.5 D4:0.5 G4:0.5 B4:0.5 r:0.5",
+   "C5:0.5 Eb5:0.25 G5:0.25 Bb5:0.75 G5:0.25 Eb5:0.5 C5:0.5 G4:1",
+   "Bb4:0.5 Eb5:0.5 G5:0.75 C6:0.25 Bb5:0.5 G5:0.5 Eb5:1",
+   "C5:0.5 Eb5:0.5 Ab5:0.75 G5:0.25 Eb5:1 C5:1",
+   "B4:0.5 D5:0.5 F5:0.75 Ab5:0.25 G5:0.5 F5:0.5 D5:0.5 r:0.5"
+  ],
+  "horizon": [
+   "G5:1 Bb5:0.5 C6:0.5 D6:1 Bb5:1",
+   "F5:1 D5:0.5 C5:0.5 Bb4:1 D5:1",
+   "Ab5:0.75 G5:0.25 F5:0.5 C5:0.5 Eb5:1 G5:1",
+   "Ab5:1 Eb5:0.5 C5:0.5 G5:1 r:1",
+   "Eb6:1 C6:0.5 Bb5:0.5 G5:1 Eb5:1",
+   "Ab5:1 G5:0.5 F5:0.5 C5:1 Eb5:1",
+   "D5:0.5 G5:0.5 C6:1 D6:0.75 C6:0.25 A5:1",
+   "B5:1 Ab5:0.5 G5:0.5 D5:1 r:1"
+  ]
+ },
+ "form": [
+  {
+   "name": "No more stops",
+   "bars": 8,
+   "harmony": "track",
+   "bass": "rail",
+   "comp": [
+    "chug",
+    "windows"
+   ],
+   "drums": "jungle",
+   "lines": [
+    {
+     "instrument": "flute",
+     "phrase": "whistle",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Under the shelves",
+   "bars": 8,
+   "harmony": "track",
+   "bass": "rail",
+   "comp": [
+    "chug",
+    "signal"
+   ],
+   "drums": "jungle",
+   "lines": [
+    {
+     "instrument": "pizzlead",
+     "phrase": "reply",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Moonlit horizon",
+   "bars": 8,
+   "harmony": "horizon",
+   "bass": "horizon",
+   "comp": [
+    "windows"
+   ],
+   "drums": "rolling",
+   "lines": [
+    {
+     "instrument": "flute",
+     "phrase": "horizon",
+     "primary": true,
+     "gate": 0.95
+    }
+   ]
+  },
+  {
+   "name": "Switching points",
+   "bars": 4,
+   "harmony": "points",
+   "bass": "rail",
+   "comp": [
+    "chug"
+   ],
+   "drums": "jungle",
+   "lines": [
+    {
+     "instrument": "pizzlead",
+     "phrase": "reply",
+     "primary": true,
+     "phase": 2
+    }
+   ]
+  },
+  {
+   "name": "Express on the high rail",
+   "bars": 8,
+   "harmony": "track",
+   "bass": "rail",
+   "comp": [
+    "chug",
+    "signal",
+    "windows"
+   ],
+   "drums": "jungle",
+   "lines": [
+    {
+     "instrument": "flute",
+     "phrase": "whistle",
+     "primary": true
+    },
+    {
+     "instrument": "brass",
+     "phrase": "horizon",
+     "velocity": 54,
+     "transpose": -12
+    }
+   ]
+  },
+  {
+   "name": "Tunnel loop",
+   "bars": 4,
+   "harmony": "points",
+   "bass": "rail",
+   "comp": [
+    "chug"
+   ],
+   "drums": "rolling",
+   "lines": [
+    {
+     "instrument": "pizzlead",
+     "phrase": "reply",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -24,
+   "rhythm": -22.5,
+   "melody": -22.8,
+   "intensity": -30
+  },
+  "reverb": {
+   "base": 0.04,
+   "rhythm": 0.01,
+   "melody": 0.09,
+   "intensity": 0.1
+  },
+  "room": 0.75,
+  "lowpass": 12700
+ }
+}

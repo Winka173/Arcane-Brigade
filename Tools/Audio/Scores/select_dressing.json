@@ -1,0 +1,445 @@
+{
+ "id": "select_dressing",
+ "title": "Roll Call \u2014 Pocket-Sized Heroes",
+ "key": "Bb major",
+ "bpm": 120,
+ "meter": 4,
+ "identity": "A dotted toy-trumpet salute answered by clipped clarinet; snare rudiments and two-beat tuba bass make a confident miniature parade.",
+ "instruments": {
+  "trumpet": {
+   "program": 59,
+   "stem": "melody",
+   "velocity": 91,
+   "pan": -0.1
+  },
+  "clarinet": {
+   "program": 71,
+   "stem": "melody",
+   "velocity": 83,
+   "pan": 0.18
+  },
+  "bell": {
+   "program": 9,
+   "stem": "intensity",
+   "velocity": 63,
+   "pan": 0.3
+  },
+  "bass": {
+   "program": 58,
+   "stem": "base",
+   "velocity": 76
+  },
+  "pizz": {
+   "program": 45,
+   "stem": "base",
+   "velocity": 59,
+   "pan": 0.1
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "hat": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "salute": [
+   "Bb",
+   "F7"
+  ],
+  "march": [
+   "Bb6",
+   "F7",
+   "Gm",
+   "Eb",
+   "Bb/D",
+   "Cm7",
+   "F7",
+   "Bb6"
+  ],
+  "trio": [
+   "Eb6",
+   "Bb/D",
+   "Cm7",
+   "F9",
+   "Dm7",
+   "G7",
+   "Cm7",
+   "F7"
+  ],
+  "tag": [
+   "Eb6",
+   "F7"
+  ]
+ },
+ "bass": {
+  "two": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.65,
+      85
+     ],
+     [
+      2,
+      7,
+      0.65,
+      73
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.65,
+      82
+     ],
+     [
+      1.5,
+      12,
+      0.25,
+      62
+     ],
+     [
+      2,
+      7,
+      0.7,
+      76
+     ],
+     [
+      3.5,
+      7,
+      0.25,
+      66
+     ]
+    ]
+   ]
+  },
+  "strut": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.5,
+      84
+     ],
+     [
+      1,
+      7,
+      0.35,
+      69
+     ],
+     [
+      2,
+      12,
+      0.5,
+      78
+     ],
+     [
+      3,
+      7,
+      0.4,
+      74
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.6,
+      86
+     ],
+     [
+      2,
+      7,
+      0.4,
+      75
+     ],
+     [
+      2.75,
+      12,
+      0.35,
+      68
+     ],
+     [
+      3.5,
+      7,
+      0.25,
+      71
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "plucks": {
+   "instrument": "pizz",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      1,
+      0.2,
+      57
+     ],
+     [
+      3,
+      0.2,
+      62
+     ]
+    ],
+    [
+     [
+      1,
+      0.2,
+      53
+     ],
+     [
+      2.75,
+      0.2,
+      59
+     ],
+     [
+      3.5,
+      0.15,
+      48
+     ]
+    ]
+   ]
+  },
+  "glint": {
+   "instrument": "bell",
+   "octave": 4,
+   "voicing": [
+    0,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.25,
+      63
+     ]
+    ],
+    [
+     [
+      2,
+      0.25,
+      58
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "march": {
+   "kick": {
+    "note": 36,
+    "velocity": 76,
+    "patterns": [
+     "X.......X.......",
+     "X.......X.....x."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 83,
+    "patterns": [
+     "....X.oo....X.oo",
+     "....X..o..ooX..."
+    ]
+   },
+   "hat": {
+    "note": 44,
+    "velocity": 50,
+    "patterns": [
+     "..x...x...x...x."
+    ]
+   }
+  },
+  "trio": {
+   "kick": {
+    "note": 36,
+    "velocity": 80,
+    "patterns": [
+     "X.....x.X.......",
+     "X.......X......."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 80,
+    "patterns": [
+     "....X.......X.o.",
+     "..ooX.......X.oo"
+    ]
+   },
+   "hat": {
+    "note": 42,
+    "velocity": 43,
+    "patterns": [
+     "x.x.x.x.x.x.x.x."
+    ]
+   }
+  }
+ },
+ "phrases": {
+  "salute": [
+   "Bb4:0.75 F5:0.25 Bb5:1 A5:0.5 F5:0.5 D5:0.5 r:0.5",
+   "C5:0.75 F5:0.25 A5:0.5 C6:0.5 Bb5:0.5 A5:0.5 F5:1"
+  ],
+  "hook": [
+   "F5:0.75 D5:0.25 Bb4:0.5 r:0.5 Bb4:0.5 D5:0.5 F5:1",
+   "A5:0.5 G5:0.25 F5:0.25 Eb5:0.75 C5:0.25 A4:1 r:1",
+   "G5:0.75 D5:0.25 G5:0.5 Bb5:0.5 A5:0.5 G5:0.5 D5:1",
+   "G5:0.5 F5:0.5 Eb5:1 F5:0.75 G5:0.25 Bb5:0.5 r:0.5",
+   "D5:0.5 F5:0.5 Bb5:0.75 A5:0.25 F5:1 D5:1",
+   "Eb5:0.75 G5:0.25 Bb5:0.5 G5:0.5 F5:0.5 Eb5:0.5 C5:1",
+   "C5:0.5 F5:0.5 A5:0.75 C6:0.25 Eb6:0.5 C6:0.5 A5:1",
+   "F5:0.75 D5:0.25 Bb4:1 D5:0.5 F5:0.5 Bb5:0.5 r:0.5"
+  ],
+  "trio": [
+   "G5:1 Bb5:0.5 G5:0.5 F5:0.75 Eb5:0.25 Bb4:1",
+   "D5:0.5 F5:0.5 Bb5:1 A5:0.75 F5:0.25 D5:1",
+   "Eb5:0.5 G5:0.5 C6:0.75 Bb5:0.25 G5:0.5 Eb5:0.5 D5:1",
+   "C5:0.5 Eb5:0.5 F5:0.5 A5:0.5 C6:1 A5:0.5 r:0.5",
+   "F5:0.75 A5:0.25 C6:1 D6:0.5 C6:0.5 A5:1",
+   "B5:0.5 G5:0.5 F5:0.75 D5:0.25 G5:1 B5:1",
+   "C6:0.75 Bb5:0.25 G5:0.5 Eb5:0.5 D5:1 C5:1",
+   "C5:0.5 Eb5:0.5 A5:0.75 G5:0.25 F5:1 r:1"
+  ],
+  "bell": [
+   "r:2 Bb5:0.5 D6:0.5 F6:1",
+   "r:2 A5:0.5 C6:0.5 F6:1"
+  ]
+ },
+ "form": [
+  {
+   "name": "Pocket salute",
+   "bars": 2,
+   "harmony": "salute",
+   "bass": "two",
+   "comp": [
+    "plucks"
+   ],
+   "drums": "march",
+   "lines": [
+    {
+     "instrument": "trumpet",
+     "phrase": "salute",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "First squad",
+   "bars": 6,
+   "harmony": "march",
+   "bass": "two",
+   "comp": [
+    "plucks"
+   ],
+   "drums": "march",
+   "lines": [
+    {
+     "instrument": "trumpet",
+     "phrase": "hook",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Clarinet inspection",
+   "bars": 8,
+   "harmony": "trio",
+   "bass": "strut",
+   "comp": [
+    "plucks"
+   ],
+   "drums": "trio",
+   "lines": [
+    {
+     "instrument": "clarinet",
+     "phrase": "trio",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "All hands ready",
+   "bars": 6,
+   "harmony": "march",
+   "bass": "strut",
+   "comp": [
+    "plucks",
+    "glint"
+   ],
+   "drums": "march",
+   "lines": [
+    {
+     "instrument": "trumpet",
+     "phrase": "hook",
+     "primary": true
+    },
+    {
+     "instrument": "bell",
+     "phrase": "bell",
+     "velocity": 57
+    }
+   ]
+  },
+  {
+   "name": "Count us in",
+   "bars": 2,
+   "harmony": "tag",
+   "bass": "two",
+   "comp": [
+    "plucks"
+   ],
+   "drums": "march",
+   "lines": [
+    {
+     "instrument": "clarinet",
+     "phrase": "salute",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -25.2,
+   "rhythm": -23.8,
+   "melody": -22,
+   "intensity": -31
+  },
+  "reverb": {
+   "base": 0.035,
+   "rhythm": 0.025,
+   "melody": 0.06,
+   "intensity": 0.1
+  },
+  "room": 0.45,
+  "lowpass": 12000
+ }
+}

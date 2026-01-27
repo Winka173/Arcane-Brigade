@@ -1,0 +1,526 @@
+{
+ "id": "combat_carousel",
+ "title": "Carousel Chase \u2014 Crooked Horses",
+ "key": "A harmonic minor",
+ "bpm": 138,
+ "meter": 4,
+ "swing": 0.085,
+ "identity": "A wheeling accordion melody over walking bass; clarinet takes an eight-bar detour through a diminished chord before the carnival tune returns.",
+ "instruments": {
+  "accordion": {
+   "program": 21,
+   "stem": "melody",
+   "velocity": 88,
+   "pan": -0.1
+  },
+  "clarinet": {
+   "program": 71,
+   "stem": "melody",
+   "velocity": 93,
+   "pan": 0.1
+  },
+  "bass": {
+   "program": 32,
+   "stem": "base",
+   "velocity": 103
+  },
+  "piano": {
+   "program": 0,
+   "stem": "rhythm",
+   "velocity": 68,
+   "pan": -0.22
+  },
+  "strings": {
+   "program": 45,
+   "stem": "base",
+   "velocity": 57,
+   "pan": 0.18
+  },
+  "organ": {
+   "program": 82,
+   "stem": "intensity",
+   "velocity": 61,
+   "pan": 0.25
+  },
+  "kick": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "snare": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  },
+  "ride": {
+   "program": 0,
+   "stem": "rhythm",
+   "drum": true
+  }
+ },
+ "harmony": {
+  "chase": [
+   "Am6",
+   "Am6",
+   "Dm6",
+   "G7",
+   "Cmaj7",
+   "Fmaj7",
+   "Bdim7",
+   "E7b9"
+  ],
+  "detour": [
+   "Dm6",
+   "Am/C",
+   "Bdim7",
+   "E7",
+   "Fmaj7",
+   "Dm6",
+   "E7sus4",
+   "E7b9"
+  ],
+  "spin": [
+   "Am",
+   "G#dim7",
+   "Am",
+   "E7"
+  ]
+ },
+ "bass": {
+  "walk": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.68,
+      97
+     ],
+     [
+      1,
+      "chord:1",
+      0.65,
+      84
+     ],
+     [
+      2,
+      7,
+      0.65,
+      90
+     ],
+     [
+      3,
+      9,
+      0.65,
+      85
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.65,
+      96
+     ],
+     [
+      1,
+      7,
+      0.65,
+      89
+     ],
+     [
+      2,
+      12,
+      0.65,
+      93
+     ],
+     [
+      3,
+      11,
+      0.65,
+      78
+     ]
+    ]
+   ]
+  },
+  "stalk": {
+   "instrument": "bass",
+   "patterns": [
+    [
+     [
+      0,
+      0,
+      0.8,
+      98
+     ],
+     [
+      1.5,
+      7,
+      0.45,
+      83
+     ],
+     [
+      2,
+      12,
+      0.75,
+      91
+     ],
+     [
+      3.5,
+      7,
+      0.3,
+      85
+     ]
+    ],
+    [
+     [
+      0,
+      0,
+      0.7,
+      100
+     ],
+     [
+      1,
+      "chord:1",
+      0.6,
+      86
+     ],
+     [
+      2,
+      7,
+      0.7,
+      92
+     ],
+     [
+      3,
+      6,
+      0.6,
+      83
+     ]
+    ]
+   ]
+  }
+ },
+ "comp": {
+  "oom": {
+   "instrument": "piano",
+   "octave": 3,
+   "voicing": [
+    1,
+    2,
+    3
+   ],
+   "grid": [
+    [
+     [
+      1,
+      0.22,
+      69
+     ],
+     [
+      3,
+      0.22,
+      73
+     ]
+    ],
+    [
+     [
+      0.75,
+      0.18,
+      53
+     ],
+     [
+      1,
+      0.22,
+      65
+     ],
+     [
+      2.75,
+      0.2,
+      62
+     ],
+     [
+      3,
+      0.22,
+      72
+     ]
+    ]
+   ]
+  },
+  "pizz": {
+   "instrument": "strings",
+   "octave": 3,
+   "voicing": [
+    0,
+    1,
+    2
+   ],
+   "grid": [
+    [
+     [
+      0,
+      0.25,
+      65
+     ],
+     [
+      2,
+      0.25,
+      56
+     ]
+    ]
+   ]
+  },
+  "organhit": {
+   "instrument": "organ",
+   "octave": 4,
+   "voicing": [
+    0,
+    2
+   ],
+   "grid": [
+    [
+     [
+      1.5,
+      0.22,
+      63
+     ]
+    ],
+    [
+     [
+      2.5,
+      0.25,
+      68
+     ]
+    ]
+   ]
+  }
+ },
+ "drums": {
+  "swing": {
+   "kick": {
+    "note": 36,
+    "velocity": 88,
+    "patterns": [
+     "X...x...X...x..."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 86,
+    "patterns": [
+     "....X.......X...",
+     "....X..o....X.oo"
+    ]
+   },
+   "ride": {
+    "note": 51,
+    "velocity": 52,
+    "patterns": [
+     "X...X.x.X...X.x.",
+     "X.x.X...X.x.X..."
+    ]
+   }
+  },
+  "chase": {
+   "kick": {
+    "note": 36,
+    "velocity": 100,
+    "patterns": [
+     "X...X...X...X..."
+    ]
+   },
+   "snare": {
+    "note": 38,
+    "velocity": 91,
+    "patterns": [
+     "....X.....o.X..."
+    ]
+   },
+   "ride": {
+    "note": 42,
+    "velocity": 49,
+    "patterns": [
+     "..x...x...x...x.",
+     "..x..ox...x..ox."
+    ]
+   }
+  }
+ },
+ "objects": {
+  "bell": {
+   "material": "glass",
+   "duration": 0.09,
+   "pan": 0.35,
+   "grid": [
+    [
+     [
+      0,
+      0.017
+     ]
+    ],
+    [],
+    [],
+    [
+     [
+      3,
+      0.02
+     ]
+    ]
+   ]
+  }
+ },
+ "phrases": {
+  "round": [
+   "E5:0.5 A5:0.5 C6:0.5 B5:0.5 A5:0.75 G#5:0.25 A5:0.5 r:0.5",
+   "E6:0.75 C6:0.25 B5:0.5 A5:0.5 E5:1 C5:0.5 r:0.5",
+   "D5:0.5 F5:0.5 A5:0.5 C6:0.5 B5:0.75 A5:0.25 F5:0.5 D5:0.5",
+   "B4:0.5 D5:0.5 G5:0.75 A5:0.25 B5:0.5 A5:0.5 G5:0.5 r:0.5",
+   "G5:0.5 E5:0.5 C5:0.75 E5:0.25 G5:0.5 B5:0.5 C6:1",
+   "C6:0.75 A5:0.25 F5:0.5 E5:0.5 C5:0.5 F5:0.5 A5:1",
+   "B5:0.5 Ab5:0.5 F5:0.75 D5:0.25 B4:0.5 D5:0.5 F5:1",
+   "G#5:0.5 B5:0.5 D6:0.75 F6:0.25 E6:0.5 B5:0.5 G#5:0.5 r:0.5"
+  ],
+  "reply": [
+   "E5:0.5 G5:0.5 B5:1 C6:0.5 B5:0.5 G5:0.5 E5:0.5",
+   "F5:0.5 A5:0.5 C6:0.75 E6:0.25 D6:0.5 C6:0.5 A5:1",
+   "D6:0.5 B5:0.5 Ab5:0.5 F5:0.5 D5:0.75 F5:0.25 Ab5:0.5 B5:0.5",
+   "C6:0.25 B5:0.25 G#5:0.5 E5:0.75 B4:0.25 G#4:0.5 B4:0.5 E5:0.5 r:0.5",
+   "E5:0.5 G5:0.5 B5:1 C6:0.75 B5:0.25 G5:1",
+   "F5:0.5 A5:0.5 C6:0.75 E6:0.25 C6:0.5 A5:0.5 F5:1",
+   "F5:0.5 Ab5:0.5 B5:0.75 D6:0.25 F6:0.5 D6:0.5 B5:1",
+   "D6:0.5 B5:0.5 G#5:0.75 F5:0.25 E5:1 r:1"
+  ],
+  "detour": [
+   "A4:1 D5:0.5 E5:0.5 F5:0.75 E5:0.25 D5:1",
+   "E5:0.5 A5:0.5 C6:1 B5:0.5 A5:0.5 E5:1",
+   "Ab5:0.5 F5:0.5 D5:0.75 B4:0.25 D5:0.5 F5:0.5 Ab5:1",
+   "G#5:0.75 B5:0.25 D6:0.5 C6:0.5 B5:1 G#5:0.5 E5:0.5",
+   "A5:1 C6:0.5 E6:0.5 F6:0.75 E6:0.25 C6:1",
+   "D6:0.5 A5:0.5 F5:0.75 E5:0.25 D5:1 F5:1",
+   "A5:0.5 B5:0.5 D6:0.75 E6:0.25 D6:0.5 B5:0.5 A5:1",
+   "G#5:1 F5:0.5 E5:0.5 B4:1 r:1"
+  ],
+  "answering_organ": [
+   "r:2 A5:0.5 E5:0.5 C5:1",
+   "r:3 E6:0.5 C6:0.5"
+  ]
+ },
+ "form": [
+  {
+   "name": "Crooked horses",
+   "bars": 8,
+   "harmony": "chase",
+   "bass": "walk",
+   "comp": [
+    "oom",
+    "pizz"
+   ],
+   "drums": "swing",
+   "objects": [
+    "bell"
+   ],
+   "lines": [
+    {
+     "instrument": "accordion",
+     "phrase": "round",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "One horse escapes",
+   "bars": 8,
+   "harmony": "chase",
+   "bass": "walk",
+   "comp": [
+    "oom"
+   ],
+   "drums": "chase",
+   "lines": [
+    {
+     "instrument": "accordion",
+     "phrase": "reply",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Clarinet alleyway",
+   "bars": 8,
+   "harmony": "detour",
+   "bass": "stalk",
+   "comp": [
+    "oom",
+    "pizz"
+   ],
+   "drums": "swing",
+   "lines": [
+    {
+     "instrument": "clarinet",
+     "phrase": "detour",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "name": "Carousel in pursuit",
+   "bars": 8,
+   "harmony": "chase",
+   "bass": "walk",
+   "comp": [
+    "oom",
+    "organhit"
+   ],
+   "drums": "chase",
+   "objects": [
+    "bell"
+   ],
+   "lines": [
+    {
+     "instrument": "accordion",
+     "phrase": "round",
+     "primary": true
+    },
+    {
+     "instrument": "organ",
+     "phrase": "answering_organ",
+     "velocity": 53
+    }
+   ]
+  },
+  {
+   "name": "Diminished spin",
+   "bars": 4,
+   "harmony": "spin",
+   "bass": "stalk",
+   "comp": [
+    "oom"
+   ],
+   "drums": "swing",
+   "lines": [
+    {
+     "instrument": "clarinet",
+     "phrase": "reply",
+     "primary": true
+    }
+   ]
+  }
+ ],
+ "mix": {
+  "rms": {
+   "base": -25,
+   "rhythm": -23.7,
+   "melody": -22.7,
+   "intensity": -30.5
+  },
+  "reverb": {
+   "base": 0.035,
+   "rhythm": 0.02,
+   "melody": 0.075,
+   "intensity": 0.12
+  },
+  "room": 0.62,
+  "lowpass": 12000
+ }
+}

@@ -21,10 +21,11 @@ from toybox_engine import SR, ROOT
 def db(v): return float(20*np.log10(max(float(v),1e-12)))
 
 
-def verify(folder,baseline):
+def verify(folder,baseline,music_folder=None):
+    music_folder=music_folder or folder
     failures=[]; warnings=[]; rows=[]; seen={}
     cues=json.loads((folder/'cues.json').read_text())['cues']
-    pieces=json.loads((folder/'Music/music.json').read_text())['pieces']
+    pieces=json.loads((music_folder/'Music/music.json').read_text())['pieces']
     old=baseline['assets']; changed=0
     if len(cues)!=206: failures.append('Expected 206 cue definitions')
     if sum(len(c['clips']) for c in cues)!=582: failures.append('Expected 582 SFX/voice/ambience files')
@@ -63,13 +64,14 @@ def verify(folder,baseline):
     mixrows=[]
     # Worst case for dense combat, sparse combat, menu/select and danger duck.
     variants={'all':[1,1,1,1],'sparse':[1,.7,1,0],'menu':[1,.85,1,0],
-              'select':[1,.7,1,0],'shop':[1,.9,1,.75],'danger':[.8,1,.35,.15]}
+              'select':[1,.7,1,0],'shop':[1,.9,1,.75],'dream':[1,.8,1,.7],
+              'boss':[1,1,1,.8],'danger':[.8,1,.35,.15]}
     for p in pieces:
         arrays=[]
         expected=round(p['bars']*p['beatsPerBar']*60/p['bpm']*SR)
         if p['loopSamples']!=expected: failures.append('Tempo/grid '+p['id'])
         for rel in p['stems']:
-            path=folder/(rel+'.ogg')
+            path=music_folder/(rel+'.ogg')
             if not path.exists(): failures.append('Missing '+rel); continue
             x,sr=sf.read(str(path),dtype='float32',always_2d=True)
             if sr!=SR or x.shape!=(expected,2): failures.append('Stem alignment '+rel); continue
