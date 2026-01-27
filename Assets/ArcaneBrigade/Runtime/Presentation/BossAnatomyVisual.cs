@@ -56,7 +56,7 @@ namespace ArcaneBrigade
                 float releaseAge = time - unit.BossOrganReleaseAt;
                 float release = active && releaseAge >= 0 && releaseAge < 0.5f ? Mathf.Sin(releaseAge / 0.5f * Mathf.PI) : 0;
                 SpriteRenderer organ = organs[part]; SpriteRenderer scar = scars[part]; SpriteRenderer shadow = shadows[part];
-                Sprite image = winding && charge > 0.35f || release > 0.1f ? definition.Charged : definition.Rest;
+                Sprite image = release > 0.1f && definition.Release != null ? definition.Release : winding && charge > 0.35f || release > 0.1f ? definition.Charged : definition.Rest;
                 organ.sprite = image; shadow.sprite = image;
                 float breathe = reduced ? 0 : Mathf.Sin(time * (part == 2 ? 2.2f : 1.7f) + part * 1.8f) * 0.025f;
                 float recoil = reduced || hurtAge < 0 || hurtAge > 0.24f || !woundHit ? 0 : Mathf.Sin(hurtAge / 0.24f * Mathf.PI) * 0.09f;

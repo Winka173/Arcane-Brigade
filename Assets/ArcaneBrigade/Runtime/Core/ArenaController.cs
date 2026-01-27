@@ -111,12 +111,13 @@ namespace ArcaneBrigade
             paintedEffects = gameObject.AddComponent<PaintedEffects>();
             spectacleVisual = gameObject.AddComponent<MidwaveSpectacleVisual>();
             deathFeedback = gameObject.AddComponent<DeathFeedback>();
-            deathFeedback.Configure(catalog.ImpactSprite);
+            deathFeedback.Configure(catalog.ImpactSprite, null, Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary"));
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
+            if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
             if (runCatalog != null) gameObject.AddComponent<K8ArenaScenery>().Configure(this);
             CreateRadiusGuide();
             Begin();
@@ -221,7 +222,7 @@ namespace ArcaneBrigade
                 else if (pauseGate.Navigation) CancelMenuReturn();
                 else SetPaused(!pauseGate.Manual);
             }
-            moveIntent = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? movement.Read(arenaCamera.pixelRect) : Vector2.zero;
+            moveIntent = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest || simulation.Phase == RunPhase.Victory && transitionRemaining > 0 ? movement.Read(arenaCamera.pixelRect) : Vector2.zero;
             if ((RunPaths.K2Capture || RunPaths.K3FinalCapture || RunPaths.K7Capture) && presentationMoveTarget.HasValue && (simulation.Phase == RunPhase.Combat || RunPaths.K7Capture && simulation.Phase == RunPhase.Rest)) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
             if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); }
@@ -268,6 +269,8 @@ namespace ArcaneBrigade
         {
             if (simulation == null) return;
             if (stageTransfer != null && stageTransfer.Active) return;
+            if (pauseGate.Paused) return;
+            if (simulation.Phase == RunPhase.Victory && transitionRemaining > 0) { simulation.StepFinale(Time.fixedDeltaTime, moveIntent); return; }
             if (session != null && session.State.Phase == SessionPhase.Shop)
             {
                 simulation.StepRest(Time.fixedDeltaTime, moveIntent);
@@ -315,8 +318,8 @@ namespace ArcaneBrigade
                 }
                 PersistBoundary();
                 movement.Reset();
-                if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? 1.15f : 0.45f;
-                else resultRevealRemaining = simulation.Phase == RunPhase.Defeat ? 1f : 1.15f;
+                if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? DeathFeedback.DurationBoss + 0.15f : 0.45f;
+                else resultRevealRemaining = simulation.Phase == RunPhase.Defeat ? 1f : simulation.BossDefeated ? DeathFeedback.DurationBoss : 1.15f;
             }
         }
 
@@ -435,13 +438,15 @@ namespace ArcaneBrigade
         {
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
+            if (session.OutsideChallengeAvailable) session.DeclineOutsideStage();
             session.ContinueWave();
+            if (StageTransfer.ChangesMap(session.State.Wave)) session.RegisterOutsideTransfer();
             if (session.State.Phase != SessionPhase.Combat) { if (Shop != null) Shop.CancelDeparture(); return; }
             if (!PersistBoundary()) { session.Restore(before); if (Shop != null) Shop.CancelDeparture(); return; }
             if (Shop != null) Shop.Display();
             if (StageTransfer.ChangesMap(session.State.Wave))
             {
-                var carrier = new GameObject("PaperMantaStageTransfer");
+                var carrier = new GameObject("KeeperHandStageTransfer");
                 stageTransfer = carrier.AddComponent<StageTransfer>();
                 stageTransfer.Configure(this, () => { stageTransfer = null; Begin(true); });
             }
@@ -457,6 +462,25 @@ namespace ArcaneBrigade
             Begin();
         }
         public void EnterShopPresentation() { if (session.State.Phase == SessionPhase.Shop) Begin(true); }
+        public bool AcceptOutsideChallenge()
+        {
+            if (PresentationPaused || TransitionPending || hallExitPending) return false;
+            RunSnapshot before = MergeReveal.Capture(session.State);
+            if (!session.AcceptOutsideStage()) return false;
+            if (!PersistBoundary()) { session.Restore(before); return false; }
+            var carrier = new GameObject("KeeperHandChallengeEntry");
+            stageTransfer = carrier.AddComponent<StageTransfer>();
+            stageTransfer.Configure(this, () => { stageTransfer = null; Begin(); });
+            return true;
+        }
+        public bool ClaimOutsideReward(int index)
+        {
+            if (PresentationPaused || TransitionPending) return false;
+            RunSnapshot before = MergeReveal.Capture(session.State);
+            if (!session.ClaimOutsideStageReward(index)) return false;
+            if (!PersistBoundary()) { session.Restore(before); return false; }
+            Begin(true); return true;
+        }
         public void RestartRun()
         {
             if (!PersistBoundary() || ((session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat) && !profile.CompletedRuns.Contains(session.State.RunId))) return;

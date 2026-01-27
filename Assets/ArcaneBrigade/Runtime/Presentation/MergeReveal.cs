@@ -22,8 +22,16 @@ namespace ArcaneBrigade
         private float age;
         private string runId;
         private int lastReceipt;
-        private LineRenderer ring;
-        private Material ringMaterial;
+        private Material payoffMaterial;
+        private Mesh starMesh;
+        private MaterialPropertyBlock starTint;
+        private readonly List<Transform> stars = new List<Transform>();
+        private readonly List<LineRenderer> rays = new List<LineRenderer>();
+        private Transform compression;
+        private TextMesh tierCaption;
+        private const float RevealAt = 0.66f;
+        private const float LandAt = 1.12f;
+        private const float FinishAt = 1.9f;
         private AudioSource confirmation;
         private AudioClip confirmationClip;
         private bool sounded;
@@ -117,10 +125,17 @@ namespace ArcaneBrigade
                 CreateConfirmation();
             }
             age += Mathf.Min(Time.unscaledDeltaTime, 0.05f);
-            float gather = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 0.28f));
+            PresentStage();
+            if (age >= FinishAt) { CompletedCount++; ClearStage(); }
+        }
+
+        private void PresentStage()
+        {
+            float gather = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 0.46f));
+            float fade = Mathf.Clamp01((FinishAt - age) / 0.24f);
             if (purchaseShadow != null)
             {
-                purchaseShadow.enabled = !ReducedMotion && age < 0.32f;
+                purchaseShadow.enabled = !ReducedMotion && age < 0.46f;
                 purchaseShadow.transform.localPosition = Vector3.up * (1 - gather) * 0.8f;
                 purchaseShadow.color = new Color(0.25f, 0.2f, 0.35f, 1 - gather * 0.7f);
             }
@@ -128,27 +143,59 @@ namespace ArcaneBrigade
             {
                 UnitVisual ghost = ghosts[index];
                 bool result = index == ghosts.Count - 1;
-                ghost.gameObject.SetActive(result ? age >= 0.36f || ReducedMotion : age < 0.32f && !ReducedMotion);
+                ghost.gameObject.SetActive(result ? age >= RevealAt || ReducedMotion : age < 0.46f && !ReducedMotion);
                 if (!ghost.gameObject.activeSelf) continue;
-                float angle = index * Mathf.PI * 2 / Mathf.Max(1, ghosts.Count - 1) + (active.Altar ? Mathf.PI * 0.5f : 0);
-                Vector2 offset = result || ReducedMotion ? Vector2.zero : new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * (1 - gather) * 0.8f;
+                float angle = index * Mathf.PI * 2 / Mathf.Max(1, ghosts.Count - 1) + (active.Altar ? Mathf.PI * 0.5f : 0) + gather * 0.45f;
+                Vector2 offset = result || ReducedMotion ? Vector2.zero : new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.65f) * (1 - gather) * 1.65f;
+                float emergence = Mathf.Clamp01((age - RevealAt) / (LandAt - RevealAt));
+                if (result && !ReducedMotion) offset.y = Mathf.Sin(emergence * Mathf.PI) * 0.38f;
                 ghost.Display(0, 1);
                 ghost.transform.position = stage.transform.position + (Vector3)offset;
-                ghost.transform.localScale = Vector3.one * (result && !ReducedMotion ? Mathf.Lerp(0.8f, 1f, Mathf.Clamp01((age - 0.36f) / 0.18f)) : 0.7f);
-                ghost.SetTerminalFade(result ? Mathf.Clamp01((0.9f - age) / 0.18f) : 1 - gather * 0.7f);
+                float size = result ? (ReducedMotion ? 1.35f : Mathf.Lerp(0.48f, 1.35f, Mathf.SmoothStep(0, 1, emergence)) + Mathf.Sin(emergence * Mathf.PI) * 0.65f) : Mathf.Lerp(0.95f, 0.3f, gather);
+                float landing = !ReducedMotion && result ? Mathf.Sin(Mathf.Clamp01((age - LandAt) / 0.18f) * Mathf.PI) * 0.1f : 0;
+                ghost.transform.localScale = new Vector3(size * (1 + landing), size * (1 - landing), 1);
+                ghost.SetTerminalFade(result ? fade : 1 - gather * 0.75f);
             }
-            if (age >= 0.54f)
+            Color gold = active.Altar ? new Color(0.55f, 1f, 0.9f) : new Color(1f, 0.79f, 0.32f);
+            compression.gameObject.SetActive(!ReducedMotion && age >= 0.28f && age < RevealAt);
+            float charge = Mathf.Clamp01((age - 0.28f) / (RevealAt - 0.28f));
+            compression.localScale = Vector3.one * Mathf.Lerp(0.48f, 0.12f, charge);
+            compression.localRotation = Quaternion.Euler(0, 0, charge * 100);
+            float burst = Mathf.Clamp01((age - RevealAt) / 0.48f);
+            for (int index = 0; index < rays.Count; index++)
             {
-                ring.enabled = confirmationSpark == null;
-                float pulse = Mathf.Clamp01((age - 0.54f) / 0.36f);
-                ring.transform.localScale = Vector3.one * (ReducedMotion ? 0.62f : Mathf.Lerp(0.4f, 1.1f, pulse));
-                Color tint = active.Altar ? new Color(0.45f, 0.95f, 0.88f, 1 - pulse) : new Color(1f, 0.78f, 0.4f, 1 - pulse);
-                ring.startColor = ring.endColor = tint;
+                LineRenderer ray = rays[index];
+                ray.enabled = !ReducedMotion && age >= RevealAt && burst < 1;
+                float angle = index * Mathf.PI * 2 / rays.Count + 0.2f;
+                Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
+                ray.SetPosition(0, direction * Mathf.Lerp(0.35f, 1.5f, burst));
+                ray.SetPosition(1, direction * Mathf.Lerp(0.75f, 2.2f, burst));
+                ray.startColor = ray.endColor = new Color(gold.r, gold.g, gold.b, (1 - burst) * 0.65f);
+            }
+            for (int index = 0; index < stars.Count; index++)
+            {
+                Transform star = stars[index];
+                float appearAt = RevealAt + index * 0.13f;
+                star.gameObject.SetActive(ReducedMotion || age >= appearAt);
+                float arrival = Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - appearAt) / 0.28f));
+                float pop = ReducedMotion ? 0 : Mathf.Sin(arrival * Mathf.PI);
+                star.localPosition = new Vector3((index - (stars.Count - 1) * 0.5f) * 0.52f, 1.95f + (ReducedMotion ? 0 : (1 - arrival) * 0.55f), 0);
+                star.localScale = Vector3.one * (ReducedMotion ? 0.24f : Mathf.Lerp(0.06f, 0.24f, arrival) + pop * 0.12f);
+                star.localRotation = Quaternion.Euler(0, 0, ReducedMotion ? 0 : (1 - arrival) * -32);
+                if (starTint == null) starTint = new MaterialPropertyBlock();
+                starTint.SetColor("_Color", new Color(gold.r, gold.g, gold.b, fade));
+                star.GetComponent<MeshRenderer>().SetPropertyBlock(starTint);
+            }
+            tierCaption.gameObject.SetActive(ReducedMotion || age >= LandAt);
+            tierCaption.color = new Color(gold.r, gold.g, gold.b, fade);
+            if (age >= RevealAt)
+            {
                 if (confirmationSpark != null)
                 {
-                    confirmationSpark.enabled = true; confirmationSpark.sprite = confirmationFrames[Mathf.Min(3, Mathf.FloorToInt(pulse * 4))];
-                    confirmationSpark.transform.localScale = Vector3.one * (1.1f / confirmationSpark.sprite.bounds.size.x);
-                    confirmationSpark.color = new Color(1, 1, 1, 1 - pulse);
+                    confirmationSpark.enabled = !ReducedMotion && burst < 1;
+                    confirmationSpark.sprite = confirmationFrames[Mathf.Min(confirmationFrames.Length - 1, Mathf.FloorToInt(burst * confirmationFrames.Length))];
+                    if (confirmationSpark.sprite != null) confirmationSpark.transform.localScale = Vector3.one * (2.4f / Mathf.Max(0.01f, confirmationSpark.sprite.bounds.size.x));
+                    confirmationSpark.color = new Color(1, 1, 1, (1 - burst) * 0.65f);
                 }
                 if (!sounded)
                 {
@@ -157,34 +204,55 @@ namespace ArcaneBrigade
                     sounded = true;
                 }
             }
-            if (age >= 0.9f) { CompletedCount++; ClearStage(); }
         }
 
         private void CreateConfirmation()
         {
             PaintedAnimationLibrary library = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
-            if (library != null)
+            if (library != null && library.Magic != null && library.Magic.Length > 0)
             {
                 var sparkle = new GameObject("PaintedMergePayoff"); sparkle.transform.SetParent(stage.transform, false);
-                confirmationSpark = sparkle.AddComponent<SpriteRenderer>(); confirmationSpark.sortingOrder = 2300; confirmationSpark.enabled = false;
+                confirmationSpark = sparkle.AddComponent<SpriteRenderer>(); confirmationSpark.sortingOrder = 2290; confirmationSpark.enabled = false;
                 confirmationFrames = library.Magic;
             }
-            if (ringMaterial == null) ringMaterial = new Material(Shader.Find("Sprites/Default"));
-            var outline = new GameObject("MergeConfirmationRing");
-            outline.transform.SetParent(stage.transform, false);
-            ring = outline.AddComponent<LineRenderer>();
-            ring.sharedMaterial = ringMaterial; ring.useWorldSpace = false; ring.loop = true;
-            ring.positionCount = 24; ring.widthMultiplier = 0.025f; ring.sortingOrder = 2300; ring.enabled = false;
-            for (int index = 0; index < 24; index++)
+            if (payoffMaterial == null) payoffMaterial = new Material(Shader.Find("Sprites/Default"));
+            if (starMesh == null)
             {
-                float angle = index * Mathf.PI * 2 / 24;
-                ring.SetPosition(index, new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0));
+                var vertices = new Vector3[11];
+                var triangles = new int[30];
+                var colors = new Color[11];
+                colors[0] = Color.white;
+                for (int index = 0; index < 10; index++)
+                {
+                    float angle = Mathf.PI * 0.5f + index * Mathf.PI / 5;
+                    vertices[index + 1] = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * (index % 2 == 0 ? 1 : 0.45f);
+                    colors[index + 1] = Color.white;
+                    triangles[index * 3] = 0; triangles[index * 3 + 1] = index + 1; triangles[index * 3 + 2] = (index + 1) % 10 + 1;
+                }
+                starMesh = new Mesh { name = "MergePresentationStar", vertices = vertices, triangles = triangles, colors = colors };
+                starMesh.RecalculateBounds();
+            }
+            compression = CreateStar("CompressionGlint");
+            compression.gameObject.SetActive(false);
+            for (int index = 0; index < Mathf.Clamp(active.Result.Tier, 1, 3); index++)
+            {
+                Transform star = CreateStar("CommittedTierStar");
+                star.gameObject.SetActive(false); stars.Add(star);
+            }
+            for (int index = 0; index < 8; index++)
+            {
+                var child = new GameObject("RevealRay"); child.transform.SetParent(stage.transform, false);
+                LineRenderer ray = child.AddComponent<LineRenderer>();
+                ray.sharedMaterial = payoffMaterial; ray.useWorldSpace = false; ray.positionCount = 2;
+                ray.widthMultiplier = 0.045f; ray.sortingOrder = 2291; ray.enabled = false;
+                rays.Add(ray);
             }
             var label = new GameObject("CommittedTierLabel");
             label.transform.SetParent(stage.transform, false); label.transform.localPosition = Vector3.down * 0.8f;
             TextMesh text = label.AddComponent<TextMesh>();
             text.font = ArcadeTypography.Body; text.fontSize = 64; text.characterSize = 0.035f; text.anchor = TextAnchor.MiddleCenter;
-            text.text = new string('★', Mathf.Clamp(active.Result.Tier, 1, 3));
+            text.text = active.Altar ? "FUSION COMPLETE" : "STAR UP";
+            text.color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
             text.GetComponent<MeshRenderer>().sharedMaterial = text.font.material; text.GetComponent<MeshRenderer>().sortingOrder = 2300;
             if (confirmation == null)
             {
@@ -200,6 +268,16 @@ namespace ArcaneBrigade
             }
         }
 
+        private Transform CreateStar(string objectName)
+        {
+            var child = new GameObject(objectName);
+            child.transform.SetParent(stage.transform, false);
+            child.AddComponent<MeshFilter>().sharedMesh = starMesh;
+            MeshRenderer renderer = child.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = payoffMaterial; renderer.sortingOrder = 2301;
+            return child.transform;
+        }
+
         private UnitVisual CreateGhost(RosterEntry entry)
         {
             UnitDefinition definition = Instantiate(owner.Content.Unit(entry.UnitId));
@@ -208,6 +286,7 @@ namespace ArcaneBrigade
             definition.CombatTier = entry.Tier;
             var child = new GameObject("PresentationGhost");
             child.transform.SetParent(stage.transform, false);
+            child.AddComponent<UnityEngine.Rendering.SortingGroup>().sortingOrder = 2295;
             UnitVisual visual = child.AddComponent<UnitVisual>();
             visual.CreateHierarchy(owner.Content.Arena.Hand);
             visual.ReducedMotion = true;
@@ -220,11 +299,13 @@ namespace ArcaneBrigade
             if (stage != null) { stage.SetActive(false); Destroy(stage); }
             foreach (UnitDefinition definition in definitions) Destroy(definition);
             definitions.Clear(); ghosts.Clear(); stage = null; active = null; purchaseShadow = null; confirmationSpark = null;
+            stars.Clear(); rays.Clear(); compression = null; tierCaption = null; confirmationFrames = null;
         }
         private void OnDisable() { Skip(); }
         private void OnDestroy()
         {
-            if (ringMaterial != null) Destroy(ringMaterial);
+            if (payoffMaterial != null) Destroy(payoffMaterial);
+            if (starMesh != null) Destroy(starMesh);
             if (confirmationClip != null) Destroy(confirmationClip);
         }
     }

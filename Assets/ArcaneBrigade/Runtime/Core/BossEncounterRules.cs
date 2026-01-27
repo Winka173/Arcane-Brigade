@@ -12,7 +12,7 @@ namespace ArcaneBrigade
         public static float BodyScale(int pattern) => pattern == 6 || pattern == 9 ? 2.3f : 2.1f;
         public static bool IsSignature(int volley) => volley % 4 == 3;
         public static bool Leaps(int pattern, int variation) => pattern == 2 || pattern == 6 || pattern == 9 || pattern == 5 && variation == 1;
-        public static float Windup(UnitState boss) => boss.ActiveBossSignature >= 0 ? SignatureWindup : 0.85f;
+        public static float Windup(UnitState boss) => boss.Definition.Id == "OutsideStageKeeper" ? 1.35f : boss.ActiveBossSignature >= 0 ? SignatureWindup : 0.85f;
         public static string SignatureName(int pattern, int variation)
         {
             string[] names = pattern switch

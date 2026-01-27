@@ -25,8 +25,8 @@ namespace ArcaneBrigade
 
         public static float WeaponWidth(UnitState unit)
         {
-            float width = unit.Definition.Weapon.VisualWidth;
-            float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.9f : 1.05f;
+            float width = unit.Definition.Weapon.VisualWidth * (unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Projectile ? 1.45f : 1);
+            float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 2.7f : 1.5f;
             return unit.Faction == Faction.Companion ? Mathf.Min(width * 0.95f, BodyHeight(unit) * limit) : width;
         }
 

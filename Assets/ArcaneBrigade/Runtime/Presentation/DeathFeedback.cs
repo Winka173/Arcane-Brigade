@@ -5,6 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class DeathFeedback : MonoBehaviour
     {
+        public const float DurationBoss = 2.4f;
         private sealed class Remnant
         {
             public Transform Root;
@@ -32,12 +33,16 @@ namespace ArcaneBrigade
             public bool Important;
             public BodyMaterial Material;
             public int Identity;
+            public bool Boss;
+            public BossFinaleVisual Finale;
             public BossPartDeathScatter[] BossDebris = System.Array.Empty<BossPartDeathScatter>();
         }
         private readonly List<Remnant> pool = new List<Remnant>();
         private Sprite fragmentSprite;
+        private Sprite payoutSprite;
+        private PaintedAnimationLibrary painted;
         public int ActiveCount { get; private set; }
-        public void Configure(Sprite sprite) { fragmentSprite = sprite; }
+        public void Configure(Sprite sprite, Sprite coin = null, PaintedAnimationLibrary effects = null) { fragmentSprite = sprite; payoutSprite = coin; painted = effects; }
         private static SpriteRenderer Part(string name, Transform parent)
         {
             var child = new GameObject(name);
@@ -67,6 +72,7 @@ namespace ArcaneBrigade
         }
         public void Play(UnitVisual visual, UnitState state)
         {
+            if (visual == null || state == null || state.Definition == null) return;
             bool important = state.Definition.IsBoss || state.Faction == Faction.Champion;
             Remnant remnant = Acquire(important);
             if (remnant == null) return;
@@ -96,12 +102,20 @@ namespace ArcaneBrigade
             remnant.Important = important;
             remnant.Material = state.Definition.Material;
             remnant.Identity = state.Definition.BossPattern + state.Id % 3;
-            remnant.Duration = state.Definition.IsBoss ? 2f : state.Faction == Faction.Champion ? 0.95f : 0.65f;
+            remnant.Boss = state.Definition.IsBoss;
+            remnant.Duration = remnant.Boss ? DurationBoss : state.Faction == Faction.Champion ? 0.95f : 0.65f;
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
+            if (remnant.Finale != null) remnant.Finale.Hide();
+            if (remnant.Boss)
+            {
+                if (remnant.Finale == null) remnant.Finale = new BossFinaleVisual(remnant.Root);
+                remnant.Finale.Capture(state, remnant.Body, remnant.Shadow, remnant.Grounded, remnant.Grip, remnant.Weapon, remnant.Hand, remnant.DrawHand, remnant.BossDebris, fragmentSprite, payoutSprite, painted);
+            }
             remnant.Root.gameObject.SetActive(true);
             Draw(remnant);
-            ActiveCount++;
+            ActiveCount = 0;
+            foreach (Remnant candidate in pool) if (candidate.Age < candidate.Duration) ActiveCount++;
         }
         public void Clear()
         {
@@ -110,6 +124,7 @@ namespace ArcaneBrigade
         }
         public void Advance(float delta)
         {
+            if (delta <= 0 || !float.IsFinite(delta)) return;
             ActiveCount = 0;
             foreach (Remnant remnant in pool)
             {
@@ -118,11 +133,12 @@ namespace ArcaneBrigade
                 if (remnant.Age >= remnant.Duration) { remnant.Root.gameObject.SetActive(false); continue; }
                 ActiveCount++;
                 Draw(remnant);
-                foreach (BossPartDeathScatter debris in remnant.BossDebris) if (debris != null) debris.Step(delta);
+                if (!remnant.Boss) foreach (BossPartDeathScatter debris in remnant.BossDebris) if (debris != null) debris.Step(delta);
             }
         }
         private static void Draw(Remnant remnant)
         {
+            if (remnant.Boss) { remnant.Finale.Draw(remnant.Age); return; }
             float progress = Mathf.Clamp01(remnant.Age / remnant.Duration);
             float kick = Mathf.Sin(Mathf.Clamp01(progress / 0.25f) * Mathf.PI);
             float collapse = Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.16f) / 0.52f));

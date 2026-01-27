@@ -14,6 +14,7 @@ namespace ArcaneBrigade
         private float age;
         private bool active;
         private GroundShadow grounded;
+        private bool outsideHand;
         public bool Active => active;
         public Vector2 VisualPlayerPosition => PresentationSettings.ReducedMotion ? origin : PassengerPosition(origin, age);
         public static bool ChangesMap(int wave) => wave > 1 && (wave - 1) % 4 == 0;
@@ -24,6 +25,11 @@ namespace ArcaneBrigade
             origin = owner.Simulation.Champion.Position;
             CarnivalStageAssets assets = Resources.Load<CarnivalStageAssets>("CarnivalStageAssets");
             frames = assets != null ? assets.Courier : new Sprite[0];
+            OutsideStageAssets outside = OutsideStageAssets.Current;
+            if (outside != null && outside.BossFrames.Length == 16)
+            {
+                outsideHand = true; frames = new[] { outside.BossFrames[4], outside.BossFrames[5], outside.BossFrames[6] };
+            }
             passengers = FindObjectsByType<UnitVisual>();
             courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 500;
             grounded = gameObject.AddComponent<GroundShadow>();
@@ -51,18 +57,27 @@ namespace ArcaneBrigade
             bool reduced = PresentationSettings.ReducedMotion;
             if (frames.Length > 0)
             {
-                courier.sprite = frames[reduced ? 0 : 2 + Mathf.FloorToInt(age * 7) % 4];
-                courier.transform.localScale = Vector3.one * (3.8f / Mathf.Max(0.01f, frames[0].bounds.size.x));
+                courier.sprite = frames[outsideHand ? age < 0.45f ? 0 : age < 1.3f ? 1 : 0 : reduced ? 0 : 2 + Mathf.FloorToInt(age * 7) % 4];
+                float width = outsideHand ? 7.2f : 3.8f;
+                courier.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, courier.sprite.bounds.size.x));
                 Vector2 passenger = PassengerPosition(origin, age);
                 Vector2 position = age < 0.4f ? Vector2.Lerp(origin + Vector2.left * 8, origin, Mathf.SmoothStep(0, 1, age / 0.4f)) : age < 1.3f ? passenger : Vector2.Lerp(PassengerPosition(origin, 1.3f), new Vector2(9, 4), Mathf.Clamp01((age - 1.3f) / 1.1f));
-                transform.position = reduced ? origin + Vector2.up : position + Vector2.down * 0.45f;
+                transform.position = reduced ? origin + Vector2.up : position + Vector2.down * (outsideHand ? 1.25f : 0.45f);
+                transform.rotation = Quaternion.Euler(0, 0, outsideHand && !reduced ? age < 1.3f ? Mathf.Sin(age * 2) * -8 : Mathf.Lerp(-8, 22, Mathf.Clamp01((age - 1.3f) / 0.5f)) : 0);
                 courier.color = new Color(1, 1, 1, Mathf.Clamp01((2.6f - age) * 2));
                 grounded.Configure(courier.sprite);
-                grounded.Display(courier.sprite, (Vector2)transform.position - Vector2.up * (reduced ? 0 : 1.1f), 3.8f, reduced ? 0 : 1.1f, 0.22f * courier.color.a);
+                grounded.Display(courier.sprite, (Vector2)transform.position - Vector2.up * (reduced ? 0 : 1.1f), width, reduced ? 0 : 1.1f, 0.22f * courier.color.a);
             }
             if (age < (reduced ? 0.6f : 2.6f)) return;
             active = false;
-            owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = new Vector2(0, -0.2f);
+            Vector2 destination = new Vector2(0, -0.2f);
+            foreach (UnitState unit in owner.Simulation.Units)
+                if (unit.Alive && unit.Faction != Faction.Enemy)
+                {
+                    Vector2 relative = unit.Position - origin;
+                    unit.Position = unit.PreviousPosition = owner.Simulation.ClampPosition(destination + relative, unit.Definition.Radius);
+                }
+            owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = destination;
             completed?.Invoke(); Destroy(gameObject);
         }
 

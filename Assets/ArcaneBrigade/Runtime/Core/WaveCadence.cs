@@ -4,6 +4,18 @@ namespace ArcaneBrigade
 {
     public static class WaveCadence
     {
+        public static int SwarmBatch(int wave, float time)
+        {
+            if (wave < 3) return wave == 2 ? 2 : 1;
+            float beat = Mathf.Repeat(Mathf.Max(0, time - 0.6f), 12);
+            int crest = Mathf.Min(12, 3 + (wave - 3) / 2);
+            return beat < 6 ? crest : beat < 8 ? Mathf.Max(2, crest / 2) : 1;
+        }
+        public static float SwarmInterval(int wave, float time)
+        {
+            if (wave < 3) return 1;
+            return Mathf.Repeat(Mathf.Max(0, time - 0.6f), 12) < 8 ? 0.9f : 2.8f;
+        }
         public static float IntervalMultiplier(int wave, float time)
         {
             if (wave < 3) return 1;

@@ -29,7 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 1
-  Rarity: 3
+  Rarity: 4
   RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
@@ -60,8 +60,8 @@ MonoBehaviour:
   - Effect: 2
     Scope: 1
     Value: -1
-  Price: 27
-  UnlockWave: 3
+  Price: 80
+  UnlockWave: 10
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
@@ -69,3 +69,5 @@ MonoBehaviour:
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

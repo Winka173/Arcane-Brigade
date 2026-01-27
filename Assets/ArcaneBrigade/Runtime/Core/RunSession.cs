@@ -77,9 +77,13 @@ namespace ArcaneBrigade
         public List<ShopOffer> Offers = new List<ShopOffer>();
         public List<ShopOffer> SpecialOffers = new List<ShopOffer>();
         public List<ContributionEntry> Contributions = new List<ContributionEntry>();
+        public OutsideStageStatus OutsideStage;
+        public List<string> OutsideRewards = new List<string>();
+        public int OutsideTransfers;
+        public int LastOutsideTransferWave;
     }
 
-    public sealed class RunSession : IDisposable
+    public sealed partial class RunSession : IDisposable
     {
         private readonly RunCatalog catalog;
         private readonly List<UnityEngine.Object> runtimeAssets = new List<UnityEngine.Object>();
@@ -148,6 +152,7 @@ namespace ArcaneBrigade
 
         public void Validate(RunSnapshot snapshot)
         {
+            ValidateOutsideStage(snapshot);
             if (snapshot != null && snapshot.SchemaRevision >= 3 && (snapshot.Difficulty < 0 || snapshot.Difficulty > 4 || !Array.Exists(RunMeta.ChallengeIds, id => id == snapshot.ChallengeId) || snapshot.StartHall < 1 || snapshot.StartHall > snapshot.Wave + (long)1 || snapshot.DefeatedBosses == null || !float.IsFinite(snapshot.LastDamageAmount) || snapshot.LastDamageAmount < 0)) throw new InvalidOperationException("Invalid run meta identity");
             if (snapshot != null && snapshot.SchemaRevision >= 3)
             {
@@ -269,6 +274,7 @@ namespace ArcaneBrigade
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
             CombatCatalog.WaveDuration = Mathf.Min(catalog.WaveSeconds, catalog.FirstWaveSeconds + (State.Wave - 1) * catalog.WaveIncrement);
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * (1f + State.Difficulty * 0.12f));
+            CombatCatalog.EnemyBudget = Mathf.Min(240, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1 : 1.65f)));
             CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
@@ -343,6 +349,7 @@ namespace ArcaneBrigade
                 CombatCatalog.GoldPerKill = active.GoldPerKill;
                 CombatCatalog.PassiveHeal += active.Healing;
             }
+            PrepareOutsideStage();
             return CombatCatalog;
         }
 
@@ -416,6 +423,7 @@ namespace ArcaneBrigade
         public void Settle(CombatSimulation simulation)
         {
             if (State.Phase != SessionPhase.Combat || (simulation.Phase != RunPhase.Victory && simulation.Phase != RunPhase.Defeat)) return;
+            if (SettleOutsideStage(simulation)) return;
             State.Health = simulation.Champion.Health;
             State.BuildScoreMultiplier = catalog.StatRevision > 0 ? K10StatRules.Factor(Bonus(ItemEffect.ScoreMultiplier), 0.1f, 100) : 1;
             State.LastDamageSource = simulation.LastDamageSource;
@@ -446,6 +454,7 @@ namespace ArcaneBrigade
         public void ContinueWave()
         {
             if (State.Phase != SessionPhase.Shop) return;
+            if (State.OutsideStage == OutsideStageStatus.Reward) return;
             if (State.Wave == int.MaxValue) { Notice = "Technical hall counter limit reached. Records remain saved."; return; }
             State.Wave++;
             State.Phase = SessionPhase.Combat;
@@ -515,6 +524,7 @@ namespace ArcaneBrigade
 
         public bool CanBuy(ShopOffer offer)
         {
+            if (State.OutsideStage == OutsideStageStatus.Reward) return false;
             if (offer != null && offer.Kind == OfferKind.Companion && State.NewRecruitsThisWave >= 3) return false;
             if (offer == null || offer.Sold || State.Phase != SessionPhase.Shop) return false;
             if (offer.Kind == OfferKind.Companion && catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return false;
@@ -545,6 +555,7 @@ namespace ArcaneBrigade
 
         public bool Reroll()
         {
+            if (State.OutsideStage == OutsideStageStatus.Reward) return false;
             int price = RerollCost;
             if (State.Phase != SessionPhase.Shop || State.Gold < price) return false;
             if (State.RerollsThisShop == int.MaxValue) return false;

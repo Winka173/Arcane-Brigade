@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); }
+        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
@@ -47,6 +47,7 @@ namespace ArcaneBrigade
 
         private bool ResolveExpandedAttack(UnitState source, float damage, bool critical, CombatCause cause)
         {
+            ResolveCooperationAttack(source, damage, cause);
             WeaponDefinition weapon = source.Definition.Weapon;
             if (weapon.Mechanic != CarnivalWeapon.None && source.Faction != Faction.Enemy) return ResolveCarnivalAttack(source, damage, critical, cause);
             if (weapon.Family == ExpandedWeapon.None || source.Faction == Faction.Enemy) return false;
@@ -191,6 +192,7 @@ namespace ArcaneBrigade
 
         private void ProcessExpansion(float delta)
         {
+            ProcessCooperation();
             ProcessDeathReactions();
             ProcessExpandedRelics(); ProcessBossMotif();
             for (int index = fields.Count - 1; index >= 0; index--)

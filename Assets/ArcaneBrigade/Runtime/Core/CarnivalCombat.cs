@@ -46,9 +46,11 @@ namespace ArcaneBrigade
                     if (!CanHit(source.Faction, enemy) || offset.magnitude > weapon.Range || Vector2.Dot(offset.normalized, source.AttackDirection) < 0.55f) continue;
                     if (pulled++ >= 3 + Mathf.Clamp(source.Definition.CombatTier, 1, 3)) break;
                     float resistance = enemy.Definition.IsBoss ? 1 : Mathf.Clamp01(enemy.Definition.KnockbackResistance);
+                    Vector2 before = enemy.Position;
                     enemy.Position = ClampPosition(Vector2.MoveTowards(enemy.Position, source.Position + source.AttackDirection * 1.4f, 0.65f * (1 - resistance)), enemy.Definition.Radius);
                     spatial.Move(enemy);
                     ApplyWeaponDamage(enemy, damage, source.Faction, weapon.Element, weapon.Id, source.AttackDirection, weapon, critical, cause);
+                    RegisterCooperationPull(source, enemy, before, cause);
                 }
                 Field(ExpandedFieldKind.MagnetCone, source, source.Position, source.AttackDirection, weapon.Range, 0, 0, 0.35f, cause);
             }

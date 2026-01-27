@@ -84,7 +84,7 @@ namespace ArcaneBrigade
         public void Display()
         {
             Reveal.ReducedMotion = owner.Profile != null && owner.Profile.ReducedMotion;
-            if (owner.Session.State.Phase != SessionPhase.Shop)
+            if (owner.Session.State.Phase != SessionPhase.Shop || owner.Session.State.OutsideStage == OutsideStageStatus.Reward)
             {
                 if (scenery != null) scenery.SetActive(false);
                 if (voice != null) voice.Silence();

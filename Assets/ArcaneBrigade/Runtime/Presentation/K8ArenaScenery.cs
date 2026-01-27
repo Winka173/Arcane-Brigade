@@ -40,6 +40,7 @@ namespace ArcaneBrigade
             if (owner.Simulation.Phase == RunPhase.Paused) return;
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             Color target = Color.Lerp(Palettes[theme], new Color(0.28f, 0.17f, 0.37f), owner.Shop != null && owner.Shop.Special ? 0.55f : 0);
+            if (owner.Simulation.BossDefeated) target = Color.Lerp(target, new Color(0.2f, 0.34f, 0.31f), 0.28f);
             palette = Color.Lerp(palette, target, reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * 0.8f));
             if (floor != null)
             {

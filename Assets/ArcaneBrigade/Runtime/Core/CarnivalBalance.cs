@@ -7,7 +7,7 @@ namespace ArcaneBrigade
         public static float ShopPrice(int wave)
         {
             float stage = Mathf.Max(0, wave - 1);
-            return Mathf.Min(10000, 1 + stage * 0.18f + stage * stage * 0.016f);
+            return Mathf.Min(10000, (1 + stage * 0.18f + stage * stage * 0.016f) * (1 + Mathf.Min(0.3f, Mathf.Max(0, wave - 3) * 0.02f)));
         }
 
         public static float EnemyHealth(int wave) => 1.2f * (1 + Mathf.Pow(Mathf.Max(0, wave - 1) / 12f, 1.45f));

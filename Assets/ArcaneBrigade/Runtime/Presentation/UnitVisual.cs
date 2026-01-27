@@ -66,8 +66,8 @@ namespace ArcaneBrigade
         public static Vector3 FitCompanionWeapon(Vector3 scale, Rect ink, float bodyHeight, bool melee)
         {
             float longest = Mathf.Max(ink.width * scale.x, ink.height * scale.y);
-            float minimum = bodyHeight * (melee ? 1.05f : 0.65f);
-            float maximum = bodyHeight * (melee ? 1.75f : 0.95f);
+            float minimum = bodyHeight * (melee ? 1.55f : 0.95f);
+            float maximum = bodyHeight * (melee ? 2.5f : 1.4f);
             return scale * (Mathf.Clamp(longest, minimum, maximum) / Mathf.Max(0.01f, longest));
         }
         public bool WeakspotVisible => exposedCorners[0] != null && exposedCorners[0].enabled;

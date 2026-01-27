@@ -37,6 +37,8 @@ namespace ArcaneBrigade
                 case ItemRarity.Uncommon: return "UNCOMMON";
                 case ItemRarity.Rare: return "RARE";
                 case ItemRarity.Mythic: return "MYTHIC";
+                case ItemRarity.Crimson: return "CRIMSON";
+                case ItemRarity.Rainbow: return "PRISMATIC";
                 default: return "COMMON";
             }
         }
@@ -48,6 +50,8 @@ namespace ArcaneBrigade
                 case ItemRarity.Uncommon: return new Color(0.25f, 0.7f, 1f);
                 case ItemRarity.Rare: return new Color(0.75f, 0.6f, 1f);
                 case ItemRarity.Mythic: return new Color(1f, 0.76f, 0.35f);
+                case ItemRarity.Crimson: return new Color(1f, 0.16f, 0.27f);
+                case ItemRarity.Rainbow: return new Color(0.58f, 1f, 0.92f);
                 default: return new Color(0.82f, 0.85f, 0.92f);
             }
         }

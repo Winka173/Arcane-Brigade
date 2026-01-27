@@ -1,0 +1,48 @@
+PASS Full original boss and reward atlases
+PASS Optional boss never enters ordinary rotation
+PASS The transfer hand belongs to the boss anatomy
+PASS Rarity ordinals remain compatible
+PASS Four relics and two original prismatic allies
+PASS Prismatic gifts cannot reroll into normal shops
+PASS No challenge before three transfers LanternKnight
+PASS Transfer count is idempotent LanternKnight
+PASS Optional challenge accepts exactly once LanternKnight
+PASS Isolated super boss arena LanternKnight
+PASS Real hand attacks execute LanternKnight
+PASS Victory gives exactly three choices LanternKnight
+PASS No free shop refresh or duplicated regular income LanternKnight
+PASS Reward phase cannot buy or reroll ordinary shop LanternKnight
+PASS Save-loaded reward claims once LanternKnight
+PASS Return to same wave shop after reward LanternKnight
+PASS No challenge before three transfers LoneJelly
+PASS Transfer count is idempotent LoneJelly
+PASS Optional challenge accepts exactly once LoneJelly
+PASS Isolated super boss arena LoneJelly
+PASS Real hand attacks execute LoneJelly
+PASS Victory gives exactly three choices LoneJelly
+PASS No free shop refresh or duplicated regular income LoneJelly
+PASS Reward phase cannot buy or reroll ordinary shop LoneJelly
+PASS Solo hero never receives unusable ally choices
+PASS Save-loaded reward claims once LoneJelly
+PASS Return to same wave shop after reward LoneJelly
+PASS Declining has no economic penalty
+PASS Six extra kills mint only one normal coin payout
+PASS Swarm crest and breathing interval 1
+PASS Swarms consist of small melee bodies 1
+PASS Larger melee weapon has actual increased reach 1
+PASS Swarm crest and breathing interval 3
+PASS Swarms consist of small melee bodies 3
+PASS Extra bodies are fragile, not extra tanks 3
+PASS Larger melee weapon has actual increased reach 3
+PASS Swarm crest and breathing interval 5
+PASS Swarms consist of small melee bodies 5
+PASS Extra bodies are fragile, not extra tanks 5
+PASS Larger melee weapon has actual increased reach 5
+PASS Swarm crest and breathing interval 9
+PASS Swarms consist of small melee bodies 9
+PASS Extra bodies are fragile, not extra tanks 9
+PASS Larger melee weapon has actual increased reach 9
+PASS Swarm crest and breathing interval 16
+PASS Swarms consist of small melee bodies 16
+PASS Extra bodies are fragile, not extra tanks 16
+PASS Larger melee weapon has actual increased reach 16

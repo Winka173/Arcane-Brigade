@@ -72,6 +72,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b877f79de0494fe4892d8031a1f4705f, type: 2}
   - {fileID: 11400000, guid: c12167dde16942645bb1432b191f0e72, type: 2}
   - {fileID: 11400000, guid: 0e8e367cd5f036943823cbb6c2600385, type: 2}
+  - {fileID: 11400000, guid: 281634696273954468a28c7ed7cf95f7, type: 2}
+  - {fileID: 11400000, guid: 9353cd86f4eb04145a1a1a020064287f, type: 2}
   Weapons:
   - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
@@ -1658,6 +1660,144 @@ MonoBehaviour:
     Pools: 3
     AltarCurrency: 1
     AltarPrice: 3
+    SignatureRole: 0
+  - Id: RainbowCrown
+    Name: Borrowed Crown
+    Description: Team damage +35%. One extra projectile.
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1173072530, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.35
+    - Effect: 9
+      Scope: 0
+      Value: 1
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 15
+    SignatureRole: 0
+  - Id: RainbowHeart
+    Name: Clockwork Heart
+    Description: Max HP +60. Heal 1 HP per second.
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -843331076, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 60
+    - Effect: 7
+      Scope: 1
+      Value: 1
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 15
+    SignatureRole: 0
+  - Id: RainbowThread
+    Name: Living Thread
+    Description: Melee damage +60%. Knockback +35%.
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1973855242, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 20
+      Scope: 0
+      Value: 0.6
+    - Effect: 31
+      Scope: 0
+      Value: 0.35
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 15
+    SignatureRole: 0
+  - Id: RainbowPrism
+    Name: Impossible Prism
+    Description: Shots split twice. Ranged damage +25%.
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1340468354, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 26
+      Scope: 0
+      Value: 2
+    - Effect: 21
+      Scope: 0
+      Value: 0.25
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 15
+    SignatureRole: 0
+  - Id: CrimsonSeal
+    Name: Crimson Seal
+    Description: Personal damage +45%. Collision damage +12.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1578785359, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 10
+    Modifiers:
+    - Effect: 12
+      Scope: 1
+      Value: 0.45
+    - Effect: 19
+      Scope: 0
+      Value: 12
+    Rarity: 4
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 1
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 15
+    SignatureRole: 0
+  - Id: CrimsonSpring
+    Name: Crimson Spring
+    Description: Attack speed +25%. Melee reach +25%.
+    Price: 75
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1739823343, guid: bf4715b4c390b974093b63772728032a, type: 3}
+    UnlockWave: 10
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: 0.25
+    - Effect: 22
+      Scope: 0
+      Value: 0.25
+    Rarity: 4
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 1
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 15
     SignatureRole: 0
   Bonds:
   - Id: hearth

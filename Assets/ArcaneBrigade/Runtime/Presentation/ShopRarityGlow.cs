@@ -17,12 +17,14 @@ namespace ArcaneBrigade
         private SpriteRenderer target;
         private readonly SpriteRenderer[] motes = new SpriteRenderer[10];
         private float appearedAt = -1;
+        private bool prismatic;
         public SpriteRenderer Target => target;
         public void Configure(ItemRarity rarity, ArenaController controller, float offset, SpriteRenderer merchandise)
         {
             target = merchandise;
+            prismatic = rarity == ItemRarity.Rainbow;
             owner = controller; phase = offset; tint = RunModifierRules.RarityColor(rarity);
-            strength = rarity == ItemRarity.Mythic ? 1.4f : rarity == ItemRarity.Rare ? 1.15f : 0.8f;
+            strength = rarity >= ItemRarity.Crimson ? 1.55f : rarity == ItemRarity.Mythic ? 1.4f : rarity == ItemRarity.Rare ? 1.15f : 0.8f;
             rayMaterial = new Material(Shader.Find("Sprites/Default"));
             for (int index = 0; index < rays.Length; index++)
             {
@@ -63,6 +65,7 @@ namespace ArcaneBrigade
             if (owner == null || owner.Simulation.Phase == RunPhase.Paused) return;
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             float time = owner.PresentationClock + phase;
+            if (prismatic) tint = Color.Lerp(new Color(0.6f, 1, 0.9f), Color.HSVToRGB(Mathf.Repeat(time * 0.045f, 1), 0.45f, 1), 0.65f);
             if (visibility <= 0) appearedAt = -1;
             else if (appearedAt < 0) appearedAt = owner.PresentationClock;
             float reveal = reduced ? 1 : Mathf.SmoothStep(0, 1, Mathf.Clamp01((owner.PresentationClock - appearedAt) / 0.35f));
@@ -85,8 +88,9 @@ namespace ArcaneBrigade
                 float flare = reduced ? 1 : 0.8f + Mathf.Sin(time * 3.2f + index * 0.9f) * 0.2f;
                 rays[index].SetPosition(1, direction * (0.62f + strength * 0.26f) * pulse * flare);
                 rays[index].sortingOrder = target.sortingOrder - 1;
-                rays[index].startColor = new Color(tint.r, tint.g, tint.b, 0.72f * visibility * reveal * flare);
-                rays[index].endColor = new Color(tint.r, tint.g, tint.b, 0.12f * visibility * reveal);
+                Color spectrum = prismatic ? Color.HSVToRGB(Mathf.Repeat(index / (float)rays.Length + (reduced ? 0 : time * 0.025f), 1), 0.48f, 1) : tint;
+                rays[index].startColor = new Color(spectrum.r, spectrum.g, spectrum.b, 0.72f * visibility * reveal * flare);
+                rays[index].endColor = new Color(spectrum.r, spectrum.g, spectrum.b, 0.12f * visibility * reveal);
             }
             for (int index = 0; index < motes.Length; index++)
             {

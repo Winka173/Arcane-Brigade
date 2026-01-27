@@ -10,6 +10,7 @@ namespace ArcaneBrigade
         private Vector3 velocity;
         private float heightVelocity;
         private Vector3 trackedPosition;
+        private float DesiredHeight => owner.Session.State.Phase == SessionPhase.Shop ? owner.Content.RestViewHeight : owner.Session.State.OutsideStage == OutsideStageStatus.Fighting ? Mathf.Max(5.5f, owner.Content.CombatViewHeight) : owner.Content.CombatViewHeight;
         private void Awake() { arenaCamera = GetComponent<Camera>(); Refresh(); }
         private void Update() { Refresh(); }
         public void Follow(ArenaController controller, bool snap = true) { owner = controller; if (snap) Snap(); }
@@ -17,7 +18,7 @@ namespace ArcaneBrigade
         {
             if (owner == null || owner.Simulation == null) return;
             Refresh();
-            arenaCamera.orthographicSize = owner.Session.State.Phase == SessionPhase.Shop ? owner.Content.RestViewHeight : owner.Content.CombatViewHeight;
+            arenaCamera.orthographicSize = DesiredHeight;
             Vector2 target = owner.Session.State.Phase == SessionPhase.Shop ? Vector2.zero : owner.Simulation.Champion.Position;
             Vector2 position = ClampCenter(target, owner.WorldBounds, arenaCamera.orthographicSize, 16f / 9f);
             transform.position = new Vector3(position.x, position.y, transform.position.z);
@@ -28,7 +29,7 @@ namespace ArcaneBrigade
         private void LateUpdate()
         {
             if (owner == null || owner.Simulation == null) return;
-            float height = owner.Session.State.Phase == SessionPhase.Shop ? owner.Content.RestViewHeight : owner.Content.CombatViewHeight;
+            float height = DesiredHeight;
             if (owner.Simulation.Phase == RunPhase.Paused) return;
             arenaCamera.orthographicSize = PresentationSettings.ReducedMotion ? height : Mathf.SmoothDamp(arenaCamera.orthographicSize, height, ref heightVelocity, 0.3f, Mathf.Infinity, Time.deltaTime);
             height = arenaCamera.orthographicSize;
