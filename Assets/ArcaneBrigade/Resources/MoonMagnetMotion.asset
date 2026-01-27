@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: MoonMagnetMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 756498460, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 79310883, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  Walk:
+  - {fileID: -194861517, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 2135756250, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: -194861517, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 2135756250, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  Windup:
+  - {fileID: -35554557, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 1811420426, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  Release:
+  - {fileID: 1234572607, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 1234572607, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  Recovery:
+  - {fileID: 595112422, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 756498460, guid: 4539c30ea9e635d419126497190160b2, type: 3}

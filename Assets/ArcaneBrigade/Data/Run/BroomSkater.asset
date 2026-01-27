@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BroomSkater
   DisplayName: Broom Skater
-  Body: {fileID: -1448893968, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  Body: {fileID: -203445659, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
   AnimationFrames:
-  - {fileID: -1448893968, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 20444608, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 1508455627, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 405183079, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: -203445659, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: -2055607655, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: 740098800, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: 1221787923, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 96dc67c989114554da0308cae4c33350, type: 2}
   Weapon: {fileID: 11400000, guid: 78a80312614702e4684f79a78fb3d16c, type: 2}
   Health: 67
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 2
   Material: 5
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

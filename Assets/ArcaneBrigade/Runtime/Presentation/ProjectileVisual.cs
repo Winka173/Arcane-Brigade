@@ -45,13 +45,14 @@ namespace ArcaneBrigade
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
+            bool bodyFragment = hostile && state.Sprite != null && state.Sprite.texture.name == "BodyFragments_v1";
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
             grounded.Display(body.sprite, position + Vector2.down * 0.18f, Mathf.Max(0.13f, state.VisualWidth), 0.18f, hostile ? 0.22f : 0.13f);
             int order = hostile ? 2400 : 2100;
             body.sortingOrder = order;
             if (hostile)
             {
-                Color danger = Color.Lerp(body.color, new Color(1, 0.24f, 0.42f, body.color.a), 0.65f);
+                Color danger = Color.Lerp(body.color, new Color(1, 0.24f, 0.42f, body.color.a), bodyFragment ? 0.2f : 0.65f);
                 body.color = danger;
             }
             halo.sortingOrder = order - 1; core.sortingOrder = order + 1;
@@ -60,7 +61,7 @@ namespace ArcaneBrigade
                 body.transform.rotation = Quaternion.Euler(0, 0, time * 650 + state.Id * 31);
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
-            bool authored = state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
+            bool authored = bodyFragment || state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
             halo.enabled = core.enabled = magic && !authored && (hostile || EffectDensity.CosmeticProjectile(state.Id));
             if (state.Weapon != null && (state.Weapon.Family == ExpandedWeapon.Fish || state.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)) halo.enabled = core.enabled = false;
             float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;

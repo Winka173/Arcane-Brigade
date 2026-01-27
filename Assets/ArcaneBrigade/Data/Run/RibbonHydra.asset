@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RibbonHydra
   DisplayName: Ribbon Hydra
-  Body: {fileID: -1920348642, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  Body: {fileID: -318626853, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
   AnimationFrames:
-  - {fileID: -1920348642, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: 321148124, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: -219697699, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: -1636377939, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -318626853, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: -840697732, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: 1121970532, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: 294490571, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: c1c5a95a8f429744cb9632edcc3cb382, type: 2}
   Weapon: {fileID: 11400000, guid: eb40c07ca3a68454681821474c562ceb, type: 2}
   Health: 74
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 3
   Material: 3
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

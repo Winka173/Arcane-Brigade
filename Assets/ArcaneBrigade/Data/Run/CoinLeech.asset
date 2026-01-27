@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CoinLeech
   DisplayName: Coin Leech
-  Body: {fileID: -288726719, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  Body: {fileID: 1903318657, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
   AnimationFrames:
-  - {fileID: -288726719, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 1696779420, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: -1588837531, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 1948493564, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1903318657, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -942595566, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -1757293482, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -875750260, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: f2db5d8638963d54fbbbd26a301078c3, type: 2}
   Weapon: {fileID: 11400000, guid: 5a64ce7a112531a40948021e61ba5bf7, type: 2}
   Health: 46
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 3
   Material: 3
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

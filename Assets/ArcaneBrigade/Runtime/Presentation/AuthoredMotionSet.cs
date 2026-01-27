@@ -18,6 +18,9 @@ namespace ArcaneBrigade
             if (unit.Definition.IsBoss && unit.TelegraphUntil > time)
                 return Windup[Mathf.Clamp(Mathf.FloorToInt((1 - (unit.TelegraphUntil - time) / BossEncounterRules.Windup(unit)) * Windup.Length), 0, Windup.Length - 1)];
             if (unit.PendingAttack && age >= 0 && age < windup) return Windup[Mathf.Min(Windup.Length - 1, Mathf.FloorToInt(age / windup * Windup.Length))];
+            if (unit.EvolutionReleaseAt > time && unit.EvolutionReleaseAt > 0)
+                return Windup[Mathf.Clamp(Mathf.FloorToInt(age / windup * Windup.Length), 0, Windup.Length - 1)];
+            if (unit.EvolutionRecoveryUntil > time) return Release[0];
             if (unit.Faction == Faction.Enemy && unit.Definition.Behavior >= EnemyBehavior.Hopper && age >= 0 && age < windup)
                 return Windup[Mathf.Min(Windup.Length - 1, Mathf.FloorToInt(age / windup * Windup.Length))];
             float recovery = Mathf.Max(0.06f, unit.Definition.Weapon.Recovery);

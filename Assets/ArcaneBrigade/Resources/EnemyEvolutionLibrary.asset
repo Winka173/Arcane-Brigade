@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17dd5f6b5ef74b446b38781ab979f36e, type: 3}
+  m_Name: EnemyEvolutionLibrary
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.EnemyEvolutionLibrary
+  Species:
+  - Id: HushMite
+    MutationName: Split-Eye Pounce
+    Summary: Pounces at your old position.
+    Ability: 1
+    Normal: {fileID: 11400000, guid: eac765811d6af61478367fa493f0b55f, type: 2}
+    Mutated: {fileID: 11400000, guid: 312fc51f9839b1848a8c5242ae48921f, type: 2}
+  - Id: ClockBat
+    MutationName: Broken-Wing Crossfire
+    Summary: Sidesteps while spitting curved shots.
+    Ability: 2
+    Normal: {fileID: 11400000, guid: c6d888c47fdbeb445900dacb863e2309, type: 2}
+    Mutated: {fileID: 11400000, guid: 3302fb14faae60349a9059dfa0fe14c4, type: 2}
+  - Id: BristleImp
+    MutationName: Antler Rush
+    Summary: Lowers its horns, then rushes.
+    Ability: 3
+    Normal: {fileID: 11400000, guid: a2b362188cce162478256f351cbb2333, type: 2}
+    Mutated: {fileID: 11400000, guid: d6dfd648d297e834a8778ac5fb0d2349, type: 2}
+  - Id: RuneWisp
+    MutationName: Twisted Rune Spiral
+    Summary: Unwinds six slow spiral shots.
+    Ability: 4
+    Normal: {fileID: 11400000, guid: 9c22713da8184b148aa9319ef9355f20, type: 2}
+    Mutated: {fileID: 11400000, guid: 9f4e383b7806024478d95e08215d1d84, type: 2}
+  - Id: InkMoth
+    MutationName: Ragged Molting
+    Summary: Sheds two short-lived ink pools.
+    Ability: 5
+    Normal: {fileID: 11400000, guid: 80540f93d7838b94882523835ac6a929, type: 2}
+    Mutated: {fileID: 11400000, guid: 13077dc804f1c66448e976d8c3cf592b, type: 2}
+  - Id: SirenSeal
+    MutationName: Gill Echo
+    Summary: Sings two staggered impact waves.
+    Ability: 6
+    Normal: {fileID: 11400000, guid: fe7416c3344bbde4a80571141204c58d, type: 2}
+    Mutated: {fileID: 11400000, guid: 8741016e4a078f44289f1830578eda66, type: 2}
+  - Id: DoorBearer
+    MutationName: Splinter Slam
+    Summary: Slams its door-body forward.
+    Ability: 7
+    Normal: {fileID: 11400000, guid: 0a4ea21668cd99a4e83895f6a4db2345, type: 2}
+    Mutated: {fileID: 11400000, guid: 0d597b4a03394af40a31ff592377b96e, type: 2}
+  - Id: MoonMagnet
+    MutationName: Three-Prong Salvo
+    Summary: Pulls loose coins; spits metal.
+    Ability: 8
+    Normal: {fileID: 11400000, guid: a382564aafc842d42bd8fd4f65ceb744, type: 2}
+    Mutated: {fileID: 11400000, guid: 1cef244ad30ef2f4cbd5bbea1c7eed86, type: 2}
+  - Id: SleepMimic
+    MutationName: Seam-Ripper Lunge
+    Summary: Opens its seam, then lunges.
+    Ability: 9
+    Normal: {fileID: 11400000, guid: 7825e90aac6858a489952972a662c974, type: 2}
+    Mutated: {fileID: 11400000, guid: 6753c87eceebed64aa5d2184e9ac9640, type: 2}
+  - Id: CurtainWisp
+    MutationName: Curtain Collapse
+    Summary: Drops three strips of living cloth.
+    Ability: 10
+    Normal: {fileID: 11400000, guid: 6ea1657ed4ae93e4483a3eaa5a5a00e4, type: 2}
+    Mutated: {fileID: 11400000, guid: b0fecd7704b3bd74eb4f96bb9f16d607, type: 2}
+  - Id: FurnaceToad
+    MutationName: Chimney Fan
+    Summary: Spits five slow furnace globs.
+    Ability: 11
+    Normal: {fileID: 11400000, guid: 28c25d4af98105d4fb7104232f891751, type: 2}
+    Mutated: {fileID: 11400000, guid: 2de43673558ef8b49ab2fe10ff01d5b3, type: 2}
+  - Id: WardrobeCrab
+    MutationName: Cabinet Scissors
+    Summary: Snaps two crossed wooden jaws.
+    Ability: 12
+    Normal: {fileID: 11400000, guid: 03e2df0c9db7a7e489265c2ff307818b, type: 2}
+    Mutated: {fileID: 11400000, guid: 90ba37712a8798d429362eb38e29afd8, type: 2}
+  - Id: HopperKeg
+    MutationName: Double-Spring Rebound
+    Summary: Two jumps, each with a landing pulse.
+    Ability: 13
+    Normal: {fileID: 11400000, guid: 76d8b7901ef609f47ad2a59d92cc266a, type: 2}
+    Mutated: {fileID: 11400000, guid: 0325d497a6f8e6e438956318dff66e7e, type: 2}
+  - Id: ChargerRam
+    MutationName: Forked-Horn Feint
+    Summary: Steps back before a locked rush.
+    Ability: 14
+    Normal: {fileID: 11400000, guid: d0cada0285f38444b824ad828a77cfd4, type: 2}
+    Mutated: {fileID: 11400000, guid: 57d1e2a43ffafa24f89882f6109dbad2, type: 2}
+  - Id: CoinLeech
+    MutationName: Coin-Cheek Barrage
+    Summary: Steals loose coins to fuel a fan.
+    Ability: 15
+    Normal: {fileID: 11400000, guid: f2db5d8638963d54fbbbd26a301078c3, type: 2}
+    Mutated: {fileID: 11400000, guid: 58834b0d21b989340b08d857974a472d, type: 2}
+  - Id: BlastPuffer
+    MutationName: Second-Skin Echo
+    Summary: Releases a large pulse, then a small echo.
+    Ability: 16
+    Normal: {fileID: 11400000, guid: 18bbe27bec4c0214489ee3c19d570ec1, type: 2}
+    Mutated: {fileID: 11400000, guid: 5c9ce0f432b746340a4a3ff9826fe93a, type: 2}
+  - Id: SporeBishop
+    MutationName: Spore Garden
+    Summary: Plants three spaced spore pools.
+    Ability: 17
+    Normal: {fileID: 11400000, guid: 680ae4cef2cab7a4b9e39c1d4e1a8199, type: 2}
+    Mutated: {fileID: 11400000, guid: 4ccd011baabfc9749ae8ba5b9dac3863, type: 2}
+  - Id: BroomSkater
+    MutationName: Hooked-Comb Rake
+    Summary: Rakes three narrow bristle lanes.
+    Ability: 18
+    Normal: {fileID: 11400000, guid: 96dc67c989114554da0308cae4c33350, type: 2}
+    Mutated: {fileID: 11400000, guid: e5593bee7f4a1e046b1d89b75108a42e, type: 2}
+  - Id: RibbonHydra
+    MutationName: Five-Head Weave
+    Summary: Five heads spit weaving strands.
+    Ability: 19
+    Normal: {fileID: 11400000, guid: c1c5a95a8f429744cb9632edcc3cb382, type: 2}
+    Mutated: {fileID: 11400000, guid: 686bd4b5448048341a2942fa4e8d2126, type: 2}
+  - Id: BurrowBell
+    MutationName: Double-Bell Eruption
+    Summary: Tunnels, then erupts at your old position.
+    Ability: 20
+    Normal: {fileID: 11400000, guid: 3c469b4f3c721d94ba13c1332776ad8f, type: 2}
+    Mutated: {fileID: 11400000, guid: dc7a08070f68c244a84e72759722af43, type: 2}
+  BodyFragments:
+  - {fileID: -356142078, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: 432123077, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -272334139, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: 779390283, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -2003613192, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -1014656809, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -2017976152, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -1988616696, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -1947201743, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -415522224, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -702466441, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -2122452395, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: 2013361325, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -1514279467, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: 555751914, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}
+  - {fileID: -305317040, guid: 3d776c5c146c7684ca00303ac3bfde2b, type: 3}

@@ -33,11 +33,13 @@ namespace ArcaneBrigade
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
                     SpriteRenderer prop = props[slot];
-                    prop.enabled = field.Kind == ExpandedFieldKind.FallingProp && field.Source != null && field.Source.Definition.IsBoss;
+                    prop.enabled = field.Kind == ExpandedFieldKind.FallingProp && field.Source != null;
                     if (prop.enabled)
                     {
                         BossAnatomyEntry anatomy = BossAnatomy.For(field.Source.Definition);
-                        if (anatomy != null)
+                        if (!field.Source.Definition.IsBoss && EnemyEvolutionLibrary.Current != null && EnemyEvolutionLibrary.Current.BodyFragments.Length == 16)
+                            prop.sprite = EnemyEvolutionLibrary.Fragment(field.Source.Definition, Mathf.FloorToInt(simulation.Elapsed * 7));
+                        else if (anatomy != null)
                         {
                             int organ = field.SourceOrgan >= 0 ? field.SourceOrgan : 2;
                             for (int part = 0; part < anatomy.Organs.Length && field.SourceOrgan < 0; part++)

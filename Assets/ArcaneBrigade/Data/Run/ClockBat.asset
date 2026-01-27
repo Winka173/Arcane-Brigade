@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ClockBat
   DisplayName: ClockBat
-  Body: {fileID: 347259973, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: -745042241, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
   AnimationFrames:
-  - {fileID: 347259973, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 1433082203, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 760773894, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 1182378790, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -745042241, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: 194026621, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: 110461472, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  - {fileID: -482955659, guid: cefcc9bd2a78efa4bb35e99b83776472, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: c6d888c47fdbeb445900dacb863e2309, type: 2}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 35
   Speed: 1.45
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 1
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

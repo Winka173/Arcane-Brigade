@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: CoinLeechMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -288726719, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 1696779420, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1903318657, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -942595566, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
   Walk:
-  - {fileID: -1588837531, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 1957528282, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 1948493564, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: -188112763, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: -1757293482, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -875750260, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -1757293482, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -875750260, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
   Windup:
-  - {fileID: 485177220, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: -1283383516, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: 1688683585, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: 635230464, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
   Release:
-  - {fileID: 547606118, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 753413899, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: -1805422305, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: -1805422305, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
   Recovery:
-  - {fileID: 472786925, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
-  - {fileID: 284942524, guid: 3bcf062bfd7a36f41a8f9876268ab4fa, type: 3}
+  - {fileID: -1619177233, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}
+  - {fileID: 1903318657, guid: aafc894dc8ad79143ac45a9341441a2c, type: 3}

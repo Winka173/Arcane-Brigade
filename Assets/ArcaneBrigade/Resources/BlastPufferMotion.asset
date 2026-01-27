@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: BlastPufferMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1730730255, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -1523274325, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  - {fileID: 1885628816, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: 116430678, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
   Walk:
-  - {fileID: -2007523770, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -267062874, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -769261465, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: 920667345, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  - {fileID: 1406645219, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: -1066039928, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: 1406645219, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: -1066039928, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
   Windup:
-  - {fileID: -576535255, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -1810821062, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  - {fileID: 294085577, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: -1101411789, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
   Release:
-  - {fileID: -470735479, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: 1022250586, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  - {fileID: 1408916656, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: 1408916656, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
   Recovery:
-  - {fileID: 1730044685, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: 898519298, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  - {fileID: -37628338, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: 1885628816, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}

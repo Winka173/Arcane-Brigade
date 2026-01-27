@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: RibbonHydraMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1920348642, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: 321148124, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -318626853, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: -840697732, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
   Walk:
-  - {fileID: -219697699, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: 1499770674, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: -1636377939, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: -1283315761, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: 1121970532, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: 294490571, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: 1121970532, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: 294490571, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
   Windup:
-  - {fileID: 1019361704, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: 1144721770, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -571550583, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: -1710681077, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
   Release:
-  - {fileID: -516260640, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: 1460528479, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -1498691888, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: -1498691888, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
   Recovery:
-  - {fileID: -909506122, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
-  - {fileID: 10375467, guid: 1b28ca90c82e66b4a94a4dd6e49bc623, type: 3}
+  - {fileID: -1189934236, guid: 7093e4d10f745834e93c646e151ee877, type: 3}
+  - {fileID: -318626853, guid: 7093e4d10f745834e93c646e151ee877, type: 3}

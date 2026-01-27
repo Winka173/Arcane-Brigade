@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HushMite
   DisplayName: HushMite
-  Body: {fileID: 1563552575, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
   AnimationFrames:
-  - {fileID: 1563552575, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1109439120, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -926919587, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -717866939, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+  - {fileID: 2133501011, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+  - {fileID: -1610901748, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+  - {fileID: 1951168889, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: eac765811d6af61478367fa493f0b55f, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 28
   Speed: 1.35
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

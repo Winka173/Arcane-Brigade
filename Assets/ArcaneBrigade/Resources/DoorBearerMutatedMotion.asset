@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: DoorBearerMutatedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1354510053, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: -1954479298, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  Walk:
+  - {fileID: 181641627, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: 904058914, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: 181641627, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: 904058914, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  Windup:
+  - {fileID: 674365530, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: 1880634235, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  Release:
+  - {fileID: 900355446, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: 900355446, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  Recovery:
+  - {fileID: 1562746026, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}
+  - {fileID: 1354510053, guid: 7e06e6fd3b63fbb40a06efdd6ec7762c, type: 3}

@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: BroomSkaterMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1448893968, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 20444608, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: -203445659, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: -2055607655, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
   Walk:
-  - {fileID: 1508455627, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 1900993267, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 405183079, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: -1564815931, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 740098800, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: 1221787923, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: 740098800, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: 1221787923, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
   Windup:
-  - {fileID: -2068283494, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 2087838460, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 1350020258, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: -853724845, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
   Release:
-  - {fileID: -1741666402, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 1181624816, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 1886196976, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: 1886196976, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
   Recovery:
-  - {fileID: 397708190, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
-  - {fileID: 1494169579, guid: 9c7aad0b75bc49a4b9157a2927d8f5c9, type: 3}
+  - {fileID: 1571629105, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}
+  - {fileID: -203445659, guid: f3f4f173c44187c45b7ed2cd6b78c2b3, type: 3}

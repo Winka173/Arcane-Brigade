@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: BurrowBellMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -404396611, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: -625295435, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -867278306, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: 1910326099, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
   Walk:
-  - {fileID: -381945861, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: -88283760, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: 38661334, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: 722069377, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -216191780, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -2088731864, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -216191780, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -2088731864, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
   Windup:
-  - {fileID: 731761712, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: -1663284685, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -910367967, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -366867469, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
   Release:
-  - {fileID: -909403365, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: 503591952, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -1924086701, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -1924086701, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
   Recovery:
-  - {fileID: 699232127, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: -510783538, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -2059101583, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -867278306, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}

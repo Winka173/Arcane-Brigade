@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: FurnaceToad
   DisplayName: Furnace Toad
-  Body: {fileID: -1851586863, guid: 055dcecd52246854f8ba4b33bec391ce, type: 3}
+  Body: {fileID: 1827451333, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
   AnimationFrames:
-  - {fileID: -1851586863, guid: 055dcecd52246854f8ba4b33bec391ce, type: 3}
-  - {fileID: -1664612528, guid: 055dcecd52246854f8ba4b33bec391ce, type: 3}
-  - {fileID: 1025878094, guid: 055dcecd52246854f8ba4b33bec391ce, type: 3}
-  - {fileID: 879399611, guid: 055dcecd52246854f8ba4b33bec391ce, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 1827451333, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
+  - {fileID: -1163322605, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
+  - {fileID: 1639347699, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
+  - {fileID: -1694908920, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 28c25d4af98105d4fb7104232f891751, type: 2}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 180
   Speed: 1.8
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 4
   Material: 2
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

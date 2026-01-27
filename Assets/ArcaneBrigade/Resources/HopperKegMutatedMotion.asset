@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: HopperKegMutatedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1144028650, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: -1662046984, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  Walk:
+  - {fileID: 828608232, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: -878466912, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: 828608232, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: -878466912, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  Windup:
+  - {fileID: 1080569079, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: -564054065, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  Release:
+  - {fileID: 1780209952, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: 1780209952, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  Recovery:
+  - {fileID: 1532164479, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: -1144028650, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RuneWisp
   DisplayName: RuneWisp
-  Body: {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: -1887170849, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
   AnimationFrames:
-  - {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 538038739, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1367685831, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 465823829, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1887170849, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
+  - {fileID: -1561253895, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
+  - {fileID: -1193274723, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
+  - {fileID: -837101132, guid: f5ea878e098b6c948a1209f5d457b42b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 9c22713da8184b148aa9319ef9355f20, type: 2}
   Weapon: {fileID: 11400000, guid: 2cde74c3dbeae4044814e6d56d09a267, type: 2}
   Health: 49
   Speed: 1.65
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 2
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

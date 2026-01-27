@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SirenSeal
   DisplayName: SirenSeal
-  Body: {fileID: 1946362046, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: -1434800736, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
   AnimationFrames:
-  - {fileID: 1946362046, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1830704283, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 1289733431, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -97535582, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1434800736, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
+  - {fileID: 1910203878, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
+  - {fileID: -1879405243, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
+  - {fileID: -284481239, guid: a8c691d7043e18f4cbc3a541a23ede66, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: fe7416c3344bbde4a80571141204c58d, type: 2}
   Weapon: {fileID: 11400000, guid: 4f1d870ec4a38e44b92c4565e4a1df7d, type: 2}
   Health: 63
   Speed: 1.85
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 3
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

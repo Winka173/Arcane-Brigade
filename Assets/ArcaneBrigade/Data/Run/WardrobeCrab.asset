@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WardrobeCrab
   DisplayName: Wardrobe Crab
-  Body: {fileID: 2122891212, guid: 224f6bb3a2993a6439e5439bc6839fe5, type: 3}
+  Body: {fileID: -1192816198, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
   AnimationFrames:
-  - {fileID: 2122891212, guid: 224f6bb3a2993a6439e5439bc6839fe5, type: 3}
-  - {fileID: -260559688, guid: 224f6bb3a2993a6439e5439bc6839fe5, type: 3}
-  - {fileID: 315382040, guid: 224f6bb3a2993a6439e5439bc6839fe5, type: 3}
-  - {fileID: -1677078425, guid: 224f6bb3a2993a6439e5439bc6839fe5, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1192816198, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -248978268, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -1211718714, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -40947734, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 03e2df0c9db7a7e489265c2ff307818b, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 240
   Speed: 2.1
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 0
   Material: 5
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

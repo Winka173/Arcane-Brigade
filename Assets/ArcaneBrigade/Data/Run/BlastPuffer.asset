@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BlastPuffer
   DisplayName: Blast Puffer
-  Body: {fileID: -1730730255, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  Body: {fileID: 1885628816, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
   AnimationFrames:
-  - {fileID: -1730730255, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -1523274325, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -2007523770, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
-  - {fileID: -769261465, guid: f46dd546fa51e7746be6d26ff398d1e8, type: 3}
+  - {fileID: 1885628816, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: 116430678, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: 1406645219, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
+  - {fileID: -1066039928, guid: fd78a44757956134ba626c4f29cc5df2, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 18bbe27bec4c0214489ee3c19d570ec1, type: 2}
   Weapon: {fileID: 11400000, guid: f5510a633e79e1c418105f04d3228b64, type: 2}
   Health: 53
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 4
   Material: 3
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

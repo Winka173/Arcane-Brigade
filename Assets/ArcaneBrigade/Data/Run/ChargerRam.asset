@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ChargerRam
   DisplayName: Charging Ram
-  Body: {fileID: 8208466, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  Body: {fileID: -1236569227, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
   AnimationFrames:
-  - {fileID: 8208466, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: -155489759, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: 245172229, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: -799615969, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -1236569227, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 356188329, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 1341420027, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 730707539, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: d0cada0285f38444b824ad828a77cfd4, type: 2}
   Weapon: {fileID: 11400000, guid: b4be34c9c3823bb4bac832aa91595227, type: 2}
   Health: 39
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 2
   Material: 5
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

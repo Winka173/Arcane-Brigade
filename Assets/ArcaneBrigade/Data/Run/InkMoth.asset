@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: InkMoth
   DisplayName: InkMoth
-  Body: {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: -1365657554, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
   AnimationFrames:
-  - {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 727089170, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1861701143, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1572981011, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1365657554, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: -1213763069, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: 1556057013, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  - {fileID: -1554909467, guid: a35e27f2edcd3ea4dab9cfea5ebcc7af, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 80540f93d7838b94882523835ac6a929, type: 2}
   Weapon: {fileID: 11400000, guid: ca73b1df21a154848807e691e4dccc01, type: 2}
   Health: 56
   Speed: 1.75
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

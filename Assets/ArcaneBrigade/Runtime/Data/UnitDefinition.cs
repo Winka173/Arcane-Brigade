@@ -46,6 +46,8 @@ namespace ArcaneBrigade
         public HostileShot Shot;
         public BodyMaterial Material;
         public BossMotif Motif;
+        public int EvolutionStage;
+        public EnemyMutation Mutation;
     }
 
     public enum PassiveKind { None, HealChampion, Scavenge, Rally, ChillAura }

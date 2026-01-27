@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BurrowBell
   DisplayName: Burrow Bell
-  Body: {fileID: -404396611, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  Body: {fileID: -867278306, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
   AnimationFrames:
-  - {fileID: -404396611, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: -625295435, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: -381945861, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
-  - {fileID: 38661334, guid: dd48c10affe4ed547a9319d11af6c1be, type: 3}
+  - {fileID: -867278306, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: 1910326099, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -216191780, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
+  - {fileID: -2088731864, guid: 5dde7a42227e0ac44a41dfa722a611eb, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 3c469b4f3c721d94ba13c1332776ad8f, type: 2}
   Weapon: {fileID: 11400000, guid: 1dde8a785a1ea5c4a8ecf51469d0a6e3, type: 2}
   Health: 81
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 4
   Material: 1
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

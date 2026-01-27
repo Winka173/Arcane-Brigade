@@ -388,6 +388,7 @@ namespace ArcaneBrigade
         {
             UnitDefinition unit = Clone(source);
             unit.Weapon = Clone(source.Weapon);
+            EnemyEvolutionLibrary.Apply(unit, State.Wave);
             unit.KnockbackResistance = Mathf.Max(source.KnockbackResistance, source.IsBoss ? 0.85f : source.BodyHeight >= 1.2f ? 0.6f : 0.15f);
             unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);

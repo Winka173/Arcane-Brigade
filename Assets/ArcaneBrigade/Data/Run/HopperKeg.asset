@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: HopperKeg
   DisplayName: Hopper Keg
-  Body: {fileID: -1907336066, guid: dcd23a1b48bcab84e8939cad0e688558, type: 3}
+  Body: {fileID: 1287792853, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
   AnimationFrames:
-  - {fileID: -1907336066, guid: dcd23a1b48bcab84e8939cad0e688558, type: 3}
-  - {fileID: -1926153945, guid: dcd23a1b48bcab84e8939cad0e688558, type: 3}
-  - {fileID: 1136262990, guid: dcd23a1b48bcab84e8939cad0e688558, type: 3}
-  - {fileID: -236944292, guid: dcd23a1b48bcab84e8939cad0e688558, type: 3}
+  - {fileID: 1287792853, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: 180684610, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: -1847758457, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
+  - {fileID: 1580189133, guid: 2b9a0112dabe72442a25117b4eda0297, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 76d8b7901ef609f47ad2a59d92cc266a, type: 2}
   Weapon: {fileID: 11400000, guid: fcb0ab1d301e22141aa19cc3163c0bb0, type: 2}
   Health: 32
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 1
   Material: 1
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

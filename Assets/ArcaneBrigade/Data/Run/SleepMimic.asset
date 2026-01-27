@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SleepMimic
   DisplayName: SleepMimic
-  Body: {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: 2064660521, guid: b5a88a50a44346848aabdc397461090a, type: 3}
   AnimationFrames:
-  - {fileID: -1233938667, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 538038739, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1367685831, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 465823829, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 2064660521, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: -1219028088, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: 1295863321, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  - {fileID: -1790733284, guid: b5a88a50a44346848aabdc397461090a, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 7825e90aac6858a489952972a662c974, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
   Speed: 2.8
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 0
   Material: 2
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

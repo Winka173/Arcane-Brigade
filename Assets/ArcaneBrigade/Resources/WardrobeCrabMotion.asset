@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: WardrobeCrabMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1192816198, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -248978268, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  Walk:
+  - {fileID: -1211718714, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -40947734, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -1211718714, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -40947734, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  Windup:
+  - {fileID: 1477248525, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: 1628309003, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  Release:
+  - {fileID: -200821061, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -200821061, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  Recovery:
+  - {fileID: -653762510, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  - {fileID: -1192816198, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}

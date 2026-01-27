@@ -326,7 +326,7 @@ namespace ArcaneBrigade
             }
             float height = K8Motion.BodyHeight(state);
             float referenceHeight = state.Definition.AuthoredMotion != null ? state.Definition.AuthoredMotion.ReferenceHeight : body.sprite.bounds.size.y;
-            if (state.Definition.IsBoss) referenceHeight = body.sprite.bounds.size.y;
+            if (state.Definition.IsBoss || state.Faction == Faction.Enemy && state.Definition.AuthoredMotion != null) referenceHeight = body.sprite.bounds.size.y;
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
             float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
@@ -339,11 +339,12 @@ namespace ArcaneBrigade
             body.transform.localPosition += Vector3.up * (celebrationLift + (ReducedMotion ? 0 : state.BodyLift));
             float personality = state.Id % 2 == 0 ? -1 : 1;
             body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
-            if (state.Definition.IsBoss)
+            if (state.Faction == Faction.Enemy && state.Definition.AuthoredMotion != null)
             {
                 float turn = body.transform.localEulerAngles.z * Mathf.Deg2Rad;
                 float projectedHeight = Mathf.Abs(Mathf.Sin(turn)) * body.sprite.bounds.size.x * body.transform.localScale.x + Mathf.Abs(Mathf.Cos(turn)) * body.sprite.bounds.size.y * body.transform.localScale.y;
-                body.transform.localScale *= Mathf.Min(1, height * 1.05f / Mathf.Max(0.01f, projectedHeight));
+                float heightLimit = state.Definition.IsBoss ? 1.05f : 1.18f;
+                body.transform.localScale *= Mathf.Min(1, height * heightLimit / Mathf.Max(0.01f, projectedHeight));
             }
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);

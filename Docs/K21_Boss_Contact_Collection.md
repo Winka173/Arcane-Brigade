@@ -31,4 +31,4 @@ Art prompts and source limitations: `Docs/K21_Boss_Art_Prompts.md`. Generated us
 
 ## Still separate work
 
-Ordinary-enemy redraws with recognizable evolutionary art and changed later-wave movesets have not been implemented in this batch. Do not interpret the boss rework or current stat scaling as completion of that request.
+Ordinary-enemy redraws and later-wave evolutionary movesets were separate from K21 and are now implemented in K22. See `Docs/K22_Enemy_Evolution.md` for the twenty species, onset waves, authored pose limits and validation evidence. K21 reports remain historical evidence for the boss/contact batch, not K22 validation.

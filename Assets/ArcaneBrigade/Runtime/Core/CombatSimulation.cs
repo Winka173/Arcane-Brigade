@@ -112,6 +112,15 @@ namespace ArcaneBrigade
         public int ActiveBossSignature = -1;
         public float BossSkillStarted = -100;
         public float BossSkillUntil = -100;
+        public float NextEvolutionAttack = -1;
+        public float EvolutionReleaseAt;
+        public float EvolutionRecoveryUntil;
+        public float EvolutionTravelStarted = -100;
+        public float EvolutionTravelUntil = -100;
+        public Vector2 EvolutionOrigin;
+        public Vector2 EvolutionTarget;
+        public int EvolutionRepeats;
+        public int EvolutionCasts;
         public bool LeftPartBroken => LeftPartBrokenAt >= 0;
         public bool RightPartBroken => RightPartBrokenAt >= 0;
     }
@@ -477,6 +486,7 @@ namespace ArcaneBrigade
         private void MoveEnemy(UnitState unit, float deltaTime)
         {
             if (unit.Definition.IsBoss && MoveBossSignature(unit)) return;
+            if (!unit.Definition.IsBoss && MoveMutatedEnemy(unit)) return;
             if (MoveExpandedEnemy(unit, deltaTime)) return;
             if (unit.TelegraphUntil > Elapsed) return;
             if (unit.Definition.IsBoss && unit.BossRecoveryUntil > Elapsed) return;
@@ -616,6 +626,7 @@ namespace ArcaneBrigade
 
         private void ProcessAttack(UnitState unit)
         {
+            if (unit.Faction == Faction.Enemy && (unit.EvolutionReleaseAt > 0 || unit.EvolutionRecoveryUntil > Elapsed || unit.EvolutionTravelUntil > Elapsed)) return;
             WeaponDefinition weapon = unit.Definition.Weapon;
             if (unit.Definition.IsBoss) return;
             if (weapon.Kind == WeaponKind.Contact) return;
@@ -715,6 +726,8 @@ namespace ArcaneBrigade
 
         private void ProcessContact(UnitState enemy)
         {
+            if (enemy.EvolutionReleaseAt > 0) return;
+            if (enemy.Definition.Mutation == EnemyMutation.BellEruption && enemy.EvolutionTravelUntil > Elapsed && enemy.BodyLift < -0.1f) return;
             if (!enemy.Alive || !Champion.Alive) return;
             if (enemy.BodyLift > 0.4f) { enemy.ContactImpactAt = 0; return; }
             if (catalog.ExpandedContent && enemy.Definition.Behavior == EnemyBehavior.Mimic && (!enemy.Awakened || enemy.BehaviorUntil > Elapsed)) return;
@@ -978,7 +991,7 @@ namespace ArcaneBrigade
 
         public void AddLootPresentationFixture(LootKind kind, Vector2 position, int value)
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture && !RunPaths.K7Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             DropLoot(kind, position, value);
         }
 

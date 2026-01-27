@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CurtainWisp
   DisplayName: CurtainWisp
-  Body: {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: 32155936, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
   AnimationFrames:
-  - {fileID: -214593383, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: 727089170, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1861701143, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1572981011, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 32155936, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -1170133564, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -1614133475, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  - {fileID: -1010664478, guid: da98fcbb33ecd074baa7ce09dfb31d3f, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 6ea1657ed4ae93e4483a3eaa5a5a00e4, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
   Speed: 1.7
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 0
   Material: 3
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

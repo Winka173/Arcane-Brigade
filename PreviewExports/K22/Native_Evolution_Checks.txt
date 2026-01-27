@@ -1,0 +1,125 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Native library has all twenty species
+PASS Native different normal/mutated drawings HushMite
+PASS Enemy attacks with its body, not a held weapon HushMite
+PASS Native mutation anticipation HushMite
+PASS Native mutation actually releases HushMite
+PASS Native body attack outcome HushMite
+PASS Mutation pose remains readable in frame HushMite actual=1.269 expected<=1.602
+PASS Native different normal/mutated drawings ClockBat
+PASS Enemy attacks with its body, not a held weapon ClockBat
+PASS Native mutation anticipation ClockBat
+PASS Native mutation actually releases ClockBat
+PASS Native body attack outcome ClockBat
+PASS Mutation pose remains readable in frame ClockBat actual=1.277 expected<=1.602
+PASS Native different normal/mutated drawings BristleImp
+PASS Enemy attacks with its body, not a held weapon BristleImp
+PASS Native mutation anticipation BristleImp
+PASS Native mutation actually releases BristleImp
+PASS Native body attack outcome BristleImp
+PASS Mutation pose remains readable in frame BristleImp actual=1.227 expected<=1.602
+PASS Native different normal/mutated drawings RuneWisp
+PASS Enemy attacks with its body, not a held weapon RuneWisp
+PASS Native mutation anticipation RuneWisp
+PASS Native mutation actually releases RuneWisp
+PASS Native body attack outcome RuneWisp
+PASS Mutation pose remains readable in frame RuneWisp actual=1.232 expected<=1.602
+PASS Native different normal/mutated drawings InkMoth
+PASS Enemy attacks with its body, not a held weapon InkMoth
+PASS Native mutation anticipation InkMoth
+PASS Native mutation actually releases InkMoth
+PASS Native body attack outcome InkMoth
+PASS Mutation pose remains readable in frame InkMoth actual=1.232 expected<=1.602
+PASS Native different normal/mutated drawings SirenSeal
+PASS Enemy attacks with its body, not a held weapon SirenSeal
+PASS Native mutation anticipation SirenSeal
+PASS Native mutation actually releases SirenSeal
+PASS Native body attack outcome SirenSeal
+PASS Mutation pose remains readable in frame SirenSeal actual=1.232 expected<=1.602
+PASS Native different normal/mutated drawings DoorBearer
+PASS Enemy attacks with its body, not a held weapon DoorBearer
+PASS Native mutation anticipation DoorBearer
+PASS Native mutation actually releases DoorBearer
+PASS Native body attack outcome DoorBearer
+PASS Mutation pose remains readable in frame DoorBearer actual=1.232 expected<=1.602
+PASS Native different normal/mutated drawings MoonMagnet
+PASS Enemy attacks with its body, not a held weapon MoonMagnet
+PASS Native mutation anticipation MoonMagnet
+PASS Native mutation actually releases MoonMagnet
+PASS Native body attack outcome MoonMagnet
+PASS Mutation pose remains readable in frame MoonMagnet actual=1.232 expected<=1.602
+PASS Native different normal/mutated drawings SleepMimic
+PASS Enemy attacks with its body, not a held weapon SleepMimic
+PASS Native mutation anticipation SleepMimic
+PASS Native mutation actually releases SleepMimic
+PASS Native body attack outcome SleepMimic
+PASS Mutation pose remains readable in frame SleepMimic actual=1.234 expected<=1.602
+PASS Native different normal/mutated drawings CurtainWisp
+PASS Enemy attacks with its body, not a held weapon CurtainWisp
+PASS Native mutation anticipation CurtainWisp
+PASS Native mutation actually releases CurtainWisp
+PASS Native body attack outcome CurtainWisp
+PASS Mutation pose remains readable in frame CurtainWisp actual=1.232 expected<=1.602
+PASS Native different normal/mutated drawings FurnaceToad
+PASS Enemy attacks with its body, not a held weapon FurnaceToad
+PASS Native mutation anticipation FurnaceToad
+PASS Native mutation actually releases FurnaceToad
+PASS Native body attack outcome FurnaceToad
+PASS Mutation pose remains readable in frame FurnaceToad actual=1.848 expected<=2.402
+PASS Native different normal/mutated drawings WardrobeCrab
+PASS Enemy attacks with its body, not a held weapon WardrobeCrab
+PASS Native mutation anticipation WardrobeCrab
+PASS Native mutation actually releases WardrobeCrab
+PASS Native body attack outcome WardrobeCrab
+PASS Mutation pose remains readable in frame WardrobeCrab actual=2.128 expected<=2.766
+PASS Native different normal/mutated drawings HopperKeg
+PASS Enemy attacks with its body, not a held weapon HopperKeg
+PASS Native mutation anticipation HopperKeg
+PASS Native mutation actually releases HopperKeg
+PASS Native body attack outcome HopperKeg
+PASS Mutation pose remains readable in frame HopperKeg actual=1.718 expected<=1.893
+PASS Native different normal/mutated drawings ChargerRam
+PASS Enemy attacks with its body, not a held weapon ChargerRam
+PASS Native mutation anticipation ChargerRam
+PASS Native mutation actually releases ChargerRam
+PASS Native body attack outcome ChargerRam
+PASS Mutation pose remains readable in frame ChargerRam actual=1.454 expected<=1.602
+PASS Native different normal/mutated drawings CoinLeech
+PASS Enemy attacks with its body, not a held weapon CoinLeech
+PASS Native mutation anticipation CoinLeech
+PASS Native mutation actually releases CoinLeech
+PASS Native body attack outcome CoinLeech
+PASS Native loose coins fuel the barrage
+PASS Mutation pose remains readable in frame CoinLeech actual=1.454 expected<=1.602
+PASS Native different normal/mutated drawings BlastPuffer
+PASS Enemy attacks with its body, not a held weapon BlastPuffer
+PASS Native mutation anticipation BlastPuffer
+PASS Native mutation actually releases BlastPuffer
+PASS Native body attack outcome BlastPuffer
+PASS Mutation pose remains readable in frame BlastPuffer actual=1.718 expected<=1.893
+PASS Native different normal/mutated drawings SporeBishop
+PASS Enemy attacks with its body, not a held weapon SporeBishop
+PASS Native mutation anticipation SporeBishop
+PASS Native mutation actually releases SporeBishop
+PASS Native body attack outcome SporeBishop
+PASS Mutation pose remains readable in frame SporeBishop actual=1.454 expected<=1.602
+PASS Native different normal/mutated drawings BroomSkater
+PASS Enemy attacks with its body, not a held weapon BroomSkater
+PASS Native mutation anticipation BroomSkater
+PASS Native mutation actually releases BroomSkater
+PASS Native body attack outcome BroomSkater
+PASS Mutation pose remains readable in frame BroomSkater actual=1.454 expected<=1.602
+PASS Native different normal/mutated drawings RibbonHydra
+PASS Enemy attacks with its body, not a held weapon RibbonHydra
+PASS Native mutation anticipation RibbonHydra
+PASS Native mutation actually releases RibbonHydra
+PASS Native body attack outcome RibbonHydra
+PASS Mutation pose remains readable in frame RibbonHydra actual=1.454 expected<=1.602
+PASS Native different normal/mutated drawings BurrowBell
+PASS Enemy attacks with its body, not a held weapon BurrowBell
+PASS Native mutation anticipation BurrowBell
+PASS Native mutation actually releases BurrowBell
+PASS Native body attack outcome BurrowBell
+PASS Mutation pose remains readable in frame BurrowBell actual=1.454 expected<=1.602
+PASS Native preview never changes source catalog
+PASS No native runtime errors

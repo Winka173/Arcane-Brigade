@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: ChargerRamMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 8208466, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: -155489759, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -1236569227, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 356188329, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
   Walk:
-  - {fileID: 245172229, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: 1128241617, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: -799615969, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: 1029496099, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: 1341420027, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 730707539, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 1341420027, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 730707539, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
   Windup:
-  - {fileID: -831778288, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: -1926268001, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -622159414, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 1535984921, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
   Release:
-  - {fileID: 1297496231, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: 1910147465, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: 918338618, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: 918338618, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
   Recovery:
-  - {fileID: 15218932, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
-  - {fileID: 396136512, guid: b7f2bda939b115646b6877ccd08eccdd, type: 3}
+  - {fileID: -1327527264, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}
+  - {fileID: -1236569227, guid: 5ce02942b9198354abc639d0c99c4dad, type: 3}

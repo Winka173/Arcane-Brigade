@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MoonMagnet
   DisplayName: MoonMagnet
-  Body: {fileID: -852497279, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
+  Body: {fileID: 756498460, guid: 4539c30ea9e635d419126497190160b2, type: 3}
   AnimationFrames:
-  - {fileID: -852497279, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -950050135, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -341863724, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  - {fileID: -1148076488, guid: f5b7f862fe6bd1248ab47b9540d1d002, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 756498460, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 79310883, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: -194861517, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  - {fileID: 2135756250, guid: 4539c30ea9e635d419126497190160b2, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: a382564aafc842d42bd8fd4f65ceb744, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 48
   Speed: 1.7
@@ -54,3 +54,5 @@ MonoBehaviour:
   Shot: 0
   Material: 1
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0

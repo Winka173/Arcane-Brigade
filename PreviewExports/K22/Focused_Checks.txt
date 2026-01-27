@@ -1,0 +1,681 @@
+PASS Every ordinary species has a normal and mutated entry
+PASS Twenty independently authored mutation movesets
+PASS Sixteen original body-fragment projectile drawings
+PASS Catalog uses redrawn normal form HushMite
+PASS Eight ground-anchored drawings for form HushMiteMotion
+PASS Drawing not reused by another form: HushMiteEvolution_00
+PASS Drawing not reused by another form: HushMiteEvolution_01
+PASS Drawing not reused by another form: HushMiteEvolution_02
+PASS Drawing not reused by another form: HushMiteEvolution_03
+PASS Drawing not reused by another form: HushMiteEvolution_04
+PASS Drawing not reused by another form: HushMiteEvolution_05
+PASS Drawing not reused by another form: HushMiteEvolution_06
+PASS Drawing not reused by another form: HushMiteEvolution_07
+PASS Eight ground-anchored drawings for form HushMiteMutatedMotion
+PASS Drawing not reused by another form: HushMiteEvolution_08
+PASS Drawing not reused by another form: HushMiteEvolution_09
+PASS Drawing not reused by another form: HushMiteEvolution_10
+PASS Drawing not reused by another form: HushMiteEvolution_11
+PASS Drawing not reused by another form: HushMiteEvolution_12
+PASS Drawing not reused by another form: HushMiteEvolution_13
+PASS Drawing not reused by another form: HushMiteEvolution_14
+PASS Drawing not reused by another form: HushMiteEvolution_15
+PASS Mutation starts after the early wave difficulty ramp HushMite
+PASS Deterministic stage boundary HushMite
+PASS Different real anatomy, not tint HushMite
+PASS No extra HP or speed cliff from evolution HushMite
+PASS Catalog remains immutable HushMite
+PASS Body windup precedes real damage HushMite
+PASS Visible anticipation drawing HushMite
+PASS Pause freezes mutation HushMite
+PASS One real mutation cast with paced cooldown HushMite
+PASS Moveset has actual projectiles, hazards or travel HushMite
+PASS Delayed attributed body hazards HushMite
+PASS Slow readable body projectiles, no weapon required HushMite
+PASS No hazards leak into shop HushMite
+PASS Catalog uses redrawn normal form ClockBat
+PASS Eight ground-anchored drawings for form ClockBatMotion
+PASS Drawing not reused by another form: ClockBatEvolution_00
+PASS Drawing not reused by another form: ClockBatEvolution_01
+PASS Drawing not reused by another form: ClockBatEvolution_02
+PASS Drawing not reused by another form: ClockBatEvolution_03
+PASS Drawing not reused by another form: ClockBatEvolution_04
+PASS Drawing not reused by another form: ClockBatEvolution_05
+PASS Drawing not reused by another form: ClockBatEvolution_06
+PASS Drawing not reused by another form: ClockBatEvolution_07
+PASS Eight ground-anchored drawings for form ClockBatMutatedMotion
+PASS Drawing not reused by another form: ClockBatEvolution_08
+PASS Drawing not reused by another form: ClockBatEvolution_09
+PASS Drawing not reused by another form: ClockBatEvolution_10
+PASS Drawing not reused by another form: ClockBatEvolution_11
+PASS Drawing not reused by another form: ClockBatEvolution_12
+PASS Drawing not reused by another form: ClockBatEvolution_13
+PASS Drawing not reused by another form: ClockBatEvolution_14
+PASS Drawing not reused by another form: ClockBatEvolution_15
+PASS Mutation starts after the early wave difficulty ramp ClockBat
+PASS Deterministic stage boundary ClockBat
+PASS Different real anatomy, not tint ClockBat
+PASS No extra HP or speed cliff from evolution ClockBat
+PASS Catalog remains immutable ClockBat
+PASS Body windup precedes real damage ClockBat
+PASS Visible anticipation drawing ClockBat
+PASS Pause freezes mutation ClockBat
+PASS One real mutation cast with paced cooldown ClockBat
+PASS Moveset has actual projectiles, hazards or travel ClockBat
+PASS Delayed attributed body hazards ClockBat
+PASS Slow readable body projectiles, no weapon required ClockBat
+PASS No hazards leak into shop ClockBat
+PASS Catalog uses redrawn normal form BristleImp
+PASS Eight ground-anchored drawings for form BristleImpMotion
+PASS Drawing not reused by another form: BristleImpEvolution_00
+PASS Drawing not reused by another form: BristleImpEvolution_01
+PASS Drawing not reused by another form: BristleImpEvolution_02
+PASS Drawing not reused by another form: BristleImpEvolution_03
+PASS Drawing not reused by another form: BristleImpEvolution_04
+PASS Drawing not reused by another form: BristleImpEvolution_05
+PASS Drawing not reused by another form: BristleImpEvolution_06
+PASS Drawing not reused by another form: BristleImpEvolution_07
+PASS Eight ground-anchored drawings for form BristleImpMutatedMotion
+PASS Drawing not reused by another form: BristleImpEvolution_08
+PASS Drawing not reused by another form: BristleImpEvolution_09
+PASS Drawing not reused by another form: BristleImpEvolution_10
+PASS Drawing not reused by another form: BristleImpEvolution_11
+PASS Drawing not reused by another form: BristleImpEvolution_12
+PASS Drawing not reused by another form: BristleImpEvolution_13
+PASS Drawing not reused by another form: BristleImpEvolution_14
+PASS Drawing not reused by another form: BristleImpEvolution_15
+PASS Mutation starts after the early wave difficulty ramp BristleImp
+PASS Deterministic stage boundary BristleImp
+PASS Different real anatomy, not tint BristleImp
+PASS No extra HP or speed cliff from evolution BristleImp
+PASS Catalog remains immutable BristleImp
+PASS Body windup precedes real damage BristleImp
+PASS Visible anticipation drawing BristleImp
+PASS Pause freezes mutation BristleImp
+PASS One real mutation cast with paced cooldown BristleImp
+PASS Moveset has actual projectiles, hazards or travel BristleImp
+PASS Delayed attributed body hazards BristleImp
+PASS Slow readable body projectiles, no weapon required BristleImp
+PASS No hazards leak into shop BristleImp
+PASS Catalog uses redrawn normal form RuneWisp
+PASS Eight ground-anchored drawings for form RuneWispMotion
+PASS Drawing not reused by another form: RuneWispEvolution_00
+PASS Drawing not reused by another form: RuneWispEvolution_01
+PASS Drawing not reused by another form: RuneWispEvolution_02
+PASS Drawing not reused by another form: RuneWispEvolution_03
+PASS Drawing not reused by another form: RuneWispEvolution_04
+PASS Drawing not reused by another form: RuneWispEvolution_05
+PASS Drawing not reused by another form: RuneWispEvolution_06
+PASS Drawing not reused by another form: RuneWispEvolution_07
+PASS Eight ground-anchored drawings for form RuneWispMutatedMotion
+PASS Drawing not reused by another form: RuneWispEvolution_08
+PASS Drawing not reused by another form: RuneWispEvolution_09
+PASS Drawing not reused by another form: RuneWispEvolution_10
+PASS Drawing not reused by another form: RuneWispEvolution_11
+PASS Drawing not reused by another form: RuneWispEvolution_12
+PASS Drawing not reused by another form: RuneWispEvolution_13
+PASS Drawing not reused by another form: RuneWispEvolution_14
+PASS Drawing not reused by another form: RuneWispEvolution_15
+PASS Mutation starts after the early wave difficulty ramp RuneWisp
+PASS Deterministic stage boundary RuneWisp
+PASS Different real anatomy, not tint RuneWisp
+PASS No extra HP or speed cliff from evolution RuneWisp
+PASS Catalog remains immutable RuneWisp
+PASS Body windup precedes real damage RuneWisp
+PASS Visible anticipation drawing RuneWisp
+PASS Pause freezes mutation RuneWisp
+PASS One real mutation cast with paced cooldown RuneWisp
+PASS Moveset has actual projectiles, hazards or travel RuneWisp
+PASS Delayed attributed body hazards RuneWisp
+PASS Slow readable body projectiles, no weapon required RuneWisp
+PASS No hazards leak into shop RuneWisp
+PASS Catalog uses redrawn normal form InkMoth
+PASS Eight ground-anchored drawings for form InkMothMotion
+PASS Drawing not reused by another form: InkMothEvolution_00
+PASS Drawing not reused by another form: InkMothEvolution_01
+PASS Drawing not reused by another form: InkMothEvolution_02
+PASS Drawing not reused by another form: InkMothEvolution_03
+PASS Drawing not reused by another form: InkMothEvolution_04
+PASS Drawing not reused by another form: InkMothEvolution_05
+PASS Drawing not reused by another form: InkMothEvolution_06
+PASS Drawing not reused by another form: InkMothEvolution_07
+PASS Eight ground-anchored drawings for form InkMothMutatedMotion
+PASS Drawing not reused by another form: InkMothEvolution_08
+PASS Drawing not reused by another form: InkMothEvolution_09
+PASS Drawing not reused by another form: InkMothEvolution_10
+PASS Drawing not reused by another form: InkMothEvolution_11
+PASS Drawing not reused by another form: InkMothEvolution_12
+PASS Drawing not reused by another form: InkMothEvolution_13
+PASS Drawing not reused by another form: InkMothEvolution_14
+PASS Drawing not reused by another form: InkMothEvolution_15
+PASS Mutation starts after the early wave difficulty ramp InkMoth
+PASS Deterministic stage boundary InkMoth
+PASS Different real anatomy, not tint InkMoth
+PASS No extra HP or speed cliff from evolution InkMoth
+PASS Catalog remains immutable InkMoth
+PASS Body windup precedes real damage InkMoth
+PASS Visible anticipation drawing InkMoth
+PASS Pause freezes mutation InkMoth
+PASS One real mutation cast with paced cooldown InkMoth
+PASS Moveset has actual projectiles, hazards or travel InkMoth
+PASS Delayed attributed body hazards InkMoth
+PASS Slow readable body projectiles, no weapon required InkMoth
+PASS No hazards leak into shop InkMoth
+PASS Catalog uses redrawn normal form SirenSeal
+PASS Eight ground-anchored drawings for form SirenSealMotion
+PASS Drawing not reused by another form: SirenSealEvolution_00
+PASS Drawing not reused by another form: SirenSealEvolution_01
+PASS Drawing not reused by another form: SirenSealEvolution_02
+PASS Drawing not reused by another form: SirenSealEvolution_03
+PASS Drawing not reused by another form: SirenSealEvolution_04
+PASS Drawing not reused by another form: SirenSealEvolution_05
+PASS Drawing not reused by another form: SirenSealEvolution_06
+PASS Drawing not reused by another form: SirenSealEvolution_07
+PASS Eight ground-anchored drawings for form SirenSealMutatedMotion
+PASS Drawing not reused by another form: SirenSealEvolution_08
+PASS Drawing not reused by another form: SirenSealEvolution_09
+PASS Drawing not reused by another form: SirenSealEvolution_10
+PASS Drawing not reused by another form: SirenSealEvolution_11
+PASS Drawing not reused by another form: SirenSealEvolution_12
+PASS Drawing not reused by another form: SirenSealEvolution_13
+PASS Drawing not reused by another form: SirenSealEvolution_14
+PASS Drawing not reused by another form: SirenSealEvolution_15
+PASS Mutation starts after the early wave difficulty ramp SirenSeal
+PASS Deterministic stage boundary SirenSeal
+PASS Different real anatomy, not tint SirenSeal
+PASS No extra HP or speed cliff from evolution SirenSeal
+PASS Catalog remains immutable SirenSeal
+PASS Body windup precedes real damage SirenSeal
+PASS Visible anticipation drawing SirenSeal
+PASS Pause freezes mutation SirenSeal
+PASS One real mutation cast with paced cooldown SirenSeal
+PASS Moveset has actual projectiles, hazards or travel SirenSeal
+PASS Delayed attributed body hazards SirenSeal
+PASS Slow readable body projectiles, no weapon required SirenSeal
+PASS No hazards leak into shop SirenSeal
+PASS Catalog uses redrawn normal form DoorBearer
+PASS Eight ground-anchored drawings for form DoorBearerMotion
+PASS Drawing not reused by another form: DoorBearerEvolution_00
+PASS Drawing not reused by another form: DoorBearerEvolution_01
+PASS Drawing not reused by another form: DoorBearerEvolution_02
+PASS Drawing not reused by another form: DoorBearerEvolution_03
+PASS Drawing not reused by another form: DoorBearerEvolution_04
+PASS Drawing not reused by another form: DoorBearerEvolution_05
+PASS Drawing not reused by another form: DoorBearerEvolution_06
+PASS Drawing not reused by another form: DoorBearerEvolution_07
+PASS Eight ground-anchored drawings for form DoorBearerMutatedMotion
+PASS Drawing not reused by another form: DoorBearerEvolution_08
+PASS Drawing not reused by another form: DoorBearerEvolution_09
+PASS Drawing not reused by another form: DoorBearerEvolution_10
+PASS Drawing not reused by another form: DoorBearerEvolution_11
+PASS Drawing not reused by another form: DoorBearerEvolution_12
+PASS Drawing not reused by another form: DoorBearerEvolution_13
+PASS Drawing not reused by another form: DoorBearerEvolution_14
+PASS Drawing not reused by another form: DoorBearerEvolution_15
+PASS Mutation starts after the early wave difficulty ramp DoorBearer
+PASS Deterministic stage boundary DoorBearer
+PASS Different real anatomy, not tint DoorBearer
+PASS No extra HP or speed cliff from evolution DoorBearer
+PASS Catalog remains immutable DoorBearer
+PASS Body windup precedes real damage DoorBearer
+PASS Visible anticipation drawing DoorBearer
+PASS Pause freezes mutation DoorBearer
+PASS One real mutation cast with paced cooldown DoorBearer
+PASS Moveset has actual projectiles, hazards or travel DoorBearer
+PASS Delayed attributed body hazards DoorBearer
+PASS Slow readable body projectiles, no weapon required DoorBearer
+PASS No hazards leak into shop DoorBearer
+PASS Catalog uses redrawn normal form MoonMagnet
+PASS Eight ground-anchored drawings for form MoonMagnetMotion
+PASS Drawing not reused by another form: MoonMagnetEvolution_00
+PASS Drawing not reused by another form: MoonMagnetEvolution_01
+PASS Drawing not reused by another form: MoonMagnetEvolution_02
+PASS Drawing not reused by another form: MoonMagnetEvolution_03
+PASS Drawing not reused by another form: MoonMagnetEvolution_04
+PASS Drawing not reused by another form: MoonMagnetEvolution_05
+PASS Drawing not reused by another form: MoonMagnetEvolution_06
+PASS Drawing not reused by another form: MoonMagnetEvolution_07
+PASS Eight ground-anchored drawings for form MoonMagnetMutatedMotion
+PASS Drawing not reused by another form: MoonMagnetEvolution_08
+PASS Drawing not reused by another form: MoonMagnetEvolution_09
+PASS Drawing not reused by another form: MoonMagnetEvolution_10
+PASS Drawing not reused by another form: MoonMagnetEvolution_11
+PASS Drawing not reused by another form: MoonMagnetEvolution_12
+PASS Drawing not reused by another form: MoonMagnetEvolution_13
+PASS Drawing not reused by another form: MoonMagnetEvolution_14
+PASS Drawing not reused by another form: MoonMagnetEvolution_15
+PASS Mutation starts after the early wave difficulty ramp MoonMagnet
+PASS Deterministic stage boundary MoonMagnet
+PASS Different real anatomy, not tint MoonMagnet
+PASS No extra HP or speed cliff from evolution MoonMagnet
+PASS Catalog remains immutable MoonMagnet
+PASS Body windup precedes real damage MoonMagnet
+PASS Visible anticipation drawing MoonMagnet
+PASS Pause freezes mutation MoonMagnet
+PASS One real mutation cast with paced cooldown MoonMagnet
+PASS Moveset has actual projectiles, hazards or travel MoonMagnet
+PASS Delayed attributed body hazards MoonMagnet
+PASS Slow readable body projectiles, no weapon required MoonMagnet
+PASS No hazards leak into shop MoonMagnet
+PASS Catalog uses redrawn normal form SleepMimic
+PASS Eight ground-anchored drawings for form SleepMimicMotion
+PASS Drawing not reused by another form: SleepMimicEvolution_00
+PASS Drawing not reused by another form: SleepMimicEvolution_01
+PASS Drawing not reused by another form: SleepMimicEvolution_02
+PASS Drawing not reused by another form: SleepMimicEvolution_03
+PASS Drawing not reused by another form: SleepMimicEvolution_04
+PASS Drawing not reused by another form: SleepMimicEvolution_05
+PASS Drawing not reused by another form: SleepMimicEvolution_06
+PASS Drawing not reused by another form: SleepMimicEvolution_07
+PASS Eight ground-anchored drawings for form SleepMimicMutatedMotion
+PASS Drawing not reused by another form: SleepMimicEvolution_08
+PASS Drawing not reused by another form: SleepMimicEvolution_09
+PASS Drawing not reused by another form: SleepMimicEvolution_10
+PASS Drawing not reused by another form: SleepMimicEvolution_11
+PASS Drawing not reused by another form: SleepMimicEvolution_12
+PASS Drawing not reused by another form: SleepMimicEvolution_13
+PASS Drawing not reused by another form: SleepMimicEvolution_14
+PASS Drawing not reused by another form: SleepMimicEvolution_15
+PASS Mutation starts after the early wave difficulty ramp SleepMimic
+PASS Deterministic stage boundary SleepMimic
+PASS Different real anatomy, not tint SleepMimic
+PASS No extra HP or speed cliff from evolution SleepMimic
+PASS Catalog remains immutable SleepMimic
+PASS Body windup precedes real damage SleepMimic
+PASS Visible anticipation drawing SleepMimic
+PASS Pause freezes mutation SleepMimic
+PASS One real mutation cast with paced cooldown SleepMimic
+PASS Moveset has actual projectiles, hazards or travel SleepMimic
+PASS Delayed attributed body hazards SleepMimic
+PASS Slow readable body projectiles, no weapon required SleepMimic
+PASS No hazards leak into shop SleepMimic
+PASS Catalog uses redrawn normal form CurtainWisp
+PASS Eight ground-anchored drawings for form CurtainWispMotion
+PASS Drawing not reused by another form: CurtainWispEvolution_00
+PASS Drawing not reused by another form: CurtainWispEvolution_01
+PASS Drawing not reused by another form: CurtainWispEvolution_02
+PASS Drawing not reused by another form: CurtainWispEvolution_03
+PASS Drawing not reused by another form: CurtainWispEvolution_04
+PASS Drawing not reused by another form: CurtainWispEvolution_05
+PASS Drawing not reused by another form: CurtainWispEvolution_06
+PASS Drawing not reused by another form: CurtainWispEvolution_07
+PASS Eight ground-anchored drawings for form CurtainWispMutatedMotion
+PASS Drawing not reused by another form: CurtainWispEvolution_08
+PASS Drawing not reused by another form: CurtainWispEvolution_09
+PASS Drawing not reused by another form: CurtainWispEvolution_10
+PASS Drawing not reused by another form: CurtainWispEvolution_11
+PASS Drawing not reused by another form: CurtainWispEvolution_12
+PASS Drawing not reused by another form: CurtainWispEvolution_13
+PASS Drawing not reused by another form: CurtainWispEvolution_14
+PASS Drawing not reused by another form: CurtainWispEvolution_15
+PASS Mutation starts after the early wave difficulty ramp CurtainWisp
+PASS Deterministic stage boundary CurtainWisp
+PASS Different real anatomy, not tint CurtainWisp
+PASS No extra HP or speed cliff from evolution CurtainWisp
+PASS Catalog remains immutable CurtainWisp
+PASS Body windup precedes real damage CurtainWisp
+PASS Visible anticipation drawing CurtainWisp
+PASS Pause freezes mutation CurtainWisp
+PASS One real mutation cast with paced cooldown CurtainWisp
+PASS Moveset has actual projectiles, hazards or travel CurtainWisp
+PASS Delayed attributed body hazards CurtainWisp
+PASS Slow readable body projectiles, no weapon required CurtainWisp
+PASS No hazards leak into shop CurtainWisp
+PASS Catalog uses redrawn normal form FurnaceToad
+PASS Eight ground-anchored drawings for form FurnaceToadMotion
+PASS Drawing not reused by another form: FurnaceToadEvolution_00
+PASS Drawing not reused by another form: FurnaceToadEvolution_01
+PASS Drawing not reused by another form: FurnaceToadEvolution_02
+PASS Drawing not reused by another form: FurnaceToadEvolution_03
+PASS Drawing not reused by another form: FurnaceToadEvolution_04
+PASS Drawing not reused by another form: FurnaceToadEvolution_05
+PASS Drawing not reused by another form: FurnaceToadEvolution_06
+PASS Drawing not reused by another form: FurnaceToadEvolution_07
+PASS Eight ground-anchored drawings for form FurnaceToadMutatedMotion
+PASS Drawing not reused by another form: FurnaceToadEvolution_08
+PASS Drawing not reused by another form: FurnaceToadEvolution_09
+PASS Drawing not reused by another form: FurnaceToadEvolution_10
+PASS Drawing not reused by another form: FurnaceToadEvolution_11
+PASS Drawing not reused by another form: FurnaceToadEvolution_12
+PASS Drawing not reused by another form: FurnaceToadEvolution_13
+PASS Drawing not reused by another form: FurnaceToadEvolution_14
+PASS Drawing not reused by another form: FurnaceToadEvolution_15
+PASS Mutation starts after the early wave difficulty ramp FurnaceToad
+PASS Deterministic stage boundary FurnaceToad
+PASS Different real anatomy, not tint FurnaceToad
+PASS No extra HP or speed cliff from evolution FurnaceToad
+PASS Catalog remains immutable FurnaceToad
+PASS Body windup precedes real damage FurnaceToad
+PASS Visible anticipation drawing FurnaceToad
+PASS Pause freezes mutation FurnaceToad
+PASS One real mutation cast with paced cooldown FurnaceToad
+PASS Moveset has actual projectiles, hazards or travel FurnaceToad
+PASS Delayed attributed body hazards FurnaceToad
+PASS Slow readable body projectiles, no weapon required FurnaceToad
+PASS No hazards leak into shop FurnaceToad
+PASS Catalog uses redrawn normal form WardrobeCrab
+PASS Eight ground-anchored drawings for form WardrobeCrabMotion
+PASS Drawing not reused by another form: WardrobeCrabEvolution_00
+PASS Drawing not reused by another form: WardrobeCrabEvolution_01
+PASS Drawing not reused by another form: WardrobeCrabEvolution_02
+PASS Drawing not reused by another form: WardrobeCrabEvolution_03
+PASS Drawing not reused by another form: WardrobeCrabEvolution_04
+PASS Drawing not reused by another form: WardrobeCrabEvolution_05
+PASS Drawing not reused by another form: WardrobeCrabEvolution_06
+PASS Drawing not reused by another form: WardrobeCrabEvolution_07
+PASS Eight ground-anchored drawings for form WardrobeCrabMutatedMotion
+PASS Drawing not reused by another form: WardrobeCrabEvolution_08
+PASS Drawing not reused by another form: WardrobeCrabEvolution_09
+PASS Drawing not reused by another form: WardrobeCrabEvolution_10
+PASS Drawing not reused by another form: WardrobeCrabEvolution_11
+PASS Drawing not reused by another form: WardrobeCrabEvolution_12
+PASS Drawing not reused by another form: WardrobeCrabEvolution_13
+PASS Drawing not reused by another form: WardrobeCrabEvolution_14
+PASS Drawing not reused by another form: WardrobeCrabEvolution_15
+PASS Mutation starts after the early wave difficulty ramp WardrobeCrab
+PASS Deterministic stage boundary WardrobeCrab
+PASS Different real anatomy, not tint WardrobeCrab
+PASS No extra HP or speed cliff from evolution WardrobeCrab
+PASS Catalog remains immutable WardrobeCrab
+PASS Body windup precedes real damage WardrobeCrab
+PASS Visible anticipation drawing WardrobeCrab
+PASS Pause freezes mutation WardrobeCrab
+PASS One real mutation cast with paced cooldown WardrobeCrab
+PASS Moveset has actual projectiles, hazards or travel WardrobeCrab
+PASS Delayed attributed body hazards WardrobeCrab
+PASS Slow readable body projectiles, no weapon required WardrobeCrab
+PASS No hazards leak into shop WardrobeCrab
+PASS Catalog uses redrawn normal form HopperKeg
+PASS Eight ground-anchored drawings for form HopperKegMotion
+PASS Drawing not reused by another form: HopperKegEvolution_00
+PASS Drawing not reused by another form: HopperKegEvolution_01
+PASS Drawing not reused by another form: HopperKegEvolution_02
+PASS Drawing not reused by another form: HopperKegEvolution_03
+PASS Drawing not reused by another form: HopperKegEvolution_04
+PASS Drawing not reused by another form: HopperKegEvolution_05
+PASS Drawing not reused by another form: HopperKegEvolution_06
+PASS Drawing not reused by another form: HopperKegEvolution_07
+PASS Eight ground-anchored drawings for form HopperKegMutatedMotion
+PASS Drawing not reused by another form: HopperKegEvolution_08
+PASS Drawing not reused by another form: HopperKegEvolution_09
+PASS Drawing not reused by another form: HopperKegEvolution_10
+PASS Drawing not reused by another form: HopperKegEvolution_11
+PASS Drawing not reused by another form: HopperKegEvolution_12
+PASS Drawing not reused by another form: HopperKegEvolution_13
+PASS Drawing not reused by another form: HopperKegEvolution_14
+PASS Drawing not reused by another form: HopperKegEvolution_15
+PASS Mutation starts after the early wave difficulty ramp HopperKeg
+PASS Deterministic stage boundary HopperKeg
+PASS Different real anatomy, not tint HopperKeg
+PASS No extra HP or speed cliff from evolution HopperKeg
+PASS Catalog remains immutable HopperKeg
+PASS Body windup precedes real damage HopperKeg
+PASS Visible anticipation drawing HopperKeg
+PASS Pause freezes mutation HopperKeg
+PASS One real mutation cast with paced cooldown HopperKeg
+PASS Moveset has actual projectiles, hazards or travel HopperKeg
+PASS Delayed attributed body hazards HopperKeg
+PASS Slow readable body projectiles, no weapon required HopperKeg
+PASS Second leg executes after first landing HopperKeg
+PASS No hazards leak into shop HopperKeg
+PASS Catalog uses redrawn normal form ChargerRam
+PASS Eight ground-anchored drawings for form ChargerRamMotion
+PASS Drawing not reused by another form: ChargerRamEvolution_00
+PASS Drawing not reused by another form: ChargerRamEvolution_01
+PASS Drawing not reused by another form: ChargerRamEvolution_02
+PASS Drawing not reused by another form: ChargerRamEvolution_03
+PASS Drawing not reused by another form: ChargerRamEvolution_04
+PASS Drawing not reused by another form: ChargerRamEvolution_05
+PASS Drawing not reused by another form: ChargerRamEvolution_06
+PASS Drawing not reused by another form: ChargerRamEvolution_07
+PASS Eight ground-anchored drawings for form ChargerRamMutatedMotion
+PASS Drawing not reused by another form: ChargerRamEvolution_08
+PASS Drawing not reused by another form: ChargerRamEvolution_09
+PASS Drawing not reused by another form: ChargerRamEvolution_10
+PASS Drawing not reused by another form: ChargerRamEvolution_11
+PASS Drawing not reused by another form: ChargerRamEvolution_12
+PASS Drawing not reused by another form: ChargerRamEvolution_13
+PASS Drawing not reused by another form: ChargerRamEvolution_14
+PASS Drawing not reused by another form: ChargerRamEvolution_15
+PASS Mutation starts after the early wave difficulty ramp ChargerRam
+PASS Deterministic stage boundary ChargerRam
+PASS Different real anatomy, not tint ChargerRam
+PASS No extra HP or speed cliff from evolution ChargerRam
+PASS Catalog remains immutable ChargerRam
+PASS Body windup precedes real damage ChargerRam
+PASS Visible anticipation drawing ChargerRam
+PASS Pause freezes mutation ChargerRam
+PASS One real mutation cast with paced cooldown ChargerRam
+PASS Moveset has actual projectiles, hazards or travel ChargerRam
+PASS Delayed attributed body hazards ChargerRam
+PASS Slow readable body projectiles, no weapon required ChargerRam
+PASS Second leg executes after first landing ChargerRam
+PASS No hazards leak into shop ChargerRam
+PASS Catalog uses redrawn normal form CoinLeech
+PASS Eight ground-anchored drawings for form CoinLeechMotion
+PASS Drawing not reused by another form: CoinLeechEvolution_00
+PASS Drawing not reused by another form: CoinLeechEvolution_01
+PASS Drawing not reused by another form: CoinLeechEvolution_02
+PASS Drawing not reused by another form: CoinLeechEvolution_03
+PASS Drawing not reused by another form: CoinLeechEvolution_04
+PASS Drawing not reused by another form: CoinLeechEvolution_05
+PASS Drawing not reused by another form: CoinLeechEvolution_06
+PASS Drawing not reused by another form: CoinLeechEvolution_07
+PASS Eight ground-anchored drawings for form CoinLeechMutatedMotion
+PASS Drawing not reused by another form: CoinLeechEvolution_08
+PASS Drawing not reused by another form: CoinLeechEvolution_09
+PASS Drawing not reused by another form: CoinLeechEvolution_10
+PASS Drawing not reused by another form: CoinLeechEvolution_11
+PASS Drawing not reused by another form: CoinLeechEvolution_12
+PASS Drawing not reused by another form: CoinLeechEvolution_13
+PASS Drawing not reused by another form: CoinLeechEvolution_14
+PASS Drawing not reused by another form: CoinLeechEvolution_15
+PASS Mutation starts after the early wave difficulty ramp CoinLeech
+PASS Deterministic stage boundary CoinLeech
+PASS Different real anatomy, not tint CoinLeech
+PASS No extra HP or speed cliff from evolution CoinLeech
+PASS Catalog remains immutable CoinLeech
+PASS Body windup precedes real damage CoinLeech
+PASS Visible anticipation drawing CoinLeech
+PASS Pause freezes mutation CoinLeech
+PASS One real mutation cast with paced cooldown CoinLeech
+PASS Moveset has actual projectiles, hazards or travel CoinLeech
+PASS Delayed attributed body hazards CoinLeech
+PASS Slow readable body projectiles, no weapon required CoinLeech
+PASS Loose coins actually fuel barrage
+PASS Stolen coins returned on death
+PASS No hazards leak into shop CoinLeech
+PASS Catalog uses redrawn normal form BlastPuffer
+PASS Eight ground-anchored drawings for form BlastPufferMotion
+PASS Drawing not reused by another form: BlastPufferEvolution_00
+PASS Drawing not reused by another form: BlastPufferEvolution_01
+PASS Drawing not reused by another form: BlastPufferEvolution_02
+PASS Drawing not reused by another form: BlastPufferEvolution_03
+PASS Drawing not reused by another form: BlastPufferEvolution_04
+PASS Drawing not reused by another form: BlastPufferEvolution_05
+PASS Drawing not reused by another form: BlastPufferEvolution_06
+PASS Drawing not reused by another form: BlastPufferEvolution_07
+PASS Eight ground-anchored drawings for form BlastPufferMutatedMotion
+PASS Drawing not reused by another form: BlastPufferEvolution_08
+PASS Drawing not reused by another form: BlastPufferEvolution_09
+PASS Drawing not reused by another form: BlastPufferEvolution_10
+PASS Drawing not reused by another form: BlastPufferEvolution_11
+PASS Drawing not reused by another form: BlastPufferEvolution_12
+PASS Drawing not reused by another form: BlastPufferEvolution_13
+PASS Drawing not reused by another form: BlastPufferEvolution_14
+PASS Drawing not reused by another form: BlastPufferEvolution_15
+PASS Mutation starts after the early wave difficulty ramp BlastPuffer
+PASS Deterministic stage boundary BlastPuffer
+PASS Different real anatomy, not tint BlastPuffer
+PASS No extra HP or speed cliff from evolution BlastPuffer
+PASS Catalog remains immutable BlastPuffer
+PASS Body windup precedes real damage BlastPuffer
+PASS Visible anticipation drawing BlastPuffer
+PASS Pause freezes mutation BlastPuffer
+PASS One real mutation cast with paced cooldown BlastPuffer
+PASS Moveset has actual projectiles, hazards or travel BlastPuffer
+PASS Delayed attributed body hazards BlastPuffer
+PASS Slow readable body projectiles, no weapon required BlastPuffer
+PASS No hazards leak into shop BlastPuffer
+PASS Catalog uses redrawn normal form SporeBishop
+PASS Eight ground-anchored drawings for form SporeBishopMotion
+PASS Drawing not reused by another form: SporeBishopEvolution_00
+PASS Drawing not reused by another form: SporeBishopEvolution_01
+PASS Drawing not reused by another form: SporeBishopEvolution_02
+PASS Drawing not reused by another form: SporeBishopEvolution_03
+PASS Drawing not reused by another form: SporeBishopEvolution_04
+PASS Drawing not reused by another form: SporeBishopEvolution_05
+PASS Drawing not reused by another form: SporeBishopEvolution_06
+PASS Drawing not reused by another form: SporeBishopEvolution_07
+PASS Eight ground-anchored drawings for form SporeBishopMutatedMotion
+PASS Drawing not reused by another form: SporeBishopEvolution_08
+PASS Drawing not reused by another form: SporeBishopEvolution_09
+PASS Drawing not reused by another form: SporeBishopEvolution_10
+PASS Drawing not reused by another form: SporeBishopEvolution_11
+PASS Drawing not reused by another form: SporeBishopEvolution_12
+PASS Drawing not reused by another form: SporeBishopEvolution_13
+PASS Drawing not reused by another form: SporeBishopEvolution_14
+PASS Drawing not reused by another form: SporeBishopEvolution_15
+PASS Mutation starts after the early wave difficulty ramp SporeBishop
+PASS Deterministic stage boundary SporeBishop
+PASS Different real anatomy, not tint SporeBishop
+PASS No extra HP or speed cliff from evolution SporeBishop
+PASS Catalog remains immutable SporeBishop
+PASS Body windup precedes real damage SporeBishop
+PASS Visible anticipation drawing SporeBishop
+PASS Pause freezes mutation SporeBishop
+PASS One real mutation cast with paced cooldown SporeBishop
+PASS Moveset has actual projectiles, hazards or travel SporeBishop
+PASS Delayed attributed body hazards SporeBishop
+PASS Slow readable body projectiles, no weapon required SporeBishop
+PASS No hazards leak into shop SporeBishop
+PASS Catalog uses redrawn normal form BroomSkater
+PASS Eight ground-anchored drawings for form BroomSkaterMotion
+PASS Drawing not reused by another form: BroomSkaterEvolution_00
+PASS Drawing not reused by another form: BroomSkaterEvolution_01
+PASS Drawing not reused by another form: BroomSkaterEvolution_02
+PASS Drawing not reused by another form: BroomSkaterEvolution_03
+PASS Drawing not reused by another form: BroomSkaterEvolution_04
+PASS Drawing not reused by another form: BroomSkaterEvolution_05
+PASS Drawing not reused by another form: BroomSkaterEvolution_06
+PASS Drawing not reused by another form: BroomSkaterEvolution_07
+PASS Eight ground-anchored drawings for form BroomSkaterMutatedMotion
+PASS Drawing not reused by another form: BroomSkaterEvolution_08
+PASS Drawing not reused by another form: BroomSkaterEvolution_09
+PASS Drawing not reused by another form: BroomSkaterEvolution_10
+PASS Drawing not reused by another form: BroomSkaterEvolution_11
+PASS Drawing not reused by another form: BroomSkaterEvolution_12
+PASS Drawing not reused by another form: BroomSkaterEvolution_13
+PASS Drawing not reused by another form: BroomSkaterEvolution_14
+PASS Drawing not reused by another form: BroomSkaterEvolution_15
+PASS Mutation starts after the early wave difficulty ramp BroomSkater
+PASS Deterministic stage boundary BroomSkater
+PASS Different real anatomy, not tint BroomSkater
+PASS No extra HP or speed cliff from evolution BroomSkater
+PASS Catalog remains immutable BroomSkater
+PASS Body windup precedes real damage BroomSkater
+PASS Visible anticipation drawing BroomSkater
+PASS Pause freezes mutation BroomSkater
+PASS One real mutation cast with paced cooldown BroomSkater
+PASS Moveset has actual projectiles, hazards or travel BroomSkater
+PASS Delayed attributed body hazards BroomSkater
+PASS Slow readable body projectiles, no weapon required BroomSkater
+PASS No hazards leak into shop BroomSkater
+PASS Catalog uses redrawn normal form RibbonHydra
+PASS Eight ground-anchored drawings for form RibbonHydraMotion
+PASS Drawing not reused by another form: RibbonHydraEvolution_00
+PASS Drawing not reused by another form: RibbonHydraEvolution_01
+PASS Drawing not reused by another form: RibbonHydraEvolution_02
+PASS Drawing not reused by another form: RibbonHydraEvolution_03
+PASS Drawing not reused by another form: RibbonHydraEvolution_04
+PASS Drawing not reused by another form: RibbonHydraEvolution_05
+PASS Drawing not reused by another form: RibbonHydraEvolution_06
+PASS Drawing not reused by another form: RibbonHydraEvolution_07
+PASS Eight ground-anchored drawings for form RibbonHydraMutatedMotion
+PASS Drawing not reused by another form: RibbonHydraEvolution_08
+PASS Drawing not reused by another form: RibbonHydraEvolution_09
+PASS Drawing not reused by another form: RibbonHydraEvolution_10
+PASS Drawing not reused by another form: RibbonHydraEvolution_11
+PASS Drawing not reused by another form: RibbonHydraEvolution_12
+PASS Drawing not reused by another form: RibbonHydraEvolution_13
+PASS Drawing not reused by another form: RibbonHydraEvolution_14
+PASS Drawing not reused by another form: RibbonHydraEvolution_15
+PASS Mutation starts after the early wave difficulty ramp RibbonHydra
+PASS Deterministic stage boundary RibbonHydra
+PASS Different real anatomy, not tint RibbonHydra
+PASS No extra HP or speed cliff from evolution RibbonHydra
+PASS Catalog remains immutable RibbonHydra
+PASS Body windup precedes real damage RibbonHydra
+PASS Visible anticipation drawing RibbonHydra
+PASS Pause freezes mutation RibbonHydra
+PASS One real mutation cast with paced cooldown RibbonHydra
+PASS Moveset has actual projectiles, hazards or travel RibbonHydra
+PASS Delayed attributed body hazards RibbonHydra
+PASS Slow readable body projectiles, no weapon required RibbonHydra
+PASS No hazards leak into shop RibbonHydra
+PASS Catalog uses redrawn normal form BurrowBell
+PASS Eight ground-anchored drawings for form BurrowBellMotion
+PASS Drawing not reused by another form: BurrowBellEvolution_00
+PASS Drawing not reused by another form: BurrowBellEvolution_01
+PASS Drawing not reused by another form: BurrowBellEvolution_02
+PASS Drawing not reused by another form: BurrowBellEvolution_03
+PASS Drawing not reused by another form: BurrowBellEvolution_04
+PASS Drawing not reused by another form: BurrowBellEvolution_05
+PASS Drawing not reused by another form: BurrowBellEvolution_06
+PASS Drawing not reused by another form: BurrowBellEvolution_07
+PASS Eight ground-anchored drawings for form BurrowBellMutatedMotion
+PASS Drawing not reused by another form: BurrowBellEvolution_08
+PASS Drawing not reused by another form: BurrowBellEvolution_09
+PASS Drawing not reused by another form: BurrowBellEvolution_10
+PASS Drawing not reused by another form: BurrowBellEvolution_11
+PASS Drawing not reused by another form: BurrowBellEvolution_12
+PASS Drawing not reused by another form: BurrowBellEvolution_13
+PASS Drawing not reused by another form: BurrowBellEvolution_14
+PASS Drawing not reused by another form: BurrowBellEvolution_15
+PASS Mutation starts after the early wave difficulty ramp BurrowBell
+PASS Deterministic stage boundary BurrowBell
+PASS Different real anatomy, not tint BurrowBell
+PASS No extra HP or speed cliff from evolution BurrowBell
+PASS Catalog remains immutable BurrowBell
+PASS Body windup precedes real damage BurrowBell
+PASS Visible anticipation drawing BurrowBell
+PASS Pause freezes mutation BurrowBell
+PASS One real mutation cast with paced cooldown BurrowBell
+PASS Moveset has actual projectiles, hazards or travel BurrowBell
+PASS Delayed attributed body hazards BurrowBell
+PASS Slow readable body projectiles, no weapon required BurrowBell
+PASS No hazards leak into shop BurrowBell
+PASS 320 separate species/form/pose drawings
+PASS Enemy art not reused by allies or relics
+PASS Gradual monotonic mutation roster, wave 1
+PASS Runtime pools use correct evolutionary form, wave 1
+PASS Wave one remains contact-only, with no mutated projectiles
+PASS Gradual monotonic mutation roster, wave 2
+PASS Runtime pools use correct evolutionary form, wave 2
+PASS Gradual monotonic mutation roster, wave 3
+PASS Runtime pools use correct evolutionary form, wave 3
+PASS Gradual monotonic mutation roster, wave 4
+PASS Runtime pools use correct evolutionary form, wave 4
+PASS Gradual monotonic mutation roster, wave 5
+PASS Runtime pools use correct evolutionary form, wave 5
+PASS Gradual monotonic mutation roster, wave 6
+PASS Runtime pools use correct evolutionary form, wave 6
+PASS Gradual monotonic mutation roster, wave 7
+PASS Runtime pools use correct evolutionary form, wave 7
+PASS Gradual monotonic mutation roster, wave 8
+PASS Runtime pools use correct evolutionary form, wave 8
+PASS Gradual monotonic mutation roster, wave 9
+PASS Runtime pools use correct evolutionary form, wave 9
+PASS Gradual monotonic mutation roster, wave 10
+PASS Runtime pools use correct evolutionary form, wave 10
+PASS Gradual monotonic mutation roster, wave 11
+PASS Runtime pools use correct evolutionary form, wave 11
+PASS Gradual monotonic mutation roster, wave 12
+PASS Runtime pools use correct evolutionary form, wave 12
+PASS Gradual monotonic mutation roster, wave 13
+PASS Runtime pools use correct evolutionary form, wave 13
+PASS All species evolved by late waves
+PASS At most four simultaneous mutation windups in a crowd
+PASS Dead enemy cannot release its pending mutation
+PASS Mutation pressure stays inside existing hazard/projectile budgets
+PASS Rest clears crowded mutation projectiles and hazards
