@@ -1,0 +1,199 @@
+PASS Detailed core drawing UndeliveredKing
+PASS Eight real ground-anchored core poses UndeliveredKing
+PASS Size at least 55 percent above previous runtime UndeliveredKing actual=4.62 source=2.2
+PASS Sixty percent extra health UndeliveredKing
+PASS No source stats or weapon mutation UndeliveredKing
+PASS Distinct signature UndeliveredKing/0
+PASS Signature creates non-projectile attacks UndeliveredKing/0
+PASS Real delayed damage with boss attribution UndeliveredKing/0
+PASS Pause freezes signature UndeliveredKing/0
+PASS Shop removes signature damage UndeliveredKing/0
+PASS Distinct signature UndeliveredKing/1
+PASS Signature creates non-projectile attacks UndeliveredKing/1
+PASS Real delayed damage with boss attribution UndeliveredKing/1
+PASS Pause freezes signature UndeliveredKing/1
+PASS Shop removes signature damage UndeliveredKing/1
+PASS Organs move on shared simulation pose clock UndeliveredKing
+PASS Detailed core drawing ScarletIndex
+PASS Eight real ground-anchored core poses ScarletIndex
+PASS Size at least 55 percent above previous runtime ScarletIndex actual=4.788 source=2.28
+PASS Sixty percent extra health ScarletIndex
+PASS No source stats or weapon mutation ScarletIndex
+PASS Distinct signature ScarletIndex/0
+PASS Signature creates non-projectile attacks ScarletIndex/0
+PASS Real delayed damage with boss attribution ScarletIndex/0
+PASS Pause freezes signature ScarletIndex/0
+PASS Shop removes signature damage ScarletIndex/0
+PASS Distinct signature ScarletIndex/1
+PASS Signature creates non-projectile attacks ScarletIndex/1
+PASS Real delayed damage with boss attribution ScarletIndex/1
+PASS Pause freezes signature ScarletIndex/1
+PASS Shop removes signature damage ScarletIndex/1
+PASS Organs move on shared simulation pose clock ScarletIndex
+PASS Detailed core drawing SleepCollector
+PASS Eight real ground-anchored core poses SleepCollector
+PASS Size at least 55 percent above previous runtime SleepCollector actual=4.956 source=2.36
+PASS Sixty percent extra health SleepCollector
+PASS No source stats or weapon mutation SleepCollector
+PASS Distinct signature SleepCollector/0
+PASS Signature creates non-projectile attacks SleepCollector/0
+PASS Real delayed damage with boss attribution SleepCollector/0
+PASS Pause freezes signature SleepCollector/0
+PASS Actual airborne travel rather than just scale SleepCollector/0
+PASS Landing at locked destination SleepCollector/0
+PASS Shop removes signature damage SleepCollector/0
+PASS Distinct signature SleepCollector/1
+PASS Signature creates non-projectile attacks SleepCollector/1
+PASS Real delayed damage with boss attribution SleepCollector/1
+PASS Pause freezes signature SleepCollector/1
+PASS Actual airborne travel rather than just scale SleepCollector/1
+PASS Landing at locked destination SleepCollector/1
+PASS Shop removes signature damage SleepCollector/1
+PASS Organs move on shared simulation pose clock SleepCollector
+PASS Detailed core drawing WaxAdmiral
+PASS Eight real ground-anchored core poses WaxAdmiral
+PASS Size at least 55 percent above previous runtime WaxAdmiral actual=5.124 source=2.44
+PASS Sixty percent extra health WaxAdmiral
+PASS No source stats or weapon mutation WaxAdmiral
+PASS Distinct signature WaxAdmiral/0
+PASS Signature creates non-projectile attacks WaxAdmiral/0
+PASS Real delayed damage with boss attribution WaxAdmiral/0
+PASS Pause freezes signature WaxAdmiral/0
+PASS Shop removes signature damage WaxAdmiral/0
+PASS Distinct signature WaxAdmiral/1
+PASS Signature creates non-projectile attacks WaxAdmiral/1
+PASS Real delayed damage with boss attribution WaxAdmiral/1
+PASS Pause freezes signature WaxAdmiral/1
+PASS Shop removes signature damage WaxAdmiral/1
+PASS Organs move on shared simulation pose clock WaxAdmiral
+PASS Detailed core drawing LastLantern
+PASS Eight real ground-anchored core poses LastLantern
+PASS Size at least 55 percent above previous runtime LastLantern actual=5.292 source=2.52
+PASS Sixty percent extra health LastLantern
+PASS No source stats or weapon mutation LastLantern
+PASS Distinct signature LastLantern/0
+PASS Signature creates non-projectile attacks LastLantern/0
+PASS Real delayed damage with boss attribution LastLantern/0
+PASS Pause freezes signature LastLantern/0
+PASS Shop removes signature damage LastLantern/0
+PASS Distinct signature LastLantern/1
+PASS Signature creates non-projectile attacks LastLantern/1
+PASS Real delayed damage with boss attribution LastLantern/1
+PASS Pause freezes signature LastLantern/1
+PASS Shop removes signature damage LastLantern/1
+PASS Organs move on shared simulation pose clock LastLantern
+PASS Detailed core drawing MarqueeMaw
+PASS Eight real ground-anchored core poses MarqueeMaw
+PASS Size at least 55 percent above previous runtime MarqueeMaw actual=5.67 source=2.7
+PASS Sixty percent extra health MarqueeMaw
+PASS No source stats or weapon mutation MarqueeMaw
+PASS Distinct signature MarqueeMaw/0
+PASS Signature creates non-projectile attacks MarqueeMaw/0
+PASS Real delayed damage with boss attribution MarqueeMaw/0
+PASS Pause freezes signature MarqueeMaw/0
+PASS Shop removes signature damage MarqueeMaw/0
+PASS Distinct signature MarqueeMaw/1
+PASS Signature creates non-projectile attacks MarqueeMaw/1
+PASS Real delayed damage with boss attribution MarqueeMaw/1
+PASS Pause freezes signature MarqueeMaw/1
+PASS Actual airborne travel rather than just scale MarqueeMaw/1
+PASS Landing at locked destination MarqueeMaw/1
+PASS Shop removes signature damage MarqueeMaw/1
+PASS Organs move on shared simulation pose clock MarqueeMaw
+PASS Detailed core drawing UmbraCradle
+PASS Eight real ground-anchored core poses UmbraCradle
+PASS Size at least 55 percent above previous runtime UmbraCradle actual=6.486 source=2.82
+PASS Sixty percent extra health UmbraCradle
+PASS No source stats or weapon mutation UmbraCradle
+PASS Distinct signature UmbraCradle/0
+PASS Signature creates non-projectile attacks UmbraCradle/0
+PASS Real delayed damage with boss attribution UmbraCradle/0
+PASS Pause freezes signature UmbraCradle/0
+PASS Actual airborne travel rather than just scale UmbraCradle/0
+PASS Landing at locked destination UmbraCradle/0
+PASS Shop removes signature damage UmbraCradle/0
+PASS Distinct signature UmbraCradle/1
+PASS Signature creates non-projectile attacks UmbraCradle/1
+PASS Real delayed damage with boss attribution UmbraCradle/1
+PASS Pause freezes signature UmbraCradle/1
+PASS Actual airborne travel rather than just scale UmbraCradle/1
+PASS Landing at locked destination UmbraCradle/1
+PASS Shop removes signature damage UmbraCradle/1
+PASS Organs move on shared simulation pose clock UmbraCradle
+PASS Detailed core drawing CoinWidow
+PASS Eight real ground-anchored core poses CoinWidow
+PASS Size at least 55 percent above previous runtime CoinWidow actual=6.174 source=2.94
+PASS Sixty percent extra health CoinWidow
+PASS No source stats or weapon mutation CoinWidow
+PASS Distinct signature CoinWidow/0
+PASS Signature creates non-projectile attacks CoinWidow/0
+PASS Real delayed damage with boss attribution CoinWidow/0
+PASS Pause freezes signature CoinWidow/0
+PASS Shop removes signature damage CoinWidow/0
+PASS Distinct signature CoinWidow/1
+PASS Signature creates non-projectile attacks CoinWidow/1
+PASS Real delayed damage with boss attribution CoinWidow/1
+PASS Pause freezes signature CoinWidow/1
+PASS Shop removes signature damage CoinWidow/1
+PASS Organs move on shared simulation pose clock CoinWidow
+PASS Detailed core drawing ChoirEngine
+PASS Eight real ground-anchored core poses ChoirEngine
+PASS Size at least 55 percent above previous runtime ChoirEngine actual=6.426 source=3.06
+PASS Sixty percent extra health ChoirEngine
+PASS No source stats or weapon mutation ChoirEngine
+PASS Distinct signature ChoirEngine/0
+PASS Signature creates non-projectile attacks ChoirEngine/0
+PASS Real delayed damage with boss attribution ChoirEngine/0
+PASS Pause freezes signature ChoirEngine/0
+PASS Shop removes signature damage ChoirEngine/0
+PASS Distinct signature ChoirEngine/1
+PASS Signature creates non-projectile attacks ChoirEngine/1
+PASS Real delayed damage with boss attribution ChoirEngine/1
+PASS Pause freezes signature ChoirEngine/1
+PASS Shop removes signature damage ChoirEngine/1
+PASS Organs move on shared simulation pose clock ChoirEngine
+PASS Detailed core drawing SuitcaseLeviathan
+PASS Eight real ground-anchored core poses SuitcaseLeviathan
+PASS Size at least 55 percent above previous runtime SuitcaseLeviathan actual=7.314 source=3.18
+PASS Sixty percent extra health SuitcaseLeviathan
+PASS No source stats or weapon mutation SuitcaseLeviathan
+PASS Distinct signature SuitcaseLeviathan/0
+PASS Signature creates non-projectile attacks SuitcaseLeviathan/0
+PASS Real delayed damage with boss attribution SuitcaseLeviathan/0
+PASS Pause freezes signature SuitcaseLeviathan/0
+PASS Actual airborne travel rather than just scale SuitcaseLeviathan/0
+PASS Landing at locked destination SuitcaseLeviathan/0
+PASS Shop removes signature damage SuitcaseLeviathan/0
+PASS Distinct signature SuitcaseLeviathan/1
+PASS Signature creates non-projectile attacks SuitcaseLeviathan/1
+PASS Real delayed damage with boss attribution SuitcaseLeviathan/1
+PASS Pause freezes signature SuitcaseLeviathan/1
+PASS Actual airborne travel rather than just scale SuitcaseLeviathan/1
+PASS Landing at locked destination SuitcaseLeviathan/1
+PASS Shop removes signature damage SuitcaseLeviathan/1
+PASS Organs move on shared simulation pose clock SuitcaseLeviathan
+PASS Contact windup warns before both directions of damage
+PASS One collision impact damages both sides
+PASS Each touching enemy gets independent outgoing collision damage
+PASS Collision attributed to champion build
+PASS Contact damage cannot repeat every frame
+PASS Lethal collision still resolves reciprocal enemy damage
+PASS Self damage relic also scales collision
+PASS Collision relic stacks combine with self damage
+PASS Notebook shows actual collision damage, not just bonus
+PASS Late-wave reroll starts at two, independent of stock inflation
+PASS Paid reroll increases only within its wave
+PASS Next shop boundary resets price to two
+PASS Denied reroll changes no counters or gold
+PASS Purchasable self-build support: Health
+PASS Purchasable self-build support: Armor
+PASS Purchasable self-build support: ChampionDamage
+PASS Purchasable self-build support: CollisionDamage
+PASS Purchasable self-build support: CollisionFrequency
+PASS Purchasable self-build support: MeleeDamage
+PASS Purchasable self-build support: RangedDamage
+PASS Purchasable self-build support: BulletPierce
+PASS Purchasable self-build support: BulletSplit
+PASS Collection text padding with heading height 24
+PASS Collection text padding with heading height 38
+PASS Collection text padding with heading height 52

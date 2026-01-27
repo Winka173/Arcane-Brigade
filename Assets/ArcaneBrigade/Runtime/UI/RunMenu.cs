@@ -272,9 +272,12 @@ namespace ArcaneBrigade
                 case Page.Records: DrawRecords(); break;
                 case Page.Museum:
                     museum.Draw(catalog, profile);
-                    GUI.enabled = museum.SelectedWeapon != null;
-                    if (Button(new Rect(850, 625, 355, 45), "TRY DISCOVERED GEAR")) OpenWeaponSandbox();
-                    GUI.enabled = true;
+                    if (museum.Tab == 0)
+                    {
+                        GUI.enabled = museum.SelectedWeapon != null;
+                        if (Button(new Rect(850, 625, 355, 45), "TRY DISCOVERED GEAR")) OpenWeaponSandbox();
+                        GUI.enabled = true;
+                    }
                     break;
                 case Page.WeaponSandbox: sandbox.DrawPanel(text, button); break;
             }

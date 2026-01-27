@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UndeliveredKing
   DisplayName: Undelivered King
-  Body: {fileID: 465057803, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  Body: {fileID: -1725290596, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
   AnimationFrames:
-  - {fileID: 465057803, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 479076234, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 301046218, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 874408747, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1725290596, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -1624054054, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -662858668, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -700579540, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: b0d1725b739068b4b8454e3c7495bfe4, type: 2}
   Weapon: {fileID: 11400000, guid: 047722544859a9b4ab3b93a7f5cfde07, type: 2}
   Health: 650
   Speed: 0.65
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Rotating volleys, stage bites and thrown tickets.
+  Description: Royal Stampede. Dead Letter Cross. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

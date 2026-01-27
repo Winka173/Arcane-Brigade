@@ -14,4 +14,4 @@ PASS Waiting near goods speaks after entry cooldown without requiring reentry
 PASS Stationary focus does not repeatedly spam dialogue
 PASS HP transaction has separate committed reaction
 PASS Failed transaction has denial not success dialogue
-PASS Goods and downward door remain unobscured by long tooltip
+PASS Long tooltip stays below stock prices and inside safe viewport

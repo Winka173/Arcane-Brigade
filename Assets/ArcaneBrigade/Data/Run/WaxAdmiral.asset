@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WaxAdmiral
   DisplayName: Wax Admiral
-  Body: {fileID: 32922707, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  Body: {fileID: -1141080897, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
   AnimationFrames:
-  - {fileID: 32922707, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: -1682232327, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: 1341643232, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: -870794049, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -1141080897, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: 2133245479, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -1792193839, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -1442434736, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 852dc54e60bb903499b46521725f88c6, type: 2}
   Weapon: {fileID: 11400000, guid: d336dbf131d47394d94256398c418143, type: 2}
   Health: 1070
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Spread shots and paired shockwaves.
+  Description: Anchor Rake. Melting Broadside. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

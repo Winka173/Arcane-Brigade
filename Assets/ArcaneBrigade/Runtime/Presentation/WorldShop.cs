@@ -315,8 +315,8 @@ namespace ArcaneBrigade
                 if (offer.Sold)
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
-            Station reroll = AddStation(new Vector2(-4.8f, 2.8f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
-            reroll.Price = owner.Session.RerollCost; reroll.Description = "Replace the three displayed wares. Cost increases each time.";
+            Station reroll = AddStation(new Vector2(-5.3f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
+            reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.";
             AddStation(new Vector2(0, -4.3f), "NEXT HALL", art.HallDoor[0], art.HallDoor, false).Description = "Head down to the next wave.";
             if (merchantEntrance)
                 foreach (Station fixture in stations)

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ScarletIndex
   DisplayName: Scarlet Index
-  Body: {fileID: -1912887981, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  Body: {fileID: -1071149938, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
   AnimationFrames:
-  - {fileID: -1912887981, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 596496700, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 1000928540, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 492799832, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1071149938, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -1698511946, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -1084453714, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: 1356534382, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 05798aad865606a40b9788b62f820adf, type: 2}
   Weapon: {fileID: 11400000, guid: 166ba93775526cd44a5b7af36a08fd42, type: 2}
   Health: 790
   Speed: 0.65
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Fan volleys and shadow lashes.
+  Description: Quill Guillotine. Spilled Archive. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

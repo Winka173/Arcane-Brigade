@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CoinWidow
   DisplayName: The Coin Widow
-  Body: {fileID: 1406923284, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  Body: {fileID: 1463452307, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   AnimationFrames:
-  - {fileID: 1406923284, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
-  - {fileID: -1466910035, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
-  - {fileID: 1183159862, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
-  - {fileID: -461278252, guid: 1e69070d86feb634b8f1187a355edbdc, type: 3}
+  - {fileID: 1463452307, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: -210781662, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: -1221236027, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: -935608180, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: d898dc9f9c3eeff4f8ce81e746b2f712, type: 2}
   Weapon: {fileID: 11400000, guid: 1394aea6f3682b24a8750a55899e84eb, type: 2}
   Health: 850
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Pulls loose coins and releases shockwaves.
+  Description: Vault Scissor. Bank Run. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

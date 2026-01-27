@@ -1,5 +1,5 @@
 PASS Authored motion LanternKnight
-PASS Twelve separate drawings LanternKnight
+PASS 12 separate drawings LanternKnight
 PASS Ground-anchored pose pivots LanternKnight
 PASS Stable idle height and portrait LanternKnight
 PASS Reduced motion steady portrait LanternKnight
@@ -7,7 +7,7 @@ PASS Both anticipation poses LanternKnight
 PASS True release pose LanternKnight
 PASS True recovery pose LanternKnight
 PASS Authored motion CoilKettle
-PASS Twelve separate drawings CoilKettle
+PASS 12 separate drawings CoilKettle
 PASS Ground-anchored pose pivots CoilKettle
 PASS Stable idle height and portrait CoilKettle
 PASS Reduced motion steady portrait CoilKettle
@@ -15,7 +15,7 @@ PASS Both anticipation poses CoilKettle
 PASS True release pose CoilKettle
 PASS True recovery pose CoilKettle
 PASS Authored motion ThimbleMoth
-PASS Twelve separate drawings ThimbleMoth
+PASS 12 separate drawings ThimbleMoth
 PASS Ground-anchored pose pivots ThimbleMoth
 PASS Stable idle height and portrait ThimbleMoth
 PASS Reduced motion steady portrait ThimbleMoth
@@ -23,7 +23,7 @@ PASS Both anticipation poses ThimbleMoth
 PASS True release pose ThimbleMoth
 PASS True recovery pose ThimbleMoth
 PASS Authored motion ReelOwl
-PASS Twelve separate drawings ReelOwl
+PASS 12 separate drawings ReelOwl
 PASS Ground-anchored pose pivots ReelOwl
 PASS Stable idle height and portrait ReelOwl
 PASS Reduced motion steady portrait ReelOwl
@@ -31,7 +31,7 @@ PASS Both anticipation poses ReelOwl
 PASS True release pose ReelOwl
 PASS True recovery pose ReelOwl
 PASS Authored motion WaxAdmiral
-PASS Twelve separate drawings WaxAdmiral
+PASS 8 separate drawings WaxAdmiral
 PASS Ground-anchored pose pivots WaxAdmiral
 PASS Stable idle height and portrait WaxAdmiral
 PASS Reduced motion steady portrait WaxAdmiral

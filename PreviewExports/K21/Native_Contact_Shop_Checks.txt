@@ -1,0 +1,8 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Native collision hurts champion and enemy
+PASS Native collision damage credited to champion
+PASS Native stock proximity opens description
+PASS Reroll station nearby with two-gold base price
+PASS Native reroll station focuses without overlapping stock
+PASS Native reroll pays exactly two gold
+PASS No native runtime errors

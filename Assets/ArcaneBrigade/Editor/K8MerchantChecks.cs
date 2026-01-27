@@ -29,7 +29,7 @@ namespace ArcaneBrigade.Editor
             require(dialogue.LastMoment == MerchantMoment.BloodBuy && dialogue.CurrentLine.Length > 0, "HP transaction has separate committed reaction");
             dialogue.Speak(true, MerchantMoment.Denied, 6);
             require(dialogue.LastMoment == MerchantMoment.Denied, "Failed transaction has denial not success dialogue");
-            require(RunHud.ShopTooltipBounds(600).y >= 685 && RunHud.ShopTooltipBounds(600).yMax <= 870, "Goods and downward door remain unobscured by long tooltip");
+            require(RunHud.ShopTooltipBounds(600).y >= 845 && RunHud.ShopTooltipBounds(600).yMax <= 1030, "Long tooltip stays below stock prices and inside safe viewport");
             Directory.CreateDirectory("PreviewExports/K8"); File.WriteAllLines("PreviewExports/K8/Merchant_Checks.txt", notes);
             Debug.Log("K8_MERCHANT_CHECKS_PASSED " + notes.Count);
         }

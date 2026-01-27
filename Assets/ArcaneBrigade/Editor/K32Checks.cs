@@ -118,7 +118,7 @@ namespace ArcaneBrigade.Editor
                     weighted.State.Wave = 2;
                     weighted.State.Phase = SessionPhase.Victory;
                     weighted.EnterEndless();
-                    require(weighted.State.RerollsThisShop == 0 && weighted.RerollCost == catalog.RerollPrice, "New rest boundary resets reroll escalation");
+                    require(weighted.State.RerollsThisShop == 0 && weighted.RerollCost == 2, "New rest boundary resets reroll escalation to two gold");
                     require(weighted.State.SpecialOffers.Count == 3 && weighted.State.SpecialOffers.TrueForAll(offer => offer.Id == eggOnly.Id && offer.Currency == ShopCurrency.Eggs) && !weighted.State.Offers.Exists(offer => offer.Id == eggOnly.Id), "Egg-only weighted pool is separate from gold offers");
                     weighted.State.Items.Add(new ItemStack { Id = "key-oil", Count = 1 });
                     weighted.State.Items.Add(new ItemStack { Id = "clock-spring", Count = 1 });

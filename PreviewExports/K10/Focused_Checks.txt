@@ -50,7 +50,7 @@ PASS Endless retains existing stat build
 PASS New run resets acquired stats
 PASS Late enemies gain health rather than only visual size
 PASS Details expose hidden projectile stat types
-PASS Outgoing collision damages actual nearby enemy without manual skill input
+PASS Reciprocal collision damages actual nearby enemy after its contact windup
 PASS Technical split/dodge caps apply without deleting owned stacks
 PASS Bullet size cap keeps collision bounded
 PASS All protagonists have authored new starting-stat identities

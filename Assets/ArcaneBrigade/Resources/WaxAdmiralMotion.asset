@@ -13,19 +13,17 @@ MonoBehaviour:
   m_Name: WaxAdmiralMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 32922707, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: -1682232327, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -1141080897, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: 2133245479, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
   Walk:
-  - {fileID: 1341643232, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: 186679374, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: -870794049, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: -220843583, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -1792193839, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -1442434736, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
   Windup:
-  - {fileID: -1008845029, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: -1348526422, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -1417919415, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -138786956, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
   Release:
-  - {fileID: 928622628, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: 705565163, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: 752689035, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: 752689035, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
   Recovery:
-  - {fileID: 765451357, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
-  - {fileID: 817328575, guid: 764fbec328a43224ca1e4e66a3b8409d, type: 3}
+  - {fileID: -1837990613, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -1141080897, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}

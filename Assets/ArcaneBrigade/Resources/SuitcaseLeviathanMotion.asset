@@ -13,19 +13,17 @@ MonoBehaviour:
   m_Name: SuitcaseLeviathanMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 583347817, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: -1120161742, guid: b222401598948144baba2232a923e63e, type: 3}
+  - {fileID: -1874538196, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 284873564, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Walk:
-  - {fileID: -646357526, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: 216989042, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: 704526953, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: -1300599868, guid: b222401598948144baba2232a923e63e, type: 3}
+  - {fileID: 1720158704, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 23999741, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Windup:
-  - {fileID: -1018214959, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: 365579399, guid: b222401598948144baba2232a923e63e, type: 3}
+  - {fileID: -1279660171, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 1905481456, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Release:
-  - {fileID: -1524619705, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: 232332854, guid: b222401598948144baba2232a923e63e, type: 3}
+  - {fileID: 1709154552, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 1709154552, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Recovery:
-  - {fileID: -1796031509, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: -1744521435, guid: b222401598948144baba2232a923e63e, type: 3}
+  - {fileID: 1180320216, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: -1874538196, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}

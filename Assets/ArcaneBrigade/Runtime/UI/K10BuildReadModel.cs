@@ -39,6 +39,16 @@ namespace ArcaneBrigade
                 string summary = (K10StatRules.Percentage(effect) ? value * 100 : value).ToString("+0.###;-0.###;0") + (K10StatRules.Percentage(effect) ? "%" : "");
                 if (scope == ModifierScope.Team) summary = "Champion " + RunModifierRules.ValueText(effect, session.Bonus(effect, ModifierScope.Champion)) + " / Companions " + RunModifierRules.ValueText(effect, session.Bonus(effect, ModifierScope.Companions));
                 string limit = effect == ItemEffect.Dodge ? "\nEffective dodge 0–60%; rolled separately per hit, without added i-frames." : effect == ItemEffect.BulletSplit ? "\n0–6 branches; first generation only, no recursion. Children retain 35% damage and 70% size." : effect == ItemEffect.BulletBounce ? "\nChance 0–100%, up to 8 chance-based bounces; lifetime is not reset." : effect == ItemEffect.BulletSize ? "\nRendering and collision scale together, effective ×0.25–4." : "\nBonuses add before each formula's floor/cap. Separate weapon/tier bonuses are not included here.";
+                if (effect == ItemEffect.CollisionDamage)
+                {
+                    summary = "Champion " + compiled.Champion.CollisionDamage.ToString("0.0") + " per hit";
+                    limit = "\nActual champion damage, including base damage, collision stacks and damage multipliers. Touching enemies hurts both sides after contact windup. Each enemy has its own contact cooldown.";
+                }
+                if (effect == ItemEffect.CollisionFrequency)
+                {
+                    summary = "Champion every " + compiled.Champion.CollisionFrequency.ToString("0.00") + "s";
+                    limit = "\nActual outgoing collision interval per touching enemy. Increasing collision frequency shortens this interval; minimum 0.15 seconds.";
+                }
                 model.Stats.Add(new RunBuildReadModel.Row { Name = RunModifierRules.ModifierName(effect), Summary = summary, Explanation = RunModifierRules.ScopeName(scope) + "\n" + sources + limit });
             }
         }

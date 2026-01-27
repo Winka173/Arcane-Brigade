@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: LastLanternMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 652808029, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1236158462, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  Walk:
+  - {fileID: -1397476257, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1943454864, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  Windup:
+  - {fileID: 1995759063, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: 1504864470, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  Release:
+  - {fileID: -1141430348, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1141430348, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  Recovery:
+  - {fileID: 1062946667, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: 652808029, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}

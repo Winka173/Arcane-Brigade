@@ -13,19 +13,17 @@ MonoBehaviour:
   m_Name: MarqueeMawMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 633713754, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: -903823320, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  - {fileID: -268646991, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -893650622, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   Walk:
-  - {fileID: 1243708010, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 1590413231, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 604367546, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 1801624146, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  - {fileID: -758381758, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1882011092, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   Windup:
-  - {fileID: 1578388334, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 1735315563, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  - {fileID: -752659767, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: 354297423, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   Release:
-  - {fileID: -701832329, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 1575059149, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  - {fileID: 1120984370, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: 1120984370, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   Recovery:
-  - {fileID: -1920368215, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: -372915701, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  - {fileID: -1077501477, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -268646991, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}

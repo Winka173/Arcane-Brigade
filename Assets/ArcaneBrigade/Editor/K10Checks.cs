@@ -78,8 +78,8 @@ namespace ArcaneBrigade.Editor
                     var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);
                     UnitState enemy = simulation.AddFixture(combat.MeleeEnemy, Faction.Enemy, Vector2.zero); enemy.Health = 100;
                     simulation.Champion.Position = simulation.Champion.PreviousPosition = Vector2.zero;
-                    simulation.Step(1f / 60, Vector2.zero);
-                    require(enemy.Health < 100, "Outgoing collision damages actual nearby enemy without manual skill input");
+                    for (int step = 0; step < 16; step++) simulation.Step(1f / 60, Vector2.zero);
+                    require(enemy.Health < 100, "Reciprocal collision damages actual nearby enemy after its contact windup");
                     item.Modifiers = new[] { Modifier(ItemEffect.BulletSplit, 100), Modifier(ItemEffect.BulletSize, 100), Modifier(ItemEffect.Dodge, 100) };
                     combat = session.PrepareCombat();
                     require(combat.StartingCompanions[0].Weapon.ProjectileSplit == 6 && combat.Dodge == 0.6f, "Technical split/dodge caps apply without deleting owned stacks");

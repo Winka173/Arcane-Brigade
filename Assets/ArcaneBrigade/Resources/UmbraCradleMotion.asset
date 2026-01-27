@@ -13,19 +13,17 @@ MonoBehaviour:
   m_Name: UmbraCradleMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 162963245, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: -1063408440, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  - {fileID: 1192427790, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: -118224545, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   Walk:
-  - {fileID: 1878167063, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: 1750191808, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: -715855329, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: -495353226, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  - {fileID: 1181143390, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: 1100542353, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   Windup:
-  - {fileID: -2007892813, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: 758845883, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  - {fileID: -1933886181, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: 1716105187, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   Release:
-  - {fileID: -1527761865, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: -404036895, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  - {fileID: 856929069, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: 856929069, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   Recovery:
-  - {fileID: 467247157, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: 528676049, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  - {fileID: 1574570601, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: 1192427790, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}

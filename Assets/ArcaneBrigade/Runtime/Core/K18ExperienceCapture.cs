@@ -43,6 +43,11 @@ namespace ArcaneBrigade
             var storage = new RunStorage(RunPaths.Root);
             bool reduced = Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k17-reduced") >= 0;
             storage.SaveProfile(new PlayerProfile { ReducedMotion = reduced, ReducedEffects = reduced, ReducedShake = reduced, ReducedFlashes = reduced });
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k21-contact") >= 0)
+            {
+                yield return K21ContactShopCapture.Run(Check, Capture);
+                Check(!failed, "No native runtime errors"); File.WriteAllLines(Path.Combine(root, "CaptureNotes.txt"), notes); Application.Quit(failed ? 1 : 0); yield break;
+            }
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k20-anatomy") >= 0)
             {
                 yield return K20BossAnatomyCapture.Run(Check, Capture);

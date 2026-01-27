@@ -108,6 +108,10 @@ namespace ArcaneBrigade
         public int ActiveBossOrgan = -1;
         public float BossOrganReleaseAt = -100;
         public float LastBossVacuumTime;
+        public float BossPoseTime;
+        public int ActiveBossSignature = -1;
+        public float BossSkillStarted = -100;
+        public float BossSkillUntil = -100;
         public bool LeftPartBroken => LeftPartBrokenAt >= 0;
         public bool RightPartBroken => RightPartBrokenAt >= 0;
     }
@@ -472,6 +476,7 @@ namespace ArcaneBrigade
 
         private void MoveEnemy(UnitState unit, float deltaTime)
         {
+            if (unit.Definition.IsBoss && MoveBossSignature(unit)) return;
             if (MoveExpandedEnemy(unit, deltaTime)) return;
             if (unit.TelegraphUntil > Elapsed) return;
             if (unit.Definition.IsBoss && unit.BossRecoveryUntil > Elapsed) return;
@@ -541,6 +546,7 @@ namespace ArcaneBrigade
         private void ProcessBoss(UnitState boss)
         {
             if (catalog.RunWave == 1) return;
+            boss.BossPoseTime = Elapsed;
             ProcessBossVacuum(boss);
             if (boss.TelegraphUntil > 0f && Elapsed >= boss.TelegraphUntil)
             {
@@ -548,7 +554,9 @@ namespace ArcaneBrigade
                 boss.TelegraphUntil = 0f;
                 int pattern = boss.Definition.BossPattern;
                 int count = BossPartRules.BulletCount(boss);
-                if (catalog.ExpandedContent && ResolveBossBodyAttack(boss)) count = 0;
+                bool signature = catalog.ExpandedContent && boss.ActiveBossSignature >= 0;
+                if (signature) { ResolveBossSignature(boss); count = 0; }
+                else if (catalog.ExpandedContent && ResolveBossBodyAttack(boss)) count = 0;
                 for (int index = 0; index < count && projectiles.Count < 4096; index++)
                 {
                     float angle = BossPartRules.VolleyAngle(boss, index, count, launchTime);
@@ -559,17 +567,19 @@ namespace ArcaneBrigade
                 }
                 boss.BossVolley++;
                 boss.BossOrganReleaseAt = Elapsed;
-                boss.AttackStarted = Elapsed - 0.85f; boss.AttackWindup = 0.85f;
+                boss.AttackWindup = BossEncounterRules.Windup(boss); boss.AttackStarted = Elapsed - boss.AttackWindup;
                 bool enraged = boss.Health < boss.Definition.Health * 0.5f;
-                float recovery = boss.BossVolley % 3 == 0 ? 2.2f : 0.55f;
+                float recovery = signature ? 1.8f : boss.BossVolley % 3 == 0 ? 2.2f : 0.55f;
                 boss.BossRecoveryUntil = Elapsed + recovery;
                 boss.NextBossPattern = Elapsed + (enraged ? 2.7f : 3.5f) + (boss.BossVolley % 3 == 0 ? 0.8f : 0) + BossPartRules.CycleAdjustment(boss);
                 events.Add(new CombatEvent(CombatEventKind.Fire, boss.Position, Faction.Enemy));
             }
             if (Elapsed < boss.NextBossPattern || boss.TelegraphUntil > 0f) return;
-            boss.TelegraphUntil = Elapsed + 0.85f;
+            boss.ActiveBossSignature = catalog.ExpandedContent && BossEncounterRules.IsSignature(boss.BossVolley) ? (boss.BossVolley / 4) % 2 : -1;
+            boss.TelegraphUntil = Elapsed + BossEncounterRules.Windup(boss);
             boss.ActiveBossOrgan = BossPartRules.NextOrgan(boss);
             boss.TelegraphDirection = (Champion.Position - boss.Position).normalized;
+            boss.AbilityTarget = ClampPosition(Champion.Position, boss.Definition.Radius + 0.4f);
             events.Add(new CombatEvent(CombatEventKind.Windup, boss.Position, Faction.Enemy));
         }
 
@@ -705,12 +715,18 @@ namespace ArcaneBrigade
 
         private void ProcessContact(UnitState enemy)
         {
-            if (!enemy.Alive || Elapsed < enemy.NextContact) return;
+            if (!enemy.Alive || !Champion.Alive) return;
+            if (enemy.BodyLift > 0.4f) { enemy.ContactImpactAt = 0; return; }
             if (catalog.ExpandedContent && enemy.Definition.Behavior == EnemyBehavior.Mimic && (!enemy.Awakened || enemy.BehaviorUntil > Elapsed)) return;
             float radius = enemy.Definition.Radius + Champion.Definition.Radius + 0.05f;
             if ((enemy.Position - Champion.Position).sqrMagnitude > radius * radius)
             {
                 if (enemy.ContactImpactAt > 0) { enemy.ContactImpactAt = 0; enemy.NextContact = Elapsed + 0.15f; }
+                return;
+            }
+            if (Elapsed < enemy.NextContact)
+            {
+                if (enemy.ContactImpactAt == 0 && enemy.NextCollision > 0) StrikeChampionCollision(enemy);
                 return;
             }
             if (enemy.ContactImpactAt == 0)
@@ -727,7 +743,10 @@ namespace ArcaneBrigade
             if (Elapsed < enemy.ContactImpactAt) return;
             enemy.ContactImpactAt = 0;
             enemy.NextContact = Elapsed + enemy.Definition.ContactInterval;
-            ApplyDamage(Champion, enemy.Definition.ContactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", (Champion.Position - enemy.Position).normalized, cause: NewCause(enemy.Id));
+            Vector2 impactDirection = (Champion.Position - enemy.Position).normalized;
+            float contactDamage = enemy.Definition.ContactDamage;
+            StrikeChampionCollision(enemy);
+            ApplyDamage(Champion, contactDamage, Faction.Enemy, enemy.Definition.DisplayName + " contact", impactDirection, cause: NewCause(enemy.Id));
         }
 
         private void MoveProjectiles(float deltaTime)

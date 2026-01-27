@@ -354,6 +354,7 @@ namespace ArcaneBrigade
             if (companion && catalog.ContentRevision > 0 && tier > 1)
                 CompanionTierScaling.Apply(unit.Weapon, tier);
             unit.CombatTier = tier;
+            if (!companion) unit.CollisionDamage = Mathf.Max(3, source.CollisionDamage);
             unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
             unit.Weapon.Cooldown /= Mathf.Max(0.1f, 1f + Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f));
@@ -390,7 +391,7 @@ namespace ArcaneBrigade
             unit.KnockbackResistance = Mathf.Max(source.KnockbackResistance, source.IsBoss ? 0.85f : source.BodyHeight >= 1.2f ? 0.6f : 0.15f);
             unit.Weapon.ProjectileSpeed = Mathf.Min(2.4f, unit.Weapon.ProjectileSpeed);
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
-            if (source.IsBoss) { unit.Health *= CarnivalBalance.BossBulk(State.Wave); unit.BodyHeight *= 1.35f; unit.Radius *= 1.15f; }
+            if (source.IsBoss) { unit.Health *= CarnivalBalance.BossBulk(State.Wave) * BossEncounterRules.HealthMultiplier; unit.BodyHeight *= BossEncounterRules.BodyScale(source.BossPattern); unit.Radius *= BossEncounterRules.CollisionScale; }
             else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.9f;
             unit.Health *= CarnivalBalance.EnemyHealth(State.Wave);
             unit.Speed *= CarnivalBalance.EnemySpeed(State.Wave);
@@ -399,6 +400,7 @@ namespace ArcaneBrigade
             unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
             float pressure = (0.62f + State.Difficulty * 0.095f) * CarnivalBalance.EnemyDamage(State.Wave);
             unit.ContactDamage *= pressure; unit.Weapon.Damage *= pressure;
+            if (source.IsBoss) { unit.ContactDamage *= BossEncounterRules.DamageMultiplier; unit.Weapon.Damage *= BossEncounterRules.DamageMultiplier; unit.Speed *= BossEncounterRules.SpeedMultiplier; }
             if (catalog.StatRevision > 0)
             {
                 float late = Mathf.Max(0, State.Wave - 10);
@@ -552,7 +554,7 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public int RerollCost => BoundedCounter((long)Mathf.CeilToInt(catalog.RerollPrice * StagePriceFactor) + (long)State.RerollsThisShop * Mathf.Max(1, catalog.RerollPriceStep));
+        public int RerollCost => BoundedCounter(2L + (long)State.RerollsThisShop * Mathf.Max(1, catalog.RerollPriceStep));
         private void RememberVariant(RosterEntry entry)
         {
             if (!State.AcquiredVariants.Exists(candidate => candidate.UnitId == entry.UnitId && candidate.WeaponId == entry.WeaponId && candidate.Tier == entry.Tier))

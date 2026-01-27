@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UmbraCradle
   DisplayName: Mother Umbra
-  Body: {fileID: 162963245, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  Body: {fileID: 1192427790, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   AnimationFrames:
-  - {fileID: 162963245, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: -1063408440, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: 1878167063, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
-  - {fileID: -715855329, guid: 1c94e910eb1516647a9922837a1f9472, type: 3}
+  - {fileID: 1192427790, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: -118224545, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: 1181143390, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
+  - {fileID: 1100542353, guid: 124eea9b8535e1d469d732ef8a273fc7, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: d9a4722061ac5c243bca97d793762b01, type: 2}
   Weapon: {fileID: 11400000, guid: 7701771740244034db4a88929c99a8a8, type: 2}
   Health: 725
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Lashes with shadow limbs. Avoid the dark pools.
+  Description: Cradle Crash. Shadow Lullaby. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

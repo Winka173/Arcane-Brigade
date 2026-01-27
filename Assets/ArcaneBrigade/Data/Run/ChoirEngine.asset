@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ChoirEngine
   DisplayName: The Howling Organ
-  Body: {fileID: -1268701900, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  Body: {fileID: 436456524, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   AnimationFrames:
-  - {fileID: -1268701900, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 1107171016, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 1692623471, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: -1618275892, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 436456524, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: -1015288546, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: -2144774117, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: -2052213846, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: da793b9aa1c4b3843934b766b9c91d46, type: 2}
   Weapon: {fileID: 11400000, guid: 8c30f325cbdbe2246bdd0e32e78489e1, type: 2}
   Health: 975
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Two expanding shockwaves. Dodge between them.
+  Description: Bass Procession. Falling Requiem. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

@@ -362,7 +362,7 @@ namespace ArcaneBrigade.Editor
             File.WriteAllText("PreviewExports/FullRun_Build.txt", "Result: " + report.summary.result + "\nErrors: " + report.summary.totalErrors + "\nWarnings: " + report.summary.totalWarnings + "\nSize: " + report.summary.totalSize + "\n");
             Directory.CreateDirectory("PreviewExports/K7");
             File.WriteAllLines("PreviewExports/K7/Build_Messages.txt", report.steps.SelectMany(step => step.messages).Where(message => message.type == LogType.Warning || message.type == LogType.Error).Select(message => message.type + ": " + message.content));
-            if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException("Full run build failed");
+            if (report.summary.result != BuildResult.Succeeded || report.summary.totalErrors > 0) throw new InvalidOperationException("Full run build failed or contains errors");
             Directory.CreateDirectory("Builds/FullRun/ThirdPartyNotices");
             File.Copy(Root + "Resources/Fonts/OFL.txt", "Builds/FullRun/ThirdPartyNotices/Noto-OFL.txt", true);
             File.Copy(Root + "Resources/Fonts/BeVietnamPro-OFL.txt", "Builds/FullRun/ThirdPartyNotices/BeVietnamPro-OFL.txt", true);

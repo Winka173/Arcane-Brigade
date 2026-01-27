@@ -30,7 +30,7 @@ namespace ArcaneBrigade
                 CombatSimulation simulation = owner.Simulation;
                 UnitState boss = simulation.Boss;
                 UnitDefinition template = UnityEngine.Object.Instantiate(source);
-                template.Health = boss.Definition.Health; template.BodyHeight *= 1.35f; template.Radius *= 1.15f; template.Speed = 0;
+                template.Health = boss.Definition.Health; template.BodyHeight *= BossEncounterRules.BodyScale(source.BossPattern); template.Radius *= BossEncounterRules.CollisionScale; template.Speed = 0;
                 boss.Definition = template; boss.Health = template.Health; boss.EntranceUntil = 0;
                 boss.Position = boss.PreviousPosition = new Vector2(0, 0.7f); boss.NextBossPattern = float.PositiveInfinity;
                 foreach (UnitState unit in simulation.Units) unit.NextAttack = unit.NextContact = float.PositiveInfinity;
@@ -50,6 +50,23 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(0.65f);
                 check(boss.BossOrganReleaseAt >= 0, "Live organ release " + source.Id);
                 boss.NextBossPattern = float.PositiveInfinity;
+                if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k21-bosses") >= 0)
+                {
+                    boss.BossVolley = 3; boss.NextBossPattern = simulation.Elapsed;
+                    simulation.Step(0.05f, Vector2.zero);
+                    check(boss.ActiveBossSignature == 0 && boss.TelegraphUntil > simulation.Elapsed, "Native signature windup " + source.Id);
+                    yield return capture(source.Id + "-signature-charge");
+                    while (boss.TelegraphUntil > 0 && boss.Alive) yield return null;
+                    boss.NextBossPattern = float.PositiveInfinity;
+                    yield return new WaitForSecondsRealtime(0.4f);
+                    check(simulation.ExpandedFields.Any(field => field.Source == boss), "Native non-projectile signature " + source.Id);
+                    if (BossEncounterRules.Leaps(source.BossPattern, 0)) check(boss.BodyLift > 0.2f, "Native boss airborne " + source.Id);
+                    view.Display(simulation.Elapsed, 1);
+                    check(view.BodyRenderer.bounds.size.y <= template.BodyHeight * 1.12f, "Release pose keeps stable boss height " + source.Id + " actual=" + view.BodyRenderer.bounds.size.y.ToString("F2") + " expected=" + template.BodyHeight.ToString("F2"));
+                    yield return capture(source.Id + "-signature-action");
+                    yield return new WaitForSecondsRealtime(2.5f);
+                    boss.NextBossPattern = float.PositiveInfinity;
+                }
                 UnitState ally = simulation.Units.First(unit => unit.Faction == Faction.Companion);
                 UnitDefinition hitter = UnityEngine.Object.Instantiate(ally.Definition);
                 WeaponDefinition blade = UnityEngine.Object.Instantiate(catalog.Weapon("SpoonSabre"));
@@ -83,9 +100,24 @@ namespace ArcaneBrigade
             RunMenu menu = UnityEngine.Object.FindAnyObjectByType<RunMenu>();
             PlayerProfile profile = storage.LoadProfile();
             foreach (UnitDefinition unit in catalog.Bosses) if (!profile.SeenBosses.Contains(unit.Id)) profile.SeenBosses.Add(unit.Id);
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k21-bosses") >= 0)
+            {
+                foreach (UnitDefinition unit in catalog.Companions) if (!profile.SeenUnits.Contains(unit.Id)) profile.SeenUnits.Add(unit.Id);
+                foreach (ItemDefinition item in catalog.Items) if (!profile.SeenItems.Contains(item.Id)) profile.SeenItems.Add(item.Id);
+                foreach (WeaponDefinition weapon in catalog.Weapons) if (!profile.SeenWeapons.Contains(weapon.Id)) profile.SeenWeapons.Add(weapon.Id);
+            }
             string before = JsonUtility.ToJson(profile);
             menu.ConfigureK7Diagnostics(catalog, profile); menu.ShowPage(RunMenu.Page.Museum); menu.Museum.SelectTab(4); menu.Museum.SetPreview(1, 2);
             yield return new WaitForSecondsRealtime(0.3f); yield return capture("Museum-anatomy-controls");
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k21-bosses") >= 0)
+            {
+                foreach (int tab in new[] { 0, 1, 2, 3 })
+                {
+                    menu.Museum.SelectTab(tab); yield return null;
+                    menu.Museum.SelectExhibitForDiagnostics(tab == 1 ? catalog.Items.Length - 1 : 0);
+                    yield return new WaitForSecondsRealtime(0.2f); yield return capture("Collection-tab-" + tab);
+                }
+            }
             check(JsonUtility.ToJson(profile) == before, "Anatomy collection preview cannot mutate progress");
             menu.ShowPage(RunMenu.Page.Landing); yield return null;
             check(!UnityEngine.Object.FindObjectsByType<BossAnatomyVisual>().Any(), "Anatomy preview cleanup");

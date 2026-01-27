@@ -36,7 +36,15 @@ namespace ArcaneBrigade
                     prop.enabled = field.Kind == ExpandedFieldKind.FallingProp && field.Source != null && field.Source.Definition.IsBoss;
                     if (prop.enabled)
                     {
-                        if (stageArt != null && stageArt.Stands.Length == 12)
+                        BossAnatomyEntry anatomy = BossAnatomy.For(field.Source.Definition);
+                        if (anatomy != null)
+                        {
+                            int organ = field.SourceOrgan >= 0 ? field.SourceOrgan : 2;
+                            for (int part = 0; part < anatomy.Organs.Length && field.SourceOrgan < 0; part++)
+                                if ((anatomy.Organs[part].Role & BossOrganRole.Props) != 0) { organ = part; break; }
+                            prop.sprite = anatomy.Organs[organ].Charged;
+                        }
+                        else if (stageArt != null && stageArt.Stands.Length == 12)
                         {
                             int variant = field.Source.Definition.BossPattern % 5 == 0 ? 8 : 0;
                             prop.sprite = stageArt.Stands[variant + (ReducedMotion ? 0 : Mathf.FloorToInt(simulation.Elapsed * 8) % 4)];
@@ -103,9 +111,11 @@ namespace ArcaneBrigade
                         if (field.Kind == ExpandedFieldKind.Strike) line.loop = false;
                     }
                     line.enabled = hazard || carnival || field.Kind == ExpandedFieldKind.Link && field.Radius == 0 || field.Kind == ExpandedFieldKind.Strike || field.Kind == ExpandedFieldKind.Echo;
+                    if (hazard) line.enabled = !warning && (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave);
                     if (field.Kind == ExpandedFieldKind.Projector) line.enabled = false;
                     MeshRenderer fill = fills[slot];
                     fill.enabled = (hazard || field.Kind == ExpandedFieldKind.Projector) && field.Radius > 0;
+                    if (hazard) fill.enabled = !warning && field.Kind == ExpandedFieldKind.ShadowPool;
                     if (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave) fill.enabled = false;
                     if (fill.enabled)
                     {

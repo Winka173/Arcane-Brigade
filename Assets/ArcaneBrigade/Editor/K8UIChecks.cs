@@ -38,7 +38,7 @@ namespace ArcaneBrigade.Editor
             require(!RunMenu.RosterCardBounds(0).Overlaps(RunMenu.RosterCardBounds(1)), "Portrait cards do not overlap");
             require(RunHud.CombatTimerCaption(false, 0.1f) == "1" && RunHud.CombatTimerCaption(false, -1) == "0" && RunHud.CombatTimerCaption(true, -25) == "BOSSES", "Boss overtime differs from ordinary zero timer");
             foreach (float height in new[] { 0f, 100f, 600f })
-                require(RunHud.ShopTooltipBounds(height).yMax <= 870 && RunHud.ShopTooltipBounds(height).y >= 685, "Shop tooltip leaves goods above and bottom exit clear " + height);
+                require(RunHud.ShopTooltipBounds(height).yMax <= 1030 && RunHud.ShopTooltipBounds(height).y >= 845, "Shop tooltip stays below prices with bottom safe padding " + height);
             var bond = new BondDefinition { Id = "fixture", Name = "Hệ thử", Threshold = 3, Value = 0.1f, Effect = ItemEffect.Damage,
                 ExtraBonuses = new[] { new BondThresholdBonus { Threshold = 4, Value = 0.2f }, new BondThresholdBonus { Threshold = 6, Value = 0.3f } } };
             require(RunUICopy.BondDescription(bond, 3).Contains("3/4") && RunUICopy.BondDescription(bond, 4).Contains(bond.Reward(4).ToString("+0.###;-0.###;0")), "Tooltip uses actual next threshold and reward including extra bonuses");

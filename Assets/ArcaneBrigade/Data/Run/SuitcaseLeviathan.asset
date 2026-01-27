@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SuitcaseLeviathan
   DisplayName: Suitcase Leviathan
-  Body: {fileID: 583347817, guid: b222401598948144baba2232a923e63e, type: 3}
+  Body: {fileID: -1874538196, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   AnimationFrames:
-  - {fileID: 583347817, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: -1120161742, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: -646357526, guid: b222401598948144baba2232a923e63e, type: 3}
-  - {fileID: 704526953, guid: b222401598948144baba2232a923e63e, type: 3}
+  - {fileID: -1874538196, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 284873564, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 1720158704, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 23999741, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 7cf33b078bb9f6b41a9fefe67ac5f899, type: 2}
   Weapon: {fileID: 11400000, guid: 1de88c6c424a3dc49ba353a57d685ce8, type: 2}
   Health: 1100
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Throws luggage and lashes its tongue.
+  Description: Lost Luggage Drop. Leviathan Landing. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

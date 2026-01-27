@@ -45,6 +45,11 @@ namespace ArcaneBrigade.Editor
         private static Sprite[] Import(string id)
         {
             string path = "Assets/ArcaneBrigade/Art/K20/" + id + "_v1.png";
+            return ImportAtlas(path, id);
+        }
+        public static Sprite[] ImportAtlas(string path, string id, bool feet = false)
+        {
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Multiple;
             importer.spritePixelsPerUnit = 256; importer.maxTextureSize = 4096; importer.isReadable = true;
@@ -62,7 +67,7 @@ namespace ArcaneBrigade.Editor
                 RectInt region = regions[index];
                 if (region.width <= 2 || region.height <= 2) throw new InvalidOperationException("Empty anatomy cell " + id + "/" + index);
                 string name = id + "_" + index.ToString("D2");
-                rectangles[index] = new SpriteRect { name = name, rect = new Rect(region.x, region.y, region.width, region.height), pivot = Vector2.one * 0.5f, alignment = SpriteAlignment.Center, spriteID = previous.TryGetValue(name, out GUID identity) ? identity : GUID.Generate() };
+                rectangles[index] = new SpriteRect { name = name, rect = new Rect(region.x, region.y, region.width, region.height), pivot = feet ? new Vector2(0.5f, 0) : Vector2.one * 0.5f, alignment = feet ? SpriteAlignment.Custom : SpriteAlignment.Center, spriteID = previous.TryGetValue(name, out GUID identity) ? identity : GUID.Generate() };
             }
             provider.SetSpriteRects(rectangles); provider.GetDataProvider<ISpriteNameFileIdDataProvider>().SetNameFileIdPairs(rectangles.Select(rectangle => new SpriteNameFileIdPair(rectangle.name, rectangle.spriteID)));
             provider.Apply(); importer.SaveAndReimport();

@@ -40,7 +40,27 @@ namespace ArcaneBrigade
         public static Vector2 Position(UnitState boss, int part)
         {
             BossAnatomyEntry entry = BossAnatomy.For(boss.Definition);
-            return entry == null ? boss.Position : boss.Position + entry.Organs[part].Offset * boss.Definition.BodyHeight;
+            return entry == null ? boss.Position : boss.Position + AnimatedOffset(boss, part) * boss.Definition.BodyHeight + Vector2.up * boss.BodyLift;
+        }
+        public static Vector2 AnimatedOffset(UnitState boss, int part)
+        {
+            BossAnatomyEntry entry = BossAnatomy.For(boss.Definition);
+            if (entry == null) return Vector2.zero;
+            BossOrganDefinition organ = entry.Organs[part];
+            Vector2 offset = organ.Offset;
+            float time = boss.BossPoseTime;
+            float phase = time * 1.45f + part * 2.1f + boss.Definition.BossPattern * 0.4f;
+            if ((organ.Role & (BossOrganRole.Tempo | BossOrganRole.Pulse)) != 0)
+                offset += new Vector2(Mathf.Cos(phase) * 0.11f, Mathf.Sin(phase) * 0.065f);
+            else if ((organ.Role & (BossOrganRole.Volley | BossOrganRole.Pool | BossOrganRole.Props)) != 0)
+                offset += new Vector2(Mathf.Sin(phase * 0.7f) * 0.035f, Mathf.Sin(phase) * 0.055f + 0.035f);
+            if (boss.ActiveBossOrgan == part && !Broken(boss, part))
+            {
+                float age = time - boss.BossOrganReleaseAt;
+                if ((organ.Role & BossOrganRole.Lash) != 0 && age >= 0 && age < 0.75f)
+                    offset += boss.TelegraphDirection * Mathf.Sin(age / 0.75f * Mathf.PI) * 0.26f;
+            }
+            return offset;
         }
         public static Vector2 VolleyOrigin(UnitState boss)
         {
@@ -106,6 +126,7 @@ namespace ArcaneBrigade
             }
             target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.1f);
             target.TelegraphUntil = 0;
+            target.ActiveBossSignature = -1;
             target.BossRecoveryUntil = Mathf.Max(target.BossRecoveryUntil, Elapsed + 0.65f);
             target.NextBossPattern = Mathf.Max(target.NextBossPattern, Elapsed + 0.9f);
             Vector2 outward = part == 0 ? Vector2.left : part == 1 ? Vector2.right : Vector2.down;

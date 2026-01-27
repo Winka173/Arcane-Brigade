@@ -29,6 +29,7 @@ namespace ArcaneBrigade
                 state.Facing = Vector2.right;
                 if (definition.IsBoss)
                 {
+                    state.BossPoseTime = time;
                     if ((BrokenMask & 1) != 0) { if (!state.LeftPartBroken) state.LeftPartBrokenAt = time; } else state.LeftPartBrokenAt = -100;
                     if ((BrokenMask & 2) != 0) { if (!state.RightPartBroken) state.RightPartBrokenAt = time; } else state.RightPartBrokenAt = -100;
                     if ((BrokenMask & 4) != 0) { if (state.CenterPartBrokenAt < 0) state.CenterPartBrokenAt = time; } else state.CenterPartBrokenAt = -100;

@@ -12,6 +12,7 @@ namespace ArcaneBrigade
         private readonly bool[] brokenParts = new bool[3];
         private BossAnatomyEntry anatomy;
         private SpriteRenderer body;
+        private float artworkHeight;
         public int PartCount => anatomy == null ? 0 : anatomy.Organs.Length;
         public int VisibleScars { get; private set; }
         public void Build(UnitState unit, SpriteRenderer reference)
@@ -19,6 +20,7 @@ namespace ArcaneBrigade
             Clear(); body = reference; anatomy = BossAnatomy.For(unit.Definition);
             if (anatomy == null) return;
             Rect ink = SpriteInkMetrics.BoundsOf(body.sprite);
+            artworkHeight = ink.height;
             for (int part = 0; part < 3; part++)
             {
                 BossOrganDefinition definition = anatomy.Organs[part];
@@ -39,6 +41,7 @@ namespace ArcaneBrigade
         {
             if (anatomy == null) return;
             VisibleScars = 0;
+            float compensation = unit.Definition.BodyHeight / Mathf.Max(0.001f, body.transform.localScale.y * artworkHeight);
             for (int part = 0; part < 3; part++)
             {
                 BossOrganDefinition definition = anatomy.Organs[part];
@@ -49,7 +52,7 @@ namespace ArcaneBrigade
                 bool woundHit = BossPartRules.HitZone(unit.HitDirection) == part;
                 bool active = unit.ActiveBossOrgan == part && !broken;
                 bool winding = active && unit.TelegraphUntil > time;
-                float charge = winding ? Mathf.Clamp01(1 - (unit.TelegraphUntil - time) / 0.85f) : 0;
+                float charge = winding ? Mathf.Clamp01(1 - (unit.TelegraphUntil - time) / BossEncounterRules.Windup(unit)) : 0;
                 float releaseAge = time - unit.BossOrganReleaseAt;
                 float release = active && releaseAge >= 0 && releaseAge < 0.5f ? Mathf.Sin(releaseAge / 0.5f * Mathf.PI) : 0;
                 SpriteRenderer organ = organs[part]; SpriteRenderer scar = scars[part]; SpriteRenderer shadow = shadows[part];
@@ -58,10 +61,12 @@ namespace ArcaneBrigade
                 float breathe = reduced ? 0 : Mathf.Sin(time * (part == 2 ? 2.2f : 1.7f) + part * 1.8f) * 0.025f;
                 float recoil = reduced || hurtAge < 0 || hurtAge > 0.24f || !woundHit ? 0 : Mathf.Sin(hurtAge / 0.24f * Mathf.PI) * 0.09f;
                 Vector2 outward = part == 0 ? Vector2.left : part == 1 ? Vector2.right : Vector2.down;
-                Vector3 local = origins[part] + (Vector3)outward * sizes[part] * (recoil + (reduced ? 0 : release * 0.12f - charge * 0.07f));
+                float inkHeight = sizes[part] / Mathf.Max(0.01f, definition.Height);
+                Vector3 flight = (BossPartRules.AnimatedOffset(unit, part) - definition.Offset) * inkHeight;
+                Vector3 local = origins[part] + flight + (Vector3)outward * sizes[part] * (recoil + (reduced ? 0 : release * 0.12f - charge * 0.07f));
                 float scale = sizes[part] / Mathf.Max(0.01f, image.bounds.size.y);
-                organ.transform.localPosition = local;
-                organ.transform.localScale = Vector3.one * scale * (1 + breathe + (reduced ? 0 : charge * 0.09f));
+                organ.transform.localPosition = local * compensation;
+                organ.transform.localScale = Vector3.one * scale * compensation * (1 + breathe + (reduced ? 0 : charge * 0.09f));
                 organ.transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : (part == 0 ? -1 : 1) * (Mathf.Sin(time * 2 + part) * 2 + release * 12));
                 organ.sortingOrder = order + 7;
                 float damage = Mathf.Clamp01(BossPartRules.Damage(unit, part) / BossPartRules.Durability(unit, part));
@@ -69,11 +74,11 @@ namespace ArcaneBrigade
                 if (!PresentationSettings.ReducedFlashes && woundHit && hurtAge >= 0 && hurtAge < 0.1f) organ.color = new Color(1, 0.78f, 0.7f);
                 organ.enabled = unit.Alive && (!broken || !reduced && brokenAge < 0.65f);
                 shadow.enabled = unit.Alive && !broken; shadow.sortingOrder = order + 6;
-                shadow.transform.localPosition = local + new Vector3(0.015f, -0.02f) * sizes[part];
+                shadow.transform.localPosition = (local + new Vector3(0.015f, -0.02f) * sizes[part]) * compensation;
                 shadow.transform.localRotation = organ.transform.localRotation; shadow.transform.localScale = organ.transform.localScale * 1.04f;
                 shadow.color = new Color(0.09f, 0.03f, 0.13f, 0.7f);
                 scar.enabled = unit.Alive && broken; scar.sortingOrder = order + 5;
-                scar.transform.localPosition = origins[part]; scar.transform.localScale = Vector3.one * sizes[part] * 0.73f / Mathf.Max(0.01f, scar.sprite.bounds.size.y);
+                scar.transform.localPosition = origins[part] * compensation; scar.transform.localScale = Vector3.one * sizes[part] * compensation * 0.73f / Mathf.Max(0.01f, scar.sprite.bounds.size.y);
                 scar.color = new Color(0.7f, 0.65f, 0.7f);
                 if (scar.enabled) VisibleScars++;
                 if (!broken || !organ.enabled) continue;

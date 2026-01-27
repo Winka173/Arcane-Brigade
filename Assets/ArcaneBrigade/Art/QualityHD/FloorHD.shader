@@ -28,6 +28,8 @@ Shader "ArcaneBrigade/FloorHD"
             #include "UnityCG.cginc"
             sampler2D _MainTex;
             sampler2D _NextTex;
+            float4 _MainTex_TexelSize;
+            float4 _NextTex_TexelSize;
             float _FloorBlend;
             float4 _TileScale;
             fixed4 _Color;
@@ -49,13 +51,18 @@ Shader "ArcaneBrigade/FloorHD"
                 output.mapUV = input.uv;
                 return output;
             }
+            fixed4 ContinuousFloor(sampler2D floorSampler, float2 uv, float2 texel)
+            {
+                float2 folded = 1 - abs(frac(uv * 0.5) * 2 - 1);
+                return tex2D(floorSampler, clamp(folded, texel * 0.5, 1 - texel * 0.5));
+            }
             fixed4 frag(VertexOutput input) : SV_Target
             {
-                fixed4 color = lerp(tex2D(_MainTex, input.uv), tex2D(_NextTex, input.uv), _FloorBlend) * _Color;
+                fixed4 color = lerp(ContinuousFloor(_MainTex, input.uv, _MainTex_TexelSize.xy), ContinuousFloor(_NextTex, input.uv, _NextTex_TexelSize.xy), _FloorBlend) * _Color;
                 color.rgb = lerp(_BaseColor.rgb, color.rgb, _Detail);
                 fixed4 patina = tex2D(_PatinaTex, input.mapUV);
                 color.rgb = lerp(color.rgb, patina.rgb * _Color.rgb, patina.a * _PatinaStrength);
-                float grain = dot(tex2D(_MainTex, input.uv * 3.3 + float2(0.17,0.31)).rgb, float3(0.2126,0.7152,0.0722));
+                float grain = dot(ContinuousFloor(_MainTex, input.uv * 3.3 + float2(0.17,0.31), _MainTex_TexelSize.xy).rgb, float3(0.2126,0.7152,0.0722));
                 color.rgb *= 1 + (grain - 0.25) * _MicroStrength;
                 float2 world = (input.mapUV - 0.5) * _ArenaSize.xy;
                 float macro = sin(world.x * 0.32 + sin(world.y * 0.21)) * cos(world.y * 0.27 - world.x * 0.11);

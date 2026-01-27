@@ -16,7 +16,7 @@ namespace ArcaneBrigade
             float windup = Mathf.Max(0.01f, unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup);
             float age = time - unit.AttackStarted;
             if (unit.Definition.IsBoss && unit.TelegraphUntil > time)
-                return Windup[Mathf.Clamp(Mathf.FloorToInt((1 - (unit.TelegraphUntil - time) / 0.85f) * Windup.Length), 0, Windup.Length - 1)];
+                return Windup[Mathf.Clamp(Mathf.FloorToInt((1 - (unit.TelegraphUntil - time) / BossEncounterRules.Windup(unit)) * Windup.Length), 0, Windup.Length - 1)];
             if (unit.PendingAttack && age >= 0 && age < windup) return Windup[Mathf.Min(Windup.Length - 1, Mathf.FloorToInt(age / windup * Windup.Length))];
             if (unit.Faction == Faction.Enemy && unit.Definition.Behavior >= EnemyBehavior.Hopper && age >= 0 && age < windup)
                 return Windup[Mathf.Min(Windup.Length - 1, Mathf.FloorToInt(age / windup * Windup.Length))];

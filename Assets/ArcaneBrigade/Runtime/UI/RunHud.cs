@@ -286,7 +286,7 @@ namespace ArcaneBrigade
         public static Rect ShopTooltipBounds(float contentHeight)
         {
             float height = Mathf.Clamp(contentHeight + 85, 155, 185);
-            return new Rect(485, 870 - height, 950, height);
+            return new Rect(485, 1030 - height, 950, height);
         }
         public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSSES" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
 

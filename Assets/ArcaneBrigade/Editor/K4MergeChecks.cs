@@ -73,7 +73,7 @@ namespace ArcaneBrigade.Editor
             unit.PendingAttack = true;
             Require(UnitVisual.IdleBeat(unit, beatTime, false, false) == 0, "Pending attack suppresses personality");
             unit.Faction = Faction.Enemy; unit.ExposedUntil = 3;
-            Require(UnitVisual.IsWeakspotVisible(unit, 2), "Live exposed enemy has mint weakspot cue");
+            Require(!UnitVisual.IsWeakspotVisible(unit, 2), "Exposure keeps its gameplay bonus without target brackets");
             Require(!UnitVisual.IsWeakspotVisible(unit, 3), "Weakspot cue expires with gameplay exposure");
             unit.TelegraphUntil = 4;
             Require(!UnitVisual.IsWeakspotVisible(unit, 2), "Danger telegraph takes priority over weakspot cue");

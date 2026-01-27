@@ -13,19 +13,17 @@ MonoBehaviour:
   m_Name: ChoirEngineMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1268701900, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 1107171016, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 436456524, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: -1015288546, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Walk:
-  - {fileID: 1692623471, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 60403076, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: -1618275892, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 2003892678, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: -2144774117, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: -2052213846, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Windup:
-  - {fileID: -1341440163, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: -1530954069, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 1069562418, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 845735240, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Release:
-  - {fileID: -878754632, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 940338386, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 1758123421, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 1758123421, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
   Recovery:
-  - {fileID: -820041969, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
-  - {fileID: 1183102294, guid: 45e1527ecac625448a9b7162d951c539, type: 3}
+  - {fileID: 379894632, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  - {fileID: 436456524, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}

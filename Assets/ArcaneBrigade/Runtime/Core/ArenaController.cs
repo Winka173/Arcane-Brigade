@@ -71,7 +71,6 @@ namespace ArcaneBrigade
         private GUIStyle button;
         private LineRenderer companionRadius;
         private Material radiusMaterial;
-        private bool showCompanionRadius;
         private bool warningAudio;
         private bool lowHealthAudio;
         private FootstepDust footDust;
@@ -208,7 +207,6 @@ namespace ArcaneBrigade
             runHud.ReadNavigation(pauseGate.Manual || pauseGate.Navigation || session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat));
             if (music != null && session != null) music.SetPhase(TransitionPending ? SessionPhase.Combat : session.State.Phase, pauseGate.Paused || simulation.Phase == RunPhase.Paused, simulation.Boss != null && simulation.Boss.Alive);
             if (music != null && session != null) music.SetContext(session.State.Wave, runCatalog.NormalWaves, session.State.Endless, Shop != null && Shop.Special, simulation.Units);
-            if (Input.GetKeyDown(KeyCode.F3)) showCompanionRadius = !showCompanionRadius;
             if (session != null && (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3))) ToggleDetails();
             if (details.Open && Input.GetKeyDown(KeyCode.Tab)) details.SelectTab((details.Tab + 1) % RunDetails.TabCount);
             if (details.Open && Input.GetKeyDown(KeyCode.DownArrow)) details.MoveSelection(1);
@@ -239,7 +237,7 @@ namespace ArcaneBrigade
             if (bossTelegraph != null) bossTelegraph.Display(simulation);
             if (companionRadius != null)
             {
-                companionRadius.enabled = showCompanionRadius;
+                companionRadius.enabled = false;
                 companionRadius.transform.position = Vector2.Lerp(simulation.Champion.PreviousPosition, simulation.Champion.Position, interpolation);
             }
             if (!pauseGate.Paused && simulation.Phase != RunPhase.Paused)
@@ -636,7 +634,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(80, 43, 470, 50), "HP " + Mathf.CeilToInt(simulation.Champion.Health) + " / " + catalog.Champion.Health + "    GOLD " + simulation.Gold, label);
             GUI.Label(new Rect(660, 43, 970, 50), "WAVE 1   " + Mathf.Max(0, Mathf.CeilToInt(catalog.WaveDuration - simulation.Elapsed)) + "s   KILLS " + simulation.Kills + "   ALLIES " + simulation.CompanionCount + "   RADIUS " + catalog.CompanionLeash.ToString("0.0"), label);
             if (GUI.Button(new Rect(1695, 45, 145, 48), "PAUSE", button)) SetPaused(true);
-            GUI.Label(new Rect(70, 1015, 1780, 42), "Move: WASD / arrows / lower-left touch drag.  F3: ally radius guide.  Auto-combat; shop and merge pending.", label);
+            GUI.Label(new Rect(70, 1015, 1780, 42), "Move: WASD / arrows / lower-left touch drag. Auto-combat.", label);
             if (simulation.Phase != RunPhase.Combat)
             {
                 GUI.Box(new Rect(590, 340, 740, 390), GUIContent.none);

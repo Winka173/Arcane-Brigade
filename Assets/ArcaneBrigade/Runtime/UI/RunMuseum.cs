@@ -53,7 +53,7 @@ namespace ArcaneBrigade
                     exhibits.Add(new Exhibit { Id = weapon.Id, Name = weapon.Id, Icon = weapon.Sprite, Seen = profile.SeenWeapons.Contains(weapon.Id), Detail = tiers + "\n\n" + weapon.Kind + " / " + weapon.Element + "\nBase: " + weapon.Damage.ToString("0.#") + " damage · cycle " + weapon.Cooldown.ToString("0.##") + "s · range " + weapon.Range.ToString("0.#") + "\n\n" + SignatureDescription.Describe(weapon, 1) + "\n\nSandbox can preview other tiers; previews do not count as ownership." });
                 }
             if (tab == 1)
-                foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = item.Description + "\n\n" + item.Rarity + " · " + item.Stacking + " · max " + item.StackLimit });
+                foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = item.Description + "\n\n" + (item.Stacking == StackPolicy.Unique ? "Unique item." : "Stacks for this run.") });
             if (tab == 2)
                 foreach (UnitDefinition unit in catalog.Companions) exhibits.Add(new Exhibit { Id = unit.Id, Name = unit.DisplayName, Icon = unit.Body, Unit = unit, Seen = profile.SeenUnits.Contains(unit.Id), Detail = unit.Description + "\nWeapons roll on purchase, not fixed by body." });
             if (tab == 3)
@@ -61,12 +61,16 @@ namespace ArcaneBrigade
                     if (link.Id.StartsWith("signature-", System.StringComparison.Ordinal)) exhibits.Add(new Exhibit { Id = link.Id, Name = link.Name, Seen = profile.SeenChains.Contains(link.Id), Detail = link.Description + "\n\nDiscoveries require recorded activations/damage/healing, not merely equipping or viewing a graph." });
             if (tab == 4)
                 foreach (UnitDefinition boss in catalog.Bosses) exhibits.Add(new Exhibit { Id = boss.Id, Name = boss.DisplayName, Icon = boss.Body, Unit = boss, Seen = profile.SeenBosses.Contains(boss.Id), Detail = boss.Description + "\n" + boss.Motif + " / " + boss.Material + "\nActually defeated, not previewed." });
+            GUIStyle controls = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = 13, wordWrap = false, clipping = TextClipping.Clip, alignment = TextAnchor.MiddleCenter, padding = new RectOffset(10, 10, 5, 5) };
+            GUIStyle poseControls = new GUIStyle(controls) { fontSize = 11, padding = new RectOffset(6, 6, 4, 4) };
             string[] tabs = { "WEAPONS", "RELICS", "COMPANIONS", "CHAINS", "BOSS" };
             for (int index = 0; index < tabs.Length; index++)
-                if (GUI.Button(new Rect(60 + index * 233, 160, 218, 45), (index == tab ? "• " : "") + tabs[index])) { SelectTab(index); exhibits.Clear(); return; }
-            GUIStyle title = ArcadeTypography.Style(18, true);
-            GUIStyle body = ArcadeTypography.Style(16);
-            GUIStyle cardText = ArcadeTypography.Style(14);
+                if (GUI.Button(new Rect(60 + index * 233, 160, 218, 45), (index == tab ? "• " : "") + tabs[index], controls)) { SelectTab(index); exhibits.Clear(); return; }
+            GUIStyle title = ArcadeTypography.Style(17, true);
+            GUIStyle body = ArcadeTypography.Style(14);
+            GUIStyle cardText = ArcadeTypography.Style(13);
+            title.padding = body.padding = cardText.padding = new RectOffset();
+            title.margin = body.margin = cardText.margin = new RectOffset();
             cardText.wordWrap = true; cardText.clipping = TextClipping.Clip;
             scroll = GUI.BeginScrollView(new Rect(60, 225, 745, 385), scroll, new Rect(0, 0, 710, Mathf.Max(380, Mathf.CeilToInt(exhibits.Count / 3f) * 130)));
             for (int index = 0; index < exhibits.Count; index++)
@@ -76,7 +80,11 @@ namespace ArcaneBrigade
                 ArcadeSkin.Panel(card, index == selection ? new Color(0.27f, 0.22f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
-                GUI.Label(new Rect(card.x + 12, card.y + 78, 200, 38), exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : "?  UNDISCOVERED", cardText);
+                string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : "UNDISCOVERED";
+                Rect nameBounds = new Rect(card.x + 16, card.y + 77, card.width - 32, 31);
+                var nameStyle = new GUIStyle(cardText);
+                while (nameStyle.fontSize > 10 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
+                GUI.Label(nameBounds, caption, nameStyle);
             }
             GUI.EndScrollView();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));
@@ -89,13 +97,18 @@ namespace ArcaneBrigade
                     float time = Time.unscaledTime;
                     if (exhibit.Unit != null)
                     {
-                        diorama.Draw(new Rect(850, 230, 355, 125), exhibit.Unit, catalog.Arena, exhibit.Unit.IsBoss ? 1 : previewTier);
+                        diorama.Draw(new Rect(860, 239, 335, 112), exhibit.Unit, catalog.Arena, exhibit.Unit.IsBoss ? 1 : previewTier);
                         string[] poses = { "IDLE", "WALK", "ATTACK", "HIT" };
                         for (int pose = 0; pose < poses.Length; pose++)
-                            if (GUI.Button(new Rect(852 + pose * 88, 350, 84, 25), (diorama.Pose == pose ? "> " : "") + poses[pose])) diorama.Pose = pose;
+                        {
+                            Color previousColor = GUI.color;
+                            if (diorama.Pose == pose) GUI.color = new Color(1, 0.78f, 0.55f);
+                            if (GUI.Button(new Rect(860 + pose * 85, 354, 78, 28), poses[pose], poseControls)) diorama.Pose = pose;
+                            GUI.color = previousColor;
+                        }
                         if (!exhibit.Unit.IsBoss)
                             for (int stars = 1; stars <= 3; stars++)
-                                if (GUI.Button(new Rect(866 + (stars - 1) * 109, 380, 101, 24), stars + " STAR" + (stars > 1 ? "S" : ""))) previewTier = stars;
+                                if (GUI.Button(new Rect(860 + (stars - 1) * 114, 388, 107, 28), stars + " STAR" + (stars > 1 ? "S" : ""), controls)) previewTier = stars;
                         if (exhibit.Unit.IsBoss)
                         {
                             BossAnatomyEntry anatomy = BossAnatomy.For(exhibit.Unit);
@@ -104,7 +117,7 @@ namespace ArcaneBrigade
                                 {
                                     bool broken = (diorama.BrokenMask & 1 << part) != 0;
                                     var label = new GUIContent((broken ? "FIX " : "BREAK ") + (part + 1), anatomy.Organs[part].Name + ": " + anatomy.Organs[part].BreakSummary);
-                                    if (GUI.Button(new Rect(866 + part * 109, 380, 101, 24), label)) diorama.BrokenMask ^= 1 << part;
+                                    if (GUI.Button(new Rect(860 + part * 114, 388, 107, 28), label, controls)) diorama.BrokenMask ^= 1 << part;
                                 }
                         }
                     }
@@ -133,16 +146,26 @@ namespace ArcaneBrigade
                     }
                 }
                 else diorama.Dispose();
-                GUI.Label(new Rect(865, exhibit.Unit != null && exhibit.Seen ? 406 : 365, 320, 30), exhibit.Seen ? exhibit.Name : "Empty shelf", title);
+                float titleTop = exhibit.Unit != null && exhibit.Seen ? 428 : 365;
+                string heading = exhibit.Seen ? exhibit.Name : "Empty shelf";
+                float titleHeight = Mathf.Clamp(title.CalcHeight(new GUIContent(heading), 323), 24, 52);
+                GUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title);
                 string description = exhibit.Seen ? exhibit.Detail : tab == 4 ? "Defeat this boss in a real hall to unlock its display." : tab == 3 ? "Activate the chain in actual combat. Owning its set is not enough." : "Find this item during a run. Viewing or testing does not unlock it.";
                 if (exhibit.Seen && exhibit.Unit != null && exhibit.Unit.IsBoss) description += "\n\n" + BossPartRules.Describe(exhibit.Unit);
-                float height = Mathf.Max(135, body.CalcHeight(new GUIContent(description), 290));
-                detailScroll = GUI.BeginScrollView(new Rect(865, 430, 325, 155), detailScroll, new Rect(0, 0, 295, height));
-                GUI.Label(new Rect(0, 0, 290, height), description, body);
+                Rect details = DescriptionBounds(titleTop, titleHeight);
+                float textWidth = details.width - 22;
+                float height = Mathf.Max(details.height, body.CalcHeight(new GUIContent(description), textWidth) + 12);
+                detailScroll = GUI.BeginScrollView(details, detailScroll, new Rect(0, 0, textWidth, height));
+                GUI.Label(new Rect(0, 4, textWidth, height - 8), description, body);
                 GUI.EndScrollView();
             }
             int found = exhibits.FindAll(exhibit => exhibit.Seen).Count;
             GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + (tab == 2 || tab == 4 ? " · Arrows: sample · Enter/A: pose · T: tier" : " · Tab / LB/RB: category · arrows / X/Y: sample · Enter/A: try"), body);
+        }
+        public static Rect DescriptionBounds(float titleTop, float titleHeight)
+        {
+            float top = titleTop + titleHeight + 12;
+            return new Rect(866, top, 323, Mathf.Max(64, 588 - top));
         }
     }
 }

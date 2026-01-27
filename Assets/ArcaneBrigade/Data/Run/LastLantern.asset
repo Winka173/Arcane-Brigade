@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LastLantern
   DisplayName: Last Lantern
-  Body: {fileID: 2111205140, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
+  Body: {fileID: 652808029, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   AnimationFrames:
-  - {fileID: 2111205140, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: -530819054, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: 814488608, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  - {fileID: -209994236, guid: c1cadc8da33d343418c7f4c684d4a256, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 652808029, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1236158462, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1397476257, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1943454864, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 77bc9104b5983f548976ac82c41f17bb, type: 2}
   Weapon: {fileID: 11400000, guid: ff8886242d47ac447b7b4c76112fbefd, type: 2}
   Health: 1210
   Speed: 0.65
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Paired volleys and falling luggage.
+  Description: Shutter Cage. Fuel Rain. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0

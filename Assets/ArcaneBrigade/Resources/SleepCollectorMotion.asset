@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SleepCollectorMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -55181743, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: 1492859578, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  Walk:
+  - {fileID: 76265819, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: 537332323, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  Windup:
+  - {fileID: 661698600, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: 2096676826, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  Release:
+  - {fileID: -281312990, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -281312990, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  Recovery:
+  - {fileID: 247079498, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  - {fileID: -55181743, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ScarletIndexMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1071149938, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -1698511946, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  Walk:
+  - {fileID: -1084453714, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: 1356534382, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  Windup:
+  - {fileID: -460217462, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: 1782610924, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  Release:
+  - {fileID: -1215166746, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -1215166746, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  Recovery:
+  - {fileID: 1870485582, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  - {fileID: -1071149938, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}

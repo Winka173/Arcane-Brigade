@@ -39,7 +39,7 @@ namespace ArcaneBrigade
             unit.BodyScale = body;
             unit.Radius *= body;
             unit.Speed *= Factor(session.Bonus(ItemEffect.SpeedCorrection, scope));
-            unit.CollisionDamage = Mathf.Max(0, unit.CollisionDamage + session.Bonus(ItemEffect.CollisionDamage, scope)) * Factor(session.Bonus(ItemEffect.Damage, scope)) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
+            unit.CollisionDamage = Mathf.Max(0, unit.CollisionDamage + session.Bonus(ItemEffect.CollisionDamage, scope)) * Factor(session.Bonus(ItemEffect.Damage, scope) + session.Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage, scope)) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
             unit.CollisionFrequency = Mathf.Clamp(unit.CollisionFrequency / Factor(session.Bonus(ItemEffect.CollisionFrequency, scope)), 0.15f, 4);
             if (!companion) unit.Health = MaximumHealth(session, catalog);
         }

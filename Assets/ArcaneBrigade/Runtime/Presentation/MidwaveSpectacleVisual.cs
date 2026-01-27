@@ -16,7 +16,7 @@ namespace ArcaneBrigade
         private bool rectangular;
         private Vector3[] footprint;
         private readonly MaterialPropertyBlock tint = new MaterialPropertyBlock();
-        public bool Visible => floor != null && floor.enabled;
+        public bool Visible => bait != null && bait.enabled || props[0] != null && props[0].enabled;
         private void Prepare()
         {
             if (material != null) return;
@@ -59,8 +59,8 @@ namespace ArcaneBrigade
             Prepare();
             MidwaveSpectacle show = simulation.Spectacle;
             bool active = (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused) && show != null && show.Active(simulation.Elapsed);
-            floor.enabled = edge.enabled = active;
-            embellishment.enabled = bait.enabled = active;
+            floor.enabled = edge.enabled = embellishment.enabled = false;
+            bait.enabled = active;
             if (!active) { for (int index = 0; index < props.Length; index++) { props[index].enabled = false; shadows[index].Hide(); } return; }
             float age = show.Age(simulation.Elapsed);
             bool parade = show.Kind == SpectacleKind.PaperParade;

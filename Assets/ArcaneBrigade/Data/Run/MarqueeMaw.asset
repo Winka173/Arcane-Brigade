@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MarqueeMaw
   DisplayName: The Marquee Maw
-  Body: {fileID: 633713754, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  Body: {fileID: -268646991, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   AnimationFrames:
-  - {fileID: 633713754, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: -903823320, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 1243708010, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
-  - {fileID: 604367546, guid: c8fe74b3c86cfd541a89c30cf58690a5, type: 3}
+  - {fileID: -268646991, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -893650622, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -758381758, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  - {fileID: -1882011092, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 31be0f9b22c9b674aa0b4ba95527e7ee, type: 2}
   Weapon: {fileID: 11400000, guid: 42a0a6ad62295b8449b669a50c046391, type: 2}
   Health: 600
@@ -40,7 +40,7 @@ MonoBehaviour:
   Tags: []
   Passive: 0
   PassiveStrength: 1
-  Description: Bites the stage and throws broken tickets.
+  Description: Curtain Call. Stage Dive. Break organs to weaken attacks.
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
