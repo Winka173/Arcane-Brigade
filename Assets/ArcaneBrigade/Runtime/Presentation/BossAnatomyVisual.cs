@@ -59,12 +59,15 @@ namespace ArcaneBrigade
                 Sprite image = release > 0.1f && definition.Release != null ? definition.Release : winding && charge > 0.35f || release > 0.1f ? definition.Charged : definition.Rest;
                 organ.sprite = image; shadow.sprite = image;
                 float breathe = reduced ? 0 : Mathf.Sin(time * (part == 2 ? 2.2f : 1.7f) + part * 1.8f) * 0.025f;
+                int act = AnimationTiming.BossAct(unit.Health, unit.Definition.Health);
+                float phaseFloat = reduced || winding || release > 0 ? 0 : Mathf.Sin(time * .9f + part * 2.2f) * act * .015f;
                 float recoil = reduced || hurtAge < 0 || hurtAge > 0.24f || !woundHit ? 0 : Mathf.Sin(hurtAge / 0.24f * Mathf.PI) * 0.09f;
                 Vector2 outward = part == 0 ? Vector2.left : part == 1 ? Vector2.right : Vector2.down;
                 float inkHeight = sizes[part] / Mathf.Max(0.01f, definition.Height);
                 Vector3 flight = (BossPartRules.AnimatedOffset(unit, part) - definition.Offset) * inkHeight;
                 Vector3 local = origins[part] + flight + (Vector3)outward * sizes[part] * (recoil + (reduced ? 0 : release * 0.12f - charge * 0.07f));
-                float scale = sizes[part] / Mathf.Max(0.01f, image.bounds.size.y);
+                local += new Vector3(part == 0 ? -phaseFloat : phaseFloat, phaseFloat, 0) * sizes[part];
+                float scale = (unit.Definition.Id == "OutsideStageKeeper" || unit.Definition.Id == NightmareRules.CustomerId ? 1 : 1.25f) * sizes[part] / Mathf.Max(0.01f, image.bounds.size.y);
                 organ.transform.localPosition = local * compensation;
                 organ.transform.localScale = Vector3.one * scale * compensation * (1 + breathe + (reduced ? 0 : charge * 0.09f));
                 organ.transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : (part == 0 ? -1 : 1) * (Mathf.Sin(time * 2 + part) * 2 + release * 12));

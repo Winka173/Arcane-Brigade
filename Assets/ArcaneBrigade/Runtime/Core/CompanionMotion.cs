@@ -5,9 +5,10 @@ namespace ArcaneBrigade
 {
     public static class CompanionMotion
     {
-        public static float Leash(UnitState unit, CheckpointCatalog catalog) => catalog.CompanionLeash + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? MeleeBalance.RoamBonus : 0);
+        public static float Leash(UnitState unit, CheckpointCatalog catalog) => catalog.FreeFollowers ? catalog.ArenaSize.magnitude : catalog.CompanionLeash + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? MeleeBalance.RoamBonus : 0);
         public static Vector2 Step(UnitState unit, UnitState champion, IReadOnlyList<UnitState> units, UnitState target, CheckpointCatalog catalog, float elapsed, float deltaTime)
         {
+            if (catalog.StaticFollowers) { unit.Velocity = Vector2.zero; return unit.Position; }
             float leash = Leash(unit, catalog);
             float outer = Mathf.Max(0.1f, Mathf.Min(catalog.CompanionRoamOuterRadius + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.3f : 0), leash * 0.9f));
             float inner = Mathf.Clamp(catalog.CompanionRoamInnerRadius, 0f, outer);

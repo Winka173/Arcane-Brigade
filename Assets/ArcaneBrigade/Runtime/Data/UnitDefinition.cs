@@ -32,6 +32,10 @@ namespace ArcaneBrigade
         public PassiveKind Passive;
         public float PassiveStrength = 1f;
         public string Description;
+        public string ReferenceHero;
+        public string ReferenceCompanion;
+        public string ExclusiveHero;
+        public bool GiftOnly;
         public StatModifier[] ChampionModifiers = new StatModifier[0];
         public string[] RecruitThemes = new string[0];
         public HeroMechanic HeroMechanic;
@@ -42,6 +46,9 @@ namespace ArcaneBrigade
         public bool IsBoss;
         public int BossPattern;
         public int CombatTier = 1;
+        // Run-compiled form: source assets and saved roster identities stay intact.
+        public BuildMorphKind BuildMorph;
+        public int BuildMorphStage;
         public EnemyBehavior Behavior;
         public HostileShot Shot;
         public BodyMaterial Material;

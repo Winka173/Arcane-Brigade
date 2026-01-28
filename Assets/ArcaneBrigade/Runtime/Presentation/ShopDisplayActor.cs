@@ -30,7 +30,17 @@ namespace ArcaneBrigade
         private ShopDisplayActor support;
         private Vector3 presentationOffset;
         private Vector3 travelOffset;
+        private MerchantPortraitRig portrait;
+        private float inspectionAt = -100;
+        private float previousTime;
+        private float interest;
+        private EnsembleClip handoff;
+        private float handoffAt = -100;
+        public bool PaintedHandoffActive => handoff != null && owner != null && owner.PresentationClock - handoffAt >= 0 && owner.PresentationClock - handoffAt < 1.05f;
         public SpriteRenderer View => view;
+        public float FocusAmount => interest;
+        private readonly MaterialPropertyBlock focusProperties = new MaterialPropertyBlock();
+        public static float FocusScale(float focus, float age, bool reduced) => 1 + Mathf.Clamp01(focus) * (reduced ? .12f : .18f) + (reduced ? 0 : AnimationTiming.Settle(age, .48f, 2) * .075f);
         public void MountMerchandise(ShopDisplayActor pedestal = null)
         {
             merchandise = true;
@@ -41,24 +51,36 @@ namespace ArcaneBrigade
         {
             get
             {
-                Rect ink = SpriteInkMetrics.BoundsOf(view.sprite);
-                return transform.TransformPoint(new Vector3(ink.center.x, Mathf.Lerp(ink.yMin, ink.yMax, 0.78f), 0)) - transform.parent.TransformVector(travelOffset);
+                if (pedestalDisplay)
+                {
+                    Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * view.sprite.pivot.y / view.sprite.rect.height);
+                    return ground + transform.TransformVector(WorldSpriteGrounding.Seat(view.sprite) - WorldSpriteGrounding.Foot(view.sprite));
+                }
+                return transform.TransformPoint(WorldSpriteGrounding.Seat(view.sprite)) - transform.parent.TransformVector(travelOffset);
             }
         }
         private void LateUpdate()
         {
+            if (view != null && view.sprite != null && (floorFixture || pedestalDisplay || merchantActor) && GetComponent<OctoberDoor>() == null)
+            {
+                Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * view.sprite.pivot.y / view.sprite.rect.height);
+                WorldSpriteGrounding.Place(view, ground + transform.parent.TransformVector(travelOffset));
+                view.sortingOrder = WorldSpriteGrounding.SortAt(ground.y);
+                if (grounded != null) grounded.Display(view.sprite, ground, height * .72f, Mathf.Abs(travelOffset.y), .34f * view.color.a);
+            }
             if (!merchandise || support == null || view.sprite == null) return;
-            Rect ink = SpriteInkMetrics.BoundsOf(view.sprite);
-            Vector3 foot = transform.TransformVector(new Vector3(ink.center.x, ink.yMin, 0));
-            transform.position = support.SeatPosition - foot + transform.parent.TransformVector(presentationOffset);
+            WorldSpriteGrounding.Place(view, support.SeatPosition + transform.parent.TransformVector(presentationOffset));
             if (grounded != null) grounded.Display(view.sprite, support.SeatPosition, height * 0.72f, Mathf.Abs(presentationOffset.y), 0.34f * view.color.a);
         }
         public void Configure(SpriteRenderer renderer, Sprite[] animation, float bodyHeight, ArenaController controller, float offset)
         {
             view = renderer; frames = animation; height = bodyHeight; owner = controller; phase = offset;
+            Material painted = Resources.Load<Material>("UnitFlash");
+            if (painted != null) view.sharedMaterial = painted;
             origin = transform.localPosition;
         }
-        public void Celebrate() { cheerUntil = owner.PresentationClock + 0.8f; }
+        public void Celebrate() { cheerUntil = owner.PresentationClock + 0.8f; if (merchantActor) handoffAt = owner.PresentationClock; }
+        public void SetMerchantIdentity(string identity) { handoff = EnsembleArtwork.Current?.Merchant(identity); }
         public void Reject() { denialUntil = owner.PresentationClock + 0.55f; }
         public void LookAt(float direction) { attention = Mathf.Clamp(direction, -1, 1); }
         public void SetMerchantMood(bool special)
@@ -71,7 +93,11 @@ namespace ArcaneBrigade
             }
         }
         private void OnDestroy() { if (emergence != null) Destroy(emergence); }
-        public void Inspect(bool active) { inspecting = active; }
+        public void Inspect(bool active)
+        {
+            if (active && !inspecting && owner != null) inspectionAt = owner.PresentationClock;
+            inspecting = active;
+        }
         public void SetPedestalDisplay() { pedestalDisplay = true; }
         public void Speak(bool active) { speaking = active; }
         public void SetCompanionDisplay(bool companion)
@@ -101,6 +127,8 @@ namespace ArcaneBrigade
             if (view == null || owner == null || owner.Simulation.Phase == RunPhase.Paused) return;
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             float time = owner.PresentationClock + phase;
+            float delta = Mathf.Clamp(owner.PresentationClock - previousTime, 0, .05f); previousTime = owner.PresentationClock;
+            interest = reduced ? inspecting ? 1 : 0 : Mathf.Lerp(interest, inspecting ? 1 : 0, AnimationTiming.Blend(12, delta));
             bool cheer = owner.PresentationClock < cheerUntil;
             bool denied = owner.PresentationClock < denialUntil;
             if (frames != null && frames.Length > 0)
@@ -114,7 +142,9 @@ namespace ArcaneBrigade
                 view.sprite = frames[frame];
             }
             if (view.sprite == null) return;
-            float breathing = reduced ? 0 : Mathf.Sin(time * (companionDisplay ? 2.1f : 2.5f)) * (companionDisplay ? 0.065f : 0.04f);
+            bool paintedHandoff = merchantActor && PaintedHandoffActive && !reduced;
+            if (paintedHandoff) view.sprite = handoff.At((owner.PresentationClock - handoffAt) / 1.05f);
+            float breathing = reduced || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * (companionDisplay ? 2.1f : 2.5f)) * (companionDisplay ? 0.065f : 0.04f);
             if (speaking && !reduced) breathing += Mathf.Sin(owner.PresentationClock * 19) * 0.012f;
             float scale = Mathf.Min(height / view.sprite.bounds.size.y, height * 1.2f / view.sprite.bounds.size.x);
             float age = owner.PresentationClock - arrivalStarted - arrivalDelay;
@@ -129,17 +159,31 @@ namespace ArcaneBrigade
             if (reduced) displacement = Vector3.zero;
             travelOffset = displacement;
             transform.localScale = new Vector3(scale * (1 - breathing * 0.4f + settle), scale * (1 + breathing - settle), 1);
-            transform.localPosition = origin + displacement + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * (merchantActor || companionDisplay ? 0.035f : 0.11f) + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0), 0);
+            if (merchandise)
+            {
+                transform.localScale *= FocusScale(interest, owner.PresentationClock - inspectionAt, reduced);
+                view.GetPropertyBlock(focusProperties); SpriteLighting.Apply(view, focusProperties, false, true);
+                focusProperties.SetColor("_RimColor", new Color(1, .96f, .8f));
+                focusProperties.SetFloat("_RimAmount", Mathf.Lerp(.07f, .7f, interest));
+                focusProperties.SetFloat("_Flash", interest * .055f);
+                view.SetPropertyBlock(focusProperties);
+            }
+            transform.localPosition = origin + displacement + new Vector3(reduced ? 0 : attention * 0.035f + (denied ? Mathf.Sin(time * 45) * 0.04f : 0), reduced || merchandise || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * (dreamMerchant ? 1.4f : 2)) * (merchantActor || companionDisplay ? 0.035f : 0.11f) + (cheer ? dreamMerchant ? -0.06f : Mathf.Abs(Mathf.Sin(time * 10)) * 0.13f : 0), 0);
             presentationOffset = transform.localPosition - origin;
             Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : 1; view.color = tint;
-            transform.localRotation = Quaternion.Euler(0, 0, reduced ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
+            transform.localRotation = Quaternion.Euler(0, 0, reduced || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
             view.sortingOrder = merchandise || pedestalDisplay
                 ? 1000 - Mathf.RoundToInt(transform.parent.position.y * 12) + (merchandise ? 8 : 0)
                 : 1000 - Mathf.RoundToInt(transform.position.y * 12);
-            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(view.sprite); }
+            if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.PinCastToFoot = true; grounded.Configure(view.sprite); }
             Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * (view.sprite.pivot.y / view.sprite.rect.height));
             if (emergence != null) emergence.SetFloat("_FloorY", !reduced && travel > 0 ? ground.y : -10000);
             grounded.Display(view.sprite, ground, height * 0.72f, Mathf.Abs(displacement.y), 0.34f * view.color.a);
+            if (merchantActor)
+            {
+                if (portrait == null) portrait = gameObject.AddComponent<MerchantPortraitRig>();
+                portrait.Display(view, time, speaking, owner.PresentationClock - (cheerUntil - .8f), owner.PresentationClock - (denialUntil - .55f), dreamMerchant, attention, reduced || paintedHandoff);
+            }
         }
     }
 }

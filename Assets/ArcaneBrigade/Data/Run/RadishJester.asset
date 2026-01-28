@@ -39,12 +39,24 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - orchard
+  - mask
   Passive: 3
   PassiveStrength: 0.5
-  Description: 'Team: Knockback +2.5%. Your Maximum health -1
-
-    More allies increase
-    attack'
+  Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nA basic hit schedules a poison
+    strike after 1s for 25% of this ally's weapon damage. The target and source must
+    still be alive. Poison cannot create another poison chain.\r\n\nSUPPORT WHILE
+    OWNED\nTeam / Knockback: +2.5%\nChampion / Maximum health: -1\nTier 1/2/3 traits
+    \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nOwn
+    weapon damage gains 0.5% per companion body in the roster, before later balance
+    modifiers.\r\n\nNamed talents count bodies and absorbed memories; their stated
+    percentages are not multiplied by star level unless explicitly stated. Listed
+    support modifiers scale separately at 1/2/4.\r\nBonds: orchard, mask. Immortal.
+    Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless
+    the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Mummy
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -60,7 +72,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

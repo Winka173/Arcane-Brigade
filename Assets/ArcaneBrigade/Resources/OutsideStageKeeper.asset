@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: OutsideStageKeeper
   DisplayName: The Outside Keeper
-  Body: {fileID: -1802919523, guid: 9c07643e55e4a284ab0cbbd6c083430f, type: 3}
+  Body: {fileID: 1914439447, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
   AnimationFrames:
-  - {fileID: -1802919523, guid: 9c07643e55e4a284ab0cbbd6c083430f, type: 3}
-  - {fileID: 721927247, guid: 9c07643e55e4a284ab0cbbd6c083430f, type: 3}
-  - {fileID: -1671423197, guid: 9c07643e55e4a284ab0cbbd6c083430f, type: 3}
-  - {fileID: -227459473, guid: 9c07643e55e4a284ab0cbbd6c083430f, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 4148ea230c3446d45a4f9bf118fbc9bd, type: 2}
+  - {fileID: 1914439447, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  - {fileID: 1150657570, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  - {fileID: 593319520, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  - {fileID: 1138190060, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f9fc496f46279ef45bb913107177f209, type: 2}
   Weapon: {fileID: 11400000, guid: 9771a56f15db877449f604de44562f8a, type: 2}
   Health: 16000
   Speed: 0.38
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: The hands that carried you belong to this thing.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,12 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 10
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 3
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0

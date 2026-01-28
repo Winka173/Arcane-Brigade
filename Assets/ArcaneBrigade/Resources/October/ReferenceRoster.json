@@ -1,0 +1,1161 @@
+{
+  "heroes": [
+    {
+      "reference": "Mr. Work",
+      "id": "LanternKnight",
+      "name": "Lantern Knight",
+      "trait": 1,
+      "new": false
+    },
+    {
+      "reference": "Derpy Wolf",
+      "id": "CometRunner",
+      "name": "The Comet Courier",
+      "trait": 2,
+      "new": false
+    },
+    {
+      "reference": "Jade Cabbage",
+      "id": "VerdantMatron",
+      "name": "Verdant Matron",
+      "trait": 3,
+      "new": true
+    },
+    {
+      "reference": "The Big Pot",
+      "id": "CopperCauldron",
+      "name": "Copper Cauldron",
+      "trait": 4,
+      "new": true
+    },
+    {
+      "reference": "Porcelain Doll",
+      "id": "ChinaMarionette",
+      "name": "China Marionette",
+      "trait": 5,
+      "new": true
+    },
+    {
+      "reference": "Slippy",
+      "id": "SoapSkater",
+      "name": "Soap Skater",
+      "trait": 6,
+      "new": true
+    },
+    {
+      "reference": "Card King",
+      "id": "VelvetRegent",
+      "name": "Velvet Regent",
+      "trait": 7,
+      "new": true
+    },
+    {
+      "reference": "Sassy Senior",
+      "id": "GlassDice",
+      "name": "Lady Loaded Dice",
+      "trait": 8,
+      "new": false
+    },
+    {
+      "reference": "Baggy",
+      "id": "RootOracle",
+      "name": "The Root Oracle",
+      "trait": 9,
+      "new": false
+    },
+    {
+      "reference": "Sir Purrcival",
+      "id": "ButtonCavalier",
+      "name": "Button Cavalier",
+      "trait": 10,
+      "new": true
+    },
+    {
+      "reference": "Red Scale",
+      "id": "TideSinger",
+      "name": "The Tide Singer",
+      "trait": 11,
+      "new": false
+    },
+    {
+      "reference": "Omnom",
+      "id": "NightMaw",
+      "name": "Night Maw",
+      "trait": 12,
+      "new": true
+    },
+    {
+      "reference": "Periwinky",
+      "id": "ThornTreasurer",
+      "name": "Thorn Treasurer",
+      "trait": 13,
+      "new": true
+    },
+    {
+      "reference": "Clementie",
+      "id": "CitrusMarshal",
+      "name": "Citrus Marshal",
+      "trait": 14,
+      "new": true
+    },
+    {
+      "reference": "Gulpy",
+      "id": "TreasureAcorn",
+      "name": "The Treasure Clerk",
+      "trait": 15,
+      "new": false
+    },
+    {
+      "reference": "Frosty",
+      "id": "DrowsySeer",
+      "name": "Drowsy Seer",
+      "trait": 16,
+      "new": false
+    },
+    {
+      "reference": "Capped Gallant",
+      "id": "LoneJelly",
+      "name": "The Lone Jelly",
+      "trait": 17,
+      "new": false
+    },
+    {
+      "reference": "Card Queen",
+      "id": "IvorySovereign",
+      "name": "Ivory Sovereign",
+      "trait": 18,
+      "new": true
+    },
+    {
+      "reference": "Steel Shell",
+      "id": "MirrorKeeper",
+      "name": "The Mirror Keeper",
+      "trait": 19,
+      "new": false
+    },
+    {
+      "reference": "Box Shell",
+      "id": "Postmaster",
+      "name": "Postmaster",
+      "trait": 20,
+      "new": false
+    },
+    {
+      "reference": "Bloom Shell",
+      "id": "PetalCitadel",
+      "name": "Petal Citadel",
+      "trait": 21,
+      "new": true
+    },
+    {
+      "reference": "Belle",
+      "id": "PatchworkHost",
+      "name": "Patchwork Host",
+      "trait": 22,
+      "new": true
+    },
+    {
+      "reference": "Wise",
+      "id": "ArchiveCurator",
+      "name": "Archive Curator",
+      "trait": 23,
+      "new": true
+    },
+    {
+      "reference": "Nicole",
+      "id": "PennyBroker",
+      "name": "Penny Broker",
+      "trait": 24,
+      "new": true
+    },
+    {
+      "reference": "Anby",
+      "id": "StormFencer",
+      "name": "Storm Fencer",
+      "trait": 25,
+      "new": true
+    },
+    {
+      "reference": "Billy",
+      "id": "TinVirtuoso",
+      "name": "Tin Virtuoso",
+      "trait": 26,
+      "new": true
+    },
+    {
+      "reference": "Nekomata",
+      "id": "MoonProwler",
+      "name": "Moon Prowler",
+      "trait": 27,
+      "new": true
+    },
+    {
+      "reference": "Burgerboo",
+      "id": "SupperMortar",
+      "name": "Supper Mortar",
+      "trait": 28,
+      "new": true
+    },
+    {
+      "reference": "Original",
+      "id": "LanternWeaver",
+      "name": "Lantern Weaver",
+      "trait": 29,
+      "new": true
+    },
+    {
+      "reference": "Original",
+      "id": "HourglassStag",
+      "name": "Hourglass Stag",
+      "trait": 30,
+      "new": true
+    },
+    {
+      "reference": "Original",
+      "id": "RainArchivist",
+      "name": "Rain Archivist",
+      "trait": 31,
+      "new": true
+    }
+  ],
+  "newHeroes": [
+    {
+      "reference": "Jade Cabbage",
+      "id": "VerdantMatron",
+      "name": "Verdant Matron",
+      "design": "a living jade artichoke empress with layered leaf dress, tiny root boots and ivory gardening bonnet",
+      "theme": "orchard",
+      "weapon": "SnowGlobeOrb"
+    },
+    {
+      "reference": "The Big Pot",
+      "id": "CopperCauldron",
+      "name": "Copper Cauldron",
+      "design": "a sturdy copper cooking pot golem with lid helmet, steam eyebrows and small wooden feet",
+      "theme": "hearth",
+      "weapon": "RubberHammer"
+    },
+    {
+      "reference": "Porcelain Doll",
+      "id": "ChinaMarionette",
+      "name": "China Marionette",
+      "design": "an ivory blue porcelain ballerina doll with articulated arms and a golden repair seam",
+      "theme": "frost",
+      "weapon": "DreamStamp"
+    },
+    {
+      "reference": "Slippy",
+      "id": "SoapSkater",
+      "name": "Soap Skater",
+      "design": "a seafoam bar-of-soap sprite on little wooden skates, bubbles and a striped bath cap",
+      "theme": "tidal",
+      "weapon": "TinFish"
+    },
+    {
+      "reference": "Card King",
+      "id": "VelvetRegent",
+      "name": "Velvet Regent",
+      "design": "a burgundy velvet king chess toy with ivory mask, gold paper crown and two stubby feet",
+      "theme": "archive",
+      "weapon": "BellFork"
+    },
+    {
+      "reference": "Sir Purrcival",
+      "id": "ButtonCavalier",
+      "name": "Button Cavalier",
+      "design": "a ginger cloth kitten knight with teal felt armour, button clasp and short feather helmet",
+      "theme": "clock",
+      "weapon": "UmbrellaLance"
+    },
+    {
+      "reference": "Omnom",
+      "id": "NightMaw",
+      "name": "Night Maw",
+      "design": "a plush indigo toothy hound with gold stitched muzzle and tiny red cape",
+      "theme": "oddity",
+      "weapon": "SpoonSabre"
+    },
+    {
+      "reference": "Periwinky",
+      "id": "ThornTreasurer",
+      "name": "Thorn Treasurer",
+      "design": "a violet hedgehog pincushion merchant with ivory quills and gold coin pouch",
+      "theme": "orchard",
+      "weapon": "DreamStamp"
+    },
+    {
+      "reference": "Clementie",
+      "id": "CitrusMarshal",
+      "name": "Citrus Marshal",
+      "design": "a small orange peel turtle coach with jade shell and ivory whistle",
+      "theme": "orchard",
+      "weapon": "RubberHammer"
+    },
+    {
+      "reference": "Card Queen",
+      "id": "IvorySovereign",
+      "name": "Ivory Sovereign",
+      "design": "an ivory playing card queen toy with violet skirt and red wax heart chest",
+      "theme": "archive",
+      "weapon": "DreamStamp"
+    },
+    {
+      "reference": "Bloom Shell",
+      "id": "PetalCitadel",
+      "name": "Petal Citadel",
+      "design": "a pink flowering wooden turtle with miniature garden shell and teal leaf boots",
+      "theme": "orchard",
+      "weapon": "SnowGlobeOrb"
+    },
+    {
+      "reference": "Belle",
+      "id": "PatchworkHost",
+      "name": "Patchwork Host",
+      "design": "a teal patchwork rabbit ringmaster with brass bell collar and ivory ticket sash",
+      "theme": "hearth",
+      "weapon": "InkPistol"
+    },
+    {
+      "reference": "Wise",
+      "id": "ArchiveCurator",
+      "name": "Archive Curator",
+      "design": "a brass owl librarian puppet in indigo robe with paper bookmark crest",
+      "theme": "archive",
+      "weapon": "SleepCamera"
+    },
+    {
+      "reference": "Nicole",
+      "id": "PennyBroker",
+      "name": "Penny Broker",
+      "design": "a red fox coin broker plush with ivory waistcoat, teal purse and gold monocle",
+      "theme": "archive",
+      "weapon": "InkPistol"
+    },
+    {
+      "reference": "Anby",
+      "id": "StormFencer",
+      "name": "Storm Fencer",
+      "design": "a silver storm mouse toy with teal scarf and indigo fencing jacket",
+      "theme": "clock",
+      "weapon": "UmbrellaLance"
+    },
+    {
+      "reference": "Billy",
+      "id": "TinVirtuoso",
+      "name": "Tin Virtuoso",
+      "design": "a red tin jack-in-the-box gunslinger with ivory faceplate and brass bow tie",
+      "theme": "clock",
+      "weapon": "InkPistol"
+    },
+    {
+      "reference": "Nekomata",
+      "id": "MoonProwler",
+      "name": "Moon Prowler",
+      "design": "a midnight blue cloth cat courier with two ivory ribbon tails and small gold boots",
+      "theme": "tidal",
+      "weapon": "SpoonSabre"
+    },
+    {
+      "reference": "Burgerboo",
+      "id": "SupperMortar",
+      "name": "Supper Mortar",
+      "design": "a round wooden picnic hamper creature with porcelain lid hat, teal napkin cape and brass cannon snout",
+      "theme": "hearth",
+      "weapon": "TeapotPopgun"
+    },
+    {
+      "reference": "Original",
+      "id": "LanternWeaver",
+      "name": "Lantern Weaver",
+      "design": "a tiny ivory silkworm puppeteer in teal lantern-shell coat with golden needle crown",
+      "theme": "astral",
+      "weapon": "DreamOrbStaff"
+    },
+    {
+      "reference": "Original",
+      "id": "HourglassStag",
+      "name": "Hourglass Stag",
+      "design": "a wooden fawn with short brass clockwork antlers and indigo hourglass chest",
+      "theme": "clock",
+      "weapon": "BellFork"
+    },
+    {
+      "reference": "Original",
+      "id": "RainArchivist",
+      "name": "Rain Archivist",
+      "design": "a mint green paper frog archivist with raincoat and gold raindrop spectacles",
+      "theme": "tidal",
+      "weapon": "SleepCamera"
+    }
+  ],
+  "allies": [
+    {
+      "reference": "Alien",
+      "id": "TeapotPilgrim",
+      "name": "Teapot Pilgrim",
+      "bond": "Ominous Mask",
+      "new": false
+    },
+    {
+      "reference": "Applehead",
+      "id": "CandleSnail",
+      "name": "Candle Snail",
+      "bond": "Fruit",
+      "new": false
+    },
+    {
+      "reference": "Athlete",
+      "id": "MailboxImp",
+      "name": "Mailbox Imp",
+      "bond": "Crimson Gauntlets; BB Melon-Striped Ball",
+      "new": false
+    },
+    {
+      "reference": "Bullhorn Warrior",
+      "id": "PillowOracle",
+      "name": "Pillow Oracle",
+      "bond": "Gear; Primitive Leather Skirt",
+      "new": false
+    },
+    {
+      "reference": "Camo Shroom",
+      "id": "MushroomLibrarian",
+      "name": "Mushroom Librarian",
+      "bond": "Four-Leaf Clover",
+      "new": false
+    },
+    {
+      "reference": "Cheer Bunny",
+      "id": "HoodWisp",
+      "name": "Hood Wisp",
+      "bond": "Bouncy Rabbit Ears; Carrot",
+      "new": false
+    },
+    {
+      "reference": "Chieftain",
+      "id": "JellySwordsman",
+      "name": "Jelly Swordsman",
+      "bond": "Crimson Gauntlets; Primitive Leather Skirt",
+      "new": false
+    },
+    {
+      "reference": "Clown",
+      "id": "BrassAcorn",
+      "name": "Brass Acorn",
+      "bond": "Empire; Ominous Mask",
+      "new": false
+    },
+    {
+      "reference": "Fierce Fighter",
+      "id": "BreadCrab",
+      "name": "Bread Crab",
+      "bond": "Crimson Gauntlets",
+      "new": false
+    },
+    {
+      "reference": "Floofy",
+      "id": "KettleBat",
+      "name": "Kettle Bat",
+      "bond": "Primitive Leather Skirt; Bow and Arrow",
+      "new": false
+    },
+    {
+      "reference": "Grey Mage",
+      "id": "BookmarkGolem",
+      "name": "Bookmark Golem",
+      "bond": "Hat; Mysterious Rune",
+      "new": false
+    },
+    {
+      "reference": "Hopping Zombie",
+      "id": "TinTick",
+      "name": "Tin Tick",
+      "bond": "Ominous Mask; Mysterious Rune",
+      "new": false
+    },
+    {
+      "reference": "Intelligent Construct",
+      "id": "SpringDuck",
+      "name": "Spring Duck",
+      "bond": "Gear",
+      "new": false
+    },
+    {
+      "reference": "Iron Swordsman",
+      "id": "ButtonBeetle",
+      "name": "Button Beetle",
+      "bond": "Empire; Carrot",
+      "new": false
+    },
+    {
+      "reference": "Judge",
+      "id": "StapleMole",
+      "name": "Staple Mole",
+      "bond": "Four-Leaf Clover",
+      "new": false
+    },
+    {
+      "reference": "Jungle Folk",
+      "id": "SnowSpoon",
+      "name": "Snow Spoon",
+      "bond": "Primitive Leather Skirt",
+      "new": false
+    },
+    {
+      "reference": "Little Witch",
+      "id": "IceCreamOwl",
+      "name": "Ice Cream Owl",
+      "bond": "Hat; Mysterious Rune",
+      "new": false
+    },
+    {
+      "reference": "Masked Wrestler",
+      "id": "FridgeWisp",
+      "name": "Fridge Wisp",
+      "bond": "Shoe; Crimson Gauntlets",
+      "new": false
+    },
+    {
+      "reference": "Matchstick Head",
+      "id": "PearMoth",
+      "name": "Pear Moth",
+      "bond": "Morning Star; Mysterious Rune",
+      "new": false
+    },
+    {
+      "reference": "Monkey King",
+      "id": "CitrusToad",
+      "name": "Citrus Toad",
+      "bond": "Shoe",
+      "new": false
+    },
+    {
+      "reference": "Mummy",
+      "id": "RadishJester",
+      "name": "Radish Jester",
+      "bond": "Ominous Mask",
+      "new": false
+    },
+    {
+      "reference": "Peach",
+      "id": "SeedHedgehog",
+      "name": "Seed Hedgehog",
+      "bond": "Fruit",
+      "new": false
+    },
+    {
+      "reference": "Phantom",
+      "id": "MoonJelly",
+      "name": "Moon Jelly",
+      "bond": "Bouncy Rabbit Ears",
+      "new": false
+    },
+    {
+      "reference": "Pirate",
+      "id": "StarSock",
+      "name": "Star Sock",
+      "bond": "Chest; Shoe",
+      "new": false
+    },
+    {
+      "reference": "Pointy Hat Witch",
+      "id": "CometKite",
+      "name": "Comet Kite",
+      "bond": "Bow and Arrow; Chest",
+      "new": false
+    },
+    {
+      "reference": "Prince",
+      "id": "EclipseEgg",
+      "name": "Eclipse Egg",
+      "bond": "Empire; BB Morning Star",
+      "new": false
+    },
+    {
+      "reference": "Princess",
+      "id": "OrbitMoth",
+      "name": "Orbit Moth",
+      "bond": "Empire; BB Morning Star",
+      "new": false
+    },
+    {
+      "reference": "Smiley Fox",
+      "id": "DreamCompass",
+      "name": "Dream Compass",
+      "bond": "Bow and Arrow; Bouncy Rabbit Ears",
+      "new": false
+    },
+    {
+      "reference": "Student",
+      "id": "ShellPostman",
+      "name": "Shell Postman",
+      "bond": "Melon-Striped Ball",
+      "new": false
+    },
+    {
+      "reference": "TV Head",
+      "id": "CoralTeacup",
+      "name": "Coral Teacup",
+      "bond": "Gear; Chest",
+      "new": false
+    },
+    {
+      "reference": "Young Lady",
+      "id": "BubbleKoi",
+      "name": "Bubble Koi",
+      "bond": "Morning Star; Four-Leaf Clover",
+      "new": false
+    },
+    {
+      "reference": "\"Art of Food\" Roshi",
+      "id": "AnchorSnail",
+      "name": "Anchor Snail",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Bullied\" Sophia",
+      "id": "SailSquid",
+      "name": "Sail Squid",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Cars ARE My Kids\" Chris",
+      "id": "SockCyclops",
+      "name": "Sock Cyclops",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Colorful Fantasy\" Pinky",
+      "id": "DiceCrab",
+      "name": "Dice Crab",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Enduring Suffering\" Dorothy",
+      "id": "MaskPepper",
+      "name": "Mask Pepper",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Expert Nurturer\" Daisy",
+      "id": "CrayonGremlin",
+      "name": "Crayon Gremlin",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Formatting Pixie\" Quentin",
+      "id": "MirrorNewt",
+      "name": "Mirror Newt",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"GLHF\" Nia",
+      "id": "RibbonSpider",
+      "name": "Ribbon Spider",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Leisurely Walk\" Mary",
+      "id": "CoilKettle",
+      "name": "Coil Kettle",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Misfortune\" Emily",
+      "id": "ThimbleMoth",
+      "name": "Thimble Moth",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Naming Demon\" Yan",
+      "id": "ReelOwl",
+      "name": "Reel Owl",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Overtime King\" Philip",
+      "id": "RainbowTailor",
+      "name": "The Impossible Tailor",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Pet Master\" Lisa",
+      "id": "RainbowBell",
+      "name": "The Last Bell",
+      "bond": "Resolve!",
+      "new": false
+    },
+    {
+      "reference": "\"Shove Around\" Bella",
+      "id": "SaffronMechanist",
+      "name": "Saffron Mechanist",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "\"Smug and Satisfied\" Jake",
+      "id": "ClockworkPiper",
+      "name": "Clockwork Piper",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "\"The All-Knowing\" Walter",
+      "id": "VelvetChampion",
+      "name": "Velvet Champion",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "\"The Creator\" Roger",
+      "id": "PaperInventor",
+      "name": "Paper Inventor",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "\"Triumphant Return\" Daniel",
+      "id": "ReturnCaptain",
+      "name": "Return Captain",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "\"Quick Production\" Tao",
+      "id": "DoughForeman",
+      "name": "Dough Foreman",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "\"Unstoppable\" Paul",
+      "id": "IronLocomotive",
+      "name": "Iron Locomotive",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "Vengeful Spirit",
+      "id": "VioletRemnant",
+      "name": "Violet Remnant",
+      "bond": "Resolve!",
+      "new": true
+    },
+    {
+      "reference": "Attractive Witch",
+      "id": "VelvetEnchantress",
+      "name": "Velvet Enchantress",
+      "bond": "Knight",
+      "new": true
+    },
+    {
+      "reference": "Big Cabbage",
+      "id": "GrandSprout",
+      "name": "Grand Sprout",
+      "bond": "Jade Cabbage",
+      "new": true
+    },
+    {
+      "reference": "Domestic Spiked Ball",
+      "id": "BristleBall",
+      "name": "Bristle Ball",
+      "bond": "Horned Head",
+      "new": true
+    },
+    {
+      "reference": "Evil",
+      "id": "PaperDevil",
+      "name": "Paper Devil",
+      "bond": "Horned Head",
+      "new": true
+    },
+    {
+      "reference": "Inflatable Hammer",
+      "id": "BalloonMallet",
+      "name": "Balloon Mallet",
+      "bond": "Ominous Mask",
+      "new": true
+    },
+    {
+      "reference": "Little Cabbage",
+      "id": "LittleSprout",
+      "name": "Little Sprout",
+      "bond": "Jade Cabbage",
+      "new": true
+    },
+    {
+      "reference": "Monster Friend",
+      "id": "MonsterMarble",
+      "name": "Monster Marble",
+      "bond": "Ominous Mask",
+      "new": true
+    },
+    {
+      "reference": "Pony",
+      "id": "CarouselPony",
+      "name": "Carousel Pony",
+      "bond": "Knight",
+      "new": true
+    },
+    {
+      "reference": "Original",
+      "id": "TeacupCricket",
+      "name": "Teacup Cricket",
+      "bond": "Original",
+      "new": true
+    },
+    {
+      "reference": "Original",
+      "id": "RibbonOtter",
+      "name": "Ribbon Otter",
+      "bond": "Original",
+      "new": true
+    },
+    {
+      "reference": "Original",
+      "id": "SpindleWren",
+      "name": "Spindle Wren",
+      "bond": "Original",
+      "new": true
+    }
+  ],
+  "newAllies": [
+    {
+      "id": "SaffronMechanist",
+      "name": "Saffron Mechanist",
+      "design": "a saffron cloth cricket engineer with tiny goggles and mechanical legs"
+    },
+    {
+      "id": "ClockworkPiper",
+      "name": "Clockwork Piper",
+      "design": "a teal tin songbird with brass pipe chest and curled feather crown"
+    },
+    {
+      "id": "VelvetChampion",
+      "name": "Velvet Champion",
+      "design": "an ivory plush pug gladiator with burgundy cape and gold toy medallion"
+    },
+    {
+      "id": "PaperInventor",
+      "name": "Paper Inventor",
+      "design": "a folded indigo paper raccoon inventor with pencil ear and apron"
+    },
+    {
+      "id": "ReturnCaptain",
+      "name": "Return Captain",
+      "design": "a wooden sparrow captain with teal coat and brass ribbon medals"
+    },
+    {
+      "id": "DoughForeman",
+      "name": "Dough Foreman",
+      "design": "a warm cream bread bear baker with gold flour scoop and indigo apron"
+    },
+    {
+      "id": "IronLocomotive",
+      "name": "Iron Locomotive",
+      "design": "a compact red toy steam train snail with brass wheels and ivory chimney"
+    },
+    {
+      "id": "VioletRemnant",
+      "name": "Violet Remnant",
+      "design": "a violet ghost mitten with gold stitched eyes and curled cloth tail"
+    },
+    {
+      "id": "VelvetEnchantress",
+      "name": "Velvet Enchantress",
+      "design": "a teal velvet moth witch with purple folded hat and ivory buttons"
+    },
+    {
+      "id": "GrandSprout",
+      "name": "Grand Sprout",
+      "design": "a large friendly cabbage gnome with layered jade leaves and root shoes"
+    },
+    {
+      "id": "BristleBall",
+      "name": "Bristle Ball",
+      "design": "a round purple pin-cushion hedgehog with ivory spines and gold thimble feet"
+    },
+    {
+      "id": "PaperDevil",
+      "name": "Paper Devil",
+      "design": "a mischievous red origami imp with tiny gold horns and indigo paper wings"
+    },
+    {
+      "id": "BalloonMallet",
+      "name": "Balloon Mallet",
+      "design": "a pink inflated balloon elephant with a mallet trunk, ivory seams and teal feet"
+    },
+    {
+      "id": "LittleSprout",
+      "name": "Little Sprout",
+      "design": "a tiny jade cabbage child with two leaf arms, root feet and gold seed button"
+    },
+    {
+      "id": "MonsterMarble",
+      "name": "Monster Marble",
+      "design": "a friendly indigo glass marble beast with ivory horns and wooden feet"
+    },
+    {
+      "id": "CarouselPony",
+      "name": "Carousel Pony",
+      "design": "a friendly teal wooden rocking pony with gold bridle, ivory mane and a clearly empty saddle"
+    },
+    {
+      "id": "TeacupCricket",
+      "name": "Teacup Cricket",
+      "design": "an ivory porcelain cricket in blue floral teacup armour and brass feet"
+    },
+    {
+      "id": "RibbonOtter",
+      "name": "Ribbon Otter",
+      "design": "a teal plush otter with ivory ribbon whiskers and small burgundy satchel"
+    },
+    {
+      "id": "SpindleWren",
+      "name": "Spindle Wren",
+      "design": "a warm gold spool bird with teal thread wings and tiny ivory beak"
+    }
+  ],
+  "relics": [
+    {
+      "reference": "\"Fruit Crush\""
+    },
+    {
+      "reference": "\"Midnight Ballad\""
+    },
+    {
+      "reference": "\"Oxygen Bubble\""
+    },
+    {
+      "reference": "\"Peach Sea\""
+    },
+    {
+      "reference": "Shark Button"
+    },
+    {
+      "reference": "\"Soda Tea\""
+    },
+    {
+      "reference": "\"Startled Awake by Afternoon\""
+    },
+    {
+      "reference": "\"Time of Leisure\""
+    },
+    {
+      "reference": "Warped Cassette"
+    },
+    {
+      "reference": "\"Weird Grassland\""
+    },
+    {
+      "reference": "Wool Mittens"
+    },
+    {
+      "reference": "Bento Box"
+    },
+    {
+      "reference": "Cheap Hair Dryer"
+    },
+    {
+      "reference": "Commemorative Mug"
+    },
+    {
+      "reference": "Cracked Phone"
+    },
+    {
+      "reference": "Gaze"
+    },
+    {
+      "reference": "\"Golden Fuel\""
+    },
+    {
+      "reference": "Gold-Plated Ring"
+    },
+    {
+      "reference": "\"Hot Coffee\""
+    },
+    {
+      "reference": "Iridescent Disc"
+    },
+    {
+      "reference": "\"Lemon Spring Water\""
+    },
+    {
+      "reference": "\"Midnight\""
+    },
+    {
+      "reference": "\"Orange Joy\""
+    },
+    {
+      "reference": "Quill"
+    },
+    {
+      "reference": "\"Rock 'n' Roll Mulberry\""
+    },
+    {
+      "reference": "Sleep Mask"
+    },
+    {
+      "reference": "\"Sleep Well\""
+    },
+    {
+      "reference": "Spring Water"
+    },
+    {
+      "reference": "Strangely Favored Drink"
+    },
+    {
+      "reference": "Sun Hat"
+    },
+    {
+      "reference": "Target Board"
+    },
+    {
+      "reference": "Universal Key"
+    },
+    {
+      "reference": "\"Vitamin C Rage\""
+    },
+    {
+      "reference": "Weird Pool Ball"
+    },
+    {
+      "reference": "Chaos Calendar"
+    },
+    {
+      "reference": "Cowardice"
+    },
+    {
+      "reference": "Cracked Seed"
+    },
+    {
+      "reference": "\"Crazy Paint\""
+    },
+    {
+      "reference": "Despair"
+    },
+    {
+      "reference": "Fear"
+    },
+    {
+      "reference": "Fish Oil in a Box"
+    },
+    {
+      "reference": "Fridge Sticker"
+    },
+    {
+      "reference": "Greed"
+    },
+    {
+      "reference": "Hard Bread"
+    },
+    {
+      "reference": "\"Matcha Honey\""
+    },
+    {
+      "reference": "Neck Brace"
+    },
+    {
+      "reference": "Noise-Cancelling Headphones"
+    },
+    {
+      "reference": "Projector Slide"
+    },
+    {
+      "reference": "Rage"
+    },
+    {
+      "reference": "\"Rose Water\""
+    },
+    {
+      "reference": "Sadness"
+    },
+    {
+      "reference": "Silent Alarm"
+    },
+    {
+      "reference": "Spiky Yoga Ball"
+    },
+    {
+      "reference": "Tangy Tangerine"
+    },
+    {
+      "reference": "\"Wake Up!\""
+    },
+    {
+      "reference": "Water Lily"
+    },
+    {
+      "reference": "Weird Rice Ball"
+    },
+    {
+      "reference": "\"Winningway\""
+    },
+    {
+      "reference": "Birthday Candle"
+    },
+    {
+      "reference": "Cooling Fan"
+    },
+    {
+      "reference": "Deception"
+    },
+    {
+      "reference": "Donut"
+    },
+    {
+      "reference": "Dumplings"
+    },
+    {
+      "reference": "Expensive Fruit"
+    },
+    {
+      "reference": "Green Form"
+    },
+    {
+      "reference": "Hard Hat"
+    },
+    {
+      "reference": "Healthy Sandwich"
+    },
+    {
+      "reference": "Juicy Fried Chicken"
+    },
+    {
+      "reference": "Message From A Friend"
+    },
+    {
+      "reference": "Mysterious ID"
+    },
+    {
+      "reference": "\"Peace Water\""
+    },
+    {
+      "reference": "Perfume"
+    },
+    {
+      "reference": "Self-Driving Force"
+    },
+    {
+      "reference": "Thumbtack"
+    },
+    {
+      "reference": "Universe Coin"
+    },
+    {
+      "reference": "Potato"
+    }
+  ]
+}

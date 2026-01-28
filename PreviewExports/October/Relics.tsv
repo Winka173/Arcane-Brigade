@@ -1,0 +1,171 @@
+Reference	Id	Name	Rarity	Themes	Effects
+	key-oil	Key Oil	Common		COMMON · Stackable / Team / Damage: +24% × 1 = +24% / 
+	clock-spring	Clock Spring	Common		COMMON · Stackable / Team / Attack speed: +20% × 1 = +20% / 
+	honey-pot	Honey Pot	Common		COMMON · Stackable / Champion / Maximum health: +40 × 1 = +40 / 
+	felt-boots	Felt Boots	Common	clock, oddity, tidal	COMMON · Stackable / Team / Movement speed: +10% × 1 = +10% / 
+	coin-compass	Coin Compass	Common	astral, clock, hearth	COMMON · Stackable / Run / Pickup radius: +1.25 × 1 = +1.25 / 
+	wandering-map	Wandering Map	Common	astral, clock, hearth	COMMON · Stackable / Run / Patrol radius: +0.4 × 1 = +0.4 / 
+	guardian-canopy	Guardian Canopy	Rare	astral, clock, hearth	RARE · Stackable / Run / Companion bullet interception: +1 × 1 = +1 / 
+	warm-tea	Warm Tea	Common	frost, hearth, orchard	COMMON · Stackable / Champion / Healing per second: +1 × 1 = +1 / 
+	oracle-lens	Oracle Lens	Common	archive, astral, frost	COMMON · Stackable / Team / Critical chance: +10% × 1 = +10% / 
+	twin-seal	Twin Seal	Rare	archive, astral, frost	RARE · Stackable / Team / Projectile count: +2 × 1 = +2 / 
+	piggy-mail	Piggy Mail	Common	astral, clock, hearth	COMMON · Stackable / Run / Interest cap: +2 × 1 = +2 / 
+	pillow-mail	Pillow Mail	Common	clock, hearth, oddity	COMMON · Stackable / Champion / Armor: +0.22 × 1 = +0.22 / 
+	royal-key	Royal Key	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Champion / Damage: +44% × 1 = +44% / 
+	brigade-banner	Brigade Banner	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Companions / Damage: +30% × 1 = +30% / 
+	marching-bell	Marching Bell	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Companions / Attack speed: +24% × 1 = +24% / 
+	coupon-book	Coupon Book	Common	archive, orchard, tidal	COMMON · Stackable / Run / Gold shop discount: +5% × 1 = +5% / 
+	long-atlas	Long Atlas	Mythic	astral, clock, hearth	MYTHIC · Stackable / Run / Patrol radius: +1 × 1 = +1 / Team / Movement speed: -4% × 1 = -4% / 
+	starlight-quilt	Starlight Quilt	Mythic	frost, hearth, orchard	MYTHIC · Stackable / Champion / Maximum health: +90 × 1 = +90 / 
+	echo-postage	Echo Postage	Mythic	archive, astral, frost	MYTHIC · Stackable / Team / Projectile count: +3 × 1 = +3 / Team / Attack speed: -8% × 1 = -8% / 
+	tarnished-crown	Tarnished Crown	Mythic	astral, clock, hearth	MYTHIC · Stackable / Champion / Damage: +80% × 1 = +80% / 
+	fortune-egg	Fortune Egg	Rare	archive, orchard, tidal	RARE · Stackable / Run / Luck: +0.2 × 1 = +0.2 / 
+	treasure-whisper	Treasure Whisper	Rare	archive, orchard, tidal	RARE · Stackable / Run / Treasure detection: +0.35 × 1 = +0.35 / 
+	coin-salve	Coin Salve	Rare	archive, oddity	RARE · Stackable / 
+	chest-thunder	Chest Thunder	Rare	archive, oddity	RARE · Stackable / 
+	altar-ember	Altar Ember	Rare	astral, clock, hearth	RARE · Stackable / Champion / Damage: +36% × 1 = +36% / Team / Movement speed: -3% × 1 = -3% / 
+	harvest-receipt	Harvest Receipt	Uncommon	archive, oddity	UNCOMMON · Stackable / Run / Pickup radius: -0.15 × 1 = -0.15 / 
+	reflective-ink	Reflective Ink	Uncommon	archive, oddity	UNCOMMON · Unique / 
+	carbon-ribbon	Carbon Ribbon	Rare	archive, oddity	RARE · Unique / Team / Critical chance: -4% × 1 = -4% / 
+	office-lens	Office Lens	Rare	archive, astral, frost	RARE · Stackable / Companions / Critical chance: +24% × 1 = +24% / Companions / Attack speed: -5% × 1 = -5% / 
+	tea-coaster	Tea Coaster	Uncommon	archive, oddity	UNCOMMON · Unique / Team / Movement speed: -2% × 1 = -2% / 
+	scratch-record	Scratch Record	Uncommon	archive, oddity	UNCOMMON · Stackable / Team / Attack speed: -4% × 1 = -4% / 
+	treasure-ribbon	Treasure Ribbon	Uncommon	archive, oddity	UNCOMMON · Stackable / Team / Damage: -3% × 1 = -3% / 
+	patch-spring	Patch Spring	Uncommon	archive, oddity	UNCOMMON · Unique / Companions / Attack speed: -6% × 1 = -6% / 
+	thermal-ink	Thermal Ink	Uncommon	archive, oddity	UNCOMMON · Unique / Team / Critical chance: -3% × 1 = -3% / 
+	repair-coupon	Repair Coupon	Uncommon	archive, oddity	UNCOMMON · Stackable / Run / Pickup radius: -0.1 × 1 = -0.1 / 
+	k10-scoremultiplier	Contract · Score multiplier	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Run / Score multiplier: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-collisiondamage	Contract · Collision damage	Rare	clock, hearth, oddity	RARE · Stackable / Team / Collision damage: +10 × 1 = +10 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-meleedamage	Contract · Flat melee damage	Mythic	clock, hearth	MYTHIC · Stackable / Team / Flat melee damage: +4 × 1 = +4 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-rangeddamage	Contract · Flat ranged damage	Uncommon	archive, astral, frost	UNCOMMON · Stackable / Team / Flat ranged damage: +4 × 1 = +4 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-attackrange	Contract · Attack range	Rare	archive, astral, frost	RARE · Stackable / Team / Attack range: +25% × 1 = +25% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-dodge	Contract · Dodge	Mythic	clock, oddity, tidal	MYTHIC · Stackable / Champion / Dodge: +12% × 1 = +12% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-income	Contract · Income	Uncommon	archive, orchard, tidal	UNCOMMON · Stackable / Run / Income: +4 × 1 = +4 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bulletpierce	Contract · Bullet pierce	Rare	archive, astral, frost	RARE · Stackable / Team / Bullet pierce: +2 × 1 = +2 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bulletsplit	Contract · Bullet split	Mythic	archive, astral, frost	MYTHIC · Stackable / Team / Bullet split: +2 × 1 = +2 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bulletbounce	Contract · Bullet bounce chance	Uncommon	archive, astral, frost	UNCOMMON · Stackable / Team / Bullet bounce chance: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bulletsize	Contract · Bullet size	Rare	archive, astral, frost	RARE · Stackable / Team / Bullet size: +25% × 1 = +25% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bulletspeed	Contract · Bullet speed	Mythic	archive, astral, frost	MYTHIC · Stackable / Team / Bullet speed: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bulletdistance	Contract · Bullet travel distance	Uncommon	archive, astral, frost	UNCOMMON · Stackable / Team / Bullet travel distance: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-knockback	Contract · Knockback	Rare	astral, clock, hearth	RARE · Stackable / Team / Knockback: +25% × 1 = +25% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-bodysize	Contract · Champion size	Mythic	astral, clock, hearth	MYTHIC · Stackable / Champion / Champion size: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-companionsize	Contract · Companion size	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Companions / Companion size: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-enemycount	Contract · Enemy count	Rare	astral, clock, hearth	RARE · Stackable / Run / Enemy count: +10% × 1 = +10% / Run / Score multiplier: +20% × 1 = +20% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-enemyhealth	Contract · Enemy health	Mythic	astral, clock, hearth	MYTHIC · Stackable / Run / Enemy health: +10% × 1 = +10% / Run / Score multiplier: +20% × 1 = +20% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-enemyspeed	Contract · Enemy speed	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Run / Enemy speed: +10% × 1 = +10% / Run / Score multiplier: +20% × 1 = +20% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-hearthealing	Contract · Heart healing	Rare	frost, hearth, orchard	RARE · Stackable / Champion / Heart healing: +2 × 1 = +2 / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-chestquality	Contract · Chest quality	Mythic	archive, orchard, tidal	MYTHIC · Stackable / Run / Chest quality: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-recruitdiscount	Contract · Recruit discount	Uncommon	archive, orchard, tidal	UNCOMMON · Stackable / Run / Recruit discount: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-relicdiscount	Contract · Relic discount	Rare	archive, orchard, tidal	RARE · Stackable / Run / Relic discount: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-shoprarity	Contract · Shop rarity	Mythic	astral, clock, hearth	MYTHIC · Stackable / Run / Shop rarity: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-healthcorrection	Contract · Health correction	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Champion / Health correction: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-damagecorrection	Contract · Damage correction	Rare	astral, clock, hearth	RARE · Stackable / Team / Damage correction: +20% × 1 = +20% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-speedcorrection	Contract · Speed correction	Mythic	clock, oddity, tidal	MYTHIC · Stackable / Team / Speed correction: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-armorcorrection	Contract · Armor correction	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Champion / Armor correction: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-healcorrection	Contract · Healing correction	Rare	frost, hearth, orchard	RARE · Stackable / Champion / Healing correction: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	k10-collisionfrequency	Contract · Collision frequency	Mythic	clock, hearth, oddity	MYTHIC · Stackable / Team / Collision frequency: +8% × 1 = +8% / Champion / Maximum health: -1 × 1 = -1 / 
+	long-pocket	Long Pocket	Uncommon	astral, clock, hearth	UNCOMMON · Stackable / Run / Chest opening radius: +35% × 1 = +35% / Champion / Movement speed: -2% × 1 = -2% / 
+	velvet-first-aid	Velvet First Aid	Rare	archive, orchard, tidal	RARE · Stackable / Run / Treasure detection: +0.1 × 1 = +0.1 / Champion / Movement speed: -2% × 1 = -2% / 
+	brass-avalanche	Brass Avalanche	Mythic	astral, clock, hearth	MYTHIC · Stackable / Team / Knockback: +25% × 1 = +25% / Champion / Movement speed: -2% × 1 = -2% / 
+	RainbowCrown	Borrowed Crown	Rainbow	archive, astral, clock, frost, hearth	PRISMATIC · Unique / Team / Damage: +70% × 1 = +70% / Team / Projectile count: +2 × 1 = +2 / 
+	RainbowHeart	Clockwork Heart	Rainbow	frost, hearth, orchard	PRISMATIC · Unique / Champion / Maximum health: +120 × 1 = +120 / Champion / Healing per second: +1.8 × 1 = +1.8 / 
+	RainbowThread	Living Thread	Rainbow	astral, clock, hearth	PRISMATIC · Unique / Team / Flat melee damage: +4 × 1 = +4 / Team / Knockback: +63% × 1 = +63% / 
+	RainbowPrism	Impossible Prism	Rainbow	archive, astral, frost	PRISMATIC · Unique / Team / Bullet split: +3 × 1 = +3 / Team / Flat ranged damage: +4 × 1 = +4 / 
+	CrimsonSeal	Crimson Seal	Crimson	astral, clock, hearth, oddity	CRIMSON · Unique / Champion / Damage: +90% × 1 = +90% / Team / Collision damage: +24 × 1 = +24 / 
+	CrimsonSpring	Crimson Spring	Crimson	archive, astral, clock, frost, hearth	CRIMSON · Unique / Team / Attack speed: +50% × 1 = +50% / Team / Attack range: +45% × 1 = +45% / 
+	K26Defense0	Marrow Tea	Common	frost, hearth, orchard	COMMON · Stackable / Champion / Maximum health: +50 × 1 = +50 / Champion / Healing per second: +0.8 × 1 = +0.8 / 
+	K26Defense1	Porcelain Splint	Common	clock, hearth, oddity	COMMON · Stackable / Champion / Armor: +0.35 × 1 = +0.35 / Team / Movement speed: -4% × 1 = -4% / 
+	K26Defense2	Escape Thimble	Uncommon	clock, oddity, tidal	UNCOMMON · Stackable / Champion / Dodge: +12% × 1 = +12% / Team / Movement speed: +12% × 1 = +12% / 
+	K26Defense3	Quicksole	Uncommon	clock, frost, hearth, oddity, orchard, tidal	UNCOMMON · Stackable / Team / Movement speed: +18% × 1 = +18% / Champion / Maximum health: +20 × 1 = +20 / 
+	K26Defense4	Pulse Bell	Rare	astral, clock, frost, hearth, orchard	RARE · Stackable / Champion / Health correction: +25% × 1 = +25% / Champion / Healing per second: +1.4 × 1 = +1.4 / 
+	K26Defense5	Mercy Spindle	Rare	frost, hearth, orchard	RARE · Stackable / Champion / Healing per second: +2.8 × 1 = +2.8 / Run / Income: -2 × 1 = -2 / 
+	K26Defense6	Iron Apron	Mythic	clock, hearth, oddity	MYTHIC · Stackable / Champion / Armor: +0.65 × 1 = +0.65 / Team / Movement speed: -8% × 1 = -8% / 
+	K26Defense7	Mending Moth	Mythic	clock, frost, hearth, oddity, orchard	MYTHIC · Stackable / Champion / Healing per second: +2.5 × 1 = +2.5 / Champion / Armor: +0.12 × 1 = +0.12 / 
+	SecretWoodHeart	The Abandoned Wooden Heart	Rare	frost, hearth, orchard	RARE · Unique / Champion / Maximum health: +18 × 1 = +18 / Champion / Healing per second: +0.3 × 1 = +0.3 / 
+	SecretMirror	The Glass Understudy	Rare	archive, astral, frost	RARE · Unique / Team / Critical chance: +5% × 1 = +5% / Team / Attack range: +8% × 1 = +8% / 
+	SecretThread	Living Contraband Thread	Rare	archive, astral, clock, frost, hearth	RARE · Unique / Team / Attack range: +18% × 1 = +18% / Team / Knockback: +20% × 1 = +20% / 
+	SecretTicket	Smuggler's Ticket	Rare	archive, orchard, tidal	RARE · Unique / Run / Gold shop discount: +8% × 1 = +8% / Run / Luck: +0.08 × 1 = +0.08 / 
+	SecretHour	Hourglass Advance	Rare	astral, clock, hearth	RARE · Unique / Team / Attack speed: +18% × 1 = +18% / Team / Damage: +10% × 1 = +10% / 
+	SecretDream	Sleeping-Lamb Brooch	Rare	frost, hearth, orchard	RARE · Unique / Champion / Maximum health: +12 × 1 = +12 / Champion / Heart healing: +3 × 1 = +3 / 
+	SecretCrown	Crown of the Empty Theatre	Rare	archive, astral, clock, frost, hearth	RARE · Unique / Team / Damage: +15% × 1 = +15% / Team / Critical chance: +8% × 1 = +8% / 
+	SecretLetter	Dead-Letter Key	Rare	archive, astral, clock, hearth, orchard, tidal	RARE · Unique / Run / Pickup radius: +0.8 × 1 = +0.8 / Run / Treasure detection: +0.1 × 1 = +0.1 / 
+	OctoberRelic0	Lantern Stitch	Rare	archive, astral, frost	RARE · Stackable / Team / Attack range: +10% × 1 = +10% / Team / Attack speed: -5% × 1 = -5% / 
+	OctoberRelic1	Rain Receipt	Rare	frost, hearth, orchard	RARE · Stackable / Champion / Healing per second: +0.5 × 1 = +0.5 / Run / Income: -2 × 1 = -2 / 
+	OctoberRelic2	Clockseed Brooch	Rare	clock, hearth, oddity	RARE · Stackable / Team / Collision damage: +5 × 1 = +5 / Team / Movement speed: -4% × 1 = -4% / 
+	OctoberRelic3	Porcelain Promise	Rare	frost, hearth, orchard	RARE · Stackable / Champion / Heart healing: +2 × 1 = +2 / Champion / Maximum health: +10 × 1 = +10 / 
+Fruit Crush	CurioOrchardFizz	Orchard Fizz	Common	archive, frost, hearth, orchard, tidal	+20 health. -2 income. / Owned: 1
+Midnight Ballad	CurioGraveChime	Grave Chime	Common	archive, clock, hearth, oddity, tidal	+10 contact damage. -5% speed. / Owned: 1
+Oxygen Bubble	CurioBreathJar	Breath Jar	Common	archive, astral, clock, hearth, tidal	+20% team damage. -4% attack speed. / Owned: 1
+Peach Sea	CurioCoralBroth	Coral Broth	Common	archive, frost, hearth, orchard, tidal	+1 regeneration. -4 health. / Owned: 1
+Shark Button	CurioFangPin	Fang Pin	Common	astral, clock, hearth	Player: double knockback. +20% attack speed. / Owned: 1
+Soda Tea	CurioRicochetSeltzer	Ricochet Seltzer	Common	archive, astral, frost, tidal	+6 ranged damage. +25% bounce. -5% damage. / Owned: 1
+Startled Awake by Afternoon	CurioNoonSpark	Noon Spark	Common	archive, astral, clock, frost, hearth, tidal	+5 melee damage. +6% critical chance. / Owned: 1
+Time of Leisure	CurioQuietHour	Quiet Hour	Common	archive, clock, hearth, oddity, orchard, tidal	+0.12 armor. +15% treasure detection. / Owned: 1
+Warped Cassette	CurioBentTape	Bent Tape	Common		+18% attack speed. Next wave: 10% more enemies. / Owned: 1
+Weird Grassland	CurioMeadowTonic	Meadow Tonic	Common	archive, clock, oddity, orchard, tidal	+8% dodge. +6% luck. / Owned: 1
+Wool Mittens	CurioKindlingGloves	Kindling Gloves	Common		Coins: 15% chance to heal 2. -0.4 regeneration. / Owned: 1
+Bento Box	CurioInterestTin	Interest Tin	Uncommon	astral, clock, hearth, orchard	+60% pickup radius. Wave start: gain 20% of wallet. / Owned: 1
+Cheap Hair Dryer	CurioStormDryer	Storm Dryer	Uncommon	astral, clock, hearth	+24% damage. +20% knockback. / Owned: 1
+Commemorative Mug	CurioRetortCup	Retort Cup	Uncommon	clock, hearth, oddity	+0.4 armor. -8% luck. Hurt: 30% chance of 8 shots. / Owned: 1
+Cracked Phone	CurioShatteredPager	Shattered Pager	Uncommon	archive, astral, frost, orchard, tidal	+25 income. Player bullets split twice. / Owned: 1
+Gaze	CurioWatchfulTea	Watchful Tea	Uncommon	frost, hearth, orchard	+2 regeneration. Next wave: -0.8 armor. / Owned: 1
+Golden Fuel	CurioSunfireFlask	Sunfire Flask	Uncommon	archive, astral, frost, tidal	+40% range. Player: +1 shot, -25% attack speed. / Owned: 1
+Gold-Plated Ring	CurioGiltOrbit	Gilt Orbit	Uncommon	archive, astral, frost	+5 ranged damage. Next wave: +100% treasure detection. / Owned: 1
+Hot Coffee	CurioEmberEspresso	Ember Espresso	Uncommon	archive, astral, clock, hearth, tidal	Player: +24% attack speed, -1 contact damage. / Owned: 1
+Iridescent Disc	CurioPrismRecord	Prism Record	Uncommon	archive, oddity	Player attacks echo ranged damage at a random foe. -10% range. / Owned: 1
+Lemon Spring Water	CurioCitrusStorm	Citrus Storm	Uncommon	archive, astral, clock, frost, hearth, tidal	+6 ranged damage. +2% enemies. / Owned: 1
+Midnight	CurioMoonMilk	Moon Milk	Uncommon	archive, frost, hearth, orchard, tidal	Hearts heal 4 more. Player: -5% speed. / Owned: 1
+Orange Joy	CurioPocketSun	Pocket Sun	Uncommon	archive, orchard, tidal	Player: 10% smaller. +30% luck. / Owned: 1
+Quill	CurioInkFeather	Ink Feather	Uncommon	archive, oddity	Rerolls cost 2 less. Minimum cost: 1. / Owned: 1
+Rock 'n' Roll Mulberry	CurioMulberryRiot	Mulberry Riot	Uncommon	archive, orchard, tidal	+30 income. +60% treasure detection. -0.3 armor. / Owned: 1
+Sleep Mask	CurioDreamBlindfold	Dream Blindfold	Uncommon	archive, orchard, tidal	Chests strike up to 3 foes. +10% luck, +25% treasure. / Owned: 1
+Sleep Well	CurioSleepyMist	Sleepy Mist	Uncommon	archive, astral, clock, hearth, tidal	+35% damage. Everyone moves 20% slower. / Owned: 1
+Spring Water	CurioClearSip	Clear Sip	Uncommon	archive, tidal	Buying drinks grants +4 health. -1 contact damage. / Owned: 1
+Strangely Favored Drink	CurioOddElixir	Odd Elixir	Uncommon	archive, oddity	Buying drinks grants +6% attack speed. More drinks appear. / Owned: 1
+Sun Hat	CurioDaylightBonnet	Daylight Bonnet	Uncommon	frost, hearth, orchard	+40 health. Hurt: 5% chance to attract all loot. / Owned: 1
+Target Board	CurioNeedleTarget	Needle Target	Uncommon	archive, astral, frost	+1 pierce, +15% critical chance. -3 melee damage. / Owned: 1
+Universal Key	CurioManyDoorKey	Many Door Key	Uncommon	archive, orchard, tidal	Chests grant +6% luck. +25% treasure. -5% damage. / Owned: 1
+Vitamin C Rage	CurioCourageJuice	Courage Juice	Uncommon	archive, clock, hearth, oddity, tidal	+20% speed. +5 melee damage. -10 health. / Owned: 1
+Weird Pool Ball	CurioCrookedEight	Crooked Eight	Uncommon	archive, astral, frost, orchard, tidal	+40% luck. +20% bounce. -6% damage. / Owned: 1
+Chaos Calendar	CurioTornAlmanac	Torn Almanac	Rare	archive, oddity	Wave income randomly gains 25-75. -5% damage. / Owned: 1
+Cowardice	CurioHoardersLocket	Hoarders Locket	Rare	archive, oddity	Every 5 gold held grants +1% team damage. / Owned: 1
+Cracked Seed	CurioSplitKernel	Split Kernel	Rare	frost, hearth, orchard	+3 regeneration. Start battles at half health. / Owned: 1
+Crazy Paint	CurioWildPigment	Wild Pigment	Rare	archive, clock, hearth, oddity, tidal	+15% speed. +7 melee damage. -3 ranged damage. / Owned: 1
+Despair	CurioStillwaterUrn	Stillwater Urn	Rare	archive, oddity	Standing still: +3 regeneration, +20 contact damage. -5% speed. / Owned: 1
+Fear	CurioPanicBell	Panic Bell	Rare	archive, oddity	Picking up gold strikes a random foe. Scales with luck. / Owned: 1
+Fish Oil in a Box	CurioOilyLozenge	Oily Lozenge	Rare	frost, hearth, orchard	+20 health. This shop: 30% cheaper items, more drinks. / Owned: 1
+Fridge Sticker	CurioLodestoneLabel	Lodestone Label	Rare	archive, astral, clock, frost, hearth	+8 ranged damage. +90% pickup radius. Allies stay closer. / Owned: 1
+Greed	CurioHungryLedger	Hungry Ledger	Rare	archive, oddity	Each wave: permanently gain +4 melee/ranged and +10% damage. / Owned: 1
+Hard Bread	CurioStoneCrust	Stone Crust	Rare	hearth, orchard	Half of melee damage also becomes contact damage. -10% player attack speed. / Owned: 1
+Matcha Honey	CurioBitterHoney	Bitter Honey	Rare	archive, astral, clock, frost, hearth, orchard, tidal	+2.5 regeneration. +60% treasure. Enemies move 7% faster. / Owned: 1
+Neck Brace	CurioBurdenCollar	Burden Collar	Rare	clock, hearth, oddity	+20 contact damage. Slower movement grants armor. -20% speed. / Owned: 1
+Noise-Cancelling Headphones	CurioHushEarmuffs	Hush Earmuffs	Rare	archive, astral, clock, frost, oddity, tidal	+10% dodge and crit. Dodging: 30% chance to heal 10. / Owned: 1
+Projector Slide	CurioProfitSlide	Profit Slide	Rare	archive, oddity	Every 4% damage grants +1 income. -10 income. / Owned: 1
+Rage	CurioAngryReliquary	Angry Reliquary	Rare	archive, oddity	Chests heal 30. Regeneration and hearts no longer heal. / Owned: 1
+Rose Water	CurioPetalTonic	Petal Tonic	Rare	archive, frost, hearth, orchard, tidal	+90 health. -2 regeneration. / Owned: 1
+Sadness	CurioSorrowLantern	Sorrow Lantern	Rare	archive, oddity	Every 3 seconds, strike all foes for 20% max health. -5% dodge. / Owned: 1
+Silent Alarm	CurioMuteClock	Mute Clock	Rare	astral, clock, hearth, oddity, tidal	+45% attack speed, +40% speed. Lose 1 health per second. / Owned: 1
+Spiky Yoga Ball	CurioUrchinBall	Urchin Ball	Rare	clock, hearth, oddity, tidal	Player stops attacking. +0.6 armor, +10% speed. Armor boosts contact. / Owned: 1
+Tangy Tangerine	CurioSourMandarin	Sour Mandarin	Rare	hearth, orchard	Next wave: allies cannot attack, player attacks rapidly. 10 kills heal 3. / Owned: 1
+Wake Up!	CurioWakefulCordial	Wakeful Cordial	Rare	archive, astral, clock, hearth, oddity, tidal	+25 contact damage, +30% knockback. -10% crit. / Owned: 1
+Water Lily	CurioGlassLotus	Glass Lotus	Rare	archive, oddity	+3 pierce and +30% critical chance until hurt. Resets each wave. / Owned: 1
+Weird Rice Ball	CurioNestDumpling	Nest Dumpling	Rare	hearth, orchard	Gain 3 eggs now. -0.2 armor. / Owned: 1
+Winningway	CurioVictorDraught	Victor Draught	Rare	archive, astral, frost, tidal	+20% crit, +1 pierce. -20% damage. / Owned: 1
+Birthday Candle	CurioWishWick	Wish Wick	Mythic	archive, oddity	Gain 2 random allies. -5 health, -5 income. Counts toward recruit limit. / Owned: 1
+Cooling Fan	CurioShieldBlower	Shield Blower	Mythic	astral, clock, hearth, oddity	+25 contact damage. Allies block hostile bullets. / Owned: 1
+Deception	CurioLiarMask	Liar Mask	Mythic	astral, clock, hearth	+100% damage. Each hit permanently removes 5% damage. / Owned: 1
+Donut	CurioOrbitPastry	Orbit Pastry	Mythic	archive, astral, clock, frost, hearth, orchard	Player: larger, slower bullets with +100% damage. / Owned: 1
+Dumplings	CurioOathParcel	Oath Parcel	Mythic	hearth, orchard	Lock current stat bonuses as minimums for the rest of this run. / Owned: 1
+Expensive Fruit	CurioFortunePear	Fortune Pear	Mythic	archive, hearth, orchard, tidal	+16% luck. Luck also grants max health. -15 income. / Owned: 1
+Green Form	CurioEmeraldInvoice	Emerald Invoice	Mythic	archive, orchard, tidal	Items cost 25% less. -20% damage. / Owned: 1
+Hard Hat	CurioBatteringHelm	Battering Helm	Mythic	clock, hearth, oddity	+40 contact damage, +70% contact frequency. -10 ranged damage. / Owned: 1
+Healthy Sandwich	CurioGambleSandwich	Gamble Sandwich	Mythic	hearth, orchard	Every 3 seconds: chance to heal 20 and/or lose 8. -0.2 armor. / Owned: 1
+Juicy Fried Chicken	CurioFeastBucket	Feast Bucket	Mythic	astral, clock, frost, hearth, orchard	Food grants health, size and regeneration. -30% dodge. / Owned: 1
+Message From A Friend	CurioWanderLetter	Wander Letter	Mythic	archive, astral, frost	Allies roam freely. +40% critical chance. -0.7 armor. / Owned: 1
+Mysterious ID	CurioVenomPass	Venom Pass	Mythic	archive, oddity	Player hits poison enemies for your income each second. Does not stack. / Owned: 1
+Peace Water	CurioTruceBottle	Truce Bottle	Mythic	archive, astral, clock, frost, hearth, oddity, tidal	+40% damage, +20% crit, +40% range, +0.6 armor. / Owned: 1
+Perfume	CurioThornPerfume	Thorn Perfume	Mythic	astral, clock, hearth	Taking damage permanently improves a random stat. Enemies move 30% faster. / Owned: 1
+Self-Driving Force	CurioLastHopeMotor	Last Hope Motor	Mythic	archive, oddity	+16 melee, ranged and contact damage until you move. Resets each wave. / Owned: 1
+Thumbtack	CurioAnchorTack	Anchor Tack	Mythic	archive, oddity	Allies become stationary turrets: double range and +3 pierce. / Owned: 1
+Universe Coin	CurioVoidDoubloon	Void Doubloon	Mythic	archive, oddity	Every 3 seconds, all foes lose 15% current health. -30% damage. / Owned: 1
+Potato	CurioSixfoldRoot	Sixfold Root	Mythic	hearth, orchard	Six phantom weapons fight for you. Player and other allies stop attacking. / Owned: 1

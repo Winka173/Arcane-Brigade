@@ -12,16 +12,20 @@ namespace ArcaneBrigade
                 var tiers = new int[catalog.MaximumTier + 1];
                 foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == unit.Id) tiers[entry.Tier]++;
                 float before = 0; for (int tier = 1; tier < tiers.Length; tier++) before += tiers[tier] * UnitDefinition.ModifierScale(tier);
-                int projected = 1; tiers[1]++;
+                int projected = UnityEngine.Mathf.Clamp(offer.Tier, 1, 3); tiers[projected]++;
                 for (int tier = 1; tier < catalog.MaximumTier; tier++)
                     if (tiers[tier] >= 3) { tiers[tier + 1] += tiers[tier] / 3; tiers[tier] %= 3; projected = tier + 1; }
                 float after = 0; for (int tier = 1; tier < tiers.Length; tier++) after += tiers[tier] * UnitDefinition.ModifierScale(tier);
                 string result = projected > 1 ? "Upgrade to " + projected + " stars" : "Add one ally. Random weapon";
                 StatModifier[] modifiers = unit.CompanionModifiers;
                 string stats = string.Join(". ", modifiers.Where(value => value.Value * (after - before) != 0).Take(2).Select(value => ScopeLabel(value.Scope) + StatName(value.Effect) + " " + RunModifierRules.ValueText(value.Effect, value.Value * (after - before))));
-                return result + (stats.Length == 0 ? "" : "\n" + stats);
+                return result + (stats.Length == 0 ? "" : "\n" + stats) + "\n" + CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier);
             }
             ItemDefinition item = catalog.Item(offer.Id);
+            return RelicDescriptions.Describe(item, session.StackCount(item.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(session, catalog, item);
+        }
+        private static string LegacyItemDelta(RunSession session, ItemDefinition item)
+        {
             int held = session.State.Items.Find(stack => stack.Id == item.Id)?.Count ?? 0;
             float delta = item.EffectiveStacks(held + 1) - item.EffectiveStacks(held);
             string change = string.Join(". ", item.EffectiveModifiers.Where(modifier => modifier.Value != 0).Take(3).Select(modifier => ScopeLabel(modifier.Scope) + StatName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value * delta)));
@@ -39,7 +43,8 @@ namespace ArcaneBrigade
             ItemEffect.EnemyCount => "Enemies", _ => RunModifierRules.ModifierName(effect)
         };
         private static string Modifiers(StatModifier[] modifiers) => string.Join(". ", modifiers.Where(modifier => modifier.Value != 0).GroupBy(modifier => modifier.Scope).Select(group => (group.Key == ModifierScope.Champion ? "Your " : group.Key == ModifierScope.Companions ? "Allies: " : group.Key == ModifierScope.Team ? "Team: " : "") + string.Join(", ", group.Select(modifier => RunModifierRules.ModifierName(modifier.Effect) + " " + RunModifierRules.ValueText(modifier.Effect, modifier.Value)))));
-        public static string Companion(UnitDefinition unit) => (unit.Rarity == ItemRarity.Common ? "" : RunModifierRules.RarityName(unit.Rarity) + " ally. Attacks deal " + ((int)unit.Rarity * 18) + "% more damage.\n") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
+        public static string Companion(UnitDefinition unit) => CompanionDescriptions.Describe(unit);
+        private static string LegacyCompanion(UnitDefinition unit) => (unit.Rarity == ItemRarity.Common ? "" : RunModifierRules.RarityName(unit.Rarity) + " ally. Attacks deal " + ((int)unit.Rarity * 18) + "% more damage.\n") + Modifiers(unit.CompanionModifiers) + "\n" + (unit.Passive switch
         {
             PassiveKind.HealChampion => "Heal you every 4s", PassiveKind.ChillAura => "Slow nearby foes",
             PassiveKind.Rally => "More allies increase attack", PassiveKind.Scavenge => "Extra loot from kills", _ => "Auto attacks"
@@ -61,7 +66,8 @@ namespace ArcaneBrigade
                 return (bond.Reward(after) > bond.Reward(before) ? "BOND UP: " : "BOND DOWN: ") + bond.Name;
             }));
         }
-        public static string Item(ItemDefinition item) => RunModifierRules.RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Unique" : "Stacks") + "\n" + Modifiers(item.EffectiveModifiers) + (item.SignatureRole == SignatureRelicKind.None ? item.Id == "velvet-first-aid" ? "\nChest: heal4 HP/stack · 2s CD" : item.Id == "brass-avalanche" ? "\nKill: nearby pulse3 DMG/stack · 2s CD" : "" : "\n" + Signature(item.SignatureRole));
+        public static string Item(ItemDefinition item) => RelicDescriptions.Describe(item);
+        private static string LegacyItem(ItemDefinition item) => RunModifierRules.RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Unique" : "Stacks") + "\n" + Modifiers(item.EffectiveModifiers) + (item.SignatureRole == SignatureRelicKind.None ? item.Id == "velvet-first-aid" ? "\nChest: heal4 HP/stack · 2s CD" : item.Id == "brass-avalanche" ? "\nKill: nearby pulse3 DMG/stack · 2s CD" : "" : "\n" + Signature(item.SignatureRole));
         private static string Signature(SignatureRelicKind role) => role switch
         {
             SignatureRelicKind.HarvestReceipt => "Chest harvest bonus",

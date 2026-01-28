@@ -42,6 +42,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 0.5
   Description: Every 10 collected gold grants 1 extra gold and a small healing pulse.
+  ReferenceHero: Gulpy
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers:
   - Effect: 24
     Scope: 3
@@ -55,7 +59,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

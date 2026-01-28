@@ -111,7 +111,7 @@ namespace ArcaneBrigade
             Check(owner.Shop.Interact(), "Rare ally purchase commits");
             yield return new WaitForSecondsRealtime(0.3f); yield return Capture("recruited-ally-arrival");
             owner.SetPresentationMoveTarget(Vector2.zero); yield return new WaitForSecondsRealtime(0.9f); yield return Capture("recruited-ally-walking");
-            Check(FindObjectsByType<ShopRarityGlow>().Any(glow => glow.name == "RecruitedAllyRarity"), "Purchased rare ally carries aura while walking");
+            Check(!FindObjectsByType<ShopRarityGlow>().Any(glow => glow.Target != null && glow.Target.GetComponentInParent<UnitVisual>() != null), "Purchased rare ally has no stock rarity aura while walking");
             foreach (UnitVisual visual in FindObjectsByType<UnitVisual>().Where(candidate => candidate.State != null && candidate.State.Faction == Faction.Companion))
             {
                 SpriteRenderer weapon = visual.WeaponRenderer;

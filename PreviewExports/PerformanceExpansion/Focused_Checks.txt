@@ -1,0 +1,2120 @@
+PASS Real painted clips imported
+PASS No duplicate clip companions/TeapotPilgrim/0
+PASS Complete pose count TeapotPilgrim
+PASS Positive stable pose scale TeapotPilgrim
+PASS Runtime lookup resolves actual clip TeapotPilgrim/0
+PASS Nonempty imported pose TeapotPilgrim
+PASS Ground-contact pivot companions00Performance_00
+PASS Imported silhouette has a real render mesh companions00Performance_00
+PASS Nonempty imported pose TeapotPilgrim
+PASS Ground-contact pivot companions00Performance_01
+PASS Imported silhouette has a real render mesh companions00Performance_01
+PASS Nonempty imported pose TeapotPilgrim
+PASS Ground-contact pivot companions00Performance_02
+PASS Imported silhouette has a real render mesh companions00Performance_02
+PASS Nonempty imported pose TeapotPilgrim
+PASS Ground-contact pivot companions00Performance_03
+PASS Imported silhouette has a real render mesh companions00Performance_03
+PASS Companion reaction reaches acting library TeapotPilgrim
+PASS No duplicate clip companions/CandleSnail/0
+PASS Complete pose count CandleSnail
+PASS Positive stable pose scale CandleSnail
+PASS Runtime lookup resolves actual clip CandleSnail/0
+PASS Nonempty imported pose CandleSnail
+PASS Ground-contact pivot companions00Performance_04
+PASS Imported silhouette has a real render mesh companions00Performance_04
+PASS Nonempty imported pose CandleSnail
+PASS Ground-contact pivot companions00Performance_05
+PASS Imported silhouette has a real render mesh companions00Performance_05
+PASS Nonempty imported pose CandleSnail
+PASS Ground-contact pivot companions00Performance_06
+PASS Imported silhouette has a real render mesh companions00Performance_06
+PASS Nonempty imported pose CandleSnail
+PASS Ground-contact pivot companions00Performance_07
+PASS Imported silhouette has a real render mesh companions00Performance_07
+PASS Companion reaction reaches acting library CandleSnail
+PASS No duplicate clip companions/MailboxImp/0
+PASS Complete pose count MailboxImp
+PASS Positive stable pose scale MailboxImp
+PASS Runtime lookup resolves actual clip MailboxImp/0
+PASS Nonempty imported pose MailboxImp
+PASS Ground-contact pivot companions00Performance_08
+PASS Imported silhouette has a real render mesh companions00Performance_08
+PASS Nonempty imported pose MailboxImp
+PASS Ground-contact pivot companions00Performance_09
+PASS Imported silhouette has a real render mesh companions00Performance_09
+PASS Nonempty imported pose MailboxImp
+PASS Ground-contact pivot companions00Performance_10
+PASS Imported silhouette has a real render mesh companions00Performance_10
+PASS Nonempty imported pose MailboxImp
+PASS Ground-contact pivot companions00Performance_11
+PASS Imported silhouette has a real render mesh companions00Performance_11
+PASS Companion reaction reaches acting library MailboxImp
+PASS No duplicate clip companions/PillowOracle/0
+PASS Complete pose count PillowOracle
+PASS Positive stable pose scale PillowOracle
+PASS Runtime lookup resolves actual clip PillowOracle/0
+PASS Nonempty imported pose PillowOracle
+PASS Ground-contact pivot companions00Performance_12
+PASS Imported silhouette has a real render mesh companions00Performance_12
+PASS Nonempty imported pose PillowOracle
+PASS Ground-contact pivot companions00Performance_13
+PASS Imported silhouette has a real render mesh companions00Performance_13
+PASS Nonempty imported pose PillowOracle
+PASS Ground-contact pivot companions00Performance_14
+PASS Imported silhouette has a real render mesh companions00Performance_14
+PASS Nonempty imported pose PillowOracle
+PASS Ground-contact pivot companions00Performance_15
+PASS Imported silhouette has a real render mesh companions00Performance_15
+PASS Companion reaction reaches acting library PillowOracle
+PASS No duplicate clip enemies/HushMite/0
+PASS Complete pose count HushMite
+PASS Positive stable pose scale HushMite
+PASS Runtime lookup resolves actual clip HushMite/0
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_00
+PASS Imported silhouette has a real render mesh enemies00Performance_00
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_01
+PASS Imported silhouette has a real render mesh enemies00Performance_01
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_02
+PASS Imported silhouette has a real render mesh enemies00Performance_02
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_03
+PASS Imported silhouette has a real render mesh enemies00Performance_03
+PASS Reduced motion retains stable existing animation HushMite
+PASS Actual windup selects painted anticipation HushMite
+PASS Actual damage selects painted recoil HushMite
+PASS Existing idle remains fallback HushMite
+PASS No duplicate clip enemies/HushMite/1
+PASS Complete pose count HushMite
+PASS Positive stable pose scale HushMite
+PASS Runtime lookup resolves actual clip HushMite/1
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_04
+PASS Imported silhouette has a real render mesh enemies00Performance_04
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_05
+PASS Imported silhouette has a real render mesh enemies00Performance_05
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_06
+PASS Imported silhouette has a real render mesh enemies00Performance_06
+PASS Nonempty imported pose HushMite
+PASS Ground-contact pivot enemies00Performance_07
+PASS Imported silhouette has a real render mesh enemies00Performance_07
+PASS Reduced motion retains stable existing animation HushMite
+PASS Actual windup selects painted anticipation HushMite
+PASS Actual damage selects painted recoil HushMite
+PASS Existing idle remains fallback HushMite
+PASS No duplicate clip enemies/ClockBat/0
+PASS Complete pose count ClockBat
+PASS Positive stable pose scale ClockBat
+PASS Runtime lookup resolves actual clip ClockBat/0
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_08
+PASS Imported silhouette has a real render mesh enemies00Performance_08
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_09
+PASS Imported silhouette has a real render mesh enemies00Performance_09
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_10
+PASS Imported silhouette has a real render mesh enemies00Performance_10
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_11
+PASS Imported silhouette has a real render mesh enemies00Performance_11
+PASS Reduced motion retains stable existing animation ClockBat
+PASS Actual windup selects painted anticipation ClockBat
+PASS Actual damage selects painted recoil ClockBat
+PASS Existing idle remains fallback ClockBat
+PASS No duplicate clip enemies/ClockBat/1
+PASS Complete pose count ClockBat
+PASS Positive stable pose scale ClockBat
+PASS Runtime lookup resolves actual clip ClockBat/1
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_12
+PASS Imported silhouette has a real render mesh enemies00Performance_12
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_13
+PASS Imported silhouette has a real render mesh enemies00Performance_13
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_14
+PASS Imported silhouette has a real render mesh enemies00Performance_14
+PASS Nonempty imported pose ClockBat
+PASS Ground-contact pivot enemies00Performance_15
+PASS Imported silhouette has a real render mesh enemies00Performance_15
+PASS Reduced motion retains stable existing animation ClockBat
+PASS Actual windup selects painted anticipation ClockBat
+PASS Actual damage selects painted recoil ClockBat
+PASS Existing idle remains fallback ClockBat
+PASS No duplicate clip enemies/BristleImp/0
+PASS Complete pose count BristleImp
+PASS Positive stable pose scale BristleImp
+PASS Runtime lookup resolves actual clip BristleImp/0
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_00
+PASS Imported silhouette has a real render mesh enemies01Performance_00
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_01
+PASS Imported silhouette has a real render mesh enemies01Performance_01
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_02
+PASS Imported silhouette has a real render mesh enemies01Performance_02
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_03
+PASS Imported silhouette has a real render mesh enemies01Performance_03
+PASS Reduced motion retains stable existing animation BristleImp
+PASS Actual windup selects painted anticipation BristleImp
+PASS Actual damage selects painted recoil BristleImp
+PASS Existing idle remains fallback BristleImp
+PASS No duplicate clip enemies/BristleImp/1
+PASS Complete pose count BristleImp
+PASS Positive stable pose scale BristleImp
+PASS Runtime lookup resolves actual clip BristleImp/1
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_04
+PASS Imported silhouette has a real render mesh enemies01Performance_04
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_05
+PASS Imported silhouette has a real render mesh enemies01Performance_05
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_06
+PASS Imported silhouette has a real render mesh enemies01Performance_06
+PASS Nonempty imported pose BristleImp
+PASS Ground-contact pivot enemies01Performance_07
+PASS Imported silhouette has a real render mesh enemies01Performance_07
+PASS Reduced motion retains stable existing animation BristleImp
+PASS Actual windup selects painted anticipation BristleImp
+PASS Actual damage selects painted recoil BristleImp
+PASS Existing idle remains fallback BristleImp
+PASS No duplicate clip enemies/RuneWisp/0
+PASS Complete pose count RuneWisp
+PASS Positive stable pose scale RuneWisp
+PASS Runtime lookup resolves actual clip RuneWisp/0
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_08
+PASS Imported silhouette has a real render mesh enemies01Performance_08
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_09
+PASS Imported silhouette has a real render mesh enemies01Performance_09
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_10
+PASS Imported silhouette has a real render mesh enemies01Performance_10
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_11
+PASS Imported silhouette has a real render mesh enemies01Performance_11
+PASS Reduced motion retains stable existing animation RuneWisp
+PASS Actual windup selects painted anticipation RuneWisp
+PASS Actual damage selects painted recoil RuneWisp
+PASS Existing idle remains fallback RuneWisp
+PASS No duplicate clip enemies/RuneWisp/1
+PASS Complete pose count RuneWisp
+PASS Positive stable pose scale RuneWisp
+PASS Runtime lookup resolves actual clip RuneWisp/1
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_12
+PASS Imported silhouette has a real render mesh enemies01Performance_12
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_13
+PASS Imported silhouette has a real render mesh enemies01Performance_13
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_14
+PASS Imported silhouette has a real render mesh enemies01Performance_14
+PASS Nonempty imported pose RuneWisp
+PASS Ground-contact pivot enemies01Performance_15
+PASS Imported silhouette has a real render mesh enemies01Performance_15
+PASS Reduced motion retains stable existing animation RuneWisp
+PASS Actual windup selects painted anticipation RuneWisp
+PASS Actual damage selects painted recoil RuneWisp
+PASS Existing idle remains fallback RuneWisp
+PASS No duplicate clip enemies/InkMoth/0
+PASS Complete pose count InkMoth
+PASS Positive stable pose scale InkMoth
+PASS Runtime lookup resolves actual clip InkMoth/0
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_00
+PASS Imported silhouette has a real render mesh enemies02Performance_00
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_01
+PASS Imported silhouette has a real render mesh enemies02Performance_01
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_02
+PASS Imported silhouette has a real render mesh enemies02Performance_02
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_03
+PASS Imported silhouette has a real render mesh enemies02Performance_03
+PASS Reduced motion retains stable existing animation InkMoth
+PASS Actual windup selects painted anticipation InkMoth
+PASS Actual damage selects painted recoil InkMoth
+PASS Existing idle remains fallback InkMoth
+PASS No duplicate clip enemies/InkMoth/1
+PASS Complete pose count InkMoth
+PASS Positive stable pose scale InkMoth
+PASS Runtime lookup resolves actual clip InkMoth/1
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_04
+PASS Imported silhouette has a real render mesh enemies02Performance_04
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_05
+PASS Imported silhouette has a real render mesh enemies02Performance_05
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_06
+PASS Imported silhouette has a real render mesh enemies02Performance_06
+PASS Nonempty imported pose InkMoth
+PASS Ground-contact pivot enemies02Performance_07
+PASS Imported silhouette has a real render mesh enemies02Performance_07
+PASS Reduced motion retains stable existing animation InkMoth
+PASS Actual windup selects painted anticipation InkMoth
+PASS Actual damage selects painted recoil InkMoth
+PASS Existing idle remains fallback InkMoth
+PASS No duplicate clip enemies/SirenSeal/0
+PASS Complete pose count SirenSeal
+PASS Positive stable pose scale SirenSeal
+PASS Runtime lookup resolves actual clip SirenSeal/0
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_08
+PASS Imported silhouette has a real render mesh enemies02Performance_08
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_09
+PASS Imported silhouette has a real render mesh enemies02Performance_09
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_10
+PASS Imported silhouette has a real render mesh enemies02Performance_10
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_11
+PASS Imported silhouette has a real render mesh enemies02Performance_11
+PASS Reduced motion retains stable existing animation SirenSeal
+PASS Actual windup selects painted anticipation SirenSeal
+PASS Actual damage selects painted recoil SirenSeal
+PASS Existing idle remains fallback SirenSeal
+PASS No duplicate clip enemies/SirenSeal/1
+PASS Complete pose count SirenSeal
+PASS Positive stable pose scale SirenSeal
+PASS Runtime lookup resolves actual clip SirenSeal/1
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_12
+PASS Imported silhouette has a real render mesh enemies02Performance_12
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_13
+PASS Imported silhouette has a real render mesh enemies02Performance_13
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_14
+PASS Imported silhouette has a real render mesh enemies02Performance_14
+PASS Nonempty imported pose SirenSeal
+PASS Ground-contact pivot enemies02Performance_15
+PASS Imported silhouette has a real render mesh enemies02Performance_15
+PASS Reduced motion retains stable existing animation SirenSeal
+PASS Actual windup selects painted anticipation SirenSeal
+PASS Actual damage selects painted recoil SirenSeal
+PASS Existing idle remains fallback SirenSeal
+PASS No duplicate clip enemies/DoorBearer/0
+PASS Complete pose count DoorBearer
+PASS Positive stable pose scale DoorBearer
+PASS Runtime lookup resolves actual clip DoorBearer/0
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_00
+PASS Imported silhouette has a real render mesh enemies03Performance_00
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_01
+PASS Imported silhouette has a real render mesh enemies03Performance_01
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_02
+PASS Imported silhouette has a real render mesh enemies03Performance_02
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_03
+PASS Imported silhouette has a real render mesh enemies03Performance_03
+PASS Reduced motion retains stable existing animation DoorBearer
+PASS Actual windup selects painted anticipation DoorBearer
+PASS Actual damage selects painted recoil DoorBearer
+PASS Existing idle remains fallback DoorBearer
+PASS No duplicate clip enemies/DoorBearer/1
+PASS Complete pose count DoorBearer
+PASS Positive stable pose scale DoorBearer
+PASS Runtime lookup resolves actual clip DoorBearer/1
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_04
+PASS Imported silhouette has a real render mesh enemies03Performance_04
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_05
+PASS Imported silhouette has a real render mesh enemies03Performance_05
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_06
+PASS Imported silhouette has a real render mesh enemies03Performance_06
+PASS Nonempty imported pose DoorBearer
+PASS Ground-contact pivot enemies03Performance_07
+PASS Imported silhouette has a real render mesh enemies03Performance_07
+PASS Reduced motion retains stable existing animation DoorBearer
+PASS Actual windup selects painted anticipation DoorBearer
+PASS Actual damage selects painted recoil DoorBearer
+PASS Existing idle remains fallback DoorBearer
+PASS No duplicate clip enemies/MoonMagnet/0
+PASS Complete pose count MoonMagnet
+PASS Positive stable pose scale MoonMagnet
+PASS Runtime lookup resolves actual clip MoonMagnet/0
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_08
+PASS Imported silhouette has a real render mesh enemies03Performance_08
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_09
+PASS Imported silhouette has a real render mesh enemies03Performance_09
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_10
+PASS Imported silhouette has a real render mesh enemies03Performance_10
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_11
+PASS Imported silhouette has a real render mesh enemies03Performance_11
+PASS Reduced motion retains stable existing animation MoonMagnet
+PASS Actual windup selects painted anticipation MoonMagnet
+PASS Actual damage selects painted recoil MoonMagnet
+PASS Existing idle remains fallback MoonMagnet
+PASS No duplicate clip enemies/MoonMagnet/1
+PASS Complete pose count MoonMagnet
+PASS Positive stable pose scale MoonMagnet
+PASS Runtime lookup resolves actual clip MoonMagnet/1
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_12
+PASS Imported silhouette has a real render mesh enemies03Performance_12
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_13
+PASS Imported silhouette has a real render mesh enemies03Performance_13
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_14
+PASS Imported silhouette has a real render mesh enemies03Performance_14
+PASS Nonempty imported pose MoonMagnet
+PASS Ground-contact pivot enemies03Performance_15
+PASS Imported silhouette has a real render mesh enemies03Performance_15
+PASS Reduced motion retains stable existing animation MoonMagnet
+PASS Actual windup selects painted anticipation MoonMagnet
+PASS Actual damage selects painted recoil MoonMagnet
+PASS Existing idle remains fallback MoonMagnet
+PASS No duplicate clip enemies/SleepMimic/0
+PASS Complete pose count SleepMimic
+PASS Positive stable pose scale SleepMimic
+PASS Runtime lookup resolves actual clip SleepMimic/0
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_00
+PASS Imported silhouette has a real render mesh enemies04Performance_00
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_01
+PASS Imported silhouette has a real render mesh enemies04Performance_01
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_02
+PASS Imported silhouette has a real render mesh enemies04Performance_02
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_03
+PASS Imported silhouette has a real render mesh enemies04Performance_03
+PASS Reduced motion retains stable existing animation SleepMimic
+PASS Actual windup selects painted anticipation SleepMimic
+PASS Actual damage selects painted recoil SleepMimic
+PASS Existing idle remains fallback SleepMimic
+PASS No duplicate clip enemies/SleepMimic/1
+PASS Complete pose count SleepMimic
+PASS Positive stable pose scale SleepMimic
+PASS Runtime lookup resolves actual clip SleepMimic/1
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_04
+PASS Imported silhouette has a real render mesh enemies04Performance_04
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_05
+PASS Imported silhouette has a real render mesh enemies04Performance_05
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_06
+PASS Imported silhouette has a real render mesh enemies04Performance_06
+PASS Nonempty imported pose SleepMimic
+PASS Ground-contact pivot enemies04Performance_07
+PASS Imported silhouette has a real render mesh enemies04Performance_07
+PASS Reduced motion retains stable existing animation SleepMimic
+PASS Actual windup selects painted anticipation SleepMimic
+PASS Actual damage selects painted recoil SleepMimic
+PASS Existing idle remains fallback SleepMimic
+PASS No duplicate clip enemies/CurtainWisp/0
+PASS Complete pose count CurtainWisp
+PASS Positive stable pose scale CurtainWisp
+PASS Runtime lookup resolves actual clip CurtainWisp/0
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_08
+PASS Imported silhouette has a real render mesh enemies04Performance_08
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_09
+PASS Imported silhouette has a real render mesh enemies04Performance_09
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_10
+PASS Imported silhouette has a real render mesh enemies04Performance_10
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_11
+PASS Imported silhouette has a real render mesh enemies04Performance_11
+PASS Reduced motion retains stable existing animation CurtainWisp
+PASS Actual windup selects painted anticipation CurtainWisp
+PASS Actual damage selects painted recoil CurtainWisp
+PASS Existing idle remains fallback CurtainWisp
+PASS No duplicate clip enemies/CurtainWisp/1
+PASS Complete pose count CurtainWisp
+PASS Positive stable pose scale CurtainWisp
+PASS Runtime lookup resolves actual clip CurtainWisp/1
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_12
+PASS Imported silhouette has a real render mesh enemies04Performance_12
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_13
+PASS Imported silhouette has a real render mesh enemies04Performance_13
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_14
+PASS Imported silhouette has a real render mesh enemies04Performance_14
+PASS Nonempty imported pose CurtainWisp
+PASS Ground-contact pivot enemies04Performance_15
+PASS Imported silhouette has a real render mesh enemies04Performance_15
+PASS Reduced motion retains stable existing animation CurtainWisp
+PASS Actual windup selects painted anticipation CurtainWisp
+PASS Actual damage selects painted recoil CurtainWisp
+PASS Existing idle remains fallback CurtainWisp
+PASS No duplicate clip enemies/FurnaceToad/0
+PASS Complete pose count FurnaceToad
+PASS Positive stable pose scale FurnaceToad
+PASS Runtime lookup resolves actual clip FurnaceToad/0
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_00
+PASS Imported silhouette has a real render mesh enemies05Performance_00
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_01
+PASS Imported silhouette has a real render mesh enemies05Performance_01
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_02
+PASS Imported silhouette has a real render mesh enemies05Performance_02
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_03
+PASS Imported silhouette has a real render mesh enemies05Performance_03
+PASS Reduced motion retains stable existing animation FurnaceToad
+PASS Actual windup selects painted anticipation FurnaceToad
+PASS Actual damage selects painted recoil FurnaceToad
+PASS Existing idle remains fallback FurnaceToad
+PASS No duplicate clip enemies/FurnaceToad/1
+PASS Complete pose count FurnaceToad
+PASS Positive stable pose scale FurnaceToad
+PASS Runtime lookup resolves actual clip FurnaceToad/1
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_04
+PASS Imported silhouette has a real render mesh enemies05Performance_04
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_05
+PASS Imported silhouette has a real render mesh enemies05Performance_05
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_06
+PASS Imported silhouette has a real render mesh enemies05Performance_06
+PASS Nonempty imported pose FurnaceToad
+PASS Ground-contact pivot enemies05Performance_07
+PASS Imported silhouette has a real render mesh enemies05Performance_07
+PASS Reduced motion retains stable existing animation FurnaceToad
+PASS Actual windup selects painted anticipation FurnaceToad
+PASS Actual damage selects painted recoil FurnaceToad
+PASS Existing idle remains fallback FurnaceToad
+PASS No duplicate clip enemies/WardrobeCrab/0
+PASS Complete pose count WardrobeCrab
+PASS Positive stable pose scale WardrobeCrab
+PASS Runtime lookup resolves actual clip WardrobeCrab/0
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_08
+PASS Imported silhouette has a real render mesh enemies05Performance_08
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_09
+PASS Imported silhouette has a real render mesh enemies05Performance_09
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_10
+PASS Imported silhouette has a real render mesh enemies05Performance_10
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_11
+PASS Imported silhouette has a real render mesh enemies05Performance_11
+PASS Reduced motion retains stable existing animation WardrobeCrab
+PASS Actual windup selects painted anticipation WardrobeCrab
+PASS Actual damage selects painted recoil WardrobeCrab
+PASS Existing idle remains fallback WardrobeCrab
+PASS No duplicate clip enemies/WardrobeCrab/1
+PASS Complete pose count WardrobeCrab
+PASS Positive stable pose scale WardrobeCrab
+PASS Runtime lookup resolves actual clip WardrobeCrab/1
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_12
+PASS Imported silhouette has a real render mesh enemies05Performance_12
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_13
+PASS Imported silhouette has a real render mesh enemies05Performance_13
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_14
+PASS Imported silhouette has a real render mesh enemies05Performance_14
+PASS Nonempty imported pose WardrobeCrab
+PASS Ground-contact pivot enemies05Performance_15
+PASS Imported silhouette has a real render mesh enemies05Performance_15
+PASS Reduced motion retains stable existing animation WardrobeCrab
+PASS Actual windup selects painted anticipation WardrobeCrab
+PASS Actual damage selects painted recoil WardrobeCrab
+PASS Existing idle remains fallback WardrobeCrab
+PASS No duplicate clip enemies/HopperKeg/0
+PASS Complete pose count HopperKeg
+PASS Positive stable pose scale HopperKeg
+PASS Runtime lookup resolves actual clip HopperKeg/0
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_00
+PASS Imported silhouette has a real render mesh enemies06Performance_00
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_01
+PASS Imported silhouette has a real render mesh enemies06Performance_01
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_02
+PASS Imported silhouette has a real render mesh enemies06Performance_02
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_03
+PASS Imported silhouette has a real render mesh enemies06Performance_03
+PASS Reduced motion retains stable existing animation HopperKeg
+PASS Actual windup selects painted anticipation HopperKeg
+PASS Actual damage selects painted recoil HopperKeg
+PASS Existing idle remains fallback HopperKeg
+PASS No duplicate clip enemies/HopperKeg/1
+PASS Complete pose count HopperKeg
+PASS Positive stable pose scale HopperKeg
+PASS Runtime lookup resolves actual clip HopperKeg/1
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_04
+PASS Imported silhouette has a real render mesh enemies06Performance_04
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_05
+PASS Imported silhouette has a real render mesh enemies06Performance_05
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_06
+PASS Imported silhouette has a real render mesh enemies06Performance_06
+PASS Nonempty imported pose HopperKeg
+PASS Ground-contact pivot enemies06Performance_07
+PASS Imported silhouette has a real render mesh enemies06Performance_07
+PASS Reduced motion retains stable existing animation HopperKeg
+PASS Actual windup selects painted anticipation HopperKeg
+PASS Actual damage selects painted recoil HopperKeg
+PASS Existing idle remains fallback HopperKeg
+PASS No duplicate clip enemies/ChargerRam/0
+PASS Complete pose count ChargerRam
+PASS Positive stable pose scale ChargerRam
+PASS Runtime lookup resolves actual clip ChargerRam/0
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_08
+PASS Imported silhouette has a real render mesh enemies06Performance_08
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_09
+PASS Imported silhouette has a real render mesh enemies06Performance_09
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_10
+PASS Imported silhouette has a real render mesh enemies06Performance_10
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_11
+PASS Imported silhouette has a real render mesh enemies06Performance_11
+PASS Reduced motion retains stable existing animation ChargerRam
+PASS Actual windup selects painted anticipation ChargerRam
+PASS Actual damage selects painted recoil ChargerRam
+PASS Existing idle remains fallback ChargerRam
+PASS No duplicate clip enemies/ChargerRam/1
+PASS Complete pose count ChargerRam
+PASS Positive stable pose scale ChargerRam
+PASS Runtime lookup resolves actual clip ChargerRam/1
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_12
+PASS Imported silhouette has a real render mesh enemies06Performance_12
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_13
+PASS Imported silhouette has a real render mesh enemies06Performance_13
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_14
+PASS Imported silhouette has a real render mesh enemies06Performance_14
+PASS Nonempty imported pose ChargerRam
+PASS Ground-contact pivot enemies06Performance_15
+PASS Imported silhouette has a real render mesh enemies06Performance_15
+PASS Reduced motion retains stable existing animation ChargerRam
+PASS Actual windup selects painted anticipation ChargerRam
+PASS Actual damage selects painted recoil ChargerRam
+PASS Existing idle remains fallback ChargerRam
+PASS No duplicate clip enemies/CoinLeech/0
+PASS Complete pose count CoinLeech
+PASS Positive stable pose scale CoinLeech
+PASS Runtime lookup resolves actual clip CoinLeech/0
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_00
+PASS Imported silhouette has a real render mesh enemies07Performance_00
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_01
+PASS Imported silhouette has a real render mesh enemies07Performance_01
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_02
+PASS Imported silhouette has a real render mesh enemies07Performance_02
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_03
+PASS Imported silhouette has a real render mesh enemies07Performance_03
+PASS Reduced motion retains stable existing animation CoinLeech
+PASS Actual windup selects painted anticipation CoinLeech
+PASS Actual damage selects painted recoil CoinLeech
+PASS Existing idle remains fallback CoinLeech
+PASS No duplicate clip enemies/CoinLeech/1
+PASS Complete pose count CoinLeech
+PASS Positive stable pose scale CoinLeech
+PASS Runtime lookup resolves actual clip CoinLeech/1
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_04
+PASS Imported silhouette has a real render mesh enemies07Performance_04
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_05
+PASS Imported silhouette has a real render mesh enemies07Performance_05
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_06
+PASS Imported silhouette has a real render mesh enemies07Performance_06
+PASS Nonempty imported pose CoinLeech
+PASS Ground-contact pivot enemies07Performance_07
+PASS Imported silhouette has a real render mesh enemies07Performance_07
+PASS Reduced motion retains stable existing animation CoinLeech
+PASS Actual windup selects painted anticipation CoinLeech
+PASS Actual damage selects painted recoil CoinLeech
+PASS Existing idle remains fallback CoinLeech
+PASS No duplicate clip enemies/BlastPuffer/0
+PASS Complete pose count BlastPuffer
+PASS Positive stable pose scale BlastPuffer
+PASS Runtime lookup resolves actual clip BlastPuffer/0
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_08
+PASS Imported silhouette has a real render mesh enemies07Performance_08
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_09
+PASS Imported silhouette has a real render mesh enemies07Performance_09
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_10
+PASS Imported silhouette has a real render mesh enemies07Performance_10
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_11
+PASS Imported silhouette has a real render mesh enemies07Performance_11
+PASS Reduced motion retains stable existing animation BlastPuffer
+PASS Actual windup selects painted anticipation BlastPuffer
+PASS Actual damage selects painted recoil BlastPuffer
+PASS Existing idle remains fallback BlastPuffer
+PASS No duplicate clip enemies/BlastPuffer/1
+PASS Complete pose count BlastPuffer
+PASS Positive stable pose scale BlastPuffer
+PASS Runtime lookup resolves actual clip BlastPuffer/1
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_12
+PASS Imported silhouette has a real render mesh enemies07Performance_12
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_13
+PASS Imported silhouette has a real render mesh enemies07Performance_13
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_14
+PASS Imported silhouette has a real render mesh enemies07Performance_14
+PASS Nonempty imported pose BlastPuffer
+PASS Ground-contact pivot enemies07Performance_15
+PASS Imported silhouette has a real render mesh enemies07Performance_15
+PASS Reduced motion retains stable existing animation BlastPuffer
+PASS Actual windup selects painted anticipation BlastPuffer
+PASS Actual damage selects painted recoil BlastPuffer
+PASS Existing idle remains fallback BlastPuffer
+PASS No duplicate clip enemies/SporeBishop/0
+PASS Complete pose count SporeBishop
+PASS Positive stable pose scale SporeBishop
+PASS Runtime lookup resolves actual clip SporeBishop/0
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_00
+PASS Imported silhouette has a real render mesh enemies08Performance_00
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_01
+PASS Imported silhouette has a real render mesh enemies08Performance_01
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_02
+PASS Imported silhouette has a real render mesh enemies08Performance_02
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_03
+PASS Imported silhouette has a real render mesh enemies08Performance_03
+PASS Reduced motion retains stable existing animation SporeBishop
+PASS Actual windup selects painted anticipation SporeBishop
+PASS Actual damage selects painted recoil SporeBishop
+PASS Existing idle remains fallback SporeBishop
+PASS No duplicate clip enemies/SporeBishop/1
+PASS Complete pose count SporeBishop
+PASS Positive stable pose scale SporeBishop
+PASS Runtime lookup resolves actual clip SporeBishop/1
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_04
+PASS Imported silhouette has a real render mesh enemies08Performance_04
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_05
+PASS Imported silhouette has a real render mesh enemies08Performance_05
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_06
+PASS Imported silhouette has a real render mesh enemies08Performance_06
+PASS Nonempty imported pose SporeBishop
+PASS Ground-contact pivot enemies08Performance_07
+PASS Imported silhouette has a real render mesh enemies08Performance_07
+PASS Reduced motion retains stable existing animation SporeBishop
+PASS Actual windup selects painted anticipation SporeBishop
+PASS Actual damage selects painted recoil SporeBishop
+PASS Existing idle remains fallback SporeBishop
+PASS No duplicate clip enemies/BroomSkater/0
+PASS Complete pose count BroomSkater
+PASS Positive stable pose scale BroomSkater
+PASS Runtime lookup resolves actual clip BroomSkater/0
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_08
+PASS Imported silhouette has a real render mesh enemies08Performance_08
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_09
+PASS Imported silhouette has a real render mesh enemies08Performance_09
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_10
+PASS Imported silhouette has a real render mesh enemies08Performance_10
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_11
+PASS Imported silhouette has a real render mesh enemies08Performance_11
+PASS Reduced motion retains stable existing animation BroomSkater
+PASS Actual windup selects painted anticipation BroomSkater
+PASS Actual damage selects painted recoil BroomSkater
+PASS Existing idle remains fallback BroomSkater
+PASS No duplicate clip enemies/BroomSkater/1
+PASS Complete pose count BroomSkater
+PASS Positive stable pose scale BroomSkater
+PASS Runtime lookup resolves actual clip BroomSkater/1
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_12
+PASS Imported silhouette has a real render mesh enemies08Performance_12
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_13
+PASS Imported silhouette has a real render mesh enemies08Performance_13
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_14
+PASS Imported silhouette has a real render mesh enemies08Performance_14
+PASS Nonempty imported pose BroomSkater
+PASS Ground-contact pivot enemies08Performance_15
+PASS Imported silhouette has a real render mesh enemies08Performance_15
+PASS Reduced motion retains stable existing animation BroomSkater
+PASS Actual windup selects painted anticipation BroomSkater
+PASS Actual damage selects painted recoil BroomSkater
+PASS Existing idle remains fallback BroomSkater
+PASS No duplicate clip enemies/RibbonHydra/0
+PASS Complete pose count RibbonHydra
+PASS Positive stable pose scale RibbonHydra
+PASS Runtime lookup resolves actual clip RibbonHydra/0
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_00
+PASS Imported silhouette has a real render mesh enemies09Performance_00
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_01
+PASS Imported silhouette has a real render mesh enemies09Performance_01
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_02
+PASS Imported silhouette has a real render mesh enemies09Performance_02
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_03
+PASS Imported silhouette has a real render mesh enemies09Performance_03
+PASS Reduced motion retains stable existing animation RibbonHydra
+PASS Actual windup selects painted anticipation RibbonHydra
+PASS Actual damage selects painted recoil RibbonHydra
+PASS Existing idle remains fallback RibbonHydra
+PASS No duplicate clip enemies/RibbonHydra/1
+PASS Complete pose count RibbonHydra
+PASS Positive stable pose scale RibbonHydra
+PASS Runtime lookup resolves actual clip RibbonHydra/1
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_04
+PASS Imported silhouette has a real render mesh enemies09Performance_04
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_05
+PASS Imported silhouette has a real render mesh enemies09Performance_05
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_06
+PASS Imported silhouette has a real render mesh enemies09Performance_06
+PASS Nonempty imported pose RibbonHydra
+PASS Ground-contact pivot enemies09Performance_07
+PASS Imported silhouette has a real render mesh enemies09Performance_07
+PASS Reduced motion retains stable existing animation RibbonHydra
+PASS Actual windup selects painted anticipation RibbonHydra
+PASS Actual damage selects painted recoil RibbonHydra
+PASS Existing idle remains fallback RibbonHydra
+PASS No duplicate clip enemies/BurrowBell/0
+PASS Complete pose count BurrowBell
+PASS Positive stable pose scale BurrowBell
+PASS Runtime lookup resolves actual clip BurrowBell/0
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_08
+PASS Imported silhouette has a real render mesh enemies09Performance_08
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_09
+PASS Imported silhouette has a real render mesh enemies09Performance_09
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_10
+PASS Imported silhouette has a real render mesh enemies09Performance_10
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_11
+PASS Imported silhouette has a real render mesh enemies09Performance_11
+PASS Reduced motion retains stable existing animation BurrowBell
+PASS Actual windup selects painted anticipation BurrowBell
+PASS Actual damage selects painted recoil BurrowBell
+PASS Existing idle remains fallback BurrowBell
+PASS No duplicate clip enemies/BurrowBell/1
+PASS Complete pose count BurrowBell
+PASS Positive stable pose scale BurrowBell
+PASS Runtime lookup resolves actual clip BurrowBell/1
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_12
+PASS Imported silhouette has a real render mesh enemies09Performance_12
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_13
+PASS Imported silhouette has a real render mesh enemies09Performance_13
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_14
+PASS Imported silhouette has a real render mesh enemies09Performance_14
+PASS Nonempty imported pose BurrowBell
+PASS Ground-contact pivot enemies09Performance_15
+PASS Imported silhouette has a real render mesh enemies09Performance_15
+PASS Reduced motion retains stable existing animation BurrowBell
+PASS Actual windup selects painted anticipation BurrowBell
+PASS Actual damage selects painted recoil BurrowBell
+PASS Existing idle remains fallback BurrowBell
+PASS No duplicate clip enemies/SmokeWraith/0
+PASS Complete pose count SmokeWraith
+PASS Positive stable pose scale SmokeWraith
+PASS Runtime lookup resolves actual clip SmokeWraith/0
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_00
+PASS Imported silhouette has a real render mesh enemies10Performance_00
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_01
+PASS Imported silhouette has a real render mesh enemies10Performance_01
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_02
+PASS Imported silhouette has a real render mesh enemies10Performance_02
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_03
+PASS Imported silhouette has a real render mesh enemies10Performance_03
+PASS Reduced motion retains stable existing animation SmokeWraith
+PASS Actual windup selects painted anticipation SmokeWraith
+PASS Actual damage selects painted recoil SmokeWraith
+PASS Existing idle remains fallback SmokeWraith
+PASS No duplicate clip enemies/SmokeWraith/1
+PASS Complete pose count SmokeWraith
+PASS Positive stable pose scale SmokeWraith
+PASS Runtime lookup resolves actual clip SmokeWraith/1
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_04
+PASS Imported silhouette has a real render mesh enemies10Performance_04
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_05
+PASS Imported silhouette has a real render mesh enemies10Performance_05
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_06
+PASS Imported silhouette has a real render mesh enemies10Performance_06
+PASS Nonempty imported pose SmokeWraith
+PASS Ground-contact pivot enemies10Performance_07
+PASS Imported silhouette has a real render mesh enemies10Performance_07
+PASS Reduced motion retains stable existing animation SmokeWraith
+PASS Actual windup selects painted anticipation SmokeWraith
+PASS Actual damage selects painted recoil SmokeWraith
+PASS Existing idle remains fallback SmokeWraith
+PASS No duplicate clip enemies/BlueFlameFiend/0
+PASS Complete pose count BlueFlameFiend
+PASS Positive stable pose scale BlueFlameFiend
+PASS Runtime lookup resolves actual clip BlueFlameFiend/0
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_08
+PASS Imported silhouette has a real render mesh enemies10Performance_08
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_09
+PASS Imported silhouette has a real render mesh enemies10Performance_09
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_10
+PASS Imported silhouette has a real render mesh enemies10Performance_10
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_11
+PASS Imported silhouette has a real render mesh enemies10Performance_11
+PASS Reduced motion retains stable existing animation BlueFlameFiend
+PASS Actual windup selects painted anticipation BlueFlameFiend
+PASS Actual damage selects painted recoil BlueFlameFiend
+PASS Existing idle remains fallback BlueFlameFiend
+PASS No duplicate clip enemies/BlueFlameFiend/1
+PASS Complete pose count BlueFlameFiend
+PASS Positive stable pose scale BlueFlameFiend
+PASS Runtime lookup resolves actual clip BlueFlameFiend/1
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_12
+PASS Imported silhouette has a real render mesh enemies10Performance_12
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_13
+PASS Imported silhouette has a real render mesh enemies10Performance_13
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_14
+PASS Imported silhouette has a real render mesh enemies10Performance_14
+PASS Nonempty imported pose BlueFlameFiend
+PASS Ground-contact pivot enemies10Performance_15
+PASS Imported silhouette has a real render mesh enemies10Performance_15
+PASS Reduced motion retains stable existing animation BlueFlameFiend
+PASS Actual windup selects painted anticipation BlueFlameFiend
+PASS Actual damage selects painted recoil BlueFlameFiend
+PASS Existing idle remains fallback BlueFlameFiend
+PASS No duplicate clip enemies/RedFlameBerserker/0
+PASS Complete pose count RedFlameBerserker
+PASS Positive stable pose scale RedFlameBerserker
+PASS Runtime lookup resolves actual clip RedFlameBerserker/0
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_00
+PASS Imported silhouette has a real render mesh enemies11Performance_00
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_01
+PASS Imported silhouette has a real render mesh enemies11Performance_01
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_02
+PASS Imported silhouette has a real render mesh enemies11Performance_02
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_03
+PASS Imported silhouette has a real render mesh enemies11Performance_03
+PASS Reduced motion retains stable existing animation RedFlameBerserker
+PASS Actual windup selects painted anticipation RedFlameBerserker
+PASS Actual damage selects painted recoil RedFlameBerserker
+PASS Existing idle remains fallback RedFlameBerserker
+PASS No duplicate clip enemies/RedFlameBerserker/1
+PASS Complete pose count RedFlameBerserker
+PASS Positive stable pose scale RedFlameBerserker
+PASS Runtime lookup resolves actual clip RedFlameBerserker/1
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_04
+PASS Imported silhouette has a real render mesh enemies11Performance_04
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_05
+PASS Imported silhouette has a real render mesh enemies11Performance_05
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_06
+PASS Imported silhouette has a real render mesh enemies11Performance_06
+PASS Nonempty imported pose RedFlameBerserker
+PASS Ground-contact pivot enemies11Performance_07
+PASS Imported silhouette has a real render mesh enemies11Performance_07
+PASS Reduced motion retains stable existing animation RedFlameBerserker
+PASS Actual windup selects painted anticipation RedFlameBerserker
+PASS Actual damage selects painted recoil RedFlameBerserker
+PASS Existing idle remains fallback RedFlameBerserker
+PASS No duplicate clip enemies/TwinFlameFurnace/0
+PASS Complete pose count TwinFlameFurnace
+PASS Positive stable pose scale TwinFlameFurnace
+PASS Runtime lookup resolves actual clip TwinFlameFurnace/0
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_08
+PASS Imported silhouette has a real render mesh enemies11Performance_08
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_09
+PASS Imported silhouette has a real render mesh enemies11Performance_09
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_10
+PASS Imported silhouette has a real render mesh enemies11Performance_10
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_11
+PASS Imported silhouette has a real render mesh enemies11Performance_11
+PASS Reduced motion retains stable existing animation TwinFlameFurnace
+PASS Actual windup selects painted anticipation TwinFlameFurnace
+PASS Actual damage selects painted recoil TwinFlameFurnace
+PASS Existing idle remains fallback TwinFlameFurnace
+PASS No duplicate clip enemies/TwinFlameFurnace/1
+PASS Complete pose count TwinFlameFurnace
+PASS Positive stable pose scale TwinFlameFurnace
+PASS Runtime lookup resolves actual clip TwinFlameFurnace/1
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_12
+PASS Imported silhouette has a real render mesh enemies11Performance_12
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_13
+PASS Imported silhouette has a real render mesh enemies11Performance_13
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_14
+PASS Imported silhouette has a real render mesh enemies11Performance_14
+PASS Nonempty imported pose TwinFlameFurnace
+PASS Ground-contact pivot enemies11Performance_15
+PASS Imported silhouette has a real render mesh enemies11Performance_15
+PASS Reduced motion retains stable existing animation TwinFlameFurnace
+PASS Actual windup selects painted anticipation TwinFlameFurnace
+PASS Actual damage selects painted recoil TwinFlameFurnace
+PASS Existing idle remains fallback TwinFlameFurnace
+PASS No duplicate clip bosses/UndeliveredKing/0
+PASS Complete pose count UndeliveredKing
+PASS Positive stable pose scale UndeliveredKing
+PASS Runtime lookup resolves actual clip UndeliveredKing/0
+PASS Nonempty imported pose UndeliveredKing
+PASS Ground-contact pivot bosses00Performance_00
+PASS Imported silhouette has a real render mesh bosses00Performance_00
+PASS Nonempty imported pose UndeliveredKing
+PASS Ground-contact pivot bosses00Performance_01
+PASS Imported silhouette has a real render mesh bosses00Performance_01
+PASS Nonempty imported pose UndeliveredKing
+PASS Ground-contact pivot bosses00Performance_02
+PASS Imported silhouette has a real render mesh bosses00Performance_02
+PASS Nonempty imported pose UndeliveredKing
+PASS Ground-contact pivot bosses00Performance_03
+PASS Imported silhouette has a real render mesh bosses00Performance_03
+PASS Reduced motion retains stable existing animation UndeliveredKing
+PASS Actual windup selects painted anticipation UndeliveredKing
+PASS Actual damage selects painted recoil UndeliveredKing
+PASS Existing idle remains fallback UndeliveredKing
+PASS No duplicate clip bosses/ScarletIndex/0
+PASS Complete pose count ScarletIndex
+PASS Positive stable pose scale ScarletIndex
+PASS Runtime lookup resolves actual clip ScarletIndex/0
+PASS Nonempty imported pose ScarletIndex
+PASS Ground-contact pivot bosses01Performance_00
+PASS Imported silhouette has a real render mesh bosses01Performance_00
+PASS Nonempty imported pose ScarletIndex
+PASS Ground-contact pivot bosses01Performance_01
+PASS Imported silhouette has a real render mesh bosses01Performance_01
+PASS Nonempty imported pose ScarletIndex
+PASS Ground-contact pivot bosses01Performance_02
+PASS Imported silhouette has a real render mesh bosses01Performance_02
+PASS Nonempty imported pose ScarletIndex
+PASS Ground-contact pivot bosses01Performance_03
+PASS Imported silhouette has a real render mesh bosses01Performance_03
+PASS Reduced motion retains stable existing animation ScarletIndex
+PASS Actual windup selects painted anticipation ScarletIndex
+PASS Actual damage selects painted recoil ScarletIndex
+PASS Existing idle remains fallback ScarletIndex
+PASS No duplicate clip bosses/SleepCollector/0
+PASS Complete pose count SleepCollector
+PASS Positive stable pose scale SleepCollector
+PASS Runtime lookup resolves actual clip SleepCollector/0
+PASS Nonempty imported pose SleepCollector
+PASS Ground-contact pivot bosses02Performance_00
+PASS Imported silhouette has a real render mesh bosses02Performance_00
+PASS Nonempty imported pose SleepCollector
+PASS Ground-contact pivot bosses02Performance_01
+PASS Imported silhouette has a real render mesh bosses02Performance_01
+PASS Nonempty imported pose SleepCollector
+PASS Ground-contact pivot bosses02Performance_02
+PASS Imported silhouette has a real render mesh bosses02Performance_02
+PASS Nonempty imported pose SleepCollector
+PASS Ground-contact pivot bosses02Performance_03
+PASS Imported silhouette has a real render mesh bosses02Performance_03
+PASS Reduced motion retains stable existing animation SleepCollector
+PASS Actual windup selects painted anticipation SleepCollector
+PASS Actual damage selects painted recoil SleepCollector
+PASS Existing idle remains fallback SleepCollector
+PASS No duplicate clip bosses/WaxAdmiral/0
+PASS Complete pose count WaxAdmiral
+PASS Positive stable pose scale WaxAdmiral
+PASS Runtime lookup resolves actual clip WaxAdmiral/0
+PASS Nonempty imported pose WaxAdmiral
+PASS Ground-contact pivot bosses03Performance_00
+PASS Imported silhouette has a real render mesh bosses03Performance_00
+PASS Nonempty imported pose WaxAdmiral
+PASS Ground-contact pivot bosses03Performance_01
+PASS Imported silhouette has a real render mesh bosses03Performance_01
+PASS Nonempty imported pose WaxAdmiral
+PASS Ground-contact pivot bosses03Performance_02
+PASS Imported silhouette has a real render mesh bosses03Performance_02
+PASS Nonempty imported pose WaxAdmiral
+PASS Ground-contact pivot bosses03Performance_03
+PASS Imported silhouette has a real render mesh bosses03Performance_03
+PASS Reduced motion retains stable existing animation WaxAdmiral
+PASS Actual windup selects painted anticipation WaxAdmiral
+PASS Actual damage selects painted recoil WaxAdmiral
+PASS Existing idle remains fallback WaxAdmiral
+PASS No duplicate clip bosses/LastLantern/0
+PASS Complete pose count LastLantern
+PASS Positive stable pose scale LastLantern
+PASS Runtime lookup resolves actual clip LastLantern/0
+PASS Nonempty imported pose LastLantern
+PASS Ground-contact pivot bosses04Performance_00
+PASS Imported silhouette has a real render mesh bosses04Performance_00
+PASS Nonempty imported pose LastLantern
+PASS Ground-contact pivot bosses04Performance_01
+PASS Imported silhouette has a real render mesh bosses04Performance_01
+PASS Nonempty imported pose LastLantern
+PASS Ground-contact pivot bosses04Performance_02
+PASS Imported silhouette has a real render mesh bosses04Performance_02
+PASS Nonempty imported pose LastLantern
+PASS Ground-contact pivot bosses04Performance_03
+PASS Imported silhouette has a real render mesh bosses04Performance_03
+PASS Reduced motion retains stable existing animation LastLantern
+PASS Actual windup selects painted anticipation LastLantern
+PASS Actual damage selects painted recoil LastLantern
+PASS Existing idle remains fallback LastLantern
+PASS No duplicate clip bosses/MarqueeMaw/0
+PASS Complete pose count MarqueeMaw
+PASS Positive stable pose scale MarqueeMaw
+PASS Runtime lookup resolves actual clip MarqueeMaw/0
+PASS Nonempty imported pose MarqueeMaw
+PASS Ground-contact pivot bosses05Performance_00
+PASS Imported silhouette has a real render mesh bosses05Performance_00
+PASS Nonempty imported pose MarqueeMaw
+PASS Ground-contact pivot bosses05Performance_01
+PASS Imported silhouette has a real render mesh bosses05Performance_01
+PASS Nonempty imported pose MarqueeMaw
+PASS Ground-contact pivot bosses05Performance_02
+PASS Imported silhouette has a real render mesh bosses05Performance_02
+PASS Nonempty imported pose MarqueeMaw
+PASS Ground-contact pivot bosses05Performance_03
+PASS Imported silhouette has a real render mesh bosses05Performance_03
+PASS Reduced motion retains stable existing animation MarqueeMaw
+PASS Actual windup selects painted anticipation MarqueeMaw
+PASS Actual damage selects painted recoil MarqueeMaw
+PASS Existing idle remains fallback MarqueeMaw
+PASS No duplicate clip bosses/UmbraCradle/0
+PASS Complete pose count UmbraCradle
+PASS Positive stable pose scale UmbraCradle
+PASS Runtime lookup resolves actual clip UmbraCradle/0
+PASS Nonempty imported pose UmbraCradle
+PASS Ground-contact pivot bosses06Performance_00
+PASS Imported silhouette has a real render mesh bosses06Performance_00
+PASS Nonempty imported pose UmbraCradle
+PASS Ground-contact pivot bosses06Performance_01
+PASS Imported silhouette has a real render mesh bosses06Performance_01
+PASS Nonempty imported pose UmbraCradle
+PASS Ground-contact pivot bosses06Performance_02
+PASS Imported silhouette has a real render mesh bosses06Performance_02
+PASS Nonempty imported pose UmbraCradle
+PASS Ground-contact pivot bosses06Performance_03
+PASS Imported silhouette has a real render mesh bosses06Performance_03
+PASS Reduced motion retains stable existing animation UmbraCradle
+PASS Actual windup selects painted anticipation UmbraCradle
+PASS Actual damage selects painted recoil UmbraCradle
+PASS Existing idle remains fallback UmbraCradle
+PASS No duplicate clip bosses/CoinWidow/0
+PASS Complete pose count CoinWidow
+PASS Positive stable pose scale CoinWidow
+PASS Runtime lookup resolves actual clip CoinWidow/0
+PASS Nonempty imported pose CoinWidow
+PASS Ground-contact pivot bosses07Performance_00
+PASS Imported silhouette has a real render mesh bosses07Performance_00
+PASS Nonempty imported pose CoinWidow
+PASS Ground-contact pivot bosses07Performance_01
+PASS Imported silhouette has a real render mesh bosses07Performance_01
+PASS Nonempty imported pose CoinWidow
+PASS Ground-contact pivot bosses07Performance_02
+PASS Imported silhouette has a real render mesh bosses07Performance_02
+PASS Nonempty imported pose CoinWidow
+PASS Ground-contact pivot bosses07Performance_03
+PASS Imported silhouette has a real render mesh bosses07Performance_03
+PASS Reduced motion retains stable existing animation CoinWidow
+PASS Actual windup selects painted anticipation CoinWidow
+PASS Actual damage selects painted recoil CoinWidow
+PASS Existing idle remains fallback CoinWidow
+PASS No duplicate clip bosses/ChoirEngine/0
+PASS Complete pose count ChoirEngine
+PASS Positive stable pose scale ChoirEngine
+PASS Runtime lookup resolves actual clip ChoirEngine/0
+PASS Nonempty imported pose ChoirEngine
+PASS Ground-contact pivot bosses08Performance_00
+PASS Imported silhouette has a real render mesh bosses08Performance_00
+PASS Nonempty imported pose ChoirEngine
+PASS Ground-contact pivot bosses08Performance_01
+PASS Imported silhouette has a real render mesh bosses08Performance_01
+PASS Nonempty imported pose ChoirEngine
+PASS Ground-contact pivot bosses08Performance_02
+PASS Imported silhouette has a real render mesh bosses08Performance_02
+PASS Nonempty imported pose ChoirEngine
+PASS Ground-contact pivot bosses08Performance_03
+PASS Imported silhouette has a real render mesh bosses08Performance_03
+PASS Reduced motion retains stable existing animation ChoirEngine
+PASS Actual windup selects painted anticipation ChoirEngine
+PASS Actual damage selects painted recoil ChoirEngine
+PASS Existing idle remains fallback ChoirEngine
+PASS No duplicate clip bosses/SuitcaseLeviathan/0
+PASS Complete pose count SuitcaseLeviathan
+PASS Positive stable pose scale SuitcaseLeviathan
+PASS Runtime lookup resolves actual clip SuitcaseLeviathan/0
+PASS Nonempty imported pose SuitcaseLeviathan
+PASS Ground-contact pivot bosses09Performance_00
+PASS Imported silhouette has a real render mesh bosses09Performance_00
+PASS Nonempty imported pose SuitcaseLeviathan
+PASS Ground-contact pivot bosses09Performance_01
+PASS Imported silhouette has a real render mesh bosses09Performance_01
+PASS Nonempty imported pose SuitcaseLeviathan
+PASS Ground-contact pivot bosses09Performance_02
+PASS Imported silhouette has a real render mesh bosses09Performance_02
+PASS Nonempty imported pose SuitcaseLeviathan
+PASS Ground-contact pivot bosses09Performance_03
+PASS Imported silhouette has a real render mesh bosses09Performance_03
+PASS Reduced motion retains stable existing animation SuitcaseLeviathan
+PASS Actual windup selects painted anticipation SuitcaseLeviathan
+PASS Actual damage selects painted recoil SuitcaseLeviathan
+PASS Existing idle remains fallback SuitcaseLeviathan
+PASS No duplicate clip bosses/TheLastCustomer/0
+PASS Complete pose count TheLastCustomer
+PASS Positive stable pose scale TheLastCustomer
+PASS Runtime lookup resolves actual clip TheLastCustomer/0
+PASS Nonempty imported pose TheLastCustomer
+PASS Ground-contact pivot bosses10Performance_00
+PASS Imported silhouette has a real render mesh bosses10Performance_00
+PASS Nonempty imported pose TheLastCustomer
+PASS Ground-contact pivot bosses10Performance_01
+PASS Imported silhouette has a real render mesh bosses10Performance_01
+PASS Nonempty imported pose TheLastCustomer
+PASS Ground-contact pivot bosses10Performance_02
+PASS Imported silhouette has a real render mesh bosses10Performance_02
+PASS Nonempty imported pose TheLastCustomer
+PASS Ground-contact pivot bosses10Performance_03
+PASS Imported silhouette has a real render mesh bosses10Performance_03
+PASS Reduced motion retains stable existing animation TheLastCustomer
+PASS Actual windup selects painted anticipation TheLastCustomer
+PASS Actual damage selects painted recoil TheLastCustomer
+PASS Existing idle remains fallback TheLastCustomer
+PASS No duplicate clip bosses/OutsideStageKeeper/0
+PASS Complete pose count OutsideStageKeeper
+PASS Positive stable pose scale OutsideStageKeeper
+PASS Runtime lookup resolves actual clip OutsideStageKeeper/0
+PASS Nonempty imported pose OutsideStageKeeper
+PASS Ground-contact pivot bosses11Performance_00
+PASS Imported silhouette has a real render mesh bosses11Performance_00
+PASS Nonempty imported pose OutsideStageKeeper
+PASS Ground-contact pivot bosses11Performance_01
+PASS Imported silhouette has a real render mesh bosses11Performance_01
+PASS Nonempty imported pose OutsideStageKeeper
+PASS Ground-contact pivot bosses11Performance_02
+PASS Imported silhouette has a real render mesh bosses11Performance_02
+PASS Nonempty imported pose OutsideStageKeeper
+PASS Ground-contact pivot bosses11Performance_03
+PASS Imported silhouette has a real render mesh bosses11Performance_03
+PASS Reduced motion retains stable existing animation OutsideStageKeeper
+PASS Actual windup selects painted anticipation OutsideStageKeeper
+PASS Actual damage selects painted recoil OutsideStageKeeper
+PASS Existing idle remains fallback OutsideStageKeeper
+PASS No duplicate clip weapons/KeyCleaver/0
+PASS Complete pose count KeyCleaver
+PASS Positive stable pose scale KeyCleaver
+PASS Runtime lookup resolves actual clip KeyCleaver/0
+PASS Nonempty imported pose KeyCleaver
+PASS Ground-contact pivot weapons00Performance_00
+PASS Imported silhouette has a real render mesh weapons00Performance_00
+PASS Nonempty imported pose KeyCleaver
+PASS Ground-contact pivot weapons00Performance_01
+PASS Imported silhouette has a real render mesh weapons00Performance_01
+PASS Nonempty imported pose KeyCleaver
+PASS Ground-contact pivot weapons00Performance_02
+PASS Imported silhouette has a real render mesh weapons00Performance_02
+PASS Nonempty imported pose KeyCleaver
+PASS Ground-contact pivot weapons00Performance_03
+PASS Imported silhouette has a real render mesh weapons00Performance_03
+PASS Weapon mechanism uses new art KeyCleaver
+PASS No duplicate clip weapons/TeapotPopgun/0
+PASS Complete pose count TeapotPopgun
+PASS Positive stable pose scale TeapotPopgun
+PASS Runtime lookup resolves actual clip TeapotPopgun/0
+PASS Nonempty imported pose TeapotPopgun
+PASS Ground-contact pivot weapons00Performance_04
+PASS Imported silhouette has a real render mesh weapons00Performance_04
+PASS Nonempty imported pose TeapotPopgun
+PASS Ground-contact pivot weapons00Performance_05
+PASS Imported silhouette has a real render mesh weapons00Performance_05
+PASS Nonempty imported pose TeapotPopgun
+PASS Ground-contact pivot weapons00Performance_06
+PASS Imported silhouette has a real render mesh weapons00Performance_06
+PASS Nonempty imported pose TeapotPopgun
+PASS Ground-contact pivot weapons00Performance_07
+PASS Imported silhouette has a real render mesh weapons00Performance_07
+PASS Weapon mechanism uses new art TeapotPopgun
+PASS No duplicate clip weapons/UmbrellaLance/0
+PASS Complete pose count UmbrellaLance
+PASS Positive stable pose scale UmbrellaLance
+PASS Runtime lookup resolves actual clip UmbrellaLance/0
+PASS Nonempty imported pose UmbrellaLance
+PASS Ground-contact pivot weapons00Performance_08
+PASS Imported silhouette has a real render mesh weapons00Performance_08
+PASS Nonempty imported pose UmbrellaLance
+PASS Ground-contact pivot weapons00Performance_09
+PASS Imported silhouette has a real render mesh weapons00Performance_09
+PASS Nonempty imported pose UmbrellaLance
+PASS Ground-contact pivot weapons00Performance_10
+PASS Imported silhouette has a real render mesh weapons00Performance_10
+PASS Nonempty imported pose UmbrellaLance
+PASS Ground-contact pivot weapons00Performance_11
+PASS Imported silhouette has a real render mesh weapons00Performance_11
+PASS Weapon mechanism uses new art UmbrellaLance
+PASS No duplicate clip weapons/MailboxLauncher/0
+PASS Complete pose count MailboxLauncher
+PASS Positive stable pose scale MailboxLauncher
+PASS Runtime lookup resolves actual clip MailboxLauncher/0
+PASS Nonempty imported pose MailboxLauncher
+PASS Ground-contact pivot weapons00Performance_12
+PASS Imported silhouette has a real render mesh weapons00Performance_12
+PASS Nonempty imported pose MailboxLauncher
+PASS Ground-contact pivot weapons00Performance_13
+PASS Imported silhouette has a real render mesh weapons00Performance_13
+PASS Nonempty imported pose MailboxLauncher
+PASS Ground-contact pivot weapons00Performance_14
+PASS Imported silhouette has a real render mesh weapons00Performance_14
+PASS Nonempty imported pose MailboxLauncher
+PASS Ground-contact pivot weapons00Performance_15
+PASS Imported silhouette has a real render mesh weapons00Performance_15
+PASS Weapon mechanism uses new art MailboxLauncher
+PASS No duplicate clip weapons/BellFork/0
+PASS Complete pose count BellFork
+PASS Positive stable pose scale BellFork
+PASS Runtime lookup resolves actual clip BellFork/0
+PASS Nonempty imported pose BellFork
+PASS Ground-contact pivot weapons01Performance_00
+PASS Imported silhouette has a real render mesh weapons01Performance_00
+PASS Nonempty imported pose BellFork
+PASS Ground-contact pivot weapons01Performance_01
+PASS Imported silhouette has a real render mesh weapons01Performance_01
+PASS Nonempty imported pose BellFork
+PASS Ground-contact pivot weapons01Performance_02
+PASS Imported silhouette has a real render mesh weapons01Performance_02
+PASS Nonempty imported pose BellFork
+PASS Ground-contact pivot weapons01Performance_03
+PASS Imported silhouette has a real render mesh weapons01Performance_03
+PASS Weapon mechanism uses new art BellFork
+PASS No duplicate clip weapons/BookPaddle/0
+PASS Complete pose count BookPaddle
+PASS Positive stable pose scale BookPaddle
+PASS Runtime lookup resolves actual clip BookPaddle/0
+PASS Nonempty imported pose BookPaddle
+PASS Ground-contact pivot weapons01Performance_04
+PASS Imported silhouette has a real render mesh weapons01Performance_04
+PASS Nonempty imported pose BookPaddle
+PASS Ground-contact pivot weapons01Performance_05
+PASS Imported silhouette has a real render mesh weapons01Performance_05
+PASS Nonempty imported pose BookPaddle
+PASS Ground-contact pivot weapons01Performance_06
+PASS Imported silhouette has a real render mesh weapons01Performance_06
+PASS Nonempty imported pose BookPaddle
+PASS Ground-contact pivot weapons01Performance_07
+PASS Imported silhouette has a real render mesh weapons01Performance_07
+PASS Weapon mechanism uses new art BookPaddle
+PASS No duplicate clip weapons/CrescentBow/0
+PASS Complete pose count CrescentBow
+PASS Positive stable pose scale CrescentBow
+PASS Runtime lookup resolves actual clip CrescentBow/0
+PASS Nonempty imported pose CrescentBow
+PASS Ground-contact pivot weapons01Performance_08
+PASS Imported silhouette has a real render mesh weapons01Performance_08
+PASS Nonempty imported pose CrescentBow
+PASS Ground-contact pivot weapons01Performance_09
+PASS Imported silhouette has a real render mesh weapons01Performance_09
+PASS Nonempty imported pose CrescentBow
+PASS Ground-contact pivot weapons01Performance_10
+PASS Imported silhouette has a real render mesh weapons01Performance_10
+PASS Nonempty imported pose CrescentBow
+PASS Ground-contact pivot weapons01Performance_11
+PASS Imported silhouette has a real render mesh weapons01Performance_11
+PASS Weapon mechanism uses new art CrescentBow
+PASS No duplicate clip weapons/RuneStaff/0
+PASS Complete pose count RuneStaff
+PASS Positive stable pose scale RuneStaff
+PASS Runtime lookup resolves actual clip RuneStaff/0
+PASS Nonempty imported pose RuneStaff
+PASS Ground-contact pivot weapons01Performance_12
+PASS Imported silhouette has a real render mesh weapons01Performance_12
+PASS Nonempty imported pose RuneStaff
+PASS Ground-contact pivot weapons01Performance_13
+PASS Imported silhouette has a real render mesh weapons01Performance_13
+PASS Nonempty imported pose RuneStaff
+PASS Ground-contact pivot weapons01Performance_14
+PASS Imported silhouette has a real render mesh weapons01Performance_14
+PASS Nonempty imported pose RuneStaff
+PASS Ground-contact pivot weapons01Performance_15
+PASS Imported silhouette has a real render mesh weapons01Performance_15
+PASS Weapon mechanism uses new art RuneStaff
+PASS No duplicate clip weapons/DreamStamp/0
+PASS Complete pose count DreamStamp
+PASS Positive stable pose scale DreamStamp
+PASS Runtime lookup resolves actual clip DreamStamp/0
+PASS Nonempty imported pose DreamStamp
+PASS Ground-contact pivot weapons02Performance_00
+PASS Imported silhouette has a real render mesh weapons02Performance_00
+PASS Nonempty imported pose DreamStamp
+PASS Ground-contact pivot weapons02Performance_01
+PASS Imported silhouette has a real render mesh weapons02Performance_01
+PASS Nonempty imported pose DreamStamp
+PASS Ground-contact pivot weapons02Performance_02
+PASS Imported silhouette has a real render mesh weapons02Performance_02
+PASS Nonempty imported pose DreamStamp
+PASS Ground-contact pivot weapons02Performance_03
+PASS Imported silhouette has a real render mesh weapons02Performance_03
+PASS Weapon mechanism uses new art DreamStamp
+PASS No duplicate clip weapons/CloudScissors/0
+PASS Complete pose count CloudScissors
+PASS Positive stable pose scale CloudScissors
+PASS Runtime lookup resolves actual clip CloudScissors/0
+PASS Nonempty imported pose CloudScissors
+PASS Ground-contact pivot weapons02Performance_04
+PASS Imported silhouette has a real render mesh weapons02Performance_04
+PASS Nonempty imported pose CloudScissors
+PASS Ground-contact pivot weapons02Performance_05
+PASS Imported silhouette has a real render mesh weapons02Performance_05
+PASS Nonempty imported pose CloudScissors
+PASS Ground-contact pivot weapons02Performance_06
+PASS Imported silhouette has a real render mesh weapons02Performance_06
+PASS Nonempty imported pose CloudScissors
+PASS Ground-contact pivot weapons02Performance_07
+PASS Imported silhouette has a real render mesh weapons02Performance_07
+PASS Weapon mechanism uses new art CloudScissors
+PASS No duplicate clip weapons/SleepCamera/0
+PASS Complete pose count SleepCamera
+PASS Positive stable pose scale SleepCamera
+PASS Runtime lookup resolves actual clip SleepCamera/0
+PASS Nonempty imported pose SleepCamera
+PASS Ground-contact pivot weapons02Performance_08
+PASS Imported silhouette has a real render mesh weapons02Performance_08
+PASS Nonempty imported pose SleepCamera
+PASS Ground-contact pivot weapons02Performance_09
+PASS Imported silhouette has a real render mesh weapons02Performance_09
+PASS Nonempty imported pose SleepCamera
+PASS Ground-contact pivot weapons02Performance_10
+PASS Imported silhouette has a real render mesh weapons02Performance_10
+PASS Nonempty imported pose SleepCamera
+PASS Ground-contact pivot weapons02Performance_11
+PASS Imported silhouette has a real render mesh weapons02Performance_11
+PASS Weapon mechanism uses new art SleepCamera
+PASS No duplicate clip weapons/TinFish/0
+PASS Complete pose count TinFish
+PASS Positive stable pose scale TinFish
+PASS Runtime lookup resolves actual clip TinFish/0
+PASS Nonempty imported pose TinFish
+PASS Ground-contact pivot weapons02Performance_12
+PASS Imported silhouette has a real render mesh weapons02Performance_12
+PASS Nonempty imported pose TinFish
+PASS Ground-contact pivot weapons02Performance_13
+PASS Imported silhouette has a real render mesh weapons02Performance_13
+PASS Nonempty imported pose TinFish
+PASS Ground-contact pivot weapons02Performance_14
+PASS Imported silhouette has a real render mesh weapons02Performance_14
+PASS Nonempty imported pose TinFish
+PASS Ground-contact pivot weapons02Performance_15
+PASS Imported silhouette has a real render mesh weapons02Performance_15
+PASS Weapon mechanism uses new art TinFish
+PASS No duplicate clip weapons/DreamIron/0
+PASS Complete pose count DreamIron
+PASS Positive stable pose scale DreamIron
+PASS Runtime lookup resolves actual clip DreamIron/0
+PASS Nonempty imported pose DreamIron
+PASS Ground-contact pivot weapons03Performance_00
+PASS Imported silhouette has a real render mesh weapons03Performance_00
+PASS Nonempty imported pose DreamIron
+PASS Ground-contact pivot weapons03Performance_01
+PASS Imported silhouette has a real render mesh weapons03Performance_01
+PASS Nonempty imported pose DreamIron
+PASS Ground-contact pivot weapons03Performance_02
+PASS Imported silhouette has a real render mesh weapons03Performance_02
+PASS Nonempty imported pose DreamIron
+PASS Ground-contact pivot weapons03Performance_03
+PASS Imported silhouette has a real render mesh weapons03Performance_03
+PASS Weapon mechanism uses new art DreamIron
+PASS No duplicate clip weapons/RubberHammer/0
+PASS Complete pose count RubberHammer
+PASS Positive stable pose scale RubberHammer
+PASS Runtime lookup resolves actual clip RubberHammer/0
+PASS Nonempty imported pose RubberHammer
+PASS Ground-contact pivot weapons03Performance_04
+PASS Imported silhouette has a real render mesh weapons03Performance_04
+PASS Nonempty imported pose RubberHammer
+PASS Ground-contact pivot weapons03Performance_05
+PASS Imported silhouette has a real render mesh weapons03Performance_05
+PASS Nonempty imported pose RubberHammer
+PASS Ground-contact pivot weapons03Performance_06
+PASS Imported silhouette has a real render mesh weapons03Performance_06
+PASS Nonempty imported pose RubberHammer
+PASS Ground-contact pivot weapons03Performance_07
+PASS Imported silhouette has a real render mesh weapons03Performance_07
+PASS Weapon mechanism uses new art RubberHammer
+PASS No duplicate clip weapons/AlarmMortar/0
+PASS Complete pose count AlarmMortar
+PASS Positive stable pose scale AlarmMortar
+PASS Runtime lookup resolves actual clip AlarmMortar/0
+PASS Nonempty imported pose AlarmMortar
+PASS Ground-contact pivot weapons03Performance_08
+PASS Imported silhouette has a real render mesh weapons03Performance_08
+PASS Nonempty imported pose AlarmMortar
+PASS Ground-contact pivot weapons03Performance_09
+PASS Imported silhouette has a real render mesh weapons03Performance_09
+PASS Nonempty imported pose AlarmMortar
+PASS Ground-contact pivot weapons03Performance_10
+PASS Imported silhouette has a real render mesh weapons03Performance_10
+PASS Nonempty imported pose AlarmMortar
+PASS Ground-contact pivot weapons03Performance_11
+PASS Imported silhouette has a real render mesh weapons03Performance_11
+PASS Weapon mechanism uses new art AlarmMortar
+PASS No duplicate clip weapons/MusicBox/0
+PASS Complete pose count MusicBox
+PASS Positive stable pose scale MusicBox
+PASS Runtime lookup resolves actual clip MusicBox/0
+PASS Nonempty imported pose MusicBox
+PASS Ground-contact pivot weapons03Performance_12
+PASS Imported silhouette has a real render mesh weapons03Performance_12
+PASS Nonempty imported pose MusicBox
+PASS Ground-contact pivot weapons03Performance_13
+PASS Imported silhouette has a real render mesh weapons03Performance_13
+PASS Nonempty imported pose MusicBox
+PASS Ground-contact pivot weapons03Performance_14
+PASS Imported silhouette has a real render mesh weapons03Performance_14
+PASS Nonempty imported pose MusicBox
+PASS Ground-contact pivot weapons03Performance_15
+PASS Imported silhouette has a real render mesh weapons03Performance_15
+PASS Weapon mechanism uses new art MusicBox
+PASS No duplicate clip weapons/SpoonSabre/0
+PASS Complete pose count SpoonSabre
+PASS Positive stable pose scale SpoonSabre
+PASS Runtime lookup resolves actual clip SpoonSabre/0
+PASS Nonempty imported pose SpoonSabre
+PASS Ground-contact pivot weapons04Performance_00
+PASS Imported silhouette has a real render mesh weapons04Performance_00
+PASS Nonempty imported pose SpoonSabre
+PASS Ground-contact pivot weapons04Performance_01
+PASS Imported silhouette has a real render mesh weapons04Performance_01
+PASS Nonempty imported pose SpoonSabre
+PASS Ground-contact pivot weapons04Performance_02
+PASS Imported silhouette has a real render mesh weapons04Performance_02
+PASS Nonempty imported pose SpoonSabre
+PASS Ground-contact pivot weapons04Performance_03
+PASS Imported silhouette has a real render mesh weapons04Performance_03
+PASS Weapon mechanism uses new art SpoonSabre
+PASS No duplicate clip weapons/ToastCleaver/0
+PASS Complete pose count ToastCleaver
+PASS Positive stable pose scale ToastCleaver
+PASS Runtime lookup resolves actual clip ToastCleaver/0
+PASS Nonempty imported pose ToastCleaver
+PASS Ground-contact pivot weapons04Performance_04
+PASS Imported silhouette has a real render mesh weapons04Performance_04
+PASS Nonempty imported pose ToastCleaver
+PASS Ground-contact pivot weapons04Performance_05
+PASS Imported silhouette has a real render mesh weapons04Performance_05
+PASS Nonempty imported pose ToastCleaver
+PASS Ground-contact pivot weapons04Performance_06
+PASS Imported silhouette has a real render mesh weapons04Performance_06
+PASS Nonempty imported pose ToastCleaver
+PASS Ground-contact pivot weapons04Performance_07
+PASS Imported silhouette has a real render mesh weapons04Performance_07
+PASS Weapon mechanism uses new art ToastCleaver
+PASS No duplicate clip weapons/LollipopLance/0
+PASS Complete pose count LollipopLance
+PASS Positive stable pose scale LollipopLance
+PASS Runtime lookup resolves actual clip LollipopLance/0
+PASS Nonempty imported pose LollipopLance
+PASS Ground-contact pivot weapons04Performance_08
+PASS Imported silhouette has a real render mesh weapons04Performance_08
+PASS Nonempty imported pose LollipopLance
+PASS Ground-contact pivot weapons04Performance_09
+PASS Imported silhouette has a real render mesh weapons04Performance_09
+PASS Nonempty imported pose LollipopLance
+PASS Ground-contact pivot weapons04Performance_10
+PASS Imported silhouette has a real render mesh weapons04Performance_10
+PASS Nonempty imported pose LollipopLance
+PASS Ground-contact pivot weapons04Performance_11
+PASS Imported silhouette has a real render mesh weapons04Performance_11
+PASS Weapon mechanism uses new art LollipopLance
+PASS No duplicate clip weapons/CorkscrewRapier/0
+PASS Complete pose count CorkscrewRapier
+PASS Positive stable pose scale CorkscrewRapier
+PASS Runtime lookup resolves actual clip CorkscrewRapier/0
+PASS Nonempty imported pose CorkscrewRapier
+PASS Ground-contact pivot weapons04Performance_12
+PASS Imported silhouette has a real render mesh weapons04Performance_12
+PASS Nonempty imported pose CorkscrewRapier
+PASS Ground-contact pivot weapons04Performance_13
+PASS Imported silhouette has a real render mesh weapons04Performance_13
+PASS Nonempty imported pose CorkscrewRapier
+PASS Ground-contact pivot weapons04Performance_14
+PASS Imported silhouette has a real render mesh weapons04Performance_14
+PASS Nonempty imported pose CorkscrewRapier
+PASS Ground-contact pivot weapons04Performance_15
+PASS Imported silhouette has a real render mesh weapons04Performance_15
+PASS Weapon mechanism uses new art CorkscrewRapier
+PASS No duplicate clip weapons/TeabagFlail/0
+PASS Complete pose count TeabagFlail
+PASS Positive stable pose scale TeabagFlail
+PASS Runtime lookup resolves actual clip TeabagFlail/0
+PASS Nonempty imported pose TeabagFlail
+PASS Ground-contact pivot weapons05Performance_00
+PASS Imported silhouette has a real render mesh weapons05Performance_00
+PASS Nonempty imported pose TeabagFlail
+PASS Ground-contact pivot weapons05Performance_01
+PASS Imported silhouette has a real render mesh weapons05Performance_01
+PASS Nonempty imported pose TeabagFlail
+PASS Ground-contact pivot weapons05Performance_02
+PASS Imported silhouette has a real render mesh weapons05Performance_02
+PASS Nonempty imported pose TeabagFlail
+PASS Ground-contact pivot weapons05Performance_03
+PASS Imported silhouette has a real render mesh weapons05Performance_03
+PASS Weapon mechanism uses new art TeabagFlail
+PASS No duplicate clip weapons/UmbrellaHook/0
+PASS Complete pose count UmbrellaHook
+PASS Positive stable pose scale UmbrellaHook
+PASS Runtime lookup resolves actual clip UmbrellaHook/0
+PASS Nonempty imported pose UmbrellaHook
+PASS Ground-contact pivot weapons05Performance_04
+PASS Imported silhouette has a real render mesh weapons05Performance_04
+PASS Nonempty imported pose UmbrellaHook
+PASS Ground-contact pivot weapons05Performance_05
+PASS Imported silhouette has a real render mesh weapons05Performance_05
+PASS Nonempty imported pose UmbrellaHook
+PASS Ground-contact pivot weapons05Performance_06
+PASS Imported silhouette has a real render mesh weapons05Performance_06
+PASS Nonempty imported pose UmbrellaHook
+PASS Ground-contact pivot weapons05Performance_07
+PASS Imported silhouette has a real render mesh weapons05Performance_07
+PASS Weapon mechanism uses new art UmbrellaHook
+PASS No duplicate clip weapons/PizzaWheel/0
+PASS Complete pose count PizzaWheel
+PASS Positive stable pose scale PizzaWheel
+PASS Runtime lookup resolves actual clip PizzaWheel/0
+PASS Nonempty imported pose PizzaWheel
+PASS Ground-contact pivot weapons05Performance_08
+PASS Imported silhouette has a real render mesh weapons05Performance_08
+PASS Nonempty imported pose PizzaWheel
+PASS Ground-contact pivot weapons05Performance_09
+PASS Imported silhouette has a real render mesh weapons05Performance_09
+PASS Nonempty imported pose PizzaWheel
+PASS Ground-contact pivot weapons05Performance_10
+PASS Imported silhouette has a real render mesh weapons05Performance_10
+PASS Nonempty imported pose PizzaWheel
+PASS Ground-contact pivot weapons05Performance_11
+PASS Imported silhouette has a real render mesh weapons05Performance_11
+PASS Weapon mechanism uses new art PizzaWheel
+PASS No duplicate clip weapons/MoonScythe/0
+PASS Complete pose count MoonScythe
+PASS Positive stable pose scale MoonScythe
+PASS Runtime lookup resolves actual clip MoonScythe/0
+PASS Nonempty imported pose MoonScythe
+PASS Ground-contact pivot weapons05Performance_12
+PASS Imported silhouette has a real render mesh weapons05Performance_12
+PASS Nonempty imported pose MoonScythe
+PASS Ground-contact pivot weapons05Performance_13
+PASS Imported silhouette has a real render mesh weapons05Performance_13
+PASS Nonempty imported pose MoonScythe
+PASS Ground-contact pivot weapons05Performance_14
+PASS Imported silhouette has a real render mesh weapons05Performance_14
+PASS Nonempty imported pose MoonScythe
+PASS Ground-contact pivot weapons05Performance_15
+PASS Imported silhouette has a real render mesh weapons05Performance_15
+PASS Weapon mechanism uses new art MoonScythe
+PASS No duplicate clip weapons/ForkTrident/0
+PASS Complete pose count ForkTrident
+PASS Positive stable pose scale ForkTrident
+PASS Runtime lookup resolves actual clip ForkTrident/0
+PASS Nonempty imported pose ForkTrident
+PASS Ground-contact pivot weapons06Performance_00
+PASS Imported silhouette has a real render mesh weapons06Performance_00
+PASS Nonempty imported pose ForkTrident
+PASS Ground-contact pivot weapons06Performance_01
+PASS Imported silhouette has a real render mesh weapons06Performance_01
+PASS Nonempty imported pose ForkTrident
+PASS Ground-contact pivot weapons06Performance_02
+PASS Imported silhouette has a real render mesh weapons06Performance_02
+PASS Nonempty imported pose ForkTrident
+PASS Ground-contact pivot weapons06Performance_03
+PASS Imported silhouette has a real render mesh weapons06Performance_03
+PASS Weapon mechanism uses new art ForkTrident
+PASS No duplicate clip weapons/MaracaHammer/0
+PASS Complete pose count MaracaHammer
+PASS Positive stable pose scale MaracaHammer
+PASS Runtime lookup resolves actual clip MaracaHammer/0
+PASS Nonempty imported pose MaracaHammer
+PASS Ground-contact pivot weapons06Performance_04
+PASS Imported silhouette has a real render mesh weapons06Performance_04
+PASS Nonempty imported pose MaracaHammer
+PASS Ground-contact pivot weapons06Performance_05
+PASS Imported silhouette has a real render mesh weapons06Performance_05
+PASS Nonempty imported pose MaracaHammer
+PASS Ground-contact pivot weapons06Performance_06
+PASS Imported silhouette has a real render mesh weapons06Performance_06
+PASS Nonempty imported pose MaracaHammer
+PASS Ground-contact pivot weapons06Performance_07
+PASS Imported silhouette has a real render mesh weapons06Performance_07
+PASS Weapon mechanism uses new art MaracaHammer
+PASS No duplicate clip weapons/TapeWhip/0
+PASS Complete pose count TapeWhip
+PASS Positive stable pose scale TapeWhip
+PASS Runtime lookup resolves actual clip TapeWhip/0
+PASS Nonempty imported pose TapeWhip
+PASS Ground-contact pivot weapons06Performance_08
+PASS Imported silhouette has a real render mesh weapons06Performance_08
+PASS Nonempty imported pose TapeWhip
+PASS Ground-contact pivot weapons06Performance_09
+PASS Imported silhouette has a real render mesh weapons06Performance_09
+PASS Nonempty imported pose TapeWhip
+PASS Ground-contact pivot weapons06Performance_10
+PASS Imported silhouette has a real render mesh weapons06Performance_10
+PASS Nonempty imported pose TapeWhip
+PASS Ground-contact pivot weapons06Performance_11
+PASS Imported silhouette has a real render mesh weapons06Performance_11
+PASS Weapon mechanism uses new art TapeWhip
+PASS No duplicate clip weapons/ButtonBow/0
+PASS Complete pose count ButtonBow
+PASS Positive stable pose scale ButtonBow
+PASS Runtime lookup resolves actual clip ButtonBow/0
+PASS Nonempty imported pose ButtonBow
+PASS Ground-contact pivot weapons06Performance_12
+PASS Imported silhouette has a real render mesh weapons06Performance_12
+PASS Nonempty imported pose ButtonBow
+PASS Ground-contact pivot weapons06Performance_13
+PASS Imported silhouette has a real render mesh weapons06Performance_13
+PASS Nonempty imported pose ButtonBow
+PASS Ground-contact pivot weapons06Performance_14
+PASS Imported silhouette has a real render mesh weapons06Performance_14
+PASS Nonempty imported pose ButtonBow
+PASS Ground-contact pivot weapons06Performance_15
+PASS Imported silhouette has a real render mesh weapons06Performance_15
+PASS Weapon mechanism uses new art ButtonBow
+PASS No duplicate clip weapons/LeafCrossbow/0
+PASS Complete pose count LeafCrossbow
+PASS Positive stable pose scale LeafCrossbow
+PASS Runtime lookup resolves actual clip LeafCrossbow/0
+PASS Nonempty imported pose LeafCrossbow
+PASS Ground-contact pivot weapons07Performance_00
+PASS Imported silhouette has a real render mesh weapons07Performance_00
+PASS Nonempty imported pose LeafCrossbow
+PASS Ground-contact pivot weapons07Performance_01
+PASS Imported silhouette has a real render mesh weapons07Performance_01
+PASS Nonempty imported pose LeafCrossbow
+PASS Ground-contact pivot weapons07Performance_02
+PASS Imported silhouette has a real render mesh weapons07Performance_02
+PASS Nonempty imported pose LeafCrossbow
+PASS Ground-contact pivot weapons07Performance_03
+PASS Imported silhouette has a real render mesh weapons07Performance_03
+PASS Weapon mechanism uses new art LeafCrossbow
+PASS No duplicate clip weapons/BubbleWand/0
+PASS Complete pose count BubbleWand
+PASS Positive stable pose scale BubbleWand
+PASS Runtime lookup resolves actual clip BubbleWand/0
+PASS Nonempty imported pose BubbleWand
+PASS Ground-contact pivot weapons07Performance_04
+PASS Imported silhouette has a real render mesh weapons07Performance_04
+PASS Nonempty imported pose BubbleWand
+PASS Ground-contact pivot weapons07Performance_05
+PASS Imported silhouette has a real render mesh weapons07Performance_05
+PASS Nonempty imported pose BubbleWand
+PASS Ground-contact pivot weapons07Performance_06
+PASS Imported silhouette has a real render mesh weapons07Performance_06
+PASS Nonempty imported pose BubbleWand
+PASS Ground-contact pivot weapons07Performance_07
+PASS Imported silhouette has a real render mesh weapons07Performance_07
+PASS Weapon mechanism uses new art BubbleWand
+PASS No duplicate clip weapons/StarKazoo/0
+PASS Complete pose count StarKazoo
+PASS Positive stable pose scale StarKazoo
+PASS Runtime lookup resolves actual clip StarKazoo/0
+PASS Nonempty imported pose StarKazoo
+PASS Ground-contact pivot weapons07Performance_08
+PASS Imported silhouette has a real render mesh weapons07Performance_08
+PASS Nonempty imported pose StarKazoo
+PASS Ground-contact pivot weapons07Performance_09
+PASS Imported silhouette has a real render mesh weapons07Performance_09
+PASS Nonempty imported pose StarKazoo
+PASS Ground-contact pivot weapons07Performance_10
+PASS Imported silhouette has a real render mesh weapons07Performance_10
+PASS Nonempty imported pose StarKazoo
+PASS Ground-contact pivot weapons07Performance_11
+PASS Imported silhouette has a real render mesh weapons07Performance_11
+PASS Weapon mechanism uses new art StarKazoo
+PASS No duplicate clip weapons/AcornSling/0
+PASS Complete pose count AcornSling
+PASS Positive stable pose scale AcornSling
+PASS Runtime lookup resolves actual clip AcornSling/0
+PASS Nonempty imported pose AcornSling
+PASS Ground-contact pivot weapons07Performance_12
+PASS Imported silhouette has a real render mesh weapons07Performance_12
+PASS Nonempty imported pose AcornSling
+PASS Ground-contact pivot weapons07Performance_13
+PASS Imported silhouette has a real render mesh weapons07Performance_13
+PASS Nonempty imported pose AcornSling
+PASS Ground-contact pivot weapons07Performance_14
+PASS Imported silhouette has a real render mesh weapons07Performance_14
+PASS Nonempty imported pose AcornSling
+PASS Ground-contact pivot weapons07Performance_15
+PASS Imported silhouette has a real render mesh weapons07Performance_15
+PASS Weapon mechanism uses new art AcornSling
+PASS No duplicate clip weapons/CrescentBoomerang/0
+PASS Complete pose count CrescentBoomerang
+PASS Positive stable pose scale CrescentBoomerang
+PASS Runtime lookup resolves actual clip CrescentBoomerang/0
+PASS Nonempty imported pose CrescentBoomerang
+PASS Ground-contact pivot weapons08Performance_00
+PASS Imported silhouette has a real render mesh weapons08Performance_00
+PASS Nonempty imported pose CrescentBoomerang
+PASS Ground-contact pivot weapons08Performance_01
+PASS Imported silhouette has a real render mesh weapons08Performance_01
+PASS Nonempty imported pose CrescentBoomerang
+PASS Ground-contact pivot weapons08Performance_02
+PASS Imported silhouette has a real render mesh weapons08Performance_02
+PASS Nonempty imported pose CrescentBoomerang
+PASS Ground-contact pivot weapons08Performance_03
+PASS Imported silhouette has a real render mesh weapons08Performance_03
+PASS Weapon mechanism uses new art CrescentBoomerang
+PASS No duplicate clip weapons/DartCompass/0
+PASS Complete pose count DartCompass
+PASS Positive stable pose scale DartCompass
+PASS Runtime lookup resolves actual clip DartCompass/0
+PASS Nonempty imported pose DartCompass
+PASS Ground-contact pivot weapons08Performance_04
+PASS Imported silhouette has a real render mesh weapons08Performance_04
+PASS Nonempty imported pose DartCompass
+PASS Ground-contact pivot weapons08Performance_05
+PASS Imported silhouette has a real render mesh weapons08Performance_05
+PASS Nonempty imported pose DartCompass
+PASS Ground-contact pivot weapons08Performance_06
+PASS Imported silhouette has a real render mesh weapons08Performance_06
+PASS Nonempty imported pose DartCompass
+PASS Ground-contact pivot weapons08Performance_07
+PASS Imported silhouette has a real render mesh weapons08Performance_07
+PASS Weapon mechanism uses new art DartCompass
+PASS No duplicate clip weapons/LanternStaff/0
+PASS Complete pose count LanternStaff
+PASS Positive stable pose scale LanternStaff
+PASS Runtime lookup resolves actual clip LanternStaff/0
+PASS Nonempty imported pose LanternStaff
+PASS Ground-contact pivot weapons08Performance_08
+PASS Imported silhouette has a real render mesh weapons08Performance_08
+PASS Nonempty imported pose LanternStaff
+PASS Ground-contact pivot weapons08Performance_09
+PASS Imported silhouette has a real render mesh weapons08Performance_09
+PASS Nonempty imported pose LanternStaff
+PASS Ground-contact pivot weapons08Performance_10
+PASS Imported silhouette has a real render mesh weapons08Performance_10
+PASS Nonempty imported pose LanternStaff
+PASS Ground-contact pivot weapons08Performance_11
+PASS Imported silhouette has a real render mesh weapons08Performance_11
+PASS Weapon mechanism uses new art LanternStaff
+PASS No duplicate clip weapons/SnowGlobeOrb/0
+PASS Complete pose count SnowGlobeOrb
+PASS Positive stable pose scale SnowGlobeOrb
+PASS Runtime lookup resolves actual clip SnowGlobeOrb/0
+PASS Nonempty imported pose SnowGlobeOrb
+PASS Ground-contact pivot weapons08Performance_12
+PASS Imported silhouette has a real render mesh weapons08Performance_12
+PASS Nonempty imported pose SnowGlobeOrb
+PASS Ground-contact pivot weapons08Performance_13
+PASS Imported silhouette has a real render mesh weapons08Performance_13
+PASS Nonempty imported pose SnowGlobeOrb
+PASS Ground-contact pivot weapons08Performance_14
+PASS Imported silhouette has a real render mesh weapons08Performance_14
+PASS Nonempty imported pose SnowGlobeOrb
+PASS Ground-contact pivot weapons08Performance_15
+PASS Imported silhouette has a real render mesh weapons08Performance_15
+PASS Weapon mechanism uses new art SnowGlobeOrb
+PASS No duplicate clip weapons/RibbonHarp/0
+PASS Complete pose count RibbonHarp
+PASS Positive stable pose scale RibbonHarp
+PASS Runtime lookup resolves actual clip RibbonHarp/0
+PASS Nonempty imported pose RibbonHarp
+PASS Ground-contact pivot weapons09Performance_00
+PASS Imported silhouette has a real render mesh weapons09Performance_00
+PASS Nonempty imported pose RibbonHarp
+PASS Ground-contact pivot weapons09Performance_01
+PASS Imported silhouette has a real render mesh weapons09Performance_01
+PASS Nonempty imported pose RibbonHarp
+PASS Ground-contact pivot weapons09Performance_02
+PASS Imported silhouette has a real render mesh weapons09Performance_02
+PASS Nonempty imported pose RibbonHarp
+PASS Ground-contact pivot weapons09Performance_03
+PASS Imported silhouette has a real render mesh weapons09Performance_03
+PASS Weapon mechanism uses new art RibbonHarp
+PASS No duplicate clip weapons/DreamOrbStaff/0
+PASS Complete pose count DreamOrbStaff
+PASS Positive stable pose scale DreamOrbStaff
+PASS Runtime lookup resolves actual clip DreamOrbStaff/0
+PASS Nonempty imported pose DreamOrbStaff
+PASS Ground-contact pivot weapons09Performance_04
+PASS Imported silhouette has a real render mesh weapons09Performance_04
+PASS Nonempty imported pose DreamOrbStaff
+PASS Ground-contact pivot weapons09Performance_05
+PASS Imported silhouette has a real render mesh weapons09Performance_05
+PASS Nonempty imported pose DreamOrbStaff
+PASS Ground-contact pivot weapons09Performance_06
+PASS Imported silhouette has a real render mesh weapons09Performance_06
+PASS Nonempty imported pose DreamOrbStaff
+PASS Ground-contact pivot weapons09Performance_07
+PASS Imported silhouette has a real render mesh weapons09Performance_07
+PASS Weapon mechanism uses new art DreamOrbStaff
+PASS No duplicate clip weapons/TwinSabres/0
+PASS Complete pose count TwinSabres
+PASS Positive stable pose scale TwinSabres
+PASS Runtime lookup resolves actual clip TwinSabres/0
+PASS Nonempty imported pose TwinSabres
+PASS Ground-contact pivot weapons09Performance_08
+PASS Imported silhouette has a real render mesh weapons09Performance_08
+PASS Nonempty imported pose TwinSabres
+PASS Ground-contact pivot weapons09Performance_09
+PASS Imported silhouette has a real render mesh weapons09Performance_09
+PASS Nonempty imported pose TwinSabres
+PASS Ground-contact pivot weapons09Performance_10
+PASS Imported silhouette has a real render mesh weapons09Performance_10
+PASS Nonempty imported pose TwinSabres
+PASS Ground-contact pivot weapons09Performance_11
+PASS Imported silhouette has a real render mesh weapons09Performance_11
+PASS Weapon mechanism uses new art TwinSabres
+PASS No duplicate clip weapons/ClockCrescent/0
+PASS Complete pose count ClockCrescent
+PASS Positive stable pose scale ClockCrescent
+PASS Runtime lookup resolves actual clip ClockCrescent/0
+PASS Nonempty imported pose ClockCrescent
+PASS Ground-contact pivot weapons09Performance_12
+PASS Imported silhouette has a real render mesh weapons09Performance_12
+PASS Nonempty imported pose ClockCrescent
+PASS Ground-contact pivot weapons09Performance_13
+PASS Imported silhouette has a real render mesh weapons09Performance_13
+PASS Nonempty imported pose ClockCrescent
+PASS Ground-contact pivot weapons09Performance_14
+PASS Imported silhouette has a real render mesh weapons09Performance_14
+PASS Nonempty imported pose ClockCrescent
+PASS Ground-contact pivot weapons09Performance_15
+PASS Imported silhouette has a real render mesh weapons09Performance_15
+PASS Weapon mechanism uses new art ClockCrescent
+PASS No duplicate clip weapons/StampHammer/0
+PASS Complete pose count StampHammer
+PASS Positive stable pose scale StampHammer
+PASS Runtime lookup resolves actual clip StampHammer/0
+PASS Nonempty imported pose StampHammer
+PASS Ground-contact pivot weapons10Performance_00
+PASS Imported silhouette has a real render mesh weapons10Performance_00
+PASS Nonempty imported pose StampHammer
+PASS Ground-contact pivot weapons10Performance_01
+PASS Imported silhouette has a real render mesh weapons10Performance_01
+PASS Nonempty imported pose StampHammer
+PASS Ground-contact pivot weapons10Performance_02
+PASS Imported silhouette has a real render mesh weapons10Performance_02
+PASS Nonempty imported pose StampHammer
+PASS Ground-contact pivot weapons10Performance_03
+PASS Imported silhouette has a real render mesh weapons10Performance_03
+PASS Weapon mechanism uses new art StampHammer
+PASS No duplicate clip weapons/ClockworkYoYo/0
+PASS Complete pose count ClockworkYoYo
+PASS Positive stable pose scale ClockworkYoYo
+PASS Runtime lookup resolves actual clip ClockworkYoYo/0
+PASS Nonempty imported pose ClockworkYoYo
+PASS Ground-contact pivot weapons10Performance_04
+PASS Imported silhouette has a real render mesh weapons10Performance_04
+PASS Nonempty imported pose ClockworkYoYo
+PASS Ground-contact pivot weapons10Performance_05
+PASS Imported silhouette has a real render mesh weapons10Performance_05
+PASS Nonempty imported pose ClockworkYoYo
+PASS Ground-contact pivot weapons10Performance_06
+PASS Imported silhouette has a real render mesh weapons10Performance_06
+PASS Nonempty imported pose ClockworkYoYo
+PASS Ground-contact pivot weapons10Performance_07
+PASS Imported silhouette has a real render mesh weapons10Performance_07
+PASS Weapon mechanism uses new art ClockworkYoYo
+PASS No duplicate clip weapons/ScrapMagnet/0
+PASS Complete pose count ScrapMagnet
+PASS Positive stable pose scale ScrapMagnet
+PASS Runtime lookup resolves actual clip ScrapMagnet/0
+PASS Nonempty imported pose ScrapMagnet
+PASS Ground-contact pivot weapons10Performance_08
+PASS Imported silhouette has a real render mesh weapons10Performance_08
+PASS Nonempty imported pose ScrapMagnet
+PASS Ground-contact pivot weapons10Performance_09
+PASS Imported silhouette has a real render mesh weapons10Performance_09
+PASS Nonempty imported pose ScrapMagnet
+PASS Ground-contact pivot weapons10Performance_10
+PASS Imported silhouette has a real render mesh weapons10Performance_10
+PASS Nonempty imported pose ScrapMagnet
+PASS Ground-contact pivot weapons10Performance_11
+PASS Imported silhouette has a real render mesh weapons10Performance_11
+PASS Weapon mechanism uses new art ScrapMagnet
+PASS No duplicate clip weapons/NeedleSinger/0
+PASS Complete pose count NeedleSinger
+PASS Positive stable pose scale NeedleSinger
+PASS Runtime lookup resolves actual clip NeedleSinger/0
+PASS Nonempty imported pose NeedleSinger
+PASS Ground-contact pivot weapons10Performance_12
+PASS Imported silhouette has a real render mesh weapons10Performance_12
+PASS Nonempty imported pose NeedleSinger
+PASS Ground-contact pivot weapons10Performance_13
+PASS Imported silhouette has a real render mesh weapons10Performance_13
+PASS Nonempty imported pose NeedleSinger
+PASS Ground-contact pivot weapons10Performance_14
+PASS Imported silhouette has a real render mesh weapons10Performance_14
+PASS Nonempty imported pose NeedleSinger
+PASS Ground-contact pivot weapons10Performance_15
+PASS Imported silhouette has a real render mesh weapons10Performance_15
+PASS Weapon mechanism uses new art NeedleSinger
+PASS No duplicate clip weapons/SpringKnocker/0
+PASS Complete pose count SpringKnocker
+PASS Positive stable pose scale SpringKnocker
+PASS Runtime lookup resolves actual clip SpringKnocker/0
+PASS Nonempty imported pose SpringKnocker
+PASS Ground-contact pivot weapons11Performance_00
+PASS Imported silhouette has a real render mesh weapons11Performance_00
+PASS Nonempty imported pose SpringKnocker
+PASS Ground-contact pivot weapons11Performance_01
+PASS Imported silhouette has a real render mesh weapons11Performance_01
+PASS Nonempty imported pose SpringKnocker
+PASS Ground-contact pivot weapons11Performance_02
+PASS Imported silhouette has a real render mesh weapons11Performance_02
+PASS Nonempty imported pose SpringKnocker
+PASS Ground-contact pivot weapons11Performance_03
+PASS Imported silhouette has a real render mesh weapons11Performance_03
+PASS Weapon mechanism uses new art SpringKnocker
+PASS No duplicate clip weapons/DreamProjector/0
+PASS Complete pose count DreamProjector
+PASS Positive stable pose scale DreamProjector
+PASS Runtime lookup resolves actual clip DreamProjector/0
+PASS Nonempty imported pose DreamProjector
+PASS Ground-contact pivot weapons11Performance_04
+PASS Imported silhouette has a real render mesh weapons11Performance_04
+PASS Nonempty imported pose DreamProjector
+PASS Ground-contact pivot weapons11Performance_05
+PASS Imported silhouette has a real render mesh weapons11Performance_05
+PASS Nonempty imported pose DreamProjector
+PASS Ground-contact pivot weapons11Performance_06
+PASS Imported silhouette has a real render mesh weapons11Performance_06
+PASS Nonempty imported pose DreamProjector
+PASS Ground-contact pivot weapons11Performance_07
+PASS Imported silhouette has a real render mesh weapons11Performance_07
+PASS Weapon mechanism uses new art DreamProjector
+PASS No duplicate clip weapons/RibbonWheel/0
+PASS Complete pose count RibbonWheel
+PASS Positive stable pose scale RibbonWheel
+PASS Runtime lookup resolves actual clip RibbonWheel/0
+PASS Nonempty imported pose RibbonWheel
+PASS Ground-contact pivot weapons11Performance_08
+PASS Imported silhouette has a real render mesh weapons11Performance_08
+PASS Nonempty imported pose RibbonWheel
+PASS Ground-contact pivot weapons11Performance_09
+PASS Imported silhouette has a real render mesh weapons11Performance_09
+PASS Nonempty imported pose RibbonWheel
+PASS Ground-contact pivot weapons11Performance_10
+PASS Imported silhouette has a real render mesh weapons11Performance_10
+PASS Nonempty imported pose RibbonWheel
+PASS Ground-contact pivot weapons11Performance_11
+PASS Imported silhouette has a real render mesh weapons11Performance_11
+PASS Weapon mechanism uses new art RibbonWheel
+PASS No duplicate clip weapons/MoonseedOrb/0
+PASS Complete pose count MoonseedOrb
+PASS Positive stable pose scale MoonseedOrb
+PASS Runtime lookup resolves actual clip MoonseedOrb/0
+PASS Nonempty imported pose MoonseedOrb
+PASS Ground-contact pivot weapons11Performance_12
+PASS Imported silhouette has a real render mesh weapons11Performance_12
+PASS Nonempty imported pose MoonseedOrb
+PASS Ground-contact pivot weapons11Performance_13
+PASS Imported silhouette has a real render mesh weapons11Performance_13
+PASS Nonempty imported pose MoonseedOrb
+PASS Ground-contact pivot weapons11Performance_14
+PASS Imported silhouette has a real render mesh weapons11Performance_14
+PASS Nonempty imported pose MoonseedOrb
+PASS Ground-contact pivot weapons11Performance_15
+PASS Imported silhouette has a real render mesh weapons11Performance_15
+PASS Weapon mechanism uses new art MoonseedOrb
+PASS No duplicate clip weapons/AfterimageSabre/0
+PASS Complete pose count AfterimageSabre
+PASS Positive stable pose scale AfterimageSabre
+PASS Runtime lookup resolves actual clip AfterimageSabre/0
+PASS Nonempty imported pose AfterimageSabre
+PASS Ground-contact pivot weapons12Performance_00
+PASS Imported silhouette has a real render mesh weapons12Performance_00
+PASS Nonempty imported pose AfterimageSabre
+PASS Ground-contact pivot weapons12Performance_01
+PASS Imported silhouette has a real render mesh weapons12Performance_01
+PASS Nonempty imported pose AfterimageSabre
+PASS Ground-contact pivot weapons12Performance_02
+PASS Imported silhouette has a real render mesh weapons12Performance_02
+PASS Nonempty imported pose AfterimageSabre
+PASS Ground-contact pivot weapons12Performance_03
+PASS Imported silhouette has a real render mesh weapons12Performance_03
+PASS Weapon mechanism uses new art AfterimageSabre
+PASS No duplicate clip weapons/SatelliteDisc/0
+PASS Complete pose count SatelliteDisc
+PASS Positive stable pose scale SatelliteDisc
+PASS Runtime lookup resolves actual clip SatelliteDisc/0
+PASS Nonempty imported pose SatelliteDisc
+PASS Ground-contact pivot weapons12Performance_04
+PASS Imported silhouette has a real render mesh weapons12Performance_04
+PASS Nonempty imported pose SatelliteDisc
+PASS Ground-contact pivot weapons12Performance_05
+PASS Imported silhouette has a real render mesh weapons12Performance_05
+PASS Nonempty imported pose SatelliteDisc
+PASS Ground-contact pivot weapons12Performance_06
+PASS Imported silhouette has a real render mesh weapons12Performance_06
+PASS Nonempty imported pose SatelliteDisc
+PASS Ground-contact pivot weapons12Performance_07
+PASS Imported silhouette has a real render mesh weapons12Performance_07
+PASS Weapon mechanism uses new art SatelliteDisc
+PASS Missing identity never borrows another actor

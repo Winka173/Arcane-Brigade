@@ -13,6 +13,14 @@ namespace ArcaneBrigade
         public Sprite Select(UnitState unit, float time, bool reduced)
         {
             if (reduced) return Idle[0];
+            if (unit.Definition.Id == NightmareRules.CustomerId && NightmareAssets.Current != null)
+            {
+                Sprite[] poses = NightmareAssets.Current.CustomerFrames;
+                int attack = unit.BossVolley % 6;
+                if (unit.TelegraphUntil > time) return poses[attack == 1 || attack == 3 ? 6 : attack == 2 || attack == 5 ? 1 : 4];
+                if (time - unit.LastHit >= 0 && time - unit.LastHit < .12f) return poses[7];
+                if (unit.BossRecoveryUntil > time) return poses[(unit.BossVolley + 5) % 6 == 1 || (unit.BossVolley + 5) % 6 == 3 ? 6 : 5];
+            }
             float windup = Mathf.Max(0.01f, unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup);
             float age = time - unit.AttackStarted;
             if (unit.Variant != null && unit.Variant.ReleaseAt > time) return Windup[Mathf.Clamp(Mathf.FloorToInt(age / windup * Windup.Length), 0, Windup.Length - 1)];

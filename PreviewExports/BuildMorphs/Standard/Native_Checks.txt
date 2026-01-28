@@ -1,0 +1,99 @@
+PASS All three silhouettes use production attachments: Thread
+PASS Native render 1920x1080: form-01-stages
+PASS Nonblank production render: form-01-stages
+PASS All three silhouettes use production attachments: Cinder
+PASS Native render 1920x1080: form-02-stages
+PASS Nonblank production render: form-02-stages
+PASS All three silhouettes use production attachments: Clockwork
+PASS Native render 1920x1080: form-03-stages
+PASS Nonblank production render: form-03-stages
+PASS All three silhouettes use production attachments: Porcelain
+PASS Native render 1920x1080: form-04-stages
+PASS Nonblank production render: form-04-stages
+PASS All three silhouettes use production attachments: Constellation
+PASS Native render 1920x1080: form-05-stages
+PASS Nonblank production render: form-05-stages
+PASS All three silhouettes use production attachments: Paper
+PASS Native render 1920x1080: form-06-stages
+PASS Nonblank production render: form-06-stages
+PASS All three silhouettes use production attachments: Mirror
+PASS Native render 1920x1080: form-07-stages
+PASS Nonblank production render: form-07-stages
+PASS All three silhouettes use production attachments: Chorus
+PASS Native render 1920x1080: form-08-stages
+PASS Nonblank production render: form-08-stages
+PASS All three silhouettes use production attachments: Magnet
+PASS Native render 1920x1080: form-09-stages
+PASS Nonblank production render: form-09-stages
+PASS All three silhouettes use production attachments: Tide
+PASS Native render 1920x1080: form-10-stages
+PASS Nonblank production render: form-10-stages
+PASS All three silhouettes use production attachments: Frost
+PASS Native render 1920x1080: form-11-stages
+PASS Nonblank production render: form-11-stages
+PASS All three silhouettes use production attachments: Seal
+PASS Native render 1920x1080: form-12-stages
+PASS Nonblank production render: form-12-stages
+PASS Saved equipment opens actual masterwork: Thread
+PASS Real arena compiles correct form: Thread
+PASS Native automatic attack releases choreography: Thread
+PASS Native render 1920x1080: combat-01
+PASS Nonblank production render: combat-01
+PASS Native render 1920x1080: details-form-progression
+PASS Nonblank production render: details-form-progression
+PASS Saved equipment opens actual masterwork: Cinder
+PASS Real arena compiles correct form: Cinder
+PASS Native automatic attack releases choreography: Cinder
+PASS Native render 1920x1080: combat-02
+PASS Nonblank production render: combat-02
+PASS Saved equipment opens actual masterwork: Clockwork
+PASS Real arena compiles correct form: Clockwork
+PASS Native automatic attack releases choreography: Clockwork
+PASS Native render 1920x1080: combat-03
+PASS Nonblank production render: combat-03
+PASS Saved equipment opens actual masterwork: Porcelain
+PASS Real arena compiles correct form: Porcelain
+PASS Native automatic attack releases choreography: Porcelain
+PASS Native render 1920x1080: combat-04
+PASS Nonblank production render: combat-04
+PASS Saved equipment opens actual masterwork: Constellation
+PASS Real arena compiles correct form: Constellation
+PASS Native automatic attack releases choreography: Constellation
+PASS Native render 1920x1080: combat-05
+PASS Nonblank production render: combat-05
+PASS Saved equipment opens actual masterwork: Paper
+PASS Real arena compiles correct form: Paper
+PASS Native automatic attack releases choreography: Paper
+PASS Native render 1920x1080: combat-06
+PASS Nonblank production render: combat-06
+PASS Saved equipment opens actual masterwork: Mirror
+PASS Real arena compiles correct form: Mirror
+PASS Native automatic attack releases choreography: Mirror
+PASS Native render 1920x1080: combat-07
+PASS Nonblank production render: combat-07
+PASS Saved equipment opens actual masterwork: Chorus
+PASS Real arena compiles correct form: Chorus
+PASS Native automatic attack releases choreography: Chorus
+PASS Native render 1920x1080: combat-08
+PASS Nonblank production render: combat-08
+PASS Saved equipment opens actual masterwork: Magnet
+PASS Real arena compiles correct form: Magnet
+PASS Native automatic attack releases choreography: Magnet
+PASS Native render 1920x1080: combat-09
+PASS Nonblank production render: combat-09
+PASS Saved equipment opens actual masterwork: Tide
+PASS Real arena compiles correct form: Tide
+PASS Native automatic attack releases choreography: Tide
+PASS Native render 1920x1080: combat-10
+PASS Nonblank production render: combat-10
+PASS Saved equipment opens actual masterwork: Frost
+PASS Real arena compiles correct form: Frost
+PASS Native automatic attack releases choreography: Frost
+PASS Native render 1920x1080: combat-11
+PASS Nonblank production render: combat-11
+PASS Saved equipment opens actual masterwork: Seal
+PASS Real arena compiles correct form: Seal
+PASS Native automatic attack releases choreography: Seal
+PASS Native render 1920x1080: combat-12
+PASS Nonblank production render: combat-12
+PASS Native form capture completed

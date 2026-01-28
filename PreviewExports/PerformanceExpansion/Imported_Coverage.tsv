@@ -1,0 +1,178 @@
+Job	Kind	Status	Actor	Evolution	Frames
+companions-00	companions	IMPORTED	TeapotPilgrim	0	4
+companions-00	companions	IMPORTED	CandleSnail	0	4
+companions-00	companions	IMPORTED	MailboxImp	0	4
+companions-00	companions	IMPORTED	PillowOracle	0	4
+companions-01	companions	MISSING			0
+companions-02	companions	MISSING			0
+companions-03	companions	MISSING			0
+companions-04	companions	MISSING			0
+companions-05	companions	MISSING			0
+companions-06	companions	MISSING			0
+companions-07	companions	MISSING			0
+companions-08	companions	MISSING			0
+companions-09	companions	MISSING			0
+companions-10	companions	MISSING			0
+companions-11	companions	MISSING			0
+companions-12	companions	MISSING			0
+companions-13	companions	MISSING			0
+companions-14	companions	MISSING			0
+companions-15	companions	MISSING			0
+locomotion-00	locomotion	MISSING			0
+locomotion-01	locomotion	MISSING			0
+locomotion-02	locomotion	MISSING			0
+locomotion-03	locomotion	MISSING			0
+locomotion-04	locomotion	MISSING			0
+locomotion-05	locomotion	MISSING			0
+locomotion-06	locomotion	MISSING			0
+locomotion-07	locomotion	MISSING			0
+locomotion-08	locomotion	MISSING			0
+locomotion-09	locomotion	MISSING			0
+locomotion-10	locomotion	MISSING			0
+locomotion-11	locomotion	MISSING			0
+locomotion-12	locomotion	MISSING			0
+locomotion-13	locomotion	MISSING			0
+locomotion-14	locomotion	MISSING			0
+locomotion-15	locomotion	MISSING			0
+locomotion-16	locomotion	MISSING			0
+locomotion-17	locomotion	MISSING			0
+locomotion-18	locomotion	MISSING			0
+locomotion-19	locomotion	MISSING			0
+locomotion-20	locomotion	MISSING			0
+locomotion-21	locomotion	MISSING			0
+locomotion-22	locomotion	MISSING			0
+locomotion-23	locomotion	MISSING			0
+locomotion-24	locomotion	MISSING			0
+locomotion-25	locomotion	MISSING			0
+locomotion-26	locomotion	MISSING			0
+locomotion-27	locomotion	MISSING			0
+locomotion-28	locomotion	MISSING			0
+locomotion-29	locomotion	MISSING			0
+locomotion-30	locomotion	MISSING			0
+locomotion-31	locomotion	MISSING			0
+locomotion-32	locomotion	MISSING			0
+locomotion-33	locomotion	MISSING			0
+locomotion-34	locomotion	MISSING			0
+locomotion-35	locomotion	MISSING			0
+locomotion-36	locomotion	MISSING			0
+locomotion-37	locomotion	MISSING			0
+locomotion-38	locomotion	MISSING			0
+locomotion-39	locomotion	MISSING			0
+locomotion-40	locomotion	MISSING			0
+locomotion-41	locomotion	MISSING			0
+locomotion-42	locomotion	MISSING			0
+locomotion-43	locomotion	MISSING			0
+locomotion-44	locomotion	MISSING			0
+locomotion-45	locomotion	MISSING			0
+enemies-00	enemies	IMPORTED	HushMite	0	4
+enemies-00	enemies	IMPORTED	HushMite	1	4
+enemies-00	enemies	IMPORTED	ClockBat	0	4
+enemies-00	enemies	IMPORTED	ClockBat	1	4
+enemies-01	enemies	IMPORTED	BristleImp	0	4
+enemies-01	enemies	IMPORTED	BristleImp	1	4
+enemies-01	enemies	IMPORTED	RuneWisp	0	4
+enemies-01	enemies	IMPORTED	RuneWisp	1	4
+enemies-02	enemies	IMPORTED	InkMoth	0	4
+enemies-02	enemies	IMPORTED	InkMoth	1	4
+enemies-02	enemies	IMPORTED	SirenSeal	0	4
+enemies-02	enemies	IMPORTED	SirenSeal	1	4
+enemies-03	enemies	IMPORTED	DoorBearer	0	4
+enemies-03	enemies	IMPORTED	DoorBearer	1	4
+enemies-03	enemies	IMPORTED	MoonMagnet	0	4
+enemies-03	enemies	IMPORTED	MoonMagnet	1	4
+enemies-04	enemies	IMPORTED	SleepMimic	0	4
+enemies-04	enemies	IMPORTED	SleepMimic	1	4
+enemies-04	enemies	IMPORTED	CurtainWisp	0	4
+enemies-04	enemies	IMPORTED	CurtainWisp	1	4
+enemies-05	enemies	IMPORTED	FurnaceToad	0	4
+enemies-05	enemies	IMPORTED	FurnaceToad	1	4
+enemies-05	enemies	IMPORTED	WardrobeCrab	0	4
+enemies-05	enemies	IMPORTED	WardrobeCrab	1	4
+enemies-06	enemies	IMPORTED	HopperKeg	0	4
+enemies-06	enemies	IMPORTED	HopperKeg	1	4
+enemies-06	enemies	IMPORTED	ChargerRam	0	4
+enemies-06	enemies	IMPORTED	ChargerRam	1	4
+enemies-07	enemies	IMPORTED	CoinLeech	0	4
+enemies-07	enemies	IMPORTED	CoinLeech	1	4
+enemies-07	enemies	IMPORTED	BlastPuffer	0	4
+enemies-07	enemies	IMPORTED	BlastPuffer	1	4
+enemies-08	enemies	IMPORTED	SporeBishop	0	4
+enemies-08	enemies	IMPORTED	SporeBishop	1	4
+enemies-08	enemies	IMPORTED	BroomSkater	0	4
+enemies-08	enemies	IMPORTED	BroomSkater	1	4
+enemies-09	enemies	IMPORTED	RibbonHydra	0	4
+enemies-09	enemies	IMPORTED	RibbonHydra	1	4
+enemies-09	enemies	IMPORTED	BurrowBell	0	4
+enemies-09	enemies	IMPORTED	BurrowBell	1	4
+enemies-10	enemies	IMPORTED	SmokeWraith	0	4
+enemies-10	enemies	IMPORTED	SmokeWraith	1	4
+enemies-10	enemies	IMPORTED	BlueFlameFiend	0	4
+enemies-10	enemies	IMPORTED	BlueFlameFiend	1	4
+enemies-11	enemies	IMPORTED	RedFlameBerserker	0	4
+enemies-11	enemies	IMPORTED	RedFlameBerserker	1	4
+enemies-11	enemies	IMPORTED	TwinFlameFurnace	0	4
+enemies-11	enemies	IMPORTED	TwinFlameFurnace	1	4
+enemies-12	enemies	MISSING			0
+enemies-13	enemies	MISSING			0
+bosses-00	bosses	IMPORTED	UndeliveredKing	0	4
+bosses-01	bosses	IMPORTED	ScarletIndex	0	4
+bosses-02	bosses	IMPORTED	SleepCollector	0	4
+bosses-03	bosses	IMPORTED	WaxAdmiral	0	4
+bosses-04	bosses	IMPORTED	LastLantern	0	4
+bosses-05	bosses	IMPORTED	MarqueeMaw	0	4
+bosses-06	bosses	IMPORTED	UmbraCradle	0	4
+bosses-07	bosses	IMPORTED	CoinWidow	0	4
+bosses-08	bosses	IMPORTED	ChoirEngine	0	4
+bosses-09	bosses	IMPORTED	SuitcaseLeviathan	0	4
+bosses-10	bosses	IMPORTED	TheLastCustomer	0	4
+bosses-11	bosses	IMPORTED	OutsideStageKeeper	0	4
+weapons-00	weapons	IMPORTED	KeyCleaver	0	4
+weapons-00	weapons	IMPORTED	TeapotPopgun	0	4
+weapons-00	weapons	IMPORTED	UmbrellaLance	0	4
+weapons-00	weapons	IMPORTED	MailboxLauncher	0	4
+weapons-01	weapons	IMPORTED	BellFork	0	4
+weapons-01	weapons	IMPORTED	BookPaddle	0	4
+weapons-01	weapons	IMPORTED	CrescentBow	0	4
+weapons-01	weapons	IMPORTED	RuneStaff	0	4
+weapons-02	weapons	IMPORTED	DreamStamp	0	4
+weapons-02	weapons	IMPORTED	CloudScissors	0	4
+weapons-02	weapons	IMPORTED	SleepCamera	0	4
+weapons-02	weapons	IMPORTED	TinFish	0	4
+weapons-03	weapons	IMPORTED	DreamIron	0	4
+weapons-03	weapons	IMPORTED	RubberHammer	0	4
+weapons-03	weapons	IMPORTED	AlarmMortar	0	4
+weapons-03	weapons	IMPORTED	MusicBox	0	4
+weapons-04	weapons	IMPORTED	SpoonSabre	0	4
+weapons-04	weapons	IMPORTED	ToastCleaver	0	4
+weapons-04	weapons	IMPORTED	LollipopLance	0	4
+weapons-04	weapons	IMPORTED	CorkscrewRapier	0	4
+weapons-05	weapons	IMPORTED	TeabagFlail	0	4
+weapons-05	weapons	IMPORTED	UmbrellaHook	0	4
+weapons-05	weapons	IMPORTED	PizzaWheel	0	4
+weapons-05	weapons	IMPORTED	MoonScythe	0	4
+weapons-06	weapons	IMPORTED	ForkTrident	0	4
+weapons-06	weapons	IMPORTED	MaracaHammer	0	4
+weapons-06	weapons	IMPORTED	TapeWhip	0	4
+weapons-06	weapons	IMPORTED	ButtonBow	0	4
+weapons-07	weapons	IMPORTED	LeafCrossbow	0	4
+weapons-07	weapons	IMPORTED	BubbleWand	0	4
+weapons-07	weapons	IMPORTED	StarKazoo	0	4
+weapons-07	weapons	IMPORTED	AcornSling	0	4
+weapons-08	weapons	IMPORTED	CrescentBoomerang	0	4
+weapons-08	weapons	IMPORTED	DartCompass	0	4
+weapons-08	weapons	IMPORTED	LanternStaff	0	4
+weapons-08	weapons	IMPORTED	SnowGlobeOrb	0	4
+weapons-09	weapons	IMPORTED	RibbonHarp	0	4
+weapons-09	weapons	IMPORTED	DreamOrbStaff	0	4
+weapons-09	weapons	IMPORTED	TwinSabres	0	4
+weapons-09	weapons	IMPORTED	ClockCrescent	0	4
+weapons-10	weapons	IMPORTED	StampHammer	0	4
+weapons-10	weapons	IMPORTED	ClockworkYoYo	0	4
+weapons-10	weapons	IMPORTED	ScrapMagnet	0	4
+weapons-10	weapons	IMPORTED	NeedleSinger	0	4
+weapons-11	weapons	IMPORTED	SpringKnocker	0	4
+weapons-11	weapons	IMPORTED	DreamProjector	0	4
+weapons-11	weapons	IMPORTED	RibbonWheel	0	4
+weapons-11	weapons	IMPORTED	MoonseedOrb	0	4
+weapons-12	weapons	IMPORTED	AfterimageSabre	0	4
+weapons-12	weapons	IMPORTED	SatelliteDisc	0	4

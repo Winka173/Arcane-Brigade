@@ -1,0 +1,8 @@
+PASS Actual shop fixture opens
+PASS Actual merchant uses articulated portrait rig
+PASS Native dimensions shop-acting
+PASS Shop acting obeys pause clock
+PASS Native dimensions shop-player-start
+PASS Native dimensions shop-player-stop
+FAIL Actual physical-shop purchase commits
+FAIL Actual physical-shop purchase commits

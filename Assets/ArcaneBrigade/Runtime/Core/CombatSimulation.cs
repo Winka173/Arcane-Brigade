@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
     public enum CompanionTravelMode { Patrol, Pursuit }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast }
 
     public readonly struct CombatEvent
     {
@@ -89,11 +89,16 @@ namespace ArcaneBrigade
         public float CameraWeakUntil;
         public int WeaknessSourceId;
         public int ExpandedBeat;
+        public int MorphAttacks;
+        public float NextMorph;
+        public float LastMorphAt = -100;
         public float AttackWindup;
         public float BehaviorUntil;
         public float NextBehavior;
         public bool Awakened;
         public float NextThermal;
+        public float RelicPoisonUntil;
+        public float RelicPoisonAt;
         public Vector2 AbilityOrigin;
         public Vector2 AbilityTarget;
         public float BodyLift;
@@ -123,6 +128,10 @@ namespace ArcaneBrigade
         public int EvolutionCasts;
         public bool SwarmMinion;
         public EnemyVariantState Variant;
+        public float OctoberLungeAt, OctoberLungeUntil;
+        public Vector2 OctoberLungeFrom, OctoberLungeTo;
+        public int MountId, RiderId, OctoberAttacks, OctoberKills;
+        public float OctoberNext;
         public bool LeftPartBroken => LeftPartBrokenAt >= 0;
         public bool RightPartBroken => RightPartBrokenAt >= 0;
     }
@@ -158,6 +167,7 @@ namespace ArcaneBrigade
         public HostileShot HostileMotion;
         public float HostileAge;
         public int OrbitTargetId;
+        public int IdentityTargetId;
         public Vector2 OrbitCenter;
         public Vector2 LaunchVelocity;
         public readonly HashSet<int> Victims = new HashSet<int>();
@@ -275,7 +285,11 @@ namespace ArcaneBrigade
             spatial.Rebuild(units);
             Phase = RunPhase.Combat;
             ResetArenaToys(catalog.RunWave);
+            StartSecretCombat();
             ResetExpansion();
+            ResetRelics();
+            ResetOctoberCombat();
+            ResetHeroIdentity();
         }
 
         public UnitState AddCompanion(UnitDefinition definition)
@@ -296,6 +310,7 @@ namespace ArcaneBrigade
 
         public void EnterRest()
         {
+            ClearHeroIdentity();
             ClearEnemyVariants();
             units.RemoveAll(unit => unit.Faction == Faction.Enemy);
             projectiles.Clear();
@@ -318,14 +333,24 @@ namespace ArcaneBrigade
             restElapsed += deltaTime;
             foreach (UnitState unit in units) unit.PreviousPosition = unit.Position;
             movement = Vector2.ClampMagnitude(movement, 1f);
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * deltaTime, Champion.Definition.Radius);
+            Vector2 current = Champion.Position;
+            Vector2 bounded = RestrictToShop(current);
+            Champion.Position = (current - bounded).sqrMagnitude > 0.0001f ? Vector2.MoveTowards(current, bounded, Mathf.Max(8, Champion.Definition.Speed * 2) * deltaTime) : RestrictToShop(current + movement * Champion.Definition.Speed * deltaTime);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
             foreach (UnitState unit in units)
             {
                 if (unit.Faction != Faction.Companion) continue;
+                if (FollowOctoberMount(unit)) continue;
                 unit.Position = ClampPosition(CompanionMotion.Step(unit, Champion, units, null, catalog, Elapsed + restElapsed, deltaTime), unit.Definition.Radius);
-                unit.Position = Champion.Position + Vector2.ClampMagnitude(unit.Position - Champion.Position, CompanionMotion.Leash(unit, catalog));
+                unit.Position = RestrictToShop(Champion.Position + Vector2.ClampMagnitude(unit.Position - Champion.Position, CompanionMotion.Leash(unit, catalog)));
             }
+        }
+        private Vector2 shopHalfExtents = Vector2.positiveInfinity;
+        public void SetShopBounds(Vector2 halfExtents) { shopHalfExtents = Vector2.Max(Vector2.one, halfExtents); }
+        public Vector2 RestrictToShop(Vector2 position)
+        {
+            Vector2 half = Vector2.Min(shopHalfExtents, catalog.ArenaSize * 0.5f - Vector2.one * Champion.Definition.Radius);
+            return new Vector2(Mathf.Clamp(position.x, -half.x, half.x), Mathf.Clamp(position.y, -half.y, half.y));
         }
 
         public Vector2 ClampPosition(Vector2 position, float radius)
@@ -360,10 +385,12 @@ namespace ArcaneBrigade
             movement = Vector2.ClampMagnitude(movement, 1f);
             Elapsed += deltaTime;
             if (Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle) movement = Vector2.zero;
+            StepRelics(deltaTime, movement);
+            if (Phase != RunPhase.Combat) return;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
             Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * deltaTime, Champion.Definition.Radius);
             float beforeRegeneration = Champion.Health;
-            Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + catalog.PassiveHeal * deltaTime);
+            Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * deltaTime);
             if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
             SpawnWaveEnemies();
@@ -405,9 +432,15 @@ namespace ArcaneBrigade
                     ProcessSignatures();
                     ProcessArenaToys(deltaTime);
                     ProcessExpansion(deltaTime);
+                    ProcessBuildMorphs();
+                    ProcessOctoberShots();
+                    ProcessRelicEchoes();
                     ProcessProcs();
+                    ProcessHeroIdentity(deltaTime, movement);
+                    ProcessOctoberCombat(deltaTime, movement);
                 }
-                if (Phase == RunPhase.Combat && (catalog.Boss == null ? Elapsed >= catalog.WaveDuration : BossDefeated)) Phase = RunPhase.Victory;
+                ProcessSecretEchoes();
+                if (Phase == RunPhase.Combat && SecretVictoryReady()) Phase = RunPhase.Victory;
             }
             for (int index = units.Count - 1; index >= 0; index--)
                 if (!units[index].Alive && units[index].Faction != Faction.Champion) units.RemoveAt(index);
@@ -443,6 +476,7 @@ namespace ArcaneBrigade
             if (enemyCount >= catalog.EnemyBudget) return;
             int batch = catalog.ExpandedContent ? WaveCadence.SwarmBatch(catalog.RunWave, Elapsed) : 1;
             Vector2 packAnchor = Vector2.zero;
+            UnitDefinition herd = catalog.ExpandedContent ? HerdDefinition() : catalog.MeleeEnemy;
             bool packStarted = false;
             for (int member = 0; member < batch && enemyCount + member < catalog.EnemyBudget; member++)
             {
@@ -461,7 +495,12 @@ namespace ArcaneBrigade
                         default: position = new Vector2(random * half.x, half.y); break;
                     }
                     if (catalog.RunWave >= 4) position = ClampPosition(position + Champion.Position, 0.6f);
-                    if (packStarted && catalog.RunWave >= 5) position = ClampPosition(packAnchor + new Vector2((member - 1) * 0.7f, member * 0.45f), 0.6f);
+                    if (packStarted && catalog.RunWave >= 3)
+                    {
+                        Vector2 outward = (packAnchor - Champion.Position).normalized;
+                        Vector2 tangent = new Vector2(-outward.y, outward.x);
+                        position = ClampPosition(packAnchor + tangent * ((member - 1) % 6 - 2.5f) * 0.48f + outward * ((member - 1) / 6) * 0.5f, 0.6f);
+                    }
                     if ((position - Champion.Position).sqrMagnitude >= catalog.SpawnSafetyRadius * catalog.SpawnSafetyRadius) { found = true; break; }
                 }
                 if (found)
@@ -480,7 +519,7 @@ namespace ArcaneBrigade
                     }
                     bool minion = catalog.ExpandedContent && member > 0;
                     if (!minion && definition.SpecialEnemy != SpecialEnemyKind.None && ActiveSpecialists() >= 3) definition = SwarmDefinition();
-                    if (minion) definition = SwarmDefinition();
+                    if (minion) definition = herd;
                     UnitState spawned = Spawn(definition, Faction.Enemy, position);
                     spawned.SwarmMinion = minion;
                     if (minion) spawned.Health *= 0.45f;
@@ -492,6 +531,8 @@ namespace ArcaneBrigade
 
         private void FollowChampion(UnitState unit, float deltaTime)
         {
+            if (FollowOctoberMount(unit)) return;
+            if (FollowIdentityConvoy(unit, deltaTime)) return;
             float leash = CompanionMotion.Leash(unit, catalog);
             UnitState target = SelectCompanionTarget(unit, unit.Definition.Weapon.Kind == WeaponKind.Melee ? leash + unit.Definition.Weapon.Range * 0.65f : unit.Definition.Weapon.Range);
             float neighborhood = Mathf.Max(catalog.CompanionSeparation, unit.Definition.Radius + maximumRadius + 0.35f) + maximumSpeed * deltaTime;
@@ -517,6 +558,7 @@ namespace ArcaneBrigade
 
         private void MoveEnemy(UnitState unit, float deltaTime)
         {
+            if (MoveOctoberBoss(unit)) return;
             if (unit.Definition.Id == "OutsideStageKeeper") return;
             if (!unit.Definition.IsBoss && MoveEnemyVariant(unit)) return;
             if (unit.Definition.IsBoss && MoveBossSignature(unit)) return;
@@ -524,7 +566,7 @@ namespace ArcaneBrigade
             if (MoveExpandedEnemy(unit, deltaTime)) return;
             if (unit.TelegraphUntil > Elapsed) return;
             if (unit.Definition.IsBoss && unit.BossRecoveryUntil > Elapsed) return;
-            Vector2 direction = Champion.Position - unit.Position;
+            Vector2 direction = OctoberEnemyTarget(unit) - unit.Position;
             float distance = direction.magnitude;
             unit.Facing = distance > 0.001f ? direction / distance : unit.Facing;
             Vector2 travelDirection = unit.Facing;
@@ -555,12 +597,12 @@ namespace ArcaneBrigade
             {
                 case PassiveKind.HealChampion:
                     float healthBefore = Champion.Health;
-                    Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + unit.Definition.PassiveStrength * 3f);
+                    Heal(unit.Definition.PassiveStrength * 3f, NewCause(unit.Id).Child("unit-passive"));
                     if (Champion.Health > healthBefore)
                     {
                         CombatCause healingCause = NewCause(unit.Id);
-                        RecordHealing(healingCause.Child("unit-passive"), Champion.Health - healthBefore);
-                        events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - healthBefore, subjectId: Champion.Id, cause: healingCause));
+                        // Heal() already recorded the effective restoration.
+                        // One healing event per restoration.
                         unit.LastSupport = Elapsed;
                         events.Add(new CombatEvent(CombatEventKind.Support, unit.Position, unit.Faction, subject: unit, element: DamageElement.Arcane));
                     }
@@ -589,6 +631,9 @@ namespace ArcaneBrigade
 
         private void ProcessBoss(UnitState boss)
         {
+            ProcessOctoberBoss(boss);
+            if (ProcessLastCustomer(boss)) return;
+            if (ProcessSecretBoss(boss)) return;
             if (ProcessOutsideStage(boss)) return;
             if (catalog.RunWave == 1) return;
             boss.BossPoseTime = Elapsed;
@@ -641,6 +686,8 @@ namespace ArcaneBrigade
 
         private UnitState FindTarget(UnitState source, float range)
         {
+            if (source.Faction == Faction.Enemy)
+                return range >= 0 && Champion != null && CanHit(source.Faction, Champion) && (Champion.Position - source.Position).sqrMagnitude < range * range ? Champion : null;
             UnitState best = null;
             float bestDistance = range * range;
             spatial.Query(source.Position - Vector2.one * range, source.Position + Vector2.one * range, targetCandidates);
@@ -661,6 +708,8 @@ namespace ArcaneBrigade
 
         private void ProcessAttack(UnitState unit)
         {
+            if (OctoberBlocksAttack(unit)) { unit.PendingAttack = false; return; }
+            if (RelicBlocksAttack(unit)) { unit.PendingAttack = false; return; }
             if (unit.Variant != null && unit.Variant.Busy(Elapsed)) return;
             if (unit.Faction == Faction.Enemy && (unit.EvolutionReleaseAt > 0 || unit.EvolutionRecoveryUntil > Elapsed || unit.EvolutionTravelUntil > Elapsed)) return;
             WeaponDefinition weapon = unit.Definition.Weapon;
@@ -670,12 +719,14 @@ namespace ArcaneBrigade
             if (unit.PendingAttack && Elapsed >= unit.ImpactTime)
             {
                 unit.PendingAttack = false;
-                float damage = weapon.Damage;
+                float damage = IdentityAttackDamage(unit, OctoberAttackDamage(unit, RelicAttackDamage(unit, weapon.Damage)));
                 CombatCause attackCause = NewCause(unit.Id);
                 UnitState locked = units.Find(candidate => candidate.Id == unit.AttackTargetId);
                 bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0));
                 if (critical) damage *= 1.5f;
-                if (ResolveExpandedAttack(unit, damage, critical, attackCause)) { }
+                damage = ReleaseBuildMorph(unit, damage, attackCause);
+                if (ResolveOctoberAttack(unit, damage, attackCause)) { }
+                else if (ResolveExpandedAttack(unit, damage, critical, attackCause)) { }
                 else if (weapon.Kind == WeaponKind.Projectile)
                 {
                     EmitProjectile(unit, damage, critical, attackCause);
@@ -700,7 +751,7 @@ namespace ArcaneBrigade
                     }
                 }
                 AdvanceSignatureBeat(unit, damage, attackCause);
-                events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, cause: attackCause));
+                events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, subject: unit, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
             UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0), true) : FindTarget(unit, weapon.Range);
@@ -711,7 +762,7 @@ namespace ArcaneBrigade
             unit.AttackStarted = Elapsed;
             unit.AttackWindup = weapon.Windup * (weapon.Family == ExpandedWeapon.Hammer && unit.ExpandedBeat % 3 == 2 ? 1.5f : 1);
             unit.ImpactTime = Elapsed + unit.AttackWindup;
-            unit.NextAttack = Elapsed + weapon.Cooldown * (weapon.Family == ExpandedWeapon.Hammer && unit.ExpandedBeat % 3 == 2 ? 1.35f : 1);
+            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer && unit.ExpandedBeat % 3 == 2 ? 1.35f : 1);
             unit.PendingAttack = true;
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
@@ -804,6 +855,11 @@ namespace ArcaneBrigade
             for (int index = projectiles.Count - 1; index >= 0 && Phase == RunPhase.Combat; index--)
             {
                 ProjectileState projectile = projectiles[index];
+                if (projectile.IdentityTargetId > 0)
+                {
+                    UnitState address = units.Find(u => u.Id == projectile.IdentityTargetId && CanHit(Faction.Champion, u));
+                    if (address != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (address.Position - projectile.Position).normalized * 5.5f, Mathf.Clamp01(deltaTime * 9));
+                }
                 if (projectile.Faction == Faction.Enemy) HostileBallistics.Advance(projectile, deltaTime);
                 int expandedMotion = MoveExpandedProjectile(projectile, deltaTime);
                 if (expandedMotion != 0) { if (expandedMotion < 0) projectiles.RemoveAt(index); continue; }
@@ -825,21 +881,25 @@ namespace ArcaneBrigade
             return fraction >= 0f && fraction <= 1f ? fraction : -1f;
         }
 
-        private void ApplyDamage(UnitState target, float damage, Faction source, string sourceName = "", Vector2 direction = default, WeaponDefinition weapon = null, bool critical = false, DamageElement element = DamageElement.Physical, CombatCause cause = default, bool injectedDamage = false)
+        private void ApplyDamage(UnitState target, float damage, Faction source, string sourceName = "", Vector2 direction = default, WeaponDefinition weapon = null, bool critical = false, DamageElement element = DamageElement.Physical, CombatCause cause = default, bool injectedDamage = false, bool healthCost = false)
         {
             if (!target.Alive || target.Faction == Faction.Companion || !float.IsFinite(damage) || damage <= 0f) return;
             if (target.EntranceUntil > Elapsed && !injectedDamage) return;
-            damage = ExpandedDamage(target, damage, source, direction, weapon);
+            if (!healthCost) damage = ExpandedDamage(target, damage, source, direction, weapon);
             if (cause.RootId == 0) cause = NewCause(0);
-            if (target.Faction == Faction.Champion)
+            damage = IdentityDamage(target, damage, source, cause);
+            if (target.Faction == Faction.Champion && !healthCost)
             {
-                if (!injectedDamage && catalog.Dodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge, 0, 0.6f))
+                if (!injectedDamage && catalog.Dodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge, 0, ReferenceHero == "Sir Purrcival" ? .75f : .6f))
                 {
                     events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
+                    if (RelicCount(RelicMechanic.DodgeMending) > 0 && combatRandom.NextDouble() < .3) Heal(10 * RelicCount(RelicMechanic.DodgeMending), NewCause(target.Id).Child("curio-dodge"));
                     return;
                 }
+                if (!injectedDamage) damage = Mathf.Min(damage, target.Definition.Health * 0.22f);
                 damage *= catalog.Armor >= 0 ? 1f / (1f + catalog.Armor) : 1 + Mathf.Min(1, -catalog.Armor);
-                if (!injectedDamage) damage = Mathf.Min(damage, Mathf.Min(14f, target.Definition.Health * 0.25f));
+                if (catalog.SecretWard && !injectedDamage) damage *= .85f;
+                if (!injectedDamage) damage = OctoberIncoming(damage);
             }
             float baseDamage = damage;
             if (target.Faction == Faction.Enemy && weapon != null && weapon.Motion == WeaponMotion.Bow && treasureUntil > Elapsed && source != Faction.Enemy)
@@ -862,12 +922,13 @@ namespace ArcaneBrigade
             target.HitDirection = direction;
             if (target.Health > 0 && target.Faction == Faction.Enemy && source != Faction.Enemy && weapon != null && direction.sqrMagnitude > 0.001f)
             {
-                target.Position = ClampPosition(target.Position + direction.normalized * Mathf.Clamp(weapon.PushDistance, 0, 0.8f) * (1 - Mathf.Clamp01(target.Definition.KnockbackResistance)), target.Definition.Radius);
+                target.Position = ClampPosition(target.Position + direction.normalized * OctoberBalance.Push(target.Definition, weapon.PushDistance), target.Definition.Radius);
                 spatial.Move(target);
                 if (weapon.PushDistance >= 0.5f) events.Add(new CombatEvent(CombatEventKind.Knockback, target.Position, source, direction: direction, weapon: weapon, cause: cause));
             }
             events.Add(new CombatEvent(CombatEventKind.Hit, target.Position, target.Faction, damage, direction, weapon, critical, element, target.Id, target, cause));
             NotifyArenaToyHit(events[events.Count - 1]);
+            RelicHit(target, source, cause);
             if (target.Health > 0f) return;
             target.Alive = false;
             RememberVariantDeath(target);
@@ -956,6 +1017,7 @@ namespace ArcaneBrigade
                 else if (pickup.Kind == LootKind.Egg) Eggs = RunSession.BoundedCounter((long)Eggs + pickup.Value);
                 else if (pickup.Kind == LootKind.Heart) Heal(Mathf.Max(0, pickup.Value + catalog.HeartHealing), NewCause(Champion.Id));
                 events.Add(new CombatEvent(CombatEventKind.Pickup, pickup.Position, Faction.Champion, pickup.Value, subjectId: pickup.Id, cause: pickupCause, loot: pickup.Kind));
+                RelicPickup(pickup);
                 pickups.RemoveAt(index);
             }
         }
@@ -986,6 +1048,7 @@ namespace ArcaneBrigade
         private void OpenChest(PickupState chest)
         {
             ChestsOpened++;
+            RelicChest();
             CombatCause cause = NewCause(Champion.Id);
             events.Add(new CombatEvent(CombatEventKind.ChestOpened, chest.Position, Faction.Champion, chest.Value, subjectId: chest.Id, cause: cause, loot: LootKind.Chest));
             DropLoot(LootKind.Coin, chest.Position, chest.Value);
@@ -995,9 +1058,10 @@ namespace ArcaneBrigade
 
         private void Heal(float amount, CombatCause cause)
         {
+            if (catalog.EnableHeroMechanics && (ReferenceHero == "Card Queen" || ReferenceHero == "Omnom" && cause.ItemId != "night-maw-meal")) return;
             if (!Champion.Alive) return;
             float previous = Champion.Health;
-            Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0, amount));
+            Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0, amount) * catalog.OctoberHealingReceived);
             RecordHealing(cause, Champion.Health - previous);
             if (Champion.Health > previous) events.Add(new CombatEvent(CombatEventKind.Heal, Champion.Position, Faction.Champion, Champion.Health - previous, subjectId: Champion.Id, cause: cause));
         }

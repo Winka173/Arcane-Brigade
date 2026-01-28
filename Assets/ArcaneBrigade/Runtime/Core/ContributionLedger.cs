@@ -69,7 +69,7 @@ namespace ArcaneBrigade
         }
 
         private void RecordDamage(CombatCause cause, float actual) { Contribution(cause).Damage += actual; }
-        private void RecordHealing(CombatCause cause, float actual) { if (actual > 0) Contribution(cause).Healing += actual; }
+        private void RecordHealing(CombatCause cause, float actual) { if (actual > 0) { Contribution(cause).Healing += actual; IdentityRecordHealing(actual, cause); } }
         private void RecordActivation(CombatCause cause) { ContributionEntry entry = Contribution(cause); entry.Activations = RunSession.BoundedCounter((long)entry.Activations + 1); }
         private void RecordKill(CombatCause cause) { ContributionEntry entry = Contribution(cause); entry.Kills = RunSession.BoundedCounter((long)entry.Kills + 1); }
     }

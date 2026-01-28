@@ -1,0 +1,427 @@
+PASS 31 heroes and 66 ally species installed
+PASS Hero counterpart Mr. Work / LanternKnight
+PASS Hero counterpart Derpy Wolf / CometRunner
+PASS Hero counterpart Jade Cabbage / VerdantMatron
+PASS Hero counterpart The Big Pot / CopperCauldron
+PASS Hero counterpart Porcelain Doll / ChinaMarionette
+PASS Hero counterpart Slippy / SoapSkater
+PASS Hero counterpart Card King / VelvetRegent
+PASS Hero counterpart Sassy Senior / GlassDice
+PASS Hero counterpart Baggy / RootOracle
+PASS Hero counterpart Sir Purrcival / ButtonCavalier
+PASS Hero counterpart Red Scale / TideSinger
+PASS Hero counterpart Omnom / NightMaw
+PASS Hero counterpart Periwinky / ThornTreasurer
+PASS Hero counterpart Clementie / CitrusMarshal
+PASS Hero counterpart Gulpy / TreasureAcorn
+PASS Hero counterpart Frosty / DrowsySeer
+PASS Hero counterpart Capped Gallant / LoneJelly
+PASS Hero counterpart Card Queen / IvorySovereign
+PASS Hero counterpart Steel Shell / MirrorKeeper
+PASS Hero counterpart Box Shell / Postmaster
+PASS Hero counterpart Bloom Shell / PetalCitadel
+PASS Hero counterpart Belle / PatchworkHost
+PASS Hero counterpart Wise / ArchiveCurator
+PASS Hero counterpart Nicole / PennyBroker
+PASS Hero counterpart Anby / StormFencer
+PASS Hero counterpart Billy / TinVirtuoso
+PASS Hero counterpart Nekomata / MoonProwler
+PASS Hero counterpart Burgerboo / SupperMortar
+PASS Hero counterpart Original / LanternWeaver
+PASS Hero counterpart Original / HourglassStag
+PASS Hero counterpart Original / RainArchivist
+PASS Ally counterpart Alien / TeapotPilgrim
+PASS Ally counterpart Applehead / CandleSnail
+PASS Ally counterpart Athlete / MailboxImp
+PASS Ally counterpart Bullhorn Warrior / PillowOracle
+PASS Ally counterpart Camo Shroom / MushroomLibrarian
+PASS Ally counterpart Cheer Bunny / HoodWisp
+PASS Ally counterpart Chieftain / JellySwordsman
+PASS Ally counterpart Clown / BrassAcorn
+PASS Ally counterpart Fierce Fighter / BreadCrab
+PASS Ally counterpart Floofy / KettleBat
+PASS Ally counterpart Grey Mage / BookmarkGolem
+PASS Ally counterpart Hopping Zombie / TinTick
+PASS Ally counterpart Intelligent Construct / SpringDuck
+PASS Ally counterpart Iron Swordsman / ButtonBeetle
+PASS Ally counterpart Judge / StapleMole
+PASS Ally counterpart Jungle Folk / SnowSpoon
+PASS Ally counterpart Little Witch / IceCreamOwl
+PASS Ally counterpart Masked Wrestler / FridgeWisp
+PASS Ally counterpart Matchstick Head / PearMoth
+PASS Ally counterpart Monkey King / CitrusToad
+PASS Ally counterpart Mummy / RadishJester
+PASS Ally counterpart Peach / SeedHedgehog
+PASS Ally counterpart Phantom / MoonJelly
+PASS Ally counterpart Pirate / StarSock
+PASS Ally counterpart Pointy Hat Witch / CometKite
+PASS Ally counterpart Prince / EclipseEgg
+PASS Ally counterpart Princess / OrbitMoth
+PASS Ally counterpart Smiley Fox / DreamCompass
+PASS Ally counterpart Student / ShellPostman
+PASS Ally counterpart TV Head / CoralTeacup
+PASS Ally counterpart Young Lady / BubbleKoi
+PASS Ally counterpart "Art of Food" Roshi / AnchorSnail
+PASS Ally counterpart "Bullied" Sophia / SailSquid
+PASS Ally counterpart "Cars ARE My Kids" Chris / SockCyclops
+PASS Ally counterpart "Colorful Fantasy" Pinky / DiceCrab
+PASS Ally counterpart "Enduring Suffering" Dorothy / MaskPepper
+PASS Ally counterpart "Expert Nurturer" Daisy / CrayonGremlin
+PASS Ally counterpart "Formatting Pixie" Quentin / MirrorNewt
+PASS Ally counterpart "GLHF" Nia / RibbonSpider
+PASS Ally counterpart "Leisurely Walk" Mary / CoilKettle
+PASS Ally counterpart "Misfortune" Emily / ThimbleMoth
+PASS Ally counterpart "Naming Demon" Yan / ReelOwl
+PASS Ally counterpart "Overtime King" Philip / RainbowTailor
+PASS Ally counterpart "Pet Master" Lisa / RainbowBell
+PASS Ally counterpart "Shove Around" Bella / SaffronMechanist
+PASS Ally counterpart "Smug and Satisfied" Jake / ClockworkPiper
+PASS Ally counterpart "The All-Knowing" Walter / VelvetChampion
+PASS Ally counterpart "The Creator" Roger / PaperInventor
+PASS Ally counterpart "Triumphant Return" Daniel / ReturnCaptain
+PASS Ally counterpart "Quick Production" Tao / DoughForeman
+PASS Ally counterpart "Unstoppable" Paul / IronLocomotive
+PASS Ally counterpart Vengeful Spirit / VioletRemnant
+PASS Ally counterpart Attractive Witch / VelvetEnchantress
+PASS Ally counterpart Big Cabbage / GrandSprout
+PASS Ally counterpart Domestic Spiked Ball / BristleBall
+PASS Ally counterpart Evil / PaperDevil
+PASS Ally counterpart Inflatable Hammer / BalloonMallet
+PASS Ally counterpart Little Cabbage / LittleSprout
+PASS Ally counterpart Monster Friend / MonsterMarble
+PASS Ally counterpart Pony / CarouselPony
+PASS Ally counterpart Original / TeacupCricket
+PASS Ally counterpart Original / RibbonOtter
+PASS Ally counterpart Original / SpindleWren
+PASS All 76 reference relics installed once with artwork
+PASS 76 distinct relic icon slices
+PASS All 19 reference bond counterparts installed
+PASS Two original bond families
+PASS Separate painted movement and attack poses VerdantMatron
+PASS Separate painted movement and attack poses CopperCauldron
+PASS Separate painted movement and attack poses ChinaMarionette
+PASS Separate painted movement and attack poses SoapSkater
+PASS Separate painted movement and attack poses VelvetRegent
+PASS Separate painted movement and attack poses ButtonCavalier
+PASS Separate painted movement and attack poses NightMaw
+PASS Separate painted movement and attack poses ThornTreasurer
+PASS Separate painted movement and attack poses CitrusMarshal
+PASS Separate painted movement and attack poses IvorySovereign
+PASS Separate painted movement and attack poses PetalCitadel
+PASS Separate painted movement and attack poses PatchworkHost
+PASS Separate painted movement and attack poses ArchiveCurator
+PASS Separate painted movement and attack poses PennyBroker
+PASS Separate painted movement and attack poses StormFencer
+PASS Separate painted movement and attack poses TinVirtuoso
+PASS Separate painted movement and attack poses MoonProwler
+PASS Separate painted movement and attack poses SupperMortar
+PASS Separate painted movement and attack poses LanternWeaver
+PASS Separate painted movement and attack poses HourglassStag
+PASS Separate painted movement and attack poses RainArchivist
+PASS Separate painted movement and attack poses SaffronMechanist
+PASS Separate painted movement and attack poses ClockworkPiper
+PASS Separate painted movement and attack poses VelvetChampion
+PASS Separate painted movement and attack poses PaperInventor
+PASS Separate painted movement and attack poses ReturnCaptain
+PASS Separate painted movement and attack poses DoughForeman
+PASS Separate painted movement and attack poses IronLocomotive
+PASS Separate painted movement and attack poses VioletRemnant
+PASS Separate painted movement and attack poses VelvetEnchantress
+PASS Separate painted movement and attack poses GrandSprout
+PASS Separate painted movement and attack poses BristleBall
+PASS Separate painted movement and attack poses PaperDevil
+PASS Separate painted movement and attack poses BalloonMallet
+PASS Separate painted movement and attack poses LittleSprout
+PASS Separate painted movement and attack poses MonsterMarble
+PASS Separate painted movement and attack poses CarouselPony
+PASS Separate painted movement and attack poses TeacupCricket
+PASS Separate painted movement and attack poses RibbonOtter
+PASS Separate painted movement and attack poses SpindleWren
+PASS Door, watchers, new Keeper and nightmare floor imported
+PASS New ally odds fall monotonically from 10 to 20 bodies
+PASS Merge stock declines less than new species
+PASS Prices rise more noticeably after wave 8
+PASS Endless pressure rises each wave from 20
+PASS Playable compiles with 45s cadence and bounded stats LanternKnight
+PASS Playable live simulation finite; allies immortal LanternKnight
+PASS Progress save round trip LanternKnight
+PASS Playable compiles with 45s cadence and bounded stats Postmaster
+PASS Playable live simulation finite; allies immortal Postmaster
+PASS Progress save round trip Postmaster
+PASS Playable compiles with 45s cadence and bounded stats DrowsySeer
+PASS Playable live simulation finite; allies immortal DrowsySeer
+PASS Progress save round trip DrowsySeer
+PASS Playable compiles with 45s cadence and bounded stats RootOracle
+PASS Playable live simulation finite; allies immortal RootOracle
+PASS Progress save round trip RootOracle
+PASS Playable compiles with 45s cadence and bounded stats LoneJelly
+PASS Playable live simulation finite; allies immortal LoneJelly
+PASS Progress save round trip LoneJelly
+PASS Playable compiles with 45s cadence and bounded stats GlassDice
+PASS Playable live simulation finite; allies immortal GlassDice
+PASS Progress save round trip GlassDice
+PASS Playable compiles with 45s cadence and bounded stats TideSinger
+PASS Playable live simulation finite; allies immortal TideSinger
+PASS Progress save round trip TideSinger
+PASS Playable compiles with 45s cadence and bounded stats CometRunner
+PASS Playable live simulation finite; allies immortal CometRunner
+PASS Progress save round trip CometRunner
+PASS Playable compiles with 45s cadence and bounded stats MirrorKeeper
+PASS Playable live simulation finite; allies immortal MirrorKeeper
+PASS Progress save round trip MirrorKeeper
+PASS Playable compiles with 45s cadence and bounded stats TreasureAcorn
+PASS Playable live simulation finite; allies immortal TreasureAcorn
+PASS Progress save round trip TreasureAcorn
+PASS Playable compiles with 45s cadence and bounded stats VerdantMatron
+PASS Playable live simulation finite; allies immortal VerdantMatron
+PASS Progress save round trip VerdantMatron
+PASS Playable compiles with 45s cadence and bounded stats CopperCauldron
+PASS Playable live simulation finite; allies immortal CopperCauldron
+PASS Progress save round trip CopperCauldron
+PASS Playable compiles with 45s cadence and bounded stats ChinaMarionette
+PASS Playable live simulation finite; allies immortal ChinaMarionette
+PASS Progress save round trip ChinaMarionette
+PASS Playable compiles with 45s cadence and bounded stats SoapSkater
+PASS Playable live simulation finite; allies immortal SoapSkater
+PASS Progress save round trip SoapSkater
+PASS Playable compiles with 45s cadence and bounded stats VelvetRegent
+PASS Playable live simulation finite; allies immortal VelvetRegent
+PASS Progress save round trip VelvetRegent
+PASS Playable compiles with 45s cadence and bounded stats ButtonCavalier
+PASS Playable live simulation finite; allies immortal ButtonCavalier
+PASS Progress save round trip ButtonCavalier
+PASS Playable compiles with 45s cadence and bounded stats NightMaw
+PASS Playable live simulation finite; allies immortal NightMaw
+PASS Progress save round trip NightMaw
+PASS Playable compiles with 45s cadence and bounded stats ThornTreasurer
+PASS Playable live simulation finite; allies immortal ThornTreasurer
+PASS Progress save round trip ThornTreasurer
+PASS Playable compiles with 45s cadence and bounded stats CitrusMarshal
+PASS Playable live simulation finite; allies immortal CitrusMarshal
+PASS Progress save round trip CitrusMarshal
+PASS Playable compiles with 45s cadence and bounded stats IvorySovereign
+PASS Playable live simulation finite; allies immortal IvorySovereign
+PASS Progress save round trip IvorySovereign
+PASS Playable compiles with 45s cadence and bounded stats PetalCitadel
+PASS Playable live simulation finite; allies immortal PetalCitadel
+PASS Progress save round trip PetalCitadel
+PASS Playable compiles with 45s cadence and bounded stats PatchworkHost
+PASS Playable live simulation finite; allies immortal PatchworkHost
+PASS Progress save round trip PatchworkHost
+PASS Playable compiles with 45s cadence and bounded stats ArchiveCurator
+PASS Playable live simulation finite; allies immortal ArchiveCurator
+PASS Progress save round trip ArchiveCurator
+PASS Playable compiles with 45s cadence and bounded stats PennyBroker
+PASS Playable live simulation finite; allies immortal PennyBroker
+PASS Progress save round trip PennyBroker
+PASS Playable compiles with 45s cadence and bounded stats StormFencer
+PASS Playable live simulation finite; allies immortal StormFencer
+PASS Progress save round trip StormFencer
+PASS Playable compiles with 45s cadence and bounded stats TinVirtuoso
+PASS Playable live simulation finite; allies immortal TinVirtuoso
+PASS Progress save round trip TinVirtuoso
+PASS Playable compiles with 45s cadence and bounded stats MoonProwler
+PASS Playable live simulation finite; allies immortal MoonProwler
+PASS Progress save round trip MoonProwler
+PASS Playable compiles with 45s cadence and bounded stats SupperMortar
+PASS Playable live simulation finite; allies immortal SupperMortar
+PASS Progress save round trip SupperMortar
+PASS Playable compiles with 45s cadence and bounded stats LanternWeaver
+PASS Playable live simulation finite; allies immortal LanternWeaver
+PASS Progress save round trip LanternWeaver
+PASS Playable compiles with 45s cadence and bounded stats HourglassStag
+PASS Playable live simulation finite; allies immortal HourglassStag
+PASS Progress save round trip HourglassStag
+PASS Playable compiles with 45s cadence and bounded stats RainArchivist
+PASS Playable live simulation finite; allies immortal RainArchivist
+PASS Progress save round trip RainArchivist
+PASS Seeded normal offers respect hero themes 1
+PASS Seeded normal offers respect hero themes 2
+PASS Seeded normal offers respect hero themes 3
+PASS Seeded normal offers respect hero themes 4
+PASS Seeded normal offers respect hero themes 5
+PASS Seeded normal offers respect hero themes 6
+PASS Seeded normal offers respect hero themes 7
+PASS Seeded normal offers respect hero themes 8
+PASS Seeded normal offers respect hero themes 9
+PASS Seeded normal offers respect hero themes 10
+PASS Seeded normal offers respect hero themes 11
+PASS Seeded normal offers respect hero themes 12
+PASS Seeded normal offers respect hero themes 13
+PASS Seeded normal offers respect hero themes 14
+PASS Seeded normal offers respect hero themes 15
+PASS Seeded normal offers respect hero themes 16
+PASS Seeded normal offers respect hero themes 17
+PASS Seeded normal offers respect hero themes 18
+PASS Seeded normal offers respect hero themes 19
+PASS Seeded normal offers respect hero themes 20
+PASS Seeded normal offers respect hero themes 21
+PASS Seeded normal offers respect hero themes 22
+PASS Seeded normal offers respect hero themes 23
+PASS Seeded normal offers respect hero themes 24
+PASS Seeded normal offers respect hero themes 25
+PASS Seeded normal offers respect hero themes 26
+PASS Seeded normal offers respect hero themes 27
+PASS Seeded normal offers respect hero themes 28
+PASS Seeded normal offers respect hero themes 29
+PASS Seeded normal offers respect hero themes 30
+PASS Seeded normal offers respect hero themes 31
+PASS Seeded normal offers respect hero themes 32
+PASS Seeded normal offers respect hero themes 33
+PASS Seeded normal offers respect hero themes 34
+PASS Seeded normal offers respect hero themes 35
+PASS Seeded normal offers respect hero themes 36
+PASS Seeded normal offers respect hero themes 37
+PASS Seeded normal offers respect hero themes 38
+PASS Seeded normal offers respect hero themes 39
+PASS Seeded normal offers respect hero themes 40
+PASS Seeded normal offers respect hero themes 41
+PASS Seeded normal offers respect hero themes 42
+PASS Seeded normal offers respect hero themes 43
+PASS Seeded normal offers respect hero themes 44
+PASS Seeded normal offers respect hero themes 45
+PASS Seeded normal offers respect hero themes 46
+PASS Seeded normal offers respect hero themes 47
+PASS Seeded normal offers respect hero themes 48
+PASS Seeded normal offers respect hero themes 49
+PASS Seeded normal offers respect hero themes 50
+PASS Seeded normal offers respect hero themes 51
+PASS Seeded normal offers respect hero themes 52
+PASS Seeded normal offers respect hero themes 53
+PASS Seeded normal offers respect hero themes 54
+PASS Seeded normal offers respect hero themes 55
+PASS Seeded normal offers respect hero themes 56
+PASS Seeded normal offers respect hero themes 57
+PASS Seeded normal offers respect hero themes 58
+PASS Seeded normal offers respect hero themes 59
+PASS Seeded normal offers respect hero themes 60
+PASS Seeded normal offers respect hero themes 61
+PASS Seeded normal offers respect hero themes 62
+PASS Seeded normal offers respect hero themes 63
+PASS Seeded normal offers respect hero themes 64
+PASS Seeded normal offers respect hero themes 65
+PASS Seeded normal offers respect hero themes 66
+PASS Seeded normal offers respect hero themes 67
+PASS Seeded normal offers respect hero themes 68
+PASS Seeded normal offers respect hero themes 69
+PASS Seeded normal offers respect hero themes 70
+PASS Seeded normal offers respect hero themes 71
+PASS Seeded normal offers respect hero themes 72
+PASS Seeded normal offers respect hero themes 73
+PASS Seeded normal offers respect hero themes 74
+PASS Seeded normal offers respect hero themes 75
+PASS Seeded normal offers respect hero themes 76
+PASS Seeded normal offers respect hero themes 77
+PASS Seeded normal offers respect hero themes 78
+PASS Seeded normal offers respect hero themes 79
+PASS Seeded normal offers respect hero themes 80
+PASS Seeded normal offers respect hero themes 81
+PASS Seeded normal offers respect hero themes 82
+PASS Seeded normal offers respect hero themes 83
+PASS Seeded normal offers respect hero themes 84
+PASS Seeded normal offers respect hero themes 85
+PASS Seeded normal offers respect hero themes 86
+PASS Seeded normal offers respect hero themes 87
+PASS Seeded normal offers respect hero themes 88
+PASS Seeded normal offers respect hero themes 89
+PASS Seeded normal offers respect hero themes 90
+PASS Seeded normal offers respect hero themes 91
+PASS Seeded normal offers respect hero themes 92
+PASS Seeded normal offers respect hero themes 93
+PASS Seeded normal offers respect hero themes 94
+PASS Seeded normal offers respect hero themes 95
+PASS Seeded normal offers respect hero themes 96
+PASS Seeded normal offers respect hero themes 97
+PASS Seeded normal offers respect hero themes 98
+PASS Seeded normal offers respect hero themes 99
+PASS Seeded normal offers respect hero themes 100
+PASS Seeded normal offers respect hero themes 101
+PASS Seeded normal offers respect hero themes 102
+PASS Seeded normal offers respect hero themes 103
+PASS Seeded normal offers respect hero themes 104
+PASS Seeded normal offers respect hero themes 105
+PASS Seeded normal offers respect hero themes 106
+PASS Seeded normal offers respect hero themes 107
+PASS Seeded normal offers respect hero themes 108
+PASS Seeded normal offers respect hero themes 109
+PASS Seeded normal offers respect hero themes 110
+PASS Seeded normal offers respect hero themes 111
+PASS Seeded normal offers respect hero themes 112
+PASS Seeded normal offers respect hero themes 113
+PASS Seeded normal offers respect hero themes 114
+PASS Seeded normal offers respect hero themes 115
+PASS Seeded normal offers respect hero themes 116
+PASS Seeded normal offers respect hero themes 117
+PASS Seeded normal offers respect hero themes 118
+PASS Seeded normal offers respect hero themes 119
+PASS Seeded normal offers respect hero themes 120
+PASS Small teams receive evolved offers in both shop pools
+PASS Merge preserves exactly one actual ingredient weapon
+PASS Memory purchase absorbs a trait without body ArchiveCurator
+PASS Memory purchase absorbs a trait without body LoneJelly
+PASS Both recruit shelves respect themes LanternKnight
+PASS Both relic shelves respect themes LanternKnight
+PASS Both recruit shelves respect themes Postmaster
+PASS Both relic shelves respect themes Postmaster
+PASS Both recruit shelves respect themes DrowsySeer
+PASS Both relic shelves respect themes DrowsySeer
+PASS Both recruit shelves respect themes RootOracle
+PASS Both relic shelves respect themes RootOracle
+PASS Both recruit shelves respect themes LoneJelly
+PASS Both relic shelves respect themes LoneJelly
+PASS Both recruit shelves respect themes GlassDice
+PASS Both relic shelves respect themes GlassDice
+PASS Both recruit shelves respect themes TideSinger
+PASS Both relic shelves respect themes TideSinger
+PASS Both recruit shelves respect themes CometRunner
+PASS Both relic shelves respect themes CometRunner
+PASS Both recruit shelves respect themes MirrorKeeper
+PASS Both relic shelves respect themes MirrorKeeper
+PASS Both recruit shelves respect themes TreasureAcorn
+PASS Both relic shelves respect themes TreasureAcorn
+PASS Both recruit shelves respect themes VerdantMatron
+PASS Both relic shelves respect themes VerdantMatron
+PASS Both recruit shelves respect themes CopperCauldron
+PASS Both relic shelves respect themes CopperCauldron
+PASS Both recruit shelves respect themes ChinaMarionette
+PASS Both relic shelves respect themes ChinaMarionette
+PASS Both recruit shelves respect themes SoapSkater
+PASS Both relic shelves respect themes SoapSkater
+PASS Both recruit shelves respect themes VelvetRegent
+PASS Both relic shelves respect themes VelvetRegent
+PASS Both recruit shelves respect themes ButtonCavalier
+PASS Both relic shelves respect themes ButtonCavalier
+PASS Both recruit shelves respect themes NightMaw
+PASS Both relic shelves respect themes NightMaw
+PASS Both recruit shelves respect themes ThornTreasurer
+PASS Both relic shelves respect themes ThornTreasurer
+PASS Both recruit shelves respect themes CitrusMarshal
+PASS Both relic shelves respect themes CitrusMarshal
+PASS Both recruit shelves respect themes IvorySovereign
+PASS Both relic shelves respect themes IvorySovereign
+PASS Both recruit shelves respect themes PetalCitadel
+PASS Both relic shelves respect themes PetalCitadel
+PASS Both recruit shelves respect themes PatchworkHost
+PASS Both relic shelves respect themes PatchworkHost
+PASS Both recruit shelves respect themes ArchiveCurator
+PASS Both relic shelves respect themes ArchiveCurator
+PASS Both recruit shelves respect themes PennyBroker
+PASS Both relic shelves respect themes PennyBroker
+PASS Both recruit shelves respect themes StormFencer
+PASS Both relic shelves respect themes StormFencer
+PASS Both recruit shelves respect themes TinVirtuoso
+PASS Both relic shelves respect themes TinVirtuoso
+PASS Both recruit shelves respect themes MoonProwler
+PASS Both relic shelves respect themes MoonProwler
+PASS Both recruit shelves respect themes SupperMortar
+PASS Both relic shelves respect themes SupperMortar
+PASS Both recruit shelves respect themes LanternWeaver
+PASS Both relic shelves respect themes LanternWeaver
+PASS Both recruit shelves respect themes HourglassStag
+PASS Both relic shelves respect themes HourglassStag
+PASS Both recruit shelves respect themes RainArchivist
+PASS Both relic shelves respect themes RainArchivist
+PASS Three nursery sprouts produce both a random evolved friend and Grand Sprout
+PASS Both nursery rewards inherit ingredient weapons
+PASS Hunger spends exactly one HP through armor and dodge
+FAIL Original hero signature executes in live combat LanternWeaver

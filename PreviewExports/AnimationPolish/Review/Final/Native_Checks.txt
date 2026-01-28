@@ -1,0 +1,4 @@
+PASS Actual shop fixture opens
+PASS Actual merchant uses articulated portrait rig
+FAIL Native dimensions shop-acting
+FAIL Native dimensions shop-acting

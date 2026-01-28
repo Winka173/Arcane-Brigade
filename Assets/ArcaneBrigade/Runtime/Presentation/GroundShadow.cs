@@ -8,6 +8,9 @@ namespace ArcaneBrigade
         private SpriteRenderer penumbra;
         private SpriteRenderer cast;
         private Transform stage;
+        public int SortingBase { get; set; } = 405;
+        public bool Essential { get; set; }
+        public bool PinCastToFoot { get; set; }
         public SpriteRenderer Contact => contact;
         public SpriteRenderer Penumbra => penumbra;
         public SpriteRenderer Cast => cast;
@@ -36,7 +39,7 @@ namespace ArcaneBrigade
         public void Display(Sprite silhouette, Vector2 ground, float width, float elevation = 0, float opacity = 0.3f)
         {
             if (contact == null) Configure(silhouette);
-            stage.gameObject.SetActive(true);
+            if (!stage.gameObject.activeSelf) stage.gameObject.SetActive(true);
             width = Mathf.Max(0.04f, width);
             float strength = Mathf.Clamp01(opacity * 1.9f);
             contact.transform.position = ground;
@@ -45,23 +48,28 @@ namespace ArcaneBrigade
             float softness = 1 + Mathf.Clamp(elevation, 0, 2) * 0.35f;
             contact.transform.localScale = new Vector3(width * 0.82f, width * 0.24f, 1);
             contact.color = new Color(0.005f, 0.008f, 0.018f, strength / softness);
-            contact.sortingOrder = 412;
-            penumbra.transform.position = ground + new Vector2(width * 0.06f, -width * 0.025f);
-            penumbra.transform.rotation = Quaternion.identity;
-            penumbra.transform.localScale = new Vector3(width * 1.35f * softness, width * 0.38f * softness, 1);
-            penumbra.color = new Color(0.012f, 0.014f, 0.025f, strength * 0.55f / softness);
-            penumbra.sortingOrder = 410;
-            penumbra.enabled = true;
+            contact.sortingOrder = SortingBase + 7;
+            penumbra.enabled = AnimationDetailBudget.Level == 0 || Essential;
+            if (penumbra.enabled)
+            {
+                penumbra.transform.position = ground + new Vector2(width * 0.06f, -width * 0.025f);
+                penumbra.transform.rotation = Quaternion.identity;
+                penumbra.transform.localScale = new Vector3(width * 1.35f * softness, width * 0.38f * softness, 1);
+                penumbra.color = new Color(0.012f, 0.014f, 0.025f, strength * 0.55f / softness);
+                penumbra.sortingOrder = SortingBase + 5;
+            }
             cast.sprite = silhouette;
-            cast.enabled = silhouette != null;
-            if (silhouette != null)
+            cast.enabled = silhouette != null && (Essential || AnimationDetailBudget.Level < 2);
+            if (cast.enabled)
             {
                 float scale = width / Mathf.Max(0.001f, silhouette.bounds.size.x);
-                cast.transform.position = ground + new Vector2(width * 0.18f + elevation * 0.06f, -width * 0.05f - elevation * 0.025f);
-                cast.transform.rotation = Quaternion.Euler(0, 0, -12);
+                Vector2 direction = NightmareLighting.Active != null ? NightmareLighting.Active.ShadowDirection(ground) : new Vector2(.8f, -.35f);
+                cast.transform.position = ground + direction * (width * (PinCastToFoot ? .05f : .2f) + elevation * .06f);
+                cast.transform.rotation = Quaternion.Euler(0, 0, Mathf.Clamp(direction.x * -15, -15, 15));
                 cast.transform.localScale = new Vector3(scale * 1.12f, scale * 0.3f, 1);
+                if (PinCastToFoot) cast.transform.position -= cast.transform.TransformVector(WorldSpriteGrounding.Foot(silhouette));
                 cast.color = new Color(0.008f, 0.01f, 0.025f, strength * 0.5f / softness);
-                cast.sortingOrder = 405;
+                cast.sortingOrder = SortingBase;
             }
         }
         public void Hide() { if (contact != null) contact.enabled = false; if (penumbra != null) penumbra.enabled = false; if (cast != null) cast.enabled = false; }

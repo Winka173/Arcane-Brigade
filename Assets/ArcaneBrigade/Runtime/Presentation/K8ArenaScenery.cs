@@ -26,6 +26,12 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (owner == null || owner.Session == null || owner.Simulation == null) return;
+            // ArenaController instantiates the arena after presentation components are configured.
+            if (floor == null)
+            {
+                GameObject ground = GameObject.Find("HD_TiledFloor");
+                if (ground != null) floor = ground.GetComponent<MeshRenderer>().material;
+            }
             int next = (owner.Session.State.Wave - 1) / 4 % Palettes.Length;
             if (theme != next)
             {
@@ -41,6 +47,7 @@ namespace ArcaneBrigade
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
             Color target = Color.Lerp(Palettes[theme], new Color(0.28f, 0.17f, 0.37f), owner.Shop != null && owner.Shop.Special ? 0.55f : 0);
             if (owner.Simulation.BossDefeated) target = Color.Lerp(target, new Color(0.2f, 0.34f, 0.31f), 0.28f);
+            target = NightmareRules.FloorTint(target,NightmareRules.Depth(owner.Session.State.Wave),owner.Session.State.Nightmare?.CustomerDefeated == true && !owner.Session.State.Endless);
             palette = Color.Lerp(palette, target, reduced ? 1 : 1 - Mathf.Exp(-Time.deltaTime * 0.8f));
             if (floor != null)
             {
@@ -50,6 +57,11 @@ namespace ArcaneBrigade
                 floor.SetColor("_BaseColor", palette); floor.SetFloat("_Detail", 0.54f);
                 floor.SetVector("_ArenaSize", owner.WorldBounds);
                 floor.SetFloat("_StageTime", reduced ? 0 : owner.PresentationClock);
+                if (OctoberArtwork.Current != null)
+                {
+                    floor.SetTexture("_NightmareFloor", OctoberArtwork.Current.Floor);
+                    floor.SetFloat("_NightmareStrength", owner.Session.State.Wave >= 11 ? 1 : 0);
+                }
             }
         }
 

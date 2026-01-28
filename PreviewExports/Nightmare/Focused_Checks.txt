@@ -1,0 +1,223 @@
+PASS Original scenery, boss and ending illustrations imported
+PASS Story boss separate from ordinary rotation and optional Keeper
+PASS Large original English dialogue library
+PASS Deeper melody thins without muting the base; dawn restores clarity
+PASS Legacy run gains narrative defaults without inventing an ending
+PASS Bounded nightmare depth 1
+PASS Slow play does not worsen depth 1
+PASS Depth-aware merchant copy 1/Enter
+PASS Depth-aware merchant copy 1/Inspect
+PASS Depth-aware merchant copy 1/Buy
+PASS Depth-aware merchant copy 1/BloodBuy
+PASS Depth-aware merchant copy 1/Denied
+PASS Depth-aware merchant copy 1/Reroll
+PASS Depth-aware merchant copy 1/Fuse
+PASS Depth-aware merchant copy 1/Leave
+PASS Bounded nightmare depth 4
+PASS Slow play does not worsen depth 4
+PASS Depth-aware merchant copy 4/Enter
+PASS Depth-aware merchant copy 4/Inspect
+PASS Depth-aware merchant copy 4/Buy
+PASS Depth-aware merchant copy 4/BloodBuy
+PASS Depth-aware merchant copy 4/Denied
+PASS Depth-aware merchant copy 4/Reroll
+PASS Depth-aware merchant copy 4/Fuse
+PASS Depth-aware merchant copy 4/Leave
+PASS Bounded nightmare depth 5
+PASS Slow play does not worsen depth 5
+PASS Depth-aware merchant copy 5/Enter
+PASS Depth-aware merchant copy 5/Inspect
+PASS Depth-aware merchant copy 5/Buy
+PASS Depth-aware merchant copy 5/BloodBuy
+PASS Depth-aware merchant copy 5/Denied
+PASS Depth-aware merchant copy 5/Reroll
+PASS Depth-aware merchant copy 5/Fuse
+PASS Depth-aware merchant copy 5/Leave
+PASS Bounded nightmare depth 8
+PASS Slow play does not worsen depth 8
+PASS Depth-aware merchant copy 8/Enter
+PASS Depth-aware merchant copy 8/Inspect
+PASS Depth-aware merchant copy 8/Buy
+PASS Depth-aware merchant copy 8/BloodBuy
+PASS Depth-aware merchant copy 8/Denied
+PASS Depth-aware merchant copy 8/Reroll
+PASS Depth-aware merchant copy 8/Fuse
+PASS Depth-aware merchant copy 8/Leave
+PASS Bounded nightmare depth 9
+PASS Slow play does not worsen depth 9
+PASS Depth-aware merchant copy 9/Enter
+PASS Depth-aware merchant copy 9/Inspect
+PASS Depth-aware merchant copy 9/Buy
+PASS Depth-aware merchant copy 9/BloodBuy
+PASS Depth-aware merchant copy 9/Denied
+PASS Depth-aware merchant copy 9/Reroll
+PASS Depth-aware merchant copy 9/Fuse
+PASS Depth-aware merchant copy 9/Leave
+PASS Bounded nightmare depth 12
+PASS Slow play does not worsen depth 12
+PASS Depth-aware merchant copy 12/Enter
+PASS Depth-aware merchant copy 12/Inspect
+PASS Depth-aware merchant copy 12/Buy
+PASS Depth-aware merchant copy 12/BloodBuy
+PASS Depth-aware merchant copy 12/Denied
+PASS Depth-aware merchant copy 12/Reroll
+PASS Depth-aware merchant copy 12/Fuse
+PASS Depth-aware merchant copy 12/Leave
+PASS Bounded nightmare depth 13
+PASS Slow play does not worsen depth 13
+PASS Depth-aware merchant copy 13/Enter
+PASS Depth-aware merchant copy 13/Inspect
+PASS Depth-aware merchant copy 13/Buy
+PASS Depth-aware merchant copy 13/BloodBuy
+PASS Depth-aware merchant copy 13/Denied
+PASS Depth-aware merchant copy 13/Reroll
+PASS Depth-aware merchant copy 13/Fuse
+PASS Depth-aware merchant copy 13/Leave
+PASS Bounded nightmare depth 16
+PASS Slow play does not worsen depth 16
+PASS Depth-aware merchant copy 16/Enter
+PASS Depth-aware merchant copy 16/Inspect
+PASS Depth-aware merchant copy 16/Buy
+PASS Depth-aware merchant copy 16/BloodBuy
+PASS Depth-aware merchant copy 16/Denied
+PASS Depth-aware merchant copy 16/Reroll
+PASS Depth-aware merchant copy 16/Fuse
+PASS Depth-aware merchant copy 16/Leave
+PASS Bounded nightmare depth 17
+PASS Slow play does not worsen depth 17
+PASS Depth-aware merchant copy 17/Enter
+PASS Depth-aware merchant copy 17/Inspect
+PASS Depth-aware merchant copy 17/Buy
+PASS Depth-aware merchant copy 17/BloodBuy
+PASS Depth-aware merchant copy 17/Denied
+PASS Depth-aware merchant copy 17/Reroll
+PASS Depth-aware merchant copy 17/Fuse
+PASS Depth-aware merchant copy 17/Leave
+PASS Bounded nightmare depth 20
+PASS Slow play does not worsen depth 20
+PASS Depth-aware merchant copy 20/Enter
+PASS Depth-aware merchant copy 20/Inspect
+PASS Depth-aware merchant copy 20/Buy
+PASS Depth-aware merchant copy 20/BloodBuy
+PASS Depth-aware merchant copy 20/Denied
+PASS Depth-aware merchant copy 20/Reroll
+PASS Depth-aware merchant copy 20/Fuse
+PASS Depth-aware merchant copy 20/Leave
+PASS Bounded nightmare depth 500
+PASS Slow play does not worsen depth 500
+PASS Depth-aware merchant copy 500/Enter
+PASS Depth-aware merchant copy 500/Inspect
+PASS Depth-aware merchant copy 500/Buy
+PASS Depth-aware merchant copy 500/BloodBuy
+PASS Depth-aware merchant copy 500/Denied
+PASS Depth-aware merchant copy 500/Reroll
+PASS Depth-aware merchant copy 500/Fuse
+PASS Depth-aware merchant copy 500/Leave
+PASS Final customer available without any secret visits
+PASS Narrative does not consume economy RNG
+PASS Six actual non-projectile customer attack sequences execute
+PASS Customer retains six signature sequences; only the new telegraphed encore adds projectiles
+PASS Pause freezes final battle
+PASS Customer victory opens dawn rather than bypassing ending
+PASS Story identity cannot corrupt normal boss discovery validation
+PASS Endless cannot skip unseen ending
+PASS New ending cannot bypass the farewell choice
+PASS Ordinary ending choice needs no secret events
+PASS Ending page without secrets 0
+PASS Ending progress round-trips 0
+PASS Advance ending once 0
+PASS Ending page without secrets 1
+PASS Ending progress round-trips 1
+PASS Advance ending once 1
+PASS Ending page without secrets 2
+PASS Ending progress round-trips 2
+PASS Advance ending once 2
+PASS Ending page without secrets 3
+PASS Ending progress round-trips 3
+PASS Advance ending once 3
+PASS Completed ending cannot be claimed repeatedly
+PASS Explicit endless continuation after ending
+PASS No mandatory final customer loop in endless
+PASS Specific remembered outcome LostProperty/0
+PASS Late narrative room connection LostProperty/0
+PASS Choice memory persists LostProperty/0
+PASS Specific remembered outcome LostProperty/1
+PASS Late narrative room connection LostProperty/1
+PASS Choice memory persists LostProperty/1
+PASS Specific remembered outcome LostProperty/2
+PASS Late narrative room connection LostProperty/2
+PASS Choice memory persists LostProperty/2
+PASS Specific remembered outcome ImpossibleTailor/0
+PASS Late narrative room connection ImpossibleTailor/0
+PASS Tailor resolved: repaired shelf retains its familiar form
+PASS Choice memory persists ImpossibleTailor/0
+PASS Specific remembered outcome ImpossibleTailor/1
+PASS Late narrative room connection ImpossibleTailor/1
+PASS Tailor resolved: repaired shelf retains its familiar form
+PASS Choice memory persists ImpossibleTailor/1
+PASS Specific remembered outcome ImpossibleTailor/2
+PASS Late narrative room connection ImpossibleTailor/2
+PASS Tailor resolved: repaired shelf retains its familiar form
+PASS Choice memory persists ImpossibleTailor/2
+PASS Specific remembered outcome Understudy/0
+PASS Late narrative room connection Understudy/0
+PASS Reflection resolved: familiar window remains clear
+PASS Choice memory persists Understudy/0
+PASS Specific remembered outcome Understudy/1
+PASS Late narrative room connection Understudy/1
+PASS Reflection resolved: familiar window remains clear
+PASS Choice memory persists Understudy/1
+PASS Specific remembered outcome Understudy/2
+PASS Late narrative room connection Understudy/2
+PASS Reflection resolved: familiar window remains clear
+PASS Choice memory persists Understudy/2
+PASS Specific remembered outcome ContrabandTrain/0
+PASS Late narrative room connection ContrabandTrain/0
+PASS Choice memory persists ContrabandTrain/0
+PASS Specific remembered outcome ContrabandTrain/1
+PASS Late narrative room connection ContrabandTrain/1
+PASS Choice memory persists ContrabandTrain/1
+PASS Specific remembered outcome ContrabandTrain/2
+PASS Late narrative room connection ContrabandTrain/2
+PASS Choice memory persists ContrabandTrain/2
+PASS Specific remembered outcome ThirteenthHour/0
+PASS Late narrative room connection ThirteenthHour/0
+PASS Choice memory persists ThirteenthHour/0
+PASS Specific remembered outcome ThirteenthHour/1
+PASS Late narrative room connection ThirteenthHour/1
+PASS Choice memory persists ThirteenthHour/1
+PASS Specific remembered outcome ThirteenthHour/2
+PASS Late narrative room connection ThirteenthHour/2
+PASS Choice memory persists ThirteenthHour/2
+PASS Specific remembered outcome SleepingGarden/0
+PASS Late narrative room connection SleepingGarden/0
+PASS Choice memory persists SleepingGarden/0
+PASS Specific remembered outcome SleepingGarden/1
+PASS Late narrative room connection SleepingGarden/1
+PASS Choice memory persists SleepingGarden/1
+PASS Specific remembered outcome SleepingGarden/2
+PASS Late narrative room connection SleepingGarden/2
+PASS Choice memory persists SleepingGarden/2
+PASS Specific remembered outcome EmptyTheatre/0
+PASS Late narrative room connection EmptyTheatre/0
+PASS Theatre resolved: curtain does not become an eye
+PASS Choice memory persists EmptyTheatre/0
+PASS Specific remembered outcome EmptyTheatre/1
+PASS Late narrative room connection EmptyTheatre/1
+PASS Theatre resolved: curtain does not become an eye
+PASS Choice memory persists EmptyTheatre/1
+PASS Specific remembered outcome EmptyTheatre/2
+PASS Late narrative room connection EmptyTheatre/2
+PASS Theatre resolved: curtain does not become an eye
+PASS Choice memory persists EmptyTheatre/2
+PASS Specific remembered outcome DeadLetters/0
+PASS Late narrative room connection DeadLetters/0
+PASS Choice memory persists DeadLetters/0
+PASS Specific remembered outcome DeadLetters/1
+PASS Late narrative room connection DeadLetters/1
+PASS Choice memory persists DeadLetters/1
+PASS Specific remembered outcome DeadLetters/2
+PASS Late narrative room connection DeadLetters/2
+PASS Choice memory persists DeadLetters/2
+PASS Rescue, letter and optional Keeper each alter the ending
+PASS Malformed narrative journal rejected

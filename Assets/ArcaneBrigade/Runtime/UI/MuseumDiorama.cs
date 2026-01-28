@@ -15,7 +15,12 @@ namespace ArcaneBrigade
         private UnitDefinition source;
         private int tier;
         private float triggered = -100;
-        public int Pose { get; set; }
+        private int pose;
+        public int Pose
+        {
+            get => pose;
+            set { if (pose != value) { pose = value; triggered = -100; } }
+        }
         public int BrokenMask { get; set; }
         public void Draw(Rect rect, UnitDefinition unit, CheckpointCatalog catalog, int stars)
         {
@@ -23,6 +28,11 @@ namespace ArcaneBrigade
             if (Event.current.type == EventType.Repaint)
             {
                 float time = Time.unscaledTime;
+                if (definition.IsBoss)
+                {
+                    state.Health = Pose == 4 ? definition.Health * Mathf.Lerp(.95f, .15f, Mathf.Repeat(time * .12f, 1)) : definition.Health;
+                    state.BossVolley = Mathf.FloorToInt(time / 2.4f) % 6;
+                }
                 state.PreviousPosition = state.Position;
                 state.Position = Pose == 1 && !PresentationSettings.ReducedMotion ? new Vector2(Mathf.Sin(time * 1.5f) * 0.1f, 0) : Vector2.zero;
                 state.Velocity = Pose == 1 ? Vector2.right : Vector2.zero;
@@ -52,6 +62,7 @@ namespace ArcaneBrigade
                 }
                 else state.LastHit = -100;
                 visual.ReducedMotion = PresentationSettings.ReducedMotion;
+                visual.PreviewActing(!definition.IsBoss && Pose >= 4 ? Pose - 4 : -1, Mathf.Repeat(time * .8f, 1));
                 visual.Display(time, 1);
                 Renderer[] renderers = root.GetComponentsInChildren<Renderer>(true);
                 try
@@ -77,10 +88,10 @@ namespace ArcaneBrigade
             camera = cameraObject.AddComponent<Camera>(); camera.enabled = false; camera.orthographic = true;
             camera.orthographicSize = Mathf.Max(0.65f, definition.BodyHeight * 0.7f);
             camera.cullingMask = 1 << 31; camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = Color.clear;
-            texture = new RenderTexture(768, 384, 16, RenderTextureFormat.ARGB32) { antiAliasing = 4, name = "CollectionPreview" };
+            texture = new RenderTexture(1024, 512, 16, RenderTextureFormat.ARGB32) { antiAliasing = 4, name = "CollectionPreview" };
             texture.Create(); camera.targetTexture = texture;
             var actor = new GameObject("ExhibitActor"); actor.transform.SetParent(root.transform, false);
-            visual = actor.AddComponent<UnitVisual>(); visual.CreateHierarchy(null); visual.Bind(state, catalog);
+            visual = actor.AddComponent<UnitVisual>(); visual.CreateHierarchy(null); visual.Bind(state, catalog, true);
             foreach (Renderer renderer in root.GetComponentsInChildren<Renderer>(true)) { renderer.gameObject.layer = 31; renderer.forceRenderingOff = true; }
         }
         public void Dispose()

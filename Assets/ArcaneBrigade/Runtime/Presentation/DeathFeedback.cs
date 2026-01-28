@@ -34,6 +34,14 @@ namespace ArcaneBrigade
             public BodyMaterial Material;
             public int Identity;
             public bool Boss;
+            public Sprite[] DefeatFrames;
+            public float SourceHeight;
+            public float SourcePivot;
+            public bool Species;
+            public EnsembleGesture Gesture;
+            public int Evolution;
+            public float SpeciesIdentity;
+            public readonly MaterialPropertyBlock Properties = new MaterialPropertyBlock();
             public BossFinaleVisual Finale;
             public BossPartDeathScatter[] BossDebris = System.Array.Empty<BossPartDeathScatter>();
         }
@@ -92,6 +100,8 @@ namespace ArcaneBrigade
             remnant.Root.position = state.Position;
             remnant.BodyPosition = remnant.Body.transform.localPosition;
             remnant.BodyScale = remnant.Body.transform.localScale;
+            remnant.SourceHeight = remnant.Body.sprite.bounds.size.y;
+            remnant.SourcePivot = remnant.Body.sprite.pivot.y / remnant.Body.sprite.rect.height;
             remnant.BodyRotation = remnant.Body.transform.localRotation;
             remnant.BodyColor = state.Definition.Tint;
             remnant.ShadowColor = remnant.Shadow.color;
@@ -104,6 +114,13 @@ namespace ArcaneBrigade
             remnant.Material = state.Definition.Material;
             remnant.Identity = state.Definition.BossPattern + state.Id % 3;
             remnant.Boss = state.Definition.IsBoss;
+            remnant.DefeatFrames = visual.ActingArt?.Defeat;
+            ExpandedPerformanceEntry reaction = ExpandedPerformanceLibrary.Reaction(state.Definition);
+            if (reaction != null) remnant.DefeatFrames = new[] { reaction.Frames[2], reaction.Frames[3] };
+            remnant.Species = state.Faction == Faction.Enemy && !state.Definition.IsBoss;
+            remnant.Gesture = EnsembleMotion.For(state.Definition);
+            remnant.Evolution = state.Definition.EvolutionStage;
+            remnant.SpeciesIdentity = AnimationTiming.Phase(state.Definition.Id);
             remnant.Duration = remnant.Boss ? DurationBoss : state.Faction == Faction.Champion ? 0.95f : 0.65f;
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
@@ -140,6 +157,9 @@ namespace ArcaneBrigade
         private static void Draw(Remnant remnant)
         {
             if (remnant.Boss) { remnant.Finale.Draw(remnant.Age); return; }
+            bool authoredDefeat = !PresentationSettings.ReducedMotion && remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0;
+            if (authoredDefeat)
+                remnant.Body.sprite = CharacterActingEntry.Frame(remnant.DefeatFrames, remnant.Age / Mathf.Max(.01f, remnant.Duration * .65f));
             float progress = Mathf.Clamp01(remnant.Age / remnant.Duration);
             float kick = Mathf.Sin(Mathf.Clamp01(progress / 0.25f) * Mathf.PI);
             float collapse = Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.16f) / 0.52f));
@@ -147,16 +167,32 @@ namespace ArcaneBrigade
             if (remnant.Material == BodyMaterial.Glass) collapse = Mathf.Clamp01(collapse * 1.5f);
             float alpha = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.45f) / 0.5f));
             remnant.Root.position = (Vector3)(remnant.Position + remnant.Direction * (0.22f * Mathf.SmoothStep(0, 1, progress)));
-            remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (kick * 0.17f * remnant.Weight - collapse * 0.09f);
+            float pivotOffset = (remnant.Body.sprite.pivot.y / remnant.Body.sprite.rect.height - remnant.SourcePivot) * remnant.SourceHeight * remnant.BodyScale.y;
+            remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (pivotOffset + kick * 0.17f * remnant.Weight - collapse * 0.09f);
             Vector2 shape = MaterialDeathPose.Shape(remnant.Material, collapse);
-            remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(shape.x, shape.y, 1));
+            if (authoredDefeat) shape = Vector2.Lerp(Vector2.one, shape, .22f);
+            float poseScale = remnant.SourceHeight / Mathf.Max(.01f, remnant.Body.sprite.bounds.size.y);
+            remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(shape.x * poseScale, shape.y * poseScale, 1));
             float materialTilt = remnant.Material == BodyMaterial.Metal ? progress * 70 : remnant.Material == BodyMaterial.Fabric ? Mathf.Sin(progress * Mathf.PI) * 12 : kick * 14 + collapse * 25;
+            if (authoredDefeat) materialTilt *= .2f;
             remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, (remnant.Direction.x < 0 ? -1 : 1) * materialTilt);
+            if (remnant.Species)
+            {
+                Vector3 acting = SpeciesDefeatPerformance.Drift(remnant.Gesture, progress, remnant.SpeciesIdentity, remnant.Evolution, PresentationSettings.ReducedMotion);
+                remnant.Body.transform.localPosition += new Vector3(acting.x, acting.y, 0);
+                remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, acting.z);
+                remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(Mathf.Lerp(1, shape.x, .22f) * poseScale, Mathf.Lerp(1, shape.y, .22f) * poseScale, 1));
+                remnant.Properties.Clear();
+                Rect rectangle = remnant.Body.sprite.rect; Texture texture = remnant.Body.sprite.texture;
+                remnant.Properties.SetVector("_UvRect", new Vector4(rectangle.x / texture.width, rectangle.y / texture.height, rectangle.width / texture.width, rectangle.height / texture.height));
+                remnant.Properties.SetVector("_Dissolve", SpeciesDefeatPerformance.Dissolve(remnant.Gesture, progress, remnant.SpeciesIdentity, remnant.Evolution, PresentationSettings.ReducedMotion));
+                remnant.Body.SetPropertyBlock(remnant.Properties);
+            }
             remnant.Body.color = PresentationSettings.ReducedFlashes ? remnant.BodyColor : Color.Lerp(Color.white, remnant.BodyColor, Mathf.Clamp01(progress / 0.09f));
             Color bodyColor = remnant.Body.color; bodyColor.a = alpha; remnant.Body.color = bodyColor;
             remnant.Shadow.transform.localScale = remnant.ShadowScale * (1 - collapse * 0.45f);
             Color shadowColor = remnant.ShadowColor; shadowColor.a *= alpha; remnant.Shadow.color = shadowColor;
-            remnant.Grounded.Display(remnant.Body.sprite, new Vector2(remnant.Root.position.x, remnant.Position.y - remnant.BodyScale.y * remnant.Body.sprite.bounds.size.y * 0.5f), remnant.BodyScale.x * remnant.Body.sprite.bounds.size.x * 0.75f, kick * 0.17f, 0.34f * alpha);
+            remnant.Grounded.Display(remnant.Body.sprite, new Vector2(remnant.Root.position.x, remnant.Position.y - remnant.BodyScale.y * remnant.SourceHeight * 0.5f), remnant.BodyScale.x * poseScale * remnant.Body.sprite.bounds.size.x * 0.75f, kick * 0.17f, 0.34f * alpha);
             remnant.Grip.localPosition = remnant.GripPosition + new Vector3(remnant.Direction.x * progress * 0.22f, Mathf.Sin(progress * Mathf.PI) * 0.18f - progress * 0.20f, 0);
             remnant.Grip.localRotation = remnant.GripRotation * Quaternion.Euler(0, 0, progress * 80 * (remnant.Direction.x < 0 ? -1 : 1));
             SetAlpha(remnant.Weapon, alpha); SetAlpha(remnant.Hand, alpha); SetAlpha(remnant.DrawHand, alpha);

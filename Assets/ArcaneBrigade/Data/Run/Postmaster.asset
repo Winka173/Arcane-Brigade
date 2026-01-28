@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 1711105860, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: -357533613, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: 711971618, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: 4358454417d49914b997c2cf51c220fc, type: 2}
   Health: 110
   Speed: 3.65
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -39,6 +42,10 @@ MonoBehaviour:
   PassiveStrength: 2
   Description: A wandering parcel launcher. Collected gold charges automatic express
     volleys.
+  ReferenceHero: Box Shell
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers:
   - Effect: 15
     Scope: 3
@@ -69,6 +76,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

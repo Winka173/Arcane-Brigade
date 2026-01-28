@@ -22,6 +22,7 @@ namespace ArcaneBrigade
         private readonly MuseumDiorama diorama = new MuseumDiorama();
         private int previewTier = 1;
         private float touchedAt = -100;
+        private int poseCount = 4;
         public void Close() => diorama.Dispose();
         public void SetPreview(int stars, int pose) { previewTier = Mathf.Clamp(stars, 1, 3); diorama.Pose = Mathf.Clamp(pose, 0, 3); }
         public void SelectExhibitForDiagnostics(int index)
@@ -33,7 +34,7 @@ namespace ArcaneBrigade
         public void SelectTab(int value) { int next = Mathf.Clamp(value, 0, 4); if (tab != next) CheckpointAudio.PlayInterfaceId("ui.tab"); tab = next; selection = 0; scroll = detailScroll = Vector2.zero; }
         public void HandleInput()
         {
-            if ((tab == 2 || tab == 4) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) diorama.Pose = (diorama.Pose + 1) % 4;
+            if ((tab == 2 || tab == 4) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) diorama.Pose = (diorama.Pose + 1) % poseCount;
             if (tab == 2 && Input.GetKeyDown(KeyCode.T)) previewTier = previewTier % 3 + 1;
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.JoystickButton5)) SelectTab((tab + 1) % 5);
             if (Input.GetKeyDown(KeyCode.JoystickButton4)) SelectTab((tab + 4) % 5);
@@ -53,9 +54,9 @@ namespace ArcaneBrigade
                     exhibits.Add(new Exhibit { Id = weapon.Id, Name = weapon.Id, Icon = weapon.Sprite, Seen = profile.SeenWeapons.Contains(weapon.Id), Detail = tiers + "\n\n" + weapon.Kind + " / " + weapon.Element + "\nBase: " + weapon.Damage.ToString("0.#") + " damage · cycle " + weapon.Cooldown.ToString("0.##") + "s · range " + weapon.Range.ToString("0.#") + "\n\n" + SignatureDescription.Describe(weapon, 1) + "\n\nSandbox can preview other tiers; previews do not count as ownership." });
                 }
             if (tab == 1)
-                foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = item.Description + "\n\n" + (item.Stacking == StackPolicy.Unique ? "Unique item." : "Stacks for this run.") });
+                foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = RelicDescriptions.Describe(item,1,catalog) });
             if (tab == 2)
-                foreach (UnitDefinition unit in catalog.Companions) exhibits.Add(new Exhibit { Id = unit.Id, Name = unit.DisplayName, Icon = unit.Body, Unit = unit, Seen = profile.SeenUnits.Contains(unit.Id), Detail = unit.Description + "\nWeapons roll on purchase, not fixed by body." });
+                foreach (UnitDefinition unit in catalog.Companions) exhibits.Add(new Exhibit { Id = unit.Id, Name = unit.DisplayName, Icon = unit.Body, Unit = unit, Seen = profile.SeenUnits.Contains(unit.Id), Detail = CompanionDescriptions.Describe(unit,1,catalog.TierSupportMultiplier) });
             if (tab == 3)
                 foreach (BuildLinkRule link in catalog.BuildLinks)
                     if (link.Id.StartsWith("signature-", System.StringComparison.Ordinal)) exhibits.Add(new Exhibit { Id = link.Id, Name = link.Name, Seen = profile.SeenChains.Contains(link.Id), Detail = link.Description + "\n\nDiscoveries require recorded activations/damage/healing, not merely equipping or viewing a graph." });
@@ -97,18 +98,24 @@ namespace ArcaneBrigade
                     float time = Time.unscaledTime;
                     if (exhibit.Unit != null)
                     {
+                        string[] poses = exhibit.Unit.IsBoss ? new[] { "IDLE", "WALK", "ATTACK", "HIT", "PHASE" } : new[] { "IDLE", "WALK", "ATTACK", "HIT" };
+                        if (!exhibit.Unit.IsBoss && CharacterActingLibrary.Current?.Find(exhibit.Unit.Id) != null) poses = new[] { "IDLE", "WALK", "ATTACK", "HIT", "LOOK", "CHEER", "FLINCH", "TIRED" };
+                        poseCount = poses.Length;
+                        if (diorama.Pose >= poseCount) diorama.Pose = 0;
                         diorama.Draw(new Rect(860, 239, 335, 112), exhibit.Unit, catalog.Arena, exhibit.Unit.IsBoss ? 1 : previewTier);
-                        string[] poses = { "IDLE", "WALK", "ATTACK", "HIT" };
                         for (int pose = 0; pose < poses.Length; pose++)
                         {
                             Color previousColor = GUI.color;
                             if (diorama.Pose == pose) GUI.color = new Color(1, 0.78f, 0.55f);
-                            if (GUI.Button(new Rect(860 + pose * 85, 354, 78, 28), poses[pose], poseControls)) diorama.Pose = pose;
+                            float poseWidth = 335f / Mathf.Min(5, poses.Length);
+                            float poseY = poses.Length > 5 ? 354 + pose / 4 * 30 : 354;
+                            if (poses.Length > 5) poseWidth = 335f / 4;
+                            if (GUI.Button(new Rect(860 + (poses.Length > 5 ? pose % 4 : pose) * poseWidth, poseY, poseWidth - 5, 26), poses[pose], poseControls)) diorama.Pose = pose;
                             GUI.color = previousColor;
                         }
                         if (!exhibit.Unit.IsBoss)
                             for (int stars = 1; stars <= 3; stars++)
-                                if (GUI.Button(new Rect(860 + (stars - 1) * 114, 388, 107, 28), stars + " STAR" + (stars > 1 ? "S" : ""), controls)) previewTier = stars;
+                                if (GUI.Button(new Rect(860 + (stars - 1) * 114, poses.Length > 5 ? 415 : 388, 107, 24), stars + " STAR" + (stars > 1 ? "S" : ""), controls)) previewTier = stars;
                         if (exhibit.Unit.IsBoss)
                         {
                             BossAnatomyEntry anatomy = BossAnatomy.For(exhibit.Unit);
@@ -146,7 +153,7 @@ namespace ArcaneBrigade
                     }
                 }
                 else diorama.Dispose();
-                float titleTop = exhibit.Unit != null && exhibit.Seen ? 428 : 365;
+                float titleTop = exhibit.Unit != null && exhibit.Seen ? poseCount > 5 ? 450 : 428 : 365;
                 string heading = exhibit.Seen ? exhibit.Name : "Empty shelf";
                 float titleHeight = Mathf.Clamp(title.CalcHeight(new GUIContent(heading), 323), 24, 52);
                 GUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title);

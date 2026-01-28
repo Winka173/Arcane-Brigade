@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); }
+        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); ClearBuildMorphs(); ClearOctoberBosses(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
@@ -112,7 +112,7 @@ namespace ArcaneBrigade
                 }
                 if (nearest != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (nearest.Position - projectile.Position).normalized * projectile.Weapon.ProjectileSpeed, Mathf.Clamp01(delta * 4));
             }
-            if (family != ExpandedWeapon.Fish || projectile.Faction == Faction.Enemy) return 0;
+            if ((family != ExpandedWeapon.Fish && !projectile.Weapon.SecretRecall) || projectile.Faction == Faction.Enemy) return 0;
             if (projectile.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)
             {
                 if (projectile.Age < 0.55f) return 0;

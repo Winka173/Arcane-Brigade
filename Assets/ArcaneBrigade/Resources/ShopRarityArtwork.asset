@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2881a45dd0c1742b7ba0de69af5609, type: 3}
+  m_Name: ShopRarityArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.ShopRarityArtwork
+  Frames:
+  - {fileID: -2067359381, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 1032099409, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: -1210699834, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: -866607283, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 136316761, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 1455300981, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: -1588800810, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 472103275, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 258885943, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: -216058251, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 966606977, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 167480690, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: -700913876, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 881920720, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: -520898589, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}
+  - {fileID: 1458443109, guid: 98c0b00e78d83fa4ca8095c9d9b1f298, type: 3}

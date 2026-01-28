@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: BristleBallMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  Walk:
+  - {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: 793412523, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: 793412523, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  Windup:
+  - {fileID: 819435851, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: 819435851, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  Release:
+  - {fileID: 869771792, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: 869771792, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  Recovery:
+  - {fileID: 869771792, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+  - {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}

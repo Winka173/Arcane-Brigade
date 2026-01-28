@@ -39,14 +39,23 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - hearth
+  - fruit
   Passive: 4
   PassiveStrength: 0.8
-  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
-
-    Your Armor +0.025,
-    Movement speed -0.5%
-
-    Slow nearby foes'
+  Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nFruit Basket companions
+    gain 8% attack speed per Applehead talent, up to 24%. Does not affect the hero.
+    Stacks by talent bodies/memories, not star level.\r\n\nSUPPORT WHILE OWNED\nChampion
+    / Armor: +0.025\nChampion / Movement speed: -0.5%\nTier 1/2/3 traits \xD71/2/4;
+    merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s,
+    chill enemies within 2.5 units: 1.5s normally, 0.6s on bosses.\r\n\nNamed talents
+    count bodies and absorbed memories; their stated percentages are not multiplied
+    by star level unless explicitly stated. Listed support modifiers scale separately
+    at 1/2/4.\r\nBonds: hearth, fruit. Immortal. Weapon rolls on recruitment; three
+    equal-species/equal-star bodies merge unless the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Applehead
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -62,7 +71,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

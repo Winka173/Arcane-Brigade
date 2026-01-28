@@ -62,7 +62,7 @@ namespace ArcaneBrigade
             GUIStyle number = numericStyle ?? (numericStyle = ArcadeTypography.Style(19, false, true));
             heading.normal.textColor = body.normal.textColor = number.normal.textColor = ArcadeSkin.Ink;
             GUI.Label(new Rect(rectangle.x + 24, rectangle.y + 15, rectangle.width - 48, 45), nickname ?? RunMeta.Nickname(run), heading);
-            string summary = (run.Endless ? "ENDLESS" : "JOURNEY") + " / " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, 4)] + " / " + (run.Phase == SessionPhase.Victory ? "DAWN" : "CLOSED");
+            string summary = (run.Endless ? "ENDLESS" : "JOURNEY") + " / " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " / " + (run.Phase == SessionPhase.Victory ? "DAWN" : "CLOSED");
             GUI.Label(new Rect(rectangle.x + 24, rectangle.y + 65, rectangle.width - 48, 35), summary, body);
             GUI.Label(new Rect(rectangle.x + 24, rectangle.y + 105, rectangle.width - 48, 55), "SCORE " + (frozenScore < 0 ? RunMeta.Score(run) : frozenScore).ToString("N0") + "  ·  WAVE " + run.Wave + "\n" + run.TotalKills + " kills / " + run.BossKills + " bosses / " + (run.CombatSeconds / 60).ToString("0.0") + " minutes", number);
             ArcadeSkin.Divider(new Rect(rectangle.x + 24, rectangle.y + 170, rectangle.width - 48, 2), ArcadeSkin.Ink);

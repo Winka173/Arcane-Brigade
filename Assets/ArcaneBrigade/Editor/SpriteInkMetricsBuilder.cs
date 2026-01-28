@@ -77,6 +77,10 @@ namespace ArcaneBrigade.Editor
                 foreach (Sprite frame in unit.AnimationFrames) if (frame != null) sprites.Add(frame);
             }
             foreach (Sprite stand in Resources.Load<CarnivalStageAssets>("CarnivalStageAssets").Stands) sprites.Add(stand);
+            NightmareAssets nightmare = NightmareAssets.Current;
+            if (nightmare != null) foreach (Sprite sprite in nightmare.Scenery) if (sprite != null) sprites.Add(sprite);
+            GroundedSceneryArtwork scenery = GroundedSceneryArtwork.Current;
+            if (scenery != null) foreach (Sprite sprite in scenery.Cabinets) if (sprite != null) sprites.Add(sprite);
             var entries = new List<SpriteInkMetrics.Entry>();
             foreach (var group in sprites.GroupBy(sprite => AssetDatabase.GetAssetPath(sprite.texture)))
             {

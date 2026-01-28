@@ -1,0 +1,575 @@
+PASS Sixteen original rarity animation cells imported
+PASS Aura frame bounds Uncommon
+PASS Four different painted phases Uncommon
+PASS Focused rarity expands Uncommon
+PASS Aura frame bounds Rare
+PASS Four different painted phases Rare
+PASS Focused rarity expands Rare
+PASS Aura frame bounds Mythic
+PASS Four different painted phases Mythic
+PASS Focused rarity expands Mythic
+PASS Aura frame bounds Crimson
+PASS Four different painted phases Crimson
+PASS Focused rarity expands Crimson
+PASS Aura frame bounds Rainbow
+PASS Four different painted phases Rainbow
+PASS Focused rarity expands Rainbow
+PASS Blue purple and gold have distinct painted art
+PASS Two freestanding toy cabinet replacements imported
+PASS Offer focus has visible growth and returns to base
+PASS Offer has an event-driven settling bounce
+PASS Reduced focus is static but visible
+PASS Continue requires a more deliberate close approach
+PASS Exit cannot overlap merchandise focus -1.1/-1
+PASS Exit cannot overlap merchandise focus -1.1/0
+PASS Exit cannot overlap merchandise focus -1.1/1
+PASS Exit cannot overlap merchandise focus -2/-1
+PASS Exit cannot overlap merchandise focus -2/0
+PASS Exit cannot overlap merchandise focus -2/1
+PASS Exit cannot overlap merchandise focus -3/-1
+PASS Exit cannot overlap merchandise focus -3/0
+PASS Exit cannot overlap merchandise focus -3/1
+PASS Continue is separate from optional Keeper entry
+PASS Visible foot remains grounded GroundedCabinet_00/0.3/-12
+PASS Ground placement never accumulates drift GroundedCabinet_00/0.3/-12
+PASS Visible foot remains grounded GroundedCabinet_00/0.3/0
+PASS Ground placement never accumulates drift GroundedCabinet_00/0.3/0
+PASS Visible foot remains grounded GroundedCabinet_00/0.3/12
+PASS Ground placement never accumulates drift GroundedCabinet_00/0.3/12
+PASS Visible foot remains grounded GroundedCabinet_00/1/-12
+PASS Ground placement never accumulates drift GroundedCabinet_00/1/-12
+PASS Visible foot remains grounded GroundedCabinet_00/1/0
+PASS Ground placement never accumulates drift GroundedCabinet_00/1/0
+PASS Visible foot remains grounded GroundedCabinet_00/1/12
+PASS Ground placement never accumulates drift GroundedCabinet_00/1/12
+PASS Visible foot remains grounded GroundedCabinet_00/2.4/-12
+PASS Ground placement never accumulates drift GroundedCabinet_00/2.4/-12
+PASS Visible foot remains grounded GroundedCabinet_00/2.4/0
+PASS Ground placement never accumulates drift GroundedCabinet_00/2.4/0
+PASS Visible foot remains grounded GroundedCabinet_00/2.4/12
+PASS Ground placement never accumulates drift GroundedCabinet_00/2.4/12
+PASS Visible foot remains grounded GroundedCabinet_01/0.3/-12
+PASS Ground placement never accumulates drift GroundedCabinet_01/0.3/-12
+PASS Visible foot remains grounded GroundedCabinet_01/0.3/0
+PASS Ground placement never accumulates drift GroundedCabinet_01/0.3/0
+PASS Visible foot remains grounded GroundedCabinet_01/0.3/12
+PASS Ground placement never accumulates drift GroundedCabinet_01/0.3/12
+PASS Visible foot remains grounded GroundedCabinet_01/1/-12
+PASS Ground placement never accumulates drift GroundedCabinet_01/1/-12
+PASS Visible foot remains grounded GroundedCabinet_01/1/0
+PASS Ground placement never accumulates drift GroundedCabinet_01/1/0
+PASS Visible foot remains grounded GroundedCabinet_01/1/12
+PASS Ground placement never accumulates drift GroundedCabinet_01/1/12
+PASS Visible foot remains grounded GroundedCabinet_01/2.4/-12
+PASS Ground placement never accumulates drift GroundedCabinet_01/2.4/-12
+PASS Visible foot remains grounded GroundedCabinet_01/2.4/0
+PASS Ground placement never accumulates drift GroundedCabinet_01/2.4/0
+PASS Visible foot remains grounded GroundedCabinet_01/2.4/12
+PASS Ground placement never accumulates drift GroundedCabinet_01/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_00/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_00/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_00/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_00/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_00/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_00/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_00/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_00/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_00/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_00/1/0
+PASS Visible foot remains grounded MarketStandsMotion_00/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_00/1/12
+PASS Visible foot remains grounded MarketStandsMotion_00/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_00/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_00/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_00/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_00/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_00/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_01/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_01/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_01/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_01/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_01/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_01/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_01/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_01/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_01/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_01/1/0
+PASS Visible foot remains grounded MarketStandsMotion_01/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_01/1/12
+PASS Visible foot remains grounded MarketStandsMotion_01/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_01/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_01/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_01/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_01/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_01/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_02/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_02/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_02/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_02/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_02/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_02/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_02/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_02/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_02/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_02/1/0
+PASS Visible foot remains grounded MarketStandsMotion_02/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_02/1/12
+PASS Visible foot remains grounded MarketStandsMotion_02/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_02/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_02/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_02/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_02/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_02/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_03/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_03/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_03/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_03/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_03/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_03/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_03/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_03/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_03/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_03/1/0
+PASS Visible foot remains grounded MarketStandsMotion_03/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_03/1/12
+PASS Visible foot remains grounded MarketStandsMotion_03/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_03/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_03/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_03/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_03/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_03/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_04/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_04/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_04/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_04/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_04/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_04/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_04/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_04/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_04/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_04/1/0
+PASS Visible foot remains grounded MarketStandsMotion_04/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_04/1/12
+PASS Visible foot remains grounded MarketStandsMotion_04/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_04/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_04/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_04/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_04/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_04/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_05/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_05/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_05/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_05/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_05/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_05/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_05/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_05/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_05/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_05/1/0
+PASS Visible foot remains grounded MarketStandsMotion_05/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_05/1/12
+PASS Visible foot remains grounded MarketStandsMotion_05/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_05/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_05/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_05/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_05/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_05/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_06/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_06/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_06/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_06/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_06/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_06/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_06/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_06/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_06/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_06/1/0
+PASS Visible foot remains grounded MarketStandsMotion_06/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_06/1/12
+PASS Visible foot remains grounded MarketStandsMotion_06/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_06/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_06/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_06/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_06/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_06/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_07/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_07/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_07/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_07/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_07/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_07/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_07/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_07/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_07/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_07/1/0
+PASS Visible foot remains grounded MarketStandsMotion_07/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_07/1/12
+PASS Visible foot remains grounded MarketStandsMotion_07/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_07/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_07/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_07/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_07/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_07/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_08/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_08/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_08/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_08/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_08/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_08/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_08/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_08/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_08/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_08/1/0
+PASS Visible foot remains grounded MarketStandsMotion_08/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_08/1/12
+PASS Visible foot remains grounded MarketStandsMotion_08/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_08/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_08/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_08/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_08/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_08/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_09/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_09/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_09/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_09/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_09/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_09/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_09/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_09/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_09/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_09/1/0
+PASS Visible foot remains grounded MarketStandsMotion_09/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_09/1/12
+PASS Visible foot remains grounded MarketStandsMotion_09/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_09/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_09/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_09/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_09/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_09/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_10/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_10/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_10/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_10/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_10/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_10/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_10/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_10/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_10/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_10/1/0
+PASS Visible foot remains grounded MarketStandsMotion_10/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_10/1/12
+PASS Visible foot remains grounded MarketStandsMotion_10/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_10/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_10/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_10/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_10/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_10/2.4/12
+PASS Visible foot remains grounded MarketStandsMotion_11/0.3/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_11/0.3/-12
+PASS Visible foot remains grounded MarketStandsMotion_11/0.3/0
+PASS Ground placement never accumulates drift MarketStandsMotion_11/0.3/0
+PASS Visible foot remains grounded MarketStandsMotion_11/0.3/12
+PASS Ground placement never accumulates drift MarketStandsMotion_11/0.3/12
+PASS Visible foot remains grounded MarketStandsMotion_11/1/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_11/1/-12
+PASS Visible foot remains grounded MarketStandsMotion_11/1/0
+PASS Ground placement never accumulates drift MarketStandsMotion_11/1/0
+PASS Visible foot remains grounded MarketStandsMotion_11/1/12
+PASS Ground placement never accumulates drift MarketStandsMotion_11/1/12
+PASS Visible foot remains grounded MarketStandsMotion_11/2.4/-12
+PASS Ground placement never accumulates drift MarketStandsMotion_11/2.4/-12
+PASS Visible foot remains grounded MarketStandsMotion_11/2.4/0
+PASS Ground placement never accumulates drift MarketStandsMotion_11/2.4/0
+PASS Visible foot remains grounded MarketStandsMotion_11/2.4/12
+PASS Ground placement never accumulates drift MarketStandsMotion_11/2.4/12
+PASS Visible foot remains grounded NightmareProp_00/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_00/0.3/-12
+PASS Visible foot remains grounded NightmareProp_00/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_00/0.3/0
+PASS Visible foot remains grounded NightmareProp_00/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_00/0.3/12
+PASS Visible foot remains grounded NightmareProp_00/1/-12
+PASS Ground placement never accumulates drift NightmareProp_00/1/-12
+PASS Visible foot remains grounded NightmareProp_00/1/0
+PASS Ground placement never accumulates drift NightmareProp_00/1/0
+PASS Visible foot remains grounded NightmareProp_00/1/12
+PASS Ground placement never accumulates drift NightmareProp_00/1/12
+PASS Visible foot remains grounded NightmareProp_00/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_00/2.4/-12
+PASS Visible foot remains grounded NightmareProp_00/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_00/2.4/0
+PASS Visible foot remains grounded NightmareProp_00/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_00/2.4/12
+PASS Visible foot remains grounded NightmareProp_01/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_01/0.3/-12
+PASS Visible foot remains grounded NightmareProp_01/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_01/0.3/0
+PASS Visible foot remains grounded NightmareProp_01/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_01/0.3/12
+PASS Visible foot remains grounded NightmareProp_01/1/-12
+PASS Ground placement never accumulates drift NightmareProp_01/1/-12
+PASS Visible foot remains grounded NightmareProp_01/1/0
+PASS Ground placement never accumulates drift NightmareProp_01/1/0
+PASS Visible foot remains grounded NightmareProp_01/1/12
+PASS Ground placement never accumulates drift NightmareProp_01/1/12
+PASS Visible foot remains grounded NightmareProp_01/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_01/2.4/-12
+PASS Visible foot remains grounded NightmareProp_01/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_01/2.4/0
+PASS Visible foot remains grounded NightmareProp_01/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_01/2.4/12
+PASS Visible foot remains grounded NightmareProp_02/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_02/0.3/-12
+PASS Visible foot remains grounded NightmareProp_02/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_02/0.3/0
+PASS Visible foot remains grounded NightmareProp_02/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_02/0.3/12
+PASS Visible foot remains grounded NightmareProp_02/1/-12
+PASS Ground placement never accumulates drift NightmareProp_02/1/-12
+PASS Visible foot remains grounded NightmareProp_02/1/0
+PASS Ground placement never accumulates drift NightmareProp_02/1/0
+PASS Visible foot remains grounded NightmareProp_02/1/12
+PASS Ground placement never accumulates drift NightmareProp_02/1/12
+PASS Visible foot remains grounded NightmareProp_02/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_02/2.4/-12
+PASS Visible foot remains grounded NightmareProp_02/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_02/2.4/0
+PASS Visible foot remains grounded NightmareProp_02/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_02/2.4/12
+PASS Visible foot remains grounded NightmareProp_03/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_03/0.3/-12
+PASS Visible foot remains grounded NightmareProp_03/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_03/0.3/0
+PASS Visible foot remains grounded NightmareProp_03/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_03/0.3/12
+PASS Visible foot remains grounded NightmareProp_03/1/-12
+PASS Ground placement never accumulates drift NightmareProp_03/1/-12
+PASS Visible foot remains grounded NightmareProp_03/1/0
+PASS Ground placement never accumulates drift NightmareProp_03/1/0
+PASS Visible foot remains grounded NightmareProp_03/1/12
+PASS Ground placement never accumulates drift NightmareProp_03/1/12
+PASS Visible foot remains grounded NightmareProp_03/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_03/2.4/-12
+PASS Visible foot remains grounded NightmareProp_03/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_03/2.4/0
+PASS Visible foot remains grounded NightmareProp_03/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_03/2.4/12
+PASS Visible foot remains grounded NightmareProp_04/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_04/0.3/-12
+PASS Visible foot remains grounded NightmareProp_04/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_04/0.3/0
+PASS Visible foot remains grounded NightmareProp_04/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_04/0.3/12
+PASS Visible foot remains grounded NightmareProp_04/1/-12
+PASS Ground placement never accumulates drift NightmareProp_04/1/-12
+PASS Visible foot remains grounded NightmareProp_04/1/0
+PASS Ground placement never accumulates drift NightmareProp_04/1/0
+PASS Visible foot remains grounded NightmareProp_04/1/12
+PASS Ground placement never accumulates drift NightmareProp_04/1/12
+PASS Visible foot remains grounded NightmareProp_04/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_04/2.4/-12
+PASS Visible foot remains grounded NightmareProp_04/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_04/2.4/0
+PASS Visible foot remains grounded NightmareProp_04/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_04/2.4/12
+PASS Visible foot remains grounded NightmareProp_05/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_05/0.3/-12
+PASS Visible foot remains grounded NightmareProp_05/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_05/0.3/0
+PASS Visible foot remains grounded NightmareProp_05/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_05/0.3/12
+PASS Visible foot remains grounded NightmareProp_05/1/-12
+PASS Ground placement never accumulates drift NightmareProp_05/1/-12
+PASS Visible foot remains grounded NightmareProp_05/1/0
+PASS Ground placement never accumulates drift NightmareProp_05/1/0
+PASS Visible foot remains grounded NightmareProp_05/1/12
+PASS Ground placement never accumulates drift NightmareProp_05/1/12
+PASS Visible foot remains grounded NightmareProp_05/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_05/2.4/-12
+PASS Visible foot remains grounded NightmareProp_05/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_05/2.4/0
+PASS Visible foot remains grounded NightmareProp_05/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_05/2.4/12
+PASS Visible foot remains grounded NightmareProp_06/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_06/0.3/-12
+PASS Visible foot remains grounded NightmareProp_06/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_06/0.3/0
+PASS Visible foot remains grounded NightmareProp_06/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_06/0.3/12
+PASS Visible foot remains grounded NightmareProp_06/1/-12
+PASS Ground placement never accumulates drift NightmareProp_06/1/-12
+PASS Visible foot remains grounded NightmareProp_06/1/0
+PASS Ground placement never accumulates drift NightmareProp_06/1/0
+PASS Visible foot remains grounded NightmareProp_06/1/12
+PASS Ground placement never accumulates drift NightmareProp_06/1/12
+PASS Visible foot remains grounded NightmareProp_06/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_06/2.4/-12
+PASS Visible foot remains grounded NightmareProp_06/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_06/2.4/0
+PASS Visible foot remains grounded NightmareProp_06/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_06/2.4/12
+PASS Visible foot remains grounded NightmareProp_07/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_07/0.3/-12
+PASS Visible foot remains grounded NightmareProp_07/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_07/0.3/0
+PASS Visible foot remains grounded NightmareProp_07/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_07/0.3/12
+PASS Visible foot remains grounded NightmareProp_07/1/-12
+PASS Ground placement never accumulates drift NightmareProp_07/1/-12
+PASS Visible foot remains grounded NightmareProp_07/1/0
+PASS Ground placement never accumulates drift NightmareProp_07/1/0
+PASS Visible foot remains grounded NightmareProp_07/1/12
+PASS Ground placement never accumulates drift NightmareProp_07/1/12
+PASS Visible foot remains grounded NightmareProp_07/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_07/2.4/-12
+PASS Visible foot remains grounded NightmareProp_07/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_07/2.4/0
+PASS Visible foot remains grounded NightmareProp_07/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_07/2.4/12
+PASS Visible foot remains grounded NightmareProp_08/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_08/0.3/-12
+PASS Visible foot remains grounded NightmareProp_08/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_08/0.3/0
+PASS Visible foot remains grounded NightmareProp_08/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_08/0.3/12
+PASS Visible foot remains grounded NightmareProp_08/1/-12
+PASS Ground placement never accumulates drift NightmareProp_08/1/-12
+PASS Visible foot remains grounded NightmareProp_08/1/0
+PASS Ground placement never accumulates drift NightmareProp_08/1/0
+PASS Visible foot remains grounded NightmareProp_08/1/12
+PASS Ground placement never accumulates drift NightmareProp_08/1/12
+PASS Visible foot remains grounded NightmareProp_08/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_08/2.4/-12
+PASS Visible foot remains grounded NightmareProp_08/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_08/2.4/0
+PASS Visible foot remains grounded NightmareProp_08/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_08/2.4/12
+PASS Visible foot remains grounded NightmareProp_09/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_09/0.3/-12
+PASS Visible foot remains grounded NightmareProp_09/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_09/0.3/0
+PASS Visible foot remains grounded NightmareProp_09/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_09/0.3/12
+PASS Visible foot remains grounded NightmareProp_09/1/-12
+PASS Ground placement never accumulates drift NightmareProp_09/1/-12
+PASS Visible foot remains grounded NightmareProp_09/1/0
+PASS Ground placement never accumulates drift NightmareProp_09/1/0
+PASS Visible foot remains grounded NightmareProp_09/1/12
+PASS Ground placement never accumulates drift NightmareProp_09/1/12
+PASS Visible foot remains grounded NightmareProp_09/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_09/2.4/-12
+PASS Visible foot remains grounded NightmareProp_09/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_09/2.4/0
+PASS Visible foot remains grounded NightmareProp_09/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_09/2.4/12
+PASS Visible foot remains grounded NightmareProp_10/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_10/0.3/-12
+PASS Visible foot remains grounded NightmareProp_10/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_10/0.3/0
+PASS Visible foot remains grounded NightmareProp_10/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_10/0.3/12
+PASS Visible foot remains grounded NightmareProp_10/1/-12
+PASS Ground placement never accumulates drift NightmareProp_10/1/-12
+PASS Visible foot remains grounded NightmareProp_10/1/0
+PASS Ground placement never accumulates drift NightmareProp_10/1/0
+PASS Visible foot remains grounded NightmareProp_10/1/12
+PASS Ground placement never accumulates drift NightmareProp_10/1/12
+PASS Visible foot remains grounded NightmareProp_10/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_10/2.4/-12
+PASS Visible foot remains grounded NightmareProp_10/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_10/2.4/0
+PASS Visible foot remains grounded NightmareProp_10/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_10/2.4/12
+PASS Visible foot remains grounded NightmareProp_11/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_11/0.3/-12
+PASS Visible foot remains grounded NightmareProp_11/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_11/0.3/0
+PASS Visible foot remains grounded NightmareProp_11/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_11/0.3/12
+PASS Visible foot remains grounded NightmareProp_11/1/-12
+PASS Ground placement never accumulates drift NightmareProp_11/1/-12
+PASS Visible foot remains grounded NightmareProp_11/1/0
+PASS Ground placement never accumulates drift NightmareProp_11/1/0
+PASS Visible foot remains grounded NightmareProp_11/1/12
+PASS Ground placement never accumulates drift NightmareProp_11/1/12
+PASS Visible foot remains grounded NightmareProp_11/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_11/2.4/-12
+PASS Visible foot remains grounded NightmareProp_11/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_11/2.4/0
+PASS Visible foot remains grounded NightmareProp_11/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_11/2.4/12
+PASS Visible foot remains grounded NightmareProp_12/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_12/0.3/-12
+PASS Visible foot remains grounded NightmareProp_12/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_12/0.3/0
+PASS Visible foot remains grounded NightmareProp_12/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_12/0.3/12
+PASS Visible foot remains grounded NightmareProp_12/1/-12
+PASS Ground placement never accumulates drift NightmareProp_12/1/-12
+PASS Visible foot remains grounded NightmareProp_12/1/0
+PASS Ground placement never accumulates drift NightmareProp_12/1/0
+PASS Visible foot remains grounded NightmareProp_12/1/12
+PASS Ground placement never accumulates drift NightmareProp_12/1/12
+PASS Visible foot remains grounded NightmareProp_12/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_12/2.4/-12
+PASS Visible foot remains grounded NightmareProp_12/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_12/2.4/0
+PASS Visible foot remains grounded NightmareProp_12/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_12/2.4/12
+PASS Visible foot remains grounded NightmareProp_13/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_13/0.3/-12
+PASS Visible foot remains grounded NightmareProp_13/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_13/0.3/0
+PASS Visible foot remains grounded NightmareProp_13/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_13/0.3/12
+PASS Visible foot remains grounded NightmareProp_13/1/-12
+PASS Ground placement never accumulates drift NightmareProp_13/1/-12
+PASS Visible foot remains grounded NightmareProp_13/1/0
+PASS Ground placement never accumulates drift NightmareProp_13/1/0
+PASS Visible foot remains grounded NightmareProp_13/1/12
+PASS Ground placement never accumulates drift NightmareProp_13/1/12
+PASS Visible foot remains grounded NightmareProp_13/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_13/2.4/-12
+PASS Visible foot remains grounded NightmareProp_13/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_13/2.4/0
+PASS Visible foot remains grounded NightmareProp_13/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_13/2.4/12
+PASS Visible foot remains grounded NightmareProp_14/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_14/0.3/-12
+PASS Visible foot remains grounded NightmareProp_14/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_14/0.3/0
+PASS Visible foot remains grounded NightmareProp_14/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_14/0.3/12
+PASS Visible foot remains grounded NightmareProp_14/1/-12
+PASS Ground placement never accumulates drift NightmareProp_14/1/-12
+PASS Visible foot remains grounded NightmareProp_14/1/0
+PASS Ground placement never accumulates drift NightmareProp_14/1/0
+PASS Visible foot remains grounded NightmareProp_14/1/12
+PASS Ground placement never accumulates drift NightmareProp_14/1/12
+PASS Visible foot remains grounded NightmareProp_14/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_14/2.4/-12
+PASS Visible foot remains grounded NightmareProp_14/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_14/2.4/0
+PASS Visible foot remains grounded NightmareProp_14/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_14/2.4/12
+PASS Visible foot remains grounded NightmareProp_15/0.3/-12
+PASS Ground placement never accumulates drift NightmareProp_15/0.3/-12
+PASS Visible foot remains grounded NightmareProp_15/0.3/0
+PASS Ground placement never accumulates drift NightmareProp_15/0.3/0
+PASS Visible foot remains grounded NightmareProp_15/0.3/12
+PASS Ground placement never accumulates drift NightmareProp_15/0.3/12
+PASS Visible foot remains grounded NightmareProp_15/1/-12
+PASS Ground placement never accumulates drift NightmareProp_15/1/-12
+PASS Visible foot remains grounded NightmareProp_15/1/0
+PASS Ground placement never accumulates drift NightmareProp_15/1/0
+PASS Visible foot remains grounded NightmareProp_15/1/12
+PASS Ground placement never accumulates drift NightmareProp_15/1/12
+PASS Visible foot remains grounded NightmareProp_15/2.4/-12
+PASS Ground placement never accumulates drift NightmareProp_15/2.4/-12
+PASS Visible foot remains grounded NightmareProp_15/2.4/0
+PASS Ground placement never accumulates drift NightmareProp_15/2.4/0
+PASS Visible foot remains grounded NightmareProp_15/2.4/12
+PASS Ground placement never accumulates drift NightmareProp_15/2.4/12
+PASS Physical merchandise may carry a stock aura
+PASS Owned gameplay actors cannot carry a shop rarity aura
+PASS Depth sorting uses contact point not image centre

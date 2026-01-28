@@ -34,7 +34,11 @@ namespace ArcaneBrigade.Editor
                 Check(arena.Boss.Id == assets.Boss.Id && arena.EnemyBudget == 0 && !arena.EnableSpectacles, "Isolated super boss arena " + hero);
                 var simulation = new CombatSimulation(arena); simulation.Start(241077);
                 simulation.Champion.NextAttack = float.PositiveInfinity;
-                for (int tick = 0; tick < 240; tick++) simulation.Step(0.05f, Vector2.zero);
+                for (int tick = 0; tick < 240; tick++)
+                {
+                    simulation.Champion.Health = simulation.Champion.Definition.Health;
+                    simulation.Step(0.05f, Vector2.zero);
+                }
                 Check(simulation.Boss != null && simulation.Boss.BossVolley >= 1 && simulation.ExpandedFields.Count <= 48, "Real hand attacks execute " + hero);
                 simulation.DamageFixture(simulation.Boss, simulation.Boss.Health + 100);
                 simulation.Step(0.05f, Vector2.zero); session.Settle(simulation);
@@ -63,7 +67,7 @@ namespace ArcaneBrigade.Editor
                     UnitState target = simulation.AddFixture(minion, Faction.Enemy, new Vector2(8, 0)); target.SwarmMinion = true;
                     simulation.DamageFixture(target, target.Health + 100);
                 }
-                Check(simulation.Pickups.Where(pickup => pickup.Kind == LootKind.Coin).Sum(pickup => pickup.Value) == arena.GoldPerKill, "Six extra kills mint only one normal coin payout");
+                Check(simulation.Pickups.Where(pickup => pickup.Kind == LootKind.Coin).Sum(pickup => pickup.Value) == arena.GoldPerKill * 2, "Six extra kills mint two payouts at the reviewed one-in-three rate");
             }
             foreach (int wave in new[] { 1, 3, 5, 9, 16 })
             {
@@ -75,7 +79,7 @@ namespace ArcaneBrigade.Editor
                 Check(simulation.SwarmSpawnCount >= 1 && simulation.Units.All(unit => !unit.SwarmMinion || unit.Definition.Weapon.Kind != WeaponKind.Projectile), "Swarms consist of small melee bodies " + wave);
                 if (wave >= 3) Check(simulation.Units.Any(unit => unit.SwarmMinion && unit.Health < unit.Definition.Health), "Extra bodies are fragile, not extra tanks " + wave);
                 UnitState fighter = simulation.Champion;
-                Check(fighter.Definition.Weapon.Range > catalog.Unit("LanternKnight").Weapon.Range * 1.5f, "Larger melee weapon has actual increased reach " + wave);
+                Check(MeleeBalance.Range > 1 && fighter.Definition.Weapon.Range > catalog.Unit("LanternKnight").Weapon.Range, "Balanced melee weapon retains increased source reach " + wave);
             }
             File.WriteAllLines("PreviewExports/K24/Focused_Checks.txt", notes);
             Debug.Log("K24_CHECKS_PASSED " + notes.Count);

@@ -138,6 +138,13 @@ namespace ArcaneBrigade
             { angle = preparing ? -8 * charge : 5 * settle; recoil = -0.05f * release * settle; }
             else if (weapon.Mechanic == CarnivalWeapon.Magnet)
                 recoil = preparing ? -0.04f * charge : 0.14f * settle;
+            if (!preparing)
+            {
+                float weight = motion == WeaponMotion.Hammer || motion == WeaponMotion.Slam || motion == WeaponMotion.Stamp ? 1 : motion == WeaponMotion.Recoil ? .45f : .25f;
+                float ring = AnimationTiming.Settle(age - windup, Mathf.Min(.3f, weapon.Recovery), 3);
+                angle += ring * weight * 4;
+                recoil += ring * weight * .018f;
+            }
             return new Pose(angle, recoil, lean, preparing ? -0.025f * charge : Mathf.Lerp(-0.025f, 0.055f, release) * settle, lift);
         }
 

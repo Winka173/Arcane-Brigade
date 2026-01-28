@@ -5,7 +5,7 @@ namespace ArcaneBrigade
     public enum WeaponKind { Contact, Melee, Projectile }
 
     [CreateAssetMenu(menuName = "Arcane Brigade/Weapon")]
-    public sealed class WeaponDefinition : ScriptableObject
+    public sealed partial class WeaponDefinition : ScriptableObject
     {
         public string Id;
         public WeaponKind Kind;

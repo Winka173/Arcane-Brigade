@@ -1,0 +1,2305 @@
+{
+  "tool": "painting pass",
+  "jobs": [
+    {
+      "Id": "weapons-09",
+      "Kind": "weapons",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/weapons-09.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-09_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RibbonHarp",
+            "Material": "Cast/MusicBox",
+            "Evolution": 0
+          },
+          {
+            "Id": "DreamOrbStaff",
+            "Material": "Cast/None",
+            "Evolution": 0
+          },
+          {
+            "Id": "TwinSabres",
+            "Material": "Scissors/Scissors",
+            "Evolution": 0
+          },
+          {
+            "Id": "ClockCrescent",
+            "Material": "Slash/Fish",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: rest/ready mechanism; compressed/flexed/charged anticipation; expanded/recoiling/open released mechanism; settling recovery. Same weapon direction, grip position, scale and baseline across all poses. Animate integral mechanism appropriate to original design (flex blade, compress pump, open fan/jaws, expand core/bellows), not just rotation. NO hands, bodies, projectiles, flashes, debris, extra weapons or unrelated effects."
+    },
+    {
+      "Id": "weapons-10",
+      "Kind": "weapons",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/weapons-10.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-10_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "StampHammer",
+            "Material": "Slam/Hammer",
+            "Evolution": 0
+          },
+          {
+            "Id": "ClockworkYoYo",
+            "Material": "Slash/Fish",
+            "Evolution": 0
+          },
+          {
+            "Id": "ScrapMagnet",
+            "Material": "Cast/None",
+            "Evolution": 0
+          },
+          {
+            "Id": "NeedleSinger",
+            "Material": "Recoil/None",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: rest/ready mechanism; compressed/flexed/charged anticipation; expanded/recoiling/open released mechanism; settling recovery. Same weapon direction, grip position, scale and baseline across all poses. Animate integral mechanism appropriate to original design (flex blade, compress pump, open fan/jaws, expand core/bellows), not just rotation. NO hands, bodies, projectiles, flashes, debris, extra weapons or unrelated effects."
+    },
+    {
+      "Id": "weapons-11",
+      "Kind": "weapons",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/weapons-11.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-11_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SpringKnocker",
+            "Material": "Slam/None",
+            "Evolution": 0
+          },
+          {
+            "Id": "DreamProjector",
+            "Material": "Cast/None",
+            "Evolution": 0
+          },
+          {
+            "Id": "RibbonWheel",
+            "Material": "Slash/None",
+            "Evolution": 0
+          },
+          {
+            "Id": "MoonseedOrb",
+            "Material": "Cast/None",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: rest/ready mechanism; compressed/flexed/charged anticipation; expanded/recoiling/open released mechanism; settling recovery. Same weapon direction, grip position, scale and baseline across all poses. Animate integral mechanism appropriate to original design (flex blade, compress pump, open fan/jaws, expand core/bellows), not just rotation. NO hands, bodies, projectiles, flashes, debris, extra weapons or unrelated effects."
+    },
+    {
+      "Id": "weapons-12",
+      "Kind": "weapons",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/weapons-12.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-12_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "AfterimageSabre",
+            "Material": "Slash/None",
+            "Evolution": 0
+          },
+          {
+            "Id": "SatelliteDisc",
+            "Material": "Recoil/Fish",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: rest/ready mechanism; compressed/flexed/charged anticipation; expanded/recoiling/open released mechanism; settling recovery. Same weapon direction, grip position, scale and baseline across all poses. Animate integral mechanism appropriate to original design (flex blade, compress pump, open fan/jaws, expand core/bellows), not just rotation. NO hands, bodies, projectiles, flashes, debris, extra weapons or unrelated effects."
+    },
+    {
+      "Id": "enemies-00",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-00.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-00_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "HushMite",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "HushMite",
+            "Material": "Paper",
+            "Evolution": 1
+          },
+          {
+            "Id": "ClockBat",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "ClockBat",
+            "Material": "Paper",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-01",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-01.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-01_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BristleImp",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "BristleImp",
+            "Material": "Paper",
+            "Evolution": 1
+          },
+          {
+            "Id": "RuneWisp",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "RuneWisp",
+            "Material": "Paper",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-02",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-02.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-02_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "InkMoth",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "InkMoth",
+            "Material": "Paper",
+            "Evolution": 1
+          },
+          {
+            "Id": "SirenSeal",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SirenSeal",
+            "Material": "Paper",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-03",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-03.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-03_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "DoorBearer",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "DoorBearer",
+            "Material": "Wood",
+            "Evolution": 1
+          },
+          {
+            "Id": "MoonMagnet",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "MoonMagnet",
+            "Material": "Metal",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-04",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-04.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-04_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SleepMimic",
+            "Material": "Wax",
+            "Evolution": 0
+          },
+          {
+            "Id": "SleepMimic",
+            "Material": "Wax",
+            "Evolution": 1
+          },
+          {
+            "Id": "CurtainWisp",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "CurtainWisp",
+            "Material": "Fabric",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-05",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-05.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-05_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "FurnaceToad",
+            "Material": "Wax",
+            "Evolution": 0
+          },
+          {
+            "Id": "FurnaceToad",
+            "Material": "Wax",
+            "Evolution": 1
+          },
+          {
+            "Id": "WardrobeCrab",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "WardrobeCrab",
+            "Material": "Wood",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-06",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-06.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-06_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "HopperKeg",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "HopperKeg",
+            "Material": "Metal",
+            "Evolution": 1
+          },
+          {
+            "Id": "ChargerRam",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "ChargerRam",
+            "Material": "Wood",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-07",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-07.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-07_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "CoinLeech",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "CoinLeech",
+            "Material": "Fabric",
+            "Evolution": 1
+          },
+          {
+            "Id": "BlastPuffer",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "BlastPuffer",
+            "Material": "Fabric",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-08",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-08.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-08_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SporeBishop",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "SporeBishop",
+            "Material": "Wood",
+            "Evolution": 1
+          },
+          {
+            "Id": "BroomSkater",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "BroomSkater",
+            "Material": "Wood",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-09",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-09.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-09_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RibbonHydra",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "RibbonHydra",
+            "Material": "Fabric",
+            "Evolution": 1
+          },
+          {
+            "Id": "BurrowBell",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "BurrowBell",
+            "Material": "Metal",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-10",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-10.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-10_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SmokeWraith",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "SmokeWraith",
+            "Material": "Fabric",
+            "Evolution": 1
+          },
+          {
+            "Id": "BlueFlameFiend",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "BlueFlameFiend",
+            "Material": "Metal",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-11",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-11.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-11_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RedFlameBerserker",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "RedFlameBerserker",
+            "Material": "Metal",
+            "Evolution": 1
+          },
+          {
+            "Id": "TwinFlameFurnace",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "TwinFlameFurnace",
+            "Material": "Metal",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-12",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-12.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-12_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "AshSwallower",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "AshSwallower",
+            "Material": "Fabric",
+            "Evolution": 1
+          },
+          {
+            "Id": "LostLanternSoul",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "LostLanternSoul",
+            "Material": "Metal",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "enemies-13",
+      "Kind": "enemies",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/enemies-13.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-13_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SmokingCoffin",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "SmokingCoffin",
+            "Material": "Wood",
+            "Evolution": 1
+          },
+          {
+            "Id": "EmberProcession",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "EmberProcession",
+            "Material": "Metal",
+            "Evolution": 1
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: compressed attack anticipation; forceful integral-body attack release; hurt recoil with twisting anatomy; folded/collapsed dead body with extinguished eyes/core. Strong, distinct silhouette changes. Each normal/evolved form must preserve its own supplied reference identity. Do not turn one species into another. NO weapons; enemies use integral bodies. Same direction/scale/baseline across row. No large detached particles/debris outside the body."
+    },
+    {
+      "Id": "companions-00",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-00.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-00_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "TeapotPilgrim",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CandleSnail",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "MailboxImp",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PillowOracle",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-01",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-01.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-01_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "MushroomLibrarian",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "HoodWisp",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "JellySwordsman",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "BreadCrab",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-02",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-02.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-02_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "KettleBat",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "BookmarkGolem",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "TinTick",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SpringDuck",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-03",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-03.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-03_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "ButtonBeetle",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "StapleMole",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SnowSpoon",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "IceCreamOwl",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-04",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-04.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-04_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "FridgeWisp",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PearMoth",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CitrusToad",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "RadishJester",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-05",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-05.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-05_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SeedHedgehog",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "MoonJelly",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "StarSock",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "EclipseEgg",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-06",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-06.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-06_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "OrbitMoth",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "DreamCompass",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "ShellPostman",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CoralTeacup",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-07",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-07.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-07_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "AnchorSnail",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SailSquid",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SockCyclops",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "MaskPepper",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-08",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-08.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-08_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "CrayonGremlin",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "RibbonSpider",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CoilKettle",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "ThimbleMoth",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-09",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-09.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-09_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "ReelOwl",
+            "Material": "Glass",
+            "Evolution": 0
+          },
+          {
+            "Id": "RainbowTailor",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "RainbowBell",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "SecretPatchBear",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-10",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-10.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-10_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SecretPaperBird",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SecretDreamLamb",
+            "Material": "Glass",
+            "Evolution": 0
+          },
+          {
+            "Id": "SaffronMechanist",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "ClockworkPiper",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-11",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-11.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-11_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "VelvetChampion",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PaperInventor",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "ReturnCaptain",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "DoughForeman",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-12",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-12.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-12_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "IronLocomotive",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "VioletRemnant",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "VelvetEnchantress",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "GrandSprout",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-13",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-13.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-13_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BristleBall",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PaperDevil",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "BalloonMallet",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "LittleSprout",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-14",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-14.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-14_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "MonsterMarble",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CarouselPony",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "TeacupCricket",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "RibbonOtter",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 4
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "companions-15",
+      "Kind": "companions",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 4,
+      "Reference": "PreviewExports/PerformanceExpansion/References/companions-15.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-15_v1.png",
+      "Actors": {
+        "Id": "SpindleWren",
+        "Material": "Paper",
+        "Evolution": 0
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: SpindleWren [Paper]. Each reference character becomes ONE whole atlas ROW: upper-left -> row1, upper-right -> row2, lower-left -> row3, lower-right -> row4. Each row has four distinct chronological poses left-to-right. Missing rows stay fully transparent. Four poses: curious blinking/looking full-body gesture; delighted celebration/stretch; subtle recoiling hurt; tired/sleepy folded rest. Strong readable pose and expression changes, not four idle copies. NO ARMS or weapons on friendly characters, hands/grips are separate in game. Preserve integral wings/tentacles/legs from reference. Same character scale, facing and foot baseline across row."
+    },
+    {
+      "Id": "locomotion-00",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-00.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-00_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "Postmaster",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "DrowsySeer",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-01",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-01.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-01_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RootOracle",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "LoneJelly",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-02",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-02.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-02_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "GlassDice",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "TideSinger",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-03",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-03.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-03_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "CometRunner",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "MirrorKeeper",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-04",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-04.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-04_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "TreasureAcorn",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "VerdantMatron",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-05",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-05.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-05_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "CopperCauldron",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "ChinaMarionette",
+            "Material": "Wood",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-06",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-06.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-06_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SoapSkater",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "VelvetRegent",
+            "Material": "Metal",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-07",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-07.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-07_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "ButtonCavalier",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "NightMaw",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-08",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-08.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-08_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "ThornTreasurer",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "CitrusMarshal",
+            "Material": "Wood",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-09",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-09.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-09_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "IvorySovereign",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "PetalCitadel",
+            "Material": "Metal",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-10",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-10.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-10_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "PatchworkHost",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "ArchiveCurator",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-11",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-11.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-11_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "PennyBroker",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "StormFencer",
+            "Material": "Wood",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-12",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-12.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-12_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "TinVirtuoso",
+            "Material": "Fabric",
+            "Evolution": 0
+          },
+          {
+            "Id": "MoonProwler",
+            "Material": "Metal",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-13",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-13.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-13_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SupperMortar",
+            "Material": "Wood",
+            "Evolution": 0
+          },
+          {
+            "Id": "LanternWeaver",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-14",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-14.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-14_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "HourglassStag",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "RainArchivist",
+            "Material": "Wood",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-15",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-15.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-15_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "TeapotPilgrim",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CandleSnail",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-16",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-16.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-16_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "MailboxImp",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PillowOracle",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-17",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-17.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-17_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "MushroomLibrarian",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "HoodWisp",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-18",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-18.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-18_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "JellySwordsman",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "BrassAcorn",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-19",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-19.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-19_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BreadCrab",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "KettleBat",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-20",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-20.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-20_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BookmarkGolem",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "TinTick",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-21",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-21.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-21_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SpringDuck",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "ButtonBeetle",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-22",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-22.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-22_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "StapleMole",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SnowSpoon",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-23",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-23.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-23_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "IceCreamOwl",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "FridgeWisp",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-24",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-24.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-24_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "PearMoth",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CitrusToad",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-25",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-25.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-25_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RadishJester",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SeedHedgehog",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-26",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-26.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-26_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "MoonJelly",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "StarSock",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-27",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-27.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-27_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "CometKite",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "EclipseEgg",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-28",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-28.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-28_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "OrbitMoth",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "DreamCompass",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-29",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-29.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-29_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "ShellPostman",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CoralTeacup",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-30",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-30.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-30_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BubbleKoi",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "AnchorSnail",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-31",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-31.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-31_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SailSquid",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "SockCyclops",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-32",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-32.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-32_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "DiceCrab",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "MaskPepper",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-33",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-33.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-33_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "CrayonGremlin",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "MirrorNewt",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-34",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-34.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-34_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RibbonSpider",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "RainbowTailor",
+            "Material": "Fabric",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-35",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-35.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-35_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "RainbowBell",
+            "Material": "Metal",
+            "Evolution": 0
+          },
+          {
+            "Id": "SecretPaperBird",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-36",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-36.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-36_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "SaffronMechanist",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "ClockworkPiper",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-37",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-37.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-37_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "VelvetChampion",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PaperInventor",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-38",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-38.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-38_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "ReturnCaptain",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "DoughForeman",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-39",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-39.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-39_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "IronLocomotive",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "VioletRemnant",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-40",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-40.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-40_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "VelvetEnchantress",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "GrandSprout",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-41",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-41.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-41_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BristleBall",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "PaperDevil",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-42",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-42.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-42_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "BalloonMallet",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "LittleSprout",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-43",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-43.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-43_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "MonsterMarble",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "CarouselPony",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-44",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-44.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-44_v1.png",
+      "Actors": {
+        "value": [
+          {
+            "Id": "TeacupCricket",
+            "Material": "Paper",
+            "Evolution": 0
+          },
+          {
+            "Id": "RibbonOtter",
+            "Material": "Paper",
+            "Evolution": 0
+          }
+        ],
+        "Count": 2
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: undefined [undefined]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    },
+    {
+      "Id": "locomotion-45",
+      "Kind": "locomotion",
+      "Columns": 4,
+      "Rows": 4,
+      "FramesPerActor": 8,
+      "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-45.png",
+      "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-45_v1.png",
+      "Actors": {
+        "Id": "SpindleWren",
+        "Material": "Paper",
+        "Evolution": 0
+      },
+      "Prompt": "Production 2D game sprite animation atlas. Preserve EXACT identity, anatomy, proportions, face, colours and costume of EACH character/weapon shown in the reference, not a redesign. Crisp hand-painted ornate haunted-toyshop style and strong readable ink contours. GENUINE transparent alpha background. EXACT 4 columns x 4 rows equal cells, 12% empty padding per cell, broad transparent gutters, NEVER touch cell boundaries or outer canvas edges. Complete isolated subject per cell. No text/labels, floor/shadow, background haze, rings/targets. Reference identities in reading order: SpindleWren [Paper]. Reference upper-left character owns atlas rows 1 AND 2; reference upper-right owns atlas rows 3 AND 4. EIGHT chronological poses per character in its two rows, left-to-right then next row: neutral idle awake; blinking/breathing idle; left foot planted stride; passing step; right foot planted stride; full-body attack anticipation; forceful attack release; recovery. Exact same facing direction, size and baseline for all eight. Body/face/clothing/feet must articulate, not rotated or scaled copies. Friendly characters have NO ARMS and NO weapons; hands/grips are separate in the game. Keep any integral wings/tentacles/legs from reference. Missing actor groups stay fully transparent."
+    }
+  ]
+}

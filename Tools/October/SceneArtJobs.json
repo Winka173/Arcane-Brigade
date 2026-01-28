@@ -1,0 +1,14 @@
+[
+  {
+    "id": "NightmareFloor",
+    "prompt": "Production 2D top-down orthographic game arena floor texture, one continuous square painted environment, no characters no props no UI no text. Haunted toyshop after midnight, muted indigo woven carpet with an elegant worn ivory ornamental border, warped parquet at the edges, subtle concentric thread seams and watchful closed eyelid shapes sewn INTO the carpet, central 70 percent open calm low contrast combat area, perimeter torn violet velvet and blue-black paper curls. Warm hand-painted storybook ink aesthetic, beautiful sinister dream instead of gore. Lighting evenly diffuse, floor flat no perspective no horizon, detailed 1536 square game background. Opaque full bleed."
+  },
+  {
+    "id": "Watchers",
+    "prompt": "Production 2D hand painted transparent sprite atlas exactly 4 columns by 4 rows. Every row SAME object in 4 animation poses (closed, partly opening, fully open looking left, fully open looking right). Row1 gold framed porcelain eye with violet iris for a haunted toyshop wall; row2 a little stitched velvet carpet eye with amber iris; row3 black paper flower with an ivory pupil; row4 crooked carved wooden arch doorway with keyhole and tiny gold star lamps, poses closed door, opening door, fully open revealing deep teal stairs, open with quiet gold light. No ground shadows, no coloured backgrounds, no labels. Clear cell margins 15 percent, all isolated, full object inside each cell, high resolution rich ink outlines and painted tactile textures, charming frightening storybook toybox quality."
+  },
+  {
+    "id": "Keeper",
+    "prompt": "Hand painted high resolution 2D game boss animation sprite atlas, exactly 4 columns and 1 row, same boss in each cell in idle, anticipation, attack release, recovery poses. Original THE OUTSIDE KEEPER a gigantic spectral glove hand puppeteer, antique ivory cloth glove body with five expressive curled fingers as a crown, dark keyhole eye on palm, tiny red velvet cuff, brass wrist gears, curled black thread tendrils. Menacing but beautiful haunted toyshop final guardian, teal shadows, gold stitching, storybook ink contours, tangible cloth texture, crisp anatomical continuity. Front three quarter view facing left, entire boss visible including every fingertip, character fills only 70 percent cell, large empty margin, no floor no shadow no glow outside silhouette no lettering, genuinely transparent background. Each pose clearly different braced then fingers spread then clenching. 4 identical size square cells in wide horizontal canvas."
+  }
+]

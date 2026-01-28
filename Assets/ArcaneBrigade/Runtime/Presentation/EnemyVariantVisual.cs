@@ -20,7 +20,7 @@ namespace ArcaneBrigade
                 SpecialEnemyKind.SmokeWraith or SpecialEnemyKind.SmokingCoffin or SpecialEnemyKind.AshSwallower => 0,
                 SpecialEnemyKind.BlueFlameFiend or SpecialEnemyKind.LostLanternSoul => 1,
                 SpecialEnemyKind.RedFlameBerserker or SpecialEnemyKind.EmberProcession => 2,
-                SpecialEnemyKind.TwinFlameFurnace => state.SpecialCasts % 2 == 0 ? 1 : 2,
+                SpecialEnemyKind.TwinFlameFurnace => (state?.SpecialCasts ?? 0) % 2 == 0 ? 1 : 2,
                 _ => -1
             };
         }
@@ -42,7 +42,7 @@ namespace ArcaneBrigade
                 if (effects[index] == null && enabled) effects[index] = Create("AttachedEnemyAffix" + index);
                 SpriteRenderer effect = effects[index];
                 if (effect == null) continue;
-                effect.enabled = enabled && (!PresentationSettings.ReducedEffects || index < 2);
+                effect.enabled = enabled && (!(PresentationSettings.ReducedEffects || AnimationDetailBudget.Level > 0) || index < 2);
                 if (!effect.enabled) continue;
                 VisibleEffects++;
                 float phase = time + unit.Id * 0.173f + index * 0.087f;

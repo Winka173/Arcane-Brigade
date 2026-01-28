@@ -38,7 +38,7 @@ namespace ArcaneBrigade
                 if (source.TacticalTargetId == enemy.Id) claims = Mathf.Max(0, claims - 1);
                 float committedDamage = tacticalDamage.TryGetValue(enemy.Id, out float expected) ? expected : 0;
                 if (source.PendingAttack && source.AttackTargetId == enemy.Id) committedDamage -= source.Definition.Weapon.Damage;
-                float score = (enemy.Position - source.Position).magnitude + claims * 0.55f;
+                float score = (enemy.Position - source.Position).magnitude + claims * 0.55f + IdentityTargetScore(enemy);
                 if (!enemy.Definition.IsBoss && committedDamage >= enemy.Health) score += 3;
                 if (enemy.Id == source.TacticalTargetId) score -= Elapsed < source.TacticalRetargetAt ? 1.5f : 0.6f;
                 if (score > bestScore || score == bestScore && best != null && enemy.Id >= best.Id) continue;

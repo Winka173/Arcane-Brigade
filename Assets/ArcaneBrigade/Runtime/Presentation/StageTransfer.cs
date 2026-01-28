@@ -17,6 +17,8 @@ namespace ArcaneBrigade
         private bool active;
         private GroundShadow grounded;
         private bool outsideHand;
+        private readonly SpriteRenderer[] trail = new SpriteRenderer[6];
+        private Sprite[] dust;
         public StageCarrier Kind { get; private set; }
         public bool Active => active;
         public float ElapsedSeconds => age;
@@ -39,9 +41,20 @@ namespace ArcaneBrigade
                 frames = new[] { outside.BossFrames[first], outside.BossFrames[first + 1], outside.BossFrames[first + 2] };
             }
             passengers = FindObjectsByType<UnitVisual>();
+            CarrierArtwork artwork = CarrierArtwork.Current;
+            if (artwork != null && artwork.For(Kind)?.Length == 3) { frames = artwork.For(Kind); outsideHand = true; }
             courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 500;
             grounded = gameObject.AddComponent<GroundShadow>();
+            PaintedAnimationLibrary painted = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
+            dust = painted != null ? painted.Dust : null;
+            for (int index = 0; index < trail.Length; index++)
+            {
+                var child = new GameObject("CarrierLandingDust" + index);
+                child.transform.SetParent(owner.transform, false); trail[index] = child.AddComponent<SpriteRenderer>();
+                trail[index].sortingOrder = 420;
+            }
             CheckpointAudio.PlayInterfaceId("shop.descend");
+            CheckpointAudio.PlayInterfaceId("boss.telegraph");
         }
 
         public static Vector2 PassengerPosition(Vector2 start, float seconds)
@@ -66,11 +79,33 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (!active || owner == null || owner.PresentationPaused) return;
+            float previousAge = age;
             age += Mathf.Clamp(Time.unscaledDeltaTime, 0, 0.05f);
+            if (!PresentationSettings.ReducedMotion)
+            {
+                if (previousAge < .4f && age >= .4f) CheckpointAudio.PlayInterfaceId("boss.attack");
+                if (previousAge < 1.3f && age >= 1.3f) CheckpointAudio.PlayInterfaceId("voice.dream.gasp");
+                if (previousAge < 2.2f && age >= 2.2f) CheckpointAudio.PlayInterfaceId("boss.enter");
+            }
             bool reduced = PresentationSettings.ReducedMotion;
+            for (int index = 0; index < trail.Length; index++)
+            {
+                SpriteRenderer cloud = trail[index];
+                float birth = index < 3 ? .38f + index * .035f : 2.15f + (index - 3) * .035f;
+                float progress = Mathf.Clamp01((age - birth) / .4f);
+                cloud.enabled = !reduced && !PresentationSettings.ReducedEffects && dust != null && dust.Length > 0 && age >= birth && progress < 1;
+                if (!cloud.enabled) continue;
+                cloud.sprite = dust[Mathf.Min(dust.Length - 1, Mathf.FloorToInt(progress * dust.Length))];
+                Vector2 basePosition = index < 3 ? origin : new Vector2(0, -.2f);
+                cloud.transform.position = basePosition + new Vector2((index % 3 - 1) * (.3f + progress * .5f), -.3f + progress * .15f);
+                cloud.transform.rotation = Quaternion.identity;
+                float width = (.45f + progress * .6f) / Mathf.Max(.01f, cloud.sprite.bounds.size.x);
+                cloud.transform.localScale = Vector3.one * width;
+                cloud.color = new Color(.72f, .65f, .77f, (1 - progress) * .38f);
+            }
             if (frames.Length > 0)
             {
-                int pose = Kind == StageCarrier.KeyholeEye ? age < 0.6f ? 0 : age < 1 ? 1 : age < 1.3f ? 2 : 0 : Kind == StageCarrier.CarpetTongue ? age < 0.35f ? 0 : age < 0.85f ? 1 : age < 1.3f ? 0 : 2 : age < 0.45f ? 0 : age < 1.3f ? 1 : 0;
+                int pose = Kind == StageCarrier.KeyholeEye ? age < 0.6f ? 0 : age < 1 ? 1 : age < 1.3f ? 2 : 0 : Kind == StageCarrier.CarpetTongue ? age < 0.35f ? 0 : age < 0.85f ? 1 : age < 1.3f ? 0 : 2 : age < 0.45f ? 0 : age < 1.3f ? 1 : 2;
                 courier.sprite = frames[outsideHand ? reduced ? 0 : pose : reduced ? 0 : 2 + Mathf.FloorToInt(age * 7) % 4];
                 float width = outsideHand ? Kind == StageCarrier.KeyholeEye ? 4.2f : Kind == StageCarrier.CarpetTongue ? 5.8f : 7.2f : 3.8f;
                 courier.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, courier.sprite.bounds.size.x));
@@ -95,7 +130,7 @@ namespace ArcaneBrigade
                     unit.Position = unit.PreviousPosition = owner.Simulation.ClampPosition(destination + relative, unit.Definition.Radius);
                 }
             owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = destination;
-            completed?.Invoke(); Destroy(gameObject);
+            RestorePassengers(); completed?.Invoke(); Destroy(gameObject);
         }
 
         private void LateUpdate()
@@ -106,9 +141,22 @@ namespace ArcaneBrigade
                 if (passenger != null && passenger.State != null && passenger.State.Alive && passenger.State.Faction != Faction.Enemy)
                 {
                     passenger.transform.position = (Vector3)(passenger.State.Position + offset);
+                    float grip = Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - .4f) / .6f));
+                    float landing = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - 1.6f) / .6f));
+                    passenger.transform.rotation = Quaternion.Euler(0, 0, grip * landing * (Kind == StageCarrier.CarpetTongue ? -14 : 9));
                     float lift = age < 0.4f ? 0 : age < 1.3f ? Mathf.SmoothStep(0, 1, (age - 0.4f) / 0.9f) : Mathf.Max(0, 1 - (age - 1.3f) / 0.9f) + Mathf.Sin(Mathf.Clamp01((age - 1.3f) / 0.9f) * Mathf.PI) * 1.4f;
                     passenger.TransportShadow(offset, lift);
                 }
+        }
+        private void RestorePassengers()
+        {
+            if (passengers == null) return;
+            foreach (UnitVisual passenger in passengers) if (passenger != null) passenger.transform.rotation = Quaternion.identity;
+        }
+        private void OnDestroy()
+        {
+            RestorePassengers();
+            foreach (SpriteRenderer cloud in trail) if (cloud != null) Destroy(cloud.gameObject);
         }
     }
 }

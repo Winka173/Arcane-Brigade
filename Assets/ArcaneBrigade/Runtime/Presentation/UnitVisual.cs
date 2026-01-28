@@ -41,7 +41,26 @@ namespace ArcaneBrigade
         public float GaitWeight => gaitBlend;
         private float previousGait;
         private float transitionSquash;
+        private readonly AnimationPerformance performance = new AnimationPerformance();
+        private WeaponMechanism weaponMechanism;
+        private WeaponPaintedAction paintedAction;
+        private string paintedWeaponIdentity;
+        private bool paintedWeaponAvailable;
+        private CharacterActingEntry actingArt;
+        private ExpandedPerformanceEntry expandedGait;
+        private ExpandedPerformanceEntry expandedReaction;
+        public CharacterActingEntry ActingArt => actingArt;
+        private bool previewActor;
+        private int actingPreview = -1;
+        private float previewProgress;
+        public void PreviewActing(int cue, float progress)
+        {
+            if (!previewActor && !RunPaths.K7Capture) throw new System.InvalidOperationException("Acting preview is restricted to isolated presentation actors");
+            if (cue < -1 || cue > 3) throw new System.ArgumentOutOfRangeException(nameof(cue));
+            actingPreview = cue; previewProgress = Mathf.Clamp01(progress);
+        }
         private EvolutionAdornment adornment;
+        private BuildMorphAppearance morphAppearance;
         private BossAnatomyVisual anatomyVisual;
         private EnemyVariantVisual variantVisual;
         public static float BlendGait(float current, float target, float delta)
@@ -60,6 +79,8 @@ namespace ArcaneBrigade
             CheckpointAudio.PlayWorldId("up.ally.land", origin);
         }
         public bool ReducedMotion { get; set; }
+        public bool RestAttention { get; set; }
+        public Vector2 AttentionPoint { get; set; }
         public UnitState State => state;
         public Sprite DisplayedBody => body == null ? null : body.sprite;
         public SpriteRenderer BodyRenderer => body;
@@ -156,11 +177,21 @@ namespace ArcaneBrigade
             return child.AddComponent<SpriteRenderer>();
         }
 
-        public void Bind(UnitState unit, CheckpointCatalog catalog)
+        public void Bind(UnitState unit, CheckpointCatalog catalog, bool preview = false)
         {
             if (anatomyVisual != null) anatomyVisual.Clear();
+            if (morphAppearance != null) morphAppearance.Clear();
             if (adornment != null) { adornment.Clear(); if (Application.isPlaying) Destroy(adornment); else DestroyImmediate(adornment); adornment = null; }
             state = unit;
+            previewActor = preview; actingPreview = -1;
+            actingArt = CharacterActingLibrary.Current != null ? CharacterActingLibrary.Current.Find(unit.Definition.Id) : null;
+            expandedGait = ExpandedPerformanceLibrary.Current?.Find("locomotion", unit.Definition.Id);
+            expandedReaction = unit.Faction == Faction.Enemy ? ExpandedPerformanceLibrary.Reaction(unit.Definition) : null;
+            if (weaponMechanism != null) weaponMechanism.Clear();
+            if (paintedAction != null) paintedAction.Clear();
+            paintedWeaponIdentity = null;
+            RestAttention = false;
+            performance.Reset(unit);
             holdUntil = nextHold = 0; celebrateAt = -100;
             lastDisplayTime = 0;
             gaitBlend = previousGait = transitionSquash = 0;
@@ -188,10 +219,6 @@ namespace ArcaneBrigade
                 if (anatomyVisual == null) anatomyVisual = gameObject.AddComponent<BossAnatomyVisual>();
                 anatomyVisual.Build(unit, body);
             }
-            if (adornment == null && unit.Faction == Faction.Companion && unit.Definition.CombatTier > 1)
-            {
-                adornment = gameObject.AddComponent<EvolutionAdornment>(); adornment.Build(unit, body, weapon);
-            }
             weapon.color = hand.color = Color.white;
             if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.BloomOrb) weapon.color = new Color(0.65f, 1, 0.85f);
             else if (unit.Definition.Weapon.Mechanic == CarnivalWeapon.EchoBlade) weapon.color = new Color(0.65f, 0.8f, 1);
@@ -202,7 +229,7 @@ namespace ArcaneBrigade
             if (armed)
             {
                 float weaponScale = K8Motion.WeaponWidth(unit) / Mathf.Max(0.01f, weapon.sprite.bounds.size.x);
-                Vector2 shape = TierWeaponShape(unit.Definition.Weapon, unit.Definition.CombatTier);
+                Vector2 shape = Vector2.one;
                 if (unit.Faction == Faction.Companion) weaponScale /= Mathf.Max(1, Mathf.Max(shape.x, shape.y) / 1.18f);
                 weapon.transform.localScale = new Vector3(weaponScale * shape.x, weaponScale * shape.y, 1);
                 if (unit.Faction == Faction.Companion)
@@ -215,7 +242,7 @@ namespace ArcaneBrigade
             }
             if (tierBell == null) tierBell = CreateSprite("TierBellSatellite", grip);
             tierBell.sprite = weapon.sprite;
-            tierBell.enabled = armed && unit.Definition.CombatTier >= 2 && unit.Definition.Weapon.Signature == SignatureWeapon.Bell;
+            tierBell.enabled = false;
             tierBell.transform.localPosition = unit.Faction == Faction.Companion ? new Vector3(0.07f, -0.16f, 0) : new Vector3(0.1f, -0.26f, 0);
             tierBell.transform.localScale = weapon.transform.localScale * (unit.Definition.CombatTier >= 3 ? 0.48f : 0.36f);
             name = unit.Definition.DisplayName + "_" + unit.Id;
@@ -264,6 +291,8 @@ namespace ArcaneBrigade
                 body.sprite = state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion);
             else if (state.Definition.AnimationFrames.Length >= 4)
                 body.sprite = state.Definition.AnimationFrames[K8Motion.BodyFrame(state, simulationTime, ReducedMotion)];
+            Sprite expandedFrame = expandedGait?.Select(state, simulationTime, ReducedMotion);
+            if (expandedFrame != null) body.sprite = expandedFrame;
             weapon.color = hand.color = Color.white;
             shadow.color = state.Faction == Faction.Enemy ? new Color(0.02f, 0.02f, 0.04f, 0.3f) : shadowColor;
             if (tierBell != null) tierBell.color = Color.white;
@@ -272,7 +301,16 @@ namespace ArcaneBrigade
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             float entrance = state.Definition.IsBoss ? Mathf.Clamp01((state.EntranceUntil - simulationTime) / 1.2f) : 0;
             if (!ReducedMotion && entrance > 0)
-                transform.position += Vector3.up * (state.Definition.BossPattern % 2 == 0 ? 6 * entrance * entrance : -state.Definition.BodyHeight * entrance);
+            {
+                if (state.Definition.Id == NightmareRules.CustomerId)
+                {
+                    float arrivalProgress = 1 - entrance;
+                    float curtain = Mathf.SmoothStep(0, 1, Mathf.Clamp01(arrivalProgress / .65f));
+                    transform.position += Vector3.up * (1 - curtain) * 3;
+                    body.sprite = state.Definition.AuthoredMotion.Idle[arrivalProgress < .55f ? 1 : 0];
+                }
+                else transform.position += Vector3.up * (state.Definition.BossPattern % 2 == 0 ? 6 * entrance * entrance : -state.Definition.BodyHeight * entrance);
+            }
             if (entranceMaterial != null) entranceMaterial.SetFloat("_FloorY", !ReducedMotion && entrance > 0 ? state.Position.y - state.Definition.BodyHeight * 0.5f : -10000);
             if (entrance <= 0 && paintedMaterial != null) body.sharedMaterial = paintedMaterial;
             if (arrivalAge < 0.9f && arrivalFrame != Time.frameCount)
@@ -291,9 +329,19 @@ namespace ArcaneBrigade
             float age = simulationTime - state.AttackStarted;
             float poseWindup = state.AttackWindup > 0 ? state.AttackWindup : definition.Windup;
             bool attacking = K8Motion.Attacking(state, simulationTime);
+            performance.Sample(state, simulationTime, ReducedMotion, attacking);
+            float celebrationAge = simulationTime - celebrateAt;
+            bool travelling = state.Velocity.sqrMagnitude > .04f || (state.Position - state.PreviousPosition).sqrMagnitude > .00001f;
+            Sprite actingFrame = actingArt?.Select(state.Alive, simulationTime - state.LastHit, attacking, celebrationAge, performance.GesturePhase, travelling, ReducedMotion);
+            if (actingPreview >= 0 && !ReducedMotion) actingFrame = actingArt?.Preview(actingPreview, previewProgress);
+            if (actingFrame != null) body.sprite = actingFrame;
+            Sprite reactionFrame = expandedReaction?.Select(state, simulationTime, ReducedMotion);
+            if (reactionFrame != null && entrance <= 0) body.sprite = reactionFrame;
             K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion);
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
             Vector2 facing = attacking ? state.AttackDirection : state.Facing;
+            if (RestAttention && !attacking && performance.Gesture > .15f && (state.Position - state.PreviousPosition).sqrMagnitude < .00001f && Vector2.Distance(AttentionPoint, state.Position) > .5f)
+                facing = (AttentionPoint - state.Position).normalized;
             if (facing.sqrMagnitude < 0.01f) facing = Vector2.right;
             int order = 1000 - Mathf.RoundToInt(state.Position.y * 12f);
             body.sortingOrder = order;
@@ -316,6 +364,7 @@ namespace ArcaneBrigade
             if (pursuit && !attacking && !ReducedMotion) attackLean += Mathf.Clamp(state.Velocity.x, -1, 1) * (facing.x < 0 ? -1 : 1) * -7;
             float impactSquash = attacking ? pose.Squash : 0;
             if (!ReducedMotion) impactSquash += transitionSquash;
+            impactSquash += performance.Weight;
             float landingAge = arrivalAge - 0.3825f;
             if (!ReducedMotion && landingAge > 0 && landingAge < 0.18f) impactSquash += Mathf.Sin(landingAge / 0.18f * Mathf.PI) * 0.1f;
             if (state.Faction == Faction.Enemy && attacking && !ReducedMotion)
@@ -327,7 +376,10 @@ namespace ArcaneBrigade
             }
             float height = K8Motion.BodyHeight(state);
             float referenceHeight = state.Definition.AuthoredMotion != null ? state.Definition.AuthoredMotion.ReferenceHeight : body.sprite.bounds.size.y;
+            if (actingFrame != null) referenceHeight = actingArt.ReferenceHeight > 0 ? actingArt.ReferenceHeight : actingFrame.bounds.size.y;
             if (state.Definition.IsBoss || state.Faction == Faction.Enemy && state.Definition.AuthoredMotion != null) referenceHeight = body.sprite.bounds.size.y;
+            if (expandedFrame != null && actingFrame == null) referenceHeight = expandedGait.ReferenceHeight;
+            if (reactionFrame != null && entrance <= 0) referenceHeight = expandedReaction.ReferenceHeight;
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
             float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
@@ -335,11 +387,19 @@ namespace ArcaneBrigade
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
-            float celebrationAge = simulationTime - celebrateAt;
             float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
             body.transform.localPosition += Vector3.up * (celebrationLift + (ReducedMotion ? 0 : state.BodyLift));
             float personality = state.Id % 2 == 0 ? -1 : 1;
             body.transform.localRotation = Quaternion.Euler(0f, 0f, bob * 90f + state.HitDirection.x * hurt * 6 + (attackLean + idle * personality * 4f) * (facing.x < 0f ? -1f : 1f));
+            body.transform.localPosition += (Vector3)performance.BodyOffset;
+            body.transform.localRotation *= Quaternion.Euler(0, 0, performance.BodyTurn);
+            if (state.Definition.IsBoss && !ReducedMotion && entrance <= 0)
+            {
+                int act = AnimationTiming.BossAct(state.Health, state.Definition.Health);
+                float breath = Mathf.Sin(simulationTime * (1.2f + act * .35f) + state.Id) * .006f * (1 + act * .3f);
+                body.transform.localScale = Vector3.Scale(body.transform.localScale, new Vector3(1 - breath, 1 + breath, 1));
+                if (!attacking && state.TelegraphUntil <= simulationTime) body.transform.localRotation *= Quaternion.Euler(0, 0, Mathf.Sin(simulationTime * .8f) * act * .65f);
+            }
             if (state.Faction == Faction.Enemy && state.Definition.AuthoredMotion != null)
             {
                 float turn = body.transform.localEulerAngles.z * Mathf.Deg2Rad;
@@ -350,21 +410,26 @@ namespace ArcaneBrigade
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
+            grounded.Essential = state.Definition.IsBoss || state.Faction == Faction.Champion;
             float lift = entrance > 0 ? entrance * 6 : arrivalAge < 0.405f ? Mathf.Sin(Mathf.Clamp01(arrivalAge / 0.405f) * Mathf.PI) * 0.85f : 0;
             Vector2 ground = new Vector2(transform.position.x, transform.position.y - height * 0.5f - (entrance > 0 ? transform.position.y - state.Position.y : lift));
             grounded.Display(body.sprite, ground, height * 0.85f, lift + celebrationLift + Mathf.Abs(bob) + Mathf.Max(0, state.BodyLift), state.Definition.IsBoss ? 0.42f : 0.36f);
-            if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
-            if (weapon.enabled && grip.gameObject.activeSelf) groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
-            else groundedWeapon.Hide();
+            if (weapon.enabled && grip.gameObject.activeSelf)
+            {
+                if (groundedWeapon == null) { groundedWeapon = grip.gameObject.AddComponent<GroundShadow>(); groundedWeapon.Configure(weapon.sprite); }
+                groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y - 0.02f), K8Motion.WeaponWidth(state), 0.3f, 0.12f);
+            }
+            else if (groundedWeapon != null) groundedWeapon.Hide();
             shadow.enabled = false;
-            body.color = ReducedMotion || PresentationSettings.ReducedFlashes ? state.Definition.Tint : Color.Lerp(Color.white, state.Definition.Tint, Mathf.Clamp01((simulationTime - state.LastHit) / 0.12f));
+            body.color = state.Definition.Tint;
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
             body.GetPropertyBlock(flashProperties);
             // Capped, flickering flash: a target under constant fire never turns into a solid white silhouette.
             float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
-            flashProperties.SetFloat("_Flash", ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : flash);
+            flashProperties.SetFloat("_Flash", state.Faction != Faction.Enemy || ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : flash);
             SpriteLighting.Apply(body, flashProperties, state.Faction == Faction.Enemy);
+            flashProperties.SetVector("_LivingMotion", EnsembleMotion.Surface(state, simulationTime, ReducedMotion));
             if (state.Faction == Faction.Champion)
             {
                 flashProperties.SetColor("_RimColor", new Color(0.45f, 1, 0.85f));
@@ -372,11 +437,29 @@ namespace ArcaneBrigade
             }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
-            if (puppet != null) puppet.Display(body, state, simulationTime, ReducedMotion);
-            flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true); weapon.SetPropertyBlock(flashProperties);
+            if (puppet != null)
+            {
+                if (actingFrame != null || expandedFrame != null || reactionFrame != null && entrance <= 0) { puppet.Hide(); body.enabled = true; }
+                else puppet.Display(body, state, simulationTime, ReducedMotion);
+            }
+            flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true);
+            flashProperties.SetVector("_WeaponFlex", AnimationPerformance.WeaponFlex(definition, age, poseWindup, ReducedMotion));
+            flashProperties.SetVector("_MechanicMotion", EnsembleMotion.WeaponSurface(definition, age, poseWindup, ReducedMotion));
+            weapon.SetPropertyBlock(flashProperties);
+            if (weaponMechanism == null && WeaponMechanism.Supports(definition)) weaponMechanism = weapon.gameObject.AddComponent<WeaponMechanism>();
+            if (paintedWeaponIdentity != definition.Id)
+            {
+                paintedWeaponIdentity = definition.Id;
+                paintedWeaponAvailable = EnsembleArtwork.Current?.Weapon(definition.Id) != null;
+            }
+            if (paintedAction == null && paintedWeaponAvailable) paintedAction = weapon.gameObject.AddComponent<WeaponPaintedAction>();
+            if (paintedAction != null) paintedAction.Display(weapon, definition, age, poseWindup, ReducedMotion);
+            if (weaponMechanism != null)
+            {
+                if (paintedAction != null && paintedAction.Visible) weaponMechanism.Hide();
+                else weaponMechanism.Display(weapon, definition, age, poseWindup, ReducedMotion);
+            }
             DisplayWeakspot(simulationTime, order);
-            DisplayTier(order, height);
-            if (adornment != null) adornment.Display(state, simulationTime, order, ReducedMotion);
             if (anatomyVisual != null) anatomyVisual.Display(state, simulationTime, order, ReducedMotion);
             if (variantVisual == null && state.Faction == Faction.Enemy && !state.Definition.IsBoss) variantVisual = gameObject.AddComponent<EnemyVariantVisual>();
             if (variantVisual != null) variantVisual.Display(state, body, simulationTime, ReducedMotion);
@@ -424,7 +507,8 @@ namespace ArcaneBrigade
                 float pull = !ReducedMotion && attacking ? age < poseWindup ? Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)) : 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery * 0.18f))) : 0f;
                 float bowHeight = weapon.sprite.bounds.size.y * weapon.transform.localScale.y * 0.4f;
                 float anchor = -weapon.sprite.bounds.size.x * weapon.transform.localScale.x * 0.35f;
-                float draw = pull * (state.Faction == Faction.Companion ? 0.12f : 0.17f);
+                float vibration = ReducedMotion ? 0 : AnimationTiming.Settle(age - poseWindup, .24f, 8) * .018f;
+                float draw = pull * (state.Faction == Faction.Companion ? 0.12f : 0.17f) + vibration;
                 bowString.sortingOrder = weapon.sortingOrder + 1;
                 bowString.SetPosition(0, new Vector3(anchor, bowHeight, 0));
                 bowString.SetPosition(1, new Vector3(anchor - draw, 0, 0));
@@ -434,9 +518,10 @@ namespace ArcaneBrigade
             }
             float attachmentScale = state.Faction == Faction.Companion ? 0.72f : 1;
             grip.localPosition = facing.normalized * ((definition.MountDistance - recoil) * attachmentScale) + Vector2.up * (pose.Lift * attachmentScale);
+            grip.localPosition += Vector3.up * performance.GripLift;
             float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
             facingAngle = ReducedMotion ? targetAngle : attacking ? Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-motionDelta * 35)) : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
-            grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset);
+            grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset + performance.GripTurn);
         }
 
         private void DisplayTier(int order, float height)
@@ -515,6 +600,7 @@ namespace ArcaneBrigade
         {
             if (anatomyVisual != null) anatomyVisual.Fade(alpha);
             if (adornment != null) adornment.Fade(alpha);
+            if (morphAppearance != null) morphAppearance.Fade(alpha);
             Fade(body, alpha); Fade(weapon, alpha); Fade(hand, alpha); Fade(shadow, alpha);
             if (grounded != null) grounded.Fade(alpha);
             if (groundedWeapon != null) groundedWeapon.Fade(alpha);

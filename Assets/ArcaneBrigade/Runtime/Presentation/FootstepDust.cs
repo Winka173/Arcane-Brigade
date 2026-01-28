@@ -21,6 +21,8 @@ namespace ArcaneBrigade
         {
             PaintedAnimationLibrary library = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             frames = library != null && library.Dust != null && library.Dust.Length > 0 ? library.Dust : null; sprite = frames != null ? frames[0] : source;
+            TactileAnimationLibrary tactile = TactileAnimationLibrary.Current;
+            if (tactile != null && tactile.Dust.Length == 4) { frames = tactile.Dust; sprite = frames[0]; }
             if (streakMaterial == null) streakMaterial = new Material(Shader.Find("Sprites/Default"));
         }
         public void Display(CombatSimulation simulation, float delta)

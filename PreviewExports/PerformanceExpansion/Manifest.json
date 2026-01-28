@@ -1,0 +1,3549 @@
+{
+    "Heroes": 31,
+    "Companions": 66,
+    "Enemies": 28,
+    "Weapons": 57,
+    "Jobs": [
+        {
+            "Id": "companions-00",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-00.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-00_v1.png",
+            "Actors": [
+                {
+                    "Id": "TeapotPilgrim",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "TeapotCourier",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CandleSnail",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "SnailPorter",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MailboxImp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "MailboxGuard",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PillowOracle",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "SleepyPatch",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-01",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-01.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-01_v1.png",
+            "Actors": [
+                {
+                    "Id": "MushroomLibrarian",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "BookLibrarian",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "HoodWisp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "CandleGhost",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "JellySwordsman",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "JellyKnight",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "BreadCrab",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BreadCrab.png",
+                    "Sprite": "BreadCrab",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-02",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-02.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-02_v1.png",
+            "Actors": [
+                {
+                    "Id": "KettleBat",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/KettleBat.png",
+                    "Sprite": "KettleBat",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "BookmarkGolem",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BookmarkGolem.png",
+                    "Sprite": "BookmarkGolem",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "TinTick",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/TinTick.png",
+                    "Sprite": "TinTick",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SpringDuck",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SpringDuck.png",
+                    "Sprite": "SpringDuck",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-03",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-03.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-03_v1.png",
+            "Actors": [
+                {
+                    "Id": "ButtonBeetle",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ButtonBeetle.png",
+                    "Sprite": "ButtonBeetle",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "StapleMole",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/StapleMole.png",
+                    "Sprite": "StapleMole",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SnowSpoon",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SnowSpoon.png",
+                    "Sprite": "SnowSpoon",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "IceCreamOwl",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/IceCreamOwl.png",
+                    "Sprite": "IceCreamOwl",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-04",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-04.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-04_v1.png",
+            "Actors": [
+                {
+                    "Id": "FridgeWisp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/FridgeWisp.png",
+                    "Sprite": "FridgeWisp",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PearMoth",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/PearMoth.png",
+                    "Sprite": "PearMoth",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CitrusToad",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CitrusToad.png",
+                    "Sprite": "CitrusToad",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RadishJester",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/RadishJester.png",
+                    "Sprite": "RadishJester",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-05",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-05.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-05_v1.png",
+            "Actors": [
+                {
+                    "Id": "SeedHedgehog",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SeedHedgehog.png",
+                    "Sprite": "SeedHedgehog",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MoonJelly",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MoonJelly.png",
+                    "Sprite": "MoonJelly",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "StarSock",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/StarSock.png",
+                    "Sprite": "StarSock",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "EclipseEgg",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/EclipseEgg.png",
+                    "Sprite": "EclipseEgg",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-06",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-06.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-06_v1.png",
+            "Actors": [
+                {
+                    "Id": "OrbitMoth",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/OrbitMoth.png",
+                    "Sprite": "OrbitMoth",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "DreamCompass",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/DreamCompass.png",
+                    "Sprite": "DreamCompass",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ShellPostman",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ShellPostman.png",
+                    "Sprite": "ShellPostman",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CoralTeacup",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CoralTeacup.png",
+                    "Sprite": "CoralTeacup",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-07",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-07.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-07_v1.png",
+            "Actors": [
+                {
+                    "Id": "AnchorSnail",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/AnchorSnail.png",
+                    "Sprite": "AnchorSnail",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SailSquid",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SailSquid.png",
+                    "Sprite": "SailSquid",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SockCyclops",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SockCyclops.png",
+                    "Sprite": "SockCyclops",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MaskPepper",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MaskPepper.png",
+                    "Sprite": "MaskPepper",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-08",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-08.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-08_v1.png",
+            "Actors": [
+                {
+                    "Id": "CrayonGremlin",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CrayonGremlin.png",
+                    "Sprite": "CrayonGremlin",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RibbonSpider",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/RibbonSpider.png",
+                    "Sprite": "RibbonSpider",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CoilKettle",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K16/CoilKettle_v1.png",
+                    "Sprite": "CoilKettleMotion_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 12,
+                    "Boss": false
+                },
+                {
+                    "Id": "ThimbleMoth",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K16/ThimbleMoth_v2.png",
+                    "Sprite": "ThimbleMothMotion_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 12,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-09",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-09.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-09_v1.png",
+            "Actors": [
+                {
+                    "Id": "ReelOwl",
+                    "Material": "Glass",
+                    "Source": "Assets/ArcaneBrigade/Art/K16/ReelOwl_v1.png",
+                    "Sprite": "ReelOwlMotion_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 12,
+                    "Boss": false
+                },
+                {
+                    "Id": "RainbowTailor",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K24/OutsideRewards_v1.png",
+                    "Sprite": "OutsideReward_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RainbowBell",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K24/OutsideRewards_v1.png",
+                    "Sprite": "OutsideReward_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SecretPatchBear",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K16/ThimbleMoth_v2.png",
+                    "Sprite": "ThimbleMothMotion_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 12,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-10",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-10.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-10_v1.png",
+            "Actors": [
+                {
+                    "Id": "SecretPaperBird",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "TeapotCourier",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SecretDreamLamb",
+                    "Material": "Glass",
+                    "Source": "Assets/ArcaneBrigade/Art/K16/ReelOwl_v1.png",
+                    "Sprite": "ReelOwlMotion_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 12,
+                    "Boss": false
+                },
+                {
+                    "Id": "SaffronMechanist",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ClockworkPiper",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-11",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-11.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-11_v1.png",
+            "Actors": [
+                {
+                    "Id": "VelvetChampion",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PaperInventor",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ReturnCaptain",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "DoughForeman",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-12",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-12.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-12_v1.png",
+            "Actors": [
+                {
+                    "Id": "IronLocomotive",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "VioletRemnant",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "VelvetEnchantress",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "GrandSprout",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-13",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-13.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-13_v1.png",
+            "Actors": [
+                {
+                    "Id": "BristleBall",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PaperDevil",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "BalloonMallet",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "LittleSprout",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-14",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-14.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-14_v1.png",
+            "Actors": [
+                {
+                    "Id": "MonsterMarble",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CarouselPony",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "TeacupCricket",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+                    "Sprite": "OctoberAllies5_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RibbonOtter",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+                    "Sprite": "OctoberAllies5_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "companions-15",
+            "Kind": "companions",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/companions-15.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/companions-15_v1.png",
+            "Actors": [
+                {
+                    "Id": "SpindleWren",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+                    "Sprite": "OctoberAllies5_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-00",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-00.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-00_v1.png",
+            "Actors": [
+                {
+                    "Id": "Postmaster",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "PostHero",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "DrowsySeer",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "DreamHero",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-01",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-01.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-01_v1.png",
+            "Actors": [
+                {
+                    "Id": "RootOracle",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "SleepyPatch",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "LoneJelly",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "JellyKnight",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-02",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-02.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-02_v1.png",
+            "Actors": [
+                {
+                    "Id": "GlassDice",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/DiceCrab.png",
+                    "Sprite": "DiceCrab",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "TideSinger",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BubbleKoi.png",
+                    "Sprite": "BubbleKoi",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-03",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-03.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-03_v1.png",
+            "Actors": [
+                {
+                    "Id": "CometRunner",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CometKite.png",
+                    "Sprite": "CometKite",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MirrorKeeper",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MirrorNewt.png",
+                    "Sprite": "MirrorNewt",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-04",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-04.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-04_v1.png",
+            "Actors": [
+                {
+                    "Id": "TreasureAcorn",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BrassAcorn.png",
+                    "Sprite": "BrassAcorn",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "VerdantMatron",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+                    "Sprite": "OctoberHeroes1_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-05",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-05.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-05_v1.png",
+            "Actors": [
+                {
+                    "Id": "CopperCauldron",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+                    "Sprite": "OctoberHeroes1_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ChinaMarionette",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+                    "Sprite": "OctoberHeroes1_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-06",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-06.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-06_v1.png",
+            "Actors": [
+                {
+                    "Id": "SoapSkater",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+                    "Sprite": "OctoberHeroes1_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "VelvetRegent",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+                    "Sprite": "OctoberHeroes2_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-07",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-07.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-07_v1.png",
+            "Actors": [
+                {
+                    "Id": "ButtonCavalier",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+                    "Sprite": "OctoberHeroes2_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "NightMaw",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+                    "Sprite": "OctoberHeroes2_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-08",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-08.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-08_v1.png",
+            "Actors": [
+                {
+                    "Id": "ThornTreasurer",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+                    "Sprite": "OctoberHeroes2_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CitrusMarshal",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+                    "Sprite": "OctoberHeroes3_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-09",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-09.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-09_v1.png",
+            "Actors": [
+                {
+                    "Id": "IvorySovereign",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+                    "Sprite": "OctoberHeroes3_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PetalCitadel",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+                    "Sprite": "OctoberHeroes3_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-10",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-10.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-10_v1.png",
+            "Actors": [
+                {
+                    "Id": "PatchworkHost",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+                    "Sprite": "OctoberHeroes3_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ArchiveCurator",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+                    "Sprite": "OctoberHeroes4_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-11",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-11.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-11_v1.png",
+            "Actors": [
+                {
+                    "Id": "PennyBroker",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+                    "Sprite": "OctoberHeroes4_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "StormFencer",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+                    "Sprite": "OctoberHeroes4_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-12",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-12.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-12_v1.png",
+            "Actors": [
+                {
+                    "Id": "TinVirtuoso",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+                    "Sprite": "OctoberHeroes4_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MoonProwler",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+                    "Sprite": "OctoberHeroes5_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-13",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-13.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-13_v1.png",
+            "Actors": [
+                {
+                    "Id": "SupperMortar",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+                    "Sprite": "OctoberHeroes5_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "LanternWeaver",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+                    "Sprite": "OctoberHeroes5_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-14",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-14.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-14_v1.png",
+            "Actors": [
+                {
+                    "Id": "HourglassStag",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+                    "Sprite": "OctoberHeroes5_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RainArchivist",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+                    "Sprite": "OctoberHeroes6_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-15",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-15.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-15_v1.png",
+            "Actors": [
+                {
+                    "Id": "TeapotPilgrim",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "TeapotCourier",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CandleSnail",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "SnailPorter",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-16",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-16.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-16_v1.png",
+            "Actors": [
+                {
+                    "Id": "MailboxImp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "MailboxGuard",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PillowOracle",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "SleepyPatch",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-17",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-17.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-17_v1.png",
+            "Actors": [
+                {
+                    "Id": "MushroomLibrarian",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "BookLibrarian",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "HoodWisp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "CandleGhost",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-18",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-18.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-18_v1.png",
+            "Actors": [
+                {
+                    "Id": "JellySwordsman",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/HeroIdentity_v1.png",
+                    "Sprite": "JellyKnight",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "BrassAcorn",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BrassAcorn.png",
+                    "Sprite": "BrassAcorn",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-19",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-19.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-19_v1.png",
+            "Actors": [
+                {
+                    "Id": "BreadCrab",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BreadCrab.png",
+                    "Sprite": "BreadCrab",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "KettleBat",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/KettleBat.png",
+                    "Sprite": "KettleBat",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-20",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-20.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-20_v1.png",
+            "Actors": [
+                {
+                    "Id": "BookmarkGolem",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BookmarkGolem.png",
+                    "Sprite": "BookmarkGolem",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "TinTick",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/TinTick.png",
+                    "Sprite": "TinTick",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-21",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-21.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-21_v1.png",
+            "Actors": [
+                {
+                    "Id": "SpringDuck",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SpringDuck.png",
+                    "Sprite": "SpringDuck",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ButtonBeetle",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ButtonBeetle.png",
+                    "Sprite": "ButtonBeetle",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-22",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-22.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-22_v1.png",
+            "Actors": [
+                {
+                    "Id": "StapleMole",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/StapleMole.png",
+                    "Sprite": "StapleMole",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SnowSpoon",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SnowSpoon.png",
+                    "Sprite": "SnowSpoon",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-23",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-23.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-23_v1.png",
+            "Actors": [
+                {
+                    "Id": "IceCreamOwl",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/IceCreamOwl.png",
+                    "Sprite": "IceCreamOwl",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "FridgeWisp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/FridgeWisp.png",
+                    "Sprite": "FridgeWisp",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-24",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-24.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-24_v1.png",
+            "Actors": [
+                {
+                    "Id": "PearMoth",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/PearMoth.png",
+                    "Sprite": "PearMoth",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CitrusToad",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CitrusToad.png",
+                    "Sprite": "CitrusToad",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-25",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-25.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-25_v1.png",
+            "Actors": [
+                {
+                    "Id": "RadishJester",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/RadishJester.png",
+                    "Sprite": "RadishJester",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SeedHedgehog",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SeedHedgehog.png",
+                    "Sprite": "SeedHedgehog",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-26",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-26.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-26_v1.png",
+            "Actors": [
+                {
+                    "Id": "MoonJelly",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MoonJelly.png",
+                    "Sprite": "MoonJelly",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "StarSock",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/StarSock.png",
+                    "Sprite": "StarSock",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-27",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-27.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-27_v1.png",
+            "Actors": [
+                {
+                    "Id": "CometKite",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CometKite.png",
+                    "Sprite": "CometKite",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "EclipseEgg",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/EclipseEgg.png",
+                    "Sprite": "EclipseEgg",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-28",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-28.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-28_v1.png",
+            "Actors": [
+                {
+                    "Id": "OrbitMoth",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/OrbitMoth.png",
+                    "Sprite": "OrbitMoth",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "DreamCompass",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/DreamCompass.png",
+                    "Sprite": "DreamCompass",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-29",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-29.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-29_v1.png",
+            "Actors": [
+                {
+                    "Id": "ShellPostman",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ShellPostman.png",
+                    "Sprite": "ShellPostman",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CoralTeacup",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CoralTeacup.png",
+                    "Sprite": "CoralTeacup",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-30",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-30.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-30_v1.png",
+            "Actors": [
+                {
+                    "Id": "BubbleKoi",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BubbleKoi.png",
+                    "Sprite": "BubbleKoi",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "AnchorSnail",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/AnchorSnail.png",
+                    "Sprite": "AnchorSnail",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-31",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-31.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-31_v1.png",
+            "Actors": [
+                {
+                    "Id": "SailSquid",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SailSquid.png",
+                    "Sprite": "SailSquid",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SockCyclops",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SockCyclops.png",
+                    "Sprite": "SockCyclops",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-32",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-32.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-32_v1.png",
+            "Actors": [
+                {
+                    "Id": "DiceCrab",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/DiceCrab.png",
+                    "Sprite": "DiceCrab",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MaskPepper",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MaskPepper.png",
+                    "Sprite": "MaskPepper",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-33",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-33.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-33_v1.png",
+            "Actors": [
+                {
+                    "Id": "CrayonGremlin",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CrayonGremlin.png",
+                    "Sprite": "CrayonGremlin",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "MirrorNewt",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MirrorNewt.png",
+                    "Sprite": "MirrorNewt",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-34",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-34.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-34_v1.png",
+            "Actors": [
+                {
+                    "Id": "RibbonSpider",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/RibbonSpider.png",
+                    "Sprite": "RibbonSpider",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RainbowTailor",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K24/OutsideRewards_v1.png",
+                    "Sprite": "OutsideReward_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-35",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-35.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-35_v1.png",
+            "Actors": [
+                {
+                    "Id": "RainbowBell",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K24/OutsideRewards_v1.png",
+                    "Sprite": "OutsideReward_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "SecretPaperBird",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/AnimationHD/BrigadeAnimation_v3.png",
+                    "Sprite": "TeapotCourier",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-36",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-36.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-36_v1.png",
+            "Actors": [
+                {
+                    "Id": "SaffronMechanist",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "ClockworkPiper",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-37",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-37.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-37_v1.png",
+            "Actors": [
+                {
+                    "Id": "VelvetChampion",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PaperInventor",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+                    "Sprite": "OctoberAllies1_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-38",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-38.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-38_v1.png",
+            "Actors": [
+                {
+                    "Id": "ReturnCaptain",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "DoughForeman",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-39",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-39.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-39_v1.png",
+            "Actors": [
+                {
+                    "Id": "IronLocomotive",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "VioletRemnant",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+                    "Sprite": "OctoberAllies2_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-40",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-40.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-40_v1.png",
+            "Actors": [
+                {
+                    "Id": "VelvetEnchantress",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "GrandSprout",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-41",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-41.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-41_v1.png",
+            "Actors": [
+                {
+                    "Id": "BristleBall",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "PaperDevil",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+                    "Sprite": "OctoberAllies3_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-42",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-42.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-42_v1.png",
+            "Actors": [
+                {
+                    "Id": "BalloonMallet",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "LittleSprout",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-43",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-43.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-43_v1.png",
+            "Actors": [
+                {
+                    "Id": "MonsterMarble",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "CarouselPony",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+                    "Sprite": "OctoberAllies4_12",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-44",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-44.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-44_v1.png",
+            "Actors": [
+                {
+                    "Id": "TeacupCricket",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+                    "Sprite": "OctoberAllies5_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                },
+                {
+                    "Id": "RibbonOtter",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+                    "Sprite": "OctoberAllies5_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "locomotion-45",
+            "Kind": "locomotion",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 8,
+            "Reference": "PreviewExports/PerformanceExpansion/References/locomotion-45.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-45_v1.png",
+            "Actors": [
+                {
+                    "Id": "SpindleWren",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+                    "Sprite": "OctoberAllies5_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-00",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-00.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-00_v1.png",
+            "Actors": [
+                {
+                    "Id": "HushMite",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/HushMite_v1.png",
+                    "Sprite": "HushMiteEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "HushMite",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/HushMite_v1.png",
+                    "Sprite": "HushMiteEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "ClockBat",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/ClockBat_v1.png",
+                    "Sprite": "ClockBatEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "ClockBat",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/ClockBat_v1.png",
+                    "Sprite": "ClockBatEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-01",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-01.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-01_v1.png",
+            "Actors": [
+                {
+                    "Id": "BristleImp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BristleImp_v1.png",
+                    "Sprite": "BristleImpEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BristleImp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BristleImp_v1.png",
+                    "Sprite": "BristleImpEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "RuneWisp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/RuneWisp_v1.png",
+                    "Sprite": "RuneWispEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "RuneWisp",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/RuneWisp_v1.png",
+                    "Sprite": "RuneWispEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-02",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-02.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-02_v1.png",
+            "Actors": [
+                {
+                    "Id": "InkMoth",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/InkMoth_v1.png",
+                    "Sprite": "InkMothEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "InkMoth",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/InkMoth_v1.png",
+                    "Sprite": "InkMothEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "SirenSeal",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/SirenSeal_v1.png",
+                    "Sprite": "SirenSealEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "SirenSeal",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/SirenSeal_v1.png",
+                    "Sprite": "SirenSealEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-03",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-03.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-03_v1.png",
+            "Actors": [
+                {
+                    "Id": "DoorBearer",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/DoorBearer_v1.png",
+                    "Sprite": "DoorBearerEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "DoorBearer",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/DoorBearer_v1.png",
+                    "Sprite": "DoorBearerEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "MoonMagnet",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/MoonMagnet_v1.png",
+                    "Sprite": "MoonMagnetEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "MoonMagnet",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/MoonMagnet_v1.png",
+                    "Sprite": "MoonMagnetEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-04",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-04.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-04_v1.png",
+            "Actors": [
+                {
+                    "Id": "SleepMimic",
+                    "Material": "Wax",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/SleepMimic_v1.png",
+                    "Sprite": "SleepMimicEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "SleepMimic",
+                    "Material": "Wax",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/SleepMimic_v1.png",
+                    "Sprite": "SleepMimicEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "CurtainWisp",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/CurtainWisp_v1.png",
+                    "Sprite": "CurtainWispEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "CurtainWisp",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/CurtainWisp_v1.png",
+                    "Sprite": "CurtainWispEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-05",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-05.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-05_v1.png",
+            "Actors": [
+                {
+                    "Id": "FurnaceToad",
+                    "Material": "Wax",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/FurnaceToad_v1.png",
+                    "Sprite": "FurnaceToadEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "FurnaceToad",
+                    "Material": "Wax",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/FurnaceToad_v1.png",
+                    "Sprite": "FurnaceToadEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "WardrobeCrab",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/WardrobeCrab_v1.png",
+                    "Sprite": "WardrobeCrabEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "WardrobeCrab",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/WardrobeCrab_v1.png",
+                    "Sprite": "WardrobeCrabEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-06",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-06.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-06_v1.png",
+            "Actors": [
+                {
+                    "Id": "HopperKeg",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/HopperKeg_v1.png",
+                    "Sprite": "HopperKegEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "HopperKeg",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/HopperKeg_v1.png",
+                    "Sprite": "HopperKegEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "ChargerRam",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/ChargerRam_v1.png",
+                    "Sprite": "ChargerRamEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "ChargerRam",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/ChargerRam_v1.png",
+                    "Sprite": "ChargerRamEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-07",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-07.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-07_v1.png",
+            "Actors": [
+                {
+                    "Id": "CoinLeech",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/CoinLeech_v1.png",
+                    "Sprite": "CoinLeechEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "CoinLeech",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/CoinLeech_v1.png",
+                    "Sprite": "CoinLeechEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BlastPuffer",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BlastPuffer_v1.png",
+                    "Sprite": "BlastPufferEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BlastPuffer",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BlastPuffer_v1.png",
+                    "Sprite": "BlastPufferEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-08",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-08.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-08_v1.png",
+            "Actors": [
+                {
+                    "Id": "SporeBishop",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/SporeBishop_v1.png",
+                    "Sprite": "SporeBishopEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "SporeBishop",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/SporeBishop_v1.png",
+                    "Sprite": "SporeBishopEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BroomSkater",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png",
+                    "Sprite": "BroomSkaterEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BroomSkater",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png",
+                    "Sprite": "BroomSkaterEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-09",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-09.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-09_v1.png",
+            "Actors": [
+                {
+                    "Id": "RibbonHydra",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/RibbonHydra_v1.png",
+                    "Sprite": "RibbonHydraEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "RibbonHydra",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/RibbonHydra_v1.png",
+                    "Sprite": "RibbonHydraEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BurrowBell",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+                    "Sprite": "BurrowBellEvolution_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BurrowBell",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+                    "Sprite": "BurrowBellEvolution_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-10",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-10.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-10_v1.png",
+            "Actors": [
+                {
+                    "Id": "SmokeWraith",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/SmokeWraith_v1.png",
+                    "Sprite": "SmokeWraith_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "SmokeWraith",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/SmokeWraith_v1.png",
+                    "Sprite": "SmokeWraith_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BlueFlameFiend",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/BlueFlameFiend_v1.png",
+                    "Sprite": "BlueFlameFiend_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "BlueFlameFiend",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/BlueFlameFiend_v1.png",
+                    "Sprite": "BlueFlameFiend_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-11",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-11.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-11_v1.png",
+            "Actors": [
+                {
+                    "Id": "RedFlameBerserker",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/RedFlameBerserker_v1.png",
+                    "Sprite": "RedFlameBerserker_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "RedFlameBerserker",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/RedFlameBerserker_v1.png",
+                    "Sprite": "RedFlameBerserker_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "TwinFlameFurnace",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/TwinFlameFurnace_v1.png",
+                    "Sprite": "TwinFlameFurnace_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "TwinFlameFurnace",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/TwinFlameFurnace_v1.png",
+                    "Sprite": "TwinFlameFurnace_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-12",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-12.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-12_v1.png",
+            "Actors": [
+                {
+                    "Id": "AshSwallower",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/AshSwallower_v1.png",
+                    "Sprite": "AshSwallower_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "AshSwallower",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/AshSwallower_v1.png",
+                    "Sprite": "AshSwallower_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "LostLanternSoul",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+                    "Sprite": "LostLanternSoul_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "LostLanternSoul",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+                    "Sprite": "LostLanternSoul_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "enemies-13",
+            "Kind": "enemies",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/enemies-13.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/enemies-13_v1.png",
+            "Actors": [
+                {
+                    "Id": "SmokingCoffin",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/SmokingCoffin_v1.png",
+                    "Sprite": "SmokingCoffin_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "SmokingCoffin",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/SmokingCoffin_v1.png",
+                    "Sprite": "SmokingCoffin_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "EmberProcession",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/EmberProcession_v1.png",
+                    "Sprite": "EmberProcession_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                },
+                {
+                    "Id": "EmberProcession",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K25/EmberProcession_v1.png",
+                    "Sprite": "EmberProcession_08",
+                    "Evolution": 1,
+                    "ExistingCombatPoses": 8,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "bosses-00",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-00.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-00_v1.png",
+            "Actors": [
+                {
+                    "Id": "UndeliveredKing",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/RoyalArchive_v1.png",
+                    "Sprite": "BossCore_RoyalArchive_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-01",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-01.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-01_v1.png",
+            "Actors": [
+                {
+                    "Id": "ScarletIndex",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/RoyalArchive_v1.png",
+                    "Sprite": "BossCore_RoyalArchive_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-02",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-02.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-02_v1.png",
+            "Actors": [
+                {
+                    "Id": "SleepCollector",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/SleepWax_v1.png",
+                    "Sprite": "BossCore_SleepWax_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-03",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-03.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-03_v1.png",
+            "Actors": [
+                {
+                    "Id": "WaxAdmiral",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/SleepWax_v1.png",
+                    "Sprite": "BossCore_SleepWax_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-04",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-04.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-04_v1.png",
+            "Actors": [
+                {
+                    "Id": "LastLantern",
+                    "Material": "Paper",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/LanternStage_v1.png",
+                    "Sprite": "BossCore_LanternStage_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-05",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-05.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-05_v1.png",
+            "Actors": [
+                {
+                    "Id": "MarqueeMaw",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/LanternStage_v1.png",
+                    "Sprite": "BossCore_LanternStage_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-06",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-06.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-06_v1.png",
+            "Actors": [
+                {
+                    "Id": "UmbraCradle",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/UmbraWidow_v1.png",
+                    "Sprite": "BossCore_UmbraWidow_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-07",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-07.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-07_v1.png",
+            "Actors": [
+                {
+                    "Id": "CoinWidow",
+                    "Material": "Metal",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/UmbraWidow_v1.png",
+                    "Sprite": "BossCore_UmbraWidow_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-08",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-08.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-08_v1.png",
+            "Actors": [
+                {
+                    "Id": "ChoirEngine",
+                    "Material": "Wood",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/ChoirLuggage_v1.png",
+                    "Sprite": "BossCore_ChoirLuggage_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-09",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-09.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-09_v1.png",
+            "Actors": [
+                {
+                    "Id": "SuitcaseLeviathan",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/K21/ChoirLuggage_v1.png",
+                    "Sprite": "BossCore_ChoirLuggage_08",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-10",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-10.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-10_v1.png",
+            "Actors": [
+                {
+                    "Id": "TheLastCustomer",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/Nightmare/LastCustomerIdle_v4.png",
+                    "Sprite": "LastCustomerIdle_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 8,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "bosses-11",
+            "Kind": "bosses",
+            "Columns": 2,
+            "Rows": 2,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/bosses-11.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/bosses-11_v1.png",
+            "Actors": [
+                {
+                    "Id": "OutsideStageKeeper",
+                    "Material": "Fabric",
+                    "Source": "Assets/ArcaneBrigade/Art/October/Keeper.png",
+                    "Sprite": "OctoberKeeper_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 4,
+                    "Boss": true
+                }
+            ]
+        },
+        {
+            "Id": "weapons-00",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-00.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-00_v1.png",
+            "Actors": [
+                {
+                    "Id": "KeyCleaver",
+                    "Material": "Slam/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+                    "Sprite": "KeyCleaver",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "TeapotPopgun",
+                    "Material": "Cast/Tea",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "TeapotPopgun",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "UmbrellaLance",
+                    "Material": "Thrust/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+                    "Sprite": "UmbrellaLance",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "MailboxLauncher",
+                    "Material": "Recoil/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+                    "Sprite": "MailboxLauncher",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-01",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-01.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-01_v1.png",
+            "Actors": [
+                {
+                    "Id": "BellFork",
+                    "Material": "Bell/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+                    "Sprite": "BellFork",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "BookPaddle",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+                    "Sprite": "BookPaddle",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "CrescentBow",
+                    "Material": "Bow/TetherBow",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "CrescentBow",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "RuneStaff",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+                    "Sprite": "RuneStaff",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-02",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-02.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-02_v1.png",
+            "Actors": [
+                {
+                    "Id": "DreamStamp",
+                    "Material": "Stamp/None",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/DreamStamp_v1.png",
+                    "Sprite": "DreamStamp_v1",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "CloudScissors",
+                    "Material": "Scissors/Scissors",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "CloudScissors",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "SleepCamera",
+                    "Material": "Camera/Camera",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "SleepCamera",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "TinFish",
+                    "Material": "Recoil/Fish",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "TinFish",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-03",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-03.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-03_v1.png",
+            "Actors": [
+                {
+                    "Id": "DreamIron",
+                    "Material": "Iron/Iron",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "DreamIron",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "RubberHammer",
+                    "Material": "Hammer/Hammer",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "RubberHammer",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "AlarmMortar",
+                    "Material": "Recoil/Alarm",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "AlarmMortar",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "MusicBox",
+                    "Material": "Music/MusicBox",
+                    "Source": "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+                    "Sprite": "MusicBox",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-04",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-04.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-04_v1.png",
+            "Actors": [
+                {
+                    "Id": "SpoonSabre",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SpoonSabre.png",
+                    "Sprite": "SpoonSabre",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "ToastCleaver",
+                    "Material": "Slam/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ToastCleaver.png",
+                    "Sprite": "ToastCleaver",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "LollipopLance",
+                    "Material": "Thrust/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/LollipopLance.png",
+                    "Sprite": "LollipopLance",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "CorkscrewRapier",
+                    "Material": "Thrust/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CorkscrewRapier.png",
+                    "Sprite": "CorkscrewRapier",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-05",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-05.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-05_v1.png",
+            "Actors": [
+                {
+                    "Id": "TeabagFlail",
+                    "Material": "Slam/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/TeabagFlail.png",
+                    "Sprite": "TeabagFlail",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "UmbrellaHook",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/UmbrellaHook.png",
+                    "Sprite": "UmbrellaHook",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "PizzaWheel",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/PizzaWheel.png",
+                    "Sprite": "PizzaWheel",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "MoonScythe",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MoonScythe.png",
+                    "Sprite": "MoonScythe",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-06",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-06.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-06_v1.png",
+            "Actors": [
+                {
+                    "Id": "ForkTrident",
+                    "Material": "Thrust/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ForkTrident.png",
+                    "Sprite": "ForkTrident",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "MaracaHammer",
+                    "Material": "Slam/Hammer",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/MaracaHammer.png",
+                    "Sprite": "MaracaHammer",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "TapeWhip",
+                    "Material": "Slash/Scissors",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/TapeWhip.png",
+                    "Sprite": "TapeWhip",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "ButtonBow",
+                    "Material": "Bow/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/ButtonBow.png",
+                    "Sprite": "ButtonBow",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-07",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-07.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-07_v1.png",
+            "Actors": [
+                {
+                    "Id": "LeafCrossbow",
+                    "Material": "Bow/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/LeafCrossbow.png",
+                    "Sprite": "LeafCrossbow",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "BubbleWand",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/BubbleWand.png",
+                    "Sprite": "BubbleWand",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "StarKazoo",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/StarKazoo.png",
+                    "Sprite": "StarKazoo",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "AcornSling",
+                    "Material": "Bow/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/AcornSling.png",
+                    "Sprite": "AcornSling",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-08",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-08.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-08_v1.png",
+            "Actors": [
+                {
+                    "Id": "CrescentBoomerang",
+                    "Material": "Recoil/Fish",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CrescentBoomerang.png",
+                    "Sprite": "CrescentBoomerang",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "DartCompass",
+                    "Material": "Recoil/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/DartCompass.png",
+                    "Sprite": "DartCompass",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "LanternStaff",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/LanternStaff.png",
+                    "Sprite": "LanternStaff",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "SnowGlobeOrb",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SnowGlobeOrb.png",
+                    "Sprite": "SnowGlobeOrb",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-09",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-09.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-09_v1.png",
+            "Actors": [
+                {
+                    "Id": "RibbonHarp",
+                    "Material": "Cast/MusicBox",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/RibbonHarp.png",
+                    "Sprite": "RibbonHarp",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "DreamOrbStaff",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K13/DreamArms_v2.png",
+                    "Sprite": "DreamArms_v2_0",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "TwinSabres",
+                    "Material": "Scissors/Scissors",
+                    "Source": "Assets/ArcaneBrigade/Art/K13/ToyBlades_v2.png",
+                    "Sprite": "ToyBlades_v2_0",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "ClockCrescent",
+                    "Material": "Slash/Fish",
+                    "Source": "Assets/ArcaneBrigade/Art/K13/ToyBlades_v2.png",
+                    "Sprite": "ToyBlades_v2_1",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-10",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-10.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-10_v1.png",
+            "Actors": [
+                {
+                    "Id": "StampHammer",
+                    "Material": "Slam/Hammer",
+                    "Source": "Assets/ArcaneBrigade/Art/K13/ToyBlades_v2.png",
+                    "Sprite": "ToyBlades_v2_3",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "ClockworkYoYo",
+                    "Material": "Slash/Fish",
+                    "Source": "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+                    "Sprite": "ClockworkArsenal_v3_00",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "ScrapMagnet",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+                    "Sprite": "ClockworkArsenal_v3_01",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "NeedleSinger",
+                    "Material": "Recoil/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+                    "Sprite": "ClockworkArsenal_v3_02",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-11",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-11.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-11_v1.png",
+            "Actors": [
+                {
+                    "Id": "SpringKnocker",
+                    "Material": "Slam/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+                    "Sprite": "ClockworkArsenal_v3_03",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "DreamProjector",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+                    "Sprite": "ClockworkArsenal_v3_04",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "RibbonWheel",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+                    "Sprite": "ClockworkArsenal_v3_05",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "MoonseedOrb",
+                    "Material": "Cast/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K13/DreamArms_v2.png",
+                    "Sprite": "DreamArms_v2_0",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        },
+        {
+            "Id": "weapons-12",
+            "Kind": "weapons",
+            "Columns": 4,
+            "Rows": 4,
+            "FramesPerActor": 4,
+            "Reference": "PreviewExports/PerformanceExpansion/References/weapons-12.png",
+            "Output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-12_v1.png",
+            "Actors": [
+                {
+                    "Id": "AfterimageSabre",
+                    "Material": "Slash/None",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/SpoonSabre.png",
+                    "Sprite": "SpoonSabre",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                },
+                {
+                    "Id": "SatelliteDisc",
+                    "Material": "Recoil/Fish",
+                    "Source": "Assets/ArcaneBrigade/Art/K10/CrescentBoomerang.png",
+                    "Sprite": "CrescentBoomerang",
+                    "Evolution": 0,
+                    "ExistingCombatPoses": 0,
+                    "Boss": false
+                }
+            ]
+        }
+    ]
+}

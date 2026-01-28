@@ -39,14 +39,23 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - astral
+  - shoe
   Passive: 1
   PassiveStrength: 0.5
-  Description: 'UNCOMMON ally. Attacks deal 18% more damage.
-
-    Enemy count +10%,
-    Score multiplier +10%. Your Maximum health -1
-
-    Heal you every 4s'
+  Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nEach chest opened during
+    the run adds 2% attack speed to this ally, up to 20%, applied when the next battle
+    is prepared.\r\n\nSUPPORT WHILE OWNED\nRun / Enemy count: +10%\nRun / Score multiplier:
+    +10%\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three
+    units reduces support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s in combat, attempt
+    to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.\r\n\nNamed
+    talents count bodies and absorbed memories; their stated percentages are not
+    multiplied by star level unless explicitly stated. Listed support modifiers scale
+    separately at 1/2/4.\r\nBonds: astral, shoe. Immortal. Weapon rolls on recruitment;
+    three equal-species/equal-star bodies merge unless the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Pirate
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -65,7 +74,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

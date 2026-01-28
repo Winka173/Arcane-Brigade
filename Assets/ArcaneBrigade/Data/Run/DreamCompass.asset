@@ -39,11 +39,25 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - archive
+  - hare
+  - archer
   Passive: 0
   PassiveStrength: 0.5
-  Description: 'Chest quality +2.5%. Your Maximum health -1
-
-    Auto attacks'
+  Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nEach paid shop refresh grants
+    2 gold per talent immediately, capped at 6 gold total per refresh. Each refresh
+    during the run also adds 3% weapon damage to this ally, up to 30%, for the next
+    prepared battle.\r\n\nSUPPORT WHILE OWNED\nRun / Chest quality: +2.5%\nChampion
+    / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
+    support sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
+    talents count bodies and absorbed memories; their stated percentages are not
+    multiplied by star level unless explicitly stated. Listed support modifiers scale
+    separately at 1/2/4.\r\nBonds: archive, hare, archer. Immortal. Weapon rolls
+    on recruitment; three equal-species/equal-star bodies merge unless the talent
+    forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Smiley Fox
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -59,7 +73,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

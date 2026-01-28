@@ -10,6 +10,9 @@ namespace ArcaneBrigade
         private LineRenderer streak;
         private LineRenderer motif;
         private Material material;
+        private readonly Vector2[] history = new Vector2[4];
+        private int identity = -1;
+        private float sampledAt = -100;
         private static readonly Vector2[] FishMotif = { new Vector2(0.19f, 0), new Vector2(-0.03f, 0.1f), new Vector2(-0.16f, -0.12f), new Vector2(-0.16f, 0.12f), new Vector2(-0.03f, -0.1f) };
         private static readonly Vector2[] NoteMotif = { new Vector2(-0.03f, -0.08f), new Vector2(0.05f, -0.08f), new Vector2(0.05f, 0.22f), new Vector2(0.14f, 0.18f), new Vector2(0.14f, 0.1f) };
 
@@ -21,7 +24,7 @@ namespace ArcaneBrigade
             var child = new GameObject("MotionStreak");
             child.transform.SetParent(transform, false);
             streak = child.AddComponent<LineRenderer>();
-            streak.positionCount = 2;
+            streak.positionCount = 4;
             streak.numCapVertices = 6;
             streak.numCornerVertices = 6;
             material = new Material(Shader.Find("Sprites/Default"));
@@ -45,6 +48,16 @@ namespace ArcaneBrigade
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
+            if (identity != state.Id || time < sampledAt)
+            {
+                identity = state.Id; sampledAt = time;
+                for (int index = 0; index < history.Length; index++) history[index] = position;
+            }
+            if (time - sampledAt >= .016f)
+            {
+                for (int index = history.Length - 1; index > 0; index--) history[index] = history[index - 1];
+                history[0] = position; sampledAt = time;
+            }
             bool bodyFragment = hostile && state.Sprite != null && (state.Sprite.texture.name == "BodyFragments_v1" || state.Sprite.texture.name == "EnemyAffixEffects_v1");
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
             grounded.Display(body.sprite, position + Vector2.down * 0.18f, Mathf.Max(0.13f, state.VisualWidth), 0.18f, hostile ? 0.22f : 0.13f);
@@ -82,8 +95,17 @@ namespace ArcaneBrigade
             Color trail = hostile ? new Color(1f, 0.16f, 0.48f) : state.Color;
             streak.startColor = new Color(trail.r, trail.g, trail.b, 0.03f);
             streak.endColor = new Color(trail.r, trail.g, trail.b, hostile ? 0.8f : EffectDensity.AlliedAlpha);
-            streak.SetPosition(0, position - state.Velocity.normalized * (arrow ? 0.5f : 0.24f));
-            streak.SetPosition(1, position);
+            for (int index = 0; index < history.Length; index++)
+            {
+                Vector2 point = PresentationSettings.ReducedMotion ? position - state.Velocity.normalized * (.24f * (1 - index / 3f)) : index == 3 ? position : history[3 - index];
+                point = position + Vector2.ClampMagnitude(point - position, arrow ? .6f : .38f);
+                streak.SetPosition(index, point);
+            }
+            if (!hostile && magic && !authored && !PresentationSettings.ReducedMotion)
+            {
+                core.transform.localRotation = Quaternion.Euler(0, 0, time * 65 + state.Id * 31);
+                core.transform.localScale = new Vector3(1 + Mathf.Sin(time * 5 + state.Id) * .08f, 1 - Mathf.Sin(time * 5 + state.Id) * .08f, 1) * (width / Mathf.Max(.001f, body.transform.localScale.x) / Mathf.Max(.01f, core.sprite.bounds.size.x) * .45f);
+            }
             ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;
             motif.enabled = family == ExpandedWeapon.MusicBox;
             if (motif.enabled)

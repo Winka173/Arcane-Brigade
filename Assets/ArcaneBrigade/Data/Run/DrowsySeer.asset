@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: -2018626955, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: -483576811, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
   - {fileID: 1640786917, guid: fdb8af3ede770e8439c2c24d64de5ebf, type: 3}
+  AuthoredMotion: {fileID: 0}
   Weapon: {fileID: 11400000, guid: e1377fe9fd09ccb4ea0b8817b675a2a3, type: 2}
   Health: 150
   Speed: 3.1
@@ -28,6 +29,8 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
   CollisionDamage: 0
@@ -39,6 +42,10 @@ MonoBehaviour:
   PassiveStrength: 3
   Description: A sleepy tuning-bell oracle. Stand still to chill nearby threats and
     erase a few hostile bullets.
+  ReferenceHero: Frosty
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers:
   - Effect: 11
     Scope: 1
@@ -73,6 +80,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

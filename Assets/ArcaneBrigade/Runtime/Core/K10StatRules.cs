@@ -14,7 +14,7 @@ namespace ArcaneBrigade
         }
         public static float Factor(float bonus, float minimum = 0.1f, float maximum = 10f) => Mathf.Clamp(1 + bonus, minimum, maximum);
         public static float MaximumHealth(RunSession session, RunCatalog catalog)
-            => Mathf.Max(1, (catalog.Unit(session.State.ChampionId).Health + session.Bonus(ItemEffect.Health)) * Factor(session.Bonus(ItemEffect.HealthCorrection)));
+            => catalog.Unit(session.State.ChampionId).ReferenceHero == "Card Queen" ? 12 : catalog.Unit(session.State.ChampionId).ReferenceHero == "Periwinky" ? Mathf.Clamp(session.State.Gold, 20, 400) : OctoberBalance.MaximumHealth((catalog.Unit(session.State.ChampionId).Health + session.Bonus(ItemEffect.Health)) * Factor(session.Bonus(ItemEffect.HealthCorrection)), session.State.Wave);
 
         public static void ApplyUnit(RunSession session, RunCatalog catalog, UnitDefinition unit, UnitDefinition source, WeaponDefinition original, int tier, bool companion)
         {
@@ -22,8 +22,8 @@ namespace ArcaneBrigade
             ModifierScope scope = companion ? ModifierScope.Companions : ModifierScope.Champion;
             WeaponDefinition weapon = unit.Weapon;
             ItemEffect flat = weapon.Kind == WeaponKind.Projectile ? ItemEffect.RangedDamage : ItemEffect.MeleeDamage;
-            weapon.Damage = Mathf.Max(0, original.Damage + session.Bonus(flat, scope)) * session.DamageMultiplier(source, tier, companion) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
-            float range = Factor(session.Bonus(ItemEffect.AttackRange, scope));
+            weapon.Damage = Mathf.Max(0, original.Damage + OctoberBalance.FlatDamage(session.Bonus(flat, scope), session.State.Wave)) * session.DamageMultiplier(source, tier, companion) * Factor(session.Bonus(ItemEffect.DamageCorrection, scope));
+            float range = Factor(OctoberBalance.Soften(session.Bonus(ItemEffect.AttackRange, scope), .5f, .15f), .4f, 1.8f);
             weapon.Range *= range;
             weapon.ProjectileSpeed *= Factor(session.Bonus(ItemEffect.BulletSpeed, scope));
             weapon.ProjectileLifetime *= range * Factor(session.Bonus(ItemEffect.BulletDistance, scope)) / Factor(session.Bonus(ItemEffect.BulletSpeed, scope));
@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             weapon.ProjectilePierce = Mathf.Clamp(weapon.ProjectilePierce + Mathf.FloorToInt(session.Bonus(ItemEffect.BulletPierce, scope)), 0, 64);
             weapon.ProjectileSplit = Mathf.Clamp(weapon.ProjectileSplit + Mathf.FloorToInt(session.Bonus(ItemEffect.BulletSplit, scope)), 0, 6);
             weapon.ProjectileBounceChance = Mathf.Clamp01(weapon.ProjectileBounceChance + session.Bonus(ItemEffect.BulletBounce, scope));
-            weapon.PushDistance *= Factor(session.Bonus(ItemEffect.Knockback, scope));
+            weapon.PushDistance = Mathf.Min(.45f, weapon.PushDistance * Factor(session.Bonus(ItemEffect.Knockback, scope), .1f, 2));
             float body = Factor(session.Bonus(companion ? ItemEffect.CompanionSize : ItemEffect.BodySize), 0.4f, 2.5f);
             unit.BodyHeight *= body;
             unit.BodyScale = body;

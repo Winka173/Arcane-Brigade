@@ -17,8 +17,10 @@ namespace ArcaneBrigade
         private GUIStyle buttonStyle;
         private float openedAt;
         private float selectedAt;
+        private readonly HeroIdentityOptions heroOptions = new HeroIdentityOptions();
         public bool Open => model != null;
         public int Tab => tab;
+        public bool HeroSelected => Open && tab == 0 && selection == 0;
         public const int TabCount = 4;
         public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { if (model == null) CheckpointAudio.PlayInterfaceId("ui.open"); model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; }
         public void Close() { if (model != null) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; GlossaryUI.Close(); }
@@ -39,6 +41,13 @@ namespace ArcaneBrigade
             float height = tab == 0 ? 115 : 145;
             scroll.y = Mathf.Clamp(scroll.y, Mathf.Max(0, (selection + 1) * height - 670), selection * height);
             explanationScroll = Vector2.zero;
+        }
+        public void SelectBond(string name)
+        {
+            if (model == null) return;
+            SelectTab(3);
+            selection = Mathf.Max(0, model.Links.FindIndex(row => row.Name == "Bond " + name));
+            scroll.y = selection * 145; explanationScroll = Vector2.zero;
         }
 
         public void Draw(ArenaController owner, Camera camera)
@@ -81,7 +90,12 @@ namespace ArcaneBrigade
                 Rect card = new Rect(5, index * rowHeight + 5, 990, rowHeight - 12);
                 RunHud.Fill(card, index == selection ? new Color(0.24f, 0.18f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
                 if (index == selection) ArcadeSkin.Line(new Rect(card.x + 2, card.y + 2, 8, card.height - 4), ArcadeSkin.Teal);
-                float contentLeft = row.Icon != null ? 120 : 28;
+                if (tab == 2)
+                {
+                    ArcadeSkin.Line(new Rect(card.x + 2, card.y + 4, 5, card.height - 8), row.Accent);
+                    RunHud.Fill(new Rect(18, card.y + 12, 90, 100), new Color(.09f, .075f, .14f));
+                }
+                float contentLeft = row.Icon != null ? 130 : 28;
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(68, card.y + 62, 42, 48), row.WeaponIcon);
                 GlossaryUI.Text(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
@@ -92,12 +106,20 @@ namespace ArcaneBrigade
             GUI.EndScrollView();
             RunHud.Fill(new Rect(1160, 300, 665, 665), new Color(0.15f, 0.12f, 0.24f));
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));
+            if (tab == 2 && rows.Count > 0)
+            {
+                var chosen = rows[Mathf.Clamp(selection, 0, rows.Count - 1)];
+                RunHud.Sprite(new Rect(1185, 325, 100, 100), chosen.Icon);
+                GUI.Label(new Rect(1310, 340, 480, 70), chosen.Name, text);
+            }
             string explanation = rows.Count == 0 ? "" : rows[Mathf.Clamp(selection, 0, rows.Count - 1)].Explanation;
             if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
             float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
-            explanationScroll = GUI.BeginScrollView(new Rect(1180, 325, 625, 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
+            bool heroSelected = tab == 0 && selection == 0 && owner.Session.HeroIdentityDefinition != null;
+            explanationScroll = GUI.BeginScrollView(new Rect(1180, tab == 2 ? 445 : 325, 625, heroSelected ? 290 : tab == 2 ? 490 : 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);
             GUI.EndScrollView();
+            if (heroSelected) heroOptions.Draw(owner, new Rect(1185, 632, 610, 315), text);
             GUI.Label(new Rect(75, 988, 1750, 42), RunUIHints.DetailsNavigation, text);
             GlossaryUI.Draw(new Vector2(1920, 1080));
             GUI.matrix = previous;

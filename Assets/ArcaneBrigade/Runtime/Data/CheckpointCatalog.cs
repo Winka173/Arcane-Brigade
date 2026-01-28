@@ -3,8 +3,10 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     [CreateAssetMenu(menuName = "Arcane Brigade/Checkpoint Catalog")]
-    public sealed class CheckpointCatalog : ScriptableObject
+    public sealed partial class CheckpointCatalog : ScriptableObject
     {
+        public string[] OctoberMemories = new string[0];
+        public float OctoberHealingReceived = 1;
         public string DataVersion = "checkpoint-0.1";
         public int Seed = 131026;
         public UnitDefinition Champion;
@@ -59,11 +61,21 @@ namespace ArcaneBrigade
         public bool ExpandedContent;
         public bool EnableSpectacles;
         public UnitDefinition[] EnemyPool = new UnitDefinition[0];
+        public UnitDefinition[] AffixedEnemies = new UnitDefinition[0];
         public int TeaCoasterStacks;
         public int ChorusStacks;
         public int TreasureStacks;
         public bool PatchSpring;
         public bool ThermalInk;
         public int RepairStacks;
+        public int[] RelicStacks = new int[0];
+        public float RelicIncome;
+        public float RelicMelee;
+        public float RelicRanged;
+        public int RelicWallet;
+        public UnitDefinition[] RelicWeapons = new UnitDefinition[0];
+        public System.Action<StatModifier> RelicGain;
+        public bool FreeFollowers;
+        public bool StaticFollowers;
     }
 }

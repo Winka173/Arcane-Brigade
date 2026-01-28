@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: LanternKnight
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: LanternWeaver
+  DisplayName: Lantern Weaver
+  Body: {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  AnimationFrames:
+  - {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 959876839, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 1073908477, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: -1749668450, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f18d59fc9cfeeba498bdf1a6f51aae15, type: 2}
+  Weapon: {fileID: 11400000, guid: 8c9aebe3727e73942aca0c12dd4236c4, type: 2}
+  Health: 105
+  Speed: 4.5
+  Radius: 0.25
+  BodyHeight: 0.85
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - astral
+  - oddity
+  Passive: 0
+  PassiveStrength: 0.8
+  Description: Every fourth attack stitches three nearby enemies with a delayed lantern
+    thread. The thread shares one damage budget.
+  ReferenceHero: Original:LanternWeaver
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes:
+  - astral
+  - oddity
+  - lantern-guild
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 14
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 3
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

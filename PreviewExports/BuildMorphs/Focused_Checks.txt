@@ -1,0 +1,470 @@
+PASS Real run catalog enables forms
+PASS 24 individually imported transparent attachments
+PASS Recruitable weapon exists: Living Stitchwork
+PASS Existing original Toybox sound: Living Stitchwork
+PASS Tier alone cannot unlock a form: Thread
+PASS At least four compatible relic identities for evolved carriers: Thread
+PASS Compatible relic identities unlock first form: Thread
+PASS Duplicate stacks cannot farm craft: Thread
+PASS Altered secret item loses old craft identity: Thread
+PASS Real compiler applies masterwork to the assigned weapon: Thread
+PASS Source definitions remain unchanged: Thread
+PASS Save restores derived form without a new schema: Thread
+PASS Details expose all forms and this carrier's sources: Thread
+PASS Third attack redistributes one hit: Thread/1
+PASS Bounded pattern with source attribution: Thread/1
+PASS One conserved pattern budget: Thread/1
+PASS Pause preserves staged attack: Thread/1
+PASS Real damage stays inside total budget: Thread/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Thread/1
+PASS Measured contribution has correct owner: Thread/1
+PASS Time cooldown survives fast attack builds: Thread/1
+PASS Rest clears pending form state: Thread/1
+PASS Third attack redistributes one hit: Thread/2
+PASS Bounded pattern with source attribution: Thread/2
+PASS One conserved pattern budget: Thread/2
+PASS Pause preserves staged attack: Thread/2
+PASS Real damage stays inside total budget: Thread/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Thread/2
+PASS Measured contribution has correct owner: Thread/2
+PASS Time cooldown survives fast attack builds: Thread/2
+PASS Rest clears pending form state: Thread/2
+PASS Third attack redistributes one hit: Thread/3
+PASS Bounded pattern with source attribution: Thread/3
+PASS One conserved pattern budget: Thread/3
+PASS Pause preserves staged attack: Thread/3
+PASS Real damage stays inside total budget: Thread/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Thread/3
+PASS Measured contribution has correct owner: Thread/3
+PASS Time cooldown survives fast attack builds: Thread/3
+PASS Rest clears pending form state: Thread/3
+PASS Recruitable weapon exists: Paper Furnace
+PASS Existing original Toybox sound: Paper Furnace
+PASS Tier alone cannot unlock a form: Cinder
+PASS At least four compatible relic identities for evolved carriers: Cinder
+PASS Compatible relic identities unlock first form: Cinder
+PASS Duplicate stacks cannot farm craft: Cinder
+PASS Altered secret item loses old craft identity: Cinder
+PASS Real compiler applies masterwork to the assigned weapon: Cinder
+PASS Source definitions remain unchanged: Cinder
+PASS Save restores derived form without a new schema: Cinder
+PASS Details expose all forms and this carrier's sources: Cinder
+PASS Third attack redistributes one hit: Cinder/1
+PASS Bounded pattern with source attribution: Cinder/1
+PASS One conserved pattern budget: Cinder/1
+PASS Pause preserves staged attack: Cinder/1
+PASS Real damage stays inside total budget: Cinder/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Cinder/1
+PASS Measured contribution has correct owner: Cinder/1
+PASS Time cooldown survives fast attack builds: Cinder/1
+PASS Rest clears pending form state: Cinder/1
+PASS Third attack redistributes one hit: Cinder/2
+PASS Bounded pattern with source attribution: Cinder/2
+PASS One conserved pattern budget: Cinder/2
+PASS Pause preserves staged attack: Cinder/2
+PASS Real damage stays inside total budget: Cinder/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Cinder/2
+PASS Measured contribution has correct owner: Cinder/2
+PASS Time cooldown survives fast attack builds: Cinder/2
+PASS Rest clears pending form state: Cinder/2
+PASS Third attack redistributes one hit: Cinder/3
+PASS Bounded pattern with source attribution: Cinder/3
+PASS One conserved pattern budget: Cinder/3
+PASS Pause preserves staged attack: Cinder/3
+PASS Real damage stays inside total budget: Cinder/3 dealt=35.99219 budget=36
+PASS Pattern expires without recursive releases: Cinder/3
+PASS Measured contribution has correct owner: Cinder/3
+PASS Time cooldown survives fast attack builds: Cinder/3
+PASS Rest clears pending form state: Cinder/3
+PASS Recruitable weapon exists: Clockwork Foundry
+PASS Existing original Toybox sound: Clockwork Foundry
+PASS Tier alone cannot unlock a form: Clockwork
+PASS At least four compatible relic identities for evolved carriers: Clockwork
+PASS Compatible relic identities unlock first form: Clockwork
+PASS Duplicate stacks cannot farm craft: Clockwork
+PASS Altered secret item loses old craft identity: Clockwork
+PASS Real compiler applies masterwork to the assigned weapon: Clockwork
+PASS Source definitions remain unchanged: Clockwork
+PASS Save restores derived form without a new schema: Clockwork
+PASS Details expose all forms and this carrier's sources: Clockwork
+PASS Third attack redistributes one hit: Clockwork/1
+PASS Bounded pattern with source attribution: Clockwork/1
+PASS One conserved pattern budget: Clockwork/1
+PASS Pause preserves staged attack: Clockwork/1
+PASS Real damage stays inside total budget: Clockwork/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Clockwork/1
+PASS Measured contribution has correct owner: Clockwork/1
+PASS Time cooldown survives fast attack builds: Clockwork/1
+PASS Rest clears pending form state: Clockwork/1
+PASS Third attack redistributes one hit: Clockwork/2
+PASS Bounded pattern with source attribution: Clockwork/2
+PASS One conserved pattern budget: Clockwork/2
+PASS Pause preserves staged attack: Clockwork/2
+PASS Real damage stays inside total budget: Clockwork/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Clockwork/2
+PASS Measured contribution has correct owner: Clockwork/2
+PASS Time cooldown survives fast attack builds: Clockwork/2
+PASS Rest clears pending form state: Clockwork/2
+PASS Third attack redistributes one hit: Clockwork/3
+PASS Bounded pattern with source attribution: Clockwork/3
+PASS One conserved pattern budget: Clockwork/3
+PASS Pause preserves staged attack: Clockwork/3
+PASS Real damage stays inside total budget: Clockwork/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Clockwork/3
+PASS Measured contribution has correct owner: Clockwork/3
+PASS Time cooldown survives fast attack builds: Clockwork/3
+PASS Rest clears pending form state: Clockwork/3
+PASS Recruitable weapon exists: Midnight Tea Service
+PASS Existing original Toybox sound: Midnight Tea Service
+PASS Tier alone cannot unlock a form: Porcelain
+PASS At least four compatible relic identities for evolved carriers: Porcelain
+PASS Compatible relic identities unlock first form: Porcelain
+PASS Duplicate stacks cannot farm craft: Porcelain
+PASS Altered secret item loses old craft identity: Porcelain
+PASS Real compiler applies masterwork to the assigned weapon: Porcelain
+PASS Source definitions remain unchanged: Porcelain
+PASS Save restores derived form without a new schema: Porcelain
+PASS Details expose all forms and this carrier's sources: Porcelain
+PASS Third attack redistributes one hit: Porcelain/1
+PASS Bounded pattern with source attribution: Porcelain/1
+PASS One conserved pattern budget: Porcelain/1
+PASS Pause preserves staged attack: Porcelain/1
+PASS Real damage stays inside total budget: Porcelain/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Porcelain/1
+PASS Measured contribution has correct owner: Porcelain/1
+PASS Time cooldown survives fast attack builds: Porcelain/1
+PASS Rest clears pending form state: Porcelain/1
+PASS Third attack redistributes one hit: Porcelain/2
+PASS Bounded pattern with source attribution: Porcelain/2
+PASS One conserved pattern budget: Porcelain/2
+PASS Pause preserves staged attack: Porcelain/2
+PASS Real damage stays inside total budget: Porcelain/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Porcelain/2
+PASS Measured contribution has correct owner: Porcelain/2
+PASS Time cooldown survives fast attack builds: Porcelain/2
+PASS Rest clears pending form state: Porcelain/2
+PASS Third attack redistributes one hit: Porcelain/3
+PASS Bounded pattern with source attribution: Porcelain/3
+PASS One conserved pattern budget: Porcelain/3
+PASS Pause preserves staged attack: Porcelain/3
+PASS Real damage stays inside total budget: Porcelain/3 dealt=30 budget=36
+PASS Pattern expires without recursive releases: Porcelain/3
+PASS Measured contribution has correct owner: Porcelain/3
+PASS Time cooldown survives fast attack builds: Porcelain/3
+PASS Rest clears pending form state: Porcelain/3
+PASS Recruitable weapon exists: Pocket Constellation
+PASS Existing original Toybox sound: Pocket Constellation
+PASS Tier alone cannot unlock a form: Constellation
+PASS At least four compatible relic identities for evolved carriers: Constellation
+PASS Compatible relic identities unlock first form: Constellation
+PASS Duplicate stacks cannot farm craft: Constellation
+PASS Altered secret item loses old craft identity: Constellation
+PASS Real compiler applies masterwork to the assigned weapon: Constellation
+PASS Source definitions remain unchanged: Constellation
+PASS Save restores derived form without a new schema: Constellation
+PASS Details expose all forms and this carrier's sources: Constellation
+PASS Third attack redistributes one hit: Constellation/1
+PASS Bounded pattern with source attribution: Constellation/1
+PASS One conserved pattern budget: Constellation/1
+PASS Pause preserves staged attack: Constellation/1
+PASS Real damage stays inside total budget: Constellation/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Constellation/1
+PASS Measured contribution has correct owner: Constellation/1
+PASS Time cooldown survives fast attack builds: Constellation/1
+PASS Rest clears pending form state: Constellation/1
+PASS Third attack redistributes one hit: Constellation/2
+PASS Bounded pattern with source attribution: Constellation/2
+PASS One conserved pattern budget: Constellation/2
+PASS Pause preserves staged attack: Constellation/2
+PASS Real damage stays inside total budget: Constellation/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Constellation/2
+PASS Measured contribution has correct owner: Constellation/2
+PASS Time cooldown survives fast attack builds: Constellation/2
+PASS Rest clears pending form state: Constellation/2
+PASS Third attack redistributes one hit: Constellation/3
+PASS Bounded pattern with source attribution: Constellation/3
+PASS One conserved pattern budget: Constellation/3
+PASS Pause preserves staged attack: Constellation/3
+PASS Real damage stays inside total budget: Constellation/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Constellation/3
+PASS Measured contribution has correct owner: Constellation/3
+PASS Time cooldown survives fast attack builds: Constellation/3
+PASS Rest clears pending form state: Constellation/3
+PASS Recruitable weapon exists: Origami Tempest
+PASS Existing original Toybox sound: Origami Tempest
+PASS Tier alone cannot unlock a form: Paper
+PASS At least four compatible relic identities for evolved carriers: Paper
+PASS Compatible relic identities unlock first form: Paper
+PASS Duplicate stacks cannot farm craft: Paper
+PASS Altered secret item loses old craft identity: Paper
+PASS Real compiler applies masterwork to the assigned weapon: Paper
+PASS Source definitions remain unchanged: Paper
+PASS Save restores derived form without a new schema: Paper
+PASS Details expose all forms and this carrier's sources: Paper
+PASS Third attack redistributes one hit: Paper/1
+PASS Bounded pattern with source attribution: Paper/1
+PASS One conserved pattern budget: Paper/1
+PASS Pause preserves staged attack: Paper/1
+PASS Real damage stays inside total budget: Paper/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Paper/1
+PASS Measured contribution has correct owner: Paper/1
+PASS Time cooldown survives fast attack builds: Paper/1
+PASS Rest clears pending form state: Paper/1
+PASS Third attack redistributes one hit: Paper/2
+PASS Bounded pattern with source attribution: Paper/2
+PASS One conserved pattern budget: Paper/2
+PASS Pause preserves staged attack: Paper/2
+PASS Real damage stays inside total budget: Paper/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Paper/2
+PASS Measured contribution has correct owner: Paper/2
+PASS Time cooldown survives fast attack builds: Paper/2
+PASS Rest clears pending form state: Paper/2
+PASS Third attack redistributes one hit: Paper/3
+PASS Bounded pattern with source attribution: Paper/3
+PASS One conserved pattern budget: Paper/3
+PASS Pause preserves staged attack: Paper/3
+PASS Real damage stays inside total budget: Paper/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Paper/3
+PASS Measured contribution has correct owner: Paper/3
+PASS Time cooldown survives fast attack builds: Paper/3
+PASS Rest clears pending form state: Paper/3
+PASS Recruitable weapon exists: Silver Understudy
+PASS Existing original Toybox sound: Silver Understudy
+PASS Tier alone cannot unlock a form: Mirror
+PASS At least four compatible relic identities for evolved carriers: Mirror
+PASS Compatible relic identities unlock first form: Mirror
+PASS Duplicate stacks cannot farm craft: Mirror
+PASS Altered secret item loses old craft identity: Mirror
+PASS Real compiler applies masterwork to the assigned weapon: Mirror
+PASS Source definitions remain unchanged: Mirror
+PASS Save restores derived form without a new schema: Mirror
+PASS Details expose all forms and this carrier's sources: Mirror
+PASS Third attack redistributes one hit: Mirror/1
+PASS Bounded pattern with source attribution: Mirror/1
+PASS One conserved pattern budget: Mirror/1
+PASS Pause preserves staged attack: Mirror/1
+PASS Real damage stays inside total budget: Mirror/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Mirror/1
+PASS Measured contribution has correct owner: Mirror/1
+PASS Time cooldown survives fast attack builds: Mirror/1
+PASS Rest clears pending form state: Mirror/1
+PASS Third attack redistributes one hit: Mirror/2
+PASS Bounded pattern with source attribution: Mirror/2
+PASS One conserved pattern budget: Mirror/2
+PASS Pause preserves staged attack: Mirror/2
+PASS Real damage stays inside total budget: Mirror/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Mirror/2
+PASS Measured contribution has correct owner: Mirror/2
+PASS Time cooldown survives fast attack builds: Mirror/2
+PASS Rest clears pending form state: Mirror/2
+PASS Third attack redistributes one hit: Mirror/3
+PASS Bounded pattern with source attribution: Mirror/3
+PASS One conserved pattern budget: Mirror/3
+PASS Pause preserves staged attack: Mirror/3
+PASS Real damage stays inside total budget: Mirror/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Mirror/3
+PASS Measured contribution has correct owner: Mirror/3
+PASS Time cooldown survives fast attack builds: Mirror/3
+PASS Rest clears pending form state: Mirror/3
+PASS Recruitable weapon exists: Toybox Orchestra
+PASS Existing original Toybox sound: Toybox Orchestra
+PASS Tier alone cannot unlock a form: Chorus
+PASS At least four compatible relic identities for evolved carriers: Chorus
+PASS Compatible relic identities unlock first form: Chorus
+PASS Duplicate stacks cannot farm craft: Chorus
+PASS Altered secret item loses old craft identity: Chorus
+PASS Real compiler applies masterwork to the assigned weapon: Chorus
+PASS Source definitions remain unchanged: Chorus
+PASS Save restores derived form without a new schema: Chorus
+PASS Details expose all forms and this carrier's sources: Chorus
+PASS Third attack redistributes one hit: Chorus/1
+PASS Bounded pattern with source attribution: Chorus/1
+PASS One conserved pattern budget: Chorus/1
+PASS Pause preserves staged attack: Chorus/1
+PASS Real damage stays inside total budget: Chorus/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Chorus/1
+PASS Measured contribution has correct owner: Chorus/1
+PASS Time cooldown survives fast attack builds: Chorus/1
+PASS Rest clears pending form state: Chorus/1
+PASS Third attack redistributes one hit: Chorus/2
+PASS Bounded pattern with source attribution: Chorus/2
+PASS One conserved pattern budget: Chorus/2
+PASS Pause preserves staged attack: Chorus/2
+PASS Real damage stays inside total budget: Chorus/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Chorus/2
+PASS Measured contribution has correct owner: Chorus/2
+PASS Time cooldown survives fast attack builds: Chorus/2
+PASS Rest clears pending form state: Chorus/2
+PASS Third attack redistributes one hit: Chorus/3
+PASS Bounded pattern with source attribution: Chorus/3
+PASS One conserved pattern budget: Chorus/3
+PASS Pause preserves staged attack: Chorus/3
+PASS Real damage stays inside total budget: Chorus/3 dealt=36.00781 budget=36
+PASS Pattern expires without recursive releases: Chorus/3
+PASS Measured contribution has correct owner: Chorus/3
+PASS Time cooldown survives fast attack builds: Chorus/3
+PASS Rest clears pending form state: Chorus/3
+PASS Recruitable weapon exists: Polarity Workshop
+PASS Existing original Toybox sound: Polarity Workshop
+PASS Tier alone cannot unlock a form: Magnet
+PASS At least four compatible relic identities for evolved carriers: Magnet
+PASS Compatible relic identities unlock first form: Magnet
+PASS Duplicate stacks cannot farm craft: Magnet
+PASS Altered secret item loses old craft identity: Magnet
+PASS Real compiler applies masterwork to the assigned weapon: Magnet
+PASS Source definitions remain unchanged: Magnet
+PASS Save restores derived form without a new schema: Magnet
+PASS Details expose all forms and this carrier's sources: Magnet
+PASS Third attack redistributes one hit: Magnet/1
+PASS Bounded pattern with source attribution: Magnet/1
+PASS One conserved pattern budget: Magnet/1
+PASS Pause preserves staged attack: Magnet/1
+PASS Real damage stays inside total budget: Magnet/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Magnet/1
+PASS Measured contribution has correct owner: Magnet/1
+PASS Time cooldown survives fast attack builds: Magnet/1
+PASS Rest clears pending form state: Magnet/1
+PASS Third attack redistributes one hit: Magnet/2
+PASS Bounded pattern with source attribution: Magnet/2
+PASS One conserved pattern budget: Magnet/2
+PASS Pause preserves staged attack: Magnet/2
+PASS Real damage stays inside total budget: Magnet/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Magnet/2
+PASS Measured contribution has correct owner: Magnet/2
+PASS Time cooldown survives fast attack builds: Magnet/2
+PASS Rest clears pending form state: Magnet/2
+PASS Third attack redistributes one hit: Magnet/3
+PASS Bounded pattern with source attribution: Magnet/3
+PASS One conserved pattern budget: Magnet/3
+PASS Pause preserves staged attack: Magnet/3
+PASS Real damage stays inside total budget: Magnet/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Magnet/3
+PASS Measured contribution has correct owner: Magnet/3
+PASS Time cooldown survives fast attack builds: Magnet/3
+PASS Rest clears pending form state: Magnet/3
+PASS Recruitable weapon exists: Moonlit Regatta
+PASS Existing original Toybox sound: Moonlit Regatta
+PASS Tier alone cannot unlock a form: Tide
+PASS At least four compatible relic identities for evolved carriers: Tide
+PASS Compatible relic identities unlock first form: Tide
+PASS Duplicate stacks cannot farm craft: Tide
+PASS Altered secret item loses old craft identity: Tide
+PASS Real compiler applies masterwork to the assigned weapon: Tide
+PASS Source definitions remain unchanged: Tide
+PASS Save restores derived form without a new schema: Tide
+PASS Details expose all forms and this carrier's sources: Tide
+PASS Third attack redistributes one hit: Tide/1
+PASS Bounded pattern with source attribution: Tide/1
+PASS One conserved pattern budget: Tide/1
+PASS Pause preserves staged attack: Tide/1
+PASS Real damage stays inside total budget: Tide/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Tide/1
+PASS Measured contribution has correct owner: Tide/1
+PASS Time cooldown survives fast attack builds: Tide/1
+PASS Rest clears pending form state: Tide/1
+PASS Third attack redistributes one hit: Tide/2
+PASS Bounded pattern with source attribution: Tide/2
+PASS One conserved pattern budget: Tide/2
+PASS Pause preserves staged attack: Tide/2
+PASS Real damage stays inside total budget: Tide/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Tide/2
+PASS Measured contribution has correct owner: Tide/2
+PASS Time cooldown survives fast attack builds: Tide/2
+PASS Rest clears pending form state: Tide/2
+PASS Third attack redistributes one hit: Tide/3
+PASS Bounded pattern with source attribution: Tide/3
+PASS One conserved pattern budget: Tide/3
+PASS Pause preserves staged attack: Tide/3
+PASS Real damage stays inside total budget: Tide/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Tide/3
+PASS Measured contribution has correct owner: Tide/3
+PASS Time cooldown survives fast attack builds: Tide/3
+PASS Rest clears pending form state: Tide/3
+PASS Recruitable weapon exists: Crystal Music Garden
+PASS Existing original Toybox sound: Crystal Music Garden
+PASS Tier alone cannot unlock a form: Frost
+PASS At least four compatible relic identities for evolved carriers: Frost
+PASS Compatible relic identities unlock first form: Frost
+PASS Duplicate stacks cannot farm craft: Frost
+PASS Altered secret item loses old craft identity: Frost
+PASS Real compiler applies masterwork to the assigned weapon: Frost
+PASS Source definitions remain unchanged: Frost
+PASS Save restores derived form without a new schema: Frost
+PASS Details expose all forms and this carrier's sources: Frost
+PASS Third attack redistributes one hit: Frost/1
+PASS Bounded pattern with source attribution: Frost/1
+PASS One conserved pattern budget: Frost/1
+PASS Pause preserves staged attack: Frost/1
+PASS Real damage stays inside total budget: Frost/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Frost/1
+PASS Measured contribution has correct owner: Frost/1
+PASS Time cooldown survives fast attack builds: Frost/1
+PASS Rest clears pending form state: Frost/1
+PASS Third attack redistributes one hit: Frost/2
+PASS Bounded pattern with source attribution: Frost/2
+PASS One conserved pattern budget: Frost/2
+PASS Pause preserves staged attack: Frost/2
+PASS Real damage stays inside total budget: Frost/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Frost/2
+PASS Measured contribution has correct owner: Frost/2
+PASS Time cooldown survives fast attack builds: Frost/2
+PASS Rest clears pending form state: Frost/2
+PASS Third attack redistributes one hit: Frost/3
+PASS Bounded pattern with source attribution: Frost/3
+PASS One conserved pattern budget: Frost/3
+PASS Pause preserves staged attack: Frost/3
+PASS Real damage stays inside total budget: Frost/3 dealt=30 budget=36
+PASS Pattern expires without recursive releases: Frost/3
+PASS Measured contribution has correct owner: Frost/3
+PASS Time cooldown survives fast attack builds: Frost/3
+PASS Rest clears pending form state: Frost/3
+PASS Recruitable weapon exists: Impossible Ledger
+PASS Existing original Toybox sound: Impossible Ledger
+PASS Tier alone cannot unlock a form: Seal
+PASS At least four compatible relic identities for evolved carriers: Seal
+PASS Compatible relic identities unlock first form: Seal
+PASS Duplicate stacks cannot farm craft: Seal
+PASS Altered secret item loses old craft identity: Seal
+PASS Real compiler applies masterwork to the assigned weapon: Seal
+PASS Source definitions remain unchanged: Seal
+PASS Save restores derived form without a new schema: Seal
+PASS Details expose all forms and this carrier's sources: Seal
+PASS Third attack redistributes one hit: Seal/1
+PASS Bounded pattern with source attribution: Seal/1
+PASS One conserved pattern budget: Seal/1
+PASS Pause preserves staged attack: Seal/1
+PASS Real damage stays inside total budget: Seal/1 dealt=24 budget=24
+PASS Pattern expires without recursive releases: Seal/1
+PASS Measured contribution has correct owner: Seal/1
+PASS Time cooldown survives fast attack builds: Seal/1
+PASS Rest clears pending form state: Seal/1
+PASS Third attack redistributes one hit: Seal/2
+PASS Bounded pattern with source attribution: Seal/2
+PASS One conserved pattern budget: Seal/2
+PASS Pause preserves staged attack: Seal/2
+PASS Real damage stays inside total budget: Seal/2 dealt=30 budget=30
+PASS Pattern expires without recursive releases: Seal/2
+PASS Measured contribution has correct owner: Seal/2
+PASS Time cooldown survives fast attack builds: Seal/2
+PASS Rest clears pending form state: Seal/2
+PASS Third attack redistributes one hit: Seal/3
+PASS Bounded pattern with source attribution: Seal/3
+PASS One conserved pattern budget: Seal/3
+PASS Pause preserves staged attack: Seal/3
+PASS Real damage stays inside total budget: Seal/3 dealt=36 budget=36
+PASS Pattern expires without recursive releases: Seal/3
+PASS Measured contribution has correct owner: Seal/3
+PASS Time cooldown survives fast attack builds: Seal/3
+PASS Rest clears pending form state: Seal/3
+PASS All twelve masterwork patterns have different geometry and timing
+PASS A line does not damage outside its visible lane
+PASS A line catches a target on the lane
+PASS Ring centre stays empty
+PASS Ring border catches targets
+PASS Crescent cannot hit behind its fan
+PASS Rectangular seal includes its corners
+PASS Form pulls and slows cannot move or immobilize bosses
+PASS New wave cannot leak previous pattern state
+PASS Dormant builds retain ordinary combat
+PASS Normal auto-attack path releases a form with no fixture trigger or extra input
+PASS Normal auto combat settles form damage in its ledger

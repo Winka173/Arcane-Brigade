@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         public string CurrentLine => line;
         public string MerchantName { get; set; }
         public float ExpiresAt => expires;
+        public RunSnapshot Context { get; set; }
         public int VisibleGlyphs(float now, bool reduced) => line == null ? 0 : reduced ? line.Length : Mathf.Clamp(Mathf.FloorToInt((now - began) * 58), 0, line.Length);
         public bool IsSpeaking(float now) => line != null && now >= began && now < expires && VisibleGlyphs(now, false) < line.Length;
 
@@ -47,12 +48,24 @@ namespace ArcaneBrigade
                     MerchantMoment.Fuse => new[] { "Two in, one out! Do not question my arithmetic." },
                     _ => new[] { "Head down! Nightmares are not covered by warranty." }
                 };
-            return choices[Mathf.Abs(variant % choices.Length)];
+            string[] extra = moment switch
+            {
+                MerchantMoment.Enter => special ? new[] { "I kept your dream warm beneath the counter.", "There are more chairs than there used to be." } : new[] { "Mind the threshold. It is older than the shop.", "A warm lamp, a little company. Browse slowly." },
+                MerchantMoment.Inspect => special ? new[] { "That shell remembers a different moon.", "Some gifts prefer a quiet owner." } : new[] { "Try the handle. A good tool should know your hand.", "The small print is asleep. I shall read it for you." },
+                MerchantMoment.Buy => special ? new[] { "I tied a ribbon around the part that remembers.", "Careful with the seams. The dream is still young." } : new[] { "A fair bargain. Keep the change for the stairs.", "One less lonely thing on my shelf." },
+                MerchantMoment.Denied => new[] { "Take your time. The shelf is not going anywhere.", "Keep your last coin. You may need a way home." },
+                MerchantMoment.Reroll => new[] { "Let me see what is hiding in the bottom drawer.", "New faces, familiar prices. Give or take a coin." },
+                MerchantMoment.Fuse => new[] { "Three little histories. One weapon to remember them.", "Hold still. I am threading their names together." },
+                MerchantMoment.BloodBuy => new[] { "Leave yourself a heartbeat for the road.", "A red signature. I will keep it safe." },
+                _ => new[] { "I will leave the lamp on.", "Bring your friends back. The kettle can wait." }
+            };
+            int selected = Mathf.Abs(variant % (choices.Length + extra.Length));
+            return selected < choices.Length ? choices[selected] : extra[selected - choices.Length];
         }
 
         public void Speak(bool special, MerchantMoment moment, float now)
         {
-            LastMoment = moment; line = Pick(special, moment, cursor++); began = now; expires = now + 3.8f; SpokenCount++;
+            LastMoment = moment; line = NightmareDialogue.Pick(Context,special,moment,cursor++); began = now; expires = now + Mathf.Max(3.8f,line.Length / 32f + 1.5f); SpokenCount++;
             nextInspect = now + (moment == MerchantMoment.Inspect ? 1.6f : 2.2f);
         }
         public void Observe(bool special, string station, float now)
@@ -64,6 +77,10 @@ namespace ArcaneBrigade
             Speak(special, MerchantMoment.Inspect, now);
         }
         public void ResetFocus() { focus = null; }
+        public void Say(string text, float now, float seconds)
+        {
+            line = text; began = now; expires = now + seconds; SpokenCount++;
+        }
         public void Draw(bool special, float now, bool reduced)
         {
             if (line == null || now >= expires) return;

@@ -190,6 +190,14 @@ namespace ArcaneBrigade
             tierCaption.color = new Color(gold.r, gold.g, gold.b, fade);
             if (age >= RevealAt)
             {
+                if (!ReducedMotion && ghosts.Count > 0)
+                {
+                    float flourish = AnimationTiming.Pulse(age - LandAt, .5f);
+                    UnitDefinition result = owner.Content.Unit(active.Result.UnitId);
+                    float direction = result.Material == BodyMaterial.Metal || result.Material == BodyMaterial.Wood ? -1 : 1;
+                    UnitVisual revealed = ghosts[ghosts.Count - 1];
+                    revealed.transform.localRotation = Quaternion.Euler(0, 0, direction * flourish * 5);
+                }
                 if (confirmationSpark != null)
                 {
                     confirmationSpark.enabled = !ReducedMotion && burst < 1;

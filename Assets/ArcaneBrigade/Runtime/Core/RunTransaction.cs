@@ -49,13 +49,15 @@ namespace ArcaneBrigade
                 orderedIds.Sort(StringComparer.Ordinal);
                 foreach (string id in orderedIds)
                     Change(receipt, catalog.Item(id).Name + " ×", Count(before.Items, id).ToString(), Count(session.State.Items, id).ToString());
-                for (int index = 0; index < previous.Stats.Count; index++)
-                    Change(receipt, previous.Stats[index].Name, previous.Stats[index].Summary, current.Stats[index].Summary);
+                foreach (var row in previous.Stats)
+                { var next = current.Stats.Find(r => r.Name == row.Name); if (next != null) Change(receipt,row.Name,row.Summary,next.Summary); }
+                foreach(var delta in ShopStatSnapshot.Compare(previous.ShopStats,current.ShopStats))receipt.Changes.Add(delta.ActorName+" / "+delta.Caption);
                 if (previous.Bonds != current.Bonds) receipt.Changes.Add("Bonds before:\n" + previous.Bonds + "Bonds sau:\n" + current.Bonds);
                 session.State.Receipts.Add(receipt);
                 while (session.State.Receipts.Count > RunTransactionReceipt.HistoryLimit) session.State.Receipts.RemoveAt(0);
                 session.Validate(session.State);
                 if (!persist()) { session.Restore(before); return false; }
+                session.PublishShopStatChanges(previous.ShopStats,current.ShopStats);
                 return true;
             }
             catch (Exception exception)

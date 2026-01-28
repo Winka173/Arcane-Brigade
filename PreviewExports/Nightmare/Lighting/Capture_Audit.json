@@ -1,0 +1,331 @@
+﻿{
+    "AssemblySHA256":  "B4872572E8DBB4FA5E1883532AFCB616DC6D5AD22FB6E799D8F5F1B967DF9108",
+    "Profiles":  [
+                     {
+                         "Mode":  "Final",
+                         "Passed":  102,
+                         "Failed":  0,
+                         "Frames":  [
+                                        {
+                                            "Name":  "carrier-flight-12.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DB24A9DAB4CF59E4DB4D81DF560E0A098EC9D45CF8F55CD07F091A1E17C2E9E5"
+                                        },
+                                        {
+                                            "Name":  "carrier-flight-4.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7FC1298C5513D9A44A81C48E9058DB8AEF48D89AC23367CCB2F039CAB96E005E"
+                                        },
+                                        {
+                                            "Name":  "carrier-flight-8.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "53C46293C518F9B221BE82198D6E25745DA38963E7F474A51A56071653C21A59"
+                                        },
+                                        {
+                                            "Name":  "carrier-grip-12.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AE30D69DEAE2E403E3AAA507CF9489BAEADEB224BE69513652B23225CB117CEA"
+                                        },
+                                        {
+                                            "Name":  "carrier-grip-4.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E5FD0715BCE8B8EF977BDEEA2A604A8827DF577FB46C71C4B2865AE63ECC2C2D"
+                                        },
+                                        {
+                                            "Name":  "carrier-grip-8.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FC46CEB3926B2E51FD71C080A35F13B7CBDA6CEA298FE6A4CCD38879D68B8288"
+                                        },
+                                        {
+                                            "Name":  "customer-arrival.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "218D85260E7F862EF845EF86EB1C30221717FCBD959BE8790072918E9700E50E"
+                                        },
+                                        {
+                                            "Name":  "customer-death-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E0AE385949C9FCFFAB49A5C41C8109BC04B6A5121FB11746D72A1E489B9B40AF"
+                                        },
+                                        {
+                                            "Name":  "customer-death-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "BCE1BADC055C849FE2B393A784BA9F9CF376A6729B70DFFA7073943752276544"
+                                        },
+                                        {
+                                            "Name":  "customer-death-2.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "37C2AE595B27F7143255C6170577ECAD927E2ECCFFF5859B899C6452EADECAEB"
+                                        },
+                                        {
+                                            "Name":  "customer-entrance.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3DE141FDD152168724E7F832166CD036EA87674F0E6BE7758F80DC5F4DB3649A"
+                                        },
+                                        {
+                                            "Name":  "customer-stamp.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CE171E06EECEF01FF46493C75C27AA0928A2C0EB2689199C35B6C854851320A4"
+                                        },
+                                        {
+                                            "Name":  "depth-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "586D10E5E57D07E38892F850F22C8E08D00B8F8DF6337193C905A94B84810246"
+                                        },
+                                        {
+                                            "Name":  "depth-12.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "0967638A3262B00816165A733382664B74CC3555ADE5B893177ECD1EA67842B0"
+                                        },
+                                        {
+                                            "Name":  "depth-13.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "92F273855082C35A443F92B6F1286AA91EA9617BF57E1E70A1346CD29245872C"
+                                        },
+                                        {
+                                            "Name":  "depth-17.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "24FA6BACC44A60B3E7622D7049F0E56A5FE47B2F410DD421EA780037F7EFF1B4"
+                                        },
+                                        {
+                                            "Name":  "depth-4.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DB6AB25DEBE8958B2B422E02E4476ABDF29B662829D60275084DD5B7A97DE0AC"
+                                        },
+                                        {
+                                            "Name":  "depth-5.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B50CF8D442E04A7D5B48949F2620BA83E4430B163EACA55A25F2D1C372F8AF42"
+                                        },
+                                        {
+                                            "Name":  "depth-8.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AE6ED58224606DFDA08CD4B85A960DF1ED58B150C244EFF52B9DDFB21A03F3F8"
+                                        },
+                                        {
+                                            "Name":  "depth-9.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DF4651F5ACBDE31C6863919040F3A4E69781C84B1DC14DE3CD26ACFA062372ED"
+                                        },
+                                        {
+                                            "Name":  "ending-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F7137D192DE4FBD7797CB8A0C58B65FC1D7934B11227BD7932E15142AF1B6D69"
+                                        },
+                                        {
+                                            "Name":  "ending-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D7690FD95D162903CE814B86D94D53AEAE58887BF2B392390198A9C312F9153D"
+                                        },
+                                        {
+                                            "Name":  "ending-2.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5EF1F994BEC6D1655BBEE0F76B93846BC1921169D76CB4418F28208CD4EA0A51"
+                                        },
+                                        {
+                                            "Name":  "ending-3.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "92E0571942812ABE925FDDDE58FB32391A5091AF371788A210D04DF1CFBD824A"
+                                        },
+                                        {
+                                            "Name":  "party-departure.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AB3D1E3AE377F63DDFB6FF2FDEFF5B2701699B5F1E30D1EB5096876B5349C7C0"
+                                        },
+                                        {
+                                            "Name":  "shop-tooltip.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "23AD596145F1A1D62D873E7DD34AC94AC8367657706B1C042D139410E7790995"
+                                        }
+                                    ]
+                     },
+                     {
+                         "Mode":  "Final-Reduced",
+                         "Passed":  102,
+                         "Failed":  0,
+                         "Frames":  [
+                                        {
+                                            "Name":  "carrier-flight-12.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "15FCD29ED0027B07347A8933F4D44A9ECC6BD86733C7DA2E590038CF6B1C5F02"
+                                        },
+                                        {
+                                            "Name":  "carrier-flight-4.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E8AC0F1A0624E344AE7C5C622FF72D6F8853D5D66547F85F26598BB9C3DD7863"
+                                        },
+                                        {
+                                            "Name":  "carrier-flight-8.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1006A54DE6B5CDFF10C5C5741BB9D56822CE34D5CE080740DA17C9EA6643AE75"
+                                        },
+                                        {
+                                            "Name":  "carrier-grip-12.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D15D2C66EDE23A9EA4B23F50912AFD47FBBF0C5C0F9E689BB6E2883FD773AE60"
+                                        },
+                                        {
+                                            "Name":  "carrier-grip-4.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F9D1BA7F200C7F128FA40B5F41DF48EA63D74BDE74D3BB877B2941B27F8BB542"
+                                        },
+                                        {
+                                            "Name":  "carrier-grip-8.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "28D35361B9D75546A03564663A608222E9AB6AA0D4B171EA777049F73FEC8EEA"
+                                        },
+                                        {
+                                            "Name":  "customer-arrival.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6B2F8FDAAAE0421A3A9579FE359B2CB80D570CAF8C58AB63C335CD77CBB4FC7E"
+                                        },
+                                        {
+                                            "Name":  "customer-death-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FB43B7195B6B48D7E77C9B3FEE90139E779A27415AA3D73ACFDADEB5F7897044"
+                                        },
+                                        {
+                                            "Name":  "customer-death-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E196800DAE1E9B7C8C08A047BA1A3330118EB0C5B8F5DAB0394DA4E48BA680C0"
+                                        },
+                                        {
+                                            "Name":  "customer-death-2.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4DB2A463B3317056607E01B98A2C189B31C4721D0560109AAFD5CAFD85D9B4F0"
+                                        },
+                                        {
+                                            "Name":  "customer-entrance.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3EC25013D6F14123A885992F73579A107A81D3E770C8B69DCA0A1C13A6278D3A"
+                                        },
+                                        {
+                                            "Name":  "customer-stamp.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6A83C9FAD7C2297A9E1AB17275598DB14A746A7D2FF580994AA8056667B7CF17"
+                                        },
+                                        {
+                                            "Name":  "depth-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "EC70A503FD9BDE8FFD73B5FDF559D7877C12D2E3FD82EA6A10BE1FC978C6673C"
+                                        },
+                                        {
+                                            "Name":  "depth-12.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4D4A8B63023D31E07D85DDB88E818FF86B70DD214A71EDDEF86BCE2C287061E5"
+                                        },
+                                        {
+                                            "Name":  "depth-13.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6B4A3243FC641E2A3D35CCF8BFA98D5A61FF8356CCA495DF9125BA0B859C4111"
+                                        },
+                                        {
+                                            "Name":  "depth-17.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6B35C11BD3DD01F0B8D7D172F80D6FA34A2039E1DF6A6CD57EE3143860B34E7C"
+                                        },
+                                        {
+                                            "Name":  "depth-4.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "46D22F88AC8C7DBE3B1589D7E63F3C44B7F580CD40E3C3DCF3BF3634611D2490"
+                                        },
+                                        {
+                                            "Name":  "depth-5.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D8C649EB7C1A979A1E8B43B482AAAFB92FA2681E50A55FDDFD98A9DF282FECFD"
+                                        },
+                                        {
+                                            "Name":  "depth-8.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "56A91BC3959999319F5F970E7C4FBD841EC085BBBFE4E18FB9FE171882B20591"
+                                        },
+                                        {
+                                            "Name":  "depth-9.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F3F4A7EDCC0ACBF95482A276071C68BFD22ED7432D9B140DD5C1BA3CE700C679"
+                                        },
+                                        {
+                                            "Name":  "ending-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FC4070F7E858F5269ED9CDA4FA3722A75EC49B937563FBD84643A034145C4568"
+                                        },
+                                        {
+                                            "Name":  "ending-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "333AD1B4F3F7EF8372099D01BB15410711861DB8CEA6B701C7EA24E57105677C"
+                                        },
+                                        {
+                                            "Name":  "ending-2.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "BF44D5E2E5523AC660C7C4F2BC07A520A0B4E866650898102F9889E9726A679B"
+                                        },
+                                        {
+                                            "Name":  "ending-3.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5823130EF3747184A9CCBA2CA753F48FA2231F909E35B5E0E13C0A2E4C509467"
+                                        },
+                                        {
+                                            "Name":  "party-departure.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "BF44D5E2E5523AC660C7C4F2BC07A520A0B4E866650898102F9889E9726A679B"
+                                        },
+                                        {
+                                            "Name":  "shop-tooltip.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "424EFFED8A06A7CC17B2C92BFF2C8282D7E54F1946C33A8E5BA39E543BB241FF"
+                                        }
+                                    ]
+                     }
+                 ]
+}

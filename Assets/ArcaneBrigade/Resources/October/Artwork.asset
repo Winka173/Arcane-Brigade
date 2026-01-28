@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cb32883075dd847b6c6aedfcf95ed2, type: 3}
+  m_Name: Artwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.OctoberArtwork
+  Floor: {fileID: 2800000, guid: 3ae07f345758a384ea3ba2731de8e95d, type: 3}
+  Watchers:
+  - {fileID: -794172002, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 565870244, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: -578375454, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: -490804023, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 1699063648, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 400591961, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 894354692, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: -478878263, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 50529754, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 55763853, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 1385782703, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: -693742864, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  Door:
+  - {fileID: -1413064910, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 805588902, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 104314734, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  - {fileID: 1534321797, guid: 95d2f6d28b8ec27459cac24185b3f580, type: 3}
+  Keeper:
+  - {fileID: 1914439447, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  - {fileID: 1150657570, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  - {fileID: 593319520, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}
+  - {fileID: 1138190060, guid: ea1ef70eb84c4d84dbf04ce4409afe22, type: 3}

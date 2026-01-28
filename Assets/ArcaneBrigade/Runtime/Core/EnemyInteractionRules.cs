@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         {
             if (!catalog.ExpandedContent || unit.Definition.IsBoss || unit.Definition.BodyHeight >= 1.2f || unit.BodyLift != 0 || unit.EntranceUntil > Elapsed) return;
             Vector2 extent = Vector2.one * (maximumRadius + unit.Definition.Radius);
-            spatial.Query(unit.Position - extent, unit.Position + extent, heavyNeighbours);
+            spatial.Query(unit.Position - extent, unit.Position + extent, heavyNeighbours, true);
             foreach (UnitState neighbour in heavyNeighbours)
             {
                 if (neighbour == unit || !neighbour.Alive || neighbour.Faction != Faction.Enemy || neighbour.EntranceUntil > Elapsed || !neighbour.Definition.IsBoss && neighbour.Definition.BodyHeight < 1.2f) continue;

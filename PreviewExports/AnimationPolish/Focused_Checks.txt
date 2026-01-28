@@ -1,0 +1,232 @@
+PASS Original painted four-frame dust imported
+PASS Four original chest opening poses imported
+PASS Connected painted cluster has complete source margins 0
+PASS Connected painted cluster has complete source margins 1
+PASS Connected painted cluster has complete source margins 2
+PASS Connected painted cluster has complete source margins 3
+PASS Connected painted cluster has complete source margins 4
+PASS Connected painted cluster has complete source margins 5
+PASS Connected painted cluster has complete source margins 6
+PASS Connected painted cluster has complete source margins 7
+PASS Connected painted cluster has complete source margins 8
+PASS Connected painted cluster has complete source margins 9
+PASS Connected painted cluster has complete source margins 10
+PASS Connected painted cluster has complete source margins 11
+PASS Connected painted cluster has complete source margins 12
+PASS Connected painted cluster has complete source margins 13
+PASS Connected painted cluster has complete source margins 14
+PASS Connected painted cluster has complete source margins 15
+PASS Material impact coverage Paper
+PASS Material impact coverage Metal
+PASS Material impact coverage Wax
+PASS Material impact coverage Fabric
+PASS Material impact coverage Glass
+PASS Material impact coverage Wood
+PASS Pulse bounds and zero duration
+PASS Pulse crest
+PASS Settling has no persistent offset
+PASS Frame gap bounded
+PASS Stable identity phase without RNG
+PASS Boss act boundaries
+PASS Weapon source supports articulated blade mask
+PASS Presentation cannot mutate unit LanternKnight
+PASS Bounded acceleration acting LanternKnight
+PASS Repeated same-clock sample freezes LanternKnight
+PASS Reduced motion clears acting LanternKnight
+PASS Pooled actor reset LanternKnight
+PASS Presentation cannot mutate unit Postmaster
+PASS Bounded acceleration acting Postmaster
+PASS Repeated same-clock sample freezes Postmaster
+PASS Reduced motion clears acting Postmaster
+PASS Pooled actor reset Postmaster
+PASS Presentation cannot mutate unit DrowsySeer
+PASS Bounded acceleration acting DrowsySeer
+PASS Repeated same-clock sample freezes DrowsySeer
+PASS Reduced motion clears acting DrowsySeer
+PASS Pooled actor reset DrowsySeer
+PASS Presentation cannot mutate unit RootOracle
+PASS Bounded acceleration acting RootOracle
+PASS Repeated same-clock sample freezes RootOracle
+PASS Reduced motion clears acting RootOracle
+PASS Pooled actor reset RootOracle
+PASS Presentation cannot mutate unit LoneJelly
+PASS Bounded acceleration acting LoneJelly
+PASS Repeated same-clock sample freezes LoneJelly
+PASS Reduced motion clears acting LoneJelly
+PASS Pooled actor reset LoneJelly
+PASS Presentation cannot mutate unit GlassDice
+PASS Bounded acceleration acting GlassDice
+PASS Repeated same-clock sample freezes GlassDice
+PASS Reduced motion clears acting GlassDice
+PASS Pooled actor reset GlassDice
+PASS Presentation cannot mutate unit TideSinger
+PASS Bounded acceleration acting TideSinger
+PASS Repeated same-clock sample freezes TideSinger
+PASS Reduced motion clears acting TideSinger
+PASS Pooled actor reset TideSinger
+PASS Presentation cannot mutate unit CometRunner
+PASS Bounded acceleration acting CometRunner
+PASS Repeated same-clock sample freezes CometRunner
+PASS Reduced motion clears acting CometRunner
+PASS Pooled actor reset CometRunner
+PASS Presentation cannot mutate unit MirrorKeeper
+PASS Bounded acceleration acting MirrorKeeper
+PASS Repeated same-clock sample freezes MirrorKeeper
+PASS Reduced motion clears acting MirrorKeeper
+PASS Pooled actor reset MirrorKeeper
+PASS Presentation cannot mutate unit TreasureAcorn
+PASS Bounded acceleration acting TreasureAcorn
+PASS Repeated same-clock sample freezes TreasureAcorn
+PASS Reduced motion clears acting TreasureAcorn
+PASS Pooled actor reset TreasureAcorn
+PASS Presentation cannot mutate unit VerdantMatron
+PASS Bounded acceleration acting VerdantMatron
+PASS Repeated same-clock sample freezes VerdantMatron
+PASS Reduced motion clears acting VerdantMatron
+PASS Pooled actor reset VerdantMatron
+PASS Presentation cannot mutate unit CopperCauldron
+PASS Bounded acceleration acting CopperCauldron
+PASS Repeated same-clock sample freezes CopperCauldron
+PASS Reduced motion clears acting CopperCauldron
+PASS Pooled actor reset CopperCauldron
+PASS Presentation cannot mutate unit ChinaMarionette
+PASS Bounded acceleration acting ChinaMarionette
+PASS Repeated same-clock sample freezes ChinaMarionette
+PASS Reduced motion clears acting ChinaMarionette
+PASS Pooled actor reset ChinaMarionette
+PASS Presentation cannot mutate unit SoapSkater
+PASS Bounded acceleration acting SoapSkater
+PASS Repeated same-clock sample freezes SoapSkater
+PASS Reduced motion clears acting SoapSkater
+PASS Pooled actor reset SoapSkater
+PASS Presentation cannot mutate unit VelvetRegent
+PASS Bounded acceleration acting VelvetRegent
+PASS Repeated same-clock sample freezes VelvetRegent
+PASS Reduced motion clears acting VelvetRegent
+PASS Pooled actor reset VelvetRegent
+PASS Presentation cannot mutate unit ButtonCavalier
+PASS Bounded acceleration acting ButtonCavalier
+PASS Repeated same-clock sample freezes ButtonCavalier
+PASS Reduced motion clears acting ButtonCavalier
+PASS Pooled actor reset ButtonCavalier
+PASS Presentation cannot mutate unit NightMaw
+PASS Bounded acceleration acting NightMaw
+PASS Repeated same-clock sample freezes NightMaw
+PASS Reduced motion clears acting NightMaw
+PASS Pooled actor reset NightMaw
+PASS Presentation cannot mutate unit ThornTreasurer
+PASS Bounded acceleration acting ThornTreasurer
+PASS Repeated same-clock sample freezes ThornTreasurer
+PASS Reduced motion clears acting ThornTreasurer
+PASS Pooled actor reset ThornTreasurer
+PASS Presentation cannot mutate unit CitrusMarshal
+PASS Bounded acceleration acting CitrusMarshal
+PASS Repeated same-clock sample freezes CitrusMarshal
+PASS Reduced motion clears acting CitrusMarshal
+PASS Pooled actor reset CitrusMarshal
+PASS Presentation cannot mutate unit IvorySovereign
+PASS Bounded acceleration acting IvorySovereign
+PASS Repeated same-clock sample freezes IvorySovereign
+PASS Reduced motion clears acting IvorySovereign
+PASS Pooled actor reset IvorySovereign
+PASS Presentation cannot mutate unit PetalCitadel
+PASS Bounded acceleration acting PetalCitadel
+PASS Repeated same-clock sample freezes PetalCitadel
+PASS Reduced motion clears acting PetalCitadel
+PASS Pooled actor reset PetalCitadel
+PASS Presentation cannot mutate unit PatchworkHost
+PASS Bounded acceleration acting PatchworkHost
+PASS Repeated same-clock sample freezes PatchworkHost
+PASS Reduced motion clears acting PatchworkHost
+PASS Pooled actor reset PatchworkHost
+PASS Presentation cannot mutate unit ArchiveCurator
+PASS Bounded acceleration acting ArchiveCurator
+PASS Repeated same-clock sample freezes ArchiveCurator
+PASS Reduced motion clears acting ArchiveCurator
+PASS Pooled actor reset ArchiveCurator
+PASS Presentation cannot mutate unit PennyBroker
+PASS Bounded acceleration acting PennyBroker
+PASS Repeated same-clock sample freezes PennyBroker
+PASS Reduced motion clears acting PennyBroker
+PASS Pooled actor reset PennyBroker
+PASS Presentation cannot mutate unit StormFencer
+PASS Bounded acceleration acting StormFencer
+PASS Repeated same-clock sample freezes StormFencer
+PASS Reduced motion clears acting StormFencer
+PASS Pooled actor reset StormFencer
+PASS Presentation cannot mutate unit TinVirtuoso
+PASS Bounded acceleration acting TinVirtuoso
+PASS Repeated same-clock sample freezes TinVirtuoso
+PASS Reduced motion clears acting TinVirtuoso
+PASS Pooled actor reset TinVirtuoso
+PASS Presentation cannot mutate unit MoonProwler
+PASS Bounded acceleration acting MoonProwler
+PASS Repeated same-clock sample freezes MoonProwler
+PASS Reduced motion clears acting MoonProwler
+PASS Pooled actor reset MoonProwler
+PASS Presentation cannot mutate unit SupperMortar
+PASS Bounded acceleration acting SupperMortar
+PASS Repeated same-clock sample freezes SupperMortar
+PASS Reduced motion clears acting SupperMortar
+PASS Pooled actor reset SupperMortar
+PASS Presentation cannot mutate unit LanternWeaver
+PASS Bounded acceleration acting LanternWeaver
+PASS Repeated same-clock sample freezes LanternWeaver
+PASS Reduced motion clears acting LanternWeaver
+PASS Pooled actor reset LanternWeaver
+PASS Presentation cannot mutate unit HourglassStag
+PASS Bounded acceleration acting HourglassStag
+PASS Repeated same-clock sample freezes HourglassStag
+PASS Reduced motion clears acting HourglassStag
+PASS Pooled actor reset HourglassStag
+PASS Presentation cannot mutate unit RainArchivist
+PASS Bounded acceleration acting RainArchivist
+PASS Repeated same-clock sample freezes RainArchivist
+PASS Reduced motion clears acting RainArchivist
+PASS Pooled actor reset RainArchivist
+PASS Reduced articulation Slash
+PASS No articulation after recovery Slash
+PASS Finite weapon choreography Slash
+PASS Reduced articulation Thrust
+PASS No articulation after recovery Thrust
+PASS Finite weapon choreography Thrust
+PASS Reduced articulation Slam
+PASS No articulation after recovery Slam
+PASS Finite weapon choreography Slam
+PASS Reduced articulation Recoil
+PASS No articulation after recovery Recoil
+PASS Finite weapon choreography Recoil
+PASS Reduced articulation Bell
+PASS No articulation after recovery Bell
+PASS Finite weapon choreography Bell
+PASS Reduced articulation Bow
+PASS No articulation after recovery Bow
+PASS Finite weapon choreography Bow
+PASS Reduced articulation Cast
+PASS No articulation after recovery Cast
+PASS Finite weapon choreography Cast
+PASS Reduced articulation Stamp
+PASS No articulation after recovery Stamp
+PASS Finite weapon choreography Stamp
+PASS Reduced articulation Scissors
+PASS No articulation after recovery Scissors
+PASS Finite weapon choreography Scissors
+PASS Reduced articulation Camera
+PASS No articulation after recovery Camera
+PASS Finite weapon choreography Camera
+PASS Reduced articulation Iron
+PASS No articulation after recovery Iron
+PASS Finite weapon choreography Iron
+PASS Reduced articulation Hammer
+PASS No articulation after recovery Hammer
+PASS Finite weapon choreography Hammer
+PASS Reduced articulation Music
+PASS No articulation after recovery Music
+PASS Finite weapon choreography Music
+PASS No merchant reaction before event
+PASS Merchant handoff fully settles
+PASS Reduced merchant handoff stays stable
+PASS Dream and gold merchant have distinct event acting
+PASS Source-specific mechanical profile SleepCamera
+PASS Source-specific mechanical profile MusicBox
+PASS Source-specific mechanical profile MailboxLauncher

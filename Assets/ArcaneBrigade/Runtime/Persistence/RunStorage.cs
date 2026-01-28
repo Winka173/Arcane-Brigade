@@ -16,6 +16,7 @@ namespace ArcaneBrigade
         public int Wins;
         public int TotalKills;
         public int Cosmetic;
+        public List<AchievementMetric> AchievementEvidence = new List<AchievementMetric>();
         public float Volume = 0.7f;
         public bool ReducedMotion;
         public float MusicVolume = 0.8f;
@@ -28,6 +29,8 @@ namespace ArcaneBrigade
         public bool ReducedFlashes;
         public bool ReducedEffects;
         public bool TutorialSeen;
+        public bool NightmareLampPromise;
+        public bool NightmareShopClosed;
         public List<string> CompletedRuns = new List<string>();
         public List<string> SeenUnits = new List<string>();
         public List<string> SeenItems = new List<string>();
@@ -81,6 +84,10 @@ namespace ArcaneBrigade
                     if (profile.Wins < 0 || profile.TotalKills < 0 || profile.Cosmetic < 0 || profile.Cosmetic > 2) throw new InvalidOperationException("Invalid profile counters");
                     profile.Volume = Mathf.Clamp01(profile.Volume);
                     if (profile.SeenWeapons == null) profile.SeenWeapons = new List<string>();
+                    profile.AchievementEvidence ??= new List<AchievementMetric>();
+                    var evidenceKeys = new HashSet<string>();
+                    if (profile.AchievementEvidence.Count > 512) throw new InvalidOperationException("Invalid achievement journal size");
+                    foreach (AchievementMetric m in profile.AchievementEvidence) if (m == null || string.IsNullOrEmpty(m.Id) || !float.IsFinite(m.Value) || m.Value < 0 || !evidenceKeys.Add(m.Id)) throw new InvalidOperationException("Invalid achievement journal");
                     if (profile.SeenTiers == null) profile.SeenTiers = new List<string>();
                     if (profile.SeenChains == null) profile.SeenChains = new List<string>();
                     if (profile.SeenBosses == null) profile.SeenBosses = new List<string>();
@@ -92,7 +99,7 @@ namespace ArcaneBrigade
                     {
                         if (record == null || string.IsNullOrEmpty(record.Id) || record.Build == null || record.Build.RunId != record.Id || record.Nickname == null || record.Score < 0 || !historyIds.Add(record.Id) || !profile.CompletedRuns.Contains(record.Id)) throw new InvalidOperationException("Invalid run history");
                         RunSnapshot build = record.Build;
-                        if (build.Roster == null || build.Items == null || build.Contributions == null || build.Wave < 1 || build.Difficulty < 0 || build.Difficulty > 4 || build.ChallengeId == null || build.TotalKills < 0 || build.BossKills < 0 || !float.IsFinite(build.CombatSeconds) || build.CombatSeconds < 0 || !float.IsFinite(build.LastDamageAmount) || build.LastDamageAmount < 0 || build.Phase != SessionPhase.Victory && build.Phase != SessionPhase.Defeat) throw new InvalidOperationException("Invalid history build");
+                        if (build.Roster == null || build.Items == null || build.Contributions == null || build.Wave < 1 || build.Difficulty < 0 || build.Difficulty >= RunMeta.DifficultyNames.Length || build.ChallengeId == null || build.TotalKills < 0 || build.BossKills < 0 || !float.IsFinite(build.CombatSeconds) || build.CombatSeconds < 0 || !float.IsFinite(build.LastDamageAmount) || build.LastDamageAmount < 0 || build.Phase != SessionPhase.Victory && build.Phase != SessionPhase.Defeat) throw new InvalidOperationException("Invalid history build");
                         foreach (RosterEntry entry in build.Roster) if (entry == null || string.IsNullOrEmpty(entry.UnitId) || string.IsNullOrEmpty(entry.WeaponId) || entry.Tier < 1 || entry.Tier > 3) throw new InvalidOperationException("Invalid history roster");
                         foreach (ItemStack stack in build.Items) if (stack == null || string.IsNullOrEmpty(stack.Id) || stack.Count < 1) throw new InvalidOperationException("Invalid history relic");
                         foreach (ContributionEntry entry in build.Contributions) if (entry == null || entry.WeaponId == null || !float.IsFinite(entry.Damage) || entry.Damage < 0 || !float.IsFinite(entry.Healing) || entry.Healing < 0 || entry.Kills < 0 || entry.Coins < 0 || entry.Activations < 0) throw new InvalidOperationException("Invalid history contribution");
@@ -145,9 +152,15 @@ namespace ArcaneBrigade
             {
                 profile.BestWave = Mathf.Max(profile.BestWave, run.Wave);
                 RunMeta.Discover(profile, run, catalog);
+                if (run.Nightmare?.Ending == NightmareEndingStage.Complete && run.Nightmare.CustomerDefeated)
+                {
+                    if (run.Nightmare.Farewell == NightmareFarewell.LeaveLight) profile.NightmareLampPromise = true;
+                    else profile.NightmareShopClosed = true;
+                }
                 if (run.BossKills > 0 && !profile.Achievements.Contains("First bell silenced")) profile.Achievements.Add("First bell silenced");
                 if (run.Wave >= 10 && !profile.Achievements.Contains("Ten halls crossed")) profile.Achievements.Add("Ten halls crossed");
                 RunMeta.Credit(profile, run);
+                RunAchievements.Credit(profile, run, catalog);
                 SaveProfile(profile);
             }
             catch { JsonUtility.FromJsonOverwrite(before, profile); throw; }

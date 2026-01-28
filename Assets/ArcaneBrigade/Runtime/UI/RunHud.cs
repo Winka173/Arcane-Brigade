@@ -23,6 +23,7 @@ namespace ArcaneBrigade
         private readonly RunInvoice invoice = new RunInvoice();
         private readonly ArcadeNavigation navigation = new ArcadeNavigation();
         private readonly RunBondFeedback bondFeedback = new RunBondFeedback();
+        private readonly BondHudSummary bondSummary = new BondHudSummary();
         private readonly StageCutIn cutIn = new StageCutIn();
         private readonly WaveStamp waveStamp = new WaveStamp();
         private readonly FirstRunCoach coach = new FirstRunCoach();
@@ -38,6 +39,7 @@ namespace ArcaneBrigade
         private GUIStyle programStyle;
         private Vector2 shopScroll;
         private bool shopDetails;
+        private readonly ShopStatFeedback statFeedback = new ShopStatFeedback();
         public bool ShopDetailsOpen => shopDetails;
         public void SetShopDetails(bool expanded) { shopDetails = expanded; shopScroll = Vector2.zero; }
         private WorldShop.Station tooltipStation;
@@ -86,6 +88,7 @@ namespace ArcaneBrigade
 
         public void Draw(ArenaController owner, Camera camera)
         {
+            if (owner.NightmareEndingVisible) { ArcadeMusic.Danger = 0; return; }
             GUISkin previousSkin = GUI.skin;
             GUI.skin = ArcadeSkin.Skin;
             navigation.Begin();
@@ -112,6 +115,7 @@ namespace ArcaneBrigade
             }
             RunSession session = owner.Session;
             RunSnapshot state = session.State;
+            statFeedback.Observe(session);
             CombatSimulation simulation = owner.Simulation;
             Rect viewport = camera.pixelRect;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(viewport, 1920f, 1080f);
@@ -139,9 +143,14 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
             if (owner.Content.HeroRevision > 0 && state.Phase == SessionPhase.Combat)
             {
-                float required = simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
+                float required = simulation.HeroIdentityEnabled ? simulation.HeroIdentityRequired : simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
                 ArcadeSkin.Line(new Rect(108, 72, 224, 5), new Color(0.08f, 0.13f, 0.2f, 0.8f));
-                ArcadeSkin.Line(new Rect(108, 72, 224 * Mathf.Clamp01(simulation.HeroCharge / required), 5), simulation.HeroCooldownRemaining > 0 ? Color.Lerp(ArcadeSkin.Teal, ArcadeSkin.Ink, 0.6f) : ArcadeSkin.Teal);
+                ArcadeSkin.Line(new Rect(108, 72, 224 * Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required), 5), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
+                if (simulation.HeroIdentityEnabled)
+                {
+                    GUI.Label(new Rect(380, 112, 440, 24), HeroIdentities.For(state.ChampionId).Name, small);
+                    GUI.Label(new Rect(380, 140, 440, 42), simulation.HeroIdentityStatus, small);
+                }
             }
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
             float eggPulse = LivingUI.Press(simulation.VisualElapsed - eggsChanged, PresentationSettings.ReducedMotion) * 4;
@@ -186,17 +195,20 @@ namespace ArcaneBrigade
                 }
                 if (simulation.Phase == RunPhase.Paused)
                 {
-                    Fill(new Rect(640, 360, 640, 320), Panel);
+                    Fill(new Rect(640, 300, 640, 500), Panel);
                     ArcadeSkin.Header(new Rect(700, 380, 520, 100), "THE SHOW IS ON HOLD", "PAUSED");
                     if (navigation.Button(new Rect(750, 515, 420, 65), "RESUME", primary)) owner.TogglePause();
-                    if (navigation.Button(new Rect(750, 605, 420, 55), "MAIN MENU", button)) owner.RequestMenuReturn();
+                    if (navigation.Button(new Rect(700, 595, 250, 60), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
+                    if (navigation.Button(new Rect(970, 595, 250, 60), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
+                    if (navigation.Button(new Rect(750, 675, 420, 55), "MAIN MENU", button)) owner.RequestMenuReturn();
                 }
             }
-            else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); }
+            else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); statFeedback.Draw(owner,camera); }
             else
             {
                 if (!owner.ResultsReady)
                 {
+                    if (owner.Session.EndingChoicePending) { GUI.matrix = previous; GUI.skin = previousSkin; navigation.End(); return; }
                     ArcadeSkin.Plate(new Rect(560, 840, 800, 70), state.Phase == SessionPhase.Defeat ? ArcadeSkin.Danger : ArcadeSkin.Gold);
                     GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "THE BRIGADE HAS FALLEN…" : "DAWN HAS ARRIVED…", title);
                     GUI.matrix = previous;
@@ -250,8 +262,8 @@ namespace ArcaneBrigade
             {
                 if (station.Action == "NEXT HALL")
                 {
-                    GUI.Label(new Rect(730, 738, 460, 32), "↓ Next wave · " + RunUIHints.Interact(RunUIHints.Device), small);
-                    if (navigation.Button(new Rect(850, 778, 220, 52), "CONTINUE ↓", primary)) shop.Interact();
+                    GUI.Label(new Rect(730, 930, 460, 32), "↓ Next wave · " + RunUIHints.Interact(RunUIHints.Device), small);
+                    if (navigation.Button(new Rect(850, 978, 220, 52), "CONTINUE ↓", primary)) shop.Interact();
                     return;
                 }
                 if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; shopDetails = false; }
@@ -419,26 +431,26 @@ namespace ArcaneBrigade
             }
         }
 
-        /// <summary>Bonds as tonight's show programme: one line per act, pips toward the next threshold, stamped levels.</summary>
+        /// <summary>A bounded overview; the full bond list stays in the paused build details.</summary>
         private void DrawBonds(ArenaController owner)
         {
             bondFeedback.Observe(owner.Session.State.RunId, owner.Content.Bonds, owner.Session.BondCounts, owner.Simulation.VisualElapsed);
             if (programStyle == null) { programStyle = ArcadeTypography.Style(17, true); programStyle.normal.textColor = ArcadeSkin.Ink; programStyle.wordWrap = false; programStyle.alignment = TextAnchor.MiddleLeft; }
-            int rows = 0;
-            foreach (BondDefinition bond in owner.Content.Bonds) if (owner.Session.BondCounts.TryGetValue(bond.Id, out int c) && c > 0) rows++;
-            if (rows == 0) return;
-            const float rowHeight = 40, width = 330;
-            Rect card = new Rect(1570, 18 - BeatPulse.Kick * 2, width, 40 + rows * rowHeight);
+            bondSummary.Refresh(owner.Content.Bonds, owner.Session.BondCounts);
+            if (bondSummary.Rows.Count == 0) return;
+            const float rowHeight = BondHudSummary.RowHeight, width = BondHudSummary.Width;
+            Rect card = new Rect(1900 - width, 18, width, bondSummary.Height);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             programStyle.fontSize = 13; programStyle.normal.textColor = ArcadeSkin.Accent;
-            GUI.Label(new Rect(card.x + 16, card.y + 6, width - 30, 24), "TONIGHT'S PROGRAM", programStyle);
-            programStyle.fontSize = 17; programStyle.normal.textColor = ArcadeSkin.Ink;
-            int index = 0;
+            GUI.Label(new Rect(card.x + 12, card.y + 5, 74, 23), "BONDS", programStyle);
+            programStyle.alignment = TextAnchor.MiddleRight;
+            GUI.Label(new Rect(card.x + 90, card.y + 5, width - 104, 23), bondSummary.Active + " ACTIVE / " + bondSummary.Rows.Count, programStyle);
+            programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
             string tooltip = null;
             float tooltipTop = 0;
-            foreach (BondDefinition bond in owner.Content.Bonds)
+            for (int index = 0; index < bondSummary.VisibleCount; index++)
             {
-                if (!owner.Session.BondCounts.TryGetValue(bond.Id, out int count) || count <= 0) continue;
+                BondDefinition bond = bondSummary.Rows[index]; int count = owner.Session.BondCounts[bond.Id];
                 Rect line = new Rect(card.x + 10, card.y + 32 + index * rowHeight, width - 20, rowHeight - 4);
                 int level = bond.ActiveLevel(count);
                 int next = Mathf.Max(count, bond.NextThreshold(count));
@@ -446,24 +458,21 @@ namespace ArcaneBrigade
                 if (flashing) ArcadeSkin.Slant(line, new Color(ArcadeSkin.Teal.r, ArcadeSkin.Teal.g, ArcadeSkin.Teal.b, 0.55f));
                 else if (index % 2 == 1) ArcadeSkin.Line(line, new Color(0, 0, 0, 0.05f));
                 float burst = owner.Profile != null && owner.Profile.ReducedMotion ? 0 : bondFeedback.Burst(bond.Id, owner.Simulation.VisualElapsed);
-                Sprite(new Rect(line.x + 2 - burst * 3, line.y + 2 - burst * 3, 32 + burst * 6, 32 + burst * 6), bond.Icon);
-                GUI.Label(new Rect(line.x + 42, line.y, 150, line.height), bond.Name, programStyle);
-                int pips = Mathf.Clamp(next, 1, 8);
-                for (int pip = 0; pip < pips; pip++)
-                {
-                    Rect dot = new Rect(line.x + 196 + pip * 12, line.y + 13, 9, 11);
-                    ArcadeSkin.Slant(dot, pip < count ? (level > 0 ? ArcadeSkin.Teal : ArcadeSkin.Ink) : new Color(0, 0, 0, 0.18f));
-                }
+                Sprite(new Rect(line.x + 1 - burst * 2, line.y + 1 - burst * 2, 26 + burst * 4, 26 + burst * 4), bond.Icon);
+                GUI.Label(new Rect(line.x + 34, line.y - 1, 150, 26), bond.Name, programStyle);
+                programStyle.fontSize = 12; programStyle.alignment = TextAnchor.MiddleRight;
+                GUI.Label(new Rect(line.x + 181, line.y, 54, 24), count + "/" + next, programStyle);
+                programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft;
+                Rect progress = new Rect(line.x + 35, line.yMax - 3, line.width - 39, 2);
+                ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
+                ArcadeSkin.Line(new Rect(progress.x, progress.y, progress.width * Mathf.Clamp01((float)count / next), progress.height), level > 0 ? ArcadeSkin.Teal : ArcadeSkin.Gold);
                 if (level > 0)
                 {
-                    Matrix4x4 before = GUI.matrix;
-                    Rect stamp = new Rect(line.xMax - 46, line.y + 4, 44, 26);
-                    GUIUtility.RotateAroundPivot(-10, stamp.center);
+                    Rect stamp = new Rect(line.xMax - 36, line.y + 2, 34, 21);
                     ArcadeSkin.Slant(stamp, ArcadeSkin.Accent);
-                    programStyle.fontSize = 13; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
+                    programStyle.fontSize = 11; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Cream;
                     GUI.Label(stamp, "LV" + level, programStyle);
-                    programStyle.fontSize = 17; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
-                    GUI.matrix = before;
+                    programStyle.fontSize = 15; programStyle.alignment = TextAnchor.MiddleLeft; programStyle.normal.textColor = ArcadeSkin.Ink;
                 }
                 if (bondHit == null) bondHit = new GUIStyle();
                 if (GUI.Button(line, GUIContent.none, bondHit)) { selectedBond = bond.Id; bondTooltipUntil = Time.unscaledTime + 3; }
@@ -472,8 +481,16 @@ namespace ArcaneBrigade
                     tooltip = count + "/" + bond.NextThreshold(count) + " · " + RunUICopy.BondDescription(bond, count);
                     tooltipTop = line.y;
                 }
-                index++;
             }
+            programStyle.fontSize = 12; programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = ArcadeSkin.Accent;
+            Rect footer = new Rect(card.x + 10, card.yMax - 28, width - 20, 24);
+            string more = bondSummary.HiddenCount > 0 ? "+" + bondSummary.HiddenCount + " MORE  ·  VIEW ALL" : "VIEW ALL BONDS";
+            if (GUI.Button(footer, more, programStyle))
+            {
+                if (!owner.Details.Open) owner.ToggleDetails();
+                owner.Details.SelectBond(bondSummary.Rows[0].Name);
+            }
+            programStyle.alignment = TextAnchor.MiddleLeft;
             small.normal.textColor = ArcadeSkin.Cream; small.alignment = TextAnchor.UpperLeft;
             if (tooltip != null)
             {

@@ -28,8 +28,10 @@ namespace ArcaneBrigade
             int idleFrame = reacting ? 0 : UnitVisual.AnimationFrame(time, state.Id, false, reduced);
             int headFrame = idleFrame == 1 ? 1 : legFrame;
             if (state.Faction == Faction.Enemy) headFrame = legFrame = K8Motion.BodyFrame(state, time, reduced);
-            Parts head = GetParts(state.Definition.AnimationFrames[headFrame]);
-            Parts feet = GetParts(state.Definition.AnimationFrames[legFrame]);
+            Sprite headSprite = state.Definition.AnimationFrames[headFrame];
+            Sprite feetSprite = state.Definition.AnimationFrames[legFrame];
+            Parts head = GetParts(headSprite);
+            Parts feet = GetParts(feetSprite);
             upper.sprite = head.Upper; lower.sprite = feet.Lower;
             upper.transform.localPosition = head.UpperOffset;
             lower.transform.localPosition = feet.LowerOffset;
@@ -54,6 +56,8 @@ namespace ArcaneBrigade
             upper.transform.localPosition += (Vector3)(hitDirection * recoil * profile.Recoil) + Vector3.up * gesture * profile.IdleGesture;
             if (!reduced && gesture > 0)
             {
+                EnsembleGesture species = EnsembleMotion.For(state.Definition);
+                if (species == EnsembleGesture.Wing) upper.transform.localScale *= 1 + Mathf.Sin(gesturePhase * 18) * gesture * .018f;
                 float direction = reference.flipX ? -1 : 1;
                 if (profile.GestureKind == 0) upper.transform.localPosition += Vector3.right * direction * gesture * 0.025f;
                 else if (profile.GestureKind == 1) upper.transform.localScale = Vector3.Scale(upper.transform.localScale, new Vector3(1 + gesture * 0.025f, 1 - gesture * 0.025f, 1));
@@ -76,6 +80,7 @@ namespace ArcaneBrigade
             }
             float turn = reduced || reacting ? 0 : Mathf.Sin(time * (moving ? profile.GaitCadence * 0.6f : cadence) + state.Id) * profile.HeadTurn;
             upper.transform.localRotation = Quaternion.Euler(0, 0, turn + (pose.Lean * 0.4f + support * 4 + gesture * profile.HeadTurn * 2 + recoil * 7) * (reference.flipX ? -1 : 1));
+            if (!reduced && !reacting && EnsembleMotion.For(state.Definition) == EnsembleGesture.Fold) upper.transform.localRotation *= Quaternion.Euler(0, 0, gesture * 2);
             if (!reduced && !reacting && state.Definition.IsBoss)
             {
                 bool resting = state.BossRecoveryUntil > time;
@@ -93,6 +98,8 @@ namespace ArcaneBrigade
                 lower.transform.localPosition += Vector3.up * footLift;
             }
             lower.transform.localRotation = Quaternion.Euler(0, 0, state.Definition.Material == BodyMaterial.Glass || reduced ? 0 : gait * 28);
+            if (!reduced && gesture > 0 && EnsembleMotion.For(state.Definition) == EnsembleGesture.Spring)
+                lower.transform.localScale = Vector3.Scale(lower.transform.localScale, new Vector3(1 + gesture * .035f, 1 - gesture * .04f, 1));
             if (!reduced && moving && state.Definition.Material == BodyMaterial.Fabric)
                 upper.transform.localRotation *= Quaternion.Euler(0, 0, -gait * 35);
             if (!reduced && moving && state.Definition.Material == BodyMaterial.Wax)
@@ -101,7 +108,11 @@ namespace ArcaneBrigade
             upper.color = lower.color = reference.color;
             upper.flipX = lower.flipX = reference.flipX;
             upper.sortingOrder = reference.sortingOrder + 1; lower.sortingOrder = reference.sortingOrder;
-            reference.GetPropertyBlock(properties); upper.SetPropertyBlock(properties); lower.SetPropertyBlock(properties);
+            reference.GetPropertyBlock(properties);
+            // Head, feet and reference can occupy different atlas cells during an attack or pursuit.
+            // Keep full-frame coordinates for the face/fabric shader, using each part's actual source frame.
+            SpriteLighting.SetSpriteRect(properties, headSprite); upper.SetPropertyBlock(properties);
+            SpriteLighting.SetSpriteRect(properties, feetSprite); lower.SetPropertyBlock(properties);
             reference.enabled = false; upper.enabled = lower.enabled = true;
         }
         private SpriteRenderer Create(string caption)
@@ -123,6 +134,7 @@ namespace ArcaneBrigade
             if (upper == null) return;
             Color color = upper.color; color.a *= alpha; upper.color = lower.color = color;
         }
+        public void Hide() { if (upper != null) upper.enabled = lower.enabled = false; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetCache()
         {

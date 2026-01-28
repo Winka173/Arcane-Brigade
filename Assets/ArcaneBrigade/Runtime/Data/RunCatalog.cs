@@ -47,6 +47,10 @@ namespace ArcaneBrigade
         public ShopCurrency AltarCurrency = ShopCurrency.Eggs;
         public int AltarPrice = 2;
         public SignatureRelicKind SignatureRole;
+        public RelicMechanic Mechanic;
+        public RelicCategory Category;
+        public string ReferenceName;
+        public string[] ShopThemes = new string[0];
         public int StackLimit => Stacking == StackPolicy.Unique ? 1 : (MaximumStacks > 0 ? MaximumStacks : 100000);
         public int EffectiveStacks(int count) => Mathf.Min(count, StackLimit);
         public StatModifier[] EffectiveModifiers => Modifiers != null && Modifiers.Length > 0 ? Modifiers : new[] { new StatModifier { Effect = Effect, Scope = RunModifierRules.DefaultScope(Effect), Value = Value } };
@@ -95,6 +99,7 @@ namespace ArcaneBrigade
         public string Id;
         public string FirstUnit;
         public string SecondUnit;
+        public string ThirdUnit;
         public string ResultUnit;
         public int EggCost = 3;
         public int MinimumMaterialTier = 1;
@@ -128,6 +133,7 @@ namespace ArcaneBrigade
         public int SignatureRevision;
         public int ExpansionRevision;
         public int ContentRevision;
+        public int ReviewRevision;
         public int StatRevision;
         public int HeroRevision;
         public Sprite[] ArenaPropSprites = new Sprite[0];

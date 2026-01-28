@@ -65,7 +65,10 @@ namespace ArcaneBrigade
         }
 
         public static string Describe(ItemDefinition item, int stacks)
+            => RelicDescriptions.Describe(item, stacks);
+        private static string LegacyDescribe(ItemDefinition item, int stacks)
         {
+            if (!string.IsNullOrEmpty(item.ReferenceName)) return item.Description + "\nOwned: " + item.EffectiveStacks(stacks);
             string description = RarityName(item.Rarity) + " · " + (item.Stacking == StackPolicy.Unique ? "Unique" : "Stackable") + "\n";
             foreach (StatModifier modifier in item.EffectiveModifiers)
                 if (modifier.Value != 0) description += ScopeName(modifier.Scope) + " / " + ModifierName(modifier.Effect) + ": " + ValueText(modifier.Effect, modifier.Value) + " × " + item.EffectiveStacks(stacks) + " = " + ValueText(modifier.Effect, modifier.Value * item.EffectiveStacks(stacks)) + "\n";
@@ -138,7 +141,7 @@ namespace ArcaneBrigade
             }
             ids.Clear();
             foreach (AltarRecipe recipe in catalog.Recipes)
-                if (recipe == null || string.IsNullOrEmpty(recipe.Id) || !ids.Add(recipe.Id) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.FirstUnit) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.SecondUnit) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.ResultUnit) || recipe.EggCost < 0 || recipe.MinimumMaterialTier < 1 || recipe.MinimumMaterialTier > catalog.MaximumTier || recipe.ResultTier < 1 || recipe.ResultTier > catalog.MaximumTier) throw new InvalidOperationException("Invalid recipe identity/tier/cost");
+                if (recipe == null || string.IsNullOrEmpty(recipe.Id) || !ids.Add(recipe.Id) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.FirstUnit) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.SecondUnit) || !Array.Exists(catalog.Companions, unit => unit.Id == recipe.ResultUnit) || !string.IsNullOrEmpty(recipe.ThirdUnit) && !Array.Exists(catalog.Companions, unit => unit.Id == recipe.ThirdUnit) || recipe.EggCost < 0 || recipe.MinimumMaterialTier < 1 || recipe.MinimumMaterialTier > catalog.MaximumTier || recipe.ResultTier < 1 || recipe.ResultTier > catalog.MaximumTier) throw new InvalidOperationException("Invalid recipe identity/tier/cost");
             ids.Clear();
             foreach (BuildLinkRule rule in catalog.BuildLinks ?? new BuildLinkRule[0])
             {

@@ -12,6 +12,7 @@ namespace ArcaneBrigade
         private void ResetHeroMechanic() { heroCharge = heroReadyAt = 0; HeroActivations = 0; }
         private void ProcessHeroMechanic(float deltaTime)
         {
+            if (HeroIdentityEnabled) return;
             if (!catalog.EnableHeroMechanics || !Champion.Alive || Phase != RunPhase.Combat) return;
             HeroMechanic mechanic = Champion.Definition.HeroMechanic;
             if (mechanic >= HeroMechanic.RootedOracle) { ProcessCarnivalHero(deltaTime, mechanic); return; }

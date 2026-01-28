@@ -7,23 +7,31 @@ namespace ArcaneBrigade
         private SpriteRenderer shadow;
         private SpriteRenderer glint;
         private GroundShadow grounded;
+        private SpriteRenderer chestGlow;
         public void Display(PickupState state, SpriteRenderer renderer, Sprite disc, Sprite spark, float time, float interpolation)
         {
             if (shadow == null)
             {
                 shadow = Create("CoinShadow");
+                chestGlow = ShopFloorShadow.Create(transform, Vector2.zero, 1, .6f);
+                chestGlow.name = "ChestGroundGlow";
                 glint = Create("CoinGlint");
             }
             float age = Mathf.Max(0, time - state.SpawnTime);
             float landing = Mathf.Clamp01(age / 0.26f);
             float height = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(landing * Mathf.PI) * (state.Kind == LootKind.Chest ? 0.1f : 0.32f);
-            if (state.Kind != LootKind.Coin && !PresentationSettings.ReducedMotion) height += Mathf.Sin(age * 3 + state.Id) * 0.025f;
+            if (state.Kind != LootKind.Coin && state.Kind != LootKind.Chest && !PresentationSettings.ReducedMotion) height += Mathf.Sin(age * 3 + state.Id) * 0.025f;
             Vector2 ground = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             renderer.transform.position = ground + Vector2.up * height;
             float spin = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
             float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f : 0.4f;
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
+            if (state.Kind == LootKind.Chest && !PresentationSettings.ReducedMotion)
+            {
+                float anticipation = AnimationTiming.Pulse(Mathf.Repeat(age + state.Id * .31f, 4.8f), .45f);
+                renderer.transform.localScale = Vector3.Scale(renderer.transform.localScale, new Vector3(1 + anticipation * .018f, 1 - anticipation * .025f, 1));
+            }
             renderer.transform.rotation = Quaternion.Euler(0, 0, state.Attracting && !PresentationSettings.ReducedMotion ? Mathf.Sin(age * 12) * 12 : 0);
             renderer.color = Color.white;
             renderer.sortingOrder = 1700;
@@ -36,6 +44,14 @@ namespace ArcaneBrigade
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(renderer.sprite); }
             grounded.Display(renderer.sprite, ground, width * 0.95f, height, 0.3f);
             shadow.gameObject.SetActive(false);
+            chestGlow.gameObject.SetActive(state.Kind == LootKind.Chest);
+            if (state.Kind == LootKind.Chest)
+            {
+                chestGlow.transform.position = ground;
+                chestGlow.transform.localScale = new Vector3(1.8f / parentScale.x, .8f / parentScale.y, 1) / chestGlow.sprite.bounds.size.x;
+                chestGlow.sortingOrder = 488;
+                chestGlow.color = new Color(1, .7f, .2f, PresentationSettings.ReducedFlashes ? .6f : .6f + .08f * Mathf.Sin(age * 2));
+            }
             float pulse = PresentationSettings.ReducedFlashes || PresentationSettings.ReducedEffects ? 0 : Mathf.Pow(Mathf.Max(0, Mathf.Cos(age * 4 + state.Id * 1.3f)), 12);
             glint.gameObject.SetActive(pulse > 0.05f); glint.sprite = spark;
             glint.transform.position = ground + new Vector2(0.06f * spin, height + 0.07f);
@@ -50,13 +66,20 @@ namespace ArcaneBrigade
             child.transform.SetParent(transform, false);
             return child.AddComponent<SpriteRenderer>();
         }
-        public void Hide() { if (shadow != null) shadow.gameObject.SetActive(false); if (glint != null) glint.gameObject.SetActive(false); if (grounded != null) grounded.Hide(); }
+        public void Hide()
+        {
+            if (shadow != null) shadow.gameObject.SetActive(false);
+            if (glint != null) glint.gameObject.SetActive(false);
+            if (grounded != null) grounded.Hide();
+            if (chestGlow != null) chestGlow.gameObject.SetActive(false);
+        }
         public void SetFade(SpriteRenderer renderer, float alpha)
         {
             Color body = renderer.color; body.a *= alpha; renderer.color = body;
             if (shadow != null) { Color color = shadow.color; color.a *= alpha; shadow.color = color; }
             if (glint != null) { Color color = glint.color; color.a *= alpha; glint.color = color; }
             if (grounded != null) grounded.Fade(alpha);
+            if (chestGlow != null) { Color c = chestGlow.color; c.a *= alpha; chestGlow.color = c; }
         }
     }
 }

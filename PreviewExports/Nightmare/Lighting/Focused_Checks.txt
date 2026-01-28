@@ -1,0 +1,34 @@
+PASS Progressive bounded ambient 0
+PASS Dawn restores light 0
+PASS Progressive bounded ambient 1
+PASS Dawn restores light 1
+PASS Progressive bounded ambient 2
+PASS Dawn restores light 2
+PASS Progressive bounded ambient 3
+PASS Dawn restores light 3
+PASS Progressive bounded ambient 4
+PASS Dawn restores light 4
+PASS Light centre is continuous
+PASS Soft source falloff
+PASS Disabled light is finite
+PASS Stable symmetric light energy
+PASS Departure travel bounds
+PASS Departure party is staggered
+PASS Reduced departure is stationary
+PASS Party stays opaque until entering the real doorway
+PASS Shop landmark inside composed view 0
+PASS Shop landmark inside composed view 1
+PASS Shop landmark inside composed view 2
+PASS Shop landmark inside composed view 3
+PASS Shop landmark inside composed view 4
+PASS Shop landmark inside composed view 5
+PASS Shop landmark inside composed view 6
+PASS Shop landmark inside composed view 7
+PASS Tooltip reserves price band and safe bottom
+PASS Four original finale architecture layers imported
+PASS Final hall has a distinct maximal composition
+PASS Architecture builds gradually before finale
+PASS Larger-cell cartoon customer idle art is active
+PASS Separate four-pose customer attack atlas is active
+PASS Clean cartoon landmarks are active
+PASS Matching boss anatomy is active

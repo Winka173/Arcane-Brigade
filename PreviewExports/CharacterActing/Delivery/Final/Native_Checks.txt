@@ -1,0 +1,95 @@
+PASS Actual shop fixture opens
+PASS Actual merchant uses articulated portrait rig
+PASS Native dimensions shop-acting
+PASS Shop acting obeys pause clock
+PASS Native dimensions shop-player-start
+PASS Native dimensions shop-player-stop
+PASS All champions bound idle
+PASS Native dimensions champions-idle
+PASS All champions bound walk
+PASS Native dimensions champions-walk
+PASS Same-clock actor rendering freezes
+PASS All champions bound attack
+PASS Native dimensions champions-attack
+PASS All champions bound hurt
+PASS Native dimensions champions-hurt
+PASS All champions bound heal
+PASS Native dimensions champions-heal
+PASS All champions bound stop-turn
+PASS Native dimensions champions-stop-turn
+PASS Identity-specific painted curious LanternKnight
+PASS Identity-specific painted curious Postmaster
+PASS Identity-specific painted curious DrowsySeer
+PASS Identity-specific painted curious RootOracle
+PASS Identity-specific painted curious LoneJelly
+PASS Identity-specific painted curious GlassDice
+PASS Identity-specific painted curious TideSinger
+PASS Identity-specific painted curious CometRunner
+PASS Identity-specific painted curious MirrorKeeper
+PASS Identity-specific painted curious TreasureAcorn
+PASS Native dimensions champions-curious
+PASS Native dimensions champions-curious-settle
+PASS Identity-specific painted cheer LanternKnight
+PASS Identity-specific painted cheer Postmaster
+PASS Identity-specific painted cheer DrowsySeer
+PASS Identity-specific painted cheer RootOracle
+PASS Identity-specific painted cheer LoneJelly
+PASS Identity-specific painted cheer GlassDice
+PASS Identity-specific painted cheer TideSinger
+PASS Identity-specific painted cheer CometRunner
+PASS Identity-specific painted cheer MirrorKeeper
+PASS Identity-specific painted cheer TreasureAcorn
+PASS Native dimensions champions-cheer
+PASS Native dimensions champions-cheer-settle
+PASS Identity-specific painted flinch LanternKnight
+PASS Identity-specific painted flinch Postmaster
+PASS Identity-specific painted flinch DrowsySeer
+PASS Identity-specific painted flinch RootOracle
+PASS Identity-specific painted flinch LoneJelly
+PASS Identity-specific painted flinch GlassDice
+PASS Identity-specific painted flinch TideSinger
+PASS Identity-specific painted flinch CometRunner
+PASS Identity-specific painted flinch MirrorKeeper
+PASS Identity-specific painted flinch TreasureAcorn
+PASS Native dimensions champions-flinch
+PASS Native dimensions champions-flinch-settle
+PASS Identity-specific painted tired LanternKnight
+PASS Identity-specific painted tired Postmaster
+PASS Identity-specific painted tired DrowsySeer
+PASS Identity-specific painted tired RootOracle
+PASS Identity-specific painted tired LoneJelly
+PASS Identity-specific painted tired GlassDice
+PASS Identity-specific painted tired TideSinger
+PASS Identity-specific painted tired CometRunner
+PASS Identity-specific painted tired MirrorKeeper
+PASS Identity-specific painted tired TreasureAcorn
+PASS Native dimensions champions-tired
+PASS Native dimensions champions-tired-settle
+PASS Native dimensions weapon-windup
+PASS Native dimensions weapon-release
+PASS Native dimensions weapon-settle
+PASS Multiple actual weapon motion families rendered
+PASS Scissor blades articulate with reduced fallback
+PASS Native dimensions mechanisms-windup
+PASS Native dimensions mechanisms-release
+PASS Source-specific weapon mechanism MailboxLauncher
+PASS Source-specific weapon mechanism CloudScissors
+PASS Source-specific weapon mechanism SleepCamera
+PASS Source-specific weapon mechanism MusicBox
+PASS Source-specific weapon mechanism TwinSabres
+PASS Native dimensions material-and-chest
+PASS Tactile feedback respects reduced effects
+PASS Painted feedback pool remains bounded under stress
+PASS Feedback pool clears on reuse
+PASS Native dimensions boss-act-0
+PASS Native dimensions boss-act-1
+PASS Native dimensions boss-act-2
+PASS Boss roster including final Customer rendered
+PASS Native dimensions enemy-windup
+PASS Native dimensions enemy-release
+PASS Enemy roster renders with polish
+PASS Collection has identity-matched companion acting
+PASS Native dimensions collection-acting-controls
+PASS Collection acting preview does not mutate progress
+PASS Weapon mechanisms cleaned up on scene change
+PASS Animation polish native review complete

@@ -20,9 +20,10 @@ namespace ArcaneBrigade
         }
         private void StrikeChampionCollision(UnitState enemy)
         {
-            if (Elapsed < enemy.NextCollision || Champion.Definition.CollisionDamage <= 0) return;
+            float contact = Champion.Definition.CollisionDamage + (relicStanding ? 20 * RelicCount(RelicMechanic.StillRecovery) : 0) + (!relicMoved ? 16 * RelicCount(RelicMechanic.StillPower) : 0);
+            if (Elapsed < enemy.NextCollision || contact <= 0) return;
             enemy.NextCollision = Elapsed + Mathf.Max(0.15f, Champion.Definition.CollisionFrequency);
-            ApplyDamage(enemy, Champion.Definition.CollisionDamage, Faction.Champion, "Champion collision", (enemy.Position - Champion.Position).normalized, cause: NewCause(Champion.Id));
+            ApplyDamage(enemy, contact, Faction.Champion, "Champion collision", (enemy.Position - Champion.Position).normalized, cause: NewCause(Champion.Id));
         }
     }
 }

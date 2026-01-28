@@ -1,0 +1,467 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2685b1a523a8c640b19ee86c6b78a3b, type: 3}
+  m_Name: EnsembleArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.EnsembleArtwork
+  Merchants:
+  - Id: ReceiptMaw
+    Frames:
+    - {fileID: 837885966, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: 1985575030, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: 207717091, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: -236675384, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: -1905813611, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: 1213221283, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: 1974847074, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    - {fileID: 28023163, guid: 7e8d0abda5072664a9d81d35ddf5a551, type: 3}
+    ReferenceWidth: 3.4609375
+  - Id: EggOracle
+    Frames:
+    - {fileID: 311358848, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: 881535423, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: 1758568601, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: -402021158, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: -454237739, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: 1477439564, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: 1352269, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    - {fileID: 1302016167, guid: f3d0d9e9155698141a098bf966e4b669, type: 3}
+    ReferenceWidth: 2.7890625
+  - Id: GiantGoldMerchant
+    Frames:
+    - {fileID: 39712003, guid: 7fdb6bc9d1e337446bc30b5815490878, type: 3}
+    - {fileID: 1810597426, guid: 7fdb6bc9d1e337446bc30b5815490878, type: 3}
+    - {fileID: -1552948112, guid: 7fdb6bc9d1e337446bc30b5815490878, type: 3}
+    - {fileID: 1194517528, guid: 7fdb6bc9d1e337446bc30b5815490878, type: 3}
+    ReferenceWidth: 3
+  - Id: GiantEggMerchant
+    Frames:
+    - {fileID: 211718684, guid: 45606f8fcf178d54bba15972b90d98d4, type: 3}
+    - {fileID: 1355857230, guid: 45606f8fcf178d54bba15972b90d98d4, type: 3}
+    - {fileID: 209825694, guid: 45606f8fcf178d54bba15972b90d98d4, type: 3}
+    - {fileID: 1312690638, guid: 45606f8fcf178d54bba15972b90d98d4, type: 3}
+    ReferenceWidth: 3.2265625
+  Weapons:
+  - Id: PaperFan
+    Frames:
+    - {fileID: 1327752942, guid: 93c73fe8671fb5a44842ee87b1488e70, type: 3}
+    - {fileID: 1652120511, guid: 93c73fe8671fb5a44842ee87b1488e70, type: 3}
+    - {fileID: 352297889, guid: 93c73fe8671fb5a44842ee87b1488e70, type: 3}
+    - {fileID: 31136419, guid: 93c73fe8671fb5a44842ee87b1488e70, type: 3}
+    ReferenceWidth: 3.484375
+  - Id: MoonFeatherFan
+    Frames:
+    - {fileID: 1704667583, guid: 027813c748984384587d8620727f1c84, type: 3}
+    - {fileID: -506165470, guid: 027813c748984384587d8620727f1c84, type: 3}
+    - {fileID: -1763555078, guid: 027813c748984384587d8620727f1c84, type: 3}
+    - {fileID: -1449973997, guid: 027813c748984384587d8620727f1c84, type: 3}
+    ReferenceWidth: 3.9140625
+  - Id: ParasolNeedle
+    Frames:
+    - {fileID: -590036146, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: -1214886379, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: 899877832, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: 2032341231, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: 873340707, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: -928910318, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: 107033502, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    - {fileID: 1870243907, guid: 31eb25f1e05af9041ab9c323c6b97c9b, type: 3}
+    ReferenceWidth: 3.21875
+  - Id: InkPistol
+    Frames:
+    - {fileID: 2852595, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: 2086112853, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: 1215857607, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: -1764241716, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: -2122723059, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: 1062831401, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: -462065908, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    - {fileID: -373206602, guid: b3e7bde46d4dc5e46975f7aa75cf690a, type: 3}
+    ReferenceWidth: 3.3125
+  - Id: ShellCannon
+    Frames:
+    - {fileID: 1825303072, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: -199088988, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: 1306074057, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: 2027880921, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: -196252674, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: -1855413483, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: -581930104, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    - {fileID: -1786912479, guid: e5030c4feef1ebe47b3d116cbe3a4d40, type: 3}
+    ReferenceWidth: 3.609375
+  - Id: PlasmaTrident
+    Frames:
+    - {fileID: 140185452, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: 2116273867, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: 1640162644, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: -1008052691, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: 243479980, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: 406472731, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: 599285516, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    - {fileID: -206868829, guid: 225408302ec1f214b9d6c58195117909, type: 3}
+    ReferenceWidth: 3.453125
+  - Id: FireExtinguisher
+    Frames:
+    - {fileID: -444693537, guid: 613f2a7bf9365b241b645fdda4d512a4, type: 3}
+    - {fileID: -14753358, guid: 613f2a7bf9365b241b645fdda4d512a4, type: 3}
+    - {fileID: -999354403, guid: 613f2a7bf9365b241b645fdda4d512a4, type: 3}
+    - {fileID: 1921346397, guid: 613f2a7bf9365b241b645fdda4d512a4, type: 3}
+    ReferenceWidth: 4.4140625
+  - Id: KeyCleaver
+    Frames:
+    - {fileID: 430223883, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -2116042557, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -951552684, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -285707899, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceWidth: 2.4140625
+  - Id: TeapotPopgun
+    Frames:
+    - {fileID: 1684963969, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -328477358, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -930520095, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: 1044581456, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceWidth: 2.1875
+  - Id: UmbrellaLance
+    Frames:
+    - {fileID: -1091427771, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: 732509328, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -119222611, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: 1423537702, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceWidth: 2.3984375
+  - Id: MailboxLauncher
+    Frames:
+    - {fileID: 66460372, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -513475903, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -890900401, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -646191231, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceWidth: 2.34375
+  - Id: BellFork
+    Frames:
+    - {fileID: -1313543869, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 1156918759, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1277332274, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 1874527766, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceWidth: 2.2890625
+  - Id: BookPaddle
+    Frames:
+    - {fileID: -1968258094, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 2143888207, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1089730456, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1279753866, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceWidth: 2.328125
+  - Id: CrescentBow
+    Frames:
+    - {fileID: -1347054314, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 893666501, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -93332739, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 160333986, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceWidth: 1.1171875
+  - Id: RuneStaff
+    Frames:
+    - {fileID: 154252752, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 716310744, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1788634540, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 1893062536, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceWidth: 2.3203125
+  - Id: DreamStamp
+    Frames:
+    - {fileID: 345246187, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -812384295, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -1047688149, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 1162883396, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceWidth: 2.7109375
+  - Id: CloudScissors
+    Frames:
+    - {fileID: -1708968734, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 121990125, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 7816047, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 1246916966, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceWidth: 2.75
+  - Id: SleepCamera
+    Frames:
+    - {fileID: -1932514892, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -1349457263, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 188104457, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 473653651, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceWidth: 2.6796875
+  - Id: TinFish
+    Frames:
+    - {fileID: -1868101755, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -868372788, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 1105496821, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -794550601, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceWidth: 2.75
+  - Id: DreamIron
+    Frames:
+    - {fileID: -1409481782, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 607895396, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 408786773, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -1125790120, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceWidth: 2.3359375
+  - Id: RubberHammer
+    Frames:
+    - {fileID: -1772610343, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -1270585782, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 709970726, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -496665587, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceWidth: 2.34375
+  - Id: AlarmMortar
+    Frames:
+    - {fileID: -1910126185, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 1096387787, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 230506743, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -263402959, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceWidth: 2.328125
+  - Id: MusicBox
+    Frames:
+    - {fileID: -1436268677, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -32001811, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 789400854, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -1521698008, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceWidth: 2.3984375
+  - Id: SpoonSabre
+    Frames:
+    - {fileID: 1042106172, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -987632839, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 320418991, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 1266055978, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceWidth: 2.390625
+  - Id: ToastCleaver
+    Frames:
+    - {fileID: 220017432, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 1151256935, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -101687508, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 999456882, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceWidth: 2.375
+  - Id: LollipopLance
+    Frames:
+    - {fileID: 1690832455, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 710988243, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -1407867164, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 97165475, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceWidth: 2.40625
+  - Id: CorkscrewRapier
+    Frames:
+    - {fileID: 1347256355, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 1313665671, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -1486145283, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 767133847, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceWidth: 2.359375
+  - Id: TeabagFlail
+    Frames:
+    - {fileID: -1917639756, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -1817079884, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 308637592, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -1482751725, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceWidth: 2.578125
+  - Id: UmbrellaHook
+    Frames:
+    - {fileID: -1854088587, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1583703845, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 943748263, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1488673563, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceWidth: 2.53125
+  - Id: PizzaWheel
+    Frames:
+    - {fileID: 1582675729, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1408609435, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -813647259, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -1159272822, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceWidth: 2.3359375
+  - Id: MoonScythe
+    Frames:
+    - {fileID: 234537108, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -965471303, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -228562303, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1746850561, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceWidth: 2.3359375
+  - Id: ForkTrident
+    Frames:
+    - {fileID: 853169756, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -1255126808, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 925390688, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -55561714, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceWidth: 2.4140625
+  - Id: MaracaHammer
+    Frames:
+    - {fileID: 1559665429, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 1027922260, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -452117932, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -1706463499, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceWidth: 2.5
+  - Id: TapeWhip
+    Frames:
+    - {fileID: -1069451520, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 1919428117, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -2076111683, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 656503953, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceWidth: 2.4140625
+  - Id: ButtonBow
+    Frames:
+    - {fileID: 1445645528, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 1202295551, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 482234805, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 510539458, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceWidth: 2.375
+  - Id: LeafCrossbow
+    Frames:
+    - {fileID: -1354114062, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 1757546858, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -1574405832, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -1707408591, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceWidth: 2.640625
+  - Id: BubbleWand
+    Frames:
+    - {fileID: 1672566437, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 931589881, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 1187599749, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 312400406, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceWidth: 2.375
+  - Id: StarKazoo
+    Frames:
+    - {fileID: 1703057038, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -1201332216, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -2111620622, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -373776474, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceWidth: 2.375
+  - Id: AcornSling
+    Frames:
+    - {fileID: 2008639478, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -618734485, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -503973708, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -937722834, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceWidth: 2.3125
+  - Id: CrescentBoomerang
+    Frames:
+    - {fileID: -1885718610, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 1401479202, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -416996222, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -1370152539, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceWidth: 2.0625
+  - Id: DartCompass
+    Frames:
+    - {fileID: -406388411, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -1105160484, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -454300080, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -38569153, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceWidth: 2.3671875
+  - Id: LanternStaff
+    Frames:
+    - {fileID: -1191028406, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -286294303, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 2124633999, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 991435108, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceWidth: 2.328125
+  - Id: SnowGlobeOrb
+    Frames:
+    - {fileID: -1154787476, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 1109801826, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -514147943, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 520756338, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceWidth: 2.3515625
+  - Id: RibbonHarp
+    Frames:
+    - {fileID: 652779258, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 547030523, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -1783986264, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1740296008, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceWidth: 2.6171875
+  - Id: DreamOrbStaff
+    Frames:
+    - {fileID: -983709132, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -1783460962, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -586228137, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1724085292, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceWidth: 2.6015625
+  - Id: TwinSabres
+    Frames:
+    - {fileID: -547526775, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 951580625, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1128223341, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -315709024, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceWidth: 2.4765625
+  - Id: ClockCrescent
+    Frames:
+    - {fileID: -2104642557, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1291540327, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 94087612, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1834885858, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceWidth: 2.0703125
+  - Id: StampHammer
+    Frames:
+    - {fileID: -1441127904, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 1557279466, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 789109847, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 1585977116, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceWidth: 2.2734375
+  - Id: ClockworkYoYo
+    Frames:
+    - {fileID: 473109520, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -96002903, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -1281295340, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -205667836, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceWidth: 2.1875
+  - Id: ScrapMagnet
+    Frames:
+    - {fileID: 404537371, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 1541720963, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -2008502740, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -85175867, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceWidth: 1.609375
+  - Id: NeedleSinger
+    Frames:
+    - {fileID: -753065418, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -658972225, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 830886519, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 199733135, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceWidth: 2.0703125
+  - Id: SpringKnocker
+    Frames:
+    - {fileID: 223556936, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -2145842504, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: 575232817, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -39770346, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceWidth: 2.0859375
+  - Id: DreamProjector
+    Frames:
+    - {fileID: -1067624080, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -1950124771, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -1401205377, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: 1104582212, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceWidth: 2
+  - Id: RibbonWheel
+    Frames:
+    - {fileID: 990507389, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -202348414, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -592128520, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: 263988162, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceWidth: 1.9453125
+  - Id: MoonseedOrb
+    Frames:
+    - {fileID: 1667253230, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -435904616, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -302949123, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -1556830310, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceWidth: 2.5078125
+  - Id: AfterimageSabre
+    Frames:
+    - {fileID: 2008320000, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1711859714, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: 1530282098, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1897870185, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    ReferenceWidth: 2.96875
+  - Id: SatelliteDisc
+    Frames:
+    - {fileID: -1602702997, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1317170440, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: 874950487, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1350357020, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    ReferenceWidth: 2.5234375

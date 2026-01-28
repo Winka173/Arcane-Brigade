@@ -22,7 +22,7 @@ namespace ArcaneBrigade
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(snapshot.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) throw new InvalidOperationException("Invalid prismatic reward");
             }
         }
-        public bool OutsideChallengeAvailable => State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && State.OutsideTransfers >= 3 && OutsideStageAssets.Current != null;
+        public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && State.OutsideTransfers >= 3 && OutsideStageAssets.Current != null;
         public void RegisterOutsideTransfer()
         {
             if (State.LastOutsideTransferWave >= State.Wave) return;
@@ -47,7 +47,10 @@ namespace ArcaneBrigade
             OutsideStageAssets assets = OutsideStageAssets.Current;
             if (assets == null || assets.Boss == null) throw new InvalidOperationException("Missing outside-stage encounter");
             CombatCatalog.Boss = BuildEnemy(assets.Boss, 1 + Mathf.Max(0, State.Wave - 13) * 0.06f);
-            CombatCatalog.Boss.Health = assets.Boss.Health * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f);
+            CombatCatalog.Boss.Health = assets.Boss.Health * 20 * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
+            CombatCatalog.Boss.BodyHeight = assets.Boss.BodyHeight * 1.75f;
+            CombatCatalog.Boss.Weapon.Damage *= 2.8f; CombatCatalog.Boss.ContactDamage *= 2.5f;
+            CombatCatalog.Boss.KnockbackResistance = 1;
             CombatCatalog.EnemyBudget = 0;
             CombatCatalog.ArenaSize = new Vector2(22, 12);
             CombatCatalog.EnableArenaToys = CombatCatalog.EnableSpectacles = CombatCatalog.EnableBossArenaPhase = false;
@@ -97,11 +100,13 @@ namespace ArcaneBrigade
             else
             {
                 UnitDefinition ally = catalog.Unit(id);
+                if (State.Roster.Count >= 20) return false;
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return false;
                 var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 1 };
-                State.Roster.Add(entry); RememberVariant(entry);
+                State.Roster.Add(entry); RememberVariant(entry); OctoberPurchase(ally);
             }
             State.OutsideStage = OutsideStageStatus.Completed;
+            RecountBonds();
             State.Health = Mathf.Min(MaximumHealth(), State.Health + Mathf.Max(0, MaximumHealth() - previousMaximum));
             State.OutsideRewards.Clear();
             return true;

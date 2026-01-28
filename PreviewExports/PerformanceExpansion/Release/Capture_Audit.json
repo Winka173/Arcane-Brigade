@@ -1,0 +1,2355 @@
+﻿{
+    "AssemblySHA256":  "7F12CA4048E5C338401F1121A478D85E2187C53692C4225DF6775731191D9DBB",
+    "PlayerFiles":  [
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade.exe",
+                            "Bytes":  667648,
+                            "SHA256":  "E83058C236F35A720C27E465DC42D1549F13B25A8573DCE464438B855764E7AF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\dstorage.dll",
+                            "Bytes":  206904,
+                            "SHA256":  "CAE65787F61514BEC6F012F44546E68B19E39D8854A9AB52AF813370D44B272A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\dstoragecore.dll",
+                            "Bytes":  1482784,
+                            "SHA256":  "CF85B19A92A8276F8BACA0DB9BBCD60735BAD50768DEB303D310E84D5F4FDD11"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\UnityCrashHandler64.exe",
+                            "Bytes":  1601968,
+                            "SHA256":  "77FB5B8EBA100151C963075EF432807654B179107406FCF56BA3C77564C932AF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\UnityPlayer.dll",
+                            "Bytes":  36922288,
+                            "SHA256":  "7E2CB9CC4DE1A5952569B4A050DED390F789C24F922C9DC2CDC64A51E0A78899"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\app.info",
+                            "Bytes":  20,
+                            "SHA256":  "91C0FB8E716ED6819E4E9089B7229FA86D7277B6045565B0029BDE6573B7FBDB"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\boot.config",
+                            "Bytes":  156,
+                            "SHA256":  "A44BAC3CD4FBAC18BDE399A1F657E9A58ABD409D41EC6EEEC480E816AA35E206"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\globalgamemanagers",
+                            "Bytes":  189300,
+                            "SHA256":  "2DB27EEA9C74610F4D8B189F43F4BFDD82D4E32C0C883F74F393340C1B1A049C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\globalgamemanagers.assets",
+                            "Bytes":  35796,
+                            "SHA256":  "6609D3355633855A78FA98143029853FCEE54A5D616C0BF7AB3EA09B0D9B8E18"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\globalgamemanagers.assets.resS",
+                            "Bytes":  2796240,
+                            "SHA256":  "39DD38FCD8DD95D41D6D55FE16A448D29FE2C31D9A162C825C24C6D99A893D7A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\level0",
+                            "Bytes":  1152,
+                            "SHA256":  "4DADF0D8FF957D5D38DF1B571F8879DF3BB8D0F1D877636268FFBA93379ECC8A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\level1",
+                            "Bytes":  1628,
+                            "SHA256":  "9F4A38A0C6C678C760AA11B8C962D3A7D68709F0754751DE8CE80B616028CB7D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\level2",
+                            "Bytes":  93120,
+                            "SHA256":  "EE65C37E217D8BE43ED71A63643FE6D46DA3D7951D3FADA2949A3FFC9023DF40"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\resources.assets",
+                            "Bytes":  280490536,
+                            "SHA256":  "59E8B7684D3EE6C188E91727F0854B5C0FBA3D5A7C2D96AF64A1B05B66536B61"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\resources.assets.resS",
+                            "Bytes":  746005392,
+                            "SHA256":  "F9202415EAD93950ECC72A714FB0C465F0B5B9131DD51CE2879AB222BE6B961C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\resources.resource",
+                            "Bytes":  65792000,
+                            "SHA256":  "AA8EEC6E738408F2011A3A4C2D3DB04A1B18265DD8D6A26C85C54829B9078E74"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\RuntimeInitializeOnLoads.json",
+                            "Bytes":  8423,
+                            "SHA256":  "AB935A3AA1B2E07FACD24CBC4AEBF89829D816EA31EF9D07517C7CD418FEA70F"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\ScriptingAssemblies.json",
+                            "Bytes":  3214,
+                            "SHA256":  "215F43C86739FD4EBE4DA7D6987ED4E4B02E1252AD9D2F23712775E40C001893"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\sharedassets0.assets",
+                            "Bytes":  7920,
+                            "SHA256":  "B6CFC9800BA3EE0F27E246039E08CC5EC6C40B2A1EADD15301E2E48298E39677"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\sharedassets0.assets.resS",
+                            "Bytes":  524288,
+                            "SHA256":  "393EFE6399536384AA91BDFC4E64F244B4D3E1FBB6A4FF145C483FFEE64CCB36"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\sharedassets1.assets",
+                            "Bytes":  17937,
+                            "SHA256":  "0CE7289FF2E4DA0456C0F67D75C0F7238AA1CC4AEFA7C31FDD6019D8D2BBB54A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\sharedassets2.assets",
+                            "Bytes":  95088,
+                            "SHA256":  "7AEA430CA290099C65FEA504B0AF8021EA4A3A5CA6138EA23F59FE0D576ED756"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\sharedassets2.assets.resS",
+                            "Bytes":  13106800,
+                            "SHA256":  "BE3D2291F1AA18A1740B6ECE4A27E408946CF1FFBD38C4CDB500E6B905AE2F6C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\ArcaneBrigade.Runtime.dll",
+                            "Bytes":  1222144,
+                            "SHA256":  "2F65EF341D439949DC5AF99AA6E45243ED81DE6C2B1B0B33385C61770F5FB6B6"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\Assembly-CSharp.dll",
+                            "Bytes":  5632,
+                            "SHA256":  "7F12CA4048E5C338401F1121A478D85E2187C53692C4225DF6775731191D9DBB"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\Mono.Security.dll",
+                            "Bytes":  241152,
+                            "SHA256":  "9838776992DC44EBE2AFF2E9EC52C292024F5464542897AA5D29429A921437B9"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\mscorlib.dll",
+                            "Bytes":  4632064,
+                            "SHA256":  "EAF6B07FD716403E8FEDC054BDD1650142D1DC95D34C01D9485DE97B5A0DD84B"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\netstandard.dll",
+                            "Bytes":  90112,
+                            "SHA256":  "6AE62E082DC494A2433984177F60CA4DB5FAE69B1F360A8B33754172B310B8C5"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.ComponentModel.Composition.dll",
+                            "Bytes":  257024,
+                            "SHA256":  "A30FDDE214493B540A5A169AA1729FF494D46F519D9C9A036746967C0845E764"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Configuration.dll",
+                            "Bytes":  124928,
+                            "SHA256":  "223A6629BB9DEBB0327082DA3E525860E734F231274D0F6BB83A164DF778B779"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Core.dll",
+                            "Bytes":  1113088,
+                            "SHA256":  "DB725196B862D96BEEFB95BBB6693F892A12DC401B5C044660D13789E45C255D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Data.DataSetExtensions.dll",
+                            "Bytes":  29696,
+                            "SHA256":  "1D6F66F38CABD57B3D099804593CE5144E22921871DFDF0D6487A4BC725B9C8B"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Data.dll",
+                            "Bytes":  2125312,
+                            "SHA256":  "F1E0909723A04B1B8BA3630593893E1A4683B391349B79697B8958D7E897A68F"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.dll",
+                            "Bytes":  2641920,
+                            "SHA256":  "C3C900393EFFD00A0D36F1DFD317FFE0F19744AAD0C3D9C0B10E5F4D5A00BDD7"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Drawing.dll",
+                            "Bytes":  489984,
+                            "SHA256":  "630AEBA7B15DE154E6FAF86270EAAF6921AB2B5E9DD2273382E3A0DF8ED918AD"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.EnterpriseServices.dll",
+                            "Bytes":  44544,
+                            "SHA256":  "E0BD4C9AA95B3264E2BC5C43404637447DE098829BE95D5364A50C286651EDE1"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.IO.Compression.dll",
+                            "Bytes":  114688,
+                            "SHA256":  "11877B20D2C14BB0EB208F3E20F102DDD3C78B8C5D18EDCEA935DD5960E48449"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.IO.Compression.FileSystem.dll",
+                            "Bytes":  18432,
+                            "SHA256":  "738C6EA02BB89C69473F8E128F077CB6F7D62B04E7928E0E244EA7A991E65853"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Net.Http.dll",
+                            "Bytes":  122880,
+                            "SHA256":  "31DD2EC15094027CB78457421633E24F8272A5D83792BD02F5C483339FDC948A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Numerics.dll",
+                            "Bytes":  119296,
+                            "SHA256":  "5AC2ED1D8235E6E27A7527FC159A852B1391854E35589746276377847228EB62"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Runtime.Serialization.dll",
+                            "Bytes":  934400,
+                            "SHA256":  "5B7219B02B2724941F532F6806CC6402B7B413BE0161F8994364EBB80B045330"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Security.dll",
+                            "Bytes":  320000,
+                            "SHA256":  "A51236ACA52E7F43A5D236667AEEE4C29B74F05E70ED4E66F23BD01F1219471D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.ServiceModel.Internals.dll",
+                            "Bytes":  215040,
+                            "SHA256":  "10362190426D7F2FEB552223EBCEC5DEA0FB33C2EC2E4B512832DDBAD2D3FBEA"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Transactions.dll",
+                            "Bytes":  35328,
+                            "SHA256":  "8A962B8B8A99A111BD765D090CF27605F0E84911354D7B272CD2EF484BD117C7"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Xml.dll",
+                            "Bytes":  3160064,
+                            "SHA256":  "22362D813E444A18592EC32A56731DD4265362BC8B2C2AAB76A1816F2D7D679E"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\System.Xml.Linq.dll",
+                            "Bytes":  136704,
+                            "SHA256":  "EEE68BC1879F7A5007752AA31DB5640A6EC8F5F18AECD40C92D38989758F795B"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\Unity.Scripting.dll",
+                            "Bytes":  74672,
+                            "SHA256":  "DC411A5FD16BF921BC353D5433994907D48B11602A2F51B95DA637B9857DE500"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AccessibilityModule.dll",
+                            "Bytes":  48552,
+                            "SHA256":  "A6783FE40820F2BD60B3B476EFC5B8E78204A8306A48C1A8B5EF10E1A0A66DC1"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AdaptivePerformanceModule.dll",
+                            "Bytes":  116656,
+                            "SHA256":  "C9603BBF8B1015D4F6019C9EE97904EA95BAB554EA7322E2D4E5A019777C363A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AIModule.dll",
+                            "Bytes":  75696,
+                            "SHA256":  "B1CD63E66BCC01222678FEF24739B141C81B4895CE63F40D97B2612C49C24DEF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AMDModule.dll",
+                            "Bytes":  21936,
+                            "SHA256":  "71D73CD65FA51D4B84C431A25D10157186870E33E2A7F9CDFB6143317C970EDE"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AndroidJNIModule.dll",
+                            "Bytes":  114600,
+                            "SHA256":  "BFB8E989A4B0A6EB9CCF4568BFE0501A266DD5F175D0DAE48B7DAB5C376DA0AF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AnimationModule.dll",
+                            "Bytes":  216488,
+                            "SHA256":  "FDDDCB1C2E6310A34F0C741A0EAB3F88FBCF0D1365B679A1159B17F5D00DCAAA"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ARModule.dll",
+                            "Bytes":  26024,
+                            "SHA256":  "EF763784BC800A5C22667B5A213AD5C3AF08B693DCEB3974F70049FEC131FE2B"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AssetBundleModule.dll",
+                            "Bytes":  41392,
+                            "SHA256":  "ABF717A52104B324CCCFCB98862E4A0F0F58724F568D94C60A71CFF396448ADF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.AudioModule.dll",
+                            "Bytes":  139184,
+                            "SHA256":  "2090649E31D12400D2D0EF0871D915153084472EFE4F7A21795A121E5B275986"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ClothModule.dll",
+                            "Bytes":  36776,
+                            "SHA256":  "236528F3EBFD68BB0344550FC642272C38DA00C08D6F192C00C666E9FEE407A4"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ClusterInputModule.dll",
+                            "Bytes":  28592,
+                            "SHA256":  "0584B42BBF810A9C738AB787699DC53D46AAAD8E2D14271C4C47C92596292F00"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ClusterRendererModule.dll",
+                            "Bytes":  27056,
+                            "SHA256":  "B24CD1E480E8969184B73AB87F7FD50A7AFA521FBCB095AC3690A8F6DA6FB389"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ContentLoadModule.dll",
+                            "Bytes":  33704,
+                            "SHA256":  "F56744E1E57BB03C2C3EC0068C391F7FAA8039BFDBC5D31FD7AA0374B3649881"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.CoreModule.dll",
+                            "Bytes":  1998760,
+                            "SHA256":  "724E655AC8121CEF6D00698A4F892AD1E3771D875B6672E57363316576291CD8"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.CrashReportingModule.dll",
+                            "Bytes":  27048,
+                            "SHA256":  "75172166592B30A7F420B9B8E3250B39FA69D7E789508E330C67701413E83282"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.DirectorModule.dll",
+                            "Bytes":  41384,
+                            "SHA256":  "8B474E374B7768B592C122F61AF140BE3EDED26E3A0C1BFC2D6F5C9A75642643"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.dll",
+                            "Bytes":  201648,
+                            "SHA256":  "65F7E97EA678420E8E481E147888CA8695CC652A32036996A28FE7AFFC192067"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.DSPGraphModule.dll",
+                            "Bytes":  32176,
+                            "SHA256":  "340FC38212631ACAFB986CCCFD690A0B1EA9D6946884096A1CC7C41394AF1084"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.GameCenterModule.dll",
+                            "Bytes":  44968,
+                            "SHA256":  "F20339CA73E8897B458D007A258507563209F3AB48E39C12FAC67C40852127E3"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.GIModule.dll",
+                            "Bytes":  24496,
+                            "SHA256":  "3A5E7AD2532873580E860792AA320BA21EE9087249D8627F55A191220295342B"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+                            "Bytes":  14256,
+                            "SHA256":  "DA1AEA70ECC2F27CC6BE64EA1F325BF2243FA6BB76CA01041EA10AA478591C86"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.GridModule.dll",
+                            "Bytes":  30632,
+                            "SHA256":  "120FA7462969918EDCA9131067853F5DB4A26150104353B64AAC1662040417C8"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.HierarchyCoreModule.dll",
+                            "Bytes":  106416,
+                            "SHA256":  "675321243821A33FCD9EA24AE10CEA0E32C9E6C972020B71B7A3F4B2E3EAEEE5"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.HierarchyModule.dll",
+                            "Bytes":  97712,
+                            "SHA256":  "6E0CAC93BC2BB7D5CB410835CEB527592E030779AE2B8110312E18ACA3D50211"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.HotReloadModule.dll",
+                            "Bytes":  24496,
+                            "SHA256":  "04A2E51A31395564F2EF77490DFA5632CD084569519B6394426F7078A4AF83B5"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.IdentifiersModule.dll",
+                            "Bytes":  15280,
+                            "SHA256":  "366A659FB15309CC2763888313A49493B4E3ADB72F74A8690C2C3DB8E5DF5777"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ImageConversionModule.dll",
+                            "Bytes":  31656,
+                            "SHA256":  "FDF10108BDCF60E610816B13AD755BD2CF5B7FBFA27A743AED3750C84E2C2CD7"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.IMGUIModule.dll",
+                            "Bytes":  180144,
+                            "SHA256":  "F66B53865605BBF417DD03F974BB958748EC2A4B80ECAFB463BF62B7E524711C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.InputForUIModule.dll",
+                            "Bytes":  55720,
+                            "SHA256":  "5AD59B1DF8C969D9ED52B22125B0838DEAFB5747C38BE05A06109486996E3F7C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.InputLegacyModule.dll",
+                            "Bytes":  40880,
+                            "SHA256":  "F64AD999531CBF3C4E0A945FE236B097E74EDDCFDB50F09803E6571233610855"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.InputModule.dll",
+                            "Bytes":  29096,
+                            "SHA256":  "F9A6E910F43895658744A1CEEB6F851BF8B2C753F9D749244F4F17093FD2EBBC"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.InsightsModule.dll",
+                            "Bytes":  14248,
+                            "SHA256":  "5BE4DD85DFDA2FA332D79AE7C61B1301FC9DD6A47F53A34033CA048178979A66"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.JSONSerializeModule.dll",
+                            "Bytes":  27560,
+                            "SHA256":  "455011C9BFB2D4B6DEED2CBF6683951446756DB51CBB877584DE64E7C2FAFBEE"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.LocalizationModule.dll",
+                            "Bytes":  27568,
+                            "SHA256":  "4EE48B707776955AE4C6419959E56640BC3ED8ADB05EC4B4160EBF9B2B8EBBDF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.MarshallingModule.dll",
+                            "Bytes":  83368,
+                            "SHA256":  "8D90C49622096D14C59A1E78172A58BD8F12B173B4CF1E35047FD2A353597602"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.MultiplayerModule.dll",
+                            "Bytes":  18352,
+                            "SHA256":  "AAC415F8D884365C7717F2FCCA1A65F1FFAE25105D392558259FD73943736A22"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.NVIDIAModule.dll",
+                            "Bytes":  39856,
+                            "SHA256":  "87B42F27E997986FBCAC204CF593F3D6A39FC1D18050474599C6E69960D7BC1D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ParticleSystemModule.dll",
+                            "Bytes":  167856,
+                            "SHA256":  "89E37547645A526BE23EFCA32655DD0ABC2575B37E79A2DA4D6C3A9127F5DB62"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.PerformanceReportingModule.dll",
+                            "Bytes":  25520,
+                            "SHA256":  "279E76F981CD3B0AF0B0C1F43BB5B5F3F9980818CC4A1B1D90097E91E4313611"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.Physics2DModule.dll",
+                            "Bytes":  590760,
+                            "SHA256":  "AC7BE3C3B1065F5D1E07A6BBDF5E074728FBD92FBBF4C4E609D6863A20C68078"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.PhysicsBackendPhysXModule.dll",
+                            "Bytes":  14256,
+                            "SHA256":  "37E7604933F86F0681266B27B838B40A71DCDA0798B82EB2B20E51652311ACB0"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.PhysicsModule.dll",
+                            "Bytes":  178096,
+                            "SHA256":  "EEB3922769B625A83ABD2D803927D9D89F464635671F78813D4B15BA6F49FA0D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.PropertiesModule.dll",
+                            "Bytes":  124848,
+                            "SHA256":  "F718750C87FB34A02F2F5221AC3F9D7234E3F344A51432B17C058A85AEA8C511"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.RenderAs2DModule.dll",
+                            "Bytes":  26024,
+                            "SHA256":  "B2944F17BBAE131B67A28F4F2C938D2CF4C92F250348EC59CEE6A792F416AF47"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+                            "Bytes":  24496,
+                            "SHA256":  "FEF28F3D50FB28B78177653822AFE1087CF9D25606B66EE8CFA78B217279627A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ScreenCaptureModule.dll",
+                            "Bytes":  26544,
+                            "SHA256":  "4DCA3001A5675A690A8C6B64029CEE8E580023CED5B6A63A772F0D0D03927C74"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ScriptingModule.dll",
+                            "Bytes":  26536,
+                            "SHA256":  "5DE4D984296499819EEA106E1DA43FE0D98A28F33A405E1EB7D6DD8BD5C03E9C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.ShaderVariantAnalyticsModule.dll",
+                            "Bytes":  24488,
+                            "SHA256":  "8C0BA6FF45E8BC4C538B2090F26CAD4E0A4B7F4228D4194A731C22909605E611"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.SharedInternalsModule.dll",
+                            "Bytes":  36776,
+                            "SHA256":  "681DE2291D60528749C24D61F70BEAF6E2D7C433148D942C90947A7CE2B7E761"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.SpriteMaskModule.dll",
+                            "Bytes":  29096,
+                            "SHA256":  "B12DC3F13EBE0ED6E0E273EC628D85315F71B2FB3FEC2EF346206F80B809A4C7"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.SpriteShapeModule.dll",
+                            "Bytes":  32688,
+                            "SHA256":  "706FC6340C03131AA28628FC727F7273375E629D5F8415289103B0207F664F76"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.StreamingModule.dll",
+                            "Bytes":  26544,
+                            "SHA256":  "88A719995D87C32F58AF9D9C382C96CD12F8ABEE1AF67F68471F39D584DC73BF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.SubstanceModule.dll",
+                            "Bytes":  29608,
+                            "SHA256":  "9EDBFC9939FBB4B8A15C815415DF90C7D25C0E7E7E2A53C42E32059F3885E64A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.SubsystemsModule.dll",
+                            "Bytes":  41384,
+                            "SHA256":  "BF6A6BE1F3EF6FEB10B03E59D141DD11969A0470E292F06399A31BA30646B84F"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TerrainModule.dll",
+                            "Bytes":  129448,
+                            "SHA256":  "6B73CCDEB132A9B0F2C5FEF9B6345A7EE76780BB3C9B2336170E9A5868AFC461"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TerrainPhysicsModule.dll",
+                            "Bytes":  26024,
+                            "SHA256":  "CEF11F804FA5B81375D63D284D6172395891243695A6DBC9C1A2CCC28772BF5C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TextCoreFontEngineModule.dll",
+                            "Bytes":  77744,
+                            "SHA256":  "1BC02F212A9B91DD36479F4BEA63B7672D1E9068E114EC7FCE531CB935DCDF43"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TextCoreTextEngineModule.dll",
+                            "Bytes":  324008,
+                            "SHA256":  "9B634665311C555D50850F06BA5641BF9C3AF8B4CE97320A9773179D988CB359"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TextRenderingModule.dll",
+                            "Bytes":  38320,
+                            "SHA256":  "D922DF36170C0BCFF2F4E1EC3BD809F59BB74890ABEFD99C66225DC239F3C03C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TilemapModule.dll",
+                            "Bytes":  70056,
+                            "SHA256":  "F02BEC314C6F4A4E75432884F493A4E3129884F88A777377C92D09713EF4728D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.TLSModule.dll",
+                            "Bytes":  32680,
+                            "SHA256":  "26B532D039E5F1964C1B8C231900AFF5DFA21A98B32323061D9A0F51E579B7CF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UIElementsModule.dll",
+                            "Bytes":  2263976,
+                            "SHA256":  "585316BF05CA625409267B3F4A1EE97909A95AEF8910F453235B58FF09245E7B"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UIModule.dll",
+                            "Bytes":  50088,
+                            "SHA256":  "CBDFE78AAA389F1CD5DD95D6889D955DCEA22C3E9A67AD71FC78C1CCB03C1D64"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UmbraModule.dll",
+                            "Bytes":  24488,
+                            "SHA256":  "031F554EF6D2B2F57747159D40DC24BE26E85DF276EA762F86985AB1FAD95582"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityAnalyticsCommonModule.dll",
+                            "Bytes":  35240,
+                            "SHA256":  "73D492012FD2E9EA0CB1355C7C4552894F7C752773FA5FD2F56C7971F4C1611C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityAnalyticsModule.dll",
+                            "Bytes":  59312,
+                            "SHA256":  "1F1378AFDC0EAEF98A8052C0FE36BFA09FB6B339EA40BDC1DF6E11351DFE6754"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityConnectModule.dll",
+                            "Bytes":  28072,
+                            "SHA256":  "AF683C7882F6851A488642F84FAD7E7F63B70534725FE2B12B5BEE0AFADB3E13"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityConsentModule.dll",
+                            "Bytes":  16304,
+                            "SHA256":  "5A7ED4FB3FF6E232354DCB272ED7A9417BC1FB0D3DEE21F9CB7A5BAA57C1F09C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityCurlModule.dll",
+                            "Bytes":  26536,
+                            "SHA256":  "1188ECB6B247DE4C6FD2A2C864F233A3BEF09089410AF18A65EBF9E84DFCEE1C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityWebRequestAssetBundleModule.dll",
+                            "Bytes":  29096,
+                            "SHA256":  "C9125875D6BAD8BA99C0ABAB6FEDB641C96B70AE7F0EF83EBA6137B0F36525BF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityWebRequestAudioModule.dll",
+                            "Bytes":  28592,
+                            "SHA256":  "A96C4A7398E04DE6AF097FB31B7AB99F2ECBF954A44116A66DCEC21CD07330AD"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityWebRequestModule.dll",
+                            "Bytes":  66992,
+                            "SHA256":  "B15F01A6A86816EB23A8678502833A8546464C3733E16A97483646F365E1B445"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityWebRequestTextureModule.dll",
+                            "Bytes":  28072,
+                            "SHA256":  "EED4C1AB9CB8378CCF0D2AA1AB17E31851E5AA30916FE46088952B226B0CA157"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.UnityWebRequestWWWModule.dll",
+                            "Bytes":  35760,
+                            "SHA256":  "A5C459EEFA5C23D0C3053E3C24BA0F6D6FB3412D4D02DBB3BCADC99E8971A956"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.VectorGraphicsModule.dll",
+                            "Bytes":  228264,
+                            "SHA256":  "EBE62D20BD648CB5C1F551BA3A2A49A4A56F3D5ABFEC0AFE57864AC63BB890A3"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.VehiclesModule.dll",
+                            "Bytes":  31656,
+                            "SHA256":  "5DBBCA342448076033AD606271EFC6D741967D92E0787CA3C9F7FCA5A54EF4B6"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.VFXModule.dll",
+                            "Bytes":  80304,
+                            "SHA256":  "31C7174B91462BF222C96F1BFC7BDD92061126F1511F8D96B91E479829E2E4E5"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.VideoModule.dll",
+                            "Bytes":  48560,
+                            "SHA256":  "343F7D32EDE1D89642F70D2DAE620F86D6B18FB7605AA672B9D6A77565454132"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.VirtualTexturingModule.dll",
+                            "Bytes":  42408,
+                            "SHA256":  "D1A12CDE00543E1358E389088D245C2110F933DBBD04E1093B731C0A521635C6"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.VRModule.dll",
+                            "Bytes":  32176,
+                            "SHA256":  "664D592460F7006C4CD6EF81941CFF8204F174959C16F32CBFE30BBA96F6448A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.WindModule.dll",
+                            "Bytes":  27048,
+                            "SHA256":  "CF2C7F51BD3DC250A902E353D7EA0035361E002AA4A8BDB3377D5649033A8DC1"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Managed\\UnityEngine.XRModule.dll",
+                            "Bytes":  86440,
+                            "SHA256":  "3CF4100766221FDBD73E51B41792685C9FEDFBF760DE3D0661581885D5F61965"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Resources\\unity default resources",
+                            "Bytes":  5922288,
+                            "SHA256":  "96C07875F9764CEAA248EB5715503DE54E55FE87166B909330A4AE209A644F70"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ArcaneBrigade_Data\\Resources\\unity_builtin_extra",
+                            "Bytes":  396520,
+                            "SHA256":  "F5B6FFFAA84BCCE1205AC27B5F5502D7D10498D76B6AABD7B161F17DFD76E469"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\D3D12\\D3D12Core.dll",
+                            "Bytes":  4725304,
+                            "SHA256":  "625BD40005B1C3708695D5256ECF230D278E6B8EDBA5A88AF70F3D91324F3052"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\EmbedRuntime\\mono-2.0-bdwgc.dll",
+                            "Bytes":  7828904,
+                            "SHA256":  "A24AFA4231AD2C82F1A0C3157371F22CAB6F25C604132CF37A3DB4D71287D787"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\EmbedRuntime\\MonoPosixHelper.dll",
+                            "Bytes":  611248,
+                            "SHA256":  "4B791DB8026D15CD047C8F21A56409F7DF46A1BAD31EC72B43F4D5D7D308292A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\browscap.ini",
+                            "Bytes":  311984,
+                            "SHA256":  "4DDD50F31FB968F30BEDEFC253A46DC3F2890192D05CDAA9E0A64A056EEE807E"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\config",
+                            "Bytes":  3815,
+                            "SHA256":  "5776169973A26A387B8B3E5C0F2301A7AB9A6DD7C7D3EFA22A96ABC47FBF8662"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\2.0\\DefaultWsdlHelpGenerator.aspx",
+                            "Bytes":  60575,
+                            "SHA256":  "751861040B69EA63A3827507B7C8DA9C7F549DC181C1C8AF4B7CA78CC97D710A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\2.0\\machine.config",
+                            "Bytes":  29066,
+                            "SHA256":  "E91782A27FA39FC6C1D6EE8B08529F5D35052310D0006034B878EB04B8F2AF30"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\2.0\\settings.map",
+                            "Bytes":  2622,
+                            "SHA256":  "49C6160F9D54AF4270A3B4E997FC4A8301F79B9E2070118FA46DDBCBBC44F9A2"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\2.0\\web.config",
+                            "Bytes":  11635,
+                            "SHA256":  "CF2B54339E069B9E42F7D6795EECBF562C50C1011F4CA8F65F578FE52D97FF92"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\2.0\\Browsers\\Compat.browser",
+                            "Bytes":  1605,
+                            "SHA256":  "8A1082057AC5681DCD4E9C227ED7FB8EB42AC1618963B5DE3B65739DD77E2741"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.0\\DefaultWsdlHelpGenerator.aspx",
+                            "Bytes":  60575,
+                            "SHA256":  "751861040B69EA63A3827507B7C8DA9C7F549DC181C1C8AF4B7CA78CC97D710A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.0\\machine.config",
+                            "Bytes":  33598,
+                            "SHA256":  "E60AEC2C5115D65B3ACB3C55EA21576DBD770F579166C017125571E46AE560ED"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.0\\settings.map",
+                            "Bytes":  2622,
+                            "SHA256":  "CE1DB1AD8A9512073164E3ECCDC193F7EDA036E1A9733CAEC4635DE21B2865C8"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.0\\web.config",
+                            "Bytes":  18802,
+                            "SHA256":  "E38BB8CC68FE5B4EDECDFD288D094B9E8CED7629039B2A347682ABA0D8BD7492"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.0\\Browsers\\Compat.browser",
+                            "Bytes":  1605,
+                            "SHA256":  "8A1082057AC5681DCD4E9C227ED7FB8EB42AC1618963B5DE3B65739DD77E2741"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.5\\DefaultWsdlHelpGenerator.aspx",
+                            "Bytes":  60575,
+                            "SHA256":  "751861040B69EA63A3827507B7C8DA9C7F549DC181C1C8AF4B7CA78CC97D710A"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.5\\machine.config",
+                            "Bytes":  34056,
+                            "SHA256":  "EE950004B576FB28DC85F4B0435ED04BF96612DE2E8B53BE84D07AFE85A0DE6C"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.5\\settings.map",
+                            "Bytes":  2622,
+                            "SHA256":  "CE1DB1AD8A9512073164E3ECCDC193F7EDA036E1A9733CAEC4635DE21B2865C8"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.5\\web.config",
+                            "Bytes":  18811,
+                            "SHA256":  "C4CBDDD4FD9347B58CC5A72B36DC4BA1AD2BB699E65869D05CD3FB9865F0D824"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\4.5\\Browsers\\Compat.browser",
+                            "Bytes":  1605,
+                            "SHA256":  "8A1082057AC5681DCD4E9C227ED7FB8EB42AC1618963B5DE3B65739DD77E2741"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\MonoBleedingEdge\\etc\\mono\\mconfig\\config.xml",
+                            "Bytes":  25817,
+                            "SHA256":  "0C56E34C69124510FA8C19E7B4C2CA6C1C4FF460AE19F798DD0CA035809E396D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Arcane-Audio-Provenance.md",
+                            "Bytes":  1693,
+                            "SHA256":  "E33DD376DF453A7BE61ADB6790D75A0DB4F83DB22E8D8E0C78A201D79EF348DF"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Audio-Credits.txt",
+                            "Bytes":  1198,
+                            "SHA256":  "F8A83B5FD64A075CEFC58FAE0BDA1BA2E0C6E985D47477146539D8882B42F00D"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\BeVietnamPro-OFL.txt",
+                            "Bytes":  4397,
+                            "SHA256":  "6B7F8F73609A25EA78C891E34CF37B06F8A676B7EA986E941E43B009110F2A85"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Coiny-OFL.txt",
+                            "Bytes":  4464,
+                            "SHA256":  "5C289DA4A19F054ACE8E31A144A6A254601898CD7FAF9EAA301141AFDA0ADBBE"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\GeneralUser-GS-LICENSE.txt",
+                            "Bytes":  2317,
+                            "SHA256":  "7B32EFEFDF95CE38A043799F0659853DDC00FBAA14D8C50F0ACA16B9B8B405BE"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\K8-Audio-Credits.txt",
+                            "Bytes":  2313,
+                            "SHA256":  "44B052BB9C132B100DCD941459AA0D4583920E44EF59929372C2DABAE13DD064"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Kenney-impact-License.txt",
+                            "Bytes":  608,
+                            "SHA256":  "B49AA9C56B04528B95913DE13E506A0F7C5E807B9925DB9BFEF86AF1F91120DB"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Kenney-interface-License.txt",
+                            "Bytes":  574,
+                            "SHA256":  "F7966C773BBED0ECA6A9C75081C44A178B38EAE112724DBB5FDFBD4192D118A9"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Kenney-rpg-License.txt",
+                            "Bytes":  478,
+                            "SHA256":  "5735DFD72CB64CBBCEDA4EBC00C380C41CA680EDB82FF153AA7C9AB97614C539"
+                        },
+                        {
+                            "Path":  "Builds\\FullRun\\ThirdPartyNotices\\Noto-OFL.txt",
+                            "Bytes":  4377,
+                            "SHA256":  "0DAB92D0544F7B233403F14B84A663BDBFA746982EDA629E7F4F9FFE1B036FEB"
+                        }
+                    ],
+    "Profiles":  [
+                     {
+                         "Mode":  "Final",
+                         "Passed":  497,
+                         "Failed":  0,
+                         "Frames":  [
+                                        {
+                                            "Name":  "boss-ChoirEngine-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "58068EB15EB96DF96FCF04617C20126B65A161D985F70A21AA1EB3318DED4F6B"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "97B3ACEE0B89630CB25801C41FE07076426248B5EF0B6C8ED62AC0100293978A"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "34287CC18CB59131962CD6123F94351A6765B7A885535A2395AA5B92C941C2F8"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C4AF2B4702CCC91F2E2562AEE5633C0EB26D718D6822E5BB013AF021D352570B"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3E29D36E65145F87414B3B2E3905D1CB4EC81C16347E1F0D92E272C082EE9F90"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "12CB701EEF853DF792B7B161991D46570FFBCCC573E40F55BD42ECE4A5950589"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F8FDDF844F282624F900FD918F09D4994AFE06D1C2B9C46666D6F20F6E0F98D3"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AB173BA34FA7007B94046C507E1CF2B0531BC8784BD599502425F5AA116B17EC"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F4F5D98363B716911071961AF6D6FE6AB80BCBE9CC6A9870FF9049D4609C03BE"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "27386D9251690A25778E00F4A4AAE97B986EC24CE2B8484F094BFBFBCA6C5087"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "65C604890CC525B547BEA21CFB64F54E406E34036E828E433BE741552E383EA3"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2FEBFB9871CEF18B2E62F0557E2D94C71A66D4515C7D6ADEB0E3D4E7A7132A0C"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "019C85E8E4C5466AA0567CE79193A4C906611E0AF7C0535D5BA0D11C4DCE99D3"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "43E8855BAA813FF307842E9C42339DD7565F70D463867AFF564592ED7B724696"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A2F4B41B119A02B427E54F31DEE86658F2D1DEB8844AF5C3EF06B1F8113965DB"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "52B5BF9E24C6EB71DDD8D41C8C12BD09647E7970A46CA52CDCBC5EC5CBB22301"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "705D0499CC6EA4EB36698AB9F16BA2C8D260CEC9DC0B0AC4D86AB1EF657683BE"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FEB48F673225F7DFD32C4B1D8D9720391E630C9F3C643BBEFB904864BB726BCB"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DB3EFA212B246BE621EF09A5CD454B435A38B45428401915568E1E921B183B16"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4DDE3DF2624B18F8DDCAFA3A380897BBEDA8EFB455F038BC08C99EBC017C3545"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6D36026637AC51EC9B259C29F78943DE68AEF9E20FF7E7EC41D80EE2209BAEDF"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DA03FAC7D3AE9EEC3B3BE46A70DF440FFB476A2DDCE90FC55299B55C0D31B76B"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "52401C3E9187608B03A559954BFCA1DA6141CDE0047F8FAFCD51DF111F30FAEE"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B26456CBAE2C7DDDA41FA3208E167001ED51F266434CC1AEF8E0922113B27801"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D7B17DEE6E984860D85DC3AC9B267BE05145229B9EF775C599EF194328147D9D"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "BB74608D13E43783CBC8397DFCCCD294F58D9E68AC196F7E70E229E9AE8D2A5B"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5BC552BAC2B0768ABB1692BCD3B1FCEE16E3A5A2EBB68EC84CF78B86E109AA0A"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E449E1D9C69CF81DBB9D44FC281C0E528EFE7C19323FD2AF772FF8ACA84BF398"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9282F3FD92905DF30ACA3FCC6F6E97F9F0CE4021424355A74665E3D45238B2A0"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "494728DFC32D0834D5493BEA8FFB5817907F2CF43237EADCE7F5A142CF7F3E69"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "38E540124DB306651A6E4BB9C85A2F61B7AC608E64550EBABD290414702E4CA7"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "37C96095100699FD37A72667702B3F5D6457FF51E6E64E919197BC52FA972B60"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "EF1739E856FFB87F020E39E16700FCB54B1FE2C4B6DEC243A1D26632CBFFA9B0"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2ABB4A8982067BC592D055B79637984FCC4D3B7875B79FC6A351C03C6D87EDB7"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "22C281E0DD55E5A14DF0613744D0CFCBB3EC4876E1ED858CCF0D5B83FBFF2467"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "07B09E410BAF3B3F6196A2AF55D5A736987EEA81FCED6CDD73B7536CF4ACB2AC"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7F1B1EDC907D4B31E632A7FC402A5D1681270CA6F544B5B46FC2C47947E2E0D0"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C15EEB8E32B6537A633D326FF21C2BD985AE3AA1DBCCD8FCE1D42D211B18C27C"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1C9A222734FD496BA49545BFB6DFACA60DC131E5B6591E7760A9A75BF84462D2"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9C578D52DD7129374CAF39B53B0FFFA41C9EE5D796A5CDF3C7DEB8E2ADE76628"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DC836CA40FDC9BF81FDC868C3EDB777C5275D2CA5A231C991A9A450E05DD8EC9"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8077107974E21E0A913FFF562ECEE1B39BD18C52FBE4CF0A8AC88E2F307442E2"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "73C8D02B4A64CBEED641991DF05D1F5F3BDB63FFAE1CAE25B331A662D04A66CE"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1A1CA4401A309E0545B01F2CB8E9BEE21E980A1E8314586AE11E88955E58F514"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C3118F23D67BDFD75AA6879EEE5FAAED991B084D8E91F857993A25898394E3E4"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3795FF492ED1B5C4D517B78FD035E30A31D2A9036BFD67058CB5C127A47D5BEA"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "639DF64F06E16C07E98AD5CB52F54E7F8D114EC6F894E371DBABD39FE95586F8"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "312FF6F8C858FE59640C73620891C5DF8457F6D0DAC429A2F41CCFC8328111FD"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "65A19AA4B6BB389FFEB656B2F6A40DC185C83234A0DE58DEBC04121FEB150DFF"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B12BFA6BCE526A760164B2EE0ACCEBCAB4655A26EB136681F56286120DCCCEE2"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E05899B46D89062393AB0392706D5503D651FA8A91E24613514DCEEC88731FB4"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CCDF37AA8E26ED63E5206FB8FB47B691899A7FA7D95B74EC7C3ABEE6E67A0E87"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6C2390111C8F98D9A404A55F1E7E9AFFBF8DE8148E04E4A14004D1AFF80A862C"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "51281228AC7822DCA746EF670936307A4A2AFC48F195A9660780E4DD8B98F5D7"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FED40B5321F6417C026A14849C870D469BF2EB989355D0E69ADFB18F03DBAC07"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8E41609B5B5DC5AF9547C0A4C88A8B3DDB212FB5797C5CED2DF0DA0FB0BA61AA"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C60E3D58F2001B61185A539D9C65AC6221164F25C32B4E11625B6BBD410A2A10"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B11FE40B6E28BB01C7BF2B45BE1D65E5DEB7BF221448180FFBE73EF25EB02230"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C5A235ED8B53AAA8A30AA42FC3E255DA6A9CCC96D0847A1D7A1A853B7E054B7C"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "650557BA4B0F6CE16BDC9E416224F3299D2416B86FABD29FC665C5B0770001FC"
+                                        },
+                                        {
+                                            "Name":  "shop-acting.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8382DDB74CBF4D5E5456B4E85A33F72478B23A951EA72DFD8F32CF43C67AA3F5"
+                                        },
+                                        {
+                                            "Name":  "shop-player-start.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "41F71AE1302B29E6F0F141B26346459C450C693358BF5D622940BADA25312146"
+                                        },
+                                        {
+                                            "Name":  "shop-player-stop.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3861CB7CA865CE307E3C73781C7F62A3977AC9F1F980A7D76B3A5BC7E99B7B26"
+                                        },
+                                        {
+                                            "Name":  "weapon-AcornSling-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "184EA317932B491896207CE9C582070F7607B8E6F294F414F2E5D2F74E7B4206"
+                                        },
+                                        {
+                                            "Name":  "weapon-AcornSling-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "692D4287354A527A0574DB46C32708DC59E28A42BA3990177CD1F962EA6C651A"
+                                        },
+                                        {
+                                            "Name":  "weapon-AlarmMortar-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "491E749AE627417D57A75EE2DEC136D31BD2F8EA8C511CCDDBB34B2333A958D3"
+                                        },
+                                        {
+                                            "Name":  "weapon-AlarmMortar-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CB1E4A93C7F1391CA3594130E9A7F255A5D0D46FB22FDEF4EFC6F31FEE840252"
+                                        },
+                                        {
+                                            "Name":  "weapon-BellFork-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3539238CE563EF2FA633E2325ABDB8C1EFCDA49C7A799D5CDF5286E1FC08465B"
+                                        },
+                                        {
+                                            "Name":  "weapon-BellFork-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D3F4746F7517B1084DE811C795253B171ECB7937161ADBD8E18B9C0DC71F28C3"
+                                        },
+                                        {
+                                            "Name":  "weapon-BookPaddle-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9E2858F87766E04B586A65D4AD2300528648AECCD3066501D64066B168560C28"
+                                        },
+                                        {
+                                            "Name":  "weapon-BookPaddle-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "934592460DA5EE4AD35C8532AF9FFF8AF6A2B63F7BE7BDAE1603E750641C31C0"
+                                        },
+                                        {
+                                            "Name":  "weapon-BubbleWand-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3EEC908D09545A1C95DDFCE508E21548CD69E76EDD8CF345EEDDA9BAD7CF210D"
+                                        },
+                                        {
+                                            "Name":  "weapon-BubbleWand-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "0AEC4CEA7719CA3F76DC0F833E1653F5F09988EFBCC37508B0EDE4E648B6AE7C"
+                                        },
+                                        {
+                                            "Name":  "weapon-ButtonBow-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3C4223F9B62DCF3A73CD5A08238AB7CAADCFC972DF4893F5428028F3CAEA38AE"
+                                        },
+                                        {
+                                            "Name":  "weapon-ButtonBow-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E0E23141F029D1ACF7B80D55F96FD793ECE483B771F948EAAB4562724442124C"
+                                        },
+                                        {
+                                            "Name":  "weapon-CloudScissors-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A3E25CA4D1BC6A3BBC04CEC6B8DFF738F6214DD308B8936909C00EDBF54A2BD2"
+                                        },
+                                        {
+                                            "Name":  "weapon-CloudScissors-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6BA2E27CADE5A6D77E9CB15F5137B728EBF603F215EE099CC97958438B516D91"
+                                        },
+                                        {
+                                            "Name":  "weapon-CorkscrewRapier-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F23139A03793C1752B37D5E45AFB3210A96E2CA6C1B9A46990339AC85F52DDC0"
+                                        },
+                                        {
+                                            "Name":  "weapon-CorkscrewRapier-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "30E10D99BB8E9DBCB2794120378F8D3795124C7F3A72AFBDC9205C4DC3E3AB9A"
+                                        },
+                                        {
+                                            "Name":  "weapon-CrescentBow-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FB1CCFFA7E0F0DF27891CEFDA6C4C91052CB5EE41390737D654C9CF85BBDDD15"
+                                        },
+                                        {
+                                            "Name":  "weapon-CrescentBow-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B5DB8998F0D221C567D9A56EB3B5E9414B9C8EE0D7DA8A664D178F7245F7069A"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamIron-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7B1D419F95598BDE35800EAFBB706115875D376BCA01486CDF012059C4871ED5"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamIron-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5B1A16C8721DD1ACBA0E51D6E7F225DA21A6F94CBC1C2E544786C92A1EC3DC61"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamStamp-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "56BF5DE0EF9A4DBB262D680458DBC7843AF08DA2FEA9CCD80925FB5BC7779A0A"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamStamp-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "602913E57D7B74346E7142997C146A0A71E4BD1F82CB8AD45CAD445F54E3EF7E"
+                                        },
+                                        {
+                                            "Name":  "weapon-ForkTrident-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AA52C10BC2C66B966B6DFC888C2512BFB5BF3ACF439A4E9108B77B7DD0FE087C"
+                                        },
+                                        {
+                                            "Name":  "weapon-ForkTrident-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8D25BEB7684143AAA5E246B8AE577F8BFFF5FEF1BBCCF35A38020F8AF556ADCC"
+                                        },
+                                        {
+                                            "Name":  "weapon-KeyCleaver-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2E48658C531951BFA03A7F4ECE3DC6AAD46BEC1597C328D822B1ADF89D970477"
+                                        },
+                                        {
+                                            "Name":  "weapon-KeyCleaver-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "17E6BC1F0CBB6F8EBF465E4C1CFBA9ABE6456C31AE6782BB0686D4393856FB47"
+                                        },
+                                        {
+                                            "Name":  "weapon-LeafCrossbow-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "23E59956E82134636D1EC9DAA9D299BD75A6B54AAF96680134E2A526497CD596"
+                                        },
+                                        {
+                                            "Name":  "weapon-LeafCrossbow-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5676107DC42F12313959FB531E124EDE62B4865BF2449EF41B8300140AAE48D6"
+                                        },
+                                        {
+                                            "Name":  "weapon-LollipopLance-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9266CB8CE41C86F03F5FAD823EB4CC08861616F58C693B55D35C9B88C1D3BDC1"
+                                        },
+                                        {
+                                            "Name":  "weapon-LollipopLance-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "828E18EBB1FF6952AB32C6357AC5CA660957BF6A92F4C0650F3AA31E6A02B840"
+                                        },
+                                        {
+                                            "Name":  "weapon-MailboxLauncher-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C1146081A79ABE6658CE99C6752170BEBE1C717AA26B842B7F12A72E241C61DA"
+                                        },
+                                        {
+                                            "Name":  "weapon-MailboxLauncher-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FA5909D2F3CD039E21672B9EAD714E68245296BC762636CA296930D6F3793355"
+                                        },
+                                        {
+                                            "Name":  "weapon-MaracaHammer-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7B8180B8BF8A469F8BD627390BAF03E3E473FD3289894ED67FBF2332A7465E12"
+                                        },
+                                        {
+                                            "Name":  "weapon-MaracaHammer-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "771204D9389CA5157627F2AC336CF124E618A5271E105509B2592FA86CA46ACD"
+                                        },
+                                        {
+                                            "Name":  "weapon-MoonScythe-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "88137A5C32B53EDA63ADC428014EA7B88AACDCEF9F11BD54DACFEA91A39A71F1"
+                                        },
+                                        {
+                                            "Name":  "weapon-MoonScythe-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "601B094A7B2F4BD30FF0B0E4C1A8E75D5C5C028DF5137C685B9304C0A88D6FF1"
+                                        },
+                                        {
+                                            "Name":  "weapon-MusicBox-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "957B724FA072A3666656AC12B6FEE33ABCB3F96804B7351A9D2A87072575861A"
+                                        },
+                                        {
+                                            "Name":  "weapon-MusicBox-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "889F03E810C4A7221C26763FC96CD8D102DF282BD662DBC3744304BDDB422036"
+                                        },
+                                        {
+                                            "Name":  "weapon-PizzaWheel-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2A348AF0D42A2AF2BAE9F9975C73557607E71D92205DF19BFD40E3D5C26E5D98"
+                                        },
+                                        {
+                                            "Name":  "weapon-PizzaWheel-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B441C3A286D51BAAD83D94407F1F2E8F76AA6FDD7116EC64BFBEE468A1DFC8EF"
+                                        },
+                                        {
+                                            "Name":  "weapon-RubberHammer-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8B65417089A81AA92FCDDB46510E051946253876FCE57C412A2362C9CA10F22E"
+                                        },
+                                        {
+                                            "Name":  "weapon-RubberHammer-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A2BC1F4EB3DB0C58CF93B16BD80F12C3E964AAC49E08BBC558D918A90E3044FB"
+                                        },
+                                        {
+                                            "Name":  "weapon-RuneStaff-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C6B427383AE641F9F9B4D01A273241A688116159459228D275F24DEE5BBE0D26"
+                                        },
+                                        {
+                                            "Name":  "weapon-RuneStaff-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "16E92BD5622D18FBD66F460AD3A398D2841953CEF8F37B8607994DB11D7ACE24"
+                                        },
+                                        {
+                                            "Name":  "weapon-SleepCamera-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9ED5190FDB51481DEBDCF61F7CDFC6AF10F85BE67AB7EA25991B687F388B392E"
+                                        },
+                                        {
+                                            "Name":  "weapon-SleepCamera-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CA86E91F7D52CCC54316163BC10ECC2DE04EAAEC2FD5C9D9BC9C895CC3095DE6"
+                                        },
+                                        {
+                                            "Name":  "weapon-SpoonSabre-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "EC2B6A557B88473849F5CBA254FFE5F9F8D1129DFFFE2244CD7605E4359F68DB"
+                                        },
+                                        {
+                                            "Name":  "weapon-SpoonSabre-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "697A3E8D01D3CDB034ADF9399C292A22B043A18734381396FE63F16ABB93625A"
+                                        },
+                                        {
+                                            "Name":  "weapon-StarKazoo-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "93871052A946BAC3BFB39985708A97AF08A06896BE1E3DDB84C4F1ADED4D7E13"
+                                        },
+                                        {
+                                            "Name":  "weapon-StarKazoo-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7C633A5D3ED572C0E0FAECA9930827E1769E5190857F93189145DEB4AFA9D1C3"
+                                        },
+                                        {
+                                            "Name":  "weapon-TapeWhip-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B062B7C5714F0B81FE1700CE3A6801746EDA52FE8D4BF8241B6DE13E41919D59"
+                                        },
+                                        {
+                                            "Name":  "weapon-TapeWhip-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "57B96B1D345F6E2CECAD033AB9978A7E33DBADB9AE8D6FBB404E989A6F66F82E"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeabagFlail-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A63A0E7893C91399AE0661AFBB16C81A9E560191286D516D96E1920837D666FC"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeabagFlail-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E6051BF5AB42DD9DFCD8567FE3BC7F5DFB33FD3D0885EEE2F16244ED607A9557"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeapotPopgun-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "06C9BEC1828A648CDC2C43C358D0690F1D6BA393F0401B4AD12503A02318D452"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeapotPopgun-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CD03AE9E0DF6B28ACC3573D84822AD9EE57A5062FC1380DE4767FDDD3C86CD41"
+                                        },
+                                        {
+                                            "Name":  "weapon-TinFish-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "24A2A789137615C757B0B4F76E55DB3847C32F35BAD4412E0EC688D6711554B5"
+                                        },
+                                        {
+                                            "Name":  "weapon-TinFish-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E3B9DCD49631B8B6DB7136EC2F9040247890032EEDC03B092491F887947B7CB6"
+                                        },
+                                        {
+                                            "Name":  "weapon-ToastCleaver-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "75E36C7AC6343DDFF40459DC64BFFA09ED544AC53D977A9807284214C504B0FE"
+                                        },
+                                        {
+                                            "Name":  "weapon-ToastCleaver-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "91207972C337EF2FCAC8BBDA5E2B45D412B88D89589B32C5DB1BF0783AA60E79"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaHook-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AE7F92BC808EE90B059754B8FD7CEECA8E6250A4D5C4667DAF1F74D73C49ACB8"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaHook-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DF007B12D8A94B4847775D736DE60F8F459BE9599B3E587EACBF4AAC0E52E377"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaLance-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3A50615ED2706E2B8AD09F89F6AEDB5219BD0911E1E5384319A6437597AACE01"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaLance-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "22254DA33596D21F33F05DFF53C9A80E9E1CDEAC9C70E34CAC260F84DE437BD1"
+                                        }
+                                    ]
+                     },
+                     {
+                         "Mode":  "Final-Reduced",
+                         "Passed":  369,
+                         "Failed":  0,
+                         "Frames":  [
+                                        {
+                                            "Name":  "boss-ChoirEngine-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "839470D9F57BBD5036FCD03981430D7A1015C48164B836F232C67162C0BF9BA5"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "92D4AD47CE790F51D22B420C5E3746F2542DCDB6395B367DAA1E4B3830B2C0F7"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D159BEC2D44F43D21AB92EE110EF9EBFF403CB32EA84E2FB667A7836630A8FA9"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "380E7E7019B30151BBA28438B2034C4156D4521611F12790F7E08093BBF2DD4F"
+                                        },
+                                        {
+                                            "Name":  "boss-ChoirEngine-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6BC5E3E7A5E31A78C9702B520DDDA3C8E9771DD4827BAB2A0BA230F0AD38910F"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "56700941A598CA0BA30A2E1AF5BB5E78B959146117C5D0F34776174D98AA08CB"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2BA6F361ABE23D6BC88D93B42A5EBA15CFD8DFEC5892671BC041D0E995C17442"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7E5E4E7D34109B368D343FF19E3C8A9E6819174A60BA6027CEEC9A02EBB4FD33"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "20562DC093EFC9D802E554CC49D76F99A1EF7DD349CE4363D20CDBBAA56C741A"
+                                        },
+                                        {
+                                            "Name":  "boss-CoinWidow-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "693041B763305391F029F499BB0A6102930D51BF0C7FF7137E3F6AA6E124A210"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B764DADD109EDD89611C3EB17A2E5EEE1D33072EF8B99CEE08E8591CA3BE6381"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D69B78AAEA4D75BAB2E0CBC3DAABC901295902015D2FEB7BD04C725803B8FDED"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "93A9EF9A0659DE8F10BE4BE1D500F7498D7BA94C57DD6E6F48761BAAF4B7CD1C"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1E695862F57DF9E6BD567CB34B567BFF90272DCF39C0694B1660F88EAD905D90"
+                                        },
+                                        {
+                                            "Name":  "boss-LastLantern-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "0CAFC54CA35609ABF564922E3C238BB947C040B15F10279021ECFB95C16D93E7"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FCE6B573319D45D5EBF6819D8B288A27E69CEDD7585AAA9B72D3C33602A92EA1"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A7330F7696AE8E4829674673482CBC547FB5BF23C7046210B0F06F8754709207"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "737B82F235C1DE4DE30D5F53E45EFE087FAA5580BA2B5498120E4ED67E923FAD"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AF6C2619B02A401BBAB168476D0404EEDF1DCF01B424941FFDA0E1CF8664113E"
+                                        },
+                                        {
+                                            "Name":  "boss-MarqueeMaw-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7477C567593D5F4CE9098F9B8F51C738E3AA6622895C10553949BF67D3917E6E"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1D5839ED950D8D131D0FE381EC55C30FDD96C0E113CBCEEC73DF5FBE5087397F"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B4620BBE677774E57763DBA2BD5B20EB8BADE052C4E26139E8CC684F06EDDB92"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1019204CE49DDCB9B395C44DCAD0190D570C05D5920F588BB333B046634684A0"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "56F9E5B411DBC1FA7A04E134022872A6F8D024C006278C7BC8B2C57F7DC2E024"
+                                        },
+                                        {
+                                            "Name":  "boss-OutsideStageKeeper-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B70837F0FD6A6F454516273CC2779E8C6641E14EDC9D068C8278D6A8B8894B04"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D4EDC5C745D664408B8ABDAA101DE22FBABD80CC025303EC9D66355434FED471"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F0CF405C172C21E064748E989A4204D50E223B7F6B9C2EACA6A07D17CC387246"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A050367B9A507F5BBA9930830F6073E92C00E25F7A0FE0EFDAEF7EFA7D8E63D7"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DB663746BC00B7D769618502CB38898C2A2C7DACAD6C1FEF201849957A84D118"
+                                        },
+                                        {
+                                            "Name":  "boss-ScarletIndex-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F938236533D6311FEC8C17D4D1B3D979ECE166E4F511A258B456F4DA1FA2D0A0"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "70C19862285EC19EB1D8FB3CAE12B3CB3ECFB60E800F61265F541F175056130E"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9E9BCF6654A52345749268F63D863D39A09A508387E622A3EE588D6166BF6CD9"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "598710F6E03206ADFD8F0CBDF72734CE8104B16997671C327FC91522DE4332F9"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "AF8F28535D1E9CE0D63DAE56D4224AB6E1A6F91462EDEA9E825136E908590A80"
+                                        },
+                                        {
+                                            "Name":  "boss-SleepCollector-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "EE6121C8DD8551B386BEB474974BAC4F1EEA74D43495C911F062FD413017D695"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E374D194BD03FE079022F2D74AF2F0839240B1C352BCF48358D5AD52091C51E0"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CD10723218FCEF86F6C6884C167093149328AD285E258E2DD23CFCDB082FD467"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4500F5C5FAF019BB877A2B9B629A1539DC7246FBF4ED1A6277C54524C241CE18"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C2F543AFD478ABBCCC2EB8A5B4466D48A0E22CFA2E0ABD3F10D95FE9E49B00E5"
+                                        },
+                                        {
+                                            "Name":  "boss-SuitcaseLeviathan-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "BAC19DC80F9DD1808E6083C5C4E884CCF59D519C8BDB300902E69A27972B1FDF"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2E227A2710810A0B322E93C203E8AAF2BB69AFC099BC01D34A8D0F7E5BDB42A1"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2FADD89AC8D5752466368AF19C3A6171B0A2C4EDD232C4F730DAB7A548C33DCE"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5CE033ACFC0C29AF1F234FB7564EAE9872C2217A149A9339423FC92514005E64"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "E455994DCC115683FAC85F7B90D53C7C1843B5D21B1D3D6FBEF454DE04AFAEF8"
+                                        },
+                                        {
+                                            "Name":  "boss-TheLastCustomer-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "29E5DCB5C1B02B78071270ADFE84B961CC0079BEFB96EE25879F4C5095318E73"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "973777CB7641D8610CE622195B0962B927C5EE3FFD85CD396755E2CDA07A4B4F"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "78EA97597C45BBF565EAD5C27D7AD9A0747CCF9073F3613E53AE7B901A4B905A"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "96C10277ECEFE13D7DDB4CDEE97B93419CC2A18859119D1109EB8979D99A5969"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8E9FEC8E586C0FEEB66BEF2546901F544FFD12F862765B35F62BF3CF6AC24C19"
+                                        },
+                                        {
+                                            "Name":  "boss-UmbraCradle-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4EBD236B49119C427E216E45C73672FC1E1DDC213E481577E6D2F0B1C1BED13A"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F8ADA402E23A804C510EC57729F9F2D0E6B5FD052340F83290E94CC7C77A6CA0"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "78DDD7F3AB560E6039A27A31D102D2E555AB62598491C913F94B4CCB22AD5CBF"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B7005FF85FB3D92CE54B742EE42721B0AEA639E65082C60416DCB183D3211E4B"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "29A35CDB612EDCB0BEF2B0C9887ECE597B71A5223F95584D0217512C57BC7169"
+                                        },
+                                        {
+                                            "Name":  "boss-UndeliveredKing-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3DCAF9E2A429A324CF6D41382EBB94C691FBBCF7C458AADF0E70E69670347EFC"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-anticipation.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "7668CE9CE84CDEA6325D23EE5DA07AF1A737323925762CA2905EFF4A17C5C0FA"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-death-collapse.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "212CC3C3393A767BADE6CD6AC5F4175561EE021540ED50A4A602502BB1AF15BC"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-death-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "695D410EBFB29D0AE332B35207D7DE8B2CCDE02F67A1675560703D26338D4894"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-recoil.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "43EAA07EEB55AE5C79CD4E54362F3750AD47D326F37BB4C57FD614C458A46972"
+                                        },
+                                        {
+                                            "Name":  "boss-WaxAdmiral-release.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C214B78BED0BEFEEF98C09BD38C1FB018C29CAC002DCEEA38801BE75561AC08C"
+                                        },
+                                        {
+                                            "Name":  "shop-acting.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5EF63F3B62BDFEF039194B467BEA493D35808E5DC1B7E2F6340737E58BBC8F07"
+                                        },
+                                        {
+                                            "Name":  "shop-player-start.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1DAE1E294CBE2563E86DA46384503CAB62EAEDF1C26662F7D4038EBB8EC434D5"
+                                        },
+                                        {
+                                            "Name":  "shop-player-stop.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1521E05BBDC3F62C95EE04505C801BE66FFFBF591B26A5F2CC18577DB42E1D24"
+                                        },
+                                        {
+                                            "Name":  "weapon-AcornSling-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CBC5CA222DD97AA02317E4F7968B8C4B536F44922C29AA8CEB5B816AE32EDB86"
+                                        },
+                                        {
+                                            "Name":  "weapon-AcornSling-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "63BC49311079378F7CFC7B3B4E32C4B00FE73655B489F4EB6FBD044861A00336"
+                                        },
+                                        {
+                                            "Name":  "weapon-AlarmMortar-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A03F2AEBBF3ABC16B4397A002A653FF21C120ADD9E511ECF61BE0FF820F3C56D"
+                                        },
+                                        {
+                                            "Name":  "weapon-AlarmMortar-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "51EE0726B08CDB511BD97045C3B95FD4D8EEA7EC76DB066C19E674AB9D42FE69"
+                                        },
+                                        {
+                                            "Name":  "weapon-BellFork-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "98936F9008A3A2D9CA610D5C2511D8BC87A2C41FA218D40470DCA882233E3499"
+                                        },
+                                        {
+                                            "Name":  "weapon-BellFork-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "814BDA393B4D60C5E2982081DCC7A48686E357230E450D1CACDBF3ACE75A3DBD"
+                                        },
+                                        {
+                                            "Name":  "weapon-BookPaddle-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "F3415D07E7C4B491EF1F30B2DD4055ADFFC7D6A050F9F8EE9FA4CE00683DF78F"
+                                        },
+                                        {
+                                            "Name":  "weapon-BookPaddle-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DD3B70EC5D7DDA412236FCBFB7E124169B3FB225CE88B0F9D4DBD55544E582B1"
+                                        },
+                                        {
+                                            "Name":  "weapon-BubbleWand-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5E204992A14A914394113A82C4BB10405B4590701CCD267152321EFC07865799"
+                                        },
+                                        {
+                                            "Name":  "weapon-BubbleWand-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "50A7145E6805F42E4484BF06B4C3A54BBE3C077D36433A2C9788CE5A1BD40C47"
+                                        },
+                                        {
+                                            "Name":  "weapon-ButtonBow-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "D9110705F29F55A99AAB4F2F79E0B53F781324DA85A6340B220D9318D8E127E3"
+                                        },
+                                        {
+                                            "Name":  "weapon-ButtonBow-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "383832B96C47A35433879CF413242D45847D0934257F9087CA9B5D1371309119"
+                                        },
+                                        {
+                                            "Name":  "weapon-CloudScissors-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "32E88EBE8A1F7D112477F92B38E5D1442FF12DE0EBA754B89956B233B3440B2E"
+                                        },
+                                        {
+                                            "Name":  "weapon-CloudScissors-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "6D2EB96DF680BC17B9AC211B46573F6848B4AD37BBBE1DD0850268A2208194AA"
+                                        },
+                                        {
+                                            "Name":  "weapon-CorkscrewRapier-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "879AAF9F59E4F79BCE9604A29E60EC807E188BB05F0DCF4242828C063BFA86C3"
+                                        },
+                                        {
+                                            "Name":  "weapon-CorkscrewRapier-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "BF0072F114DDCA185232CD18465FC4667F55BE000123F8AF3A8D75720B4A0250"
+                                        },
+                                        {
+                                            "Name":  "weapon-CrescentBow-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9E2B6B49B0A9A094CBAFFA57DEE8377CF53CF4379E1BC552F7E10683CD63B24F"
+                                        },
+                                        {
+                                            "Name":  "weapon-CrescentBow-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9FF7C89F51E7492AB5E0E3CE3AAA415DF8C8DF881E2DC86C6F771929829EF059"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamIron-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4511D15B7579B66A17977648AFFA7553306C07BB7E2ED733496BD1974E0F891B"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamIron-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1FB00C1EA917222B6FFCC6A67B1BE1CB1F3E37592DF8348B73A88722AE714379"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamStamp-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3CA18ABDC723A01562817CF2D8C00BC8359F6AA493F11ED76ACA8F448002037E"
+                                        },
+                                        {
+                                            "Name":  "weapon-DreamStamp-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9129698E7840DE9ACE0D6099427B04036072522204E9D2556BC23A18758DBDCE"
+                                        },
+                                        {
+                                            "Name":  "weapon-ForkTrident-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A711305AAB6AEE61D271D0D56BC8693B1ECCAF4C5E102685738215B6B9EA262B"
+                                        },
+                                        {
+                                            "Name":  "weapon-ForkTrident-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "ECD2476EDE443F5D1135A1BFDC627D6FE6F53335AC7949F1ACF6B5668817B8F3"
+                                        },
+                                        {
+                                            "Name":  "weapon-KeyCleaver-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "734ABD0F5863FC025944F8A14CFB456049D900B263D0E0999E69D7A8A6A3D679"
+                                        },
+                                        {
+                                            "Name":  "weapon-KeyCleaver-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FB881CA30E9A6B673070A275CE1C79A1B3E56ACECDE3C74533C8CD275B3D436B"
+                                        },
+                                        {
+                                            "Name":  "weapon-LeafCrossbow-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3B76946D40B3A185DC402AD37E8FB353AD7D6DE3E674385F1DF21B015411D3CA"
+                                        },
+                                        {
+                                            "Name":  "weapon-LeafCrossbow-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "3B1E5AC44F18C226A21926D003F0C540F18B1FB1CA79AAC25850A4391E829EC6"
+                                        },
+                                        {
+                                            "Name":  "weapon-LollipopLance-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "432CF995C90C8C3BCCE9B7E6897DB14B70CA736F327398751CF9147635BBCBF8"
+                                        },
+                                        {
+                                            "Name":  "weapon-LollipopLance-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4A5546D84655AACE22D35D34E1BF9D85FAE82B2A48F6D8997107F871D8A1A8EA"
+                                        },
+                                        {
+                                            "Name":  "weapon-MailboxLauncher-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "8C2137BFB8742558FCDBE4BE899EC39ADDFE036D08C6846CE2B7D14B015AA20F"
+                                        },
+                                        {
+                                            "Name":  "weapon-MailboxLauncher-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "B76A4567EBEFD3A4C3998FC28853D1584B6070E133504C90C9574DE11925FAB3"
+                                        },
+                                        {
+                                            "Name":  "weapon-MaracaHammer-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "54E22FE3E32A4920DE4A9EF7082AD6C9DC80A204D11C9BBDA01215D7A216A611"
+                                        },
+                                        {
+                                            "Name":  "weapon-MaracaHammer-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "51F1F5FF89A4A27D0946B091A951DA2CF0AA5310E5F5DA07EC2AC6A09885DFD8"
+                                        },
+                                        {
+                                            "Name":  "weapon-MoonScythe-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "A6E04BC3F58A7E87ABFCB75F91EE78E7DC02BEF7C2D287FB8C7F7085F18CC0DB"
+                                        },
+                                        {
+                                            "Name":  "weapon-MoonScythe-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "DE5F9C5BD76D6D9BCA4BC6A39D28ED549DA0F17E02B48719F55B7BC707C2400A"
+                                        },
+                                        {
+                                            "Name":  "weapon-MusicBox-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "970CD5272655C972365AAFDF2D48D81B21184EB865596CFCA4647BD6D7ACAF0C"
+                                        },
+                                        {
+                                            "Name":  "weapon-MusicBox-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "39E4EE8EDB47F229A887B1E8455174A5618D83375EFE3AB47FD3E2CC9C401A48"
+                                        },
+                                        {
+                                            "Name":  "weapon-PizzaWheel-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "00B4AD299EF974BBC26F7C0D8D6F9E759C40EEEFD330D7FC34586B8F354C734F"
+                                        },
+                                        {
+                                            "Name":  "weapon-PizzaWheel-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FD13FDFCC9321656BDE534C8BFD2B3906E7DD6457BE28F123A5F11F27475E502"
+                                        },
+                                        {
+                                            "Name":  "weapon-RubberHammer-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "4935F4A25EF3D24882EA388E37035F93CA54993B7595F8EBE8D86FC842B6CAEA"
+                                        },
+                                        {
+                                            "Name":  "weapon-RubberHammer-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "700D9082BED64CC9B539DF6CFEF7587B0DAA5F561D6101EC20F03598B9ADC928"
+                                        },
+                                        {
+                                            "Name":  "weapon-RuneStaff-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9A641742E0F94FA26282675A2A4D63D4898241AAC40D9CC7CD4EFCB7879A2BA0"
+                                        },
+                                        {
+                                            "Name":  "weapon-RuneStaff-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "5F5E6DD88E4E94A1C1D2DF1B30A62BA9C8B83F417D49A4292442BA7543A076A8"
+                                        },
+                                        {
+                                            "Name":  "weapon-SleepCamera-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1D197782B0AD5D680445FF93861C41E6A21FB5FD43E0E2AD15AB213AC2EB969F"
+                                        },
+                                        {
+                                            "Name":  "weapon-SleepCamera-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FA12ABF2398D9E6C4CDC716CA8BA18B44157FEA56430AE7EE4F0C6F7D324AF43"
+                                        },
+                                        {
+                                            "Name":  "weapon-SpoonSabre-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1FBCB5EE9841EB69983B0175AB03DABD512054F78290F7D8EBF3AF2F1F56C99E"
+                                        },
+                                        {
+                                            "Name":  "weapon-SpoonSabre-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "9005F0926A646066637DF433D38C241DFE61A3A0622813E53BC4AF4A24BAB9C5"
+                                        },
+                                        {
+                                            "Name":  "weapon-StarKazoo-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "94E1662299AB7DE36878CB830C0AA6C471F0862F3FABFB9D08E44D0C2379C4B4"
+                                        },
+                                        {
+                                            "Name":  "weapon-StarKazoo-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "55559E290CC025831A7FA1554711BCC1C1A17A1BBC126BD7B2B0BD95B80F0833"
+                                        },
+                                        {
+                                            "Name":  "weapon-TapeWhip-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "57653F583556440577F10C94DD9FF80BEF09B5014AA336F7AEF77521212B4F11"
+                                        },
+                                        {
+                                            "Name":  "weapon-TapeWhip-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "96B058B597EA502A133DD8B5C82E6DAE422220BB2221855F1BB5AB55A62C2436"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeabagFlail-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "450F101140BADFB78F13A8E544AA58DDCDD90DB6A889D79B40577D37AEF41DB8"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeabagFlail-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "CC96AB53019E058D62AB4E58163FF8600306F8B4528E7804A72306A88F29A5AF"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeapotPopgun-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "742DBD6F1277C0B1B64BB828A9C4DB043B260AFB9A60835F8411DF78608F73FD"
+                                        },
+                                        {
+                                            "Name":  "weapon-TeapotPopgun-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "754ECDB7AC326B9B039EE2FFF8EF98BB723B8489B9A8A766810BF6D36242435F"
+                                        },
+                                        {
+                                            "Name":  "weapon-TinFish-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "75682E80B6C26C660B062A07B6E6FCEAA32095BC807FAEB1C2EC8AA4997789EE"
+                                        },
+                                        {
+                                            "Name":  "weapon-TinFish-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1809BFB8DD126D96FBB44B608D95780E5986C1EBCF903E18CA0E7D4C3B2B658D"
+                                        },
+                                        {
+                                            "Name":  "weapon-ToastCleaver-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "EE8BA842FD9ECA17A13DBEDC98B434E162A1F32DD0C2D5320ED36358BC2D0D15"
+                                        },
+                                        {
+                                            "Name":  "weapon-ToastCleaver-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "2C58548C892438A58D471FC8994FA8A2B602CCFB30B371484ABEADFB3C9F0530"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaHook-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "C7CB37196AEB774FF872CC010F2A1DDCEC0C82B665132C6D001D5ABA2483349F"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaHook-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "988272244013C1BA4BE6B35CEF63A3F8C2E04CE1B2EB67BC988B44DEC0D256F1"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaLance-0.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "1EB515710C227F87B4E76A01372EDABE385CF2279BDD72F8B87E05524208C91B"
+                                        },
+                                        {
+                                            "Name":  "weapon-UmbrellaLance-1.png",
+                                            "Width":  1920,
+                                            "Height":  1080,
+                                            "SHA256":  "FB0BFDDDF629B1BBCBD403ADD2FFFD3D23B4684E57274F835A87A2FC6E59A024"
+                                        }
+                                    ]
+                     }
+                 ]
+}

@@ -74,6 +74,12 @@ namespace ArcaneBrigade
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Initialize()
         {
+            if (OctoberCapture.Requested) return;
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-secret-capture") >= 0) return;
+            if (BuildMorphCapture.Requested) return;
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-nightmare-capture") >= 0) return;
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-animation-capture") >= 0) return;
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-shop-presentation-capture") >= 0) return;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k11") >= 0) return;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-k7-shop-video") >= 0) return;
             if (!RunPaths.K7Capture || FindAnyObjectByType<K7PlayerCapture>() != null) return;

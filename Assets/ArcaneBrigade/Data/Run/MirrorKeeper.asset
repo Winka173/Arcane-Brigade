@@ -43,6 +43,10 @@ MonoBehaviour:
   PassiveStrength: 0.5
   Description: Stand still for 2 seconds to reflect up to 3 nearby bullets. Moving
     resets charge.
+  ReferenceHero: Steel Shell
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers:
   - Effect: 23
     Scope: 1
@@ -56,7 +60,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

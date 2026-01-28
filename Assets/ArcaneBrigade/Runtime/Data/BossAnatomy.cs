@@ -36,6 +36,7 @@ namespace ArcaneBrigade
         public static BossAnatomyEntry For(UnitDefinition boss)
         {
             if (boss == null || !boss.IsBoss) return null;
+            if (boss.Id == NightmareRules.CustomerId) return NightmareAssets.Current?.Anatomy;
             if (boss.Id == "OutsideStageKeeper") return OutsideStageAssets.Current == null ? null : OutsideStageAssets.Current.Anatomy;
             if (cached == null) cached = Resources.Load<BossAnatomy>("BossAnatomy");
             if (cached == null) return null;

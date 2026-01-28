@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: LanternKnight
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: SoapSkater
+  DisplayName: Soap Skater
+  Body: {fileID: -114899820, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  AnimationFrames:
+  - {fileID: -114899820, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -767033210, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -750632383, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 923853583, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: ebd979eeb3169b044912c701485ee7ed, type: 2}
+  Weapon: {fileID: 11400000, guid: d411606b4a657564a930c047d710eb23, type: 2}
+  Health: 115
+  Speed: 4.5
+  Radius: 0.25
+  BodyHeight: 0.85
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - tidal
+  - oddity
+  Passive: 0
+  PassiveStrength: 0.8
+  Description: Ordinary attacks deal 35% less damage. Push ordinary enemies harder,
+    within the push cap. Each Clockwork Union activation adds 4 wave income. Treasure
+    +20%.
+  ReferenceHero: Slippy
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes:
+  - tidal
+  - oddity
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 6
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 3
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

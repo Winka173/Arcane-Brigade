@@ -29,6 +29,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c665a2059494ce94f8611d8cfe1c089b, type: 2}
   - {fileID: 11400000, guid: 01b8c8a9b184b494dab7bc35eae479f2, type: 2}
   - {fileID: 11400000, guid: dbbfff78a9043664197484421d5e43f0, type: 2}
+  - {fileID: 11400000, guid: 4c2f05d3a59fd9343aae9ed641fc3a76, type: 2}
+  - {fileID: 11400000, guid: 6e610522f7edc364b84f7eb4059c447f, type: 2}
+  - {fileID: 11400000, guid: ceadd32dd3e130842bdc31501f9fcdd0, type: 2}
+  - {fileID: 11400000, guid: 083b46e737e5ca6438c793f1c4e0e858, type: 2}
+  - {fileID: 11400000, guid: 2df9603b9872df04385f80a19ecee700, type: 2}
+  - {fileID: 11400000, guid: 5415f6edd44a92346baa5846f1591eb7, type: 2}
+  - {fileID: 11400000, guid: 18b8b0d2ec1f073428fbf620cd978bae, type: 2}
+  - {fileID: 11400000, guid: 4d90f30b89fc919499f750175e2a03b8, type: 2}
+  - {fileID: 11400000, guid: 27e47a6dd974d564e8b893a88a559a0c, type: 2}
+  - {fileID: 11400000, guid: cbe3c883e73fd814a8216265b8889200, type: 2}
+  - {fileID: 11400000, guid: 6555f8f7dbac49e4583587251fdf6a85, type: 2}
+  - {fileID: 11400000, guid: e7e63d33a9cd5c147be017a3522bc4e5, type: 2}
+  - {fileID: 11400000, guid: 465e17b72752e3944add837b9236e6f4, type: 2}
+  - {fileID: 11400000, guid: 63c8c753907714345b2efcce8076a825, type: 2}
+  - {fileID: 11400000, guid: f28d8f2fad51e994a82083b9bb599095, type: 2}
+  - {fileID: 11400000, guid: 7b9762957b0508d46b98453ca18248b3, type: 2}
+  - {fileID: 11400000, guid: b6f475bbbdf8e2443ab2defd3a4348d3, type: 2}
+  - {fileID: 11400000, guid: 0ccb6b7f8f67c024da5d66219fd28ccf, type: 2}
+  - {fileID: 11400000, guid: f0665b4169ffeb84c8ebda6504b0bf2a, type: 2}
+  - {fileID: 11400000, guid: 2dafb826bb7d68d409d956afaa4aca85, type: 2}
+  - {fileID: 11400000, guid: 9e889e6de2863754a862fdf9e9bb6b48, type: 2}
   Companions:
   - {fileID: 11400000, guid: f00fa9512cd6d764aa9fc9c575393d44, type: 2}
   - {fileID: 11400000, guid: b3f868644b82b21428287215c111ce5f, type: 2}
@@ -74,6 +95,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e8e367cd5f036943823cbb6c2600385, type: 2}
   - {fileID: 11400000, guid: 281634696273954468a28c7ed7cf95f7, type: 2}
   - {fileID: 11400000, guid: 9353cd86f4eb04145a1a1a020064287f, type: 2}
+  - {fileID: 11400000, guid: a8f3e6b7542a04946bea7715bfc546a9, type: 2}
+  - {fileID: 11400000, guid: 05021cbb275b0f44eac98bade54523f9, type: 2}
+  - {fileID: 11400000, guid: be74b2e08794ac34698acd856c385e80, type: 2}
+  - {fileID: 11400000, guid: 41b2e5c84ccc6a647b550bd05a075777, type: 2}
+  - {fileID: 11400000, guid: 2360a818e0fd23f4986dfa66d55629c9, type: 2}
+  - {fileID: 11400000, guid: 5c9f4ad27792ce74db0621025d654e7d, type: 2}
+  - {fileID: 11400000, guid: 0f855141af7b1dd4c873bf75ef4b59b5, type: 2}
+  - {fileID: 11400000, guid: 984c87769dc905747992d4b5edb0d3e1, type: 2}
+  - {fileID: 11400000, guid: 82ce8c2bda0c0584281212f40f18b945, type: 2}
+  - {fileID: 11400000, guid: b7d46ef928c0d6c4998e0c161c3d850e, type: 2}
+  - {fileID: 11400000, guid: f29e4fc6553aa88488bdb3526d43434f, type: 2}
+  - {fileID: 11400000, guid: 067c09d5359548f45a9c7cc6df6a6fc9, type: 2}
+  - {fileID: 11400000, guid: 7eb75f1e4f5b61946bc224af99053750, type: 2}
+  - {fileID: 11400000, guid: a708acb27c239074da87bfce6bf13540, type: 2}
+  - {fileID: 11400000, guid: 3f31e7618f0ac3f4ebd2b30fccf32229, type: 2}
+  - {fileID: 11400000, guid: c0b3d40d957daa440971a43994a64ddc, type: 2}
+  - {fileID: 11400000, guid: e21a3e8afc6cea340b6eb478ddad87ad, type: 2}
+  - {fileID: 11400000, guid: fb13da8d686bcb64da74d5b8c001bb1f, type: 2}
+  - {fileID: 11400000, guid: 10e7c6d1a18c71146a346dec60893b48, type: 2}
+  - {fileID: 11400000, guid: 299f5bc2f6c850648a87241f5badf623, type: 2}
+  - {fileID: 11400000, guid: 782c4e051e743d44989b18b9512de792, type: 2}
+  - {fileID: 11400000, guid: c9a12bc0a23b4524f9a140264bfb1061, type: 2}
   Weapons:
   - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
@@ -175,7 +218,17 @@ MonoBehaviour:
   Items:
   - Id: key-oil
     Name: Key Oil
-    Description: "COMMON \xB7 Stacks\nTeam: Damage +12%"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: +24%
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 18
     Effect: 0
     Value: 0.12
@@ -184,18 +237,32 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.12
+      Value: 0.24
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
   - Id: clock-spring
     Name: Clock Spring
-    Description: "COMMON \xB7 Stacks\nTeam: Attack speed +10%"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack speed: +20%
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 20
     Effect: 1
     Value: 0.1
@@ -204,18 +271,32 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.1
+      Value: 0.2
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
   - Id: honey-pot
     Name: Honey Pot
-    Description: "COMMON \xB7 Stacks\nYour Maximum health +20"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +40
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 22
     Effect: 2
     Value: 20
@@ -224,18 +305,32 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 20
+      Value: 40
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
   - Id: felt-boots
     Name: Felt Boots
-    Description: "COMMON \xB7 Stacks\nTeam: Movement speed +6%"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Movement speed: +10%
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 18
     Effect: 3
     Value: 0.06
@@ -244,18 +339,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 3
       Scope: 0
-      Value: 0.06
+      Value: 0.1
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - oddity
+    - tidal
   - Id: coin-compass
     Name: Coin Compass
-    Description: "COMMON \xB7 Stacks\nPickup radius +0.25"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Pickup radius: +1.25
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 15
     Effect: 4
     Value: 0.25
@@ -264,18 +376,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 4
       Scope: 3
-      Value: 0.25
+      Value: 1.25
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: wandering-map
     Name: Wandering Map
-    Description: "COMMON \xB7 Stacks\nPatrol radius +0.4"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Patrol radius: +0.4
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 18
     Effect: 5
     Value: 0.4
@@ -289,13 +418,30 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: guardian-canopy
     Name: Guardian Canopy
-    Description: "RARE \xB7 Stacks\nCompanion bullet interception +1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Companion bullet interception: +1
+
+
+      Owned effective copies: 1. Values
+      apply before combat limits.'
     Price: 45
     Effect: 6
     Value: 1
@@ -309,13 +455,30 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 14
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: warm-tea
     Name: Warm Tea
-    Description: "COMMON \xB7 Stacks\nYour Healing per second +0.15"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing per second: +1
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 24
     Effect: 7
     Value: 0.15
@@ -324,18 +487,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 7
       Scope: 1
-      Value: 0.15
+      Value: 1
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
   - Id: oracle-lens
     Name: Oracle Lens
-    Description: "COMMON \xB7 Stacks\nTeam: Critical chance +4%"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Critical chance: +10%
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 22
     Effect: 8
     Value: 0.04
@@ -344,18 +524,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 0
-      Value: 0.04
+      Value: 0.1
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: twin-seal
     Name: Twin Seal
-    Description: "RARE \xB7 Stacks\nTeam: Projectile count +1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Projectile count: +2
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 35
     Effect: 9
     Value: 1
@@ -364,18 +561,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 9
       Scope: 0
-      Value: 1
+      Value: 2
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 11
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: piggy-mail
     Name: Piggy Mail
-    Description: "COMMON \xB7 Stacks\nInterest cap +2"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Interest cap: +2
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 18
     Effect: 10
     Value: 2
@@ -389,13 +603,30 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: pillow-mail
     Name: Pillow Mail
-    Description: "COMMON \xB7 Stacks\nYour Armor +0.12"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Armor: +0.22
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 20
     Effect: 11
     Value: 0.12
@@ -404,18 +635,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 11
       Scope: 1
-      Value: 0.12
+      Value: 0.22
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
   - Id: royal-key
     Name: Royal Key
-    Description: "UNCOMMON \xB7 Stacks\nYour Damage +22%"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Damage: +44%
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 28
     Effect: 12
     Value: 0.22
@@ -424,18 +672,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.22
+      Value: 0.44
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 60
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: brigade-banner
     Name: Brigade Banner
-    Description: "UNCOMMON \xB7 Stacks\nAllies: Damage +15%"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Companions
+      / Damage: +30%
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 30
     Effect: 13
     Value: 0.15
@@ -444,18 +709,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 13
       Scope: 2
-      Value: 0.15
+      Value: 0.3
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 60
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: marching-bell
     Name: Marching Bell
-    Description: "UNCOMMON \xB7 Stacks\nAllies: Attack speed +12%"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Companions
+      / Attack speed: +24%
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 26
     Effect: 14
     Value: 0.12
@@ -464,18 +746,35 @@ MonoBehaviour:
     Modifiers:
     - Effect: 14
       Scope: 2
-      Value: 0.12
+      Value: 0.24
     Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 60
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: coupon-book
     Name: Coupon Book
-    Description: "COMMON \xB7 Stacks\nGold shop discount +5%"
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Gold shop discount: +5%
+
+
+      Owned effective copies: 1. Values apply
+      before combat limits.'
     Price: 24
     Effect: 15
     Value: 0.05
@@ -489,13 +788,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 100
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: long-atlas
     Name: Long Atlas
-    Description: "MYTHIC \xB7 Stacks\nPatrol radius +1. Team: Movement speed -4%"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Patrol radius: +1
+
+      Team / Movement speed: -4%
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 36
     Effect: 5
     Value: 1
@@ -512,13 +830,30 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 8
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 11
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: starlight-quilt
     Name: Starlight Quilt
-    Description: "MYTHIC \xB7 Stacks\nYour Maximum health +45"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +90
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 42
     Effect: 2
     Value: 45
@@ -527,18 +862,37 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 45
+      Value: 90
     Rarity: 3
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 8
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 13
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
   - Id: echo-postage
     Name: Echo Postage
-    Description: "MYTHIC \xB7 Stacks\nTeam: Projectile count +2, Attack speed -8%"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Projectile count: +3
+
+      Team / Attack speed: -8%
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 60
     Effect: 9
     Value: 2
@@ -547,7 +901,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 9
       Scope: 0
-      Value: 2
+      Value: 3
     - Effect: 1
       Scope: 0
       Value: -0.08
@@ -555,13 +909,30 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 8
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 18
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: tarnished-crown
     Name: Tarnished Crown
-    Description: "MYTHIC \xB7 Stacks\nYour Damage +40%"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Damage: +80%
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 48
     Effect: 12
     Value: 0.4
@@ -570,86 +941,191 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.4
+      Value: 0.8
     Rarity: 3
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 8
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: fortune-egg
     Name: Fortune Egg
-    Description: "RARE \xB7 Stacks\nLuck +0.2"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Luck: +0.2
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 24
     Effect: 16
     Value: 0.2
     Icon: {fileID: -1580028238, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
     UnlockWave: 2
-    Modifiers: []
+    Modifiers:
+    - Effect: 16
+      Scope: 3
+      Value: 0.2
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: treasure-whisper
     Name: Treasure Whisper
-    Description: "RARE \xB7 Stacks\nTreasure detection +0.35"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Treasure detection: +0.35
+
+
+      Owned effective copies: 1. Values apply
+      before combat limits.'
     Price: 30
     Effect: 17
     Value: 0.35
     Icon: {fileID: 1593547413, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
     UnlockWave: 2
-    Modifiers: []
+    Modifiers:
+    - Effect: 17
+      Scope: 3
+      Value: 0.35
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: coin-salve
     Name: Coin Salve
-    Description: "RARE \xB7 Stacks\n"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      TRIGGER: CoinCollected
+      / 100% chance / 0.2s cooldown. Heal hero 0.5 per stack; radius 0.
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 28
     Effect: 7
     Value: 0
     Icon: {fileID: 862952736, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
     UnlockWave: 2
-    Modifiers: []
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 0
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: chest-thunder
     Name: Chest Thunder
-    Description: "RARE \xB7 Stacks\n"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      TRIGGER: ChestOpened
+      / 100% chance / 1s cooldown. Damage pulse 14 per stack; radius 3.
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 42
     Effect: 0
     Value: 0
     Icon: {fileID: -1942094704, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
     UnlockWave: 4
-    Modifiers: []
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0
     Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 25
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: altar-ember
     Name: Altar Ember
-    Description: "RARE \xB7 Stacks\nYour Damage +18%. Team: Movement speed -3%"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Damage: +36%
+
+      Team / Movement speed: -3%
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 36
     Effect: 12
     Value: 0.18
@@ -658,7 +1134,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.18
+      Value: 0.36
     - Effect: 3
       Scope: 0
       Value: -0.03
@@ -670,9 +1146,33 @@ MonoBehaviour:
     AltarCurrency: 2
     AltarPrice: 10
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: harvest-receipt
     Name: Harvest Receipt
-    Description: "UNCOMMON \xB7 Stacks\nPickup radius -0.15\nChest harvest bonus"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Pickup radius: -0.15
+
+
+      WEAPON SYNERGY
+
+      Requires a bell signature
+      weapon within 6 units. Collecting a coin advances its bell beat, up to 2 steps;
+      shared 0.35s cooldown.
+
+
+      Owned effective copies: 1. Stack limit: 2.
+      Values apply before combat limits.'
     Price: 28
     Effect: 0
     Value: 0
@@ -686,13 +1186,36 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 2
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 1
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: reflective-ink
     Name: Reflective Ink
-    Description: "UNCOMMON \xB7 Unique\n\nReflected attacks empower marks"
+    Description: 'CURIO / UNCOMMON / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      WEAPON SYNERGY
+
+      Stamp
+      hits add 2 marks instead of 1, but mark lifetime is 65% of normal. Stamp exposure
+      and marked-target synergies remain active.
+
+
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -706,14 +1229,36 @@ MonoBehaviour:
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 2
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: carbon-ribbon
     Name: Carbon Ribbon
-    Description: "RARE \xB7 Unique\nTeam: Critical chance -4%\nSpread marks; expose
-      enemies"
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Critical chance: -4%
+
+
+      WEAPON SYNERGY
+
+      A stamp burst attracts
+      coins within 2.5 units of its target. Bell pulses expose surviving targets
+      for 1.5s. Presence effect; requires matching stamp/bell attacks.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 40
     Effect: 0
     Value: 0
@@ -727,14 +1272,38 @@ MonoBehaviour:
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 3
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: office-lens
     Name: Office Lens
-    Description: "RARE \xB7 Stacks\nAllies: Critical chance +15%, Attack speed -5%\nCritical
-      hits punish exposed targets"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Companions
+      / Critical chance: +24%
+
+      Companions / Attack speed: -5%
+
+
+      WEAPON
+      SYNERGY
+
+      Critical hits on an exposed enemy gain a separate damage multiplier:
+      1.25 + min(0.25,0.05 times stacks). Requires exposure and a critical hit.
+
+
+      Owned
+      effective copies: 1. Stack limit: 5. Values apply before combat limits.'
     Price: 38
     Effect: 0
     Value: 0
@@ -743,7 +1312,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 8
       Scope: 2
-      Value: 0.15
+      Value: 0.24000001
     - Effect: 1
       Scope: 2
       Value: -0.05
@@ -751,14 +1320,37 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 5
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 4
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: tea-coaster
     Name: Tea Coaster
-    Description: "UNCOMMON \xB7 Unique\nTeam: Movement speed -2%\nWider, weaker tea
-      trails"
+    Description: 'CURIO / UNCOMMON / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Movement speed: -2%
+
+
+      WEAPON SYNERGY
+
+      Tea projectile trails
+      have 40% more radius but deal 20% less trail damage. Presence effect; extra
+      copies do not multiply trail size again.
+
+
+      Owned effective copies: 1.
+      Stack limit: 1. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -772,14 +1364,36 @@ MonoBehaviour:
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 5
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: scratch-record
     Name: Scratch Record
-    Description: "UNCOMMON \xB7 Stacks\nTeam: Attack speed -4%\nOne delayed musical
-      echo"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack speed: -4%
+
+
+      WEAPON SYNERGY
+
+      Music-box hits add a delayed
+      echo after 0.3s, damage min(70%,35% times stacks). Bell pulses also add up
+      to 50% extra damage against marked survivors.
+
+
+      Owned effective copies:
+      1. Stack limit: 2. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -793,14 +1407,35 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 2
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 6
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: treasure-ribbon
     Name: Treasure Ribbon
-    Description: "UNCOMMON \xB7 Stacks\nTeam: Damage -3%\nChest opening empowers
-      bows"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: -3%
+
+
+      WEAPON SYNERGY
+
+      Opening a chest heals 3 HP per
+      stack and empowers bow-motion hits for 4s: up to +45% damage, +15% per stack.
+
+
+      Owned
+      effective copies: 1. Stack limit: 3. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -814,14 +1449,36 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 3
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 7
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: patch-spring
     Name: Patch Spring
-    Description: "UNCOMMON \xB7 Unique\nAllies: Attack speed -6%\nRepair connects
-      signature effects"
+    Description: 'CURIO / UNCOMMON / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Companions
+      / Attack speed: -6%
+
+
+      WEAPON SYNERGY
+
+      Every 3s, automatically
+      add one charge to each charging arena toy. Normal warning and cooldown rules
+      still apply. Presence effect; extra copies do not speed it up.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -835,14 +1492,35 @@ MonoBehaviour:
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 8
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: thermal-ink
     Name: Thermal Ink
-    Description: "UNCOMMON \xB7 Unique\nTeam: Critical chance -3%\nConnect active
-      hot trails"
+    Description: 'CURIO / UNCOMMON / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Critical chance: -3%
+
+
+      WEAPON SYNERGY
+
+      A hot trail touching
+      a marked enemy adds a 40%-trail-damage strike, with a 0.9s cooldown per target.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -856,13 +1534,36 @@ MonoBehaviour:
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 9
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: repair-coupon
     Name: Repair Coupon
-    Description: "UNCOMMON \xB7 Stacks\nPickup radius -0.1\nRepair synergy"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Pickup radius: -0.1
+
+
+      WEAPON SYNERGY
+
+      An arena-toy credited
+      kill heals 1 HP per stack, shared 0.6s cooldown. Ordinary basic kills do not
+      activate this effect.
+
+
+      Owned effective copies: 1. Stack limit: 3. Values
+      apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -876,14 +1577,31 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 3
     ShopWeight: 55
-    Pools: 3
+    Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 10
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - oddity
   - Id: k10-scoremultiplier
     Name: "Contract \xB7 Score multiplier"
-    Description: "UNCOMMON \xB7 Stacks\nScore multiplier +8%. Your Maximum health
-      -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Score multiplier: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 18
     Value: 0.08
@@ -900,14 +1618,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-collisiondamage
     Name: "Contract \xB7 Collision damage"
-    Description: "RARE \xB7 Stacks\nTeam: Collision damage +2. Your Maximum health
-      -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Collision damage: +10
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 19
     Value: 2
@@ -916,7 +1652,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 19
       Scope: 0
-      Value: 2
+      Value: 10
     - Effect: 2
       Scope: 1
       Value: -1
@@ -924,14 +1660,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
   - Id: k10-meleedamage
     Name: "Contract \xB7 Flat melee damage"
-    Description: "MYTHIC \xB7 Stacks\nTeam: Flat melee damage +2. Your Maximum health
-      -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Flat melee damage: +4
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 20
     Value: 2
@@ -940,7 +1694,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 20
       Scope: 0
-      Value: 2
+      Value: 4
     - Effect: 2
       Scope: 1
       Value: -1
@@ -948,14 +1702,31 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
   - Id: k10-rangeddamage
     Name: "Contract \xB7 Flat ranged damage"
-    Description: "UNCOMMON \xB7 Stacks\nTeam: Flat ranged damage +2. Your Maximum
-      health -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Flat ranged damage: +4
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 21
     Value: 2
@@ -964,7 +1735,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 21
       Scope: 0
-      Value: 2
+      Value: 4
     - Effect: 2
       Scope: 1
       Value: -1
@@ -972,13 +1743,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-attackrange
     Name: "Contract \xB7 Attack range"
-    Description: "RARE \xB7 Stacks\nTeam: Attack range +8%. Your Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack range: +25%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 22
     Value: 0.08
@@ -987,7 +1777,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 22
       Scope: 0
-      Value: 0.08
+      Value: 0.25
     - Effect: 2
       Scope: 1
       Value: -1
@@ -995,13 +1785,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-dodge
     Name: "Contract \xB7 Dodge"
-    Description: "MYTHIC \xB7 Stacks\nYour Dodge +8%, Maximum health -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Dodge: +12%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 23
     Value: 0.08
@@ -1010,7 +1819,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 23
       Scope: 1
-      Value: 0.08
+      Value: 0.12
     - Effect: 2
       Scope: 1
       Value: -1
@@ -1018,13 +1827,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - oddity
+    - tidal
   - Id: k10-income
     Name: "Contract \xB7 Income"
-    Description: "UNCOMMON \xB7 Stacks\nIncome +4. Your Maximum health -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Income: +4
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 24
     Value: 4
@@ -1041,13 +1869,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: k10-bulletpierce
     Name: "Contract \xB7 Bullet pierce"
-    Description: "RARE \xB7 Stacks\nTeam: Bullet pierce +1. Your Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet pierce: +2
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 25
     Value: 1
@@ -1056,7 +1903,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 25
       Scope: 0
-      Value: 1
+      Value: 2
     - Effect: 2
       Scope: 1
       Value: -1
@@ -1064,14 +1911,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-bulletsplit
     Name: "Contract \xB7 Bullet split"
-    Description: "MYTHIC \xB7 Stacks\nTeam: Bullet split +1. Your Maximum health
-      -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet split: +2
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 26
     Value: 1
@@ -1080,7 +1945,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 26
       Scope: 0
-      Value: 1
+      Value: 2
     - Effect: 2
       Scope: 1
       Value: -1
@@ -1088,14 +1953,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-bulletbounce
     Name: "Contract \xB7 Bullet bounce chance"
-    Description: "UNCOMMON \xB7 Stacks\nTeam: Bullet bounce chance +8%. Your Maximum
-      health -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet bounce chance: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 27
     Value: 0.08
@@ -1112,13 +1995,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-bulletsize
     Name: "Contract \xB7 Bullet size"
-    Description: "RARE \xB7 Stacks\nTeam: Bullet size +8%. Your Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet size: +25%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 28
     Value: 0.08
@@ -1127,7 +2029,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 28
       Scope: 0
-      Value: 0.08
+      Value: 0.25
     - Effect: 2
       Scope: 1
       Value: -1
@@ -1135,14 +2037,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-bulletspeed
     Name: "Contract \xB7 Bullet speed"
-    Description: "MYTHIC \xB7 Stacks\nTeam: Bullet speed +8%. Your Maximum health
-      -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet speed: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 29
     Value: 0.08
@@ -1159,14 +2079,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-bulletdistance
     Name: "Contract \xB7 Bullet travel distance"
-    Description: "UNCOMMON \xB7 Stacks\nTeam: Bullet travel distance +8%. Your Maximum
-      health -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet travel distance: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 30
     Value: 0.08
@@ -1183,13 +2121,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: k10-knockback
     Name: "Contract \xB7 Knockback"
-    Description: "RARE \xB7 Stacks\nTeam: Knockback +8%. Your Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Knockback: +25%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 31
     Value: 0.08
@@ -1198,7 +2155,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 31
       Scope: 0
-      Value: 0.08
+      Value: 0.25
     - Effect: 2
       Scope: 1
       Value: -1
@@ -1206,13 +2163,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-bodysize
     Name: "Contract \xB7 Champion size"
-    Description: "MYTHIC \xB7 Stacks\nYour Champion size +8%, Maximum health -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Champion size: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 32
     Value: 0.08
@@ -1229,14 +2205,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-companionsize
     Name: "Contract \xB7 Companion size"
-    Description: "UNCOMMON \xB7 Stacks\nAllies: Companion size +8%. Your Maximum
-      health -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Companions
+      / Companion size: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 33
     Value: 0.08
@@ -1253,14 +2247,35 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-enemycount
     Name: "Contract \xB7 Enemy count"
-    Description: "RARE \xB7 Stacks\nEnemy count +10%, Score multiplier +20%. Your
-      Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Enemy count: +10%
+
+      Run / Score multiplier: +20%
+
+      Champion /
+      Maximum health: -1
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 24
     Effect: 34
     Value: 0.08
@@ -1280,14 +2295,35 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-enemyhealth
     Name: "Contract \xB7 Enemy health"
-    Description: "MYTHIC \xB7 Stacks\nEnemy health +10%, Score multiplier +20%. Your
-      Maximum health -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Enemy health: +10%
+
+      Run / Score multiplier: +20%
+
+      Champion
+      / Maximum health: -1
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 27
     Effect: 35
     Value: 0.08
@@ -1307,14 +2343,35 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-enemyspeed
     Name: "Contract \xB7 Enemy speed"
-    Description: "UNCOMMON \xB7 Stacks\nEnemy speed +10%, Score multiplier +20%.
-      Your Maximum health -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Enemy speed: +10%
+
+      Run / Score multiplier: +20%
+
+      Champion /
+      Maximum health: -1
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 18
     Effect: 36
     Value: 0.08
@@ -1334,13 +2391,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-hearthealing
     Name: "Contract \xB7 Heart healing"
-    Description: "RARE \xB7 Stacks\nYour Heart healing +2, Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Heart healing: +2
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 37
     Value: 2
@@ -1357,13 +2433,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
   - Id: k10-chestquality
     Name: "Contract \xB7 Chest quality"
-    Description: "MYTHIC \xB7 Stacks\nChest quality +8%. Your Maximum health -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Chest quality: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 38
     Value: 0.08
@@ -1380,14 +2475,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: k10-recruitdiscount
     Name: "Contract \xB7 Recruit discount"
-    Description: "UNCOMMON \xB7 Stacks\nRecruit discount +8%. Your Maximum health
-      -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Recruit discount: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 39
     Value: 0.08
@@ -1404,13 +2517,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: k10-relicdiscount
     Name: "Contract \xB7 Relic discount"
-    Description: "RARE \xB7 Stacks\nRelic discount +8%. Your Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Relic discount: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 40
     Value: 0.08
@@ -1427,13 +2559,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: k10-shoprarity
     Name: "Contract \xB7 Shop rarity"
-    Description: "MYTHIC \xB7 Stacks\nShop rarity +8%. Your Maximum health -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Shop rarity: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 41
     Value: 0.08
@@ -1450,14 +2601,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-healthcorrection
     Name: "Contract \xB7 Health correction"
-    Description: "UNCOMMON \xB7 Stacks\nYour Health correction +8%, Maximum health
-      -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Health correction: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 42
     Value: 0.08
@@ -1474,14 +2643,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-damagecorrection
     Name: "Contract \xB7 Damage correction"
-    Description: "RARE \xB7 Stacks\nTeam: Damage correction +8%. Your Maximum health
-      -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage correction: +20%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 43
     Value: 0.08
@@ -1490,7 +2677,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 43
       Scope: 0
-      Value: 0.08
+      Value: 0.2
     - Effect: 2
       Scope: 1
       Value: -1
@@ -1498,14 +2685,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-speedcorrection
     Name: "Contract \xB7 Speed correction"
-    Description: "MYTHIC \xB7 Stacks\nTeam: Speed correction +8%. Your Maximum health
-      -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Speed correction: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 44
     Value: 0.08
@@ -1522,14 +2727,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - oddity
+    - tidal
   - Id: k10-armorcorrection
     Name: "Contract \xB7 Armor correction"
-    Description: "UNCOMMON \xB7 Stacks\nYour Armor correction +8%, Maximum health
-      -1"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Armor correction: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 45
     Value: 0.08
@@ -1546,13 +2769,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: k10-healcorrection
     Name: "Contract \xB7 Healing correction"
-    Description: "RARE \xB7 Stacks\nYour Healing correction +8%, Maximum health -1"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing correction: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 46
     Value: 0.08
@@ -1569,14 +2811,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
   - Id: k10-collisionfrequency
     Name: "Contract \xB7 Collision frequency"
-    Description: "MYTHIC \xB7 Stacks\nTeam: Collision frequency +8%. Your Maximum
-      health -1"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Collision frequency: +8%
+
+      Champion / Maximum health: -1
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 27
     Effect: 47
     Value: 0.08
@@ -1593,14 +2853,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 50
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
   - Id: long-pocket
     Name: Long Pocket
-    Description: "UNCOMMON \xB7 Stacks\nChest opening radius +35%. Your Movement
-      speed -2%"
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Chest opening radius: +35%
+
+      Champion / Movement speed: -2%
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 48
     Value: 0.35
@@ -1617,14 +2895,36 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 45
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: velvet-first-aid
     Name: Velvet First Aid
-    Description: "RARE \xB7 Stacks\nTreasure detection +0.1. Your Movement speed
-      -2%\nChest: heal4 HP/stack \xB7 2s CD"
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Treasure detection: +0.1
+
+      Champion / Movement speed: -2%
+
+
+      TRIGGER:
+      ChestOpened / 100% chance / 2s cooldown. Heal hero 4 per stack; radius 1.8.
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 17
     Value: 0.1
@@ -1641,14 +2941,36 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 45
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
   - Id: brass-avalanche
     Name: Brass Avalanche
-    Description: "MYTHIC \xB7 Stacks\nTeam: Knockback +10%. Your Movement speed -2%\nKill:
-      nearby pulse3 DMG/stack \xB7 2s CD"
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Knockback: +25%
+
+      Champion / Movement speed: -2%
+
+
+      TRIGGER:
+      EnemyKilled / 100% chance / 2s cooldown. Damage pulse 3 per stack; radius 1.8.
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 31
     Value: 0.1
@@ -1657,7 +2979,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 31
       Scope: 0
-      Value: 0.1
+      Value: 0.25
     - Effect: 3
       Scope: 1
       Value: -0.02
@@ -1665,13 +2987,32 @@ MonoBehaviour:
     Stacking: 0
     MaximumStacks: 100000
     ShopWeight: 45
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: RainbowCrown
     Name: Borrowed Crown
-    Description: Team damage +35%. One extra projectile.
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: +70%
+
+      Team / Projectile count: +2
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -1680,21 +3021,42 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.35
+      Value: 0.7
     - Effect: 9
       Scope: 0
-      Value: 1
+      Value: 2
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
   - Id: RainbowHeart
     Name: Clockwork Heart
-    Description: Max HP +60. Heal 1 HP per second.
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +120
+
+      Champion / Healing per second: +1.8
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -1703,21 +3065,40 @@ MonoBehaviour:
     Modifiers:
     - Effect: 2
       Scope: 1
-      Value: 60
+      Value: 120
     - Effect: 7
       Scope: 1
-      Value: 1
+      Value: 1.8
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
   - Id: RainbowThread
     Name: Living Thread
-    Description: Melee damage +60%. Knockback +35%.
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Flat melee damage: +4
+
+      Team / Knockback: +63%
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -1726,21 +3107,40 @@ MonoBehaviour:
     Modifiers:
     - Effect: 20
       Scope: 0
-      Value: 0.6
+      Value: 4
     - Effect: 31
       Scope: 0
-      Value: 0.35
+      Value: 0.63
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
   - Id: RainbowPrism
     Name: Impossible Prism
-    Description: Shots split twice. Ranged damage +25%.
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet split: +3
+
+      Team / Flat ranged damage: +4
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -1749,21 +3149,40 @@ MonoBehaviour:
     Modifiers:
     - Effect: 26
       Scope: 0
-      Value: 2
+      Value: 3
     - Effect: 21
       Scope: 0
-      Value: 0.25
+      Value: 4
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
   - Id: CrimsonSeal
     Name: Crimson Seal
-    Description: Personal damage +45%. Collision damage +12.
+    Description: 'CURIO / CRIMSON / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Damage: +90%
+
+      Team / Collision damage: +24
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 75
     Effect: 0
     Value: 0
@@ -1772,21 +3191,41 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.45
+      Value: 0.9
     - Effect: 19
       Scope: 0
-      Value: 12
+      Value: 24
     Rarity: 4
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 1
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+    - oddity
   - Id: CrimsonSpring
     Name: Crimson Spring
-    Description: Attack speed +25%. Melee reach +25%.
+    Description: 'CURIO / CRIMSON / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack speed: +50%
+
+      Team / Attack range: +45%
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 75
     Effect: 0
     Value: 0
@@ -1795,18 +3234,4445 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.25
+      Value: 0.5
     - Effect: 22
       Scope: 0
-      Value: 0.25
+      Value: 0.45
     Rarity: 4
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 1
-    Pools: 3
+    Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+  - Id: K26Defense0
+    Name: Marrow Tea
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +50
+
+      Champion / Healing per second: +0.8
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 35
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -2112130088, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 50
+    - Effect: 7
+      Scope: 1
+      Value: 0.8
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: K26Defense1
+    Name: Porcelain Splint
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Armor: +0.35
+
+      Team / Movement speed: -4%
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 40
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1823242546, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: 0.35
+    - Effect: 3
+      Scope: 0
+      Value: -0.04
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+  - Id: K26Defense2
+    Name: Escape Thimble
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Dodge: +12%
+
+      Team / Movement speed: +12%
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 45
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 551106072, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 23
+      Scope: 1
+      Value: 0.12
+    - Effect: 3
+      Scope: 0
+      Value: 0.12
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - oddity
+    - tidal
+  - Id: K26Defense3
+    Name: Quicksole
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Movement speed: +18%
+
+      Champion / Maximum health: +20
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 50
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1048081793, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 3
+      Scope: 0
+      Value: 0.18
+    - Effect: 2
+      Scope: 1
+      Value: 20
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - frost
+    - hearth
+    - oddity
+    - orchard
+    - tidal
+  - Id: K26Defense4
+    Name: Pulse Bell
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Health correction: +25%
+
+      Champion / Healing per second: +1.4
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 55
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1218745630, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 4
+    Modifiers:
+    - Effect: 42
+      Scope: 1
+      Value: 0.25
+    - Effect: 7
+      Scope: 1
+      Value: 1.4
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - frost
+    - hearth
+    - orchard
+  - Id: K26Defense5
+    Name: Mercy Spindle
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing per second: +2.8
+
+      Run / Income: -2
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -480808365, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 4
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 2.8
+    - Effect: 24
+      Scope: 3
+      Value: -2
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: K26Defense6
+    Name: Iron Apron
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Armor: +0.65
+
+      Team / Movement speed: -8%
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 65
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -2044495289, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 4
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: 0.65
+    - Effect: 3
+      Scope: 0
+      Value: -0.08
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+  - Id: K26Defense7
+    Name: Mending Moth
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing per second: +2.5
+
+      Champion / Armor: +0.12
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 70
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1570235647, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
+    UnlockWave: 4
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 2.5
+    - Effect: 11
+      Scope: 1
+      Value: 0.12
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 100
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - frost
+    - hearth
+    - oddity
+    - orchard
+  - Id: SecretWoodHeart
+    Name: The Abandoned Wooden Heart
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +18
+
+      Champion / Healing per second: +0.3
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -564166699, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 18
+    - Effect: 7
+      Scope: 1
+      Value: 0.3
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: SecretMirror
+    Name: The Glass Understudy
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Critical chance: +5%
+
+      Team / Attack range: +8%
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 321956525, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 8
+      Scope: 0
+      Value: 0.05
+    - Effect: 22
+      Scope: 0
+      Value: 0.08
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+  - Id: SecretThread
+    Name: Living Contraband Thread
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack range: +18%
+
+      Team / Knockback: +20%
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -773660135, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 22
+      Scope: 0
+      Value: 0.18
+    - Effect: 31
+      Scope: 0
+      Value: 0.2
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+  - Id: SecretTicket
+    Name: Smuggler's Ticket
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Gold shop discount: +8%
+
+      Run / Luck: +0.08
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 331261299, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 15
+      Scope: 3
+      Value: 0.08
+    - Effect: 16
+      Scope: 3
+      Value: 0.08
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
+  - Id: SecretHour
+    Name: Hourglass Advance
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack speed: +18%
+
+      Team / Damage: +10%
+
+
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1896486556, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: 0.18
+    - Effect: 0
+      Scope: 0
+      Value: 0.1
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+  - Id: SecretDream
+    Name: Sleeping-Lamb Brooch
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +12
+
+      Champion / Heart healing: +3
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 5481929, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 12
+    - Effect: 37
+      Scope: 1
+      Value: 3
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: SecretCrown
+    Name: Crown of the Empty Theatre
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: +15%
+
+      Team / Critical chance: +8%
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 732980563, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.15
+    - Effect: 8
+      Scope: 0
+      Value: 0.08
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+  - Id: SecretLetter
+    Name: Dead-Letter Key
+    Description: 'CURIO / RARE / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Pickup radius: +0.8
+
+      Run / Treasure detection: +0.1
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 363176316, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
+    UnlockWave: 2147483647
+    Modifiers:
+    - Effect: 4
+      Scope: 3
+      Value: 0.8
+    - Effect: 17
+      Scope: 3
+      Value: 0.1
+    Rarity: 2
+    Stacking: 1
+    MaximumStacks: 1
+    ShopWeight: 0
+    Pools: 3
+    AltarCurrency: 1
+    AltarPrice: 6
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - hearth
+    - orchard
+    - tidal
+  - Id: OctoberRelic0
+    Name: Lantern Stitch
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack range: +10%
+
+      Team / Attack speed: -5%
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 26
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -765111925, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 22
+      Scope: 0
+      Value: 0.1
+    - Effect: 1
+      Scope: 0
+      Value: -0.05
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 65
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+  - Id: OctoberRelic1
+    Name: Rain Receipt
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing per second: +0.5
+
+      Run / Income: -2
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 30
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1919350112, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 0.5
+    - Effect: 24
+      Scope: 3
+      Value: -2
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 65
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: OctoberRelic2
+    Name: Clockseed Brooch
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Collision damage: +5
+
+      Team / Movement speed: -4%
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 34
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1491177789, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 19
+      Scope: 0
+      Value: 5
+    - Effect: 3
+      Scope: 0
+      Value: -0.04
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 65
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+  - Id: OctoberRelic3
+    Name: Porcelain Promise
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Heart healing: +2
+
+      Champion / Maximum health: +10
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 38
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 2037761858, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 37
+      Scope: 1
+      Value: 2
+    - Effect: 2
+      Scope: 1
+      Value: 10
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 65
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioOrchardFizz
+    Name: Orchard Fizz
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Maximum
+      health: +20
+
+      Run / Income: -2
+
+
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1344813320, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 20
+    - Effect: 24
+      Scope: 3
+      Value: -2
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Fruit Crush
+    ShopThemes:
+    - archive
+    - frost
+    - hearth
+    - orchard
+    - tidal
+  - Id: CurioGraveChime
+    Name: Grave Chime
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Collision
+      damage: +10
+
+      Champion / Movement speed: -5%
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1355949120, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 19
+      Scope: 1
+      Value: 10
+    - Effect: 3
+      Scope: 1
+      Value: -0.05
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Midnight Ballad
+    ShopThemes:
+    - archive
+    - clock
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioBreathJar
+    Name: Breath Jar
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Damage: +20%
+
+      Team
+      / Attack speed: -4%
+
+
+      Owned effective copies: 1. Stack limit: 8. Values
+      apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -335754525, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.2
+    - Effect: 1
+      Scope: 0
+      Value: -0.04
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Oxygen Bubble
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - hearth
+    - tidal
+  - Id: CurioCoralBroth
+    Name: Coral Broth
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Healing
+      per second: +1
+
+      Champion / Maximum health: -4
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 2102222050, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 1
+    - Effect: 2
+      Scope: 1
+      Value: -4
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Peach Sea
+    ShopThemes:
+    - archive
+    - frost
+    - hearth
+    - orchard
+    - tidal
+  - Id: CurioFangPin
+    Name: Fang Pin
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Knockback: +100%
+
+      Champion / Attack speed: +20%
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 409440659, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 31
+      Scope: 1
+      Value: 1
+    - Effect: 1
+      Scope: 1
+      Value: 0.2
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Shark Button
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+  - Id: CurioRicochetSeltzer
+    Name: Ricochet Seltzer
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Flat ranged
+      damage: +6
+
+      Team / Bullet bounce chance: +25%
+
+      Team / Damage:
+      -5%
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -2004642614, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 21
+      Scope: 0
+      Value: 6
+    - Effect: 27
+      Scope: 0
+      Value: 0.25
+    - Effect: 0
+      Scope: 0
+      Value: -0.05
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Soda Tea
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+    - tidal
+  - Id: CurioNoonSpark
+    Name: Noon Spark
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Flat melee
+      damage: +5
+
+      Team / Critical chance: +6%
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -8644156, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 20
+      Scope: 0
+      Value: 5
+    - Effect: 8
+      Scope: 0
+      Value: 0.06
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Startled Awake by Afternoon
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+    - tidal
+  - Id: CurioQuietHour
+    Name: Quiet Hour
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Armor:
+      +0.12
+
+      Run / Treasure detection: +0.15
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -603900031, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: 0.12
+    - Effect: 17
+      Scope: 3
+      Value: 0.15
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Time of Leisure
+    ShopThemes:
+    - archive
+    - clock
+    - hearth
+    - oddity
+    - orchard
+    - tidal
+  - Id: CurioBentTape
+    Name: Bent Tape
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack speed: +18%
+
+
+      SPECIAL EFFECT
+
+      Next wave: +10% enemy count
+      per purchased copy. Its listed permanent modifiers remain separate.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -484833784, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: 0.18
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 1
+    Category: 0
+    ReferenceName: Warped Cassette
+    ShopThemes: []
+  - Id: CurioMeadowTonic
+    Name: Meadow Tonic
+    Description: 'DRINK / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Dodge:
+      +8%
+
+      Run / Luck: +0.06
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -206650220, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 23
+      Scope: 1
+      Value: 0.08
+    - Effect: 16
+      Scope: 3
+      Value: 0.06
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Weird Grassland
+    ShopThemes:
+    - archive
+    - clock
+    - oddity
+    - orchard
+    - tidal
+  - Id: CurioKindlingGloves
+    Name: Kindling Gloves
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing per second: -0.4
+
+
+      SPECIAL EFFECT
+
+      Each coin pickup
+      has a 15% chance to heal 2 HP per active stack.
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 32
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1558649073, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: -0.4
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 1
+    SignatureRole: 0
+    Mechanic: 2
+    Category: 0
+    ReferenceName: Wool Mittens
+    ShopThemes: []
+  - Id: CurioInterestTin
+    Name: Interest Tin
+    Description: 'FOOD / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Run / Pickup radius:
+      +0.6
+
+
+      SPECIAL EFFECT
+
+      At each wave start, multiply saved gold
+      by 1.2 per stack, compounded. Separate from normal clear-wave interest.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 2016761844, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 4
+      Scope: 3
+      Value: 0.6
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 3
+    Category: 2
+    ReferenceName: Bento Box
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+    - orchard
+  - Id: CurioStormDryer
+    Name: Storm Dryer
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: +24%
+
+      Team / Knockback: +20%
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 331103142, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.24
+    - Effect: 31
+      Scope: 0
+      Value: 0.2
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Cheap Hair Dryer
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+  - Id: CurioRetortCup
+    Name: Retort Cup
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Armor: +0.4
+
+      Run / Luck: -0.08
+
+
+      SPECIAL EFFECT
+
+      When
+      hit, 30% chance to fire 8 radial shots for 12 damage per stack each. Shots
+      move at 5 units/s and last 2s.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1422563229, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: 0.4
+    - Effect: 16
+      Scope: 3
+      Value: -0.08
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 4
+    Category: 0
+    ReferenceName: Commemorative Mug
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+  - Id: CurioShatteredPager
+    Name: Shattered Pager
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Income: +25
+
+      Champion / Bullet split: +2
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1396330245, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 24
+      Scope: 3
+      Value: 25
+    - Effect: 26
+      Scope: 1
+      Value: 2
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Cracked Phone
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+    - orchard
+    - tidal
+  - Id: CurioWatchfulTea
+    Name: Watchful Tea
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Healing per second: +2
+
+
+      SPECIAL EFFECT
+
+      Next wave: hero armor
+      -0.8 per purchased copy. Listed recovery modifiers remain separate.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1191121151, guid: ec78f816652ba5f4087ae9d634669a0e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 2
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 5
+    Category: 0
+    ReferenceName: Gaze
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioSunfireFlask
+    Name: Sunfire Flask
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Attack range:
+      +40%
+
+      Champion / Projectile count: +1
+
+      Champion / Attack speed:
+      -25%
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 506282897, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 22
+      Scope: 0
+      Value: 0.4
+    - Effect: 9
+      Scope: 1
+      Value: 1
+    - Effect: 1
+      Scope: 1
+      Value: -0.25
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Golden Fuel
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+    - tidal
+  - Id: CurioGiltOrbit
+    Name: Gilt Orbit
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Flat ranged damage: +5
+
+
+      SPECIAL EFFECT
+
+      Next wave: Treasure
+      Detection +1 per purchased copy.
+
+
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 482446145, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 21
+      Scope: 0
+      Value: 5
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 6
+    Category: 0
+    ReferenceName: Gold-Plated Ring
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+  - Id: CurioEmberEspresso
+    Name: Ember Espresso
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Attack
+      speed: +24%
+
+      Champion / Collision damage: -1
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -2143217894, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 1
+      Scope: 1
+      Value: 0.24
+    - Effect: 19
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Hot Coffee
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - hearth
+    - tidal
+  - Id: CurioPrismRecord
+    Name: Prism Record
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack range: -10%
+
+
+      SPECIAL EFFECT
+
+      A personal basic shot can
+      strike one random enemy for max(2,2 times hero flat ranged bonus) damage per
+      stack. Shared 0.15s cooldown; no recursive response.
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1123844153, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 22
+      Scope: 0
+      Value: -0.1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 7
+    Category: 0
+    ReferenceName: Iridescent Disc
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioCitrusStorm
+    Name: Citrus Storm
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Flat ranged
+      damage: +6
+
+      Run / Enemy count: +2%
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -402703697, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 21
+      Scope: 0
+      Value: 6
+    - Effect: 34
+      Scope: 3
+      Value: 0.02
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Lemon Spring Water
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+    - tidal
+  - Id: CurioMoonMilk
+    Name: Moon Milk
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Heart
+      healing: +4
+
+      Champion / Movement speed: -5%
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 919974948, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 37
+      Scope: 1
+      Value: 4
+    - Effect: 3
+      Scope: 1
+      Value: -0.05
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Midnight
+    ShopThemes:
+    - archive
+    - frost
+    - hearth
+    - orchard
+    - tidal
+  - Id: CurioPocketSun
+    Name: Pocket Sun
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Champion
+      size: -10%
+
+      Run / Luck: +0.3
+
+
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 709390404, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 32
+      Scope: 1
+      Value: -0.1
+    - Effect: 16
+      Scope: 3
+      Value: 0.3
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Orange Joy
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
+  - Id: CurioInkFeather
+    Name: Ink Feather
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Refreshes
+      cost 2 less gold per active stack; minimum 1 gold.
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1943287148, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 8
+    Category: 0
+    ReferenceName: Quill
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioMulberryRiot
+    Name: Mulberry Riot
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Run / Income: +30
+
+      Run
+      / Treasure detection: +0.6
+
+      Champion / Armor: -0.3
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 271501257, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 24
+      Scope: 3
+      Value: 30
+    - Effect: 17
+      Scope: 3
+      Value: 0.6
+    - Effect: 11
+      Scope: 1
+      Value: -0.3
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Rock 'n' Roll Mulberry
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
+  - Id: CurioDreamBlindfold
+    Name: Dream Blindfold
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Luck: +0.1
+
+      Run / Treasure detection: +0.25
+
+
+      SPECIAL EFFECT
+
+      Opening
+      a chest strikes 1-3 different enemies for max(8,100 times Treasure Detection)
+      damage per stack.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values
+      apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -828872545, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 16
+      Scope: 3
+      Value: 0.1
+    - Effect: 17
+      Scope: 3
+      Value: 0.25
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 9
+    Category: 0
+    ReferenceName: Sleep Mask
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
+  - Id: CurioSleepyMist
+    Name: Sleepy Mist
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Damage: +35%
+
+      Team
+      / Movement speed: -20%
+
+      Run / Enemy speed: -20%
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 963266100, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.35
+    - Effect: 3
+      Scope: 0
+      Value: -0.2
+    - Effect: 36
+      Scope: 3
+      Value: -0.2
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Sleep Well
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - hearth
+    - tidal
+  - Id: CurioClearSip
+    Name: Clear Sip
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Collision
+      damage: -1
+
+
+      SPECIAL EFFECT
+
+      ON EACH DRINK PURCHASE: permanently
+      gain +4 maximum HP per active stack for this run. A drink carrying this effect
+      counts itself when purchased.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -764650247, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 19
+      Scope: 1
+      Value: -1
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 10
+    Category: 1
+    ReferenceName: Spring Water
+    ShopThemes:
+    - archive
+    - tidal
+  - Id: CurioOddElixir
+    Name: Odd Elixir
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      ON
+      EACH DRINK PURCHASE: permanently gain +6% team attack speed per active stack
+      for this run. Drink shop weight also increases 5% per stack.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1022234245, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 11
+    Category: 0
+    ReferenceName: Strangely Favored Drink
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioDaylightBonnet
+    Name: Daylight Bonnet
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: +40
+
+
+      SPECIAL EFFECT
+
+      When hit, 5% chance to
+      attract all pickups currently on the floor.
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -987185709, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 40
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 12
+    Category: 0
+    ReferenceName: Sun Hat
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioNeedleTarget
+    Name: Needle Target
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Bullet pierce: +1
+
+      Team / Critical chance: +15%
+
+      Team / Flat
+      melee damage: -3
+
+
+      Owned effective copies: 1. Stack limit: 8. Values
+      apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1939563156, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 25
+      Scope: 0
+      Value: 1
+    - Effect: 8
+      Scope: 0
+      Value: 0.15
+    - Effect: 20
+      Scope: 0
+      Value: -3
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Target Board
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+  - Id: CurioManyDoorKey
+    Name: Many Door Key
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Treasure detection: +0.25
+
+      Team / Damage: -5%
+
+
+      SPECIAL EFFECT
+
+      Opening
+      a chest permanently adds +0.06 Luck per active stack for this run.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1593494235, guid: 4941c10b615c9af4da8932e52cab57d0, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 17
+      Scope: 3
+      Value: 0.25
+    - Effect: 0
+      Scope: 0
+      Value: -0.05
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 13
+    Category: 0
+    ReferenceName: Universal Key
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
+  - Id: CurioCourageJuice
+    Name: Courage Juice
+    Description: 'DRINK / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Movement speed:
+      +20%
+
+      Team / Flat melee damage: +5
+
+      Champion / Maximum health:
+      -10
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -602326207, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 3
+      Scope: 0
+      Value: 0.2
+    - Effect: 20
+      Scope: 0
+      Value: 5
+    - Effect: 2
+      Scope: 1
+      Value: -10
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Vitamin C Rage
+    ShopThemes:
+    - archive
+    - clock
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioCrookedEight
+    Name: Crooked Eight
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Luck: +0.4
+
+      Team / Bullet bounce chance: +20%
+
+      Team / Damage:
+      -6%
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 46
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1978056696, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 1
+    Modifiers:
+    - Effect: 16
+      Scope: 3
+      Value: 0.4
+    - Effect: 27
+      Scope: 0
+      Value: 0.2
+    - Effect: 0
+      Scope: 0
+      Value: -0.06
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Weird Pool Ball
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+    - orchard
+    - tidal
+  - Id: CurioTornAlmanac
+    Name: Torn Almanac
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: -5%
+
+
+      SPECIAL EFFECT
+
+      At each wave start, gain a seeded
+      random 25-75 gold per active stack.
+
+
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 2130384479, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: -0.05
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 14
+    Category: 0
+    ReferenceName: Chaos Calendar
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioHoardersLocket
+    Name: Hoarders Locket
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Team
+      damage bonus +1% per 5 gold held, per stack. Changes as collected combat gold
+      grows your wallet.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values
+      apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 496746152, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 15
+    Category: 0
+    ReferenceName: Cowardice
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioSplitKernel
+    Name: Split Kernel
+    Description: 'FOOD / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 food for
+      food-reactive heroes, companions and relics. No separate use action; the item
+      stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Healing per
+      second: +3
+
+
+      SPECIAL EFFECT
+
+      At each battle start, current hero
+      HP is reduced to at most 50% maximum HP; it does not reduce maximum HP.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 576545441, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 3
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 16
+    Category: 2
+    ReferenceName: Cracked Seed
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioWildPigment
+    Name: Wild Pigment
+    Description: 'DRINK / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Movement speed:
+      +15%
+
+      Team / Flat melee damage: +7
+
+      Team / Flat ranged damage:
+      -3
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 680318881, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 3
+      Scope: 0
+      Value: 0.15
+    - Effect: 20
+      Scope: 0
+      Value: 7
+    - Effect: 21
+      Scope: 0
+      Value: -3
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Crazy Paint
+    ShopThemes:
+    - archive
+    - clock
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioStillwaterUrn
+    Name: Stillwater Urn
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Movement speed: -5%
+
+
+      SPECIAL EFFECT
+
+      Standing still heals 3
+      HP/s per active stack, subject to hero healing restrictions.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1670320937, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 3
+      Scope: 1
+      Value: -0.05
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 17
+    Category: 0
+    ReferenceName: Despair
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioPanicBell
+    Name: Panic Bell
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Each
+      coin pickup strikes one enemy for max(4,50 times Luck) damage per active stack.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -839904106, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 18
+    Category: 0
+    ReferenceName: Fear
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioOilyLozenge
+    Name: Oily Lozenge
+    Description: 'FOOD / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 food for
+      food-reactive heroes, companions and relics. No separate use action; the item
+      stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Maximum health:
+      +20
+
+
+      SPECIAL EFFECT
+
+      ON PURCHASE: other unsold gold-shop relics
+      cost 30% less for the current shop. Also adds 30% discount to newly generated
+      prices that shop, subject to the total discount cap.
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 742853411, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 20
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 19
+    Category: 2
+    ReferenceName: Fish Oil in a Box
+    ShopThemes:
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioLodestoneLabel
+    Name: Lodestone Label
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Flat ranged damage: +8
+
+      Run / Pickup radius: +0.9
+
+
+      SPECIAL
+      EFFECT
+
+      Companion leash and outer patrol radius are multiplied by 0.65.
+      Presence effect; extra stacks do not tighten it again.
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 246451228, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 21
+      Scope: 0
+      Value: 8
+    - Effect: 4
+      Scope: 3
+      Value: 0.9
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 20
+    Category: 0
+    ReferenceName: Fridge Sticker
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+  - Id: CurioHungryLedger
+    Name: Hungry Ledger
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      At
+      every wave start, permanently gain +4 flat melee damage, +4 flat ranged damage
+      and +10% team damage per stack for this run.
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1528355404, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 21
+    Category: 0
+    ReferenceName: Greed
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioStoneCrust
+    Name: Stone Crust
+    Description: 'FOOD / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 food for
+      food-reactive heroes, companions and relics. No separate use action; the item
+      stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Attack speed:
+      -10%
+
+
+      SPECIAL EFFECT
+
+      Hero contact damage gains 50% of the positive
+      hero flat melee bonus, per stack.
+
+
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1177601457, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 1
+      Scope: 1
+      Value: -0.1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 22
+    Category: 2
+    ReferenceName: Hard Bread
+    ShopThemes:
+    - hearth
+    - orchard
+  - Id: CurioBitterHoney
+    Name: Bitter Honey
+    Description: 'DRINK / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Healing
+      per second: +2.5
+
+      Run / Treasure detection: +0.6
+
+      Run / Enemy
+      speed: +7%
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply
+      before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 619213419, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 7
+      Scope: 1
+      Value: 2.5
+    - Effect: 17
+      Scope: 3
+      Value: 0.6
+    - Effect: 36
+      Scope: 3
+      Value: 0.07
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Matcha Honey
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+    - orchard
+    - tidal
+  - Id: CurioBurdenCollar
+    Name: Burden Collar
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Collision damage: +20
+
+      Team / Movement speed: -20%
+
+
+      SPECIAL
+      EFFECT
+
+      Hero armor gains the absolute value of negative hero movement-speed
+      bonus, per stack.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values
+      apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 655160205, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 19
+      Scope: 1
+      Value: 20
+    - Effect: 3
+      Scope: 0
+      Value: -0.2
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 23
+    Category: 0
+    ReferenceName: Neck Brace
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+  - Id: CurioHushEarmuffs
+    Name: Hush Earmuffs
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Dodge: +10%
+
+      Champion / Critical chance: +10%
+
+
+      SPECIAL EFFECT
+
+      On
+      a successful dodge, 30% chance to heal 10 HP per active stack.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 403219431, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 23
+      Scope: 1
+      Value: 0.1
+    - Effect: 8
+      Scope: 1
+      Value: 0.1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 24
+    Category: 0
+    ReferenceName: Noise-Cancelling Headphones
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - oddity
+    - tidal
+  - Id: CurioProfitSlide
+    Name: Profit Slide
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Income: -10
+
+
+      SPECIAL EFFECT
+
+      Wave income gains 1 per full +4%
+      positive hero damage bonus, per stack.
+
+
+      Owned effective copies: 1.
+      Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1738761422, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 24
+      Scope: 3
+      Value: -10
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 25
+    Category: 0
+    ReferenceName: Projector Slide
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioAngryReliquary
+    Name: Angry Reliquary
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Disable
+      passive regeneration and ordinary heart healing. Opening a chest attempts to
+      heal 30 HP per stack. Other explicit healing effects still follow their own
+      rules.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 723936855, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 26
+    Category: 0
+    ReferenceName: Rage
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioPetalTonic
+    Name: Petal Tonic
+    Description: 'DRINK / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Maximum
+      health: +90
+
+      Champion / Healing per second: -2
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1811151464, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 90
+    - Effect: 7
+      Scope: 1
+      Value: -2
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Rose Water
+    ShopThemes:
+    - archive
+    - frost
+    - hearth
+    - orchard
+    - tidal
+  - Id: CurioSorrowLantern
+    Name: Sorrow Lantern
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Dodge: -5%
+
+
+      SPECIAL EFFECT
+
+      Every 3s, all eligible enemies
+      take damage equal to 20% of hero maximum HP per stack.
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1695328001, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 23
+      Scope: 1
+      Value: -0.05
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 2
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 27
+    Category: 0
+    ReferenceName: Sadness
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioMuteClock
+    Name: Mute Clock
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Attack speed: +45%
+
+      Team / Movement speed: +40%
+
+
+      SPECIAL EFFECT
+
+      During
+      combat, take 1 injected damage per stack each second. Armor and other injected-damage
+      rules still apply; this differs from hunger''s direct HP cost.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 893323187, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 1
+      Scope: 0
+      Value: 0.45
+    - Effect: 3
+      Scope: 0
+      Value: 0.4
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 28
+    Category: 0
+    ReferenceName: Silent Alarm
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioUrchinBall
+    Name: Urchin Ball
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Armor: +0.6
+
+      Champion / Movement speed: +10%
+
+
+      SPECIAL EFFECT
+
+      Hero
+      basic attacks stop. Contact damage gains 10 times positive armor per stack.
+      Independent triggered attacks may still fire.
+
+
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1224232358, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: 0.6
+    - Effect: 3
+      Scope: 1
+      Value: 0.1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 1
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 29
+    Category: 0
+    ReferenceName: Spiky Yoga Ball
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioSourMandarin
+    Name: Sour Mandarin
+    Description: 'FOOD / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 food for
+      food-reactive heroes, companions and relics. No separate use action; the item
+      stays owned.
+
+
+      WHILE OWNED / per copy
+
+      No direct stat modifier;
+      effects are described below.
+
+
+      SPECIAL EFFECT
+
+      NEXT WAVE ONLY:
+      companions stop their basic attacks and hero attack cooldown is divided by
+      6, subject to the attack loop''s cap. Every 10 team kills attempts to heal
+      3 HP.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 2066985692, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 30
+    Category: 2
+    ReferenceName: Tangy Tangerine
+    ShopThemes:
+    - hearth
+    - orchard
+  - Id: CurioWakefulCordial
+    Name: Wakeful Cordial
+    Description: 'DRINK / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Collision
+      damage: +25
+
+      Champion / Knockback: +30%
+
+      Champion / Critical
+      chance: -10%
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply
+      before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1040720584, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 19
+      Scope: 1
+      Value: 25
+    - Effect: 31
+      Scope: 1
+      Value: 0.3
+    - Effect: 8
+      Scope: 1
+      Value: -0.1
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Wake Up!
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioGlassLotus
+    Name: Glass Lotus
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Start
+      each wave with +3 pierce and +30% crit per stack. The temporary bonus ends
+      on the first recorded hero hit.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1426506228, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 31
+    Category: 0
+    ReferenceName: Water Lily
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioNestDumpling
+    Name: Nest Dumpling
+    Description: 'FOOD / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 food for
+      food-reactive heroes, companions and relics. No separate use action; the item
+      stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Armor: -0.2
+
+
+      SPECIAL
+      EFFECT
+
+      ON PURCHASE: receive 3 eggs immediately once per acquisition.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -469173142, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: -0.2
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 32
+    Category: 2
+    ReferenceName: Weird Rice Ball
+    ShopThemes:
+    - hearth
+    - orchard
+  - Id: CurioVictorDraught
+    Name: Victor Draught
+    Description: 'DRINK / RARE / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Critical chance:
+      +20%
+
+      Team / Bullet pierce: +1
+
+      Team / Damage: -20%
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1255554615, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 8
+      Scope: 0
+      Value: 0.2
+    - Effect: 25
+      Scope: 0
+      Value: 1
+    - Effect: 0
+      Scope: 0
+      Value: -0.2
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 55
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 3
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Winningway
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+    - tidal
+  - Id: CurioWishWick
+    Name: Wish Wick
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Maximum health: -5
+
+      Run / Income: -5
+
+
+      SPECIAL EFFECT
+
+      ON
+      PURCHASE: try to recruit up to 2 ordinary companions from your hero''s pool.
+      Checks unlock wave, unique weapon, 3-recruit quota and 20-body limit; solo
+      heroes receive no bodies.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -2075340943, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: -5
+    - Effect: 24
+      Scope: 3
+      Value: -5
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 33
+    Category: 0
+    ReferenceName: Birthday Candle
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioShieldBlower
+    Name: Shield Blower
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Collision damage: +25
+
+      Run / Companion bullet interception: +1
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 661509699, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 19
+      Scope: 0
+      Value: 25
+    - Effect: 6
+      Scope: 3
+      Value: 1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Cooling Fan
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+    - oddity
+  - Id: CurioLiarMask
+    Name: Liar Mask
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: +100%
+
+
+      SPECIAL EFFECT
+
+      Each recorded hero hit removes
+      5% team damage per stack, including a saved run penalty. Its positive listed
+      modifiers are separate.
+
+
+      Owned effective copies: 1. Stack limit: 8.
+      Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1077289742, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 2
+    AltarCurrency: 2
+    AltarPrice: 12
+    SignatureRole: 0
+    Mechanic: 34
+    Category: 0
+    ReferenceName: Deception
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+  - Id: CurioOrbitPastry
+    Name: Orbit Pastry
+    Description: 'FOOD / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Champion
+      size: +25%
+
+      Champion / Bullet size: +75%
+
+      Champion / Bullet speed:
+      -40%
+
+      Champion / Damage: +100%
+
+
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1139922070, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 32
+      Scope: 1
+      Value: 0.25
+    - Effect: 28
+      Scope: 1
+      Value: 0.75
+    - Effect: 29
+      Scope: 1
+      Value: -0.4
+    - Effect: 12
+      Scope: 1
+      Value: 1
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 2
+    ReferenceName: Donut
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioOathParcel
+    Name: Oath Parcel
+    Description: 'FOOD / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      No direct stat modifier;
+      effects are described below.
+
+
+      SPECIAL EFFECT
+
+      ON PURCHASE: record
+      current modifier bonuses as floors; future bonuses cannot fall below those
+      recorded floors. Does not remove every direct combat restriction or HP cost.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1707200741, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 1
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 35
+    Category: 2
+    ReferenceName: Dumplings
+    ShopThemes:
+    - hearth
+    - orchard
+  - Id: CurioFortunePear
+    Name: Fortune Pear
+    Description: 'FOOD / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Run / Luck: +0.16
+
+      Run
+      / Income: -15
+
+
+      SPECIAL EFFECT
+
+      Maximum HP gains 100 times positive
+      Luck per stack, before HP correction and limits.
+
+
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -70613581, guid: e419cc10510ba644795eb06795f4876d, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 16
+      Scope: 3
+      Value: 0.16
+    - Effect: 24
+      Scope: 3
+      Value: -15
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 36
+    Category: 2
+    ReferenceName: Expensive Fruit
+    ShopThemes:
+    - archive
+    - hearth
+    - orchard
+    - tidal
+  - Id: CurioEmeraldInvoice
+    Name: Emerald Invoice
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Relic discount: +25%
+
+      Team / Damage: -20%
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1749284750, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 40
+      Scope: 3
+      Value: 0.25
+    - Effect: 0
+      Scope: 0
+      Value: -0.2
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Green Form
+    ShopThemes:
+    - archive
+    - orchard
+    - tidal
+  - Id: CurioBatteringHelm
+    Name: Battering Helm
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Champion
+      / Collision damage: +40
+
+      Champion / Collision frequency: +70%
+
+      Team
+      / Flat ranged damage: -10
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 974244750, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 19
+      Scope: 1
+      Value: 40
+    - Effect: 47
+      Scope: 1
+      Value: 0.7
+    - Effect: 21
+      Scope: 0
+      Value: -10
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 0
+    ReferenceName: Hard Hat
+    ShopThemes:
+    - clock
+    - hearth
+    - oddity
+  - Id: CurioGambleSandwich
+    Name: Gamble Sandwich
+    Description: 'FOOD / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Armor:
+      -0.2
+
+
+      SPECIAL EFFECT
+
+      Every 3s make two independent rolls: 50%
+      to heal 20 HP per stack; 50% to take 8 injected damage per stack. Both or neither
+      can occur.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply
+      before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 369141848, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 11
+      Scope: 1
+      Value: -0.2
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 37
+    Category: 2
+    ReferenceName: Healthy Sandwich
+    ShopThemes:
+    - hearth
+    - orchard
+  - Id: CurioFeastBucket
+    Name: Feast Bucket
+    Description: 'FOOD / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Maximum
+      health: +40
+
+      Champion / Healing per second: +1
+
+      Champion / Champion
+      size: +10%
+
+      Champion / Dodge: -30%
+
+
+      SPECIAL EFFECT
+
+      ON
+      EACH FOOD PURCHASE: permanently gain +10 max HP, +0.5 HP/s and +5% hero size
+      per active stack for this run.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -908148245, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 2
+      Scope: 1
+      Value: 40
+    - Effect: 7
+      Scope: 1
+      Value: 1
+    - Effect: 32
+      Scope: 1
+      Value: 0.1
+    - Effect: 23
+      Scope: 1
+      Value: -0.3
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 38
+    Category: 2
+    ReferenceName: Juicy Fried Chicken
+    ShopThemes:
+    - astral
+    - clock
+    - frost
+    - hearth
+    - orchard
+  - Id: CurioWanderLetter
+    Name: Wander Letter
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Critical chance: +40%
+
+      Champion / Armor: -0.7
+
+
+      SPECIAL EFFECT
+
+      Companion
+      outer patrol radius becomes half the arena''s diagonal. Does not add extra
+      companion bodies.
+
+
+      Owned effective copies: 1. Stack limit: 8. Values
+      apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -990331960, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 8
+      Scope: 0
+      Value: 0.4
+    - Effect: 11
+      Scope: 1
+      Value: -0.7
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 39
+    Category: 0
+    ReferenceName: Message From A Friend
+    ShopThemes:
+    - archive
+    - astral
+    - frost
+  - Id: CurioVenomPass
+    Name: Venom Pass
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Hero
+      basic hits poison the target for 4s. Each 1s tick deals max(1,base wave income
+      plus income bonus) damage. Refreshes duration, not an unbounded stack of poisons.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 845430741, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 40
+    Category: 0
+    ReferenceName: Mysterious ID
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioTruceBottle
+    Name: Truce Bottle
+    Description: 'DRINK / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 drink
+      for drink-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Team / Damage: +40%
+
+      Team
+      / Critical chance: +20%
+
+      Team / Attack range: +40%
+
+      Champion
+      / Armor: +0.6
+
+
+      Owned effective copies: 1. Stack limit: 8. Values apply
+      before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 949410556, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: 0.4
+    - Effect: 8
+      Scope: 0
+      Value: 0.2
+    - Effect: 22
+      Scope: 0
+      Value: 0.4
+    - Effect: 11
+      Scope: 1
+      Value: 0.6
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 1
+    ReferenceName: Peace Water
+    ShopThemes:
+    - archive
+    - astral
+    - clock
+    - frost
+    - hearth
+    - oddity
+    - tidal
+  - Id: CurioThornPerfume
+    Name: Thorn Perfume
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Run
+      / Enemy speed: +30%
+
+
+      SPECIAL EFFECT
+
+      Each recorded hero hit randomly
+      adds one run bonus per stack: +4 max HP, +0.08 HP/s, +0.015 armor, +2% team
+      damage, +0.02 Luck or +1% crit.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 1561733348, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 36
+      Scope: 3
+      Value: 0.3
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 41
+    Category: 0
+    ReferenceName: Perfume
+    ShopThemes:
+    - astral
+    - clock
+    - hearth
+  - Id: CurioLastHopeMotor
+    Name: Last Hope Motor
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      During
+      each battle, +16 flat attack damage per stack until you move for the first
+      time. Stopping later does not restore this bonus.
+
+
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -901667949, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 42
+    Category: 0
+    ReferenceName: Self-Driving Force
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioAnchorTack
+    Name: Anchor Tack
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Companions
+      stop moving; their range and projectile lifetime double and pierce increases
+      by 3. Final compile range/cooldown limits still apply where enforced.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -668017027, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 1
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 43
+    Category: 0
+    ReferenceName: Thumbtack
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioVoidDoubloon
+    Name: Void Doubloon
+    Description: 'CURIO / MYTHIC / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      Team
+      / Damage: -30%
+
+
+      SPECIAL EFFECT
+
+      Every 3s, all eligible enemies
+      lose damage equal to 15% of their CURRENT HP per stack. Not an instant execution.
+
+
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -1140603197, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers:
+    - Effect: 0
+      Scope: 0
+      Value: -0.3
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 8
+    ShopWeight: 28
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 4
+    SignatureRole: 0
+    Mechanic: 44
+    Category: 0
+    ReferenceName: Universe Coin
+    ShopThemes:
+    - archive
+    - oddity
+  - Id: CurioSixfoldRoot
+    Name: Sixfold Root
+    Description: 'FOOD / MYTHIC / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      No direct stat modifier;
+      effects are described below.
+
+
+      SPECIAL EFFECT
+
+      ON FIRST PURCHASE:
+      remember 6 random weapon IDs. Replace ordinary team basic attacks with six
+      phantom weapons fired from the hero. Each uses compiled weapon stats and its
+      own cooldown, minimum 0.2s.
+
+
+      Owned effective copies: 1. Stack limit:
+      1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: -830129192, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
+    UnlockWave: 3
+    Modifiers: []
+    Rarity: 3
+    Stacking: 0
+    MaximumStacks: 1
+    ShopWeight: 28
+    Pools: 2
+    AltarCurrency: 2
+    AltarPrice: 12
+    SignatureRole: 0
+    Mechanic: 45
+    Category: 2
+    ReferenceName: Potato
+    ShopThemes:
+    - hearth
+    - orchard
   Bonds:
   - Id: hearth
     Name: Hearth
@@ -1896,10 +7762,158 @@ MonoBehaviour:
       Value: 0.04
     - Threshold: 6
       Value: 0.08
+  - Id: hare
+    Name: Springstep
+    Threshold: 2
+    Icon: {fileID: -128994627, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 23
+    Value: 0.08
+    ExtraBonuses: []
+  - Id: archer
+    Name: Longbow
+    Threshold: 2
+    Icon: {fileID: 1105854806, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 22
+    Value: 0.12
+    ExtraBonuses: []
+  - Id: root
+    Name: Rootkin
+    Threshold: 2
+    Icon: {fileID: 752832123, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 2
+    Value: 8
+    ExtraBonuses: []
+  - Id: gauntlet
+    Name: Prizefighters
+    Threshold: 3
+    Icon: {fileID: -1159395267, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 1
+    Value: 0.08
+    ExtraBonuses: []
+  - Id: regal
+    Name: Velvet Court
+    Threshold: 4
+    Icon: {fileID: -701735268, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 0
+    Value: 0.15
+    ExtraBonuses: []
+  - Id: clover
+    Name: Lucky Leaves
+    Threshold: 2
+    Icon: {fileID: 1591840258, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 16
+    Value: 0.1
+    ExtraBonuses: []
+  - Id: fruit
+    Name: Fruit Basket
+    Threshold: 2
+    Icon: {fileID: 716288510, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 7
+    Value: 0.3
+    ExtraBonuses: []
+  - Id: gear
+    Name: Clockwork Union
+    Threshold: 2
+    Icon: {fileID: -581639195, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 24
+    Value: 4
+    ExtraBonuses: []
+  - Id: hat
+    Name: Hat Society
+    Threshold: 2
+    Icon: {fileID: -1721100714, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 8
+    Value: 0.06
+    ExtraBonuses: []
+  - Id: horn
+    Name: Little Horns
+    Threshold: 2
+    Icon: {fileID: 1887997586, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 8
+    Value: 0.08
+    ExtraBonuses: []
+  - Id: sprout
+    Name: Jade Nursery
+    Threshold: 5
+    Icon: {fileID: 1493219369, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 15
+    Value: 0.1
+    ExtraBonuses: []
+  - Id: knight
+    Name: Toy Knights
+    Threshold: 2
+    Icon: {fileID: 1848290475, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 19
+    Value: 5
+    ExtraBonuses: []
+  - Id: ball
+    Name: Playtime
+    Threshold: 2
+    Icon: {fileID: -883730457, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 19
+    Value: 2
+    ExtraBonuses: []
+  - Id: morning
+    Name: Morning Bells
+    Threshold: 3
+    Icon: {fileID: -2036373524, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 12
+    Value: 0.15
+    ExtraBonuses: []
+  - Id: rune
+    Name: Runic School
+    Threshold: 3
+    Icon: {fileID: 1481698924, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 34
+    Value: 0.06
+    ExtraBonuses: []
+  - Id: mask
+    Name: Masked Carnival
+    Threshold: 3
+    Icon: {fileID: 2054111496, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Effect: 38
+    Value: 0.1
+    ExtraBonuses: []
+  - Id: hide
+    Name: Wild Stitch
+    Threshold: 2
+    Icon: {fileID: -1110965468, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 11
+    Value: 0.12
+    ExtraBonuses: []
+  - Id: resolve
+    Name: Unbroken
+    Threshold: 2
+    Icon: {fileID: 1993844940, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 18
+    Value: 0.2
+    ExtraBonuses: []
+  - Id: shoe
+    Name: Quicksoles
+    Threshold: 2
+    Icon: {fileID: 298339360, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 3
+    Value: 0.08
+    ExtraBonuses: []
+  - Id: lantern-guild
+    Name: Lantern Guild
+    Threshold: 2
+    Icon: {fileID: -950913210, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 22
+    Value: 0.1
+    ExtraBonuses: []
+  - Id: rain-script
+    Name: Rain Script
+    Threshold: 2
+    Icon: {fileID: 1113165655, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 7
+    Value: 0.35
+    ExtraBonuses: []
   Recipes:
   - Id: dream-pillow
     FirstUnit: HoodWisp
     SecondUnit: JellySwordsman
+    ThirdUnit: 
     ResultUnit: PillowOracle
     EggCost: 3
     MinimumMaterialTier: 1
@@ -1907,6 +7921,7 @@ MonoBehaviour:
   - Id: warm-library
     FirstUnit: TeapotPilgrim
     SecondUnit: CandleSnail
+    ThirdUnit: 
     ResultUnit: MushroomLibrarian
     EggCost: 3
     MinimumMaterialTier: 1
@@ -1914,6 +7929,7 @@ MonoBehaviour:
   - Id: frost-post
     FirstUnit: MailboxImp
     SecondUnit: HoodWisp
+    ThirdUnit: 
     ResultUnit: CandleSnail
     EggCost: 4
     MinimumMaterialTier: 1
@@ -1921,7 +7937,176 @@ MonoBehaviour:
   - Id: clock-tea
     FirstUnit: MushroomLibrarian
     SecondUnit: JellySwordsman
+    ThirdUnit: 
     ResultUnit: TeapotPilgrim
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarAnchorSnail
+    FirstUnit: BrassAcorn
+    SecondUnit: ButtonBeetle
+    ThirdUnit: OrbitMoth
+    ResultUnit: AnchorSnail
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarSailSquid
+    FirstUnit: CitrusToad
+    SecondUnit: StarSock
+    ThirdUnit: FridgeWisp
+    ResultUnit: SailSquid
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarSockCyclops
+    FirstUnit: SpringDuck
+    SecondUnit: PillowOracle
+    ThirdUnit: ButtonBeetle
+    ResultUnit: SockCyclops
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarDiceCrab
+    FirstUnit: HoodWisp
+    SecondUnit: DreamCompass
+    ThirdUnit: MoonJelly
+    ResultUnit: DiceCrab
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarMaskPepper
+    FirstUnit: BookmarkGolem
+    SecondUnit: IceCreamOwl
+    ThirdUnit: BookmarkGolem
+    ResultUnit: MaskPepper
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarCrayonGremlin
+    FirstUnit: RadishJester
+    SecondUnit: TeapotPilgrim
+    ThirdUnit: TinTick
+    ResultUnit: CrayonGremlin
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarMirrorNewt
+    FirstUnit: JellySwordsman
+    SecondUnit: KettleBat
+    ThirdUnit: SnowSpoon
+    ResultUnit: MirrorNewt
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarRibbonSpider
+    FirstUnit: CometKite
+    SecondUnit: DreamCompass
+    ThirdUnit: KettleBat
+    ResultUnit: RibbonSpider
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarCoilKettle
+    FirstUnit: PearMoth
+    SecondUnit: OrbitMoth
+    ThirdUnit: BubbleKoi
+    ResultUnit: CoilKettle
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarThimbleMoth
+    FirstUnit: KettleBat
+    SecondUnit: SnowSpoon
+    ThirdUnit: 
+    ResultUnit: ThimbleMoth
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarReelOwl
+    FirstUnit: CandleSnail
+    SecondUnit: SeedHedgehog
+    ThirdUnit: CandleSnail
+    ResultUnit: ReelOwl
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarRainbowTailor
+    FirstUnit: CometKite
+    SecondUnit: StarSock
+    ThirdUnit: CoralTeacup
+    ResultUnit: RainbowTailor
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarRainbowBell
+    FirstUnit: StapleMole
+    SecondUnit: MushroomLibrarian
+    ThirdUnit: BubbleKoi
+    ResultUnit: RainbowBell
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarSaffronMechanist
+    FirstUnit: HoodWisp
+    SecondUnit: ButtonBeetle
+    ThirdUnit: HoodWisp
+    ResultUnit: SaffronMechanist
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarClockworkPiper
+    FirstUnit: MailboxImp
+    SecondUnit: JellySwordsman
+    ThirdUnit: BreadCrab
+    ResultUnit: ClockworkPiper
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarVelvetChampion
+    FirstUnit: JellySwordsman
+    SecondUnit: BreadCrab
+    ThirdUnit: FridgeWisp
+    ResultUnit: VelvetChampion
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarPaperInventor
+    FirstUnit: SpringDuck
+    SecondUnit: CoralTeacup
+    ThirdUnit: BookmarkGolem
+    ResultUnit: PaperInventor
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarReturnCaptain
+    FirstUnit: SpringDuck
+    SecondUnit: CoralTeacup
+    ThirdUnit: CoralTeacup
+    ResultUnit: ReturnCaptain
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarDoughForeman
+    FirstUnit: MailboxImp
+    SecondUnit: ShellPostman
+    ThirdUnit: ShellPostman
+    ResultUnit: DoughForeman
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarIronLocomotive
+    FirstUnit: TeapotPilgrim
+    SecondUnit: BrassAcorn
+    ThirdUnit: TinTick
+    ResultUnit: IronLocomotive
+    EggCost: 4
+    MinimumMaterialTier: 1
+    ResultTier: 2
+  - Id: OctoberAltarVioletRemnant
+    FirstUnit: EclipseEgg
+    SecondUnit: ButtonBeetle
+    ThirdUnit: 
+    ResultUnit: VioletRemnant
     EggCost: 4
     MinimumMaterialTier: 1
     ResultTier: 2
@@ -2021,6 +8206,7 @@ MonoBehaviour:
   SignatureRevision: 1
   ExpansionRevision: 1
   ContentRevision: 1
+  ReviewRevision: 1
   StatRevision: 1
   HeroRevision: 1
   ArenaPropSprites:
@@ -2065,11 +8251,11 @@ MonoBehaviour:
     Chance: 1
   EggSprite: {fileID: 21300000, guid: bf2c169150c8a3f49928aec5896c20e2, type: 3}
   HeartSprite: {fileID: 21300000, guid: a90467885db2c4a4a80316b8c705cd16, type: 3}
-  ChestSprite: {fileID: 21300000, guid: f2a23aad617e3c842a2754161e4df2f6, type: 3}
+  ChestSprite: {fileID: -821530288, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
   NormalWaves: 20
-  FirstWaveSeconds: 35
-  WaveIncrement: 2
-  WaveSeconds: 55
+  FirstWaveSeconds: 45
+  WaveIncrement: 0
+  WaveSeconds: 45
   BossHealthMultiplier: 0.55
   BossEvery: 4
   StartingGold: 35
@@ -2082,5 +8268,5 @@ MonoBehaviour:
   SpecialShopEvery: 2
   SpecialShopPrice: 2
   MaximumTier: 3
-  TierDamageMultiplier: 3.6
+  TierDamageMultiplier: 2.7
   TierSupportMultiplier: 3

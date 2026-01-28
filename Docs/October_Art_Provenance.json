@@ -1,0 +1,221 @@
+{
+  "generator": "Built-in painted; no CLI or external asset download",
+  "assets": [
+    {
+      "id": "Heroes1",
+      "path": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a living jade artichoke empress with layered leaf dress, tiny root boots and ivory gardening bonnet; ROW 2: a sturdy copper cooking pot golem with lid helmet, steam eyebrows and small wooden feet; ROW 3: an ivory blue porcelain ballerina doll with articulated arms and a golden repair seam; ROW 4: a seafoam bar-of-soap sprite on little wooden skates, bubbles and a striped bath cap. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-17608760-935f-478d-8dfb-2cff888b6cfb.png"
+    },
+    {
+      "id": "Heroes2",
+      "path": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a burgundy velvet king chess toy with ivory mask, gold paper crown and two stubby feet; ROW 2: a ginger cloth kitten knight with teal felt armour, button clasp and short feather helmet; ROW 3: a plush indigo toothy hound with gold stitched muzzle and tiny red cape; ROW 4: a violet hedgehog pincushion merchant with ivory quills and gold coin pouch. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-372c8681-71b8-47ee-bc8c-73e4cdf72d92.png"
+    },
+    {
+      "id": "Heroes3",
+      "path": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a small orange peel turtle coach with jade shell and ivory whistle; ROW 2: an ivory playing card queen toy with violet skirt and red wax heart chest; ROW 3: a pink flowering wooden turtle with miniature garden shell and teal leaf boots; ROW 4: a teal patchwork rabbit ringmaster with brass bell collar and ivory ticket sash. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-8ed1c817-4158-43d2-bc74-f136441780f4.png"
+    },
+    {
+      "id": "Heroes4",
+      "path": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a brass owl librarian puppet in indigo robe with paper bookmark crest; ROW 2: a red fox coin broker plush with ivory waistcoat, teal purse and gold monocle; ROW 3: a silver storm mouse toy with teal scarf and indigo fencing jacket; ROW 4: a red tin jack-in-the-box gunslinger with ivory faceplate and brass bow tie. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-2c2b3c4d-9788-4d5f-b345-b03b6c6ff150.png"
+    },
+    {
+      "id": "Heroes5",
+      "path": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a midnight blue cloth cat courier with two ivory ribbon tails and small gold boots; ROW 2: a round wooden picnic hamper creature with porcelain lid hat, teal napkin cape and brass cannon snout; ROW 3: a tiny ivory silkworm puppeteer in teal lantern-shell coat with golden needle crown; ROW 4: a wooden fawn with short brass clockwork antlers and indigo hourglass chest. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-457774ad-9dca-40c9-8cca-b030ec76b2ff.png"
+    },
+    {
+      "id": "Heroes6",
+      "path": "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a mint green paper frog archivist with raincoat and gold raindrop spectacles; ROW 2: a mint green paper frog archivist with raincoat and gold raindrop spectacles; ROW 3: a mint green paper frog archivist with raincoat and gold raindrop spectacles; ROW 4: a mint green paper frog archivist with raincoat and gold raindrop spectacles. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-77cf9e56-15c9-4357-9ae1-bcea8fb4af13.png"
+    },
+    {
+      "id": "Allies1",
+      "path": "Assets/ArcaneBrigade/Art/October/Allies1.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a saffron cloth cricket engineer with tiny goggles and mechanical legs; ROW 2: a teal tin songbird with brass pipe chest and curled feather crown; ROW 3: an ivory plush pug gladiator with burgundy cape and gold toy medallion; ROW 4: a folded indigo paper raccoon inventor with pencil ear and apron. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-f152a818-fb07-42f8-88a5-4b27ac69e1bb.png"
+    },
+    {
+      "id": "Allies2",
+      "path": "Assets/ArcaneBrigade/Art/October/Allies2.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a wooden sparrow captain with teal coat and brass ribbon medals; ROW 2: a warm cream bread bear baker with gold flour scoop and indigo apron; ROW 3: a compact red toy steam train snail with brass wheels and ivory chimney; ROW 4: a violet ghost mitten with gold stitched eyes and curled cloth tail. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-13ec3c5d-baf2-4dc9-bb6b-a4c358e6b0d9.png"
+    },
+    {
+      "id": "Allies3",
+      "path": "Assets/ArcaneBrigade/Art/October/Allies3.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a teal velvet moth witch with purple folded hat and ivory buttons; ROW 2: a large friendly cabbage gnome with layered jade leaves and root shoes; ROW 3: a round purple pin-cushion hedgehog with ivory spines and gold thimble feet; ROW 4: a mischievous red origami imp with tiny gold horns and indigo paper wings. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-ec5fcc9e-c569-48e0-8418-7413b842d56c.png"
+    },
+    {
+      "id": "Allies4",
+      "path": "Assets/ArcaneBrigade/Art/October/Allies4.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: a pink inflated balloon elephant with a mallet trunk, ivory seams and teal feet; ROW 2: a tiny jade cabbage child with two leaf arms, root feet and gold seed button; ROW 3: a friendly indigo glass marble beast with ivory horns and wooden feet; ROW 4: a friendly teal wooden rocking pony with gold bridle, ivory mane and a clearly empty saddle. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-4709d393-e065-4198-acca-2fe08752a73d.png"
+    },
+    {
+      "id": "Allies5",
+      "path": "Assets/ArcaneBrigade/Art/October/Allies5.png",
+      "prompt": "A production hand-painted 2D toybox game CHARACTER ANIMATION SPRITE SHEET. Exactly 4 columns by 4 rows, 16 completely isolated full-body sprites on truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column1 idle relaxed, column2 walking with left leg forward and slight lean, column3 attack anticipation braced back with determined face, column4 attack release reaching forward with expressive face. No held weapons, weapons are separate game objects. No ground, no shadows, no glow outside silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Crisp black ink outlines, charming round living toys, warm flat storybook colours and tactile wood/felt/porcelain highlights matching high-end cute haunted toy shop game. Front three-quarter view facing right, full body and feet visible. VERY LARGE clear transparent margins inside every equal cell, never overlap. High quality expressive animation with anatomical continuity. Four row designs in order: ROW 1: an ivory porcelain cricket in blue floral teacup armour and brass feet; ROW 2: a teal plush otter with ivory ribbon whiskers and small burgundy satchel; ROW 3: a warm gold spool bird with teal thread wings and tiny ivory beak; ROW 4: a warm gold spool bird with teal thread wings and tiny ivory beak. Sprites use at most 70 percent cell width and 75 percent cell height. Transparent empty space around each sprite; no aura or coloured background.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-72f3b67e-9963-4c45-9ade-6d6f96f80ec2.png"
+    },
+    {
+      "id": "Relics3",
+      "path": "Assets/ArcaneBrigade/Art/October/Relics3.png",
+      "prompt": "ONE transparent 4 x 4 inventory icon sprite atlas, exactly 16 different isolated icons. Perfect equal grid. Each item occupies no more than 65% of its own cell, huge transparent empty gutters, no touching, no text, no drawn grid, no background haze, no shadows. Front view hand painted storybook haunted toy shop, crisp dark ink contours, wood, cloth, brass, food, glass, tactile texture, polished material highlights, small readable silhouettes. Original object designs, no logos. In reading order top left to bottom right: 1. CourageJuice inspired original toyshop object named Vitamin C Rage; 2. CrookedEight inspired original toyshop object named Weird Pool Ball; 3. TornAlmanac inspired original toyshop object named Chaos Calendar; 4. HoardersLocket inspired original toyshop object named Cowardice; 5. SplitKernel inspired original toyshop object named Cracked Seed; 6. WildPigment inspired original toyshop object named Crazy Paint; 7. StillwaterUrn inspired original toyshop object named Despair; 8. PanicBell inspired original toyshop object named Fear; 9. OilyLozenge inspired original toyshop object named Fish Oil in a Box; 10. LodestoneLabel inspired original toyshop object named Fridge Sticker; 11. HungryLedger inspired original toyshop object named Greed; 12. StoneCrust inspired original toyshop object named Hard Bread; 13. BitterHoney inspired original toyshop object named Matcha Honey; 14. BurdenCollar inspired original toyshop object named Neck Brace; 15. HushEarmuffs inspired original toyshop object named Noise-Cancelling Headphones; 16. ProfitSlide inspired original toyshop object named Projector Slide. Render all sixteen clearly distinct complete icons, genuinely transparent outside silhouettes.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-cf88ef15-ba3b-4733-8db4-6d5cdcbdf97d.png"
+    },
+    {
+      "id": "Relics4",
+      "path": "Assets/ArcaneBrigade/Art/October/Relics4.png",
+      "prompt": "ONE transparent 4 x 4 inventory icon sprite atlas, exactly 16 different isolated icons. Perfect equal grid. Each item occupies no more than 65% of its own cell, huge transparent empty gutters, no touching, no text, no drawn grid, no background haze, no shadows. Front view hand painted storybook haunted toy shop, crisp dark ink contours, wood, cloth, brass, food, glass, tactile texture, polished material highlights, small readable silhouettes. Original object designs, no logos. In reading order top left to bottom right: 1. AngryReliquary inspired original toyshop object named Rage; 2. PetalTonic inspired original toyshop object named Rose Water; 3. SorrowLantern inspired original toyshop object named Sadness; 4. MuteClock inspired original toyshop object named Silent Alarm; 5. UrchinBall inspired original toyshop object named Spiky Yoga Ball; 6. SourMandarin inspired original toyshop object named Tangy Tangerine; 7. WakefulCordial inspired original toyshop object named Wake Up!; 8. GlassLotus inspired original toyshop object named Water Lily; 9. NestDumpling inspired original toyshop object named Weird Rice Ball; 10. VictorDraught inspired original toyshop object named Winningway; 11. WishWick inspired original toyshop object named Birthday Candle; 12. ShieldBlower inspired original toyshop object named Cooling Fan; 13. LiarMask inspired original toyshop object named Deception; 14. OrbitPastry inspired original toyshop object named Donut; 15. OathParcel inspired original toyshop object named Dumplings; 16. FortunePear inspired original toyshop object named Expensive Fruit. Render all sixteen clearly distinct complete icons, genuinely transparent outside silhouettes.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-d34340e3-e747-4033-ab02-2726a5152f60.png"
+    },
+    {
+      "id": "Relics5",
+      "path": "Assets/ArcaneBrigade/Art/October/Relics5.png",
+      "prompt": "ONE transparent 4 x 4 inventory icon sprite atlas, exactly 16 different isolated icons. Perfect equal grid. Each item occupies no more than 65% of its own cell, huge transparent empty gutters, no touching, no text, no drawn grid, no background haze, no shadows. Front view hand painted storybook haunted toy shop, crisp dark ink contours, wood, cloth, brass, food, glass, tactile texture, polished material highlights, small readable silhouettes. Original object designs, no logos. In reading order top left to bottom right: 1. EmeraldInvoice inspired original toyshop object named Green Form; 2. BatteringHelm inspired original toyshop object named Hard Hat; 3. GambleSandwich inspired original toyshop object named Healthy Sandwich; 4. FeastBucket inspired original toyshop object named Juicy Fried Chicken; 5. WanderLetter inspired original toyshop object named Message From A Friend; 6. VenomPass inspired original toyshop object named Mysterious ID; 7. TruceBottle inspired original toyshop object named Peace Water; 8. ThornPerfume inspired original toyshop object named Perfume; 9. LastHopeMotor inspired original toyshop object named Self-Driving Force; 10. AnchorTack inspired original toyshop object named Thumbtack; 11. VoidDoubloon inspired original toyshop object named Universe Coin; 12. SixfoldRoot inspired original toyshop object named Potato; 13. LanternStitch inspired original toyshop object named a golden lantern wrapped in teal sewing thread; 14. RainReceipt inspired original toyshop object named a small ivory receipt folded into a raindrop; 15. Clockseed inspired original toyshop object named a brass seed-shaped clock brooch; 16. Promise inspired original toyshop object named a tiny blue porcelain locket with repair seams. Render all sixteen clearly distinct complete icons, genuinely transparent outside silhouettes.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-1182b021-ee3c-472d-b54f-62c1d08d2f5c.png"
+    },
+    {
+      "id": "NightmareFloor",
+      "path": "Assets/ArcaneBrigade/Art/October/NightmareFloor.png",
+      "prompt": "Production 2D top-down orthographic game arena floor texture, one continuous square painted environment, no characters no props no UI no text. Haunted toyshop after midnight, muted indigo woven carpet with an elegant worn ivory ornamental border, warped parquet at the edges, subtle concentric thread seams and watchful closed eyelid shapes sewn INTO the carpet, central 70 percent open calm low contrast combat area, perimeter torn violet velvet and blue-black paper curls. Warm hand-painted storybook ink aesthetic, beautiful sinister dream instead of gore. Lighting evenly diffuse, floor flat no perspective no horizon, detailed 1536 square game background. Opaque full bleed.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-b3d2a7ce-fe6c-4cde-a6b8-46cf456c6690.png"
+    },
+    {
+      "id": "Watchers",
+      "path": "Assets/ArcaneBrigade/Art/October/Watchers.png",
+      "prompt": "Production 2D hand painted transparent sprite atlas exactly 4 columns by 4 rows. Every row SAME object in 4 animation poses (closed, partly opening, fully open looking left, fully open looking right). Row1 gold framed porcelain eye with violet iris for a haunted toyshop wall; row2 a little stitched velvet carpet eye with amber iris; row3 black paper flower with an ivory pupil; row4 crooked carved wooden arch doorway with keyhole and tiny gold star lamps, poses closed door, opening door, fully open revealing deep teal stairs, open with quiet gold light. No ground shadows, no coloured backgrounds, no labels. Clear cell margins 15 percent, all isolated, full object inside each cell, high resolution rich ink outlines and painted tactile textures, charming frightening storybook toybox quality.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-0c70a399-61b8-47de-88aa-6736e5f705e9.png"
+    },
+    {
+      "id": "Keeper",
+      "path": "Assets/ArcaneBrigade/Art/October/Keeper.png",
+      "prompt": "Hand painted high resolution 2D game boss animation sprite atlas, exactly 4 columns and 1 row, same boss in each cell in idle, anticipation, attack release, recovery poses. Original THE OUTSIDE KEEPER a gigantic spectral glove hand puppeteer, antique ivory cloth glove body with five expressive curled fingers as a crown, dark keyhole eye on palm, tiny red velvet cuff, brass wrist gears, curled black thread tendrils. Menacing but beautiful haunted toyshop final guardian, teal shadows, gold stitching, storybook ink contours, tangible cloth texture, crisp anatomical continuity. Front three quarter view facing left, entire boss visible including every fingertip, character fills only 70 percent cell, large empty margin, no floor no shadow no glow outside silhouette no lettering, genuinely transparent background. Each pose clearly different braced then fingers spread then clenching. 4 identical size square cells in wide horizontal canvas.",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-13d6cc84-8d12-4fe8-9b86-6e583fd6ed95.png"
+    },
+    {
+      "id": "Bonds1",
+      "path": "Assets/ArcaneBrigade/Art/October/Bonds1.png",
+      "prompt": "Game UI bond emblem icon atlas exactly 4 columns by 4 rows, 16 isolated icon objects, transparent background, generous empty margins. Beautiful ink outlined hand painted haunted toybox objects in antique gold, ivory, teal and violet. Strong individual silhouettes readable at 32 pixels. No text numbers labels frames or UI tiles, no cast shadows. All objects same visual size, exact regular grid. Row-major order: 1: a hopping ivory rabbit ear badge; 2: an antique bow and arrow badge; 3: a carved carrot root amulet; 4: a red velvet boxing glove; 5: a miniature ivory chess crown; 6: a jade four leaf clover; 7: a small fruit basket; 8: a gold interlocking gear; 9: a tall violet wizard hat; 10: two curled brass ram horns; 11: a jade cabbage seedling; 12: an ivory knight shield; 13: a striped cloth play ball; 14: a gold morning star bell; 15: an arcane rune school chalk tablet; 16: a porcelain carnival mask",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-2667bce6-5e76-4c8a-ad7f-2e66045ad87c.png"
+    },
+    {
+      "id": "Bonds2",
+      "path": "Assets/ArcaneBrigade/Art/October/Bonds2.png",
+      "prompt": "Game UI bond emblem icon atlas exactly 4 columns by 4 rows, 16 isolated icon objects, transparent background, generous empty margins. Beautiful ink outlined hand painted haunted toybox objects in antique gold, ivory, teal and violet. Strong individual silhouettes readable at 32 pixels. No text numbers labels frames or UI tiles, no cast shadows. All objects same visual size, exact regular grid. Row-major order: 1: a stitched fur pelt; 2: a fist holding a gold thread; 3: a pair of tiny winged shoes; 4: a glowing amber lantern wrapped in teal thread; 5: a folded blue rain letter; 6: a gold spool; 7: a red button; 8: an ivory thimble; 9: a teal moon; 10: a gold star; 11: a wax seal; 12: a small key; 13: a porcelain cup; 14: a violet ribbon; 15: a brown acorn; 16: an ink nib",
+      "reference": null,
+      "tool": "painting pass",
+      "generatedFile": "exec-aa5e5354-b3ad-483d-9a57-93df7bc3fb83.png"
+    },
+    {
+      "id": "Reactions1",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions1.png",
+      "prompt": "Create a NEW REACTION ANIMATION SHEET for the exact four toy characters in this reference image. Keep each ROW's identity, clothing, colours and body proportions exactly. Exactly four columns and four rows. Replace all existing poses: column 1 curious head tilt inspecting something; column2 joyful celebration arms up; column3 brief hurt recoil with braced face but no damage or flash; column4 exhausted sitting defeat eyes closed, still whole and cute. Full body each cell, no held weapons. 20 percent genuinely zero-alpha transparent margin around EVERY sprite, never touch any cell border. High fidelity hand-painted ink and storybook tactile quality. No coloured background, no floor shadows, no grid no text. Keep normal standing character scale consistent; sitting sprite shorter in same baseline. Retain same character per row across 4 distinct new expressions. These are reaction poses, not attacks.",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+      "tool": "painting pass",
+      "generatedFile": "exec-dc159d35-8510-4902-934c-c94735fb754a.png"
+    },
+    {
+      "id": "Reactions2",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions2.png",
+      "prompt": "Create a NEW REACTION ANIMATION SHEET for the exact four toy characters in this reference image. Keep each ROW's identity, clothing, colours and body proportions exactly. Exactly four columns and four rows. Replace all existing poses: column 1 curious head tilt inspecting something; column2 joyful celebration arms up; column3 brief hurt recoil with braced face but no damage or flash; column4 exhausted sitting defeat eyes closed, still whole and cute. Full body each cell, no held weapons. 20 percent genuinely zero-alpha transparent margin around EVERY sprite, never touch any cell border. High fidelity hand-painted ink and storybook tactile quality. No coloured background, no floor shadows, no grid no text. Keep normal standing character scale consistent; sitting sprite shorter in same baseline. Retain same character per row across 4 distinct new expressions. These are reaction poses, not attacks.",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+      "tool": "painting pass",
+      "generatedFile": "exec-4f04dc75-b3da-4406-9a49-469cd472c08b.png"
+    },
+    {
+      "id": "Reactions3",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions3.png",
+      "prompt": "Create a NEW REACTION ANIMATION SHEET for the exact four toy characters in this reference image. Keep each ROW's identity, clothing, colours and body proportions exactly. Exactly four columns and four rows. Replace all existing poses: column 1 curious head tilt inspecting something; column2 joyful celebration arms up; column3 brief hurt recoil with braced face but no damage or flash; column4 exhausted sitting defeat eyes closed, still whole and cute. Full body each cell, no held weapons. 20 percent genuinely zero-alpha transparent margin around EVERY sprite, never touch any cell border. High fidelity hand-painted ink and storybook tactile quality. No coloured background, no floor shadows, no grid no text. Keep normal standing character scale consistent; sitting sprite shorter in same baseline. Retain same character per row across 4 distinct new expressions. These are reaction poses, not attacks.",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+      "tool": "painting pass",
+      "generatedFile": "exec-12f57f2d-fd17-417b-8391-a6d9af16ce8c.png"
+    },
+    {
+      "id": "Reactions4",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions4.png",
+      "prompt": "Create a NEW REACTION ANIMATION SHEET for the exact four toy characters in this reference image. Keep each ROW's identity, clothing, colours and body proportions exactly. Exactly four columns and four rows. Replace all existing poses: column 1 curious head tilt inspecting something; column2 joyful celebration arms up; column3 brief hurt recoil with braced face but no damage or flash; column4 exhausted sitting defeat eyes closed, still whole and cute. Full body each cell, no held weapons. 20 percent genuinely zero-alpha transparent margin around EVERY sprite, never touch any cell border. High fidelity hand-painted ink and storybook tactile quality. No coloured background, no floor shadows, no grid no text. Keep normal standing character scale consistent; sitting sprite shorter in same baseline. Retain same character per row across 4 distinct new expressions. These are reaction poses, not attacks.",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+      "tool": "painting pass",
+      "generatedFile": "exec-b27fa531-74a1-47b5-8d70-1880905a95fd.png"
+    },
+    {
+      "id": "Reactions5",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions5.png",
+      "prompt": "Create a NEW REACTION ANIMATION SHEET for the exact four toy characters in this reference image. Keep each ROW's identity, clothing, colours and body proportions exactly. Exactly four columns and four rows. Replace all existing poses: column 1 curious head tilt inspecting something; column2 joyful celebration arms up; column3 brief hurt recoil with braced face but no damage or flash; column4 exhausted sitting defeat eyes closed, still whole and cute. Full body each cell, no held weapons. 20 percent genuinely zero-alpha transparent margin around EVERY sprite, never touch any cell border. High fidelity hand-painted ink and storybook tactile quality. No coloured background, no floor shadows, no grid no text. Keep normal standing character scale consistent; sitting sprite shorter in same baseline. Retain same character per row across 4 distinct new expressions. These are reaction poses, not attacks.",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+      "tool": "painting pass",
+      "generatedFile": "exec-37e5ca1a-b8c7-48f7-981c-eaac38631ccd.png"
+    },
+    {
+      "id": "Reactions6",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions6.png",
+      "prompt": "Create a NEW REACTION ANIMATION SHEET for the exact four toy characters in this reference image. Keep each ROW's identity, clothing, colours and body proportions exactly. Exactly four columns and four rows. Replace all existing poses: column 1 curious head tilt inspecting something; column2 joyful celebration arms up; column3 brief hurt recoil with braced face but no damage or flash; column4 exhausted sitting defeat eyes closed, still whole and cute. Full body each cell, no held weapons. 20 percent genuinely zero-alpha transparent margin around EVERY sprite, never touch any cell border. High fidelity hand-painted ink and storybook tactile quality. No coloured background, no floor shadows, no grid no text. Keep normal standing character scale consistent; sitting sprite shorter in same baseline. Retain same character per row across 4 distinct new expressions. These are reaction poses, not attacks.",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+      "tool": "painting pass",
+      "generatedFile": "exec-8c0e7f81-c8ce-4627-aafe-4eb53dcdce25.png"
+    },
+    {
+      "id": "KeeperClean",
+      "path": "Assets/ArcaneBrigade/Art/October/Keeper.png",
+      "tool": "painting pass edit",
+      "reference": "Keeper original generated atlas",
+      "generatedFile": "exec-4c78aac0-ad3c-41a5-b8c2-f45a413c9d64.png",
+      "prompt": "Clean the exact four boss poses; remove background haze and stray pixels, preserve painted edges, actual zero-alpha transparency and four isolated cells."
+    },
+    {
+      "id": "Reactions1Clean",
+      "path": "Assets/ArcaneBrigade/Art/October/Reactions1.png",
+      "tool": "painting pass edit",
+      "reference": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+      "generatedFile": "exec-eec874b7-3bf8-47bb-bc30-afde2eb0336a.png",
+      "prompt": "Reaction atlas, 4 columns by 4 rows. Curious, celebrate, recoil, sitting exhaustion. Each character only 55% cell dimensions; at least 60 pixels of zero-alpha spacing between rows. Exact leaf empress, copper pot, porcelain dancer, soap sprite identities from reference. Full bodies, no held weapons, ground, text or glow."
+    }
+  ]
+}

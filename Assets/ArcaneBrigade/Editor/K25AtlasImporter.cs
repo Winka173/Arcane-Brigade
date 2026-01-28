@@ -9,8 +9,9 @@ namespace ArcaneBrigade.Editor
 {
     public static class K25AtlasImporter
     {
-        public static Sprite[] Import(string path, string id, int columns, int rows, int[] cells, int[] rowEdges = null, bool componentRows = false, bool mainComponentsOnly = false)
+        public static Sprite[] Import(string path, string id, int columns, int rows, int[] cells, int[] rowEdges = null, bool componentRows = false, bool mainComponentsOnly = false, Rect[] regions = null)
         {
+            if (regions != null && (regions.Length != columns * rows || componentRows || regions.Any(region => region.width <= 0 || region.height <= 0 || region.xMin < 0 || region.yMin < 0 || region.xMax > 1 || region.yMax > 1))) throw new ArgumentException("Invalid atlas regions " + id);
             if (columns <= 0 || rows <= 0 || cells.Any(cell => cell < 0 || cell >= columns * rows) || rowEdges != null && (rowEdges.Length != rows + 1 || rowEdges[0] != 0 || rowEdges[rows] != 1024)) throw new ArgumentException("Invalid K25 atlas layout " + id);
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
@@ -32,6 +33,11 @@ namespace ArcaneBrigade.Editor
                 int row = cell / columns;
                 int bottom = texture.height - (rowEdges == null ? (row + 1) * texture.height / rows : rowEdges[row + 1] * texture.height / 1024);
                 int top = texture.height - (rowEdges == null ? row * texture.height / rows : rowEdges[row] * texture.height / 1024);
+                if (regions != null)
+                {
+                    Rect region = regions[cell]; left = Mathf.RoundToInt(region.xMin * texture.width); right = Mathf.RoundToInt(region.xMax * texture.width);
+                    bottom = Mathf.RoundToInt(region.yMin * texture.height); top = Mathf.RoundToInt(region.yMax * texture.height);
+                }
                 int minX = right, minY = top, maxX = left, maxY = bottom;
                 if (components != null)
                 {

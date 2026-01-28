@@ -14,11 +14,17 @@ namespace ArcaneBrigade
         private readonly List<GroundShadow> propShadows = new List<GroundShadow>();
         private readonly List<EnemyVariantFieldVisual> variantFields = new List<EnemyVariantFieldVisual>();
         private CarnivalStageAssets stageArt;
+        private BuildMorphVisual morphVisual;
+        private HeroIdentityVisual heroVisual;
         private MaterialPropertyBlock tint;
         public bool ReducedMotion;
         public int VisibleCount { get; private set; }
         public void Display(CombatSimulation simulation)
         {
+            if (heroVisual == null) heroVisual = gameObject.AddComponent<HeroIdentityVisual>();
+            heroVisual.Display(simulation);
+            if (morphVisual == null) morphVisual = gameObject.AddComponent<BuildMorphVisual>();
+            morphVisual.Display(simulation, ReducedMotion || PresentationSettings.ReducedMotion);
             if (tint == null) tint = new MaterialPropertyBlock();
             VisibleCount = 0;
             if (simulation != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused))

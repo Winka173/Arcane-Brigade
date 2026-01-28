@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class RunBuildReadModel
     {
-        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; }
+        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; public Color Accent; }
         public readonly List<Row> Stats = new List<Row>();
         public readonly List<Row> Companions = new List<Row>();
         public readonly List<Row> Relics = new List<Row>();
@@ -13,6 +13,7 @@ namespace ArcaneBrigade
         public string Bonds;
         public string Receipts;
         public string BuildLinks;
+        public ShopStatSnapshot ShopStats;
 
         public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null)
         {
@@ -22,15 +23,16 @@ namespace ArcaneBrigade
             CheckpointCatalog compiled = readSession.PrepareCombat();
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
             WeaponDefinition weapon = champion.Weapon;
-            model.Stat("Champion health", health.ToString("0.0") + " / " + Mathf.Max(1f, champion.Health + session.Bonus(ItemEffect.Health)).ToString("0.0"), "Maximum health includes base HP, run bonuses and health correction, minimum 1. No permanent profile stat growth. Every cleared wave restores full HP.");
+            model.ShopStats = ShopStatSnapshot.Capture(readSession, catalog, compiled);
+            model.Stat("Champion health", health.ToString("0.0") + " / " + compiled.Champion.Health.ToString("0.0"), "Maximum health includes base HP, run bonuses and health correction, minimum 1. No permanent profile stat growth. Every cleared wave restores full HP.");
             model.Stat("Champion damage", compiled.Champion.Weapon.Damage.ToString("0.0"), "Base " + weapon.Damage.ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
-            model.Stat("Champion attack cycle", (weapon.Cooldown / Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion))).ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
-            model.Stat("Movement speed", (champion.Speed * Mathf.Max(0.1f, 1f + session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion))).ToString("0.00"), "Base " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; minimum multiplier 0.1.");
-            model.Stat("Champion critical chance", Percent(Mathf.Clamp01(champion.CriticalChance + session.Bonus(ItemEffect.Crit, ModifierScope.Champion))), "Base " + Percent(champion.CriticalChance) + "; bonuses add before the 0–100% cap.");
-            model.Stat("Champion projectile count", (weapon.ProjectileCount + Mathf.FloorToInt(session.Bonus(ItemEffect.Projectiles, ModifierScope.Champion))).ToString(), "Applies only to projectile weapons; does not turn melee attacks into bullets.");
-            model.Stat("Champion armor", session.Bonus(ItemEffect.Armor).ToString("0.00"), "Positive armor reduces incoming damage; negative armor increases it, capped before the per-hit limit.");
-            model.Stat("Passive regeneration", (session.Bonus(ItemEffect.Heal) + (session.ActiveModifier == null ? 0f : session.ActiveModifier.Healing)).ToString("0.00") + " / s", "HP per second from items and wave effects. Individual unit healing triggers separately every 4 seconds and is not included here.");
-            model.Stat("Pickup radius", (catalog.Arena.PickupRadius + session.Bonus(ItemEffect.Pickup)).ToString("0.00"), "Base " + catalog.Arena.PickupRadius.ToString("0.00") + "; arena distance, not screen pixels.");
+            model.Stat("Champion attack cycle", compiled.Champion.Weapon.Cooldown.ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
+            model.Stat("Movement speed", compiled.Champion.Speed.ToString("0.00"), "Base " + champion.Speed.ToString("0.00") + "; bonus " + Percent(session.Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) + "; minimum multiplier 0.1.");
+            model.Stat("Champion critical chance", Percent(compiled.Champion.CriticalChance), "Base " + Percent(champion.CriticalChance) + "; bonuses add before the 0–100% cap.");
+            model.Stat("Champion projectile count", compiled.Champion.Weapon.ProjectileCount.ToString(), "Applies only to projectile weapons; does not turn melee attacks into bullets.");
+            model.Stat("Champion armor", compiled.Armor.ToString("0.00"), "Positive armor reduces incoming damage; negative armor increases it, capped before the per-hit limit.");
+            model.Stat("Passive regeneration", compiled.PassiveHeal.ToString("0.00") + " / s", "HP per second from items and wave effects. Individual unit healing triggers separately every 4 seconds and is not included here.");
+            model.Stat("Pickup radius", compiled.PickupRadius.ToString("0.00"), "Base " + catalog.Arena.PickupRadius.ToString("0.00") + "; arena distance, not screen pixels.");
             model.Stat("Companion roaming range", "Ranged " + compiled.CompanionLeash.ToString("0.00") + " / Melee " + (compiled.CompanionLeash + MeleeBalance.RoamBonus).ToString("0.00"), "Companions patrol around the player automatically. Melee units have wider roaming and faster enemy pursuit; no formation controls required.");
             model.Stat("Companion bullet interception", session.Bonus(ItemEffect.Interceptor) > 0 ? "Enabled by item" : "No", "Companions are immortal but do not block bullets by default.");
             model.Stat("Next shop interest", Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(session.Bonus(ItemEffect.Interest)), session.State.Gold / Mathf.Max(1, catalog.InterestDivisor)).ToString() + " gold", "Forecast from saved gold; excludes uncommitted pickups or next-wave income.");
@@ -54,19 +56,25 @@ namespace ArcaneBrigade
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
                 model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
-                    Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Tier bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Tier bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nPassive: " + RunUICopy.PassiveDescription(unit.Passive) + " · effective " + passive.ToString("0.0") + "\nImmortal. Each companion counts as one unit toward bonds, regardless of tier." });
-                model.Companions[model.Companions.Count - 1].Explanation += "\n\nSUPPORT TRAITS\n" + RunModifierRules.DescribeCompanion(unit, entry.Tier);
+                    Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Tier bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Tier bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each companion body counts once toward bonds." });
+                model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier);
             }
             if (catalog.StatRevision > 0) K10BuildReadModel.Append(model, session, catalog, health, compiled);
+            BuildMorphReadModel.Append(model, session, catalog, compiled);
             foreach (ItemStack stack in session.State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
                 string procDescription = "";
                 foreach (ProcRule rule in catalog.ProcRules ?? new ProcRule[0])
                     if (rule.ItemId == item.Id) procDescription += "\nOn " + RunUICopy.TriggerName(rule.Trigger) + " → " + RunUICopy.ActionName(rule.Action) + "\nEffective " + (rule.Power * item.EffectiveStacks(stack.Count)).ToString("0.###") + " · radius " + rule.Radius + " · cooldown " + rule.Cooldown + " seconds · chance " + Percent(rule.Chance) + "\nThis effect does not trigger other item effects.\n";
-                model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " effects · includes benefits/tradeoffs" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = item.Description + "\n\nOwned stacks: " + stack.Count + " / effective: " + item.EffectiveStacks(stack.Count) + "\n" + RunModifierRules.Describe(item, stack.Count) + "\nRun upgrade. Cannot sell, swap or remove items here." });
-                model.Relics[model.Relics.Count - 1].Explanation += procDescription;
+                model.Relics.Add(new Row { Name = item.Name, Icon = item.Icon, Accent = RunModifierRules.RarityColor(item.Rarity), Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\n" + (item.EffectiveModifiers.Length > 1 ? item.EffectiveModifiers.Length + " effects · includes benefits/tradeoffs" : RunModifierRules.ScopeName(item.EffectiveModifiers[0].Scope)), Explanation = RelicDescriptions.Describe(item, stack.Count, catalog) + "\nRun upgrade. Cannot sell, swap or remove items here." });
+
                 if (!string.IsNullOrEmpty(procDescription)) model.Relics[model.Relics.Count - 1].Summary = "Owned ×" + stack.Count + " · " + RunModifierRules.RarityName(item.Rarity) + "\nAutomatically triggers under its conditions";
+                if (session.SecretItemSuspended(stack.Id))
+                {
+                    model.Relics[model.Relics.Count - 1].Summary = "ALTERED / AWAY · original effects inactive";
+                    model.Relics[model.Relics.Count - 1].Explanation = "Original effects below are inactive while this relic is stitched, lent or deposited. See secret agreements in the receipt journal.\n\n" + model.Relics[model.Relics.Count - 1].Explanation;
+                }
             }
             foreach (BuildLinkRule rule in catalog.BuildLinks ?? new BuildLinkRule[0])
             {
@@ -99,6 +107,15 @@ namespace ArcaneBrigade
                 RunTransactionReceipt receipt = session.State.Receipts[index];
                 model.Receipts += receipt.Title + "\n" + receipt.Description + "\n\n";
             }
+            if (session.State.Secrets != null)
+            {
+                model.Receipts += "SECRET AGREEMENTS\n";
+                foreach (SecretContract agreement in session.State.Secrets.Contracts)
+                    model.Receipts += agreement.Kind + " · " + agreement.Remaining + " normal victories left · " + agreement.ItemId + "\n";
+                foreach (SecretStitch stitch in session.State.Secrets.Stitches)
+                    model.Receipts += "Stitched " + catalog.Item(stitch.ItemId).Name + " · " + new[] { "Recall / no pierce", "Melee aftershock / slower cycle", "Shelter / damage tradeoff" }[stitch.Pattern] + "\n";
+                foreach (string entry in session.State.Secrets.Journal) model.Receipts += entry + "\n";
+            }
             foreach (Row row in model.Stats)
             {
                 ItemEffect[] effects = SourceEffects(row.Name);
@@ -121,11 +138,12 @@ namespace ArcaneBrigade
                     }
                 foreach (ItemStack stack in session.State.Items)
                 {
+                    if (session.SecretItemSuspended(stack.Id)) continue;
                     ItemDefinition item = catalog.Item(stack.Id);
                     foreach (StatModifier modifier in item.EffectiveModifiers)
                         if (modifier.Value != 0 && System.Array.IndexOf(effects, modifier.Effect) >= 0 && RunModifierRules.Applies(modifier.Scope, target))
                         {
-                            sources += item.Name + " ×" + item.EffectiveStacks(stack.Count) + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + (modifier.Value * item.EffectiveStacks(stack.Count)).ToString("+0.###;-0.###;0") + "\n";
+                            sources += item.Name + " ×" + item.EffectiveStacks(stack.Count) + " / " + RunModifierRules.ScopeName(modifier.Scope) + " / adds " + (modifier.Value * item.EffectiveStacks(stack.Count) * (modifier.Value > 0 && session.SecretItemImproved(stack.Id) ? 1.25f : 1)).ToString("+0.###;-0.###;0") + "\n";
                             sourceCount++;
                         }
                 }
@@ -136,6 +154,9 @@ namespace ArcaneBrigade
                     }
                 row.Explanation += sources + (sourceCount == 0 ? "No additional sources for this stat.\n" : "Sources are shown before caps, tiers and passives; applied values appear in the stat table.\n");
             }
+            if (HeroIdentities.For(champion.Id) != null) model.Stats.Insert(0,new Row { Name = "Hero / " + HeroIdentities.For(champion.Id).Name,
+                Summary = simulation != null && simulation.HeroIdentityEnabled ? simulation.HeroIdentityStatus : session.HeroIdentityShopSummary,
+                Explanation = HeroIdentities.Describe(champion.Id), Icon = champion.Body });
             return model;
         }
 

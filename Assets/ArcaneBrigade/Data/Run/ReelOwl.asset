@@ -39,14 +39,24 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - astral
+  - resolve
   Passive: 0
   PassiveStrength: 0.45
-  Description: 'MYTHIC ally. Attacks deal 54% more damage.
-
-    Allies: Attack range
-    +6%, Attack speed -2%
-
-    Auto attacks'
+  Description: "COMPANION / MYTHIC / 1 STAR\r\nTALENT\nEvery third basic attack may
+    fire a coloured echo for 25% weapon damage. Shares this ally's 0.7s response
+    cooldown. The echo cannot trigger itself.\r\n\nSUPPORT WHILE OWNED\nCompanions
+    / Attack range: +6%\nCompanions / Attack speed: -2%\nTier 1/2/3 traits \xD71/2/4;
+    merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nNo additional
+    periodic personal passive.\r\n\nNamed talents count bodies and absorbed memories;
+    their stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
+    special reward, subject to hero theme and unlock wave.\r\nBonds: astral, resolve.
+    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
+    merge unless the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: '"Naming Demon" Yan'
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes:
   - astral
@@ -63,7 +73,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 4
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

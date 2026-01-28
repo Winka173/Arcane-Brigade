@@ -1,0 +1,2 @@
+PASS TeapotPilgrim tier=1 phase=0
+FAIL TeapotPilgrim tier=1 phase=1 UpperBody shader UV clips its own sprite=True LowerBody shader UV clips its own sprite=True

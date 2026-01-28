@@ -4,7 +4,7 @@ namespace ArcaneBrigade
 {
     public sealed class BossFinaleVisual
     {
-        private enum Treatment { Stage, Office, Dream, Toy }
+        private enum Treatment { Stage, Office, Dream, Toy, Customer }
         private sealed class Pose
         {
             public SpriteRenderer View;
@@ -42,6 +42,8 @@ namespace ArcaneBrigade
         private Sprite[] dustFrames;
         private Sprite[] emberFrames;
         private Color accent;
+        private ExpandedPerformanceEntry paintedDefeat;
+        private float capturedHeight;
         public BossFinaleVisual(Transform parent)
         {
             root = parent;
@@ -64,13 +66,15 @@ namespace ArcaneBrigade
             SpriteRenderer weapon, SpriteRenderer hand, SpriteRenderer drawHand, BossPartDeathScatter[] debris, Sprite chip, Sprite coin, PaintedAnimationLibrary painted)
         {
             body = new Pose(bodyView); shadow = new Pose(shadowView); grounded = ground;
+            paintedDefeat = ExpandedPerformanceLibrary.Reaction(state.Definition);
+            capturedHeight = paintedDefeat != null && System.Array.IndexOf(paintedDefeat.Frames, bodyView.sprite) >= 0 ? paintedDefeat.ReferenceHeight : bodyView.sprite.bounds.size.y;
             hands = new[] { new Pose(weapon), new Pose(hand), new Pose(drawHand) };
             grip = gripRoot; gripPosition = grip.localPosition; gripRotation = grip.localRotation;
             origin = root.position; center = body.Position;
             height = Mathf.Max(0.5f, state.Definition.BodyHeight); material = state.Definition.Material;
             sign = state.HitDirection.x < 0 ? -1 : 1; identity = state.Id;
             string id = state.Definition.Id ?? string.Empty;
-            treatment = id == "SleepCollector" || id == "UmbraCradle" ? Treatment.Dream :
+            treatment = id == NightmareRules.CustomerId ? Treatment.Customer : id == "SleepCollector" || id == "UmbraCradle" ? Treatment.Dream :
                 state.Definition.Motif == BossMotif.Office ? Treatment.Office : state.Definition.Motif == BossMotif.Toys ? Treatment.Toy : Treatment.Stage;
             accent = treatment == Treatment.Office ? new Color(0.95f, 0.71f, 0.45f) : treatment == Treatment.Dream ? new Color(0.65f, 0.58f, 0.96f) :
                 treatment == Treatment.Toy ? new Color(0.45f, 0.91f, 0.81f) : new Color(1, 0.46f, 0.26f);
@@ -84,6 +88,8 @@ namespace ArcaneBrigade
             emberFrames = painted == null ? null : painted.Magic;
             Sprite star = K8Motion.TierStar();
             foreach (SpriteRenderer view in chips) view.sprite = chip != null ? chip : star;
+            if (treatment == Treatment.Customer && NightmareAssets.Current != null)
+                foreach (SpriteRenderer view in chips) view.sprite = NightmareAssets.Current.Scenery[14];
             foreach (SpriteRenderer view in smoke) view.sprite = chip != null ? chip : star;
             foreach (SpriteRenderer view in embers) view.sprite = star;
             foreach (SpriteRenderer view in payout) view.sprite = coin != null ? coin : star;
@@ -107,9 +113,25 @@ namespace ArcaneBrigade
             if (treatment == Treatment.Office) { shape.x *= 1 + collapse * 0.22f; shape.y *= 1 - collapse * 0.35f; tilt = collapse * 24; }
             if (treatment == Treatment.Dream) { shape *= 1 - collapse * 0.24f; tilt = Mathf.Sin(collapse * Mathf.PI) * 7; }
             if (treatment == Treatment.Toy) tilt = collapse * 82;
+            if (treatment == Treatment.Customer)
+            {
+                float release = Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - .45f) / 1.25f));
+                shape = new Vector2(1 - release * .08f, 1 - release * .18f);
+                tilt = release * 14;
+                if (NightmareAssets.Current != null)
+                    body.View.sprite = NightmareAssets.Current.CustomerFrames[7];
+            }
             float kick = Mathf.Sin(Mathf.Clamp01(age / 0.34f) * Mathf.PI);
+            float paintedScale = 1;
+            if (!reduced && paintedDefeat != null)
+            {
+                body.View.sprite = paintedDefeat.Frames[age < .3f ? 2 : 3];
+                paintedScale = capturedHeight / Mathf.Max(.01f, paintedDefeat.ReferenceHeight);
+                shape = Vector2.Lerp(Vector2.one, shape, .15f);
+                tilt *= .12f;
+            }
             body.View.transform.localPosition = body.Position + (reduced ? Vector3.zero : Vector3.up * height * (kick * 0.045f - collapse * 0.19f));
-            body.View.transform.localScale = reduced ? body.Scale : Vector3.Scale(body.Scale, new Vector3(shape.x, shape.y, 1));
+            body.View.transform.localScale = reduced ? body.Scale : Vector3.Scale(body.Scale, new Vector3(shape.x * paintedScale, shape.y * paintedScale, 1));
             body.View.transform.localRotation = body.Rotation * Quaternion.Euler(0, 0, reduced ? 0 : sign * tilt);
             body.Fade(fade);
             shadow.View.transform.localScale = shadow.Scale * (reduced ? 1 : 1 - collapse * 0.4f); shadow.Fade(fade);
@@ -153,6 +175,7 @@ namespace ArcaneBrigade
                 Vector3 drift = new Vector3(Mathf.Cos(angle) * travel * 0.7f, Mathf.Sin(angle) * travel * 0.22f + Mathf.Sin(travel * Mathf.PI) * 0.25f - travel * travel * 0.4f, 0);
                 if (treatment == Treatment.Dream) drift = new Vector3(Mathf.Sin(angle + travel * 3) * travel * 0.35f, travel * 0.7f, 0);
                 if (treatment == Treatment.Office) drift.x += Mathf.Sin(travel * 8 + index) * travel * 0.12f;
+                if (treatment == Treatment.Customer) drift = new Vector3(Mathf.Sin(angle) * travel * .55f, travel * .85f + Mathf.Sin(travel * Mathf.PI) * .15f, 0);
                 view.transform.localPosition = center + drift * height;
                 float size = height * (0.028f + index % 3 * 0.009f) * (1 - travel * 0.45f);
                 Vector2 aspect = material == BodyMaterial.Wax ? new Vector2(1.6f, 0.25f) : material == BodyMaterial.Fabric ? new Vector2(0.45f, 1.6f) :

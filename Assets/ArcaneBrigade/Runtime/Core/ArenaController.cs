@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace ArcaneBrigade
 {
-    public sealed class ArenaController : MonoBehaviour
+    public sealed partial class ArenaController : MonoBehaviour
     {
         [SerializeField] private CheckpointCatalog catalog;
         [SerializeField] private Camera arenaCamera;
@@ -61,7 +61,26 @@ namespace ArcaneBrigade
         public bool TransitionPending => transitionRemaining > 0 || stageTransfer != null && stageTransfer.Active;
         public bool HallExitPending => hallExitPending;
         public float HallCurtain => 0;
-        public bool ResultsReady => resultRevealRemaining <= 0;
+        public bool TerminalDelayComplete => resultRevealRemaining <= 0;
+        public bool ResultsReady => TerminalDelayComplete && (session == null || !session.EndingPending);
+        private NightmarePresentation nightmare;
+        public bool NightmareEndingVisible => nightmare != null && nightmare.EndingVisible;
+        public bool SaveNightmareBoundary() => PersistBoundary();
+        public bool ChooseNightmareEnding(NightmareFarewell choice)
+        {
+            if (!TerminalDelayComplete || PresentationPaused || !session.EndingChoicePending) return false;
+            string previous = JsonUtility.ToJson(session.State);
+            if (!session.ChooseFarewell(choice)) return false;
+            if (PersistBoundary()) return true;
+            session.Restore(JsonUtility.FromJson<RunSnapshot>(previous));
+            return false;
+        }
+        public void AdvanceNightmareEnding()
+        {
+            if (!TerminalDelayComplete || PresentationPaused || !session.EndingPending) return;
+            string previous = JsonUtility.ToJson(session.State);
+            if (session.AdvanceEnding() && !PersistBoundary()) session.Restore(JsonUtility.FromJson<RunSnapshot>(previous));
+        }
         public float WalletPulse { get; private set; }
         public float PresentationClock { get; private set; }
         private ArcadeMusic music;
@@ -74,6 +93,7 @@ namespace ArcaneBrigade
         private bool warningAudio;
         private bool lowHealthAudio;
         private FootstepDust footDust;
+        private StagePerformance stagePerformance;
         private PaintedEffects paintedEffects;
         private MidwaveSpectacleVisual spectacleVisual;
         private readonly CombatFeel combatFeel = new CombatFeel();
@@ -108,6 +128,7 @@ namespace ArcaneBrigade
             combatFeedback = gameObject.AddComponent<CombatFeedback>();
             combatFeedback.Configure(catalog.ImpactSprite);
             footDust = gameObject.AddComponent<FootstepDust>(); footDust.Configure(catalog.ImpactSprite);
+            stagePerformance = gameObject.AddComponent<StagePerformance>(); stagePerformance.Configure(this);
             paintedEffects = gameObject.AddComponent<PaintedEffects>();
             spectacleVisual = gameObject.AddComponent<MidwaveSpectacleVisual>();
             deathFeedback = gameObject.AddComponent<DeathFeedback>();
@@ -118,7 +139,11 @@ namespace ArcaneBrigade
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
             if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
+            if (runCatalog != null) { SecretRoom = gameObject.AddComponent<SecretEventRoom>(); SecretRoom.Configure(this); }
             if (runCatalog != null) gameObject.AddComponent<K8ArenaScenery>().Configure(this);
+            if (runCatalog != null) gameObject.AddComponent<OctoberScenery>().Configure(this);
+            if (runCatalog != null) gameObject.AddComponent<OctoberDialogue>().Configure(this);
+            if (runCatalog != null) { nightmare = gameObject.AddComponent<NightmarePresentation>(); nightmare.Configure(this); }
             CreateRadiusGuide();
             Begin();
         }
@@ -144,7 +169,7 @@ namespace ArcaneBrigade
             companionRadius.enabled = false;
         }
 
-        private void OnDestroy() { if (radiusMaterial != null) Destroy(radiusMaterial); session?.Dispose(); }
+        private void OnDestroy() { AnimationDetailBudget.SetLoad(0, 0); if (radiusMaterial != null) Destroy(radiusMaterial); session?.Dispose(); }
 
         private void Begin(bool preserveEffects = false)
         {
@@ -183,6 +208,7 @@ namespace ArcaneBrigade
                     if (unit.Faction == Faction.Companion && positions.TryGetValue(unit.Definition.Id + "/" + unit.Definition.Weapon.Id, out Vector2 position)) unit.Position = unit.PreviousPosition = position;
             }
             movement.Reset();
+            if (session != null && session.State.Phase == SessionPhase.Shop) simulation.SetShopBounds(ReviewBalance.ShopHalfExtents(runCatalog.RestViewHeight));
             moveIntent = Vector2.zero;
             if (!preserveEffects)
             {
@@ -206,6 +232,12 @@ namespace ArcaneBrigade
         {
             if (simulation == null) return;
             runHud.ReadNavigation(pauseGate.Manual || pauseGate.Navigation || session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat));
+            if (music != null && session != null)
+            {
+                bool dawn = session.State.Nightmare?.CustomerDefeated == true && !session.State.Endless;
+                music.SetDreamDepth(NightmareRules.Depth(session.State.Wave),dawn);
+                music.ForceScene(dawn && session.State.Nightmare.EndingPage >= 2 ? "menu" : null);
+            }
             if (music != null && session != null) music.SetPhase(TransitionPending ? SessionPhase.Combat : session.State.Phase, pauseGate.Paused || simulation.Phase == RunPhase.Paused, simulation.Boss != null && simulation.Boss.Alive);
             if (music != null && session != null) music.SetContext(session.State.Wave, runCatalog.NormalWaves, session.State.Endless, Shop != null && Shop.Special, simulation.Units);
             if (session != null && (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3))) ToggleDetails();
@@ -215,16 +247,18 @@ namespace ArcaneBrigade
             if (details.Open && Input.GetKeyDown(KeyCode.JoystickButton5)) details.SelectTab((details.Tab + 1) % RunDetails.TabCount);
             if (details.Open && Input.GetKeyDown(KeyCode.JoystickButton4)) details.SelectTab((details.Tab + RunDetails.TabCount - 1) % RunDetails.TabCount);
             if (details.Open && Input.GetKeyDown(KeyCode.JoystickButton0)) details.MoveSelection(1);
-            if (details.Open && Input.GetKeyDown(KeyCode.JoystickButton2)) details.MoveSelection(-1);
+            if (details.Open && Input.GetKeyDown(KeyCode.JoystickButton2)) { if (details.HeroSelected && session.CanConfigureHero) ConfigureHeroIdentity(() => session.ChooseHeroApproach((session.State.HeroIdentity.Approach + 1) % 3)); else details.MoveSelection(-1); }
+            if (details.HeroSelected && session.CanConfigureHero && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton8))) ConfigureHeroIdentity(() => session.State.ChampionId == "PatchworkHost" ? session.CycleFeaturedFriend() : session.State.ChampionId == "GlassDice" ? session.RerollHeroDie() : session.State.ChampionId == "PennyBroker" ? session.PlaceHeroOrder() : session.State.ChampionId == "LoneJelly" && session.CycleMemoryOrgan(session.State.HeroIdentity.Approach));
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7))
             {
                 if (details.Open) ToggleDetails();
                 else if (pauseGate.Navigation) CancelMenuReturn();
                 else SetPaused(!pauseGate.Manual);
             }
-            moveIntent = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest || simulation.Phase == RunPhase.Victory && transitionRemaining > 0 ? movement.Read(arenaCamera.pixelRect) : Vector2.zero;
+            moveIntent = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest || simulation.Phase == RunPhase.Victory && (transitionRemaining > 0 || session != null && session.EndingChoicePending) ? movement.Read(arenaCamera.pixelRect) : Vector2.zero;
             if ((RunPaths.K2Capture || RunPaths.K3FinalCapture || RunPaths.K7Capture) && presentationMoveTarget.HasValue && (simulation.Phase == RunPhase.Combat || RunPaths.K7Capture && simulation.Phase == RunPhase.Rest)) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
             if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
+            if (SecretRoom != null && SecretRoom.MenuOpen) moveIntent = Vector2.zero;
             if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); }
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
             if (warning && !warningAudio && !pauseGate.Paused && !ArcaneCueLibrary.Available) audioFeedback.PlayCue(24, true);
@@ -270,7 +304,7 @@ namespace ArcaneBrigade
             if (simulation == null) return;
             if (stageTransfer != null && stageTransfer.Active) return;
             if (pauseGate.Paused) return;
-            if (simulation.Phase == RunPhase.Victory && transitionRemaining > 0) { simulation.StepFinale(Time.fixedDeltaTime, moveIntent); return; }
+            if (simulation.Phase == RunPhase.Victory && (transitionRemaining > 0 || session != null && session.EndingChoicePending)) { simulation.StepFinale(Time.fixedDeltaTime, moveIntent); return; }
             if (session != null && session.State.Phase == SessionPhase.Shop)
             {
                 simulation.StepRest(Time.fixedDeltaTime, moveIntent);
@@ -278,10 +312,13 @@ namespace ArcaneBrigade
                 return;
             }
             if (session != null && session.State.Phase != SessionPhase.Combat) return;
+            long simulationStarted = AnimationStressMeasurement.Recording ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;
             simulation.Step(Time.fixedDeltaTime, moveIntent);
+            if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.SimulationMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - simulationStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
             combatFeel.Play(simulation.Events, units, simulation.VisualElapsed);
             foreach (CombatEvent value in simulation.Events)
             {
+                if (stagePerformance != null) stagePerformance.Observe(value);
                 if (value.Kind == CombatEventKind.Pickup && value.Value > 0 && (value.Loot == LootKind.Coin || value.Loot == LootKind.Egg)) WalletPulse = 1;
                 if (value.Kind != CombatEventKind.Kill || value.Subject == null || deathFeedback == null) continue;
                 if (units.TryGetValue(value.SubjectId, out UnitVisual existing)) { existing.Display(simulation.VisualElapsed, 1); deathFeedback.Play(existing, value.Subject); }
@@ -338,6 +375,13 @@ namespace ArcaneBrigade
         }
 
         public void TogglePause() { SetPaused(!pauseGate.Manual); }
+        public bool ConfigureHeroIdentity(Func<bool> operation)
+        {
+            if (session == null || !session.CanConfigureHero || TransitionPending || hallExitPending) return false;
+            if (!RunTransaction.TryCommit(session, runCatalog, "HERO APPROACH", operation, PersistBoundary, out string error)) { if (!string.IsNullOrEmpty(error)) SaveError = error; return false; }
+            CheckpointAudio.PlayInterfaceId("ui.confirm");
+            details.Show(session,runCatalog,session.State.Health); return true;
+        }
         public void ToggleDetails()
         {
             if (session == null) return;
@@ -407,11 +451,6 @@ namespace ArcaneBrigade
                 if (!existed)
                 {
                     visual.BeginArrival(origin);
-                    if (unit.Definition.Rarity != ItemRarity.Common)
-                    {
-                        var glow = new GameObject("RecruitedAllyRarity"); glow.transform.SetParent(visual.transform.parent, false);
-                        glow.AddComponent<ShopRarityGlow>().Configure(unit.Definition.Rarity, this, 0, visual.BodyRenderer);
-                    }
                 }
             }
         }
@@ -423,6 +462,7 @@ namespace ArcaneBrigade
         public void ShowOfferPreviewFixture() => runHud.ShowOfferPreviewFixture();
         public bool BeginHallExit(Vector2 doorway)
         {
+            if (session.SecretRoomOpen) return false;
             if (pauseGate.Paused || hallExitPending || TransitionPending || session.State.Phase != SessionPhase.Shop) return false;
             hallExitPending = true; hallExitElapsed = 0; hallExitTarget = doorway + Vector2.down * 1.1f;
             HallDepartureEffect.Play(this, doorway);
@@ -436,6 +476,7 @@ namespace ArcaneBrigade
         }, -1);
         public void NextWave()
         {
+            if (session.SecretRoomOpen) return;
             if (session.State.Phase != SessionPhase.Shop || TransitionPending) return;
             RunSnapshot before = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
             if (session.OutsideChallengeAvailable) session.DeclineOutsideStage();
@@ -477,8 +518,10 @@ namespace ArcaneBrigade
         {
             if (PresentationPaused || TransitionPending) return false;
             RunSnapshot before = MergeReveal.Capture(session.State);
+            var previousStats = RunBuildReadModel.Capture(session,runCatalog,before.Health).ShopStats;
             if (!session.ClaimOutsideStageReward(index)) return false;
             if (!PersistBoundary()) { session.Restore(before); return false; }
+            session.PublishShopStatChanges(previousStats,RunBuildReadModel.Capture(session,runCatalog,session.State.Health).ShopStats);
             Begin(true); return true;
         }
         public void RestartRun()
@@ -531,6 +574,8 @@ namespace ArcaneBrigade
 
         private void Render(float interpolation)
         {
+            long renderStarted = AnimationStressMeasurement.Recording ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;
+            AnimationDetailBudget.SetLoad(simulation.Units.Count, simulation.Projectiles.Count);
             EffectDensity.SetSceneLoad(simulation.Projectiles.Count, simulation.Units.Count);
             if (spectacleVisual != null) spectacleVisual.Display(simulation);
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
@@ -550,6 +595,8 @@ namespace ArcaneBrigade
                     units.Add(state.Id, view);
                 }
                 view.ReducedMotion = profile != null && profile.ReducedMotion;
+                view.RestAttention = session != null && (session.State.Phase == SessionPhase.Shop || session.EndingChoicePending);
+                view.AttentionPoint = state.Faction == Faction.Companion ? simulation.Champion.Position : new Vector2(0, 2);
                 float poseTime = simulation.VisualElapsed + terminalVisualAge - (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? Time.fixedDeltaTime * (1 - interpolation) : 0);
                 view.Display(poseTime, interpolation);
                 if (terminalVisualAge > 0 && state.Faction == Faction.Enemy) view.SetTerminalFade(Mathf.Clamp01(1 - terminalVisualAge / 0.35f));
@@ -615,6 +662,7 @@ namespace ArcaneBrigade
                 if (terminalVisualAge > 0) coin.SetFade(view, Mathf.Clamp01(1 - terminalVisualAge / 0.4f));
             }
             RetireSprites(pickupViews);
+            if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.RenderMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - renderStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
         }
 
         private void RetireSprites(Dictionary<int, SpriteRenderer> views)
@@ -638,6 +686,7 @@ namespace ArcaneBrigade
                 bool previousEnabled = GUI.enabled;
                 GUI.enabled = previousEnabled && !details.Open && !pauseGate.Navigation;
                 runHud.Draw(this, arenaCamera);
+                if (!details.Open && !pauseGate.Navigation && nightmare != null) nightmare.Draw(arenaCamera);
                 GUI.enabled = previousEnabled;
                 if (details.Open) details.Draw(this, arenaCamera);
                 else if (pauseGate.Navigation) runHud.DrawMenuConfirmation(this, arenaCamera);

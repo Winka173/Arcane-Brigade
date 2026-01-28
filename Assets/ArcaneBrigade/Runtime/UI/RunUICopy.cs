@@ -86,6 +86,27 @@ namespace ArcaneBrigade
         public static string UnlockCondition(UnitDefinition unit, int bestWave) => bestWave >= unit.UnlockWave ? "Unlocked" : "Unlock: wave " + unit.UnlockWave;
         public static string ChampionDescription(UnitDefinition unit)
         {
+            var identity = HeroIdentities.For(unit.Id);
+            if (identity == null) return LegacyChampionDescription(unit);
+            string innate = unit.Id switch {
+                "LanternKnight" => "Start with +5 HP, +5% movement speed and 0.2 HP/s. Rally strengthens personal attacks with your brigade.",
+                "Postmaster" => "Team flat ranged damage +3 and melee damage -2. After 25s, team melee attacks deal 40% more and ranged attacks 25% less.",
+                "DrowsySeer" => "Basic attacks while moving; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.",
+                "RootOracle" => "Stationary in battle; walks in shops. Whole-arena pickup, 30% shop discount, no dodge and -100% treasure detection.",
+                "LoneJelly" => "Fight without companion bodies. Buying companions absorbs their talents. Solo weapon damage grows with wave, within its cap.",
+                "GlassDice" => "No ordinary basic attack. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.",
+                "CometRunner" => "Team movement speed +20%; start with +10% dodge and crit, but armor -0.15.",
+                "MirrorKeeper" => "Each Prizefighter bond level adds 3 hero collision damage. Standing still prepares the borrowed volley.",
+                "StormFencer" => "No basic attack. Hero collision damage doubles. Start with +20% dodge.",
+                "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions fight through conducted responses.",
+                "LanternWeaver" or "HourglassStag" or "RainArchivist" or "SupperMortar" => "Base weapon and all listed run modifiers still apply.",
+                _ => OctoberContent.HeroCopy(unit.ReferenceHero)
+            };
+            return HeroIdentities.Describe(unit.Id) + "\n\nINNATE TRAITS\n" + innate;
+        }
+        private static string LegacyChampionDescription(UnitDefinition unit)
+        {
+            if (!string.IsNullOrEmpty(unit.ReferenceHero)) return unit.Description == OctoberContent.HeroCopy(unit.ReferenceHero) ? unit.Description : unit.Description + "\n\n" + OctoberContent.HeroCopy(unit.ReferenceHero);
             if (unit.HeroMechanic >= HeroMechanic.RootedOracle) return K11HeroRules.Describe(unit);
             if (unit.ChampionModifiers != null && unit.ChampionModifiers.Length > 0) return unit.Description + (unit.HeroMechanic == HeroMechanic.None ? "" : "\n\n" + K11HeroRules.Describe(unit));
             switch (unit.Id)
@@ -125,7 +146,7 @@ namespace ArcaneBrigade
         {
             string[] parts = (key ?? "").Split('/');
             if (parts.Length < 3 || !int.TryParse(parts[1], out int difficulty)) return key;
-            return UnitName(parts[0], catalog.Unit(parts[0])?.DisplayName) + " · " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, 4)] + " · " + (parts[2] == "endless" ? "Endless" : "Journey") + (parts.Length > 3 && !string.IsNullOrEmpty(parts[3]) ? " · " + AchievementName("challenge-" + parts[3]) : "");
+            return UnitName(parts[0], catalog.Unit(parts[0])?.DisplayName) + " · " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " · " + (parts[2] == "endless" ? "Endless" : "Journey") + (parts.Length > 3 && !string.IsNullOrEmpty(parts[3]) ? " · " + AchievementName("challenge-" + parts[3]) : "");
         }
         public static string AchievementName(string id)
         {
@@ -134,7 +155,7 @@ namespace ArcaneBrigade
             if (id == "challenge-first-light") return "Complete First Light";
             if (id == "challenge-small-brigade") return "Complete Small Brigade";
             const string prefix = "clear-difficulty-";
-            if (id != null && id.StartsWith(prefix) && int.TryParse(id.Substring(prefix.Length), out int difficulty)) return "Win difficulty " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, 4)];
+            if (id != null && id.StartsWith(prefix) && int.TryParse(id.Substring(prefix.Length), out int difficulty)) return "Win difficulty " + RunMeta.DifficultyNames[Mathf.Clamp(difficulty, 0, RunMeta.DifficultyNames.Length - 1)];
             return id;
         }
         public static string ContributionName(string id, RunCatalog catalog)

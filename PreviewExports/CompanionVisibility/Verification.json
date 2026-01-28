@@ -1,0 +1,23 @@
+{
+    "Changes":  [
+                    "Per-part source atlas UVs for split bodies",
+                    "Five-row prioritized bond HUD with full paused detail view"
+                ],
+    "EditorAndNativeChecks":  {
+                                  "PreviewExports/CompanionVisibility/Focused_Checks.txt":  2750,
+                                  "PreviewExports/CompanionVisibility/Native/Native_Checks.txt":  2751,
+                                  "PreviewExports/CompanionVisibility/NativeReduced/Native_Checks.txt":  2750,
+                                  "PreviewExports/BondHud/Native/Native_Checks.txt":  52
+                              },
+    "LegacyReproductionVisiblePixels":  0,
+    "FixedVisiblePixels":  2511,
+    "CompanionSpecies":  66,
+    "CompanionTiers":  3,
+    "Champions":  31,
+    "StatesPerUnitTier":  12,
+    "BuildResult":  "Succeeded",
+    "BuildErrors":  0,
+    "BuildWarnings":  0,
+    "Build":  "Builds/FullRun/ArcaneBrigade.exe",
+    "Log":  "Library/CompanionVisibility-BuildFinal.log"
+}

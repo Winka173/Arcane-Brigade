@@ -8,12 +8,15 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private readonly List<GameObject> actors = new List<GameObject>();
         private readonly Vector2[] rewardPositions = { new Vector2(-3, -0.8f), new Vector2(0, -0.8f), new Vector2(3, -0.8f) };
-        private readonly Vector2 challengePosition = new Vector2(4.3f, -3.3f);
+        public static readonly Vector2 ChallengePosition = new Vector2(6.1f, 0.3f);
+        public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && Vector2.Distance(owner.Simulation.Champion.Position, ChallengePosition) < 1.6f;
         private int mode;
         private float hold;
         private int selection = -1;
         private GUIStyle title;
         private GUIStyle copy;
+        private Vector2 descriptionScroll;
+        private int preview;
         public void Configure(ArenaController controller) { owner = controller; }
         private void Clear() { foreach (GameObject actor in actors) Destroy(actor); actors.Clear(); hold = 0; selection = -1; }
         private void Update()
@@ -24,15 +27,15 @@ namespace ArcaneBrigade
             if (mode == 0 || owner.PresentationPaused || owner.TransitionPending) { hold = 0; return; }
             Vector2 player = owner.Simulation.Champion.Position;
             int near = -1;
-            if (mode == 1) { if (Vector2.Distance(player, challengePosition) < 1.05f) near = 0; }
+            if (mode == 1) { if (Focused) near = 0; }
             else for (int index = 0; index < 3; index++) if (Vector2.Distance(player, rewardPositions[index]) < 1.05f) near = index;
-            if (selection != near) { selection = near; hold = 0; }
-            bool pressed = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.JoystickButton0);
+            if (selection != near) { selection = near; hold = 0; if (near >= 0) { preview = near; descriptionScroll = Vector2.zero; } }
+            bool pressed = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.JoystickButton0);
             hold = selection >= 0 && pressed ? hold + Time.deltaTime : 0;
             float time = owner.PresentationClock;
             for (int index = 0; index < actors.Count; index++)
             {
-                Vector2 origin = mode == 1 ? challengePosition : rewardPositions[index];
+                Vector2 origin = mode == 1 ? ChallengePosition : rewardPositions[index];
                 actors[index].transform.position = origin + Vector2.up * (PresentationSettings.ReducedMotion ? 0.5f : 0.5f + Mathf.Sin(time * 2 + index) * 0.12f);
             }
             if (hold < 0.85f) return;
@@ -47,13 +50,14 @@ namespace ArcaneBrigade
             {
                 var actor = new GameObject(mode == 1 ? "TheHandWaits" : "PrismaticReward" + index); actor.transform.SetParent(transform, false);
                 SpriteRenderer sprite = actor.AddComponent<SpriteRenderer>();
-                if (mode == 1) sprite.sprite = assets.BossFrames[4];
+                if (mode == 1) sprite.sprite = CarrierArtwork.Current != null ? CarrierArtwork.Current.Hand[0] : assets.BossFrames[4];
                 else
                 {
                     string id = owner.Session.State.OutsideRewards[index];
                     ItemDefinition item = owner.Content.Item(id); sprite.sprite = item == null ? owner.Content.Unit(id).Body : item.Icon;
                 }
-                sprite.sortingOrder = 320; actor.transform.localScale = Vector3.one * ((mode == 1 ? 2.5f : 1.1f) / Mathf.Max(0.01f, sprite.sprite.bounds.size.x));
+                sprite.sortingOrder = 950; actor.transform.localScale = Vector3.one * ((mode == 1 ? 2.5f : 1.1f) / Mathf.Max(0.01f, sprite.sprite.bounds.size.x));
+                GroundShadow shadow = actor.AddComponent<GroundShadow>(); shadow.Display(sprite.sprite, mode == 1 ? ChallengePosition : rewardPositions[index], mode == 1 ? 2.2f : 0.8f, 0.5f, 0.22f);
                 var glow = new GameObject("BoundPrismaticLight"); glow.transform.SetParent(actor.transform, false);
                 glow.AddComponent<ShopRarityGlow>().Configure(ItemRarity.Rainbow, owner, index, sprite);
                 actors.Add(actor);
@@ -62,6 +66,8 @@ namespace ArcaneBrigade
         private void OnGUI()
         {
             if (mode == 0 || owner == null || owner.TransitionPending || owner.PresentationPaused) return;
+            GUISkin previousSkin = GUI.skin; GUI.skin = ArcadeSkin.Skin;
+            GUIStyle choiceButton = new GUIStyle(GUI.skin.button) { font = ArcadeTypography.Heading, fontSize = 22, wordWrap = true, padding = new RectOffset(16, 16, 8, 8) };
             if (title == null)
             {
                 title = new GUIStyle(GUI.skin.label) { font = ArcadeTypography.Body, fontSize = 28, alignment = TextAnchor.MiddleCenter, wordWrap = true };
@@ -72,20 +78,35 @@ namespace ArcaneBrigade
             GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
             if (mode == 1)
             {
-                GUI.Label(new Rect(340, 870, 1240, 42), "THE HAND THAT CARRIED YOU IS WAITING", title);
+                if (Focused && GUI.Button(new Rect(1430, 710, 340, 70), "CHALLENGE KEEPER")) owner.AcceptOutsideChallenge();
+                GUI.Label(new Rect(340, 870, 1240, 42), owner.Session.State.Secrets?.LetterSent == true ? "YOUR LETTER REACHED THE HAND THAT CARRIED YOU" : "THE HAND THAT CARRIED YOU IS WAITING", title);
                 GUI.Label(new Rect(340, 915, 1240, 70), selection >= 0 ? "Hold Space / A to challenge • Defeat ends this run • Win: choose one prismatic reward" : "Approach the hand to challenge its owner. The normal exit remains available.", copy);
             }
             else
             {
                 GUI.Label(new Rect(340, 180, 1240, 55), "TAKE ONE IMPOSSIBLE GIFT", title);
-                if (selection >= 0)
+                for (int i = 0; i < 3; i++)
                 {
-                    string id = owner.Session.State.OutsideRewards[selection]; ItemDefinition item = owner.Content.Item(id); UnitDefinition ally = owner.Content.Unit(id);
-                    GUI.Label(new Rect(340, 870, 1240, 100), (item == null ? ally.DisplayName + " — " + ally.Description : item.Name + " — " + item.Description) + "\nHold Space / A to claim. The other gifts vanish.", copy);
+                    string rewardId = owner.Session.State.OutsideRewards[i];
+                    string rewardName = owner.Content.Item(rewardId)?.Name ?? owner.Content.Unit(rewardId).DisplayName;
+                    if (GUI.Button(new Rect(340 + i * 420, 725, 400, 62), rewardName, choiceButton)) { preview = i; descriptionScroll = Vector2.zero; }
                 }
+                int shown = preview;
+                string id = owner.Session.State.OutsideRewards[shown]; ItemDefinition item = owner.Content.Item(id); UnitDefinition ally = owner.Content.Unit(id);
+                Rect panel = new Rect(370, 805, 1180, 205);
+                ArcadeSkin.Ticket(panel, new Color(.11f, .09f, .19f, .98f), RunModifierRules.RarityColor(ItemRarity.Rainbow));
+                GUI.Label(new Rect(395, 815, 1130, 36), item?.Name ?? ally.DisplayName, title);
+                string detail = item == null ? CompanionDescriptions.Describe(ally) + "\nWeapon rolls when claimed." : RunModifierRules.Describe(item, 1);
+                GUIStyle detailStyle = new GUIStyle(copy) { alignment = TextAnchor.UpperLeft, fontSize = 19 };
+                float height = Mathf.Max(90, detailStyle.CalcHeight(new GUIContent(detail), 1080));
+                descriptionScroll = GUI.BeginScrollView(new Rect(395, 860, 1125, 90), descriptionScroll, new Rect(0, 0, 1080, height));
+                GUI.Label(new Rect(0, 0, 1080, height), detail, detailStyle); GUI.EndScrollView();
+                if (GUI.Button(new Rect(1040, 958, 470, 42), "CLAIM THIS GIFT", choiceButton)) owner.ClaimOutsideReward(shown);
+                GUI.Label(new Rect(395, 960, 620, 40), "Choose one. The other two gifts vanish.", copy);
             }
-            if (selection >= 0) GUI.Label(new Rect(760, 995, 400, 35), Mathf.RoundToInt(Mathf.Clamp01(hold / 0.85f) * 100) + "%", copy);
+            if (selection >= 0 && hold > 0) GUI.Label(new Rect(760, 1020, 400, 35), Mathf.RoundToInt(Mathf.Clamp01(hold / 0.85f) * 100) + "%", copy);
             GUI.matrix = matrix;
+            GUI.skin = previousSkin;
         }
         private void OnDestroy() => Clear();
     }

@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2ce19e3df876a4590334cc3e4f8ed8, type: 3}
+  m_Name: NightmareAssets
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.NightmareAssets
+  Scenery:
+  - {fileID: 509780528, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 1571397161, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 117513437, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 1266655519, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 1902199652, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: -181619031, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 1771284166, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: -317826540, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: -1224326436, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 1417375037, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 630777426, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 379366520, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: -1035933571, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: 988793754, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: -1051545002, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  - {fileID: -1228939923, guid: 280913de9eb7a2246b299505943dbec9, type: 3}
+  CustomerFrames:
+  - {fileID: -363099696, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: -871037283, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: -1180391139, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: 209718419, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: 2126644246, guid: 0ac9cd384436b6a478364d8ea9bd7dc5, type: 3}
+  - {fileID: -1175870975, guid: 0ac9cd384436b6a478364d8ea9bd7dc5, type: 3}
+  - {fileID: -1517063432, guid: 0ac9cd384436b6a478364d8ea9bd7dc5, type: 3}
+  - {fileID: 1616681492, guid: 0ac9cd384436b6a478364d8ea9bd7dc5, type: 3}
+  - {fileID: -243108498, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -1610914373, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -849483049, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -1405305074, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -492331347, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -597458038, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -1847589094, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  - {fileID: -1608888033, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+  EndingPanels: []
+  EndingIllustration: {fileID: 2800000, guid: cc5e616a1ab934c4c912dd64faa51ff8, type: 3}
+  PromiseIllustration: {fileID: 2800000, guid: e4c13e768f962e5429bf99cd8e585aa4, type: 3}
+  ManFrames:
+  - {fileID: 845372207, guid: b9c28c7415fa8da4ba512451b5fbaa90, type: 3}
+  - {fileID: -1498267050, guid: b9c28c7415fa8da4ba512451b5fbaa90, type: 3}
+  - {fileID: -309791404, guid: b9c28c7415fa8da4ba512451b5fbaa90, type: 3}
+  - {fileID: 1865181809, guid: b9c28c7415fa8da4ba512451b5fbaa90, type: 3}
+  GrandStage:
+  - {fileID: -1307871708, guid: 5c3520f433f94a84a8251bea2ab39d4f, type: 3}
+  - {fileID: -1949216421, guid: 5c3520f433f94a84a8251bea2ab39d4f, type: 3}
+  - {fileID: -242617559, guid: 5c3520f433f94a84a8251bea2ab39d4f, type: 3}
+  - {fileID: -52285979, guid: 5c3520f433f94a84a8251bea2ab39d4f, type: 3}
+  Customer: {fileID: 11400000, guid: ddb49b5fdcbde0e45acd311fac62e548, type: 2}
+  Anatomy:
+    BossId: TheLastCustomer
+    Organs:
+    - Id: customer-stamp
+      Name: The Final Stamp
+      BreakSummary: Break to weaken stamping attacks.
+      Role: 4
+      Offset: {x: -0.4, y: 0.05}
+      Height: 0.3
+      Durability: 0.2
+      Rest: {fileID: -243108498, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Charged: {fileID: -1610914373, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Release: {fileID: -1610914373, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Scar: {fileID: -1608888033, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+    - Id: customer-ribbon
+      Name: Binding Promise
+      BreakSummary: Break to interrupt binding ribbons.
+      Role: 1
+      Offset: {x: 0.4, y: 0.05}
+      Height: 0.26
+      Durability: 0.2
+      Rest: {fileID: -849483049, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Charged: {fileID: -1405305074, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Release: {fileID: -1405305074, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Scar: {fileID: -1608888033, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+    - Id: customer-drawer
+      Name: The Inventory
+      BreakSummary: Break to stop the parcel collection.
+      Role: 4
+      Offset: {x: 0, y: -0.16}
+      Height: 0.2
+      Durability: 0.2
+      Rest: {fileID: -597458038, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Charged: {fileID: -492331347, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Release: {fileID: -1847589094, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}
+      Scar: {fileID: -1608888033, guid: 7f10122e5fa88864397df33a80b1ff4a, type: 3}

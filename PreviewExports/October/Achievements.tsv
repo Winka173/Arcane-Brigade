@@ -1,0 +1,105 @@
+Id	Name	Condition	Metric	Goal
+journal-dawn-LanternKnight	Lantern Knight / First dawn	Finish a normal journey with Lantern Knight.	win-LanternKnight	1
+journal-master-LanternKnight	Lantern Knight / Night keeper	Finish Sleepless or harder with Lantern Knight.	master-LanternKnight	1
+journal-dawn-Postmaster	Postmaster / First dawn	Finish a normal journey with Postmaster.	win-Postmaster	1
+journal-master-Postmaster	Postmaster / Night keeper	Finish Sleepless or harder with Postmaster.	master-Postmaster	1
+journal-dawn-DrowsySeer	Drowsy Seer / First dawn	Finish a normal journey with Drowsy Seer.	win-DrowsySeer	1
+journal-master-DrowsySeer	Drowsy Seer / Night keeper	Finish Sleepless or harder with Drowsy Seer.	master-DrowsySeer	1
+journal-dawn-RootOracle	The Root Oracle / First dawn	Finish a normal journey with The Root Oracle.	win-RootOracle	1
+journal-master-RootOracle	The Root Oracle / Night keeper	Finish Sleepless or harder with The Root Oracle.	master-RootOracle	1
+journal-dawn-LoneJelly	The Lone Jelly / First dawn	Finish a normal journey with The Lone Jelly.	win-LoneJelly	1
+journal-master-LoneJelly	The Lone Jelly / Night keeper	Finish Sleepless or harder with The Lone Jelly.	master-LoneJelly	1
+journal-dawn-GlassDice	Lady Loaded Dice / First dawn	Finish a normal journey with Lady Loaded Dice.	win-GlassDice	1
+journal-master-GlassDice	Lady Loaded Dice / Night keeper	Finish Sleepless or harder with Lady Loaded Dice.	master-GlassDice	1
+journal-dawn-TideSinger	The Tide Singer / First dawn	Finish a normal journey with The Tide Singer.	win-TideSinger	1
+journal-master-TideSinger	The Tide Singer / Night keeper	Finish Sleepless or harder with The Tide Singer.	master-TideSinger	1
+journal-dawn-CometRunner	The Comet Courier / First dawn	Finish a normal journey with The Comet Courier.	win-CometRunner	1
+journal-master-CometRunner	The Comet Courier / Night keeper	Finish Sleepless or harder with The Comet Courier.	master-CometRunner	1
+journal-dawn-MirrorKeeper	The Mirror Keeper / First dawn	Finish a normal journey with The Mirror Keeper.	win-MirrorKeeper	1
+journal-master-MirrorKeeper	The Mirror Keeper / Night keeper	Finish Sleepless or harder with The Mirror Keeper.	master-MirrorKeeper	1
+journal-dawn-TreasureAcorn	The Treasure Clerk / First dawn	Finish a normal journey with The Treasure Clerk.	win-TreasureAcorn	1
+journal-master-TreasureAcorn	The Treasure Clerk / Night keeper	Finish Sleepless or harder with The Treasure Clerk.	master-TreasureAcorn	1
+journal-dawn-VerdantMatron	Verdant Matron / First dawn	Finish a normal journey with Verdant Matron.	win-VerdantMatron	1
+journal-master-VerdantMatron	Verdant Matron / Night keeper	Finish Sleepless or harder with Verdant Matron.	master-VerdantMatron	1
+journal-dawn-CopperCauldron	Copper Cauldron / First dawn	Finish a normal journey with Copper Cauldron.	win-CopperCauldron	1
+journal-master-CopperCauldron	Copper Cauldron / Night keeper	Finish Sleepless or harder with Copper Cauldron.	master-CopperCauldron	1
+journal-dawn-ChinaMarionette	China Marionette / First dawn	Finish a normal journey with China Marionette.	win-ChinaMarionette	1
+journal-master-ChinaMarionette	China Marionette / Night keeper	Finish Sleepless or harder with China Marionette.	master-ChinaMarionette	1
+journal-dawn-SoapSkater	Soap Skater / First dawn	Finish a normal journey with Soap Skater.	win-SoapSkater	1
+journal-master-SoapSkater	Soap Skater / Night keeper	Finish Sleepless or harder with Soap Skater.	master-SoapSkater	1
+journal-dawn-VelvetRegent	Velvet Regent / First dawn	Finish a normal journey with Velvet Regent.	win-VelvetRegent	1
+journal-master-VelvetRegent	Velvet Regent / Night keeper	Finish Sleepless or harder with Velvet Regent.	master-VelvetRegent	1
+journal-dawn-ButtonCavalier	Button Cavalier / First dawn	Finish a normal journey with Button Cavalier.	win-ButtonCavalier	1
+journal-master-ButtonCavalier	Button Cavalier / Night keeper	Finish Sleepless or harder with Button Cavalier.	master-ButtonCavalier	1
+journal-dawn-NightMaw	Night Maw / First dawn	Finish a normal journey with Night Maw.	win-NightMaw	1
+journal-master-NightMaw	Night Maw / Night keeper	Finish Sleepless or harder with Night Maw.	master-NightMaw	1
+journal-dawn-ThornTreasurer	Thorn Treasurer / First dawn	Finish a normal journey with Thorn Treasurer.	win-ThornTreasurer	1
+journal-master-ThornTreasurer	Thorn Treasurer / Night keeper	Finish Sleepless or harder with Thorn Treasurer.	master-ThornTreasurer	1
+journal-dawn-CitrusMarshal	Citrus Marshal / First dawn	Finish a normal journey with Citrus Marshal.	win-CitrusMarshal	1
+journal-master-CitrusMarshal	Citrus Marshal / Night keeper	Finish Sleepless or harder with Citrus Marshal.	master-CitrusMarshal	1
+journal-dawn-IvorySovereign	Ivory Sovereign / First dawn	Finish a normal journey with Ivory Sovereign.	win-IvorySovereign	1
+journal-master-IvorySovereign	Ivory Sovereign / Night keeper	Finish Sleepless or harder with Ivory Sovereign.	master-IvorySovereign	1
+journal-dawn-PetalCitadel	Petal Citadel / First dawn	Finish a normal journey with Petal Citadel.	win-PetalCitadel	1
+journal-master-PetalCitadel	Petal Citadel / Night keeper	Finish Sleepless or harder with Petal Citadel.	master-PetalCitadel	1
+journal-dawn-PatchworkHost	Patchwork Host / First dawn	Finish a normal journey with Patchwork Host.	win-PatchworkHost	1
+journal-master-PatchworkHost	Patchwork Host / Night keeper	Finish Sleepless or harder with Patchwork Host.	master-PatchworkHost	1
+journal-dawn-ArchiveCurator	Archive Curator / First dawn	Finish a normal journey with Archive Curator.	win-ArchiveCurator	1
+journal-master-ArchiveCurator	Archive Curator / Night keeper	Finish Sleepless or harder with Archive Curator.	master-ArchiveCurator	1
+journal-dawn-PennyBroker	Penny Broker / First dawn	Finish a normal journey with Penny Broker.	win-PennyBroker	1
+journal-master-PennyBroker	Penny Broker / Night keeper	Finish Sleepless or harder with Penny Broker.	master-PennyBroker	1
+journal-dawn-StormFencer	Storm Fencer / First dawn	Finish a normal journey with Storm Fencer.	win-StormFencer	1
+journal-master-StormFencer	Storm Fencer / Night keeper	Finish Sleepless or harder with Storm Fencer.	master-StormFencer	1
+journal-dawn-TinVirtuoso	Tin Virtuoso / First dawn	Finish a normal journey with Tin Virtuoso.	win-TinVirtuoso	1
+journal-master-TinVirtuoso	Tin Virtuoso / Night keeper	Finish Sleepless or harder with Tin Virtuoso.	master-TinVirtuoso	1
+journal-dawn-MoonProwler	Moon Prowler / First dawn	Finish a normal journey with Moon Prowler.	win-MoonProwler	1
+journal-master-MoonProwler	Moon Prowler / Night keeper	Finish Sleepless or harder with Moon Prowler.	master-MoonProwler	1
+journal-dawn-SupperMortar	Supper Mortar / First dawn	Finish a normal journey with Supper Mortar.	win-SupperMortar	1
+journal-master-SupperMortar	Supper Mortar / Night keeper	Finish Sleepless or harder with Supper Mortar.	master-SupperMortar	1
+journal-dawn-LanternWeaver	Lantern Weaver / First dawn	Finish a normal journey with Lantern Weaver.	win-LanternWeaver	1
+journal-master-LanternWeaver	Lantern Weaver / Night keeper	Finish Sleepless or harder with Lantern Weaver.	master-LanternWeaver	1
+journal-dawn-HourglassStag	Hourglass Stag / First dawn	Finish a normal journey with Hourglass Stag.	win-HourglassStag	1
+journal-master-HourglassStag	Hourglass Stag / Night keeper	Finish Sleepless or harder with Hourglass Stag.	master-HourglassStag	1
+journal-dawn-RainArchivist	Rain Archivist / First dawn	Finish a normal journey with Rain Archivist.	win-RainArchivist	1
+journal-master-RainArchivist	Rain Archivist / Night keeper	Finish Sleepless or harder with Rain Archivist.	master-RainArchivist	1
+journal-difficulty-0	Peaceful / Dawn	Finish a normal journey at this difficulty or harder.	difficulty	1
+journal-difficulty-1	Wandering / Dawn	Finish a normal journey at this difficulty or harder.	difficulty	2
+journal-difficulty-2	Restless / Dawn	Finish a normal journey at this difficulty or harder.	difficulty	3
+journal-difficulty-3	Nightmare / Dawn	Finish a normal journey at this difficulty or harder.	difficulty	4
+journal-difficulty-4	Sleepless / Dawn	Finish a normal journey at this difficulty or harder.	difficulty	5
+journal-difficulty-5	Beyond the Lamp / Dawn	Finish a normal journey at this difficulty or harder.	difficulty	6
+journal-score-10000	Receipt worth 10,000	Earn this score in one journey. Endless counts.	score	10000
+journal-score-50000	Receipt worth 50,000	Earn this score in one journey. Endless counts.	score	50000
+journal-score-100000	Receipt worth 100,000	Earn this score in one journey. Endless counts.	score	100000
+journal-score-250000	Receipt worth 250,000	Earn this score in one journey. Endless counts.	score	250000
+journal-score-500000	Receipt worth 500,000	Earn this score in one journey. Endless counts.	score	500000
+journal-score-1000000	Receipt worth 1,000,000	Earn this score in one journey. Endless counts.	score	1000000
+journal-gold-200	A purse of 200	Collect this much combat gold in one wave.	battle-gold	200
+journal-gold-500	A purse of 500	Collect this much combat gold in one wave.	battle-gold	500
+journal-gold-800	A purse of 800	Collect this much combat gold in one wave.	battle-gold	800
+journal-party-10	10 names on the ticket	Own this many companions at one time.	party	10
+journal-party-15	15 names on the ticket	Own this many companions at one time.	party	15
+journal-party-20	20 names on the ticket	Own this many companions at one time.	party	20
+journal-health	A well stitched heart	Reach 120 maximum HP.	health	120
+journal-fragile	One last thread	Enter combat with at most 1 maximum HP.	one-health	1
+journal-armor	Porcelain fortress	Reach 0.75 armor before the incoming damage cap.	armor	0.75
+journal-regen	Warm tea forever	Reach 5 passive HP regeneration per second.	regen	5
+journal-reach	Across the counter	Reach 5 units of compiled champion weapon range.	range	5
+journal-projectiles	A pocket of stars	Reach 6 compiled projectiles.	projectiles	6
+journal-crit	Every seam exposed	Reach 100% critical chance.	crit	1
+journal-damage	Two promises	Reach +100% champion damage before diminishing returns.	damage	1
+journal-luck	A four leaf receipt	Reach +50% luck.	luck	0.5
+journal-dodge	Between the raindrops	Reach 60% dodge before the dodge cap.	dodge	0.6
+journal-tempo	A quicker clock	Reach +70% attack speed before diminishing returns.	tempo	0.7
+journal-speed	Wind in the ribbons	Reach 6.5 compiled movement speed.	speed	6.5
+journal-income	The shop pays you	Reach 80 wave income.	income	80
+journal-score-bonus	A signed receipt	Reach +20% score multiplier.	score-bonus	0.2
+journal-body	Room to grow	Increase champion body size by at least 20%.	body	1.2
+journal-wave12	Still open at midnight	Clear wave 12.	cleared	12
+journal-wave30	The long staircase	Clear endless wave 30.	endless-cleared	30
+journal-pony	A seat for a friend	Enter combat with a Pony and another ally.	rider	1
+journal-nursery	Your first leaf	Buy a nursery Sprout.	sprouts	1
+journal-memory	A room of borrowed voices	Absorb 8 companion memories in one run.	memories	8
+journal-keeper	A hand released	Defeat the Outside Keeper.	keeper	1
+journal-farewell	Leave a light	Complete a nightmare farewell.	farewell	1
+journal-three-star	One weapon remembered	Own a three star companion.	three-star	1
+journal-bonds	A well woven brigade	Activate 5 different bonds together.	bonds	5

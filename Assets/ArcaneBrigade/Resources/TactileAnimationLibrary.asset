@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e719cac051c351b429c7276483f59d6d, type: 3}
+  m_Name: TactileAnimationLibrary
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.TactileAnimationLibrary
+  Paper:
+  - {fileID: 1836205991, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 783858001, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 559843147, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 544307402, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  Metal:
+  - {fileID: 1378964827, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: -1761505554, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 1108031907, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: -1910822225, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  Wax:
+  - {fileID: 913860938, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: -557715615, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: -1302096686, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 1077883763, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  Dust:
+  - {fileID: 905270207, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 1032351711, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 1866362612, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  - {fileID: 1891272525, guid: d58c46ea45b19ce47996169b33894c22, type: 3}
+  Chests:
+  - {fileID: -821530288, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
+  - {fileID: -701639490, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
+  - {fileID: 572447842, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
+  - {fileID: 996131866, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}

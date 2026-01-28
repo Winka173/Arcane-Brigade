@@ -39,11 +39,23 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - frost
+  - hare
+  - root
   Passive: 0
   PassiveStrength: 1
-  Description: 'Team: Critical chance +1%. Your Maximum health -1
-
-    Auto attacks'
+  Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nHero and all companions gain
+    5% movement speed per talent. Applies while owned, subject to final speed limits.\r\n\nSUPPORT
+    WHILE OWNED\nTeam / Critical chance: +1%\nChampion / Maximum health: -1\nTier
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
+    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
+    and absorbed memories; their stated percentages are not multiplied by star level
+    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds:
+    frost, hare, root. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    bodies merge unless the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Cheer Bunny
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -59,7 +71,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

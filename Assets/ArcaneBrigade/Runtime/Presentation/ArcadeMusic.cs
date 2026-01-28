@@ -20,6 +20,11 @@ namespace ArcaneBrigade
         /// <summary>0..1 low-health danger: melody/intensity stems fall away so heartbeat and rhythm carry the moment.</summary>
         public static float Danger { get; set; }
         private float dangerSmooth;
+        private int dreamDepth;
+        private bool dreamDawn;
+        public void SetDreamDepth(int depth, bool dawn) { dreamDepth = Mathf.Clamp(depth,0,4); dreamDawn = dawn; }
+        public static float DreamStemGain(int depth, int stem, bool dawn)
+            => dawn ? 1 : stem == 2 ? Mathf.Lerp(1,.5f,Mathf.Clamp01(depth / 4f)) : stem == 1 ? Mathf.Lerp(1,.85f,Mathf.Clamp01(depth / 4f)) : 1;
         private static readonly List<ArcadeMusic> owners = new List<ArcadeMusic>();
 
         private sealed class Deck
@@ -214,7 +219,7 @@ namespace ArcaneBrigade
             wasSuspended = suspended;
 
             float dt = Time.unscaledDeltaTime;
-            float busTarget = PresentationSettings.MusicVolume * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio);
+            float busTarget = PresentationSettings.MusicVolume * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio) * (NightmareHaunting.Quiet ? .3f : 1);
             if (PresentationSettings.MusicVolume <= 0f) busSmooth = 0f;
             else busSmooth += (busTarget - busSmooth) * (1f - Mathf.Exp(-dt * (busTarget < busSmooth ? 7f : 3f)));
 
@@ -307,6 +312,7 @@ namespace ArcaneBrigade
                 float envelope = deck.fadingOut ? Mathf.Cos(progress * Mathf.PI * 0.5f) : Mathf.Sin(progress * Mathf.PI * 0.5f);
                 if (deck.fadingOut && progress >= 1f) { KillDeck(deck); if (current == index) current = -1; continue; }
                 StemTargets(deck.scene, density, targets);
+                for (int stem = 0; stem < StemCount; stem++) targets[stem] *= DreamStemGain(dreamDepth,stem,dreamDawn);
                 if (dangerSmooth > 0f) { targets[2] *= 1f - 0.65f * dangerSmooth; targets[3] *= 1f - 0.85f * dangerSmooth; targets[0] *= 1f - 0.2f * dangerSmooth; }
                 float sceneLevel = SceneLevel(deck.scene);
                 for (int stem = 0; stem < StemCount; stem++)

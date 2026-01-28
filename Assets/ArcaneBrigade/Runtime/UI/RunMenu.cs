@@ -8,7 +8,7 @@ namespace ArcaneBrigade
     public static class RunLaunch { public static string ChampionId; public static bool Resume; public static int Difficulty; public static int ChallengeIndex; }
     public sealed class RunMenu : MonoBehaviour
     {
-        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox, Museum }
+        public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox, Museum, Achievements }
         [SerializeField] private RunCatalog catalog;
         private RunStorage storage;
         private PlayerProfile profile;
@@ -30,6 +30,7 @@ namespace ArcaneBrigade
         private int difficulty;
         private int challenge;
         private int historySelection;
+        private readonly AchievementJournal achievementBook = new AchievementJournal();
         private readonly RunMuseum museum = new RunMuseum();
         private readonly RunInvoice invoice = new RunInvoice();
         private Texture2D shopIllustration;
@@ -48,7 +49,7 @@ namespace ArcaneBrigade
         public void SelectChampionForDiagnostics(int index)
         {
             if (!RunPaths.K7Capture || index < 0 || index >= catalog.Champions.Length) throw new InvalidOperationException("Champion fixture requires isolated capture mode");
-            selection = index; rosterDescriptionScroll = Vector2.zero; ShowPage(Page.Roster);
+            selection = index; rosterDescriptionScroll = Vector2.zero; ShowPage(Page.Roster); scroll.y = Mathf.Max(0, RosterCardBounds(index).y - 50);
         }
         public void NavigateForDiagnostics(int direction, bool submit)
         {
@@ -270,6 +271,7 @@ namespace ArcaneBrigade
                     Label(new Rect(110, 185, 1060, 410), "MOVE: WASD / arrows / stick / drag the lower-left area.\nChampion and companions attack automatically; no skill buttons.\nSHOP: approach a stand, press Space / A or tap USE. Purchases are not automatic.\nCompanions are immortal, do not block bullets by default, and require no upkeep. Stock cannot be sold or locked.\nBRIGADE: notebook icon / I / Y opens stats, companions, relics and links.\nTab or LB/RB changes tabs. I / Y / Esc / B closes.\nPAUSE: pause icon / Esc / Start or B. Leaving the app also pauses.\nClearing each wave restores full champion HP. Melee companions patrol and pursue with wider roaming and visible foot dust.\nProfile stores unlocks, cosmetics and records only, without permanent stat growth.");
                     break;
                 case Page.Records: DrawRecords(); break;
+                case Page.Achievements: achievementBook.Draw(catalog, profile); break;
                 case Page.Museum:
                     museum.Draw(catalog, profile);
                     if (museum.Tab == 0)
@@ -409,7 +411,7 @@ namespace ArcaneBrigade
             caption.alignment = TextAnchor.MiddleCenter;
             GUIStyle note = rosterNote ?? (rosterNote = ArcadeTypography.Style(16));
             Label(new Rect(65, 142, 660, 32), "CHOOSE YOUR CHAMPION");
-            scroll = GUI.BeginScrollView(new Rect(65, 180, 660, 395), scroll, new Rect(0, 0, 620, Mathf.Max(380, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
+            scroll = GUI.BeginScrollView(new Rect(65, 180, 660, 340), scroll, new Rect(0, 0, 620, Mathf.Max(335, Mathf.CeilToInt(catalog.Champions.Length / 3f) * 245)));
             for (int index = 0; index < catalog.Champions.Length; index++)
             {
                 UnitDefinition unit = catalog.Champions[index];
@@ -457,7 +459,18 @@ namespace ArcaneBrigade
             rosterDescriptionScroll = GUI.BeginScrollView(new Rect(780, 300, 425, 185), rosterDescriptionScroll, new Rect(0, 0, 405, descriptionHeight));
             GlossaryUI.Text(new Rect(0, 0, 400, descriptionHeight), description, text);
             GUI.EndScrollView();
-            if (Button(new Rect(65, 595, 660, 55), "CHALLENGE: " + RunMeta.ChallengeNames[challenge].Replace("clear hall", "cleared waves"))) challenge = (challenge + 1) % RunMeta.ChallengeIds.Length;
+            GUI.Label(new Rect(65, 530, 660, 28), "JOURNEY MODE", note);
+            string[] modeNames = { "FREE JOURNEY", "NIGHT SHIFT", "FIRST LIGHT", "SMALL CREW" };
+            string[] modeHints = { "Choose difficulty", "Fixed midnight seed", "Reach wave 10", "Win with 6 allies" };
+            GUIStyle modeStyle = new GUIStyle(button) { fontSize = 13, wordWrap = true, padding = new RectOffset(16, 16, 8, 8) };
+            GUIStyle modeHint = new GUIStyle(note) { fontSize = 13, alignment = TextAnchor.UpperCenter, wordWrap = true };
+            for (int i = 0; i < modeNames.Length; i++)
+            {
+                Rect card = new Rect(65 + i * 167, 565, 158, 48);
+                if (challenge == i) ArcadeSkin.Line(new Rect(card.x, card.y - 4, card.width, 3), ArcadeSkin.Teal);
+                if (navigation.Button(card, modeNames[i], modeStyle)) challenge = i;
+                GUI.Label(new Rect(card.x + 6, 619, card.width - 12, 34), modeHints[i], modeHint);
+            }
             GUI.enabled = challenge == 0;
             if (Button(new Rect(780, 492, 420, 46), "DIFFICULTY: " + RunMeta.DifficultyNames[difficulty])) difficulty = (difficulty + 1) % (RunMeta.UnlockedDifficulty(profile) + 1);
             GUI.enabled = true;
@@ -477,6 +490,7 @@ namespace ArcaneBrigade
                 case Page.Settings: return "SETTINGS";
                 case Page.Help: return "HOW TO PLAY";
                 case Page.Records: return "RECORDS";
+                case Page.Achievements: return "DREAM JOURNAL";
                 case Page.Museum: return "COLLECTION";
                 default: return "ARCANE BRIGADE";
             }
@@ -485,6 +499,10 @@ namespace ArcaneBrigade
         public static Rect RosterCardBounds(int index) => new Rect(index % 3 * 210, index / 3 * 245, 200, 235);
         public static Sprite RosterPortrait(UnitDefinition unit, float time, int identity, bool focused, bool reducedMotion)
         {
+            float curiosity = Mathf.Repeat(time + identity * .73f, 6.4f);
+            CharacterActingEntry acting = CharacterActingLibrary.Current != null ? CharacterActingLibrary.Current.Find(unit.Id) : null;
+            if (!reducedMotion && focused && curiosity < 1.3f && acting != null)
+                return CharacterActingEntry.Frame(acting.Curious, curiosity / 1.3f);
             if (unit.AnimationFrames == null || unit.AnimationFrames.Length < 4) return unit.Body;
             bool stepping = focused && !reducedMotion && Mathf.Repeat(time + identity * 0.73f, 7f) > 6.2f;
             return unit.AnimationFrames[UnitVisual.AnimationFrame(time, identity, stepping, reducedMotion)] ?? unit.Body;
@@ -546,8 +564,9 @@ namespace ArcaneBrigade
 
         private void DrawRecords()
         {
-            Label(new Rect(60, 165, 575, 80), "Wave " + profile.BestWave + " / Wins " + profile.Wins + " / Kills " + profile.TotalKills + "\nUnlocked difficulty: " + (RunMeta.UnlockedDifficulty(profile) + 1) + " / 5");
-            scroll = GUI.BeginScrollView(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 95 + profile.Records.Count * 65 + profile.Achievements.Count * 40 + 65)));
+            if (Button(new Rect(60, 620, 560, 52), "OPEN ACHIEVEMENT JOURNAL")) ShowPage(Page.Achievements);
+            Label(new Rect(60, 165, 575, 80), "Wave " + profile.BestWave + " / Wins " + profile.Wins + " / Kills " + profile.TotalKills + "\nUnlocked difficulty: " + (RunMeta.UnlockedDifficulty(profile) + 1) + " / " + RunMeta.DifficultyNames.Length);
+            scroll = GUI.BeginScrollView(new Rect(60, 250, 560, 350), scroll, new Rect(0, 0, 520, Mathf.Max(345, profile.History.Count * 95 + profile.Records.Count * 65 + profile.Achievements.FindAll(a => !a.StartsWith("journal-")).Count * 40 + 65)));
             float vertical = 0;
             for (int index = 0; index < profile.History.Count; index++)
             {
@@ -557,7 +576,7 @@ namespace ArcaneBrigade
             }
             Label(new Rect(0, vertical, 510, 50), "RECORDS BY CHAMPION / MODE / DIFFICULTY"); vertical += 60;
             foreach (ScoreRecord record in profile.Records) { Label(new Rect(0, vertical, 510, 60), RunUICopy.RecordName(record.Key, catalog) + "\n" + record.Score.ToString("N0") + " points · wave " + record.Hall); vertical += 65; }
-            foreach (string achievement in profile.Achievements) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
+              foreach (string achievement in profile.Achievements) if (!achievement.StartsWith("journal-")) { Label(new Rect(0, vertical, 510, 40), "✓ " + RunUICopy.AchievementName(achievement)); vertical += 40; }
             GUI.EndScrollView();
             if (profile.History.Count > 0)
             {

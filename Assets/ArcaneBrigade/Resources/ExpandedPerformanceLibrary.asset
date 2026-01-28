@@ -1,0 +1,1041 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2a87baacb115d41866f28bdbcadd37, type: 3}
+  m_Name: ExpandedPerformanceLibrary
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.ExpandedPerformanceLibrary
+  Entries:
+  - Id: TeapotPilgrim
+    Kind: companions
+    Evolution: 0
+    Frames:
+    - {fileID: -1864548940, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -262272645, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: 536597011, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: 2060187410, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    ReferenceHeight: 1.9921875
+  - Id: CandleSnail
+    Kind: companions
+    Evolution: 0
+    Frames:
+    - {fileID: 1658351520, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -846440344, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -59858437, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -304165570, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    ReferenceHeight: 1.7734375
+  - Id: MailboxImp
+    Kind: companions
+    Evolution: 0
+    Frames:
+    - {fileID: -52400445, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -285043822, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -1531002644, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -294001601, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    ReferenceHeight: 1.8515625
+  - Id: PillowOracle
+    Kind: companions
+    Evolution: 0
+    Frames:
+    - {fileID: 529008666, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: 1038942113, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: -135005597, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    - {fileID: 1224337404, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
+    ReferenceHeight: 1.7578125
+  - Id: HushMite
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 1068579687, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 1828530182, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: -1355664210, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: -1203312740, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    ReferenceHeight: 1.8359375
+  - Id: HushMite
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 1583948205, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 1342375109, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 1172340120, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: -2040115362, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    ReferenceHeight: 1.8671875
+  - Id: ClockBat
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -1678645873, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 1113640111, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 421743212, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: -1826676620, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    ReferenceHeight: 1.5546875
+  - Id: ClockBat
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 26873189, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 1528004318, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: -353525590, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    - {fileID: 1883881768, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
+    ReferenceHeight: 1.859375
+  - Id: BristleImp
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -541708101, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: -1319447904, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: -1072840030, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: -1689102321, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    ReferenceHeight: 1.8046875
+  - Id: BristleImp
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 530378225, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: -533994102, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: 464200115, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: 1794952265, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    ReferenceHeight: 1.96875
+  - Id: RuneWisp
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 109463906, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: 2124117503, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: 207561049, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: -1564570151, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    ReferenceHeight: 1.7890625
+  - Id: RuneWisp
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -458760718, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: 1067690359, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: 1791230226, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    - {fileID: -1308353879, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
+    ReferenceHeight: 1.9765625
+  - Id: InkMoth
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 2096160844, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: 125146727, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: -1085849292, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: -771220248, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    ReferenceHeight: 1.7109375
+  - Id: InkMoth
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 115198044, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: -2112850053, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: 2142192775, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: 1278609473, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    ReferenceHeight: 2.0234375
+  - Id: SirenSeal
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 566476471, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: 1657641688, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: 803602276, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: 310865012, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    ReferenceHeight: 1.609375
+  - Id: SirenSeal
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 1272401365, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: -565642788, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: -477890394, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    - {fileID: -1904826417, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
+    ReferenceHeight: 1.828125
+  - Id: DoorBearer
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -429238340, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -99315391, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: 1357350566, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -529909402, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    ReferenceHeight: 1.9140625
+  - Id: DoorBearer
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1041213071, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: 143410181, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: 1786791887, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -1461245237, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    ReferenceHeight: 1.984375
+  - Id: MoonMagnet
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 717830302, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: 1305137246, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -1886889021, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -147297668, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    ReferenceHeight: 1.796875
+  - Id: MoonMagnet
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1527471992, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -1984063391, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: 1077398834, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    - {fileID: -1314063094, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
+    ReferenceHeight: 1.9296875
+  - Id: SleepMimic
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -1003882967, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: -1166944246, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: 1914980118, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: 1366794935, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    ReferenceHeight: 1.609375
+  - Id: SleepMimic
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 733450769, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: -474149214, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: 1032860878, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: -1915087646, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    ReferenceHeight: 1.7109375
+  - Id: CurtainWisp
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -1214997273, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: 1443975322, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: -464032838, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: 1903826913, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    ReferenceHeight: 1.875
+  - Id: CurtainWisp
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -65340218, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: -1703587986, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: -1591721890, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    - {fileID: 1590889414, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
+    ReferenceHeight: 1.9140625
+  - Id: FurnaceToad
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 2120949005, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 2143698031, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: -115312291, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: -967555476, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    ReferenceHeight: 1.7578125
+  - Id: FurnaceToad
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1707412520, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 1063203575, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: -522830166, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 617461946, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    ReferenceHeight: 1.9609375
+  - Id: WardrobeCrab
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 67552088, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 361546067, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 154327096, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: -620951012, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    ReferenceHeight: 1.8515625
+  - Id: WardrobeCrab
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1591507720, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 1850951342, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 540367141, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    - {fileID: 340224645, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
+    ReferenceHeight: 1.8671875
+  - Id: HopperKeg
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 527057956, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: 654130442, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: 27443451, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -2007918386, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    ReferenceHeight: 1.828125
+  - Id: HopperKeg
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1545712771, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -661425336, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: 1698163786, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -1449578647, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    ReferenceHeight: 2.046875
+  - Id: ChargerRam
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -59933292, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -329213506, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -2142053631, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -220373818, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    ReferenceHeight: 1.796875
+  - Id: ChargerRam
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -536204291, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: 477146847, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: -412209885, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    - {fileID: 920668028, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
+    ReferenceHeight: 1.9296875
+  - Id: CoinLeech
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 565387603, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: 238018897, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1346643207, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1789859836, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    ReferenceHeight: 1.53125
+  - Id: CoinLeech
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 2056903863, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1312192945, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1237000699, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: 474165087, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    ReferenceHeight: 1.9609375
+  - Id: BlastPuffer
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -973500677, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: 112680651, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1899407762, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1998141234, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    ReferenceHeight: 1.703125
+  - Id: BlastPuffer
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -743286112, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: -1545105048, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: 1544563621, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    - {fileID: 980691144, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
+    ReferenceHeight: 1.8046875
+  - Id: SporeBishop
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 179670753, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: 96393831, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: 228400370, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: 467328793, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    ReferenceHeight: 1.7734375
+  - Id: SporeBishop
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 777740096, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -1355889954, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -571264067, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -219910818, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    ReferenceHeight: 1.9140625
+  - Id: BroomSkater
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 382757512, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: 407639400, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -992426515, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -325349088, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    ReferenceHeight: 1.875
+  - Id: BroomSkater
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1463423057, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -759845424, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: 1574108260, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    - {fileID: -170720923, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
+    ReferenceHeight: 1.953125
+  - Id: RibbonHydra
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 653460022, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: -1855311183, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: -1378369605, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: -876542891, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    ReferenceHeight: 1.78125
+  - Id: RibbonHydra
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -976958414, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 1757309017, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 250172638, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 2036045161, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    ReferenceHeight: 1.8984375
+  - Id: BurrowBell
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -164015945, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 58829956, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 17162820, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 1224881578, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    ReferenceHeight: 1.8515625
+  - Id: BurrowBell
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 1942080200, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 683034315, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: 982324332, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    - {fileID: -382708617, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
+    ReferenceHeight: 1.9453125
+  - Id: SmokeWraith
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -1534831074, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 472847725, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 685123759, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 678230302, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    ReferenceHeight: 1.8515625
+  - Id: SmokeWraith
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 433032781, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: -1921554001, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 192331553, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: -327818603, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    ReferenceHeight: 1.7734375
+  - Id: BlueFlameFiend
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -1907225016, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 249436299, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: -2078813834, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 1618175962, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    ReferenceHeight: 1.8359375
+  - Id: BlueFlameFiend
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: -1311473686, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: 1848733474, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: -212249979, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    - {fileID: -469329708, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
+    ReferenceHeight: 1.9140625
+  - Id: RedFlameBerserker
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: 766812199, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 979776459, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 1751381809, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 1499555880, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    ReferenceHeight: 1.5078125
+  - Id: RedFlameBerserker
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 1339472211, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 1848366462, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: -865386789, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: -1245537045, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    ReferenceHeight: 1.75
+  - Id: TwinFlameFurnace
+    Kind: enemies
+    Evolution: 0
+    Frames:
+    - {fileID: -1652375028, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 459579969, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: -1673698165, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 1195144442, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    ReferenceHeight: 1.7734375
+  - Id: TwinFlameFurnace
+    Kind: enemies
+    Evolution: 1
+    Frames:
+    - {fileID: 936073343, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: -802702230, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: -2001396049, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    - {fileID: 1084649788, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
+    ReferenceHeight: 1.796875
+  - Id: UndeliveredKing
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -2102931149, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
+    - {fileID: -222946578, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
+    - {fileID: 1896822648, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
+    - {fileID: 1011980131, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
+    ReferenceHeight: 3.7734375
+  - Id: ScarletIndex
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: 2110685724, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
+    - {fileID: -1468123927, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
+    - {fileID: 685240844, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
+    - {fileID: -1712799843, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
+    ReferenceHeight: 3.375
+  - Id: SleepCollector
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -1549065906, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
+    - {fileID: -515410625, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
+    - {fileID: 2022173734, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
+    - {fileID: -834185270, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
+    ReferenceHeight: 3.5546875
+  - Id: WaxAdmiral
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -1759945242, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
+    - {fileID: 1823424548, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
+    - {fileID: 624156621, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
+    - {fileID: -281459692, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
+    ReferenceHeight: 3.453125
+  - Id: LastLantern
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: 514728783, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
+    - {fileID: -1490920028, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
+    - {fileID: -1503029752, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
+    - {fileID: -1904614125, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
+    ReferenceHeight: 3.90625
+  - Id: MarqueeMaw
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: 1640706310, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
+    - {fileID: 1316144324, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
+    - {fileID: -746271377, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
+    - {fileID: -295935605, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
+    ReferenceHeight: 3.796875
+  - Id: UmbraCradle
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -258006188, guid: d92c5ece1277ca34c8ebe0bc347f5c8f, type: 3}
+    - {fileID: 1360938570, guid: d92c5ece1277ca34c8ebe0bc347f5c8f, type: 3}
+    - {fileID: 1920092958, guid: d92c5ece1277ca34c8ebe0bc347f5c8f, type: 3}
+    - {fileID: -1175812995, guid: d92c5ece1277ca34c8ebe0bc347f5c8f, type: 3}
+    ReferenceHeight: 3.609375
+  - Id: CoinWidow
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -955803119, guid: 6729fc9cc008237438754e6752c7868a, type: 3}
+    - {fileID: 291094352, guid: 6729fc9cc008237438754e6752c7868a, type: 3}
+    - {fileID: 16789740, guid: 6729fc9cc008237438754e6752c7868a, type: 3}
+    - {fileID: 870275752, guid: 6729fc9cc008237438754e6752c7868a, type: 3}
+    ReferenceHeight: 3.5546875
+  - Id: ChoirEngine
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -1449380083, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
+    - {fileID: -319588360, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
+    - {fileID: -1106082879, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
+    - {fileID: -1315723684, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
+    ReferenceHeight: 4.0703125
+  - Id: SuitcaseLeviathan
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -375673036, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
+    - {fileID: -1440768824, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
+    - {fileID: -1630134215, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
+    - {fileID: 1875279165, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
+    ReferenceHeight: 3.46875
+  - Id: TheLastCustomer
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: -1038536143, guid: 4de5e96c3b8d5554e82a9cf8e4f50b5f, type: 3}
+    - {fileID: -81243957, guid: 4de5e96c3b8d5554e82a9cf8e4f50b5f, type: 3}
+    - {fileID: 17448783, guid: 4de5e96c3b8d5554e82a9cf8e4f50b5f, type: 3}
+    - {fileID: -2070451402, guid: 4de5e96c3b8d5554e82a9cf8e4f50b5f, type: 3}
+    ReferenceHeight: 3.4921875
+  - Id: OutsideStageKeeper
+    Kind: bosses
+    Evolution: 0
+    Frames:
+    - {fileID: 105254616, guid: ae0324eab7b63fe429dc12cde0e2d9ac, type: 3}
+    - {fileID: -2088810581, guid: ae0324eab7b63fe429dc12cde0e2d9ac, type: 3}
+    - {fileID: -392836115, guid: ae0324eab7b63fe429dc12cde0e2d9ac, type: 3}
+    - {fileID: -994885412, guid: ae0324eab7b63fe429dc12cde0e2d9ac, type: 3}
+    ReferenceHeight: 4.0390625
+  - Id: KeyCleaver
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 430223883, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -2116042557, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -951552684, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -285707899, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceHeight: 0.875
+  - Id: TeapotPopgun
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1684963969, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -328477358, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -930520095, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: 1044581456, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceHeight: 1.53125
+  - Id: UmbrellaLance
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1091427771, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: 732509328, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -119222611, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: 1423537702, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceHeight: 0.890625
+  - Id: MailboxLauncher
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 66460372, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -513475903, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -890900401, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    - {fileID: -646191231, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
+    ReferenceHeight: 1.5546875
+  - Id: BellFork
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1313543869, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 1156918759, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1277332274, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 1874527766, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceHeight: 0.9375
+  - Id: BookPaddle
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1968258094, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 2143888207, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1089730456, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1279753866, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceHeight: 1.28125
+  - Id: CrescentBow
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1347054314, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 893666501, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -93332739, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 160333986, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceHeight: 2.2578125
+  - Id: RuneStaff
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 154252752, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 716310744, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: -1788634540, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    - {fileID: 1893062536, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
+    ReferenceHeight: 1.2890625
+  - Id: DreamStamp
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 345246187, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -812384295, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -1047688149, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 1162883396, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceHeight: 1.078125
+  - Id: CloudScissors
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1708968734, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 121990125, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 7816047, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 1246916966, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceHeight: 1.46875
+  - Id: SleepCamera
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1932514892, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -1349457263, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 188104457, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 473653651, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceHeight: 1.5703125
+  - Id: TinFish
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1868101755, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -868372788, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: 1105496821, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    - {fileID: -794550601, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
+    ReferenceHeight: 1.4453125
+  - Id: DreamIron
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1409481782, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 607895396, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 408786773, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -1125790120, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceHeight: 1.296875
+  - Id: RubberHammer
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1772610343, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -1270585782, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 709970726, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -496665587, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceHeight: 1.390625
+  - Id: AlarmMortar
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1910126185, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 1096387787, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 230506743, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -263402959, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceHeight: 1.4375
+  - Id: MusicBox
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1436268677, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -32001811, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: 789400854, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    - {fileID: -1521698008, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
+    ReferenceHeight: 1.1875
+  - Id: SpoonSabre
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1042106172, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -987632839, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 320418991, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 1266055978, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceHeight: 0.6328125
+  - Id: ToastCleaver
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 220017432, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 1151256935, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -101687508, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 999456882, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceHeight: 1.109375
+  - Id: LollipopLance
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1690832455, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 710988243, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -1407867164, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 97165475, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceHeight: 0.8125
+  - Id: CorkscrewRapier
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1347256355, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 1313665671, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: -1486145283, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    - {fileID: 767133847, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
+    ReferenceHeight: 0.984375
+  - Id: TeabagFlail
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1917639756, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -1817079884, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 308637592, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -1482751725, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceHeight: 0.8046875
+  - Id: UmbrellaHook
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1854088587, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1583703845, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 943748263, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1488673563, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceHeight: 0.828125
+  - Id: PizzaWheel
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1582675729, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1408609435, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -813647259, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -1159272822, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceHeight: 1.1015625
+  - Id: MoonScythe
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 234537108, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -965471303, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: -228562303, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    - {fileID: 1746850561, guid: 799f74704066eb44084923cd95b6a186, type: 3}
+    ReferenceHeight: 1.5078125
+  - Id: ForkTrident
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 853169756, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -1255126808, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 925390688, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -55561714, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceHeight: 0.84375
+  - Id: MaracaHammer
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1559665429, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 1027922260, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -452117932, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -1706463499, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceHeight: 1.03125
+  - Id: TapeWhip
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1069451520, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 1919428117, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: -2076111683, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 656503953, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceHeight: 0.5859375
+  - Id: ButtonBow
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1445645528, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 1202295551, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 482234805, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    - {fileID: 510539458, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
+    ReferenceHeight: 1.9921875
+  - Id: LeafCrossbow
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1354114062, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 1757546858, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -1574405832, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -1707408591, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceHeight: 1.8046875
+  - Id: BubbleWand
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1672566437, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 931589881, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 1187599749, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: 312400406, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceHeight: 0.75
+  - Id: StarKazoo
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1703057038, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -1201332216, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -2111620622, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -373776474, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceHeight: 0.9921875
+  - Id: AcornSling
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 2008639478, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -618734485, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -503973708, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    - {fileID: -937722834, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
+    ReferenceHeight: 1.28125
+  - Id: CrescentBoomerang
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1885718610, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 1401479202, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -416996222, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -1370152539, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceHeight: 1.3046875
+  - Id: DartCompass
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -406388411, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -1105160484, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -454300080, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -38569153, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceHeight: 1.4609375
+  - Id: LanternStaff
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1191028406, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -286294303, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 2124633999, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 991435108, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceHeight: 0.875
+  - Id: SnowGlobeOrb
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1154787476, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 1109801826, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: -514147943, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    - {fileID: 520756338, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
+    ReferenceHeight: 1.03125
+  - Id: RibbonHarp
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 652779258, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 547030523, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -1783986264, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1740296008, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceHeight: 1.4609375
+  - Id: DreamOrbStaff
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -983709132, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -1783460962, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -586228137, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1724085292, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceHeight: 1.203125
+  - Id: TwinSabres
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -547526775, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 951580625, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1128223341, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: -315709024, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceHeight: 1.234375
+  - Id: ClockCrescent
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -2104642557, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1291540327, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 94087612, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    - {fileID: 1834885858, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
+    ReferenceHeight: 1.71875
+  - Id: StampHammer
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1441127904, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 1557279466, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 789109847, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 1585977116, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceHeight: 1.3515625
+  - Id: ClockworkYoYo
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 473109520, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -96002903, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -1281295340, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -205667836, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceHeight: 1.5625
+  - Id: ScrapMagnet
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 404537371, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 1541720963, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -2008502740, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -85175867, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceHeight: 1.984375
+  - Id: NeedleSinger
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -753065418, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: -658972225, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 830886519, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    - {fileID: 199733135, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
+    ReferenceHeight: 1.984375
+  - Id: SpringKnocker
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 223556936, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -2145842504, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: 575232817, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -39770346, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceHeight: 1.578125
+  - Id: DreamProjector
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1067624080, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -1950124771, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -1401205377, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: 1104582212, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceHeight: 2.03125
+  - Id: RibbonWheel
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 990507389, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -202348414, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -592128520, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: 263988162, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceHeight: 1.9765625
+  - Id: MoonseedOrb
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 1667253230, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -435904616, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -302949123, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    - {fileID: -1556830310, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
+    ReferenceHeight: 1.1875
+  - Id: AfterimageSabre
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: 2008320000, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1711859714, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: 1530282098, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1897870185, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    ReferenceHeight: 0.6640625
+  - Id: SatelliteDisc
+    Kind: weapons
+    Evolution: 0
+    Frames:
+    - {fileID: -1602702997, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1317170440, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: 874950487, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    - {fileID: -1350357020, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
+    ReferenceHeight: 1.4453125

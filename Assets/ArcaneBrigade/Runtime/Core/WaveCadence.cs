@@ -8,9 +8,10 @@ namespace ArcaneBrigade
         {
             if (wave < 3) return wave == 2 ? 2 : 1;
             float beat = Mathf.Repeat(Mathf.Max(0, time - 0.6f), 12);
-            int crest = Mathf.Min(12, 3 + (wave - 3) / 2);
+            int crest = Mathf.Min(36, Mathf.CeilToInt((3 + (wave - 3) / 2) * SwarmPressure(wave)));
             return beat < 6 ? crest : beat < 8 ? Mathf.Max(2, crest / 2) : 1;
         }
+        public static float SwarmPressure(int wave) => 1 + 2 * Mathf.Clamp01((wave - 3) / 9f);
         public static float SwarmInterval(int wave, float time)
         {
             if (wave < 3) return 1;

@@ -201,6 +201,25 @@ namespace ArcaneBrigade
             string id = null;
             switch (value.Kind)
             {
+                case CombatEventKind.HeroIdentityCast:
+                    gainScale = .38f;
+                    id = value.Subject == null ? "sig.bell" : value.Subject.Definition.Id switch {
+                        "LanternWeaver" or "LoneJelly" => "fx.field.zipper", "CometRunner" or "CopperCauldron" => "wpn.cast.fire",
+                        "MirrorKeeper" or "ArchiveCurator" => "sig.camera", "TinVirtuoso" => "sig.musicbox",
+                        "StormFencer" or "HourglassStag" => "fx.reaction.arcane", "TideSinger" or "SupperMortar" => "sig.tea", _ => "sig.bell" };
+                    break;
+                case CombatEventKind.BuildMorphCast:
+                    gainScale = value.Faction == Faction.Champion ? .55f : .38f;
+                    id = value.Subject == null ? null : value.Subject.Definition.BuildMorph switch
+                    {
+                        BuildMorphKind.Thread => "fx.field.zipper", BuildMorphKind.Cinder => "wpn.cast.fire",
+                        BuildMorphKind.Clockwork => "sig.hammer", BuildMorphKind.Porcelain => "sig.tea",
+                        BuildMorphKind.Constellation => "fx.reaction.arcane", BuildMorphKind.Paper => "sig.umbrella",
+                        BuildMorphKind.Mirror => "sig.camera", BuildMorphKind.Chorus => "sig.musicbox",
+                        BuildMorphKind.Magnet => "wpn.magnet.pull", BuildMorphKind.Tide => "wpn.boomerang.return",
+                        BuildMorphKind.Frost => "wpn.cast.ice", BuildMorphKind.Seal => "sig.stamp", _ => null
+                    };
+                    break;
                 case CombatEventKind.Windup:
                     if (boss || bossPattern) id = "boss.telegraph";
                     else if (enemy && value.Weapon != null) id = value.Weapon.Kind == WeaponKind.Projectile ? "enemy.spit.windup" : "cmb.windup";

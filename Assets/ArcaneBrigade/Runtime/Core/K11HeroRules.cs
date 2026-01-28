@@ -7,7 +7,10 @@ namespace ArcaneBrigade
     {
         public static bool Eligible(UnitDefinition champion, UnitDefinition companion)
         {
-            if (champion.HeroMechanic == HeroMechanic.SoloMaw) return false;
+            if (companion.GiftOnly) return false;
+            if (champion.HeroMechanic == HeroMechanic.SoloMaw && champion.ReferenceHero != "Capped Gallant") return false;
+            if (!string.IsNullOrEmpty(companion.ExclusiveHero)) return companion.ExclusiveHero == champion.ReferenceHero;
+            if (champion.ReferenceHero == "Belle") return true;
             foreach (string theme in champion.RecruitThemes)
                 if (Array.IndexOf(companion.Tags, theme) >= 0) return true;
             return false;
@@ -16,7 +19,7 @@ namespace ArcaneBrigade
         {
             string unit = champion.Id == "LanternKnight" ? "TeapotPilgrim" : champion.Id == "Postmaster" ? "BrassAcorn" : "HoodWisp";
             string weapon = champion.Id == "LanternKnight" ? "SpoonSabre" : champion.Id == "Postmaster" ? "InkPistol" : "SnowGlobeOrb";
-            if (champion.HeroMechanic >= HeroMechanic.RootedOracle)
+            if (champion.HeroMechanic >= HeroMechanic.RootedOracle || !string.IsNullOrEmpty(champion.ReferenceHero) && champion.Id != "LanternKnight" && champion.Id != "Postmaster" && champion.Id != "DrowsySeer")
             {
                 UnitDefinition candidate = Array.Find(catalog.Companions, ally => !ally.SpecialRecruit && Eligible(champion, ally));
                 if (candidate == null) throw new InvalidOperationException("No themed starter: " + champion.Id);

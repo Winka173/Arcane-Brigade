@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: UndeliveredKing
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: TheLastCustomer
+  DisplayName: The Last Customer
+  Body: {fileID: -363099696, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  AnimationFrames:
+  - {fileID: -363099696, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: -871037283, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: -1180391139, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  - {fileID: 209718419, guid: 3ae0926707f349e4883d5b7fdd00e155, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 0b0b66c632384d74ea6db90013a2e2bc, type: 2}
+  Weapon: {fileID: 11400000, guid: f379fea027c0d34469ec75f12a03b6ee, type: 2}
+  Health: 180000
+  Speed: 0.5
+  Radius: 0.7
+  BodyHeight: 3.1
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 14
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Royal Stampede. Dead Letter Cross. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 0
+  IsBoss: 1
+  BossPattern: 10
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 3
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

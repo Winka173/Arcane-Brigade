@@ -8,6 +8,8 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private float started;
         private bool departing;
+        public float FixtureVisibility { get; private set; } = 1;
+        public Vector3 FixtureOffset { get; private set; }
         private bool dream;
         private Transform rug;
         private MarketCarpetRoll carpet;
@@ -52,6 +54,8 @@ namespace ArcaneBrigade
             float elapsed = owner.PresentationClock - started;
             float progress = MarketMotion.Progress(elapsed, departing ? MarketMotion.CarpetDepartureDelay : 0, departing ? 0.75f : 1.25f);
             bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
+            FixtureVisibility = departing ? 1 - progress : progress;
+            FixtureOffset = Vector3.down * (reduced ? 0 : (1 - FixtureVisibility) * .65f);
             if (carpet != null) carpet.Display(reduced ? 1 : Mathf.SmoothStep(0, 1, departing ? 1 - progress : progress), departing ? reduced ? 1 - progress : progress >= 1 ? 0 : 1 : 1);
             for (int index = 0; index < floorDecor.Length; index++)
             {

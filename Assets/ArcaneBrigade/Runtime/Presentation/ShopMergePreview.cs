@@ -12,13 +12,13 @@ namespace ArcaneBrigade
         private Vector2 stock;
         private int hintedToken = -1;
         public int ApproachingCount => identities.Count;
-        public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && session.CanBuy(offer) && session.State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == 1).Count >= 2;
+        public static bool Ready(RunSession session, ShopOffer offer) => offer != null && offer.Kind == OfferKind.Companion && session.CanBuy(offer) && session.State.Roster.FindAll(entry => entry.UnitId == offer.Id && entry.Tier == Mathf.Clamp(offer.Tier, 1, 3)).Count >= 2;
         public static int ProjectedTier(RunSession session, ShopOffer offer)
         {
-            if (!Ready(session, offer)) return 1;
+            if (!Ready(session, offer)) return offer == null ? 1 : Mathf.Clamp(offer.Tier, 1, 3);
             var counts = new int[4];
             foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == offer.Id) counts[Mathf.Clamp(entry.Tier, 1, 3)]++;
-            counts[1]++; int result = 1;
+            int result = Mathf.Clamp(offer.Tier, 1, 3); counts[result]++;
             for (int tier = 1; tier < 3; tier++)
                 if (counts[tier] >= 3) { counts[tier + 1] += counts[tier] / 3; result = tier + 1; }
             return result;
@@ -45,7 +45,7 @@ namespace ArcaneBrigade
                 stock = station.Position;
                 foreach (UnitState unit in owner.Simulation.Units)
                 {
-                    if (unit.Faction != Faction.Companion || !unit.Alive || unit.Definition.Id != station.Offer.Id || unit.Definition.CombatTier != 1) continue;
+                    if (unit.Faction != Faction.Companion || !unit.Alive || unit.Definition.Id != station.Offer.Id || unit.Definition.CombatTier != Mathf.Clamp(station.Offer.Tier, 1, 3)) continue;
                     identities.Add(unit.Id); if (identities.Count == 2) break;
                 }
             }

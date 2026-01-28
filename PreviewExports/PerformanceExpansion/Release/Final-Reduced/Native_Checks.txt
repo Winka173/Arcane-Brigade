@@ -1,0 +1,369 @@
+PASS Actual shop fixture opens
+PASS Actual merchant uses articulated portrait rig
+PASS Native dimensions shop-acting
+PASS Shop acting obeys pause clock
+PASS Native dimensions shop-player-start
+PASS Native dimensions shop-player-stop
+PASS Actual player contains expanded performance library
+PASS All twelve boss identities have painted reactions
+PASS Boss actual anticipation selects its own painted frame UndeliveredKing
+PASS Boss pose has bounded world scale UndeliveredKing/0
+PASS Native dimensions boss-UndeliveredKing-anticipation
+PASS Boss actual release selects its own painted frame UndeliveredKing
+PASS Boss pose has bounded world scale UndeliveredKing/1
+PASS Native dimensions boss-UndeliveredKing-release
+PASS Boss actual recoil selects its own painted frame UndeliveredKing
+PASS Boss pose has bounded world scale UndeliveredKing/2
+PASS Native dimensions boss-UndeliveredKing-recoil
+PASS Boss death uses real remnant pool UndeliveredKing
+PASS Native dimensions boss-UndeliveredKing-death-recoil
+PASS Boss finale selects painted collapsed pose UndeliveredKing
+PASS Boss painted collapse remains readable UndeliveredKing
+PASS Native dimensions boss-UndeliveredKing-death-collapse
+PASS Boss actual anticipation selects its own painted frame ScarletIndex
+PASS Boss pose has bounded world scale ScarletIndex/0
+PASS Native dimensions boss-ScarletIndex-anticipation
+PASS Boss actual release selects its own painted frame ScarletIndex
+PASS Boss pose has bounded world scale ScarletIndex/1
+PASS Native dimensions boss-ScarletIndex-release
+PASS Boss actual recoil selects its own painted frame ScarletIndex
+PASS Boss pose has bounded world scale ScarletIndex/2
+PASS Native dimensions boss-ScarletIndex-recoil
+PASS Boss death uses real remnant pool ScarletIndex
+PASS Native dimensions boss-ScarletIndex-death-recoil
+PASS Boss finale selects painted collapsed pose ScarletIndex
+PASS Boss painted collapse remains readable ScarletIndex
+PASS Native dimensions boss-ScarletIndex-death-collapse
+PASS Boss actual anticipation selects its own painted frame SleepCollector
+PASS Boss pose has bounded world scale SleepCollector/0
+PASS Native dimensions boss-SleepCollector-anticipation
+PASS Boss actual release selects its own painted frame SleepCollector
+PASS Boss pose has bounded world scale SleepCollector/1
+PASS Native dimensions boss-SleepCollector-release
+PASS Boss actual recoil selects its own painted frame SleepCollector
+PASS Boss pose has bounded world scale SleepCollector/2
+PASS Native dimensions boss-SleepCollector-recoil
+PASS Boss death uses real remnant pool SleepCollector
+PASS Native dimensions boss-SleepCollector-death-recoil
+PASS Boss finale selects painted collapsed pose SleepCollector
+PASS Boss painted collapse remains readable SleepCollector
+PASS Native dimensions boss-SleepCollector-death-collapse
+PASS Boss actual anticipation selects its own painted frame WaxAdmiral
+PASS Boss pose has bounded world scale WaxAdmiral/0
+PASS Native dimensions boss-WaxAdmiral-anticipation
+PASS Boss actual release selects its own painted frame WaxAdmiral
+PASS Boss pose has bounded world scale WaxAdmiral/1
+PASS Native dimensions boss-WaxAdmiral-release
+PASS Boss actual recoil selects its own painted frame WaxAdmiral
+PASS Boss pose has bounded world scale WaxAdmiral/2
+PASS Native dimensions boss-WaxAdmiral-recoil
+PASS Boss death uses real remnant pool WaxAdmiral
+PASS Native dimensions boss-WaxAdmiral-death-recoil
+PASS Boss finale selects painted collapsed pose WaxAdmiral
+PASS Boss painted collapse remains readable WaxAdmiral
+PASS Native dimensions boss-WaxAdmiral-death-collapse
+PASS Boss actual anticipation selects its own painted frame LastLantern
+PASS Boss pose has bounded world scale LastLantern/0
+PASS Native dimensions boss-LastLantern-anticipation
+PASS Boss actual release selects its own painted frame LastLantern
+PASS Boss pose has bounded world scale LastLantern/1
+PASS Native dimensions boss-LastLantern-release
+PASS Boss actual recoil selects its own painted frame LastLantern
+PASS Boss pose has bounded world scale LastLantern/2
+PASS Native dimensions boss-LastLantern-recoil
+PASS Boss death uses real remnant pool LastLantern
+PASS Native dimensions boss-LastLantern-death-recoil
+PASS Boss finale selects painted collapsed pose LastLantern
+PASS Boss painted collapse remains readable LastLantern
+PASS Native dimensions boss-LastLantern-death-collapse
+PASS Boss actual anticipation selects its own painted frame MarqueeMaw
+PASS Boss pose has bounded world scale MarqueeMaw/0
+PASS Native dimensions boss-MarqueeMaw-anticipation
+PASS Boss actual release selects its own painted frame MarqueeMaw
+PASS Boss pose has bounded world scale MarqueeMaw/1
+PASS Native dimensions boss-MarqueeMaw-release
+PASS Boss actual recoil selects its own painted frame MarqueeMaw
+PASS Boss pose has bounded world scale MarqueeMaw/2
+PASS Native dimensions boss-MarqueeMaw-recoil
+PASS Boss death uses real remnant pool MarqueeMaw
+PASS Native dimensions boss-MarqueeMaw-death-recoil
+PASS Boss finale selects painted collapsed pose MarqueeMaw
+PASS Boss painted collapse remains readable MarqueeMaw
+PASS Native dimensions boss-MarqueeMaw-death-collapse
+PASS Boss actual anticipation selects its own painted frame UmbraCradle
+PASS Boss pose has bounded world scale UmbraCradle/0
+PASS Native dimensions boss-UmbraCradle-anticipation
+PASS Boss actual release selects its own painted frame UmbraCradle
+PASS Boss pose has bounded world scale UmbraCradle/1
+PASS Native dimensions boss-UmbraCradle-release
+PASS Boss actual recoil selects its own painted frame UmbraCradle
+PASS Boss pose has bounded world scale UmbraCradle/2
+PASS Native dimensions boss-UmbraCradle-recoil
+PASS Boss death uses real remnant pool UmbraCradle
+PASS Native dimensions boss-UmbraCradle-death-recoil
+PASS Boss finale selects painted collapsed pose UmbraCradle
+PASS Boss painted collapse remains readable UmbraCradle
+PASS Native dimensions boss-UmbraCradle-death-collapse
+PASS Boss actual anticipation selects its own painted frame CoinWidow
+PASS Boss pose has bounded world scale CoinWidow/0
+PASS Native dimensions boss-CoinWidow-anticipation
+PASS Boss actual release selects its own painted frame CoinWidow
+PASS Boss pose has bounded world scale CoinWidow/1
+PASS Native dimensions boss-CoinWidow-release
+PASS Boss actual recoil selects its own painted frame CoinWidow
+PASS Boss pose has bounded world scale CoinWidow/2
+PASS Native dimensions boss-CoinWidow-recoil
+PASS Boss death uses real remnant pool CoinWidow
+PASS Native dimensions boss-CoinWidow-death-recoil
+PASS Boss finale selects painted collapsed pose CoinWidow
+PASS Boss painted collapse remains readable CoinWidow
+PASS Native dimensions boss-CoinWidow-death-collapse
+PASS Boss actual anticipation selects its own painted frame ChoirEngine
+PASS Boss pose has bounded world scale ChoirEngine/0
+PASS Native dimensions boss-ChoirEngine-anticipation
+PASS Boss actual release selects its own painted frame ChoirEngine
+PASS Boss pose has bounded world scale ChoirEngine/1
+PASS Native dimensions boss-ChoirEngine-release
+PASS Boss actual recoil selects its own painted frame ChoirEngine
+PASS Boss pose has bounded world scale ChoirEngine/2
+PASS Native dimensions boss-ChoirEngine-recoil
+PASS Boss death uses real remnant pool ChoirEngine
+PASS Native dimensions boss-ChoirEngine-death-recoil
+PASS Boss finale selects painted collapsed pose ChoirEngine
+PASS Boss painted collapse remains readable ChoirEngine
+PASS Native dimensions boss-ChoirEngine-death-collapse
+PASS Boss actual anticipation selects its own painted frame SuitcaseLeviathan
+PASS Boss pose has bounded world scale SuitcaseLeviathan/0
+PASS Native dimensions boss-SuitcaseLeviathan-anticipation
+PASS Boss actual release selects its own painted frame SuitcaseLeviathan
+PASS Boss pose has bounded world scale SuitcaseLeviathan/1
+PASS Native dimensions boss-SuitcaseLeviathan-release
+PASS Boss actual recoil selects its own painted frame SuitcaseLeviathan
+PASS Boss pose has bounded world scale SuitcaseLeviathan/2
+PASS Native dimensions boss-SuitcaseLeviathan-recoil
+PASS Boss death uses real remnant pool SuitcaseLeviathan
+PASS Native dimensions boss-SuitcaseLeviathan-death-recoil
+PASS Boss finale selects painted collapsed pose SuitcaseLeviathan
+PASS Boss painted collapse remains readable SuitcaseLeviathan
+PASS Native dimensions boss-SuitcaseLeviathan-death-collapse
+PASS Boss actual anticipation selects its own painted frame TheLastCustomer
+PASS Boss pose has bounded world scale TheLastCustomer/0
+PASS Native dimensions boss-TheLastCustomer-anticipation
+PASS Boss actual release selects its own painted frame TheLastCustomer
+PASS Boss pose has bounded world scale TheLastCustomer/1
+PASS Native dimensions boss-TheLastCustomer-release
+PASS Boss actual recoil selects its own painted frame TheLastCustomer
+PASS Boss pose has bounded world scale TheLastCustomer/2
+PASS Native dimensions boss-TheLastCustomer-recoil
+PASS Boss death uses real remnant pool TheLastCustomer
+PASS Native dimensions boss-TheLastCustomer-death-recoil
+PASS Boss finale selects painted collapsed pose TheLastCustomer
+PASS Boss painted collapse remains readable TheLastCustomer
+PASS Native dimensions boss-TheLastCustomer-death-collapse
+PASS Boss actual anticipation selects its own painted frame OutsideStageKeeper
+PASS Boss pose has bounded world scale OutsideStageKeeper/0
+PASS Native dimensions boss-OutsideStageKeeper-anticipation
+PASS Boss actual release selects its own painted frame OutsideStageKeeper
+PASS Boss pose has bounded world scale OutsideStageKeeper/1
+PASS Native dimensions boss-OutsideStageKeeper-release
+PASS Boss actual recoil selects its own painted frame OutsideStageKeeper
+PASS Boss pose has bounded world scale OutsideStageKeeper/2
+PASS Native dimensions boss-OutsideStageKeeper-recoil
+PASS Boss death uses real remnant pool OutsideStageKeeper
+PASS Native dimensions boss-OutsideStageKeeper-death-recoil
+PASS Boss finale selects painted collapsed pose OutsideStageKeeper
+PASS Boss painted collapse remains readable OutsideStageKeeper
+PASS Native dimensions boss-OutsideStageKeeper-death-collapse
+PASS Actual weapon action uses painted clip and Reduced fallback KeyCleaver/0
+PASS Painted action does not duplicate legacy moving pieces KeyCleaver
+PASS Native dimensions weapon-KeyCleaver-0
+PASS Actual weapon action uses painted clip and Reduced fallback KeyCleaver/1
+PASS Painted action does not duplicate legacy moving pieces KeyCleaver
+PASS Native dimensions weapon-KeyCleaver-1
+PASS Actual weapon action uses painted clip and Reduced fallback TeapotPopgun/0
+PASS Painted action does not duplicate legacy moving pieces TeapotPopgun
+PASS Native dimensions weapon-TeapotPopgun-0
+PASS Actual weapon action uses painted clip and Reduced fallback TeapotPopgun/1
+PASS Painted action does not duplicate legacy moving pieces TeapotPopgun
+PASS Native dimensions weapon-TeapotPopgun-1
+PASS Actual weapon action uses painted clip and Reduced fallback UmbrellaLance/0
+PASS Painted action does not duplicate legacy moving pieces UmbrellaLance
+PASS Native dimensions weapon-UmbrellaLance-0
+PASS Actual weapon action uses painted clip and Reduced fallback UmbrellaLance/1
+PASS Painted action does not duplicate legacy moving pieces UmbrellaLance
+PASS Native dimensions weapon-UmbrellaLance-1
+PASS Actual weapon action uses painted clip and Reduced fallback MailboxLauncher/0
+PASS Painted action does not duplicate legacy moving pieces MailboxLauncher
+PASS Native dimensions weapon-MailboxLauncher-0
+PASS Actual weapon action uses painted clip and Reduced fallback MailboxLauncher/1
+PASS Painted action does not duplicate legacy moving pieces MailboxLauncher
+PASS Native dimensions weapon-MailboxLauncher-1
+PASS Actual weapon action uses painted clip and Reduced fallback BellFork/0
+PASS Painted action does not duplicate legacy moving pieces BellFork
+PASS Native dimensions weapon-BellFork-0
+PASS Actual weapon action uses painted clip and Reduced fallback BellFork/1
+PASS Painted action does not duplicate legacy moving pieces BellFork
+PASS Native dimensions weapon-BellFork-1
+PASS Actual weapon action uses painted clip and Reduced fallback BookPaddle/0
+PASS Painted action does not duplicate legacy moving pieces BookPaddle
+PASS Native dimensions weapon-BookPaddle-0
+PASS Actual weapon action uses painted clip and Reduced fallback BookPaddle/1
+PASS Painted action does not duplicate legacy moving pieces BookPaddle
+PASS Native dimensions weapon-BookPaddle-1
+PASS Actual weapon action uses painted clip and Reduced fallback CrescentBow/0
+PASS Painted action does not duplicate legacy moving pieces CrescentBow
+PASS Native dimensions weapon-CrescentBow-0
+PASS Actual weapon action uses painted clip and Reduced fallback CrescentBow/1
+PASS Painted action does not duplicate legacy moving pieces CrescentBow
+PASS Native dimensions weapon-CrescentBow-1
+PASS Actual weapon action uses painted clip and Reduced fallback RuneStaff/0
+PASS Painted action does not duplicate legacy moving pieces RuneStaff
+PASS Native dimensions weapon-RuneStaff-0
+PASS Actual weapon action uses painted clip and Reduced fallback RuneStaff/1
+PASS Painted action does not duplicate legacy moving pieces RuneStaff
+PASS Native dimensions weapon-RuneStaff-1
+PASS Actual weapon action uses painted clip and Reduced fallback DreamStamp/0
+PASS Painted action does not duplicate legacy moving pieces DreamStamp
+PASS Native dimensions weapon-DreamStamp-0
+PASS Actual weapon action uses painted clip and Reduced fallback DreamStamp/1
+PASS Painted action does not duplicate legacy moving pieces DreamStamp
+PASS Native dimensions weapon-DreamStamp-1
+PASS Actual weapon action uses painted clip and Reduced fallback CloudScissors/0
+PASS Painted action does not duplicate legacy moving pieces CloudScissors
+PASS Native dimensions weapon-CloudScissors-0
+PASS Actual weapon action uses painted clip and Reduced fallback CloudScissors/1
+PASS Painted action does not duplicate legacy moving pieces CloudScissors
+PASS Native dimensions weapon-CloudScissors-1
+PASS Actual weapon action uses painted clip and Reduced fallback SleepCamera/0
+PASS Painted action does not duplicate legacy moving pieces SleepCamera
+PASS Native dimensions weapon-SleepCamera-0
+PASS Actual weapon action uses painted clip and Reduced fallback SleepCamera/1
+PASS Painted action does not duplicate legacy moving pieces SleepCamera
+PASS Native dimensions weapon-SleepCamera-1
+PASS Actual weapon action uses painted clip and Reduced fallback TinFish/0
+PASS Painted action does not duplicate legacy moving pieces TinFish
+PASS Native dimensions weapon-TinFish-0
+PASS Actual weapon action uses painted clip and Reduced fallback TinFish/1
+PASS Painted action does not duplicate legacy moving pieces TinFish
+PASS Native dimensions weapon-TinFish-1
+PASS Actual weapon action uses painted clip and Reduced fallback DreamIron/0
+PASS Painted action does not duplicate legacy moving pieces DreamIron
+PASS Native dimensions weapon-DreamIron-0
+PASS Actual weapon action uses painted clip and Reduced fallback DreamIron/1
+PASS Painted action does not duplicate legacy moving pieces DreamIron
+PASS Native dimensions weapon-DreamIron-1
+PASS Actual weapon action uses painted clip and Reduced fallback RubberHammer/0
+PASS Painted action does not duplicate legacy moving pieces RubberHammer
+PASS Native dimensions weapon-RubberHammer-0
+PASS Actual weapon action uses painted clip and Reduced fallback RubberHammer/1
+PASS Painted action does not duplicate legacy moving pieces RubberHammer
+PASS Native dimensions weapon-RubberHammer-1
+PASS Actual weapon action uses painted clip and Reduced fallback AlarmMortar/0
+PASS Painted action does not duplicate legacy moving pieces AlarmMortar
+PASS Native dimensions weapon-AlarmMortar-0
+PASS Actual weapon action uses painted clip and Reduced fallback AlarmMortar/1
+PASS Painted action does not duplicate legacy moving pieces AlarmMortar
+PASS Native dimensions weapon-AlarmMortar-1
+PASS Actual weapon action uses painted clip and Reduced fallback MusicBox/0
+PASS Painted action does not duplicate legacy moving pieces MusicBox
+PASS Native dimensions weapon-MusicBox-0
+PASS Actual weapon action uses painted clip and Reduced fallback MusicBox/1
+PASS Painted action does not duplicate legacy moving pieces MusicBox
+PASS Native dimensions weapon-MusicBox-1
+PASS Actual weapon action uses painted clip and Reduced fallback SpoonSabre/0
+PASS Painted action does not duplicate legacy moving pieces SpoonSabre
+PASS Native dimensions weapon-SpoonSabre-0
+PASS Actual weapon action uses painted clip and Reduced fallback SpoonSabre/1
+PASS Painted action does not duplicate legacy moving pieces SpoonSabre
+PASS Native dimensions weapon-SpoonSabre-1
+PASS Actual weapon action uses painted clip and Reduced fallback ToastCleaver/0
+PASS Painted action does not duplicate legacy moving pieces ToastCleaver
+PASS Native dimensions weapon-ToastCleaver-0
+PASS Actual weapon action uses painted clip and Reduced fallback ToastCleaver/1
+PASS Painted action does not duplicate legacy moving pieces ToastCleaver
+PASS Native dimensions weapon-ToastCleaver-1
+PASS Actual weapon action uses painted clip and Reduced fallback LollipopLance/0
+PASS Painted action does not duplicate legacy moving pieces LollipopLance
+PASS Native dimensions weapon-LollipopLance-0
+PASS Actual weapon action uses painted clip and Reduced fallback LollipopLance/1
+PASS Painted action does not duplicate legacy moving pieces LollipopLance
+PASS Native dimensions weapon-LollipopLance-1
+PASS Actual weapon action uses painted clip and Reduced fallback CorkscrewRapier/0
+PASS Painted action does not duplicate legacy moving pieces CorkscrewRapier
+PASS Native dimensions weapon-CorkscrewRapier-0
+PASS Actual weapon action uses painted clip and Reduced fallback CorkscrewRapier/1
+PASS Painted action does not duplicate legacy moving pieces CorkscrewRapier
+PASS Native dimensions weapon-CorkscrewRapier-1
+PASS Actual weapon action uses painted clip and Reduced fallback TeabagFlail/0
+PASS Painted action does not duplicate legacy moving pieces TeabagFlail
+PASS Native dimensions weapon-TeabagFlail-0
+PASS Actual weapon action uses painted clip and Reduced fallback TeabagFlail/1
+PASS Painted action does not duplicate legacy moving pieces TeabagFlail
+PASS Native dimensions weapon-TeabagFlail-1
+PASS Actual weapon action uses painted clip and Reduced fallback UmbrellaHook/0
+PASS Painted action does not duplicate legacy moving pieces UmbrellaHook
+PASS Native dimensions weapon-UmbrellaHook-0
+PASS Actual weapon action uses painted clip and Reduced fallback UmbrellaHook/1
+PASS Painted action does not duplicate legacy moving pieces UmbrellaHook
+PASS Native dimensions weapon-UmbrellaHook-1
+PASS Actual weapon action uses painted clip and Reduced fallback PizzaWheel/0
+PASS Painted action does not duplicate legacy moving pieces PizzaWheel
+PASS Native dimensions weapon-PizzaWheel-0
+PASS Actual weapon action uses painted clip and Reduced fallback PizzaWheel/1
+PASS Painted action does not duplicate legacy moving pieces PizzaWheel
+PASS Native dimensions weapon-PizzaWheel-1
+PASS Actual weapon action uses painted clip and Reduced fallback MoonScythe/0
+PASS Painted action does not duplicate legacy moving pieces MoonScythe
+PASS Native dimensions weapon-MoonScythe-0
+PASS Actual weapon action uses painted clip and Reduced fallback MoonScythe/1
+PASS Painted action does not duplicate legacy moving pieces MoonScythe
+PASS Native dimensions weapon-MoonScythe-1
+PASS Actual weapon action uses painted clip and Reduced fallback ForkTrident/0
+PASS Painted action does not duplicate legacy moving pieces ForkTrident
+PASS Native dimensions weapon-ForkTrident-0
+PASS Actual weapon action uses painted clip and Reduced fallback ForkTrident/1
+PASS Painted action does not duplicate legacy moving pieces ForkTrident
+PASS Native dimensions weapon-ForkTrident-1
+PASS Actual weapon action uses painted clip and Reduced fallback MaracaHammer/0
+PASS Painted action does not duplicate legacy moving pieces MaracaHammer
+PASS Native dimensions weapon-MaracaHammer-0
+PASS Actual weapon action uses painted clip and Reduced fallback MaracaHammer/1
+PASS Painted action does not duplicate legacy moving pieces MaracaHammer
+PASS Native dimensions weapon-MaracaHammer-1
+PASS Actual weapon action uses painted clip and Reduced fallback TapeWhip/0
+PASS Painted action does not duplicate legacy moving pieces TapeWhip
+PASS Native dimensions weapon-TapeWhip-0
+PASS Actual weapon action uses painted clip and Reduced fallback TapeWhip/1
+PASS Painted action does not duplicate legacy moving pieces TapeWhip
+PASS Native dimensions weapon-TapeWhip-1
+PASS Actual weapon action uses painted clip and Reduced fallback ButtonBow/0
+PASS Painted action does not duplicate legacy moving pieces ButtonBow
+PASS Native dimensions weapon-ButtonBow-0
+PASS Actual weapon action uses painted clip and Reduced fallback ButtonBow/1
+PASS Painted action does not duplicate legacy moving pieces ButtonBow
+PASS Native dimensions weapon-ButtonBow-1
+PASS Actual weapon action uses painted clip and Reduced fallback LeafCrossbow/0
+PASS Painted action does not duplicate legacy moving pieces LeafCrossbow
+PASS Native dimensions weapon-LeafCrossbow-0
+PASS Actual weapon action uses painted clip and Reduced fallback LeafCrossbow/1
+PASS Painted action does not duplicate legacy moving pieces LeafCrossbow
+PASS Native dimensions weapon-LeafCrossbow-1
+PASS Actual weapon action uses painted clip and Reduced fallback BubbleWand/0
+PASS Painted action does not duplicate legacy moving pieces BubbleWand
+PASS Native dimensions weapon-BubbleWand-0
+PASS Actual weapon action uses painted clip and Reduced fallback BubbleWand/1
+PASS Painted action does not duplicate legacy moving pieces BubbleWand
+PASS Native dimensions weapon-BubbleWand-1
+PASS Actual weapon action uses painted clip and Reduced fallback StarKazoo/0
+PASS Painted action does not duplicate legacy moving pieces StarKazoo
+PASS Native dimensions weapon-StarKazoo-0
+PASS Actual weapon action uses painted clip and Reduced fallback StarKazoo/1
+PASS Painted action does not duplicate legacy moving pieces StarKazoo
+PASS Native dimensions weapon-StarKazoo-1
+PASS Actual weapon action uses painted clip and Reduced fallback AcornSling/0
+PASS Painted action does not duplicate legacy moving pieces AcornSling
+PASS Native dimensions weapon-AcornSling-0
+PASS Actual weapon action uses painted clip and Reduced fallback AcornSling/1
+PASS Painted action does not duplicate legacy moving pieces AcornSling
+PASS Native dimensions weapon-AcornSling-1
+PASS Expanded performance native review complete

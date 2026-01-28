@@ -29,6 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 0
+  Rarity: 0
   RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
@@ -43,6 +44,10 @@ MonoBehaviour:
   PassiveStrength: 0.8
   Description: A keyblade-bearing pioneer. Travel to charge a lantern pulse; build
     a bustling brigade.
+  ReferenceHero: Mr. Work
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers:
   - Effect: 13
     Scope: 2
@@ -74,6 +79,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
+  Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

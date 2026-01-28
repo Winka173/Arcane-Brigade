@@ -43,6 +43,10 @@ MonoBehaviour:
   PassiveStrength: 0.5
   Description: Collect 6 gold to burst nearby enemies. High luck and critical chance;
     low health.
+  ReferenceHero: Sassy Senior
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers:
   - Effect: 16
     Scope: 3
@@ -69,7 +73,12 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 0
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

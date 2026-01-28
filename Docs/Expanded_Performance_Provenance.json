@@ -1,0 +1,115 @@
+{
+  "mode": "painting pass",
+  "scope": "20 generated sheets; 81 ungenerated; original inputs preserved",
+  "bossPrompt": "Production 2D animation sprite atlas, EXACT SAME boss identity as reference, detailed hand-painted haunted toybox design, same ornaments, palette, anatomy and proportions. EXACT 2x2 equal cells on genuine transparent alpha, 4 complete whole-body poses, generous margins. Row-major: (1) strong attack anticipation/compression; (2) attack release, distinct extended anatomy and opening mouth/core; (3) recoil / hurt; (4) final collapsed defeat with extinguished core, broken/folded anatomy still recognizable. Pose changes substantial, not scaled/rotated copies. Consistent scale, perspective, ground baseline. No text, floor, shadows, target circles. Full appendages inside cells. Do not add weapons or unrelated characters.",
+  "bosses": [
+    {
+      "id": "bosses-00",
+      "path": "ArtSource\\exec-986abffb-52b3-421e-bd88-d6e3802dff5b.png"
+    },
+    {
+      "id": "bosses-01",
+      "path": "ArtSource\\exec-fffb9d8c-3084-4050-be13-0cf01470c601.png"
+    },
+    {
+      "id": "bosses-02",
+      "path": "ArtSource\\exec-b808e07c-d3a1-4045-95f8-b87f211a7557.png"
+    },
+    {
+      "id": "bosses-03",
+      "path": "ArtSource\\exec-92bb07e3-96c3-4fe9-8f27-5f432dbc2943.png"
+    },
+    {
+      "id": "bosses-04",
+      "path": "ArtSource\\exec-1e7b6d4c-1fd4-4196-9e64-c7554f2256d3.png"
+    },
+    {
+      "id": "bosses-05",
+      "path": "ArtSource\\exec-d585085b-f414-43f4-9234-299234a32875.png"
+    },
+    {
+      "id": "bosses-06",
+      "source": "ArtSource\\exec-54f1ed6a-02f6-48db-a56b-f80ccf4be2aa.png"
+    },
+    {
+      "id": "bosses-07",
+      "source": "ArtSource\\exec-ecf93f29-1e6f-4a3b-bc89-6f93a1f6d8b4.png"
+    },
+    {
+      "id": "bosses-08",
+      "source": "ArtSource\\exec-fcb3ff29-a89b-47da-83c9-9e2894ebf4ea.png"
+    },
+    {
+      "id": "bosses-09",
+      "source": "ArtSource\\exec-80aee467-dca8-430c-87fb-b10169ab509c.png"
+    },
+    {
+      "id": "bosses-10",
+      "source": "ArtSource\\exec-f2cd21c0-69bb-43df-bfe3-d2020f56fdb7.png"
+    },
+    {
+      "id": "bosses-11",
+      "source": "ArtSource\\exec-c8a62cff-7311-464d-aafa-ab8cbb332ce8.png"
+    }
+  ],
+  "weapons": [
+    {
+      "id": "weapons-00",
+      "source": "ArtSource\\exec-6f1de776-bfef-4e7a-9717-595aed95fc50.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-00_v1.png"
+    },
+    {
+      "id": "weapons-01",
+      "source": "ArtSource\\exec-18a6dff2-3ba7-4091-932a-a70a41a67c90.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-01_v1.png"
+    },
+    {
+      "id": "weapons-03",
+      "source": "ArtSource\\exec-87ef5a67-dcfb-44b0-b191-3f18f1a101d8.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-03_v1.png"
+    },
+    {
+      "id": "weapons-02",
+      "source": "ArtSource\\exec-e8200e82-18d4-4732-ae93-f9d176f62c7d.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-02_v1.png"
+    },
+    {
+      "id": "weapons-04",
+      "source": "ArtSource\\exec-5e4eb1c4-4c8b-4f1d-b618-e482b47ae110.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-04_v1.png"
+    },
+    {
+      "id": "weapons-05",
+      "source": "ArtSource\\exec-caa21ce3-2ee9-43a1-902a-3b10e0834c45.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-05_v1.png"
+    },
+    {
+      "id": "weapons-07",
+      "source": "ArtSource\\exec-01768e1e-d12c-4c2f-aae6-e68d4dd5cc88.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-07_v1.png"
+    },
+    {
+      "id": "weapons-06",
+      "source": "ArtSource\\exec-dfdaec3c-ef95-4307-a06b-c33c250c6e94.png",
+      "prompt": "Original production 2D game sprite animation atlas. Preserve EXACT identities, colours, proportions, face and anatomy from supplied reference, clean bold ink and exquisite hand-painted toybox design. Genuine transparent alpha, no background or checkerboard, no floor/shadows/text/labels/targets/rings. EXACT 4 columns x 4 rows equal grid. Clear transparent gutters and margins. Whole subject inside each cell. No added arms on friendly characters; hands/weapons are separate in game. Do not draw any weapons on characters. Consistent character scale and foot baseline across its poses. Reference characters in reading order are undefined (undefined). One character/weapon per ROW. Row1 reference upper-left, row2 upper-right, row3 lower-left, row4 lower-right. Every row has four different chronological poses, left to right: rest/ready mechanism, mechanically compressed charged windup, released/recoiling mechanism, settling/recovery. Preserve each subject. Missing rows stay empty alpha. Weapons keep exact original orientation and grip position across poses, no hands/bodies/projectiles. Flex blade, open jaws/fan, compress pump, release bellows or charge core according to the weapon. No detached fragments or muzzle flashes.",
+      "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/weapons-06_v1.png"
+    }
+  ],
+  "generationFailures": [
+    {
+      "id": "weapons-08",
+      "error": "image generation failed: application network permission was revoked"
+    },
+    {
+      "id": "weapons-09",
+      "error": "image generation failed: http 401 Unauthorized: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Missing bearer or basic authentication in header\\\",\\n    \\\"type\\\": \\\"invalid_request_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": null\\n  }\\n}\")"
+    }
+  ]
+}

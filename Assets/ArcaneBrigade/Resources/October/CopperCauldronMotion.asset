@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CopperCauldronMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Walk:
+  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -1529542446, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -1529542446, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Windup:
+  - {fileID: 1277556781, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 1277556781, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Release:
+  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Recovery:
+  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}

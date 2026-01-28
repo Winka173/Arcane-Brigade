@@ -6,6 +6,9 @@ namespace ArcaneBrigade
     public sealed class WorldShop : MonoBehaviour
     {
         public const float InteractionRadius = 1.1f;
+        public const float LayoutLift = 0.5f;
+        public static readonly Vector2 ExitPosition = new Vector2(6.1f, -3.9f);
+        public const float ExitInteractionRadius = .8f;
         public sealed class Station
         {
             public Vector2 Position;
@@ -19,6 +22,7 @@ namespace ArcaneBrigade
             public ShopCurrency Currency;
             public float Focus;
             public float FocusVelocity;
+            public float Reach = InteractionRadius;
             public float EnteredAt = -10;
             public float DeniedUntil;
             public float ReactUntil;
@@ -51,6 +55,11 @@ namespace ArcaneBrigade
             {
                 previewToken = offer.Token; previewReceipt = owner.Session.State.NextReceipt;
                 bondPreview = ShortOfferCopy.BondPreview(owner.Session, owner.Content, offer);
+                if (offer.Kind == OfferKind.Item)
+                {
+                    string form = BuildMorphReadModel.ItemPreview(owner.Session, owner.Content, owner.Content.Item(offer.Id));
+                    if (!string.IsNullOrEmpty(form)) bondPreview = string.IsNullOrEmpty(bondPreview) ? form : bondPreview + "\n" + form;
+                }
             }
             return bondPreview;
         }
@@ -83,8 +92,9 @@ namespace ArcaneBrigade
         }
         public void Display()
         {
+            dialogue.Context = owner.Session.State;
             Reveal.ReducedMotion = owner.Profile != null && owner.Profile.ReducedMotion;
-            if (owner.Session.State.Phase != SessionPhase.Shop || owner.Session.State.OutsideStage == OutsideStageStatus.Reward)
+            if (owner.Session.State.Phase != SessionPhase.Shop || owner.Session.State.OutsideStage == OutsideStageStatus.Reward || owner.Session.SecretRoomOpen)
             {
                 if (scenery != null) scenery.SetActive(false);
                 if (voice != null) voice.Silence();
@@ -110,7 +120,7 @@ namespace ArcaneBrigade
             {
                 if (station.Offer != null && station.Offer.Sold) continue;
                 float distance = (station.Position - owner.Simulation.Champion.Position).sqrMagnitude;
-                if (distance <= closest) { closest = distance; Nearby = station; }
+                if (distance <= station.Reach * station.Reach && distance <= closest) { closest = distance; Nearby = station; }
             }
             if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.PresentationClock, true); return; }
             if (Nearby != audioFocus)
@@ -126,20 +136,20 @@ namespace ArcaneBrigade
             dialogue.Observe(Special, Nearby == null ? null : Nearby.Offer != null ? "offer:" + Nearby.Offer.Token : Nearby.Action, owner.PresentationClock);
             if (merchant != null) merchant.Inspect(Nearby != null);
             MergePreview.Observe(Nearby, false);
-            voice.Advance(dialogue, Special, owner.PresentationClock, false);
-            if (merchant != null) merchant.Speak(dialogue.IsSpeaking(owner.PresentationClock));
+            voice.Advance(dialogue, Special, owner.PresentationClock, NightmareHaunting.Quiet);
+            if (merchant != null) merchant.Speak(!NightmareHaunting.Quiet && dialogue.IsSpeaking(owner.PresentationClock));
             foreach (Station station in stations)
             {
                 float target = station == Nearby && !owner.HallExitPending ? 1 : 0;
+                if (station.Actor != null) station.Actor.Inspect(target > 0);
                 if (target > 0 && station.Focus < 0.02f) station.EnteredAt = owner.PresentationClock;
                 station.Focus = Mathf.SmoothDamp(station.Focus, target, ref station.FocusVelocity, 0.09f);
                 bool reduced = owner.Profile != null && owner.Profile.ReducedMotion;
-                float age = owner.PresentationClock - station.EnteredAt;
-                float bounce = reduced || age > 0.55f ? 0 : Mathf.Sin(age * 18f) * Mathf.Exp(-age * 7f) * 0.13f;
                 float denied = Mathf.Clamp01((station.DeniedUntil - owner.PresentationClock) / 0.65f);
                 float shake = reduced ? 0 : Mathf.Sin(owner.PresentationClock * 55) * denied * 0.1f;
-                station.Marker.localScale = Vector3.one * (1 + station.Focus * (reduced ? 0.07f : 0.18f) + bounce);
-                station.Marker.localPosition = station.Position + new Vector2(shake, reduced ? 0 : station.Focus * 0.08f + Mathf.Max(0, bounce));
+                // Focus animates merchandise, filigree and UI; the stand and doorway stay on the floor.
+                station.Marker.localScale = Vector3.one;
+                station.Marker.localPosition = station.Position + new Vector2(shake, 0);
                 foreach (SpriteRenderer renderer in station.Renderers)
                     if (renderer.gameObject.name != "ShopFloorContact")
                     {
@@ -151,6 +161,9 @@ namespace ArcaneBrigade
         }
         public bool Interact()
         {
+            if (owner.SecretRoom != null && owner.SecretRoom.BlocksShop) return false;
+            OutsideStageChoice challenge = owner.GetComponent<OutsideStageChoice>();
+            if (challenge != null && challenge.Focused) return false;
             Display();
             if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;
@@ -276,6 +289,7 @@ namespace ArcaneBrigade
             MerchantCenter = new Vector2(0, Mathf.Min(1.6f + MerchantHeight * 0.18f, owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f));
             merchant = AddActor(scenery.transform, merchantFrames[0], merchantFrames, MerchantCenter, MerchantHeight, 0.7f);
             merchant.SetMerchantMood(Special);
+            merchant.SetMerchantIdentity(MerchantIdentity);
             if (merchantEntrance)
             {
                 merchant.Arrive(MarketMotion.MerchantArrivalDelay); MerchantEntranceEffect.Play(owner, scenery.transform, merchant.transform.localPosition, Special);
@@ -293,7 +307,7 @@ namespace ArcaneBrigade
                 Station station = AddStation(new Vector2((index - 1) * 3.2f, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
-                station.Description = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Description : catalog.Item(offer.Id).Description;
+                station.Description = offer.Kind == OfferKind.Companion ? CompanionDescriptions.Describe(catalog.Unit(offer.Id), offer.Tier, catalog.TierSupportMultiplier) : RelicDescriptions.Describe(catalog.Item(offer.Id), owner.Session.StackCount(offer.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, catalog.Item(offer.Id));
                 if (!offer.Sold && arrival && station.Actor != null) station.Actor.Arrive(MarketMotion.StockArrivalDelay + index * MarketMotion.StockStagger, scenery.transform.TransformPoint(MerchantCenter));
                 if (!offer.Sold && arrival)
                 {
@@ -317,7 +331,8 @@ namespace ArcaneBrigade
             }
             Station reroll = AddStation(new Vector2(-5.3f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.";
-            AddStation(new Vector2(0, -4.3f), "NEXT HALL", art.HallDoor[0], art.HallDoor, false).Description = "Head down to the next wave.";
+            Station exit = AddStation(ExitPosition, "NEXT HALL", art.HallDoor[0], art.HallDoor, false);
+            exit.Reach = ExitInteractionRadius; exit.Description = "Approach the separate doorway to continue.";
             if (merchantEntrance)
                 foreach (Station fixture in stations)
                     if (fixture.Offer == null && fixture.Actor != null) fixture.Actor.Arrive(0.45f);
@@ -326,7 +341,7 @@ namespace ArcaneBrigade
                 {
                     AltarRecipe recipe = catalog.Recipes[index];
                     if (!owner.Session.CanAltar(recipe.Id)) continue;
-                    Station station = AddStation(new Vector2(index % 2 == 0 ? -4.4f : 4.4f, -1.4f - index / 2 * 1.75f), "FUSE " + catalog.Unit(recipe.ResultUnit).DisplayName, catalog.Unit(recipe.ResultUnit).Body, catalog.Unit(recipe.ResultUnit).AnimationFrames, true);
+                    Station station = AddStation(new Vector2(-6.3f, -3.9f), "FUSE " + catalog.Unit(recipe.ResultUnit).DisplayName, catalog.Unit(recipe.ResultUnit).Body, catalog.Unit(recipe.ResultUnit).AnimationFrames, true);
                     station.Recipe = recipe.Id; station.Price = recipe.EggCost; station.Currency = ShopCurrency.Eggs;
                     station.Description = owner.Session.RecipePreview(recipe.Id);
                     break;
@@ -362,13 +377,13 @@ namespace ArcaneBrigade
             {
                 ItemDefinition item = catalog.Item(offer.Id);
                 int held = owner.Session.State.Items.Find(stack => stack.Id == item.Id)?.Count ?? 0;
-                result = ShortOfferCopy.Item(item) + "\nOwned ×" + held;
+                result = RelicDescriptions.Describe(item, held + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, item);
             }
             else
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
                 int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count;
-                result = ShortOfferCopy.Companion(unit) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: tier " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
+                result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: tier " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)
                         if (bond.Id == tag) result += " · " + bond.Name;
@@ -378,7 +393,7 @@ namespace ArcaneBrigade
         }
         public void DrawMerchantDialogue()
         {
-            if (scenery != null && scenery.activeSelf && !owner.HallExitPending) dialogue.Draw(Special, owner.PresentationClock, owner.Profile != null && owner.Profile.ReducedMotion);
+            if (scenery != null && scenery.activeSelf && !owner.HallExitPending && !NightmareHaunting.Quiet) dialogue.Draw(Special, owner.PresentationClock, owner.Profile != null && owner.Profile.ReducedMotion);
         }
         public string DisplayName(Station station)
         {
@@ -395,6 +410,7 @@ namespace ArcaneBrigade
             foreach (UnitState unit in owner.Simulation.Units)
             {
                 if (unit.Faction != Faction.Companion) continue;
+                if (unit.MountId > 0) continue;
                 if (MergePreview.Destination(unit, out Vector2 mergeDestination))
                 {
                     Vector2 destination = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(mergeDestination - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
@@ -418,6 +434,7 @@ namespace ArcaneBrigade
         }
         private Station AddStation(Vector2 position, string action, Sprite sprite, Sprite[] frames, bool pedestal)
         {
+            position += Vector2.up * LayoutLift;
             var marker = new GameObject(action); marker.transform.SetParent(scenery.transform, false); marker.transform.localPosition = position;
             ShopDisplayActor support = null;
             if (pedestal)
@@ -437,7 +454,7 @@ namespace ArcaneBrigade
             ShopDisplayActor actor = sprite == null ? null : AddActor(marker.transform, sprite, frames, pedestal ? new Vector2(0, 0.38f) : Vector2.zero, pedestal ? 0.8f : action == "NEXT HALL" ? 1.65f : 1.25f, stations.Count * 0.93f);
             if (pedestal && actor != null) actor.MountMerchandise(support);
             if (!pedestal && actor != null) actor.SetFloorFixture();
-            ShopFloorShadow.Create(marker.transform, new Vector2(0, pedestal ? -0.48f : action == "NEXT HALL" ? -0.72f : -0.56f), pedestal ? 1.55f : 1.65f, 0.7f);
+            if (action == "NEXT HALL" && actor != null && OctoberArtwork.Current != null) actor.gameObject.AddComponent<OctoberDoor>().Configure(owner, actor.View);
             var station = new Station { Position = position, Action = action, Marker = marker.transform, Icon = sprite, Actor = actor, Renderers = marker.GetComponentsInChildren<SpriteRenderer>() };
             stations.Add(station); return station;
         }
@@ -501,6 +518,7 @@ namespace ArcaneBrigade
                 string price = station.Price.ToString();
                 float ticketWidth = Mathf.Clamp(118 + Mathf.Max(0, price.Length - 4) * 7, 118, 170) * scale;
                 Rect ticket = new Rect(point.x - ticketWidth * 0.5f, point.y - 20 * scale, ticketWidth, 40 * scale);
+                ticket.y = Mathf.Min(ticket.y, 778);
                 bool denied = owner.PresentationClock < station.DeniedUntil;
                 // Hanging ticket: a short string from a hook above, gentle sway, a hard shake when the purchase is denied.
                 bool reduced = PresentationSettings.ReducedMotion;
@@ -535,7 +553,7 @@ namespace ArcaneBrigade
                     else GUI.Label(category, item ? "RELIC" : "ALLY", categoryStyle);
                 }
                 GUI.matrix = unrotated;
-                if (denied) GUI.Label(new Rect(point.x - 140, point.y + 31, 280, 35), station.Denial, denialStyle);
+                if (denied) GUI.Label(new Rect(point.x - 140, ticket.y - 65, 280, 35), station.Denial, denialStyle);
             }
         }
     }

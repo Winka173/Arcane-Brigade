@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: BrassAcorn
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: CarouselPony
+  DisplayName: Carousel Pony
+  Body: {fileID: 680022355, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  AnimationFrames:
+  - {fileID: 680022355, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  - {fileID: 1458351326, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  - {fileID: -470658094, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  - {fileID: 1343257768, guid: ce157fe216a34034b99c73dde30c440c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 30975948b028d884f898147d9f5f0b82, type: 2}
+  Weapon: {fileID: 11400000, guid: 14f017f6a49b0934082a86682332d43e, type: 2}
+  Health: 100
+  Speed: 4
+  Radius: 0.22
+  BodyHeight: 0.75
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 1
+  Rarity: 1
+  RecruitThemeLocked: 1
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - clock
+  - tidal
+  - knight
+  Passive: 0
+  PassiveStrength: 0.5
+  Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nCarries one nearby ally
+    while both continue attacking. Rider and mount remain immortal. Mount pairing
+    is automatic.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3 traits \xD71/2/4; merging
+    three units reduces support sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic
+    personal passive.\r\n\nNamed talents count bodies and absorbed memories; their
+    stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
+    special reward, subject to hero theme and unlock wave.\r\nBonds: clock, tidal,
+    knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    bodies merge unless the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Pony
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 48
+  UnlockWave: 2
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

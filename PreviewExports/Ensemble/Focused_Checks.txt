@@ -1,0 +1,1459 @@
+PASS Direct enemy target retains strict range boundary 0/0
+PASS Direct enemy target retains strict range boundary 0/0.5
+PASS Direct enemy target retains strict range boundary 0/3
+PASS Direct enemy target retains strict range boundary 0/6
+PASS Direct enemy target retains strict range boundary 0.5/0
+PASS Direct enemy target retains strict range boundary 0.5/0.5
+PASS Direct enemy target retains strict range boundary 0.5/3
+PASS Direct enemy target retains strict range boundary 0.5/6
+PASS Direct enemy target retains strict range boundary 3/0
+PASS Direct enemy target retains strict range boundary 3/0.5
+PASS Direct enemy target retains strict range boundary 3/3
+PASS Direct enemy target retains strict range boundary 3/6
+PASS Direct enemy target retains strict range boundary 10/0
+PASS Direct enemy target retains strict range boundary 10/0.5
+PASS Direct enemy target retains strict range boundary 10/3
+PASS Direct enemy target retains strict range boundary 10/6
+PASS Enemy cannot select a defeated champion
+PASS Enemy cannot select an entering champion
+PASS Invalid enemy target range stays empty
+PASS Pooled spatial queries retain deterministic identity order
+INFO Unity managed allocation counter unavailable; use separate installed-Mono probe, not a zero-allocation claim
+PASS Heavy-only spatial query equals full-query filtered membership and order
+PASS Moving spatial member leaves old query without changing identities
+PASS Spatial rebuild excludes defeated actors
+PASS Complete painted clip ReceiptMaw
+PASS Nonempty painted pose ReceiptMawHandoff_00
+PASS Nonempty painted pose ReceiptMawHandoff_01
+PASS Nonempty painted pose ReceiptMawHandoff_02
+PASS Nonempty painted pose ReceiptMawHandoff_03
+PASS Nonempty painted pose ReceiptMawHandoff_04
+PASS Nonempty painted pose ReceiptMawHandoff_05
+PASS Nonempty painted pose ReceiptMawHandoff_06
+PASS Nonempty painted pose ReceiptMawHandoff_07
+PASS Clip endpoints clamp ReceiptMaw
+PASS Complete painted clip EggOracle
+PASS Nonempty painted pose EggOracleHandoff_00
+PASS Nonempty painted pose EggOracleHandoff_01
+PASS Nonempty painted pose EggOracleHandoff_02
+PASS Nonempty painted pose EggOracleHandoff_03
+PASS Nonempty painted pose EggOracleHandoff_04
+PASS Nonempty painted pose EggOracleHandoff_05
+PASS Nonempty painted pose EggOracleHandoff_06
+PASS Nonempty painted pose EggOracleHandoff_07
+PASS Clip endpoints clamp EggOracle
+PASS Complete painted clip GiantGoldMerchant
+PASS Nonempty painted pose GiantGoldMerchantHandoff_00
+PASS Nonempty painted pose GiantGoldMerchantHandoff_01
+PASS Nonempty painted pose GiantGoldMerchantHandoff_02
+PASS Nonempty painted pose GiantGoldMerchantHandoff_03
+PASS Clip endpoints clamp GiantGoldMerchant
+PASS Complete painted clip GiantEggMerchant
+PASS Nonempty painted pose GiantEggMerchantHandoff_00
+PASS Nonempty painted pose GiantEggMerchantHandoff_01
+PASS Nonempty painted pose GiantEggMerchantHandoff_02
+PASS Nonempty painted pose GiantEggMerchantHandoff_03
+PASS Clip endpoints clamp GiantEggMerchant
+PASS Complete painted clip PaperFan
+PASS Nonempty painted pose PaperFanAction_00
+PASS Nonempty painted pose PaperFanAction_01
+PASS Nonempty painted pose PaperFanAction_02
+PASS Nonempty painted pose PaperFanAction_03
+PASS Clip endpoints clamp PaperFan
+PASS Complete painted clip MoonFeatherFan
+PASS Nonempty painted pose MoonFeatherFanAction_00
+PASS Nonempty painted pose MoonFeatherFanAction_01
+PASS Nonempty painted pose MoonFeatherFanAction_02
+PASS Nonempty painted pose MoonFeatherFanAction_03
+PASS Clip endpoints clamp MoonFeatherFan
+PASS Complete painted clip ParasolNeedle
+PASS Nonempty painted pose ParasolNeedleAction_00
+PASS Nonempty painted pose ParasolNeedleAction_01
+PASS Nonempty painted pose ParasolNeedleAction_02
+PASS Nonempty painted pose ParasolNeedleAction_03
+PASS Nonempty painted pose ParasolNeedleAction_04
+PASS Nonempty painted pose ParasolNeedleAction_05
+PASS Nonempty painted pose ParasolNeedleAction_06
+PASS Nonempty painted pose ParasolNeedleAction_07
+PASS Clip endpoints clamp ParasolNeedle
+PASS Complete painted clip InkPistol
+PASS Nonempty painted pose InkPistolAction_00
+PASS Nonempty painted pose InkPistolAction_01
+PASS Nonempty painted pose InkPistolAction_02
+PASS Nonempty painted pose InkPistolAction_03
+PASS Nonempty painted pose InkPistolAction_04
+PASS Nonempty painted pose InkPistolAction_05
+PASS Nonempty painted pose InkPistolAction_06
+PASS Nonempty painted pose InkPistolAction_07
+PASS Clip endpoints clamp InkPistol
+PASS Complete painted clip ShellCannon
+PASS Nonempty painted pose ShellCannonAction_00
+PASS Nonempty painted pose ShellCannonAction_01
+PASS Nonempty painted pose ShellCannonAction_02
+PASS Nonempty painted pose ShellCannonAction_03
+PASS Nonempty painted pose ShellCannonAction_04
+PASS Nonempty painted pose ShellCannonAction_05
+PASS Nonempty painted pose ShellCannonAction_06
+PASS Nonempty painted pose ShellCannonAction_07
+PASS Clip endpoints clamp ShellCannon
+PASS Complete painted clip PlasmaTrident
+PASS Nonempty painted pose PlasmaTridentAction_00
+PASS Nonempty painted pose PlasmaTridentAction_01
+PASS Nonempty painted pose PlasmaTridentAction_02
+PASS Nonempty painted pose PlasmaTridentAction_03
+PASS Nonempty painted pose PlasmaTridentAction_04
+PASS Nonempty painted pose PlasmaTridentAction_05
+PASS Nonempty painted pose PlasmaTridentAction_06
+PASS Nonempty painted pose PlasmaTridentAction_07
+PASS Clip endpoints clamp PlasmaTrident
+PASS Complete painted clip FireExtinguisher
+PASS Nonempty painted pose FireExtinguisherAction_00
+PASS Nonempty painted pose FireExtinguisherAction_01
+PASS Nonempty painted pose FireExtinguisherAction_02
+PASS Nonempty painted pose FireExtinguisherAction_03
+PASS Clip endpoints clamp FireExtinguisher
+PASS Complete painted clip KeyCleaver
+PASS Nonempty painted pose weapons00Performance_00
+PASS Nonempty painted pose weapons00Performance_01
+PASS Nonempty painted pose weapons00Performance_02
+PASS Nonempty painted pose weapons00Performance_03
+PASS Clip endpoints clamp KeyCleaver
+PASS Complete painted clip TeapotPopgun
+PASS Nonempty painted pose weapons00Performance_04
+PASS Nonempty painted pose weapons00Performance_05
+PASS Nonempty painted pose weapons00Performance_06
+PASS Nonempty painted pose weapons00Performance_07
+PASS Clip endpoints clamp TeapotPopgun
+PASS Complete painted clip UmbrellaLance
+PASS Nonempty painted pose weapons00Performance_08
+PASS Nonempty painted pose weapons00Performance_09
+PASS Nonempty painted pose weapons00Performance_10
+PASS Nonempty painted pose weapons00Performance_11
+PASS Clip endpoints clamp UmbrellaLance
+PASS Complete painted clip MailboxLauncher
+PASS Nonempty painted pose weapons00Performance_12
+PASS Nonempty painted pose weapons00Performance_13
+PASS Nonempty painted pose weapons00Performance_14
+PASS Nonempty painted pose weapons00Performance_15
+PASS Clip endpoints clamp MailboxLauncher
+PASS Complete painted clip BellFork
+PASS Nonempty painted pose weapons01Performance_00
+PASS Nonempty painted pose weapons01Performance_01
+PASS Nonempty painted pose weapons01Performance_02
+PASS Nonempty painted pose weapons01Performance_03
+PASS Clip endpoints clamp BellFork
+PASS Complete painted clip BookPaddle
+PASS Nonempty painted pose weapons01Performance_04
+PASS Nonempty painted pose weapons01Performance_05
+PASS Nonempty painted pose weapons01Performance_06
+PASS Nonempty painted pose weapons01Performance_07
+PASS Clip endpoints clamp BookPaddle
+PASS Complete painted clip CrescentBow
+PASS Nonempty painted pose weapons01Performance_08
+PASS Nonempty painted pose weapons01Performance_09
+PASS Nonempty painted pose weapons01Performance_10
+PASS Nonempty painted pose weapons01Performance_11
+PASS Clip endpoints clamp CrescentBow
+PASS Complete painted clip RuneStaff
+PASS Nonempty painted pose weapons01Performance_12
+PASS Nonempty painted pose weapons01Performance_13
+PASS Nonempty painted pose weapons01Performance_14
+PASS Nonempty painted pose weapons01Performance_15
+PASS Clip endpoints clamp RuneStaff
+PASS Complete painted clip DreamStamp
+PASS Nonempty painted pose weapons02Performance_00
+PASS Nonempty painted pose weapons02Performance_01
+PASS Nonempty painted pose weapons02Performance_02
+PASS Nonempty painted pose weapons02Performance_03
+PASS Clip endpoints clamp DreamStamp
+PASS Complete painted clip CloudScissors
+PASS Nonempty painted pose weapons02Performance_04
+PASS Nonempty painted pose weapons02Performance_05
+PASS Nonempty painted pose weapons02Performance_06
+PASS Nonempty painted pose weapons02Performance_07
+PASS Clip endpoints clamp CloudScissors
+PASS Complete painted clip SleepCamera
+PASS Nonempty painted pose weapons02Performance_08
+PASS Nonempty painted pose weapons02Performance_09
+PASS Nonempty painted pose weapons02Performance_10
+PASS Nonempty painted pose weapons02Performance_11
+PASS Clip endpoints clamp SleepCamera
+PASS Complete painted clip TinFish
+PASS Nonempty painted pose weapons02Performance_12
+PASS Nonempty painted pose weapons02Performance_13
+PASS Nonempty painted pose weapons02Performance_14
+PASS Nonempty painted pose weapons02Performance_15
+PASS Clip endpoints clamp TinFish
+PASS Complete painted clip DreamIron
+PASS Nonempty painted pose weapons03Performance_00
+PASS Nonempty painted pose weapons03Performance_01
+PASS Nonempty painted pose weapons03Performance_02
+PASS Nonempty painted pose weapons03Performance_03
+PASS Clip endpoints clamp DreamIron
+PASS Complete painted clip RubberHammer
+PASS Nonempty painted pose weapons03Performance_04
+PASS Nonempty painted pose weapons03Performance_05
+PASS Nonempty painted pose weapons03Performance_06
+PASS Nonempty painted pose weapons03Performance_07
+PASS Clip endpoints clamp RubberHammer
+PASS Complete painted clip AlarmMortar
+PASS Nonempty painted pose weapons03Performance_08
+PASS Nonempty painted pose weapons03Performance_09
+PASS Nonempty painted pose weapons03Performance_10
+PASS Nonempty painted pose weapons03Performance_11
+PASS Clip endpoints clamp AlarmMortar
+PASS Complete painted clip MusicBox
+PASS Nonempty painted pose weapons03Performance_12
+PASS Nonempty painted pose weapons03Performance_13
+PASS Nonempty painted pose weapons03Performance_14
+PASS Nonempty painted pose weapons03Performance_15
+PASS Clip endpoints clamp MusicBox
+PASS Complete painted clip SpoonSabre
+PASS Nonempty painted pose weapons04Performance_00
+PASS Nonempty painted pose weapons04Performance_01
+PASS Nonempty painted pose weapons04Performance_02
+PASS Nonempty painted pose weapons04Performance_03
+PASS Clip endpoints clamp SpoonSabre
+PASS Complete painted clip ToastCleaver
+PASS Nonempty painted pose weapons04Performance_04
+PASS Nonempty painted pose weapons04Performance_05
+PASS Nonempty painted pose weapons04Performance_06
+PASS Nonempty painted pose weapons04Performance_07
+PASS Clip endpoints clamp ToastCleaver
+PASS Complete painted clip LollipopLance
+PASS Nonempty painted pose weapons04Performance_08
+PASS Nonempty painted pose weapons04Performance_09
+PASS Nonempty painted pose weapons04Performance_10
+PASS Nonempty painted pose weapons04Performance_11
+PASS Clip endpoints clamp LollipopLance
+PASS Complete painted clip CorkscrewRapier
+PASS Nonempty painted pose weapons04Performance_12
+PASS Nonempty painted pose weapons04Performance_13
+PASS Nonempty painted pose weapons04Performance_14
+PASS Nonempty painted pose weapons04Performance_15
+PASS Clip endpoints clamp CorkscrewRapier
+PASS Complete painted clip TeabagFlail
+PASS Nonempty painted pose weapons05Performance_00
+PASS Nonempty painted pose weapons05Performance_01
+PASS Nonempty painted pose weapons05Performance_02
+PASS Nonempty painted pose weapons05Performance_03
+PASS Clip endpoints clamp TeabagFlail
+PASS Complete painted clip UmbrellaHook
+PASS Nonempty painted pose weapons05Performance_04
+PASS Nonempty painted pose weapons05Performance_05
+PASS Nonempty painted pose weapons05Performance_06
+PASS Nonempty painted pose weapons05Performance_07
+PASS Clip endpoints clamp UmbrellaHook
+PASS Complete painted clip PizzaWheel
+PASS Nonempty painted pose weapons05Performance_08
+PASS Nonempty painted pose weapons05Performance_09
+PASS Nonempty painted pose weapons05Performance_10
+PASS Nonempty painted pose weapons05Performance_11
+PASS Clip endpoints clamp PizzaWheel
+PASS Complete painted clip MoonScythe
+PASS Nonempty painted pose weapons05Performance_12
+PASS Nonempty painted pose weapons05Performance_13
+PASS Nonempty painted pose weapons05Performance_14
+PASS Nonempty painted pose weapons05Performance_15
+PASS Clip endpoints clamp MoonScythe
+PASS Complete painted clip ForkTrident
+PASS Nonempty painted pose weapons06Performance_00
+PASS Nonempty painted pose weapons06Performance_01
+PASS Nonempty painted pose weapons06Performance_02
+PASS Nonempty painted pose weapons06Performance_03
+PASS Clip endpoints clamp ForkTrident
+PASS Complete painted clip MaracaHammer
+PASS Nonempty painted pose weapons06Performance_04
+PASS Nonempty painted pose weapons06Performance_05
+PASS Nonempty painted pose weapons06Performance_06
+PASS Nonempty painted pose weapons06Performance_07
+PASS Clip endpoints clamp MaracaHammer
+PASS Complete painted clip TapeWhip
+PASS Nonempty painted pose weapons06Performance_08
+PASS Nonempty painted pose weapons06Performance_09
+PASS Nonempty painted pose weapons06Performance_10
+PASS Nonempty painted pose weapons06Performance_11
+PASS Clip endpoints clamp TapeWhip
+PASS Complete painted clip ButtonBow
+PASS Nonempty painted pose weapons06Performance_12
+PASS Nonempty painted pose weapons06Performance_13
+PASS Nonempty painted pose weapons06Performance_14
+PASS Nonempty painted pose weapons06Performance_15
+PASS Clip endpoints clamp ButtonBow
+PASS Complete painted clip LeafCrossbow
+PASS Nonempty painted pose weapons07Performance_00
+PASS Nonempty painted pose weapons07Performance_01
+PASS Nonempty painted pose weapons07Performance_02
+PASS Nonempty painted pose weapons07Performance_03
+PASS Clip endpoints clamp LeafCrossbow
+PASS Complete painted clip BubbleWand
+PASS Nonempty painted pose weapons07Performance_04
+PASS Nonempty painted pose weapons07Performance_05
+PASS Nonempty painted pose weapons07Performance_06
+PASS Nonempty painted pose weapons07Performance_07
+PASS Clip endpoints clamp BubbleWand
+PASS Complete painted clip StarKazoo
+PASS Nonempty painted pose weapons07Performance_08
+PASS Nonempty painted pose weapons07Performance_09
+PASS Nonempty painted pose weapons07Performance_10
+PASS Nonempty painted pose weapons07Performance_11
+PASS Clip endpoints clamp StarKazoo
+PASS Complete painted clip AcornSling
+PASS Nonempty painted pose weapons07Performance_12
+PASS Nonempty painted pose weapons07Performance_13
+PASS Nonempty painted pose weapons07Performance_14
+PASS Nonempty painted pose weapons07Performance_15
+PASS Clip endpoints clamp AcornSling
+PASS Complete painted clip CrescentBoomerang
+PASS Nonempty painted pose weapons08Performance_00
+PASS Nonempty painted pose weapons08Performance_01
+PASS Nonempty painted pose weapons08Performance_02
+PASS Nonempty painted pose weapons08Performance_03
+PASS Clip endpoints clamp CrescentBoomerang
+PASS Complete painted clip DartCompass
+PASS Nonempty painted pose weapons08Performance_04
+PASS Nonempty painted pose weapons08Performance_05
+PASS Nonempty painted pose weapons08Performance_06
+PASS Nonempty painted pose weapons08Performance_07
+PASS Clip endpoints clamp DartCompass
+PASS Complete painted clip LanternStaff
+PASS Nonempty painted pose weapons08Performance_08
+PASS Nonempty painted pose weapons08Performance_09
+PASS Nonempty painted pose weapons08Performance_10
+PASS Nonempty painted pose weapons08Performance_11
+PASS Clip endpoints clamp LanternStaff
+PASS Complete painted clip SnowGlobeOrb
+PASS Nonempty painted pose weapons08Performance_12
+PASS Nonempty painted pose weapons08Performance_13
+PASS Nonempty painted pose weapons08Performance_14
+PASS Nonempty painted pose weapons08Performance_15
+PASS Clip endpoints clamp SnowGlobeOrb
+PASS Complete painted clip RibbonHarp
+PASS Nonempty painted pose weapons09Performance_00
+PASS Nonempty painted pose weapons09Performance_01
+PASS Nonempty painted pose weapons09Performance_02
+PASS Nonempty painted pose weapons09Performance_03
+PASS Clip endpoints clamp RibbonHarp
+PASS Complete painted clip DreamOrbStaff
+PASS Nonempty painted pose weapons09Performance_04
+PASS Nonempty painted pose weapons09Performance_05
+PASS Nonempty painted pose weapons09Performance_06
+PASS Nonempty painted pose weapons09Performance_07
+PASS Clip endpoints clamp DreamOrbStaff
+PASS Complete painted clip TwinSabres
+PASS Nonempty painted pose weapons09Performance_08
+PASS Nonempty painted pose weapons09Performance_09
+PASS Nonempty painted pose weapons09Performance_10
+PASS Nonempty painted pose weapons09Performance_11
+PASS Clip endpoints clamp TwinSabres
+PASS Complete painted clip ClockCrescent
+PASS Nonempty painted pose weapons09Performance_12
+PASS Nonempty painted pose weapons09Performance_13
+PASS Nonempty painted pose weapons09Performance_14
+PASS Nonempty painted pose weapons09Performance_15
+PASS Clip endpoints clamp ClockCrescent
+PASS Complete painted clip StampHammer
+PASS Nonempty painted pose weapons10Performance_00
+PASS Nonempty painted pose weapons10Performance_01
+PASS Nonempty painted pose weapons10Performance_02
+PASS Nonempty painted pose weapons10Performance_03
+PASS Clip endpoints clamp StampHammer
+PASS Complete painted clip ClockworkYoYo
+PASS Nonempty painted pose weapons10Performance_04
+PASS Nonempty painted pose weapons10Performance_05
+PASS Nonempty painted pose weapons10Performance_06
+PASS Nonempty painted pose weapons10Performance_07
+PASS Clip endpoints clamp ClockworkYoYo
+PASS Complete painted clip ScrapMagnet
+PASS Nonempty painted pose weapons10Performance_08
+PASS Nonempty painted pose weapons10Performance_09
+PASS Nonempty painted pose weapons10Performance_10
+PASS Nonempty painted pose weapons10Performance_11
+PASS Clip endpoints clamp ScrapMagnet
+PASS Complete painted clip NeedleSinger
+PASS Nonempty painted pose weapons10Performance_12
+PASS Nonempty painted pose weapons10Performance_13
+PASS Nonempty painted pose weapons10Performance_14
+PASS Nonempty painted pose weapons10Performance_15
+PASS Clip endpoints clamp NeedleSinger
+PASS Complete painted clip SpringKnocker
+PASS Nonempty painted pose weapons11Performance_00
+PASS Nonempty painted pose weapons11Performance_01
+PASS Nonempty painted pose weapons11Performance_02
+PASS Nonempty painted pose weapons11Performance_03
+PASS Clip endpoints clamp SpringKnocker
+PASS Complete painted clip DreamProjector
+PASS Nonempty painted pose weapons11Performance_04
+PASS Nonempty painted pose weapons11Performance_05
+PASS Nonempty painted pose weapons11Performance_06
+PASS Nonempty painted pose weapons11Performance_07
+PASS Clip endpoints clamp DreamProjector
+PASS Complete painted clip RibbonWheel
+PASS Nonempty painted pose weapons11Performance_08
+PASS Nonempty painted pose weapons11Performance_09
+PASS Nonempty painted pose weapons11Performance_10
+PASS Nonempty painted pose weapons11Performance_11
+PASS Clip endpoints clamp RibbonWheel
+PASS Complete painted clip MoonseedOrb
+PASS Nonempty painted pose weapons11Performance_12
+PASS Nonempty painted pose weapons11Performance_13
+PASS Nonempty painted pose weapons11Performance_14
+PASS Nonempty painted pose weapons11Performance_15
+PASS Clip endpoints clamp MoonseedOrb
+PASS Complete painted clip AfterimageSabre
+PASS Nonempty painted pose weapons12Performance_00
+PASS Nonempty painted pose weapons12Performance_01
+PASS Nonempty painted pose weapons12Performance_02
+PASS Nonempty painted pose weapons12Performance_03
+PASS Clip endpoints clamp AfterimageSabre
+PASS Complete painted clip SatelliteDisc
+PASS Nonempty painted pose weapons12Performance_04
+PASS Nonempty painted pose weapons12Performance_05
+PASS Nonempty painted pose weapons12Performance_06
+PASS Nonempty painted pose weapons12Performance_07
+PASS Clip endpoints clamp SatelliteDisc
+PASS Bounded independent surface acting LanternKnight
+PASS Reduced surface stable LanternKnight
+PASS Reduced farewell stable LanternKnight
+PASS Farewell fully settles LanternKnight
+PASS Real attack takes priority LanternKnight
+PASS Presentation preserves gameplay source LanternKnight
+PASS Bounded independent surface acting Postmaster
+PASS Reduced surface stable Postmaster
+PASS Reduced farewell stable Postmaster
+PASS Farewell fully settles Postmaster
+PASS Real attack takes priority Postmaster
+PASS Presentation preserves gameplay source Postmaster
+PASS Bounded independent surface acting DrowsySeer
+PASS Reduced surface stable DrowsySeer
+PASS Reduced farewell stable DrowsySeer
+PASS Farewell fully settles DrowsySeer
+PASS Real attack takes priority DrowsySeer
+PASS Presentation preserves gameplay source DrowsySeer
+PASS Bounded independent surface acting RootOracle
+PASS Reduced surface stable RootOracle
+PASS Reduced farewell stable RootOracle
+PASS Farewell fully settles RootOracle
+PASS Real attack takes priority RootOracle
+PASS Presentation preserves gameplay source RootOracle
+PASS Bounded independent surface acting LoneJelly
+PASS Reduced surface stable LoneJelly
+PASS Reduced farewell stable LoneJelly
+PASS Farewell fully settles LoneJelly
+PASS Real attack takes priority LoneJelly
+PASS Presentation preserves gameplay source LoneJelly
+PASS Bounded independent surface acting GlassDice
+PASS Reduced surface stable GlassDice
+PASS Reduced farewell stable GlassDice
+PASS Farewell fully settles GlassDice
+PASS Real attack takes priority GlassDice
+PASS Presentation preserves gameplay source GlassDice
+PASS Bounded independent surface acting TideSinger
+PASS Reduced surface stable TideSinger
+PASS Reduced farewell stable TideSinger
+PASS Farewell fully settles TideSinger
+PASS Real attack takes priority TideSinger
+PASS Presentation preserves gameplay source TideSinger
+PASS Bounded independent surface acting CometRunner
+PASS Reduced surface stable CometRunner
+PASS Reduced farewell stable CometRunner
+PASS Farewell fully settles CometRunner
+PASS Real attack takes priority CometRunner
+PASS Presentation preserves gameplay source CometRunner
+PASS Bounded independent surface acting MirrorKeeper
+PASS Reduced surface stable MirrorKeeper
+PASS Reduced farewell stable MirrorKeeper
+PASS Farewell fully settles MirrorKeeper
+PASS Real attack takes priority MirrorKeeper
+PASS Presentation preserves gameplay source MirrorKeeper
+PASS Bounded independent surface acting TreasureAcorn
+PASS Reduced surface stable TreasureAcorn
+PASS Reduced farewell stable TreasureAcorn
+PASS Farewell fully settles TreasureAcorn
+PASS Real attack takes priority TreasureAcorn
+PASS Presentation preserves gameplay source TreasureAcorn
+PASS Bounded independent surface acting VerdantMatron
+PASS Reduced surface stable VerdantMatron
+PASS Reduced farewell stable VerdantMatron
+PASS Farewell fully settles VerdantMatron
+PASS Real attack takes priority VerdantMatron
+PASS Presentation preserves gameplay source VerdantMatron
+PASS Bounded independent surface acting CopperCauldron
+PASS Reduced surface stable CopperCauldron
+PASS Reduced farewell stable CopperCauldron
+PASS Farewell fully settles CopperCauldron
+PASS Real attack takes priority CopperCauldron
+PASS Presentation preserves gameplay source CopperCauldron
+PASS Bounded independent surface acting ChinaMarionette
+PASS Reduced surface stable ChinaMarionette
+PASS Reduced farewell stable ChinaMarionette
+PASS Farewell fully settles ChinaMarionette
+PASS Real attack takes priority ChinaMarionette
+PASS Presentation preserves gameplay source ChinaMarionette
+PASS Bounded independent surface acting SoapSkater
+PASS Reduced surface stable SoapSkater
+PASS Reduced farewell stable SoapSkater
+PASS Farewell fully settles SoapSkater
+PASS Real attack takes priority SoapSkater
+PASS Presentation preserves gameplay source SoapSkater
+PASS Bounded independent surface acting VelvetRegent
+PASS Reduced surface stable VelvetRegent
+PASS Reduced farewell stable VelvetRegent
+PASS Farewell fully settles VelvetRegent
+PASS Real attack takes priority VelvetRegent
+PASS Presentation preserves gameplay source VelvetRegent
+PASS Bounded independent surface acting ButtonCavalier
+PASS Reduced surface stable ButtonCavalier
+PASS Reduced farewell stable ButtonCavalier
+PASS Farewell fully settles ButtonCavalier
+PASS Real attack takes priority ButtonCavalier
+PASS Presentation preserves gameplay source ButtonCavalier
+PASS Bounded independent surface acting NightMaw
+PASS Reduced surface stable NightMaw
+PASS Reduced farewell stable NightMaw
+PASS Farewell fully settles NightMaw
+PASS Real attack takes priority NightMaw
+PASS Presentation preserves gameplay source NightMaw
+PASS Bounded independent surface acting ThornTreasurer
+PASS Reduced surface stable ThornTreasurer
+PASS Reduced farewell stable ThornTreasurer
+PASS Farewell fully settles ThornTreasurer
+PASS Real attack takes priority ThornTreasurer
+PASS Presentation preserves gameplay source ThornTreasurer
+PASS Bounded independent surface acting CitrusMarshal
+PASS Reduced surface stable CitrusMarshal
+PASS Reduced farewell stable CitrusMarshal
+PASS Farewell fully settles CitrusMarshal
+PASS Real attack takes priority CitrusMarshal
+PASS Presentation preserves gameplay source CitrusMarshal
+PASS Bounded independent surface acting IvorySovereign
+PASS Reduced surface stable IvorySovereign
+PASS Reduced farewell stable IvorySovereign
+PASS Farewell fully settles IvorySovereign
+PASS Real attack takes priority IvorySovereign
+PASS Presentation preserves gameplay source IvorySovereign
+PASS Bounded independent surface acting PetalCitadel
+PASS Reduced surface stable PetalCitadel
+PASS Reduced farewell stable PetalCitadel
+PASS Farewell fully settles PetalCitadel
+PASS Real attack takes priority PetalCitadel
+PASS Presentation preserves gameplay source PetalCitadel
+PASS Bounded independent surface acting PatchworkHost
+PASS Reduced surface stable PatchworkHost
+PASS Reduced farewell stable PatchworkHost
+PASS Farewell fully settles PatchworkHost
+PASS Real attack takes priority PatchworkHost
+PASS Presentation preserves gameplay source PatchworkHost
+PASS Bounded independent surface acting ArchiveCurator
+PASS Reduced surface stable ArchiveCurator
+PASS Reduced farewell stable ArchiveCurator
+PASS Farewell fully settles ArchiveCurator
+PASS Real attack takes priority ArchiveCurator
+PASS Presentation preserves gameplay source ArchiveCurator
+PASS Bounded independent surface acting PennyBroker
+PASS Reduced surface stable PennyBroker
+PASS Reduced farewell stable PennyBroker
+PASS Farewell fully settles PennyBroker
+PASS Real attack takes priority PennyBroker
+PASS Presentation preserves gameplay source PennyBroker
+PASS Bounded independent surface acting StormFencer
+PASS Reduced surface stable StormFencer
+PASS Reduced farewell stable StormFencer
+PASS Farewell fully settles StormFencer
+PASS Real attack takes priority StormFencer
+PASS Presentation preserves gameplay source StormFencer
+PASS Bounded independent surface acting TinVirtuoso
+PASS Reduced surface stable TinVirtuoso
+PASS Reduced farewell stable TinVirtuoso
+PASS Farewell fully settles TinVirtuoso
+PASS Real attack takes priority TinVirtuoso
+PASS Presentation preserves gameplay source TinVirtuoso
+PASS Bounded independent surface acting MoonProwler
+PASS Reduced surface stable MoonProwler
+PASS Reduced farewell stable MoonProwler
+PASS Farewell fully settles MoonProwler
+PASS Real attack takes priority MoonProwler
+PASS Presentation preserves gameplay source MoonProwler
+PASS Bounded independent surface acting SupperMortar
+PASS Reduced surface stable SupperMortar
+PASS Reduced farewell stable SupperMortar
+PASS Farewell fully settles SupperMortar
+PASS Real attack takes priority SupperMortar
+PASS Presentation preserves gameplay source SupperMortar
+PASS Bounded independent surface acting LanternWeaver
+PASS Reduced surface stable LanternWeaver
+PASS Reduced farewell stable LanternWeaver
+PASS Farewell fully settles LanternWeaver
+PASS Real attack takes priority LanternWeaver
+PASS Presentation preserves gameplay source LanternWeaver
+PASS Bounded independent surface acting HourglassStag
+PASS Reduced surface stable HourglassStag
+PASS Reduced farewell stable HourglassStag
+PASS Farewell fully settles HourglassStag
+PASS Real attack takes priority HourglassStag
+PASS Presentation preserves gameplay source HourglassStag
+PASS Bounded independent surface acting RainArchivist
+PASS Reduced surface stable RainArchivist
+PASS Reduced farewell stable RainArchivist
+PASS Farewell fully settles RainArchivist
+PASS Real attack takes priority RainArchivist
+PASS Presentation preserves gameplay source RainArchivist
+PASS Bounded independent surface acting TeapotPilgrim
+PASS Reduced surface stable TeapotPilgrim
+PASS Reduced farewell stable TeapotPilgrim
+PASS Farewell fully settles TeapotPilgrim
+PASS Real attack takes priority TeapotPilgrim
+PASS Presentation preserves gameplay source TeapotPilgrim
+PASS Bounded independent surface acting CandleSnail
+PASS Reduced surface stable CandleSnail
+PASS Reduced farewell stable CandleSnail
+PASS Farewell fully settles CandleSnail
+PASS Real attack takes priority CandleSnail
+PASS Presentation preserves gameplay source CandleSnail
+PASS Bounded independent surface acting MailboxImp
+PASS Reduced surface stable MailboxImp
+PASS Reduced farewell stable MailboxImp
+PASS Farewell fully settles MailboxImp
+PASS Real attack takes priority MailboxImp
+PASS Presentation preserves gameplay source MailboxImp
+PASS Bounded independent surface acting PillowOracle
+PASS Reduced surface stable PillowOracle
+PASS Reduced farewell stable PillowOracle
+PASS Farewell fully settles PillowOracle
+PASS Real attack takes priority PillowOracle
+PASS Presentation preserves gameplay source PillowOracle
+PASS Bounded independent surface acting MushroomLibrarian
+PASS Reduced surface stable MushroomLibrarian
+PASS Reduced farewell stable MushroomLibrarian
+PASS Farewell fully settles MushroomLibrarian
+PASS Real attack takes priority MushroomLibrarian
+PASS Presentation preserves gameplay source MushroomLibrarian
+PASS Bounded independent surface acting HoodWisp
+PASS Reduced surface stable HoodWisp
+PASS Reduced farewell stable HoodWisp
+PASS Farewell fully settles HoodWisp
+PASS Real attack takes priority HoodWisp
+PASS Presentation preserves gameplay source HoodWisp
+PASS Bounded independent surface acting JellySwordsman
+PASS Reduced surface stable JellySwordsman
+PASS Reduced farewell stable JellySwordsman
+PASS Farewell fully settles JellySwordsman
+PASS Real attack takes priority JellySwordsman
+PASS Presentation preserves gameplay source JellySwordsman
+PASS Bounded independent surface acting BrassAcorn
+PASS Reduced surface stable BrassAcorn
+PASS Reduced farewell stable BrassAcorn
+PASS Farewell fully settles BrassAcorn
+PASS Real attack takes priority BrassAcorn
+PASS Presentation preserves gameplay source BrassAcorn
+PASS Bounded independent surface acting BreadCrab
+PASS Reduced surface stable BreadCrab
+PASS Reduced farewell stable BreadCrab
+PASS Farewell fully settles BreadCrab
+PASS Real attack takes priority BreadCrab
+PASS Presentation preserves gameplay source BreadCrab
+PASS Bounded independent surface acting KettleBat
+PASS Reduced surface stable KettleBat
+PASS Reduced farewell stable KettleBat
+PASS Farewell fully settles KettleBat
+PASS Real attack takes priority KettleBat
+PASS Presentation preserves gameplay source KettleBat
+PASS Bounded independent surface acting BookmarkGolem
+PASS Reduced surface stable BookmarkGolem
+PASS Reduced farewell stable BookmarkGolem
+PASS Farewell fully settles BookmarkGolem
+PASS Real attack takes priority BookmarkGolem
+PASS Presentation preserves gameplay source BookmarkGolem
+PASS Bounded independent surface acting TinTick
+PASS Reduced surface stable TinTick
+PASS Reduced farewell stable TinTick
+PASS Farewell fully settles TinTick
+PASS Real attack takes priority TinTick
+PASS Presentation preserves gameplay source TinTick
+PASS Bounded independent surface acting SpringDuck
+PASS Reduced surface stable SpringDuck
+PASS Reduced farewell stable SpringDuck
+PASS Farewell fully settles SpringDuck
+PASS Real attack takes priority SpringDuck
+PASS Presentation preserves gameplay source SpringDuck
+PASS Bounded independent surface acting ButtonBeetle
+PASS Reduced surface stable ButtonBeetle
+PASS Reduced farewell stable ButtonBeetle
+PASS Farewell fully settles ButtonBeetle
+PASS Real attack takes priority ButtonBeetle
+PASS Presentation preserves gameplay source ButtonBeetle
+PASS Bounded independent surface acting StapleMole
+PASS Reduced surface stable StapleMole
+PASS Reduced farewell stable StapleMole
+PASS Farewell fully settles StapleMole
+PASS Real attack takes priority StapleMole
+PASS Presentation preserves gameplay source StapleMole
+PASS Bounded independent surface acting SnowSpoon
+PASS Reduced surface stable SnowSpoon
+PASS Reduced farewell stable SnowSpoon
+PASS Farewell fully settles SnowSpoon
+PASS Real attack takes priority SnowSpoon
+PASS Presentation preserves gameplay source SnowSpoon
+PASS Bounded independent surface acting IceCreamOwl
+PASS Reduced surface stable IceCreamOwl
+PASS Reduced farewell stable IceCreamOwl
+PASS Farewell fully settles IceCreamOwl
+PASS Real attack takes priority IceCreamOwl
+PASS Presentation preserves gameplay source IceCreamOwl
+PASS Bounded independent surface acting FridgeWisp
+PASS Reduced surface stable FridgeWisp
+PASS Reduced farewell stable FridgeWisp
+PASS Farewell fully settles FridgeWisp
+PASS Real attack takes priority FridgeWisp
+PASS Presentation preserves gameplay source FridgeWisp
+PASS Bounded independent surface acting PearMoth
+PASS Reduced surface stable PearMoth
+PASS Reduced farewell stable PearMoth
+PASS Farewell fully settles PearMoth
+PASS Real attack takes priority PearMoth
+PASS Presentation preserves gameplay source PearMoth
+PASS Bounded independent surface acting CitrusToad
+PASS Reduced surface stable CitrusToad
+PASS Reduced farewell stable CitrusToad
+PASS Farewell fully settles CitrusToad
+PASS Real attack takes priority CitrusToad
+PASS Presentation preserves gameplay source CitrusToad
+PASS Bounded independent surface acting RadishJester
+PASS Reduced surface stable RadishJester
+PASS Reduced farewell stable RadishJester
+PASS Farewell fully settles RadishJester
+PASS Real attack takes priority RadishJester
+PASS Presentation preserves gameplay source RadishJester
+PASS Bounded independent surface acting SeedHedgehog
+PASS Reduced surface stable SeedHedgehog
+PASS Reduced farewell stable SeedHedgehog
+PASS Farewell fully settles SeedHedgehog
+PASS Real attack takes priority SeedHedgehog
+PASS Presentation preserves gameplay source SeedHedgehog
+PASS Bounded independent surface acting MoonJelly
+PASS Reduced surface stable MoonJelly
+PASS Reduced farewell stable MoonJelly
+PASS Farewell fully settles MoonJelly
+PASS Real attack takes priority MoonJelly
+PASS Presentation preserves gameplay source MoonJelly
+PASS Bounded independent surface acting StarSock
+PASS Reduced surface stable StarSock
+PASS Reduced farewell stable StarSock
+PASS Farewell fully settles StarSock
+PASS Real attack takes priority StarSock
+PASS Presentation preserves gameplay source StarSock
+PASS Bounded independent surface acting CometKite
+PASS Reduced surface stable CometKite
+PASS Reduced farewell stable CometKite
+PASS Farewell fully settles CometKite
+PASS Real attack takes priority CometKite
+PASS Presentation preserves gameplay source CometKite
+PASS Bounded independent surface acting EclipseEgg
+PASS Reduced surface stable EclipseEgg
+PASS Reduced farewell stable EclipseEgg
+PASS Farewell fully settles EclipseEgg
+PASS Real attack takes priority EclipseEgg
+PASS Presentation preserves gameplay source EclipseEgg
+PASS Bounded independent surface acting OrbitMoth
+PASS Reduced surface stable OrbitMoth
+PASS Reduced farewell stable OrbitMoth
+PASS Farewell fully settles OrbitMoth
+PASS Real attack takes priority OrbitMoth
+PASS Presentation preserves gameplay source OrbitMoth
+PASS Bounded independent surface acting DreamCompass
+PASS Reduced surface stable DreamCompass
+PASS Reduced farewell stable DreamCompass
+PASS Farewell fully settles DreamCompass
+PASS Real attack takes priority DreamCompass
+PASS Presentation preserves gameplay source DreamCompass
+PASS Bounded independent surface acting ShellPostman
+PASS Reduced surface stable ShellPostman
+PASS Reduced farewell stable ShellPostman
+PASS Farewell fully settles ShellPostman
+PASS Real attack takes priority ShellPostman
+PASS Presentation preserves gameplay source ShellPostman
+PASS Bounded independent surface acting CoralTeacup
+PASS Reduced surface stable CoralTeacup
+PASS Reduced farewell stable CoralTeacup
+PASS Farewell fully settles CoralTeacup
+PASS Real attack takes priority CoralTeacup
+PASS Presentation preserves gameplay source CoralTeacup
+PASS Bounded independent surface acting BubbleKoi
+PASS Reduced surface stable BubbleKoi
+PASS Reduced farewell stable BubbleKoi
+PASS Farewell fully settles BubbleKoi
+PASS Real attack takes priority BubbleKoi
+PASS Presentation preserves gameplay source BubbleKoi
+PASS Bounded independent surface acting AnchorSnail
+PASS Reduced surface stable AnchorSnail
+PASS Reduced farewell stable AnchorSnail
+PASS Farewell fully settles AnchorSnail
+PASS Real attack takes priority AnchorSnail
+PASS Presentation preserves gameplay source AnchorSnail
+PASS Bounded independent surface acting SailSquid
+PASS Reduced surface stable SailSquid
+PASS Reduced farewell stable SailSquid
+PASS Farewell fully settles SailSquid
+PASS Real attack takes priority SailSquid
+PASS Presentation preserves gameplay source SailSquid
+PASS Bounded independent surface acting SockCyclops
+PASS Reduced surface stable SockCyclops
+PASS Reduced farewell stable SockCyclops
+PASS Farewell fully settles SockCyclops
+PASS Real attack takes priority SockCyclops
+PASS Presentation preserves gameplay source SockCyclops
+PASS Bounded independent surface acting DiceCrab
+PASS Reduced surface stable DiceCrab
+PASS Reduced farewell stable DiceCrab
+PASS Farewell fully settles DiceCrab
+PASS Real attack takes priority DiceCrab
+PASS Presentation preserves gameplay source DiceCrab
+PASS Bounded independent surface acting MaskPepper
+PASS Reduced surface stable MaskPepper
+PASS Reduced farewell stable MaskPepper
+PASS Farewell fully settles MaskPepper
+PASS Real attack takes priority MaskPepper
+PASS Presentation preserves gameplay source MaskPepper
+PASS Bounded independent surface acting CrayonGremlin
+PASS Reduced surface stable CrayonGremlin
+PASS Reduced farewell stable CrayonGremlin
+PASS Farewell fully settles CrayonGremlin
+PASS Real attack takes priority CrayonGremlin
+PASS Presentation preserves gameplay source CrayonGremlin
+PASS Bounded independent surface acting MirrorNewt
+PASS Reduced surface stable MirrorNewt
+PASS Reduced farewell stable MirrorNewt
+PASS Farewell fully settles MirrorNewt
+PASS Real attack takes priority MirrorNewt
+PASS Presentation preserves gameplay source MirrorNewt
+PASS Bounded independent surface acting RibbonSpider
+PASS Reduced surface stable RibbonSpider
+PASS Reduced farewell stable RibbonSpider
+PASS Farewell fully settles RibbonSpider
+PASS Real attack takes priority RibbonSpider
+PASS Presentation preserves gameplay source RibbonSpider
+PASS Bounded independent surface acting CoilKettle
+PASS Reduced surface stable CoilKettle
+PASS Reduced farewell stable CoilKettle
+PASS Farewell fully settles CoilKettle
+PASS Real attack takes priority CoilKettle
+PASS Presentation preserves gameplay source CoilKettle
+PASS Bounded independent surface acting ThimbleMoth
+PASS Reduced surface stable ThimbleMoth
+PASS Reduced farewell stable ThimbleMoth
+PASS Farewell fully settles ThimbleMoth
+PASS Real attack takes priority ThimbleMoth
+PASS Presentation preserves gameplay source ThimbleMoth
+PASS Bounded independent surface acting ReelOwl
+PASS Reduced surface stable ReelOwl
+PASS Reduced farewell stable ReelOwl
+PASS Farewell fully settles ReelOwl
+PASS Real attack takes priority ReelOwl
+PASS Presentation preserves gameplay source ReelOwl
+PASS Bounded independent surface acting RainbowTailor
+PASS Reduced surface stable RainbowTailor
+PASS Reduced farewell stable RainbowTailor
+PASS Farewell fully settles RainbowTailor
+PASS Real attack takes priority RainbowTailor
+PASS Presentation preserves gameplay source RainbowTailor
+PASS Bounded independent surface acting RainbowBell
+PASS Reduced surface stable RainbowBell
+PASS Reduced farewell stable RainbowBell
+PASS Farewell fully settles RainbowBell
+PASS Real attack takes priority RainbowBell
+PASS Presentation preserves gameplay source RainbowBell
+PASS Bounded independent surface acting SecretPatchBear
+PASS Reduced surface stable SecretPatchBear
+PASS Reduced farewell stable SecretPatchBear
+PASS Farewell fully settles SecretPatchBear
+PASS Real attack takes priority SecretPatchBear
+PASS Presentation preserves gameplay source SecretPatchBear
+PASS Bounded independent surface acting SecretPaperBird
+PASS Reduced surface stable SecretPaperBird
+PASS Reduced farewell stable SecretPaperBird
+PASS Farewell fully settles SecretPaperBird
+PASS Real attack takes priority SecretPaperBird
+PASS Presentation preserves gameplay source SecretPaperBird
+PASS Bounded independent surface acting SecretDreamLamb
+PASS Reduced surface stable SecretDreamLamb
+PASS Reduced farewell stable SecretDreamLamb
+PASS Farewell fully settles SecretDreamLamb
+PASS Real attack takes priority SecretDreamLamb
+PASS Presentation preserves gameplay source SecretDreamLamb
+PASS Bounded independent surface acting SaffronMechanist
+PASS Reduced surface stable SaffronMechanist
+PASS Reduced farewell stable SaffronMechanist
+PASS Farewell fully settles SaffronMechanist
+PASS Real attack takes priority SaffronMechanist
+PASS Presentation preserves gameplay source SaffronMechanist
+PASS Bounded independent surface acting ClockworkPiper
+PASS Reduced surface stable ClockworkPiper
+PASS Reduced farewell stable ClockworkPiper
+PASS Farewell fully settles ClockworkPiper
+PASS Real attack takes priority ClockworkPiper
+PASS Presentation preserves gameplay source ClockworkPiper
+PASS Bounded independent surface acting VelvetChampion
+PASS Reduced surface stable VelvetChampion
+PASS Reduced farewell stable VelvetChampion
+PASS Farewell fully settles VelvetChampion
+PASS Real attack takes priority VelvetChampion
+PASS Presentation preserves gameplay source VelvetChampion
+PASS Bounded independent surface acting PaperInventor
+PASS Reduced surface stable PaperInventor
+PASS Reduced farewell stable PaperInventor
+PASS Farewell fully settles PaperInventor
+PASS Real attack takes priority PaperInventor
+PASS Presentation preserves gameplay source PaperInventor
+PASS Bounded independent surface acting ReturnCaptain
+PASS Reduced surface stable ReturnCaptain
+PASS Reduced farewell stable ReturnCaptain
+PASS Farewell fully settles ReturnCaptain
+PASS Real attack takes priority ReturnCaptain
+PASS Presentation preserves gameplay source ReturnCaptain
+PASS Bounded independent surface acting DoughForeman
+PASS Reduced surface stable DoughForeman
+PASS Reduced farewell stable DoughForeman
+PASS Farewell fully settles DoughForeman
+PASS Real attack takes priority DoughForeman
+PASS Presentation preserves gameplay source DoughForeman
+PASS Bounded independent surface acting IronLocomotive
+PASS Reduced surface stable IronLocomotive
+PASS Reduced farewell stable IronLocomotive
+PASS Farewell fully settles IronLocomotive
+PASS Real attack takes priority IronLocomotive
+PASS Presentation preserves gameplay source IronLocomotive
+PASS Bounded independent surface acting VioletRemnant
+PASS Reduced surface stable VioletRemnant
+PASS Reduced farewell stable VioletRemnant
+PASS Farewell fully settles VioletRemnant
+PASS Real attack takes priority VioletRemnant
+PASS Presentation preserves gameplay source VioletRemnant
+PASS Bounded independent surface acting VelvetEnchantress
+PASS Reduced surface stable VelvetEnchantress
+PASS Reduced farewell stable VelvetEnchantress
+PASS Farewell fully settles VelvetEnchantress
+PASS Real attack takes priority VelvetEnchantress
+PASS Presentation preserves gameplay source VelvetEnchantress
+PASS Bounded independent surface acting GrandSprout
+PASS Reduced surface stable GrandSprout
+PASS Reduced farewell stable GrandSprout
+PASS Farewell fully settles GrandSprout
+PASS Real attack takes priority GrandSprout
+PASS Presentation preserves gameplay source GrandSprout
+PASS Bounded independent surface acting BristleBall
+PASS Reduced surface stable BristleBall
+PASS Reduced farewell stable BristleBall
+PASS Farewell fully settles BristleBall
+PASS Real attack takes priority BristleBall
+PASS Presentation preserves gameplay source BristleBall
+PASS Bounded independent surface acting PaperDevil
+PASS Reduced surface stable PaperDevil
+PASS Reduced farewell stable PaperDevil
+PASS Farewell fully settles PaperDevil
+PASS Real attack takes priority PaperDevil
+PASS Presentation preserves gameplay source PaperDevil
+PASS Bounded independent surface acting BalloonMallet
+PASS Reduced surface stable BalloonMallet
+PASS Reduced farewell stable BalloonMallet
+PASS Farewell fully settles BalloonMallet
+PASS Real attack takes priority BalloonMallet
+PASS Presentation preserves gameplay source BalloonMallet
+PASS Bounded independent surface acting LittleSprout
+PASS Reduced surface stable LittleSprout
+PASS Reduced farewell stable LittleSprout
+PASS Farewell fully settles LittleSprout
+PASS Real attack takes priority LittleSprout
+PASS Presentation preserves gameplay source LittleSprout
+PASS Bounded independent surface acting MonsterMarble
+PASS Reduced surface stable MonsterMarble
+PASS Reduced farewell stable MonsterMarble
+PASS Farewell fully settles MonsterMarble
+PASS Real attack takes priority MonsterMarble
+PASS Presentation preserves gameplay source MonsterMarble
+PASS Bounded independent surface acting CarouselPony
+PASS Reduced surface stable CarouselPony
+PASS Reduced farewell stable CarouselPony
+PASS Farewell fully settles CarouselPony
+PASS Real attack takes priority CarouselPony
+PASS Presentation preserves gameplay source CarouselPony
+PASS Bounded independent surface acting TeacupCricket
+PASS Reduced surface stable TeacupCricket
+PASS Reduced farewell stable TeacupCricket
+PASS Farewell fully settles TeacupCricket
+PASS Real attack takes priority TeacupCricket
+PASS Presentation preserves gameplay source TeacupCricket
+PASS Bounded independent surface acting RibbonOtter
+PASS Reduced surface stable RibbonOtter
+PASS Reduced farewell stable RibbonOtter
+PASS Farewell fully settles RibbonOtter
+PASS Real attack takes priority RibbonOtter
+PASS Presentation preserves gameplay source RibbonOtter
+PASS Bounded independent surface acting SpindleWren
+PASS Reduced surface stable SpindleWren
+PASS Reduced farewell stable SpindleWren
+PASS Farewell fully settles SpindleWren
+PASS Real attack takes priority SpindleWren
+PASS Presentation preserves gameplay source SpindleWren
+PASS Bounded independent surface acting HushMite
+PASS Reduced surface stable HushMite
+PASS Reduced farewell stable HushMite
+PASS Farewell fully settles HushMite
+PASS Real attack takes priority HushMite
+PASS Presentation preserves gameplay source HushMite
+PASS Intrinsic enemy effect works before variant assignment HushMite
+PASS Bounded independent surface acting ClockBat
+PASS Reduced surface stable ClockBat
+PASS Reduced farewell stable ClockBat
+PASS Farewell fully settles ClockBat
+PASS Real attack takes priority ClockBat
+PASS Presentation preserves gameplay source ClockBat
+PASS Intrinsic enemy effect works before variant assignment ClockBat
+PASS Bounded independent surface acting BristleImp
+PASS Reduced surface stable BristleImp
+PASS Reduced farewell stable BristleImp
+PASS Farewell fully settles BristleImp
+PASS Real attack takes priority BristleImp
+PASS Presentation preserves gameplay source BristleImp
+PASS Intrinsic enemy effect works before variant assignment BristleImp
+PASS Bounded independent surface acting RuneWisp
+PASS Reduced surface stable RuneWisp
+PASS Reduced farewell stable RuneWisp
+PASS Farewell fully settles RuneWisp
+PASS Real attack takes priority RuneWisp
+PASS Presentation preserves gameplay source RuneWisp
+PASS Intrinsic enemy effect works before variant assignment RuneWisp
+PASS Bounded independent surface acting InkMoth
+PASS Reduced surface stable InkMoth
+PASS Reduced farewell stable InkMoth
+PASS Farewell fully settles InkMoth
+PASS Real attack takes priority InkMoth
+PASS Presentation preserves gameplay source InkMoth
+PASS Intrinsic enemy effect works before variant assignment InkMoth
+PASS Bounded independent surface acting SirenSeal
+PASS Reduced surface stable SirenSeal
+PASS Reduced farewell stable SirenSeal
+PASS Farewell fully settles SirenSeal
+PASS Real attack takes priority SirenSeal
+PASS Presentation preserves gameplay source SirenSeal
+PASS Intrinsic enemy effect works before variant assignment SirenSeal
+PASS Bounded independent surface acting DoorBearer
+PASS Reduced surface stable DoorBearer
+PASS Reduced farewell stable DoorBearer
+PASS Farewell fully settles DoorBearer
+PASS Real attack takes priority DoorBearer
+PASS Presentation preserves gameplay source DoorBearer
+PASS Intrinsic enemy effect works before variant assignment DoorBearer
+PASS Bounded independent surface acting MoonMagnet
+PASS Reduced surface stable MoonMagnet
+PASS Reduced farewell stable MoonMagnet
+PASS Farewell fully settles MoonMagnet
+PASS Real attack takes priority MoonMagnet
+PASS Presentation preserves gameplay source MoonMagnet
+PASS Intrinsic enemy effect works before variant assignment MoonMagnet
+PASS Bounded independent surface acting SleepMimic
+PASS Reduced surface stable SleepMimic
+PASS Reduced farewell stable SleepMimic
+PASS Farewell fully settles SleepMimic
+PASS Real attack takes priority SleepMimic
+PASS Presentation preserves gameplay source SleepMimic
+PASS Intrinsic enemy effect works before variant assignment SleepMimic
+PASS Bounded independent surface acting CurtainWisp
+PASS Reduced surface stable CurtainWisp
+PASS Reduced farewell stable CurtainWisp
+PASS Farewell fully settles CurtainWisp
+PASS Real attack takes priority CurtainWisp
+PASS Presentation preserves gameplay source CurtainWisp
+PASS Intrinsic enemy effect works before variant assignment CurtainWisp
+PASS Bounded independent surface acting FurnaceToad
+PASS Reduced surface stable FurnaceToad
+PASS Reduced farewell stable FurnaceToad
+PASS Farewell fully settles FurnaceToad
+PASS Real attack takes priority FurnaceToad
+PASS Presentation preserves gameplay source FurnaceToad
+PASS Intrinsic enemy effect works before variant assignment FurnaceToad
+PASS Bounded independent surface acting WardrobeCrab
+PASS Reduced surface stable WardrobeCrab
+PASS Reduced farewell stable WardrobeCrab
+PASS Farewell fully settles WardrobeCrab
+PASS Real attack takes priority WardrobeCrab
+PASS Presentation preserves gameplay source WardrobeCrab
+PASS Intrinsic enemy effect works before variant assignment WardrobeCrab
+PASS Bounded independent surface acting HopperKeg
+PASS Reduced surface stable HopperKeg
+PASS Reduced farewell stable HopperKeg
+PASS Farewell fully settles HopperKeg
+PASS Real attack takes priority HopperKeg
+PASS Presentation preserves gameplay source HopperKeg
+PASS Intrinsic enemy effect works before variant assignment HopperKeg
+PASS Bounded independent surface acting ChargerRam
+PASS Reduced surface stable ChargerRam
+PASS Reduced farewell stable ChargerRam
+PASS Farewell fully settles ChargerRam
+PASS Real attack takes priority ChargerRam
+PASS Presentation preserves gameplay source ChargerRam
+PASS Intrinsic enemy effect works before variant assignment ChargerRam
+PASS Bounded independent surface acting CoinLeech
+PASS Reduced surface stable CoinLeech
+PASS Reduced farewell stable CoinLeech
+PASS Farewell fully settles CoinLeech
+PASS Real attack takes priority CoinLeech
+PASS Presentation preserves gameplay source CoinLeech
+PASS Intrinsic enemy effect works before variant assignment CoinLeech
+PASS Bounded independent surface acting BlastPuffer
+PASS Reduced surface stable BlastPuffer
+PASS Reduced farewell stable BlastPuffer
+PASS Farewell fully settles BlastPuffer
+PASS Real attack takes priority BlastPuffer
+PASS Presentation preserves gameplay source BlastPuffer
+PASS Intrinsic enemy effect works before variant assignment BlastPuffer
+PASS Bounded independent surface acting SporeBishop
+PASS Reduced surface stable SporeBishop
+PASS Reduced farewell stable SporeBishop
+PASS Farewell fully settles SporeBishop
+PASS Real attack takes priority SporeBishop
+PASS Presentation preserves gameplay source SporeBishop
+PASS Intrinsic enemy effect works before variant assignment SporeBishop
+PASS Bounded independent surface acting BroomSkater
+PASS Reduced surface stable BroomSkater
+PASS Reduced farewell stable BroomSkater
+PASS Farewell fully settles BroomSkater
+PASS Real attack takes priority BroomSkater
+PASS Presentation preserves gameplay source BroomSkater
+PASS Intrinsic enemy effect works before variant assignment BroomSkater
+PASS Bounded independent surface acting RibbonHydra
+PASS Reduced surface stable RibbonHydra
+PASS Reduced farewell stable RibbonHydra
+PASS Farewell fully settles RibbonHydra
+PASS Real attack takes priority RibbonHydra
+PASS Presentation preserves gameplay source RibbonHydra
+PASS Intrinsic enemy effect works before variant assignment RibbonHydra
+PASS Bounded independent surface acting BurrowBell
+PASS Reduced surface stable BurrowBell
+PASS Reduced farewell stable BurrowBell
+PASS Farewell fully settles BurrowBell
+PASS Real attack takes priority BurrowBell
+PASS Presentation preserves gameplay source BurrowBell
+PASS Intrinsic enemy effect works before variant assignment BurrowBell
+PASS Bounded independent surface acting SmokeWraith
+PASS Reduced surface stable SmokeWraith
+PASS Reduced farewell stable SmokeWraith
+PASS Farewell fully settles SmokeWraith
+PASS Real attack takes priority SmokeWraith
+PASS Presentation preserves gameplay source SmokeWraith
+PASS Intrinsic enemy effect works before variant assignment SmokeWraith
+PASS Bounded independent surface acting BlueFlameFiend
+PASS Reduced surface stable BlueFlameFiend
+PASS Reduced farewell stable BlueFlameFiend
+PASS Farewell fully settles BlueFlameFiend
+PASS Real attack takes priority BlueFlameFiend
+PASS Presentation preserves gameplay source BlueFlameFiend
+PASS Intrinsic enemy effect works before variant assignment BlueFlameFiend
+PASS Bounded independent surface acting RedFlameBerserker
+PASS Reduced surface stable RedFlameBerserker
+PASS Reduced farewell stable RedFlameBerserker
+PASS Farewell fully settles RedFlameBerserker
+PASS Real attack takes priority RedFlameBerserker
+PASS Presentation preserves gameplay source RedFlameBerserker
+PASS Intrinsic enemy effect works before variant assignment RedFlameBerserker
+PASS Bounded independent surface acting TwinFlameFurnace
+PASS Reduced surface stable TwinFlameFurnace
+PASS Reduced farewell stable TwinFlameFurnace
+PASS Farewell fully settles TwinFlameFurnace
+PASS Real attack takes priority TwinFlameFurnace
+PASS Presentation preserves gameplay source TwinFlameFurnace
+PASS Intrinsic enemy effect works before variant assignment TwinFlameFurnace
+PASS Bounded independent surface acting AshSwallower
+PASS Reduced surface stable AshSwallower
+PASS Reduced farewell stable AshSwallower
+PASS Farewell fully settles AshSwallower
+PASS Real attack takes priority AshSwallower
+PASS Presentation preserves gameplay source AshSwallower
+PASS Intrinsic enemy effect works before variant assignment AshSwallower
+PASS Bounded independent surface acting LostLanternSoul
+PASS Reduced surface stable LostLanternSoul
+PASS Reduced farewell stable LostLanternSoul
+PASS Farewell fully settles LostLanternSoul
+PASS Real attack takes priority LostLanternSoul
+PASS Presentation preserves gameplay source LostLanternSoul
+PASS Intrinsic enemy effect works before variant assignment LostLanternSoul
+PASS Bounded independent surface acting SmokingCoffin
+PASS Reduced surface stable SmokingCoffin
+PASS Reduced farewell stable SmokingCoffin
+PASS Farewell fully settles SmokingCoffin
+PASS Real attack takes priority SmokingCoffin
+PASS Presentation preserves gameplay source SmokingCoffin
+PASS Intrinsic enemy effect works before variant assignment SmokingCoffin
+PASS Bounded independent surface acting EmberProcession
+PASS Reduced surface stable EmberProcession
+PASS Reduced farewell stable EmberProcession
+PASS Farewell fully settles EmberProcession
+PASS Real attack takes priority EmberProcession
+PASS Presentation preserves gameplay source EmberProcession
+PASS Intrinsic enemy effect works before variant assignment EmberProcession
+PASS Bounded independent surface acting UndeliveredKing
+PASS Reduced surface stable UndeliveredKing
+PASS Reduced farewell stable UndeliveredKing
+PASS Farewell fully settles UndeliveredKing
+PASS Real attack takes priority UndeliveredKing
+PASS Presentation preserves gameplay source UndeliveredKing
+PASS Bounded independent surface acting ScarletIndex
+PASS Reduced surface stable ScarletIndex
+PASS Reduced farewell stable ScarletIndex
+PASS Farewell fully settles ScarletIndex
+PASS Real attack takes priority ScarletIndex
+PASS Presentation preserves gameplay source ScarletIndex
+PASS Bounded independent surface acting SleepCollector
+PASS Reduced surface stable SleepCollector
+PASS Reduced farewell stable SleepCollector
+PASS Farewell fully settles SleepCollector
+PASS Real attack takes priority SleepCollector
+PASS Presentation preserves gameplay source SleepCollector
+PASS Bounded independent surface acting WaxAdmiral
+PASS Reduced surface stable WaxAdmiral
+PASS Reduced farewell stable WaxAdmiral
+PASS Farewell fully settles WaxAdmiral
+PASS Real attack takes priority WaxAdmiral
+PASS Presentation preserves gameplay source WaxAdmiral
+PASS Bounded independent surface acting LastLantern
+PASS Reduced surface stable LastLantern
+PASS Reduced farewell stable LastLantern
+PASS Farewell fully settles LastLantern
+PASS Real attack takes priority LastLantern
+PASS Presentation preserves gameplay source LastLantern
+PASS Bounded independent surface acting MarqueeMaw
+PASS Reduced surface stable MarqueeMaw
+PASS Reduced farewell stable MarqueeMaw
+PASS Farewell fully settles MarqueeMaw
+PASS Real attack takes priority MarqueeMaw
+PASS Presentation preserves gameplay source MarqueeMaw
+PASS Bounded independent surface acting UmbraCradle
+PASS Reduced surface stable UmbraCradle
+PASS Reduced farewell stable UmbraCradle
+PASS Farewell fully settles UmbraCradle
+PASS Real attack takes priority UmbraCradle
+PASS Presentation preserves gameplay source UmbraCradle
+PASS Bounded independent surface acting CoinWidow
+PASS Reduced surface stable CoinWidow
+PASS Reduced farewell stable CoinWidow
+PASS Farewell fully settles CoinWidow
+PASS Real attack takes priority CoinWidow
+PASS Presentation preserves gameplay source CoinWidow
+PASS Bounded independent surface acting ChoirEngine
+PASS Reduced surface stable ChoirEngine
+PASS Reduced farewell stable ChoirEngine
+PASS Farewell fully settles ChoirEngine
+PASS Real attack takes priority ChoirEngine
+PASS Presentation preserves gameplay source ChoirEngine
+PASS Bounded independent surface acting SuitcaseLeviathan
+PASS Reduced surface stable SuitcaseLeviathan
+PASS Reduced farewell stable SuitcaseLeviathan
+PASS Farewell fully settles SuitcaseLeviathan
+PASS Real attack takes priority SuitcaseLeviathan
+PASS Presentation preserves gameplay source SuitcaseLeviathan
+PASS Bounded independent surface acting TheLastCustomer
+PASS Reduced surface stable TheLastCustomer
+PASS Reduced farewell stable TheLastCustomer
+PASS Farewell fully settles TheLastCustomer
+PASS Real attack takes priority TheLastCustomer
+PASS Presentation preserves gameplay source TheLastCustomer
+PASS Bounded independent surface acting OutsideStageKeeper
+PASS Reduced surface stable OutsideStageKeeper
+PASS Reduced farewell stable OutsideStageKeeper
+PASS Farewell fully settles OutsideStageKeeper
+PASS Real attack takes priority OutsideStageKeeper
+PASS Presentation preserves gameplay source OutsideStageKeeper
+PASS No weapon motion before event KeyCleaver
+PASS Weapon mechanism settles KeyCleaver
+PASS Reduced weapon mechanism stable KeyCleaver
+PASS No weapon motion before event TeapotPopgun
+PASS Weapon mechanism settles TeapotPopgun
+PASS Reduced weapon mechanism stable TeapotPopgun
+PASS No weapon motion before event UmbrellaLance
+PASS Weapon mechanism settles UmbrellaLance
+PASS Reduced weapon mechanism stable UmbrellaLance
+PASS No weapon motion before event MailboxLauncher
+PASS Weapon mechanism settles MailboxLauncher
+PASS Reduced weapon mechanism stable MailboxLauncher
+PASS No weapon motion before event BellFork
+PASS Weapon mechanism settles BellFork
+PASS Reduced weapon mechanism stable BellFork
+PASS No weapon motion before event BookPaddle
+PASS Weapon mechanism settles BookPaddle
+PASS Reduced weapon mechanism stable BookPaddle
+PASS No weapon motion before event CrescentBow
+PASS Weapon mechanism settles CrescentBow
+PASS Reduced weapon mechanism stable CrescentBow
+PASS No weapon motion before event RuneStaff
+PASS Weapon mechanism settles RuneStaff
+PASS Reduced weapon mechanism stable RuneStaff
+PASS No weapon motion before event DreamStamp
+PASS Weapon mechanism settles DreamStamp
+PASS Reduced weapon mechanism stable DreamStamp
+PASS No weapon motion before event CloudScissors
+PASS Weapon mechanism settles CloudScissors
+PASS Reduced weapon mechanism stable CloudScissors
+PASS No weapon motion before event SleepCamera
+PASS Weapon mechanism settles SleepCamera
+PASS Reduced weapon mechanism stable SleepCamera
+PASS No weapon motion before event TinFish
+PASS Weapon mechanism settles TinFish
+PASS Reduced weapon mechanism stable TinFish
+PASS No weapon motion before event DreamIron
+PASS Weapon mechanism settles DreamIron
+PASS Reduced weapon mechanism stable DreamIron
+PASS No weapon motion before event RubberHammer
+PASS Weapon mechanism settles RubberHammer
+PASS Reduced weapon mechanism stable RubberHammer
+PASS No weapon motion before event AlarmMortar
+PASS Weapon mechanism settles AlarmMortar
+PASS Reduced weapon mechanism stable AlarmMortar
+PASS No weapon motion before event MusicBox
+PASS Weapon mechanism settles MusicBox
+PASS Reduced weapon mechanism stable MusicBox
+PASS No weapon motion before event SpoonSabre
+PASS Weapon mechanism settles SpoonSabre
+PASS Reduced weapon mechanism stable SpoonSabre
+PASS No weapon motion before event ToastCleaver
+PASS Weapon mechanism settles ToastCleaver
+PASS Reduced weapon mechanism stable ToastCleaver
+PASS No weapon motion before event LollipopLance
+PASS Weapon mechanism settles LollipopLance
+PASS Reduced weapon mechanism stable LollipopLance
+PASS No weapon motion before event PaperFan
+PASS Weapon mechanism settles PaperFan
+PASS Reduced weapon mechanism stable PaperFan
+PASS No weapon motion before event CorkscrewRapier
+PASS Weapon mechanism settles CorkscrewRapier
+PASS Reduced weapon mechanism stable CorkscrewRapier
+PASS No weapon motion before event TeabagFlail
+PASS Weapon mechanism settles TeabagFlail
+PASS Reduced weapon mechanism stable TeabagFlail
+PASS No weapon motion before event UmbrellaHook
+PASS Weapon mechanism settles UmbrellaHook
+PASS Reduced weapon mechanism stable UmbrellaHook
+PASS No weapon motion before event PizzaWheel
+PASS Weapon mechanism settles PizzaWheel
+PASS Reduced weapon mechanism stable PizzaWheel
+PASS No weapon motion before event MoonScythe
+PASS Weapon mechanism settles MoonScythe
+PASS Reduced weapon mechanism stable MoonScythe
+PASS No weapon motion before event ForkTrident
+PASS Weapon mechanism settles ForkTrident
+PASS Reduced weapon mechanism stable ForkTrident
+PASS No weapon motion before event MaracaHammer
+PASS Weapon mechanism settles MaracaHammer
+PASS Reduced weapon mechanism stable MaracaHammer
+PASS No weapon motion before event TapeWhip
+PASS Weapon mechanism settles TapeWhip
+PASS Reduced weapon mechanism stable TapeWhip
+PASS No weapon motion before event ButtonBow
+PASS Weapon mechanism settles ButtonBow
+PASS Reduced weapon mechanism stable ButtonBow
+PASS No weapon motion before event LeafCrossbow
+PASS Weapon mechanism settles LeafCrossbow
+PASS Reduced weapon mechanism stable LeafCrossbow
+PASS No weapon motion before event InkPistol
+PASS Weapon mechanism settles InkPistol
+PASS Reduced weapon mechanism stable InkPistol
+PASS No weapon motion before event BubbleWand
+PASS Weapon mechanism settles BubbleWand
+PASS Reduced weapon mechanism stable BubbleWand
+PASS No weapon motion before event StarKazoo
+PASS Weapon mechanism settles StarKazoo
+PASS Reduced weapon mechanism stable StarKazoo
+PASS No weapon motion before event ShellCannon
+PASS Weapon mechanism settles ShellCannon
+PASS Reduced weapon mechanism stable ShellCannon
+PASS No weapon motion before event AcornSling
+PASS Weapon mechanism settles AcornSling
+PASS Reduced weapon mechanism stable AcornSling
+PASS No weapon motion before event CrescentBoomerang
+PASS Weapon mechanism settles CrescentBoomerang
+PASS Reduced weapon mechanism stable CrescentBoomerang
+PASS No weapon motion before event DartCompass
+PASS Weapon mechanism settles DartCompass
+PASS Reduced weapon mechanism stable DartCompass
+PASS No weapon motion before event LanternStaff
+PASS Weapon mechanism settles LanternStaff
+PASS Reduced weapon mechanism stable LanternStaff
+PASS No weapon motion before event SnowGlobeOrb
+PASS Weapon mechanism settles SnowGlobeOrb
+PASS Reduced weapon mechanism stable SnowGlobeOrb
+PASS No weapon motion before event RibbonHarp
+PASS Weapon mechanism settles RibbonHarp
+PASS Reduced weapon mechanism stable RibbonHarp
+PASS No weapon motion before event DreamOrbStaff
+PASS Weapon mechanism settles DreamOrbStaff
+PASS Reduced weapon mechanism stable DreamOrbStaff
+PASS No weapon motion before event FireExtinguisher
+PASS Weapon mechanism settles FireExtinguisher
+PASS Reduced weapon mechanism stable FireExtinguisher
+PASS No weapon motion before event PlasmaTrident
+PASS Weapon mechanism settles PlasmaTrident
+PASS Reduced weapon mechanism stable PlasmaTrident
+PASS No weapon motion before event MoonFeatherFan
+PASS Weapon mechanism settles MoonFeatherFan
+PASS Reduced weapon mechanism stable MoonFeatherFan
+PASS No weapon motion before event TwinSabres
+PASS Weapon mechanism settles TwinSabres
+PASS Reduced weapon mechanism stable TwinSabres
+PASS No weapon motion before event ClockCrescent
+PASS Weapon mechanism settles ClockCrescent
+PASS Reduced weapon mechanism stable ClockCrescent
+PASS No weapon motion before event ParasolNeedle
+PASS Weapon mechanism settles ParasolNeedle
+PASS Reduced weapon mechanism stable ParasolNeedle
+PASS No weapon motion before event StampHammer
+PASS Weapon mechanism settles StampHammer
+PASS Reduced weapon mechanism stable StampHammer
+PASS No weapon motion before event ClockworkYoYo
+PASS Weapon mechanism settles ClockworkYoYo
+PASS Reduced weapon mechanism stable ClockworkYoYo
+PASS No weapon motion before event ScrapMagnet
+PASS Weapon mechanism settles ScrapMagnet
+PASS Reduced weapon mechanism stable ScrapMagnet
+PASS No weapon motion before event NeedleSinger
+PASS Weapon mechanism settles NeedleSinger
+PASS Reduced weapon mechanism stable NeedleSinger
+PASS No weapon motion before event SpringKnocker
+PASS Weapon mechanism settles SpringKnocker
+PASS Reduced weapon mechanism stable SpringKnocker
+PASS No weapon motion before event DreamProjector
+PASS Weapon mechanism settles DreamProjector
+PASS Reduced weapon mechanism stable DreamProjector
+PASS No weapon motion before event RibbonWheel
+PASS Weapon mechanism settles RibbonWheel
+PASS Reduced weapon mechanism stable RibbonWheel
+PASS No weapon motion before event MoonseedOrb
+PASS Weapon mechanism settles MoonseedOrb
+PASS Reduced weapon mechanism stable MoonseedOrb
+PASS No weapon motion before event AfterimageSabre
+PASS Weapon mechanism settles AfterimageSabre
+PASS Reduced weapon mechanism stable AfterimageSabre
+PASS No weapon motion before event SatelliteDisc
+PASS Weapon mechanism settles SatelliteDisc
+PASS Reduced weapon mechanism stable SatelliteDisc
+PASS Reduced dissolution stable Float
+PASS Evolution changes death response Float
+PASS Reduced dissolution stable Fold
+PASS Evolution changes death response Fold
+PASS Reduced dissolution stable Spring
+PASS Evolution changes death response Spring
+PASS Reduced dissolution stable Wing
+PASS Evolution changes death response Wing
+PASS Reduced dissolution stable Shell
+PASS Evolution changes death response Shell
+PASS Reduced dissolution stable Stalk
+PASS Evolution changes death response Stalk
+PASS Reduced dissolution stable Clock
+PASS Evolution changes death response Clock
+PASS Reduced dissolution stable Jelly
+PASS Evolution changes death response Jelly
+PASS Reduced dissolution stable Flame
+PASS Evolution changes death response Flame
+PASS Reduced dissolution stable Cloth
+PASS Evolution changes death response Cloth
+PASS Reduced dissolution stable Heavy
+PASS Evolution changes death response Heavy
+PASS Crowd budget sheds ornament before gameplay
+PASS Crowd budget resets

@@ -1,0 +1,31 @@
+[{
+    "Name": "normal-combat",
+    "Device": "NVIDIA GeForce RTX 5070 Ti",
+    "Cpu": "AMD Ryzen 7 9700X 8-Core Processor ",
+    "Samples": 454,
+    "PeakUnits": 602,
+    "PeakShots": 7,
+    "MedianMilliseconds": 8.333695121109486,
+    "P95Milliseconds": 11.932100169360638,
+    "P99Milliseconds": 14.071698300540448,
+    "ManagedHeapStart": 7208960,
+    "ManagedHeapEnd": 9216000,
+    "UnityAllocatedEnd": 420701495,
+    "Collections": 44,
+    "P95Within60Fps": true
+},{
+    "Name": "420-enemies-320-hostile-shots",
+    "Device": "NVIDIA GeForce RTX 5070 Ti",
+    "Cpu": "AMD Ryzen 7 9700X 8-Core Processor ",
+    "Samples": 26,
+    "PeakUnits": 1020,
+    "PeakShots": 46,
+    "MedianMilliseconds": 460.53510904312136,
+    "P95Milliseconds": 605.6191921234131,
+    "P99Milliseconds": 610.080897808075,
+    "ManagedHeapStart": 15491072,
+    "ManagedHeapEnd": 11870208,
+    "UnityAllocatedEnd": 442933920,
+    "Collections": 57,
+    "P95Within60Fps": false
+}]

@@ -37,17 +37,25 @@ namespace ArcaneBrigade
         private Font font;
         private Sprite sprite;
         private int sequence;
-        public void Configure(Sprite source) { sprite = source; font = ArcadeTypography.Numbers != null ? ArcadeTypography.Numbers : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); }
+        private TactileFeedback tactile;
+        public void Configure(Sprite source)
+        {
+            sprite = source; font = ArcadeTypography.Numbers != null ? ArcadeTypography.Numbers : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            if (tactile == null) tactile = gameObject.AddComponent<TactileFeedback>();
+            tactile.Configure();
+        }
 
         public void Clear()
         {
             foreach (Spark spark in sparks) { spark.Age = spark.Duration; spark.View.gameObject.SetActive(false); }
             foreach (DamageNumber number in numbers) { number.Age = 1f; number.View.gameObject.SetActive(false); }
             sequence = 0;
+            if (tactile != null) tactile.Clear();
         }
 
         public void Play(CombatEvent combatEvent)
         {
+            if (tactile != null) tactile.Play(combatEvent);
             bool hit = combatEvent.Kind == CombatEventKind.Hit;
             bool kill = combatEvent.Kind == CombatEventKind.Kill;
             bool pickup = combatEvent.Kind == CombatEventKind.Pickup;
@@ -179,6 +187,7 @@ namespace ArcaneBrigade
         public void Advance(float deltaTime)
         {
             if (deltaTime <= 0 || !float.IsFinite(deltaTime)) return;
+            if (tactile != null) tactile.Advance(deltaTime);
             foreach (DamageNumber number in numbers)
             {
                 if (number.Age >= number.Life) continue;

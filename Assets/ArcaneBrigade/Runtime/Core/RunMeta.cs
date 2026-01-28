@@ -28,14 +28,14 @@ namespace ArcaneBrigade
     public static class RunMeta
     {
         public const int HistoryLimit = 50;
-        public static readonly string[] DifficultyNames = { "Peaceful", "Wandering", "Restless", "Nightmare", "Sleepless" };
+        public static readonly string[] DifficultyNames = { "Peaceful", "Wandering", "Restless", "Nightmare", "Sleepless", "Beyond the Lamp" };
         public static readonly string[] ChallengeIds = { "", "night-shift", "first-light", "small-brigade" };
         public static readonly string[] ChallengeNames = { "Free journey", "Night shift · until dawn", "First light · clear hall 10", "Small brigade · win with ≤ 6 companions" };
         public static int ChallengeSeed(int index) => 610026 + index * 7919;
         public static int UnlockedDifficulty(PlayerProfile profile)
         {
             int unlocked = 0;
-            while (unlocked < 4 && profile.Achievements.Contains("clear-difficulty-" + unlocked)) unlocked++;
+            while (unlocked < DifficultyNames.Length - 1 && profile.Achievements.Contains("clear-difficulty-" + unlocked)) unlocked++;
             return unlocked;
         }
         public static int Score(RunSnapshot run, int liveKills = 0, bool liveBoss = false)

@@ -1,0 +1,1214 @@
+PASS Original post-contract man and afterword art imported
+PASS Cannot choose before boss victory LanternKnightCloseShop
+PASS Choice cannot be skipped LanternKnightCloseShop
+PASS Choice commits once LanternKnightCloseShop
+PASS Choice and page restore LanternKnightCloseShop0
+PASS Cannot bypass branch epilogue LanternKnightCloseShop0
+PASS Branch advances LanternKnightCloseShop0
+PASS Choice and page restore LanternKnightCloseShop1
+PASS Cannot bypass branch epilogue LanternKnightCloseShop1
+PASS Branch advances LanternKnightCloseShop1
+PASS Choice and page restore LanternKnightCloseShop2
+PASS Cannot bypass branch epilogue LanternKnightCloseShop2
+PASS Branch advances LanternKnightCloseShop2
+PASS Choice and page restore LanternKnightCloseShop3
+PASS Cannot bypass branch epilogue LanternKnightCloseShop3
+PASS Branch advances LanternKnightCloseShop3
+PASS Complete once LanternKnightCloseShop
+PASS Story choice does not spend currency or RNG LanternKnightCloseShop
+PASS Endless remains separate after either ending LanternKnightCloseShop
+PASS Cannot choose before boss victory LanternKnightLeaveLight
+PASS Choice cannot be skipped LanternKnightLeaveLight
+PASS Choice commits once LanternKnightLeaveLight
+PASS Choice and page restore LanternKnightLeaveLight0
+PASS Cannot bypass branch epilogue LanternKnightLeaveLight0
+PASS Branch advances LanternKnightLeaveLight0
+PASS Choice and page restore LanternKnightLeaveLight1
+PASS Cannot bypass branch epilogue LanternKnightLeaveLight1
+PASS Branch advances LanternKnightLeaveLight1
+PASS Choice and page restore LanternKnightLeaveLight2
+PASS Cannot bypass branch epilogue LanternKnightLeaveLight2
+PASS Branch advances LanternKnightLeaveLight2
+PASS Choice and page restore LanternKnightLeaveLight3
+PASS Cannot bypass branch epilogue LanternKnightLeaveLight3
+PASS Branch advances LanternKnightLeaveLight3
+PASS Choice and page restore LanternKnightLeaveLight4
+PASS Cannot bypass branch epilogue LanternKnightLeaveLight4
+PASS Branch advances LanternKnightLeaveLight4
+PASS Complete once LanternKnightLeaveLight
+PASS Story choice does not spend currency or RNG LanternKnightLeaveLight
+PASS Endless remains separate after either ending LanternKnightLeaveLight
+PASS Cannot choose before boss victory PostmasterCloseShop
+PASS Choice cannot be skipped PostmasterCloseShop
+PASS Choice commits once PostmasterCloseShop
+PASS Choice and page restore PostmasterCloseShop0
+PASS Cannot bypass branch epilogue PostmasterCloseShop0
+PASS Branch advances PostmasterCloseShop0
+PASS Choice and page restore PostmasterCloseShop1
+PASS Cannot bypass branch epilogue PostmasterCloseShop1
+PASS Branch advances PostmasterCloseShop1
+PASS Choice and page restore PostmasterCloseShop2
+PASS Cannot bypass branch epilogue PostmasterCloseShop2
+PASS Branch advances PostmasterCloseShop2
+PASS Choice and page restore PostmasterCloseShop3
+PASS Cannot bypass branch epilogue PostmasterCloseShop3
+PASS Branch advances PostmasterCloseShop3
+PASS Complete once PostmasterCloseShop
+PASS Story choice does not spend currency or RNG PostmasterCloseShop
+PASS Endless remains separate after either ending PostmasterCloseShop
+PASS Cannot choose before boss victory PostmasterLeaveLight
+PASS Choice cannot be skipped PostmasterLeaveLight
+PASS Choice commits once PostmasterLeaveLight
+PASS Choice and page restore PostmasterLeaveLight0
+PASS Cannot bypass branch epilogue PostmasterLeaveLight0
+PASS Branch advances PostmasterLeaveLight0
+PASS Choice and page restore PostmasterLeaveLight1
+PASS Cannot bypass branch epilogue PostmasterLeaveLight1
+PASS Branch advances PostmasterLeaveLight1
+PASS Choice and page restore PostmasterLeaveLight2
+PASS Cannot bypass branch epilogue PostmasterLeaveLight2
+PASS Branch advances PostmasterLeaveLight2
+PASS Choice and page restore PostmasterLeaveLight3
+PASS Cannot bypass branch epilogue PostmasterLeaveLight3
+PASS Branch advances PostmasterLeaveLight3
+PASS Choice and page restore PostmasterLeaveLight4
+PASS Cannot bypass branch epilogue PostmasterLeaveLight4
+PASS Branch advances PostmasterLeaveLight4
+PASS Complete once PostmasterLeaveLight
+PASS Story choice does not spend currency or RNG PostmasterLeaveLight
+PASS Endless remains separate after either ending PostmasterLeaveLight
+PASS Cannot choose before boss victory DrowsySeerCloseShop
+PASS Choice cannot be skipped DrowsySeerCloseShop
+PASS Choice commits once DrowsySeerCloseShop
+PASS Choice and page restore DrowsySeerCloseShop0
+PASS Cannot bypass branch epilogue DrowsySeerCloseShop0
+PASS Branch advances DrowsySeerCloseShop0
+PASS Choice and page restore DrowsySeerCloseShop1
+PASS Cannot bypass branch epilogue DrowsySeerCloseShop1
+PASS Branch advances DrowsySeerCloseShop1
+PASS Choice and page restore DrowsySeerCloseShop2
+PASS Cannot bypass branch epilogue DrowsySeerCloseShop2
+PASS Branch advances DrowsySeerCloseShop2
+PASS Choice and page restore DrowsySeerCloseShop3
+PASS Cannot bypass branch epilogue DrowsySeerCloseShop3
+PASS Branch advances DrowsySeerCloseShop3
+PASS Complete once DrowsySeerCloseShop
+PASS Story choice does not spend currency or RNG DrowsySeerCloseShop
+PASS Endless remains separate after either ending DrowsySeerCloseShop
+PASS Cannot choose before boss victory DrowsySeerLeaveLight
+PASS Choice cannot be skipped DrowsySeerLeaveLight
+PASS Choice commits once DrowsySeerLeaveLight
+PASS Choice and page restore DrowsySeerLeaveLight0
+PASS Cannot bypass branch epilogue DrowsySeerLeaveLight0
+PASS Branch advances DrowsySeerLeaveLight0
+PASS Choice and page restore DrowsySeerLeaveLight1
+PASS Cannot bypass branch epilogue DrowsySeerLeaveLight1
+PASS Branch advances DrowsySeerLeaveLight1
+PASS Choice and page restore DrowsySeerLeaveLight2
+PASS Cannot bypass branch epilogue DrowsySeerLeaveLight2
+PASS Branch advances DrowsySeerLeaveLight2
+PASS Choice and page restore DrowsySeerLeaveLight3
+PASS Cannot bypass branch epilogue DrowsySeerLeaveLight3
+PASS Branch advances DrowsySeerLeaveLight3
+PASS Choice and page restore DrowsySeerLeaveLight4
+PASS Cannot bypass branch epilogue DrowsySeerLeaveLight4
+PASS Branch advances DrowsySeerLeaveLight4
+PASS Complete once DrowsySeerLeaveLight
+PASS Story choice does not spend currency or RNG DrowsySeerLeaveLight
+PASS Endless remains separate after either ending DrowsySeerLeaveLight
+PASS Cannot choose before boss victory RootOracleCloseShop
+PASS Choice cannot be skipped RootOracleCloseShop
+PASS Choice commits once RootOracleCloseShop
+PASS Choice and page restore RootOracleCloseShop0
+PASS Cannot bypass branch epilogue RootOracleCloseShop0
+PASS Branch advances RootOracleCloseShop0
+PASS Choice and page restore RootOracleCloseShop1
+PASS Cannot bypass branch epilogue RootOracleCloseShop1
+PASS Branch advances RootOracleCloseShop1
+PASS Choice and page restore RootOracleCloseShop2
+PASS Cannot bypass branch epilogue RootOracleCloseShop2
+PASS Branch advances RootOracleCloseShop2
+PASS Choice and page restore RootOracleCloseShop3
+PASS Cannot bypass branch epilogue RootOracleCloseShop3
+PASS Branch advances RootOracleCloseShop3
+PASS Complete once RootOracleCloseShop
+PASS Story choice does not spend currency or RNG RootOracleCloseShop
+PASS Endless remains separate after either ending RootOracleCloseShop
+PASS Cannot choose before boss victory RootOracleLeaveLight
+PASS Choice cannot be skipped RootOracleLeaveLight
+PASS Choice commits once RootOracleLeaveLight
+PASS Choice and page restore RootOracleLeaveLight0
+PASS Cannot bypass branch epilogue RootOracleLeaveLight0
+PASS Branch advances RootOracleLeaveLight0
+PASS Choice and page restore RootOracleLeaveLight1
+PASS Cannot bypass branch epilogue RootOracleLeaveLight1
+PASS Branch advances RootOracleLeaveLight1
+PASS Choice and page restore RootOracleLeaveLight2
+PASS Cannot bypass branch epilogue RootOracleLeaveLight2
+PASS Branch advances RootOracleLeaveLight2
+PASS Choice and page restore RootOracleLeaveLight3
+PASS Cannot bypass branch epilogue RootOracleLeaveLight3
+PASS Branch advances RootOracleLeaveLight3
+PASS Choice and page restore RootOracleLeaveLight4
+PASS Cannot bypass branch epilogue RootOracleLeaveLight4
+PASS Branch advances RootOracleLeaveLight4
+PASS Complete once RootOracleLeaveLight
+PASS Story choice does not spend currency or RNG RootOracleLeaveLight
+PASS Endless remains separate after either ending RootOracleLeaveLight
+PASS Cannot choose before boss victory LoneJellyCloseShop
+PASS Choice cannot be skipped LoneJellyCloseShop
+PASS Choice commits once LoneJellyCloseShop
+PASS Choice and page restore LoneJellyCloseShop0
+PASS Cannot bypass branch epilogue LoneJellyCloseShop0
+PASS Branch advances LoneJellyCloseShop0
+PASS Choice and page restore LoneJellyCloseShop1
+PASS Cannot bypass branch epilogue LoneJellyCloseShop1
+PASS Branch advances LoneJellyCloseShop1
+PASS Choice and page restore LoneJellyCloseShop2
+PASS Cannot bypass branch epilogue LoneJellyCloseShop2
+PASS Branch advances LoneJellyCloseShop2
+PASS Choice and page restore LoneJellyCloseShop3
+PASS Cannot bypass branch epilogue LoneJellyCloseShop3
+PASS Branch advances LoneJellyCloseShop3
+PASS Complete once LoneJellyCloseShop
+PASS Story choice does not spend currency or RNG LoneJellyCloseShop
+PASS Endless remains separate after either ending LoneJellyCloseShop
+PASS Cannot choose before boss victory LoneJellyLeaveLight
+PASS Choice cannot be skipped LoneJellyLeaveLight
+PASS Choice commits once LoneJellyLeaveLight
+PASS Choice and page restore LoneJellyLeaveLight0
+PASS Cannot bypass branch epilogue LoneJellyLeaveLight0
+PASS Branch advances LoneJellyLeaveLight0
+PASS Choice and page restore LoneJellyLeaveLight1
+PASS Cannot bypass branch epilogue LoneJellyLeaveLight1
+PASS Branch advances LoneJellyLeaveLight1
+PASS Choice and page restore LoneJellyLeaveLight2
+PASS Cannot bypass branch epilogue LoneJellyLeaveLight2
+PASS Branch advances LoneJellyLeaveLight2
+PASS Choice and page restore LoneJellyLeaveLight3
+PASS Cannot bypass branch epilogue LoneJellyLeaveLight3
+PASS Branch advances LoneJellyLeaveLight3
+PASS Choice and page restore LoneJellyLeaveLight4
+PASS Cannot bypass branch epilogue LoneJellyLeaveLight4
+PASS Branch advances LoneJellyLeaveLight4
+PASS Complete once LoneJellyLeaveLight
+PASS Story choice does not spend currency or RNG LoneJellyLeaveLight
+PASS Endless remains separate after either ending LoneJellyLeaveLight
+PASS Cannot choose before boss victory GlassDiceCloseShop
+PASS Choice cannot be skipped GlassDiceCloseShop
+PASS Choice commits once GlassDiceCloseShop
+PASS Choice and page restore GlassDiceCloseShop0
+PASS Cannot bypass branch epilogue GlassDiceCloseShop0
+PASS Branch advances GlassDiceCloseShop0
+PASS Choice and page restore GlassDiceCloseShop1
+PASS Cannot bypass branch epilogue GlassDiceCloseShop1
+PASS Branch advances GlassDiceCloseShop1
+PASS Choice and page restore GlassDiceCloseShop2
+PASS Cannot bypass branch epilogue GlassDiceCloseShop2
+PASS Branch advances GlassDiceCloseShop2
+PASS Choice and page restore GlassDiceCloseShop3
+PASS Cannot bypass branch epilogue GlassDiceCloseShop3
+PASS Branch advances GlassDiceCloseShop3
+PASS Complete once GlassDiceCloseShop
+PASS Story choice does not spend currency or RNG GlassDiceCloseShop
+PASS Endless remains separate after either ending GlassDiceCloseShop
+PASS Cannot choose before boss victory GlassDiceLeaveLight
+PASS Choice cannot be skipped GlassDiceLeaveLight
+PASS Choice commits once GlassDiceLeaveLight
+PASS Choice and page restore GlassDiceLeaveLight0
+PASS Cannot bypass branch epilogue GlassDiceLeaveLight0
+PASS Branch advances GlassDiceLeaveLight0
+PASS Choice and page restore GlassDiceLeaveLight1
+PASS Cannot bypass branch epilogue GlassDiceLeaveLight1
+PASS Branch advances GlassDiceLeaveLight1
+PASS Choice and page restore GlassDiceLeaveLight2
+PASS Cannot bypass branch epilogue GlassDiceLeaveLight2
+PASS Branch advances GlassDiceLeaveLight2
+PASS Choice and page restore GlassDiceLeaveLight3
+PASS Cannot bypass branch epilogue GlassDiceLeaveLight3
+PASS Branch advances GlassDiceLeaveLight3
+PASS Choice and page restore GlassDiceLeaveLight4
+PASS Cannot bypass branch epilogue GlassDiceLeaveLight4
+PASS Branch advances GlassDiceLeaveLight4
+PASS Complete once GlassDiceLeaveLight
+PASS Story choice does not spend currency or RNG GlassDiceLeaveLight
+PASS Endless remains separate after either ending GlassDiceLeaveLight
+PASS Cannot choose before boss victory TideSingerCloseShop
+PASS Choice cannot be skipped TideSingerCloseShop
+PASS Choice commits once TideSingerCloseShop
+PASS Choice and page restore TideSingerCloseShop0
+PASS Cannot bypass branch epilogue TideSingerCloseShop0
+PASS Branch advances TideSingerCloseShop0
+PASS Choice and page restore TideSingerCloseShop1
+PASS Cannot bypass branch epilogue TideSingerCloseShop1
+PASS Branch advances TideSingerCloseShop1
+PASS Choice and page restore TideSingerCloseShop2
+PASS Cannot bypass branch epilogue TideSingerCloseShop2
+PASS Branch advances TideSingerCloseShop2
+PASS Choice and page restore TideSingerCloseShop3
+PASS Cannot bypass branch epilogue TideSingerCloseShop3
+PASS Branch advances TideSingerCloseShop3
+PASS Complete once TideSingerCloseShop
+PASS Story choice does not spend currency or RNG TideSingerCloseShop
+PASS Endless remains separate after either ending TideSingerCloseShop
+PASS Cannot choose before boss victory TideSingerLeaveLight
+PASS Choice cannot be skipped TideSingerLeaveLight
+PASS Choice commits once TideSingerLeaveLight
+PASS Choice and page restore TideSingerLeaveLight0
+PASS Cannot bypass branch epilogue TideSingerLeaveLight0
+PASS Branch advances TideSingerLeaveLight0
+PASS Choice and page restore TideSingerLeaveLight1
+PASS Cannot bypass branch epilogue TideSingerLeaveLight1
+PASS Branch advances TideSingerLeaveLight1
+PASS Choice and page restore TideSingerLeaveLight2
+PASS Cannot bypass branch epilogue TideSingerLeaveLight2
+PASS Branch advances TideSingerLeaveLight2
+PASS Choice and page restore TideSingerLeaveLight3
+PASS Cannot bypass branch epilogue TideSingerLeaveLight3
+PASS Branch advances TideSingerLeaveLight3
+PASS Choice and page restore TideSingerLeaveLight4
+PASS Cannot bypass branch epilogue TideSingerLeaveLight4
+PASS Branch advances TideSingerLeaveLight4
+PASS Complete once TideSingerLeaveLight
+PASS Story choice does not spend currency or RNG TideSingerLeaveLight
+PASS Endless remains separate after either ending TideSingerLeaveLight
+PASS Cannot choose before boss victory CometRunnerCloseShop
+PASS Choice cannot be skipped CometRunnerCloseShop
+PASS Choice commits once CometRunnerCloseShop
+PASS Choice and page restore CometRunnerCloseShop0
+PASS Cannot bypass branch epilogue CometRunnerCloseShop0
+PASS Branch advances CometRunnerCloseShop0
+PASS Choice and page restore CometRunnerCloseShop1
+PASS Cannot bypass branch epilogue CometRunnerCloseShop1
+PASS Branch advances CometRunnerCloseShop1
+PASS Choice and page restore CometRunnerCloseShop2
+PASS Cannot bypass branch epilogue CometRunnerCloseShop2
+PASS Branch advances CometRunnerCloseShop2
+PASS Choice and page restore CometRunnerCloseShop3
+PASS Cannot bypass branch epilogue CometRunnerCloseShop3
+PASS Branch advances CometRunnerCloseShop3
+PASS Complete once CometRunnerCloseShop
+PASS Story choice does not spend currency or RNG CometRunnerCloseShop
+PASS Endless remains separate after either ending CometRunnerCloseShop
+PASS Cannot choose before boss victory CometRunnerLeaveLight
+PASS Choice cannot be skipped CometRunnerLeaveLight
+PASS Choice commits once CometRunnerLeaveLight
+PASS Choice and page restore CometRunnerLeaveLight0
+PASS Cannot bypass branch epilogue CometRunnerLeaveLight0
+PASS Branch advances CometRunnerLeaveLight0
+PASS Choice and page restore CometRunnerLeaveLight1
+PASS Cannot bypass branch epilogue CometRunnerLeaveLight1
+PASS Branch advances CometRunnerLeaveLight1
+PASS Choice and page restore CometRunnerLeaveLight2
+PASS Cannot bypass branch epilogue CometRunnerLeaveLight2
+PASS Branch advances CometRunnerLeaveLight2
+PASS Choice and page restore CometRunnerLeaveLight3
+PASS Cannot bypass branch epilogue CometRunnerLeaveLight3
+PASS Branch advances CometRunnerLeaveLight3
+PASS Choice and page restore CometRunnerLeaveLight4
+PASS Cannot bypass branch epilogue CometRunnerLeaveLight4
+PASS Branch advances CometRunnerLeaveLight4
+PASS Complete once CometRunnerLeaveLight
+PASS Story choice does not spend currency or RNG CometRunnerLeaveLight
+PASS Endless remains separate after either ending CometRunnerLeaveLight
+PASS Cannot choose before boss victory MirrorKeeperCloseShop
+PASS Choice cannot be skipped MirrorKeeperCloseShop
+PASS Choice commits once MirrorKeeperCloseShop
+PASS Choice and page restore MirrorKeeperCloseShop0
+PASS Cannot bypass branch epilogue MirrorKeeperCloseShop0
+PASS Branch advances MirrorKeeperCloseShop0
+PASS Choice and page restore MirrorKeeperCloseShop1
+PASS Cannot bypass branch epilogue MirrorKeeperCloseShop1
+PASS Branch advances MirrorKeeperCloseShop1
+PASS Choice and page restore MirrorKeeperCloseShop2
+PASS Cannot bypass branch epilogue MirrorKeeperCloseShop2
+PASS Branch advances MirrorKeeperCloseShop2
+PASS Choice and page restore MirrorKeeperCloseShop3
+PASS Cannot bypass branch epilogue MirrorKeeperCloseShop3
+PASS Branch advances MirrorKeeperCloseShop3
+PASS Complete once MirrorKeeperCloseShop
+PASS Story choice does not spend currency or RNG MirrorKeeperCloseShop
+PASS Endless remains separate after either ending MirrorKeeperCloseShop
+PASS Cannot choose before boss victory MirrorKeeperLeaveLight
+PASS Choice cannot be skipped MirrorKeeperLeaveLight
+PASS Choice commits once MirrorKeeperLeaveLight
+PASS Choice and page restore MirrorKeeperLeaveLight0
+PASS Cannot bypass branch epilogue MirrorKeeperLeaveLight0
+PASS Branch advances MirrorKeeperLeaveLight0
+PASS Choice and page restore MirrorKeeperLeaveLight1
+PASS Cannot bypass branch epilogue MirrorKeeperLeaveLight1
+PASS Branch advances MirrorKeeperLeaveLight1
+PASS Choice and page restore MirrorKeeperLeaveLight2
+PASS Cannot bypass branch epilogue MirrorKeeperLeaveLight2
+PASS Branch advances MirrorKeeperLeaveLight2
+PASS Choice and page restore MirrorKeeperLeaveLight3
+PASS Cannot bypass branch epilogue MirrorKeeperLeaveLight3
+PASS Branch advances MirrorKeeperLeaveLight3
+PASS Choice and page restore MirrorKeeperLeaveLight4
+PASS Cannot bypass branch epilogue MirrorKeeperLeaveLight4
+PASS Branch advances MirrorKeeperLeaveLight4
+PASS Complete once MirrorKeeperLeaveLight
+PASS Story choice does not spend currency or RNG MirrorKeeperLeaveLight
+PASS Endless remains separate after either ending MirrorKeeperLeaveLight
+PASS Cannot choose before boss victory TreasureAcornCloseShop
+PASS Choice cannot be skipped TreasureAcornCloseShop
+PASS Choice commits once TreasureAcornCloseShop
+PASS Choice and page restore TreasureAcornCloseShop0
+PASS Cannot bypass branch epilogue TreasureAcornCloseShop0
+PASS Branch advances TreasureAcornCloseShop0
+PASS Choice and page restore TreasureAcornCloseShop1
+PASS Cannot bypass branch epilogue TreasureAcornCloseShop1
+PASS Branch advances TreasureAcornCloseShop1
+PASS Choice and page restore TreasureAcornCloseShop2
+PASS Cannot bypass branch epilogue TreasureAcornCloseShop2
+PASS Branch advances TreasureAcornCloseShop2
+PASS Choice and page restore TreasureAcornCloseShop3
+PASS Cannot bypass branch epilogue TreasureAcornCloseShop3
+PASS Branch advances TreasureAcornCloseShop3
+PASS Complete once TreasureAcornCloseShop
+PASS Story choice does not spend currency or RNG TreasureAcornCloseShop
+PASS Endless remains separate after either ending TreasureAcornCloseShop
+PASS Cannot choose before boss victory TreasureAcornLeaveLight
+PASS Choice cannot be skipped TreasureAcornLeaveLight
+PASS Choice commits once TreasureAcornLeaveLight
+PASS Choice and page restore TreasureAcornLeaveLight0
+PASS Cannot bypass branch epilogue TreasureAcornLeaveLight0
+PASS Branch advances TreasureAcornLeaveLight0
+PASS Choice and page restore TreasureAcornLeaveLight1
+PASS Cannot bypass branch epilogue TreasureAcornLeaveLight1
+PASS Branch advances TreasureAcornLeaveLight1
+PASS Choice and page restore TreasureAcornLeaveLight2
+PASS Cannot bypass branch epilogue TreasureAcornLeaveLight2
+PASS Branch advances TreasureAcornLeaveLight2
+PASS Choice and page restore TreasureAcornLeaveLight3
+PASS Cannot bypass branch epilogue TreasureAcornLeaveLight3
+PASS Branch advances TreasureAcornLeaveLight3
+PASS Choice and page restore TreasureAcornLeaveLight4
+PASS Cannot bypass branch epilogue TreasureAcornLeaveLight4
+PASS Branch advances TreasureAcornLeaveLight4
+PASS Complete once TreasureAcornLeaveLight
+PASS Story choice does not spend currency or RNG TreasureAcornLeaveLight
+PASS Endless remains separate after either ending TreasureAcornLeaveLight
+PASS Cannot choose before boss victory VerdantMatronCloseShop
+PASS Choice cannot be skipped VerdantMatronCloseShop
+PASS Choice commits once VerdantMatronCloseShop
+PASS Choice and page restore VerdantMatronCloseShop0
+PASS Cannot bypass branch epilogue VerdantMatronCloseShop0
+PASS Branch advances VerdantMatronCloseShop0
+PASS Choice and page restore VerdantMatronCloseShop1
+PASS Cannot bypass branch epilogue VerdantMatronCloseShop1
+PASS Branch advances VerdantMatronCloseShop1
+PASS Choice and page restore VerdantMatronCloseShop2
+PASS Cannot bypass branch epilogue VerdantMatronCloseShop2
+PASS Branch advances VerdantMatronCloseShop2
+PASS Choice and page restore VerdantMatronCloseShop3
+PASS Cannot bypass branch epilogue VerdantMatronCloseShop3
+PASS Branch advances VerdantMatronCloseShop3
+PASS Complete once VerdantMatronCloseShop
+PASS Story choice does not spend currency or RNG VerdantMatronCloseShop
+PASS Endless remains separate after either ending VerdantMatronCloseShop
+PASS Cannot choose before boss victory VerdantMatronLeaveLight
+PASS Choice cannot be skipped VerdantMatronLeaveLight
+PASS Choice commits once VerdantMatronLeaveLight
+PASS Choice and page restore VerdantMatronLeaveLight0
+PASS Cannot bypass branch epilogue VerdantMatronLeaveLight0
+PASS Branch advances VerdantMatronLeaveLight0
+PASS Choice and page restore VerdantMatronLeaveLight1
+PASS Cannot bypass branch epilogue VerdantMatronLeaveLight1
+PASS Branch advances VerdantMatronLeaveLight1
+PASS Choice and page restore VerdantMatronLeaveLight2
+PASS Cannot bypass branch epilogue VerdantMatronLeaveLight2
+PASS Branch advances VerdantMatronLeaveLight2
+PASS Choice and page restore VerdantMatronLeaveLight3
+PASS Cannot bypass branch epilogue VerdantMatronLeaveLight3
+PASS Branch advances VerdantMatronLeaveLight3
+PASS Choice and page restore VerdantMatronLeaveLight4
+PASS Cannot bypass branch epilogue VerdantMatronLeaveLight4
+PASS Branch advances VerdantMatronLeaveLight4
+PASS Complete once VerdantMatronLeaveLight
+PASS Story choice does not spend currency or RNG VerdantMatronLeaveLight
+PASS Endless remains separate after either ending VerdantMatronLeaveLight
+PASS Cannot choose before boss victory CopperCauldronCloseShop
+PASS Choice cannot be skipped CopperCauldronCloseShop
+PASS Choice commits once CopperCauldronCloseShop
+PASS Choice and page restore CopperCauldronCloseShop0
+PASS Cannot bypass branch epilogue CopperCauldronCloseShop0
+PASS Branch advances CopperCauldronCloseShop0
+PASS Choice and page restore CopperCauldronCloseShop1
+PASS Cannot bypass branch epilogue CopperCauldronCloseShop1
+PASS Branch advances CopperCauldronCloseShop1
+PASS Choice and page restore CopperCauldronCloseShop2
+PASS Cannot bypass branch epilogue CopperCauldronCloseShop2
+PASS Branch advances CopperCauldronCloseShop2
+PASS Choice and page restore CopperCauldronCloseShop3
+PASS Cannot bypass branch epilogue CopperCauldronCloseShop3
+PASS Branch advances CopperCauldronCloseShop3
+PASS Complete once CopperCauldronCloseShop
+PASS Story choice does not spend currency or RNG CopperCauldronCloseShop
+PASS Endless remains separate after either ending CopperCauldronCloseShop
+PASS Cannot choose before boss victory CopperCauldronLeaveLight
+PASS Choice cannot be skipped CopperCauldronLeaveLight
+PASS Choice commits once CopperCauldronLeaveLight
+PASS Choice and page restore CopperCauldronLeaveLight0
+PASS Cannot bypass branch epilogue CopperCauldronLeaveLight0
+PASS Branch advances CopperCauldronLeaveLight0
+PASS Choice and page restore CopperCauldronLeaveLight1
+PASS Cannot bypass branch epilogue CopperCauldronLeaveLight1
+PASS Branch advances CopperCauldronLeaveLight1
+PASS Choice and page restore CopperCauldronLeaveLight2
+PASS Cannot bypass branch epilogue CopperCauldronLeaveLight2
+PASS Branch advances CopperCauldronLeaveLight2
+PASS Choice and page restore CopperCauldronLeaveLight3
+PASS Cannot bypass branch epilogue CopperCauldronLeaveLight3
+PASS Branch advances CopperCauldronLeaveLight3
+PASS Choice and page restore CopperCauldronLeaveLight4
+PASS Cannot bypass branch epilogue CopperCauldronLeaveLight4
+PASS Branch advances CopperCauldronLeaveLight4
+PASS Complete once CopperCauldronLeaveLight
+PASS Story choice does not spend currency or RNG CopperCauldronLeaveLight
+PASS Endless remains separate after either ending CopperCauldronLeaveLight
+PASS Cannot choose before boss victory ChinaMarionetteCloseShop
+PASS Choice cannot be skipped ChinaMarionetteCloseShop
+PASS Choice commits once ChinaMarionetteCloseShop
+PASS Choice and page restore ChinaMarionetteCloseShop0
+PASS Cannot bypass branch epilogue ChinaMarionetteCloseShop0
+PASS Branch advances ChinaMarionetteCloseShop0
+PASS Choice and page restore ChinaMarionetteCloseShop1
+PASS Cannot bypass branch epilogue ChinaMarionetteCloseShop1
+PASS Branch advances ChinaMarionetteCloseShop1
+PASS Choice and page restore ChinaMarionetteCloseShop2
+PASS Cannot bypass branch epilogue ChinaMarionetteCloseShop2
+PASS Branch advances ChinaMarionetteCloseShop2
+PASS Choice and page restore ChinaMarionetteCloseShop3
+PASS Cannot bypass branch epilogue ChinaMarionetteCloseShop3
+PASS Branch advances ChinaMarionetteCloseShop3
+PASS Complete once ChinaMarionetteCloseShop
+PASS Story choice does not spend currency or RNG ChinaMarionetteCloseShop
+PASS Endless remains separate after either ending ChinaMarionetteCloseShop
+PASS Cannot choose before boss victory ChinaMarionetteLeaveLight
+PASS Choice cannot be skipped ChinaMarionetteLeaveLight
+PASS Choice commits once ChinaMarionetteLeaveLight
+PASS Choice and page restore ChinaMarionetteLeaveLight0
+PASS Cannot bypass branch epilogue ChinaMarionetteLeaveLight0
+PASS Branch advances ChinaMarionetteLeaveLight0
+PASS Choice and page restore ChinaMarionetteLeaveLight1
+PASS Cannot bypass branch epilogue ChinaMarionetteLeaveLight1
+PASS Branch advances ChinaMarionetteLeaveLight1
+PASS Choice and page restore ChinaMarionetteLeaveLight2
+PASS Cannot bypass branch epilogue ChinaMarionetteLeaveLight2
+PASS Branch advances ChinaMarionetteLeaveLight2
+PASS Choice and page restore ChinaMarionetteLeaveLight3
+PASS Cannot bypass branch epilogue ChinaMarionetteLeaveLight3
+PASS Branch advances ChinaMarionetteLeaveLight3
+PASS Choice and page restore ChinaMarionetteLeaveLight4
+PASS Cannot bypass branch epilogue ChinaMarionetteLeaveLight4
+PASS Branch advances ChinaMarionetteLeaveLight4
+PASS Complete once ChinaMarionetteLeaveLight
+PASS Story choice does not spend currency or RNG ChinaMarionetteLeaveLight
+PASS Endless remains separate after either ending ChinaMarionetteLeaveLight
+PASS Cannot choose before boss victory SoapSkaterCloseShop
+PASS Choice cannot be skipped SoapSkaterCloseShop
+PASS Choice commits once SoapSkaterCloseShop
+PASS Choice and page restore SoapSkaterCloseShop0
+PASS Cannot bypass branch epilogue SoapSkaterCloseShop0
+PASS Branch advances SoapSkaterCloseShop0
+PASS Choice and page restore SoapSkaterCloseShop1
+PASS Cannot bypass branch epilogue SoapSkaterCloseShop1
+PASS Branch advances SoapSkaterCloseShop1
+PASS Choice and page restore SoapSkaterCloseShop2
+PASS Cannot bypass branch epilogue SoapSkaterCloseShop2
+PASS Branch advances SoapSkaterCloseShop2
+PASS Choice and page restore SoapSkaterCloseShop3
+PASS Cannot bypass branch epilogue SoapSkaterCloseShop3
+PASS Branch advances SoapSkaterCloseShop3
+PASS Complete once SoapSkaterCloseShop
+PASS Story choice does not spend currency or RNG SoapSkaterCloseShop
+PASS Endless remains separate after either ending SoapSkaterCloseShop
+PASS Cannot choose before boss victory SoapSkaterLeaveLight
+PASS Choice cannot be skipped SoapSkaterLeaveLight
+PASS Choice commits once SoapSkaterLeaveLight
+PASS Choice and page restore SoapSkaterLeaveLight0
+PASS Cannot bypass branch epilogue SoapSkaterLeaveLight0
+PASS Branch advances SoapSkaterLeaveLight0
+PASS Choice and page restore SoapSkaterLeaveLight1
+PASS Cannot bypass branch epilogue SoapSkaterLeaveLight1
+PASS Branch advances SoapSkaterLeaveLight1
+PASS Choice and page restore SoapSkaterLeaveLight2
+PASS Cannot bypass branch epilogue SoapSkaterLeaveLight2
+PASS Branch advances SoapSkaterLeaveLight2
+PASS Choice and page restore SoapSkaterLeaveLight3
+PASS Cannot bypass branch epilogue SoapSkaterLeaveLight3
+PASS Branch advances SoapSkaterLeaveLight3
+PASS Choice and page restore SoapSkaterLeaveLight4
+PASS Cannot bypass branch epilogue SoapSkaterLeaveLight4
+PASS Branch advances SoapSkaterLeaveLight4
+PASS Complete once SoapSkaterLeaveLight
+PASS Story choice does not spend currency or RNG SoapSkaterLeaveLight
+PASS Endless remains separate after either ending SoapSkaterLeaveLight
+PASS Cannot choose before boss victory VelvetRegentCloseShop
+PASS Choice cannot be skipped VelvetRegentCloseShop
+PASS Choice commits once VelvetRegentCloseShop
+PASS Choice and page restore VelvetRegentCloseShop0
+PASS Cannot bypass branch epilogue VelvetRegentCloseShop0
+PASS Branch advances VelvetRegentCloseShop0
+PASS Choice and page restore VelvetRegentCloseShop1
+PASS Cannot bypass branch epilogue VelvetRegentCloseShop1
+PASS Branch advances VelvetRegentCloseShop1
+PASS Choice and page restore VelvetRegentCloseShop2
+PASS Cannot bypass branch epilogue VelvetRegentCloseShop2
+PASS Branch advances VelvetRegentCloseShop2
+PASS Choice and page restore VelvetRegentCloseShop3
+PASS Cannot bypass branch epilogue VelvetRegentCloseShop3
+PASS Branch advances VelvetRegentCloseShop3
+PASS Complete once VelvetRegentCloseShop
+PASS Story choice does not spend currency or RNG VelvetRegentCloseShop
+PASS Endless remains separate after either ending VelvetRegentCloseShop
+PASS Cannot choose before boss victory VelvetRegentLeaveLight
+PASS Choice cannot be skipped VelvetRegentLeaveLight
+PASS Choice commits once VelvetRegentLeaveLight
+PASS Choice and page restore VelvetRegentLeaveLight0
+PASS Cannot bypass branch epilogue VelvetRegentLeaveLight0
+PASS Branch advances VelvetRegentLeaveLight0
+PASS Choice and page restore VelvetRegentLeaveLight1
+PASS Cannot bypass branch epilogue VelvetRegentLeaveLight1
+PASS Branch advances VelvetRegentLeaveLight1
+PASS Choice and page restore VelvetRegentLeaveLight2
+PASS Cannot bypass branch epilogue VelvetRegentLeaveLight2
+PASS Branch advances VelvetRegentLeaveLight2
+PASS Choice and page restore VelvetRegentLeaveLight3
+PASS Cannot bypass branch epilogue VelvetRegentLeaveLight3
+PASS Branch advances VelvetRegentLeaveLight3
+PASS Choice and page restore VelvetRegentLeaveLight4
+PASS Cannot bypass branch epilogue VelvetRegentLeaveLight4
+PASS Branch advances VelvetRegentLeaveLight4
+PASS Complete once VelvetRegentLeaveLight
+PASS Story choice does not spend currency or RNG VelvetRegentLeaveLight
+PASS Endless remains separate after either ending VelvetRegentLeaveLight
+PASS Cannot choose before boss victory ButtonCavalierCloseShop
+PASS Choice cannot be skipped ButtonCavalierCloseShop
+PASS Choice commits once ButtonCavalierCloseShop
+PASS Choice and page restore ButtonCavalierCloseShop0
+PASS Cannot bypass branch epilogue ButtonCavalierCloseShop0
+PASS Branch advances ButtonCavalierCloseShop0
+PASS Choice and page restore ButtonCavalierCloseShop1
+PASS Cannot bypass branch epilogue ButtonCavalierCloseShop1
+PASS Branch advances ButtonCavalierCloseShop1
+PASS Choice and page restore ButtonCavalierCloseShop2
+PASS Cannot bypass branch epilogue ButtonCavalierCloseShop2
+PASS Branch advances ButtonCavalierCloseShop2
+PASS Choice and page restore ButtonCavalierCloseShop3
+PASS Cannot bypass branch epilogue ButtonCavalierCloseShop3
+PASS Branch advances ButtonCavalierCloseShop3
+PASS Complete once ButtonCavalierCloseShop
+PASS Story choice does not spend currency or RNG ButtonCavalierCloseShop
+PASS Endless remains separate after either ending ButtonCavalierCloseShop
+PASS Cannot choose before boss victory ButtonCavalierLeaveLight
+PASS Choice cannot be skipped ButtonCavalierLeaveLight
+PASS Choice commits once ButtonCavalierLeaveLight
+PASS Choice and page restore ButtonCavalierLeaveLight0
+PASS Cannot bypass branch epilogue ButtonCavalierLeaveLight0
+PASS Branch advances ButtonCavalierLeaveLight0
+PASS Choice and page restore ButtonCavalierLeaveLight1
+PASS Cannot bypass branch epilogue ButtonCavalierLeaveLight1
+PASS Branch advances ButtonCavalierLeaveLight1
+PASS Choice and page restore ButtonCavalierLeaveLight2
+PASS Cannot bypass branch epilogue ButtonCavalierLeaveLight2
+PASS Branch advances ButtonCavalierLeaveLight2
+PASS Choice and page restore ButtonCavalierLeaveLight3
+PASS Cannot bypass branch epilogue ButtonCavalierLeaveLight3
+PASS Branch advances ButtonCavalierLeaveLight3
+PASS Choice and page restore ButtonCavalierLeaveLight4
+PASS Cannot bypass branch epilogue ButtonCavalierLeaveLight4
+PASS Branch advances ButtonCavalierLeaveLight4
+PASS Complete once ButtonCavalierLeaveLight
+PASS Story choice does not spend currency or RNG ButtonCavalierLeaveLight
+PASS Endless remains separate after either ending ButtonCavalierLeaveLight
+PASS Cannot choose before boss victory NightMawCloseShop
+PASS Choice cannot be skipped NightMawCloseShop
+PASS Choice commits once NightMawCloseShop
+PASS Choice and page restore NightMawCloseShop0
+PASS Cannot bypass branch epilogue NightMawCloseShop0
+PASS Branch advances NightMawCloseShop0
+PASS Choice and page restore NightMawCloseShop1
+PASS Cannot bypass branch epilogue NightMawCloseShop1
+PASS Branch advances NightMawCloseShop1
+PASS Choice and page restore NightMawCloseShop2
+PASS Cannot bypass branch epilogue NightMawCloseShop2
+PASS Branch advances NightMawCloseShop2
+PASS Choice and page restore NightMawCloseShop3
+PASS Cannot bypass branch epilogue NightMawCloseShop3
+PASS Branch advances NightMawCloseShop3
+PASS Complete once NightMawCloseShop
+PASS Story choice does not spend currency or RNG NightMawCloseShop
+PASS Endless remains separate after either ending NightMawCloseShop
+PASS Cannot choose before boss victory NightMawLeaveLight
+PASS Choice cannot be skipped NightMawLeaveLight
+PASS Choice commits once NightMawLeaveLight
+PASS Choice and page restore NightMawLeaveLight0
+PASS Cannot bypass branch epilogue NightMawLeaveLight0
+PASS Branch advances NightMawLeaveLight0
+PASS Choice and page restore NightMawLeaveLight1
+PASS Cannot bypass branch epilogue NightMawLeaveLight1
+PASS Branch advances NightMawLeaveLight1
+PASS Choice and page restore NightMawLeaveLight2
+PASS Cannot bypass branch epilogue NightMawLeaveLight2
+PASS Branch advances NightMawLeaveLight2
+PASS Choice and page restore NightMawLeaveLight3
+PASS Cannot bypass branch epilogue NightMawLeaveLight3
+PASS Branch advances NightMawLeaveLight3
+PASS Choice and page restore NightMawLeaveLight4
+PASS Cannot bypass branch epilogue NightMawLeaveLight4
+PASS Branch advances NightMawLeaveLight4
+PASS Complete once NightMawLeaveLight
+PASS Story choice does not spend currency or RNG NightMawLeaveLight
+PASS Endless remains separate after either ending NightMawLeaveLight
+PASS Cannot choose before boss victory ThornTreasurerCloseShop
+PASS Choice cannot be skipped ThornTreasurerCloseShop
+PASS Choice commits once ThornTreasurerCloseShop
+PASS Choice and page restore ThornTreasurerCloseShop0
+PASS Cannot bypass branch epilogue ThornTreasurerCloseShop0
+PASS Branch advances ThornTreasurerCloseShop0
+PASS Choice and page restore ThornTreasurerCloseShop1
+PASS Cannot bypass branch epilogue ThornTreasurerCloseShop1
+PASS Branch advances ThornTreasurerCloseShop1
+PASS Choice and page restore ThornTreasurerCloseShop2
+PASS Cannot bypass branch epilogue ThornTreasurerCloseShop2
+PASS Branch advances ThornTreasurerCloseShop2
+PASS Choice and page restore ThornTreasurerCloseShop3
+PASS Cannot bypass branch epilogue ThornTreasurerCloseShop3
+PASS Branch advances ThornTreasurerCloseShop3
+PASS Complete once ThornTreasurerCloseShop
+PASS Story choice does not spend currency or RNG ThornTreasurerCloseShop
+PASS Endless remains separate after either ending ThornTreasurerCloseShop
+PASS Cannot choose before boss victory ThornTreasurerLeaveLight
+PASS Choice cannot be skipped ThornTreasurerLeaveLight
+PASS Choice commits once ThornTreasurerLeaveLight
+PASS Choice and page restore ThornTreasurerLeaveLight0
+PASS Cannot bypass branch epilogue ThornTreasurerLeaveLight0
+PASS Branch advances ThornTreasurerLeaveLight0
+PASS Choice and page restore ThornTreasurerLeaveLight1
+PASS Cannot bypass branch epilogue ThornTreasurerLeaveLight1
+PASS Branch advances ThornTreasurerLeaveLight1
+PASS Choice and page restore ThornTreasurerLeaveLight2
+PASS Cannot bypass branch epilogue ThornTreasurerLeaveLight2
+PASS Branch advances ThornTreasurerLeaveLight2
+PASS Choice and page restore ThornTreasurerLeaveLight3
+PASS Cannot bypass branch epilogue ThornTreasurerLeaveLight3
+PASS Branch advances ThornTreasurerLeaveLight3
+PASS Choice and page restore ThornTreasurerLeaveLight4
+PASS Cannot bypass branch epilogue ThornTreasurerLeaveLight4
+PASS Branch advances ThornTreasurerLeaveLight4
+PASS Complete once ThornTreasurerLeaveLight
+PASS Story choice does not spend currency or RNG ThornTreasurerLeaveLight
+PASS Endless remains separate after either ending ThornTreasurerLeaveLight
+PASS Cannot choose before boss victory CitrusMarshalCloseShop
+PASS Choice cannot be skipped CitrusMarshalCloseShop
+PASS Choice commits once CitrusMarshalCloseShop
+PASS Choice and page restore CitrusMarshalCloseShop0
+PASS Cannot bypass branch epilogue CitrusMarshalCloseShop0
+PASS Branch advances CitrusMarshalCloseShop0
+PASS Choice and page restore CitrusMarshalCloseShop1
+PASS Cannot bypass branch epilogue CitrusMarshalCloseShop1
+PASS Branch advances CitrusMarshalCloseShop1
+PASS Choice and page restore CitrusMarshalCloseShop2
+PASS Cannot bypass branch epilogue CitrusMarshalCloseShop2
+PASS Branch advances CitrusMarshalCloseShop2
+PASS Choice and page restore CitrusMarshalCloseShop3
+PASS Cannot bypass branch epilogue CitrusMarshalCloseShop3
+PASS Branch advances CitrusMarshalCloseShop3
+PASS Complete once CitrusMarshalCloseShop
+PASS Story choice does not spend currency or RNG CitrusMarshalCloseShop
+PASS Endless remains separate after either ending CitrusMarshalCloseShop
+PASS Cannot choose before boss victory CitrusMarshalLeaveLight
+PASS Choice cannot be skipped CitrusMarshalLeaveLight
+PASS Choice commits once CitrusMarshalLeaveLight
+PASS Choice and page restore CitrusMarshalLeaveLight0
+PASS Cannot bypass branch epilogue CitrusMarshalLeaveLight0
+PASS Branch advances CitrusMarshalLeaveLight0
+PASS Choice and page restore CitrusMarshalLeaveLight1
+PASS Cannot bypass branch epilogue CitrusMarshalLeaveLight1
+PASS Branch advances CitrusMarshalLeaveLight1
+PASS Choice and page restore CitrusMarshalLeaveLight2
+PASS Cannot bypass branch epilogue CitrusMarshalLeaveLight2
+PASS Branch advances CitrusMarshalLeaveLight2
+PASS Choice and page restore CitrusMarshalLeaveLight3
+PASS Cannot bypass branch epilogue CitrusMarshalLeaveLight3
+PASS Branch advances CitrusMarshalLeaveLight3
+PASS Choice and page restore CitrusMarshalLeaveLight4
+PASS Cannot bypass branch epilogue CitrusMarshalLeaveLight4
+PASS Branch advances CitrusMarshalLeaveLight4
+PASS Complete once CitrusMarshalLeaveLight
+PASS Story choice does not spend currency or RNG CitrusMarshalLeaveLight
+PASS Endless remains separate after either ending CitrusMarshalLeaveLight
+PASS Cannot choose before boss victory IvorySovereignCloseShop
+PASS Choice cannot be skipped IvorySovereignCloseShop
+PASS Choice commits once IvorySovereignCloseShop
+PASS Choice and page restore IvorySovereignCloseShop0
+PASS Cannot bypass branch epilogue IvorySovereignCloseShop0
+PASS Branch advances IvorySovereignCloseShop0
+PASS Choice and page restore IvorySovereignCloseShop1
+PASS Cannot bypass branch epilogue IvorySovereignCloseShop1
+PASS Branch advances IvorySovereignCloseShop1
+PASS Choice and page restore IvorySovereignCloseShop2
+PASS Cannot bypass branch epilogue IvorySovereignCloseShop2
+PASS Branch advances IvorySovereignCloseShop2
+PASS Choice and page restore IvorySovereignCloseShop3
+PASS Cannot bypass branch epilogue IvorySovereignCloseShop3
+PASS Branch advances IvorySovereignCloseShop3
+PASS Complete once IvorySovereignCloseShop
+PASS Story choice does not spend currency or RNG IvorySovereignCloseShop
+PASS Endless remains separate after either ending IvorySovereignCloseShop
+PASS Cannot choose before boss victory IvorySovereignLeaveLight
+PASS Choice cannot be skipped IvorySovereignLeaveLight
+PASS Choice commits once IvorySovereignLeaveLight
+PASS Choice and page restore IvorySovereignLeaveLight0
+PASS Cannot bypass branch epilogue IvorySovereignLeaveLight0
+PASS Branch advances IvorySovereignLeaveLight0
+PASS Choice and page restore IvorySovereignLeaveLight1
+PASS Cannot bypass branch epilogue IvorySovereignLeaveLight1
+PASS Branch advances IvorySovereignLeaveLight1
+PASS Choice and page restore IvorySovereignLeaveLight2
+PASS Cannot bypass branch epilogue IvorySovereignLeaveLight2
+PASS Branch advances IvorySovereignLeaveLight2
+PASS Choice and page restore IvorySovereignLeaveLight3
+PASS Cannot bypass branch epilogue IvorySovereignLeaveLight3
+PASS Branch advances IvorySovereignLeaveLight3
+PASS Choice and page restore IvorySovereignLeaveLight4
+PASS Cannot bypass branch epilogue IvorySovereignLeaveLight4
+PASS Branch advances IvorySovereignLeaveLight4
+PASS Complete once IvorySovereignLeaveLight
+PASS Story choice does not spend currency or RNG IvorySovereignLeaveLight
+PASS Endless remains separate after either ending IvorySovereignLeaveLight
+PASS Cannot choose before boss victory PetalCitadelCloseShop
+PASS Choice cannot be skipped PetalCitadelCloseShop
+PASS Choice commits once PetalCitadelCloseShop
+PASS Choice and page restore PetalCitadelCloseShop0
+PASS Cannot bypass branch epilogue PetalCitadelCloseShop0
+PASS Branch advances PetalCitadelCloseShop0
+PASS Choice and page restore PetalCitadelCloseShop1
+PASS Cannot bypass branch epilogue PetalCitadelCloseShop1
+PASS Branch advances PetalCitadelCloseShop1
+PASS Choice and page restore PetalCitadelCloseShop2
+PASS Cannot bypass branch epilogue PetalCitadelCloseShop2
+PASS Branch advances PetalCitadelCloseShop2
+PASS Choice and page restore PetalCitadelCloseShop3
+PASS Cannot bypass branch epilogue PetalCitadelCloseShop3
+PASS Branch advances PetalCitadelCloseShop3
+PASS Complete once PetalCitadelCloseShop
+PASS Story choice does not spend currency or RNG PetalCitadelCloseShop
+PASS Endless remains separate after either ending PetalCitadelCloseShop
+PASS Cannot choose before boss victory PetalCitadelLeaveLight
+PASS Choice cannot be skipped PetalCitadelLeaveLight
+PASS Choice commits once PetalCitadelLeaveLight
+PASS Choice and page restore PetalCitadelLeaveLight0
+PASS Cannot bypass branch epilogue PetalCitadelLeaveLight0
+PASS Branch advances PetalCitadelLeaveLight0
+PASS Choice and page restore PetalCitadelLeaveLight1
+PASS Cannot bypass branch epilogue PetalCitadelLeaveLight1
+PASS Branch advances PetalCitadelLeaveLight1
+PASS Choice and page restore PetalCitadelLeaveLight2
+PASS Cannot bypass branch epilogue PetalCitadelLeaveLight2
+PASS Branch advances PetalCitadelLeaveLight2
+PASS Choice and page restore PetalCitadelLeaveLight3
+PASS Cannot bypass branch epilogue PetalCitadelLeaveLight3
+PASS Branch advances PetalCitadelLeaveLight3
+PASS Choice and page restore PetalCitadelLeaveLight4
+PASS Cannot bypass branch epilogue PetalCitadelLeaveLight4
+PASS Branch advances PetalCitadelLeaveLight4
+PASS Complete once PetalCitadelLeaveLight
+PASS Story choice does not spend currency or RNG PetalCitadelLeaveLight
+PASS Endless remains separate after either ending PetalCitadelLeaveLight
+PASS Cannot choose before boss victory PatchworkHostCloseShop
+PASS Choice cannot be skipped PatchworkHostCloseShop
+PASS Choice commits once PatchworkHostCloseShop
+PASS Choice and page restore PatchworkHostCloseShop0
+PASS Cannot bypass branch epilogue PatchworkHostCloseShop0
+PASS Branch advances PatchworkHostCloseShop0
+PASS Choice and page restore PatchworkHostCloseShop1
+PASS Cannot bypass branch epilogue PatchworkHostCloseShop1
+PASS Branch advances PatchworkHostCloseShop1
+PASS Choice and page restore PatchworkHostCloseShop2
+PASS Cannot bypass branch epilogue PatchworkHostCloseShop2
+PASS Branch advances PatchworkHostCloseShop2
+PASS Choice and page restore PatchworkHostCloseShop3
+PASS Cannot bypass branch epilogue PatchworkHostCloseShop3
+PASS Branch advances PatchworkHostCloseShop3
+PASS Complete once PatchworkHostCloseShop
+PASS Story choice does not spend currency or RNG PatchworkHostCloseShop
+PASS Endless remains separate after either ending PatchworkHostCloseShop
+PASS Cannot choose before boss victory PatchworkHostLeaveLight
+PASS Choice cannot be skipped PatchworkHostLeaveLight
+PASS Choice commits once PatchworkHostLeaveLight
+PASS Choice and page restore PatchworkHostLeaveLight0
+PASS Cannot bypass branch epilogue PatchworkHostLeaveLight0
+PASS Branch advances PatchworkHostLeaveLight0
+PASS Choice and page restore PatchworkHostLeaveLight1
+PASS Cannot bypass branch epilogue PatchworkHostLeaveLight1
+PASS Branch advances PatchworkHostLeaveLight1
+PASS Choice and page restore PatchworkHostLeaveLight2
+PASS Cannot bypass branch epilogue PatchworkHostLeaveLight2
+PASS Branch advances PatchworkHostLeaveLight2
+PASS Choice and page restore PatchworkHostLeaveLight3
+PASS Cannot bypass branch epilogue PatchworkHostLeaveLight3
+PASS Branch advances PatchworkHostLeaveLight3
+PASS Choice and page restore PatchworkHostLeaveLight4
+PASS Cannot bypass branch epilogue PatchworkHostLeaveLight4
+PASS Branch advances PatchworkHostLeaveLight4
+PASS Complete once PatchworkHostLeaveLight
+PASS Story choice does not spend currency or RNG PatchworkHostLeaveLight
+PASS Endless remains separate after either ending PatchworkHostLeaveLight
+PASS Cannot choose before boss victory ArchiveCuratorCloseShop
+PASS Choice cannot be skipped ArchiveCuratorCloseShop
+PASS Choice commits once ArchiveCuratorCloseShop
+PASS Choice and page restore ArchiveCuratorCloseShop0
+PASS Cannot bypass branch epilogue ArchiveCuratorCloseShop0
+PASS Branch advances ArchiveCuratorCloseShop0
+PASS Choice and page restore ArchiveCuratorCloseShop1
+PASS Cannot bypass branch epilogue ArchiveCuratorCloseShop1
+PASS Branch advances ArchiveCuratorCloseShop1
+PASS Choice and page restore ArchiveCuratorCloseShop2
+PASS Cannot bypass branch epilogue ArchiveCuratorCloseShop2
+PASS Branch advances ArchiveCuratorCloseShop2
+PASS Choice and page restore ArchiveCuratorCloseShop3
+PASS Cannot bypass branch epilogue ArchiveCuratorCloseShop3
+PASS Branch advances ArchiveCuratorCloseShop3
+PASS Complete once ArchiveCuratorCloseShop
+PASS Story choice does not spend currency or RNG ArchiveCuratorCloseShop
+PASS Endless remains separate after either ending ArchiveCuratorCloseShop
+PASS Cannot choose before boss victory ArchiveCuratorLeaveLight
+PASS Choice cannot be skipped ArchiveCuratorLeaveLight
+PASS Choice commits once ArchiveCuratorLeaveLight
+PASS Choice and page restore ArchiveCuratorLeaveLight0
+PASS Cannot bypass branch epilogue ArchiveCuratorLeaveLight0
+PASS Branch advances ArchiveCuratorLeaveLight0
+PASS Choice and page restore ArchiveCuratorLeaveLight1
+PASS Cannot bypass branch epilogue ArchiveCuratorLeaveLight1
+PASS Branch advances ArchiveCuratorLeaveLight1
+PASS Choice and page restore ArchiveCuratorLeaveLight2
+PASS Cannot bypass branch epilogue ArchiveCuratorLeaveLight2
+PASS Branch advances ArchiveCuratorLeaveLight2
+PASS Choice and page restore ArchiveCuratorLeaveLight3
+PASS Cannot bypass branch epilogue ArchiveCuratorLeaveLight3
+PASS Branch advances ArchiveCuratorLeaveLight3
+PASS Choice and page restore ArchiveCuratorLeaveLight4
+PASS Cannot bypass branch epilogue ArchiveCuratorLeaveLight4
+PASS Branch advances ArchiveCuratorLeaveLight4
+PASS Complete once ArchiveCuratorLeaveLight
+PASS Story choice does not spend currency or RNG ArchiveCuratorLeaveLight
+PASS Endless remains separate after either ending ArchiveCuratorLeaveLight
+PASS Cannot choose before boss victory PennyBrokerCloseShop
+PASS Choice cannot be skipped PennyBrokerCloseShop
+PASS Choice commits once PennyBrokerCloseShop
+PASS Choice and page restore PennyBrokerCloseShop0
+PASS Cannot bypass branch epilogue PennyBrokerCloseShop0
+PASS Branch advances PennyBrokerCloseShop0
+PASS Choice and page restore PennyBrokerCloseShop1
+PASS Cannot bypass branch epilogue PennyBrokerCloseShop1
+PASS Branch advances PennyBrokerCloseShop1
+PASS Choice and page restore PennyBrokerCloseShop2
+PASS Cannot bypass branch epilogue PennyBrokerCloseShop2
+PASS Branch advances PennyBrokerCloseShop2
+PASS Choice and page restore PennyBrokerCloseShop3
+PASS Cannot bypass branch epilogue PennyBrokerCloseShop3
+PASS Branch advances PennyBrokerCloseShop3
+PASS Complete once PennyBrokerCloseShop
+PASS Story choice does not spend currency or RNG PennyBrokerCloseShop
+PASS Endless remains separate after either ending PennyBrokerCloseShop
+PASS Cannot choose before boss victory PennyBrokerLeaveLight
+PASS Choice cannot be skipped PennyBrokerLeaveLight
+PASS Choice commits once PennyBrokerLeaveLight
+PASS Choice and page restore PennyBrokerLeaveLight0
+PASS Cannot bypass branch epilogue PennyBrokerLeaveLight0
+PASS Branch advances PennyBrokerLeaveLight0
+PASS Choice and page restore PennyBrokerLeaveLight1
+PASS Cannot bypass branch epilogue PennyBrokerLeaveLight1
+PASS Branch advances PennyBrokerLeaveLight1
+PASS Choice and page restore PennyBrokerLeaveLight2
+PASS Cannot bypass branch epilogue PennyBrokerLeaveLight2
+PASS Branch advances PennyBrokerLeaveLight2
+PASS Choice and page restore PennyBrokerLeaveLight3
+PASS Cannot bypass branch epilogue PennyBrokerLeaveLight3
+PASS Branch advances PennyBrokerLeaveLight3
+PASS Choice and page restore PennyBrokerLeaveLight4
+PASS Cannot bypass branch epilogue PennyBrokerLeaveLight4
+PASS Branch advances PennyBrokerLeaveLight4
+PASS Complete once PennyBrokerLeaveLight
+PASS Story choice does not spend currency or RNG PennyBrokerLeaveLight
+PASS Endless remains separate after either ending PennyBrokerLeaveLight
+PASS Cannot choose before boss victory StormFencerCloseShop
+PASS Choice cannot be skipped StormFencerCloseShop
+PASS Choice commits once StormFencerCloseShop
+PASS Choice and page restore StormFencerCloseShop0
+PASS Cannot bypass branch epilogue StormFencerCloseShop0
+PASS Branch advances StormFencerCloseShop0
+PASS Choice and page restore StormFencerCloseShop1
+PASS Cannot bypass branch epilogue StormFencerCloseShop1
+PASS Branch advances StormFencerCloseShop1
+PASS Choice and page restore StormFencerCloseShop2
+PASS Cannot bypass branch epilogue StormFencerCloseShop2
+PASS Branch advances StormFencerCloseShop2
+PASS Choice and page restore StormFencerCloseShop3
+PASS Cannot bypass branch epilogue StormFencerCloseShop3
+PASS Branch advances StormFencerCloseShop3
+PASS Complete once StormFencerCloseShop
+PASS Story choice does not spend currency or RNG StormFencerCloseShop
+PASS Endless remains separate after either ending StormFencerCloseShop
+PASS Cannot choose before boss victory StormFencerLeaveLight
+PASS Choice cannot be skipped StormFencerLeaveLight
+PASS Choice commits once StormFencerLeaveLight
+PASS Choice and page restore StormFencerLeaveLight0
+PASS Cannot bypass branch epilogue StormFencerLeaveLight0
+PASS Branch advances StormFencerLeaveLight0
+PASS Choice and page restore StormFencerLeaveLight1
+PASS Cannot bypass branch epilogue StormFencerLeaveLight1
+PASS Branch advances StormFencerLeaveLight1
+PASS Choice and page restore StormFencerLeaveLight2
+PASS Cannot bypass branch epilogue StormFencerLeaveLight2
+PASS Branch advances StormFencerLeaveLight2
+PASS Choice and page restore StormFencerLeaveLight3
+PASS Cannot bypass branch epilogue StormFencerLeaveLight3
+PASS Branch advances StormFencerLeaveLight3
+PASS Choice and page restore StormFencerLeaveLight4
+PASS Cannot bypass branch epilogue StormFencerLeaveLight4
+PASS Branch advances StormFencerLeaveLight4
+PASS Complete once StormFencerLeaveLight
+PASS Story choice does not spend currency or RNG StormFencerLeaveLight
+PASS Endless remains separate after either ending StormFencerLeaveLight
+PASS Cannot choose before boss victory TinVirtuosoCloseShop
+PASS Choice cannot be skipped TinVirtuosoCloseShop
+PASS Choice commits once TinVirtuosoCloseShop
+PASS Choice and page restore TinVirtuosoCloseShop0
+PASS Cannot bypass branch epilogue TinVirtuosoCloseShop0
+PASS Branch advances TinVirtuosoCloseShop0
+PASS Choice and page restore TinVirtuosoCloseShop1
+PASS Cannot bypass branch epilogue TinVirtuosoCloseShop1
+PASS Branch advances TinVirtuosoCloseShop1
+PASS Choice and page restore TinVirtuosoCloseShop2
+PASS Cannot bypass branch epilogue TinVirtuosoCloseShop2
+PASS Branch advances TinVirtuosoCloseShop2
+PASS Choice and page restore TinVirtuosoCloseShop3
+PASS Cannot bypass branch epilogue TinVirtuosoCloseShop3
+PASS Branch advances TinVirtuosoCloseShop3
+PASS Complete once TinVirtuosoCloseShop
+PASS Story choice does not spend currency or RNG TinVirtuosoCloseShop
+PASS Endless remains separate after either ending TinVirtuosoCloseShop
+PASS Cannot choose before boss victory TinVirtuosoLeaveLight
+PASS Choice cannot be skipped TinVirtuosoLeaveLight
+PASS Choice commits once TinVirtuosoLeaveLight
+PASS Choice and page restore TinVirtuosoLeaveLight0
+PASS Cannot bypass branch epilogue TinVirtuosoLeaveLight0
+PASS Branch advances TinVirtuosoLeaveLight0
+PASS Choice and page restore TinVirtuosoLeaveLight1
+PASS Cannot bypass branch epilogue TinVirtuosoLeaveLight1
+PASS Branch advances TinVirtuosoLeaveLight1
+PASS Choice and page restore TinVirtuosoLeaveLight2
+PASS Cannot bypass branch epilogue TinVirtuosoLeaveLight2
+PASS Branch advances TinVirtuosoLeaveLight2
+PASS Choice and page restore TinVirtuosoLeaveLight3
+PASS Cannot bypass branch epilogue TinVirtuosoLeaveLight3
+PASS Branch advances TinVirtuosoLeaveLight3
+PASS Choice and page restore TinVirtuosoLeaveLight4
+PASS Cannot bypass branch epilogue TinVirtuosoLeaveLight4
+PASS Branch advances TinVirtuosoLeaveLight4
+PASS Complete once TinVirtuosoLeaveLight
+PASS Story choice does not spend currency or RNG TinVirtuosoLeaveLight
+PASS Endless remains separate after either ending TinVirtuosoLeaveLight
+PASS Cannot choose before boss victory MoonProwlerCloseShop
+PASS Choice cannot be skipped MoonProwlerCloseShop
+PASS Choice commits once MoonProwlerCloseShop
+PASS Choice and page restore MoonProwlerCloseShop0
+PASS Cannot bypass branch epilogue MoonProwlerCloseShop0
+PASS Branch advances MoonProwlerCloseShop0
+PASS Choice and page restore MoonProwlerCloseShop1
+PASS Cannot bypass branch epilogue MoonProwlerCloseShop1
+PASS Branch advances MoonProwlerCloseShop1
+PASS Choice and page restore MoonProwlerCloseShop2
+PASS Cannot bypass branch epilogue MoonProwlerCloseShop2
+PASS Branch advances MoonProwlerCloseShop2
+PASS Choice and page restore MoonProwlerCloseShop3
+PASS Cannot bypass branch epilogue MoonProwlerCloseShop3
+PASS Branch advances MoonProwlerCloseShop3
+PASS Complete once MoonProwlerCloseShop
+PASS Story choice does not spend currency or RNG MoonProwlerCloseShop
+PASS Endless remains separate after either ending MoonProwlerCloseShop
+PASS Cannot choose before boss victory MoonProwlerLeaveLight
+PASS Choice cannot be skipped MoonProwlerLeaveLight
+PASS Choice commits once MoonProwlerLeaveLight
+PASS Choice and page restore MoonProwlerLeaveLight0
+PASS Cannot bypass branch epilogue MoonProwlerLeaveLight0
+PASS Branch advances MoonProwlerLeaveLight0
+PASS Choice and page restore MoonProwlerLeaveLight1
+PASS Cannot bypass branch epilogue MoonProwlerLeaveLight1
+PASS Branch advances MoonProwlerLeaveLight1
+PASS Choice and page restore MoonProwlerLeaveLight2
+PASS Cannot bypass branch epilogue MoonProwlerLeaveLight2
+PASS Branch advances MoonProwlerLeaveLight2
+PASS Choice and page restore MoonProwlerLeaveLight3
+PASS Cannot bypass branch epilogue MoonProwlerLeaveLight3
+PASS Branch advances MoonProwlerLeaveLight3
+PASS Choice and page restore MoonProwlerLeaveLight4
+PASS Cannot bypass branch epilogue MoonProwlerLeaveLight4
+PASS Branch advances MoonProwlerLeaveLight4
+PASS Complete once MoonProwlerLeaveLight
+PASS Story choice does not spend currency or RNG MoonProwlerLeaveLight
+PASS Endless remains separate after either ending MoonProwlerLeaveLight
+PASS Cannot choose before boss victory SupperMortarCloseShop
+PASS Choice cannot be skipped SupperMortarCloseShop
+PASS Choice commits once SupperMortarCloseShop
+PASS Choice and page restore SupperMortarCloseShop0
+PASS Cannot bypass branch epilogue SupperMortarCloseShop0
+PASS Branch advances SupperMortarCloseShop0
+PASS Choice and page restore SupperMortarCloseShop1
+PASS Cannot bypass branch epilogue SupperMortarCloseShop1
+PASS Branch advances SupperMortarCloseShop1
+PASS Choice and page restore SupperMortarCloseShop2
+PASS Cannot bypass branch epilogue SupperMortarCloseShop2
+PASS Branch advances SupperMortarCloseShop2
+PASS Choice and page restore SupperMortarCloseShop3
+PASS Cannot bypass branch epilogue SupperMortarCloseShop3
+PASS Branch advances SupperMortarCloseShop3
+PASS Complete once SupperMortarCloseShop
+PASS Story choice does not spend currency or RNG SupperMortarCloseShop
+PASS Endless remains separate after either ending SupperMortarCloseShop
+PASS Cannot choose before boss victory SupperMortarLeaveLight
+PASS Choice cannot be skipped SupperMortarLeaveLight
+PASS Choice commits once SupperMortarLeaveLight
+PASS Choice and page restore SupperMortarLeaveLight0
+PASS Cannot bypass branch epilogue SupperMortarLeaveLight0
+PASS Branch advances SupperMortarLeaveLight0
+PASS Choice and page restore SupperMortarLeaveLight1
+PASS Cannot bypass branch epilogue SupperMortarLeaveLight1
+PASS Branch advances SupperMortarLeaveLight1
+PASS Choice and page restore SupperMortarLeaveLight2
+PASS Cannot bypass branch epilogue SupperMortarLeaveLight2
+PASS Branch advances SupperMortarLeaveLight2
+PASS Choice and page restore SupperMortarLeaveLight3
+PASS Cannot bypass branch epilogue SupperMortarLeaveLight3
+PASS Branch advances SupperMortarLeaveLight3
+PASS Choice and page restore SupperMortarLeaveLight4
+PASS Cannot bypass branch epilogue SupperMortarLeaveLight4
+PASS Branch advances SupperMortarLeaveLight4
+PASS Complete once SupperMortarLeaveLight
+PASS Story choice does not spend currency or RNG SupperMortarLeaveLight
+PASS Endless remains separate after either ending SupperMortarLeaveLight
+PASS Cannot choose before boss victory LanternWeaverCloseShop
+PASS Choice cannot be skipped LanternWeaverCloseShop
+PASS Choice commits once LanternWeaverCloseShop
+PASS Choice and page restore LanternWeaverCloseShop0
+PASS Cannot bypass branch epilogue LanternWeaverCloseShop0
+PASS Branch advances LanternWeaverCloseShop0
+PASS Choice and page restore LanternWeaverCloseShop1
+PASS Cannot bypass branch epilogue LanternWeaverCloseShop1
+PASS Branch advances LanternWeaverCloseShop1
+PASS Choice and page restore LanternWeaverCloseShop2
+PASS Cannot bypass branch epilogue LanternWeaverCloseShop2
+PASS Branch advances LanternWeaverCloseShop2
+PASS Choice and page restore LanternWeaverCloseShop3
+PASS Cannot bypass branch epilogue LanternWeaverCloseShop3
+PASS Branch advances LanternWeaverCloseShop3
+PASS Complete once LanternWeaverCloseShop
+PASS Story choice does not spend currency or RNG LanternWeaverCloseShop
+PASS Endless remains separate after either ending LanternWeaverCloseShop
+PASS Cannot choose before boss victory LanternWeaverLeaveLight
+PASS Choice cannot be skipped LanternWeaverLeaveLight
+PASS Choice commits once LanternWeaverLeaveLight
+PASS Choice and page restore LanternWeaverLeaveLight0
+PASS Cannot bypass branch epilogue LanternWeaverLeaveLight0
+PASS Branch advances LanternWeaverLeaveLight0
+PASS Choice and page restore LanternWeaverLeaveLight1
+PASS Cannot bypass branch epilogue LanternWeaverLeaveLight1
+PASS Branch advances LanternWeaverLeaveLight1
+PASS Choice and page restore LanternWeaverLeaveLight2
+PASS Cannot bypass branch epilogue LanternWeaverLeaveLight2
+PASS Branch advances LanternWeaverLeaveLight2
+PASS Choice and page restore LanternWeaverLeaveLight3
+PASS Cannot bypass branch epilogue LanternWeaverLeaveLight3
+PASS Branch advances LanternWeaverLeaveLight3
+PASS Choice and page restore LanternWeaverLeaveLight4
+PASS Cannot bypass branch epilogue LanternWeaverLeaveLight4
+PASS Branch advances LanternWeaverLeaveLight4
+PASS Complete once LanternWeaverLeaveLight
+PASS Story choice does not spend currency or RNG LanternWeaverLeaveLight
+PASS Endless remains separate after either ending LanternWeaverLeaveLight
+PASS Cannot choose before boss victory HourglassStagCloseShop
+PASS Choice cannot be skipped HourglassStagCloseShop
+PASS Choice commits once HourglassStagCloseShop
+PASS Choice and page restore HourglassStagCloseShop0
+PASS Cannot bypass branch epilogue HourglassStagCloseShop0
+PASS Branch advances HourglassStagCloseShop0
+PASS Choice and page restore HourglassStagCloseShop1
+PASS Cannot bypass branch epilogue HourglassStagCloseShop1
+PASS Branch advances HourglassStagCloseShop1
+PASS Choice and page restore HourglassStagCloseShop2
+PASS Cannot bypass branch epilogue HourglassStagCloseShop2
+PASS Branch advances HourglassStagCloseShop2
+PASS Choice and page restore HourglassStagCloseShop3
+PASS Cannot bypass branch epilogue HourglassStagCloseShop3
+PASS Branch advances HourglassStagCloseShop3
+PASS Complete once HourglassStagCloseShop
+PASS Story choice does not spend currency or RNG HourglassStagCloseShop
+PASS Endless remains separate after either ending HourglassStagCloseShop
+PASS Cannot choose before boss victory HourglassStagLeaveLight
+PASS Choice cannot be skipped HourglassStagLeaveLight
+PASS Choice commits once HourglassStagLeaveLight
+PASS Choice and page restore HourglassStagLeaveLight0
+PASS Cannot bypass branch epilogue HourglassStagLeaveLight0
+PASS Branch advances HourglassStagLeaveLight0
+PASS Choice and page restore HourglassStagLeaveLight1
+PASS Cannot bypass branch epilogue HourglassStagLeaveLight1
+PASS Branch advances HourglassStagLeaveLight1
+PASS Choice and page restore HourglassStagLeaveLight2
+PASS Cannot bypass branch epilogue HourglassStagLeaveLight2
+PASS Branch advances HourglassStagLeaveLight2
+PASS Choice and page restore HourglassStagLeaveLight3
+PASS Cannot bypass branch epilogue HourglassStagLeaveLight3
+PASS Branch advances HourglassStagLeaveLight3
+PASS Choice and page restore HourglassStagLeaveLight4
+PASS Cannot bypass branch epilogue HourglassStagLeaveLight4
+PASS Branch advances HourglassStagLeaveLight4
+PASS Complete once HourglassStagLeaveLight
+PASS Story choice does not spend currency or RNG HourglassStagLeaveLight
+PASS Endless remains separate after either ending HourglassStagLeaveLight
+PASS Cannot choose before boss victory RainArchivistCloseShop
+PASS Choice cannot be skipped RainArchivistCloseShop
+PASS Choice commits once RainArchivistCloseShop
+PASS Choice and page restore RainArchivistCloseShop0
+PASS Cannot bypass branch epilogue RainArchivistCloseShop0
+PASS Branch advances RainArchivistCloseShop0
+PASS Choice and page restore RainArchivistCloseShop1
+PASS Cannot bypass branch epilogue RainArchivistCloseShop1
+PASS Branch advances RainArchivistCloseShop1
+PASS Choice and page restore RainArchivistCloseShop2
+PASS Cannot bypass branch epilogue RainArchivistCloseShop2
+PASS Branch advances RainArchivistCloseShop2
+PASS Choice and page restore RainArchivistCloseShop3
+PASS Cannot bypass branch epilogue RainArchivistCloseShop3
+PASS Branch advances RainArchivistCloseShop3
+PASS Complete once RainArchivistCloseShop
+PASS Story choice does not spend currency or RNG RainArchivistCloseShop
+PASS Endless remains separate after either ending RainArchivistCloseShop
+PASS Cannot choose before boss victory RainArchivistLeaveLight
+PASS Choice cannot be skipped RainArchivistLeaveLight
+PASS Choice commits once RainArchivistLeaveLight
+PASS Choice and page restore RainArchivistLeaveLight0
+PASS Cannot bypass branch epilogue RainArchivistLeaveLight0
+PASS Branch advances RainArchivistLeaveLight0
+PASS Choice and page restore RainArchivistLeaveLight1
+PASS Cannot bypass branch epilogue RainArchivistLeaveLight1
+PASS Branch advances RainArchivistLeaveLight1
+PASS Choice and page restore RainArchivistLeaveLight2
+PASS Cannot bypass branch epilogue RainArchivistLeaveLight2
+PASS Branch advances RainArchivistLeaveLight2
+PASS Choice and page restore RainArchivistLeaveLight3
+PASS Cannot bypass branch epilogue RainArchivistLeaveLight3
+PASS Branch advances RainArchivistLeaveLight3
+PASS Choice and page restore RainArchivistLeaveLight4
+PASS Cannot bypass branch epilogue RainArchivistLeaveLight4
+PASS Branch advances RainArchivistLeaveLight4
+PASS Complete once RainArchivistLeaveLight
+PASS Story choice does not spend currency or RNG RainArchivistLeaveLight
+PASS Endless remains separate after either ending RainArchivistLeaveLight
+PASS Legacy in-progress dawn is not forced backward
+PASS Forged promise before victory rejected
+PASS Bounded progressively thicker fog
+PASS Reduced effects protect visibility

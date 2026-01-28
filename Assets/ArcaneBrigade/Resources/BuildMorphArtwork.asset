@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7908965c3ba58458acd123eee00e89, type: 3}
+  m_Name: BuildMorphArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.BuildMorphArtwork
+  Parts:
+  - {fileID: -2059484775, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -917954142, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -607277652, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: 1677403089, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -1710311572, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -2031761115, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -554359970, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: 444304688, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -185605956, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -529158966, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -1298656339, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: -457329115, guid: 0d1d3337a79a52045ab156ec4897a45e, type: 3}
+  - {fileID: 309637869, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: -412115629, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: 494589719, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: 923255846, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: -1326301373, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: 1344484633, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: 763239011, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: -1230803092, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: -257095855, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: 1429200514, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: 545716648, guid: e83479597ccadd54091059f6e5056502, type: 3}
+  - {fileID: -432202080, guid: e83479597ccadd54091059f6e5056502, type: 3}
