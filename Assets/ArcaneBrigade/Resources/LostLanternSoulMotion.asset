@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: LostLanternSoulMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1019540884, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 824876331, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  Walk:
+  - {fileID: 1966043346, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 972143624, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 1966043346, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 972143624, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  Windup:
+  - {fileID: -1867031789, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 1785988149, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  Release:
+  - {fileID: 684461844, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 684461844, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  Recovery:
+  - {fileID: 1250475945, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}
+  - {fileID: 1019540884, guid: 0047ef41f93f5ae4e8e95ab0419cbf9c, type: 3}

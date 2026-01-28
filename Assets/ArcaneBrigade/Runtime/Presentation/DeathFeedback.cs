@@ -76,6 +76,7 @@ namespace ArcaneBrigade
             bool important = state.Definition.IsBoss || state.Faction == Faction.Champion;
             Remnant remnant = Acquire(important);
             if (remnant == null) return;
+            if (state.Faction == Faction.Enemy && !state.Definition.IsBoss) EnemyAffixDeparture.Play(state, visual.BodyRenderer);
             foreach (BossPartDeathScatter debris in remnant.BossDebris)
                 if (debris != null) { debris.gameObject.SetActive(false); debris.transform.SetParent(null); Destroy(debris.gameObject); }
             visual.CopyDeathPose(remnant.Body, remnant.Shadow, remnant.Weapon, remnant.Hand, remnant.DrawHand, remnant.Grip);

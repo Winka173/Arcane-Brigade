@@ -218,8 +218,8 @@ namespace ArcaneBrigade
             }
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(65, 130, 1800, 70), owner.SaveError, text);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
-            waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat);
-            if (state.Phase == SessionPhase.Combat) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
+            waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);
+            if (state.Phase == SessionPhase.Combat && !owner.TransitionPending) waveStamp.Draw((state.Endless ? "∞ " : "") + "WAVE " + state.Wave);
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) coach.Draw(owner, camera);
             cutIn.Draw(new Vector2(1920, 1080));
             navigation.End();

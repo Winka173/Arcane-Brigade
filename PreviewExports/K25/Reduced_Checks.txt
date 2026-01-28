@@ -1,0 +1,81 @@
+PASS Requested render surface 3840x2160; actual=3840x2160
+PASS Native eight specialist species and affix atlas
+PASS Native unique body art, no held weapon SmokeWraith
+PASS Native attached species smoke or flame SmokeWraith
+PASS Native specialist body anticipation SmokeWraith
+PASS Native specialist real release SmokeWraith
+PASS Native actual special outcome SmokeWraith
+PASS Native stable pose size SmokeWraith
+PASS Native unique body art, no held weapon BlueFlameFiend
+PASS Native attached species smoke or flame BlueFlameFiend
+PASS Native specialist body anticipation BlueFlameFiend
+PASS Native specialist real release BlueFlameFiend
+PASS Native actual special outcome BlueFlameFiend
+PASS Native stable pose size BlueFlameFiend
+PASS Native unique body art, no held weapon RedFlameBerserker
+PASS Native attached species smoke or flame RedFlameBerserker
+PASS Native specialist body anticipation RedFlameBerserker
+PASS Native specialist real release RedFlameBerserker
+PASS Native actual special outcome RedFlameBerserker
+PASS Native stable pose size RedFlameBerserker
+PASS Native unique body art, no held weapon TwinFlameFurnace
+PASS Native attached species smoke or flame TwinFlameFurnace
+PASS Native specialist body anticipation TwinFlameFurnace
+PASS Native specialist real release TwinFlameFurnace
+PASS Native actual special outcome TwinFlameFurnace
+PASS Native stable pose size TwinFlameFurnace
+PASS Native unique body art, no held weapon AshSwallower
+PASS Native attached species smoke or flame AshSwallower
+PASS Native specialist body anticipation AshSwallower
+PASS Native specialist real release AshSwallower
+PASS Native actual special outcome AshSwallower
+PASS Native stable pose size AshSwallower
+PASS Native unique body art, no held weapon LostLanternSoul
+PASS Native attached species smoke or flame LostLanternSoul
+PASS Native specialist body anticipation LostLanternSoul
+PASS Native specialist real release LostLanternSoul
+PASS Native actual special outcome LostLanternSoul
+PASS Native stable pose size LostLanternSoul
+PASS Native unique body art, no held weapon SmokingCoffin
+PASS Native attached species smoke or flame SmokingCoffin
+PASS Native specialist body anticipation SmokingCoffin
+PASS Native specialist real release SmokingCoffin
+PASS Native actual special outcome SmokingCoffin
+PASS Native stable pose size SmokingCoffin
+PASS Native unique body art, no held weapon EmberProcession
+PASS Native attached species smoke or flame EmberProcession
+PASS Native specialist body anticipation EmberProcession
+PASS Native specialist real release EmberProcession
+PASS Native actual special outcome EmberProcession
+PASS Native stable pose size EmberProcession
+PASS Affix layered on existing evolved body BlackSmoke
+PASS Native affix body warning BlackSmoke
+PASS Native affix actual release BlackSmoke
+PASS Native death dissipates attached smoke or fire BlackSmoke
+PASS Native affix death effects clean up BlackSmoke
+PASS Affix layered on existing evolved body BlueFlame
+PASS Native affix body warning BlueFlame
+PASS Native affix actual release BlueFlame
+PASS Native death dissipates attached smoke or fire BlueFlame
+PASS Native affix death effects clean up BlueFlame
+PASS Affix layered on existing evolved body RedFlame
+PASS Native affix body warning RedFlame
+PASS Native affix actual release RedFlame
+PASS Native death dissipates attached smoke or fire RedFlame
+PASS Native affix death effects clean up RedFlame
+PASS Affix layered on existing evolved body Blackfire
+PASS Native affix body warning Blackfire
+PASS Native affix actual release Blackfire
+PASS Native death dissipates attached smoke or fire Blackfire
+PASS Native affix death effects clean up Blackfire
+PASS Affix layered on existing evolved body TwinFlame
+PASS Native affix body warning TwinFlame
+PASS Native affix actual release TwinFlame
+PASS Native death dissipates attached smoke or fire TwinFlame
+PASS Native affix death effects clean up TwinFlame
+PASS Native scenarios preserve source catalog
+PASS Native distinct carrier 9
+PASS Carrier resumes the same arena once 9
+PASS Native distinct carrier 13
+PASS Carrier resumes the same arena once 13
+PASS No native runtime errors

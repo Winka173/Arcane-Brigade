@@ -1,0 +1,314 @@
+PASS Three anatomy carriers rotate without changing the four-wave schedule
+PASS Carrier starts and lands at exact positions Hand
+PASS Continuous pickup and throw path Hand
+PASS Carrier starts and lands at exact positions CarpetTongue
+PASS Continuous pickup and throw path CarpetTongue
+PASS Carrier starts and lands at exact positions KeyholeEye
+PASS Continuous pickup and throw path KeyholeEye
+PASS Twenty original and eight new species
+PASS Sixteen dedicated smoke and flame effect drawings
+PASS Specialist identity and safe unlock SmokeWraith
+PASS Eight dedicated ground-aligned poses SmokeWraithMotion
+PASS No reused body drawing SmokeWraith_00
+PASS No reused body drawing SmokeWraith_01
+PASS No reused body drawing SmokeWraith_02
+PASS No reused body drawing SmokeWraith_03
+PASS No reused body drawing SmokeWraith_04
+PASS No reused body drawing SmokeWraith_05
+PASS No reused body drawing SmokeWraith_06
+PASS No reused body drawing SmokeWraith_07
+PASS Eight dedicated ground-aligned poses SmokeWraithEvolvedMotion
+PASS No reused body drawing SmokeWraith_08
+PASS No reused body drawing SmokeWraith_09
+PASS No reused body drawing SmokeWraith_10
+PASS No reused body drawing SmokeWraith_11
+PASS No reused body drawing SmokeWraith_12
+PASS No reused body drawing SmokeWraith_13
+PASS No reused body drawing SmokeWraith_14
+PASS No reused body drawing SmokeWraith_15
+PASS Body windup before special SmokeWraith/0
+PASS Pause freezes specialist SmokeWraith/0
+PASS Actual specialist release SmokeWraith/0
+PASS Special has real travel or attack SmokeWraith/0
+PASS Evolution art without extra stat cliff SmokeWraith/0
+PASS Rest clears specialist effects SmokeWraith
+PASS Body windup before special SmokeWraith/1
+PASS Pause freezes specialist SmokeWraith/1
+PASS Actual specialist release SmokeWraith/1
+PASS Special has real travel or attack SmokeWraith/1
+PASS Evolution art without extra stat cliff SmokeWraith/1
+PASS Rest clears specialist effects SmokeWraith
+PASS Specialist identity and safe unlock BlueFlameFiend
+PASS Eight dedicated ground-aligned poses BlueFlameFiendMotion
+PASS No reused body drawing BlueFlameFiend_00
+PASS No reused body drawing BlueFlameFiend_01
+PASS No reused body drawing BlueFlameFiend_02
+PASS No reused body drawing BlueFlameFiend_03
+PASS No reused body drawing BlueFlameFiend_04
+PASS No reused body drawing BlueFlameFiend_05
+PASS No reused body drawing BlueFlameFiend_06
+PASS No reused body drawing BlueFlameFiend_07
+PASS Eight dedicated ground-aligned poses BlueFlameFiendEvolvedMotion
+PASS No reused body drawing BlueFlameFiend_08
+PASS No reused body drawing BlueFlameFiend_09
+PASS No reused body drawing BlueFlameFiend_10
+PASS No reused body drawing BlueFlameFiend_11
+PASS No reused body drawing BlueFlameFiend_12
+PASS No reused body drawing BlueFlameFiend_13
+PASS No reused body drawing BlueFlameFiend_14
+PASS No reused body drawing BlueFlameFiend_15
+PASS Body windup before special BlueFlameFiend/0
+PASS Pause freezes specialist BlueFlameFiend/0
+PASS Actual specialist release BlueFlameFiend/0
+PASS Special has real travel or attack BlueFlameFiend/0
+PASS Evolution art without extra stat cliff BlueFlameFiend/0
+PASS Rest clears specialist effects BlueFlameFiend
+PASS Body windup before special BlueFlameFiend/1
+PASS Pause freezes specialist BlueFlameFiend/1
+PASS Actual specialist release BlueFlameFiend/1
+PASS Special has real travel or attack BlueFlameFiend/1
+PASS Evolution art without extra stat cliff BlueFlameFiend/1
+PASS Rest clears specialist effects BlueFlameFiend
+PASS Specialist identity and safe unlock RedFlameBerserker
+PASS Eight dedicated ground-aligned poses RedFlameBerserkerMotion
+PASS No reused body drawing RedFlameBerserker_00
+PASS No reused body drawing RedFlameBerserker_01
+PASS No reused body drawing RedFlameBerserker_02
+PASS No reused body drawing RedFlameBerserker_03
+PASS No reused body drawing RedFlameBerserker_04
+PASS No reused body drawing RedFlameBerserker_05
+PASS No reused body drawing RedFlameBerserker_06
+PASS No reused body drawing RedFlameBerserker_07
+PASS Eight dedicated ground-aligned poses RedFlameBerserkerEvolvedMotion
+PASS No reused body drawing RedFlameBerserker_08
+PASS No reused body drawing RedFlameBerserker_09
+PASS No reused body drawing RedFlameBerserker_10
+PASS No reused body drawing RedFlameBerserker_11
+PASS No reused body drawing RedFlameBerserker_12
+PASS No reused body drawing RedFlameBerserker_13
+PASS No reused body drawing RedFlameBerserker_14
+PASS No reused body drawing RedFlameBerserker_15
+PASS Body windup before special RedFlameBerserker/0
+PASS Pause freezes specialist RedFlameBerserker/0
+PASS Actual specialist release RedFlameBerserker/0
+PASS Special has real travel or attack RedFlameBerserker/0
+PASS Evolution art without extra stat cliff RedFlameBerserker/0
+PASS Rest clears specialist effects RedFlameBerserker
+PASS Body windup before special RedFlameBerserker/1
+PASS Pause freezes specialist RedFlameBerserker/1
+PASS Actual specialist release RedFlameBerserker/1
+PASS Special has real travel or attack RedFlameBerserker/1
+PASS Evolution art without extra stat cliff RedFlameBerserker/1
+PASS Rest clears specialist effects RedFlameBerserker
+PASS Specialist identity and safe unlock TwinFlameFurnace
+PASS Eight dedicated ground-aligned poses TwinFlameFurnaceMotion
+PASS No reused body drawing TwinFlameFurnace_00
+PASS No reused body drawing TwinFlameFurnace_01
+PASS No reused body drawing TwinFlameFurnace_02
+PASS No reused body drawing TwinFlameFurnace_03
+PASS No reused body drawing TwinFlameFurnace_04
+PASS No reused body drawing TwinFlameFurnace_05
+PASS No reused body drawing TwinFlameFurnace_06
+PASS No reused body drawing TwinFlameFurnace_07
+PASS Eight dedicated ground-aligned poses TwinFlameFurnaceEvolvedMotion
+PASS No reused body drawing TwinFlameFurnace_08
+PASS No reused body drawing TwinFlameFurnace_09
+PASS No reused body drawing TwinFlameFurnace_10
+PASS No reused body drawing TwinFlameFurnace_11
+PASS No reused body drawing TwinFlameFurnace_12
+PASS No reused body drawing TwinFlameFurnace_13
+PASS No reused body drawing TwinFlameFurnace_14
+PASS No reused body drawing TwinFlameFurnace_15
+PASS Body windup before special TwinFlameFurnace/0
+PASS Pause freezes specialist TwinFlameFurnace/0
+PASS Actual specialist release TwinFlameFurnace/0
+PASS Special has real travel or attack TwinFlameFurnace/0
+PASS Evolution art without extra stat cliff TwinFlameFurnace/0
+PASS Rest clears specialist effects TwinFlameFurnace
+PASS Body windup before special TwinFlameFurnace/1
+PASS Pause freezes specialist TwinFlameFurnace/1
+PASS Actual specialist release TwinFlameFurnace/1
+PASS Special has real travel or attack TwinFlameFurnace/1
+PASS Evolution art without extra stat cliff TwinFlameFurnace/1
+PASS Rest clears specialist effects TwinFlameFurnace
+PASS Specialist identity and safe unlock AshSwallower
+PASS Eight dedicated ground-aligned poses AshSwallowerMotion
+PASS No reused body drawing AshSwallower_00
+PASS No reused body drawing AshSwallower_01
+PASS No reused body drawing AshSwallower_02
+PASS No reused body drawing AshSwallower_03
+PASS No reused body drawing AshSwallower_04
+PASS No reused body drawing AshSwallower_05
+PASS No reused body drawing AshSwallower_06
+PASS No reused body drawing AshSwallower_07
+PASS Eight dedicated ground-aligned poses AshSwallowerEvolvedMotion
+PASS No reused body drawing AshSwallower_08
+PASS No reused body drawing AshSwallower_09
+PASS No reused body drawing AshSwallower_10
+PASS No reused body drawing AshSwallower_11
+PASS No reused body drawing AshSwallower_12
+PASS No reused body drawing AshSwallower_13
+PASS No reused body drawing AshSwallower_14
+PASS No reused body drawing AshSwallower_15
+PASS Body windup before special AshSwallower/0
+PASS Pause freezes specialist AshSwallower/0
+PASS Actual specialist release AshSwallower/0
+PASS Special has real travel or attack AshSwallower/0
+PASS Swallower consumes bounded actual remains
+PASS Evolution art without extra stat cliff AshSwallower/0
+PASS Rest clears specialist effects AshSwallower
+PASS Body windup before special AshSwallower/1
+PASS Pause freezes specialist AshSwallower/1
+PASS Actual specialist release AshSwallower/1
+PASS Special has real travel or attack AshSwallower/1
+PASS Swallower consumes bounded actual remains
+PASS Evolution art without extra stat cliff AshSwallower/1
+PASS Rest clears specialist effects AshSwallower
+PASS Specialist identity and safe unlock LostLanternSoul
+PASS Eight dedicated ground-aligned poses LostLanternSoulMotion
+PASS No reused body drawing LostLanternSoul_00
+PASS No reused body drawing LostLanternSoul_01
+PASS No reused body drawing LostLanternSoul_02
+PASS No reused body drawing LostLanternSoul_03
+PASS No reused body drawing LostLanternSoul_04
+PASS No reused body drawing LostLanternSoul_05
+PASS No reused body drawing LostLanternSoul_06
+PASS No reused body drawing LostLanternSoul_07
+PASS Eight dedicated ground-aligned poses LostLanternSoulEvolvedMotion
+PASS No reused body drawing LostLanternSoul_08
+PASS No reused body drawing LostLanternSoul_09
+PASS No reused body drawing LostLanternSoul_10
+PASS No reused body drawing LostLanternSoul_11
+PASS No reused body drawing LostLanternSoul_12
+PASS No reused body drawing LostLanternSoul_13
+PASS No reused body drawing LostLanternSoul_14
+PASS No reused body drawing LostLanternSoul_15
+PASS Body windup before special LostLanternSoul/0
+PASS Pause freezes specialist LostLanternSoul/0
+PASS Actual specialist release LostLanternSoul/0
+PASS Special has real travel or attack LostLanternSoul/0
+PASS Evolution art without extra stat cliff LostLanternSoul/0
+PASS Rest clears specialist effects LostLanternSoul
+PASS Body windup before special LostLanternSoul/1
+PASS Pause freezes specialist LostLanternSoul/1
+PASS Actual specialist release LostLanternSoul/1
+PASS Special has real travel or attack LostLanternSoul/1
+PASS Evolution art without extra stat cliff LostLanternSoul/1
+PASS Rest clears specialist effects LostLanternSoul
+PASS Specialist identity and safe unlock SmokingCoffin
+PASS Eight dedicated ground-aligned poses SmokingCoffinMotion
+PASS No reused body drawing SmokingCoffin_00
+PASS No reused body drawing SmokingCoffin_01
+PASS No reused body drawing SmokingCoffin_02
+PASS No reused body drawing SmokingCoffin_03
+PASS No reused body drawing SmokingCoffin_04
+PASS No reused body drawing SmokingCoffin_05
+PASS No reused body drawing SmokingCoffin_06
+PASS No reused body drawing SmokingCoffin_07
+PASS Eight dedicated ground-aligned poses SmokingCoffinEvolvedMotion
+PASS No reused body drawing SmokingCoffin_08
+PASS No reused body drawing SmokingCoffin_09
+PASS No reused body drawing SmokingCoffin_10
+PASS No reused body drawing SmokingCoffin_11
+PASS No reused body drawing SmokingCoffin_12
+PASS No reused body drawing SmokingCoffin_13
+PASS No reused body drawing SmokingCoffin_14
+PASS No reused body drawing SmokingCoffin_15
+PASS Body windup before special SmokingCoffin/0
+PASS Pause freezes specialist SmokingCoffin/0
+PASS Actual specialist release SmokingCoffin/0
+PASS Special has real travel or attack SmokingCoffin/0
+PASS Telegraphed bounded summons, no recursive affixes SmokingCoffin
+PASS Summons cannot farm gold SmokingCoffin
+PASS Evolution art without extra stat cliff SmokingCoffin/0
+PASS Rest clears specialist effects SmokingCoffin
+PASS Body windup before special SmokingCoffin/1
+PASS Pause freezes specialist SmokingCoffin/1
+PASS Actual specialist release SmokingCoffin/1
+PASS Special has real travel or attack SmokingCoffin/1
+PASS Telegraphed bounded summons, no recursive affixes SmokingCoffin
+PASS Summons cannot farm gold SmokingCoffin
+PASS Evolution art without extra stat cliff SmokingCoffin/1
+PASS Rest clears specialist effects SmokingCoffin
+PASS Specialist identity and safe unlock EmberProcession
+PASS Eight dedicated ground-aligned poses EmberProcessionMotion
+PASS No reused body drawing EmberProcession_00
+PASS No reused body drawing EmberProcession_01
+PASS No reused body drawing EmberProcession_02
+PASS No reused body drawing EmberProcession_03
+PASS No reused body drawing EmberProcession_04
+PASS No reused body drawing EmberProcession_05
+PASS No reused body drawing EmberProcession_06
+PASS No reused body drawing EmberProcession_07
+PASS Eight dedicated ground-aligned poses EmberProcessionEvolvedMotion
+PASS No reused body drawing EmberProcession_08
+PASS No reused body drawing EmberProcession_09
+PASS No reused body drawing EmberProcession_10
+PASS No reused body drawing EmberProcession_11
+PASS No reused body drawing EmberProcession_12
+PASS No reused body drawing EmberProcession_13
+PASS No reused body drawing EmberProcession_14
+PASS No reused body drawing EmberProcession_15
+PASS Body windup before special EmberProcession/0
+PASS Pause freezes specialist EmberProcession/0
+PASS Actual specialist release EmberProcession/0
+PASS Special has real travel or attack EmberProcession/0
+PASS Telegraphed bounded summons, no recursive affixes EmberProcession
+PASS Summons cannot farm gold EmberProcession
+PASS Evolution art without extra stat cliff EmberProcession/0
+PASS Rest clears specialist effects EmberProcession
+PASS Body windup before special EmberProcession/1
+PASS Pause freezes specialist EmberProcession/1
+PASS Actual specialist release EmberProcession/1
+PASS Special has real travel or attack EmberProcession/1
+PASS Telegraphed bounded summons, no recursive affixes EmberProcession
+PASS Summons cannot farm gold EmberProcession
+PASS Evolution art without extra stat cliff EmberProcession/1
+PASS Rest clears specialist effects EmberProcession
+PASS 128 original poses independent of relics and allies
+PASS Affix anticipation precedes damage BlackSmoke
+PASS Affix real payoff BlackSmoke
+PASS Affix preserves original species and stats BlackSmoke
+PASS Slow attributed affix projectiles BlackSmoke
+PASS Pause also freezes affix travel BlackSmoke
+PASS Rest clears smoke afterimage BlackSmoke
+PASS Affix anticipation precedes damage BlueFlame
+PASS Affix real payoff BlueFlame
+PASS Affix preserves original species and stats BlueFlame
+PASS Slow attributed affix projectiles BlueFlame
+PASS Pause also freezes affix travel BlueFlame
+PASS Rest clears smoke afterimage BlueFlame
+PASS Affix anticipation precedes damage RedFlame
+PASS Affix real payoff RedFlame
+PASS Affix preserves original species and stats RedFlame
+PASS Slow attributed affix projectiles RedFlame
+PASS Pause also freezes affix travel RedFlame
+PASS Rest clears smoke afterimage RedFlame
+PASS Affix anticipation precedes damage Blackfire
+PASS Affix real payoff Blackfire
+PASS Affix preserves original species and stats Blackfire
+PASS Slow attributed affix projectiles Blackfire
+PASS Blackfire is one low-health burst, not death explosion
+PASS Pause also freezes affix travel Blackfire
+PASS Rest clears smoke afterimage Blackfire
+PASS Affix anticipation precedes damage TwinFlame
+PASS Affix real payoff TwinFlame
+PASS Affix preserves original species and stats TwinFlame
+PASS Slow attributed affix projectiles TwinFlame
+PASS Pause also freezes affix travel TwinFlame
+PASS Rest clears smoke afterimage TwinFlame
+PASS Natural affix population capped at four
+PASS Natural affix population capped at four
+PASS Affix assignment deterministic without shop RNG
+PASS Wave one has no specialists or affixes
+PASS Damaged coffin changes to charge instead of more summons
+PASS Procession followers move into actual leader formation
+PASS Killing procession leader breaks formation with recovery
+PASS Summons expire without direct loot after twelve seconds
+PASS Twin flame blue state launches shots
+PASS Twin flame next state really charges
+PASS Global four-windup limit holds under affix crowding
+PASS Killing during windup cancels unreleased attacks
+PASS Blackfire pulse deals actual bounded champion damage once
+PASS Repeated summoning cannot exceed twelve live children
+PASS Legacy content cannot receive decorative-only affixes

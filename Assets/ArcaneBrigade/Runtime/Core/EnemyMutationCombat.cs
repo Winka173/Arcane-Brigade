@@ -6,7 +6,7 @@ namespace ArcaneBrigade
     {
         private bool MoveMutatedEnemy(UnitState enemy)
         {
-            if (!catalog.ExpandedContent || enemy.Definition.EvolutionStage == 0 || enemy.Definition.Mutation == EnemyMutation.None || catalog.RunWave <= 1) return false;
+            if (!catalog.ExpandedContent || enemy.Variant != null && enemy.Variant.Summoned || enemy.Definition.EvolutionStage == 0 || enemy.Definition.Mutation == EnemyMutation.None || catalog.RunWave <= 1) return false;
             if (enemy.EvolutionTravelUntil > enemy.EvolutionTravelStarted && enemy.EvolutionTravelStarted >= 0)
                 return AdvanceMutationTravel(enemy);
             if (enemy.EvolutionReleaseAt > 0)
@@ -26,7 +26,7 @@ namespace ArcaneBrigade
             Vector2 offset = Champion.Position - enemy.Position;
             if (offset.sqrMagnitude > 56.25f) return false;
             int charging = 0;
-            foreach (UnitState other in units) if (other.Alive && other.EvolutionReleaseAt > Elapsed) charging++;
+            foreach (UnitState other in units) if (other.Alive && (other.EvolutionReleaseAt > Elapsed || other.Variant != null && other.Variant.ReleaseAt > Elapsed)) charging++;
             if (charging >= 4) { enemy.NextEvolutionAttack = Elapsed + 0.4f + enemy.Id % 5 * 0.08f; return false; }
             enemy.NextEvolutionAttack = Elapsed + 7.5f + enemy.Id % 5 * 0.35f;
             enemy.EvolutionOrigin = enemy.Position;

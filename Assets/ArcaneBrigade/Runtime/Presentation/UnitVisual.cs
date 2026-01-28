@@ -43,6 +43,7 @@ namespace ArcaneBrigade
         private float transitionSquash;
         private EvolutionAdornment adornment;
         private BossAnatomyVisual anatomyVisual;
+        private EnemyVariantVisual variantVisual;
         public static float BlendGait(float current, float target, float delta)
         {
             return Mathf.Lerp(current, target, 1 - Mathf.Exp(-Mathf.Clamp(delta, 0, 0.05f) * (target > current ? 13 : 9)));
@@ -377,6 +378,8 @@ namespace ArcaneBrigade
             DisplayTier(order, height);
             if (adornment != null) adornment.Display(state, simulationTime, order, ReducedMotion);
             if (anatomyVisual != null) anatomyVisual.Display(state, simulationTime, order, ReducedMotion);
+            if (variantVisual == null && state.Faction == Faction.Enemy && !state.Definition.IsBoss) variantVisual = gameObject.AddComponent<EnemyVariantVisual>();
+            if (variantVisual != null) variantVisual.Display(state, body, simulationTime, ReducedMotion);
             if (state.Faction == Faction.Champion && championBeacon == null)
             {
                 championBeacon = CreateSprite("ChampionBeacon", transform); championBeacon.sprite = K8Motion.TierStar();

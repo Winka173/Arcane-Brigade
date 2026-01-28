@@ -45,7 +45,7 @@ namespace ArcaneBrigade
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
-            bool bodyFragment = hostile && state.Sprite != null && state.Sprite.texture.name == "BodyFragments_v1";
+            bool bodyFragment = hostile && state.Sprite != null && (state.Sprite.texture.name == "BodyFragments_v1" || state.Sprite.texture.name == "EnemyAffixEffects_v1");
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
             grounded.Display(body.sprite, position + Vector2.down * 0.18f, Mathf.Max(0.13f, state.VisualWidth), 0.18f, hostile ? 0.22f : 0.13f);
             int order = hostile ? 2400 : 2100;

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: AshSwallowerMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -31998572, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: -1137005250, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  Walk:
+  - {fileID: -1745308538, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: 1479793783, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: -1745308538, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: 1479793783, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  Windup:
+  - {fileID: 1583964890, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: 293894107, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  Release:
+  - {fileID: 1351005187, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: 1351005187, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  Recovery:
+  - {fileID: 444828651, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}
+  - {fileID: -31998572, guid: 92749f8b754ec1947ae8c9921349b5a4, type: 3}

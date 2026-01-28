@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: RedFlameBerserkerEvolvedMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1110348325, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: 1050799285, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  Walk:
+  - {fileID: -1735092, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: 554029583, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: -1735092, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: 554029583, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  Windup:
+  - {fileID: 1033637230, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: 1608039398, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  Release:
+  - {fileID: -307151586, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: -307151586, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  Recovery:
+  - {fileID: -12808791, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}
+  - {fileID: 1110348325, guid: a18ae2d567c13304eb5b0291cd1c68aa, type: 3}

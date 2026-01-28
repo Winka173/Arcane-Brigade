@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
+    public enum StageCarrier { Hand, CarpetTongue, KeyholeEye }
+
     public sealed class StageTransfer : MonoBehaviour
     {
         private ArenaController owner;
@@ -15,9 +17,12 @@ namespace ArcaneBrigade
         private bool active;
         private GroundShadow grounded;
         private bool outsideHand;
+        public StageCarrier Kind { get; private set; }
         public bool Active => active;
-        public Vector2 VisualPlayerPosition => PresentationSettings.ReducedMotion ? origin : PassengerPosition(origin, age);
+        public float ElapsedSeconds => age;
+        public Vector2 VisualPlayerPosition => PresentationSettings.ReducedMotion ? origin : PassengerPosition(origin, age, Kind);
         public static bool ChangesMap(int wave) => wave > 1 && (wave - 1) % 4 == 0;
+        public static StageCarrier CarrierFor(int wave) => (StageCarrier)(Mathf.Max(0, (wave - 5) / 4) % 3);
 
         public void Configure(ArenaController controller, Action onComplete)
         {
@@ -28,7 +33,10 @@ namespace ArcaneBrigade
             OutsideStageAssets outside = OutsideStageAssets.Current;
             if (outside != null && outside.BossFrames.Length == 16)
             {
-                outsideHand = true; frames = new[] { outside.BossFrames[4], outside.BossFrames[5], outside.BossFrames[6] };
+                outsideHand = true;
+                Kind = owner.Session.State.OutsideStage == OutsideStageStatus.Fighting ? StageCarrier.Hand : CarrierFor(owner.Session.State.Wave);
+                int first = Kind == StageCarrier.CarpetTongue ? 8 : Kind == StageCarrier.KeyholeEye ? 12 : 4;
+                frames = new[] { outside.BossFrames[first], outside.BossFrames[first + 1], outside.BossFrames[first + 2] };
             }
             passengers = FindObjectsByType<UnitVisual>();
             courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 500;
@@ -37,33 +45,42 @@ namespace ArcaneBrigade
         }
 
         public static Vector2 PassengerPosition(Vector2 start, float seconds)
+            => PassengerPosition(start, seconds, StageCarrier.Hand);
+
+        public static Vector2 PassengerPosition(Vector2 start, float seconds, StageCarrier kind)
         {
             Vector2 destination = new Vector2(0, -0.2f);
-            Vector2 release = Vector2.Lerp(start, destination, 0.75f) + Vector2.up;
+            Vector2 release = kind == StageCarrier.KeyholeEye ? Vector2.Lerp(start, destination, 0.5f) + Vector2.up * 1.5f : Vector2.Lerp(start, destination, 0.75f) + Vector2.up;
             if (seconds < 0.4f) return start;
             if (seconds < 1.3f)
             {
                 float progress = Mathf.SmoothStep(0, 1, (seconds - 0.4f) / 0.9f);
-                return Vector2.Lerp(start, release, progress);
+                Vector2 pickup = Vector2.Lerp(start, release, progress);
+                if (kind == StageCarrier.CarpetTongue) pickup += Vector2.right * Mathf.Sin(progress * Mathf.PI) * 0.7f;
+                return pickup;
             }
             float flight = Mathf.Clamp01((seconds - 1.3f) / 0.9f);
-            return Vector2.Lerp(release, destination, flight) + Vector2.up * Mathf.Sin(flight * Mathf.PI) * 1.4f;
+            return Vector2.Lerp(release, destination, flight) + Vector2.up * Mathf.Sin(flight * Mathf.PI) * (kind == StageCarrier.KeyholeEye ? 2.1f : 1.4f);
         }
 
         private void Update()
         {
             if (!active || owner == null || owner.PresentationPaused) return;
-            age += Time.unscaledDeltaTime;
+            age += Mathf.Clamp(Time.unscaledDeltaTime, 0, 0.05f);
             bool reduced = PresentationSettings.ReducedMotion;
             if (frames.Length > 0)
             {
-                courier.sprite = frames[outsideHand ? age < 0.45f ? 0 : age < 1.3f ? 1 : 0 : reduced ? 0 : 2 + Mathf.FloorToInt(age * 7) % 4];
-                float width = outsideHand ? 7.2f : 3.8f;
+                int pose = Kind == StageCarrier.KeyholeEye ? age < 0.6f ? 0 : age < 1 ? 1 : age < 1.3f ? 2 : 0 : Kind == StageCarrier.CarpetTongue ? age < 0.35f ? 0 : age < 0.85f ? 1 : age < 1.3f ? 0 : 2 : age < 0.45f ? 0 : age < 1.3f ? 1 : 0;
+                courier.sprite = frames[outsideHand ? reduced ? 0 : pose : reduced ? 0 : 2 + Mathf.FloorToInt(age * 7) % 4];
+                float width = outsideHand ? Kind == StageCarrier.KeyholeEye ? 4.2f : Kind == StageCarrier.CarpetTongue ? 5.8f : 7.2f : 3.8f;
                 courier.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, courier.sprite.bounds.size.x));
-                Vector2 passenger = PassengerPosition(origin, age);
-                Vector2 position = age < 0.4f ? Vector2.Lerp(origin + Vector2.left * 8, origin, Mathf.SmoothStep(0, 1, age / 0.4f)) : age < 1.3f ? passenger : Vector2.Lerp(PassengerPosition(origin, 1.3f), new Vector2(9, 4), Mathf.Clamp01((age - 1.3f) / 1.1f));
-                transform.position = reduced ? origin + Vector2.up : position + Vector2.down * (outsideHand ? 1.25f : 0.45f);
-                transform.rotation = Quaternion.Euler(0, 0, outsideHand && !reduced ? age < 1.3f ? Mathf.Sin(age * 2) * -8 : Mathf.Lerp(-8, 22, Mathf.Clamp01((age - 1.3f) / 0.5f)) : 0);
+                Vector2 passenger = PassengerPosition(origin, age, Kind);
+                Vector2 approach = Kind == StageCarrier.KeyholeEye ? Vector2.up * 6 : Kind == StageCarrier.CarpetTongue ? Vector2.down * 6 : Vector2.left * 8;
+                Vector2 position = age < 0.4f ? Vector2.Lerp(origin + approach, origin, Mathf.SmoothStep(0, 1, age / 0.4f)) : age < 1.3f ? passenger : Vector2.Lerp(PassengerPosition(origin, 1.3f, Kind), new Vector2(9, 4), Mathf.Clamp01((age - 1.3f) / 1.1f));
+                float offset = Kind == StageCarrier.KeyholeEye ? 1.1f : outsideHand ? 1.25f : 0.45f;
+                transform.position = reduced ? origin + Vector2.up : position + Vector2.down * offset;
+                float rotation = Kind == StageCarrier.KeyholeEye ? Mathf.Sin(age * 2) * 5 : age < 1.3f ? Mathf.Sin(age * 2) * -8 : Mathf.Lerp(-8, Kind == StageCarrier.CarpetTongue ? -35 : 22, Mathf.Clamp01((age - 1.3f) / 0.5f));
+                transform.rotation = Quaternion.Euler(0, 0, outsideHand && !reduced ? rotation : 0);
                 courier.color = new Color(1, 1, 1, Mathf.Clamp01((2.6f - age) * 2));
                 grounded.Configure(courier.sprite);
                 grounded.Display(courier.sprite, (Vector2)transform.position - Vector2.up * (reduced ? 0 : 1.1f), width, reduced ? 0 : 1.1f, 0.22f * courier.color.a);
@@ -84,7 +101,7 @@ namespace ArcaneBrigade
         private void LateUpdate()
         {
             if (!active || PresentationSettings.ReducedMotion) return;
-            Vector2 offset = PassengerPosition(origin, age) - origin;
+            Vector2 offset = PassengerPosition(origin, age, Kind) - origin;
             foreach (UnitVisual passenger in passengers)
                 if (passenger != null && passenger.State != null && passenger.State.Alive && passenger.State.Faction != Faction.Enemy)
                 {

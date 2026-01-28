@@ -16,7 +16,7 @@ namespace ArcaneBrigade.Editor
             void Require(bool condition, string label) { if (!condition) throw new InvalidOperationException("K22 " + label); notes.Add("PASS " + label); }
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             EnemyEvolutionLibrary library = EnemyEvolutionLibrary.Current;
-            Require(library != null && library.Species.Length == catalog.Enemies.Length && library.Species.Length == 20, "Every ordinary species has a normal and mutated entry");
+            Require(library != null && library.Species.Length == catalog.Enemies.Count(enemy => enemy.SpecialEnemy == SpecialEnemyKind.None) && library.Species.Length == 20, "Every original ordinary species has a normal and mutated entry");
             Require(library.Species.Select(entry => entry.Ability).Distinct().Count() == 20 && library.Species.All(entry => entry.Ability != EnemyMutation.None), "Twenty independently authored mutation movesets");
             Require(library.BodyFragments.Length == 16 && library.BodyFragments.All(sprite => sprite != null) && library.BodyFragments.Distinct().Count() == 16, "Sixteen original body-fragment projectile drawings");
             var artwork = new HashSet<Sprite>();
@@ -86,7 +86,7 @@ namespace ArcaneBrigade.Editor
                 CheckpointCatalog arena = session.PrepareCombat();
                 int count = library.Species.Count(entry => wave >= EnemyEvolutionLibrary.MutationWave(entry.Id));
                 Require(count >= previous && (wave > 5 || count == 0), "Gradual monotonic mutation roster, wave " + wave); previous = count;
-                Require(arena.EnemyPool.All(enemy => enemy.EvolutionStage == (wave >= EnemyEvolutionLibrary.MutationWave(enemy.Id) ? 1 : 0)), "Runtime pools use correct evolutionary form, wave " + wave);
+                Require(arena.EnemyPool.Where(enemy => enemy.SpecialEnemy == SpecialEnemyKind.None).All(enemy => enemy.EvolutionStage == (wave >= EnemyEvolutionLibrary.MutationWave(enemy.Id) ? 1 : 0)), "Runtime original pools use correct evolutionary form, wave " + wave);
                 if (wave == 1) Require(arena.EnemyPool.All(enemy => enemy.Weapon.Kind == WeaponKind.Contact && enemy.Mutation == EnemyMutation.None), "Wave one remains contact-only, with no mutated projectiles");
             }
             Require(previous == 20, "All species evolved by late waves");

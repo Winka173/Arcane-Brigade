@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); }
+        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {

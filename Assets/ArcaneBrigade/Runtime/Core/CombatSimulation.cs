@@ -122,6 +122,7 @@ namespace ArcaneBrigade
         public int EvolutionRepeats;
         public int EvolutionCasts;
         public bool SwarmMinion;
+        public EnemyVariantState Variant;
         public bool LeftPartBroken => LeftPartBrokenAt >= 0;
         public bool RightPartBroken => RightPartBrokenAt >= 0;
     }
@@ -295,6 +296,7 @@ namespace ArcaneBrigade
 
         public void EnterRest()
         {
+            ClearEnemyVariants();
             units.RemoveAll(unit => unit.Faction == Faction.Enemy);
             projectiles.Clear();
             pickups.Clear();
@@ -423,6 +425,7 @@ namespace ArcaneBrigade
                 Health = faction == Faction.Companion ? float.PositiveInfinity : definition.Health,
                 RoamRandom = faction == Faction.Companion ? new System.Random(unchecked(runSeed ^ nextId * 397)) : null
             };
+            if (faction == Faction.Enemy && !definition.IsBoss) unit.Variant = NewEnemyVariant(unit);
             units.Add(unit);
             maximumRadius = Mathf.Max(maximumRadius, definition.Radius);
             maximumSpeed = Mathf.Max(maximumSpeed, definition.Speed);
@@ -476,10 +479,12 @@ namespace ArcaneBrigade
                         if (shield != null) definition = shield;
                     }
                     bool minion = catalog.ExpandedContent && member > 0;
+                    if (!minion && definition.SpecialEnemy != SpecialEnemyKind.None && ActiveSpecialists() >= 3) definition = SwarmDefinition();
                     if (minion) definition = SwarmDefinition();
                     UnitState spawned = Spawn(definition, Faction.Enemy, position);
                     spawned.SwarmMinion = minion;
                     if (minion) spawned.Health *= 0.45f;
+                    else InitializeEnemyVariant(spawned);
                     swarmSpawns++;
                 }
             }
@@ -513,6 +518,7 @@ namespace ArcaneBrigade
         private void MoveEnemy(UnitState unit, float deltaTime)
         {
             if (unit.Definition.Id == "OutsideStageKeeper") return;
+            if (!unit.Definition.IsBoss && MoveEnemyVariant(unit)) return;
             if (unit.Definition.IsBoss && MoveBossSignature(unit)) return;
             if (!unit.Definition.IsBoss && MoveMutatedEnemy(unit)) return;
             if (MoveExpandedEnemy(unit, deltaTime)) return;
@@ -655,6 +661,7 @@ namespace ArcaneBrigade
 
         private void ProcessAttack(UnitState unit)
         {
+            if (unit.Variant != null && unit.Variant.Busy(Elapsed)) return;
             if (unit.Faction == Faction.Enemy && (unit.EvolutionReleaseAt > 0 || unit.EvolutionRecoveryUntil > Elapsed || unit.EvolutionTravelUntil > Elapsed)) return;
             WeaponDefinition weapon = unit.Definition.Weapon;
             if (unit.Definition.IsBoss) return;
@@ -755,6 +762,7 @@ namespace ArcaneBrigade
 
         private void ProcessContact(UnitState enemy)
         {
+            if (enemy.Variant != null && (enemy.Variant.ReleaseAt > 0 || enemy.Variant.RecoveryUntil > Elapsed || enemy.Variant.TravelEnd > Elapsed)) return;
             if (enemy.EvolutionReleaseAt > 0) return;
             if (enemy.Definition.Mutation == EnemyMutation.BellEruption && enemy.EvolutionTravelUntil > Elapsed && enemy.BodyLift < -0.1f) return;
             if (!enemy.Alive || !Champion.Alive) return;
@@ -862,6 +870,7 @@ namespace ArcaneBrigade
             NotifyArenaToyHit(events[events.Count - 1]);
             if (target.Health > 0f) return;
             target.Alive = false;
+            RememberVariantDeath(target);
             target.PendingAttack = false;
             QueueDeathReaction(target);
             events.Add(new CombatEvent(CombatEventKind.Kill, target.Position, target.Faction, direction: direction, subjectId: target.Id, subject: target, cause: cause));

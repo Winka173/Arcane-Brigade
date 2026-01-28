@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         public static void Build()
         {
             OutsideStageAssets assets = Asset<OutsideStageAssets>("OutsideStageAssets");
-            assets.BossFrames = K20BossAnatomyBuilder.ImportAtlas("Assets/ArcaneBrigade/Art/K24/OutsideStage_v1.png", "OutsideStage", true);
+            assets.BossFrames = K25AtlasImporter.Import("Assets/ArcaneBrigade/Art/K24/OutsideStage_v1.png", "OutsideStage", 4, 4, Enumerable.Range(0, 16).ToArray(), new[] { 0, 296, 561, 740, 1024 }, true, true);
             assets.RewardFrames = K20BossAnatomyBuilder.ImportAtlas("Assets/ArcaneBrigade/Art/K24/OutsideRewards_v1.png", "OutsideReward", true);
             Sprite[] frames = assets.BossFrames;
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");

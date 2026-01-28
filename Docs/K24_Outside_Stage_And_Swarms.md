@@ -26,7 +26,9 @@ Built-in painting created `Art/K24/OutsideStage_v1.png` and `OutsideRewards_v1.p
 
 Focused checks, build and native Windows evidence are recorded in `PreviewExports/K24/`. Human acceptance, long-run balance, mobile devices and profiling are separate from automated checks. Audio is actively edited by another agent; those worktree files are neither regenerated nor staged as part of this gameplay change.
 
-## Approved backlog, not implemented here
+## Historical backlog at the K24 checkpoint
+
+Follow-up status: K25 now implements all eight species, the five affix overlays, and carpet-tongue/keyhole-eye map-transfer variants. See `Docs/K25_Enemy_Affixes.md` and its current validation report. The paragraphs below describe the earlier K24 checkpoint only.
 
 The eight previously approved special enemy concepts and the black-smoke/blue-fire/red-fire/blackfire/dual-fire overlay system remain separate planned work. Carpet-tongue and eye-based *map transfers* also remain an extension: this batch ships the hand transfer, with tongue and eye already present as encounter anatomy. Do not describe these backlog features as complete.
 

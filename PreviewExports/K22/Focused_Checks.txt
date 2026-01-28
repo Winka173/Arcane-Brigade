@@ -1,4 +1,4 @@
-PASS Every ordinary species has a normal and mutated entry
+PASS Every original ordinary species has a normal and mutated entry
 PASS Twenty independently authored mutation movesets
 PASS Sixteen original body-fragment projectile drawings
 PASS Catalog uses redrawn normal form HushMite
@@ -648,32 +648,32 @@ PASS No hazards leak into shop BurrowBell
 PASS 320 separate species/form/pose drawings
 PASS Enemy art not reused by allies or relics
 PASS Gradual monotonic mutation roster, wave 1
-PASS Runtime pools use correct evolutionary form, wave 1
+PASS Runtime original pools use correct evolutionary form, wave 1
 PASS Wave one remains contact-only, with no mutated projectiles
 PASS Gradual monotonic mutation roster, wave 2
-PASS Runtime pools use correct evolutionary form, wave 2
+PASS Runtime original pools use correct evolutionary form, wave 2
 PASS Gradual monotonic mutation roster, wave 3
-PASS Runtime pools use correct evolutionary form, wave 3
+PASS Runtime original pools use correct evolutionary form, wave 3
 PASS Gradual monotonic mutation roster, wave 4
-PASS Runtime pools use correct evolutionary form, wave 4
+PASS Runtime original pools use correct evolutionary form, wave 4
 PASS Gradual monotonic mutation roster, wave 5
-PASS Runtime pools use correct evolutionary form, wave 5
+PASS Runtime original pools use correct evolutionary form, wave 5
 PASS Gradual monotonic mutation roster, wave 6
-PASS Runtime pools use correct evolutionary form, wave 6
+PASS Runtime original pools use correct evolutionary form, wave 6
 PASS Gradual monotonic mutation roster, wave 7
-PASS Runtime pools use correct evolutionary form, wave 7
+PASS Runtime original pools use correct evolutionary form, wave 7
 PASS Gradual monotonic mutation roster, wave 8
-PASS Runtime pools use correct evolutionary form, wave 8
+PASS Runtime original pools use correct evolutionary form, wave 8
 PASS Gradual monotonic mutation roster, wave 9
-PASS Runtime pools use correct evolutionary form, wave 9
+PASS Runtime original pools use correct evolutionary form, wave 9
 PASS Gradual monotonic mutation roster, wave 10
-PASS Runtime pools use correct evolutionary form, wave 10
+PASS Runtime original pools use correct evolutionary form, wave 10
 PASS Gradual monotonic mutation roster, wave 11
-PASS Runtime pools use correct evolutionary form, wave 11
+PASS Runtime original pools use correct evolutionary form, wave 11
 PASS Gradual monotonic mutation roster, wave 12
-PASS Runtime pools use correct evolutionary form, wave 12
+PASS Runtime original pools use correct evolutionary form, wave 12
 PASS Gradual monotonic mutation roster, wave 13
-PASS Runtime pools use correct evolutionary form, wave 13
+PASS Runtime original pools use correct evolutionary form, wave 13
 PASS All species evolved by late waves
 PASS At most four simultaneous mutation windups in a crowd
 PASS Dead enemy cannot release its pending mutation

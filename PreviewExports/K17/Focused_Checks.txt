@@ -2,6 +2,8 @@ PASS Companion rarity Common
 PASS Companion rarity Uncommon
 PASS Companion rarity Rare
 PASS Companion rarity Mythic
+PASS Companion rarity Crimson
+PASS Companion rarity Rainbow
 PASS Existing species purchase 0
 PASS Every body consumes quota 0
 PASS Existing species purchase 1

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SmokingCoffinMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: -471939889, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: 1456532568, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  Walk:
+  - {fileID: -150661323, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: 1558954696, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: -150661323, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: 1558954696, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  Windup:
+  - {fileID: -1842395528, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: -18575944, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  Release:
+  - {fileID: -449139343, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: -449139343, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  Recovery:
+  - {fileID: 636467982, guid: 77008fc0c1c7b9449b14543268267029, type: 3}
+  - {fileID: -471939889, guid: 77008fc0c1c7b9449b14543268267029, type: 3}

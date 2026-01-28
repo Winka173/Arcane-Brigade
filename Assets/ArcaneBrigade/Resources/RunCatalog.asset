@@ -153,6 +153,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 86be348e46b1c2445a6b15c5975a9de3, type: 2}
   - {fileID: 11400000, guid: 7aa809c69dd6b4841b72d73f8cd13f9a, type: 2}
   - {fileID: 11400000, guid: 77b1380cd7ac49f4caa068ec0cbdc99d, type: 2}
+  - {fileID: 11400000, guid: 2f8f905c233eada46aba70506702d062, type: 2}
+  - {fileID: 11400000, guid: 0327b908a01ed094d84092ca9df446d5, type: 2}
+  - {fileID: 11400000, guid: 071cdd3d88a32414598adf3fb7d54922, type: 2}
+  - {fileID: 11400000, guid: 987d4b8f4ae7170418b4e2c6029a2669, type: 2}
+  - {fileID: 11400000, guid: 044e311aa2fd2cb44af208365d2bfc79, type: 2}
+  - {fileID: 11400000, guid: bc0167778adbaab4eb282fbec0e1a460, type: 2}
+  - {fileID: 11400000, guid: c3a1472ebeaeee84aadc9bfe974bca29, type: 2}
+  - {fileID: 11400000, guid: ce20d90a9ad2b0c49a9481d79193b832, type: 2}
   Bosses:
   - {fileID: 11400000, guid: f0ac4519679765c408b7f3471e0bcaac, type: 2}
   - {fileID: 11400000, guid: eb86835b60109754ba99e424d6755dc9, type: 2}

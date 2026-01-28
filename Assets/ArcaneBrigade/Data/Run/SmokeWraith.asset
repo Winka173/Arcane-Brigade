@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: SmokeWraith
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: SmokeWraith
+  DisplayName: Smoke Wraith
+  Body: {fileID: 220454728, guid: 7bd8c4e359e2dd7469e43d6387ae5691, type: 3}
+  AnimationFrames:
+  - {fileID: 220454728, guid: 7bd8c4e359e2dd7469e43d6387ae5691, type: 3}
+  - {fileID: 154549038, guid: 7bd8c4e359e2dd7469e43d6387ae5691, type: 3}
+  - {fileID: 854030720, guid: 7bd8c4e359e2dd7469e43d6387ae5691, type: 3}
+  - {fileID: 103459027, guid: 7bd8c4e359e2dd7469e43d6387ae5691, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 701d17cecefcd144b9fc534e0f308419, type: 2}
+  Weapon: {fileID: 11400000, guid: 27980dc415bf9634db1de5e4816a0a62, type: 2}
+  Health: 48
+  Speed: 1.15
+  Radius: 0.27
+  BodyHeight: 0.86
+  BodyScale: 1
+  KnockbackResistance: 0.2
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 6
+  ContactInterval: 1.05
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags: []
+  Passive: 0
+  PassiveStrength: 1
+  Description: Fades sideways. Its shadow lashes later.
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 20
+  UnlockWave: 6
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  Behavior: 0
+  Shot: 0
+  Material: 3
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 1

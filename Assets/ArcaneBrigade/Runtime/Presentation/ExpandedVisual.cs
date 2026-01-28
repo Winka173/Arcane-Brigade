@@ -12,6 +12,7 @@ namespace ArcaneBrigade
         private readonly List<MeshRenderer> fills = new List<MeshRenderer>();
         private readonly List<SpriteRenderer> props = new List<SpriteRenderer>();
         private readonly List<GroundShadow> propShadows = new List<GroundShadow>();
+        private readonly List<EnemyVariantFieldVisual> variantFields = new List<EnemyVariantFieldVisual>();
         private CarnivalStageAssets stageArt;
         private MaterialPropertyBlock tint;
         public bool ReducedMotion;
@@ -140,8 +141,15 @@ namespace ArcaneBrigade
                         Color wash = color; wash.a *= hazard ? 0.14f : 0.65f;
                         tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
                     }
+                    bool painted = hazard && field.Source != null && field.Source.Variant != null && (field.Source.Variant.Affix != EnemyAffix.None || field.Source.Definition.SpecialEnemy != SpecialEnemyKind.None) && field.Kind != ExpandedFieldKind.FallingProp;
+                    if (painted)
+                    {
+                        line.enabled = fill.enabled = false;
+                        variantFields[slot].Display(field, simulation.Elapsed, ReducedMotion);
+                    }
+                    else variantFields[slot].Hide();
                 }
-            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); }
+            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); variantFields[index].Hide(); }
         }
         private static bool ContainsProjectile(CombatSimulation simulation, ProjectileState projectile)
         {
@@ -161,6 +169,8 @@ namespace ArcaneBrigade
             SpriteRenderer prop = falling.AddComponent<SpriteRenderer>(); prop.sprite = Resources.Load<RunCatalog>("RunCatalog").ChestSprite;
             prop.sortingOrder = 2450; props.Add(prop);
             GroundShadow shadow = falling.AddComponent<GroundShadow>(); shadow.Configure(prop.sprite); propShadows.Add(shadow);
+            var painted = new GameObject("EnemyVariantFieldArt"); painted.transform.SetParent(transform, false);
+            variantFields.Add(painted.AddComponent<EnemyVariantFieldVisual>());
             if (disc == null)
             {
                 var vertices = new Vector3[65]; var colors = new Color[65]; var triangles = new int[192]; colors[0] = Color.white;
