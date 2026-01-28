@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         private SpriteRenderer glint;
         private GroundShadow grounded;
         private SpriteRenderer chestGlow;
+        private DreamSuspension suspension;
         public void Display(PickupState state, SpriteRenderer renderer, Sprite disc, Sprite spark, float time, float interpolation)
         {
             if (shadow == null)
@@ -33,6 +34,16 @@ namespace ArcaneBrigade
                 renderer.transform.localScale = Vector3.Scale(renderer.transform.localScale, new Vector3(1 + anticipation * .018f, 1 - anticipation * .025f, 1));
             }
             renderer.transform.rotation = Quaternion.Euler(0, 0, state.Attracting && !PresentationSettings.ReducedMotion ? Mathf.Sin(age * 12) * 12 : 0);
+            if (state.Kind != LootKind.Coin && !state.Attracting)
+            {
+                Vector3 hover = DreamLevitation.Offset(time, state.Id, 0, PresentationSettings.ReducedMotion, state.Kind == LootKind.Chest ? .7f : .4f);
+                renderer.transform.position += hover;
+                height += hover.y;
+                renderer.transform.rotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(time, state.Id, PresentationSettings.ReducedMotion, .8f));
+                if (suspension == null) suspension = gameObject.AddComponent<DreamSuspension>();
+                suspension.Display(ground, (Vector3)ground + hover, width, time, state.Id, 1699, 1, true);
+            }
+            else if (suspension != null) suspension.Hide();
             renderer.color = Color.white;
             renderer.sortingOrder = 1700;
             shadow.gameObject.SetActive(true); shadow.sprite = disc;
@@ -72,6 +83,7 @@ namespace ArcaneBrigade
             if (glint != null) glint.gameObject.SetActive(false);
             if (grounded != null) grounded.Hide();
             if (chestGlow != null) chestGlow.gameObject.SetActive(false);
+            if (suspension != null) suspension.Hide();
         }
         public void SetFade(SpriteRenderer renderer, float alpha)
         {

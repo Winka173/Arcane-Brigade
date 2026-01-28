@@ -9,6 +9,7 @@ namespace ArcaneBrigade
         private readonly SpriteRenderer[] landmarks = new SpriteRenderer[8];
         private readonly GroundShadow[] shadows = new GroundShadow[8];
         private readonly NightmarePropPuppet[] puppets = new NightmarePropPuppet[8];
+        private readonly DreamSuspension[] suspensions = new DreamSuspension[8];
         private readonly MerchantDialogue narrator = new MerchantDialogue();
         private MerchantVoice voice;
         private int shownWave = -1;
@@ -41,6 +42,7 @@ namespace ArcaneBrigade
                 shadows[index].PinCastToFoot = true;
                 shadows[index].SortingBase = -45;
                 puppets[index] = prop.AddComponent<NightmarePropPuppet>();
+                suspensions[index] = prop.AddComponent<DreamSuspension>();
             }
         }
         private void Update()
@@ -68,7 +70,7 @@ namespace ArcaneBrigade
                 int art = NightmareRules.LandmarkArt(state,index);
                 bool visible = !owner.Session.SecretRoomOpen && state.Phase != SessionPhase.Defeat && !(shop && index == 3) && (index < 5 || index == 5 && shop || index == 6 && state.Secrets?.RescuedToy == true || index == 7 && state.Secrets?.LetterSent == true);
                 SpriteRenderer view = landmarks[index]; view.enabled = visible;
-                if (!visible) { shadows[index].Hide(); puppets[index].Hide(); continue; }
+                if (!visible) { shadows[index].Hide(); puppets[index].Hide(); suspensions[index].Hide(); continue; }
                 view.sprite = assets.Scenery[art];
                 GroundedSceneryArtwork groundedArt = GroundedSceneryArtwork.Current;
                 if ((art == 8 || art == 9) && groundedArt != null && groundedArt.Cabinets.Length == 2) view.sprite = groundedArt.Cabinets[art - 8];
@@ -79,14 +81,16 @@ namespace ArcaneBrigade
                 view.transform.position = position;
                 float scale = width / Mathf.Max(.01f,view.sprite.bounds.size.x);
                 view.transform.localScale = new Vector3(scale * (1 + motion),scale * (1 - motion),1);
-                view.transform.localRotation = Quaternion.Euler(0,0,PresentationSettings.ReducedMotion || index < 5 ? 0 : Mathf.Sin(now) * 4);
-                WorldSpriteGrounding.Place(view, position);
+                Vector3 hovering = DreamLevitation.Offset(now, index + 1, depth, PresentationSettings.ReducedMotion);
+                view.transform.localRotation = Quaternion.Euler(0,0,DreamLevitation.Tilt(now, index + 1, PresentationSettings.ReducedMotion));
+                WorldSpriteGrounding.Place(view, (Vector3)position + hovering);
                 view.sortingOrder = index == 2 || index == 4 ? -35 : WorldSpriteGrounding.SortAt(position.y);
                 bool anchor = index == 1 || index >= 6;
                 float fusion = owner.Shop?.Dialogue.LastMoment == MerchantMoment.Fuse && now < owner.Shop.Dialogue.ExpiresAt ? 1 : 0;
                 Color tint = anchor ? Color.Lerp(new Color(1,.9f,.7f),Color.white,fusion) : Color.Lerp(Color.white,new Color(.64f,.59f,.73f),depth * .1f);
                 tint.a = 1; view.color = tint;
-                shadows[index].Configure(view.sprite); shadows[index].Display(view.sprite,position,width,0,.25f);
+                shadows[index].Configure(view.sprite); shadows[index].Display(view.sprite,position,width,hovering.y,.32f);
+                suspensions[index].Display(position, (Vector3)position + hovering, width, now, index + 1, view.sortingOrder - 1, tint.a, anchor);
                 if (shop && depth > 0 && !PresentationSettings.ReducedMotion && (index == 0 || index == 3))
                 {
                     float beat = Mathf.Repeat(now + index * 3, 17);

@@ -40,6 +40,7 @@ namespace ArcaneBrigade
         private ArenaController owner; private SpriteRenderer view; private float opening;
         private GroundShadow grounded;
         private MarketLifecycle lifecycle;
+        private DreamSuspension suspension;
         public void Configure(ArenaController controller, SpriteRenderer renderer)
         {
             owner = controller; view = renderer;
@@ -47,6 +48,7 @@ namespace ArcaneBrigade
             grounded.PinCastToFoot = true;
             // The door owns its pose and ground anchor. The generic shop actor must not overwrite them.
             GetComponent<ShopDisplayActor>().enabled = false;
+            suspension = gameObject.AddComponent<DreamSuspension>();
         }
         private void LateUpdate()
         {
@@ -56,15 +58,18 @@ namespace ArcaneBrigade
             int frame = PresentationSettings.ReducedMotion ? near ? 2 : 0 : opening < .25f ? 0 : opening < .7f ? 1 : 2 + (Mathf.Sin(owner.PresentationClock * 2) > .6f ? 1 : 0);
             view.sprite = art.Door[frame];
             float scale = 1.9f / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).height);
-            transform.localScale = Vector3.one * scale; transform.rotation = Quaternion.identity;
+            transform.localScale = Vector3.one * scale;
+            transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 41, PresentationSettings.ReducedMotion, .45f));
             // Re-anchor the visible ink after frame changes; door feet never bob above their threshold.
             if (lifecycle == null) lifecycle = GetComponentInParent<MarketLifecycle>();
             Vector3 offset = lifecycle == null ? Vector3.zero : transform.parent.TransformVector(lifecycle.FixtureOffset);
-            WorldSpriteGrounding.Place(view, transform.parent.position + offset);
+            Vector3 hovering = DreamLevitation.Offset(owner.PresentationClock, 41, NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, .75f);
+            WorldSpriteGrounding.Place(view, transform.parent.position + offset + hovering);
             view.sortingOrder = WorldSpriteGrounding.SortAt(transform.parent.position.y);
             float alpha = lifecycle == null ? 1 : lifecycle.FixtureVisibility;
             view.color = new Color(1, 1, 1, alpha);
-            grounded.Display(view.sprite, transform.parent.position, 1.35f, Mathf.Abs(offset.y), .32f * alpha);
+            grounded.Display(view.sprite, transform.parent.position, 1.35f, Mathf.Abs(offset.y) + hovering.y, .32f * alpha);
+            suspension.Display(transform.parent.position, transform.parent.position + hovering, 1.35f, owner.PresentationClock, 41, view.sortingOrder - 1, alpha, true);
         }
     }
 }

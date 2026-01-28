@@ -79,6 +79,15 @@ namespace ArcaneBrigade
             ArenaController owner = FindAnyObjectByType<ArenaController>();
             Check(owner != null && owner.Session.State.Phase == SessionPhase.Shop, "Actual physical shop opens");
             yield return Shot("shop-overview");
+            ShopDisplayActor keeper = FindObjectsByType<ShopDisplayActor>().First(actor => actor.GetComponent<MerchantPortraitRig>() != null);
+            Vector3 keeperFoot = keeper.transform.TransformPoint(WorldSpriteGrounding.Foot(keeper.View.sprite));
+            GroundShadow keeperShadow = keeper.GetComponent<GroundShadow>();
+            Check(keeperFoot.y - keeperShadow.Contact.transform.position.y > .15f, "Keeper has an intentional air gap above its ground shadow");
+            Quaternion keeperTilt = keeper.transform.rotation;
+            Vector3 keeperPosition = keeper.transform.position;
+            yield return new WaitForSecondsRealtime(1.2f); yield return Shot("suspended-shop-later");
+            Check(reduced ? Quaternion.Angle(keeperTilt, keeper.transform.rotation) < .001f && Vector3.Distance(keeperPosition, keeper.transform.position) < .001f : Vector3.Distance(keeperPosition, keeper.transform.position) > .005f, "Hover drifts in normal mode and stays still in Reduced Motion");
+            Check(FindObjectsByType<DreamSuspension>().Length >= 8, "Environment fixtures and merchant have suspension effects");
             WorldShop.Station exit = owner.Shop.Stations.First(station => station.Action == "NEXT HALL");
             Check(Vector2.Distance(exit.Position, WorldShop.ExitPosition + Vector2.up * WorldShop.LayoutLift) < .01f, "Actual continue door uses separate right-hand lane");
             foreach (WorldShop.Station offer in owner.Shop.Stations.Where(station => station.Offer != null))

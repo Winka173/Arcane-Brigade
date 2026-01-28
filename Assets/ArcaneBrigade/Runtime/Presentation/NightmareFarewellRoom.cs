@@ -54,10 +54,12 @@ namespace ArcaneBrigade
                 float breathe = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(age * 1.2f + index) * .012f;
                 float width = index == 2 ? 1.05f : index == 0 ? 1.8f : 2;
                 float scale = width * (1 + breathe + (focus == index ? .055f : 0)) / Mathf.Max(.01f, view.sprite.bounds.size.x);
-                view.transform.position = positions[index] + Vector2.up * lift;
                 view.transform.localScale = Vector3.one * scale;
+                Vector3 hovering = index == 2 ? Vector3.zero : DreamLevitation.Offset(owner.PresentationClock, 90 + index, 0, PresentationSettings.ReducedMotion);
+                view.transform.rotation = Quaternion.Euler(0, 0, index == 2 ? 0 : DreamLevitation.Tilt(owner.PresentationClock, 90 + index, PresentationSettings.ReducedMotion));
+                WorldSpriteGrounding.Place(view, (Vector3)positions[index] + Vector3.up * lift + hovering);
                 view.color = new Color(1, 1, 1, enter);
-                shadows[index].Display(view.sprite, positions[index], width, lift, .25f * enter);
+                shadows[index].Display(view.sprite, positions[index], width, lift + hovering.y, .25f * enter);
             }
             if (age >= 1.2f && focus >= 0 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) Select(focus);
         }

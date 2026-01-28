@@ -12,6 +12,10 @@ namespace ArcaneBrigade
         public Vector3 FixtureOffset { get; private set; }
         private bool dream;
         private Transform rug;
+        private Vector3 rugOrigin;
+        private Quaternion rugRotation;
+        private GroundShadow rugShadow;
+        private DreamSuspension rugSuspension;
         private MarketCarpetRoll carpet;
         private SpriteRenderer[] wisps;
         private ShopDisplayActor[] fixtures;
@@ -24,7 +28,13 @@ namespace ArcaneBrigade
             owner = controller; dream = special; started = owner.PresentationClock - (entrance ? 0 : 2);
             if (entrance) CheckpointAudio.PlayInterfaceId("shop.carpet.open");
             rug = transform.Find("PaintedMarketRug");
-            if (rug != null) { carpet = rug.gameObject.AddComponent<MarketCarpetRoll>(); carpet.Configure(rug.GetComponent<SpriteRenderer>()); }
+            if (rug != null)
+            {
+                carpet = rug.gameObject.AddComponent<MarketCarpetRoll>(); carpet.Configure(rug.GetComponent<SpriteRenderer>());
+                rugOrigin = rug.localPosition; rugRotation = rug.localRotation;
+                rugShadow = rug.gameObject.AddComponent<GroundShadow>(); rugShadow.SortingBase = -85;
+                rugSuspension = rug.gameObject.AddComponent<DreamSuspension>();
+            }
             fixtures = GetComponentsInChildren<ShopDisplayActor>(); fixtureOrigins = new Vector3[fixtures.Length];
             for (int index = 0; index < fixtures.Length; index++) fixtureOrigins[index] = fixtures[index].transform.localPosition;
             floorDecor = GetComponentsInChildren<SpriteRenderer>().Where(renderer => renderer.GetComponentInParent<ShopDisplayActor>() == null && (renderer.gameObject.name == "ShopFloorContact" || renderer.gameObject.name == "MarketPennants" || renderer.sortingOrder == -75)).ToArray();
@@ -57,6 +67,16 @@ namespace ArcaneBrigade
             FixtureVisibility = departing ? 1 - progress : progress;
             FixtureOffset = Vector3.down * (reduced ? 0 : (1 - FixtureVisibility) * .65f);
             if (carpet != null) carpet.Display(reduced ? 1 : Mathf.SmoothStep(0, 1, departing ? 1 - progress : progress), departing ? reduced ? 1 - progress : progress >= 1 ? 0 : 1 : 1);
+            if (rug != null)
+            {
+                Vector3 hover = DreamLevitation.Offset(owner.PresentationClock, dream ? 61 : 60, NightmareRules.Depth(owner.Session.State.Wave), reduced, .65f);
+                rug.localPosition = rugOrigin + hover;
+                rug.localRotation = rugRotation * Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, dream ? 61 : 60, reduced, .3f));
+                SpriteRenderer cloth = rug.GetComponent<SpriteRenderer>();
+                Vector3 floor = transform.TransformPoint(rugOrigin);
+                rugShadow.Display(cloth.sprite, floor, 10.5f, hover.y, .19f * FixtureVisibility);
+                rugSuspension.Display(floor, floor + hover, 8, owner.PresentationClock, 60, -78, FixtureVisibility, !dream);
+            }
             for (int index = 0; index < floorDecor.Length; index++)
             {
                 if (floorDecor[index] == null) continue;

@@ -36,7 +36,12 @@ namespace ArcaneBrigade
             for (int index = 0; index < actors.Count; index++)
             {
                 Vector2 origin = mode == 1 ? ChallengePosition : rewardPositions[index];
-                actors[index].transform.position = origin + Vector2.up * (PresentationSettings.ReducedMotion ? 0.5f : 0.5f + Mathf.Sin(time * 2 + index) * 0.12f);
+                Vector3 hovering = DreamLevitation.Offset(time, 70 + index, NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion);
+                SpriteRenderer view = actors[index].GetComponent<SpriteRenderer>();
+                actors[index].transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(time, 70 + index, PresentationSettings.ReducedMotion));
+                WorldSpriteGrounding.Place(view, (Vector3)origin + hovering);
+                actors[index].GetComponent<GroundShadow>().Display(view.sprite, origin, mode == 1 ? 2.2f : .8f, hovering.y, .28f);
+                actors[index].GetComponent<DreamSuspension>().Display(origin, (Vector3)origin + hovering, mode == 1 ? 2.2f : .8f, time, 70 + index, view.sortingOrder - 1, 1);
             }
             if (hold < 0.85f) return;
             hold = 0;
@@ -58,6 +63,7 @@ namespace ArcaneBrigade
                 }
                 sprite.sortingOrder = 950; actor.transform.localScale = Vector3.one * ((mode == 1 ? 2.5f : 1.1f) / Mathf.Max(0.01f, sprite.sprite.bounds.size.x));
                 GroundShadow shadow = actor.AddComponent<GroundShadow>(); shadow.Display(sprite.sprite, mode == 1 ? ChallengePosition : rewardPositions[index], mode == 1 ? 2.2f : 0.8f, 0.5f, 0.22f);
+                actor.AddComponent<DreamSuspension>();
                 var glow = new GameObject("BoundPrismaticLight"); glow.transform.SetParent(actor.transform, false);
                 glow.AddComponent<ShopRarityGlow>().Configure(ItemRarity.Rainbow, owner, index, sprite);
                 actors.Add(actor);

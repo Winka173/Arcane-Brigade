@@ -96,7 +96,9 @@ namespace ArcaneBrigade
         {
             var obj = new GameObject(name); obj.transform.SetParent(parent, false); obj.transform.localPosition = at;
             SpriteRenderer r = obj.AddComponent<SpriteRenderer>(); r.sprite = sprite; r.sortingOrder = order;
-            obj.transform.localScale = Vector3.one * (height / Mathf.Max(.1f, sprite.bounds.size.y)); return r;
+            obj.transform.localScale = Vector3.one * (height / Mathf.Max(.1f, sprite.bounds.size.y));
+            obj.AddComponent<SuspendedScenery>().Configure(owner, r, at.x * 3 + at.y * 7);
+            return r;
         }
         private Texture2D Solid(Color color)
         {

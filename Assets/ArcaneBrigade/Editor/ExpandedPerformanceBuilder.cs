@@ -127,7 +127,7 @@ namespace ArcaneBrigade.Editor
         }
         public static void CompleteGate()
         {
-            RequireComplete(); ShopPresentationBuilder.Gate();
+            RequireComplete(); HeroIdentityChecks.Run(); DreamLevitationChecks.Run(); ShopPresentationBuilder.Gate();
         }
         private static void RequireCatalogCoverage(PerformanceExpansionBuilder.Manifest manifest)
         {

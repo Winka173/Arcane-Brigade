@@ -34,6 +34,8 @@ namespace ArcaneBrigade
         private float inspectionAt = -100;
         private float previousTime;
         private float interest;
+        private DreamSuspension suspension;
+        private Vector3 HoverOffset => owner == null ? Vector3.zero : DreamLevitation.Offset(owner.PresentationClock, phase + (merchantActor ? 13 : 7), NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, merchantActor ? .85f : 1);
         private EnsembleClip handoff;
         private float handoffAt = -100;
         public bool PaintedHandoffActive => handoff != null && owner != null && owner.PresentationClock - handoffAt >= 0 && owner.PresentationClock - handoffAt < 1.05f;
@@ -54,7 +56,7 @@ namespace ArcaneBrigade
                 if (pedestalDisplay)
                 {
                     Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * view.sprite.pivot.y / view.sprite.rect.height);
-                    return ground + transform.TransformVector(WorldSpriteGrounding.Seat(view.sprite) - WorldSpriteGrounding.Foot(view.sprite));
+                    return ground + transform.parent.TransformVector(HoverOffset) + transform.TransformVector(WorldSpriteGrounding.Seat(view.sprite) - WorldSpriteGrounding.Foot(view.sprite));
                 }
                 return transform.TransformPoint(WorldSpriteGrounding.Seat(view.sprite)) - transform.parent.TransformVector(travelOffset);
             }
@@ -64,9 +66,12 @@ namespace ArcaneBrigade
             if (view != null && view.sprite != null && (floorFixture || pedestalDisplay || merchantActor) && GetComponent<OctoberDoor>() == null)
             {
                 Vector3 ground = transform.parent.TransformPoint(origin - Vector3.up * height * view.sprite.pivot.y / view.sprite.rect.height);
-                WorldSpriteGrounding.Place(view, ground + transform.parent.TransformVector(travelOffset));
+                Vector3 hover = transform.parent.TransformVector(HoverOffset);
+                WorldSpriteGrounding.Place(view, ground + transform.parent.TransformVector(travelOffset) + hover);
                 view.sortingOrder = WorldSpriteGrounding.SortAt(ground.y);
-                if (grounded != null) grounded.Display(view.sprite, ground, height * .72f, Mathf.Abs(travelOffset.y), .34f * view.color.a);
+                if (grounded != null) grounded.Display(view.sprite, ground, height * .72f, Mathf.Abs(travelOffset.y) + hover.y, .34f * view.color.a);
+                if (suspension == null) suspension = gameObject.AddComponent<DreamSuspension>();
+                suspension.Display(ground, ground + hover, height * .72f, owner.PresentationClock, phase, view.sortingOrder - 1, view.color.a * Mathf.Clamp01(1 - travelOffset.magnitude), !dreamMerchant);
             }
             if (!merchandise || support == null || view.sprite == null) return;
             WorldSpriteGrounding.Place(view, support.SeatPosition + transform.parent.TransformVector(presentationOffset));
@@ -172,6 +177,7 @@ namespace ArcaneBrigade
             presentationOffset = transform.localPosition - origin;
             Color tint = view.color; tint.a = departing ? 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0.72f, 1, arrival)) : age < 0 ? 0 : reduced ? arrival : 1; view.color = tint;
             transform.localRotation = Quaternion.Euler(0, 0, reduced || floorFixture || pedestalDisplay ? 0 : Mathf.Sin(time * 1.7f) * 2.5f + attention * -2 + (dreamMerchant && cheer ? -5 : 0));
+            if (floorFixture || pedestalDisplay || merchantActor) transform.localRotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, phase + (merchantActor ? 13 : 7), reduced, merchantActor ? .55f : .7f));
             view.sortingOrder = merchandise || pedestalDisplay
                 ? 1000 - Mathf.RoundToInt(transform.parent.position.y * 12) + (merchandise ? 8 : 0)
                 : 1000 - Mathf.RoundToInt(transform.position.y * 12);

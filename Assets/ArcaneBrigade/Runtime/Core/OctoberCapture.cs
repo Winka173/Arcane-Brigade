@@ -111,14 +111,16 @@ namespace ArcaneBrigade
             ShopDisplayActor merchant = FindObjectsByType<ShopDisplayActor>().First(a => a.GetComponent<MerchantPortraitRig>() != null);
             Rect merchantInk = SpriteInkMetrics.BoundsOf(merchant.View.sprite);
             GroundShadow merchantShadow = merchant.GetComponent<GroundShadow>();
-            Check(Mathf.Abs(merchant.View.transform.TransformPoint(new Vector3(merchantInk.center.x, merchantInk.yMin)).y - merchantShadow.Contact.transform.position.y) < .01f, "Merchant feet remain grounded while speaking and breathing");
+            float merchantGap = merchant.View.transform.TransformPoint(new Vector3(merchantInk.center.x, merchantInk.yMin)).y - merchantShadow.Contact.transform.position.y;
+            Check(merchantGap > .15f && merchantGap < .6f, "Merchant deliberately hovers above a separate floor shadow");
             Vector2 threshold = owner.Shop.Stations.First(s => s.Action == "NEXT HALL").Position;
             owner.SetPresentationMoveTarget(threshold + Vector2.right * 1.5f); yield return new WaitForSecondsRealtime(3);
             yield return new WaitForEndOfFrame();
             OctoberDoor door = FindAnyObjectByType<OctoberDoor>(); SpriteRenderer doorView = door.GetComponent<SpriteRenderer>();
             Check(Array.IndexOf(OctoberArtwork.Current.Door, doorView.sprite) >= 1, "Painted door opens as the champion approaches");
             Rect ink = SpriteInkMetrics.BoundsOf(doorView.sprite);
-            Check(Mathf.Abs(doorView.transform.TransformPoint(new Vector3(ink.center.x, ink.yMin)).y - doorView.transform.parent.position.y) < .01f, "Open door ink remains attached to its floor threshold");
+            float doorGap = doorView.transform.TransformPoint(new Vector3(ink.center.x, ink.yMin)).y - doorView.transform.parent.position.y;
+            Check(doorGap > .15f && doorGap < .5f, "Open door floats above its fixed reachable threshold");
             yield return Shot("05b-next-hall-door");
             owner.ToggleDetails(); owner.Details.SelectTab(2); yield return new WaitForSecondsRealtime(.4f); yield return Shot("06-owned-relics"); owner.ToggleDetails();
             owner.Session.State.OutsideStage = OutsideStageStatus.Reward; owner.Session.State.OutsideRewards = new List<string> { "RainbowHeart", "RainbowBell", "RainbowPrism" };

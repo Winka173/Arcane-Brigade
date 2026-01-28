@@ -65,6 +65,8 @@ namespace ArcaneBrigade
                 layer.transform.localScale = Vector3.one * scale;
                 layer.transform.localRotation = Quaternion.Euler(0, 0, motion * (index == 1 ? 6 : index == 2 ? -6 : 0));
                 layer.transform.localRotation *= Quaternion.Euler(0, 0, (index == 1 ? -1 : 1) * impact * 2);
+                layer.transform.position += DreamLevitation.Offset(owner.PresentationClock, 80 + index, NightmareRules.Depth(state.Wave), PresentationSettings.ReducedMotion, .35f);
+                layer.transform.localRotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 80 + index, PresentationSettings.ReducedMotion, .22f));
                 layer.color = Color.Lerp(new Color(.64f, .6f, .74f, alpha), new Color(.9f, .75f, .7f, alpha), finale ? opening : 0);
                 VisibleCount++;
             }
