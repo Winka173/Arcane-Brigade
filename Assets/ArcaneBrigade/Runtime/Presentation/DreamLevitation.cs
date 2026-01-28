@@ -19,6 +19,7 @@ namespace ArcaneBrigade
     {
         private readonly LineRenderer[] threads = new LineRenderer[3];
         private Material material;
+        private SpriteRenderer mist;
         public void Display(Vector3 floor, Vector3 foot, float width, float time, float identity, int order, float opacity, bool warm = false)
         {
             if (material == null)
@@ -35,6 +36,23 @@ namespace ArcaneBrigade
                 }
             }
             Color tint = warm ? new Color(.95f, .72f, .39f) : new Color(.55f, .72f, .96f);
+            DreamSuspensionArtwork artwork = DreamSuspensionArtwork.Current;
+            if (artwork != null && artwork.Frames != null && artwork.Frames.Length == 8)
+            {
+                if (mist == null)
+                {
+                    var child = new GameObject("PaintedSuspensionMist"); child.transform.SetParent(transform, false);
+                    mist = child.AddComponent<SpriteRenderer>();
+                }
+                mist.enabled = opacity > .005f && !PresentationSettings.ReducedEffects;
+                mist.sprite = artwork.Frames[PresentationSettings.ReducedMotion ? 0 : Mathf.FloorToInt(time * 5 + identity * 1.7f) % 8];
+                mist.sortingOrder = order;
+                mist.transform.rotation = Quaternion.identity;
+                Vector3 parentScale = transform.lossyScale;
+                mist.transform.localScale = new Vector3(Mathf.Min(width * .7f, 1.5f) / Mathf.Max(.001f, mist.sprite.bounds.size.x * Mathf.Abs(parentScale.x)), Mathf.Max(.1f, foot.y - floor.y + .12f) / Mathf.Max(.001f, mist.sprite.bounds.size.y * Mathf.Abs(parentScale.y)), 1);
+                WorldSpriteGrounding.Place(mist, floor);
+                mist.color = new Color(warm ? 1 : .8f, warm ? .88f : .9f, warm ? .68f : 1, opacity * .34f);
+            }
             for (int index = 0; index < threads.Length; index++)
             {
                 LineRenderer thread = threads[index];
@@ -55,7 +73,7 @@ namespace ArcaneBrigade
                 thread.endColor = new Color(tint.r, tint.g, tint.b, opacity * .22f);
             }
         }
-        public void Hide() { foreach (LineRenderer thread in threads) if (thread != null) thread.enabled = false; }
+        public void Hide() { foreach (LineRenderer thread in threads) if (thread != null) thread.enabled = false; if (mist != null) mist.enabled = false; }
         private void OnDisable() => Hide();
         private void OnDestroy() { if (material != null) Destroy(material); }
     }

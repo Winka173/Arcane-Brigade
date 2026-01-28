@@ -3,67 +3,154 @@ companions-00	companions	IMPORTED	TeapotPilgrim	0	4
 companions-00	companions	IMPORTED	CandleSnail	0	4
 companions-00	companions	IMPORTED	MailboxImp	0	4
 companions-00	companions	IMPORTED	PillowOracle	0	4
-companions-01	companions	MISSING			0
-companions-02	companions	MISSING			0
-companions-03	companions	MISSING			0
-companions-04	companions	MISSING			0
-companions-05	companions	MISSING			0
-companions-06	companions	MISSING			0
-companions-07	companions	MISSING			0
-companions-08	companions	MISSING			0
-companions-09	companions	MISSING			0
-companions-10	companions	MISSING			0
-companions-11	companions	MISSING			0
-companions-12	companions	MISSING			0
-companions-13	companions	MISSING			0
-companions-14	companions	MISSING			0
-companions-15	companions	MISSING			0
-locomotion-00	locomotion	MISSING			0
-locomotion-01	locomotion	MISSING			0
-locomotion-02	locomotion	MISSING			0
-locomotion-03	locomotion	MISSING			0
-locomotion-04	locomotion	MISSING			0
-locomotion-05	locomotion	MISSING			0
-locomotion-06	locomotion	MISSING			0
-locomotion-07	locomotion	MISSING			0
-locomotion-08	locomotion	MISSING			0
-locomotion-09	locomotion	MISSING			0
-locomotion-10	locomotion	MISSING			0
-locomotion-11	locomotion	MISSING			0
-locomotion-12	locomotion	MISSING			0
-locomotion-13	locomotion	MISSING			0
-locomotion-14	locomotion	MISSING			0
-locomotion-15	locomotion	MISSING			0
-locomotion-16	locomotion	MISSING			0
-locomotion-17	locomotion	MISSING			0
-locomotion-18	locomotion	MISSING			0
-locomotion-19	locomotion	MISSING			0
-locomotion-20	locomotion	MISSING			0
-locomotion-21	locomotion	MISSING			0
-locomotion-22	locomotion	MISSING			0
-locomotion-23	locomotion	MISSING			0
-locomotion-24	locomotion	MISSING			0
-locomotion-25	locomotion	MISSING			0
-locomotion-26	locomotion	MISSING			0
-locomotion-27	locomotion	MISSING			0
-locomotion-28	locomotion	MISSING			0
-locomotion-29	locomotion	MISSING			0
-locomotion-30	locomotion	MISSING			0
-locomotion-31	locomotion	MISSING			0
-locomotion-32	locomotion	MISSING			0
-locomotion-33	locomotion	MISSING			0
-locomotion-34	locomotion	MISSING			0
-locomotion-35	locomotion	MISSING			0
-locomotion-36	locomotion	MISSING			0
-locomotion-37	locomotion	MISSING			0
-locomotion-38	locomotion	MISSING			0
-locomotion-39	locomotion	MISSING			0
-locomotion-40	locomotion	MISSING			0
-locomotion-41	locomotion	MISSING			0
-locomotion-42	locomotion	MISSING			0
-locomotion-43	locomotion	MISSING			0
-locomotion-44	locomotion	MISSING			0
-locomotion-45	locomotion	MISSING			0
+companions-01	companions	IMPORTED	MushroomLibrarian	0	4
+companions-01	companions	IMPORTED	HoodWisp	0	4
+companions-01	companions	IMPORTED	JellySwordsman	0	4
+companions-01	companions	IMPORTED	BreadCrab	0	4
+companions-02	companions	IMPORTED	KettleBat	0	4
+companions-02	companions	IMPORTED	BookmarkGolem	0	4
+companions-02	companions	IMPORTED	TinTick	0	4
+companions-02	companions	IMPORTED	SpringDuck	0	4
+companions-03	companions	IMPORTED	ButtonBeetle	0	4
+companions-03	companions	IMPORTED	StapleMole	0	4
+companions-03	companions	IMPORTED	SnowSpoon	0	4
+companions-03	companions	IMPORTED	IceCreamOwl	0	4
+companions-04	companions	IMPORTED	FridgeWisp	0	4
+companions-04	companions	IMPORTED	PearMoth	0	4
+companions-04	companions	IMPORTED	CitrusToad	0	4
+companions-04	companions	IMPORTED	RadishJester	0	4
+companions-05	companions	IMPORTED	SeedHedgehog	0	4
+companions-05	companions	IMPORTED	MoonJelly	0	4
+companions-05	companions	IMPORTED	StarSock	0	4
+companions-05	companions	IMPORTED	EclipseEgg	0	4
+companions-06	companions	IMPORTED	OrbitMoth	0	4
+companions-06	companions	IMPORTED	DreamCompass	0	4
+companions-06	companions	IMPORTED	ShellPostman	0	4
+companions-06	companions	IMPORTED	CoralTeacup	0	4
+companions-07	companions	IMPORTED	AnchorSnail	0	4
+companions-07	companions	IMPORTED	SailSquid	0	4
+companions-07	companions	IMPORTED	SockCyclops	0	4
+companions-07	companions	IMPORTED	MaskPepper	0	4
+companions-08	companions	IMPORTED	CrayonGremlin	0	4
+companions-08	companions	IMPORTED	RibbonSpider	0	4
+companions-08	companions	IMPORTED	CoilKettle	0	4
+companions-08	companions	IMPORTED	ThimbleMoth	0	4
+companions-09	companions	IMPORTED	ReelOwl	0	4
+companions-09	companions	IMPORTED	RainbowTailor	0	4
+companions-09	companions	IMPORTED	RainbowBell	0	4
+companions-09	companions	IMPORTED	SecretPatchBear	0	4
+companions-10	companions	IMPORTED	SecretPaperBird	0	4
+companions-10	companions	IMPORTED	SecretDreamLamb	0	4
+companions-10	companions	IMPORTED	SaffronMechanist	0	4
+companions-10	companions	IMPORTED	ClockworkPiper	0	4
+companions-11	companions	IMPORTED	VelvetChampion	0	4
+companions-11	companions	IMPORTED	PaperInventor	0	4
+companions-11	companions	IMPORTED	ReturnCaptain	0	4
+companions-11	companions	IMPORTED	DoughForeman	0	4
+companions-12	companions	IMPORTED	IronLocomotive	0	4
+companions-12	companions	IMPORTED	VioletRemnant	0	4
+companions-12	companions	IMPORTED	VelvetEnchantress	0	4
+companions-12	companions	IMPORTED	GrandSprout	0	4
+companions-13	companions	IMPORTED	BristleBall	0	4
+companions-13	companions	IMPORTED	PaperDevil	0	4
+companions-13	companions	IMPORTED	BalloonMallet	0	4
+companions-13	companions	IMPORTED	LittleSprout	0	4
+companions-14	companions	IMPORTED	MonsterMarble	0	4
+companions-14	companions	IMPORTED	CarouselPony	0	4
+companions-14	companions	IMPORTED	TeacupCricket	0	4
+companions-14	companions	IMPORTED	RibbonOtter	0	4
+companions-15	companions	IMPORTED	SpindleWren	0	4
+locomotion-00	locomotion	IMPORTED	Postmaster	0	8
+locomotion-00	locomotion	IMPORTED	DrowsySeer	0	8
+locomotion-01	locomotion	IMPORTED	RootOracle	0	8
+locomotion-01	locomotion	IMPORTED	LoneJelly	0	8
+locomotion-02	locomotion	IMPORTED	GlassDice	0	8
+locomotion-02	locomotion	IMPORTED	TideSinger	0	8
+locomotion-03	locomotion	IMPORTED	CometRunner	0	8
+locomotion-03	locomotion	IMPORTED	MirrorKeeper	0	8
+locomotion-04	locomotion	IMPORTED	TreasureAcorn	0	8
+locomotion-04	locomotion	IMPORTED	VerdantMatron	0	8
+locomotion-05	locomotion	IMPORTED	CopperCauldron	0	8
+locomotion-05	locomotion	IMPORTED	ChinaMarionette	0	8
+locomotion-06	locomotion	IMPORTED	SoapSkater	0	8
+locomotion-06	locomotion	IMPORTED	VelvetRegent	0	8
+locomotion-07	locomotion	IMPORTED	ButtonCavalier	0	8
+locomotion-07	locomotion	IMPORTED	NightMaw	0	8
+locomotion-08	locomotion	IMPORTED	ThornTreasurer	0	8
+locomotion-08	locomotion	IMPORTED	CitrusMarshal	0	8
+locomotion-09	locomotion	IMPORTED	IvorySovereign	0	8
+locomotion-09	locomotion	IMPORTED	PetalCitadel	0	8
+locomotion-10	locomotion	IMPORTED	PatchworkHost	0	8
+locomotion-10	locomotion	IMPORTED	ArchiveCurator	0	8
+locomotion-11	locomotion	IMPORTED	PennyBroker	0	8
+locomotion-11	locomotion	IMPORTED	StormFencer	0	8
+locomotion-12	locomotion	IMPORTED	TinVirtuoso	0	8
+locomotion-12	locomotion	IMPORTED	MoonProwler	0	8
+locomotion-13	locomotion	IMPORTED	SupperMortar	0	8
+locomotion-13	locomotion	IMPORTED	LanternWeaver	0	8
+locomotion-14	locomotion	IMPORTED	HourglassStag	0	8
+locomotion-14	locomotion	IMPORTED	RainArchivist	0	8
+locomotion-15	locomotion	IMPORTED	TeapotPilgrim	0	8
+locomotion-15	locomotion	IMPORTED	CandleSnail	0	8
+locomotion-16	locomotion	IMPORTED	MailboxImp	0	8
+locomotion-16	locomotion	IMPORTED	PillowOracle	0	8
+locomotion-17	locomotion	IMPORTED	MushroomLibrarian	0	8
+locomotion-17	locomotion	IMPORTED	HoodWisp	0	8
+locomotion-18	locomotion	IMPORTED	JellySwordsman	0	8
+locomotion-18	locomotion	IMPORTED	BrassAcorn	0	8
+locomotion-19	locomotion	IMPORTED	BreadCrab	0	8
+locomotion-19	locomotion	IMPORTED	KettleBat	0	8
+locomotion-20	locomotion	IMPORTED	BookmarkGolem	0	8
+locomotion-20	locomotion	IMPORTED	TinTick	0	8
+locomotion-21	locomotion	IMPORTED	SpringDuck	0	8
+locomotion-21	locomotion	IMPORTED	ButtonBeetle	0	8
+locomotion-22	locomotion	IMPORTED	StapleMole	0	8
+locomotion-22	locomotion	IMPORTED	SnowSpoon	0	8
+locomotion-23	locomotion	IMPORTED	IceCreamOwl	0	8
+locomotion-23	locomotion	IMPORTED	FridgeWisp	0	8
+locomotion-24	locomotion	IMPORTED	PearMoth	0	8
+locomotion-24	locomotion	IMPORTED	CitrusToad	0	8
+locomotion-25	locomotion	IMPORTED	RadishJester	0	8
+locomotion-25	locomotion	IMPORTED	SeedHedgehog	0	8
+locomotion-26	locomotion	IMPORTED	MoonJelly	0	8
+locomotion-26	locomotion	IMPORTED	StarSock	0	8
+locomotion-27	locomotion	IMPORTED	CometKite	0	8
+locomotion-27	locomotion	IMPORTED	EclipseEgg	0	8
+locomotion-28	locomotion	IMPORTED	OrbitMoth	0	8
+locomotion-28	locomotion	IMPORTED	DreamCompass	0	8
+locomotion-29	locomotion	IMPORTED	ShellPostman	0	8
+locomotion-29	locomotion	IMPORTED	CoralTeacup	0	8
+locomotion-30	locomotion	IMPORTED	BubbleKoi	0	8
+locomotion-30	locomotion	IMPORTED	AnchorSnail	0	8
+locomotion-31	locomotion	IMPORTED	SailSquid	0	8
+locomotion-31	locomotion	IMPORTED	SockCyclops	0	8
+locomotion-32	locomotion	IMPORTED	DiceCrab	0	8
+locomotion-32	locomotion	IMPORTED	MaskPepper	0	8
+locomotion-33	locomotion	IMPORTED	CrayonGremlin	0	8
+locomotion-33	locomotion	IMPORTED	MirrorNewt	0	8
+locomotion-34	locomotion	IMPORTED	RibbonSpider	0	8
+locomotion-34	locomotion	IMPORTED	RainbowTailor	0	8
+locomotion-35	locomotion	IMPORTED	RainbowBell	0	8
+locomotion-35	locomotion	IMPORTED	SecretPaperBird	0	8
+locomotion-36	locomotion	IMPORTED	SaffronMechanist	0	8
+locomotion-36	locomotion	IMPORTED	ClockworkPiper	0	8
+locomotion-37	locomotion	IMPORTED	VelvetChampion	0	8
+locomotion-37	locomotion	IMPORTED	PaperInventor	0	8
+locomotion-38	locomotion	IMPORTED	ReturnCaptain	0	8
+locomotion-38	locomotion	IMPORTED	DoughForeman	0	8
+locomotion-39	locomotion	IMPORTED	IronLocomotive	0	8
+locomotion-39	locomotion	IMPORTED	VioletRemnant	0	8
+locomotion-40	locomotion	IMPORTED	VelvetEnchantress	0	8
+locomotion-40	locomotion	IMPORTED	GrandSprout	0	8
+locomotion-41	locomotion	IMPORTED	BristleBall	0	8
+locomotion-41	locomotion	IMPORTED	PaperDevil	0	8
+locomotion-42	locomotion	IMPORTED	BalloonMallet	0	8
+locomotion-42	locomotion	IMPORTED	LittleSprout	0	8
+locomotion-43	locomotion	IMPORTED	MonsterMarble	0	8
+locomotion-43	locomotion	IMPORTED	CarouselPony	0	8
+locomotion-44	locomotion	IMPORTED	TeacupCricket	0	8
+locomotion-44	locomotion	IMPORTED	RibbonOtter	0	8
+locomotion-45	locomotion	IMPORTED	SpindleWren	0	8
 enemies-00	enemies	IMPORTED	HushMite	0	4
 enemies-00	enemies	IMPORTED	HushMite	1	4
 enemies-00	enemies	IMPORTED	ClockBat	0	4
@@ -112,8 +199,14 @@ enemies-11	enemies	IMPORTED	RedFlameBerserker	0	4
 enemies-11	enemies	IMPORTED	RedFlameBerserker	1	4
 enemies-11	enemies	IMPORTED	TwinFlameFurnace	0	4
 enemies-11	enemies	IMPORTED	TwinFlameFurnace	1	4
-enemies-12	enemies	MISSING			0
-enemies-13	enemies	MISSING			0
+enemies-12	enemies	IMPORTED	AshSwallower	0	4
+enemies-12	enemies	IMPORTED	AshSwallower	1	4
+enemies-12	enemies	IMPORTED	LostLanternSoul	0	4
+enemies-12	enemies	IMPORTED	LostLanternSoul	1	4
+enemies-13	enemies	IMPORTED	SmokingCoffin	0	4
+enemies-13	enemies	IMPORTED	SmokingCoffin	1	4
+enemies-13	enemies	IMPORTED	EmberProcession	0	4
+enemies-13	enemies	IMPORTED	EmberProcession	1	4
 bosses-00	bosses	IMPORTED	UndeliveredKing	0	4
 bosses-01	bosses	IMPORTED	ScarletIndex	0	4
 bosses-02	bosses	IMPORTED	SleepCollector	0	4

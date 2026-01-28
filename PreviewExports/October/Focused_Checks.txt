@@ -424,4 +424,77 @@ PASS Both relic shelves respect themes RainArchivist
 PASS Three nursery sprouts produce both a random evolved friend and Grand Sprout
 PASS Both nursery rewards inherit ingredient weapons
 PASS Hunger spends exactly one HP through armor and dodge
-FAIL Original hero signature executes in live combat LanternWeaver
+PASS Fourth attack creates three delayed stitches sharing one damage budget
+PASS Original hero signature executes in live combat LanternWeaver
+PASS Third opened chest releases a real three-direction rain fan
+PASS Original hero signature executes in live combat RainArchivist
+PASS Real mount and rider pairing follows simulation
+PASS Boss knockback immune and ordinary displacement capped
+PASS Executable reference altar recipe AnchorSnail
+PASS Altar retains one ingredient weapon AnchorSnail
+PASS Executable reference altar recipe SailSquid
+PASS Altar retains one ingredient weapon SailSquid
+PASS Executable reference altar recipe SockCyclops
+PASS Altar retains one ingredient weapon SockCyclops
+PASS Executable reference altar recipe DiceCrab
+PASS Altar retains one ingredient weapon DiceCrab
+PASS Executable reference altar recipe MaskPepper
+PASS Altar retains one ingredient weapon MaskPepper
+PASS Executable reference altar recipe CrayonGremlin
+PASS Altar retains one ingredient weapon CrayonGremlin
+PASS Executable reference altar recipe MirrorNewt
+PASS Altar retains one ingredient weapon MirrorNewt
+PASS Executable reference altar recipe RibbonSpider
+PASS Altar retains one ingredient weapon RibbonSpider
+PASS Executable reference altar recipe CoilKettle
+PASS Altar retains one ingredient weapon CoilKettle
+PASS Executable reference altar recipe ThimbleMoth
+PASS Altar retains one ingredient weapon ThimbleMoth
+PASS Executable reference altar recipe ReelOwl
+PASS Altar retains one ingredient weapon ReelOwl
+PASS Executable reference altar recipe RainbowTailor
+PASS Altar retains one ingredient weapon RainbowTailor
+PASS Executable reference altar recipe RainbowBell
+PASS Altar retains one ingredient weapon RainbowBell
+PASS Executable reference altar recipe SaffronMechanist
+PASS Altar retains one ingredient weapon SaffronMechanist
+PASS Executable reference altar recipe ClockworkPiper
+PASS Altar retains one ingredient weapon ClockworkPiper
+PASS Executable reference altar recipe VelvetChampion
+PASS Altar retains one ingredient weapon VelvetChampion
+PASS Executable reference altar recipe PaperInventor
+PASS Altar retains one ingredient weapon PaperInventor
+PASS Executable reference altar recipe ReturnCaptain
+PASS Altar retains one ingredient weapon ReturnCaptain
+PASS Executable reference altar recipe DoughForeman
+PASS Altar retains one ingredient weapon DoughForeman
+PASS Executable reference altar recipe IronLocomotive
+PASS Altar retains one ingredient weapon IronLocomotive
+PASS Executable reference altar recipe VioletRemnant
+PASS Altar retains one ingredient weapon VioletRemnant
+PASS Full party can complete a tier-two merge without exceeding the saved body cap
+PASS Full party rejects a new body that cannot immediately merge
+PASS Gift-only allies never enter ordinary theme pools
+PASS Achievement journal has distinct attainable conditions
+PASS Six distinct live projectile patterns UndeliveredKing
+PASS Telegraphed new boss movement UndeliveredKing
+PASS Six distinct live projectile patterns ScarletIndex
+PASS Telegraphed new boss movement ScarletIndex
+PASS Six distinct live projectile patterns SleepCollector
+PASS Telegraphed new boss movement SleepCollector
+PASS Six distinct live projectile patterns WaxAdmiral
+PASS Telegraphed new boss movement WaxAdmiral
+PASS Six distinct live projectile patterns LastLantern
+PASS Telegraphed new boss movement LastLantern
+PASS Six distinct live projectile patterns MarqueeMaw
+PASS Telegraphed new boss movement MarqueeMaw
+PASS Six distinct live projectile patterns UmbraCradle
+PASS Telegraphed new boss movement UmbraCradle
+PASS Six distinct live projectile patterns CoinWidow
+PASS Telegraphed new boss movement CoinWidow
+PASS Six distinct live projectile patterns ChoirEngine
+PASS Telegraphed new boss movement ChoirEngine
+PASS Six distinct live projectile patterns SuitcaseLeviathan
+PASS Telegraphed new boss movement SuitcaseLeviathan
+PASS Six distinct live projectile patterns OutsideStageKeeper
+PASS Six distinct live projectile patterns TheLastCustomer

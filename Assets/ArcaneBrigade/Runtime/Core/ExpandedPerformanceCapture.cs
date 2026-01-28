@@ -132,7 +132,7 @@ namespace ArcaneBrigade
                         unit.Position = unit.PreviousPosition = origins[index]; unit.Velocity = Vector2.zero;
                         unit.PendingAttack = false; unit.AttackStarted = unit.LastHit = -100;
                         unit.Facing = unit.AttackDirection = Vector2.right;
-                        actor.PreviewActing(99, 0);
+                        actor.PreviewActing(-1, 0, false);
                         Sprite expected;
                         if (kind == "companions")
                         {

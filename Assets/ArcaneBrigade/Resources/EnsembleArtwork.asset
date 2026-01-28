@@ -394,7 +394,7 @@ MonoBehaviour:
     - {fileID: 1291540327, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     - {fileID: 94087612, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     - {fileID: 1834885858, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
-    ReferenceWidth: 2.0703125
+    ReferenceWidth: 2.078125
   - Id: StampHammer
     Frames:
     - {fileID: -1441127904, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}

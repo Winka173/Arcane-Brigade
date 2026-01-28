@@ -26,8 +26,12 @@
 - Native evidence and final artifact hashes: `PreviewExports/PerformanceExpansion/Gate_Summary.md`. Diagnostic stage shots are not proof that every battle composition has been artistically approved.
 - Initial `Review`, `ContactReview` and `OutlineReview` folders are iteration history; only the named final release audit is evidence for the final executable. Early fixed-cell captures exposed clipped boss bodies; component bounds restored the full shape and render outlines removed unrelated neighbouring pixels.
 
-## Explicit remaining work
+## Resumed authoring — 16 October 2026
 
-**81 sheets are not created:** 16 companion acting, 46 locomotion, 14 normal/evolved enemy reactions, 5 weapon sheets. Existing animation remains the fallback for these actors. Image generation stopped after `application network permission was revoked` and HTTP 401 authentication errors on weapons-08/09. No network-policy bypass, alternate credential or unapproved CLI/API fallback was attempted. Resume asset authoring only when the authorised image service is available.
+The authorised image service recovered. All 81 remaining source sheets have now been generated; the complete source queue is 101 sheets. Resume provenance is in `Expanded_Performance_Resume_Provenance.json`, with prompts/reference boards in `Expanded_Performance_Resume_Queue.json`. A corrective edit of locomotion-31 separates the kick pose from adjacent silhouettes. Unity import and native verification of the complete queue are in progress; the historical Animation-01 gate below is not evidence for these new sheets.
+
+## Historical interruption
+
+The initial pass left **81 sheets uncreated:** 16 companion acting, 46 locomotion, 14 normal/evolved enemy reactions, 5 weapon sheets. Image generation initially stopped after `application network permission was revoked` and HTTP 401 authentication errors on weapons-08/09. No network-policy bypass, alternate credential or unapproved CLI/API fallback was attempted. That interruption has now ended; see the resumed authoring status above.
 
 Extreme-crowd locked-60 performance, human play/art/audio acceptance and mobile-device gates remain separate and unaccepted. Do not infer completion of those from Windows compilation or diagnostic captures.

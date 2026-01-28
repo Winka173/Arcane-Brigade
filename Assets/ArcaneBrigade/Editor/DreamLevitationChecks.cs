@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,11 +9,25 @@ namespace ArcaneBrigade.Editor
 {
     public static class DreamLevitationChecks
     {
+        public static void BuildAndCheck()
+        {
+            Sprite[] frames = K25AtlasImporter.Import("Assets/ArcaneBrigade/Art/DreamLevitation/SuspensionWisps_v1.png", "SuspensionMist", 4, 2, Enumerable.Range(0, 8).ToArray());
+            const string path = "Assets/ArcaneBrigade/Resources/DreamSuspensionArtwork.asset";
+            DreamSuspensionArtwork artwork = AssetDatabase.LoadAssetAtPath<DreamSuspensionArtwork>(path);
+            if (artwork == null) { artwork = ScriptableObject.CreateInstance<DreamSuspensionArtwork>(); AssetDatabase.CreateAsset(artwork, path); }
+            artwork.Frames = frames; EditorUtility.SetDirty(artwork); AssetDatabase.SaveAssets();
+            Run();
+        }
+        public static void BuildWindows()
+        {
+            BuildAndCheck(); ExpandedPerformanceBuilder.Check(); HeroIdentityChecks.Run(); FullRunBuilder.BuildWindows();
+        }
         [MenuItem("Arcane Brigade/Presentation/Check dream levitation")]
         public static void Run()
         {
             var notes = new List<string>();
             void Require(bool value, string label) { if (!value) throw new InvalidOperationException(label); notes.Add("PASS " + label); }
+            Require(DreamSuspensionArtwork.Current != null && DreamSuspensionArtwork.Current.Frames.Length == 8 && DreamSuspensionArtwork.Current.Frames.Distinct().Count() == 8, "Eight distinct original painted mist phases imported");
             for (int identity = 0; identity < 32; identity++)
                 foreach (float depth in new[] { 0f, 2f, 4f })
                 {

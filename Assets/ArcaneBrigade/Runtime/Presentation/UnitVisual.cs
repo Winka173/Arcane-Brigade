@@ -53,11 +53,12 @@ namespace ArcaneBrigade
         private bool previewActor;
         private int actingPreview = -1;
         private float previewProgress;
-        public void PreviewActing(int cue, float progress)
+        private bool automaticActing = true;
+        public void PreviewActing(int cue, float progress, bool automatic = true)
         {
             if (!previewActor && !RunPaths.K7Capture) throw new System.InvalidOperationException("Acting preview is restricted to isolated presentation actors");
             if (cue < -1 || cue > 3) throw new System.ArgumentOutOfRangeException(nameof(cue));
-            actingPreview = cue; previewProgress = Mathf.Clamp01(progress);
+            actingPreview = cue; previewProgress = Mathf.Clamp01(progress); automaticActing = automatic;
         }
         private EvolutionAdornment adornment;
         private BuildMorphAppearance morphAppearance;
@@ -183,7 +184,7 @@ namespace ArcaneBrigade
             if (morphAppearance != null) morphAppearance.Clear();
             if (adornment != null) { adornment.Clear(); if (Application.isPlaying) Destroy(adornment); else DestroyImmediate(adornment); adornment = null; }
             state = unit;
-            previewActor = preview; actingPreview = -1;
+            previewActor = preview; actingPreview = -1; automaticActing = true;
             actingArt = CharacterActingLibrary.Current != null ? CharacterActingLibrary.Current.Find(unit.Definition.Id) : null;
             expandedGait = ExpandedPerformanceLibrary.Current?.Find("locomotion", unit.Definition.Id);
             expandedReaction = unit.Faction == Faction.Enemy ? ExpandedPerformanceLibrary.Reaction(unit.Definition) : null;
@@ -332,7 +333,7 @@ namespace ArcaneBrigade
             performance.Sample(state, simulationTime, ReducedMotion, attacking);
             float celebrationAge = simulationTime - celebrateAt;
             bool travelling = state.Velocity.sqrMagnitude > .04f || (state.Position - state.PreviousPosition).sqrMagnitude > .00001f;
-            Sprite actingFrame = actingArt?.Select(state.Alive, simulationTime - state.LastHit, attacking, celebrationAge, performance.GesturePhase, travelling, ReducedMotion);
+            Sprite actingFrame = automaticActing ? actingArt?.Select(state.Alive, simulationTime - state.LastHit, attacking, celebrationAge, performance.GesturePhase, travelling, ReducedMotion) : null;
             if (actingPreview >= 0 && !ReducedMotion) actingFrame = actingArt?.Preview(actingPreview, previewProgress);
             if (actingFrame != null) body.sprite = actingFrame;
             Sprite reactionFrame = expandedReaction?.Select(state, simulationTime, ReducedMotion);

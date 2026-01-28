@@ -1,0 +1,17 @@
+PASS Actual shop fixture opens
+PASS Actual merchant uses articulated portrait rig
+PASS Native dimensions shop-acting
+PASS Shop acting obeys pause clock
+PASS Native dimensions shop-player-start
+PASS Native dimensions shop-player-stop
+PASS Actual player contains expanded performance library
+PASS Actual actor binds its exact identity and evolution companions/TeapotPilgrim/0
+PASS Actual actor binds its exact identity and evolution companions/CandleSnail/0
+PASS Actual actor binds its exact identity and evolution companions/MailboxImp/0
+PASS Actual actor binds its exact identity and evolution companions/PillowOracle/0
+PASS Actual actor binds its exact identity and evolution companions/MushroomLibrarian/0
+PASS Actual actor binds its exact identity and evolution companions/HoodWisp/0
+PASS Actual actor binds its exact identity and evolution companions/JellySwordsman/0
+PASS Actual actor binds its exact identity and evolution companions/BreadCrab/0
+FAIL ArgumentOutOfRangeException: Specified argument was out of the range of valid values.
+Parameter name: cue

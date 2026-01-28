@@ -39,68 +39,68 @@ Generated clips and procedural source articulation are recorded separately.
 | CandleSnail | Shell | 4 frames | Character acting |
 | MailboxImp | Fold | 4 frames | Character acting |
 | PillowOracle | Cloth | 4 frames | Character acting |
-| MushroomLibrarian | Stalk | 4 frames | Existing art + procedural surface |
-| HoodWisp | Cloth | 4 frames | Existing art + procedural surface |
-| JellySwordsman | Jelly | 4 frames | Existing art + procedural surface |
+| MushroomLibrarian | Stalk | 4 frames | Character acting |
+| HoodWisp | Cloth | 4 frames | Character acting |
+| JellySwordsman | Jelly | 4 frames | Character acting |
 | BrassAcorn | Shell | 4 frames | Character acting |
-| BreadCrab | Shell | 4 frames | Existing art + procedural surface |
-| KettleBat | Wing | 4 frames | Existing art + procedural surface |
-| BookmarkGolem | Fold | 4 frames | Existing art + procedural surface |
-| TinTick | Clock | 4 frames | Existing art + procedural surface |
-| SpringDuck | Spring | 4 frames | Existing art + procedural surface |
-| ButtonBeetle | Shell | 4 frames | Existing art + procedural surface |
-| StapleMole | Float | 4 frames | Existing art + procedural surface |
-| SnowSpoon | Float | 4 frames | Existing art + procedural surface |
-| IceCreamOwl | Wing | 4 frames | Existing art + procedural surface |
-| FridgeWisp | Float | 4 frames | Existing art + procedural surface |
-| PearMoth | Wing | 4 frames | Existing art + procedural surface |
-| CitrusToad | Spring | 4 frames | Existing art + procedural surface |
-| RadishJester | Stalk | 4 frames | Existing art + procedural surface |
-| SeedHedgehog | Stalk | 4 frames | Existing art + procedural surface |
-| MoonJelly | Jelly | 4 frames | Existing art + procedural surface |
-| StarSock | Cloth | 4 frames | Existing art + procedural surface |
+| BreadCrab | Shell | 4 frames | Character acting |
+| KettleBat | Wing | 4 frames | Character acting |
+| BookmarkGolem | Fold | 4 frames | Character acting |
+| TinTick | Clock | 4 frames | Character acting |
+| SpringDuck | Spring | 4 frames | Character acting |
+| ButtonBeetle | Shell | 4 frames | Character acting |
+| StapleMole | Float | 4 frames | Character acting |
+| SnowSpoon | Float | 4 frames | Character acting |
+| IceCreamOwl | Wing | 4 frames | Character acting |
+| FridgeWisp | Float | 4 frames | Character acting |
+| PearMoth | Wing | 4 frames | Character acting |
+| CitrusToad | Spring | 4 frames | Character acting |
+| RadishJester | Stalk | 4 frames | Character acting |
+| SeedHedgehog | Stalk | 4 frames | Character acting |
+| MoonJelly | Jelly | 4 frames | Character acting |
+| StarSock | Cloth | 4 frames | Character acting |
 | CometKite | Fold | 4 frames | Character acting |
-| EclipseEgg | Shell | 4 frames | Existing art + procedural surface |
-| OrbitMoth | Wing | 4 frames | Existing art + procedural surface |
-| DreamCompass | Clock | 4 frames | Existing art + procedural surface |
-| ShellPostman | Shell | 4 frames | Existing art + procedural surface |
-| CoralTeacup | Float | 4 frames | Existing art + procedural surface |
+| EclipseEgg | Shell | 4 frames | Character acting |
+| OrbitMoth | Wing | 4 frames | Character acting |
+| DreamCompass | Clock | 4 frames | Character acting |
+| ShellPostman | Shell | 4 frames | Character acting |
+| CoralTeacup | Float | 4 frames | Character acting |
 | BubbleKoi | Jelly | 4 frames | Character acting |
-| AnchorSnail | Shell | 4 frames | Existing art + procedural surface |
-| SailSquid | Jelly | 4 frames | Existing art + procedural surface |
-| SockCyclops | Cloth | 4 frames | Existing art + procedural surface |
+| AnchorSnail | Shell | 4 frames | Character acting |
+| SailSquid | Jelly | 4 frames | Character acting |
+| SockCyclops | Cloth | 4 frames | Character acting |
 | DiceCrab | Clock | 4 frames | Character acting |
-| MaskPepper | Float | 4 frames | Existing art + procedural surface |
-| CrayonGremlin | Float | 4 frames | Existing art + procedural surface |
+| MaskPepper | Float | 4 frames | Character acting |
+| CrayonGremlin | Float | 4 frames | Character acting |
 | MirrorNewt | Float | 4 frames | Character acting |
-| RibbonSpider | Cloth | 4 frames | Existing art + procedural surface |
-| CoilKettle | Spring | Authored combat set | Existing art + procedural surface |
-| ThimbleMoth | Wing | Authored combat set | Existing art + procedural surface |
-| ReelOwl | Wing | Authored combat set | Existing art + procedural surface |
-| RainbowTailor | Float | Authored combat set | Existing art + procedural surface |
-| RainbowBell | Float | Authored combat set | Existing art + procedural surface |
-| SecretPatchBear | Float | Authored combat set | Existing art + procedural surface |
-| SecretPaperBird | Wing | 4 frames | Existing art + procedural surface |
-| SecretDreamLamb | Float | Authored combat set | Existing art + procedural surface |
-| SaffronMechanist | Float | Authored combat set | Existing art + procedural surface |
-| ClockworkPiper | Clock | Authored combat set | Existing art + procedural surface |
-| VelvetChampion | Float | Authored combat set | Existing art + procedural surface |
-| PaperInventor | Fold | Authored combat set | Existing art + procedural surface |
-| ReturnCaptain | Float | Authored combat set | Existing art + procedural surface |
-| DoughForeman | Float | Authored combat set | Existing art + procedural surface |
-| IronLocomotive | Float | Authored combat set | Existing art + procedural surface |
-| VioletRemnant | Float | Authored combat set | Existing art + procedural surface |
-| VelvetEnchantress | Float | Authored combat set | Existing art + procedural surface |
-| GrandSprout | Float | Authored combat set | Existing art + procedural surface |
-| BristleBall | Float | Authored combat set | Existing art + procedural surface |
-| PaperDevil | Fold | Authored combat set | Existing art + procedural surface |
-| BalloonMallet | Float | Authored combat set | Existing art + procedural surface |
-| LittleSprout | Float | Authored combat set | Existing art + procedural surface |
-| MonsterMarble | Float | Authored combat set | Existing art + procedural surface |
-| CarouselPony | Float | Authored combat set | Existing art + procedural surface |
-| TeacupCricket | Float | Authored combat set | Existing art + procedural surface |
-| RibbonOtter | Cloth | Authored combat set | Existing art + procedural surface |
-| SpindleWren | Float | Authored combat set | Existing art + procedural surface |
+| RibbonSpider | Cloth | 4 frames | Character acting |
+| CoilKettle | Spring | Authored combat set | Character acting |
+| ThimbleMoth | Wing | Authored combat set | Character acting |
+| ReelOwl | Wing | Authored combat set | Character acting |
+| RainbowTailor | Float | Authored combat set | Character acting |
+| RainbowBell | Float | Authored combat set | Character acting |
+| SecretPatchBear | Float | Authored combat set | Character acting |
+| SecretPaperBird | Wing | 4 frames | Character acting |
+| SecretDreamLamb | Float | Authored combat set | Character acting |
+| SaffronMechanist | Float | Authored combat set | Character acting |
+| ClockworkPiper | Clock | Authored combat set | Character acting |
+| VelvetChampion | Float | Authored combat set | Character acting |
+| PaperInventor | Fold | Authored combat set | Character acting |
+| ReturnCaptain | Float | Authored combat set | Character acting |
+| DoughForeman | Float | Authored combat set | Character acting |
+| IronLocomotive | Float | Authored combat set | Character acting |
+| VioletRemnant | Float | Authored combat set | Character acting |
+| VelvetEnchantress | Float | Authored combat set | Character acting |
+| GrandSprout | Float | Authored combat set | Character acting |
+| BristleBall | Float | Authored combat set | Character acting |
+| PaperDevil | Fold | Authored combat set | Character acting |
+| BalloonMallet | Float | Authored combat set | Character acting |
+| LittleSprout | Float | Authored combat set | Character acting |
+| MonsterMarble | Float | Authored combat set | Character acting |
+| CarouselPony | Float | Authored combat set | Character acting |
+| TeacupCricket | Float | Authored combat set | Character acting |
+| RibbonOtter | Cloth | Authored combat set | Character acting |
+| SpindleWren | Float | Authored combat set | Character acting |
 | HushMite | Float | Authored combat set | Existing art + procedural surface |
 | ClockBat | Wing | Authored combat set | Existing art + procedural surface |
 | BristleImp | Float | Authored combat set | Existing art + procedural surface |

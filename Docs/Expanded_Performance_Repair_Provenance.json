@@ -1,0 +1,6 @@
+{
+  "id": "locomotion-31",
+  "source": "ArtSource\\exec-1dc5f7ca-cf67-40a4-bc09-450418c19aa1.png",
+  "output": "Assets/ArcaneBrigade/Art/PerformanceExpansion/locomotion-31_v1.png",
+  "reason": "Initial component import detected an empty release cell caused by touching neighbouring silhouettes; corrected atlas retains sixteen poses."
+}
