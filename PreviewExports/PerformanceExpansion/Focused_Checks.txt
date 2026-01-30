@@ -1041,29 +1041,29 @@ PASS Complete pose count Postmaster
 PASS Positive stable pose scale Postmaster
 PASS Runtime lookup resolves actual clip Postmaster/0
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_00
-PASS Imported silhouette has a real render mesh locomotion00Performance_00
+PASS Ground-contact pivot FinalPostmaster_00
+PASS Imported silhouette has a real render mesh FinalPostmaster_00
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_01
-PASS Imported silhouette has a real render mesh locomotion00Performance_01
+PASS Ground-contact pivot FinalPostmaster_01
+PASS Imported silhouette has a real render mesh FinalPostmaster_01
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_02
-PASS Imported silhouette has a real render mesh locomotion00Performance_02
+PASS Ground-contact pivot FinalPostmaster_02
+PASS Imported silhouette has a real render mesh FinalPostmaster_02
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_03
-PASS Imported silhouette has a real render mesh locomotion00Performance_03
+PASS Ground-contact pivot FinalPostmaster_03
+PASS Imported silhouette has a real render mesh FinalPostmaster_03
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_04
-PASS Imported silhouette has a real render mesh locomotion00Performance_04
+PASS Ground-contact pivot FinalPostmaster_04
+PASS Imported silhouette has a real render mesh FinalPostmaster_04
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_05
-PASS Imported silhouette has a real render mesh locomotion00Performance_05
+PASS Ground-contact pivot FinalPostmaster_05
+PASS Imported silhouette has a real render mesh FinalPostmaster_05
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_06
-PASS Imported silhouette has a real render mesh locomotion00Performance_06
+PASS Ground-contact pivot FinalPostmaster_06
+PASS Imported silhouette has a real render mesh FinalPostmaster_06
 PASS Nonempty imported pose Postmaster
-PASS Ground-contact pivot locomotion00Performance_07
-PASS Imported silhouette has a real render mesh locomotion00Performance_07
+PASS Ground-contact pivot FinalPostmaster_07
+PASS Imported silhouette has a real render mesh FinalPostmaster_07
 PASS Reduced motion retains stable existing animation Postmaster
 PASS Actual windup selects painted anticipation Postmaster
 PASS Actual movement selects stride pose Postmaster
@@ -1072,29 +1072,29 @@ PASS Complete pose count DrowsySeer
 PASS Positive stable pose scale DrowsySeer
 PASS Runtime lookup resolves actual clip DrowsySeer/0
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_08
-PASS Imported silhouette has a real render mesh locomotion00Performance_08
+PASS Ground-contact pivot FinalDrowsySeer_00
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_00
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_09
-PASS Imported silhouette has a real render mesh locomotion00Performance_09
+PASS Ground-contact pivot FinalDrowsySeer_01
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_01
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_10
-PASS Imported silhouette has a real render mesh locomotion00Performance_10
+PASS Ground-contact pivot FinalDrowsySeer_02
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_02
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_11
-PASS Imported silhouette has a real render mesh locomotion00Performance_11
+PASS Ground-contact pivot FinalDrowsySeer_03
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_03
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_12
-PASS Imported silhouette has a real render mesh locomotion00Performance_12
+PASS Ground-contact pivot FinalDrowsySeer_04
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_04
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_13
-PASS Imported silhouette has a real render mesh locomotion00Performance_13
+PASS Ground-contact pivot FinalDrowsySeer_05
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_05
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_14
-PASS Imported silhouette has a real render mesh locomotion00Performance_14
+PASS Ground-contact pivot FinalDrowsySeer_06
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_06
 PASS Nonempty imported pose DrowsySeer
-PASS Ground-contact pivot locomotion00Performance_15
-PASS Imported silhouette has a real render mesh locomotion00Performance_15
+PASS Ground-contact pivot FinalDrowsySeer_07
+PASS Imported silhouette has a real render mesh FinalDrowsySeer_07
 PASS Reduced motion retains stable existing animation DrowsySeer
 PASS Actual windup selects painted anticipation DrowsySeer
 PASS Actual movement selects stride pose DrowsySeer
@@ -1103,29 +1103,29 @@ PASS Complete pose count RootOracle
 PASS Positive stable pose scale RootOracle
 PASS Runtime lookup resolves actual clip RootOracle/0
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_00
-PASS Imported silhouette has a real render mesh locomotion01Performance_00
+PASS Ground-contact pivot FinalRootOracle_00
+PASS Imported silhouette has a real render mesh FinalRootOracle_00
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_01
-PASS Imported silhouette has a real render mesh locomotion01Performance_01
+PASS Ground-contact pivot FinalRootOracle_01
+PASS Imported silhouette has a real render mesh FinalRootOracle_01
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_02
-PASS Imported silhouette has a real render mesh locomotion01Performance_02
+PASS Ground-contact pivot FinalRootOracle_02
+PASS Imported silhouette has a real render mesh FinalRootOracle_02
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_03
-PASS Imported silhouette has a real render mesh locomotion01Performance_03
+PASS Ground-contact pivot FinalRootOracle_03
+PASS Imported silhouette has a real render mesh FinalRootOracle_03
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_04
-PASS Imported silhouette has a real render mesh locomotion01Performance_04
+PASS Ground-contact pivot FinalRootOracle_04
+PASS Imported silhouette has a real render mesh FinalRootOracle_04
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_05
-PASS Imported silhouette has a real render mesh locomotion01Performance_05
+PASS Ground-contact pivot FinalRootOracle_05
+PASS Imported silhouette has a real render mesh FinalRootOracle_05
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_06
-PASS Imported silhouette has a real render mesh locomotion01Performance_06
+PASS Ground-contact pivot FinalRootOracle_06
+PASS Imported silhouette has a real render mesh FinalRootOracle_06
 PASS Nonempty imported pose RootOracle
-PASS Ground-contact pivot locomotion01Performance_07
-PASS Imported silhouette has a real render mesh locomotion01Performance_07
+PASS Ground-contact pivot FinalRootOracle_07
+PASS Imported silhouette has a real render mesh FinalRootOracle_07
 PASS Reduced motion retains stable existing animation RootOracle
 PASS Actual windup selects painted anticipation RootOracle
 PASS Actual movement selects stride pose RootOracle
@@ -1134,29 +1134,29 @@ PASS Complete pose count LoneJelly
 PASS Positive stable pose scale LoneJelly
 PASS Runtime lookup resolves actual clip LoneJelly/0
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_08
-PASS Imported silhouette has a real render mesh locomotion01Performance_08
+PASS Ground-contact pivot FinalLoneJelly_00
+PASS Imported silhouette has a real render mesh FinalLoneJelly_00
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_09
-PASS Imported silhouette has a real render mesh locomotion01Performance_09
+PASS Ground-contact pivot FinalLoneJelly_01
+PASS Imported silhouette has a real render mesh FinalLoneJelly_01
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_10
-PASS Imported silhouette has a real render mesh locomotion01Performance_10
+PASS Ground-contact pivot FinalLoneJelly_02
+PASS Imported silhouette has a real render mesh FinalLoneJelly_02
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_11
-PASS Imported silhouette has a real render mesh locomotion01Performance_11
+PASS Ground-contact pivot FinalLoneJelly_03
+PASS Imported silhouette has a real render mesh FinalLoneJelly_03
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_12
-PASS Imported silhouette has a real render mesh locomotion01Performance_12
+PASS Ground-contact pivot FinalLoneJelly_04
+PASS Imported silhouette has a real render mesh FinalLoneJelly_04
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_13
-PASS Imported silhouette has a real render mesh locomotion01Performance_13
+PASS Ground-contact pivot FinalLoneJelly_05
+PASS Imported silhouette has a real render mesh FinalLoneJelly_05
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_14
-PASS Imported silhouette has a real render mesh locomotion01Performance_14
+PASS Ground-contact pivot FinalLoneJelly_06
+PASS Imported silhouette has a real render mesh FinalLoneJelly_06
 PASS Nonempty imported pose LoneJelly
-PASS Ground-contact pivot locomotion01Performance_15
-PASS Imported silhouette has a real render mesh locomotion01Performance_15
+PASS Ground-contact pivot FinalLoneJelly_07
+PASS Imported silhouette has a real render mesh FinalLoneJelly_07
 PASS Reduced motion retains stable existing animation LoneJelly
 PASS Actual windup selects painted anticipation LoneJelly
 PASS Actual movement selects stride pose LoneJelly
@@ -1165,29 +1165,29 @@ PASS Complete pose count GlassDice
 PASS Positive stable pose scale GlassDice
 PASS Runtime lookup resolves actual clip GlassDice/0
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_00
-PASS Imported silhouette has a real render mesh locomotion02Performance_00
+PASS Ground-contact pivot FinalGlassDice_00
+PASS Imported silhouette has a real render mesh FinalGlassDice_00
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_01
-PASS Imported silhouette has a real render mesh locomotion02Performance_01
+PASS Ground-contact pivot FinalGlassDice_01
+PASS Imported silhouette has a real render mesh FinalGlassDice_01
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_02
-PASS Imported silhouette has a real render mesh locomotion02Performance_02
+PASS Ground-contact pivot FinalGlassDice_02
+PASS Imported silhouette has a real render mesh FinalGlassDice_02
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_03
-PASS Imported silhouette has a real render mesh locomotion02Performance_03
+PASS Ground-contact pivot FinalGlassDice_03
+PASS Imported silhouette has a real render mesh FinalGlassDice_03
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_04
-PASS Imported silhouette has a real render mesh locomotion02Performance_04
+PASS Ground-contact pivot FinalGlassDice_04
+PASS Imported silhouette has a real render mesh FinalGlassDice_04
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_05
-PASS Imported silhouette has a real render mesh locomotion02Performance_05
+PASS Ground-contact pivot FinalGlassDice_05
+PASS Imported silhouette has a real render mesh FinalGlassDice_05
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_06
-PASS Imported silhouette has a real render mesh locomotion02Performance_06
+PASS Ground-contact pivot FinalGlassDice_06
+PASS Imported silhouette has a real render mesh FinalGlassDice_06
 PASS Nonempty imported pose GlassDice
-PASS Ground-contact pivot locomotion02Performance_07
-PASS Imported silhouette has a real render mesh locomotion02Performance_07
+PASS Ground-contact pivot FinalGlassDice_07
+PASS Imported silhouette has a real render mesh FinalGlassDice_07
 PASS Reduced motion retains stable existing animation GlassDice
 PASS Actual windup selects painted anticipation GlassDice
 PASS Actual movement selects stride pose GlassDice
@@ -1196,29 +1196,29 @@ PASS Complete pose count TideSinger
 PASS Positive stable pose scale TideSinger
 PASS Runtime lookup resolves actual clip TideSinger/0
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_08
-PASS Imported silhouette has a real render mesh locomotion02Performance_08
+PASS Ground-contact pivot FinalTideSinger_00
+PASS Imported silhouette has a real render mesh FinalTideSinger_00
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_09
-PASS Imported silhouette has a real render mesh locomotion02Performance_09
+PASS Ground-contact pivot FinalTideSinger_01
+PASS Imported silhouette has a real render mesh FinalTideSinger_01
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_10
-PASS Imported silhouette has a real render mesh locomotion02Performance_10
+PASS Ground-contact pivot FinalTideSinger_02
+PASS Imported silhouette has a real render mesh FinalTideSinger_02
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_11
-PASS Imported silhouette has a real render mesh locomotion02Performance_11
+PASS Ground-contact pivot FinalTideSinger_03
+PASS Imported silhouette has a real render mesh FinalTideSinger_03
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_12
-PASS Imported silhouette has a real render mesh locomotion02Performance_12
+PASS Ground-contact pivot FinalTideSinger_04
+PASS Imported silhouette has a real render mesh FinalTideSinger_04
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_13
-PASS Imported silhouette has a real render mesh locomotion02Performance_13
+PASS Ground-contact pivot FinalTideSinger_05
+PASS Imported silhouette has a real render mesh FinalTideSinger_05
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_14
-PASS Imported silhouette has a real render mesh locomotion02Performance_14
+PASS Ground-contact pivot FinalTideSinger_06
+PASS Imported silhouette has a real render mesh FinalTideSinger_06
 PASS Nonempty imported pose TideSinger
-PASS Ground-contact pivot locomotion02Performance_15
-PASS Imported silhouette has a real render mesh locomotion02Performance_15
+PASS Ground-contact pivot FinalTideSinger_07
+PASS Imported silhouette has a real render mesh FinalTideSinger_07
 PASS Reduced motion retains stable existing animation TideSinger
 PASS Actual windup selects painted anticipation TideSinger
 PASS Actual movement selects stride pose TideSinger
@@ -1227,29 +1227,29 @@ PASS Complete pose count CometRunner
 PASS Positive stable pose scale CometRunner
 PASS Runtime lookup resolves actual clip CometRunner/0
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_00
-PASS Imported silhouette has a real render mesh locomotion03Performance_00
+PASS Ground-contact pivot FinalCometRunner_00
+PASS Imported silhouette has a real render mesh FinalCometRunner_00
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_01
-PASS Imported silhouette has a real render mesh locomotion03Performance_01
+PASS Ground-contact pivot FinalCometRunner_01
+PASS Imported silhouette has a real render mesh FinalCometRunner_01
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_02
-PASS Imported silhouette has a real render mesh locomotion03Performance_02
+PASS Ground-contact pivot FinalCometRunner_02
+PASS Imported silhouette has a real render mesh FinalCometRunner_02
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_03
-PASS Imported silhouette has a real render mesh locomotion03Performance_03
+PASS Ground-contact pivot FinalCometRunner_03
+PASS Imported silhouette has a real render mesh FinalCometRunner_03
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_04
-PASS Imported silhouette has a real render mesh locomotion03Performance_04
+PASS Ground-contact pivot FinalCometRunner_04
+PASS Imported silhouette has a real render mesh FinalCometRunner_04
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_05
-PASS Imported silhouette has a real render mesh locomotion03Performance_05
+PASS Ground-contact pivot FinalCometRunner_05
+PASS Imported silhouette has a real render mesh FinalCometRunner_05
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_06
-PASS Imported silhouette has a real render mesh locomotion03Performance_06
+PASS Ground-contact pivot FinalCometRunner_06
+PASS Imported silhouette has a real render mesh FinalCometRunner_06
 PASS Nonempty imported pose CometRunner
-PASS Ground-contact pivot locomotion03Performance_07
-PASS Imported silhouette has a real render mesh locomotion03Performance_07
+PASS Ground-contact pivot FinalCometRunner_07
+PASS Imported silhouette has a real render mesh FinalCometRunner_07
 PASS Reduced motion retains stable existing animation CometRunner
 PASS Actual windup selects painted anticipation CometRunner
 PASS Actual movement selects stride pose CometRunner
@@ -1258,29 +1258,29 @@ PASS Complete pose count MirrorKeeper
 PASS Positive stable pose scale MirrorKeeper
 PASS Runtime lookup resolves actual clip MirrorKeeper/0
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_08
-PASS Imported silhouette has a real render mesh locomotion03Performance_08
+PASS Ground-contact pivot FinalMirrorKeeper_00
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_00
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_09
-PASS Imported silhouette has a real render mesh locomotion03Performance_09
+PASS Ground-contact pivot FinalMirrorKeeper_01
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_01
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_10
-PASS Imported silhouette has a real render mesh locomotion03Performance_10
+PASS Ground-contact pivot FinalMirrorKeeper_02
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_02
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_11
-PASS Imported silhouette has a real render mesh locomotion03Performance_11
+PASS Ground-contact pivot FinalMirrorKeeper_03
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_03
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_12
-PASS Imported silhouette has a real render mesh locomotion03Performance_12
+PASS Ground-contact pivot FinalMirrorKeeper_04
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_04
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_13
-PASS Imported silhouette has a real render mesh locomotion03Performance_13
+PASS Ground-contact pivot FinalMirrorKeeper_05
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_05
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_14
-PASS Imported silhouette has a real render mesh locomotion03Performance_14
+PASS Ground-contact pivot FinalMirrorKeeper_06
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_06
 PASS Nonempty imported pose MirrorKeeper
-PASS Ground-contact pivot locomotion03Performance_15
-PASS Imported silhouette has a real render mesh locomotion03Performance_15
+PASS Ground-contact pivot FinalMirrorKeeper_07
+PASS Imported silhouette has a real render mesh FinalMirrorKeeper_07
 PASS Reduced motion retains stable existing animation MirrorKeeper
 PASS Actual windup selects painted anticipation MirrorKeeper
 PASS Actual movement selects stride pose MirrorKeeper
@@ -1289,29 +1289,29 @@ PASS Complete pose count TreasureAcorn
 PASS Positive stable pose scale TreasureAcorn
 PASS Runtime lookup resolves actual clip TreasureAcorn/0
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_00
-PASS Imported silhouette has a real render mesh locomotion04Performance_00
+PASS Ground-contact pivot FinalTreasureAcorn_00
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_00
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_01
-PASS Imported silhouette has a real render mesh locomotion04Performance_01
+PASS Ground-contact pivot FinalTreasureAcorn_01
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_01
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_02
-PASS Imported silhouette has a real render mesh locomotion04Performance_02
+PASS Ground-contact pivot FinalTreasureAcorn_02
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_02
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_03
-PASS Imported silhouette has a real render mesh locomotion04Performance_03
+PASS Ground-contact pivot FinalTreasureAcorn_03
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_03
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_04
-PASS Imported silhouette has a real render mesh locomotion04Performance_04
+PASS Ground-contact pivot FinalTreasureAcorn_04
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_04
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_05
-PASS Imported silhouette has a real render mesh locomotion04Performance_05
+PASS Ground-contact pivot FinalTreasureAcorn_05
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_05
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_06
-PASS Imported silhouette has a real render mesh locomotion04Performance_06
+PASS Ground-contact pivot FinalTreasureAcorn_06
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_06
 PASS Nonempty imported pose TreasureAcorn
-PASS Ground-contact pivot locomotion04Performance_07
-PASS Imported silhouette has a real render mesh locomotion04Performance_07
+PASS Ground-contact pivot FinalTreasureAcorn_07
+PASS Imported silhouette has a real render mesh FinalTreasureAcorn_07
 PASS Reduced motion retains stable existing animation TreasureAcorn
 PASS Actual windup selects painted anticipation TreasureAcorn
 PASS Actual movement selects stride pose TreasureAcorn

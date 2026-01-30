@@ -1,0 +1,888 @@
+PASS Actual shop fixture opens
+PASS Actual merchant uses articulated portrait rig
+PASS Native dimensions shop-acting
+PASS Shop acting obeys pause clock
+PASS Native dimensions shop-player-start
+PASS Native dimensions shop-player-stop
+PASS Actual player contains expanded performance library
+PASS Actual actor binds its exact identity and evolution companions/TeapotPilgrim/0
+PASS Actual actor binds its exact identity and evolution companions/CandleSnail/0
+PASS Actual actor binds its exact identity and evolution companions/MailboxImp/0
+PASS Actual actor binds its exact identity and evolution companions/PillowOracle/0
+PASS Actual actor binds its exact identity and evolution companions/MushroomLibrarian/0
+PASS Actual actor binds its exact identity and evolution companions/HoodWisp/0
+PASS Actual actor binds its exact identity and evolution companions/JellySwordsman/0
+PASS Actual actor binds its exact identity and evolution companions/BreadCrab/0
+PASS Actual painted pose selected companions/TeapotPilgrim/0/0
+PASS Painted pose is actually visible, not hidden by body puppet TeapotPilgrim/0
+PASS Expanded pose keeps readable world scale TeapotPilgrim/0
+PASS Actual painted pose selected companions/CandleSnail/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CandleSnail/0
+PASS Expanded pose keeps readable world scale CandleSnail/0
+PASS Actual painted pose selected companions/MailboxImp/0/0
+PASS Painted pose is actually visible, not hidden by body puppet MailboxImp/0
+PASS Expanded pose keeps readable world scale MailboxImp/0
+PASS Actual painted pose selected companions/PillowOracle/0/0
+PASS Painted pose is actually visible, not hidden by body puppet PillowOracle/0
+PASS Expanded pose keeps readable world scale PillowOracle/0
+PASS Actual painted pose selected companions/MushroomLibrarian/0/0
+PASS Painted pose is actually visible, not hidden by body puppet MushroomLibrarian/0
+PASS Expanded pose keeps readable world scale MushroomLibrarian/0
+PASS Actual painted pose selected companions/HoodWisp/0/0
+PASS Painted pose is actually visible, not hidden by body puppet HoodWisp/0
+PASS Expanded pose keeps readable world scale HoodWisp/0
+PASS Actual painted pose selected companions/JellySwordsman/0/0
+PASS Painted pose is actually visible, not hidden by body puppet JellySwordsman/0
+PASS Expanded pose keeps readable world scale JellySwordsman/0
+PASS Actual painted pose selected companions/BreadCrab/0/0
+PASS Painted pose is actually visible, not hidden by body puppet BreadCrab/0
+PASS Expanded pose keeps readable world scale BreadCrab/0
+PASS Native dimensions companions-0-0
+PASS Actual painted pose selected companions/TeapotPilgrim/0/1
+PASS Painted pose is actually visible, not hidden by body puppet TeapotPilgrim/1
+PASS Expanded pose keeps readable world scale TeapotPilgrim/1
+PASS Actual painted pose selected companions/CandleSnail/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CandleSnail/1
+PASS Expanded pose keeps readable world scale CandleSnail/1
+PASS Actual painted pose selected companions/MailboxImp/0/1
+PASS Painted pose is actually visible, not hidden by body puppet MailboxImp/1
+PASS Expanded pose keeps readable world scale MailboxImp/1
+PASS Actual painted pose selected companions/PillowOracle/0/1
+PASS Painted pose is actually visible, not hidden by body puppet PillowOracle/1
+PASS Expanded pose keeps readable world scale PillowOracle/1
+PASS Actual painted pose selected companions/MushroomLibrarian/0/1
+PASS Painted pose is actually visible, not hidden by body puppet MushroomLibrarian/1
+PASS Expanded pose keeps readable world scale MushroomLibrarian/1
+PASS Actual painted pose selected companions/HoodWisp/0/1
+PASS Painted pose is actually visible, not hidden by body puppet HoodWisp/1
+PASS Expanded pose keeps readable world scale HoodWisp/1
+PASS Actual painted pose selected companions/JellySwordsman/0/1
+PASS Painted pose is actually visible, not hidden by body puppet JellySwordsman/1
+PASS Expanded pose keeps readable world scale JellySwordsman/1
+PASS Actual painted pose selected companions/BreadCrab/0/1
+PASS Painted pose is actually visible, not hidden by body puppet BreadCrab/1
+PASS Expanded pose keeps readable world scale BreadCrab/1
+PASS Native dimensions companions-0-1
+PASS Actual painted pose selected companions/TeapotPilgrim/0/2
+PASS Painted pose is actually visible, not hidden by body puppet TeapotPilgrim/2
+PASS Expanded pose keeps readable world scale TeapotPilgrim/2
+PASS Actual painted pose selected companions/CandleSnail/0/2
+PASS Painted pose is actually visible, not hidden by body puppet CandleSnail/2
+PASS Expanded pose keeps readable world scale CandleSnail/2
+PASS Actual painted pose selected companions/MailboxImp/0/2
+PASS Painted pose is actually visible, not hidden by body puppet MailboxImp/2
+PASS Expanded pose keeps readable world scale MailboxImp/2
+PASS Actual painted pose selected companions/PillowOracle/0/2
+PASS Painted pose is actually visible, not hidden by body puppet PillowOracle/2
+PASS Expanded pose keeps readable world scale PillowOracle/2
+PASS Actual painted pose selected companions/MushroomLibrarian/0/2
+PASS Painted pose is actually visible, not hidden by body puppet MushroomLibrarian/2
+PASS Expanded pose keeps readable world scale MushroomLibrarian/2
+PASS Actual painted pose selected companions/HoodWisp/0/2
+PASS Painted pose is actually visible, not hidden by body puppet HoodWisp/2
+PASS Expanded pose keeps readable world scale HoodWisp/2
+PASS Actual painted pose selected companions/JellySwordsman/0/2
+PASS Painted pose is actually visible, not hidden by body puppet JellySwordsman/2
+PASS Expanded pose keeps readable world scale JellySwordsman/2
+PASS Actual painted pose selected companions/BreadCrab/0/2
+PASS Painted pose is actually visible, not hidden by body puppet BreadCrab/2
+PASS Expanded pose keeps readable world scale BreadCrab/2
+PASS Native dimensions companions-0-2
+PASS Actual painted pose selected companions/TeapotPilgrim/0/3
+PASS Painted pose is actually visible, not hidden by body puppet TeapotPilgrim/3
+PASS Expanded pose keeps readable world scale TeapotPilgrim/3
+PASS Actual painted pose selected companions/CandleSnail/0/3
+PASS Painted pose is actually visible, not hidden by body puppet CandleSnail/3
+PASS Expanded pose keeps readable world scale CandleSnail/3
+PASS Actual painted pose selected companions/MailboxImp/0/3
+PASS Painted pose is actually visible, not hidden by body puppet MailboxImp/3
+PASS Expanded pose keeps readable world scale MailboxImp/3
+PASS Actual painted pose selected companions/PillowOracle/0/3
+PASS Painted pose is actually visible, not hidden by body puppet PillowOracle/3
+PASS Expanded pose keeps readable world scale PillowOracle/3
+PASS Actual painted pose selected companions/MushroomLibrarian/0/3
+PASS Painted pose is actually visible, not hidden by body puppet MushroomLibrarian/3
+PASS Expanded pose keeps readable world scale MushroomLibrarian/3
+PASS Actual painted pose selected companions/HoodWisp/0/3
+PASS Painted pose is actually visible, not hidden by body puppet HoodWisp/3
+PASS Expanded pose keeps readable world scale HoodWisp/3
+PASS Actual painted pose selected companions/JellySwordsman/0/3
+PASS Painted pose is actually visible, not hidden by body puppet JellySwordsman/3
+PASS Expanded pose keeps readable world scale JellySwordsman/3
+PASS Actual painted pose selected companions/BreadCrab/0/3
+PASS Painted pose is actually visible, not hidden by body puppet BreadCrab/3
+PASS Expanded pose keeps readable world scale BreadCrab/3
+PASS Native dimensions companions-0-3
+PASS Actual actor binds its exact identity and evolution companions/KettleBat/0
+PASS Actual actor binds its exact identity and evolution companions/BookmarkGolem/0
+PASS Actual actor binds its exact identity and evolution companions/TinTick/0
+PASS Actual actor binds its exact identity and evolution companions/SpringDuck/0
+PASS Actual actor binds its exact identity and evolution companions/ButtonBeetle/0
+PASS Actual actor binds its exact identity and evolution companions/StapleMole/0
+PASS Actual actor binds its exact identity and evolution companions/SnowSpoon/0
+PASS Actual actor binds its exact identity and evolution companions/IceCreamOwl/0
+PASS Actual painted pose selected companions/KettleBat/0/0
+PASS Painted pose is actually visible, not hidden by body puppet KettleBat/0
+PASS Expanded pose keeps readable world scale KettleBat/0
+PASS Actual painted pose selected companions/BookmarkGolem/0/0
+PASS Painted pose is actually visible, not hidden by body puppet BookmarkGolem/0
+PASS Expanded pose keeps readable world scale BookmarkGolem/0
+PASS Actual painted pose selected companions/TinTick/0/0
+PASS Painted pose is actually visible, not hidden by body puppet TinTick/0
+PASS Expanded pose keeps readable world scale TinTick/0
+PASS Actual painted pose selected companions/SpringDuck/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SpringDuck/0
+PASS Expanded pose keeps readable world scale SpringDuck/0
+PASS Actual painted pose selected companions/ButtonBeetle/0/0
+PASS Painted pose is actually visible, not hidden by body puppet ButtonBeetle/0
+PASS Expanded pose keeps readable world scale ButtonBeetle/0
+PASS Actual painted pose selected companions/StapleMole/0/0
+PASS Painted pose is actually visible, not hidden by body puppet StapleMole/0
+PASS Expanded pose keeps readable world scale StapleMole/0
+PASS Actual painted pose selected companions/SnowSpoon/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SnowSpoon/0
+PASS Expanded pose keeps readable world scale SnowSpoon/0
+PASS Actual painted pose selected companions/IceCreamOwl/0/0
+PASS Painted pose is actually visible, not hidden by body puppet IceCreamOwl/0
+PASS Expanded pose keeps readable world scale IceCreamOwl/0
+PASS Native dimensions companions-1-0
+PASS Actual painted pose selected companions/KettleBat/0/1
+PASS Painted pose is actually visible, not hidden by body puppet KettleBat/1
+PASS Expanded pose keeps readable world scale KettleBat/1
+PASS Actual painted pose selected companions/BookmarkGolem/0/1
+PASS Painted pose is actually visible, not hidden by body puppet BookmarkGolem/1
+PASS Expanded pose keeps readable world scale BookmarkGolem/1
+PASS Actual painted pose selected companions/TinTick/0/1
+PASS Painted pose is actually visible, not hidden by body puppet TinTick/1
+PASS Expanded pose keeps readable world scale TinTick/1
+PASS Actual painted pose selected companions/SpringDuck/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SpringDuck/1
+PASS Expanded pose keeps readable world scale SpringDuck/1
+PASS Actual painted pose selected companions/ButtonBeetle/0/1
+PASS Painted pose is actually visible, not hidden by body puppet ButtonBeetle/1
+PASS Expanded pose keeps readable world scale ButtonBeetle/1
+PASS Actual painted pose selected companions/StapleMole/0/1
+PASS Painted pose is actually visible, not hidden by body puppet StapleMole/1
+PASS Expanded pose keeps readable world scale StapleMole/1
+PASS Actual painted pose selected companions/SnowSpoon/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SnowSpoon/1
+PASS Expanded pose keeps readable world scale SnowSpoon/1
+PASS Actual painted pose selected companions/IceCreamOwl/0/1
+PASS Painted pose is actually visible, not hidden by body puppet IceCreamOwl/1
+PASS Expanded pose keeps readable world scale IceCreamOwl/1
+PASS Native dimensions companions-1-1
+PASS Actual painted pose selected companions/KettleBat/0/2
+PASS Painted pose is actually visible, not hidden by body puppet KettleBat/2
+PASS Expanded pose keeps readable world scale KettleBat/2
+PASS Actual painted pose selected companions/BookmarkGolem/0/2
+PASS Painted pose is actually visible, not hidden by body puppet BookmarkGolem/2
+PASS Expanded pose keeps readable world scale BookmarkGolem/2
+PASS Actual painted pose selected companions/TinTick/0/2
+PASS Painted pose is actually visible, not hidden by body puppet TinTick/2
+PASS Expanded pose keeps readable world scale TinTick/2
+PASS Actual painted pose selected companions/SpringDuck/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SpringDuck/2
+PASS Expanded pose keeps readable world scale SpringDuck/2
+PASS Actual painted pose selected companions/ButtonBeetle/0/2
+PASS Painted pose is actually visible, not hidden by body puppet ButtonBeetle/2
+PASS Expanded pose keeps readable world scale ButtonBeetle/2
+PASS Actual painted pose selected companions/StapleMole/0/2
+PASS Painted pose is actually visible, not hidden by body puppet StapleMole/2
+PASS Expanded pose keeps readable world scale StapleMole/2
+PASS Actual painted pose selected companions/SnowSpoon/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SnowSpoon/2
+PASS Expanded pose keeps readable world scale SnowSpoon/2
+PASS Actual painted pose selected companions/IceCreamOwl/0/2
+PASS Painted pose is actually visible, not hidden by body puppet IceCreamOwl/2
+PASS Expanded pose keeps readable world scale IceCreamOwl/2
+PASS Native dimensions companions-1-2
+PASS Actual painted pose selected companions/KettleBat/0/3
+PASS Painted pose is actually visible, not hidden by body puppet KettleBat/3
+PASS Expanded pose keeps readable world scale KettleBat/3
+PASS Actual painted pose selected companions/BookmarkGolem/0/3
+PASS Painted pose is actually visible, not hidden by body puppet BookmarkGolem/3
+PASS Expanded pose keeps readable world scale BookmarkGolem/3
+PASS Actual painted pose selected companions/TinTick/0/3
+PASS Painted pose is actually visible, not hidden by body puppet TinTick/3
+PASS Expanded pose keeps readable world scale TinTick/3
+PASS Actual painted pose selected companions/SpringDuck/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SpringDuck/3
+PASS Expanded pose keeps readable world scale SpringDuck/3
+PASS Actual painted pose selected companions/ButtonBeetle/0/3
+PASS Painted pose is actually visible, not hidden by body puppet ButtonBeetle/3
+PASS Expanded pose keeps readable world scale ButtonBeetle/3
+PASS Actual painted pose selected companions/StapleMole/0/3
+PASS Painted pose is actually visible, not hidden by body puppet StapleMole/3
+PASS Expanded pose keeps readable world scale StapleMole/3
+PASS Actual painted pose selected companions/SnowSpoon/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SnowSpoon/3
+PASS Expanded pose keeps readable world scale SnowSpoon/3
+PASS Actual painted pose selected companions/IceCreamOwl/0/3
+PASS Painted pose is actually visible, not hidden by body puppet IceCreamOwl/3
+PASS Expanded pose keeps readable world scale IceCreamOwl/3
+PASS Native dimensions companions-1-3
+PASS Actual actor binds its exact identity and evolution companions/FridgeWisp/0
+PASS Actual actor binds its exact identity and evolution companions/PearMoth/0
+PASS Actual actor binds its exact identity and evolution companions/CitrusToad/0
+PASS Actual actor binds its exact identity and evolution companions/RadishJester/0
+PASS Actual actor binds its exact identity and evolution companions/SeedHedgehog/0
+PASS Actual actor binds its exact identity and evolution companions/MoonJelly/0
+PASS Actual actor binds its exact identity and evolution companions/StarSock/0
+PASS Actual actor binds its exact identity and evolution companions/EclipseEgg/0
+PASS Actual painted pose selected companions/FridgeWisp/0/0
+PASS Painted pose is actually visible, not hidden by body puppet FridgeWisp/0
+PASS Expanded pose keeps readable world scale FridgeWisp/0
+PASS Actual painted pose selected companions/PearMoth/0/0
+PASS Painted pose is actually visible, not hidden by body puppet PearMoth/0
+PASS Expanded pose keeps readable world scale PearMoth/0
+PASS Actual painted pose selected companions/CitrusToad/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CitrusToad/0
+PASS Expanded pose keeps readable world scale CitrusToad/0
+PASS Actual painted pose selected companions/RadishJester/0/0
+PASS Painted pose is actually visible, not hidden by body puppet RadishJester/0
+PASS Expanded pose keeps readable world scale RadishJester/0
+PASS Actual painted pose selected companions/SeedHedgehog/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SeedHedgehog/0
+PASS Expanded pose keeps readable world scale SeedHedgehog/0
+PASS Actual painted pose selected companions/MoonJelly/0/0
+PASS Painted pose is actually visible, not hidden by body puppet MoonJelly/0
+PASS Expanded pose keeps readable world scale MoonJelly/0
+PASS Actual painted pose selected companions/StarSock/0/0
+PASS Painted pose is actually visible, not hidden by body puppet StarSock/0
+PASS Expanded pose keeps readable world scale StarSock/0
+PASS Actual painted pose selected companions/EclipseEgg/0/0
+PASS Painted pose is actually visible, not hidden by body puppet EclipseEgg/0
+PASS Expanded pose keeps readable world scale EclipseEgg/0
+PASS Native dimensions companions-2-0
+PASS Actual painted pose selected companions/FridgeWisp/0/1
+PASS Painted pose is actually visible, not hidden by body puppet FridgeWisp/1
+PASS Expanded pose keeps readable world scale FridgeWisp/1
+PASS Actual painted pose selected companions/PearMoth/0/1
+PASS Painted pose is actually visible, not hidden by body puppet PearMoth/1
+PASS Expanded pose keeps readable world scale PearMoth/1
+PASS Actual painted pose selected companions/CitrusToad/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CitrusToad/1
+PASS Expanded pose keeps readable world scale CitrusToad/1
+PASS Actual painted pose selected companions/RadishJester/0/1
+PASS Painted pose is actually visible, not hidden by body puppet RadishJester/1
+PASS Expanded pose keeps readable world scale RadishJester/1
+PASS Actual painted pose selected companions/SeedHedgehog/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SeedHedgehog/1
+PASS Expanded pose keeps readable world scale SeedHedgehog/1
+PASS Actual painted pose selected companions/MoonJelly/0/1
+PASS Painted pose is actually visible, not hidden by body puppet MoonJelly/1
+PASS Expanded pose keeps readable world scale MoonJelly/1
+PASS Actual painted pose selected companions/StarSock/0/1
+PASS Painted pose is actually visible, not hidden by body puppet StarSock/1
+PASS Expanded pose keeps readable world scale StarSock/1
+PASS Actual painted pose selected companions/EclipseEgg/0/1
+PASS Painted pose is actually visible, not hidden by body puppet EclipseEgg/1
+PASS Expanded pose keeps readable world scale EclipseEgg/1
+PASS Native dimensions companions-2-1
+PASS Actual painted pose selected companions/FridgeWisp/0/2
+PASS Painted pose is actually visible, not hidden by body puppet FridgeWisp/2
+PASS Expanded pose keeps readable world scale FridgeWisp/2
+PASS Actual painted pose selected companions/PearMoth/0/2
+PASS Painted pose is actually visible, not hidden by body puppet PearMoth/2
+PASS Expanded pose keeps readable world scale PearMoth/2
+PASS Actual painted pose selected companions/CitrusToad/0/2
+PASS Painted pose is actually visible, not hidden by body puppet CitrusToad/2
+PASS Expanded pose keeps readable world scale CitrusToad/2
+PASS Actual painted pose selected companions/RadishJester/0/2
+PASS Painted pose is actually visible, not hidden by body puppet RadishJester/2
+PASS Expanded pose keeps readable world scale RadishJester/2
+PASS Actual painted pose selected companions/SeedHedgehog/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SeedHedgehog/2
+PASS Expanded pose keeps readable world scale SeedHedgehog/2
+PASS Actual painted pose selected companions/MoonJelly/0/2
+PASS Painted pose is actually visible, not hidden by body puppet MoonJelly/2
+PASS Expanded pose keeps readable world scale MoonJelly/2
+PASS Actual painted pose selected companions/StarSock/0/2
+PASS Painted pose is actually visible, not hidden by body puppet StarSock/2
+PASS Expanded pose keeps readable world scale StarSock/2
+PASS Actual painted pose selected companions/EclipseEgg/0/2
+PASS Painted pose is actually visible, not hidden by body puppet EclipseEgg/2
+PASS Expanded pose keeps readable world scale EclipseEgg/2
+PASS Native dimensions companions-2-2
+PASS Actual painted pose selected companions/FridgeWisp/0/3
+PASS Painted pose is actually visible, not hidden by body puppet FridgeWisp/3
+PASS Expanded pose keeps readable world scale FridgeWisp/3
+PASS Actual painted pose selected companions/PearMoth/0/3
+PASS Painted pose is actually visible, not hidden by body puppet PearMoth/3
+PASS Expanded pose keeps readable world scale PearMoth/3
+PASS Actual painted pose selected companions/CitrusToad/0/3
+PASS Painted pose is actually visible, not hidden by body puppet CitrusToad/3
+PASS Expanded pose keeps readable world scale CitrusToad/3
+PASS Actual painted pose selected companions/RadishJester/0/3
+PASS Painted pose is actually visible, not hidden by body puppet RadishJester/3
+PASS Expanded pose keeps readable world scale RadishJester/3
+PASS Actual painted pose selected companions/SeedHedgehog/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SeedHedgehog/3
+PASS Expanded pose keeps readable world scale SeedHedgehog/3
+PASS Actual painted pose selected companions/MoonJelly/0/3
+PASS Painted pose is actually visible, not hidden by body puppet MoonJelly/3
+PASS Expanded pose keeps readable world scale MoonJelly/3
+PASS Actual painted pose selected companions/StarSock/0/3
+PASS Painted pose is actually visible, not hidden by body puppet StarSock/3
+PASS Expanded pose keeps readable world scale StarSock/3
+PASS Actual painted pose selected companions/EclipseEgg/0/3
+PASS Painted pose is actually visible, not hidden by body puppet EclipseEgg/3
+PASS Expanded pose keeps readable world scale EclipseEgg/3
+PASS Native dimensions companions-2-3
+PASS Actual actor binds its exact identity and evolution companions/OrbitMoth/0
+PASS Actual actor binds its exact identity and evolution companions/DreamCompass/0
+PASS Actual actor binds its exact identity and evolution companions/ShellPostman/0
+PASS Actual actor binds its exact identity and evolution companions/CoralTeacup/0
+PASS Actual actor binds its exact identity and evolution companions/AnchorSnail/0
+PASS Actual actor binds its exact identity and evolution companions/SailSquid/0
+PASS Actual actor binds its exact identity and evolution companions/SockCyclops/0
+PASS Actual actor binds its exact identity and evolution companions/MaskPepper/0
+PASS Actual painted pose selected companions/OrbitMoth/0/0
+PASS Painted pose is actually visible, not hidden by body puppet OrbitMoth/0
+PASS Expanded pose keeps readable world scale OrbitMoth/0
+PASS Actual painted pose selected companions/DreamCompass/0/0
+PASS Painted pose is actually visible, not hidden by body puppet DreamCompass/0
+PASS Expanded pose keeps readable world scale DreamCompass/0
+PASS Actual painted pose selected companions/ShellPostman/0/0
+PASS Painted pose is actually visible, not hidden by body puppet ShellPostman/0
+PASS Expanded pose keeps readable world scale ShellPostman/0
+PASS Actual painted pose selected companions/CoralTeacup/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CoralTeacup/0
+PASS Expanded pose keeps readable world scale CoralTeacup/0
+PASS Actual painted pose selected companions/AnchorSnail/0/0
+PASS Painted pose is actually visible, not hidden by body puppet AnchorSnail/0
+PASS Expanded pose keeps readable world scale AnchorSnail/0
+PASS Actual painted pose selected companions/SailSquid/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SailSquid/0
+PASS Expanded pose keeps readable world scale SailSquid/0
+PASS Actual painted pose selected companions/SockCyclops/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SockCyclops/0
+PASS Expanded pose keeps readable world scale SockCyclops/0
+PASS Actual painted pose selected companions/MaskPepper/0/0
+PASS Painted pose is actually visible, not hidden by body puppet MaskPepper/0
+PASS Expanded pose keeps readable world scale MaskPepper/0
+PASS Native dimensions companions-3-0
+PASS Actual painted pose selected companions/OrbitMoth/0/1
+PASS Painted pose is actually visible, not hidden by body puppet OrbitMoth/1
+PASS Expanded pose keeps readable world scale OrbitMoth/1
+PASS Actual painted pose selected companions/DreamCompass/0/1
+PASS Painted pose is actually visible, not hidden by body puppet DreamCompass/1
+PASS Expanded pose keeps readable world scale DreamCompass/1
+PASS Actual painted pose selected companions/ShellPostman/0/1
+PASS Painted pose is actually visible, not hidden by body puppet ShellPostman/1
+PASS Expanded pose keeps readable world scale ShellPostman/1
+PASS Actual painted pose selected companions/CoralTeacup/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CoralTeacup/1
+PASS Expanded pose keeps readable world scale CoralTeacup/1
+PASS Actual painted pose selected companions/AnchorSnail/0/1
+PASS Painted pose is actually visible, not hidden by body puppet AnchorSnail/1
+PASS Expanded pose keeps readable world scale AnchorSnail/1
+PASS Actual painted pose selected companions/SailSquid/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SailSquid/1
+PASS Expanded pose keeps readable world scale SailSquid/1
+PASS Actual painted pose selected companions/SockCyclops/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SockCyclops/1
+PASS Expanded pose keeps readable world scale SockCyclops/1
+PASS Actual painted pose selected companions/MaskPepper/0/1
+PASS Painted pose is actually visible, not hidden by body puppet MaskPepper/1
+PASS Expanded pose keeps readable world scale MaskPepper/1
+PASS Native dimensions companions-3-1
+PASS Actual painted pose selected companions/OrbitMoth/0/2
+PASS Painted pose is actually visible, not hidden by body puppet OrbitMoth/2
+PASS Expanded pose keeps readable world scale OrbitMoth/2
+PASS Actual painted pose selected companions/DreamCompass/0/2
+PASS Painted pose is actually visible, not hidden by body puppet DreamCompass/2
+PASS Expanded pose keeps readable world scale DreamCompass/2
+PASS Actual painted pose selected companions/ShellPostman/0/2
+PASS Painted pose is actually visible, not hidden by body puppet ShellPostman/2
+PASS Expanded pose keeps readable world scale ShellPostman/2
+PASS Actual painted pose selected companions/CoralTeacup/0/2
+PASS Painted pose is actually visible, not hidden by body puppet CoralTeacup/2
+PASS Expanded pose keeps readable world scale CoralTeacup/2
+PASS Actual painted pose selected companions/AnchorSnail/0/2
+PASS Painted pose is actually visible, not hidden by body puppet AnchorSnail/2
+PASS Expanded pose keeps readable world scale AnchorSnail/2
+PASS Actual painted pose selected companions/SailSquid/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SailSquid/2
+PASS Expanded pose keeps readable world scale SailSquid/2
+PASS Actual painted pose selected companions/SockCyclops/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SockCyclops/2
+PASS Expanded pose keeps readable world scale SockCyclops/2
+PASS Actual painted pose selected companions/MaskPepper/0/2
+PASS Painted pose is actually visible, not hidden by body puppet MaskPepper/2
+PASS Expanded pose keeps readable world scale MaskPepper/2
+PASS Native dimensions companions-3-2
+PASS Actual painted pose selected companions/OrbitMoth/0/3
+PASS Painted pose is actually visible, not hidden by body puppet OrbitMoth/3
+PASS Expanded pose keeps readable world scale OrbitMoth/3
+PASS Actual painted pose selected companions/DreamCompass/0/3
+PASS Painted pose is actually visible, not hidden by body puppet DreamCompass/3
+PASS Expanded pose keeps readable world scale DreamCompass/3
+PASS Actual painted pose selected companions/ShellPostman/0/3
+PASS Painted pose is actually visible, not hidden by body puppet ShellPostman/3
+PASS Expanded pose keeps readable world scale ShellPostman/3
+PASS Actual painted pose selected companions/CoralTeacup/0/3
+PASS Painted pose is actually visible, not hidden by body puppet CoralTeacup/3
+PASS Expanded pose keeps readable world scale CoralTeacup/3
+PASS Actual painted pose selected companions/AnchorSnail/0/3
+PASS Painted pose is actually visible, not hidden by body puppet AnchorSnail/3
+PASS Expanded pose keeps readable world scale AnchorSnail/3
+PASS Actual painted pose selected companions/SailSquid/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SailSquid/3
+PASS Expanded pose keeps readable world scale SailSquid/3
+PASS Actual painted pose selected companions/SockCyclops/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SockCyclops/3
+PASS Expanded pose keeps readable world scale SockCyclops/3
+PASS Actual painted pose selected companions/MaskPepper/0/3
+PASS Painted pose is actually visible, not hidden by body puppet MaskPepper/3
+PASS Expanded pose keeps readable world scale MaskPepper/3
+PASS Native dimensions companions-3-3
+PASS Actual actor binds its exact identity and evolution companions/CrayonGremlin/0
+PASS Actual actor binds its exact identity and evolution companions/RibbonSpider/0
+PASS Actual actor binds its exact identity and evolution companions/CoilKettle/0
+PASS Actual actor binds its exact identity and evolution companions/ThimbleMoth/0
+PASS Actual actor binds its exact identity and evolution companions/ReelOwl/0
+PASS Actual actor binds its exact identity and evolution companions/RainbowTailor/0
+PASS Actual actor binds its exact identity and evolution companions/RainbowBell/0
+PASS Actual actor binds its exact identity and evolution companions/SecretPatchBear/0
+PASS Actual painted pose selected companions/CrayonGremlin/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CrayonGremlin/0
+PASS Expanded pose keeps readable world scale CrayonGremlin/0
+PASS Actual painted pose selected companions/RibbonSpider/0/0
+PASS Painted pose is actually visible, not hidden by body puppet RibbonSpider/0
+PASS Expanded pose keeps readable world scale RibbonSpider/0
+PASS Actual painted pose selected companions/CoilKettle/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CoilKettle/0
+PASS Expanded pose keeps readable world scale CoilKettle/0
+PASS Actual painted pose selected companions/ThimbleMoth/0/0
+PASS Painted pose is actually visible, not hidden by body puppet ThimbleMoth/0
+PASS Expanded pose keeps readable world scale ThimbleMoth/0
+PASS Actual painted pose selected companions/ReelOwl/0/0
+PASS Painted pose is actually visible, not hidden by body puppet ReelOwl/0
+PASS Expanded pose keeps readable world scale ReelOwl/0
+PASS Actual painted pose selected companions/RainbowTailor/0/0
+PASS Painted pose is actually visible, not hidden by body puppet RainbowTailor/0
+PASS Expanded pose keeps readable world scale RainbowTailor/0
+PASS Actual painted pose selected companions/RainbowBell/0/0
+PASS Painted pose is actually visible, not hidden by body puppet RainbowBell/0
+PASS Expanded pose keeps readable world scale RainbowBell/0
+PASS Actual painted pose selected companions/SecretPatchBear/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SecretPatchBear/0
+PASS Expanded pose keeps readable world scale SecretPatchBear/0
+PASS Native dimensions companions-4-0
+PASS Actual painted pose selected companions/CrayonGremlin/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CrayonGremlin/1
+PASS Expanded pose keeps readable world scale CrayonGremlin/1
+PASS Actual painted pose selected companions/RibbonSpider/0/1
+PASS Painted pose is actually visible, not hidden by body puppet RibbonSpider/1
+PASS Expanded pose keeps readable world scale RibbonSpider/1
+PASS Actual painted pose selected companions/CoilKettle/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CoilKettle/1
+PASS Expanded pose keeps readable world scale CoilKettle/1
+PASS Actual painted pose selected companions/ThimbleMoth/0/1
+PASS Painted pose is actually visible, not hidden by body puppet ThimbleMoth/1
+PASS Expanded pose keeps readable world scale ThimbleMoth/1
+PASS Actual painted pose selected companions/ReelOwl/0/1
+PASS Painted pose is actually visible, not hidden by body puppet ReelOwl/1
+PASS Expanded pose keeps readable world scale ReelOwl/1
+PASS Actual painted pose selected companions/RainbowTailor/0/1
+PASS Painted pose is actually visible, not hidden by body puppet RainbowTailor/1
+PASS Expanded pose keeps readable world scale RainbowTailor/1
+PASS Actual painted pose selected companions/RainbowBell/0/1
+PASS Painted pose is actually visible, not hidden by body puppet RainbowBell/1
+PASS Expanded pose keeps readable world scale RainbowBell/1
+PASS Actual painted pose selected companions/SecretPatchBear/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SecretPatchBear/1
+PASS Expanded pose keeps readable world scale SecretPatchBear/1
+PASS Native dimensions companions-4-1
+PASS Actual painted pose selected companions/CrayonGremlin/0/2
+PASS Painted pose is actually visible, not hidden by body puppet CrayonGremlin/2
+PASS Expanded pose keeps readable world scale CrayonGremlin/2
+PASS Actual painted pose selected companions/RibbonSpider/0/2
+PASS Painted pose is actually visible, not hidden by body puppet RibbonSpider/2
+PASS Expanded pose keeps readable world scale RibbonSpider/2
+PASS Actual painted pose selected companions/CoilKettle/0/2
+PASS Painted pose is actually visible, not hidden by body puppet CoilKettle/2
+PASS Expanded pose keeps readable world scale CoilKettle/2
+PASS Actual painted pose selected companions/ThimbleMoth/0/2
+PASS Painted pose is actually visible, not hidden by body puppet ThimbleMoth/2
+PASS Expanded pose keeps readable world scale ThimbleMoth/2
+PASS Actual painted pose selected companions/ReelOwl/0/2
+PASS Painted pose is actually visible, not hidden by body puppet ReelOwl/2
+PASS Expanded pose keeps readable world scale ReelOwl/2
+PASS Actual painted pose selected companions/RainbowTailor/0/2
+PASS Painted pose is actually visible, not hidden by body puppet RainbowTailor/2
+PASS Expanded pose keeps readable world scale RainbowTailor/2
+PASS Actual painted pose selected companions/RainbowBell/0/2
+PASS Painted pose is actually visible, not hidden by body puppet RainbowBell/2
+PASS Expanded pose keeps readable world scale RainbowBell/2
+PASS Actual painted pose selected companions/SecretPatchBear/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SecretPatchBear/2
+PASS Expanded pose keeps readable world scale SecretPatchBear/2
+PASS Native dimensions companions-4-2
+PASS Actual painted pose selected companions/CrayonGremlin/0/3
+PASS Painted pose is actually visible, not hidden by body puppet CrayonGremlin/3
+PASS Expanded pose keeps readable world scale CrayonGremlin/3
+PASS Actual painted pose selected companions/RibbonSpider/0/3
+PASS Painted pose is actually visible, not hidden by body puppet RibbonSpider/3
+PASS Expanded pose keeps readable world scale RibbonSpider/3
+PASS Actual painted pose selected companions/CoilKettle/0/3
+PASS Painted pose is actually visible, not hidden by body puppet CoilKettle/3
+PASS Expanded pose keeps readable world scale CoilKettle/3
+PASS Actual painted pose selected companions/ThimbleMoth/0/3
+PASS Painted pose is actually visible, not hidden by body puppet ThimbleMoth/3
+PASS Expanded pose keeps readable world scale ThimbleMoth/3
+PASS Actual painted pose selected companions/ReelOwl/0/3
+PASS Painted pose is actually visible, not hidden by body puppet ReelOwl/3
+PASS Expanded pose keeps readable world scale ReelOwl/3
+PASS Actual painted pose selected companions/RainbowTailor/0/3
+PASS Painted pose is actually visible, not hidden by body puppet RainbowTailor/3
+PASS Expanded pose keeps readable world scale RainbowTailor/3
+PASS Actual painted pose selected companions/RainbowBell/0/3
+PASS Painted pose is actually visible, not hidden by body puppet RainbowBell/3
+PASS Expanded pose keeps readable world scale RainbowBell/3
+PASS Actual painted pose selected companions/SecretPatchBear/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SecretPatchBear/3
+PASS Expanded pose keeps readable world scale SecretPatchBear/3
+PASS Native dimensions companions-4-3
+PASS Actual actor binds its exact identity and evolution companions/SecretPaperBird/0
+PASS Actual actor binds its exact identity and evolution companions/SecretDreamLamb/0
+PASS Actual actor binds its exact identity and evolution companions/SaffronMechanist/0
+PASS Actual actor binds its exact identity and evolution companions/ClockworkPiper/0
+PASS Actual actor binds its exact identity and evolution companions/VelvetChampion/0
+PASS Actual actor binds its exact identity and evolution companions/PaperInventor/0
+PASS Actual actor binds its exact identity and evolution companions/ReturnCaptain/0
+PASS Actual actor binds its exact identity and evolution companions/DoughForeman/0
+PASS Actual painted pose selected companions/SecretPaperBird/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SecretPaperBird/0
+PASS Expanded pose keeps readable world scale SecretPaperBird/0
+PASS Actual painted pose selected companions/SecretDreamLamb/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SecretDreamLamb/0
+PASS Expanded pose keeps readable world scale SecretDreamLamb/0
+PASS Actual painted pose selected companions/SaffronMechanist/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SaffronMechanist/0
+PASS Expanded pose keeps readable world scale SaffronMechanist/0
+PASS Actual painted pose selected companions/ClockworkPiper/0/0
+PASS Painted pose is actually visible, not hidden by body puppet ClockworkPiper/0
+PASS Expanded pose keeps readable world scale ClockworkPiper/0
+PASS Actual painted pose selected companions/VelvetChampion/0/0
+PASS Painted pose is actually visible, not hidden by body puppet VelvetChampion/0
+PASS Expanded pose keeps readable world scale VelvetChampion/0
+PASS Actual painted pose selected companions/PaperInventor/0/0
+PASS Painted pose is actually visible, not hidden by body puppet PaperInventor/0
+PASS Expanded pose keeps readable world scale PaperInventor/0
+PASS Actual painted pose selected companions/ReturnCaptain/0/0
+PASS Painted pose is actually visible, not hidden by body puppet ReturnCaptain/0
+PASS Expanded pose keeps readable world scale ReturnCaptain/0
+PASS Actual painted pose selected companions/DoughForeman/0/0
+PASS Painted pose is actually visible, not hidden by body puppet DoughForeman/0
+PASS Expanded pose keeps readable world scale DoughForeman/0
+PASS Native dimensions companions-5-0
+PASS Actual painted pose selected companions/SecretPaperBird/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SecretPaperBird/1
+PASS Expanded pose keeps readable world scale SecretPaperBird/1
+PASS Actual painted pose selected companions/SecretDreamLamb/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SecretDreamLamb/1
+PASS Expanded pose keeps readable world scale SecretDreamLamb/1
+PASS Actual painted pose selected companions/SaffronMechanist/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SaffronMechanist/1
+PASS Expanded pose keeps readable world scale SaffronMechanist/1
+PASS Actual painted pose selected companions/ClockworkPiper/0/1
+PASS Painted pose is actually visible, not hidden by body puppet ClockworkPiper/1
+PASS Expanded pose keeps readable world scale ClockworkPiper/1
+PASS Actual painted pose selected companions/VelvetChampion/0/1
+PASS Painted pose is actually visible, not hidden by body puppet VelvetChampion/1
+PASS Expanded pose keeps readable world scale VelvetChampion/1
+PASS Actual painted pose selected companions/PaperInventor/0/1
+PASS Painted pose is actually visible, not hidden by body puppet PaperInventor/1
+PASS Expanded pose keeps readable world scale PaperInventor/1
+PASS Actual painted pose selected companions/ReturnCaptain/0/1
+PASS Painted pose is actually visible, not hidden by body puppet ReturnCaptain/1
+PASS Expanded pose keeps readable world scale ReturnCaptain/1
+PASS Actual painted pose selected companions/DoughForeman/0/1
+PASS Painted pose is actually visible, not hidden by body puppet DoughForeman/1
+PASS Expanded pose keeps readable world scale DoughForeman/1
+PASS Native dimensions companions-5-1
+PASS Actual painted pose selected companions/SecretPaperBird/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SecretPaperBird/2
+PASS Expanded pose keeps readable world scale SecretPaperBird/2
+PASS Actual painted pose selected companions/SecretDreamLamb/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SecretDreamLamb/2
+PASS Expanded pose keeps readable world scale SecretDreamLamb/2
+PASS Actual painted pose selected companions/SaffronMechanist/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SaffronMechanist/2
+PASS Expanded pose keeps readable world scale SaffronMechanist/2
+PASS Actual painted pose selected companions/ClockworkPiper/0/2
+PASS Painted pose is actually visible, not hidden by body puppet ClockworkPiper/2
+PASS Expanded pose keeps readable world scale ClockworkPiper/2
+PASS Actual painted pose selected companions/VelvetChampion/0/2
+PASS Painted pose is actually visible, not hidden by body puppet VelvetChampion/2
+PASS Expanded pose keeps readable world scale VelvetChampion/2
+PASS Actual painted pose selected companions/PaperInventor/0/2
+PASS Painted pose is actually visible, not hidden by body puppet PaperInventor/2
+PASS Expanded pose keeps readable world scale PaperInventor/2
+PASS Actual painted pose selected companions/ReturnCaptain/0/2
+PASS Painted pose is actually visible, not hidden by body puppet ReturnCaptain/2
+PASS Expanded pose keeps readable world scale ReturnCaptain/2
+PASS Actual painted pose selected companions/DoughForeman/0/2
+PASS Painted pose is actually visible, not hidden by body puppet DoughForeman/2
+PASS Expanded pose keeps readable world scale DoughForeman/2
+PASS Native dimensions companions-5-2
+PASS Actual painted pose selected companions/SecretPaperBird/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SecretPaperBird/3
+PASS Expanded pose keeps readable world scale SecretPaperBird/3
+PASS Actual painted pose selected companions/SecretDreamLamb/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SecretDreamLamb/3
+PASS Expanded pose keeps readable world scale SecretDreamLamb/3
+PASS Actual painted pose selected companions/SaffronMechanist/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SaffronMechanist/3
+PASS Expanded pose keeps readable world scale SaffronMechanist/3
+PASS Actual painted pose selected companions/ClockworkPiper/0/3
+PASS Painted pose is actually visible, not hidden by body puppet ClockworkPiper/3
+PASS Expanded pose keeps readable world scale ClockworkPiper/3
+PASS Actual painted pose selected companions/VelvetChampion/0/3
+PASS Painted pose is actually visible, not hidden by body puppet VelvetChampion/3
+PASS Expanded pose keeps readable world scale VelvetChampion/3
+PASS Actual painted pose selected companions/PaperInventor/0/3
+PASS Painted pose is actually visible, not hidden by body puppet PaperInventor/3
+PASS Expanded pose keeps readable world scale PaperInventor/3
+PASS Actual painted pose selected companions/ReturnCaptain/0/3
+PASS Painted pose is actually visible, not hidden by body puppet ReturnCaptain/3
+PASS Expanded pose keeps readable world scale ReturnCaptain/3
+PASS Actual painted pose selected companions/DoughForeman/0/3
+PASS Painted pose is actually visible, not hidden by body puppet DoughForeman/3
+PASS Expanded pose keeps readable world scale DoughForeman/3
+PASS Native dimensions companions-5-3
+PASS Actual actor binds its exact identity and evolution companions/IronLocomotive/0
+PASS Actual actor binds its exact identity and evolution companions/VioletRemnant/0
+PASS Actual actor binds its exact identity and evolution companions/VelvetEnchantress/0
+PASS Actual actor binds its exact identity and evolution companions/GrandSprout/0
+PASS Actual actor binds its exact identity and evolution companions/BristleBall/0
+PASS Actual actor binds its exact identity and evolution companions/PaperDevil/0
+PASS Actual actor binds its exact identity and evolution companions/BalloonMallet/0
+PASS Actual actor binds its exact identity and evolution companions/LittleSprout/0
+PASS Actual painted pose selected companions/IronLocomotive/0/0
+PASS Painted pose is actually visible, not hidden by body puppet IronLocomotive/0
+PASS Expanded pose keeps readable world scale IronLocomotive/0
+PASS Actual painted pose selected companions/VioletRemnant/0/0
+PASS Painted pose is actually visible, not hidden by body puppet VioletRemnant/0
+PASS Expanded pose keeps readable world scale VioletRemnant/0
+PASS Actual painted pose selected companions/VelvetEnchantress/0/0
+PASS Painted pose is actually visible, not hidden by body puppet VelvetEnchantress/0
+PASS Expanded pose keeps readable world scale VelvetEnchantress/0
+PASS Actual painted pose selected companions/GrandSprout/0/0
+PASS Painted pose is actually visible, not hidden by body puppet GrandSprout/0
+PASS Expanded pose keeps readable world scale GrandSprout/0
+PASS Actual painted pose selected companions/BristleBall/0/0
+PASS Painted pose is actually visible, not hidden by body puppet BristleBall/0
+PASS Expanded pose keeps readable world scale BristleBall/0
+PASS Actual painted pose selected companions/PaperDevil/0/0
+PASS Painted pose is actually visible, not hidden by body puppet PaperDevil/0
+PASS Expanded pose keeps readable world scale PaperDevil/0
+PASS Actual painted pose selected companions/BalloonMallet/0/0
+PASS Painted pose is actually visible, not hidden by body puppet BalloonMallet/0
+PASS Expanded pose keeps readable world scale BalloonMallet/0
+PASS Actual painted pose selected companions/LittleSprout/0/0
+PASS Painted pose is actually visible, not hidden by body puppet LittleSprout/0
+PASS Expanded pose keeps readable world scale LittleSprout/0
+PASS Native dimensions companions-6-0
+PASS Actual painted pose selected companions/IronLocomotive/0/1
+PASS Painted pose is actually visible, not hidden by body puppet IronLocomotive/1
+PASS Expanded pose keeps readable world scale IronLocomotive/1
+PASS Actual painted pose selected companions/VioletRemnant/0/1
+PASS Painted pose is actually visible, not hidden by body puppet VioletRemnant/1
+PASS Expanded pose keeps readable world scale VioletRemnant/1
+PASS Actual painted pose selected companions/VelvetEnchantress/0/1
+PASS Painted pose is actually visible, not hidden by body puppet VelvetEnchantress/1
+PASS Expanded pose keeps readable world scale VelvetEnchantress/1
+PASS Actual painted pose selected companions/GrandSprout/0/1
+PASS Painted pose is actually visible, not hidden by body puppet GrandSprout/1
+PASS Expanded pose keeps readable world scale GrandSprout/1
+PASS Actual painted pose selected companions/BristleBall/0/1
+PASS Painted pose is actually visible, not hidden by body puppet BristleBall/1
+PASS Expanded pose keeps readable world scale BristleBall/1
+PASS Actual painted pose selected companions/PaperDevil/0/1
+PASS Painted pose is actually visible, not hidden by body puppet PaperDevil/1
+PASS Expanded pose keeps readable world scale PaperDevil/1
+PASS Actual painted pose selected companions/BalloonMallet/0/1
+PASS Painted pose is actually visible, not hidden by body puppet BalloonMallet/1
+PASS Expanded pose keeps readable world scale BalloonMallet/1
+PASS Actual painted pose selected companions/LittleSprout/0/1
+PASS Painted pose is actually visible, not hidden by body puppet LittleSprout/1
+PASS Expanded pose keeps readable world scale LittleSprout/1
+PASS Native dimensions companions-6-1
+PASS Actual painted pose selected companions/IronLocomotive/0/2
+PASS Painted pose is actually visible, not hidden by body puppet IronLocomotive/2
+PASS Expanded pose keeps readable world scale IronLocomotive/2
+PASS Actual painted pose selected companions/VioletRemnant/0/2
+PASS Painted pose is actually visible, not hidden by body puppet VioletRemnant/2
+PASS Expanded pose keeps readable world scale VioletRemnant/2
+PASS Actual painted pose selected companions/VelvetEnchantress/0/2
+PASS Painted pose is actually visible, not hidden by body puppet VelvetEnchantress/2
+PASS Expanded pose keeps readable world scale VelvetEnchantress/2
+PASS Actual painted pose selected companions/GrandSprout/0/2
+PASS Painted pose is actually visible, not hidden by body puppet GrandSprout/2
+PASS Expanded pose keeps readable world scale GrandSprout/2
+PASS Actual painted pose selected companions/BristleBall/0/2
+PASS Painted pose is actually visible, not hidden by body puppet BristleBall/2
+PASS Expanded pose keeps readable world scale BristleBall/2
+PASS Actual painted pose selected companions/PaperDevil/0/2
+PASS Painted pose is actually visible, not hidden by body puppet PaperDevil/2
+PASS Expanded pose keeps readable world scale PaperDevil/2
+PASS Actual painted pose selected companions/BalloonMallet/0/2
+PASS Painted pose is actually visible, not hidden by body puppet BalloonMallet/2
+PASS Expanded pose keeps readable world scale BalloonMallet/2
+PASS Actual painted pose selected companions/LittleSprout/0/2
+PASS Painted pose is actually visible, not hidden by body puppet LittleSprout/2
+PASS Expanded pose keeps readable world scale LittleSprout/2
+PASS Native dimensions companions-6-2
+PASS Actual painted pose selected companions/IronLocomotive/0/3
+PASS Painted pose is actually visible, not hidden by body puppet IronLocomotive/3
+PASS Expanded pose keeps readable world scale IronLocomotive/3
+PASS Actual painted pose selected companions/VioletRemnant/0/3
+PASS Painted pose is actually visible, not hidden by body puppet VioletRemnant/3
+PASS Expanded pose keeps readable world scale VioletRemnant/3
+PASS Actual painted pose selected companions/VelvetEnchantress/0/3
+PASS Painted pose is actually visible, not hidden by body puppet VelvetEnchantress/3
+PASS Expanded pose keeps readable world scale VelvetEnchantress/3
+PASS Actual painted pose selected companions/GrandSprout/0/3
+PASS Painted pose is actually visible, not hidden by body puppet GrandSprout/3
+PASS Expanded pose keeps readable world scale GrandSprout/3
+PASS Actual painted pose selected companions/BristleBall/0/3
+PASS Painted pose is actually visible, not hidden by body puppet BristleBall/3
+PASS Expanded pose keeps readable world scale BristleBall/3
+PASS Actual painted pose selected companions/PaperDevil/0/3
+PASS Painted pose is actually visible, not hidden by body puppet PaperDevil/3
+PASS Expanded pose keeps readable world scale PaperDevil/3
+PASS Actual painted pose selected companions/BalloonMallet/0/3
+PASS Painted pose is actually visible, not hidden by body puppet BalloonMallet/3
+PASS Expanded pose keeps readable world scale BalloonMallet/3
+PASS Actual painted pose selected companions/LittleSprout/0/3
+PASS Painted pose is actually visible, not hidden by body puppet LittleSprout/3
+PASS Expanded pose keeps readable world scale LittleSprout/3
+PASS Native dimensions companions-6-3
+PASS Actual actor binds its exact identity and evolution companions/MonsterMarble/0
+PASS Actual actor binds its exact identity and evolution companions/CarouselPony/0
+PASS Actual actor binds its exact identity and evolution companions/TeacupCricket/0
+PASS Actual actor binds its exact identity and evolution companions/RibbonOtter/0
+PASS Actual actor binds its exact identity and evolution companions/SpindleWren/0
+PASS Actual painted pose selected companions/MonsterMarble/0/0
+PASS Painted pose is actually visible, not hidden by body puppet MonsterMarble/0
+PASS Expanded pose keeps readable world scale MonsterMarble/0
+PASS Actual painted pose selected companions/CarouselPony/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CarouselPony/0
+PASS Expanded pose keeps readable world scale CarouselPony/0
+PASS Actual painted pose selected companions/TeacupCricket/0/0
+PASS Painted pose is actually visible, not hidden by body puppet TeacupCricket/0
+PASS Expanded pose keeps readable world scale TeacupCricket/0
+PASS Actual painted pose selected companions/RibbonOtter/0/0
+PASS Painted pose is actually visible, not hidden by body puppet RibbonOtter/0
+PASS Expanded pose keeps readable world scale RibbonOtter/0
+PASS Actual painted pose selected companions/SpindleWren/0/0
+PASS Painted pose is actually visible, not hidden by body puppet SpindleWren/0
+PASS Expanded pose keeps readable world scale SpindleWren/0
+PASS Native dimensions companions-7-0
+PASS Actual painted pose selected companions/MonsterMarble/0/1
+PASS Painted pose is actually visible, not hidden by body puppet MonsterMarble/1
+PASS Expanded pose keeps readable world scale MonsterMarble/1
+PASS Actual painted pose selected companions/CarouselPony/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CarouselPony/1
+PASS Expanded pose keeps readable world scale CarouselPony/1
+PASS Actual painted pose selected companions/TeacupCricket/0/1
+PASS Painted pose is actually visible, not hidden by body puppet TeacupCricket/1
+PASS Expanded pose keeps readable world scale TeacupCricket/1
+PASS Actual painted pose selected companions/RibbonOtter/0/1
+PASS Painted pose is actually visible, not hidden by body puppet RibbonOtter/1
+PASS Expanded pose keeps readable world scale RibbonOtter/1
+PASS Actual painted pose selected companions/SpindleWren/0/1
+PASS Painted pose is actually visible, not hidden by body puppet SpindleWren/1
+PASS Expanded pose keeps readable world scale SpindleWren/1
+PASS Native dimensions companions-7-1
+PASS Actual painted pose selected companions/MonsterMarble/0/2
+PASS Painted pose is actually visible, not hidden by body puppet MonsterMarble/2
+PASS Expanded pose keeps readable world scale MonsterMarble/2
+PASS Actual painted pose selected companions/CarouselPony/0/2
+PASS Painted pose is actually visible, not hidden by body puppet CarouselPony/2
+PASS Expanded pose keeps readable world scale CarouselPony/2
+PASS Actual painted pose selected companions/TeacupCricket/0/2
+PASS Painted pose is actually visible, not hidden by body puppet TeacupCricket/2
+PASS Expanded pose keeps readable world scale TeacupCricket/2
+PASS Actual painted pose selected companions/RibbonOtter/0/2
+PASS Painted pose is actually visible, not hidden by body puppet RibbonOtter/2
+PASS Expanded pose keeps readable world scale RibbonOtter/2
+PASS Actual painted pose selected companions/SpindleWren/0/2
+PASS Painted pose is actually visible, not hidden by body puppet SpindleWren/2
+PASS Expanded pose keeps readable world scale SpindleWren/2
+PASS Native dimensions companions-7-2
+PASS Actual painted pose selected companions/MonsterMarble/0/3
+PASS Painted pose is actually visible, not hidden by body puppet MonsterMarble/3
+PASS Expanded pose keeps readable world scale MonsterMarble/3
+PASS Actual painted pose selected companions/CarouselPony/0/3
+PASS Painted pose is actually visible, not hidden by body puppet CarouselPony/3
+PASS Expanded pose keeps readable world scale CarouselPony/3
+PASS Actual painted pose selected companions/TeacupCricket/0/3
+PASS Painted pose is actually visible, not hidden by body puppet TeacupCricket/3
+PASS Expanded pose keeps readable world scale TeacupCricket/3
+PASS Actual painted pose selected companions/RibbonOtter/0/3
+PASS Painted pose is actually visible, not hidden by body puppet RibbonOtter/3
+PASS Expanded pose keeps readable world scale RibbonOtter/3
+PASS Actual painted pose selected companions/SpindleWren/0/3
+PASS Painted pose is actually visible, not hidden by body puppet SpindleWren/3
+PASS Expanded pose keeps readable world scale SpindleWren/3
+PASS Native dimensions companions-7-3
+PASS Actual actor binds its exact identity and evolution locomotion/Postmaster/0
+PASS Actual actor binds its exact identity and evolution locomotion/DrowsySeer/0
+PASS Actual actor binds its exact identity and evolution locomotion/RootOracle/0
+PASS Actual actor binds its exact identity and evolution locomotion/LoneJelly/0
+PASS Actual actor binds its exact identity and evolution locomotion/GlassDice/0
+PASS Actual actor binds its exact identity and evolution locomotion/TideSinger/0
+PASS Actual actor binds its exact identity and evolution locomotion/CometRunner/0
+PASS Actual actor binds its exact identity and evolution locomotion/MirrorKeeper/0
+PASS Actual painted pose selected locomotion/Postmaster/0/0
+PASS Painted pose is actually visible, not hidden by body puppet Postmaster/0
+PASS Expanded pose keeps readable world scale Postmaster/0
+PASS Actual painted pose selected locomotion/DrowsySeer/0/0
+PASS Painted pose is actually visible, not hidden by body puppet DrowsySeer/0
+PASS Expanded pose keeps readable world scale DrowsySeer/0
+PASS Actual painted pose selected locomotion/RootOracle/0/0
+PASS Painted pose is actually visible, not hidden by body puppet RootOracle/0
+PASS Expanded pose keeps readable world scale RootOracle/0
+PASS Actual painted pose selected locomotion/LoneJelly/0/0
+PASS Painted pose is actually visible, not hidden by body puppet LoneJelly/0
+PASS Expanded pose keeps readable world scale LoneJelly/0
+PASS Actual painted pose selected locomotion/GlassDice/0/0
+PASS Painted pose is actually visible, not hidden by body puppet GlassDice/0
+PASS Expanded pose keeps readable world scale GlassDice/0
+PASS Actual painted pose selected locomotion/TideSinger/0/0
+PASS Painted pose is actually visible, not hidden by body puppet TideSinger/0
+PASS Expanded pose keeps readable world scale TideSinger/0
+PASS Actual painted pose selected locomotion/CometRunner/0/0
+PASS Painted pose is actually visible, not hidden by body puppet CometRunner/0
+PASS Expanded pose keeps readable world scale CometRunner/0
+PASS Actual painted pose selected locomotion/MirrorKeeper/0/0
+PASS Painted pose is actually visible, not hidden by body puppet MirrorKeeper/0
+PASS Expanded pose keeps readable world scale MirrorKeeper/0
+PASS Native dimensions locomotion-0-0
+FAIL Actual painted pose selected locomotion/Postmaster/0/1
+PASS Painted pose is actually visible, not hidden by body puppet Postmaster/1
+PASS Expanded pose keeps readable world scale Postmaster/1
+FAIL Actual painted pose selected locomotion/DrowsySeer/0/1
+PASS Painted pose is actually visible, not hidden by body puppet DrowsySeer/1
+PASS Expanded pose keeps readable world scale DrowsySeer/1
+FAIL Actual painted pose selected locomotion/RootOracle/0/1
+PASS Painted pose is actually visible, not hidden by body puppet RootOracle/1
+PASS Expanded pose keeps readable world scale RootOracle/1
+FAIL Actual painted pose selected locomotion/LoneJelly/0/1
+PASS Painted pose is actually visible, not hidden by body puppet LoneJelly/1
+PASS Expanded pose keeps readable world scale LoneJelly/1
+FAIL Actual painted pose selected locomotion/GlassDice/0/1
+PASS Painted pose is actually visible, not hidden by body puppet GlassDice/1
+PASS Expanded pose keeps readable world scale GlassDice/1
+FAIL Actual painted pose selected locomotion/TideSinger/0/1
+PASS Painted pose is actually visible, not hidden by body puppet TideSinger/1
+PASS Expanded pose keeps readable world scale TideSinger/1
+FAIL Actual painted pose selected locomotion/CometRunner/0/1
+PASS Painted pose is actually visible, not hidden by body puppet CometRunner/1
+PASS Expanded pose keeps readable world scale CometRunner/1
+FAIL Actual painted pose selected locomotion/MirrorKeeper/0/1
+FAIL Actual painted pose selected locomotion/MirrorKeeper/0/1

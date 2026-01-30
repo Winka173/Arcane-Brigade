@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "scope": "Act I / 20 waves. Painted sprites replace Blender art. Later acts deferred.",
+  "build": "Result: Succeeded\nErrors: 0\nWarnings: 0\nBytes: 1602615996\nPath: Builds/HeroIdentity/ArcaneBrigade.exe",
+  "checks": {
+    "act_one_editor": 191,
+    "story_editor": 272,
+    "roster15": 1021,
+    "recruitment": 802,
+    "hero_identity": 2330,
+    "PreviewExports/ActOne/Native/Native_Checks.txt": 480,
+    "PreviewExports/ActOne/Reduced/Native_Checks.txt": 480,
+    "PreviewExports/MienCho/Encounters/Native/Native_Checks.txt": 71,
+    "PreviewExports/MienCho/Encounters/Reduced/Native_Checks.txt": 71,
+    "PreviewExports/MienCho/Native/Native_Checks.txt": 58,
+    "PreviewExports/MienCho/Reduced/Native_Checks.txt": 58
+  },
+  "totalChecks": 5834,
+  "totalImages": 84,
+  "captureRuns": [
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:12:26.5666710+07:00",
+      "Name": "Native",
+      "Checks": 480,
+      "Finished": "2026-10-16T19:13:46.2454211+07:00",
+      "ChecksFile": "PreviewExports/ActOne/Native/Native_Checks.txt",
+      "Images": 17
+    },
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:13:46.2591322+07:00",
+      "Name": "Reduced",
+      "Checks": 480,
+      "Finished": "2026-10-16T19:14:31.8629789+07:00",
+      "ChecksFile": "PreviewExports/ActOne/Reduced/Native_Checks.txt",
+      "Images": 17
+    },
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:14:31.8967847+07:00",
+      "Name": "Encounters/Native",
+      "Checks": 71,
+      "Finished": "2026-10-16T19:15:15.9401590+07:00",
+      "ChecksFile": "PreviewExports/MienCho/Encounters/Native/Native_Checks.txt",
+      "Images": 4
+    },
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:15:15.9421120+07:00",
+      "Name": "Encounters/Reduced",
+      "Checks": 71,
+      "Finished": "2026-10-16T19:15:40.8060636+07:00",
+      "ChecksFile": "PreviewExports/MienCho/Encounters/Reduced/Native_Checks.txt",
+      "Images": 4
+    },
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:15:40.8080250+07:00",
+      "Name": "Native",
+      "Checks": 58,
+      "Finished": "2026-10-16T19:16:52.7823387+07:00",
+      "ChecksFile": "PreviewExports/MienCho/Native/Native_Checks.txt",
+      "Images": 21
+    },
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:16:52.7842918+07:00",
+      "Name": "Reduced",
+      "Checks": 58,
+      "Finished": "2026-10-16T19:17:35.6527004+07:00",
+      "ChecksFile": "PreviewExports/MienCho/Reduced/Native_Checks.txt",
+      "Images": 21
+    }
+  ],
+  "sourceSha256": {
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightLanternField.cs": "9120ce683ee4243c2a5c8d54c111500447b1e44001c4ab3499dce0c54beb5000",
+    "Assets/ArcaneBrigade/Runtime/Presentation/SharedLightField.cs": "675c8adf5a6fa0841f791b9bcc22da6ba9fd4a47a91fb5967d76744be324ee9c",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightmarePresence.cs": "f66a718abd8ada423fdc368391277131de966159a59da1c003a378554b93ead7",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightmarePresentation.cs": "7a8a3ba986c554d5573c0067b84026530590ca4821690f508d40615de9aa5195",
+    "Assets/ArcaneBrigade/Runtime/Presentation/WaitingJourney.cs": "ed80483bd07bbfdfe3edd07c5d12b769be41734544e1e9c4e2a59713eaef6504",
+    "Assets/ArcaneBrigade/Runtime/Presentation/WaitingRoomController.cs": "42c02409749a0abafb5a4181476661677393a5eced2cbe7308b0ded1c8adb54c",
+    "Assets/ArcaneBrigade/Runtime/Presentation/MienChoPresentation.cs": "7dadc9418168fa4ae0d78deb3ec4657b4bde604f2118b722b2fea3fbc42090f2",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightmareDialogue.cs": "87ae9ff7892a9e3c97dd474141a403305a1a256e25be5225ab9f4fa02eeb3e64",
+    "Assets/ArcaneBrigade/Runtime/Data/WaitingCampaign.cs": "a0e3181ae608b50c29a900a7ed937d59b60bb11d62dc7f61e1d9d48e50ace78e",
+    "Assets/ArcaneBrigade/Runtime/Data/WaitingRooms.cs": "3fba80454e263e1fd5b01a7fd5e11b0a9750281a7d204a04b0407b41963e6a24",
+    "Assets/ArcaneBrigade/Runtime/Data/WaitingCompanionQuests.cs": "417926bef34f1b3a2c41e3320cbe0bdf5e229fc8aee26da5948fa53ac7723e7b",
+    "Assets/ArcaneBrigade/Runtime/Data/MienChoStory.cs": "2ea85688500853d1f9ccafa25c18d894302a28c314c39b635ddc5da9657e4cc8",
+    "Assets/ArcaneBrigade/Runtime/Core/MienChoCapture.cs": "9b610c0e350ae824bb9d8e650e082cf157cf4969a76248ae67185b865b465fda",
+    "Assets/ArcaneBrigade/Runtime/Core/ArenaController.cs": "75a382419ef46a5e584fa8f645ff0f74d5f6d1dc26877566905ef6fe3cd3c2f8",
+    "Assets/ArcaneBrigade/Art/Presentation/NightLanternField.shader": "fff2db06bc820797bbead99568d210e508c8637bf9c4f2db8abfdeb7f4ecdc12",
+    "Assets/ArcaneBrigade/Art/Presentation/NightFogVolume.shader": "6de6728184579611a7091948db1863cdaf19255ba6c32198e26ccb4177226989",
+    "Assets/ArcaneBrigade/Art/Presentation/JourneyRoomLight.shader": "554dcb463872fc55d2f5d5f5a7551ae3f8a368674aa6f14507b75710690dee69",
+    "Assets/ArcaneBrigade/Art/QualityHD/FloorHD.shader": "6fcc93a7bcdc702c9b294b95d140403e622fdd829325bde7b5cc88e900c06712",
+    "Assets/ArcaneBrigade/Scenes/WaitingRoom.unity": "adfeb1ec94d2d972b7795fc832da956bfbfd9a09f112913a81fc6f5f4e57a9a4",
+    "Assets/ArcaneBrigade/Editor/WaitingActOneBuilder.cs": "9d57feafc2d0c0c461349c2bd5e06855b92980e8b40bae4926321b224fd21df5",
+    "Assets/ArcaneBrigade/Editor/WaitingActOneChecks.cs": "2902d53c5aa02b500f436d573611a64769dde5091f5662d122f72cdd24f74ddb",
+    "ProjectSettings/EditorBuildSettings.asset": "0807e94188f79db6640545451515f174352ec4570e342823179b59f652465972",
+    "Tools/Story/Capture_ActOne.ps1": "ab447defbfa7bc98a28c1b17b46afe747dec6792f6a99f58a5aeff2194b15459",
+    "Tools/Story/Capture_ActOne_All.ps1": "8786fcacef459c22ba5ad6cfcfcbcdfb033ca766bfa2584f62060490278d2989",
+    "Tools/Story/verify_act_one.py": "bdf163ad7a2a8345818f9fc9c23c70669ece22ca0c9f318b5ffd6173a11a4dbd"
+  },
+  "playerContentSha256": {
+    "Builds/HeroIdentity/ArcaneBrigade.exe": "e83058c236f35a720c27e465dc42d1549f13b25a8573dce464438b855764e7af",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/Managed/ArcaneBrigade.Runtime.dll": "998b5275da7b0ac9fb27977a9ba1a5740d3767ac740916f67c2c85918ae51d21",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/globalgamemanagers": "82cd8b3d5f0bd72c6fd0864e4612c0a024aaa0ba2a2f7a0774fffaf5eee1bd90",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/sharedassets0.assets": "05f2840b92a9407141c0533ac0f86723494a1db32bebfd89247773ddccb3cc01",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/resources.assets": "5e11407ad84bea9368f6c6fc506d850657ae2e7b60b1fd2d8250c32a5d60e2b6"
+  },
+  "limitations": [
+    "Drawn sprite lamps and floor use a Unity analytical light/occlusion field. No Blender lamp meshes, full-scene ray tracing or fluid simulation.",
+    "Fog integrates eight depth samples at 320x240; reduced effects use four samples and lower density.",
+    "Timing covers a diagnostic fixture with limited spawn and includes frame cap; not a hardware-independent full-battle benchmark.",
+    "No physical gamepad or subjective full-campaign playtest is claimed."
+  ],
+  "verifiedAtVietnam": "2026-10-16T19:17:35.6527004+07:00"
+}

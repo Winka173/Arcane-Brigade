@@ -45,12 +45,16 @@ MonoBehaviour:
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nLantern Guild companions
     gain 8% reach while at least one Spindle Wren talent is owned, subject to final
     range caps. Presence effect; extra copies do not multiply it.\r\n\nSUPPORT WHILE
-    OWNED\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
-    and absorbed memories; their stated percentages are not multiplied by star level
-    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds:
-    archive, lantern-guild. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    OWNED\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA guide carrying thread between settlements. They tied
+    it to their wrist until every departure pulled them apart. They now teach travellers
+    to hold and release their own ends, and seek a route that survives an honest
+    goodbye.\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
+    talents count bodies and absorbed memories; their stated percentages are not
+    multiplied by star level unless explicitly stated. Listed support modifiers scale
+    separately at 1/2/4.\r\nBonds: archive, lantern-guild. Immortal. Weapon rolls
+    on recruitment; three equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Original:SpindleWren
   ExclusiveHero: 

@@ -81,7 +81,8 @@ namespace ArcaneBrigade
         {
             if (IdentityMortar(source, damage)) return true;
             if (!catalog.EnableHeroMechanics || source != Champion || ReferenceHero != "Burgerboo") return false;
-            UnitState target = units.Find(u => u.Id == source.AttackTargetId && CanHit(source.Faction, u));
+            UnitState target = UnitWithId(source.AttackTargetId);
+            if (target != null && !CanHit(source.Faction, target)) target = null;
             if (target == null) return true;
             int count = Mathf.Min(2, Mathf.Max(1, source.Definition.Weapon.ProjectileCount));
             for (int i = 0; i < count; i++) Field(ExpandedFieldKind.Fuse, source, target.Position + Vector2.right * (i - (count - 1) * .5f) * .9f, source.AttackDirection, 1.1f, damage / count, .85f, .3f, cause);
@@ -97,7 +98,8 @@ namespace ArcaneBrigade
         private bool FollowOctoberMount(UnitState rider)
         {
             if (rider.MountId <= 0) return false;
-            UnitState mount = units.Find(u => u.Id == rider.MountId && u.Alive);
+            UnitState mount = UnitWithId(rider.MountId);
+            if (mount != null && !mount.Alive) mount = null;
             if (mount == null) { rider.MountId = 0; rider.BodyLift = 0; return false; }
             rider.Position = ClampPosition(mount.Position + Vector2.up * mount.Definition.BodyHeight * .35f, rider.Definition.Radius);
             rider.BodyLift = mount.Definition.BodyHeight * .25f; rider.Velocity = mount.Velocity; return true;
@@ -105,7 +107,7 @@ namespace ArcaneBrigade
         private Vector2 OctoberEnemyTarget(UnitState enemy)
         {
             if (!enemy.Definition.IsBoss && catalog.EnableHeroMechanics && Mathf.Repeat(Elapsed, 6) < 2)
-                foreach (UnitState decoy in OctoberUnits("\"Unstoppable\" Paul")) if ((decoy.Position - enemy.Position).sqrMagnitude < 64) return decoy.Position;
+                foreach (UnitState decoy in OctoberUnits("\"Unstoppable\" Paul")) if (decoy.Alive && (decoy.Position - enemy.Position).sqrMagnitude < 64) return decoy.Position;
             return Champion.Position;
         }
         private void OctoberEcho(UnitState source, float scale, CombatCause cause, int count = 1)
@@ -151,7 +153,7 @@ namespace ArcaneBrigade
             int original = events.Count;
             for (int i = 0; i < original; i++)
             {
-                CombatEvent e = events[i]; UnitState source = units.Find(u => u.Id == e.Cause.SourceUnitId);
+                CombatEvent e = events[i]; UnitState source = UnitWithId(e.Cause.SourceUnitId);
                 if (e.Kind == CombatEventKind.Fire && e.Faction != Faction.Enemy && e.Cause.Depth == 0)
                 {
                     if (source != null) source.OctoberAttacks = Mathf.Min(1000, source.OctoberAttacks + 1);

@@ -44,7 +44,10 @@ MonoBehaviour:
   PassiveStrength: 0.5
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nBasic hits gently pull ordinary
     enemies inward. Bosses cannot be pulled.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3
-    traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
+    traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE IN
+    THE WAITING REALM\nA negotiator who soothed people until they forgot their objections,
+    then testified against the court that hired them. They now ask again after the
+    enchantment fades. They seek agreement that survives its disappearance.\r\nPERSONAL
     PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
     and absorbed memories; their stated percentages are not multiplied by star level
     unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds:

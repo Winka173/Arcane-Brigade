@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private Camera viewCamera;
         private readonly SpriteRenderer[] layers = new SpriteRenderer[4];
+        private readonly DreamSuspension[] suspensions=new DreamSuspension[4];
         private float reveal;
         private float arrival;
         private bool customer;
@@ -22,6 +23,7 @@ namespace ArcaneBrigade
             {
                 var child = new GameObject("DreamArchitecture" + index); child.transform.SetParent(transform, false);
                 layers[index] = child.AddComponent<SpriteRenderer>(); layers[index].sortingOrder = -42;
+                suspensions[index]=child.AddComponent<DreamSuspension>();
                 layers[index].sprite = art.Length > index ? art[index] : null;
             }
         }
@@ -51,7 +53,9 @@ namespace ArcaneBrigade
             for (int index = 0; index < layers.Length; index++)
             {
                 SpriteRenderer layer = layers[index]; layer.enabled = layer.sprite != null && alpha > .005f;
-                if (!layer.enabled) continue;
+                Sprite redrawn = FinalQualityArtwork.Current?.Frame("architecture-" + index, owner.PresentationClock, PresentationSettings.ReducedMotion);
+                if (redrawn != null) layer.sprite = redrawn;
+                if (!layer.enabled) {suspensions[index].Hide();continue;}
                 Vector2 size = layer.sprite.bounds.size;
                 float width = index == 0 ? halfWidth * 1.45f : index == 3 ? halfWidth * 1.9f : halfWidth * .27f;
                 float scale = width / Mathf.Max(.01f, size.x);
@@ -68,7 +72,15 @@ namespace ArcaneBrigade
                 layer.transform.position += DreamLevitation.Offset(owner.PresentationClock, 80 + index, NightmareRules.Depth(state.Wave), PresentationSettings.ReducedMotion, .35f);
                 layer.transform.localRotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 80 + index, PresentationSettings.ReducedMotion, .22f));
                 layer.color = Color.Lerp(new Color(.64f, .6f, .74f, alpha), new Color(.9f, .75f, .7f, alpha), finale ? opening : 0);
+                if (SharedLightField.Active != null)
+                {
+                    Color shade = layer.color;
+                    float light = SharedLightField.Active.SurfaceVisibility(layer.transform.position);
+                    shade.r *= light; shade.g *= light; shade.b *= light; layer.color = shade;
+                }
                 VisibleCount++;
+                Vector3 foot=new Vector3(layer.bounds.center.x,layer.bounds.min.y,0);
+                suspensions[index].Display(foot-Vector3.up*.25f,foot,Mathf.Min(4,layer.bounds.size.x),owner.PresentationClock,80+index,layer.sortingOrder-1,alpha*.5f);
             }
         }
     }

@@ -49,6 +49,12 @@ Shader "ArcaneBrigade/FloorHD"
             float _DreamEnabled, _DreamDepth, _DreamAmbient, _DreamClock, _DreamDawn;
             float4 _DreamLight0, _DreamLight1, _DreamLight2, _DreamLight3;
             float4 _DreamColor0, _DreamColor1, _DreamColor2, _DreamColor3;
+            sampler2D _NightLanternField;
+            float4 _NightLanternRect;
+            float _NightLanternEnabled;
+            sampler2D _SharedLightField;
+            float4 _SharedLightRect;
+            float _SharedLightEnabled;
             struct VertexInput { float4 vertex : POSITION; float2 uv : TEXCOORD0; };
             struct VertexOutput { float4 vertex : SV_POSITION; float2 uv : TEXCOORD0; float2 mapUV : TEXCOORD1; float2 world : TEXCOORD2; };
             VertexOutput vert(VertexInput input)
@@ -111,6 +117,9 @@ Shader "ArcaneBrigade/FloorHD"
                         + DreamSpill(room, _DreamLight3, _DreamColor3.rgb);
                     float floorHaze = (sin(room.x * .7 + _DreamClock * .09) * sin(room.y * .45 - _DreamClock * .07) * .5 + .5) * margin * depth * .035;
                     float3 dreamTint = lerp(float3(1.12, 1.03, .9), float3(.9, .86, 1.04), depth);
+                    float4 party = tex2D(_SharedLightField, saturate((room - _SharedLightRect.xy) / max(_SharedLightRect.zw, .01)));
+                    float3 lanterns = tex2D(_NightLanternField, saturate((room - _NightLanternRect.xy) / max(_NightLanternRect.zw, .01))).rgb * _NightLanternEnabled;
+                    spill = min(max(spill, lanterns * 1.15) + party.rgb * _SharedLightEnabled * .9 * (1 - _DreamDawn * .8), 1.15);
                     color.rgb = color.rgb * dreamTint * (_DreamAmbient + spill * .65) + spill * .07;
                     color.rgb = lerp(color.rgb, float3(.13, .11, .18), floorHaze);
                     color.rgb = lerp(color.rgb, color.rgb * float3(1.12, 1.03, .88), _DreamDawn * .35);

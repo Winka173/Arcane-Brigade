@@ -38,6 +38,7 @@ namespace ArcaneBrigade
         }
         private void ValidateNightmare(RunSnapshot snapshot)
         {
+            MienChoStory.Validate(snapshot);
             NightmareProgress progress = snapshot?.Nightmare;
             if (progress == null) return;
             int finalPage = progress.Farewell == NightmareFarewell.LeaveLight ? 5 : 4;

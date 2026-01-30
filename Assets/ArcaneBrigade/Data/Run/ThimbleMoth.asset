@@ -46,12 +46,14 @@ MonoBehaviour:
     3 gold. Shared 2s cooldown; shares the rebate timer with TV Head. Multiple copies
     do not multiply the payout.\r\n\nSUPPORT WHILE OWNED\nCompanions / Attack speed:
     +4%\nCompanions / Damage: -3%\nTier 1/2/3 traits \xD71/2/4; merging three units
-    reduces support sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic personal
-    passive.\r\n\nNamed talents count bodies and absorbed memories; their stated
-    percentages are not multiplied by star level unless explicitly stated. Listed
-    support modifiers scale separately at 1/2/4.\r\nBonds: archive, resolve. Immortal.
-    Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless
-    the talent forbids it."
+    reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nAn apprentice surgeon
+    whose tools also repaired coats. Their teacher called every error a moral failure.
+    They seek colleagues who correct mistakes without demanding a confession of worthlessness.\r\nPERSONAL
+    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
+    and absorbed memories; their stated percentages are not multiplied by star level
+    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds:
+    archive, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Misfortune" Emily'
   ExclusiveHero: 

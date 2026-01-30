@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: TreasureAcorn
   DisplayName: The Treasure Clerk
-  Body: {fileID: 1375422801, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
+  Body: {fileID: -1471993200, guid: 3872c54d01904ef478c7d14843c4d096, type: 3}
   AnimationFrames:
-  - {fileID: 1375422801, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  - {fileID: 659177622, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  - {fileID: 1631050211, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  - {fileID: -1384891847, guid: 9ae8d16ee7af1d6498f9d2feada27669, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1471993200, guid: 3872c54d01904ef478c7d14843c4d096, type: 3}
+  - {fileID: 673924288, guid: 3872c54d01904ef478c7d14843c4d096, type: 3}
+  - {fileID: -1409595972, guid: 3872c54d01904ef478c7d14843c4d096, type: 3}
+  - {fileID: -1608101872, guid: 3872c54d01904ef478c7d14843c4d096, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 8d0b6445796893149a8fe67e7d882103, type: 2}
   Weapon: {fileID: 11400000, guid: a9a2d9fefdfdf754ba93cd3c99a14df1, type: 2}
   Health: 120
   Speed: 3.2

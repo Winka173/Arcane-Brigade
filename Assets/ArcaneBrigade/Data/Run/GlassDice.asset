@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: GlassDice
   DisplayName: Lady Loaded Dice
-  Body: {fileID: -449002741, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
+  Body: {fileID: 73310910, guid: 8238cf756d734e843a709cccc5921107, type: 3}
   AnimationFrames:
-  - {fileID: -449002741, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
-  - {fileID: -1061027673, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
-  - {fileID: 885402445, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
-  - {fileID: -1913645117, guid: 70fd26b142715864ab6350c7bf9e0bd2, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 73310910, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: -1518459256, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: 2063219238, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: 228434469, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 96ee1ac4762c008478d443b38b8cdf9e, type: 2}
   Weapon: {fileID: 11400000, guid: cda2bf2449b03bb418574501dcd3441a, type: 2}
   Health: 60
   Speed: 3

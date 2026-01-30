@@ -45,13 +45,16 @@ MonoBehaviour:
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nEach Carousel Pony grants
     this ally 30% damage and 5 contact damage, up to 3 ponies.\r\n\nSUPPORT WHILE
     OWNED\nTeam / Speed correction: +2.5%\nChampion / Maximum health: -1\nTier 1/2/3
-    traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nEvery 4s in combat, attempt to heal the hero for 1.5 HP before healing
-    modifiers. Healing restrictions apply.\r\n\nNamed talents count bodies and absorbed
-    memories; their stated percentages are not multiplied by star level unless explicitly
-    stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds: hearth,
-    resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE IN
+    THE WAITING REALM\nA one-eyed watchkeeper dismissed for reporting footsteps behind
+    the official patrol. Following them led to a missing resident. They want a watch
+    that treats listening as part of seeing.\r\nPERSONAL PASSIVE\nEvery 4s in combat,
+    attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions
+    apply.\r\n\nNamed talents count bodies and absorbed memories; their stated percentages
+    are not multiplied by star level unless explicitly stated. Listed support modifiers
+    scale separately at 1/2/4.\r\nBonds: hearth, resolve. Immortal. Weapon rolls
+    on recruitment; three equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Cars ARE My Kids" Chris'
   ExclusiveHero: 

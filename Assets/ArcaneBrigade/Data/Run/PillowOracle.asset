@@ -47,8 +47,11 @@ MonoBehaviour:
     gain 8% movement and attack speed per talent. Combined with Intelligent Construct,
     this buff is capped at 25%.\r\n\nSUPPORT WHILE OWNED\nChampion / Maximum health:
     +3\nChampion / Attack speed: -0.5%\nTier 1/2/3 traits \xD71/2/4; merging three
-    units reduces support sources.\n\r\nPERSONAL PASSIVE\nOwn weapon damage gains
-    0.8% per companion body in the roster, before later balance modifiers.\r\n\nNamed
+    units reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nThey hear dreams
+    through a boarding house's walls. They predicted visitors' needs until nobody
+    remembered to ask what they wanted. They seek an ordinary night of sleep with
+    someone else keeping watch.\r\nPERSONAL PASSIVE\nOwn weapon damage gains 0.8%
+    per companion body in the roster, before later balance modifiers.\r\n\nNamed
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nSource: dream shop or special reward, subject to hero

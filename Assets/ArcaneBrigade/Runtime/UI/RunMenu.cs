@@ -241,9 +241,9 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(0, 0, 1280, 720), ArcadeSkin.Ink);
             if (CurrentPage != Page.Landing)
             {
-                if (shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
-                if (shopIllustration != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), shopIllustration, ScaleMode.ScaleAndCrop);
-                ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0.05f, 0.04f, 0.09f, PresentationSettings.HighReadability ? 0.97f : 0.86f));
+                Texture2D room = Backdrop();
+                if (room != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room, ScaleMode.ScaleAndCrop);
+                ArcadeSkin.Line(new Rect(0, 0, 1280, 720), new Color(0.02f, 0.03f, 0.055f, PresentationSettings.HighReadability ? 0.97f : 0.84f));
                 ArcadeSkin.Header(new Rect(60, 32, 940, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage));
             }
             if (CurrentPage != Page.Landing && Button(new Rect(1010, 40, 200, 50), "BACK"))
@@ -268,7 +268,7 @@ namespace ArcaneBrigade
                     break;
                 case Page.Settings: DrawSettings(); break;
                 case Page.Help:
-                    Label(new Rect(110, 185, 1060, 410), "MOVE: WASD / arrows / stick / drag the lower-left area.\nChampion and companions attack automatically; no skill buttons.\nSHOP: approach a stand, press Space / A or tap USE. Purchases are not automatic.\nCompanions are immortal, do not block bullets by default, and require no upkeep. Stock cannot be sold or locked.\nBRIGADE: notebook icon / I / Y opens stats, companions, relics and links.\nTab or LB/RB changes tabs. I / Y / Esc / B closes.\nPAUSE: pause icon / Esc / Start or B. Leaving the app also pauses.\nClearing each wave restores full champion HP. Melee companions patrol and pursue with wider roaming and visible foot dust.\nProfile stores unlocks, cosmetics and records only, without permanent stat growth.");
+                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Moving is the only control.\nYour companions fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I / Y: stats, companions, relics and links. Tab or LB/RB changes tabs; I / Y / Esc / B closes.\nTHE WAITING JOURNAL  —  J in the shop keeps every chapter you have found.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your companions' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
                     break;
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
@@ -287,7 +287,7 @@ namespace ArcaneBrigade
             if (!profile.ReducedMotion)
             {
                 float alpha = Mathf.Clamp01(1 - (Time.unscaledTime - pageChangedAt) / 0.16f);
-                if (alpha > 0) ArcadeSkin.Line(new Rect(25, 145, 1230, 540), new Color(0.10f, 0.08f, 0.17f, alpha * 0.3f));
+                if (alpha > 0) ArcadeSkin.Line(new Rect(25, 145, 1230, 540), new Color(0.03f, 0.04f, 0.07f, alpha * 0.3f));
             }
             navigation.End();
             GlossaryUI.Draw(new Vector2(1280, 720));
@@ -296,22 +296,26 @@ namespace ArcaneBrigade
             GUI.skin = previousSkin;
         }
 
-        // Diegetic main menu: every entry is an object on the shop counter painted in LostShop_v1 (1280x720 design space).
-        private static readonly string[] SpotLabels = { "NEW RUN", "RESUME", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
-        private static readonly string[] SpotHints = { "Step onto the stage", "Back into tonight's show", "The display case", "The receipt printer", "Adjust the lights", "Ring for help" };
-        private static readonly string[] SpotCues = { "menu.spot.hero", "menu.spot.door", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
+        // Main menu = the Waiting Room (Resources/MienCho/WaitingRoom.png, 1280x720 design space after ScaleAndCrop):
+        // the lit door begins a journey, the empty chair is where you left off, the fallen letter holds the letters you kept.
+        // Entries without an object in the room live only in the bottom row; the row mirrors every entry one-to-one.
+        private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
+        private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works" };
+        private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
         public static readonly Rect[] SpotAreas =
         {
-            new Rect(505, 330, 230, 280),  // the champion on the lit counter
-            new Rect(752, 150, 135, 240),  // arched doorway into the night
-            new Rect(1105, 0, 150, 140),   // glass display jar
-            new Rect(1030, 380, 200, 190), // receipt printer
-            new Rect(548, 0, 200, 96),     // moon lamp
-            new Rect(292, 172, 86, 96),    // shop bell
+            new Rect(620, 0, 310, 452),    // the lit door
+            new Rect(455, 208, 257, 376),  // the empty chair
+            Rect.zero,
+            new Rect(760, 488, 170, 85),   // the letter on the floor
+            Rect.zero,
+            Rect.zero,
         };
         private int hoveredSpot = -1;
         private GUIStyle smallButton;
         private GUIStyle spotHint;
+        private GUIStyle eyebrowStyle;
+        private Texture2D waitingRoom;
 
         private bool SpotEnabled(int index) => index != 1 || CanResume;
         private void ActivateSpot(int index)
@@ -328,76 +332,104 @@ namespace ArcaneBrigade
             }
         }
 
+        private Texture2D Backdrop()
+        {
+            if (waitingRoom == null) waitingRoom = Resources.Load<Texture2D>("MienCho/WaitingRoom");
+            if (waitingRoom == null && shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
+            return waitingRoom != null ? waitingRoom : shopIllustration;
+        }
+
         private void DrawLanding()
         {
-            if (shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
-            if (shopIllustration != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), shopIllustration, ScaleMode.ScaleAndCrop);
+            Texture2D room = Backdrop();
+            if (room != null) GUI.DrawTexture(new Rect(0, 0, 1280, 720), room, ScaleMode.ScaleAndCrop);
             if (landingShade == null)
             {
                 landingShade = new Texture2D(64, 1, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.HideAndDontSave };
                 var pixels = new Color[64];
-                for (int index = 0; index < pixels.Length; index++) pixels[index] = new Color(0.035f, 0.05f, 0.08f, Mathf.Lerp(0.85f, 0, index / 63f));
+                for (int index = 0; index < pixels.Length; index++) pixels[index] = new Color(0.02f, 0.03f, 0.06f, Mathf.Lerp(0.75f, 0, index / 63f));
                 landingShade.SetPixels(pixels); landingShade.Apply(false, true);
             }
-            GUI.DrawTexture(new Rect(0, 0, 520, 200), landingShade);
-            ArcadeSkin.Line(new Rect(0, 650, 1280, 70), new Color(0.03f, 0.03f, 0.06f, 0.82f));
-            float kick = BeatPulse.Kick;
-            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(56, true));
+            GUI.DrawTexture(new Rect(0, 0, 600, 720), landingShade);
+            ArcadeSkin.Line(new Rect(0, 652, 1280, 68), new Color(0.02f, 0.025f, 0.05f, 0.85f));
+            ArcadeSkin.Divider(new Rect(36, 652, 1208, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.3f));
+            bool reduced = profile.ReducedMotion;
+            float breathe = reduced ? 0.5f : 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * 1.1f);
+
+            if (eyebrowStyle == null) { eyebrowStyle = ArcadeTypography.Style(14, false, true); eyebrowStyle.normal.textColor = ArcadeSkin.Accent; }
+            GUI.Label(new Rect(44, 34, 500, 22), "THE WAITING PLACE", eyebrowStyle);
+            GUIStyle logo = logoStyle ?? (logoStyle = ArcadeTypography.Style(64, true));
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
-            if (logoShadow == null) { logoShadow = new GUIStyle(logo); logoShadow.normal.textColor = ArcadeSkin.Accent; }
-            GUI.Label(new Rect(45, 25 - kick * 3, 600, 150), "ARCANE\nBRIGADE", logoShadow);
+            logo.wordWrap = false;
+            if (logoShadow == null) { logoShadow = new GUIStyle(logo); }
+            logoShadow.normal.textColor = new Color(0, 0, 0, 0.6f);
+            ArcadeSkin.Glow(new Rect(-40, -10, 620, 200), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.10f + 0.04f * breathe));
+            GUI.Label(new Rect(44, 58, 620, 90), "Arcane Brigade", logoShadow);
             logo.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(40, 20 - kick * 3, 600, 150), "ARCANE\nBRIGADE", logo);
+            GUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
+            if (spotHint == null) { spotHint = ArcadeTypography.Style(16, false); spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; spotHint.wordWrap = false; }
+            spotHint.alignment = TextAnchor.UpperLeft;
+            GUI.Label(new Rect(44, 146, 520, 24), "Someone is waiting. Just move — your light and your companions do the rest.", spotHint);
+            spotHint.alignment = TextAnchor.MiddleCenter;
 
             int mouseSpot = -1;
             for (int index = 0; index < SpotAreas.Length; index++)
-                if (SpotEnabled(index) && SpotAreas[index].Contains(Event.current.mousePosition)) mouseSpot = index;
+                if (SpotAreas[index].width > 0 && SpotEnabled(index) && SpotAreas[index].Contains(Event.current.mousePosition)) mouseSpot = index;
             int focus = mouseSpot >= 0 ? mouseSpot : Mathf.Clamp(navigation.Selected, 0, SpotAreas.Length - 1);
             if (Event.current.type == EventType.Repaint && mouseSpot >= 0 && mouseSpot != hoveredSpot) CheckpointAudio.PlayInterfaceId(SpotCues[mouseSpot]);
             if (Event.current.type == EventType.Repaint) hoveredSpot = mouseSpot;
 
-            // idle twinkles walk across the objects on the beat so every object reads as interactive
+            // the door always breathes a little; objects you can use glow faintly so they read as interactive
+            ArcadeSkin.Glow(new Rect(560, -60, 430, 600), new Color(1f, 0.85f, 0.65f, 0.10f + 0.08f * breathe));
             for (int index = 1; index < SpotAreas.Length; index++)
             {
                 Rect area = SpotAreas[index];
-                float twinkle = ((BeatPulse.Beat + index) % 5 == 0 ? kick : 0) + 0.15f;
-                if (!SpotEnabled(index)) twinkle = 0.05f;
-                ArcadeSkin.Glow(new Rect(area.center.x - 40, area.center.y - 40, 80, 80), new Color(1f, 0.85f, 0.5f, 0.35f * twinkle));
+                if (area.width <= 0) continue;
+                float hint = SpotEnabled(index) ? 0.10f + 0.06f * breathe : 0.03f;
+                ArcadeSkin.Glow(new Rect(area.center.x - 70, area.center.y - 60, 140, 120), new Color(1f, 0.80f, 0.50f, hint));
             }
             Rect focused = SpotAreas[focus];
-            float glowPad = 30 + kick * 8;
-            ArcadeSkin.Glow(new Rect(focused.x - glowPad, focused.y - glowPad, focused.width + glowPad * 2, focused.height + glowPad * 2), new Color(1f, 0.82f, 0.45f, 0.45f + kick * 0.15f));
+            if (focused.width > 0)
+            {
+                float pad = 26 + breathe * 6;
+                ArcadeSkin.Glow(new Rect(focused.x - pad, focused.y - pad, focused.width + pad * 2, focused.height + pad * 2), new Color(1f, 0.80f, 0.48f, 0.32f + 0.06f * breathe));
+            }
 
+            // the hero stands in the room carrying their own light
             UnitDefinition hero = catalog.Champions[selection];
-            Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, focus == 0, profile.ReducedMotion)] : hero.Body;
-            Rect heroRect = new Rect(SpotAreas[0].x, SpotAreas[0].y + (profile.ReducedMotion ? 0 : Mathf.Sin(Time.unscaledTime * 1.7f) * 5) - kick * 4, SpotAreas[0].width, SpotAreas[0].height - 20);
-            ArcadeSkin.Glow(new Rect(heroRect.x + 20, heroRect.yMax - 40, heroRect.width - 40, 60), new Color(0, 0, 0, 0.5f));
+            Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, false, profile.ReducedMotion)] : hero.Body;
+            Rect heroRect = new Rect(240, 340 + (reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.4f) * 4), 220, 250);
+            ArcadeSkin.Glow(new Rect(heroRect.x - 120, heroRect.y - 80, heroRect.width + 240, heroRect.height + 200), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.20f + 0.06f * breathe));
+            ArcadeSkin.Glow(new Rect(heroRect.x + 20, heroRect.yMax - 30, heroRect.width - 40, 50), new Color(0, 0, 0, 0.55f));
             Matrix4x4 unflipped = GUI.matrix;
-            if (focus != 0 && SpotAreas[focus].center.x < heroRect.center.x) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), heroRect.center);
+            if (focused.width > 0 && focused.center.x < heroRect.center.x) GUIUtility.ScaleAroundPivot(new Vector2(-1, 1), heroRect.center);
             RunHud.Sprite(heroRect, pose);
             GUI.matrix = unflipped;
 
-            if (spotHint == null) { spotHint = ArcadeTypography.Style(14, false); spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; }
-            Vector2 tagSize = new Vector2(Mathf.Max(170, chip.CalcSize(new GUIContent(SpotLabels[focus])).x + 44), 30);
-            bool below = focused.yMax < 300;
-            float tagY = below ? focused.yMax + 6 : focused.y - 58;
-            Rect tag = new Rect(Mathf.Clamp(focused.center.x - tagSize.x * 0.5f, 10, 1270 - tagSize.x), tagY - kick * 3, tagSize.x, tagSize.y);
-            ArcadeSkin.Slant(new Rect(tag.x + 3, tag.y + 4, tag.width, tag.height), new Color(0, 0, 0, 0.5f));
-            ArcadeSkin.Slant(tag, focus == 0 ? ArcadeSkin.Accent : ArcadeSkin.Cream);
-            chip.normal.textColor = focus == 0 ? ArcadeSkin.Cream : ArcadeSkin.Ink;
-            GUI.Label(tag, focus == 1 && CanResume ? "RESUME · WAVE " + saved.Wave : SpotLabels[focus], chip);
+            // a paper label for the focused entry, placed by its object (or above the bottom row)
+            string label = focus == 1 && CanResume ? "CONTINUE · WAVE " + saved.Wave : SpotLabels[focus];
+            Vector2 tagSize = new Vector2(Mathf.Max(180, chip.CalcSize(new GUIContent(label)).x + 48), 32);
+            Rect tag;
+            if (focused.width > 0)
+            {
+                float tagY = focus == 3 ? focused.y - 46 : focus == 0 ? focused.yMax - 120 : focused.y - 40;
+                tag = new Rect(Mathf.Clamp(focused.center.x - tagSize.x * 0.5f, 10, 1270 - tagSize.x), tagY, tagSize.x, tagSize.y);
+            }
+            else tag = new Rect(36 + focus * 204 + 98 - tagSize.x * 0.5f, 612, tagSize.x, tagSize.y);
+            ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent);
             chip.normal.textColor = ArcadeSkin.Ink;
-            GUI.Label(new Rect(tag.x - 40, tag.yMax + 1, tag.width + 80, 20), SpotHints[focus], spotHint);
+            GUI.Label(tag, label, chip);
+            GUI.Label(new Rect(tag.center.x - 220, tag.yMax + 4, 440, 22), SpotHints[focus], spotHint);
 
             for (int index = 0; index < SpotAreas.Length; index++)
-                if (GUI.Button(SpotAreas[index], GUIContent.none, GUIStyle.none)) ActivateSpot(index);
+                if (SpotAreas[index].width > 0 && GUI.Button(SpotAreas[index], GUIContent.none, GUIStyle.none)) ActivateSpot(index);
 
-            // keyboard / controller / readability row mirrors the objects one-to-one
+            // keyboard / controller / readability row mirrors every entry one-to-one (order is relied on by navigation checks)
             if (smallButton == null) smallButton = new GUIStyle(button) { fontSize = 15 };
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 GUI.enabled = SpotEnabled(index);
-                string caption = index == 1 && !CanResume ? "NO SAVED RUN" : SpotLabels[index];
+                string caption = index == 1 && !CanResume ? "NOTHING TO CONTINUE" : SpotLabels[index];
                 if (navigation.Button(new Rect(36 + index * 204, 664, 196, 42), caption, index == 0 ? primary : smallButton)) ActivateSpot(index);
             }
             GUI.enabled = true;
@@ -417,8 +449,8 @@ namespace ArcaneBrigade
                 UnitDefinition unit = catalog.Champions[index];
                 bool unlocked = profile.BestWave >= unit.UnlockWave;
                 Rect card = RosterCardBounds(index);
-                RunHud.Fill(card, index == selection ? new Color(0.27f, 0.20f, 0.38f) : new Color(0.17f, 0.13f, 0.25f));
-                if (index == selection) { ArcadeSkin.Glow(new Rect(card.x + 10, card.y, card.width - 20, 150), new Color(0.28f, 0.94f, 0.86f, 0.22f)); ArcadeSkin.Slant(new Rect(card.x + 14, card.yMax - 16, card.width - 28, 8), ArcadeSkin.Teal); }
+                RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
+                if (index == selection) { ArcadeSkin.Glow(new Rect(card.x + 10, card.y, card.width - 20, 150), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.26f)); ArcadeSkin.Slant(new Rect(card.x + 14, card.yMax - 16, card.width - 28, 8), ArcadeSkin.Teal); }
                 if (navigation.Button(card, "", GUIStyle.none)) { if (selection != index) rosterDescriptionScroll = Vector2.zero; selection = index; }
                 Color previousColor = GUI.color;
                 if (!unlocked) GUI.color = new Color(0.65f, 0.65f, 0.65f);
@@ -437,7 +469,7 @@ namespace ArcaneBrigade
                     if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) RunHud.Sprite(new Rect(690 - iconIndex++ * 34, 145, 28, 28), bond.Icon);
                 if (iconIndex > 0) GUI.Label(new Rect(690 - iconIndex * 34 - 130, 145, 125, 28), "RECRUIT THEMES", note);
             }
-            RunHud.Fill(new Rect(760, 135, 460, 445), new Color(0.12f, 0.10f, 0.20f));
+            RunHud.Fill(new Rect(760, 135, 460, 445), ArcadeSkin.Card);
             ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
             RunHud.Sprite(new Rect(775, 145, 132, 142), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
@@ -476,7 +508,7 @@ namespace ArcaneBrigade
             GUI.enabled = true;
             GUI.Label(new Rect(780, 540, 430, 40), challenge > 0 ? "Same seeded conditions · tier 1 · records per champion" : "Win the previous difficulty to unlock the next. No permanent stat growth.", note);
             GUI.enabled = profile.BestWave >= champion.UnlockWave;
-            if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "START ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
+            if (navigation.Button(new Rect(780, 590, 420, 66), profile.BestWave >= champion.UnlockWave ? "STEP THROUGH ▶" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
             GUI.enabled = true;
             GUI.Label(new Rect(65, 660, 1130, 30), RunUIHints.Menu, note);
         }
@@ -484,18 +516,18 @@ namespace ArcaneBrigade
         {
             switch (page)
             {
-                case Page.Roster: return "PICK YOUR CREW";
-                case Page.Resume: return "RESUME RUN";
-                case Page.ConfirmOverwrite: return "START OVER?";
-                case Page.Settings: return "SETTINGS";
-                case Page.Help: return "HOW TO PLAY";
-                case Page.Records: return "RECORDS";
+                case Page.Roster: return "Who Steps Through Tonight?";
+                case Page.Resume: return "Where You Left Off";
+                case Page.ConfirmOverwrite: return "Begin Again?";
+                case Page.Settings: return "Light, Sound & Comfort";
+                case Page.Help: return "How the Night Works";
+                case Page.Records: return "Letters You Kept";
                 case Page.Achievements: return "DREAM JOURNAL";
-                case Page.Museum: return "COLLECTION";
-                default: return "ARCANE BRIGADE";
+                case Page.Museum: return "Everyone You Have Met";
+                default: return "Arcane Brigade";
             }
         }
-        private static string PageEyebrow(Page page) => page == Page.Roster ? "ARCANE BRIGADE / NEW RUN" : "ARCANE BRIGADE";
+        private static string PageEyebrow(Page page) => page == Page.Roster ? "THE WAITING PLACE · NEW JOURNEY" : page == Page.Records ? "THE WAITING PLACE · RECORDS" : page == Page.Museum ? "THE WAITING PLACE · COLLECTION" : "THE WAITING PLACE";
         public static Rect RosterCardBounds(int index) => new Rect(index % 3 * 210, index / 3 * 245, 200, 235);
         public static Sprite RosterPortrait(UnitDefinition unit, float time, int identity, bool focused, bool reducedMotion)
         {

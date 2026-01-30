@@ -1,3 +1,4 @@
+PASS Eight distinct original painted mist phases imported
 PASS Reduced motion stays suspended without drifting 0/0
 PASS Reduced motion removes tilt 0/0
 PASS Bounded visible air gap 0/0/0

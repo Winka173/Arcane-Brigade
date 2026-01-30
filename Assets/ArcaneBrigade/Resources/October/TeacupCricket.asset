@@ -45,12 +45,15 @@ MonoBehaviour:
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nEvery fifth basic attack
     may release one echo for 40% of this ally's weapon damage. Uses the ally's 0.7s
     response cooldown; no echo chain.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3 traits
-    \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nNo
-    additional periodic personal passive.\r\n\nNamed talents count bodies and absorbed
-    memories; their stated percentages are not multiplied by star level unless explicitly
-    stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds: hearth,
-    lantern-guild. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE IN THE WAITING
+    REALM\nA reed-settlement musician who played the waiting melody until someone
+    taught them its missing final notes. They want to compose a song that lets the
+    audience leave before it ends.\r\nPERSONAL PASSIVE\nNo additional periodic personal
+    passive.\r\n\nNamed talents count bodies and absorbed memories; their stated
+    percentages are not multiplied by star level unless explicitly stated. Listed
+    support modifiers scale separately at 1/2/4.\r\nBonds: hearth, lantern-guild.
+    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Original:TeacupCricket
   ExclusiveHero: 

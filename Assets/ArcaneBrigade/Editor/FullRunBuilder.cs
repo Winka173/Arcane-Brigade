@@ -15,7 +15,7 @@ namespace ArcaneBrigade.Editor
         private const string Root = "Assets/ArcaneBrigade/";
         private const string DataRoot = Root + "Data/Run/";
         private const string CatalogPath = Root + "Resources/RunCatalog.asset";
-        private static readonly string[] ScenePaths = { Root + "Scenes/RunBoot.unity", Root + "Scenes/RunFrontend.unity", Root + "Scenes/RunArena.unity" };
+        private static readonly string[] ScenePaths = { Root + "Scenes/RunBoot.unity", Root + "Scenes/RunFrontend.unity", Root + "Scenes/RunArena.unity", Root + "Scenes/WaitingRoom.unity" };
 
         [MenuItem("Arcane Brigade/Full Run/Build content, scenes and checks")]
         public static void BuildAndCheck()

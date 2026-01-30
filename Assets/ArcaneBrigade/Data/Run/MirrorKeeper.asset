@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MirrorKeeper
   DisplayName: The Mirror Keeper
-  Body: {fileID: 740499754, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
+  Body: {fileID: -1489094963, guid: 5d5274f98c22eb642aff8682323e8b14, type: 3}
   AnimationFrames:
-  - {fileID: 740499754, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
-  - {fileID: -1029181382, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
-  - {fileID: -272148943, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
-  - {fileID: 991690232, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: -1489094963, guid: 5d5274f98c22eb642aff8682323e8b14, type: 3}
+  - {fileID: 1743359083, guid: 5d5274f98c22eb642aff8682323e8b14, type: 3}
+  - {fileID: 743710949, guid: 5d5274f98c22eb642aff8682323e8b14, type: 3}
+  - {fileID: 814168546, guid: 5d5274f98c22eb642aff8682323e8b14, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 74635d8e15cae844c8704048095be5d0, type: 2}
   Weapon: {fileID: 11400000, guid: 6ac4ac855e2e7844d8c80d1f319a316f, type: 2}
   Health: 120
   Speed: 2.9

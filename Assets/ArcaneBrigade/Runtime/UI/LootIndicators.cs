@@ -72,7 +72,7 @@ namespace ArcaneBrigade
             {
                 Color previous = GUI.color;
                 GUI.color = new Color(1, 1, 1, marker.Alpha);
-                RunHud.Fill(new Rect(marker.Position.x - 70, marker.Position.y - 33, 140, 66), new Color(0.12f, 0.09f, 0.22f, 0.9f));
+                RunHud.Fill(new Rect(marker.Position.x - 70, marker.Position.y - 33, 140, 66), new Color(ArcadeSkin.Deep.r, ArcadeSkin.Deep.g, ArcadeSkin.Deep.b, 0.9f));
                 RunHud.Sprite(new Rect(marker.Position.x - 55, marker.Position.y - 24, 42, 42), marker.Kind == LootKind.Chest ? catalog.ChestSprite : catalog.EggSprite);
                 GUI.Label(new Rect(marker.Position.x - 3, marker.Position.y - 22, 69, 54), "×" + marker.Count + "\n" + Mathf.CeilToInt(marker.Distance) + "m", text);
                 GUI.color = previous;

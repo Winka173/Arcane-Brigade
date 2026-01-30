@@ -30,6 +30,12 @@ namespace ArcaneBrigade
         {
             owner = controller; assets = NightmareAssets.Current; voice = gameObject.AddComponent<MerchantVoice>();
             gameObject.AddComponent<NightmareLighting>().Configure(controller);
+            gameObject.AddComponent<SharedLightField>().Configure(controller);
+            gameObject.AddComponent<NightLanternField>().Configure(controller);
+            gameObject.AddComponent<MienChoPresentation>().Configure(controller);
+            gameObject.AddComponent<WaitingRealmStage>().Configure(controller);
+            gameObject.AddComponent<WaitingShopEncounter>().Configure(controller);
+            gameObject.AddComponent<WaitingJourney>().Configure(controller);
             gameObject.AddComponent<NightmareAtmosphere>().Configure(controller);
             gameObject.AddComponent<NightmareHaunting>().Configure(controller);
             gameObject.AddComponent<NightmareGrandStage>().Configure(controller);
@@ -74,7 +80,13 @@ namespace ArcaneBrigade
                 view.sprite = assets.Scenery[art];
                 GroundedSceneryArtwork groundedArt = GroundedSceneryArtwork.Current;
                 if ((art == 8 || art == 9) && groundedArt != null && groundedArt.Cabinets.Length == 2) view.sprite = groundedArt.Cabinets[art - 8];
+                Sprite redrawn = FinalQualityArtwork.Current?.Frame("landmark-" + art, now, PresentationSettings.ReducedMotion);
+                if (redrawn != null) view.sprite = redrawn;
                 Vector2 position = NightmareLighting.LandmarkPosition(index, shop, half);
+                if (!shop && index == 3) position = new Vector2(half.x - 2, .5f);
+                if (!shop && index == 7) position = new Vector2(-half.x + 4, -half.y + 2.3f);
+                if (shop && index == 6) position = new Vector2(-4.9f, -4.2f);
+                if (shop && index == 7) position = new Vector2(-3.3f, -4.2f);
                 if (shop) position = NightmareHaunting.UnsettledPosition(index, state.Seed, state.Wave, now, position, owner.Simulation.Champion.Position, owner.Simulation.Champion.Facing);
                 float motion = 0;
                 float width = index < 5 ? index == 0 ? 2.4f : 3.2f : .8f;
@@ -88,6 +100,7 @@ namespace ArcaneBrigade
                 bool anchor = index == 1 || index >= 6;
                 float fusion = owner.Shop?.Dialogue.LastMoment == MerchantMoment.Fuse && now < owner.Shop.Dialogue.ExpiresAt ? 1 : 0;
                 Color tint = anchor ? Color.Lerp(new Color(1,.9f,.7f),Color.white,fusion) : Color.Lerp(Color.white,new Color(.64f,.59f,.73f),depth * .1f);
+                if (SharedLightField.Active != null) { float light = SharedLightField.Active.SurfaceVisibility(position); tint.r *= light; tint.g *= light; tint.b *= light; }
                 tint.a = 1; view.color = tint;
                 shadows[index].Configure(view.sprite); shadows[index].Display(view.sprite,position,width,hovering.y,.32f);
                 suspensions[index].Display(position, (Vector3)position + hovering, width, now, index + 1, view.sortingOrder - 1, tint.a, anchor);
@@ -97,7 +110,8 @@ namespace ArcaneBrigade
                     float acting = beat < 1.5f ? Mathf.Sin(beat / 1.5f * Mathf.PI) : 0;
                     shadows[index].Cast.transform.position += Vector3.right * acting * depth * .035f;
                 }
-                puppets[index].Display(view, index, NightmareHaunting.Quiet ? 0 : now, depth, shop, owner.Simulation.Champion.Position);
+                if (redrawn == null) puppets[index].Display(view, index, NightmareHaunting.Quiet ? 0 : now, depth, shop, owner.Simulation.Champion.Position);
+                else { puppets[index].Hide(); view.enabled = true; }
                 VisibleLandmarks++;
             }
             if (EndingVisible)
@@ -149,7 +163,8 @@ namespace ArcaneBrigade
                 float pan = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01((owner.PresentationClock - pageAt) / 12) * 8;
                 Rect image = new Rect(450 - pan * 1.5f,30 - pan,1020 + pan * 3,680 + pan * 2);
                 int illustration = Mathf.Min(page, 3);
-                if (page == 4 && assets.PromiseIllustration != null) GUI.DrawTexture(image, assets.PromiseIllustration, ScaleMode.ScaleToFit);
+                if (page == 3 && owner.GetComponent<MienChoPresentation>() != null) owner.GetComponent<MienChoPresentation>().DrawDawn(image);
+                else if (page == 4 && assets.PromiseIllustration != null) GUI.DrawTexture(image, assets.PromiseIllustration, ScaleMode.ScaleToFit);
                 else GUI.DrawTextureWithTexCoords(image,assets.EndingIllustration,new Rect(illustration % 2 * .5f,1 - (illustration / 2 + 1) * .5f,.5f,.5f));
                 departure.Draw(image, owner, page, owner.PresentationClock - pageAt);
                 GUI.Label(new Rect(170,715,1580,220),NightmareDialogue.Ending(owner.Session.State,page),copy);

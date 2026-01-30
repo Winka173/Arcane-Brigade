@@ -45,13 +45,16 @@ MonoBehaviour:
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nHero and all companions gain
     20% weapon damage and 10% movement speed per talent. Enemies also gain 10% movement
     speed per talent. This does not grant attack speed.\r\n\nSUPPORT WHILE OWNED\nTier
-    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
-    and absorbed memories; their stated percentages are not multiplied by star level
-    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:
-    dream shop or special reward, subject to hero theme and unlock wave.\r\nBonds:
-    astral, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA community baker who led a strike when ovens fed the station
+    while workers went hungry. The recipes preserve every worker's name. They seek
+    a kitchen whose first meal belongs to its cooks.\r\nPERSONAL PASSIVE\nNo additional
+    periodic personal passive.\r\n\nNamed talents count bodies and absorbed memories;
+    their stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
+    special reward, subject to hero theme and unlock wave.\r\nBonds: astral, resolve.
+    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Quick Production" Tao'
   ExclusiveHero: 

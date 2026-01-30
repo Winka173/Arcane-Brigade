@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927ecd194d346de4ebb099f53a75c838, type: 3}
+  m_Name: FinalQualityArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.FinalQualityArtwork
+  Props:
+  - Id: landmark-0
+    Frames:
+    - {fileID: -803897200, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 1543221424, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 1248707454, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: -247682934, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+  - Id: landmark-1
+    Frames:
+    - {fileID: 117545640, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: -566499745, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: -24096133, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: -1618214310, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+  - Id: landmark-2
+    Frames:
+    - {fileID: -2113168769, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 433327786, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 1220509471, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 217161628, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+  - Id: landmark-3
+    Frames:
+    - {fileID: 944424912, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: -907178018, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 1229809272, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+    - {fileID: 844921270, guid: b857141b914e7ca4d921b7c94e5269ab, type: 3}
+  - Id: landmark-4
+    Frames:
+    - {fileID: 1558384446, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 1881031014, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 933729526, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 1677064493, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+  - Id: landmark-5
+    Frames:
+    - {fileID: -832409049, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 456481623, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: -1200848269, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: -482432861, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+  - Id: landmark-6
+    Frames:
+    - {fileID: 1558558430, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 18813941, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: -110138097, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: -1409017750, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+  - Id: landmark-7
+    Frames:
+    - {fileID: 1961820720, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 1775017549, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: -1034039231, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+    - {fileID: 232529301, guid: be894d34cdfe3bc4b9f24c17d1be7d73, type: 3}
+  - Id: landmark-8
+    Frames:
+    - {fileID: -21164163, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: 1112707959, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -1380406679, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: 46728530, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+  - Id: landmark-9
+    Frames:
+    - {fileID: -1222086439, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -581186724, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -588119851, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: 890292499, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+  - Id: landmark-10
+    Frames:
+    - {fileID: -298206447, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -1433996355, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: 1438701871, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: 136984126, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+  - Id: landmark-11
+    Frames:
+    - {fileID: 92841664, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -730517112, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -1525830045, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+    - {fileID: -1065318109, guid: b5b03971ae353a646857f152da4ba7cb, type: 3}
+  - Id: landmark-12
+    Frames:
+    - {fileID: -2109388499, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -1123024170, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -1334886828, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -329303790, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+  - Id: landmark-13
+    Frames:
+    - {fileID: 1892562709, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -1365559898, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -1056172822, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: 1818196848, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+  - Id: landmark-14
+    Frames:
+    - {fileID: 2049070438, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -1897801825, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: 731436029, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: 578507640, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+  - Id: landmark-15
+    Frames:
+    - {fileID: 1643604632, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: 1178565298, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: -66629308, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+    - {fileID: 533380814, guid: b0bbd3377c40c504288832b0ba5e5b47, type: 3}
+  - Id: architecture-0
+    Frames:
+    - {fileID: 2131143972, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: -1603503272, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: -815131549, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: 1003760066, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+  - Id: architecture-1
+    Frames:
+    - {fileID: 300873208, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: 799883956, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: 28374633, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: -841847482, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+  - Id: architecture-2
+    Frames:
+    - {fileID: -1056078924, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: 1811054006, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: -2070837865, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: -1079330298, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+  - Id: architecture-3
+    Frames:
+    - {fileID: 989517878, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: 1490594598, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: 433183402, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}
+    - {fileID: -1293792639, guid: 4f109d6afa2bd77428dccee7d095ea22, type: 3}

@@ -117,6 +117,7 @@ namespace ArcaneBrigade
                 RunSnapshot saved = RunLaunch.Resume ? storage.LoadRun(session) : null;
                 if (saved != null) session.Restore(saved);
                 else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
+                if (session.State.WaitingCampaign?.Room > 0) { SceneManager.LoadScene("WaitingRoom"); return; }
                 ArcadeSkin.Bundle = profile.Cosmetic;
                 PresentationSettings.Apply(profile);
                 AudioListener.pause = false;
@@ -231,6 +232,7 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (simulation == null) return;
+            if (StoryConsumesInput) { Render(1); return; }
             runHud.ReadNavigation(pauseGate.Manual || pauseGate.Navigation || session != null && (session.State.Phase == SessionPhase.Victory || session.State.Phase == SessionPhase.Defeat));
             if (music != null && session != null)
             {
@@ -681,6 +683,7 @@ namespace ArcaneBrigade
         private void OnGUI()
         {
             if (simulation == null) return;
+            if (StoryOpen) { if (GetComponent<WaitingJourney>()?.Open == true) GetComponent<WaitingJourney>().Draw(arenaCamera); else GetComponent<MienChoPresentation>().Draw(arenaCamera); return; }
             if (session != null)
             {
                 bool previousEnabled = GUI.enabled;
@@ -691,6 +694,8 @@ namespace ArcaneBrigade
                 if (details.Open) details.Draw(this, arenaCamera);
                 else if (pauseGate.Navigation) runHud.DrawMenuConfirmation(this, arenaCamera);
                 else DrawTouch();
+                GetComponent<MienChoPresentation>()?.Draw(arenaCamera);
+                GetComponent<WaitingJourney>()?.Draw(arenaCamera);
                 return;
             }
             if (label == null)

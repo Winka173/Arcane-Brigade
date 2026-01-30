@@ -16,10 +16,11 @@ namespace ArcaneBrigade.Editor
                 notes.Add("PASS " + caption);
             }
             float previous = 2;
+            float[] expectedAmbient = { .92f, .7125f, .505f, .2975f, .09f };
             for (int depth = 0; depth <= 4; depth++)
             {
                 float ambient = NightmareLighting.AmbientFor(depth, 0);
-                Check(ambient < previous && ambient >= .44f, "Progressive bounded ambient " + depth);
+                Check(ambient < previous && Mathf.Abs(ambient - expectedAmbient[depth]) < .0001f, "Progressive nightmare ambient " + depth);
                 Check(NightmareLighting.AmbientFor(depth, 1) > ambient, "Dawn restores light " + depth);
                 previous = ambient;
             }

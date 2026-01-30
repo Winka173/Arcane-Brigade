@@ -1,0 +1,272 @@
+PASS Ten fixed milestones / twenty-seven authored pages
+PASS All sixty-six origins and six three-part companion arcs
+PASS Individual dream arrival LanternKnight
+PASS Individual dream arrival Postmaster
+PASS Individual dream arrival DrowsySeer
+PASS Individual dream arrival RootOracle
+PASS Individual dream arrival LoneJelly
+PASS Individual dream arrival GlassDice
+PASS Individual dream arrival TideSinger
+PASS Individual dream arrival CometRunner
+PASS Individual dream arrival MirrorKeeper
+PASS Individual dream arrival TreasureAcorn
+PASS Individual dream arrival VerdantMatron
+PASS Individual dream arrival CopperCauldron
+PASS Individual dream arrival ChinaMarionette
+PASS Individual dream arrival SoapSkater
+PASS Individual dream arrival VelvetRegent
+PASS Individual dream arrival ButtonCavalier
+PASS Individual dream arrival NightMaw
+PASS Individual dream arrival ThornTreasurer
+PASS Individual dream arrival CitrusMarshal
+PASS Individual dream arrival IvorySovereign
+PASS Individual dream arrival PetalCitadel
+PASS Individual dream arrival PatchworkHost
+PASS Individual dream arrival ArchiveCurator
+PASS Individual dream arrival PennyBroker
+PASS Individual dream arrival StormFencer
+PASS Individual dream arrival TinVirtuoso
+PASS Individual dream arrival MoonProwler
+PASS Individual dream arrival SupperMortar
+PASS Individual dream arrival LanternWeaver
+PASS Individual dream arrival HourglassStag
+PASS Individual dream arrival RainArchivist
+PASS Individual life and intent TeapotPilgrim
+PASS Origin reaches actual companion description TeapotPilgrim
+PASS Individual life and intent CandleSnail
+PASS Origin reaches actual companion description CandleSnail
+PASS Individual life and intent MailboxImp
+PASS Origin reaches actual companion description MailboxImp
+PASS Individual life and intent PillowOracle
+PASS Origin reaches actual companion description PillowOracle
+PASS Individual life and intent MushroomLibrarian
+PASS Origin reaches actual companion description MushroomLibrarian
+PASS Individual life and intent HoodWisp
+PASS Origin reaches actual companion description HoodWisp
+PASS Individual life and intent JellySwordsman
+PASS Origin reaches actual companion description JellySwordsman
+PASS Individual life and intent BrassAcorn
+PASS Origin reaches actual companion description BrassAcorn
+PASS Individual life and intent BreadCrab
+PASS Origin reaches actual companion description BreadCrab
+PASS Individual life and intent KettleBat
+PASS Origin reaches actual companion description KettleBat
+PASS Individual life and intent BookmarkGolem
+PASS Origin reaches actual companion description BookmarkGolem
+PASS Individual life and intent TinTick
+PASS Origin reaches actual companion description TinTick
+PASS Individual life and intent SpringDuck
+PASS Origin reaches actual companion description SpringDuck
+PASS Individual life and intent ButtonBeetle
+PASS Origin reaches actual companion description ButtonBeetle
+PASS Individual life and intent StapleMole
+PASS Origin reaches actual companion description StapleMole
+PASS Individual life and intent SnowSpoon
+PASS Origin reaches actual companion description SnowSpoon
+PASS Individual life and intent IceCreamOwl
+PASS Origin reaches actual companion description IceCreamOwl
+PASS Individual life and intent FridgeWisp
+PASS Origin reaches actual companion description FridgeWisp
+PASS Individual life and intent PearMoth
+PASS Origin reaches actual companion description PearMoth
+PASS Individual life and intent CitrusToad
+PASS Origin reaches actual companion description CitrusToad
+PASS Individual life and intent RadishJester
+PASS Origin reaches actual companion description RadishJester
+PASS Individual life and intent SeedHedgehog
+PASS Origin reaches actual companion description SeedHedgehog
+PASS Individual life and intent MoonJelly
+PASS Origin reaches actual companion description MoonJelly
+PASS Individual life and intent StarSock
+PASS Origin reaches actual companion description StarSock
+PASS Individual life and intent CometKite
+PASS Origin reaches actual companion description CometKite
+PASS Individual life and intent EclipseEgg
+PASS Origin reaches actual companion description EclipseEgg
+PASS Individual life and intent OrbitMoth
+PASS Origin reaches actual companion description OrbitMoth
+PASS Individual life and intent DreamCompass
+PASS Origin reaches actual companion description DreamCompass
+PASS Individual life and intent ShellPostman
+PASS Origin reaches actual companion description ShellPostman
+PASS Individual life and intent CoralTeacup
+PASS Origin reaches actual companion description CoralTeacup
+PASS Individual life and intent BubbleKoi
+PASS Origin reaches actual companion description BubbleKoi
+PASS Individual life and intent AnchorSnail
+PASS Origin reaches actual companion description AnchorSnail
+PASS Individual life and intent SailSquid
+PASS Origin reaches actual companion description SailSquid
+PASS Individual life and intent SockCyclops
+PASS Origin reaches actual companion description SockCyclops
+PASS Individual life and intent DiceCrab
+PASS Origin reaches actual companion description DiceCrab
+PASS Individual life and intent MaskPepper
+PASS Origin reaches actual companion description MaskPepper
+PASS Individual life and intent CrayonGremlin
+PASS Origin reaches actual companion description CrayonGremlin
+PASS Individual life and intent MirrorNewt
+PASS Origin reaches actual companion description MirrorNewt
+PASS Individual life and intent RibbonSpider
+PASS Origin reaches actual companion description RibbonSpider
+PASS Individual life and intent CoilKettle
+PASS Origin reaches actual companion description CoilKettle
+PASS Individual life and intent ThimbleMoth
+PASS Origin reaches actual companion description ThimbleMoth
+PASS Individual life and intent ReelOwl
+PASS Origin reaches actual companion description ReelOwl
+PASS Individual life and intent RainbowTailor
+PASS Origin reaches actual companion description RainbowTailor
+PASS Individual life and intent RainbowBell
+PASS Origin reaches actual companion description RainbowBell
+PASS Individual life and intent SecretPatchBear
+PASS Origin reaches actual companion description SecretPatchBear
+PASS Individual life and intent SecretPaperBird
+PASS Origin reaches actual companion description SecretPaperBird
+PASS Individual life and intent SecretDreamLamb
+PASS Origin reaches actual companion description SecretDreamLamb
+PASS Individual life and intent SaffronMechanist
+PASS Origin reaches actual companion description SaffronMechanist
+PASS Individual life and intent ClockworkPiper
+PASS Origin reaches actual companion description ClockworkPiper
+PASS Individual life and intent VelvetChampion
+PASS Origin reaches actual companion description VelvetChampion
+PASS Individual life and intent PaperInventor
+PASS Origin reaches actual companion description PaperInventor
+PASS Individual life and intent ReturnCaptain
+PASS Origin reaches actual companion description ReturnCaptain
+PASS Individual life and intent DoughForeman
+PASS Origin reaches actual companion description DoughForeman
+PASS Individual life and intent IronLocomotive
+PASS Origin reaches actual companion description IronLocomotive
+PASS Individual life and intent VioletRemnant
+PASS Origin reaches actual companion description VioletRemnant
+PASS Individual life and intent VelvetEnchantress
+PASS Origin reaches actual companion description VelvetEnchantress
+PASS Individual life and intent GrandSprout
+PASS Origin reaches actual companion description GrandSprout
+PASS Individual life and intent BristleBall
+PASS Origin reaches actual companion description BristleBall
+PASS Individual life and intent PaperDevil
+PASS Origin reaches actual companion description PaperDevil
+PASS Individual life and intent BalloonMallet
+PASS Origin reaches actual companion description BalloonMallet
+PASS Individual life and intent LittleSprout
+PASS Origin reaches actual companion description LittleSprout
+PASS Individual life and intent MonsterMarble
+PASS Origin reaches actual companion description MonsterMarble
+PASS Individual life and intent CarouselPony
+PASS Origin reaches actual companion description CarouselPony
+PASS Individual life and intent TeacupCricket
+PASS Origin reaches actual companion description TeacupCricket
+PASS Individual life and intent RibbonOtter
+PASS Origin reaches actual companion description RibbonOtter
+PASS Individual life and intent SpindleWren
+PASS Origin reaches actual companion description SpindleWren
+PASS No shared fallback biographies
+PASS Bounded chapter availability wave 1
+PASS Journal read flags survive real save validation wave 1
+PASS Bounded chapter availability wave 2
+PASS Journal read flags survive real save validation wave 2
+PASS Bounded chapter availability wave 3
+PASS Journal read flags survive real save validation wave 3
+PASS Bounded chapter availability wave 4
+PASS Journal read flags survive real save validation wave 4
+PASS Bounded chapter availability wave 5
+PASS Journal read flags survive real save validation wave 5
+PASS Bounded chapter availability wave 6
+PASS Journal read flags survive real save validation wave 6
+PASS Bounded chapter availability wave 7
+PASS Journal read flags survive real save validation wave 7
+PASS Bounded chapter availability wave 8
+PASS Journal read flags survive real save validation wave 8
+PASS Bounded chapter availability wave 9
+PASS Journal read flags survive real save validation wave 9
+PASS Bounded chapter availability wave 10
+PASS Journal read flags survive real save validation wave 10
+PASS Bounded chapter availability wave 11
+PASS Journal read flags survive real save validation wave 11
+PASS Bounded chapter availability wave 12
+PASS Journal read flags survive real save validation wave 12
+PASS Bounded chapter availability wave 13
+PASS Journal read flags survive real save validation wave 13
+PASS Bounded chapter availability wave 14
+PASS Journal read flags survive real save validation wave 14
+PASS Bounded chapter availability wave 15
+PASS Journal read flags survive real save validation wave 15
+PASS Bounded chapter availability wave 16
+PASS Journal read flags survive real save validation wave 16
+PASS Bounded chapter availability wave 17
+PASS Journal read flags survive real save validation wave 17
+PASS Bounded chapter availability wave 18
+PASS Journal read flags survive real save validation wave 18
+PASS Bounded chapter availability wave 19
+PASS Journal read flags survive real save validation wave 19
+PASS Bounded chapter availability wave 20
+PASS Journal read flags survive real save validation wave 20
+PASS Bounded chapter availability wave 21
+PASS Journal read flags survive real save validation wave 21
+PASS Bounded chapter availability wave 22
+PASS Journal read flags survive real save validation wave 22
+PASS Bounded chapter availability wave 23
+PASS Journal read flags survive real save validation wave 23
+PASS Bounded chapter availability wave 24
+PASS Journal read flags survive real save validation wave 24
+PASS Legacy missing journal migrates without losing run
+PASS Cannot forge future evidence in a saved journal
+PASS Darkness has a finite readable floor 0
+PASS Real dawn restores light at depth 0
+PASS Darkness has a finite readable floor 1
+PASS World gets darker at chapter 1
+PASS Real dawn restores light at depth 1
+PASS Darkness has a finite readable floor 2
+PASS World gets darker at chapter 2
+PASS Real dawn restores light at depth 2
+PASS Darkness has a finite readable floor 3
+PASS World gets darker at chapter 3
+PASS Real dawn restores light at depth 3
+PASS Darkness has a finite readable floor 4
+PASS World gets darker at chapter 4
+PASS Real dawn restores light at depth 4
+PASS Fixed light budget retains solo visibility and fifteen companions
+PASS Soft light has bounded support and full centre
+PASS Anatomy uses eyes or ember rather than universal pairs
+PASS Reading pauses combat independently from manual pause
+PASS Shop encounter never reveals future chapter wave=1
+PASS Shop encounter never reveals future chapter wave=2
+PASS Shop encounter never reveals future chapter wave=3
+PASS Shop encounter never reveals future chapter wave=4
+PASS Shop encounter never reveals future chapter wave=5
+PASS Shop encounter never reveals future chapter wave=6
+PASS Shop encounter never reveals future chapter wave=7
+PASS Shop encounter never reveals future chapter wave=8
+PASS Shop encounter never reveals future chapter wave=9
+PASS Shop encounter never reveals future chapter wave=10
+PASS Shop encounter never reveals future chapter wave=11
+PASS Shop encounter never reveals future chapter wave=12
+PASS Shop encounter never reveals future chapter wave=13
+PASS Shop encounter never reveals future chapter wave=14
+PASS Shop encounter never reveals future chapter wave=15
+PASS Shop encounter never reveals future chapter wave=16
+PASS Shop encounter never reveals future chapter wave=17
+PASS Shop encounter never reveals future chapter wave=18
+PASS Shop encounter never reveals future chapter wave=19
+PASS Shop encounter never reveals future chapter wave=20
+PASS Shop encounter never reveals future chapter wave=21
+PASS Shop encounter never reveals future chapter wave=22
+PASS Shop encounter never reveals future chapter wave=23
+PASS Shop encounter never reveals future chapter wave=24
+PASS Per-chapter page and completed/encounter flags survive actual save restore
+PASS Invalid resumed page rejected
+PASS Old journal missing page array remains loadable
+PASS Future mirror visit cannot be injected into an early save
+PASS Player-included material SharedLight
+PASS Player-included material WaitingGlow
+PASS Drawn narrative panel imported WaitingRoom
+PASS Drawn narrative panel imported WithheldDawn
+PASS Drawn narrative panel imported OpenDawn
+PASS Drawn chair imported as runtime sprite
+PASS Runtime encounter art imported ReservedTable
+PASS Runtime encounter art imported BreathingPhone
+PASS Runtime encounter art imported LateReflection
+PASS Drawn asset prompt provenance retained

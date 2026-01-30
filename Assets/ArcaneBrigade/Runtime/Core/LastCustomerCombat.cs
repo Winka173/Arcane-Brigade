@@ -7,7 +7,7 @@ namespace ArcaneBrigade
         private bool captureCustomerDefeat;
         public void DefeatCustomerCapture()
         {
-            if (!RunPaths.K7Capture || Boss?.Definition.Id != NightmareRules.CustomerId) throw new System.InvalidOperationException("Customer fixture requires isolated capture mode");
+            if ((!RunPaths.K7Capture && !MienChoCapture.Requested) || Boss?.Definition.Id != NightmareRules.CustomerId) throw new System.InvalidOperationException("Customer fixture requires isolated capture mode");
             captureCustomerDefeat = true;
         }
         private bool ProcessLastCustomer(UnitState boss)

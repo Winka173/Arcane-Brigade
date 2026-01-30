@@ -175,7 +175,7 @@ namespace ArcaneBrigade.Editor
         {
             RefreshDescriptions();
             Directory.CreateDirectory("Builds/HeroIdentity");
-            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/ArcaneBrigade/Scenes/RunBoot.unity","Assets/ArcaneBrigade/Scenes/RunFrontend.unity","Assets/ArcaneBrigade/Scenes/RunArena.unity"},locationPathName="Builds/HeroIdentity/ArcaneBrigade.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/ArcaneBrigade/Scenes/RunBoot.unity","Assets/ArcaneBrigade/Scenes/RunFrontend.unity","Assets/ArcaneBrigade/Scenes/RunArena.unity","Assets/ArcaneBrigade/Scenes/WaitingRoom.unity"},locationPathName="Builds/HeroIdentity/ArcaneBrigade.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             File.WriteAllText(Root+"/Build.txt","Result: "+report.summary.result+"\nErrors: "+report.summary.totalErrors+"\nWarnings: "+report.summary.totalWarnings+"\nBytes: "+report.summary.totalSize);
             if(report.summary.result!=UnityEditor.Build.Reporting.BuildResult.Succeeded)throw new InvalidOperationException("Identity player build failed");
             GameReviewSnapshot.Export();

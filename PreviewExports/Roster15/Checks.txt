@@ -1,0 +1,1021 @@
+PASS Central companion capacity is fifteen
+PASS Party achievements remain reachable with stable IDs under new cap
+PASS Fourteenth to fifteenth body allowed / special=False
+PASS Sixteenth body denied / special=False
+PASS Denied capacity purchase costs nothing / special=False
+PASS Fourteenth to fifteenth body allowed / special=True
+PASS Sixteenth body denied / special=True
+PASS Denied capacity purchase costs nothing / special=True
+PASS Older over-cap roster is preserved without deletion 15
+PASS Immediate merge allowed and reduces roster at capacity 15
+PASS Older over-cap roster is preserved without deletion 18
+PASS Immediate merge allowed and reduces roster at capacity 18
+PASS Older over-cap roster is preserved without deletion 20
+PASS Immediate merge allowed and reduces roster at capacity 20
+PASS Two max-star bodies cannot falsely promise another merge
+PASS Non-merging Evil talent cannot bypass capacity
+PASS Recruit-triggered gifts stop at cap RainbowBell
+PASS Recruit-triggered gifts stop at cap SaffronMechanist
+PASS Recruit-triggered gifts stop at cap ClockworkPiper
+PASS Relic companion gifts respect fifteen-body cap
+PASS Temporary contract does not add a sixteenth body DreamFriend
+PASS Full brigade receives contract hero echo instead DreamFriend
+PASS Temporary contract does not add a sixteenth body BorrowedShadow
+PASS Full brigade receives contract hero echo instead BorrowedShadow
+PASS Full-brigade reward preview names replacement relic SecretPatchBear
+PASS Rescue reward is claimable at cap without softlock SecretPatchBear
+PASS Rescue room can be left after claim SecretPatchBear
+PASS Capped replacement relic becomes explicitly quoted gold SecretPatchBear
+PASS Full-brigade reward preview names replacement relic SecretPaperBird
+PASS Rescue reward is claimable at cap without softlock SecretPaperBird
+PASS Rescue room can be left after claim SecretPaperBird
+PASS Capped replacement relic becomes explicitly quoted gold SecretPaperBird
+PASS Keeper companion reward respects capacity
+PASS Keeper relic reward remains claimable at capacity
+PASS Exact mild bond adjustment hearth/0
+PASS Bond threshold unchanged hearth/0
+PASS Exact mild bond adjustment hearth/1
+PASS Bond threshold unchanged hearth/1
+PASS Exact mild bond adjustment hearth/2
+PASS Bond threshold unchanged hearth/2
+PASS Exact mild bond adjustment hearth/3
+PASS Bond threshold unchanged hearth/3
+PASS Exact mild bond adjustment hearth/4
+PASS Bond threshold unchanged hearth/4
+PASS Exact mild bond adjustment hearth/5
+PASS Bond threshold unchanged hearth/5
+PASS Exact mild bond adjustment hearth/6
+PASS Bond threshold unchanged hearth/6
+PASS Exact mild bond adjustment hearth/7
+PASS Bond threshold unchanged hearth/7
+PASS Exact mild bond adjustment hearth/8
+PASS Bond threshold unchanged hearth/8
+PASS Exact mild bond adjustment hearth/9
+PASS Bond threshold unchanged hearth/9
+PASS Exact mild bond adjustment hearth/10
+PASS Bond threshold unchanged hearth/10
+PASS Exact mild bond adjustment hearth/11
+PASS Bond threshold unchanged hearth/11
+PASS Exact mild bond adjustment hearth/12
+PASS Bond threshold unchanged hearth/12
+PASS Exact mild bond adjustment hearth/13
+PASS Bond threshold unchanged hearth/13
+PASS Exact mild bond adjustment hearth/14
+PASS Bond threshold unchanged hearth/14
+PASS Exact mild bond adjustment hearth/15
+PASS Bond threshold unchanged hearth/15
+PASS Exact mild bond adjustment hearth/16
+PASS Bond threshold unchanged hearth/16
+PASS Exact mild bond adjustment archive/0
+PASS Bond threshold unchanged archive/0
+PASS Exact mild bond adjustment archive/1
+PASS Bond threshold unchanged archive/1
+PASS Exact mild bond adjustment archive/2
+PASS Bond threshold unchanged archive/2
+PASS Exact mild bond adjustment archive/3
+PASS Bond threshold unchanged archive/3
+PASS Exact mild bond adjustment archive/4
+PASS Bond threshold unchanged archive/4
+PASS Exact mild bond adjustment archive/5
+PASS Bond threshold unchanged archive/5
+PASS Exact mild bond adjustment archive/6
+PASS Bond threshold unchanged archive/6
+PASS Exact mild bond adjustment archive/7
+PASS Bond threshold unchanged archive/7
+PASS Exact mild bond adjustment archive/8
+PASS Bond threshold unchanged archive/8
+PASS Exact mild bond adjustment archive/9
+PASS Bond threshold unchanged archive/9
+PASS Exact mild bond adjustment archive/10
+PASS Bond threshold unchanged archive/10
+PASS Exact mild bond adjustment archive/11
+PASS Bond threshold unchanged archive/11
+PASS Exact mild bond adjustment archive/12
+PASS Bond threshold unchanged archive/12
+PASS Exact mild bond adjustment archive/13
+PASS Bond threshold unchanged archive/13
+PASS Exact mild bond adjustment archive/14
+PASS Bond threshold unchanged archive/14
+PASS Exact mild bond adjustment archive/15
+PASS Bond threshold unchanged archive/15
+PASS Exact mild bond adjustment archive/16
+PASS Bond threshold unchanged archive/16
+PASS Exact mild bond adjustment clock/0
+PASS Bond threshold unchanged clock/0
+PASS Exact mild bond adjustment clock/1
+PASS Bond threshold unchanged clock/1
+PASS Exact mild bond adjustment clock/2
+PASS Bond threshold unchanged clock/2
+PASS Exact mild bond adjustment clock/3
+PASS Bond threshold unchanged clock/3
+PASS Exact mild bond adjustment clock/4
+PASS Bond threshold unchanged clock/4
+PASS Exact mild bond adjustment clock/5
+PASS Bond threshold unchanged clock/5
+PASS Exact mild bond adjustment clock/6
+PASS Bond threshold unchanged clock/6
+PASS Exact mild bond adjustment clock/7
+PASS Bond threshold unchanged clock/7
+PASS Exact mild bond adjustment clock/8
+PASS Bond threshold unchanged clock/8
+PASS Exact mild bond adjustment clock/9
+PASS Bond threshold unchanged clock/9
+PASS Exact mild bond adjustment clock/10
+PASS Bond threshold unchanged clock/10
+PASS Exact mild bond adjustment clock/11
+PASS Bond threshold unchanged clock/11
+PASS Exact mild bond adjustment clock/12
+PASS Bond threshold unchanged clock/12
+PASS Exact mild bond adjustment clock/13
+PASS Bond threshold unchanged clock/13
+PASS Exact mild bond adjustment clock/14
+PASS Bond threshold unchanged clock/14
+PASS Exact mild bond adjustment clock/15
+PASS Bond threshold unchanged clock/15
+PASS Exact mild bond adjustment clock/16
+PASS Bond threshold unchanged clock/16
+PASS Exact mild bond adjustment frost/0
+PASS Bond threshold unchanged frost/0
+PASS Exact mild bond adjustment frost/1
+PASS Bond threshold unchanged frost/1
+PASS Exact mild bond adjustment frost/2
+PASS Bond threshold unchanged frost/2
+PASS Exact mild bond adjustment frost/3
+PASS Bond threshold unchanged frost/3
+PASS Exact mild bond adjustment frost/4
+PASS Bond threshold unchanged frost/4
+PASS Exact mild bond adjustment frost/5
+PASS Bond threshold unchanged frost/5
+PASS Exact mild bond adjustment frost/6
+PASS Bond threshold unchanged frost/6
+PASS Exact mild bond adjustment frost/7
+PASS Bond threshold unchanged frost/7
+PASS Exact mild bond adjustment frost/8
+PASS Bond threshold unchanged frost/8
+PASS Exact mild bond adjustment frost/9
+PASS Bond threshold unchanged frost/9
+PASS Exact mild bond adjustment frost/10
+PASS Bond threshold unchanged frost/10
+PASS Exact mild bond adjustment frost/11
+PASS Bond threshold unchanged frost/11
+PASS Exact mild bond adjustment frost/12
+PASS Bond threshold unchanged frost/12
+PASS Exact mild bond adjustment frost/13
+PASS Bond threshold unchanged frost/13
+PASS Exact mild bond adjustment frost/14
+PASS Bond threshold unchanged frost/14
+PASS Exact mild bond adjustment frost/15
+PASS Bond threshold unchanged frost/15
+PASS Exact mild bond adjustment frost/16
+PASS Bond threshold unchanged frost/16
+PASS Exact mild bond adjustment orchard/0
+PASS Bond threshold unchanged orchard/0
+PASS Exact mild bond adjustment orchard/1
+PASS Bond threshold unchanged orchard/1
+PASS Exact mild bond adjustment orchard/2
+PASS Bond threshold unchanged orchard/2
+PASS Exact mild bond adjustment orchard/3
+PASS Bond threshold unchanged orchard/3
+PASS Exact mild bond adjustment orchard/4
+PASS Bond threshold unchanged orchard/4
+PASS Exact mild bond adjustment orchard/5
+PASS Bond threshold unchanged orchard/5
+PASS Exact mild bond adjustment orchard/6
+PASS Bond threshold unchanged orchard/6
+PASS Exact mild bond adjustment orchard/7
+PASS Bond threshold unchanged orchard/7
+PASS Exact mild bond adjustment orchard/8
+PASS Bond threshold unchanged orchard/8
+PASS Exact mild bond adjustment orchard/9
+PASS Bond threshold unchanged orchard/9
+PASS Exact mild bond adjustment orchard/10
+PASS Bond threshold unchanged orchard/10
+PASS Exact mild bond adjustment orchard/11
+PASS Bond threshold unchanged orchard/11
+PASS Exact mild bond adjustment orchard/12
+PASS Bond threshold unchanged orchard/12
+PASS Exact mild bond adjustment orchard/13
+PASS Bond threshold unchanged orchard/13
+PASS Exact mild bond adjustment orchard/14
+PASS Bond threshold unchanged orchard/14
+PASS Exact mild bond adjustment orchard/15
+PASS Bond threshold unchanged orchard/15
+PASS Exact mild bond adjustment orchard/16
+PASS Bond threshold unchanged orchard/16
+PASS Exact mild bond adjustment astral/0
+PASS Bond threshold unchanged astral/0
+PASS Exact mild bond adjustment astral/1
+PASS Bond threshold unchanged astral/1
+PASS Exact mild bond adjustment astral/2
+PASS Bond threshold unchanged astral/2
+PASS Exact mild bond adjustment astral/3
+PASS Bond threshold unchanged astral/3
+PASS Exact mild bond adjustment astral/4
+PASS Bond threshold unchanged astral/4
+PASS Exact mild bond adjustment astral/5
+PASS Bond threshold unchanged astral/5
+PASS Exact mild bond adjustment astral/6
+PASS Bond threshold unchanged astral/6
+PASS Exact mild bond adjustment astral/7
+PASS Bond threshold unchanged astral/7
+PASS Exact mild bond adjustment astral/8
+PASS Bond threshold unchanged astral/8
+PASS Exact mild bond adjustment astral/9
+PASS Bond threshold unchanged astral/9
+PASS Exact mild bond adjustment astral/10
+PASS Bond threshold unchanged astral/10
+PASS Exact mild bond adjustment astral/11
+PASS Bond threshold unchanged astral/11
+PASS Exact mild bond adjustment astral/12
+PASS Bond threshold unchanged astral/12
+PASS Exact mild bond adjustment astral/13
+PASS Bond threshold unchanged astral/13
+PASS Exact mild bond adjustment astral/14
+PASS Bond threshold unchanged astral/14
+PASS Exact mild bond adjustment astral/15
+PASS Bond threshold unchanged astral/15
+PASS Exact mild bond adjustment astral/16
+PASS Bond threshold unchanged astral/16
+PASS Exact mild bond adjustment tidal/0
+PASS Bond threshold unchanged tidal/0
+PASS Exact mild bond adjustment tidal/1
+PASS Bond threshold unchanged tidal/1
+PASS Exact mild bond adjustment tidal/2
+PASS Bond threshold unchanged tidal/2
+PASS Exact mild bond adjustment tidal/3
+PASS Bond threshold unchanged tidal/3
+PASS Exact mild bond adjustment tidal/4
+PASS Bond threshold unchanged tidal/4
+PASS Exact mild bond adjustment tidal/5
+PASS Bond threshold unchanged tidal/5
+PASS Exact mild bond adjustment tidal/6
+PASS Bond threshold unchanged tidal/6
+PASS Exact mild bond adjustment tidal/7
+PASS Bond threshold unchanged tidal/7
+PASS Exact mild bond adjustment tidal/8
+PASS Bond threshold unchanged tidal/8
+PASS Exact mild bond adjustment tidal/9
+PASS Bond threshold unchanged tidal/9
+PASS Exact mild bond adjustment tidal/10
+PASS Bond threshold unchanged tidal/10
+PASS Exact mild bond adjustment tidal/11
+PASS Bond threshold unchanged tidal/11
+PASS Exact mild bond adjustment tidal/12
+PASS Bond threshold unchanged tidal/12
+PASS Exact mild bond adjustment tidal/13
+PASS Bond threshold unchanged tidal/13
+PASS Exact mild bond adjustment tidal/14
+PASS Bond threshold unchanged tidal/14
+PASS Exact mild bond adjustment tidal/15
+PASS Bond threshold unchanged tidal/15
+PASS Exact mild bond adjustment tidal/16
+PASS Bond threshold unchanged tidal/16
+PASS Exact mild bond adjustment oddity/0
+PASS Bond threshold unchanged oddity/0
+PASS Exact mild bond adjustment oddity/1
+PASS Bond threshold unchanged oddity/1
+PASS Exact mild bond adjustment oddity/2
+PASS Bond threshold unchanged oddity/2
+PASS Exact mild bond adjustment oddity/3
+PASS Bond threshold unchanged oddity/3
+PASS Exact mild bond adjustment oddity/4
+PASS Bond threshold unchanged oddity/4
+PASS Exact mild bond adjustment oddity/5
+PASS Bond threshold unchanged oddity/5
+PASS Exact mild bond adjustment oddity/6
+PASS Bond threshold unchanged oddity/6
+PASS Exact mild bond adjustment oddity/7
+PASS Bond threshold unchanged oddity/7
+PASS Exact mild bond adjustment oddity/8
+PASS Bond threshold unchanged oddity/8
+PASS Exact mild bond adjustment oddity/9
+PASS Bond threshold unchanged oddity/9
+PASS Exact mild bond adjustment oddity/10
+PASS Bond threshold unchanged oddity/10
+PASS Exact mild bond adjustment oddity/11
+PASS Bond threshold unchanged oddity/11
+PASS Exact mild bond adjustment oddity/12
+PASS Bond threshold unchanged oddity/12
+PASS Exact mild bond adjustment oddity/13
+PASS Bond threshold unchanged oddity/13
+PASS Exact mild bond adjustment oddity/14
+PASS Bond threshold unchanged oddity/14
+PASS Exact mild bond adjustment oddity/15
+PASS Bond threshold unchanged oddity/15
+PASS Exact mild bond adjustment oddity/16
+PASS Bond threshold unchanged oddity/16
+PASS Exact mild bond adjustment hare/0
+PASS Bond threshold unchanged hare/0
+PASS Exact mild bond adjustment hare/1
+PASS Bond threshold unchanged hare/1
+PASS Exact mild bond adjustment hare/2
+PASS Bond threshold unchanged hare/2
+PASS Exact mild bond adjustment hare/3
+PASS Bond threshold unchanged hare/3
+PASS Exact mild bond adjustment hare/4
+PASS Bond threshold unchanged hare/4
+PASS Exact mild bond adjustment hare/5
+PASS Bond threshold unchanged hare/5
+PASS Exact mild bond adjustment hare/6
+PASS Bond threshold unchanged hare/6
+PASS Exact mild bond adjustment hare/7
+PASS Bond threshold unchanged hare/7
+PASS Exact mild bond adjustment hare/8
+PASS Bond threshold unchanged hare/8
+PASS Exact mild bond adjustment hare/9
+PASS Bond threshold unchanged hare/9
+PASS Exact mild bond adjustment hare/10
+PASS Bond threshold unchanged hare/10
+PASS Exact mild bond adjustment hare/11
+PASS Bond threshold unchanged hare/11
+PASS Exact mild bond adjustment hare/12
+PASS Bond threshold unchanged hare/12
+PASS Exact mild bond adjustment hare/13
+PASS Bond threshold unchanged hare/13
+PASS Exact mild bond adjustment hare/14
+PASS Bond threshold unchanged hare/14
+PASS Exact mild bond adjustment hare/15
+PASS Bond threshold unchanged hare/15
+PASS Exact mild bond adjustment hare/16
+PASS Bond threshold unchanged hare/16
+PASS Exact mild bond adjustment archer/0
+PASS Bond threshold unchanged archer/0
+PASS Exact mild bond adjustment archer/1
+PASS Bond threshold unchanged archer/1
+PASS Exact mild bond adjustment archer/2
+PASS Bond threshold unchanged archer/2
+PASS Exact mild bond adjustment archer/3
+PASS Bond threshold unchanged archer/3
+PASS Exact mild bond adjustment archer/4
+PASS Bond threshold unchanged archer/4
+PASS Exact mild bond adjustment archer/5
+PASS Bond threshold unchanged archer/5
+PASS Exact mild bond adjustment archer/6
+PASS Bond threshold unchanged archer/6
+PASS Exact mild bond adjustment archer/7
+PASS Bond threshold unchanged archer/7
+PASS Exact mild bond adjustment archer/8
+PASS Bond threshold unchanged archer/8
+PASS Exact mild bond adjustment archer/9
+PASS Bond threshold unchanged archer/9
+PASS Exact mild bond adjustment archer/10
+PASS Bond threshold unchanged archer/10
+PASS Exact mild bond adjustment archer/11
+PASS Bond threshold unchanged archer/11
+PASS Exact mild bond adjustment archer/12
+PASS Bond threshold unchanged archer/12
+PASS Exact mild bond adjustment archer/13
+PASS Bond threshold unchanged archer/13
+PASS Exact mild bond adjustment archer/14
+PASS Bond threshold unchanged archer/14
+PASS Exact mild bond adjustment archer/15
+PASS Bond threshold unchanged archer/15
+PASS Exact mild bond adjustment archer/16
+PASS Bond threshold unchanged archer/16
+PASS Exact mild bond adjustment root/0
+PASS Bond threshold unchanged root/0
+PASS Exact mild bond adjustment root/1
+PASS Bond threshold unchanged root/1
+PASS Exact mild bond adjustment root/2
+PASS Bond threshold unchanged root/2
+PASS Exact mild bond adjustment root/3
+PASS Bond threshold unchanged root/3
+PASS Exact mild bond adjustment root/4
+PASS Bond threshold unchanged root/4
+PASS Exact mild bond adjustment root/5
+PASS Bond threshold unchanged root/5
+PASS Exact mild bond adjustment root/6
+PASS Bond threshold unchanged root/6
+PASS Exact mild bond adjustment root/7
+PASS Bond threshold unchanged root/7
+PASS Exact mild bond adjustment root/8
+PASS Bond threshold unchanged root/8
+PASS Exact mild bond adjustment root/9
+PASS Bond threshold unchanged root/9
+PASS Exact mild bond adjustment root/10
+PASS Bond threshold unchanged root/10
+PASS Exact mild bond adjustment root/11
+PASS Bond threshold unchanged root/11
+PASS Exact mild bond adjustment root/12
+PASS Bond threshold unchanged root/12
+PASS Exact mild bond adjustment root/13
+PASS Bond threshold unchanged root/13
+PASS Exact mild bond adjustment root/14
+PASS Bond threshold unchanged root/14
+PASS Exact mild bond adjustment root/15
+PASS Bond threshold unchanged root/15
+PASS Exact mild bond adjustment root/16
+PASS Bond threshold unchanged root/16
+PASS Exact mild bond adjustment gauntlet/0
+PASS Bond threshold unchanged gauntlet/0
+PASS Exact mild bond adjustment gauntlet/1
+PASS Bond threshold unchanged gauntlet/1
+PASS Exact mild bond adjustment gauntlet/2
+PASS Bond threshold unchanged gauntlet/2
+PASS Exact mild bond adjustment gauntlet/3
+PASS Bond threshold unchanged gauntlet/3
+PASS Exact mild bond adjustment gauntlet/4
+PASS Bond threshold unchanged gauntlet/4
+PASS Exact mild bond adjustment gauntlet/5
+PASS Bond threshold unchanged gauntlet/5
+PASS Exact mild bond adjustment gauntlet/6
+PASS Bond threshold unchanged gauntlet/6
+PASS Exact mild bond adjustment gauntlet/7
+PASS Bond threshold unchanged gauntlet/7
+PASS Exact mild bond adjustment gauntlet/8
+PASS Bond threshold unchanged gauntlet/8
+PASS Exact mild bond adjustment gauntlet/9
+PASS Bond threshold unchanged gauntlet/9
+PASS Exact mild bond adjustment gauntlet/10
+PASS Bond threshold unchanged gauntlet/10
+PASS Exact mild bond adjustment gauntlet/11
+PASS Bond threshold unchanged gauntlet/11
+PASS Exact mild bond adjustment gauntlet/12
+PASS Bond threshold unchanged gauntlet/12
+PASS Exact mild bond adjustment gauntlet/13
+PASS Bond threshold unchanged gauntlet/13
+PASS Exact mild bond adjustment gauntlet/14
+PASS Bond threshold unchanged gauntlet/14
+PASS Exact mild bond adjustment gauntlet/15
+PASS Bond threshold unchanged gauntlet/15
+PASS Exact mild bond adjustment gauntlet/16
+PASS Bond threshold unchanged gauntlet/16
+PASS Exact mild bond adjustment regal/0
+PASS Bond threshold unchanged regal/0
+PASS Exact mild bond adjustment regal/1
+PASS Bond threshold unchanged regal/1
+PASS Exact mild bond adjustment regal/2
+PASS Bond threshold unchanged regal/2
+PASS Exact mild bond adjustment regal/3
+PASS Bond threshold unchanged regal/3
+PASS Exact mild bond adjustment regal/4
+PASS Bond threshold unchanged regal/4
+PASS Exact mild bond adjustment regal/5
+PASS Bond threshold unchanged regal/5
+PASS Exact mild bond adjustment regal/6
+PASS Bond threshold unchanged regal/6
+PASS Exact mild bond adjustment regal/7
+PASS Bond threshold unchanged regal/7
+PASS Exact mild bond adjustment regal/8
+PASS Bond threshold unchanged regal/8
+PASS Exact mild bond adjustment regal/9
+PASS Bond threshold unchanged regal/9
+PASS Exact mild bond adjustment regal/10
+PASS Bond threshold unchanged regal/10
+PASS Exact mild bond adjustment regal/11
+PASS Bond threshold unchanged regal/11
+PASS Exact mild bond adjustment regal/12
+PASS Bond threshold unchanged regal/12
+PASS Exact mild bond adjustment regal/13
+PASS Bond threshold unchanged regal/13
+PASS Exact mild bond adjustment regal/14
+PASS Bond threshold unchanged regal/14
+PASS Exact mild bond adjustment regal/15
+PASS Bond threshold unchanged regal/15
+PASS Exact mild bond adjustment regal/16
+PASS Bond threshold unchanged regal/16
+PASS Exact mild bond adjustment clover/0
+PASS Bond threshold unchanged clover/0
+PASS Exact mild bond adjustment clover/1
+PASS Bond threshold unchanged clover/1
+PASS Exact mild bond adjustment clover/2
+PASS Bond threshold unchanged clover/2
+PASS Exact mild bond adjustment clover/3
+PASS Bond threshold unchanged clover/3
+PASS Exact mild bond adjustment clover/4
+PASS Bond threshold unchanged clover/4
+PASS Exact mild bond adjustment clover/5
+PASS Bond threshold unchanged clover/5
+PASS Exact mild bond adjustment clover/6
+PASS Bond threshold unchanged clover/6
+PASS Exact mild bond adjustment clover/7
+PASS Bond threshold unchanged clover/7
+PASS Exact mild bond adjustment clover/8
+PASS Bond threshold unchanged clover/8
+PASS Exact mild bond adjustment clover/9
+PASS Bond threshold unchanged clover/9
+PASS Exact mild bond adjustment clover/10
+PASS Bond threshold unchanged clover/10
+PASS Exact mild bond adjustment clover/11
+PASS Bond threshold unchanged clover/11
+PASS Exact mild bond adjustment clover/12
+PASS Bond threshold unchanged clover/12
+PASS Exact mild bond adjustment clover/13
+PASS Bond threshold unchanged clover/13
+PASS Exact mild bond adjustment clover/14
+PASS Bond threshold unchanged clover/14
+PASS Exact mild bond adjustment clover/15
+PASS Bond threshold unchanged clover/15
+PASS Exact mild bond adjustment clover/16
+PASS Bond threshold unchanged clover/16
+PASS Exact mild bond adjustment fruit/0
+PASS Bond threshold unchanged fruit/0
+PASS Exact mild bond adjustment fruit/1
+PASS Bond threshold unchanged fruit/1
+PASS Exact mild bond adjustment fruit/2
+PASS Bond threshold unchanged fruit/2
+PASS Exact mild bond adjustment fruit/3
+PASS Bond threshold unchanged fruit/3
+PASS Exact mild bond adjustment fruit/4
+PASS Bond threshold unchanged fruit/4
+PASS Exact mild bond adjustment fruit/5
+PASS Bond threshold unchanged fruit/5
+PASS Exact mild bond adjustment fruit/6
+PASS Bond threshold unchanged fruit/6
+PASS Exact mild bond adjustment fruit/7
+PASS Bond threshold unchanged fruit/7
+PASS Exact mild bond adjustment fruit/8
+PASS Bond threshold unchanged fruit/8
+PASS Exact mild bond adjustment fruit/9
+PASS Bond threshold unchanged fruit/9
+PASS Exact mild bond adjustment fruit/10
+PASS Bond threshold unchanged fruit/10
+PASS Exact mild bond adjustment fruit/11
+PASS Bond threshold unchanged fruit/11
+PASS Exact mild bond adjustment fruit/12
+PASS Bond threshold unchanged fruit/12
+PASS Exact mild bond adjustment fruit/13
+PASS Bond threshold unchanged fruit/13
+PASS Exact mild bond adjustment fruit/14
+PASS Bond threshold unchanged fruit/14
+PASS Exact mild bond adjustment fruit/15
+PASS Bond threshold unchanged fruit/15
+PASS Exact mild bond adjustment fruit/16
+PASS Bond threshold unchanged fruit/16
+PASS Exact mild bond adjustment gear/0
+PASS Bond threshold unchanged gear/0
+PASS Exact mild bond adjustment gear/1
+PASS Bond threshold unchanged gear/1
+PASS Exact mild bond adjustment gear/2
+PASS Bond threshold unchanged gear/2
+PASS Exact mild bond adjustment gear/3
+PASS Bond threshold unchanged gear/3
+PASS Exact mild bond adjustment gear/4
+PASS Bond threshold unchanged gear/4
+PASS Exact mild bond adjustment gear/5
+PASS Bond threshold unchanged gear/5
+PASS Exact mild bond adjustment gear/6
+PASS Bond threshold unchanged gear/6
+PASS Exact mild bond adjustment gear/7
+PASS Bond threshold unchanged gear/7
+PASS Exact mild bond adjustment gear/8
+PASS Bond threshold unchanged gear/8
+PASS Exact mild bond adjustment gear/9
+PASS Bond threshold unchanged gear/9
+PASS Exact mild bond adjustment gear/10
+PASS Bond threshold unchanged gear/10
+PASS Exact mild bond adjustment gear/11
+PASS Bond threshold unchanged gear/11
+PASS Exact mild bond adjustment gear/12
+PASS Bond threshold unchanged gear/12
+PASS Exact mild bond adjustment gear/13
+PASS Bond threshold unchanged gear/13
+PASS Exact mild bond adjustment gear/14
+PASS Bond threshold unchanged gear/14
+PASS Exact mild bond adjustment gear/15
+PASS Bond threshold unchanged gear/15
+PASS Exact mild bond adjustment gear/16
+PASS Bond threshold unchanged gear/16
+PASS Exact mild bond adjustment hat/0
+PASS Bond threshold unchanged hat/0
+PASS Exact mild bond adjustment hat/1
+PASS Bond threshold unchanged hat/1
+PASS Exact mild bond adjustment hat/2
+PASS Bond threshold unchanged hat/2
+PASS Exact mild bond adjustment hat/3
+PASS Bond threshold unchanged hat/3
+PASS Exact mild bond adjustment hat/4
+PASS Bond threshold unchanged hat/4
+PASS Exact mild bond adjustment hat/5
+PASS Bond threshold unchanged hat/5
+PASS Exact mild bond adjustment hat/6
+PASS Bond threshold unchanged hat/6
+PASS Exact mild bond adjustment hat/7
+PASS Bond threshold unchanged hat/7
+PASS Exact mild bond adjustment hat/8
+PASS Bond threshold unchanged hat/8
+PASS Exact mild bond adjustment hat/9
+PASS Bond threshold unchanged hat/9
+PASS Exact mild bond adjustment hat/10
+PASS Bond threshold unchanged hat/10
+PASS Exact mild bond adjustment hat/11
+PASS Bond threshold unchanged hat/11
+PASS Exact mild bond adjustment hat/12
+PASS Bond threshold unchanged hat/12
+PASS Exact mild bond adjustment hat/13
+PASS Bond threshold unchanged hat/13
+PASS Exact mild bond adjustment hat/14
+PASS Bond threshold unchanged hat/14
+PASS Exact mild bond adjustment hat/15
+PASS Bond threshold unchanged hat/15
+PASS Exact mild bond adjustment hat/16
+PASS Bond threshold unchanged hat/16
+PASS Exact mild bond adjustment horn/0
+PASS Bond threshold unchanged horn/0
+PASS Exact mild bond adjustment horn/1
+PASS Bond threshold unchanged horn/1
+PASS Exact mild bond adjustment horn/2
+PASS Bond threshold unchanged horn/2
+PASS Exact mild bond adjustment horn/3
+PASS Bond threshold unchanged horn/3
+PASS Exact mild bond adjustment horn/4
+PASS Bond threshold unchanged horn/4
+PASS Exact mild bond adjustment horn/5
+PASS Bond threshold unchanged horn/5
+PASS Exact mild bond adjustment horn/6
+PASS Bond threshold unchanged horn/6
+PASS Exact mild bond adjustment horn/7
+PASS Bond threshold unchanged horn/7
+PASS Exact mild bond adjustment horn/8
+PASS Bond threshold unchanged horn/8
+PASS Exact mild bond adjustment horn/9
+PASS Bond threshold unchanged horn/9
+PASS Exact mild bond adjustment horn/10
+PASS Bond threshold unchanged horn/10
+PASS Exact mild bond adjustment horn/11
+PASS Bond threshold unchanged horn/11
+PASS Exact mild bond adjustment horn/12
+PASS Bond threshold unchanged horn/12
+PASS Exact mild bond adjustment horn/13
+PASS Bond threshold unchanged horn/13
+PASS Exact mild bond adjustment horn/14
+PASS Bond threshold unchanged horn/14
+PASS Exact mild bond adjustment horn/15
+PASS Bond threshold unchanged horn/15
+PASS Exact mild bond adjustment horn/16
+PASS Bond threshold unchanged horn/16
+PASS Exact mild bond adjustment sprout/0
+PASS Bond threshold unchanged sprout/0
+PASS Exact mild bond adjustment sprout/1
+PASS Bond threshold unchanged sprout/1
+PASS Exact mild bond adjustment sprout/2
+PASS Bond threshold unchanged sprout/2
+PASS Exact mild bond adjustment sprout/3
+PASS Bond threshold unchanged sprout/3
+PASS Exact mild bond adjustment sprout/4
+PASS Bond threshold unchanged sprout/4
+PASS Exact mild bond adjustment sprout/5
+PASS Bond threshold unchanged sprout/5
+PASS Exact mild bond adjustment sprout/6
+PASS Bond threshold unchanged sprout/6
+PASS Exact mild bond adjustment sprout/7
+PASS Bond threshold unchanged sprout/7
+PASS Exact mild bond adjustment sprout/8
+PASS Bond threshold unchanged sprout/8
+PASS Exact mild bond adjustment sprout/9
+PASS Bond threshold unchanged sprout/9
+PASS Exact mild bond adjustment sprout/10
+PASS Bond threshold unchanged sprout/10
+PASS Exact mild bond adjustment sprout/11
+PASS Bond threshold unchanged sprout/11
+PASS Exact mild bond adjustment sprout/12
+PASS Bond threshold unchanged sprout/12
+PASS Exact mild bond adjustment sprout/13
+PASS Bond threshold unchanged sprout/13
+PASS Exact mild bond adjustment sprout/14
+PASS Bond threshold unchanged sprout/14
+PASS Exact mild bond adjustment sprout/15
+PASS Bond threshold unchanged sprout/15
+PASS Exact mild bond adjustment sprout/16
+PASS Bond threshold unchanged sprout/16
+PASS Exact mild bond adjustment knight/0
+PASS Bond threshold unchanged knight/0
+PASS Exact mild bond adjustment knight/1
+PASS Bond threshold unchanged knight/1
+PASS Exact mild bond adjustment knight/2
+PASS Bond threshold unchanged knight/2
+PASS Exact mild bond adjustment knight/3
+PASS Bond threshold unchanged knight/3
+PASS Exact mild bond adjustment knight/4
+PASS Bond threshold unchanged knight/4
+PASS Exact mild bond adjustment knight/5
+PASS Bond threshold unchanged knight/5
+PASS Exact mild bond adjustment knight/6
+PASS Bond threshold unchanged knight/6
+PASS Exact mild bond adjustment knight/7
+PASS Bond threshold unchanged knight/7
+PASS Exact mild bond adjustment knight/8
+PASS Bond threshold unchanged knight/8
+PASS Exact mild bond adjustment knight/9
+PASS Bond threshold unchanged knight/9
+PASS Exact mild bond adjustment knight/10
+PASS Bond threshold unchanged knight/10
+PASS Exact mild bond adjustment knight/11
+PASS Bond threshold unchanged knight/11
+PASS Exact mild bond adjustment knight/12
+PASS Bond threshold unchanged knight/12
+PASS Exact mild bond adjustment knight/13
+PASS Bond threshold unchanged knight/13
+PASS Exact mild bond adjustment knight/14
+PASS Bond threshold unchanged knight/14
+PASS Exact mild bond adjustment knight/15
+PASS Bond threshold unchanged knight/15
+PASS Exact mild bond adjustment knight/16
+PASS Bond threshold unchanged knight/16
+PASS Exact mild bond adjustment ball/0
+PASS Bond threshold unchanged ball/0
+PASS Exact mild bond adjustment ball/1
+PASS Bond threshold unchanged ball/1
+PASS Exact mild bond adjustment ball/2
+PASS Bond threshold unchanged ball/2
+PASS Exact mild bond adjustment ball/3
+PASS Bond threshold unchanged ball/3
+PASS Exact mild bond adjustment ball/4
+PASS Bond threshold unchanged ball/4
+PASS Exact mild bond adjustment ball/5
+PASS Bond threshold unchanged ball/5
+PASS Exact mild bond adjustment ball/6
+PASS Bond threshold unchanged ball/6
+PASS Exact mild bond adjustment ball/7
+PASS Bond threshold unchanged ball/7
+PASS Exact mild bond adjustment ball/8
+PASS Bond threshold unchanged ball/8
+PASS Exact mild bond adjustment ball/9
+PASS Bond threshold unchanged ball/9
+PASS Exact mild bond adjustment ball/10
+PASS Bond threshold unchanged ball/10
+PASS Exact mild bond adjustment ball/11
+PASS Bond threshold unchanged ball/11
+PASS Exact mild bond adjustment ball/12
+PASS Bond threshold unchanged ball/12
+PASS Exact mild bond adjustment ball/13
+PASS Bond threshold unchanged ball/13
+PASS Exact mild bond adjustment ball/14
+PASS Bond threshold unchanged ball/14
+PASS Exact mild bond adjustment ball/15
+PASS Bond threshold unchanged ball/15
+PASS Exact mild bond adjustment ball/16
+PASS Bond threshold unchanged ball/16
+PASS Exact mild bond adjustment morning/0
+PASS Bond threshold unchanged morning/0
+PASS Exact mild bond adjustment morning/1
+PASS Bond threshold unchanged morning/1
+PASS Exact mild bond adjustment morning/2
+PASS Bond threshold unchanged morning/2
+PASS Exact mild bond adjustment morning/3
+PASS Bond threshold unchanged morning/3
+PASS Exact mild bond adjustment morning/4
+PASS Bond threshold unchanged morning/4
+PASS Exact mild bond adjustment morning/5
+PASS Bond threshold unchanged morning/5
+PASS Exact mild bond adjustment morning/6
+PASS Bond threshold unchanged morning/6
+PASS Exact mild bond adjustment morning/7
+PASS Bond threshold unchanged morning/7
+PASS Exact mild bond adjustment morning/8
+PASS Bond threshold unchanged morning/8
+PASS Exact mild bond adjustment morning/9
+PASS Bond threshold unchanged morning/9
+PASS Exact mild bond adjustment morning/10
+PASS Bond threshold unchanged morning/10
+PASS Exact mild bond adjustment morning/11
+PASS Bond threshold unchanged morning/11
+PASS Exact mild bond adjustment morning/12
+PASS Bond threshold unchanged morning/12
+PASS Exact mild bond adjustment morning/13
+PASS Bond threshold unchanged morning/13
+PASS Exact mild bond adjustment morning/14
+PASS Bond threshold unchanged morning/14
+PASS Exact mild bond adjustment morning/15
+PASS Bond threshold unchanged morning/15
+PASS Exact mild bond adjustment morning/16
+PASS Bond threshold unchanged morning/16
+PASS Exact mild bond adjustment rune/0
+PASS Bond threshold unchanged rune/0
+PASS Exact mild bond adjustment rune/1
+PASS Bond threshold unchanged rune/1
+PASS Exact mild bond adjustment rune/2
+PASS Bond threshold unchanged rune/2
+PASS Exact mild bond adjustment rune/3
+PASS Bond threshold unchanged rune/3
+PASS Exact mild bond adjustment rune/4
+PASS Bond threshold unchanged rune/4
+PASS Exact mild bond adjustment rune/5
+PASS Bond threshold unchanged rune/5
+PASS Exact mild bond adjustment rune/6
+PASS Bond threshold unchanged rune/6
+PASS Exact mild bond adjustment rune/7
+PASS Bond threshold unchanged rune/7
+PASS Exact mild bond adjustment rune/8
+PASS Bond threshold unchanged rune/8
+PASS Exact mild bond adjustment rune/9
+PASS Bond threshold unchanged rune/9
+PASS Exact mild bond adjustment rune/10
+PASS Bond threshold unchanged rune/10
+PASS Exact mild bond adjustment rune/11
+PASS Bond threshold unchanged rune/11
+PASS Exact mild bond adjustment rune/12
+PASS Bond threshold unchanged rune/12
+PASS Exact mild bond adjustment rune/13
+PASS Bond threshold unchanged rune/13
+PASS Exact mild bond adjustment rune/14
+PASS Bond threshold unchanged rune/14
+PASS Exact mild bond adjustment rune/15
+PASS Bond threshold unchanged rune/15
+PASS Exact mild bond adjustment rune/16
+PASS Bond threshold unchanged rune/16
+PASS Exact mild bond adjustment mask/0
+PASS Bond threshold unchanged mask/0
+PASS Exact mild bond adjustment mask/1
+PASS Bond threshold unchanged mask/1
+PASS Exact mild bond adjustment mask/2
+PASS Bond threshold unchanged mask/2
+PASS Exact mild bond adjustment mask/3
+PASS Bond threshold unchanged mask/3
+PASS Exact mild bond adjustment mask/4
+PASS Bond threshold unchanged mask/4
+PASS Exact mild bond adjustment mask/5
+PASS Bond threshold unchanged mask/5
+PASS Exact mild bond adjustment mask/6
+PASS Bond threshold unchanged mask/6
+PASS Exact mild bond adjustment mask/7
+PASS Bond threshold unchanged mask/7
+PASS Exact mild bond adjustment mask/8
+PASS Bond threshold unchanged mask/8
+PASS Exact mild bond adjustment mask/9
+PASS Bond threshold unchanged mask/9
+PASS Exact mild bond adjustment mask/10
+PASS Bond threshold unchanged mask/10
+PASS Exact mild bond adjustment mask/11
+PASS Bond threshold unchanged mask/11
+PASS Exact mild bond adjustment mask/12
+PASS Bond threshold unchanged mask/12
+PASS Exact mild bond adjustment mask/13
+PASS Bond threshold unchanged mask/13
+PASS Exact mild bond adjustment mask/14
+PASS Bond threshold unchanged mask/14
+PASS Exact mild bond adjustment mask/15
+PASS Bond threshold unchanged mask/15
+PASS Exact mild bond adjustment mask/16
+PASS Bond threshold unchanged mask/16
+PASS Exact mild bond adjustment hide/0
+PASS Bond threshold unchanged hide/0
+PASS Exact mild bond adjustment hide/1
+PASS Bond threshold unchanged hide/1
+PASS Exact mild bond adjustment hide/2
+PASS Bond threshold unchanged hide/2
+PASS Exact mild bond adjustment hide/3
+PASS Bond threshold unchanged hide/3
+PASS Exact mild bond adjustment hide/4
+PASS Bond threshold unchanged hide/4
+PASS Exact mild bond adjustment hide/5
+PASS Bond threshold unchanged hide/5
+PASS Exact mild bond adjustment hide/6
+PASS Bond threshold unchanged hide/6
+PASS Exact mild bond adjustment hide/7
+PASS Bond threshold unchanged hide/7
+PASS Exact mild bond adjustment hide/8
+PASS Bond threshold unchanged hide/8
+PASS Exact mild bond adjustment hide/9
+PASS Bond threshold unchanged hide/9
+PASS Exact mild bond adjustment hide/10
+PASS Bond threshold unchanged hide/10
+PASS Exact mild bond adjustment hide/11
+PASS Bond threshold unchanged hide/11
+PASS Exact mild bond adjustment hide/12
+PASS Bond threshold unchanged hide/12
+PASS Exact mild bond adjustment hide/13
+PASS Bond threshold unchanged hide/13
+PASS Exact mild bond adjustment hide/14
+PASS Bond threshold unchanged hide/14
+PASS Exact mild bond adjustment hide/15
+PASS Bond threshold unchanged hide/15
+PASS Exact mild bond adjustment hide/16
+PASS Bond threshold unchanged hide/16
+PASS Exact mild bond adjustment resolve/0
+PASS Bond threshold unchanged resolve/0
+PASS Exact mild bond adjustment resolve/1
+PASS Bond threshold unchanged resolve/1
+PASS Exact mild bond adjustment resolve/2
+PASS Bond threshold unchanged resolve/2
+PASS Exact mild bond adjustment resolve/3
+PASS Bond threshold unchanged resolve/3
+PASS Exact mild bond adjustment resolve/4
+PASS Bond threshold unchanged resolve/4
+PASS Exact mild bond adjustment resolve/5
+PASS Bond threshold unchanged resolve/5
+PASS Exact mild bond adjustment resolve/6
+PASS Bond threshold unchanged resolve/6
+PASS Exact mild bond adjustment resolve/7
+PASS Bond threshold unchanged resolve/7
+PASS Exact mild bond adjustment resolve/8
+PASS Bond threshold unchanged resolve/8
+PASS Exact mild bond adjustment resolve/9
+PASS Bond threshold unchanged resolve/9
+PASS Exact mild bond adjustment resolve/10
+PASS Bond threshold unchanged resolve/10
+PASS Exact mild bond adjustment resolve/11
+PASS Bond threshold unchanged resolve/11
+PASS Exact mild bond adjustment resolve/12
+PASS Bond threshold unchanged resolve/12
+PASS Exact mild bond adjustment resolve/13
+PASS Bond threshold unchanged resolve/13
+PASS Exact mild bond adjustment resolve/14
+PASS Bond threshold unchanged resolve/14
+PASS Exact mild bond adjustment resolve/15
+PASS Bond threshold unchanged resolve/15
+PASS Exact mild bond adjustment resolve/16
+PASS Bond threshold unchanged resolve/16
+PASS Exact mild bond adjustment shoe/0
+PASS Bond threshold unchanged shoe/0
+PASS Exact mild bond adjustment shoe/1
+PASS Bond threshold unchanged shoe/1
+PASS Exact mild bond adjustment shoe/2
+PASS Bond threshold unchanged shoe/2
+PASS Exact mild bond adjustment shoe/3
+PASS Bond threshold unchanged shoe/3
+PASS Exact mild bond adjustment shoe/4
+PASS Bond threshold unchanged shoe/4
+PASS Exact mild bond adjustment shoe/5
+PASS Bond threshold unchanged shoe/5
+PASS Exact mild bond adjustment shoe/6
+PASS Bond threshold unchanged shoe/6
+PASS Exact mild bond adjustment shoe/7
+PASS Bond threshold unchanged shoe/7
+PASS Exact mild bond adjustment shoe/8
+PASS Bond threshold unchanged shoe/8
+PASS Exact mild bond adjustment shoe/9
+PASS Bond threshold unchanged shoe/9
+PASS Exact mild bond adjustment shoe/10
+PASS Bond threshold unchanged shoe/10
+PASS Exact mild bond adjustment shoe/11
+PASS Bond threshold unchanged shoe/11
+PASS Exact mild bond adjustment shoe/12
+PASS Bond threshold unchanged shoe/12
+PASS Exact mild bond adjustment shoe/13
+PASS Bond threshold unchanged shoe/13
+PASS Exact mild bond adjustment shoe/14
+PASS Bond threshold unchanged shoe/14
+PASS Exact mild bond adjustment shoe/15
+PASS Bond threshold unchanged shoe/15
+PASS Exact mild bond adjustment shoe/16
+PASS Bond threshold unchanged shoe/16
+PASS Exact mild bond adjustment lantern-guild/0
+PASS Bond threshold unchanged lantern-guild/0
+PASS Exact mild bond adjustment lantern-guild/1
+PASS Bond threshold unchanged lantern-guild/1
+PASS Exact mild bond adjustment lantern-guild/2
+PASS Bond threshold unchanged lantern-guild/2
+PASS Exact mild bond adjustment lantern-guild/3
+PASS Bond threshold unchanged lantern-guild/3
+PASS Exact mild bond adjustment lantern-guild/4
+PASS Bond threshold unchanged lantern-guild/4
+PASS Exact mild bond adjustment lantern-guild/5
+PASS Bond threshold unchanged lantern-guild/5
+PASS Exact mild bond adjustment lantern-guild/6
+PASS Bond threshold unchanged lantern-guild/6
+PASS Exact mild bond adjustment lantern-guild/7
+PASS Bond threshold unchanged lantern-guild/7
+PASS Exact mild bond adjustment lantern-guild/8
+PASS Bond threshold unchanged lantern-guild/8
+PASS Exact mild bond adjustment lantern-guild/9
+PASS Bond threshold unchanged lantern-guild/9
+PASS Exact mild bond adjustment lantern-guild/10
+PASS Bond threshold unchanged lantern-guild/10
+PASS Exact mild bond adjustment lantern-guild/11
+PASS Bond threshold unchanged lantern-guild/11
+PASS Exact mild bond adjustment lantern-guild/12
+PASS Bond threshold unchanged lantern-guild/12
+PASS Exact mild bond adjustment lantern-guild/13
+PASS Bond threshold unchanged lantern-guild/13
+PASS Exact mild bond adjustment lantern-guild/14
+PASS Bond threshold unchanged lantern-guild/14
+PASS Exact mild bond adjustment lantern-guild/15
+PASS Bond threshold unchanged lantern-guild/15
+PASS Exact mild bond adjustment lantern-guild/16
+PASS Bond threshold unchanged lantern-guild/16
+PASS Exact mild bond adjustment rain-script/0
+PASS Bond threshold unchanged rain-script/0
+PASS Exact mild bond adjustment rain-script/1
+PASS Bond threshold unchanged rain-script/1
+PASS Exact mild bond adjustment rain-script/2
+PASS Bond threshold unchanged rain-script/2
+PASS Exact mild bond adjustment rain-script/3
+PASS Bond threshold unchanged rain-script/3
+PASS Exact mild bond adjustment rain-script/4
+PASS Bond threshold unchanged rain-script/4
+PASS Exact mild bond adjustment rain-script/5
+PASS Bond threshold unchanged rain-script/5
+PASS Exact mild bond adjustment rain-script/6
+PASS Bond threshold unchanged rain-script/6
+PASS Exact mild bond adjustment rain-script/7
+PASS Bond threshold unchanged rain-script/7
+PASS Exact mild bond adjustment rain-script/8
+PASS Bond threshold unchanged rain-script/8
+PASS Exact mild bond adjustment rain-script/9
+PASS Bond threshold unchanged rain-script/9
+PASS Exact mild bond adjustment rain-script/10
+PASS Bond threshold unchanged rain-script/10
+PASS Exact mild bond adjustment rain-script/11
+PASS Bond threshold unchanged rain-script/11
+PASS Exact mild bond adjustment rain-script/12
+PASS Bond threshold unchanged rain-script/12
+PASS Exact mild bond adjustment rain-script/13
+PASS Bond threshold unchanged rain-script/13
+PASS Exact mild bond adjustment rain-script/14
+PASS Bond threshold unchanged rain-script/14
+PASS Exact mild bond adjustment rain-script/15
+PASS Bond threshold unchanged rain-script/15
+PASS Exact mild bond adjustment rain-script/16
+PASS Bond threshold unchanged rain-script/16
+PASS Bond UI includes reduced extra milestone bonus

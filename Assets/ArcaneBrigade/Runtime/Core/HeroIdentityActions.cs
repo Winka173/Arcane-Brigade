@@ -19,7 +19,7 @@ namespace ArcaneBrigade
                 bool basic = e.Cause.Depth == 0;
                 if (e.Kind == CombatEventKind.Fire && e.Faction != Faction.Enemy && basic)
                 {
-                    UnitState performer = e.Subject ?? units.Find(u => u.Id == e.Cause.SourceUnitId);
+                    UnitState performer = e.Subject ?? UnitWithId(e.Cause.SourceUnitId);
                     if (IdentityId == "LanternKnight" && Elapsed >= identitySecondAt && performer != null && (CompanionCount == 0 ? personal : performer.Faction == Faction.Companion) && (performer.Position - Champion.Position).sqrMagnitude <= 16)
                     { identityCharge = Mathf.Min(8, identityCharge + 1); identitySecondAt = Elapsed + .25f; }
                     if (IdentityId == "VelvetRegent" && e.Faction == Faction.Companion) identityCharge = Mathf.Min(6, identityCharge + 1);

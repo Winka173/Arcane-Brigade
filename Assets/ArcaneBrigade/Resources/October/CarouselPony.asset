@@ -46,13 +46,16 @@ MonoBehaviour:
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nCarries one nearby ally
     while both continue attacking. Rider and mount remain immortal. Mount pairing
     is automatic.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3 traits \xD71/2/4; merging
-    three units reduces support sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic
-    personal passive.\r\n\nNamed talents count bodies and absorbed memories; their
-    stated percentages are not multiplied by star level unless explicitly stated.
-    Listed support modifiers scale separately at 1/2/4.\r\nSource: dream shop or
-    special reward, subject to hero theme and unlock wave.\r\nBonds: clock, tidal,
-    knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    three units reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA living
+    mount bound to a circular route by a promise made on their behalf. They remember
+    riders but no destinations. They choose passengers now and seek the first road
+    that does not return by force.\r\nPERSONAL PASSIVE\nNo additional periodic personal
+    passive.\r\n\nNamed talents count bodies and absorbed memories; their stated
+    percentages are not multiplied by star level unless explicitly stated. Listed
+    support modifiers scale separately at 1/2/4.\r\nSource: dream shop or special
+    reward, subject to hero theme and unlock wave.\r\nBonds: clock, tidal, knight.
+    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Pony
   ExclusiveHero: 

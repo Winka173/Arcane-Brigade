@@ -44,13 +44,16 @@ MonoBehaviour:
   PassiveStrength: 0.5
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nPush ordinary enemies within
     the push cap. Basic damage is reduced by 70%.\r\n\nSUPPORT WHILE OWNED\nTier
-    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
-    and absorbed memories; their stated percentages are not multiplied by star level
-    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:
-    gift / nursery / special reward; not ordinary shop stock.\r\nBonds: tidal, mask.
-    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA traveller whose buoyant body kept them working above
+    flooded streets. A foreman charged rent for their air. They joined a rescue crew
+    and carry a valve only they may open.\r\nPERSONAL PASSIVE\nNo additional periodic
+    personal passive.\r\n\nNamed talents count bodies and absorbed memories; their
+    stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nSource: gift / nursery
+    / special reward; not ordinary shop stock.\r\nBonds: tidal, mask. Immortal. Weapon
+    rolls on recruitment; three equal-species/equal-star bodies merge unless the
+    talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Inflatable Hammer
   ExclusiveHero: 

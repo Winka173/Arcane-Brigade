@@ -78,7 +78,7 @@ namespace ArcaneBrigade
             {
                 Exhibit exhibit = exhibits[index];
                 Rect card = new Rect(index % 3 * 235, index / 3 * 130, 223, 118);
-                ArcadeSkin.Panel(card, index == selection ? new Color(0.27f, 0.22f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
+                ArcadeSkin.Panel(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 if (GUI.Button(card, GUIContent.none, GUIStyle.none)) { if (!exhibit.Seen || selection != index) CheckpointAudio.PlayInterfaceId(exhibit.Seen ? "ui.page" : "ui.locked"); selection = index; detailScroll = Vector2.zero; }
                 if (exhibit.Seen) RunHud.Sprite(new Rect(card.x + 72, card.y + 10, 80, 65), exhibit.Icon);
                 string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : "UNDISCOVERED";
@@ -89,7 +89,7 @@ namespace ArcaneBrigade
             }
             GUI.EndScrollView();
             selection = Mathf.Clamp(selection, 0, Mathf.Max(0, exhibits.Count - 1));
-            ArcadeSkin.Panel(new Rect(840, 225, 375, 385), new Color(0.18f, 0.15f, 0.27f));
+            ArcadeSkin.Panel(new Rect(840, 225, 375, 385), ArcadeSkin.Card);
             if (exhibits.Count > 0)
             {
                 Exhibit exhibit = exhibits[selection];

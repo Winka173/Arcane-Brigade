@@ -46,7 +46,10 @@ MonoBehaviour:
     a 25% chance to grant 1 gold. All TV Head talents share a 0.8s cooldown; extra
     hits cannot bypass it.\r\n\nSUPPORT WHILE OWNED\nRun / Relic discount: +2.5%\nChampion
     / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s in combat, gain 0 gold directly.
+    support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA reef resident whose ceramic-looking
+    shell shelters a living reef. They broadcast weather to inland families. Their
+    last warning brought an evacuation boat too late; they still check the harbour's
+    arriving names.\r\nPERSONAL PASSIVE\nEvery 4s in combat, gain 0 gold directly.
     This is not kill loot and does not count as collecting a coin.\r\n\nNamed talents
     count bodies and absorbed memories; their stated percentages are not multiplied
     by star level unless explicitly stated. Listed support modifiers scale separately

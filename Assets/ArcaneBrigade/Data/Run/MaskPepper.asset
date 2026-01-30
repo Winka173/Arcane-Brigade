@@ -47,8 +47,11 @@ MonoBehaviour:
     a full heal. Royal health cannot be refilled; hero healing restrictions still
     apply. Shared across copies.\r\n\nSUPPORT WHILE OWNED\nChampion / Healing correction:
     +2.5%\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three
-    units reduces support sources.\n\r\nPERSONAL PASSIVE\nOwn weapon damage gains
-    0.5% per companion body in the roster, before later balance modifiers.\r\n\nNamed
+    units reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA theatre refugee
+    whose mask preserved a role after the troupe disbanded. The role taught courage
+    but sometimes speaks over their wishes. They are learning to remove it without
+    apologising for the quieter voice beneath.\r\nPERSONAL PASSIVE\nOwn weapon damage
+    gains 0.5% per companion body in the roster, before later balance modifiers.\r\n\nNamed
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nBonds: oddity, resolve. Immortal. Weapon rolls on recruitment;

@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-16",
+  "method": "Blender MCP / separate bpy scene / Cycles render, 24 samples; no external or generated image inputs",
+  "scene": "MienCho_SharedDawn",
+  "runtime": "Unity custom world-space RenderTexture lighting; built-in sprite pipeline",
+  "files": [
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/EmptyChair.png",
+      "bytes": 227076,
+      "sha256": "9092bf245b7208314752ffc4fc744171c5862de55dd343d3b801fdda82e81a63"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/OpenDawn.png",
+      "bytes": 964417,
+      "sha256": "a1a22f3964b6312748310857acfbfc0ea571a54681c74dcce95a9863d4a7986f"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+      "bytes": 963124,
+      "sha256": "0cbd82aa1bf35a7d850d991c22af7f3f4cdf34179a81ef5b2b4cfd2b03801d8b"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/WithheldDawn.png",
+      "bytes": 896856,
+      "sha256": "e1f694dee8b8073f251a3f1ca32a58541422784ed2779a49c379409306930119"
+    },
+    {
+      "path": "Tools/Blender/MienCho_SharedDawn.blend",
+      "bytes": 796019,
+      "sha256": "739db7b930440d3fb3fcdf8626411e4e056352b80d2396cbb0aadf16e29b50e5"
+    }
+  ],
+  "encounters": {
+    "date": "2026-10-16",
+    "method": "Blender MCP / procedural meshes, custom materials / Cycles 32 samples / transparent PNG sprites",
+    "scene": "MienCho_EncounterProps",
+    "inputs": "No external reference assets",
+    "files": [
+      {
+        "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/BreathingPhone.png",
+        "bytes": 356780,
+        "sha256": "97e20c7d06b62c1445765b4953e3d4ad7faf5fe36b8c8e67df778634648c75cb"
+      },
+      {
+        "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/LateReflection.png",
+        "bytes": 377769,
+        "sha256": "16f511c4b9e0f8e96f28332acb0b7b463a3083adc6836d28f5bbf198adc19460"
+      },
+      {
+        "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/ReservedTable.png",
+        "bytes": 340287,
+        "sha256": "f9b64601d2ad191039d3a0cedd1969c23bb94050496f5f4a7e483bc72e09519e"
+      },
+      {
+        "path": "Tools/Blender/MienCho_EncounterProps.blend",
+        "bytes": 2916431,
+        "sha256": "c0be80b045b6e1b8f08cdbc214ffed31f57f9d1a5154dea47603f8c058ccff1e"
+      },
+      {
+        "path": "Tools/Blender/create_waiting_encounters.py",
+        "bytes": 9023,
+        "sha256": "0526929a3bfe0e077d39ffaf97f808d08542f97cc6704967153e46f1cae3a41f"
+      }
+    ]
+  }
+}

@@ -46,7 +46,10 @@ MonoBehaviour:
     During combat, the hero spends 0.5 HP every 5s while at least one Philip talent
     is present; this health cost does not stack by copies and bypasses armor/dodge.\r\n\nSUPPORT
     WHILE OWNED\nChampion / Healing per second: +0.04\nChampion / Movement speed:
-    -0.3%\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
+    -0.3%\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nThey repair bodies only at their wearers' request. Their
+    former workshop sold alterations as obedience. They preserve its patterns as
+    evidence while making clothes with pockets people choose themselves.\r\nPERSONAL
     PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
     and absorbed memories; their stated percentages are not multiplied by star level
     unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:

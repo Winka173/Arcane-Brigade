@@ -31,7 +31,7 @@ namespace ArcaneBrigade
                 int frame = PresentationSettings.ReducedMotion ? 2 : age < .5f ? 0 : age < .8f ? 1 : owner.Simulation.Champion.Position.x < position.x ? 2 : 3;
                 eye.sprite = art.Watchers[(i % 3) * 4 + frame]; eye.transform.position = position;
                 eye.transform.localScale = Vector3.one * ((i % 3 == 0 ? 1.2f : .95f) / Mathf.Max(.01f, eye.sprite.bounds.size.x));
-                eye.color = Color.white;
+                eye.color = new Color(.38f, .52f, .7f, .4f); // Distant witnesses are blue; actual hostile eyes are red.
             }
         }
     }
@@ -60,7 +60,7 @@ namespace ArcaneBrigade
             float scale = 1.9f / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).height);
             transform.localScale = Vector3.one * scale;
             transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 41, PresentationSettings.ReducedMotion, .45f));
-            // Re-anchor the visible ink after frame changes; door feet never bob above their threshold.
+            // Keep the visible foot suspended relative to the fixed threshold after frame changes.
             if (lifecycle == null) lifecycle = GetComponentInParent<MarketLifecycle>();
             Vector3 offset = lifecycle == null ? Vector3.zero : transform.parent.TransformVector(lifecycle.FixtureOffset);
             Vector3 hovering = DreamLevitation.Offset(owner.PresentationClock, 41, NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion, .75f);

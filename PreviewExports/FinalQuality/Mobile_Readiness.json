@@ -1,0 +1,17 @@
+﻿{
+    "Host":  "Microsoft Windows NT 10.0.26200.0",
+    "Unity":  "C:/Program Files/Unity/Hub/Editor/6000.4.8f1/Editor/Unity.exe",
+    "AndroidModule":  false,
+    "IosModule":  false,
+    "Adb":  "C:\\Users\\Winka\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+    "Devices":  [
+                    "List of devices attached",
+                    "emulator-5554          device product:NE2211 model:NE2211 device:OP516FL1 transport_id:1",
+                    ""
+                ],
+    "OnlinePhysicalAndroid":  0,
+    "MacWithXcode":  false,
+    "AndroidPhysicalGatePassed":  false,
+    "IosPhysicalGatePassed":  false,
+    "Note":  "Readiness inspection only, not a build or device playtest. Offline/emulator devices are not physical acceptance. Do not publish credentials or signing files in reports."
+}

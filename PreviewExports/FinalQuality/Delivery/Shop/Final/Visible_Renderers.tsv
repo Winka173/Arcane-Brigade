@@ -1,0 +1,238 @@
+object	position	shader	supported	sprite	texture
+SuspendedDreamThread2	(-6.74, 0.86, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(-5.32, -0.56, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(6.50, -0.68, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(0.05, 1.85, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(0.07, -1.08, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(0.03, -0.50, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(0.03, -0.50, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(6.51, 1.29, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(6.06, -3.10, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(-5.32, -0.56, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(6.50, -0.68, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(0.05, 1.85, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(-6.35, -3.17, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(6.51, 1.29, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(-6.81, -3.25, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(-6.28, 1.59, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(0.00, 2.54, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(3.17, -1.21, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(3.17, -1.21, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(0.00, 2.54, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(6.51, 1.29, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(0.07, -1.08, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(-6.81, -3.25, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(-6.74, 0.86, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(0.00, 2.54, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(6.06, -3.10, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(-5.32, -0.56, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(-3.25, -1.11, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(-6.81, -3.25, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(-3.25, -1.11, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(0.05, 1.85, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(-6.35, -3.17, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(0.07, -1.08, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(3.17, -1.21, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(6.50, -0.68, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(-3.25, -1.11, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(-6.74, 0.86, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(-6.35, -3.17, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(0.03, -0.50, 0.00)	Sprites/Default	True		
+SuspendedDreamThread0	(6.06, -3.10, 0.00)	Sprites/Default	True		
+SuspendedDreamThread2	(-6.28, 1.59, 0.00)	Sprites/Default	True		
+SuspendedDreamThread1	(-6.28, 1.59, 0.00)	Sprites/Default	True		
+HD_PaintedBoundary	(0.00, 0.00, 0.00)	Sprites/Default	True		
+HD_TiledFloor	(0.00, 0.00, 0.00)	ArcaneBrigade/FloorHD	True		CarnivalStone_v1
+LowDreamMist	(0.00, 0.00, 0.00)	ArcaneBrigade/NightmareFog	True		
+DirectionalGroundShadow	(-6.77, 0.68, 0.00)	Sprites/Default	True	Finalfurniture01_04	
+RarityMote1	(-3.43, -0.36, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(0.19, 1.32, 0.00)	Sprites/Default	True		
+DriftingReceipt3	(6.24, 1.02, 0.00)	Sprites/Default	True	NightmareProp_12	
+DriftingReceipt5	(-2.78, -4.37, 0.00)	Sprites/Default	True	NightmareProp_12	
+RarityLight2	(-5.95, 3.02, 0.00)	Sprites/Default	True		
+RarityMote0	(-2.95, -0.51, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(6.18, -3.43, 0.00)	Sprites/Default	True		
+RarityLight1	(-0.25, 0.33, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(0.05, -3.47, 0.00)	Sprites/Default	True		
+RarityMote0	(-5.53, -1.10, 0.00)	Sprites/Default	True		
+RarityLight2	(3.36, 0.04, 0.00)	Sprites/Default	True		
+MerchantLowerWeight	(0.00, 2.30, 0.00)	ArcaneBrigade/UnitFlash	True		
+CompanionOwnLight	(0.54, -0.88, 0.00)	ArcaneBrigade/WaitingGlow	True		
+RarityMote5	(0.38, -0.14, 0.00)	Sprites/Default	True		
+RarityLight1	(-6.64, -1.74, 0.00)	Sprites/Default	True		
+RarityMote9	(-3.54, -0.26, 0.00)	Sprites/Default	True		
+ShopFloorContact	(3.18, -0.72, 0.00)	Sprites/Default	True		
+ShopFloorContact	(-5.30, -1.63, 0.00)	Sprites/Default	True		
+RarityLight1	(-3.41, -0.03, 0.00)	Sprites/Default	True		
+RarityMote4	(-7.16, 3.24, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(0.43, -3.81, 0.00)	Sprites/Default	True	KeyCleaver	
+SoftGroundPenumbra	(0.44, -3.51, 0.00)	Sprites/Default	True		
+RarityMote9	(-0.69, 0.63, 0.00)	Sprites/Default	True		
+DriftingReceipt1	(-7.81, -2.36, 0.00)	Sprites/Default	True	NightmareProp_12	
+DriftingReceipt6	(-7.84, -2.79, 0.00)	Sprites/Default	True	NightmareProp_12	
+DirectionalGroundShadow	(0.03, 1.58, 0.00)	Sprites/Default	True	Finalfurniture02_08	
+RarityLight0	(-3.23, -0.36, 0.00)	Sprites/Default	True		
+RarityMote4	(-6.80, -2.01, 0.00)	Sprites/Default	True		
+RarityMote6	(-7.06, -1.46, 0.00)	Sprites/Default	True		
+RarityMote5	(-2.86, 0.23, 0.00)	Sprites/Default	True		
+AnimatedShopActor	(-5.32, -0.56, 0.00)	ArcaneBrigade/MarketEmergence	True	Fixtures	
+RarityLight0	(3.17, -0.33, 0.00)	Sprites/Default	True		
+RarityMote2	(-5.93, -2.55, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(-5.20, -1.44, 0.00)	Sprites/Default	True	Fixtures	
+SoftGroundPenumbra	(-6.23, 1.27, 0.00)	Sprites/Default	True		
+RarityMote1	(-6.80, -2.83, 0.00)	Sprites/Default	True		
+ShopFloorContact	(3.20, -1.50, 0.00)	Sprites/Default	True		
+PaintedMarketRug	(0.03, -0.50, 0.00)	Sprites/Default	True	GoldMarketRug	
+ShopFloorContact	(0.00, 1.40, 0.00)	Sprites/Default	True		
+RarityMote3	(3.12, -0.19, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(-3.24, -1.54, 0.00)	Sprites/Default	True	MarketStandsMotion_01	
+BodyVisual	(0.54, -1.45, 0.00)	ArcaneBrigade/UnitFlash	True	locomotion15Performance_02	
+DirectionalGroundShadow	(-6.80, -3.89, 0.00)	Sprites/Default	True	Finalfurniture00_12	
+PaintedRarityBloom0	(3.17, -0.41, 0.00)	Sprites/Default	True	RarityBloom_08	
+SoftGroundPenumbra	(0.63, -1.06, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(0.00, -0.80, 0.00)	Sprites/Default	True	SuspensionMist_05	
+SoftGroundPenumbra	(-5.25, -1.65, 0.00)	Sprites/Default	True		
+RarityMote5	(-5.50, -1.73, 0.00)	Sprites/Default	True		
+AnimatedShopActor	(3.17, -1.21, 0.00)	ArcaneBrigade/UnitFlash	True	MarketStandsMotion_02	
+RarityMote7	(3.35, 0.47, 0.00)	Sprites/Default	True		
+RarityLight1	(-6.59, 3.02, 0.00)	Sprites/Default	True		
+MarketCloth	(0.26, -3.54, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(0.00, 1.40, 0.00)	Sprites/Default	True	SuspensionMist_07	
+MerchantUpperActing	(0.01, 2.29, 0.00)	ArcaneBrigade/UnitFlash	True		
+RarityMote6	(-6.32, 3.79, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(6.18, -3.43, 0.00)	Sprites/Default	True	OctoberWatchers_12	
+WeaponVisual	(0.34, -3.00, 0.00)	ArcaneBrigade/UnitFlash	True	KeyCleaver	
+SoftGroundPenumbra	(3.24, -1.52, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(6.55, 1.00, 0.00)	Sprites/Default	True	SuspensionMist_00	
+DriftingReceipt4	(6.35, 2.83, 0.00)	Sprites/Default	True	NightmareProp_12	
+RarityMote9	(2.84, -0.41, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(3.25, -1.51, 0.00)	Sprites/Default	True	MarketStandsMotion_02	
+DirectionalGroundShadow	(-6.24, -3.55, 0.00)	Sprites/Default	True	SecretPortal_10	
+ShopFloorContact	(-3.25, -0.77, 0.00)	Sprites/Default	True		
+PaintedRarityBloom1	(-3.23, -0.43, 0.00)	Sprites/Default	True	RarityBloom_00	
+ShopFloorContact	(6.50, -1.00, 0.00)	Sprites/Default	True		
+ShopFloorContact	(0.00, 0.15, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(6.55, -1.02, 0.00)	Sprites/Default	True		
+FootDust	(0.47, -1.35, 0.00)	Sprites/Default	True	TactileImpact_12	
+RarityMote7	(-3.41, -0.55, 0.00)	Sprites/Default	True		
+RarityMote3	(-6.34, -2.28, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(0.10, -0.66, 0.00)	Sprites/Default	True		
+ShopFloorContact	(-6.30, 1.30, 0.00)	Sprites/Default	True		
+RarityMote0	(0.52, 0.30, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(-6.23, -3.53, 0.00)	Sprites/Default	True		
+RarityLight0	(-6.32, -2.35, 0.00)	Sprites/Default	True		
+RarityMote6	(-0.28, 0.05, 0.00)	Sprites/Default	True		
+RarityMote3	(0.25, 0.87, 0.00)	Sprites/Default	True		
+CompanionOwnLight	(0.00, -2.84, 0.00)	ArcaneBrigade/WaitingGlow	True		
+AnimatedShopActor	(6.06, -3.10, 0.00)	ArcaneBrigade/MarketEmergence	True	OctoberWatchers_12	
+ShopFloorContact	(0.54, -1.46, 0.00)	Sprites/Default	True		
+PaintedRarityBloom1	(-0.03, -0.18, 0.00)	Sprites/Default	True	RarityBloom_06	
+ShopFloorContact	(6.10, -3.40, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(6.56, -1.01, 0.00)	Sprites/Default	True	Finalfurniture03_00	
+ShopFloorContact	(-6.80, -3.70, 0.00)	Sprites/Default	True		
+RarityMote2	(-6.36, 2.69, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(-3.20, -1.50, 0.00)	Sprites/Default	True	SuspensionMist_07	
+RarityMote9	(-6.83, 2.61, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(0.00, 0.15, 0.00)	Sprites/Default	True	SuspensionMist_00	
+DirectionalGroundShadow	(0.00, -0.47, 0.00)	Sprites/Default	True	BookmarkGolem	
+DreamLandmark2	(-6.74, 0.86, 0.00)	Sprites/Default	True	Finalfurniture01_04	
+PaintedSuspensionMist	(3.20, -1.50, 0.00)	Sprites/Default	True	SuspensionMist_02	
+RarityMote0	(-5.74, 2.14, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(-3.30, -0.69, 0.00)	Sprites/Default	True	Relic_A_12	
+RarityMote6	(2.67, 0.31, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(1.06, -1.65, 0.00)	Sprites/Default	True	SpoonSabre	
+ShopFloorContact	(0.00, -3.45, 0.00)	Sprites/Default	True		
+RarityMote2	(3.45, -0.36, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(-6.61, -3.78, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(0.02, -3.60, 0.00)	Sprites/Default	True	FinalLanternKnight_00	
+DirectionalGroundShadow	(0.21, 1.31, 0.00)	Sprites/Default	True	GoldMarketRug	
+AnimatedShopActor	(0.07, -1.08, 0.00)	ArcaneBrigade/UnitFlash	True	MarketStandsMotion_11	
+PaintedSuspensionMist	(-5.30, -1.63, 0.00)	Sprites/Default	True	SuspensionMist_03	
+ShopFloorContact	(-6.30, -3.50, 0.00)	Sprites/Default	True		
+PaintedRarityBloom0	(-0.03, -0.18, 0.00)	Sprites/Default	True	RarityBloom_05	
+SecretInvitation_SleepingGarden	(-6.35, -3.17, 0.00)	Sprites/Default	True	SecretPortal_10	
+PaintedRarityBloom1	(3.17, -0.41, 0.00)	Sprites/Default	True	RarityBloom_09	
+RarityLight1	(2.97, 0.04, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(3.22, -0.73, 0.00)	Sprites/Default	True		
+AnimatedShopActor	(-0.03, -0.09, 0.00)	ArcaneBrigade/UnitFlash	True	BookmarkGolem	
+RarityLight2	(-6.00, -1.74, 0.00)	Sprites/Default	True		
+RarityMote3	(-2.90, -0.06, 0.00)	Sprites/Default	True		
+RarityMote5	(3.69, 0.14, 0.00)	Sprites/Default	True		
+DreamLandmark1	(-6.81, -3.25, 0.00)	Sprites/Default	True	Finalfurniture00_12	
+RarityMote2	(0.22, 0.68, 0.00)	Sprites/Default	True		
+RarityMote4	(-3.71, 0.08, 0.00)	Sprites/Default	True		
+RarityMote1	(-0.59, 0.49, 0.00)	Sprites/Default	True		
+MarketPennants	(0.01, 4.86, 0.00)	Sprites/Default	True	MarketDecor_2	
+HandVisual	(0.34, -3.00, 0.00)	ArcaneBrigade/UnitFlash	True	Hand	
+RarityMote4	(-0.35, -0.33, 0.00)	Sprites/Default	True		
+ShopFloorContact	(-6.80, 0.50, 0.00)	Sprites/Default	True		
+RarityMote2	(-3.28, -0.21, 0.00)	Sprites/Default	True		
+PaintedRarityBloom0	(-3.23, -0.43, 0.00)	Sprites/Default	True	RarityBloom_03	
+DreamLandmark0	(6.51, 1.29, 0.00)	Sprites/Default	True	Finalfurniture00_04	
+DirectionalGroundShadow	(0.03, 0.83, 0.00)	Sprites/Default	True	GiantGoldMerchant_v1_0	
+RarityMote9	(-6.84, -2.64, 0.00)	Sprites/Default	True		
+RarityMote8	(-6.09, -2.91, 0.00)	Sprites/Default	True		
+RarityMote3	(-5.65, 2.97, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(6.50, -1.00, 0.00)	Sprites/Default	True	SuspensionMist_01	
+RarityMote7	(-6.60, 2.06, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(0.01, -1.56, 0.00)	Sprites/Default	True	MarketStandsMotion_11	
+DriftingReceipt0	(0.20, -4.17, 0.00)	Sprites/Default	True	NightmareProp_12	
+PaintedSuspensionMist	(-6.30, -3.50, 0.00)	Sprites/Default	True	SuspensionMist_05	
+RarityMote8	(3.30, -0.58, 0.00)	Sprites/Default	True		
+MarketCloth	(0.26, -3.30, 0.00)	Sprites/Default	True		
+ShopFloorContact	(0.78, -1.48, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(0.65, -1.55, 0.00)	Sprites/Default	True	locomotion15Performance_02	
+TheUnoccupiedChair	(7.40, 4.60, 0.00)	Sprites/Default	True	EmptyChair	
+SoftGroundPenumbra	(-3.16, -1.52, 0.00)	Sprites/Default	True		
+SecretInvitation_LostProperty	(-6.28, 1.59, 0.00)	Sprites/Default	True	SecretPortal_00	
+ShopFloorContact	(0.34, -3.47, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(3.23, -0.65, 0.00)	Sprites/Default	True	Relic_B_11	
+SoftGroundPenumbra	(0.04, -1.52, 0.00)	Sprites/Default	True		
+RarityMote1	(2.85, -0.53, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(-6.30, 1.30, 0.00)	Sprites/Default	True	SuspensionMist_06	
+RarityMote4	(2.89, -0.03, 0.00)	Sprites/Default	True		
+MarketCloth	(0.00, -3.54, 0.00)	Sprites/Default	True		
+HandVisual	(0.78, -1.03, 0.00)	ArcaneBrigade/UnitFlash	True	Hand	
+ShopFloorContact	(0.00, -0.80, 0.00)	Sprites/Default	True		
+RarityMote8	(0.46, 0.43, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(0.87, -1.52, 0.00)	Sprites/Default	True		
+RarityMote6	(-3.26, 0.38, 0.00)	Sprites/Default	True		
+DreamLandmark5	(6.50, -0.68, 0.00)	Sprites/Default	True	Finalfurniture03_00	
+RarityLight2	(-3.06, -0.03, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(-3.22, -0.78, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(6.10, -3.40, 0.00)	Sprites/Default	True	SuspensionMist_04	
+ChampionBeacon	(0.00, -3.51, 0.00)	Sprites/Default	True		
+FootDust	(0.05, -0.83, 0.00)	Sprites/Default	True	TactileImpact_15	
+AnimatedShopActor	(-3.23, -0.36, 0.00)	ArcaneBrigade/UnitFlash	True	Relic_A_12	
+AnimatedShopActor	(-3.25, -1.11, 0.00)	ArcaneBrigade/UnitFlash	True	MarketStandsMotion_01	
+RarityMote7	(-0.13, 0.24, 0.00)	Sprites/Default	True		
+DreamLandmark4	(0.05, 1.85, 0.00)	Sprites/Default	True	Finalfurniture02_08	
+RarityMote8	(-5.67, 2.34, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(-6.80, 0.50, 0.00)	Sprites/Default	True	SuspensionMist_04	
+BodyVisual	(0.00, -3.45, 0.00)	ArcaneBrigade/UnitFlash	True	FinalLanternKnight_00	
+RarityMote0	(3.64, 0.52, 0.00)	Sprites/Default	True		
+RarityLight2	(0.20, 0.33, 0.00)	Sprites/Default	True		
+RarityLight0	(-6.27, 2.42, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(-6.80, -3.70, 0.00)	Sprites/Default	True	SuspensionMist_02	
+SoftGroundPenumbra	(-6.61, 0.42, 0.00)	Sprites/Default	True		
+AnimatedShopActor	(3.17, -0.33, 0.00)	ArcaneBrigade/UnitFlash	True	Relic_B_11	
+MarketCloth	(0.00, -3.78, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(6.68, 0.97, 0.00)	Sprites/Default	True	Finalfurniture00_04	
+DriftingReceipt2	(-3.84, -0.56, 0.00)	Sprites/Default	True	NightmareProp_12	
+ShopFloorContact	(6.55, 1.00, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(0.18, 0.07, 0.00)	Sprites/Default	True		
+DirectionalGroundShadow	(-6.26, 1.36, 0.00)	Sprites/Default	True	SecretPortal_00	
+SoftGroundPenumbra	(0.58, -1.48, 0.00)	Sprites/Default	True		
+ShopFloorContact	(-3.20, -1.50, 0.00)	Sprites/Default	True		
+WeaponVisual	(0.78, -1.03, 0.00)	ArcaneBrigade/UnitFlash	True	SpoonSabre	
+RarityLight0	(-0.03, -0.09, 0.00)	Sprites/Default	True		
+RarityMote1	(-6.63, 2.42, 0.00)	Sprites/Default	True		
+RarityMote5	(-5.57, 3.51, 0.00)	Sprites/Default	True		
+ShopFloorContact	(0.00, -1.50, 0.00)	Sprites/Default	True		
+MarketCloth	(0.00, -3.30, 0.00)	Sprites/Default	True		
+SoftGroundPenumbra	(6.69, 0.94, 0.00)	Sprites/Default	True		
+RarityMote7	(-6.12, -1.18, 0.00)	Sprites/Default	True		
+PaintedSuspensionMist	(0.00, -1.50, 0.00)	Sprites/Default	True	SuspensionMist_00	
+MarketCloth	(0.26, -3.78, 0.00)	Sprites/Default	True		
+RarityMote8	(-2.91, -0.40, 0.00)	Sprites/Default	True		
+ShopFloorContact	(0.05, -0.64, 0.00)	Sprites/Default	True		

@@ -35,6 +35,21 @@ namespace ArcaneBrigade
         private IEnumerator Shot(string name)
         {
             yield return new WaitForEndOfFrame();
+            if (name == "shop-overview")
+            {
+                var renderers = new List<string> { "object\tposition\tshader\tsupported\tsprite\ttexture" };
+                foreach (Renderer renderer in FindObjectsByType<Renderer>())
+                {
+                    if (!renderer.enabled || !renderer.gameObject.activeInHierarchy) continue;
+                    foreach (Material material in renderer.sharedMaterials)
+                    {
+                        SpriteRenderer sprite = renderer as SpriteRenderer;
+                        Check(material != null && material.shader != null && material.shader.isSupported, "Visible shop material supported " + renderer.name);
+                        renderers.Add(renderer.name + "\t" + renderer.transform.position + "\t" + material?.shader?.name + "\t" + material?.shader?.isSupported + "\t" + sprite?.sprite?.name + "\t" + (material != null && material.HasProperty("_MainTex") ? material.mainTexture?.name : ""));
+                    }
+                }
+                File.WriteAllLines(Path.Combine(root, "Visible_Renderers.tsv"), renderers);
+            }
             foreach (ShopRarityGlow glow in FindObjectsByType<ShopRarityGlow>())
             {
                 Check(glow.Target != null && ShopRarityGlow.CanDecorate(glow.Target), "Only shop/display targets carry rarity " + name);
@@ -44,7 +59,13 @@ namespace ArcaneBrigade
             }
             Texture2D frame = ScreenCapture.CaptureScreenshotAsTexture();
             Check(frame.width == 1920 && frame.height == 1080, "Native dimensions " + name);
-            File.WriteAllBytes(Path.Combine(root, name + ".png"), frame.EncodeToPNG()); Destroy(frame);
+            int errorPink = 0;
+            foreach (Color32 pixel in frame.GetPixels32()) if (pixel.r >= 250 && pixel.g <= 5 && pixel.b >= 250) errorPink++;
+            Check(errorPink < 1024, "No large shader-error pink block " + name);
+            string path=Path.Combine(root,name+".png"),temporary=path+".writing";
+            File.WriteAllBytes(temporary,frame.EncodeToPNG());
+            if(File.Exists(path))File.Replace(temporary,path,null);else File.Move(temporary,path);
+            Destroy(frame);
             File.WriteAllLines(Path.Combine(root, "Native_Checks.txt"), notes);
         }
         private IEnumerator Walk(ArenaController owner, Vector2 target)
@@ -87,7 +108,8 @@ namespace ArcaneBrigade
             Vector3 keeperPosition = keeper.transform.position;
             yield return new WaitForSecondsRealtime(1.2f); yield return Shot("suspended-shop-later");
             Check(reduced ? Quaternion.Angle(keeperTilt, keeper.transform.rotation) < .001f && Vector3.Distance(keeperPosition, keeper.transform.position) < .001f : Vector3.Distance(keeperPosition, keeper.transform.position) > .005f, "Hover drifts in normal mode and stays still in Reduced Motion");
-            Check(FindObjectsByType<DreamSuspension>().Length >= 8, "Environment fixtures and merchant have suspension effects");
+            var floats=FindObjectsByType<DreamSuspension>();
+            Check(floats.Length >= 8 && floats.All(f=>f.GetComponentsInChildren<LineRenderer>().Length==0 && !f.GetComponentsInChildren<SpriteRenderer>().Any(r=>r.name=="PaintedSuspensionMist")), "Environment fixtures and merchant float without under-object wind");
             WorldShop.Station exit = owner.Shop.Stations.First(station => station.Action == "NEXT HALL");
             Check(Vector2.Distance(exit.Position, WorldShop.ExitPosition + Vector2.up * WorldShop.LayoutLift) < .01f, "Actual continue door uses separate right-hand lane");
             foreach (WorldShop.Station offer in owner.Shop.Stations.Where(station => station.Offer != null))

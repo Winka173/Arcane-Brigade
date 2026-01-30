@@ -44,13 +44,16 @@ MonoBehaviour:
   PassiveStrength: 0.8
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nNo basic attack. Deal 18
     contact damage; gain 1 more per injury this wave, up to 20.\r\n\nSUPPORT WHILE
-    OWNED\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
-    and absorbed memories; their stated percentages are not multiplied by star level
-    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:
-    gift / nursery / special reward; not ordinary shop stock.\r\nBonds: archive,
-    horn. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    OWNED\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA burrower whose spines protected a community through a
+    siege. They are learning to let friends close without remaining on guard. They
+    want one full night's sleep while somebody else takes watch.\r\nPERSONAL PASSIVE\nNo
+    additional periodic personal passive.\r\n\nNamed talents count bodies and absorbed
+    memories; their stated percentages are not multiplied by star level unless explicitly
+    stated. Listed support modifiers scale separately at 1/2/4.\r\nSource: gift /
+    nursery / special reward; not ordinary shop stock.\r\nBonds: archive, horn. Immortal.
+    Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless
+    the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Domestic Spiked Ball
   ExclusiveHero: 

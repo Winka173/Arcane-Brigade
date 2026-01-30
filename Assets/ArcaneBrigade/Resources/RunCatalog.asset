@@ -6833,8 +6833,9 @@ MonoBehaviour:
 
       ON
       PURCHASE: try to recruit up to 2 ordinary companions from your hero''s pool.
-      Checks unlock wave, unique weapon, 3-recruit quota and 20-body limit; solo
-      heroes receive no bodies.
+      All gifts use the 3-companion purchase quota. New species also use the quota
+      of 2 in rounds 1-3, then 1. Checks unlock wave, unique weapon and 15-body limit;
+      solo heroes receive no bodies.
 
 
       Owned effective copies: 1. Stack limit:

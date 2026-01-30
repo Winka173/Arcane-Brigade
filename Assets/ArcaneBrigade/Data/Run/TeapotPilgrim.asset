@@ -46,13 +46,16 @@ MonoBehaviour:
     this run adds 4% to this ally's weapon damage, up to +40%. Applies when the next
     battle is prepared; not a team-wide damage buff.\r\n\nSUPPORT WHILE OWNED\nChampion
     / Healing per second: +0.04\nChampion / Movement speed: -0.3%\nTier 1/2/3 traits
-    \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nEvery
-    4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing
-    restrictions apply.\r\n\nNamed talents count bodies and absorbed memories; their
-    stated percentages are not multiplied by star level unless explicitly stated.
-    Listed support modifiers scale separately at 1/2/4.\r\nBonds: hearth, mask. Immortal.
-    Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless
-    the talent forbids it."
+    \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE IN THE WAITING
+    REALM\nBorn above the station kitchens, they fed travellers through a winter
+    with no departures. Every cup was counted; nobody knew whether they had eaten.
+    They want a table where the last person serving is also given a seat.\r\nPERSONAL
+    PASSIVE\nEvery 4s in combat, attempt to heal the hero for 1.5 HP before healing
+    modifiers. Healing restrictions apply.\r\n\nNamed talents count bodies and absorbed
+    memories; their stated percentages are not multiplied by star level unless explicitly
+    stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds: hearth,
+    mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Alien
   ExclusiveHero: 

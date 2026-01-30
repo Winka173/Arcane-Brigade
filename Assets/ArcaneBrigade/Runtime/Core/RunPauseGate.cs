@@ -7,7 +7,8 @@ namespace ArcaneBrigade
         public bool Navigation;
         public bool FocusLost;
         public bool Backgrounded;
-        public bool Paused => Manual || Details || Navigation || FocusLost || Backgrounded;
-        public void ResetSession() { Manual = Details = Navigation = false; }
+        public bool Story;
+        public bool Paused => Manual || Details || Navigation || FocusLost || Backgrounded || Story;
+        public void ResetSession() { Manual = Details = Navigation = Story = false; }
     }
 }

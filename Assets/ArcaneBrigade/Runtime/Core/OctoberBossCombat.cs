@@ -21,11 +21,16 @@ namespace ArcaneBrigade
             Vector2 aim = (Champion.Position - boss.Position).normalized;
             float angle = Mathf.Atan2(aim.y, aim.x) * Mathf.Rad2Deg;
             CombatCause cause = NewCause(boss.Id).Child("boss-encore-" + pattern);
+            bool reduceEncoreBullets = false;
+            int volleyIndex = 0;
             void Shot(Vector2 origin, float degrees, float when, float speed, HostileShot motion = HostileShot.Straight)
             {
+                if (reduceEncoreBullets && ++volleyIndex % 3 != 0) return;
                 octoberShots.Add(new OctoberShot { Boss = boss, Position = origin, Direction = Quaternion.Euler(0, 0, degrees) * Vector2.right, At = Elapsed + .9f + when, Speed = speed, Motion = motion, Cause = cause });
             }
             Danger(ExpandedFieldKind.Shockwave, boss, boss.Position, boss.Definition.Radius + .5f, .9f, 0);
+            reduceEncoreBullets = ResolveIdentityEncore(boss, cast, identity, Shot);
+            if (reduceEncoreBullets) { boss.EncoreWindupUntil = Elapsed + 1.05f; boss.EncoreRecoveryUntil = Elapsed + 1.5f; }
             switch (pattern)
             {
                 case 0:

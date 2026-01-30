@@ -47,12 +47,14 @@ MonoBehaviour:
     loses 0.5 per food per talent, up to 20 HP lost. Applied in the next prepared
     battle.\r\n\nSUPPORT WHILE OWNED\nChampion / Health correction: +2.5%\nChampion
     / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s, chill enemies within 2.313
-    units: 1.5s normally, 0.6s on bosses.\r\n\nNamed talents count bodies and absorbed
-    memories; their stated percentages are not multiplied by star level unless explicitly
-    stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds: tidal,
-    resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA dockworker who carried a
+    vessel's anchor inland when its harbour disappeared. The chain proves the harbour
+    existed. They seek the crew to ask whether it is time to put the weight down.\r\nPERSONAL
+    PASSIVE\nEvery 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.\r\n\nNamed
+    talents count bodies and absorbed memories; their stated percentages are not
+    multiplied by star level unless explicitly stated. Listed support modifiers scale
+    separately at 1/2/4.\r\nBonds: tidal, resolve. Immortal. Weapon rolls on recruitment;
+    three equal-species/equal-star bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Art of Food" Roshi'
   ExclusiveHero: 

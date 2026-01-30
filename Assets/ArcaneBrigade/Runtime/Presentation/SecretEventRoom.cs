@@ -166,7 +166,7 @@ namespace ArcaneBrigade
                     GUI.Label(new Rect(455, 562, 1010, 160), s.Result, body);
                     if (!string.IsNullOrEmpty(s.RewardId))
                     {
-                        string reward = owner.Content.Item(s.RewardId)?.Name ?? owner.Content.Unit(s.RewardId)?.DisplayName;
+                        string reward = owner.Session.SecretRewardLabel;
                         if (GUI.Button(new Rect(640, 745, 640, 68), "CLAIM " + reward, card)) owner.ClaimSecret();
                     }
                     else if (GUI.Button(new Rect(660, 745, 600, 68), "RETURN TO THE SHOP", card)) owner.LeaveSecret();

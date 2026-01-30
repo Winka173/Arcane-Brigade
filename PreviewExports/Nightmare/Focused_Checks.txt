@@ -220,4 +220,5 @@ PASS Specific remembered outcome DeadLetters/2
 PASS Late narrative room connection DeadLetters/2
 PASS Choice memory persists DeadLetters/2
 PASS Rescue, letter and optional Keeper each alter the ending
+PASS Unchosen events do not invent rescue, delivery or a Keeper victory
 PASS Malformed narrative journal rejected

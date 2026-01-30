@@ -66,6 +66,7 @@ namespace ArcaneBrigade
     [System.Serializable]
     public sealed class BondDefinition
     {
+        public const float PositiveRewardScale = .9f;
         public string Id;
         public string Name;
         public int Threshold = 2;
@@ -89,8 +90,9 @@ namespace ArcaneBrigade
             float reward = ActiveLevel(count) * Value;
             foreach (BondThresholdBonus bonus in ExtraBonuses ?? new BondThresholdBonus[0])
                 if (count >= bonus.Threshold) reward += bonus.Value;
-            return reward;
+            return BalanceReward(reward);
         }
+        public float BalanceReward(float reward) => reward > 0 && Effect != ItemEffect.EnemyCount && Effect != ItemEffect.EnemyHealth && Effect != ItemEffect.EnemySpeed ? reward * PositiveRewardScale : reward;
     }
 
     [System.Serializable]

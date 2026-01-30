@@ -17,7 +17,7 @@ namespace ArcaneBrigade.Editor
         public static void BuildDiagnostics()
         {
             string directory = "Builds/K7Diagnostics"; Directory.CreateDirectory(directory);
-            BuildReport report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = new[] { "Assets/ArcaneBrigade/Scenes/RunBoot.unity", "Assets/ArcaneBrigade/Scenes/RunFrontend.unity", "Assets/ArcaneBrigade/Scenes/RunArena.unity" }, locationPathName = directory + "/ArcaneBrigade.exe", target = BuildTarget.StandaloneWindows64, options = BuildOptions.Development });
+            BuildReport report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = new[] { "Assets/ArcaneBrigade/Scenes/RunBoot.unity", "Assets/ArcaneBrigade/Scenes/RunFrontend.unity", "Assets/ArcaneBrigade/Scenes/RunArena.unity", "Assets/ArcaneBrigade/Scenes/WaitingRoom.unity" }, locationPathName = directory + "/ArcaneBrigade.exe", target = BuildTarget.StandaloneWindows64, options = BuildOptions.Development });
             if (report.summary.result != BuildResult.Succeeded) throw new InvalidOperationException("K7 profiler diagnostic build failed");
         }
         public static void Prepare()

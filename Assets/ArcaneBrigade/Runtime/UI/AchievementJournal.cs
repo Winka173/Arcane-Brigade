@@ -19,11 +19,11 @@ namespace ArcaneBrigade
             {
                 bool complete = profile.Achievements.Contains(d.Id); if (unfinishedOnly && complete) continue;
                 Rect card = new Rect(index % 2 * 560, index / 2 * 130, 540, 116); index++;
-                RunHud.Fill(card, new Color(.13f, .11f, .21f)); ArcadeSkin.Line(new Rect(card.x, card.y, 4, card.height), complete ? ArcadeSkin.Gold : ArcadeSkin.Teal);
+                RunHud.Fill(card, ArcadeSkin.Card); ArcadeSkin.Line(new Rect(card.x, card.y, 4, card.height), complete ? ArcadeSkin.Gold : ArcadeSkin.Teal);
                 GUI.Label(new Rect(card.x + 20, card.y + 10, 500, 30), (complete ? "✓ " : "") + d.Name, title);
                 GUI.Label(new Rect(card.x + 20, card.y + 42, 500, 45), d.Description, text);
                 float progress = complete ? d.Goal : RunAchievements.Progress(profile.AchievementEvidence, d);
-                ArcadeSkin.Line(new Rect(card.x + 20, card.y + 98, 390, 4), new Color(.27f, .23f, .35f));
+                ArcadeSkin.Line(new Rect(card.x + 20, card.y + 98, 390, 4), new Color(.16f, .18f, .24f));
                 ArcadeSkin.Line(new Rect(card.x + 20, card.y + 98, 390 * Mathf.Clamp01(progress / d.Goal), 4), complete ? ArcadeSkin.Gold : ArcadeSkin.Teal);
                 GUI.Label(new Rect(card.x + 420, card.y + 87, 110, 25), progress.ToString("0.##") + " / " + d.Goal.ToString("0.##"), text);
             }

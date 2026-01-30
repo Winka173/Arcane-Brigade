@@ -91,7 +91,9 @@ namespace ArcaneBrigade.Editor
             {
                 session.Start(catalog.Champions[0].Id,271015);
                 session.State.Secrets.RescuedToy = true; session.State.Secrets.LetterSent = true; session.State.OutsideStage = OutsideStageStatus.Completed;
-                Check(NightmareDialogue.Ending(session.State,1).Contains("letter") && NightmareDialogue.Ending(session.State,2).Contains("drawer") && NightmareDialogue.Ending(session.State,2).Contains("holds the frame"),"Rescue, letter and optional Keeper each alter the ending");
+                Check(NightmareDialogue.Ending(session.State,1).Contains("letter you sent") && NightmareDialogue.Ending(session.State,2).Contains("creature you rescued") && NightmareDialogue.Ending(session.State,2).Contains("holds the frame"),"Rescue, letter and optional Keeper each alter the ending");
+                session.State.Secrets.RescuedToy = false; session.State.Secrets.LetterSent = false; session.State.OutsideStage = OutsideStageStatus.Unseen;
+                Check(NightmareDialogue.Ending(session.State,1).Contains("unsent letter") && NightmareDialogue.Ending(session.State,2).Contains("other lives still waiting") && !NightmareDialogue.Ending(session.State,2).Contains("holds the frame"),"Unchosen events do not invent rescue, delivery or a Keeper victory");
                 session.State.Nightmare.Choices = new[] { 99 };
                 bool invalid = false; try { session.Validate(session.State); } catch (InvalidOperationException) { invalid = true; }
                 Check(invalid,"Malformed narrative journal rejected");

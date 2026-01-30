@@ -58,7 +58,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(rect.x+10,rect.y+4,290,22),a.Name,caption);
                 for(int n=0;n<Mathf.Min(2,a.Rows.Count);n++)
                 {
-                    var d=a.Rows[n];text.normal.textColor=d.Neutral?ArcadeSkin.Gold:d.Positive?new Color(.4f,1,.72f):new Color(1,.48f,.55f);
+                    var d=a.Rows[n];text.normal.textColor=d.Neutral?ArcadeSkin.Gold:d.Positive?ArcadeSkin.Better:ArcadeSkin.Worse;
                     string label=d.Message??d.Label.Replace("Run / ","").Replace("Companion bullet interception","Interception")+" "+d.SignedChange;
                     GUI.Label(new Rect(rect.x+10,rect.y+27+n*26,290,27),label,text);
                 }

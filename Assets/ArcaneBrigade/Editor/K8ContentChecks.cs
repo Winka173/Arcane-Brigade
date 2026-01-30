@@ -32,11 +32,11 @@ namespace ArcaneBrigade.Editor
         private static void CheckBonds(RunCatalog content)
         {
             var legacy = new BondDefinition { Threshold = 2, Value = 0.08f };
-            Require(legacy.ActiveLevel(5) == 2 && legacy.NextThreshold(5) == 6 && Near(legacy.Reward(5), 0.16f), "Default repeating threshold fixture unchanged");
+            Require(legacy.ActiveLevel(5) == 2 && legacy.NextThreshold(5) == 6 && Near(legacy.Reward(5), legacy.BalanceReward(0.16f)), "Repeating thresholds retain count rules with reduced bond reward");
             foreach (BondDefinition bond in content.Bonds)
             {
                 Require(bond.ExtraBonuses.Length == 2 && bond.ExtraBonuses[0].Threshold == 4 && bond.ExtraBonuses[1].Threshold == 6, bond.Id + " explicit milestones");
-                Require(Near(bond.Reward(2), bond.Value) && Near(bond.Reward(4), bond.Value * 3) && Near(bond.Reward(6), bond.Value * 6), bond.Id + " cumulative 2/4/6 reward");
+                Require(Near(bond.Reward(2), bond.BalanceReward(bond.Value)) && Near(bond.Reward(4), bond.BalanceReward(bond.Value * 3)) && Near(bond.Reward(6), bond.BalanceReward(bond.Value * 6)), bond.Id + " cumulative 2/4/6 reward");
                 Require(Near(bond.Reward(3), bond.Reward(2)) && Near(bond.Reward(5), bond.Reward(4)), bond.Id + " body counts, not tier counts");
                 Require(bond.NextThreshold(3) == 4 && bond.ActiveLevel(6) == 3, bond.Id + " readable activation API");
             }

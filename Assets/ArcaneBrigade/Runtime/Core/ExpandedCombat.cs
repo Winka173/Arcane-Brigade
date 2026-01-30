@@ -58,7 +58,8 @@ namespace ArcaneBrigade
             }
             if (weapon.Family == ExpandedWeapon.Alarm)
             {
-                UnitState target = units.Find(candidate => candidate.Id == source.AttackTargetId && candidate.Alive);
+                UnitState target = UnitWithId(source.AttackTargetId);
+                if (target != null && !target.Alive) target = null;
                 if (target != null) Field(ExpandedFieldKind.Fuse, source, ClampPosition(target.Position, 0.3f), source.AttackDirection, source.Definition.CombatTier >= 2 ? 1.8f : 1.5f, damage, 0.9f, 0.25f, cause);
                 return true;
             }
@@ -118,7 +119,8 @@ namespace ArcaneBrigade
                 if (projectile.Age < 0.55f) return 0;
                 if (projectile.Age < 1.55f)
                 {
-                    UnitState target = units.Find(unit => unit.Id == projectile.OrbitTargetId && unit.Alive);
+                    UnitState target = UnitWithId(projectile.OrbitTargetId);
+                    if (target != null && !target.Alive) target = null;
                     if (target != null) projectile.OrbitCenter = target.Position;
                     Vector2 radius = projectile.Position - projectile.OrbitCenter;
                     Vector2 outward = radius.sqrMagnitude < 0.001f ? Vector2.right : radius.normalized;
@@ -133,7 +135,8 @@ namespace ArcaneBrigade
                 ProjectileAudioEvent(CombatEventKind.ProjectileReturn, projectile);
             }
             if (!projectile.Returning) return 0;
-            UnitState owner = units.Find(unit => unit.Id == projectile.SourceUnitId && unit.Alive);
+            UnitState owner = UnitWithId(projectile.SourceUnitId);
+            if (owner != null && !owner.Alive) owner = null;
             if (owner == null) return -1;
             Vector2 offset = owner.Position - projectile.Position;
             if (offset.sqrMagnitude < Mathf.Pow(Mathf.Max(0.2f, projectile.Weapon.ProjectileSpeed * delta), 2) || projectile.Remaining <= 0) return -1;
@@ -144,7 +147,7 @@ namespace ArcaneBrigade
         private void OnExpandedProjectileHit(ProjectileState projectile, UnitState target)
         {
             if (projectile.Weapon == null || projectile.Faction == Faction.Enemy) return;
-            UnitState source = units.Find(unit => unit.Id == projectile.SourceUnitId);
+            UnitState source = UnitWithId(projectile.SourceUnitId);
             if (source == null) return;
             ApplyCarnivalProjectilePayoff(projectile, target, source);
             if (projectile.Weapon.Mechanic == CarnivalWeapon.BloomOrb && !projectile.IsFragment)

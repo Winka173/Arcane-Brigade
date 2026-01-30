@@ -1,4 +1,4 @@
-param([string]$Root = 'PreviewExports/Nightmare/Lighting', [string]$Completion = 'PASS Results revealed after complete ending')
+param([string]$Root = 'PreviewExports/Nightmare/Lighting', [string]$Completion = 'PASS Results revealed after complete ending', [string[]]$Expected720Frames = @())
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 $project = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
@@ -6,12 +6,22 @@ $destination = Join-Path $project $Root
 $profiles = @()
 foreach ($mode in @('Final', 'Final-Reduced')) {
     $folder = Join-Path $destination $mode
+    $identity = Get-Content -LiteralPath (Join-Path $folder 'Capture_Identity.json') -Raw | ConvertFrom-Json
+    $playerRoot = Join-Path $project 'Builds/FullRun'
+    if ([System.IO.Path]::GetFullPath($identity.Player) -ne (Join-Path $playerRoot 'ArcaneBrigade.exe')) { throw "Capture used a different player: $mode" }
+    $currentFiles = @(Get-ChildItem -LiteralPath $playerRoot -File -Recurse | Where-Object { $_.Name -ne 'BUILD_INFO.txt' })
+    if ($currentFiles.Count -ne $identity.Files.Count) { throw "Player file set changed after capture: $mode" }
+    foreach ($entry in $identity.Files) {
+        if ((Get-FileHash -LiteralPath (Join-Path $playerRoot $entry.Path) -Algorithm SHA256).Hash -ne $entry.SHA256) { throw "Player changed after capture: $mode / $($entry.Path)" }
+    }
     $checks = Get-Content (Join-Path $folder 'Native_Checks.txt')
     $frames = @()
     foreach ($file in Get-ChildItem -LiteralPath $folder -Filter '*.png') {
         $bitmap = [System.Drawing.Bitmap]::new($file.FullName)
         try {
-            if ($bitmap.Width -ne 1920 -or $bitmap.Height -ne 1080) { throw "Wrong native dimensions: $($file.Name)" }
+            $expectedWidth = if ($Expected720Frames -contains $file.Name) { 1280 } else { 1920 }
+            $expectedHeight = if ($Expected720Frames -contains $file.Name) { 720 } else { 1080 }
+            if ($bitmap.Width -ne $expectedWidth -or $bitmap.Height -ne $expectedHeight) { throw "Wrong native dimensions: $($file.Name)" }
             $frames += [pscustomobject]@{ Name = $file.Name; Width = $bitmap.Width; Height = $bitmap.Height; SHA256 = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash }
         } finally { $bitmap.Dispose() }
     }

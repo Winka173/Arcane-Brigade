@@ -46,8 +46,11 @@ MonoBehaviour:
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nEach Prince talent grants
     this ally 8% reach, up to 24%. Final melee/ranged reach caps still apply.\r\n\nSUPPORT
     WHILE OWNED\nChampion / Heart healing: +1\nChampion / Maximum health: -1\nTier
-    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nEvery 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.\r\n\nNamed
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA lamplighter who circled a homeward beacon until discovering
+    its keeper turned it to prevent arrivals. They now guide by several independent
+    lights. They want routes no single keeper can own.\r\nPERSONAL PASSIVE\nEvery
+    4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.\r\n\nNamed
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nBonds: astral, regal, morning. Immortal. Weapon rolls

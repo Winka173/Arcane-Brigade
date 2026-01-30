@@ -47,12 +47,16 @@ MonoBehaviour:
     +0.08 per talent. These are hero-only bonuses, not extra health for immortal
     companions.\r\n\nSUPPORT WHILE OWNED\nTeam / Flat melee damage: +1\nChampion
     / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s in combat, gain 0 gold directly.
-    This is not kill loot and does not count as collecting a coin.\r\n\nNamed talents
-    count bodies and absorbed memories; their stated percentages are not multiplied
-    by star level unless explicitly stated. Listed support modifiers scale separately
-    at 1/2/4.\r\nBonds: hearth, archer, hide. Immortal. Weapon rolls on recruitment;
-    three equal-species/equal-star bodies merge unless the talent forbids it."
+    support sources.\n\r\n\nLIFE IN THE WAITING REALM\nRaised beneath the market,
+    they whistle to navigate steam vents. An answering voice once brought their family
+    into danger. They learned that an answer is not necessarily an invitation, and
+    now check every route before guiding anyone.\r\nPERSONAL PASSIVE\nEvery 4s in
+    combat, gain 0 gold directly. This is not kill loot and does not count as collecting
+    a coin.\r\n\nNamed talents count bodies and absorbed memories; their stated percentages
+    are not multiplied by star level unless explicitly stated. Listed support modifiers
+    scale separately at 1/2/4.\r\nBonds: hearth, archer, hide. Immortal. Weapon rolls
+    on recruitment; three equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Floofy
   ExclusiveHero: 

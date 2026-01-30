@@ -17,6 +17,7 @@ Shader "ArcaneBrigade/UnitFlash"
         _ShadeAmount ("Paint shading", Range(0,1)) = 0
         _RimAmount ("Edge strength", Range(0,1)) = 0
         _Saturation ("Paint saturation", Range(0,2)) = 1
+        _NightVisibility ("Night visibility", Range(0,1)) = 1
         [HideInInspector] _PropEye ("Decorative eye region", Vector) = (0,0,0,0)
         [HideInInspector] _PropLook ("Decorative eye look", Vector) = (0,0,0,0)
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
@@ -40,6 +41,7 @@ Shader "ArcaneBrigade/UnitFlash"
             fixed4 _ShadeColor;
             fixed4 _RimColor;
             float _ShadeAmount, _RimAmount, _Saturation;
+            float _NightVisibility;
             float4 _PropEye, _PropLook;
             float4 _WeaponFlex;
             float _WeaponMask;
@@ -91,6 +93,7 @@ Shader "ArcaneBrigade/UnitFlash"
                 float luminance = dot(color.rgb, fixed3(0.2126,0.7152,0.0722));
                 color.rgb = saturate(lerp(luminance.xxx, color.rgb, _Saturation));
                 color.rgb = lerp(color.rgb, fixed3(1,1,1), _Flash);
+                color.rgb *= _NightVisibility;
                 return color;
             }
             ENDCG

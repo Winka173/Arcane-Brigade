@@ -28,7 +28,7 @@
 
 ## Resumed authoring — 16 October 2026
 
-The authorised image service recovered. All 81 remaining source sheets have now been generated; the complete source queue is 101 sheets. Resume provenance is in `Expanded_Performance_Resume_Provenance.json`, with prompts/reference boards in `Expanded_Performance_Resume_Queue.json`. A corrective edit of locomotion-31 separates the kick pose from adjacent silhouettes. Unity import and native verification of the complete queue are in progress; the historical Animation-01 gate below is not evidence for these new sheets.
+The authorised image service recovered. All 81 remaining source sheets have now been generated and imported: **101/101 sheets, 1444 new poses, 270 actor clips** across the full queue. Resume provenance is in `Expanded_Performance_Resume_Provenance.json`, with prompts/reference boards in `Expanded_Performance_Resume_Queue.json`. A corrective edit of locomotion-31 separates the kick pose from adjacent silhouettes. All-catalog coverage and 6070 import/selection checks passed in Unity. Native Windows standard/reduced runs passed 4524/4324 checks with 319 screenshots per profile. Current build, hashes, levitation/shop/story checks and limitations: `PreviewExports/Levitation/Gate_Summary.md`. The historical Animation-01 gate is retained separately and is not evidence for these new sheets.
 
 ## Historical interruption
 

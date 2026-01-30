@@ -28,8 +28,8 @@ namespace ArcaneBrigade
             }
             float hurt = time - unit.LastHit;
             if (hurt >= 0 && hurt < .14f) return Frames[2];
-            if (unit.PendingAttack || unit.Definition.IsBoss && unit.TelegraphUntil > time || unit.EvolutionReleaseAt > time || unit.Variant != null && unit.Variant.ReleaseAt > time) return Frames[0];
-            if (unit.Definition.IsBoss && unit.BossRecoveryUntil > time || unit.EvolutionRecoveryUntil > time || unit.Variant != null && unit.Variant.TravelEnd > time) return Frames[1];
+            if (unit.PendingAttack || unit.Definition.IsBoss && (unit.TelegraphUntil > time || unit.EncoreWindupUntil > time) || unit.EvolutionReleaseAt > time || unit.Variant != null && unit.Variant.ReleaseAt > time) return Frames[0];
+            if (unit.Definition.IsBoss && (unit.BossRecoveryUntil > time || unit.EncoreRecoveryUntil > time) || unit.EvolutionRecoveryUntil > time || unit.Variant != null && unit.Variant.TravelEnd > time) return Frames[1];
             float attackAge = time - unit.AttackStarted;
             float attackWindup = unit.AttackWindup > 0 ? unit.AttackWindup : unit.Definition.Weapon.Windup;
             return attackAge >= attackWindup && attackAge < attackWindup + unit.Definition.Weapon.Recovery ? Frames[1] : null;

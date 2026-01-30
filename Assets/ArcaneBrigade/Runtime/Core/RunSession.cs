@@ -64,6 +64,7 @@ namespace ArcaneBrigade
         public int NextOffer;
         public int RerollsThisShop;
         public int NewRecruitsThisWave;
+        public int NewSpeciesRecruitsThisWave;
         public int NextReceipt;
         public List<RunTransactionReceipt> Receipts = new List<RunTransactionReceipt>();
         public int LastIncome;
@@ -192,6 +193,7 @@ namespace ArcaneBrigade
             if (!Array.Exists(catalog.Champions, unit => unit.Id == snapshot.ChampionId)) throw new InvalidOperationException("Invalid champion identity");
             if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
             if (snapshot.NewRecruitsThisWave < 0 || snapshot.NewRecruitsThisWave > 3) throw new InvalidOperationException("Invalid wave recruitment quota");
+            if (snapshot.NewSpeciesRecruitsThisWave < 0 || snapshot.NewSpeciesRecruitsThisWave > 2 || snapshot.NewSpeciesRecruitsThisWave > snapshot.NewRecruitsThisWave) throw new InvalidOperationException("Invalid new-species quota");
             if (snapshot.MergeDrought != null)
             {
                 var mergeKeys = new HashSet<string>();
@@ -515,6 +517,7 @@ namespace ArcaneBrigade
             State.Phase = SessionPhase.Shop;
             State.SpecialShopVisited = false;
             State.NewRecruitsThisWave = 0;
+            State.NewSpeciesRecruitsThisWave = 0;
             RollShop(true);
         }
 
@@ -538,6 +541,7 @@ namespace ArcaneBrigade
             ResetShopStatFeedback();
             State.Endless = true;
             State.NewRecruitsThisWave = 0;
+            State.NewSpeciesRecruitsThisWave = 0;
             State.ParentRunId = State.RunId;
             State.RunId = Guid.NewGuid().ToString("N");
             State.StartHall = State.Wave + 1;
@@ -560,6 +564,8 @@ namespace ArcaneBrigade
             if (State.Phase != SessionPhase.Shop) return false;
             ShopOffer offer = State.Offers.Find(candidate => candidate.Token == token) ?? State.SpecialOffers.Find(candidate => candidate.Token == token);
             if (!CanBuy(offer)) { Notice = "Offer expired, capped or insufficient currency. HP purchases must leave at least 1 HP."; return false; }
+            bool countsAsNewRecruit = CountsAsNewRegularRecruit(offer);
+            bool countsTowardRecruitLimit = CountsTowardRecruitLimit(offer);
             float previousMaximum = MaximumHealth();
             if (offer.Kind == OfferKind.Companion)
             {
@@ -570,7 +576,8 @@ namespace ArcaneBrigade
                 WeaponDefinition chosen = BalancedWeapon(choices, catalog.Unit(offer.Id).SpecialRecruit);
                 var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = Mathf.Clamp(offer.Tier, 1, 3) };
                 State.Roster.Add(recruited);
-                State.NewRecruitsThisWave++;
+                if (countsTowardRecruitLimit) State.NewRecruitsThisWave++;
+                if (countsAsNewRecruit) State.NewSpeciesRecruitsThisWave++;
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 OctoberPurchase(catalog.Unit(offer.Id));
                 if (OctoberAbsorbs) { State.AbsorbedSkills.Add(offer.Id); State.Roster.Remove(recruited); }
@@ -604,9 +611,9 @@ namespace ArcaneBrigade
         {
             if (SecretRoomOpen) return false;
             if (State.OutsideStage == OutsideStageStatus.Reward) return false;
-            if (offer != null && offer.Kind == OfferKind.Companion && State.NewRecruitsThisWave >= 3) return false;
+            if (RecruitQuotaBlocks(offer)) return false;
             if (offer != null && offer.Kind == OfferKind.Companion && OctoberAbsorbs && State.AbsorbedSkills.Count >= 2048) return false;
-            if (offer != null && offer.Kind == OfferKind.Companion && State.Roster.Count >= 20 && State.Roster.FindAll(r => r.UnitId == offer.Id && r.Tier == Mathf.Clamp(offer.Tier, 1, 3)).Count < 2 && !OctoberAbsorbs) return false;
+            if (CompanionCapacityBlocks(offer)) return false;
             if (offer == null || offer.Sold || State.Phase != SessionPhase.Shop) return false;
             if (offer.Kind == OfferKind.Companion && catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw && !OctoberAbsorbs) return false;
             if (offer.Currency == ShopCurrency.Health ? State.Health - offer.Price < 1f : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
@@ -640,7 +647,7 @@ namespace ArcaneBrigade
                     if (State.Roster.Exists(r => r.UnitId == resultId && r.WeaponId == inherited)) resultId = id;
                     State.Roster.Add(new RosterEntry { UnitId = resultId, Tier = tier + 1, WeaponId = inherited });
                     RememberVariant(State.Roster[State.Roster.Count - 1]);
-                    if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage" && State.Roster.Count < 20)
+                    if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage" && State.Roster.Count < OctoberBalance.AllySoftLimit)
                     {
                         var nurseryWeapons = choices.FindAll(w => !State.Roster.Exists(r => r.UnitId == "GrandSprout" && r.WeaponId == w.Id));
                         if (nurseryWeapons.Count > 0)
@@ -711,14 +718,14 @@ namespace ArcaneBrigade
             get
             {
                 int count = State.Roster.Count;
-                float chance = OctoberBalance.NewAllyChance(count);
+                float chance = OctoberBalance.NewAllyChance(count, State.Wave);
                 return Mathf.Clamp(chance * Mathf.Max(0.25f, 1 + Bonus(ItemEffect.Luck)), 0.01f, 0.95f);
             }
         }
 
         public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave);
         public float SpecialStagePriceFactor => 1 + Mathf.Max(0, State.Wave - 7) * .045f;
-        public float CompanionOfferChance => (State.NewRecruitsThisWave >= 3 ? 0 : State.NewRecruitsThisWave >= 2 ? 0.15f : 1) * OctoberBalance.RecruitChance(State.Roster.Count);
+        public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
         public int HighestOwnedTier(string id)
         {
@@ -737,7 +744,7 @@ namespace ArcaneBrigade
         private void TrackMergeDrought(bool paidRefresh, List<ShopOffer> offers = null)
         {
             State.MergeDrought.RemoveAll(entry => HighestOwnedTier(entry.UnitId) >= 2 || State.Roster.FindAll(unit => unit.UnitId == entry.UnitId && unit.Tier == 1).Count < 2);
-            if (!paidRefresh || State.NewRecruitsThisWave >= 3 || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return;
+            if (!paidRefresh || offers != State.SpecialOffers && CompanionPurchasesRemaining == 0 || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return;
             foreach (RosterEntry unit in State.Roster)
             {
                 if (unit.Tier != 1 || HighestOwnedTier(unit.UnitId) >= 2 || State.Roster.FindAll(entry => entry.UnitId == unit.UnitId && entry.Tier == 1).Count < 2) continue;
@@ -758,15 +765,15 @@ namespace ArcaneBrigade
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && State.NewRecruitsThisWave < 3 && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && CompanionPurchasesRemaining > 0 && (NewRecruitsRemaining > 0 || OwnsCompanionSpecies(unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
             for (int index = 0; index < catalog.ShopSlots; index++)
             {
                 bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
-                var available = units.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id) || newRecruit);
-                available = available.FindAll(unit => State.Roster.Count < 20 || OctoberMergeTier(unit.Id) > 0);
+                var available = units.FindAll(unit => OwnsCompanionSpecies(unit.Id) || newRecruit);
+                available = available.FindAll(unit => State.Roster.Count < OctoberBalance.AllySoftLimit || OctoberMergeTier(unit.Id) > 0);
                 var mergeReady = available.FindAll(unit => HighestOwnedTier(unit.Id) < 2 && State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
                 if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) available = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
@@ -798,16 +805,16 @@ namespace ArcaneBrigade
             State.SpecialOffers.Clear();
             var specialUnits = new List<UnitDefinition>();
             foreach (UnitDefinition unit in catalog.Companions)
-                if ((catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw || OctoberAbsorbs) && unit.SpecialRecruit && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit) && unit.UnlockWave <= State.Wave && State.NewRecruitsThisWave < 3 && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
+                if ((catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw || OctoberAbsorbs) && unit.SpecialRecruit && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit) && unit.UnlockWave <= State.Wave && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) specialUnits.Add(unit);
             for (int index = 0; index < 3; index++)
             {
-                var recruits = specialUnits.FindAll(unit => State.Roster.Exists(entry => entry.UnitId == unit.Id));
+                var recruits = specialUnits.FindAll(unit => OwnsCompanionSpecies(unit.Id));
                 if (Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
-                recruits = recruits.FindAll(unit => State.Roster.Count < 20 || OctoberMergeTier(unit.Id) > 0);
+                recruits = recruits.FindAll(unit => State.Roster.Count < OctoberBalance.AllySoftLimit || OctoberMergeTier(unit.Id) > 0);
                 var mergeReady = recruits.FindAll(unit => HighestOwnedTier(unit.Id) < 2 && State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
                 if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) recruits = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
-                if (index == 0 && recruits.Count > 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000)
+                if (index == 0 && recruits.Count > 0)
                 {
                     UnitDefinition recruit = recruits[RecruitChoice(recruits)];
                     int tier = OctoberOfferTier(recruit.Id);

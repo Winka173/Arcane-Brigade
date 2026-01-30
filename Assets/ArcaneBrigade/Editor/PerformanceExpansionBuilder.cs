@@ -82,7 +82,7 @@ namespace ArcaneBrigade.Editor
             File.WriteAllLines(Root + "/Coverage.tsv", new[] { "Job\tKind\tId\tEvolution\tExistingCombatPoses\tSource\tSprite" }.Concat(jobs.SelectMany(job => job.Actors.Select(actor => job.Id + "\t" + job.Kind + "\t" + actor.Id + "\t" + actor.Evolution + "\t" + actor.ExistingCombatPoses + "\t" + actor.Source + "\t" + actor.Sprite))));
             Debug.Log("PERFORMANCE_EXPANSION_AUDIT " + jobs.Count + " art jobs; " + manifest.Heroes + " heroes, " + manifest.Companions + " companions, " + manifest.Enemies + " enemies, " + manifest.Weapons + " weapons");
         }
-        private static void ReferenceBoard(ArtJob job)
+        public static void ReferenceBoard(ArtJob job)
         {
             Scene scene = EditorSceneManager.NewPreviewScene();
             RenderTexture previous = RenderTexture.active;

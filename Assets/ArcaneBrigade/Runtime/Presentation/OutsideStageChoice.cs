@@ -103,11 +103,15 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(panel, new Color(.11f, .09f, .19f, .98f), RunModifierRules.RarityColor(ItemRarity.Rainbow));
                 GUI.Label(new Rect(395, 815, 1130, 36), item?.Name ?? ally.DisplayName, title);
                 string detail = item == null ? CompanionDescriptions.Describe(ally) + "\nWeapon rolls when claimed." : RunModifierRules.Describe(item, 1);
+                bool full = item == null && owner.Session.State.Roster.Count >= owner.Session.CompanionLimit;
+                if (full) detail = "BRIGADE FULL / 15 COMPANIONS. Choose a relic gift instead.\n\n" + detail;
                 GUIStyle detailStyle = new GUIStyle(copy) { alignment = TextAnchor.UpperLeft, fontSize = 19 };
                 float height = Mathf.Max(90, detailStyle.CalcHeight(new GUIContent(detail), 1080));
                 descriptionScroll = GUI.BeginScrollView(new Rect(395, 860, 1125, 90), descriptionScroll, new Rect(0, 0, 1080, height));
                 GUI.Label(new Rect(0, 0, 1080, height), detail, detailStyle); GUI.EndScrollView();
-                if (GUI.Button(new Rect(1040, 958, 470, 42), "CLAIM THIS GIFT", choiceButton)) owner.ClaimOutsideReward(shown);
+                bool previousEnabled = GUI.enabled; GUI.enabled = previousEnabled && !full;
+                if (GUI.Button(new Rect(1040, 958, 470, 42), full ? "BRIGADE FULL / CHOOSE A RELIC" : "CLAIM THIS GIFT", choiceButton)) owner.ClaimOutsideReward(shown);
+                GUI.enabled = previousEnabled;
                 GUI.Label(new Rect(395, 960, 620, 40), "Choose one. The other two gifts vanish.", copy);
             }
             if (selection >= 0 && hold > 0) GUI.Label(new Rect(760, 1020, 400, 35), Mathf.RoundToInt(Mathf.Clamp01(hold / 0.85f) * 100) + "%", copy);

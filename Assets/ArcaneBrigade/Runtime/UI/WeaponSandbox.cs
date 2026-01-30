@@ -225,7 +225,7 @@ namespace ArcaneBrigade
             previewCamera.allowMSAA = true;
             previewCamera.transform.position = new Vector3(0.8f, 0, -10);
             previewCamera.clearFlags = CameraClearFlags.SolidColor;
-            previewCamera.backgroundColor = new Color(0.10f, 0.08f, 0.19f, 1f);
+            previewCamera.backgroundColor = new Color(0.04f, 0.05f, 0.09f, 1f);
             previewCamera.cullingMask = 1 << 31;
             PreviewTexture = new RenderTexture(GetPreviewDescriptor(Application.isMobilePlatform))
             {

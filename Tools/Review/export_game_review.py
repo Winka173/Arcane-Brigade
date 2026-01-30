@@ -279,7 +279,7 @@ add("Với `s=max(0,wave−1)`, hệ số shop thường = `min(10000,(1+0.12s+0
 add()
 add("RerollCost = max(1, 2 + rerollsThisShop×max(1,2) − 2×RerollFeather − 2×MaryTalent + ngoại lệ hero); Nicole +2, Belle −1. Refresh thường và altar dùng chung bộ đếm, reset khi sang wave mới. Smiley Fox/Nicole và relic có thể nhận tăng trưởng khi refresh; không xem việc refresh là hoàn toàn miễn phí dù có refund.")
 add()
-add("Từ 10 đến 20 ally, `crowd=clamp01((count−10)/10)`: trọng số giữ ứng viên loài mới giảm 75%→2%; trọng số recruit nói chung giảm 100%→32%. Luck điều chỉnh nhánh loài mới. Giới hạn mua recruit trả tiền 3 lần mỗi wave; sau lần thứ 2, hệ số quota còn 15%; sau lần thứ 3 bằng 0. Quà và vật triệu hồi có quy tắc riêng. Các số này là bộ lọc/trọng số, không phải xác suất cuối của mọi ô shop.")
+add("Giữ tối đa **3 lượt mua companion thường mỗi round**, gồm bản trùng nâng sao; sau lượt thứ 2, nhánh companion còn 15%, sau lượt thứ 3 bằng 0. Trong trần đó, **loài mới tối đa 2 ở round 1–3, rồi 1**. Companion từ shop đặc biệt miễn cả hai quota và không bị số lượt mua thường làm giảm slot. Loài mới là ID chưa có trong roster hoặc memory hấp thụ. Round 4+: gate loài mới 85% dưới 6 cơ thể, từ 6 dùng `t=clamp01((count−6)/14)`, `lerp(0.55,0.02,1−(1−t)²)`. Round 1–3 giữ gate ít nhất 70%. Luck vẫn điều chỉnh gate; đây không phải tỉ lệ cuối mỗi ô. Không giảm slot nâng sao theo quân số. Quà companion thường từ relic dùng hai quota tương ứng; quà talent/altar có quy tắc riêng. Trần cơ thể vẫn 20, bond và công thức nâng sao giữ nguyên.")
 add()
 add("Mảnh ghép đang thiếu được ưu tiên; khi có hai 1 sao mà chưa có 2 sao cùng loài, ưu tiên bắt đầu 85% rồi tăng 3 điểm % cho mỗi lần khô, đến ngưỡng refresh đủ điều kiện thì bảo đảm một ứng viên mảnh ghép. Đội dưới 7 người từ wave 4 có thể gặp cấp cao; đội ≤3 từ wave 10 có nhánh roll <18 cho 3 sao, <55 cho 2 sao; các đội nhỏ khác có nhánh <30 cho 2 sao. Đây là roll trong nhóm đủ điều kiện, không phải tỉ lệ tổng mọi offer. Card King có ưu tiên loài mới 2 sao riêng.")
 add()
@@ -438,12 +438,14 @@ add()
 for i, b in enumerate(D["Bonds"], 1):
     track("Bonds", b["Id"])
     heading(f"{i:02d}. {b['Name']} — `{b['Id']}`", f"bond-{b['Id'].lower()}", 3)
-    milestones = sorted(set(range(b["Threshold"], 22, b["Threshold"])) | {x["Threshold"] for x in b["ExtraBonuses"]})
+    milestones = sorted(set(range(b["Threshold"], 17, b["Threshold"])) | {x["Threshold"] for x in b["ExtraBonuses"] if x["Threshold"] <= 16})
     rows = []
     for count in milestones:
         extra = sum(x["Value"] for x in b["ExtraBonuses"] if count >= x["Threshold"])
         level = count // b["Threshold"]
-        rows.append((count, level, b["Effect"], b["Value"], extra, level * b["Value"] + extra))
+        raw_reward = level * b["Value"] + extra
+        reward = raw_reward * D["RuntimeConstants"]["BondDefinition"]["PositiveRewardScale"] if raw_reward > 0 and b["Effect"] not in ("EnemyCount", "EnemyHealth", "EnemySpeed") else raw_reward
+        rows.append((count, level, b["Effect"], b["Value"], extra, reward))
     table(["Count cần", "Level", "Effect", "Value mỗi level", "Extra đã đạt", "Reward raw tổng"], rows)
     add("**Đồng minh đóng góp tag:** " + "; ".join(f"{u['DisplayName']} (`{u['Id']}`)" for u in D["Companions"] if b["Id"] in (u["Tags"] or [])) + ".\n")
 
@@ -685,10 +687,23 @@ heading("22. Phụ lục code công thức thực thi và nguồn gốc", "sourc
 add("Các công thức chuyên biệt về tài năng, proc, item tradeoff và thời gian tấn công có nhiều nhánh hơn một bảng stat. Dưới đây là **bản sao nội dung mã tại thời điểm xuất**, giữ nguyên để reviewer kỹ thuật tra cứu mọi hệ số và thứ tự áp dụng trong chính file này. Tên file và SHA-256 dùng định vị/kiểm tra xuất xứ. Không cần checkout repo để đọc. Các tên Kxx/October/Carnival là tên lớp tích hợp, không phải mode sản phẩm hiển thị cho người chơi.")
 add()
 exclude_fragments = ("Capture", "Fixture", "Measurement", "Checks", "Smoke", "Framebuffer", "Recorder", "NativeMetrics")
+if "WaitingChapters" in D:
+    heading("Miền Chờ: cốt truyện và ánh sáng đồng hành", "mien-cho-shared-light", 2)
+    add("10 mốc cố định / 27 trang trong chiến dịch 20 wave; 31 đoạn nhập cảnh, 66 tiểu sử và 6 tuyến companion theo chặng. Journal ở shop bằng J, có pause, scroll và lưu acknowledgement. Các vignette là nội dung viết sẵn; chưa có ba chiến dịch riêng hoặc hệ quest phân nhánh cho mọi loài.")
+    add("Ánh sáng world-space 256×192 với tối đa 16 nguồn: hero bán kính 6.4 và mỗi companion 3.4. Gộp nguồn theo giá trị lớn nhất, không cộng vô hạn. Địch xa có silhouette/mắt hoặc ember; trong vùng contact an toàn hoặc windup thì thân hiện rõ, boss giữ ít nhất 80%. High Readability và giảm hiệu ứng giữ ánh sáng thiết yếu. Hai ending đều là bình minh thật.")
+    add("Act I now uses thirteen newly illustrated assets in the existing game's style: drawn lanterns in three damage states, chair, dining group, telephone, mirror, three story panels and three room backgrounds. Blender lamp meshes and render assets have been retired outside Assets. Unity light fields and black fog remain; levitation preserves floating, lean and fixed floor shadows without under-object smoke/wind. Three 2D rooms can be explored on foot; six optional companion routes store three binary responses each and contribute authored epilogues. Later acts remain deferred. Details: Docs/Mien_Cho_Painted_Art_Pass.md.")
+    add("Journal now saves a separate page for every chapter and distinguishes read-later acknowledgement from last-page completion. Three optional in-world shop encounters appear after waves 4-5 (reserved table), 6-7 (disconnected phone) and 10-11 (delayed reflection of an actual party member). They pause with the world, never appear during combat and have no stat or currency reward. The current transparent sprites are newly illustrated; retired Blender sources are historical only.")
+    for chapter in D["WaitingChapters"]:
+        add("### Wave " + str(chapter["Wave"]) + " / " + chapter["Title"])
+        add("Evidence: " + chapter["Evidence"])
+        for page_index, page_text in enumerate(chapter["Pages"], 1):
+            add("**Page " + str(page_index) + "**\n\n" + page_text)
+    details("31 dream arrivals", "json", jdump(D["WaitingArrivals"], True))
+    details("66 lives and companion arc excerpts by progression", "json", jdump(D["WaitingLives"], True))
 source_paths = sorted(p for p in (ROOT / "Assets/ArcaneBrigade/Runtime/Core").glob("*.cs") if not any(x in p.stem for x in exclude_fragments))
 source_paths += sorted((ROOT / "Assets/ArcaneBrigade/Runtime/Data").glob("*.cs"))
 source_paths += sorted((ROOT / "Assets/ArcaneBrigade/Runtime/Persistence").glob("*.cs"))
-for name in ["NightmareDialogue", "OctoberDialogue", "MerchantDialogue", "ArcaneAudio", "ArcadeMusic", "SecretEventRoom", "NightmareFarewellRoom", "NightmareDeparture", "OutsideStageChoice", "StageTransfer", "BuildMorphAppearance", "CharacterActingLibrary", "HeroIdentityVisual"]:
+for name in ["NightmareDialogue", "OctoberDialogue", "MerchantDialogue", "ArcaneAudio", "ArcadeMusic", "SecretEventRoom", "NightmareFarewellRoom", "NightmareDeparture", "OutsideStageChoice", "StageTransfer", "BuildMorphAppearance", "CharacterActingLibrary", "HeroIdentityVisual", "MienChoPresentation", "SharedLightField", "NightmareLighting", "NightmarePresence", "WaitingRealmStage", "WaitingShopEncounter", "WaitingJourney", "WaitingRoomController", "NightLanternField", "DreamLevitation", "FloatingStoryProp", "WaitingCampaign", "WaitingCompanionQuests", "WaitingRooms"]:
     source_paths.append(ROOT / f"Assets/ArcaneBrigade/Runtime/Presentation/{name}.cs")
 for name in ["RunUICopy", "RunBuildReadModel", "BuildMorphReadModel", "BondHudSummary", "ShortOfferCopy", "ContentDescriptions", "HeroIdentityOptions", "ShopStatFeedback"]:
     source_paths.append(ROOT / f"Assets/ArcaneBrigade/Runtime/UI/{name}.cs")

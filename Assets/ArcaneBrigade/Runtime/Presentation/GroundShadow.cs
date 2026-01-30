@@ -73,6 +73,7 @@ namespace ArcaneBrigade
             }
         }
         public void Hide() { if (contact != null) contact.enabled = false; if (penumbra != null) penumbra.enabled = false; if (cast != null) cast.enabled = false; }
+        public void TranslateGround(Vector3 displacement) { if (stage != null) stage.position += displacement; }
         public void Fade(float alpha)
         {
             if (contact != null) { Color tint = contact.color; tint.a *= alpha; contact.color = tint; }

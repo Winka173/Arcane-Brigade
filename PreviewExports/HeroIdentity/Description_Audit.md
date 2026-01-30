@@ -13,6 +13,9 @@ Champion / Healing per second: +0.04
 Champion / Movement speed: -0.3%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Born above the station kitchens, they fed travellers through a winter with no departures. Every cup was counted; nobody knew whether they had eaten. They want a table where the last person serving is also given a seat.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -30,6 +33,9 @@ Champion / Armor: +0.025
 Champion / Movement speed: -0.5%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+They carried their village's ember through a flood. Their shell holds the names of neighbours who took turns carrying them afterward. They seek dry ground for those neighbours, not another chance to endure everything alone.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.5 units: 1.5s normally, 0.6s on bosses.
 
@@ -47,6 +53,9 @@ Run / Pickup radius: +0.08
 Run / Luck: -0.01
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A collector of letters with missing addresses, they once mistook silence for permission to read them. Delivering an apology unopened began their first honest route. They want a postal service that also lets a recipient refuse a letter.
 PERSONAL PASSIVE
 Every 4s in combat, gain 1 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -64,6 +73,9 @@ Champion / Maximum health: +3
 Champion / Attack speed: -0.5%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+They hear dreams through a boarding house's walls. They predicted visitors' needs until nobody remembered to ask what they wanted. They seek an ordinary night of sleep with someone else keeping watch.
 PERSONAL PASSIVE
 Own weapon damage gains 0.8% per companion body in the roster, before later balance modifiers.
 
@@ -82,6 +94,9 @@ Run / Luck: +0.025
 Companions / Attack speed: -0.5%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Their underground library grows books from witnessed events, keeping contradictory accounts on adjacent shelves. A borrower who never returned left a gap they refuse to fill with a convenient ending. They seek the borrower rather than a replacement story.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -99,6 +114,9 @@ Team / Critical chance: +1%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A guard bound to the promise that nobody would leave alone, they trapped solitary travellers. Someone returned voluntarily for them. The contract erased that night, but their body still moves to cover a companion's unguarded left side.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -116,6 +134,9 @@ Companions / Damage: +2.5%
 Companions / Movement speed: -0.5%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A river-dweller taught fencing by a ferry captain, they were exiled for refusing a duel against a frightened passenger. They want to teach a form whose last lesson is lowering the sword. Their salute belongs to no recognised school.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -133,6 +154,9 @@ Run / Score multiplier: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+An elected keeper of a root settlement, they inherited a crown meant to be buried when their term ended. The frozen season never let that day arrive. They seek a spring that will let somebody else lead.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -150,6 +174,9 @@ Team / Collision damage: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Their coastal family measures tides by rising dough. A storm took their street but left its breakfast bell. They carry the bell toward the coast, hoping a familiar sound will gather the scattered neighbours.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -167,6 +194,9 @@ Team / Flat melee damage: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Raised beneath the market, they whistle to navigate steam vents. An answering voice once brought their family into danger. They learned that an answer is not necessarily an invitation, and now check every route before guiding anyone.
 PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -184,6 +214,9 @@ Team / Flat ranged damage: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+They arose from a community's promise to keep a missing reader's place, then learned to read the unfinished book themselves. They seek that reader while building a life that does not end at the last reserved page.
 PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
@@ -201,6 +234,9 @@ Team / Attack range: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A timekeeper whose heart stayed punctual after the trains stopped, they falsified bells to give stranded children hope. Admitting the lie cost their post. They want to ring for an arrival they have actually witnessed.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
@@ -218,6 +254,9 @@ Champion / Dodge: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A wetland courier injured in the machinery district, they chose a spring prosthesis made by a friend. The spring helps their life continue; it did not create it. They want to return the friend's tools and report that the crossing worked.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -235,6 +274,9 @@ Run / Income: +2
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Their family mends coats left on station hooks. They recognise travellers by repairs nobody else notices. They kept one uncollected coat because its missing owner once covered a sleeping stranger with it.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -252,6 +294,9 @@ Team / Bullet pierce: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A tunneller who bound scattered maps into a public atlas. Officials sealed dangerous routes by sealing their residents inside, so they stole the atlas back. They mark blocked exits in ink readable from either side.
 PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -269,6 +314,9 @@ Team / Bullet split: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A frost-country pilgrim carrying the last spoon from a communal pot. They rationed too strictly and remember the neighbour who went hungry. They seek seeds for cold soil rather than another rule for enduring hunger.
 PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
@@ -286,6 +334,9 @@ Team / Bullet bounce chance: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+An astronomer who tracked a star the realm's ceiling kept erasing. They left a student in charge and worry that leaving made them disloyal. They want to bring back a map drawn under a real sky.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
@@ -303,6 +354,9 @@ Team / Bullet size: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A keeper of cold stores who sheltered passengers during a heat wave. One store stayed cold after its key vanished. They seek every missing key, including those opening doors they were ordered to leave alone.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -320,6 +374,9 @@ Team / Bullet speed: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Raised in an orchard lit by artificial suns, they followed moonlight through a broken roof. They return each season to describe the outside. Their family has begun cutting windows, and they want to see the first one open.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -337,6 +394,9 @@ Team / Bullet travel distance: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A marsh runner carrying news nobody wanted to hear. Jokes gave listeners somewhere to put their anger. They travel with people who let them finish a sentence without requiring it to be funny.
 PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -354,6 +414,9 @@ Team / Knockback: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A performer who hid criticism inside jokes until the court learned to applaud without listening. They left mid-punchline. They want to speak one plain truth and be heard without laughter covering it.
 PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
@@ -371,6 +434,9 @@ Champion / Champion size: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+They preserve seeds from a garden erased from official maps. They will not replace a lost species with a prettier account of what grew there. They seek soil where the surviving seeds can belong without a ledger's permission.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
@@ -388,6 +454,9 @@ Companions / Companion size: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A tide-born resident who remembers the moon before the sea acquired a ceiling. Their migration follows a pull no map records. They want to discover whether the older sea survives and whether their young can reach it.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -406,6 +475,9 @@ Run / Score multiplier: +10%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Separated from a sibling at a crossing, they wear mismatched cloth recording the strangers who helped them continue. They seek their sibling without pretending every newer connection is temporary.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -424,6 +496,9 @@ Run / Score multiplier: +10%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A sky fisher whose safety line was tied to the wrong shore. A keeper called the tightening tether protection. They carry their own spool now and search for the crew on the other side.
 PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -442,6 +517,9 @@ Run / Score multiplier: +10%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+An unhatched sky-dweller who speaks through their shell, postponing hatching until their flock is found. The shell is their body, not a container to open for a reward. They decide when the next part of their life begins.
 PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
@@ -460,6 +538,9 @@ Champion / Heart healing: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A lamplighter who circled a homeward beacon until discovering its keeper turned it to prevent arrivals. They now guide by several independent lights. They want routes no single keeper can own.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
@@ -477,6 +558,9 @@ Run / Chest quality: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A navigator transformed by crossing incompatible dreams. Their needle answers freely made commitments, not an owner's commands. They are learning to choose a destination after a lifetime of being asked only for directions.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -494,6 +578,9 @@ Run / Recruit discount: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A coastal courier carrying unsent replies as carefully as delivered letters. One envelope bears the protagonist's childhood handwriting; its reply was intercepted. They want the addressee to read it before being told what it means.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -511,6 +598,9 @@ Run / Relic discount: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A reef resident whose ceramic-looking shell shelters a living reef. They broadcast weather to inland families. Their last warning brought an evacuation boat too late; they still check the harbour's arriving names.
 PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -528,6 +618,9 @@ Run / Shop rarity: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+They kept air pockets along a drowned road and rescued people who later forgot it existed. They collect those accounts to stop another town building over it. They want witnesses rather than a grateful statue.
 PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
@@ -545,6 +638,9 @@ Champion / Health correction: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A dockworker who carried a vessel's anchor inland when its harbour disappeared. The chain proves the harbour existed. They seek the crew to ask whether it is time to put the weight down.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
@@ -562,6 +658,9 @@ Team / Damage correction: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+An estuary pilot whose captain demanded guarantees no uncertain tide could give. They left that ship. They offer passage with risks spoken aloud and seek a crew willing to hear an honest forecast.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -579,6 +678,9 @@ Team / Speed correction: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A one-eyed watchkeeper dismissed for reporting footsteps behind the official patrol. Following them led to a missing resident. They want a watch that treats listening as part of seeing.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -596,6 +698,9 @@ Champion / Armor correction: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A gambling-hall accountant who found the house erasing winners from its records. They kept a crooked die as evidence rather than letting it decide every choice. They seek the families of the removed names.
 PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
@@ -613,6 +718,9 @@ Champion / Healing correction: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A theatre refugee whose mask preserved a role after the troupe disbanded. The role taught courage but sometimes speaks over their wishes. They are learning to remove it without apologising for the quieter voice beneath.
 PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
@@ -630,6 +738,9 @@ Team / Collision frequency: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A map maker who drew windows for a district with none. One drawing opened a real passage. They now check every imagined exit before sharing it, and want to draw somewhere from life rather than longing.
 PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
@@ -647,6 +758,9 @@ Run / Score multiplier: +2.5%
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A witness from marshes where reflections remember events bodies forget. They disagree with their reflection about a former friend. They travel to compare records, not force one witness to disappear.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -664,6 +778,9 @@ Team / Collision damage: +1
 Champion / Maximum health: -1
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A bridge weaver who tightened a safety web until nobody could move. They cut it and helped rebuild the road. Each new knot has a release reachable by the person it supports.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
@@ -681,6 +798,9 @@ Champion / Knockback: +4%
 Champion / Movement speed: -1%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A bathhouse engineer who kept pumps running after everyone left, afraid stopping meant nobody would return. They carry a replacement part and permission to build something elsewhere. They seek a place to use both.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.35 HP before healing modifiers. Healing restrictions apply.
 
@@ -698,6 +818,9 @@ Companions / Attack speed: +4%
 Companions / Damage: -3%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+An apprentice surgeon whose tools also repaired coats. Their teacher called every error a moral failure. They seek colleagues who correct mistakes without demanding a confession of worthlessness.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -715,6 +838,9 @@ Companions / Attack range: +6%
 Companions / Attack speed: -2%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A documentary keeper who found the official film had removed the people opening an exit. They smuggled out the discarded frames. They want to show the complete sequence in the square where the edited version played.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -733,6 +859,9 @@ Champion / Healing per second: +0.04
 Champion / Movement speed: -0.3%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+They repair bodies only at their wearers' request. Their former workshop sold alterations as obedience. They preserve its patterns as evidence while making clothes with pockets people choose themselves.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -744,13 +873,16 @@ Bonds: frost, resolve. Immortal. Weapon rolls on recruitment; three equal-specie
 
 COMPANION / PRISMATIC / 1 STAR
 TALENT
-On purchase, recruit up to 4 friendly marbles, within the 20-body limit.
+On purchase, recruit up to 4 friendly marbles, within the 15-body limit.
 
 SUPPORT WHILE OWNED
 Champion / Healing per second: +0.04
 Champion / Movement speed: -0.3%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A caller whose voice gathers residents from the marble valleys. They once rang people back into a locked refuge. Every call now ends with silence long enough for someone to choose not to answer.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -762,12 +894,15 @@ Bonds: clock, resolve. Immortal. Weapon rolls on recruitment; three equal-specie
 
 COMPANION / RARE / 1 STAR
 TALENT
-A living toy rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.
+A living resident rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.
 
 SUPPORT WHILE OWNED
 Team / Damage: +6%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+Hidden in the lost-property vault after refusing an ownership mark, their seams are injuries and chosen repairs. They were not manufactured for somebody. They want their name spoken at the table without a claim ticket.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
@@ -783,6 +918,9 @@ SUPPORT WHILE OWNED
 Team / Attack speed: +6%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A courier from the folded-paper estuary, detained for taking a letter past the gate. The message is not their entire identity. After delivery, they intend to keep travelling for reasons of their own.
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
@@ -798,6 +936,9 @@ SUPPORT WHILE OWNED
 Team / Attack range: +6%
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A garden resident visiting under a two-victory travel agreement, with a flock to return to. They tell you that before joining. Leaving when the visit ends is a kept promise, not abandonment or a debt you failed to pay.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
@@ -807,11 +948,14 @@ Bonds: astral. Immortal. Weapon rolls on recruitment; three equal-species/equal-
 
 COMPANION / RARE / 1 STAR
 TALENT
-On purchase, recruit up to 2 Balloon Mallets, within the 20-body limit.
+On purchase, recruit up to 2 Balloon Mallets, within the 15-body limit.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A railway repairer who made locks until learning where officials installed them. They kept a duplicate master key. They want to teach repairs that give residents control of their own doors.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -823,11 +967,14 @@ Bonds: hearth, resolve. Immortal. Weapon rolls on recruitment; three equal-speci
 
 COMPANION / RARE / 1 STAR
 TALENT
-On purchase, recruit two junior helpers, within the 20-body limit.
+On purchase, recruit two junior helpers, within the 15-body limit.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A musician from the gear district with two apprentices who argue about tempo. Their mechanical body is ordinary where they were born. They seek the missing final verse of a song officials insist always ended early.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -844,6 +991,9 @@ Every bond gains +1 supporting count while at least one Walter talent is owned. 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A court champion offered belonging only while winning. They abandoned a ceremonial match to escort a rival home. They want to discover who they can be when no title introduces them.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -860,6 +1010,9 @@ ON RECRUIT / ALTAR CREATION: gain 100 gold immediately once. No recurring paymen
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A drafter whose city builds from folded plans. Their first shelter trapped residents when the plan refused revisions. They now test every design with someone allowed to say it does not fit.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -876,6 +1029,9 @@ Wait 30 seconds before attacking. Then deal triple weapon damage for the rest of
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A ferry captain whose route was changed into a circle without telling passengers. They broke the tiller rather than announce another false arrival. They carry a replacement toward a port where returning is a choice.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -892,6 +1048,9 @@ Hero and all companions gain 20% weapon damage and 10% movement speed per talent
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A community baker who led a strike when ovens fed the station while workers went hungry. The recipes preserve every worker's name. They seek a kitchen whose first meal belongs to its cooks.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -908,6 +1067,9 @@ Contact damage +40. Briefly distract nearby ordinary enemies for 2 seconds every
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A rail-born carrier remembering every passenger but denied a choice of destination. They left the assigned line after its last station ceased to exist. They want to visit somewhere simply because it interests them.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -924,6 +1086,9 @@ This ally has +15% critical chance.
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A survivor carrying an afterimage of a district erased from the maps. They are more than evidence of a disaster. They seek other survivors to discover what each wants next.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -939,6 +1104,9 @@ Basic hits gently pull ordinary enemies inward. Bosses cannot be pulled.
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A negotiator who soothed people until they forgot their objections, then testified against the court that hired them. They now ask again after the enchantment fades. They seek agreement that survives its disappearance.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -954,6 +1122,9 @@ No basic attack. Deal 24 contact damage. Can carry nursery bonuses.
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+An elder from travelling gardens who shelters young plants without choosing where they must settle. They move their own roots when home becomes unsafe. They seek a garden with more than one open gate.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -970,6 +1141,9 @@ No basic attack. Deal 18 contact damage; gain 1 more per injury this wave, up to
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A burrower whose spines protected a community through a siege. They are learning to let friends close without remaining on guard. They want one full night's sleep while somebody else takes watch.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -986,6 +1160,9 @@ Cannot merge. Each 8 kills credited to Evil allies in total gives the hero 2% at
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A former tracker who guided collectors to people hiding from contracts. They deserted on finding the same name on rescue and debt lists. They open routes they once betrayed without demanding that survivors absolve them.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1001,6 +1178,9 @@ Push ordinary enemies within the push cap. Basic damage is reduced by 70%.
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A traveller whose buoyant body kept them working above flooded streets. A foreman charged rent for their air. They joined a rescue crew and carry a valve only they may open.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1012,11 +1192,14 @@ Bonds: tidal, mask. Immortal. Weapon rolls on recruitment; three equal-species/e
 
 COMPANION / UNCOMMON / 1 STAR
 TALENT
-Nursery-exclusive. No basic attack; deal 12 contact damage. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon, within the 20-body limit.
+Nursery-exclusive. No basic attack; deal 12 contact damage. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon, within the 15-body limit.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A young garden-dweller travelling with their root household's consent. They are curious about rain and what they might become. Dream growth does not make their life an object for an owner's use.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1033,6 +1216,9 @@ An immortal friendly marble. Uses its own randomly assigned weapon.
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A valley resident whose round body was mistaken for cargo. They memorised voices until another passenger answered them. They want a station sign that begins: ask the traveller their name.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1049,6 +1235,9 @@ Carries one nearby ally while both continue attacking. Rider and mount remain im
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A living mount bound to a circular route by a promise made on their behalf. They remember riders but no destinations. They choose passengers now and seek the first road that does not return by force.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1065,6 +1254,9 @@ Every fifth basic attack may release one echo for 40% of this ally's weapon dama
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A reed-settlement musician who played the waiting melody until someone taught them its missing final notes. They want to compose a song that lets the audience leave before it ends.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1080,6 +1272,9 @@ Collecting a heart attempts 1 extra HP of healing while at least one Ribbon Otte
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A river mender marking safe crossings with ribbons. A flood moved a marker; they returned to correct it rather than blame those who trusted it. They seek the source and a place to remember the missing by name.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -1095,6 +1290,9 @@ Lantern Guild companions gain 8% reach while at least one Spindle Wren talent is
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
+
+LIFE IN THE WAITING REALM
+A guide carrying thread between settlements. They tied it to their wrist until every departure pulled them apart. They now teach travellers to hold and release their own ends, and seek a route that survives an honest goodbye.
 PERSONAL PASSIVE
 No additional periodic personal passive.
 
@@ -2751,7 +2949,7 @@ Champion / Maximum health: -5
 Run / Income: -5
 
 SPECIAL EFFECT
-ON PURCHASE: try to recruit up to 2 ordinary companions from your hero's pool. Checks unlock wave, unique weapon, 3-recruit quota and 20-body limit; solo heroes receive no bodies.
+ON PURCHASE: try to recruit up to 2 ordinary companions from your hero's pool. All gifts use the 3-companion purchase quota. New species also use the quota of 2 in rounds 1-3, then 1. Checks unlock wave, unique weapon and 15-body limit; solo heroes receive no bodies.
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 

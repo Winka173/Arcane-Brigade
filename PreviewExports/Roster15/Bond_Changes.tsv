@@ -1,0 +1,212 @@
+Id	Name	Effect	Count	Before	After
+hearth	Hearth	Heal	2	0.15	0.135
+hearth	Hearth	Heal	4	0.450000018	0.405
+hearth	Hearth	Heal	6	0.900000036	0.81
+hearth	Hearth	Heal	8	1.05000007	0.944999933
+hearth	Hearth	Heal	10	1.2	1.08
+hearth	Hearth	Heal	12	1.35	1.21500015
+hearth	Hearth	Heal	14	1.5	1.3499999
+hearth	Hearth	Heal	16	1.6500001	1.485
+archive	Archive	Damage	2	0.08	0.072
+archive	Archive	Damage	4	0.24	0.215999991
+archive	Archive	Damage	6	0.48	0.431999981
+archive	Archive	Damage	8	0.56	0.503999949
+archive	Archive	Damage	10	0.64	0.576
+archive	Archive	Damage	12	0.719999969	0.648
+archive	Archive	Damage	14	0.799999952	0.7199999
+archive	Archive	Damage	16	0.88	0.792
+clock	Clock	AttackSpeed	2	0.07	0.063
+clock	Clock	AttackSpeed	4	0.210000008	0.189
+clock	Clock	AttackSpeed	6	0.420000017	0.378
+clock	Clock	AttackSpeed	8	0.49	0.440999985
+clock	Clock	AttackSpeed	10	0.56	0.504
+clock	Clock	AttackSpeed	12	0.63	0.567
+clock	Clock	AttackSpeed	14	0.7	0.63
+clock	Clock	AttackSpeed	16	0.77	0.692999959
+frost	Frost	Roam	2	0.15	0.135
+frost	Frost	Roam	4	0.450000018	0.405
+frost	Frost	Roam	6	0.900000036	0.81
+frost	Frost	Roam	8	1.05000007	0.944999933
+frost	Frost	Roam	10	1.2	1.08
+frost	Frost	Roam	12	1.35	1.21500015
+frost	Frost	Roam	14	1.5	1.3499999
+frost	Frost	Roam	16	1.6500001	1.485
+orchard	Orchard	Luck	2	0.04	0.036
+orchard	Orchard	Luck	4	0.12	0.107999995
+orchard	Orchard	Luck	6	0.24	0.215999991
+orchard	Orchard	Luck	8	0.28	0.251999974
+orchard	Orchard	Luck	10	0.32	0.288
+orchard	Orchard	Luck	12	0.359999985	0.324
+orchard	Orchard	Luck	14	0.399999976	0.359999955
+orchard	Orchard	Luck	16	0.44	0.396
+astral	Astral	BulletSize	2	0.04	0.036
+astral	Astral	BulletSize	4	0.12	0.107999995
+astral	Astral	BulletSize	6	0.24	0.215999991
+astral	Astral	BulletSize	8	0.28	0.251999974
+astral	Astral	BulletSize	10	0.32	0.288
+astral	Astral	BulletSize	12	0.359999985	0.324
+astral	Astral	BulletSize	14	0.399999976	0.359999955
+astral	Astral	BulletSize	16	0.44	0.396
+tidal	Tidal	BulletBounce	2	0.04	0.036
+tidal	Tidal	BulletBounce	4	0.12	0.107999995
+tidal	Tidal	BulletBounce	6	0.24	0.215999991
+tidal	Tidal	BulletBounce	8	0.28	0.251999974
+tidal	Tidal	BulletBounce	10	0.32	0.288
+tidal	Tidal	BulletBounce	12	0.359999985	0.324
+tidal	Tidal	BulletBounce	14	0.399999976	0.359999955
+tidal	Tidal	BulletBounce	16	0.44	0.396
+oddity	Oddity	Dodge	2	0.04	0.036
+oddity	Oddity	Dodge	4	0.12	0.107999995
+oddity	Oddity	Dodge	6	0.24	0.215999991
+oddity	Oddity	Dodge	8	0.28	0.251999974
+oddity	Oddity	Dodge	10	0.32	0.288
+oddity	Oddity	Dodge	12	0.359999985	0.324
+oddity	Oddity	Dodge	14	0.399999976	0.359999955
+oddity	Oddity	Dodge	16	0.44	0.396
+hare	Springstep	Dodge	2	0.08	0.072
+hare	Springstep	Dodge	4	0.16	0.144
+hare	Springstep	Dodge	6	0.24	0.215999991
+hare	Springstep	Dodge	8	0.32	0.288
+hare	Springstep	Dodge	10	0.399999976	0.359999955
+hare	Springstep	Dodge	12	0.48	0.431999981
+hare	Springstep	Dodge	14	0.56	0.504
+hare	Springstep	Dodge	16	0.64	0.576
+archer	Longbow	AttackRange	2	0.12	0.107999995
+archer	Longbow	AttackRange	4	0.24	0.215999991
+archer	Longbow	AttackRange	6	0.359999985	0.323999971
+archer	Longbow	AttackRange	8	0.48	0.431999981
+archer	Longbow	AttackRange	10	0.599999964	0.539999962
+archer	Longbow	AttackRange	12	0.719999969	0.647999942
+archer	Longbow	AttackRange	14	0.84	0.756
+archer	Longbow	AttackRange	16	0.96	0.863999963
+root	Rootkin	Health	2	8	7.2
+root	Rootkin	Health	4	16	14.4
+root	Rootkin	Health	6	24	21.5999985
+root	Rootkin	Health	8	32	28.8
+root	Rootkin	Health	10	40	36
+root	Rootkin	Health	12	48	43.1999969
+root	Rootkin	Health	14	56	50.3999977
+root	Rootkin	Health	16	64	57.6
+gauntlet	Prizefighters	AttackSpeed	3	0.08	0.072
+gauntlet	Prizefighters	AttackSpeed	6	0.16	0.144
+gauntlet	Prizefighters	AttackSpeed	9	0.24	0.215999991
+gauntlet	Prizefighters	AttackSpeed	12	0.32	0.288
+gauntlet	Prizefighters	AttackSpeed	15	0.399999976	0.359999955
+regal	Velvet Court	Damage	4	0.15	0.135
+regal	Velvet Court	Damage	8	0.3	0.27
+regal	Velvet Court	Damage	12	0.450000018	0.405
+regal	Velvet Court	Damage	16	0.6	0.54
+clover	Lucky Leaves	Luck	2	0.1	0.0899999961
+clover	Lucky Leaves	Luck	4	0.2	0.179999992
+clover	Lucky Leaves	Luck	6	0.3	0.27
+clover	Lucky Leaves	Luck	8	0.4	0.359999985
+clover	Lucky Leaves	Luck	10	0.5	0.45
+clover	Lucky Leaves	Luck	12	0.6	0.54
+clover	Lucky Leaves	Luck	14	0.7	0.63
+clover	Lucky Leaves	Luck	16	0.8	0.719999969
+fruit	Fruit Basket	Heal	2	0.3	0.27
+fruit	Fruit Basket	Heal	4	0.6	0.54
+fruit	Fruit Basket	Heal	6	0.900000036	0.81
+fruit	Fruit Basket	Heal	8	1.2	1.08
+fruit	Fruit Basket	Heal	10	1.5	1.3499999
+fruit	Fruit Basket	Heal	12	1.80000007	1.62
+fruit	Fruit Basket	Heal	14	2.10000014	1.8900001
+fruit	Fruit Basket	Heal	16	2.4	2.16
+gear	Clockwork Union	Income	2	4	3.6
+gear	Clockwork Union	Income	4	8	7.2
+gear	Clockwork Union	Income	6	12	10.7999992
+gear	Clockwork Union	Income	8	16	14.4
+gear	Clockwork Union	Income	10	20	18
+gear	Clockwork Union	Income	12	24	21.5999985
+gear	Clockwork Union	Income	14	28	25.1999989
+gear	Clockwork Union	Income	16	32	28.8
+hat	Hat Society	Crit	2	0.06	0.0539999977
+hat	Hat Society	Crit	4	0.12	0.107999995
+hat	Hat Society	Crit	6	0.179999992	0.161999986
+hat	Hat Society	Crit	8	0.24	0.215999991
+hat	Hat Society	Crit	10	0.299999982	0.269999981
+hat	Hat Society	Crit	12	0.359999985	0.323999971
+hat	Hat Society	Crit	14	0.42	0.378
+hat	Hat Society	Crit	16	0.48	0.431999981
+horn	Little Horns	Crit	2	0.08	0.072
+horn	Little Horns	Crit	4	0.16	0.144
+horn	Little Horns	Crit	6	0.24	0.215999991
+horn	Little Horns	Crit	8	0.32	0.288
+horn	Little Horns	Crit	10	0.399999976	0.359999955
+horn	Little Horns	Crit	12	0.48	0.431999981
+horn	Little Horns	Crit	14	0.56	0.504
+horn	Little Horns	Crit	16	0.64	0.576
+sprout	Jade Nursery	Discount	5	0.1	0.0899999961
+sprout	Jade Nursery	Discount	10	0.2	0.179999992
+sprout	Jade Nursery	Discount	15	0.3	0.27
+knight	Toy Knights	CollisionDamage	2	5	4.5
+knight	Toy Knights	CollisionDamage	4	10	9
+knight	Toy Knights	CollisionDamage	6	15	13.5
+knight	Toy Knights	CollisionDamage	8	20	18
+knight	Toy Knights	CollisionDamage	10	25	22.5
+knight	Toy Knights	CollisionDamage	12	30	27
+knight	Toy Knights	CollisionDamage	14	35	31.5
+knight	Toy Knights	CollisionDamage	16	40	36
+ball	Playtime	CollisionDamage	2	2	1.8
+ball	Playtime	CollisionDamage	4	4	3.6
+ball	Playtime	CollisionDamage	6	6	5.39999962
+ball	Playtime	CollisionDamage	8	8	7.2
+ball	Playtime	CollisionDamage	10	10	9
+ball	Playtime	CollisionDamage	12	12	10.7999992
+ball	Playtime	CollisionDamage	14	14	12.5999994
+ball	Playtime	CollisionDamage	16	16	14.4
+morning	Morning Bells	ChampionDamage	3	0.15	0.135
+morning	Morning Bells	ChampionDamage	6	0.3	0.27
+morning	Morning Bells	ChampionDamage	9	0.450000018	0.405
+morning	Morning Bells	ChampionDamage	12	0.6	0.54
+morning	Morning Bells	ChampionDamage	15	0.75	0.674999952
+rune	Runic School	EnemyCount	3	0.06	0.06
+rune	Runic School	EnemyCount	6	0.12	0.12
+rune	Runic School	EnemyCount	9	0.179999992	0.179999992
+rune	Runic School	EnemyCount	12	0.24	0.24
+rune	Runic School	EnemyCount	15	0.299999982	0.299999982
+mask	Masked Carnival	ChestQuality	3	0.1	0.0899999961
+mask	Masked Carnival	ChestQuality	6	0.2	0.179999992
+mask	Masked Carnival	ChestQuality	9	0.3	0.27
+mask	Masked Carnival	ChestQuality	12	0.4	0.359999985
+mask	Masked Carnival	ChestQuality	15	0.5	0.45
+hide	Wild Stitch	Armor	2	0.12	0.107999995
+hide	Wild Stitch	Armor	4	0.24	0.215999991
+hide	Wild Stitch	Armor	6	0.359999985	0.323999971
+hide	Wild Stitch	Armor	8	0.48	0.431999981
+hide	Wild Stitch	Armor	10	0.599999964	0.539999962
+hide	Wild Stitch	Armor	12	0.719999969	0.647999942
+hide	Wild Stitch	Armor	14	0.84	0.756
+hide	Wild Stitch	Armor	16	0.96	0.863999963
+resolve	Unbroken	ScoreMultiplier	2	0.2	0.179999992
+resolve	Unbroken	ScoreMultiplier	4	0.4	0.359999985
+resolve	Unbroken	ScoreMultiplier	6	0.6	0.54
+resolve	Unbroken	ScoreMultiplier	8	0.8	0.719999969
+resolve	Unbroken	ScoreMultiplier	10	1	0.9
+resolve	Unbroken	ScoreMultiplier	12	1.2	1.08
+resolve	Unbroken	ScoreMultiplier	14	1.4	1.26
+resolve	Unbroken	ScoreMultiplier	16	1.6	1.43999994
+shoe	Quicksoles	MoveSpeed	2	0.08	0.072
+shoe	Quicksoles	MoveSpeed	4	0.16	0.144
+shoe	Quicksoles	MoveSpeed	6	0.24	0.215999991
+shoe	Quicksoles	MoveSpeed	8	0.32	0.288
+shoe	Quicksoles	MoveSpeed	10	0.399999976	0.359999955
+shoe	Quicksoles	MoveSpeed	12	0.48	0.431999981
+shoe	Quicksoles	MoveSpeed	14	0.56	0.504
+shoe	Quicksoles	MoveSpeed	16	0.64	0.576
+lantern-guild	Lantern Guild	AttackRange	2	0.1	0.0899999961
+lantern-guild	Lantern Guild	AttackRange	4	0.2	0.179999992
+lantern-guild	Lantern Guild	AttackRange	6	0.3	0.27
+lantern-guild	Lantern Guild	AttackRange	8	0.4	0.359999985
+lantern-guild	Lantern Guild	AttackRange	10	0.5	0.45
+lantern-guild	Lantern Guild	AttackRange	12	0.6	0.54
+lantern-guild	Lantern Guild	AttackRange	14	0.7	0.63
+lantern-guild	Lantern Guild	AttackRange	16	0.8	0.719999969
+rain-script	Rain Script	Heal	2	0.35	0.315
+rain-script	Rain Script	Heal	4	0.7	0.63
+rain-script	Rain Script	Heal	6	1.05	0.944999933
+rain-script	Rain Script	Heal	8	1.4	1.26
+rain-script	Rain Script	Heal	10	1.75	1.57499993
+rain-script	Rain Script	Heal	12	2.1	1.88999987
+rain-script	Rain Script	Heal	14	2.45	2.205
+rain-script	Rain Script	Heal	16	2.8	2.52

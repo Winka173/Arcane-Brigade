@@ -1,0 +1,802 @@
+PASS Catalog supplies ordinary and special recruit fixtures
+PASS Round quota 1
+PASS New normal species accepted 1/0
+PASS New normal species increments both quotas 1/0
+PASS New normal species accepted 1/1
+PASS New normal species increments both quotas 1/1
+PASS Old offer cannot bypass exhausted quota 1
+PASS Denied purchase leaves currency and roster unchanged 1
+PASS Third copy merges after exhausted new-species quota 1
+PASS Upgrade consumes old purchase quota but not new-species quota 1
+PASS Fourth ordinary purchase blocked including star-upgrade copies 1
+PASS Special shop purchase exempt 1/PillowOracle
+PASS Special purchase increments neither quota 1/PillowOracle
+PASS Special shop purchase exempt 1/EclipseEgg
+PASS Special purchase increments neither quota 1/EclipseEgg
+PASS Special shop purchase exempt 1/ReelOwl
+PASS Special purchase increments neither quota 1/ReelOwl
+PASS Save/load cannot refresh quota 1
+PASS Paid refresh allowed at quota 1/0
+PASS Normal rolls show items after three purchases 1/0
+PASS Reroll never resets either quota 1/0
+PASS Paid refresh allowed at quota 1/1
+PASS Normal rolls show items after three purchases 1/1
+PASS Reroll never resets either quota 1/1
+PASS Paid refresh allowed at quota 1/2
+PASS Normal rolls show items after three purchases 1/2
+PASS Reroll never resets either quota 1/2
+PASS Paid refresh allowed at quota 1/3
+PASS Normal rolls show items after three purchases 1/3
+PASS Reroll never resets either quota 1/3
+PASS Paid refresh allowed at quota 1/4
+PASS Normal rolls show items after three purchases 1/4
+PASS Reroll never resets either quota 1/4
+PASS Paid refresh allowed at quota 1/5
+PASS Normal rolls show items after three purchases 1/5
+PASS Reroll never resets either quota 1/5
+PASS Paid refresh allowed at quota 1/6
+PASS Normal rolls show items after three purchases 1/6
+PASS Reroll never resets either quota 1/6
+PASS Paid refresh allowed at quota 1/7
+PASS Normal rolls show items after three purchases 1/7
+PASS Reroll never resets either quota 1/7
+PASS Paid refresh allowed at quota 1/8
+PASS Normal rolls show items after three purchases 1/8
+PASS Reroll never resets either quota 1/8
+PASS Paid refresh allowed at quota 1/9
+PASS Normal rolls show items after three purchases 1/9
+PASS Reroll never resets either quota 1/9
+PASS Paid refresh allowed at quota 1/10
+PASS Normal rolls show items after three purchases 1/10
+PASS Reroll never resets either quota 1/10
+PASS Paid refresh allowed at quota 1/11
+PASS Normal rolls show items after three purchases 1/11
+PASS Reroll never resets either quota 1/11
+PASS Paid refresh allowed at quota 1/12
+PASS Normal rolls show items after three purchases 1/12
+PASS Reroll never resets either quota 1/12
+PASS Paid refresh allowed at quota 1/13
+PASS Normal rolls show items after three purchases 1/13
+PASS Reroll never resets either quota 1/13
+PASS Paid refresh allowed at quota 1/14
+PASS Normal rolls show items after three purchases 1/14
+PASS Reroll never resets either quota 1/14
+PASS Paid refresh allowed at quota 1/15
+PASS Normal rolls show items after three purchases 1/15
+PASS Reroll never resets either quota 1/15
+PASS Paid refresh allowed at quota 1/16
+PASS Normal rolls show items after three purchases 1/16
+PASS Reroll never resets either quota 1/16
+PASS Paid refresh allowed at quota 1/17
+PASS Normal rolls show items after three purchases 1/17
+PASS Reroll never resets either quota 1/17
+PASS Paid refresh allowed at quota 1/18
+PASS Normal rolls show items after three purchases 1/18
+PASS Reroll never resets either quota 1/18
+PASS Paid refresh allowed at quota 1/19
+PASS Normal rolls show items after three purchases 1/19
+PASS Reroll never resets either quota 1/19
+PASS Paid refresh allowed at quota 1/20
+PASS Normal rolls show items after three purchases 1/20
+PASS Reroll never resets either quota 1/20
+PASS Paid refresh allowed at quota 1/21
+PASS Normal rolls show items after three purchases 1/21
+PASS Reroll never resets either quota 1/21
+PASS Paid refresh allowed at quota 1/22
+PASS Normal rolls show items after three purchases 1/22
+PASS Reroll never resets either quota 1/22
+PASS Paid refresh allowed at quota 1/23
+PASS Normal rolls show items after three purchases 1/23
+PASS Reroll never resets either quota 1/23
+PASS Paid refresh allowed at quota 1/24
+PASS Normal rolls show items after three purchases 1/24
+PASS Reroll never resets either quota 1/24
+PASS Paid refresh allowed at quota 1/25
+PASS Normal rolls show items after three purchases 1/25
+PASS Reroll never resets either quota 1/25
+PASS Paid refresh allowed at quota 1/26
+PASS Normal rolls show items after three purchases 1/26
+PASS Reroll never resets either quota 1/26
+PASS Paid refresh allowed at quota 1/27
+PASS Normal rolls show items after three purchases 1/27
+PASS Reroll never resets either quota 1/27
+PASS Paid refresh allowed at quota 1/28
+PASS Normal rolls show items after three purchases 1/28
+PASS Reroll never resets either quota 1/28
+PASS Paid refresh allowed at quota 1/29
+PASS Normal rolls show items after three purchases 1/29
+PASS Reroll never resets either quota 1/29
+PASS Round quota 2
+PASS New normal species accepted 2/0
+PASS New normal species increments both quotas 2/0
+PASS New normal species accepted 2/1
+PASS New normal species increments both quotas 2/1
+PASS Old offer cannot bypass exhausted quota 2
+PASS Denied purchase leaves currency and roster unchanged 2
+PASS Third copy merges after exhausted new-species quota 2
+PASS Upgrade consumes old purchase quota but not new-species quota 2
+PASS Fourth ordinary purchase blocked including star-upgrade copies 2
+PASS Special shop purchase exempt 2/PillowOracle
+PASS Special purchase increments neither quota 2/PillowOracle
+PASS Special shop purchase exempt 2/EclipseEgg
+PASS Special purchase increments neither quota 2/EclipseEgg
+PASS Special shop purchase exempt 2/ReelOwl
+PASS Special purchase increments neither quota 2/ReelOwl
+PASS Save/load cannot refresh quota 2
+PASS Paid refresh allowed at quota 2/0
+PASS Normal rolls show items after three purchases 2/0
+PASS Reroll never resets either quota 2/0
+PASS Paid refresh allowed at quota 2/1
+PASS Normal rolls show items after three purchases 2/1
+PASS Reroll never resets either quota 2/1
+PASS Paid refresh allowed at quota 2/2
+PASS Normal rolls show items after three purchases 2/2
+PASS Reroll never resets either quota 2/2
+PASS Paid refresh allowed at quota 2/3
+PASS Normal rolls show items after three purchases 2/3
+PASS Reroll never resets either quota 2/3
+PASS Paid refresh allowed at quota 2/4
+PASS Normal rolls show items after three purchases 2/4
+PASS Reroll never resets either quota 2/4
+PASS Paid refresh allowed at quota 2/5
+PASS Normal rolls show items after three purchases 2/5
+PASS Reroll never resets either quota 2/5
+PASS Paid refresh allowed at quota 2/6
+PASS Normal rolls show items after three purchases 2/6
+PASS Reroll never resets either quota 2/6
+PASS Paid refresh allowed at quota 2/7
+PASS Normal rolls show items after three purchases 2/7
+PASS Reroll never resets either quota 2/7
+PASS Paid refresh allowed at quota 2/8
+PASS Normal rolls show items after three purchases 2/8
+PASS Reroll never resets either quota 2/8
+PASS Paid refresh allowed at quota 2/9
+PASS Normal rolls show items after three purchases 2/9
+PASS Reroll never resets either quota 2/9
+PASS Paid refresh allowed at quota 2/10
+PASS Normal rolls show items after three purchases 2/10
+PASS Reroll never resets either quota 2/10
+PASS Paid refresh allowed at quota 2/11
+PASS Normal rolls show items after three purchases 2/11
+PASS Reroll never resets either quota 2/11
+PASS Paid refresh allowed at quota 2/12
+PASS Normal rolls show items after three purchases 2/12
+PASS Reroll never resets either quota 2/12
+PASS Paid refresh allowed at quota 2/13
+PASS Normal rolls show items after three purchases 2/13
+PASS Reroll never resets either quota 2/13
+PASS Paid refresh allowed at quota 2/14
+PASS Normal rolls show items after three purchases 2/14
+PASS Reroll never resets either quota 2/14
+PASS Paid refresh allowed at quota 2/15
+PASS Normal rolls show items after three purchases 2/15
+PASS Reroll never resets either quota 2/15
+PASS Paid refresh allowed at quota 2/16
+PASS Normal rolls show items after three purchases 2/16
+PASS Reroll never resets either quota 2/16
+PASS Paid refresh allowed at quota 2/17
+PASS Normal rolls show items after three purchases 2/17
+PASS Reroll never resets either quota 2/17
+PASS Paid refresh allowed at quota 2/18
+PASS Normal rolls show items after three purchases 2/18
+PASS Reroll never resets either quota 2/18
+PASS Paid refresh allowed at quota 2/19
+PASS Normal rolls show items after three purchases 2/19
+PASS Reroll never resets either quota 2/19
+PASS Paid refresh allowed at quota 2/20
+PASS Normal rolls show items after three purchases 2/20
+PASS Reroll never resets either quota 2/20
+PASS Paid refresh allowed at quota 2/21
+PASS Normal rolls show items after three purchases 2/21
+PASS Reroll never resets either quota 2/21
+PASS Paid refresh allowed at quota 2/22
+PASS Normal rolls show items after three purchases 2/22
+PASS Reroll never resets either quota 2/22
+PASS Paid refresh allowed at quota 2/23
+PASS Normal rolls show items after three purchases 2/23
+PASS Reroll never resets either quota 2/23
+PASS Paid refresh allowed at quota 2/24
+PASS Normal rolls show items after three purchases 2/24
+PASS Reroll never resets either quota 2/24
+PASS Paid refresh allowed at quota 2/25
+PASS Normal rolls show items after three purchases 2/25
+PASS Reroll never resets either quota 2/25
+PASS Paid refresh allowed at quota 2/26
+PASS Normal rolls show items after three purchases 2/26
+PASS Reroll never resets either quota 2/26
+PASS Paid refresh allowed at quota 2/27
+PASS Normal rolls show items after three purchases 2/27
+PASS Reroll never resets either quota 2/27
+PASS Paid refresh allowed at quota 2/28
+PASS Normal rolls show items after three purchases 2/28
+PASS Reroll never resets either quota 2/28
+PASS Paid refresh allowed at quota 2/29
+PASS Normal rolls show items after three purchases 2/29
+PASS Reroll never resets either quota 2/29
+PASS Round quota 3
+PASS New normal species accepted 3/0
+PASS New normal species increments both quotas 3/0
+PASS New normal species accepted 3/1
+PASS New normal species increments both quotas 3/1
+PASS Old offer cannot bypass exhausted quota 3
+PASS Denied purchase leaves currency and roster unchanged 3
+PASS Third copy merges after exhausted new-species quota 3
+PASS Upgrade consumes old purchase quota but not new-species quota 3
+PASS Fourth ordinary purchase blocked including star-upgrade copies 3
+PASS Special shop purchase exempt 3/PillowOracle
+PASS Special purchase increments neither quota 3/PillowOracle
+PASS Special shop purchase exempt 3/EclipseEgg
+PASS Special purchase increments neither quota 3/EclipseEgg
+PASS Special shop purchase exempt 3/ReelOwl
+PASS Special purchase increments neither quota 3/ReelOwl
+PASS Save/load cannot refresh quota 3
+PASS Paid refresh allowed at quota 3/0
+PASS Normal rolls show items after three purchases 3/0
+PASS Reroll never resets either quota 3/0
+PASS Paid refresh allowed at quota 3/1
+PASS Normal rolls show items after three purchases 3/1
+PASS Reroll never resets either quota 3/1
+PASS Paid refresh allowed at quota 3/2
+PASS Normal rolls show items after three purchases 3/2
+PASS Reroll never resets either quota 3/2
+PASS Paid refresh allowed at quota 3/3
+PASS Normal rolls show items after three purchases 3/3
+PASS Reroll never resets either quota 3/3
+PASS Paid refresh allowed at quota 3/4
+PASS Normal rolls show items after three purchases 3/4
+PASS Reroll never resets either quota 3/4
+PASS Paid refresh allowed at quota 3/5
+PASS Normal rolls show items after three purchases 3/5
+PASS Reroll never resets either quota 3/5
+PASS Paid refresh allowed at quota 3/6
+PASS Normal rolls show items after three purchases 3/6
+PASS Reroll never resets either quota 3/6
+PASS Paid refresh allowed at quota 3/7
+PASS Normal rolls show items after three purchases 3/7
+PASS Reroll never resets either quota 3/7
+PASS Paid refresh allowed at quota 3/8
+PASS Normal rolls show items after three purchases 3/8
+PASS Reroll never resets either quota 3/8
+PASS Paid refresh allowed at quota 3/9
+PASS Normal rolls show items after three purchases 3/9
+PASS Reroll never resets either quota 3/9
+PASS Paid refresh allowed at quota 3/10
+PASS Normal rolls show items after three purchases 3/10
+PASS Reroll never resets either quota 3/10
+PASS Paid refresh allowed at quota 3/11
+PASS Normal rolls show items after three purchases 3/11
+PASS Reroll never resets either quota 3/11
+PASS Paid refresh allowed at quota 3/12
+PASS Normal rolls show items after three purchases 3/12
+PASS Reroll never resets either quota 3/12
+PASS Paid refresh allowed at quota 3/13
+PASS Normal rolls show items after three purchases 3/13
+PASS Reroll never resets either quota 3/13
+PASS Paid refresh allowed at quota 3/14
+PASS Normal rolls show items after three purchases 3/14
+PASS Reroll never resets either quota 3/14
+PASS Paid refresh allowed at quota 3/15
+PASS Normal rolls show items after three purchases 3/15
+PASS Reroll never resets either quota 3/15
+PASS Paid refresh allowed at quota 3/16
+PASS Normal rolls show items after three purchases 3/16
+PASS Reroll never resets either quota 3/16
+PASS Paid refresh allowed at quota 3/17
+PASS Normal rolls show items after three purchases 3/17
+PASS Reroll never resets either quota 3/17
+PASS Paid refresh allowed at quota 3/18
+PASS Normal rolls show items after three purchases 3/18
+PASS Reroll never resets either quota 3/18
+PASS Paid refresh allowed at quota 3/19
+PASS Normal rolls show items after three purchases 3/19
+PASS Reroll never resets either quota 3/19
+PASS Paid refresh allowed at quota 3/20
+PASS Normal rolls show items after three purchases 3/20
+PASS Reroll never resets either quota 3/20
+PASS Paid refresh allowed at quota 3/21
+PASS Normal rolls show items after three purchases 3/21
+PASS Reroll never resets either quota 3/21
+PASS Paid refresh allowed at quota 3/22
+PASS Normal rolls show items after three purchases 3/22
+PASS Reroll never resets either quota 3/22
+PASS Paid refresh allowed at quota 3/23
+PASS Normal rolls show items after three purchases 3/23
+PASS Reroll never resets either quota 3/23
+PASS Paid refresh allowed at quota 3/24
+PASS Normal rolls show items after three purchases 3/24
+PASS Reroll never resets either quota 3/24
+PASS Paid refresh allowed at quota 3/25
+PASS Normal rolls show items after three purchases 3/25
+PASS Reroll never resets either quota 3/25
+PASS Paid refresh allowed at quota 3/26
+PASS Normal rolls show items after three purchases 3/26
+PASS Reroll never resets either quota 3/26
+PASS Paid refresh allowed at quota 3/27
+PASS Normal rolls show items after three purchases 3/27
+PASS Reroll never resets either quota 3/27
+PASS Paid refresh allowed at quota 3/28
+PASS Normal rolls show items after three purchases 3/28
+PASS Reroll never resets either quota 3/28
+PASS Paid refresh allowed at quota 3/29
+PASS Normal rolls show items after three purchases 3/29
+PASS Reroll never resets either quota 3/29
+PASS Round quota 4
+PASS New normal species accepted 4/0
+PASS New normal species increments both quotas 4/0
+PASS Old offer cannot bypass exhausted quota 4
+PASS Denied purchase leaves currency and roster unchanged 4
+PASS Third copy merges after exhausted new-species quota 4
+PASS Upgrade consumes old purchase quota but not new-species quota 4
+PASS Third total purchase remains available for upgrades 4
+PASS Fourth ordinary purchase blocked including star-upgrade copies 4
+PASS Special shop purchase exempt 4/PillowOracle
+PASS Special purchase increments neither quota 4/PillowOracle
+PASS Special shop purchase exempt 4/EclipseEgg
+PASS Special purchase increments neither quota 4/EclipseEgg
+PASS Special shop purchase exempt 4/ReelOwl
+PASS Special purchase increments neither quota 4/ReelOwl
+PASS Save/load cannot refresh quota 4
+PASS Paid refresh allowed at quota 4/0
+PASS Normal rolls show items after three purchases 4/0
+PASS Reroll never resets either quota 4/0
+PASS Paid refresh allowed at quota 4/1
+PASS Normal rolls show items after three purchases 4/1
+PASS Reroll never resets either quota 4/1
+PASS Paid refresh allowed at quota 4/2
+PASS Normal rolls show items after three purchases 4/2
+PASS Reroll never resets either quota 4/2
+PASS Paid refresh allowed at quota 4/3
+PASS Normal rolls show items after three purchases 4/3
+PASS Reroll never resets either quota 4/3
+PASS Paid refresh allowed at quota 4/4
+PASS Normal rolls show items after three purchases 4/4
+PASS Reroll never resets either quota 4/4
+PASS Paid refresh allowed at quota 4/5
+PASS Normal rolls show items after three purchases 4/5
+PASS Reroll never resets either quota 4/5
+PASS Paid refresh allowed at quota 4/6
+PASS Normal rolls show items after three purchases 4/6
+PASS Reroll never resets either quota 4/6
+PASS Paid refresh allowed at quota 4/7
+PASS Normal rolls show items after three purchases 4/7
+PASS Reroll never resets either quota 4/7
+PASS Paid refresh allowed at quota 4/8
+PASS Normal rolls show items after three purchases 4/8
+PASS Reroll never resets either quota 4/8
+PASS Paid refresh allowed at quota 4/9
+PASS Normal rolls show items after three purchases 4/9
+PASS Reroll never resets either quota 4/9
+PASS Paid refresh allowed at quota 4/10
+PASS Normal rolls show items after three purchases 4/10
+PASS Reroll never resets either quota 4/10
+PASS Paid refresh allowed at quota 4/11
+PASS Normal rolls show items after three purchases 4/11
+PASS Reroll never resets either quota 4/11
+PASS Paid refresh allowed at quota 4/12
+PASS Normal rolls show items after three purchases 4/12
+PASS Reroll never resets either quota 4/12
+PASS Paid refresh allowed at quota 4/13
+PASS Normal rolls show items after three purchases 4/13
+PASS Reroll never resets either quota 4/13
+PASS Paid refresh allowed at quota 4/14
+PASS Normal rolls show items after three purchases 4/14
+PASS Reroll never resets either quota 4/14
+PASS Paid refresh allowed at quota 4/15
+PASS Normal rolls show items after three purchases 4/15
+PASS Reroll never resets either quota 4/15
+PASS Paid refresh allowed at quota 4/16
+PASS Normal rolls show items after three purchases 4/16
+PASS Reroll never resets either quota 4/16
+PASS Paid refresh allowed at quota 4/17
+PASS Normal rolls show items after three purchases 4/17
+PASS Reroll never resets either quota 4/17
+PASS Paid refresh allowed at quota 4/18
+PASS Normal rolls show items after three purchases 4/18
+PASS Reroll never resets either quota 4/18
+PASS Paid refresh allowed at quota 4/19
+PASS Normal rolls show items after three purchases 4/19
+PASS Reroll never resets either quota 4/19
+PASS Paid refresh allowed at quota 4/20
+PASS Normal rolls show items after three purchases 4/20
+PASS Reroll never resets either quota 4/20
+PASS Paid refresh allowed at quota 4/21
+PASS Normal rolls show items after three purchases 4/21
+PASS Reroll never resets either quota 4/21
+PASS Paid refresh allowed at quota 4/22
+PASS Normal rolls show items after three purchases 4/22
+PASS Reroll never resets either quota 4/22
+PASS Paid refresh allowed at quota 4/23
+PASS Normal rolls show items after three purchases 4/23
+PASS Reroll never resets either quota 4/23
+PASS Paid refresh allowed at quota 4/24
+PASS Normal rolls show items after three purchases 4/24
+PASS Reroll never resets either quota 4/24
+PASS Paid refresh allowed at quota 4/25
+PASS Normal rolls show items after three purchases 4/25
+PASS Reroll never resets either quota 4/25
+PASS Paid refresh allowed at quota 4/26
+PASS Normal rolls show items after three purchases 4/26
+PASS Reroll never resets either quota 4/26
+PASS Paid refresh allowed at quota 4/27
+PASS Normal rolls show items after three purchases 4/27
+PASS Reroll never resets either quota 4/27
+PASS Paid refresh allowed at quota 4/28
+PASS Normal rolls show items after three purchases 4/28
+PASS Reroll never resets either quota 4/28
+PASS Paid refresh allowed at quota 4/29
+PASS Normal rolls show items after three purchases 4/29
+PASS Reroll never resets either quota 4/29
+PASS Round quota 8
+PASS New normal species accepted 8/0
+PASS New normal species increments both quotas 8/0
+PASS Old offer cannot bypass exhausted quota 8
+PASS Denied purchase leaves currency and roster unchanged 8
+PASS Third copy merges after exhausted new-species quota 8
+PASS Upgrade consumes old purchase quota but not new-species quota 8
+PASS Third total purchase remains available for upgrades 8
+PASS Fourth ordinary purchase blocked including star-upgrade copies 8
+PASS Special shop purchase exempt 8/PillowOracle
+PASS Special purchase increments neither quota 8/PillowOracle
+PASS Special shop purchase exempt 8/EclipseEgg
+PASS Special purchase increments neither quota 8/EclipseEgg
+PASS Special shop purchase exempt 8/ReelOwl
+PASS Special purchase increments neither quota 8/ReelOwl
+PASS Save/load cannot refresh quota 8
+PASS Paid refresh allowed at quota 8/0
+PASS Normal rolls show items after three purchases 8/0
+PASS Reroll never resets either quota 8/0
+PASS Paid refresh allowed at quota 8/1
+PASS Normal rolls show items after three purchases 8/1
+PASS Reroll never resets either quota 8/1
+PASS Paid refresh allowed at quota 8/2
+PASS Normal rolls show items after three purchases 8/2
+PASS Reroll never resets either quota 8/2
+PASS Paid refresh allowed at quota 8/3
+PASS Normal rolls show items after three purchases 8/3
+PASS Reroll never resets either quota 8/3
+PASS Paid refresh allowed at quota 8/4
+PASS Normal rolls show items after three purchases 8/4
+PASS Reroll never resets either quota 8/4
+PASS Paid refresh allowed at quota 8/5
+PASS Normal rolls show items after three purchases 8/5
+PASS Reroll never resets either quota 8/5
+PASS Paid refresh allowed at quota 8/6
+PASS Normal rolls show items after three purchases 8/6
+PASS Reroll never resets either quota 8/6
+PASS Paid refresh allowed at quota 8/7
+PASS Normal rolls show items after three purchases 8/7
+PASS Reroll never resets either quota 8/7
+PASS Paid refresh allowed at quota 8/8
+PASS Normal rolls show items after three purchases 8/8
+PASS Reroll never resets either quota 8/8
+PASS Paid refresh allowed at quota 8/9
+PASS Normal rolls show items after three purchases 8/9
+PASS Reroll never resets either quota 8/9
+PASS Paid refresh allowed at quota 8/10
+PASS Normal rolls show items after three purchases 8/10
+PASS Reroll never resets either quota 8/10
+PASS Paid refresh allowed at quota 8/11
+PASS Normal rolls show items after three purchases 8/11
+PASS Reroll never resets either quota 8/11
+PASS Paid refresh allowed at quota 8/12
+PASS Normal rolls show items after three purchases 8/12
+PASS Reroll never resets either quota 8/12
+PASS Paid refresh allowed at quota 8/13
+PASS Normal rolls show items after three purchases 8/13
+PASS Reroll never resets either quota 8/13
+PASS Paid refresh allowed at quota 8/14
+PASS Normal rolls show items after three purchases 8/14
+PASS Reroll never resets either quota 8/14
+PASS Paid refresh allowed at quota 8/15
+PASS Normal rolls show items after three purchases 8/15
+PASS Reroll never resets either quota 8/15
+PASS Paid refresh allowed at quota 8/16
+PASS Normal rolls show items after three purchases 8/16
+PASS Reroll never resets either quota 8/16
+PASS Paid refresh allowed at quota 8/17
+PASS Normal rolls show items after three purchases 8/17
+PASS Reroll never resets either quota 8/17
+PASS Paid refresh allowed at quota 8/18
+PASS Normal rolls show items after three purchases 8/18
+PASS Reroll never resets either quota 8/18
+PASS Paid refresh allowed at quota 8/19
+PASS Normal rolls show items after three purchases 8/19
+PASS Reroll never resets either quota 8/19
+PASS Paid refresh allowed at quota 8/20
+PASS Normal rolls show items after three purchases 8/20
+PASS Reroll never resets either quota 8/20
+PASS Paid refresh allowed at quota 8/21
+PASS Normal rolls show items after three purchases 8/21
+PASS Reroll never resets either quota 8/21
+PASS Paid refresh allowed at quota 8/22
+PASS Normal rolls show items after three purchases 8/22
+PASS Reroll never resets either quota 8/22
+PASS Paid refresh allowed at quota 8/23
+PASS Normal rolls show items after three purchases 8/23
+PASS Reroll never resets either quota 8/23
+PASS Paid refresh allowed at quota 8/24
+PASS Normal rolls show items after three purchases 8/24
+PASS Reroll never resets either quota 8/24
+PASS Paid refresh allowed at quota 8/25
+PASS Normal rolls show items after three purchases 8/25
+PASS Reroll never resets either quota 8/25
+PASS Paid refresh allowed at quota 8/26
+PASS Normal rolls show items after three purchases 8/26
+PASS Reroll never resets either quota 8/26
+PASS Paid refresh allowed at quota 8/27
+PASS Normal rolls show items after three purchases 8/27
+PASS Reroll never resets either quota 8/27
+PASS Paid refresh allowed at quota 8/28
+PASS Normal rolls show items after three purchases 8/28
+PASS Reroll never resets either quota 8/28
+PASS Paid refresh allowed at quota 8/29
+PASS Normal rolls show items after three purchases 8/29
+PASS Reroll never resets either quota 8/29
+PASS Round quota 20
+PASS New normal species accepted 20/0
+PASS New normal species increments both quotas 20/0
+PASS Old offer cannot bypass exhausted quota 20
+PASS Denied purchase leaves currency and roster unchanged 20
+PASS Third copy merges after exhausted new-species quota 20
+PASS Upgrade consumes old purchase quota but not new-species quota 20
+PASS Third total purchase remains available for upgrades 20
+PASS Fourth ordinary purchase blocked including star-upgrade copies 20
+PASS Special shop purchase exempt 20/PillowOracle
+PASS Special purchase increments neither quota 20/PillowOracle
+PASS Special shop purchase exempt 20/EclipseEgg
+PASS Special purchase increments neither quota 20/EclipseEgg
+PASS Special shop purchase exempt 20/ReelOwl
+PASS Special purchase increments neither quota 20/ReelOwl
+PASS Save/load cannot refresh quota 20
+PASS Paid refresh allowed at quota 20/0
+PASS Normal rolls show items after three purchases 20/0
+PASS Reroll never resets either quota 20/0
+PASS Paid refresh allowed at quota 20/1
+PASS Normal rolls show items after three purchases 20/1
+PASS Reroll never resets either quota 20/1
+PASS Paid refresh allowed at quota 20/2
+PASS Normal rolls show items after three purchases 20/2
+PASS Reroll never resets either quota 20/2
+PASS Paid refresh allowed at quota 20/3
+PASS Normal rolls show items after three purchases 20/3
+PASS Reroll never resets either quota 20/3
+PASS Paid refresh allowed at quota 20/4
+PASS Normal rolls show items after three purchases 20/4
+PASS Reroll never resets either quota 20/4
+PASS Paid refresh allowed at quota 20/5
+PASS Normal rolls show items after three purchases 20/5
+PASS Reroll never resets either quota 20/5
+PASS Paid refresh allowed at quota 20/6
+PASS Normal rolls show items after three purchases 20/6
+PASS Reroll never resets either quota 20/6
+PASS Paid refresh allowed at quota 20/7
+PASS Normal rolls show items after three purchases 20/7
+PASS Reroll never resets either quota 20/7
+PASS Paid refresh allowed at quota 20/8
+PASS Normal rolls show items after three purchases 20/8
+PASS Reroll never resets either quota 20/8
+PASS Paid refresh allowed at quota 20/9
+PASS Normal rolls show items after three purchases 20/9
+PASS Reroll never resets either quota 20/9
+PASS Paid refresh allowed at quota 20/10
+PASS Normal rolls show items after three purchases 20/10
+PASS Reroll never resets either quota 20/10
+PASS Paid refresh allowed at quota 20/11
+PASS Normal rolls show items after three purchases 20/11
+PASS Reroll never resets either quota 20/11
+PASS Paid refresh allowed at quota 20/12
+PASS Normal rolls show items after three purchases 20/12
+PASS Reroll never resets either quota 20/12
+PASS Paid refresh allowed at quota 20/13
+PASS Normal rolls show items after three purchases 20/13
+PASS Reroll never resets either quota 20/13
+PASS Paid refresh allowed at quota 20/14
+PASS Normal rolls show items after three purchases 20/14
+PASS Reroll never resets either quota 20/14
+PASS Paid refresh allowed at quota 20/15
+PASS Normal rolls show items after three purchases 20/15
+PASS Reroll never resets either quota 20/15
+PASS Paid refresh allowed at quota 20/16
+PASS Normal rolls show items after three purchases 20/16
+PASS Reroll never resets either quota 20/16
+PASS Paid refresh allowed at quota 20/17
+PASS Normal rolls show items after three purchases 20/17
+PASS Reroll never resets either quota 20/17
+PASS Paid refresh allowed at quota 20/18
+PASS Normal rolls show items after three purchases 20/18
+PASS Reroll never resets either quota 20/18
+PASS Paid refresh allowed at quota 20/19
+PASS Normal rolls show items after three purchases 20/19
+PASS Reroll never resets either quota 20/19
+PASS Paid refresh allowed at quota 20/20
+PASS Normal rolls show items after three purchases 20/20
+PASS Reroll never resets either quota 20/20
+PASS Paid refresh allowed at quota 20/21
+PASS Normal rolls show items after three purchases 20/21
+PASS Reroll never resets either quota 20/21
+PASS Paid refresh allowed at quota 20/22
+PASS Normal rolls show items after three purchases 20/22
+PASS Reroll never resets either quota 20/22
+PASS Paid refresh allowed at quota 20/23
+PASS Normal rolls show items after three purchases 20/23
+PASS Reroll never resets either quota 20/23
+PASS Paid refresh allowed at quota 20/24
+PASS Normal rolls show items after three purchases 20/24
+PASS Reroll never resets either quota 20/24
+PASS Paid refresh allowed at quota 20/25
+PASS Normal rolls show items after three purchases 20/25
+PASS Reroll never resets either quota 20/25
+PASS Paid refresh allowed at quota 20/26
+PASS Normal rolls show items after three purchases 20/26
+PASS Reroll never resets either quota 20/26
+PASS Paid refresh allowed at quota 20/27
+PASS Normal rolls show items after three purchases 20/27
+PASS Reroll never resets either quota 20/27
+PASS Paid refresh allowed at quota 20/28
+PASS Normal rolls show items after three purchases 20/28
+PASS Reroll never resets either quota 20/28
+PASS Paid refresh allowed at quota 20/29
+PASS Normal rolls show items after three purchases 20/29
+PASS Reroll never resets either quota 20/29
+PASS Round quota 30
+PASS New normal species accepted 30/0
+PASS New normal species increments both quotas 30/0
+PASS Old offer cannot bypass exhausted quota 30
+PASS Denied purchase leaves currency and roster unchanged 30
+PASS Third copy merges after exhausted new-species quota 30
+PASS Upgrade consumes old purchase quota but not new-species quota 30
+PASS Third total purchase remains available for upgrades 30
+PASS Fourth ordinary purchase blocked including star-upgrade copies 30
+PASS Special shop purchase exempt 30/PillowOracle
+PASS Special purchase increments neither quota 30/PillowOracle
+PASS Special shop purchase exempt 30/EclipseEgg
+PASS Special purchase increments neither quota 30/EclipseEgg
+PASS Special shop purchase exempt 30/ReelOwl
+PASS Special purchase increments neither quota 30/ReelOwl
+PASS Save/load cannot refresh quota 30
+PASS Paid refresh allowed at quota 30/0
+PASS Normal rolls show items after three purchases 30/0
+PASS Reroll never resets either quota 30/0
+PASS Paid refresh allowed at quota 30/1
+PASS Normal rolls show items after three purchases 30/1
+PASS Reroll never resets either quota 30/1
+PASS Paid refresh allowed at quota 30/2
+PASS Normal rolls show items after three purchases 30/2
+PASS Reroll never resets either quota 30/2
+PASS Paid refresh allowed at quota 30/3
+PASS Normal rolls show items after three purchases 30/3
+PASS Reroll never resets either quota 30/3
+PASS Paid refresh allowed at quota 30/4
+PASS Normal rolls show items after three purchases 30/4
+PASS Reroll never resets either quota 30/4
+PASS Paid refresh allowed at quota 30/5
+PASS Normal rolls show items after three purchases 30/5
+PASS Reroll never resets either quota 30/5
+PASS Paid refresh allowed at quota 30/6
+PASS Normal rolls show items after three purchases 30/6
+PASS Reroll never resets either quota 30/6
+PASS Paid refresh allowed at quota 30/7
+PASS Normal rolls show items after three purchases 30/7
+PASS Reroll never resets either quota 30/7
+PASS Paid refresh allowed at quota 30/8
+PASS Normal rolls show items after three purchases 30/8
+PASS Reroll never resets either quota 30/8
+PASS Paid refresh allowed at quota 30/9
+PASS Normal rolls show items after three purchases 30/9
+PASS Reroll never resets either quota 30/9
+PASS Paid refresh allowed at quota 30/10
+PASS Normal rolls show items after three purchases 30/10
+PASS Reroll never resets either quota 30/10
+PASS Paid refresh allowed at quota 30/11
+PASS Normal rolls show items after three purchases 30/11
+PASS Reroll never resets either quota 30/11
+PASS Paid refresh allowed at quota 30/12
+PASS Normal rolls show items after three purchases 30/12
+PASS Reroll never resets either quota 30/12
+PASS Paid refresh allowed at quota 30/13
+PASS Normal rolls show items after three purchases 30/13
+PASS Reroll never resets either quota 30/13
+PASS Paid refresh allowed at quota 30/14
+PASS Normal rolls show items after three purchases 30/14
+PASS Reroll never resets either quota 30/14
+PASS Paid refresh allowed at quota 30/15
+PASS Normal rolls show items after three purchases 30/15
+PASS Reroll never resets either quota 30/15
+PASS Paid refresh allowed at quota 30/16
+PASS Normal rolls show items after three purchases 30/16
+PASS Reroll never resets either quota 30/16
+PASS Paid refresh allowed at quota 30/17
+PASS Normal rolls show items after three purchases 30/17
+PASS Reroll never resets either quota 30/17
+PASS Paid refresh allowed at quota 30/18
+PASS Normal rolls show items after three purchases 30/18
+PASS Reroll never resets either quota 30/18
+PASS Paid refresh allowed at quota 30/19
+PASS Normal rolls show items after three purchases 30/19
+PASS Reroll never resets either quota 30/19
+PASS Paid refresh allowed at quota 30/20
+PASS Normal rolls show items after three purchases 30/20
+PASS Reroll never resets either quota 30/20
+PASS Paid refresh allowed at quota 30/21
+PASS Normal rolls show items after three purchases 30/21
+PASS Reroll never resets either quota 30/21
+PASS Paid refresh allowed at quota 30/22
+PASS Normal rolls show items after three purchases 30/22
+PASS Reroll never resets either quota 30/22
+PASS Paid refresh allowed at quota 30/23
+PASS Normal rolls show items after three purchases 30/23
+PASS Reroll never resets either quota 30/23
+PASS Paid refresh allowed at quota 30/24
+PASS Normal rolls show items after three purchases 30/24
+PASS Reroll never resets either quota 30/24
+PASS Paid refresh allowed at quota 30/25
+PASS Normal rolls show items after three purchases 30/25
+PASS Reroll never resets either quota 30/25
+PASS Paid refresh allowed at quota 30/26
+PASS Normal rolls show items after three purchases 30/26
+PASS Reroll never resets either quota 30/26
+PASS Paid refresh allowed at quota 30/27
+PASS Normal rolls show items after three purchases 30/27
+PASS Reroll never resets either quota 30/27
+PASS Paid refresh allowed at quota 30/28
+PASS Normal rolls show items after three purchases 30/28
+PASS Reroll never resets either quota 30/28
+PASS Paid refresh allowed at quota 30/29
+PASS Normal rolls show items after three purchases 30/29
+PASS Reroll never resets either quota 30/29
+PASS Special-first purchase leaves full normal quota
+PASS Normal recruit still available after special recruit
+PASS Special shop generation remains enabled after normal quota
+PASS Special generation and purchase exemption agree
+PASS Merge drought protection still finds third copy after quota
+PASS Ordinary gifts use purchase quota but upgrades do not use new-species quota
+PASS Owned absorbed memory uses purchase quota but not new-species quota
+PASS Legacy quota of three loads conservatively without granting free recruits
+PASS Completing next round resets both quotas through actual settlement
+PASS New-species curve decreases with roster 0
+PASS First three rounds retain high new-species gate 0
+PASS New-species curve decreases with roster 1
+PASS First three rounds retain high new-species gate 1
+PASS New-species curve decreases with roster 2
+PASS First three rounds retain high new-species gate 2
+PASS New-species curve decreases with roster 3
+PASS First three rounds retain high new-species gate 3
+PASS New-species curve decreases with roster 4
+PASS First three rounds retain high new-species gate 4
+PASS New-species curve decreases with roster 5
+PASS First three rounds retain high new-species gate 5
+PASS New-species curve decreases with roster 6
+PASS First three rounds retain high new-species gate 6
+PASS New-species curve decreases with roster 7
+PASS First three rounds retain high new-species gate 7
+PASS New-species curve decreases with roster 8
+PASS First three rounds retain high new-species gate 8
+PASS New-species curve decreases with roster 9
+PASS First three rounds retain high new-species gate 9
+PASS New-species curve decreases with roster 10
+PASS First three rounds retain high new-species gate 10
+PASS New-species curve decreases with roster 11
+PASS First three rounds retain high new-species gate 11
+PASS New-species curve decreases with roster 12
+PASS First three rounds retain high new-species gate 12
+PASS New-species curve decreases with roster 13
+PASS First three rounds retain high new-species gate 13
+PASS New-species curve decreases with roster 14
+PASS First three rounds retain high new-species gate 14
+PASS New-species curve decreases with roster 15
+PASS First three rounds retain high new-species gate 15
+PASS New-species curve decreases with roster 16
+PASS First three rounds retain high new-species gate 16
+PASS New-species curve decreases with roster 17
+PASS First three rounds retain high new-species gate 17
+PASS New-species curve decreases with roster 18
+PASS First three rounds retain high new-species gate 18
+PASS New-species curve decreases with roster 19
+PASS First three rounds retain high new-species gate 19
+PASS New-species curve decreases with roster 20
+PASS First three rounds retain high new-species gate 20
+PASS Reduction starts at six companions
+PASS Crowd never suppresses owned-species offer slot 5
+PASS Crowd never suppresses owned-species offer slot 6
+PASS Crowd never suppresses owned-species offer slot 12
+PASS Seeded shop rolls reduce new species at 5/6/12 bodies: 303/182/25

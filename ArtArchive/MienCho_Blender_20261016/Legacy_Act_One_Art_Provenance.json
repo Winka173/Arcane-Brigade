@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-16",
+  "scope": "Act I only. No later-act gameplay entry.",
+  "blender": "Blender MCP: procedural wrought-iron lantern meshes in three damage states, FBX, Cycles RGBA previews. Room layouts retained as editable Blender scene.",
+  "paintedImages": "Built-in painted style transfer from Blender layouts and project-owned art. Exact prompts: Docs/Act_One_Image_Prompts.json.",
+  "audio": "Six original deterministic synthesized PCM ambience and Foley files; no external recordings or synthetic speech.",
+  "files": [
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Broken.fbx",
+      "bytes": 297308,
+      "sha256": "ed37c15d07737b129276cb96be63190de559da487bf226c2dd6a2c285df25654"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Cracked.fbx",
+      "bytes": 316428,
+      "sha256": "789eb1ef60a1ba2eda40121c9ae3c045a14c240c7893deb59c0ecd50d162a167"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Intact.fbx",
+      "bytes": 318284,
+      "sha256": "8ef39e649bfe67c694308191a2740a1ef9939d091e153fef9db6083b89603b11"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Broken.png",
+      "bytes": 282064,
+      "sha256": "2c32a1d061341c40b7af8c020e013c2e28cfdd88290df918af1b8ceca1824123"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Cracked.png",
+      "bytes": 276867,
+      "sha256": "4a510bd94a2dfb37230cbd8aeb961b486a45413a801f02be4013f907b73fe375"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Intact.png",
+      "bytes": 276738,
+      "sha256": "25b3bd8b23bf828f54ebab928fa2b8ceb675d08f6432aaa05190c5ac951563d1"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/FootstepHall_Painted_v1.png",
+      "bytes": 2642043,
+      "sha256": "d6f211d860882b0c6178d571d5488a02c037cf3da1add6a04cd2b0d820a473f4"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/PerfectRoom_Painted_v1.png",
+      "bytes": 2470164,
+      "sha256": "fc2278b1905a78d8a40ecd2196d08a9bbf1b1a404d06c6cfd14653c5e276a346"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/Station_Painted_v1.png",
+      "bytes": 2520233,
+      "sha256": "3f999fa2e1e04e03c08a8930dd31469129f3f04f0c10a48b7d5f74e46e2ff3f7"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/DarkWind.wav",
+      "bytes": 529244,
+      "sha256": "2063f2bf257c43db6bde1634c69503af72da492cdecee6a86ab9af793ae8790e"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/ExtraFootstep.wav",
+      "bytes": 17684,
+      "sha256": "a3b28e08455286f8f97124aadd2a7923cb6430564fee7af617afd6b34664326f"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/LanternBreak.wav",
+      "bytes": 52964,
+      "sha256": "5a3d633bfb01148c2295f00b15bdb39e68803f9a23180f893e3886f30d8db32d"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/Room1.wav",
+      "bytes": 529244,
+      "sha256": "45656bac908736e9dc08b8205135d0abdd24a12d627ec27c1ea7beff16735387"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/Room2.wav",
+      "bytes": 529244,
+      "sha256": "f352e3f07906a5be70c5fc41afab2cb9e35046635d2c9570e4adc90f8c551612"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/Room3.wav",
+      "bytes": 529244,
+      "sha256": "4aa00e066e6ada97dd3510176a8c42f15c853591e0b2c4ff609cfd86b57c8ad9"
+    },
+    {
+      "path": "Tools/Blender/MienCho_AntiqueLanterns.blend",
+      "bytes": 6173217,
+      "sha256": "c0114bbd6f2642b14f77a18256cb084acc5eee49fd22efdc84d6a600d1a593e8"
+    },
+    {
+      "path": "Tools/Blender/create_night_lanterns.py",
+      "bytes": 6399,
+      "sha256": "94634bc90dd69631b037d7fac795d8854eed0f8a68101d4a6498dcd6b088589a"
+    },
+    {
+      "path": "Tools/Blender/MienCho_ThreeJourneys.blend",
+      "bytes": 5015652,
+      "sha256": "7090499ed80bd729ee5d6d95f27a4de0d561fe87a4d319ff7f5d2b4303dc12dd"
+    },
+    {
+      "path": "Tools/Blender/create_waiting_trilogy.py",
+      "bytes": 7572,
+      "sha256": "c9c3c951c6fe5dae4c4289290888e97adfbef764e7eb04a7d8f7b6175c536fe2"
+    },
+    {
+      "path": "Tools/Story/create_night_audio.py",
+      "bytes": 1811,
+      "sha256": "913aed4ff1126848c8efc3b66a4104ec6c0e9471e133547f19bb1d7b941a5957"
+    }
+  ]
+}

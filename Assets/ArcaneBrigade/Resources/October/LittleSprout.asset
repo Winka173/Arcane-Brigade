@@ -44,9 +44,12 @@ MonoBehaviour:
   PassiveStrength: 1
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nNursery-exclusive. No basic
     attack; deal 12 contact damage. Three sprouts grow into a random two-star friend
-    and a Grand Sprout. Each keeps an ingredient weapon, within the 20-body limit.\r\n\nSUPPORT
+    and a Grand Sprout. Each keeps an ingredient weapon, within the 15-body limit.\r\n\nSUPPORT
     WHILE OWNED\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
+    sources.\n\r\n\nLIFE IN THE WAITING REALM\nA young garden-dweller travelling
+    with their root household's consent. They are curious about rain and what they
+    might become. Dream growth does not make their life an object for an owner's
+    use.\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale
     separately at 1/2/4.\r\nRecruitment exclusive: Jade Cabbage.\r\nBonds: astral,

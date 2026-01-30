@@ -136,7 +136,7 @@ namespace ArcaneBrigade
                 + "\n" + count + "/" + bond.NextThreshold(count) + " companions · every " + threshold + " units adds one level"
                 + "\n" + RunBuildReadModel.EffectName(bond.Effect) + ": " + bond.Reward(count).ToString("+0.###;-0.###;0");
             foreach (BondThresholdBonus bonus in bond.ExtraBonuses ?? new BondThresholdBonus[0])
-                result += "\nThreshold " + bonus.Threshold + " units: extra " + bonus.Value.ToString("+0.###;-0.###;0") + (count >= bonus.Threshold ? " · reached" : " · not reached");
+                result += "\nThreshold " + bonus.Threshold + " units: extra " + bond.BalanceReward(bonus.Value).ToString("+0.###;-0.###;0") + (count >= bonus.Threshold ? " · reached" : " · not reached");
             return result + "\nEach companion counts once, regardless of tier.";
         }
         public static string PhaseName(SessionPhase phase) => phase == SessionPhase.Combat ? "In combat" : phase == SessionPhase.Shop ? "Resting and shopping" : phase == SessionPhase.Victory ? "Victorious" : "Finished";

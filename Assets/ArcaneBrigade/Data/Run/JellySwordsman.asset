@@ -46,12 +46,16 @@ MonoBehaviour:
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nHero and all companions gain
     5% weapon damage per talent. Applies while owned before later damage modifiers.\r\n\nSUPPORT
     WHILE OWNED\nCompanions / Damage: +2.5%\nCompanions / Movement speed: -0.5%\nTier
-    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
-    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
-    and absorbed memories; their stated percentages are not multiplied by star level
-    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds:
-    oddity, gauntlet, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA river-dweller taught fencing by a ferry captain, they
+    were exiled for refusing a duel against a frightened passenger. They want to
+    teach a form whose last lesson is lowering the sword. Their salute belongs to
+    no recognised school.\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
+    talents count bodies and absorbed memories; their stated percentages are not
+    multiplied by star level unless explicitly stated. Listed support modifiers scale
+    separately at 1/2/4.\r\nBonds: oddity, gauntlet, hide. Immortal. Weapon rolls
+    on recruitment; three equal-species/equal-star bodies merge unless the talent
+    forbids it."
   ReferenceHero: 
   ReferenceCompanion: Chieftain
   ExclusiveHero: 

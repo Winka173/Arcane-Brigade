@@ -166,7 +166,7 @@ namespace ArcaneBrigade
                         GUI.Label(caption, word, words);
                         if (GUI.Button(caption, GUIContent.none, GUIStyle.none)) Show(word);
                         GUI.color = previous;
-                        if (target.Contains(Event.current.mousePosition)) ArcadeSkin.Line(new Rect(target.x + icon, target.yMax - 2, width - icon, 2), new Color(0.3f, 0.85f, 0.75f, 0.8f));
+                        if (target.Contains(Event.current.mousePosition)) ArcadeSkin.Line(new Rect(target.x + icon, target.yMax - 2, width - icon, 2), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.8f));
                     }
                     else GUI.Label(target, word, words);
                 }

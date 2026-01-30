@@ -7,74 +7,50 @@ namespace ArcaneBrigade
         public static Vector3 Offset(float time, float identity, float depth, bool reduced, float strength = 1)
         {
             float phase = identity * 2.399963f;
-            float height = (.34f + Mathf.Clamp01(depth / 4) * .16f) * strength;
+            float height = (.36f + Mathf.Clamp01(depth / 4) * .13f) * strength;
             if (reduced) return Vector3.up * height;
-            return new Vector3(Mathf.Sin(time * .43f + phase) * .075f * strength,
-                height + (Mathf.Sin(time * .91f + phase) * .07f + Mathf.Sin(time * .37f + phase * 1.7f) * .025f) * strength, 0);
+            // Different periods as well as phases avoid a roomful of synchronized pistons.
+            float breath=time*Mathf.Lerp(.48f,.66f,Mathf.Repeat(identity*.618034f,1));
+            return new Vector3((Mathf.Sin(time*.27f+phase)*.055f+Mathf.Sin(breath*.63f+phase*.7f)*.02f)*strength,
+                height+(Mathf.Sin(breath+phase)*.08f+Mathf.Sin(time*.21f+phase*1.7f)*.02f)*strength,0);
         }
         public static float Tilt(float time, float identity, bool reduced, float strength = 1)
-            => reduced ? 0 : (Mathf.Sin(time * .57f + identity * 2.399963f) * 3.4f + Mathf.Sin(time * .23f + identity) * 1.1f) * strength;
+            => reduced ? 0 : (Mathf.Sin(identity*1.71f)*1.3f+Mathf.Sin(time*.34f+identity*2.399963f)*2.4f+Mathf.Sin(time*.16f+identity)*.65f)*strength;
     }
+    // Only edge motes remain. The under-object wind, smoke and ribbons were removed.
     public sealed class DreamSuspension : MonoBehaviour
     {
-        private readonly LineRenderer[] threads = new LineRenderer[3];
-        private Material material;
-        private SpriteRenderer mist;
-        public void Display(Vector3 floor, Vector3 foot, float width, float time, float identity, int order, float opacity, bool warm = false)
+        private readonly SpriteRenderer[] motes=new SpriteRenderer[2];
+        private static Sprite moteSprite;
+        private bool initialized;
+        public void Display(Vector3 floor,Vector3 foot,float width,float time,float identity,int order,float opacity,bool warm=false)
         {
-            if (material == null)
+            if(!initialized)
             {
-                material = new Material(Shader.Find("Sprites/Default"));
-                for (int index = 0; index < threads.Length; index++)
+                initialized=true;
+                var glow=Resources.Load<Material>("MienCho/WaitingGlow");
+                if(glow!=null)
                 {
-                    var child = new GameObject("SuspendedDreamThread" + index);
-                    child.transform.SetParent(transform, false);
-                    LineRenderer thread = child.AddComponent<LineRenderer>();
-                    thread.sharedMaterial = material; thread.positionCount = 8; thread.useWorldSpace = true;
-                    thread.numCapVertices = 3; thread.startWidth = .012f; thread.endWidth = .035f;
-                    threads[index] = thread;
+                    if(moteSprite==null)moteSprite=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,Texture2D.whiteTexture.width,Texture2D.whiteTexture.height),Vector2.one*.5f,Texture2D.whiteTexture.width);
+                    for(int i=0;i<motes.Length;i++){var child=new GameObject("DriftingDreamMote"+i);child.transform.SetParent(transform,false);motes[i]=child.AddComponent<SpriteRenderer>();motes[i].sprite=moteSprite;motes[i].sharedMaterial=glow;}
                 }
             }
-            Color tint = warm ? new Color(.95f, .72f, .39f) : new Color(.55f, .72f, .96f);
-            DreamSuspensionArtwork artwork = DreamSuspensionArtwork.Current;
-            if (artwork != null && artwork.Frames != null && artwork.Frames.Length == 8)
+            Color tint=warm?new Color(.95f,.72f,.39f):new Color(.55f,.72f,.96f);
+            for(int i=0;i<motes.Length;i++)
             {
-                if (mist == null)
-                {
-                    var child = new GameObject("PaintedSuspensionMist"); child.transform.SetParent(transform, false);
-                    mist = child.AddComponent<SpriteRenderer>();
-                }
-                mist.enabled = opacity > .005f && !PresentationSettings.ReducedEffects;
-                mist.sprite = artwork.Frames[PresentationSettings.ReducedMotion ? 0 : Mathf.FloorToInt(time * 5 + identity * 1.7f) % 8];
-                mist.sortingOrder = order;
-                mist.transform.rotation = Quaternion.identity;
-                Vector3 parentScale = transform.lossyScale;
-                mist.transform.localScale = new Vector3(Mathf.Min(width * .7f, 1.5f) / Mathf.Max(.001f, mist.sprite.bounds.size.x * Mathf.Abs(parentScale.x)), Mathf.Max(.1f, foot.y - floor.y + .12f) / Mathf.Max(.001f, mist.sprite.bounds.size.y * Mathf.Abs(parentScale.y)), 1);
-                WorldSpriteGrounding.Place(mist, floor);
-                mist.color = new Color(warm ? 1 : .8f, warm ? .88f : .9f, warm ? .68f : 1, opacity * .34f);
-            }
-            for (int index = 0; index < threads.Length; index++)
-            {
-                LineRenderer thread = threads[index];
-                thread.enabled = opacity > .005f && (!PresentationSettings.ReducedEffects || index == 1);
-                if (!thread.enabled) continue;
-                thread.sortingOrder = order;
-                float phase = identity * 2.4f + index * 2.1f;
-                float clock = PresentationSettings.ReducedMotion ? 0 : time;
-                float side = (index - 1) * Mathf.Min(width * .21f, .55f);
-                for (int vertex = 0; vertex < 8; vertex++)
-                {
-                    float blend = vertex / 7f;
-                    Vector3 position = Vector3.Lerp(floor, foot, blend);
-                    position.x += side + Mathf.Sin(blend * 5 + clock * .8f + phase) * .07f * Mathf.Sin(blend * Mathf.PI);
-                    thread.SetPosition(vertex, position);
-                }
-                thread.startColor = new Color(tint.r, tint.g, tint.b, 0);
-                thread.endColor = new Color(tint.r, tint.g, tint.b, opacity * .22f);
+                var mote=motes[i];if(mote==null)continue;
+                mote.enabled=opacity>.01f && !PresentationSettings.ReducedEffects && AnimationDetailBudget.Level<2;
+                if(!mote.enabled)continue;
+                float age=PresentationSettings.ReducedMotion?.45f:Mathf.Repeat(time*.12f+identity*.37f+i*.5f,1);
+                float clock=PresentationSettings.ReducedMotion?0:time;
+                mote.transform.position=foot+new Vector3((i==0?-1:1)*Mathf.Min(width*.34f,.9f)+Mathf.Sin(clock*.4f+identity+i)*.055f,.15f+age*.55f,0);
+                mote.transform.rotation=Quaternion.identity;
+                float size=.045f+Mathf.Sin(age*Mathf.PI)*.035f;Vector3 scale=transform.lossyScale;
+                mote.transform.localScale=new Vector3(size/Mathf.Max(.001f,Mathf.Abs(scale.x)),size/Mathf.Max(.001f,Mathf.Abs(scale.y)),1);
+                mote.color=new Color(tint.r,tint.g,tint.b,Mathf.Sin(age*Mathf.PI)*opacity*.42f);mote.sortingOrder=order+1;
             }
         }
-        public void Hide() { foreach (LineRenderer thread in threads) if (thread != null) thread.enabled = false; if (mist != null) mist.enabled = false; }
-        private void OnDisable() => Hide();
-        private void OnDestroy() { if (material != null) Destroy(material); }
+        public void Hide(){foreach(var mote in motes)if(mote!=null)mote.enabled=false;}
+        private void OnDisable()=>Hide();
     }
 }

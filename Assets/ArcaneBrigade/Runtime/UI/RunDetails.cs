@@ -63,7 +63,7 @@ namespace ArcaneBrigade
             GUIStyle text = bodyStyle ?? (bodyStyle = ArcadeTypography.Style(23));
             GUIStyle number = numberStyle ?? (numberStyle = ArcadeTypography.Style(27, false, true));
             GUIStyle button = buttonStyle ?? (buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 26 });
-            RunHud.Fill(new Rect(30, 20, 1860, 1040), new Color(0.09f, 0.075f, 0.16f, 0.99f));
+            RunHud.Fill(new Rect(30, 20, 1860, 1040), ArcadeSkin.Deep);
             ArcadeSkin.Header(new Rect(75, 50, 1300, 100), "", "BRIGADE");
             ArcadeSkin.Divider(new Rect(75, 167, 1750, 2), ArcadeSkin.Accent);
             if (GUI.Button(new Rect(1610, 55, 220, 70), "CLOSE", button)) owner.ToggleDetails();
@@ -76,7 +76,7 @@ namespace ArcaneBrigade
                 bool current = index == tab;
                 bool hovered = tabRect.Contains(Event.current.mousePosition);
                 ArcadeSkin.Slant(new Rect(tabRect.x + 4, tabRect.y + 5, tabRect.width, tabRect.height), new Color(0, 0, 0, 0.45f));
-                ArcadeSkin.Slant(tabRect, current ? ArcadeSkin.Teal : hovered ? new Color(0.25f, 0.22f, 0.36f) : new Color(0.16f, 0.14f, 0.25f));
+                ArcadeSkin.Slant(tabRect, current ? ArcadeSkin.Accent : hovered ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 tabStyle.normal.textColor = current ? ArcadeSkin.Ink : ArcadeSkin.Cream;
                 GUI.Label(tabRect, names[index] + (counts[index] >= 0 ? "  " + counts[index] : ""), tabStyle);
                 if (GUI.Button(tabRect, GUIContent.none, GUIStyle.none)) SelectTab(index);
@@ -88,12 +88,12 @@ namespace ArcaneBrigade
             {
                 RunBuildReadModel.Row row = rows[index];
                 Rect card = new Rect(5, index * rowHeight + 5, 990, rowHeight - 12);
-                RunHud.Fill(card, index == selection ? new Color(0.24f, 0.18f, 0.36f) : new Color(0.15f, 0.13f, 0.23f));
-                if (index == selection) ArcadeSkin.Line(new Rect(card.x + 2, card.y + 2, 8, card.height - 4), ArcadeSkin.Teal);
+                RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
+                if (index == selection) ArcadeSkin.Line(new Rect(card.x + 2, card.y + 2, 4, card.height - 4), ArcadeSkin.Accent);
                 if (tab == 2)
                 {
                     ArcadeSkin.Line(new Rect(card.x + 2, card.y + 4, 5, card.height - 8), row.Accent);
-                    RunHud.Fill(new Rect(18, card.y + 12, 90, 100), new Color(.09f, .075f, .14f));
+                    RunHud.Fill(new Rect(18, card.y + 12, 90, 100), ArcadeSkin.Deep);
                 }
                 float contentLeft = row.Icon != null ? 130 : 28;
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);
@@ -104,7 +104,7 @@ namespace ArcaneBrigade
             }
             if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No companions yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
             GUI.EndScrollView();
-            RunHud.Fill(new Rect(1160, 300, 665, 665), new Color(0.15f, 0.12f, 0.24f));
+            RunHud.Fill(new Rect(1160, 300, 665, 665), ArcadeSkin.Card);
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));
             if (tab == 2 && rows.Count > 0)
             {

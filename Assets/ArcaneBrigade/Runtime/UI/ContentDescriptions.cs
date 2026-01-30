@@ -53,7 +53,7 @@ namespace ArcaneBrigade
                 "Original:TeacupCricket" => "Every fifth basic attack may release one echo for 40% of this ally's weapon damage. Uses the ally's 0.7s response cooldown; no echo chain.",
                 "Original:RibbonOtter" => "Collecting a heart attempts 1 extra HP of healing while at least one Ribbon Otter talent is owned. Extra healing does not stack by copies; hero healing restrictions apply.",
                 "Original:SpindleWren" => "Lantern Guild companions gain 8% reach while at least one Spindle Wren talent is owned, subject to final range caps. Presence effect; extra copies do not multiply it.",
-                _ => string.IsNullOrEmpty(name) ? u.Id switch { "SecretPatchBear" => "A living toy rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.", "SecretPaperBird" => "A folded courier rescued from the Lost-Property Vault. Permanent friend; remembers your letter and provides periodic healing.", "SecretDreamLamb" => "Garden visitor for two normal-wave victories. The dream friend then departs; its support ends with the contract.", _ => u.Description } : OctoberCompanions.Copy(name)
+                _ => string.IsNullOrEmpty(name) ? u.Id switch { "SecretPatchBear" => "A living resident rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.", "SecretPaperBird" => "A folded courier rescued from the Lost-Property Vault. Permanent friend; remembers your letter and provides periodic healing.", "SecretDreamLamb" => "Garden visitor for two normal-wave victories. The dream friend then departs; its support ends with the contract.", _ => u.Description } : OctoberCompanions.Copy(name)
             };
         }
         public static string Passive(UnitDefinition u,int tier,float support=3)
@@ -72,6 +72,7 @@ namespace ArcaneBrigade
             var b=new StringBuilder();b.AppendLine("COMPANION / "+RunModifierRules.RarityName(u.Rarity)+" / "+tier+" STAR");
             b.AppendLine("TALENT\n"+Talent(u));
             b.AppendLine("\nSUPPORT WHILE OWNED\n"+RunModifierRules.DescribeCompanion(u,tier));
+            b.AppendLine("\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(u.Id));
             b.AppendLine("PERSONAL PASSIVE\n"+Passive(u,tier,support));
             if(!string.IsNullOrEmpty(u.ReferenceCompanion)) b.AppendLine("\nNamed talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.");
             if(u.GiftOnly)b.AppendLine("Source: gift / nursery / special reward; not ordinary shop stock.");
@@ -119,7 +120,7 @@ namespace ArcaneBrigade
             RelicMechanic.SoloOverdrive=>"NEXT WAVE ONLY: companions stop their basic attacks and hero attack cooldown is divided by 6, subject to the attack loop's cap. Every 10 team kills attempts to heal 3 HP.",
             RelicMechanic.FreshLotus=>"Start each wave with +3 pierce and +30% crit per stack. The temporary bonus ends on the first recorded hero hit.",
             RelicMechanic.EggGift=>"ON PURCHASE: receive 3 eggs immediately once per acquisition.",
-            RelicMechanic.CompanionGift=>"ON PURCHASE: try to recruit up to 2 ordinary companions from your hero's pool. Checks unlock wave, unique weapon, 3-recruit quota and 20-body limit; solo heroes receive no bodies.",
+            RelicMechanic.CompanionGift=>"ON PURCHASE: try to recruit up to 2 ordinary companions from your hero's pool. All gifts use the 3-companion purchase quota. New species also use the quota of 2 in rounds 1-3, then 1. Checks unlock wave, unique weapon and 15-body limit; solo heroes receive no bodies.",
             RelicMechanic.FragilePower=>"Each recorded hero hit removes 5% team damage per stack, including a saved run penalty. Its positive listed modifiers are separate.",
             RelicMechanic.StatFloor=>"ON PURCHASE: record current modifier bonuses as floors; future bonuses cannot fall below those recorded floors. Does not remove every direct combat restriction or HP cost.",
             RelicMechanic.LuckToHealth=>"Maximum HP gains 100 times positive Luck per stack, before HP correction and limits.",

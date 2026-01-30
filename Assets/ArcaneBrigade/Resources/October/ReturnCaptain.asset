@@ -44,7 +44,10 @@ MonoBehaviour:
   PassiveStrength: 0.5
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nWait 30 seconds before attacking.
     Then deal triple weapon damage for the rest of the wave.\r\n\nSUPPORT WHILE OWNED\nTier
-    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA ferry captain whose route was changed into a circle without
+    telling passengers. They broke the tiller rather than announce another false
+    arrival. They carry a replacement toward a port where returning is a choice.\r\nPERSONAL
     PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
     and absorbed memories; their stated percentages are not multiplied by star level
     unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:

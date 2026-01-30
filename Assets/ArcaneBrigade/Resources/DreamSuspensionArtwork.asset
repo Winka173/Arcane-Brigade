@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b4b8355e15c04bb9ae1540dcb8492, type: 3}
+  m_Name: DreamSuspensionArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.DreamSuspensionArtwork
+  Frames:
+  - {fileID: 1611860677, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: -62042866, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: 1585648651, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: 923281259, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: -487999158, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: 1372427248, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: 398000405, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}
+  - {fileID: -1240897758, guid: 3a8d65faab9e5ef45a3c17da1aa8620c, type: 3}

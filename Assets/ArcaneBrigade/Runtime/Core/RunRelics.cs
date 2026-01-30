@@ -94,17 +94,18 @@ namespace ArcaneBrigade
                 foreach (ShopOffer offer in State.Offers) if (offer.Token != purchasedToken && !offer.Sold && offer.Kind == OfferKind.Item && offer.Currency == ShopCurrency.Gold) offer.Price = Mathf.Max(1, Mathf.CeilToInt(offer.Price * .7f));
             }
             if (item.Mechanic == RelicMechanic.CompanionGift && catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw)
-                for (int index = 0; index < 2 && State.NewRecruitsThisWave < 3 && State.Roster.Count < 20; index++)
+                for (int index = 0; index < 2 && CompanionPurchasesRemaining > 0 && State.Roster.Count < OctoberBalance.AllySoftLimit; index++)
                 {
                     var available = new List<UnitDefinition>();
                     foreach (UnitDefinition ally in catalog.Companions)
-                        if (!ally.SpecialRecruit && ally.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId),ally)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(ally.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == ally.Id && entry.WeaponId == weapon.Id))) available.Add(ally);
+                        if (!ally.SpecialRecruit && (NewRecruitsRemaining > 0 || OwnsCompanionSpecies(ally.Id)) && ally.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId),ally)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(ally.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == ally.Id && entry.WeaponId == weapon.Id))) available.Add(ally);
                     if (available.Count == 0) break;
                     UnitDefinition chosen = available[RecruitChoice(available)];
                     var weapons = new List<WeaponDefinition>();
                     foreach (WeaponDefinition weapon in catalog.Weapons) if (RecruitWeaponEligible(chosen.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == chosen.Id && entry.WeaponId == weapon.Id)) weapons.Add(weapon);
                     var recruit = new RosterEntry { UnitId = chosen.Id, WeaponId = BalancedWeapon(weapons, false).Id };
-                    State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; MergeTriples(chosen.Id);
+                    bool newSpecies = !OwnsCompanionSpecies(chosen.Id);
+                    State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; if (newSpecies) State.NewSpeciesRecruitsThisWave++; MergeTriples(chosen.Id);
                 }
             if (item.Mechanic == RelicMechanic.StatFloor)
                 foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))

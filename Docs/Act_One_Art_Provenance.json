@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-16",
+  "scope": "Act I only; painted art replaces Blender assets.",
+  "method": "Built-in painted via painting skill; new drawn assets referenced only existing game illustration, no Blender layout or mesh input.",
+  "prompts": "Docs/Mien_Cho_Painted_Art_Prompts.json",
+  "retiredBlenderAssets": "ArtArchive/MienCho_Blender_20261016",
+  "files": [
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Intact.png",
+      "bytes": 1804772,
+      "sha256": "72c211cadbcb09fc4c22750b18225c4a52c1b9c2192f6e44cd97c0af1ec20504"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Cracked.png",
+      "bytes": 1859796,
+      "sha256": "ea81efaae8184a68a0ac229af7ac6d072371b57e2e964d993dd0edcffae13b37"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Broken.png",
+      "bytes": 1844181,
+      "sha256": "c1231ae95b370188b5d59774a1c306944e6a136e6db8ceea51447366cc06f4ef"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/EmptyChair.png",
+      "bytes": 1405617,
+      "sha256": "220ebcf897408c5972759e74d6ac46d6f6e68892b8a3912afa8d32ec4fad60a1"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/ReservedTable.png",
+      "bytes": 2048039,
+      "sha256": "db2d12c044bc37cadf1dbae44a5ec271af2af25a1164216d09661be583e6b6a1"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/BreathingPhone.png",
+      "bytes": 1558033,
+      "sha256": "d69897dc155649ceb0ad51e3e37f34525cb522469ee72513fe9927ffcc42feb6"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/LateReflection.png",
+      "bytes": 2017385,
+      "sha256": "7c2a03a1e46f1a771c5351855fc6cdf2a7caced41b9ebfbe89dbed3bced926d3"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+      "bytes": 2194975,
+      "sha256": "40a4b9e922ceb502db97c5225416e2a6675a8ee698fdcfa82dc83a9415f41190"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/WithheldDawn.png",
+      "bytes": 1967553,
+      "sha256": "7c933fc332fda87ed2d02542cb0291965416bd201ed43be11b8f9727c03d9915"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/OpenDawn.png",
+      "bytes": 2353018,
+      "sha256": "4e75bf89708559c7dd412e203ca7a7c71ae9e18b9c6f6629619481b019231103"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/Station_Painted_v1.png",
+      "bytes": 2474483,
+      "sha256": "6182761519ee7dfe9b883fc4ad2329b09bcc42bc051bacaced8a1fecef44c45a"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/PerfectRoom_Painted_v1.png",
+      "bytes": 2098021,
+      "sha256": "0aa8bf2a13438bf0f5aa9ad92c73686f92a1c044b6920a7d4adbd955c68dc51e"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/FootstepHall_Painted_v1.png",
+      "bytes": 2202241,
+      "sha256": "5953e2540135a1cf034d520e385c7a891def4591c28a2751e3fd8a9a76e41ef6"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/DarkWind.wav",
+      "bytes": 529244,
+      "sha256": "2063f2bf257c43db6bde1634c69503af72da492cdecee6a86ab9af793ae8790e"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/ExtraFootstep.wav",
+      "bytes": 17684,
+      "sha256": "a3b28e08455286f8f97124aadd2a7923cb6430564fee7af617afd6b34664326f"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/LanternBreak.wav",
+      "bytes": 52964,
+      "sha256": "5a3d633bfb01148c2295f00b15bdb39e68803f9a23180f893e3886f30d8db32d"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/Room1.wav",
+      "bytes": 529244,
+      "sha256": "45656bac908736e9dc08b8205135d0abdd24a12d627ec27c1ea7beff16735387"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/Room2.wav",
+      "bytes": 529244,
+      "sha256": "f352e3f07906a5be70c5fc41afab2cb9e35046635d2c9570e4adc90f8c551612"
+    },
+    {
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Audio/Room3.wav",
+      "bytes": 529244,
+      "sha256": "4aa00e066e6ada97dd3510176a8c42f15c853591e0b2c4ff609cfd86b57c8ad9"
+    }
+  ]
+}

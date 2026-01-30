@@ -10,7 +10,7 @@ namespace ArcaneBrigade.Editor
 {
     public static class PerformanceSpriteOutline
     {
-        public static void Apply(string path)
+        public static void Apply(string path, bool keepDetached = false)
         {
             var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             try
@@ -27,6 +27,7 @@ namespace ArcaneBrigade.Editor
                     int left = Mathf.RoundToInt(rectangle.x), bottom = Mathf.RoundToInt(rectangle.y);
                     var visited = new bool[width * height]; var queue = new Queue<int>();
                     List<int> main = null;
+                    var components = new List<List<int>>();
                     for (int start = 0; start < visited.Length; start++)
                     {
                         if (visited[start]) continue;
@@ -45,8 +46,10 @@ namespace ArcaneBrigade.Editor
                             Visit(point - 1); Visit(point + 1); Visit(point - width); Visit(point + width);
                         }
                         if (main == null || component.Count > main.Count) main = component;
+                        components.Add(component);
                     }
                     if (main == null || main.Count < 100) throw new InvalidOperationException("Empty connected performance pose " + sprite.name);
+                    if (keepDetached) main = components.Where(component => component.Count >= Mathf.Max(100, main.Count * .015f)).SelectMany(component => component).ToList();
                     var occupied = new HashSet<int>(main);
                     var edges = new Dictionary<Vector2Int, List<Vector2Int>>();
                     void Edge(int startX, int startY, int endX, int endY)
@@ -64,6 +67,7 @@ namespace ArcaneBrigade.Editor
                         if (horizontal == 0 || !occupied.Contains(point - 1)) Edge(horizontal, vertical + 1, horizontal, vertical);
                     }
                     List<Vector2Int> largest = null; double largestArea = 0;
+                    var loops = new List<List<Vector2Int>>();
                     while (edges.Count > 0)
                     {
                         Vector2Int first = edges.Keys.First(), current = first;
@@ -83,15 +87,21 @@ namespace ArcaneBrigade.Editor
                             area += (double)point.x * next.y - (double)point.y * next.x;
                         }
                         if (Math.Abs(area) > largestArea) { largestArea = Math.Abs(area); largest = loop; }
+                        if (area > 200) loops.Add(loop);
                     }
-                    var corners = new List<Vector2>();
-                    for (int index = 0; index < largest.Count; index++)
+                    var contours = new List<Vector2[]>();
+                    foreach (List<Vector2Int> contour in keepDetached ? loops : new List<List<Vector2Int>> { largest })
                     {
-                        Vector2Int previous = largest[(index + largest.Count - 1) % largest.Count], point = largest[index], next = largest[(index + 1) % largest.Count];
-                        if ((point - previous).x * (next - point).y == (point - previous).y * (next - point).x) continue;
-                        corners.Add((Vector2)point - new Vector2(width, height) * .5f);
+                        var corners = new List<Vector2>();
+                        for (int index = 0; index < contour.Count; index++)
+                        {
+                            Vector2Int previous = contour[(index + contour.Count - 1) % contour.Count], point = contour[index], next = contour[(index + 1) % contour.Count];
+                            if ((point - previous).x * (next - point).y == (point - previous).y * (next - point).x) continue;
+                            corners.Add((Vector2)point - new Vector2(width, height) * .5f);
+                        }
+                        contours.Add(corners.ToArray());
                     }
-                    outlines.SetOutlines(sprite.spriteID, new List<Vector2[]> { corners.ToArray() });
+                    outlines.SetOutlines(sprite.spriteID, contours);
                     outlines.SetTessellationDetail(sprite.spriteID, .25f);
                 }
                 provider.Apply(); ((TextureImporter)AssetImporter.GetAtPath(path)).SaveAndReimport();

@@ -64,7 +64,7 @@ namespace ArcaneBrigade
             if (!RunPaths.K3Capture) throw new System.InvalidOperationException("Receipt fixture requires isolated capture mode");
             receiptOpen = true;
         }
-        private static readonly Color Panel = new Color(0.10f, 0.08f, 0.19f, 0.97f);
+        private static readonly Color Panel = ArcadeSkin.Deep;
 
         public static void Fill(Rect rectangle, Color color)
         {
@@ -96,7 +96,8 @@ namespace ArcaneBrigade
             {
                 text = ArcadeTypography.Style(23);
                 small = new GUIStyle(text) { fontSize = 18 };
-                title = ArcadeTypography.Style(34, true);
+                title = ArcadeTypography.Style(36, true);
+                if (ArcadeTypography.Display != null) title.font = ArcadeTypography.Display;
                 title.alignment = TextAnchor.MiddleCenter;
                 button = new GUIStyle(GUI.skin.button) { fontSize = 22, font = ArcadeTypography.Heading };
                 numeric = ArcadeTypography.Style(20, false, true);
@@ -132,19 +133,21 @@ namespace ArcaneBrigade
             danger = fighting ? Mathf.Clamp01(Mathf.InverseLerp(0.32f, 0.06f, health / maximum)) : 0f;
             ArcadeMusic.Danger = danger;
             LowHealthVignette.Draw(new Vector2(1920, 1080), danger);
+            if (state.Phase == SessionPhase.Combat) NightHud.EdgeEyes(simulation, camera, new Vector2(1920, 1080));
             if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
             ArcadeSkin.Plate(new Rect(22, 16, 340, 72), ArcadeSkin.Accent);
             Sprite(new Rect(35, 20, 62, 62), owner.Content.Unit(state.ChampionId).Body);
+            NightHud.LightRing(new Vector2(66, 51), 40, state.Roster.Count);
             ArcadeSkin.Line(new Rect(105, 36, 230, 30), new Color(0.02f, 0.02f, 0.05f, 0.95f));
-            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(1f, 0.68f, 0.28f));
-            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(0.94f, 0.24f, 0.36f));
+            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
+            ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
             GUI.Label(new Rect(108, 36, 224, 30), Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(maximum), numeric);
             if (owner.Content.HeroRevision > 0 && state.Phase == SessionPhase.Combat)
             {
                 float required = simulation.HeroIdentityEnabled ? simulation.HeroIdentityRequired : simulation.Champion.Definition.HeroMechanic == HeroMechanic.LanternStride ? 12 : simulation.Champion.Definition.HeroMechanic == HeroMechanic.ParcelExpress ? 6 : 2;
-                ArcadeSkin.Line(new Rect(108, 72, 224, 5), new Color(0.08f, 0.13f, 0.2f, 0.8f));
+                ArcadeSkin.Line(new Rect(108, 72, 224, 5), new Color(0.06f, 0.07f, 0.11f, 0.85f));
                 ArcadeSkin.Line(new Rect(108, 72, 224 * Mathf.Clamp01((simulation.HeroIdentityEnabled ? simulation.HeroIdentityCharge : simulation.HeroCharge) / required), 5), simulation.HeroIdentityEnabled ? HeroIdentities.For(state.ChampionId).Color : ArcadeSkin.Teal);
                 if (simulation.HeroIdentityEnabled)
                 {
@@ -163,9 +166,8 @@ namespace ArcaneBrigade
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
             GUI.Label(new Rect(84, 146, 120, 32), eggs.ToString("N0"), numericLeft);
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(380, 24, 280, 52) : new Rect(820, 22, 280, 52);
-            waveRect.y -= BeatPulse.Kick * 4;
             ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
-            GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "WAVE " + state.Wave, title);
+            GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), (state.Endless ? "∞ " : "") + "Wave " + state.Wave, title);
             if (state.Phase == SessionPhase.Combat)
             {
                 bool overtime = simulation.IsBossOvertime;
@@ -177,6 +179,8 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(timer.x + (overtime ? 10 : 56), timer.y + 2, overtime ? 140 : 90, timer.height - 4), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
+            if (state.Phase == SessionPhase.Combat) NightHud.DawnPath(new Rect(760, 126, 400, 26), state, owner.Content.NormalWaves, true);
+            else if (state.Phase == SessionPhase.Shop) NightHud.DawnPath(new Rect(380, 82, 280, 26), state, owner.Content.NormalWaves, false);
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
             {
@@ -189,14 +193,14 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(424, 954, 1076, 40), new Color(0.01f, 0.01f, 0.02f, 0.75f));
                     ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
-                    ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.7f));
+                    ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
                     ArcadeSkin.Line(new Rect(425 + 1070 * 0.5f - 2, 948, 4, 42), ArcadeSkin.Cream);
                     GUI.Label(new Rect(425, 950, 1070, 38), Mathf.CeilToInt(simulation.Boss.Health) + " / " + Mathf.CeilToInt(simulation.Boss.Definition.Health), numeric);
                 }
                 if (simulation.Phase == RunPhase.Paused)
                 {
                     Fill(new Rect(640, 300, 640, 500), Panel);
-                    ArcadeSkin.Header(new Rect(700, 380, 520, 100), "THE SHOW IS ON HOLD", "PAUSED");
+                    ArcadeSkin.Header(new Rect(700, 380, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
                     if (navigation.Button(new Rect(750, 515, 420, 65), "RESUME", primary)) owner.TogglePause();
                     if (navigation.Button(new Rect(700, 595, 250, 60), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
                     if (navigation.Button(new Rect(970, 595, 250, 60), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
@@ -210,14 +214,14 @@ namespace ArcaneBrigade
                 {
                     if (owner.Session.EndingChoicePending) { GUI.matrix = previous; GUI.skin = previousSkin; navigation.End(); return; }
                     ArcadeSkin.Plate(new Rect(560, 840, 800, 70), state.Phase == SessionPhase.Defeat ? ArcadeSkin.Danger : ArcadeSkin.Gold);
-                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "THE BRIGADE HAS FALLEN…" : "DAWN HAS ARRIVED…", title);
+                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "Your light goes out…" : "Dawn has come…", title);
                     GUI.matrix = previous;
                     GUI.skin = previousSkin;
                     navigation.End();
                     return;
                 }
                 Fill(new Rect(80, 200, 630, 750), Panel);
-                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "RECORD CLOSED / NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "DAWN HAS ARRIVED" : "UNTIL THE NEXT DREAM");
+                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED · NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : "Until You Return");
                 Sprite(new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
                 GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
@@ -245,7 +249,7 @@ namespace ArcaneBrigade
             if (owner.TransitionPending)
             {
                 ArcadeSkin.Plate(new Rect(660, 722, 600, 66), ArcadeSkin.Teal);
-                GUI.Label(new Rect(550, 720, 820, 70), "WAVE CLEARED", title);
+                GUI.Label(new Rect(550, 720, 820, 70), "The dark draws back", title);
                 return;
             }
             WorldShop shop = owner.Shop;
@@ -335,14 +339,14 @@ namespace ArcaneBrigade
             UnitDefinition encoreUnit = null;
             foreach (RosterEntry entry in state.Roster) if (entry.Tier >= 3) { encores++; encoreUnit = owner.Content.Unit(entry.UnitId); }
             if (encoreCount >= 0 && encores > encoreCount && encoreUnit != null)
-                cutIn.Show(RunUICopy.UnitName(encoreUnit).ToUpperInvariant(), "★★★  ENCORE FORM", encoreUnit.Body, ArcadeSkin.Gold, "ui.cutin.encore");
+                cutIn.Show(RunUICopy.UnitName(encoreUnit), "★★★  SHINES BRIGHTER", encoreUnit.Body, ArcadeSkin.Gold, "ui.cutin.encore");
             encoreCount = encores;
             foreach (BondDefinition bond in owner.Content.Bonds)
             {
                 owner.Session.BondCounts.TryGetValue(bond.Id, out int count);
                 int level = bond.ActiveLevel(count);
                 if (bondLevels.TryGetValue(bond.Id, out int before) && level > before && !first)
-                    cutIn.Show(bond.Name.ToUpperInvariant(), "BOND LEVEL " + level + " · THE CROWD GOES WILD", bond.Icon, ArcadeSkin.Teal, "ui.cutin.bond");
+                    cutIn.Show(bond.Name, "BOND LEVEL " + level + " · THEY STAND CLOSER TOGETHER", bond.Icon, ArcadeSkin.Teal, "ui.cutin.bond");
                 bondLevels[bond.Id] = level;
             }
             if (state.Phase != SessionPhase.Combat) { bossWasAlive = false; return; }
@@ -350,11 +354,11 @@ namespace ArcaneBrigade
             if (boss != null && boss.Alive && boss != seenBoss)
             {
                 seenBoss = boss;
-                cutIn.Show(RunUICopy.UnitName(boss.Definition).ToUpperInvariant(), "TONIGHT'S HEADLINER ENTERS THE RING", boss.Definition.Body, ArcadeSkin.Danger, "ui.cutin.boss");
+                cutIn.Show(RunUICopy.UnitName(boss.Definition), "COMES OUT OF THE DARK", boss.Definition.Body, ArcadeSkin.Danger, "ui.cutin.boss");
             }
             bool alive = boss != null && boss.Alive;
             if (bossWasAlive && !alive && simulation.Champion.Alive)
-                cutIn.Show("SHOWSTOPPER!", "HEADLINER DEFEATED", owner.Content.Unit(state.ChampionId).Body, ArcadeSkin.Gold, "ui.cutin.showstopper");
+                cutIn.Show("The Night Recedes", "DRIVEN BACK INTO THE DARK", owner.Content.Unit(state.ChampionId).Body, ArcadeSkin.Gold, "ui.cutin.showstopper");
             bossWasAlive = alive;
         }
 
@@ -426,7 +430,7 @@ namespace ArcaneBrigade
                 if (slash >= 0) name = "Ally " + name.Substring(slash + 3);
                 GUI.Label(new Rect(line.x, line.y, 165, row), name, compareStyle);
                 GUI.Label(new Rect(line.x + 180, line.y, 70, row), entry.before, compareStyle);
-                compareStyle.normal.textColor = entry.better ? new Color(0.45f, 1f, 0.6f) : ArcadeSkin.Danger;
+                compareStyle.normal.textColor = entry.better ? ArcadeSkin.Better : ArcadeSkin.Worse;
                 GUI.Label(new Rect(line.x + 260, line.y, 130, row), (entry.better ? "▲ " : "▼ ") + entry.after, compareStyle);
             }
         }
@@ -530,7 +534,7 @@ namespace ArcaneBrigade
             navigation.Begin();
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Fill(new Rect(470, 310, 980, 440), Panel);
-            GUI.Label(new Rect(520, 345, 880, 80), "RETURN TO MAIN MENU?", title);
+            GUI.Label(new Rect(520, 345, 880, 80), "Return to the Waiting Room?", title);
             GUI.Label(new Rect(540, 445, 840, 105), "Saves commit at wave start or after shop transactions. Unfinished combat restarts from the saved boundary, not the pause moment.", text);
             if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), owner.SaveError, small);
             if (navigation.Button(new Rect(550, 650, 360, 65), "STAY", button)) owner.CancelMenuReturn();

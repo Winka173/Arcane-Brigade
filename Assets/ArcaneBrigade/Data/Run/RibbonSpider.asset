@@ -46,13 +46,15 @@ MonoBehaviour:
     gain one seeded random run bonus: +6% team damage, +6% team movement speed, +0.06
     Luck, or +0.12 hero armor. Once per acquisition.\r\n\nSUPPORT WHILE OWNED\nTeam
     / Collision damage: +1\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4;
-    merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s
-    in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing
-    restrictions apply.\r\n\nNamed talents count bodies and absorbed memories; their
-    stated percentages are not multiplied by star level unless explicitly stated.
-    Listed support modifiers scale separately at 1/2/4.\r\nBonds: oddity, resolve.
-    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    merging three units reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA
+    bridge weaver who tightened a safety web until nobody could move. They cut it
+    and helped rebuild the road. Each new knot has a release reachable by the person
+    it supports.\r\nPERSONAL PASSIVE\nEvery 4s in combat, attempt to heal the hero
+    for 1.5 HP before healing modifiers. Healing restrictions apply.\r\n\nNamed talents
+    count bodies and absorbed memories; their stated percentages are not multiplied
+    by star level unless explicitly stated. Listed support modifiers scale separately
+    at 1/2/4.\r\nBonds: oddity, resolve. Immortal. Weapon rolls on recruitment; three
+    equal-species/equal-star bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"GLHF" Nia'
   ExclusiveHero: 

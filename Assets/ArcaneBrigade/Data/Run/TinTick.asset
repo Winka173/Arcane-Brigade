@@ -46,7 +46,10 @@ MonoBehaviour:
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nHero maximum HP +4 per talent.
     Each 8 team kills gives this ally 1% attack speed, up to 15% this wave.\r\n\nSUPPORT
     WHILE OWNED\nTeam / Attack range: +2.5%\nChampion / Maximum health: -1\nTier
-    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
+    1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nA timekeeper whose heart stayed punctual after the trains
+    stopped, they falsified bells to give stranded children hope. Admitting the lie
+    cost their post. They want to ring for an arrival they have actually witnessed.\r\nPERSONAL
     PASSIVE\nEvery 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.\r\n\nNamed
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale

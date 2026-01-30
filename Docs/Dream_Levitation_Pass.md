@@ -1,5 +1,7 @@
 # Deliberate dream levitation — 16 October 2026
 
+**Superseded visual treatment:** shared motion has been revised and missing Act I fixtures added. Under-object smoke/wind ribbons have been removed at the user's latest request. The antique lamps, narrative chair and room evidence were absent from the original pass. Current scope and new evidence: [Dream_Levitation_02.md](Dream_Levitation_02.md). The figures below describe the original gate, not acceptance of these additions.
+
 ## Direction
 
 The new request supersedes the earlier attempt to make all furniture look grounded. Environmental furniture now visibly floats above a separate ground shadow. Each object has a different phase, bounded sideways drift and a slow irregular lean rather than synchronized up/down motion. Thin curling dream threads connect the empty air beneath objects without targeting circles or flashing beams. Greater nightmare depth increases the suspension height.
@@ -20,4 +22,8 @@ Heroes, companions, enemies, projectiles, collision geometry, floor textures, co
 
 PresentationClock drives the effect, so pause freezes its phase. Reduced Motion preserves a constant visible air gap but removes drift/tilt. Reduced Effects keeps only one dream thread per object. No new flashes or target rings are introduced. Pooled loot hides the suspension on release/attraction; destroyed props release their materials and existing external shadow objects.
 
+The additional original `Art/DreamLevitation/SuspensionWisps_v1.png` provides eight painted smoke phases underneath the objects. Reduced Effects omits this mist layer. The PNG is preserved with genuine alpha; this does not redraw the furniture itself.
+
 `DreamLevitationChecks.Run` exercises bounded movement, phase variation and stable reduced-motion poses. Shop native diagnostics additionally check an actual merchant air gap, drift versus reduced motion, support alignment, rarity attachment, reachable purchasing and continue, and no stock aura leaking into combat. Latest verification status and screenshots belong in `PreviewExports/Levitation/`; do not substitute the historical GroundingReview/Animation-01 captures for this pass.
+
+Completed: Unity build 0 errors/0 warnings; 23,234 focused levitation checks; native shop 187 pass and 9 screenshots per profile; native nightmare/endings 149 pass and 34 screenshots per profile. Full evidence and limitations: `PreviewExports/Levitation/Gate_Summary.md`.

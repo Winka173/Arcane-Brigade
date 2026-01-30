@@ -241,7 +241,7 @@ namespace ArcaneBrigade
                 if (result != null)
                 {
                     result.DeniedUntil = owner.PresentationClock + 0.65f;
-                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : station.Offer != null && station.Offer.Kind == OfferKind.Companion && owner.Session.State.NewRecruitsThisWave >= 3 ? "3 ALLIES BOUGHT THIS WAVE" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
+                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : owner.Session.RecruitQuotaBlocks(station.Offer) ? owner.Session.RecruitQuotaDenial : owner.Session.CompanionCapacityBlocks(station.Offer) ? "BRIGADE FULL / 15 COMPANIONS" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
                 }
             }
             return completed;
@@ -330,7 +330,7 @@ namespace ArcaneBrigade
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
             Station reroll = AddStation(new Vector2(-5.3f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
-            reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.";
+            reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.\n" + owner.Session.RecruitmentSummary;
             Station exit = AddStation(ExitPosition, "NEXT HALL", art.HallDoor[0], art.HallDoor, false);
             exit.Reach = ExitInteractionRadius; exit.Description = "Approach the separate doorway to continue.";
             if (merchantEntrance)

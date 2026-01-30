@@ -46,7 +46,10 @@ MonoBehaviour:
     bond level grants this ally 10% weapon damage and 5% reach. Caps: +50% damage,
     +20% reach; final reach cap still applies.\r\n\nSUPPORT WHILE OWNED\nTeam / Bullet
     split: +1\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging
-    three units reduces support sources.\n\r\nPERSONAL PASSIVE\nOwn weapon damage
+    three units reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA frost-country
+    pilgrim carrying the last spoon from a communal pot. They rationed too strictly
+    and remember the neighbour who went hungry. They seek seeds for cold soil rather
+    than another rule for enduring hunger.\r\nPERSONAL PASSIVE\nOwn weapon damage
     gains 0.5% per companion body in the roster, before later balance modifiers.\r\n\nNamed
     talents count bodies and absorbed memories; their stated percentages are not
     multiplied by star level unless explicitly stated. Listed support modifiers scale

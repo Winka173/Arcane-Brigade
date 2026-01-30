@@ -19,7 +19,7 @@ namespace ArcaneBrigade
             if (effect == ItemEffect.ChestReach)
             { Stroke(0.2f, 0.25f, 0.8f, 0.25f); Stroke(0.2f, 0.25f, 0.2f, 0.7f); Stroke(0.8f, 0.25f, 0.8f, 0.7f); Stroke(0.2f, 0.7f, 0.8f, 0.7f); Stroke(0.1f, 0.5f, 0.32f, 0.5f); Stroke(0.68f, 0.5f, 0.9f, 0.5f); Stroke(0.5f, 0.44f, 0.5f, 0.6f); }
             else if (effect == ItemEffect.Health || effect == ItemEffect.Heal || effect == ItemEffect.HeartHealing || effect == ItemEffect.HealthCorrection || effect == ItemEffect.HealCorrection)
-            { tint = new Color(1, 0.4f, 0.45f); Stroke(0.18f, 0.5f, 0.82f, 0.5f); Stroke(0.5f, 0.18f, 0.5f, 0.82f); }
+            { tint = new Color(1f, 0.62f, 0.45f); Stroke(0.18f, 0.5f, 0.82f, 0.5f); Stroke(0.5f, 0.18f, 0.5f, 0.82f); }
             else if (effect == ItemEffect.BulletSplit || effect == ItemEffect.Projectiles)
             { Stroke(0.18f, 0.5f, 0.5f, 0.5f); for (int branch = -1; branch <= 1; branch++) Stroke(0.5f, 0.5f, 0.82f, 0.5f + branch * 0.26f); }
             else if (effect == ItemEffect.BulletPierce || effect == ItemEffect.AttackRange || effect == ItemEffect.BulletDistance)
@@ -27,7 +27,7 @@ namespace ArcaneBrigade
             else if (effect == ItemEffect.BulletBounce)
             { Stroke(0.18f, 0.25f, 0.5f, 0.75f); Stroke(0.5f, 0.75f, 0.82f, 0.25f); Stroke(0.18f, 0.84f, 0.82f, 0.84f); }
             else if (effect == ItemEffect.MoveSpeed || effect == ItemEffect.BulletSpeed || effect == ItemEffect.AttackSpeed || effect == ItemEffect.SpeedCorrection || effect == ItemEffect.CompanionAttackSpeed || effect == ItemEffect.CollisionFrequency)
-            { tint = new Color(0.3f, 0.95f, 0.8f); for (int chevron = 0; chevron < 2; chevron++) { float shift = chevron * 0.24f; Stroke(0.2f + shift, 0.25f, 0.43f + shift, 0.5f); Stroke(0.43f + shift, 0.5f, 0.2f + shift, 0.75f); } }
+            { tint = ArcadeSkin.Teal; for (int chevron = 0; chevron < 2; chevron++) { float shift = chevron * 0.24f; Stroke(0.2f + shift, 0.25f, 0.43f + shift, 0.5f); Stroke(0.43f + shift, 0.5f, 0.2f + shift, 0.75f); } }
             else if (effect == ItemEffect.Armor || effect == ItemEffect.ArmorCorrection || effect == ItemEffect.Interceptor)
             { Vector2[] points = { new Vector2(0.2f, 0.8f), new Vector2(0.8f, 0.8f), new Vector2(0.72f, 0.4f), new Vector2(0.5f, 0.18f), new Vector2(0.28f, 0.4f) }; for (int index = 0; index < points.Length; index++) { Vector2 start = points[index], end = points[(index + 1) % points.Length]; Stroke(start.x, start.y, end.x, end.y); } }
             else if (effect == ItemEffect.Damage || effect == ItemEffect.MeleeDamage || effect == ItemEffect.ChampionDamage || effect == ItemEffect.CompanionDamage || effect == ItemEffect.Knockback || effect == ItemEffect.CollisionDamage)

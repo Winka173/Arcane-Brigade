@@ -100,7 +100,7 @@ namespace ArcaneBrigade
             else
             {
                 UnitDefinition ally = catalog.Unit(id);
-                if (State.Roster.Count >= 20) return false;
+                if (State.Roster.Count >= OctoberBalance.AllySoftLimit) return false;
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return false;
                 var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 1 };
                 State.Roster.Add(entry); RememberVariant(entry); OctoberPurchase(ally);

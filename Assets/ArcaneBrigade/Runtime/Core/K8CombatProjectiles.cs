@@ -9,7 +9,7 @@ namespace ArcaneBrigade
             if (projectile.Faction == Faction.Enemy && catalog.RunWave == 1) return false;
             if (projectile.Remaining <= 0f) return false;
             if (projectile.Cause.RootId == 0) projectile.Cause = NewCause(projectile.SourceUnitId);
-            UnitState source = units.Find(unit => unit.Id == projectile.SourceUnitId);
+            UnitState source = UnitWithId(projectile.SourceUnitId);
             Vector2 start = projectile.LaunchSegment ? projectile.PreviousPosition : projectile.Position;
             Vector2 destination = projectile.Position + projectile.Velocity * Mathf.Min(deltaTime, projectile.Remaining);
             projectile.PreviousPosition = start;

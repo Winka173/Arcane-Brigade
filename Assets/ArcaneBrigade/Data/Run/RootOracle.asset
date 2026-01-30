@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RootOracle
   DisplayName: The Root Oracle
-  Body: {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
+  Body: {fileID: 2139642844, guid: 7c0d420d2403b944f9dda71fe2aa5f4c, type: 3}
   AnimationFrames:
-  - {fileID: 273123521, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: -1026667240, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 2073995237, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  - {fileID: 251621088, guid: 0743278481018c349a3e22939d2414ae, type: 3}
-  AuthoredMotion: {fileID: 0}
+  - {fileID: 2139642844, guid: 7c0d420d2403b944f9dda71fe2aa5f4c, type: 3}
+  - {fileID: 25701639, guid: 7c0d420d2403b944f9dda71fe2aa5f4c, type: 3}
+  - {fileID: 611712118, guid: 7c0d420d2403b944f9dda71fe2aa5f4c, type: 3}
+  - {fileID: 2103088609, guid: 7c0d420d2403b944f9dda71fe2aa5f4c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: b07c6577660bb6b4b8af811e9fa44e96, type: 2}
   Weapon: {fileID: 11400000, guid: 0587a16ddceed524da237dfc27090cdb, type: 2}
   Health: 180
   Speed: 3.1

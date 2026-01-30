@@ -46,12 +46,15 @@ MonoBehaviour:
     gain 6 eggs immediately once. Merely keeping this ally does not grant 6 eggs
     every wave.\r\n\nSUPPORT WHILE OWNED\nTeam / Collision frequency: +2.5%\nChampion
     / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s, chill enemies within 2.313
-    units: 1.5s normally, 0.6s on bosses.\r\n\nNamed talents count bodies and absorbed
-    memories; their stated percentages are not multiplied by star level unless explicitly
-    stated. Listed support modifiers scale separately at 1/2/4.\r\nBonds: archive,
-    resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
-    bodies merge unless the talent forbids it."
+    support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA map maker who drew windows
+    for a district with none. One drawing opened a real passage. They now check every
+    imagined exit before sharing it, and want to draw somewhere from life rather
+    than longing.\r\nPERSONAL PASSIVE\nEvery 4s, chill enemies within 2.313 units:
+    1.5s normally, 0.6s on bosses.\r\n\nNamed talents count bodies and absorbed memories;
+    their stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nBonds: archive, resolve.
+    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
+    merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Expert Nurturer" Daisy'
   ExclusiveHero: 

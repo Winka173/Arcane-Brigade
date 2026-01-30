@@ -1,0 +1,1 @@
+Intermediate diagnostic build, superseded by `../Accepted/`. PNGs were removed to reclaim disk space; logs and manifests remain as investigation history, not current release evidence. This build exposed incomplete glow resources and furniture slicing defects.

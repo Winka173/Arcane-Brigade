@@ -229,15 +229,16 @@ namespace ArcaneBrigade.Editor
                     var offer = new ShopOffer { Id = id, Token = ++session.State.NextOffer, Kind = OfferKind.Companion, Price = 1 };
                     session.State.Offers.Add(offer);
                     Require(session.Buy(offer.Token), "Existing species purchase " + purchase);
-                    Require(session.State.NewRecruitsThisWave == purchase + 1, "Every body consumes quota " + purchase);
+                    Require(session.State.NewRecruitsThisWave == purchase + 1 && session.State.NewSpeciesRecruitsThisWave == 0, "Owned species use purchase quota only " + purchase);
                 }
                 var blocked = new ShopOffer { Id = id, Token = ++session.State.NextOffer, Kind = OfferKind.Companion, Price = 1 };
                 session.State.SpecialOffers.Add(blocked);
-                Require(!session.Buy(blocked.Token), "Other shop cannot bypass quota");
+                Require(session.Buy(blocked.Token), "Special shop remains exempt from ordinary new-species quota");
+                session.State.NewRecruitsThisWave = RunSession.CompanionPurchaseLimit;
                 for (int roll = 0; roll < 20; roll++)
                 {
                     Require(session.Reroll(), "Quota refresh " + roll);
-                    Require(session.State.Offers.All(offer => offer.Kind == OfferKind.Item), "Only items after quota " + roll);
+                    Require(session.State.Offers.All(offer => offer.Kind == OfferKind.Item), "Three-purchase limit retains items only " + roll);
                 }
                 int cost = session.RerollCost;
                 session.State.Gold = cost - 1;

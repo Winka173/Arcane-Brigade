@@ -1,0 +1,227 @@
+{
+  "status": "PASS",
+  "scope": "13 illustrated replacement assets; no Blender mesh lamp resources; shared levitation without under-object wind.",
+  "build": "Result: Succeeded\nErrors: 0\nWarnings: 0\nBytes: 1602615996\nPath: Builds/HeroIdentity/ArcaneBrigade.exe",
+  "totalChecks": 29836,
+  "totalImages": 102,
+  "focusedMotionChecks": 23234,
+  "actOneChecks": 5834,
+  "shopRuns": [
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:20:20.0128691+07:00",
+      "Name": "Native",
+      "Checks": 432,
+      "Finished": "2026-10-16T19:20:42.1295473+07:00",
+      "Images": 9
+    },
+    {
+      "ExitCode": 0,
+      "Started": "2026-10-16T19:20:42.1447768+07:00",
+      "Name": "Reduced",
+      "Checks": 336,
+      "Finished": "2026-10-16T19:21:04.4302529+07:00",
+      "Images": 9
+    }
+  ],
+  "playerContentSha256": {
+    "Builds/HeroIdentity/ArcaneBrigade.exe": "e83058c236f35a720c27e465dc42d1549f13b25a8573dce464438b855764e7af",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/Managed/ArcaneBrigade.Runtime.dll": "998b5275da7b0ac9fb27977a9ba1a5740d3767ac740916f67c2c85918ae51d21",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/globalgamemanagers": "82cd8b3d5f0bd72c6fd0864e4612c0a024aaa0ba2a2f7a0774fffaf5eee1bd90",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/sharedassets0.assets": "05f2840b92a9407141c0533ac0f86723494a1db32bebfd89247773ddccb3cc01",
+    "Builds/HeroIdentity/ArcaneBrigade_Data/resources.assets": "5e11407ad84bea9368f6c6fc506d850657ae2e7b60b1fd2d8250c32a5d60e2b6"
+  },
+  "sourceSha256": {
+    "Assets/ArcaneBrigade/Runtime/Presentation/DreamLevitation.cs": "906a94a205fb42377f6187ae1b55cae432e9bee61d77d1356845bad2c961fe54",
+    "Assets/ArcaneBrigade/Runtime/Presentation/FloatingStoryProp.cs": "0b79a010c59df62952c4155245ea479bda8bd1c6420b093a3daa2a68bed78d50",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightLanternField.cs": "9120ce683ee4243c2a5c8d54c111500447b1e44001c4ab3499dce0c54beb5000",
+    "Assets/ArcaneBrigade/Runtime/Presentation/SharedLightField.cs": "675c8adf5a6fa0841f791b9bcc22da6ba9fd4a47a91fb5967d76744be324ee9c",
+    "Assets/ArcaneBrigade/Runtime/Presentation/WaitingRealmStage.cs": "ef0420c44870b7ddfbc6278bdd2c68d9958bd5eb22784508ba18f6f62e3e0935",
+    "Assets/ArcaneBrigade/Runtime/Presentation/WaitingRoomController.cs": "42c02409749a0abafb5a4181476661677393a5eced2cbe7308b0ded1c8adb54c",
+    "Assets/ArcaneBrigade/Runtime/Presentation/WaitingShopEncounter.cs": "30b839d81a613d257b41bf1f51e21fd193fcfa170a351fdfdac49edd73474ed4",
+    "Assets/ArcaneBrigade/Runtime/Presentation/LivingScenery.cs": "4a63e19256c193b14accd0d661bcd8f0388b79c6a7d488dda33c9f5a4ac0ab35",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightmareGrandStage.cs": "082d520bd02f62a04bf4dda60d3dce7f4a9e2aa2605807ded8ec1e6f998e8bea",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightmareFarewellRoom.cs": "f2b11c1e8030d856b0c8d003113e44cb4bf4d8ec80ebfd51efe948565d9a270b",
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightmarePresentation.cs": "7a8a3ba986c554d5573c0067b84026530590ca4821690f508d40615de9aa5195",
+    "Assets/ArcaneBrigade/Runtime/Presentation/ShopDisplayActor.cs": "f1531019a0b1def31b9af7658bc6ecc7462e036953942d9bb203a254a2687f70",
+    "Assets/ArcaneBrigade/Runtime/Presentation/OctoberScenery.cs": "d5abb29799053be684d60ba38c9bebdb4737842155fda679c7765708c6cb611c",
+    "Assets/ArcaneBrigade/Runtime/Presentation/CoinVisual.cs": "0572e6c4c1e481551eb976d6c8ac5f4ac805ef46c9fb761de8349ebff8ab82e3",
+    "Assets/ArcaneBrigade/Runtime/Presentation/OutsideStageChoice.cs": "079e9edcfb228f668ecff0ccba81352af90099f19a30503f1f31aeaf5086c18a",
+    "Assets/ArcaneBrigade/Runtime/Presentation/SuspendedScenery.cs": "91da771f36526b0592229a09ccc60a06443a4f90c841870993851695e776c22e",
+    "Assets/ArcaneBrigade/Runtime/Core/ShopPresentationCapture.cs": "cc484482c01df2743cf2d7b64e4bdae395f14751d92a9f2d0a32519d1d0c03d6",
+    "Assets/ArcaneBrigade/Runtime/Core/MienChoCapture.cs": "9b610c0e350ae824bb9d8e650e082cf157cf4969a76248ae67185b865b465fda",
+    "Tools/Story/Capture_Levitation_02.ps1": "df8838dccb4f9fade4389ef95be9aea06fb02fc1b4108913249f5c804b4cda4a",
+    "Tools/Story/verify_levitation_02.py": "a1abc71d6c80d95270eff1843329ad504d58bfe9863c7718e9b024d32a9421fb"
+  },
+  "limitations": [
+    "Independent runtime props float. Objects painted into room backdrops cannot move independently.",
+    "No under-object smoke or wind ribbons are instantiated. Environmental nightmare fog is a separate system.",
+    "Native timing includes capture work and frame cap; no full-campaign subjective art approval is claimed."
+  ],
+  "artAssets": [
+    {
+      "name": "Intact",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Intact.png",
+      "source": "ArtSource\\exec-a0848699-9218-435e-bb8a-37050918bfd1.png",
+      "prompt": "Use case: style-transfer. Production isolated transparent 2D game prop. Both reference images are STYLE references only, not edit targets. Draw ONE full antique street lantern with a short curving ornamental post, broad stable foot, warm brass scrollwork and deep navy iron, oversized amber glass chamber, crooked pointed roof. MATCH the existing game: confident dark ink contours, hand-painted decorative highlights, rounded slightly exaggerated proportions, saturated warm gold and teal accents, simplified readable shapes. Elevated front three-quarter game sprite view, entire object in frame, centered with generous transparent margin, no ground, no floor shadow, no fog or wind ribbons, no circular aura, no labels, no people. Clearly drawn illustration, never 3D render, PBR metal, photo, realistic perspective or plastic model. Portrait framing. Intact, honey-yellow glass with a visible small flame, welcoming yet eerie.",
+      "transparent": true,
+      "sha256": "72c211cadbcb09fc4c22750b18225c4a52c1b9c2192f6e44cd97c0af1ec20504",
+      "size": [
+        1024,
+        1536
+      ],
+      "transparentPixels": 1031011
+    },
+    {
+      "name": "CrackedFinal",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Cracked.png",
+      "source": "ArtSource\\exec-d3ceffa4-3f10-459d-8e61-f868f6720218.png",
+      "prompt": "Use case: precise-object-edit. The supplied image is the edit target: ONE approved drawn antique lantern sprite. Preserve the exact single-lantern design, silhouette, proportions, crooked post, foot position, jeweled gold-and-navy ornament, viewpoint and inked hand-painted style. Change ONLY the glass to show branching cracks and a small chipped roof corner; dim the existing flame modestly. Return exactly ONE lantern, NOT a comparison, not before/after, not a sprite sheet. Center the complete same lantern on genuinely transparent background. Remove any ambient colored haze outside the outline; no shadow, glow aura, smoke, wind, labels or additional objects.",
+      "transparent": true,
+      "sha256": "ea81efaae8184a68a0ac229af7ac6d072371b57e2e964d993dd0edcffae13b37",
+      "size": [
+        1024,
+        1536
+      ],
+      "transparentPixels": 1029364
+    },
+    {
+      "name": "BrokenFinal",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Lanterns/Broken.png",
+      "source": "ArtSource\\exec-938e7cde-2412-4fc3-b057-54e5eb9ef993.png",
+      "prompt": "Use case: precise-object-edit. Edit target is the approved ONE illustrated antique street lantern. Keep the EXACT same crooked post, broad base, ornamental gold/navy silhouette, turquoise jewels, proportions, placement and drawn ink-and-brush style. Make ONLY a BROKEN variant: the glass chamber is shattered, dark and empty, candle extinguished black, a few jagged glass pieces remain held by its frame, one roof corner bent. No detached debris outside silhouette. Remove ALL flame, orange illumination and exterior glow. Return exactly ONE complete same lantern on a genuinely TRANSPARENT background. No comparison, no extra lantern, no sprite sheet, no wind/smoke, no floor shadow, no labels. Do not change camera or foot position.",
+      "transparent": true,
+      "sha256": "c1231ae95b370188b5d59774a1c306944e6a136e6db8ceea51447366cc06f4ef",
+      "size": [
+        1024,
+        1536
+      ],
+      "transparentPixels": 1043639
+    },
+    {
+      "name": "EmptyChair",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/EmptyChair.png",
+      "source": "ArtSource\\exec-1fb24edd-532f-4682-a5bf-9c464e62bbdc.png",
+      "prompt": "Use case: style-transfer. Both supplied images are reference art from the actual game; match their DRAWN style only. Make a production isolated 2D game sprite with genuine transparent background: expressive dark ink contour, hand-painted warm gold highlights, saturated jewel colors, clear rounded forms and ornate storybook decoration. Elevated front three-quarter view. One coherent object/group, centered with transparent margin, no ground or cast shadow, NO under-object wind/smoke, no halo, no labels, no people, no photorealism, no 3D render/PBR/shiny plastic. An EMPTY antique wooden chair, high heart-shaped back, ruby red velvet seat, carved golden edges with imperfect asymmetric curls, short curved feet. The chair has been waiting a long time, a small worn patch in the cushion. Full object, no person, no table.",
+      "transparent": true,
+      "sha256": "220ebcf897408c5972759e74d6ac46d6f6e68892b8a3912afa8d32ec4fad60a1",
+      "size": [
+        1322,
+        1190
+      ],
+      "transparentPixels": 880168
+    },
+    {
+      "name": "ReservedTable",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/ReservedTable.png",
+      "source": "ArtSource\\exec-458e51ef-a3da-463a-9c43-139783229971.png",
+      "prompt": "Use case: style-transfer. Both supplied images are reference art from the actual game; match their DRAWN style only. Make a production isolated 2D game sprite with genuine transparent background: expressive dark ink contour, hand-painted warm gold highlights, saturated jewel colors, clear rounded forms and ornate storybook decoration. Elevated front three-quarter view. One coherent object/group, centered with transparent margin, no ground or cast shadow, NO under-object wind/smoke, no halo, no labels, no people, no photorealism, no 3D render/PBR/shiny plastic. One small eerie dining arrangement: ornate dark walnut oval table with a red velvet runner, exactly TWO ivory teacups and saucers, and THREE matching short-backed empty chairs positioned behind and to either side, so the tabletop and cup count stay readable. One spare empty place setting with no cup. No floor. Landscape framing; the entire three-chair dining group fits.",
+      "transparent": true,
+      "sha256": "db2d12c044bc37cadf1dbae44a5ec271af2af25a1164216d09661be583e6b6a1",
+      "size": [
+        1536,
+        1024
+      ],
+      "transparentPixels": 921121
+    },
+    {
+      "name": "BreathingPhone",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/BreathingPhone.png",
+      "source": "ArtSource\\exec-bcc8e6fd-4cca-4191-971b-bc58214a1249.png",
+      "prompt": "Use case: style-transfer. Both supplied images are reference art from the actual game; match their DRAWN style only. Make a production isolated 2D game sprite with genuine transparent background: expressive dark ink contour, hand-painted warm gold highlights, saturated jewel colors, clear rounded forms and ornate storybook decoration. Elevated front three-quarter view. One coherent object/group, centered with transparent margin, no ground or cast shadow, NO under-object wind/smoke, no halo, no labels, no people, no photorealism, no 3D render/PBR/shiny plastic. An old rotary telephone, deep teal-black body, curved brass cradle and ivory circular dial, elegantly curved earpiece. A severed loose cord curls sideways, NOT beneath the base. One small red enamel ornament. The phone feels alive through its subtly asymmetric design, but has no face or eyes. Entire telephone isolated.",
+      "transparent": true,
+      "sha256": "d69897dc155649ceb0ad51e3e37f34525cb522469ee72513fe9927ffcc42feb6",
+      "size": [
+        1254,
+        1254
+      ],
+      "transparentPixels": 836602
+    },
+    {
+      "name": "LateReflection",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Encounters/LateReflection.png",
+      "source": "ArtSource\\exec-3856562c-c2f3-40e2-9560-05906732a9b5.png",
+      "prompt": "Use case: style-transfer. Both supplied images are reference art from the actual game; match their DRAWN style only. Make a production isolated 2D game sprite with genuine transparent background: expressive dark ink contour, hand-painted warm gold highlights, saturated jewel colors, clear rounded forms and ornate storybook decoration. Elevated front three-quarter view. One coherent object/group, centered with transparent margin, no ground or cast shadow, NO under-object wind/smoke, no halo, no labels, no people, no photorealism, no 3D render/PBR/shiny plastic. An oval full-length standing mirror with carved golden scrollwork and dark crimson walnut support, large EMPTY blue-teal glass surface with just faint painted diagonal highlights. No reflected person or creature; Unity will insert a real companion later. The mirror glass must be broad, clean, dark and unobstructed so a reflection can be composited. Full standing frame and feet.",
+      "transparent": true,
+      "sha256": "7c2a03a1e46f1a771c5351855fc6cdf2a7caced41b9ebfbe89dbed3bced926d3",
+      "size": [
+        1024,
+        1536
+      ],
+      "transparentPixels": 758651
+    },
+    {
+      "name": "WaitingRoom",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/WaitingRoom.png",
+      "source": "ArtSource\\exec-e21dc339-26a0-4ebe-afff-c2cb2ab73175.png",
+      "prompt": "Use case: illustration-story / style-transfer. Both supplied images are the existing game's illustrated visual STYLE only. Create an original narrative panel in the matching hand-inked colorful storybook game style: bold dark contour lines, crimson velvet, ornamental gold, deep teal shadows, rounded slightly crooked shapes, painterly flat highlights. NO 3D rendering, photography, PBR metal, realistic architectural detail, text, UI, people or creature silhouettes. Wide LANDSCAPE 16:9 opaque illustration. Composition: an empty red-upholstered gilded wooden chair at the left third of a quiet interior; an ornate doorway on the right third, a small stack of opened and re-sewn letters between them; most of lower center uncluttered to overlay the actual hero and companions at runtime. A visually intimate waiting place. Early narrative panel: doorway closed, an amber lampshade softly lights the empty chair and letters, surrounding teal twilight, comforting at first glance with an uneasy empty seat.",
+      "transparent": false,
+      "sha256": "40a4b9e922ceb502db97c5225416e2a6675a8ee698fdcfa82dc83a9415f41190",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "name": "WithheldDawn",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/WithheldDawn.png",
+      "source": "ArtSource\\exec-718f6318-200a-43ed-b69f-0363d7f51059.png",
+      "prompt": "Use case: illustration-story / style-transfer. Both supplied images are the existing game's illustrated visual STYLE only. Create an original narrative panel in the matching hand-inked colorful storybook game style: bold dark contour lines, crimson velvet, ornamental gold, deep teal shadows, rounded slightly crooked shapes, painterly flat highlights. NO 3D rendering, photography, PBR metal, realistic architectural detail, text, UI, people or creature silhouettes. Wide LANDSCAPE 16:9 opaque illustration. Composition: an empty red-upholstered gilded wooden chair at the left third of a quiet interior; an ornate doorway on the right third, a small stack of opened and re-sewn letters between them; most of lower center uncluttered to overlay the actual hero and companions at runtime. A visually intimate waiting place. Revelation panel: doorway is tightly shut and locked, a narrow dawn-colored slit of light shows at its lower edge, letters are visibly opened and tied back together, chair partly shadowed. Someone withheld a reply. Ominous midnight atmosphere; no literal villain.",
+      "transparent": false,
+      "sha256": "7c933fc332fda87ed2d02542cb0291965416bd201ed43be11b8f9727c03d9915",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "name": "OpenDawn",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/OpenDawn.png",
+      "source": "ArtSource\\exec-a89e8188-9b16-4f1a-9fd1-76ca284c7887.png",
+      "prompt": "Use case: illustration-story / style-transfer. Both supplied images are the existing game's illustrated visual STYLE only. Create an original narrative panel in the matching hand-inked colorful storybook game style: bold dark contour lines, crimson velvet, ornamental gold, deep teal shadows, rounded slightly crooked shapes, painterly flat highlights. NO 3D rendering, photography, PBR metal, realistic architectural detail, text, UI, people or creature silhouettes. Wide LANDSCAPE 16:9 opaque illustration. Composition: an empty red-upholstered gilded wooden chair at the left third of a quiet interior; an ornate doorway on the right third, a small stack of opened and re-sewn letters between them; most of lower center uncluttered to overlay the actual hero and companions at runtime. A visually intimate waiting place. Ending panel: the ornate doorway stands wide OPEN onto a real pale peach-gold dawn sky, long warm drawn light reaches the empty chair and opened letters. Calm welcome and freedom. No person waiting in the doorway, no sinister extra eyes, no fake-dream twist. Leave lower center clear for the living party overlay.",
+      "transparent": false,
+      "sha256": "4e75bf89708559c7dd412e203ca7a7c71ae9e18b9c6f6629619481b019231103",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "name": "Station",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/Station_Painted_v1.png",
+      "source": "ArtSource\\exec-2c602f10-c32b-4ae3-b8ca-49cf4fcb2e6b.png",
+      "prompt": "Use case: style-transfer. Production background for an illustrated 2D nightmare game. The supplied images are the actual game's style reference ONLY. Draw from scratch in that SAME inked hand-painted fairytale style: pronounced dark linework, rounded exaggerated carved silhouettes, ruby crimson fabric, antique gold borders, deep teal and navy shadows, controlled amber accents. Drawn graphic shapes and brush highlights, NOT 3D render, NOT photographic, NOT realistic ornate architecture. Elevated orthographic near top-down room view, LANDSCAPE 4:3, opaque. Interior rectangular floor; the center and entire lower two thirds must be clear walkable quiet floor with no obstacles. Furniture only along upper and side edges. No characters, UI, captions, frame or writing. Do not paint special evidence pickups; Unity supplies them. The Station Without Arrivals: forgotten station room with two narrow platforms against left and right walls, a few empty wooden seats at the edges, THREE thin recessed horizontal rail tracks crossing the floor (flat, traversable), carved gilded timetable board centered on far upper wall (decorative blank lines, no readable text), ruby curtains and brass lanterns along edges. Clear central paths. Eerie waiting, not a grand photoreal cathedral.",
+      "transparent": false,
+      "sha256": "6182761519ee7dfe9b883fc4ad2329b09bcc42bc051bacaced8a1fecef44c45a",
+      "size": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "name": "PerfectRoom",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/PerfectRoom_Painted_v1.png",
+      "source": "ArtSource\\exec-8d75079f-b580-457e-99a9-5314c80d1f36.png",
+      "prompt": "Use case: style-transfer. Production background for an illustrated 2D nightmare game. The supplied images are the actual game's style reference ONLY. Draw from scratch in that SAME inked hand-painted fairytale style: pronounced dark linework, rounded exaggerated carved silhouettes, ruby crimson fabric, antique gold borders, deep teal and navy shadows, controlled amber accents. Drawn graphic shapes and brush highlights, NOT 3D render, NOT photographic, NOT realistic ornate architecture. Elevated orthographic near top-down room view, LANDSCAPE 4:3, opaque. Interior rectangular floor; the center and entire lower two thirds must be clear walkable quiet floor with no obstacles. Furniture only along upper and side edges. No characters, UI, captions, frame or writing. Do not paint special evidence pickups; Unity supplies them. The Perfect Room For Only One: one single bed against far upper wall, one pillow, a tiny round table with exactly one cup in upper-right, an EMPTY area in upper-left where Unity places a movable chair, one barred warm amber window on far upper wall. Red bed linen, teal faded wallpaper with small gold motifs. Welcoming details become lonely; central and lower floor entirely free.",
+      "transparent": false,
+      "sha256": "0aa8bf2a13438bf0f5aa9ad92c73686f92a1c044b6920a7d4adbd955c68dc51e",
+      "size": [
+        1448,
+        1086
+      ]
+    },
+    {
+      "name": "FootstepHall",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/Journey/FootstepHall_Painted_v1.png",
+      "source": "ArtSource\\exec-fa8565f3-a51f-456e-ba58-cd70cf40a066.png",
+      "prompt": "Use case: style-transfer. Production background for an illustrated 2D nightmare game. The supplied images are the actual game's style reference ONLY. Draw from scratch in that SAME inked hand-painted fairytale style: pronounced dark linework, rounded exaggerated carved silhouettes, ruby crimson fabric, antique gold borders, deep teal and navy shadows, controlled amber accents. Drawn graphic shapes and brush highlights, NOT 3D render, NOT photographic, NOT realistic ornate architecture. Elevated orthographic near top-down room view, LANDSCAPE 4:3, opaque. Interior rectangular floor; the center and entire lower two thirds must be clear walkable quiet floor with no obstacles. Furniture only along upper and side edges. No characters, UI, captions, frame or writing. Do not paint special evidence pickups; Unity supplies them. The Hall Where Footsteps Continue: six closed dark doors, three on each side wall; slightly crooked gilded door frames, small scratched height marks on far upper-left wall, empty wooden chair at far upper wall. Eight very small faded footprints along the central passage, flush with floor. Pale teal grazing light and a few warm distant lanterns around the perimeter, endless darkness through narrow door cracks. No monsters or red eyes.",
+      "transparent": false,
+      "sha256": "5953e2540135a1cf034d520e385c7a891def4591c28a2751e3fd8a9a76e41ef6",
+      "size": [
+        1448,
+        1086
+      ]
+    }
+  ],
+  "promptManifest": "Docs/Mien_Cho_Painted_Art_Prompts.json"
+}

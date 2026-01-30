@@ -129,6 +129,7 @@ namespace ArcaneBrigade
         public bool SwarmMinion;
         public EnemyVariantState Variant;
         public float OctoberLungeAt, OctoberLungeUntil;
+        public float EncoreWindupUntil, EncoreRecoveryUntil;
         public Vector2 OctoberLungeFrom, OctoberLungeTo;
         public int MountId, RiderId, OctoberAttacks, OctoberKills;
         public float OctoberNext;
@@ -189,6 +190,7 @@ namespace ArcaneBrigade
     {
         private readonly CheckpointCatalog catalog;
         private readonly List<UnitState> units = new List<UnitState>();
+        private readonly Dictionary<int, UnitState> unitLookup = new Dictionary<int, UnitState>();
         private readonly List<ProjectileState> projectiles = new List<ProjectileState>();
         private readonly List<PickupState> pickups = new List<PickupState>();
         private readonly List<CombatEvent> events = new List<CombatEvent>();
@@ -241,6 +243,7 @@ namespace ArcaneBrigade
         {
             ResetHeroMechanic();
             units.Clear();
+            unitLookup.Clear();
             projectiles.Clear();
             pickups.Clear();
             events.Clear();
@@ -312,7 +315,8 @@ namespace ArcaneBrigade
         {
             ClearHeroIdentity();
             ClearEnemyVariants();
-            units.RemoveAll(unit => unit.Faction == Faction.Enemy);
+            for (int index = units.Count - 1; index >= 0; index--)
+                if (units[index].Faction == Faction.Enemy) { unitLookup.Remove(units[index].Id); units.RemoveAt(index); }
             projectiles.Clear();
             pickups.Clear();
             events.Clear();
@@ -443,7 +447,7 @@ namespace ArcaneBrigade
                 if (Phase == RunPhase.Combat && SecretVictoryReady()) Phase = RunPhase.Victory;
             }
             for (int index = units.Count - 1; index >= 0; index--)
-                if (!units[index].Alive && units[index].Faction != Faction.Champion) units.RemoveAt(index);
+                if (!units[index].Alive && units[index].Faction != Faction.Champion) { unitLookup.Remove(units[index].Id); units.RemoveAt(index); }
         }
 
         private UnitState Spawn(UnitDefinition definition, Faction faction, Vector2 position)
@@ -460,6 +464,7 @@ namespace ArcaneBrigade
             };
             if (faction == Faction.Enemy && !definition.IsBoss) unit.Variant = NewEnemyVariant(unit);
             units.Add(unit);
+            unitLookup.Add(unit.Id, unit);
             maximumRadius = Mathf.Max(maximumRadius, definition.Radius);
             maximumSpeed = Mathf.Max(maximumSpeed, definition.Speed);
             if (faction == Faction.Companion) CompanionCount++;
@@ -721,7 +726,7 @@ namespace ArcaneBrigade
                 unit.PendingAttack = false;
                 float damage = IdentityAttackDamage(unit, OctoberAttackDamage(unit, RelicAttackDamage(unit, weapon.Damage)));
                 CombatCause attackCause = NewCause(unit.Id);
-                UnitState locked = units.Find(candidate => candidate.Id == unit.AttackTargetId);
+                UnitState locked = UnitWithId(unit.AttackTargetId);
                 bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0));
                 if (critical) damage *= 1.5f;
                 damage = ReleaseBuildMorph(unit, damage, attackCause);
@@ -733,7 +738,7 @@ namespace ArcaneBrigade
                 }
                 else if (weapon.Signature == SignatureWeapon.Stamp && unit.Faction != Faction.Enemy)
                 {
-                    UnitState target = units.Find(candidate => candidate.Id == unit.AttackTargetId);
+                    UnitState target = UnitWithId(unit.AttackTargetId);
                     if (target != null && CanHit(unit.Faction, target) && (target.Position - unit.Position).magnitude <= weapon.Range + target.Definition.Radius)
                     {
                         ApplyDamage(target, damage, unit.Faction, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, cause: attackCause);
@@ -857,7 +862,8 @@ namespace ArcaneBrigade
                 ProjectileState projectile = projectiles[index];
                 if (projectile.IdentityTargetId > 0)
                 {
-                    UnitState address = units.Find(u => u.Id == projectile.IdentityTargetId && CanHit(Faction.Champion, u));
+                    UnitState address = UnitWithId(projectile.IdentityTargetId);
+                    if (address != null && !CanHit(Faction.Champion, address)) address = null;
                     if (address != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (address.Position - projectile.Position).normalized * 5.5f, Mathf.Clamp01(deltaTime * 9));
                 }
                 if (projectile.Faction == Faction.Enemy) HostileBallistics.Advance(projectile, deltaTime);
@@ -865,6 +871,11 @@ namespace ArcaneBrigade
                 if (expandedMotion != 0) { if (expandedMotion < 0) projectiles.RemoveAt(index); continue; }
                 if (!AdvanceCombatProjectile(projectile, deltaTime)) projectiles.RemoveAt(index);
             }
+        }
+
+        private UnitState UnitWithId(int identity)
+        {
+            return unitLookup.TryGetValue(identity, out UnitState unit) ? unit : null;
         }
 
         private static float SegmentCircle(Vector2 start, Vector2 end, Vector2 centre, float radius)

@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             },
             new[] {
                 "The shelves remember your footsteps now.","I wrote your name. The receipt wrote the rest.",
-                "It remembers every owner. You may teach it kindness.","The eye in the glass is not a price tag.",
+                "They remember every crossing. Ask where they want to go.","The eye in the glass is not a price tag.",
                 "Sold. It is a companion to your story, not its ending.","The drawer sighed. I think it wanted you to choose that.",
                 "Blood is not a signature. Remember that.","Only the listed price. No hidden promises.",
                 "No. An empty wallet does not make you merchandise.","Keep your breath. I do not take that currency.",
@@ -83,13 +83,14 @@ namespace ArcaneBrigade
                 string memory = Memory(state,Math.Abs(cursor / 4));
                 if (!string.IsNullOrEmpty(memory)) return memory;
             }
+            if (cursor % 3 == 0 && moment == MerchantMoment.Inspect) return MienChoStory.Chapters[Mathf.Clamp(MienChoStory.Available(state) - 1, 0, MienChoStory.Chapters.Length - 1)].Evidence;
             if (special) return Dream[depth][(int)moment];
             return Layers[depth][(int)moment * 2 + Math.Abs(cursor % 2)];
         }
         private static readonly string[][] Evidence =
         {
             new[] { "One chair has been reserved. Nobody remembers making the reservation.", "A blank receipt rests beneath the till. There is no price on it.", "The shopkeeper checks the latch, then leaves your side of it open.", "The little cup is warm. Not every comfort is a trick." },
-            new[] { "The chair has one more leg than its shadow.", "The toys face the wall. One small friend still faces you.", "Someone has polished the empty place where a name should be.", "The shopkeeper counts the guests. Then counts the chairs again." },
+            new[] { "The chair has one more leg than its shadow.", "The portraits face the wall. One small friend still faces you.", "Someone has polished the empty place where a name should be.", "The shopkeeper counts the guests. Then counts the chairs again." },
             new[] { "The grain of the wood follows something like a pulse.", "The light beyond the glass closes like an eyelid. It was not a door.", "A glove waits beside a receipt that has never been paid.", "Your friend repeats a familiar gesture. For a moment, the room settles." },
             new[] { "The shelves bend inward. The shop is remembering a body.", "The keeper's hand belongs to this dreaming place. The visitor only wants to own it.", "A name has been rubbed away until the paper is almost transparent.", "The shopkeeper hides the blank receipt before the chair can see it." },
             new[] { "Everything has stopped pretending not to wait.", "He remembers every price. There is one name he cannot say.", "The shopkeeper's smile holds a little too long. The lamp stays warm.", "The door is not asking for another purchase. It is waiting for goodbye." }
@@ -137,13 +138,14 @@ namespace ArcaneBrigade
         {
             return page switch
             {
-                0 => "THE RECEIPT ENDS HERE\nThe contract breaks. Beneath the mask, a man holds a receipt with no name.\nYour friends were never his to buy. Your freedom is not another debt.",
-                1 => "THE SHOPKEEPER\nI thought keeping the door open would keep you from forgetting me.\nBut goodbye is not the same as being forgotten.\n" + (state.Secrets?.LetterSent == true ? "Your letter showed me there was still an outside." : "You came back without being asked. That was never a sale."),
-                2 => "MORNING, TOGETHER\n" + (state.Secrets?.RescuedToy == true ? "The friend from the drawer crosses first. No one is left inside it." : state.Roster.Count > 0 ? "Your little brigade pushes the door open together." : "You push the door open. The warmth you carried follows you.") + "\n" + (state.OutsideStage == OutsideStageStatus.Completed ? "The great hand holds the frame steady. This time it lets go." : "The great hand opens. It finally knows how to let go."),
-                3 => "SOME THINGS REMAIN\nA lantern. A cup still warm. A folded wing that moves before the breeze.\nYou are awake. Your friends were not erased." + (state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? "\nA small key rests beside them. A promise, not a chain." : "\nThe shop closes. You do not have to return to prove you remember."),
-                _ => "ONE LIGHT LEFT ON\nYou are outside. Morning is real.\nSomewhere beneath the empty counter, three quiet knocks answer the lamp.\nThe key has no price. The name on the receipt is still missing.\nYou may return one day. Not because you owe him."
+                0 => "THE RECEIPT ENDS HERE\nThe Customer's contract breaks. His own name is still missing, but he releases the names he took.\nFrom the empty chair, the One Who Stays asks for the old promise. You do not renew it. The door opens anyway.",
+                1 => "THE SHOPKEEPER\nI delayed the directions because I feared being forgotten. I called it shelter.\nThe key is yours. You do not have to forgive me to use it.\nThe letter, the lock and the visitor's register stay in your hands. Someone did come.\n" + (state.Secrets.LetterSent ? "The letter you sent has an answer waiting outside." : "The unsent letter is yours to deliver, or keep. Nobody chooses for you."),
+                2 => "MORNING, TOGETHER\n" + WaitingCompanionQuests.Futures(state) + (state.Roster.Count > 0 ? "Your companions cross as living creatures, each carrying a life beyond this crossing." : "You cross carrying your own light. You did not need to earn company to deserve freedom.") + "\n" + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting beyond the rooms you visited.\n") + (state.OutsideStage == OutsideStageStatus.Completed ? "The Keeper holds the frame and opens its hand." : "Beyond the shop, the Keeper's unanswered door remains a crossing for another day.") + " The One Who Stays remains by the chair. It cannot choose for you.\nMorning is real. Nobody is erased.",
+                3 => "A PLACE WITHOUT A PRICE\nYou ask: 'Does anyone still need me to do something?'\nA chair is pulled closer. 'Sit here a while.'\nThe new tune misses a beat. Someone waits, and you start together.\n" + (state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? "Everyone is outside before you leave a lamp. An invitation, never a debt." : "The shop closes. You do not have to return to prove you remember."),
+                _ => "ONE LIGHT LEFT ON\nThe lamp marks an open route for other travellers. The key has no price.\nBeyond the counter, three knocks belong to someone with a story of their own.\nYou are awake. You may choose to answer another day. This morning is not taken back."
             };
         }
+
         public static int AuthoredLineCount
         {
             get

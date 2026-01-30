@@ -45,13 +45,15 @@ MonoBehaviour:
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nON RECRUIT / ALTAR CREATION:
     gain 100 gold immediately once. No recurring payment just for keeping this ally.\r\n\nSUPPORT
     WHILE OWNED\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
-    talents count bodies and absorbed memories; their stated percentages are not
-    multiplied by star level unless explicitly stated. Listed support modifiers scale
-    separately at 1/2/4.\r\nSource: dream shop or special reward, subject to hero
-    theme and unlock wave.\r\nBonds: orchard, resolve. Immortal. Weapon rolls on
-    recruitment; three equal-species/equal-star bodies merge unless the talent forbids
-    it."
+    sources.\n\r\n\nLIFE IN THE WAITING REALM\nA drafter whose city builds from folded
+    plans. Their first shelter trapped residents when the plan refused revisions.
+    They now test every design with someone allowed to say it does not fit.\r\nPERSONAL
+    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
+    and absorbed memories; their stated percentages are not multiplied by star level
+    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:
+    dream shop or special reward, subject to hero theme and unlock wave.\r\nBonds:
+    orchard, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"The Creator" Roger'
   ExclusiveHero: 

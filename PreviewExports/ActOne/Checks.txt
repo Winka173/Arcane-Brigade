@@ -1,0 +1,191 @@
+PASS Deterministic lamp damage progression wave=1
+PASS Shop retains two practical lamps wave=1
+PASS Deterministic lamp damage progression wave=2
+PASS Shop retains two practical lamps wave=2
+PASS Deterministic lamp damage progression wave=3
+PASS Shop retains two practical lamps wave=3
+PASS Deterministic lamp damage progression wave=4
+PASS Shop retains two practical lamps wave=4
+PASS Deterministic lamp damage progression wave=5
+PASS Shop retains two practical lamps wave=5
+PASS Deterministic lamp damage progression wave=6
+PASS Shop retains two practical lamps wave=6
+PASS Deterministic lamp damage progression wave=7
+PASS Shop retains two practical lamps wave=7
+PASS Deterministic lamp damage progression wave=8
+PASS Shop retains two practical lamps wave=8
+PASS Deterministic lamp damage progression wave=9
+PASS Shop retains two practical lamps wave=9
+PASS Deterministic lamp damage progression wave=10
+PASS Shop retains two practical lamps wave=10
+PASS Deterministic lamp damage progression wave=11
+PASS Shop retains two practical lamps wave=11
+PASS Deterministic lamp damage progression wave=12
+PASS Shop retains two practical lamps wave=12
+PASS Deterministic lamp damage progression wave=13
+PASS Shop retains two practical lamps wave=13
+PASS Deterministic lamp damage progression wave=14
+PASS Shop retains two practical lamps wave=14
+PASS Deterministic lamp damage progression wave=15
+PASS Shop retains two practical lamps wave=15
+PASS Deterministic lamp damage progression wave=16
+PASS Shop retains two practical lamps wave=16
+PASS Deterministic lamp damage progression wave=17
+PASS Shop retains two practical lamps wave=17
+PASS Deterministic lamp damage progression wave=18
+PASS Shop retains two practical lamps wave=18
+PASS Deterministic lamp damage progression wave=19
+PASS Shop retains two practical lamps wave=19
+PASS Deterministic lamp damage progression wave=20
+PASS Shop retains two practical lamps wave=20
+PASS Deterministic lamp damage progression wave=21
+PASS Shop retains two practical lamps wave=21
+PASS Deterministic lamp damage progression wave=22
+PASS Shop retains two practical lamps wave=22
+PASS Deterministic lamp damage progression wave=23
+PASS Shop retains two practical lamps wave=23
+PASS Deterministic lamp damage progression wave=24
+PASS Shop retains two practical lamps wave=24
+PASS Deterministic lamp damage progression wave=25
+PASS Shop retains two practical lamps wave=25
+PASS Deterministic lamp damage progression wave=26
+PASS Shop retains two practical lamps wave=26
+PASS Deterministic lamp damage progression wave=27
+PASS Shop retains two practical lamps wave=27
+PASS Deterministic lamp damage progression wave=28
+PASS Shop retains two practical lamps wave=28
+PASS Deterministic lamp damage progression wave=29
+PASS Shop retains two practical lamps wave=29
+PASS Deterministic lamp damage progression wave=30
+PASS Shop retains two practical lamps wave=30
+PASS Deterministic lamp damage progression wave=31
+PASS Shop retains two practical lamps wave=31
+PASS Deterministic lamp damage progression wave=32
+PASS Shop retains two practical lamps wave=32
+PASS Deterministic lamp damage progression wave=33
+PASS Shop retains two practical lamps wave=33
+PASS Deterministic lamp damage progression wave=34
+PASS Shop retains two practical lamps wave=34
+PASS Deterministic lamp damage progression wave=35
+PASS Shop retains two practical lamps wave=35
+PASS Deterministic lamp damage progression wave=36
+PASS Shop retains two practical lamps wave=36
+PASS Deterministic lamp damage progression wave=37
+PASS Shop retains two practical lamps wave=37
+PASS Deterministic lamp damage progression wave=38
+PASS Shop retains two practical lamps wave=38
+PASS Deterministic lamp damage progression wave=39
+PASS Shop retains two practical lamps wave=39
+PASS Deterministic lamp damage progression wave=40
+PASS Shop retains two practical lamps wave=40
+PASS Deterministic lamp damage progression wave=41
+PASS Shop retains two practical lamps wave=41
+PASS Deterministic lamp damage progression wave=42
+PASS Shop retains two practical lamps wave=42
+PASS Deterministic lamp damage progression wave=43
+PASS Shop retains two practical lamps wave=43
+PASS Deterministic lamp damage progression wave=44
+PASS Shop retains two practical lamps wave=44
+PASS Deterministic lamp damage progression wave=45
+PASS Shop retains two practical lamps wave=45
+PASS Deterministic lamp damage progression wave=46
+PASS Shop retains two practical lamps wave=46
+PASS Deterministic lamp damage progression wave=47
+PASS Shop retains two practical lamps wave=47
+PASS Deterministic lamp damage progression wave=48
+PASS Shop retains two practical lamps wave=48
+PASS Deterministic lamp damage progression wave=49
+PASS Shop retains two practical lamps wave=49
+PASS Deterministic lamp damage progression wave=50
+PASS Shop retains two practical lamps wave=50
+PASS Deterministic lamp damage progression wave=51
+PASS Shop retains two practical lamps wave=51
+PASS Deterministic lamp damage progression wave=52
+PASS Shop retains two practical lamps wave=52
+PASS Deterministic lamp damage progression wave=53
+PASS Shop retains two practical lamps wave=53
+PASS Deterministic lamp damage progression wave=54
+PASS Shop retains two practical lamps wave=54
+PASS Deterministic lamp damage progression wave=55
+PASS Shop retains two practical lamps wave=55
+PASS Deterministic lamp damage progression wave=56
+PASS Shop retains two practical lamps wave=56
+PASS Deterministic lamp damage progression wave=57
+PASS Shop retains two practical lamps wave=57
+PASS Deterministic lamp damage progression wave=58
+PASS Shop retains two practical lamps wave=58
+PASS Deterministic lamp damage progression wave=59
+PASS Shop retains two practical lamps wave=59
+PASS Deterministic lamp damage progression wave=60
+PASS Shop retains two practical lamps wave=60
+PASS Retired Blender lamp prefab excluded from player Intact
+PASS Drawn production lamp sprite Intact
+PASS Retired Blender lamp prefab excluded from player Cracked
+PASS Drawn production lamp sprite Cracked
+PASS Retired Blender lamp prefab excluded from player Broken
+PASS Drawn production lamp sprite Broken
+PASS Player included material LanternField
+PASS Player included material NightFogVolume
+PASS Player included material NightFogDisplay
+PASS Player included material JourneyRoomLight
+PASS Real optional companion choice 0 / 0
+PASS Choice reaches authored consequence 0 / 0
+PASS Real optional companion choice 0 / 1
+PASS Choice reaches authored consequence 0 / 1
+PASS Real optional companion choice 0 / 2
+PASS Choice reaches authored consequence 0 / 2
+PASS Real optional companion choice 1 / 0
+PASS Choice reaches authored consequence 1 / 0
+PASS Real optional companion choice 1 / 1
+PASS Choice reaches authored consequence 1 / 1
+PASS Real optional companion choice 1 / 2
+PASS Choice reaches authored consequence 1 / 2
+PASS Real optional companion choice 2 / 0
+PASS Choice reaches authored consequence 2 / 0
+PASS Real optional companion choice 2 / 1
+PASS Choice reaches authored consequence 2 / 1
+PASS Real optional companion choice 2 / 2
+PASS Choice reaches authored consequence 2 / 2
+PASS Real optional companion choice 3 / 0
+PASS Choice reaches authored consequence 3 / 0
+PASS Real optional companion choice 3 / 1
+PASS Choice reaches authored consequence 3 / 1
+PASS Real optional companion choice 3 / 2
+PASS Choice reaches authored consequence 3 / 2
+PASS Real optional companion choice 4 / 0
+PASS Choice reaches authored consequence 4 / 0
+PASS Real optional companion choice 4 / 1
+PASS Choice reaches authored consequence 4 / 1
+PASS Real optional companion choice 4 / 2
+PASS Choice reaches authored consequence 4 / 2
+PASS Real optional companion choice 5 / 0
+PASS Choice reaches authored consequence 5 / 0
+PASS Real optional companion choice 5 / 1
+PASS Choice reaches authored consequence 5 / 1
+PASS Real optional companion choice 5 / 2
+PASS Choice reaches authored consequence 5 / 2
+PASS Relationships never consume currency, relics, bodies or quota
+PASS Completed choice cannot be farmed or rewritten
+PASS All six routes survive save validation
+PASS Room response saved 1 / 0
+PASS Room choice cannot overwrite 1 / 0
+PASS Room response saved 1 / 1
+PASS Room choice cannot overwrite 1 / 1
+PASS Room response saved 1 / 2
+PASS Room choice cannot overwrite 1 / 2
+PASS Room response saved 2 / 0
+PASS Room choice cannot overwrite 2 / 0
+PASS Room response saved 2 / 1
+PASS Room choice cannot overwrite 2 / 1
+PASS Room response saved 2 / 2
+PASS Room choice cannot overwrite 2 / 2
+PASS Room response saved 3 / 0
+PASS Room choice cannot overwrite 3 / 0
+PASS Room response saved 3 / 1
+PASS Room choice cannot overwrite 3 / 1
+PASS Room response saved 3 / 2
+PASS Room choice cannot overwrite 3 / 2
+PASS All nine physical room records survive serialization
+PASS Corrupt branch choice rejected
+PASS Legacy run without new journey fields remains loadable
+PASS Scope remains Act I only / twenty waves

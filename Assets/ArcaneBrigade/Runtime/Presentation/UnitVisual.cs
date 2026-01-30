@@ -36,6 +36,7 @@ namespace ArcaneBrigade
         private float nextHold;
         private float celebrateAt = -100;
         private Material paintedMaterial;
+        private NightmarePresence nightmarePresence;
         private SpriteRenderer championBeacon;
         private float gaitBlend;
         public float GaitWeight => gaitBlend;
@@ -285,6 +286,14 @@ namespace ArcaneBrigade
         public void Display(float simulationTime, float interpolation)
         {
             if (state == null) return;
+            bool quietCrowd = state.Faction == Faction.Enemy && !state.Definition.IsBoss && AnimationDetailBudget.Level >= 2 && state.Alive && state.BodyLift == 0 && state.EntranceUntil <= simulationTime && !state.PendingAttack && state.TelegraphUntil <= simulationTime && state.ContactImpactAt <= 0 && simulationTime - state.LastHit > .2f && simulationTime - state.AttackStarted > state.Definition.Weapon.Windup + state.Definition.Weapon.Recovery && (state.Variant == null || !state.Variant.Busy(simulationTime));
+            if (quietCrowd && (Time.frameCount + state.Id) % 2 != 0 && lastDisplayTime > 0 && simulationTime >= lastDisplayTime && simulationTime - lastDisplayTime < .075f && simulationTime >= holdUntil)
+            {
+                Vector3 before = transform.position;
+                transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+                if (grounded != null) grounded.TranslateGround(transform.position - before);
+                return;
+            }
             float motionDelta = Mathf.Clamp(simulationTime - lastDisplayTime, 0, 0.05f);
             lastDisplayTime = simulationTime;
             if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
@@ -430,6 +439,8 @@ namespace ArcaneBrigade
             float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
             flashProperties.SetFloat("_Flash", state.Faction != Faction.Enemy || ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : flash);
             SpriteLighting.Apply(body, flashProperties, state.Faction == Faction.Enemy);
+            float nightVisibility = SharedLightField.Active == null ? 1 : SharedLightField.Active.Visibility(state, simulationTime);
+            flashProperties.SetFloat("_NightVisibility", nightVisibility);
             flashProperties.SetVector("_LivingMotion", EnsembleMotion.Surface(state, simulationTime, ReducedMotion));
             if (state.Faction == Faction.Champion)
             {
@@ -440,30 +451,36 @@ namespace ArcaneBrigade
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
             if (puppet != null)
             {
-                if (actingFrame != null || expandedFrame != null || reactionFrame != null && entrance <= 0) { puppet.Hide(); body.enabled = true; }
+                if (actingFrame != null || expandedFrame != null || reactionFrame != null && entrance <= 0 || state.Faction == Faction.Enemy && !state.Definition.IsBoss && AnimationDetailBudget.Level >= 2) { puppet.Hide(); body.enabled = true; }
                 else puppet.Display(body, state, simulationTime, ReducedMotion);
             }
-            flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true);
-            flashProperties.SetVector("_WeaponFlex", AnimationPerformance.WeaponFlex(definition, age, poseWindup, ReducedMotion));
-            flashProperties.SetVector("_MechanicMotion", EnsembleMotion.WeaponSurface(definition, age, poseWindup, ReducedMotion));
-            weapon.SetPropertyBlock(flashProperties);
-            if (weaponMechanism == null && WeaponMechanism.Supports(definition)) weaponMechanism = weapon.gameObject.AddComponent<WeaponMechanism>();
-            if (paintedWeaponIdentity != definition.Id)
+            if (grip.gameObject.activeSelf)
             {
-                paintedWeaponIdentity = definition.Id;
-                paintedWeaponAvailable = EnsembleArtwork.Current?.Weapon(definition.Id) != null;
-            }
-            if (paintedAction == null && paintedWeaponAvailable) paintedAction = weapon.gameObject.AddComponent<WeaponPaintedAction>();
-            if (paintedAction != null) paintedAction.Display(weapon, definition, age, poseWindup, ReducedMotion);
-            if (weaponMechanism != null)
-            {
-                if (paintedAction != null && paintedAction.Visible) weaponMechanism.Hide();
-                else weaponMechanism.Display(weapon, definition, age, poseWindup, ReducedMotion);
+                flashProperties.Clear(); SpriteLighting.Apply(weapon, flashProperties, false, true);
+                flashProperties.SetFloat("_NightVisibility", nightVisibility);
+                flashProperties.SetVector("_WeaponFlex", AnimationPerformance.WeaponFlex(definition, age, poseWindup, ReducedMotion));
+                flashProperties.SetVector("_MechanicMotion", EnsembleMotion.WeaponSurface(definition, age, poseWindup, ReducedMotion));
+                weapon.SetPropertyBlock(flashProperties);
+                if (weaponMechanism == null && WeaponMechanism.Supports(definition)) weaponMechanism = weapon.gameObject.AddComponent<WeaponMechanism>();
+                if (paintedWeaponIdentity != definition.Id)
+                {
+                    paintedWeaponIdentity = definition.Id;
+                    paintedWeaponAvailable = EnsembleArtwork.Current?.Weapon(definition.Id) != null;
+                }
+                if (paintedAction == null && paintedWeaponAvailable) paintedAction = weapon.gameObject.AddComponent<WeaponPaintedAction>();
+                if (paintedAction != null) paintedAction.Display(weapon, definition, age, poseWindup, ReducedMotion);
+                if (weaponMechanism != null)
+                {
+                    if (paintedAction != null && paintedAction.Visible) weaponMechanism.Hide();
+                    else weaponMechanism.Display(weapon, definition, age, poseWindup, ReducedMotion);
+                }
             }
             DisplayWeakspot(simulationTime, order);
             if (anatomyVisual != null) anatomyVisual.Display(state, simulationTime, order, ReducedMotion);
             if (variantVisual == null && state.Faction == Faction.Enemy && !state.Definition.IsBoss) variantVisual = gameObject.AddComponent<EnemyVariantVisual>();
             if (variantVisual != null) variantVisual.Display(state, body, simulationTime, ReducedMotion);
+            if (nightmarePresence == null) nightmarePresence = gameObject.AddComponent<NightmarePresence>();
+            nightmarePresence.Display(state, body, simulationTime, nightVisibility);
             if (state.Faction == Faction.Champion && championBeacon == null)
             {
                 championBeacon = CreateSprite("ChampionBeacon", transform); championBeacon.sprite = K8Motion.TierStar();
@@ -503,6 +520,7 @@ namespace ArcaneBrigade
                 stampPips[index].transform.localPosition = new Vector3((index - 1) * 0.16f, height * 0.65f, 0);
             }
             if (attacking) { angleOffset = pose.Angle; recoil = pose.Recoil; }
+            if (!grip.gameObject.activeSelf) return;
             if (bowString != null && definition.Motion == WeaponMotion.Bow)
             {
                 float pull = !ReducedMotion && attacking ? age < poseWindup ? Mathf.Clamp01(age / Mathf.Max(0.001f, poseWindup)) : 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((age - poseWindup) / Mathf.Max(0.001f, definition.Recovery * 0.18f))) : 0f;

@@ -1,0 +1,2 @@
+120 native frames with 15 companions and fog / average ms=17.77
+Includes frame cap and capture workload; diagnostic fixture, not an unrestricted battle benchmark.

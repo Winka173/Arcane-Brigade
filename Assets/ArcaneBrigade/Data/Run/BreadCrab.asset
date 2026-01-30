@@ -47,7 +47,10 @@ MonoBehaviour:
     attack can make a 0.8-radius blast at 15% weapon damage; 1s cooldown, no recursive
     blast.\r\n\nSUPPORT WHILE OWNED\nTeam / Collision damage: +1\nChampion / Maximum
     health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support
-    sources.\n\r\nPERSONAL PASSIVE\nEvery 4s in combat, attempt to heal the hero
+    sources.\n\r\n\nLIFE IN THE WAITING REALM\nTheir coastal family measures tides
+    by rising dough. A storm took their street but left its breakfast bell. They
+    carry the bell toward the coast, hoping a familiar sound will gather the scattered
+    neighbours.\r\nPERSONAL PASSIVE\nEvery 4s in combat, attempt to heal the hero
     for 1.5 HP before healing modifiers. Healing restrictions apply.\r\n\nNamed talents
     count bodies and absorbed memories; their stated percentages are not multiplied
     by star level unless explicitly stated. Listed support modifiers scale separately

@@ -10,6 +10,8 @@ namespace ArcaneBrigade
         {
             ExpandedPerformanceLibrary library = ExpandedPerformanceLibrary.Current;
             Check(library != null, "Actual player contains expanded performance library");
+            yield return ReviewFinalQualityProps();
+            if (FinalQualityArtwork.Current != null) yield return ReviewIdentityBosses();
             foreach (string kind in new[] { "companions", "locomotion", "enemies" }) yield return ReviewExpandedActors(library, kind);
             ExpandedPerformanceEntry[] bosses = library.Entries.Where(entry => entry.Kind == "bosses").ToArray();
             Check(bosses.Length == 12, "All twelve boss identities have painted reactions");
@@ -97,6 +99,68 @@ namespace ArcaneBrigade
             foreach (GroundShadow shadow in stage.GetComponentsInChildren<GroundShadow>(true)) shadow.AddRenderers(shadowRenderers);
             foreach (Renderer renderer in shadowRenderers) renderer.gameObject.layer = 30;
         }
+        private IEnumerator ReviewFinalQualityProps()
+        {
+            FinalQualityArtwork artwork = FinalQualityArtwork.Current;
+            if (artwork == null) yield break;
+            Check(artwork.Props.Length == 20, "All redrawn story and architecture props included");
+            ClearActors(); freeze = true;
+            var gallery = new GameObject("FinalQualityPropGallery"); gallery.transform.SetParent(stage.transform, false);
+            var renderers = new SpriteRenderer[4];
+            for (int index = 0; index < renderers.Length; index++)
+            {
+                var child = new GameObject("PropReview" + index); child.transform.SetParent(gallery.transform, false); child.layer = 30;
+                renderers[index] = child.AddComponent<SpriteRenderer>(); renderers[index].sortingOrder = 100;
+            }
+            for (int first = 0; first < artwork.Props.Length; first += 4)
+                for (int phase = 0; phase < 4; phase++)
+                {
+                    for (int index = 0; index < 4; index++)
+                    {
+                        SpriteRenderer view = renderers[index]; var entry = artwork.Props[first + index];
+                        view.sprite = entry.Frames[reduced ? 0 : phase];
+                        float scale = Mathf.Min(5.2f / view.sprite.bounds.size.x, 3.5f / view.sprite.bounds.size.y);
+                        view.transform.localScale = Vector3.one * scale;
+                        view.transform.position = new Vector3(index % 2 == 0 ? -4 : 4, index < 2 ? 2.3f : -2.3f, 0) - Vector3.Scale(view.sprite.bounds.center, view.transform.localScale);
+                        Check(view.sprite != null && view.bounds.size.y > .1f && view.bounds.size.x < 5.3f, "Native complete prop pose " + entry.Id + "/" + phase);
+                    }
+                    caption = "REDRAWN DREAM FURNITURE / PAGE " + first / 4 + " / POSE " + phase;
+                    yield return Shot("final-props-" + first / 4 + "-" + phase);
+                }
+            gallery.SetActive(false); Destroy(gallery); freeze = false;
+        }
+        private IEnumerator ReviewIdentityBosses()
+        {
+            foreach (UnitDefinition source in catalog.Bosses.Concat(new[] { OutsideStageAssets.Current.Boss, NightmareAssets.Current.Customer }))
+            {
+                using (var session = new RunSession(catalog))
+                {
+                    ClearActors(); freeze = true;
+                    session.Start("LanternKnight", 161026); session.State.Wave = 12;
+                    CheckpointCatalog combat = session.PrepareCombat(); combat.Boss = Instantiate(source); definitions.Add(combat.Boss); combat.EnemyBudget = 0;
+                    var simulation = new CombatSimulation(combat); simulation.Start(161026);
+                    UnitState boss = simulation.Boss; boss.EntranceUntil = 0; boss.Position = boss.PreviousPosition = new Vector2(0, 2.8f);
+                    boss.NextBossPattern = float.PositiveInfinity; boss.Definition.Speed = 0;
+                    simulation.Champion.Health = 1000000; simulation.Champion.NextAttack = float.PositiveInfinity;
+                    simulation.ReviewIdentityEncore(0);
+                    Add(boss.Definition, boss.Definition.Weapon, 0, Faction.Enemy);
+                    actors[0].Bind(boss, catalog.Arena, true); actors[0].ReducedMotion = reduced;
+                    var displayObject = new GameObject("IndividualBossChoreography"); displayObject.transform.SetParent(stage.transform, false);
+                    ExpandedVisual display = displayObject.AddComponent<ExpandedVisual>(); display.ReducedMotion = reduced;
+                    for (int phase = 0; phase < 3; phase++)
+                    {
+                        while (simulation.Elapsed < new[] { .35f, 1.2f, 1.7f }[phase]) simulation.Step(.05f, Vector2.zero);
+                        actors[0].Display(simulation.Elapsed, 1); display.Display(simulation);
+                        LayerExpandedRemnants();
+                        Check(display.VisibleCount > 0, "Actual individual boss hazards rendered " + source.Id + "/" + phase);
+                        caption = source.Id + " / INDIVIDUAL ENCORE / " + phase;
+                        yield return Shot("identity-boss-" + source.Id + "-" + phase);
+                    }
+                    displayObject.SetActive(false); Destroy(displayObject); freeze = false;
+                }
+            }
+            ClearActors();
+        }
         private IEnumerator ReviewExpandedActors(ExpandedPerformanceLibrary library, string kind)
         {
             ExpandedPerformanceEntry[] entries = library.Entries.Where(entry => entry.Kind == kind).ToArray();
@@ -140,7 +204,7 @@ namespace ArcaneBrigade
                         }
                         else if (kind == "locomotion")
                         {
-                            if (phase == 0 || phase == 1) clock = 4.7f * 10 - unit.Id * .73f + (phase == 1 ? .02f : .3f);
+                            if (phase == 0 || phase == 1) clock = 4.7f * 100 - unit.Id * .73f + (phase == 1 ? .02f : .3f);
                             if (phase >= 2 && phase <= 4)
                             {
                                 clock = (81 + phase - 2 - unit.Id * .37f) / 8f + .01f;

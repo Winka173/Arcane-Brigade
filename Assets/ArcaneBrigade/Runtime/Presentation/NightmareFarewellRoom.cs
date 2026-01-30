@@ -7,6 +7,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private readonly SpriteRenderer[] views = new SpriteRenderer[3];
         private readonly GroundShadow[] shadows = new GroundShadow[3];
+        private readonly DreamSuspension[] suspensions=new DreamSuspension[2];
         private readonly Vector2[] positions = new Vector2[3];
         private float appeared;
         private int focus = -1;
@@ -21,6 +22,7 @@ namespace ArcaneBrigade
                 views[index] = child.AddComponent<SpriteRenderer>(); views[index].sortingOrder = 650;
                 views[index].sprite = index == 0 ? NightmareAssets.Current.Scenery[7] : index == 1 ? NightmareAssets.Current.Scenery[3] : NightmareAssets.Current.ManFrames[0];
                 shadows[index] = child.AddComponent<GroundShadow>();
+                if(index<2)suspensions[index]=child.AddComponent<DreamSuspension>();
             }
         }
         private void Update()
@@ -34,7 +36,7 @@ namespace ArcaneBrigade
                 positions[0] = origin + new Vector2(-2.4f, 1); positions[1] = origin + new Vector2(2.4f, 1); positions[2] = origin + new Vector2(0, 1.9f);
             }
             visible = show;
-            if (!show) { foreach (SpriteRenderer view in views) view.enabled = false; foreach (GroundShadow shadow in shadows) shadow.Hide(); return; }
+            if (!show) { foreach (SpriteRenderer view in views) view.enabled = false; foreach (GroundShadow shadow in shadows) shadow.Hide();foreach(var air in suspensions)air.Hide();return; }
             if (owner.PresentationPaused) return;
             bool stationary = owner.Simulation.Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle;
             float horizontal = Input.GetAxisRaw("Horizontal");
@@ -60,6 +62,7 @@ namespace ArcaneBrigade
                 WorldSpriteGrounding.Place(view, (Vector3)positions[index] + Vector3.up * lift + hovering);
                 view.color = new Color(1, 1, 1, enter);
                 shadows[index].Display(view.sprite, positions[index], width, lift + hovering.y, .25f * enter);
+                if(index<2)suspensions[index].Display(positions[index],(Vector3)positions[index]+Vector3.up*lift+hovering,width,owner.PresentationClock,90+index,view.sortingOrder-1,enter,true);
             }
             if (age >= 1.2f && focus >= 0 && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) Select(focus);
         }
@@ -80,7 +83,7 @@ namespace ArcaneBrigade
             GUI.enabled = previous;
             string leave = owner.Session.State.Roster.Count > 0 || owner.Session.State.Secrets.RescuedToy ? "Leave together." : "Step outside.";
             GUI.Label(new Rect(380, 940, 540, 75), leave + " Goodbye is not forgetting.", text);
-            GUI.Label(new Rect(1000, 940, 540, 75), leave + " Keep a key and a promise.", text);
+            GUI.Label(new Rect(1000, 940, 540, 75), leave + " A guiding lamp. No debt to return.", text);
             GUI.Label(new Rect(380, 1020, 1160, 45), "Move / choose left or right · Space / A · or click either choice", text);
             if (owner.PresentationPaused && GUI.Button(new Rect(760, 650, 400, 60), "RESUME", button)) owner.TogglePause();
         }

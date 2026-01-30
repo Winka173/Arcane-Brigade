@@ -3,10 +3,15 @@ namespace ArcaneBrigade
 {
     public static class OctoberBalance
     {
-        public const int AllySoftLimit = 20;
+        public const int AllySoftLimit = 15;
         public const float WaveSeconds = 45;
-        public static float Crowd(int count) => Mathf.Clamp01((count - 10) / 10f);
-        public static float NewAllyChance(int count) => Mathf.Lerp(.75f, .02f, Crowd(count));
+        public static float Crowd(int count) => Mathf.Clamp01((count - 10) / (float)(AllySoftLimit - 10));
+        public static float NewAllyChance(int count, int wave = 4)
+        {
+            float crowd = Mathf.Clamp01((count - 6) / (float)(AllySoftLimit - 6));
+            float chance = count < 6 ? .85f : Mathf.Lerp(.55f, .02f, 1 - (1 - crowd) * (1 - crowd));
+            return wave <= 3 ? Mathf.Max(.7f, chance) : chance;
+        }
         public static float RecruitChance(int count) => Mathf.Lerp(1, .32f, Crowd(count));
         public static float Late(int wave) => Mathf.Clamp01((wave - 8) / 12f);
         public static float Soften(float bonus, float knee, float slope) => bonus > knee ? knee + (bonus - knee) * slope : bonus;

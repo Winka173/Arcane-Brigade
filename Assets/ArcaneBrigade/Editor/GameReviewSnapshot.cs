@@ -68,6 +68,9 @@ namespace ArcaneBrigade.Editor
             root["Items"] = c.Items.Select(i => { var d = Fields(i); d["EffectiveModifiers"] = i.EffectiveModifiers; d["EffectiveStackLimit"] = i.StackLimit; d["ReadableEffects"] = RunModifierRules.Describe(i, 1); return d; }).ToArray();
             root["Bonds"] = c.Bonds; root["Recipes"] = c.Recipes; root["BuildLinks"] = c.BuildLinks; root["Morphs"] = BuildMorphs.All;
             root["HeroIdentities"] = HeroIdentities.All;
+            root["WaitingChapters"] = MienChoStory.Chapters;
+            root["WaitingArrivals"] = c.Champions.ToDictionary(u => u.Id, u => WaitingArrivals.For(u.Id));
+            root["WaitingLives"] = c.Companions.ToDictionary(u => u.Id, u => new Dictionary<string, object> { { "Origin", CreatureLives.Origin(u.Id) }, { "Early", CreatureLives.Arc(u.Id, 1) }, { "Middle", CreatureLives.Arc(u.Id, 9) }, { "Late", CreatureLives.Arc(u.Id, 17) } });
             root["Achievements"] = RunAchievements.Definitions(c);
             root["StatGlossary"] = Enum.GetValues(typeof(ItemEffect)).Cast<ItemEffect>().Select(e => new { Key = e.ToString(), Name = RunModifierRules.ModifierName(e), DefaultScope = RunModifierRules.DefaultScope(e).ToString(), Percent = RunModifierRules.ValueText(e, 1).EndsWith("%") }).Select(o => new Dictionary<string, object> { { "Key", o.Key }, { "Name", o.Name }, { "DefaultScope", o.DefaultScope }, { "Percent", o.Percent } }).ToArray();
             root["Modes"] = new Dictionary<string, object> { { "Difficulty", RunMeta.DifficultyNames }, { "ChallengeIds", RunMeta.ChallengeIds }, { "Challenges", RunMeta.ChallengeNames }, { "Seeds", Enumerable.Range(0, RunMeta.ChallengeIds.Length).Select(RunMeta.ChallengeSeed).ToArray() } };

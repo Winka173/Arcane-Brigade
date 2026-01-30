@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public float Depth { get; private set; }
         public float Dawn { get; private set; }
         public float Ambient => AmbientFor(Depth, Dawn);
-        public static float AmbientFor(float depth, float dawn) => Mathf.Lerp(Mathf.Lerp(.92f, .44f, Mathf.Clamp01(depth / 4)), 1.08f, Mathf.Clamp01(dawn));
+        public static float AmbientFor(float depth, float dawn) => Mathf.Lerp(Mathf.Lerp(.92f, .09f, Mathf.Clamp01(depth / 4)), 1.08f, Mathf.Clamp01(dawn));
         public static float Falloff(Vector2 offset, float radius)
         {
             if (radius <= 0) return 0;
@@ -46,10 +46,11 @@ namespace ArcaneBrigade
             Vector2 window = LandmarkPosition(2, shop, half);
             Vector2 player = owner.VisualChampionPosition;
             float breath = reduced || PresentationSettings.ReducedFlashes ? 1 : 1 + Mathf.Sin(owner.PresentationClock * 1.15f) * .025f;
-            sources[0] = new Vector4(lamp.x, lamp.y, 4.1f, .8f * breath);
+            float retreat = shop ? 1 : Mathf.Lerp(1, .08f, Depth / 4 * (1 - Dawn));
+            sources[0] = new Vector4(lamp.x, lamp.y, 4.1f, .8f * breath * retreat);
             if (StagePerformance.Active != null && !reduced) sources[0].x += StagePerformance.Active.Impact * .12f;
-            sources[1] = new Vector4(window.x, window.y, 4.6f, Mathf.Lerp(.38f, .18f, Depth / 4));
-            sources[2] = new Vector4(player.x, player.y, 3.6f, .32f);
+            sources[1] = new Vector4(window.x, window.y, 4.6f, Mathf.Lerp(.38f, .18f, Depth / 4) * retreat);
+            sources[2] = new Vector4(player.x, player.y, 3.6f, .12f);
             sources[3] = new Vector4(0, -1, 6.5f, shop ? .3f : 0);
             colors[0] = new Color(1, .6f, .23f);
             colors[1] = Color.Lerp(new Color(.75f, .83f, 1), new Color(.48f, .45f, .85f), Depth / 4);
@@ -68,7 +69,7 @@ namespace ArcaneBrigade
             Shader.SetGlobalFloat("_DreamEnabled", owner.Session.SecretRoomOpen ? 0 : 1);
             Shader.SetGlobalFloat("_DreamDepth", Depth);
             Shader.SetGlobalFloat("_DreamDawn", Dawn);
-            Shader.SetGlobalFloat("_DreamAmbient", Ambient);
+            Shader.SetGlobalFloat("_DreamAmbient", shop ? Mathf.Max(.5f, Ambient) : PresentationSettings.HighReadability ? Mathf.Max(.24f, Ambient) : Ambient);
             Shader.SetGlobalFloat("_DreamClock", reduced ? 0 : owner.PresentationClock);
             for (int index = 0; index < sources.Length; index++)
             {
@@ -82,6 +83,7 @@ namespace ArcaneBrigade
             Color light = Color.black;
             for (int index = 0; index < sources.Length; index++)
                 light += colors[index] * (Falloff(position - (Vector2)sources[index], sources[index].z) * sources[index].w);
+            if (SharedLightField.Active != null) light += SharedLightField.Active.ColorAt(position) * .55f;
             return light;
         }
         public Vector2 ShadowDirection(Vector2 position)

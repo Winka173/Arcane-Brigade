@@ -48,12 +48,15 @@ MonoBehaviour:
     during the run also adds 3% weapon damage to this ally, up to 30%, for the next
     prepared battle.\r\n\nSUPPORT WHILE OWNED\nRun / Chest quality: +2.5%\nChampion
     / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
-    talents count bodies and absorbed memories; their stated percentages are not
-    multiplied by star level unless explicitly stated. Listed support modifiers scale
-    separately at 1/2/4.\r\nBonds: archive, hare, archer. Immortal. Weapon rolls
-    on recruitment; three equal-species/equal-star bodies merge unless the talent
-    forbids it."
+    support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA navigator transformed by
+    crossing incompatible dreams. Their needle answers freely made commitments, not
+    an owner's commands. They are learning to choose a destination after a lifetime
+    of being asked only for directions.\r\nPERSONAL PASSIVE\nNo additional periodic
+    personal passive.\r\n\nNamed talents count bodies and absorbed memories; their
+    stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nBonds: archive, hare,
+    archer. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Smiley Fox
   ExclusiveHero: 

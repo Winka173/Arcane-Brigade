@@ -93,7 +93,8 @@ namespace ArcaneBrigade
             if (state.RecoveryUntil > Elapsed) return true;
             if (state.Summoned && state.LeaderId > 0 && !state.LeaderLost)
             {
-                UnitState leader = units.Find(unit => unit.Id == state.LeaderId && unit.Alive);
+                UnitState leader = UnitWithId(state.LeaderId);
+                if (leader != null && !leader.Alive) leader = null;
                 if (leader != null)
                 {
                     bool flanking = Elapsed - state.AssignedAt > 3 && leader.Variant.SpecialCasts % 2 == 0;

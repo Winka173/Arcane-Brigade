@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: GlassDiceMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 73310910, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: -1518459256, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  Walk:
+  - {fileID: 2063219238, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: 228434469, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: -1426380779, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  Windup:
+  - {fileID: 413850470, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  Release:
+  - {fileID: -1599030304, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  Recovery:
+  - {fileID: -527125697, guid: 8238cf756d734e843a709cccc5921107, type: 3}
+  - {fileID: -527125697, guid: 8238cf756d734e843a709cccc5921107, type: 3}

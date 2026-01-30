@@ -28,7 +28,12 @@ namespace ArcaneBrigade
             int[] scores = { 10000, 50000, 100000, 250000, 500000, 1000000 };
             foreach (int goal in scores) Add("score-" + goal, "Receipt worth " + goal.ToString("N0"), "Earn this score in one journey. Endless counts.", "score", goal);
             foreach (int goal in new[] { 200, 500, 800 }) Add("gold-" + goal, "A purse of " + goal, "Collect this much combat gold in one wave.", "battle-gold", goal);
-            foreach (int goal in new[] { 10, 15, 20 }) Add("party-" + goal, goal + " names on the ticket", "Own this many companions at one time.", "party", goal);
+            // Stable IDs preserve earned records while the new goals fit the fifteen-body cap.
+            foreach (int previousGoal in new[] { 10, 15, 20 })
+            {
+                int goal = previousGoal == 10 ? 8 : previousGoal == 15 ? 12 : 15;
+                Add("party-" + previousGoal, goal + " names on the ticket", "Own this many companions at one time.", "party", goal);
+            }
             Add("health", "A well stitched heart", "Reach 120 maximum HP.", "health", 120);
             Add("fragile", "One last thread", "Enter combat with at most 1 maximum HP.", "one-health", 1);
             Add("armor", "Porcelain fortress", "Reach 0.75 armor before the incoming damage cap.", "armor", .75f);

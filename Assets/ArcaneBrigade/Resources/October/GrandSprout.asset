@@ -44,7 +44,10 @@ MonoBehaviour:
   PassiveStrength: 0.8
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nNo basic attack. Deal 24
     contact damage. Can carry nursery bonuses.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3
-    traits \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL
+    traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE IN
+    THE WAITING REALM\nAn elder from travelling gardens who shelters young plants
+    without choosing where they must settle. They move their own roots when home
+    becomes unsafe. They seek a garden with more than one open gate.\r\nPERSONAL
     PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
     and absorbed memories; their stated percentages are not multiplied by star level
     unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nRecruitment

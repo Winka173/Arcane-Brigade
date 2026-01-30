@@ -1,12 +1,12 @@
-PASS Progressive bounded ambient 0
+PASS Progressive nightmare ambient 0
 PASS Dawn restores light 0
-PASS Progressive bounded ambient 1
+PASS Progressive nightmare ambient 1
 PASS Dawn restores light 1
-PASS Progressive bounded ambient 2
+PASS Progressive nightmare ambient 2
 PASS Dawn restores light 2
-PASS Progressive bounded ambient 3
+PASS Progressive nightmare ambient 3
 PASS Dawn restores light 3
-PASS Progressive bounded ambient 4
+PASS Progressive nightmare ambient 4
 PASS Dawn restores light 4
 PASS Light centre is continuous
 PASS Soft source falloff

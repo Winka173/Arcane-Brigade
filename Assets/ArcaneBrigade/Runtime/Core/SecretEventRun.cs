@@ -74,8 +74,8 @@ namespace ArcaneBrigade
             {
                 case SecretEventKind.LostProperty:
                     return new[] {
-                        Choice("THE HEART IN THE DRAWER", "Fight the cabinet warden. Rescue the Forgotten Patchwork; solo heroes receive its Wooden Heart. Defeat ends the run.", true, SecretSolo ? "SecretWoodHeart" : "SecretPatchBear"),
-                        Choice("THE LETTER THAT KNOCKS", "Fight the cabinet warden. Rescue Folded Courier; solo heroes receive its Dead-Letter Key. A later letter remembers your choice. Defeat ends the run.", true, SecretSolo ? "SecretLetter" : "SecretPaperBird"),
+                        Choice("THE HEART IN THE DRAWER", "Fight the cabinet warden. Rescue the Forgotten Patchwork; solo heroes receive its Wooden Heart. A full brigade receives the relic instead, or 25 gold if it is already capped. Defeat ends the run.", true, SecretSolo ? "SecretWoodHeart" : "SecretPatchBear"),
+                        Choice("THE LETTER THAT KNOCKS", "Fight the cabinet warden. Rescue Folded Courier; solo heroes receive its Dead-Letter Key. A full brigade receives the relic instead, or 25 gold if it is already capped. A later letter remembers your choice. Defeat ends the run.", true, SecretSolo ? "SecretLetter" : "SecretPaperBird"),
                         Choice("TAKE THE ABANDONED HEART", "Leave the prisoners asleep and take a Wooden Heart relic. No battle. Team health support; no second claim.", CanSecretItem("SecretWoodHeart"), "SecretWoodHeart") };
                 case SecretEventKind.ImpossibleTailor:
                     return new[] {
@@ -85,7 +85,7 @@ namespace ArcaneBrigade
                 case SecretEventKind.Understudy:
                     return new[] {
                         Choice("FIGHT YOUR REFLECTION", "Your current build becomes a hostile understudy. It repeats your champion's basic attacks after 0.65s at their locked direction. Win: Glass Understudy relic. Defeat ends the run.", CanSecretItem("SecretMirror"), "SecretMirror"),
-                        Choice("LEND A RELIC", "Lend " + name + " for two normal victories. Its effects sleep while a temporary shadow ally fights with you. It returns automatically. Solo heroes borrow its champion echo instead.", owned && contract),
+                        Choice("LEND A RELIC", "Lend " + name + " for two normal victories. Its effects sleep while a temporary shadow ally fights with you. It returns automatically. Solo heroes or a full brigade gain +20% hero damage instead of an extra body.", owned && contract),
                         Choice("LEAVE A KIND REFLECTION", "Recover 20% maximum HP, then return. No battle or payment.") };
                 case SecretEventKind.ContrabandTrain:
                     return new[] {
@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                     return new[] {
                         Choice("WAKE THE PORCELAIN HEALER", "Restore all HP and gain a Sleeping-Lamb Brooch. No hidden payment or curse.", CanSecretItem("SecretDream"), "SecretDream"),
                         Choice("WAKE THE CONTRACT KEEPER", "Settle your current secret contract immediately: return lent/deposited relics, cancel income debt and release temporary gifts. No payment.", Secret.Contracts.Count > 0),
-                        Choice(SecretSolo ? "WAKE A DREAM IN YOUR HEART" : "WAKE THE SLEEPING FRIEND", SecretSolo ? "Borrow a champion-damage dream for two normal victories. No companion is added." : "A porcelain Dream Lamb joins for two normal victories, then goes peacefully home.", contract) };
+                        Choice(SecretSolo ? "WAKE A DREAM IN YOUR HEART" : "WAKE THE SLEEPING FRIEND", SecretSolo ? "Borrow a champion-damage dream for two normal victories. No companion is added." : "A porcelain Dream Lamb joins for two normal victories, then goes peacefully home. A full brigade gains +20% hero damage instead of an extra body.", contract) };
                 case SecretEventKind.EmptyTheatre:
                     return new[] {
                         Choice("THE PAPER CHORUS", "Survive a 28-second swarm performance. Reward: Theatre Crown. No ordinary income or kill loot is paid. Defeat ends the run.", CanSecretItem("SecretCrown"), "SecretCrown"),
@@ -111,7 +111,7 @@ namespace ArcaneBrigade
                     return new[] {
                         Choice("ADDRESS IT TO YOURSELF", "Post one copy of " + name + ". After two normal victories, it returns with +25% positive stat modifiers. Its effects sleep while away.", owned && contract && CanImproveSecretItem(item)),
                         Choice("ADDRESS IT TO A FRIEND", "Consume one copy of " + name + " to give " + (catalog.Unit(Secret.TargetUnit)?.DisplayName ?? "a chosen companion") + " / " + Secret.TargetWeapon + " +20% weapon damage for this run. This gift stays with that unit/weapon pairing; it does not follow a different weapon after merging.", owned && !SecretSolo && State.Roster.Exists(r => r.UnitId == Secret.TargetUnit && r.WeaponId == Secret.TargetWeapon) && !Secret.AllyGifts.Exists(g => g.UnitId == Secret.TargetUnit && g.WeaponId == Secret.TargetWeapon)),
-                        Choice("ADDRESS IT OUTSIDE THE STAGE", (Secret.RescuedToy && !Secret.ThankYouClaimed ? "The rescued toy enclosed a thank-you: 15 gold. " : "") + "Send an invitation and receive a Dead-Letter Key. A secret theatre encounter waits in a later shop, even after the two-visit limit. The Keeper remembers your letter.", !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
+                        Choice("ADDRESS IT OUTSIDE THE STAGE", (Secret.RescuedToy && !Secret.ThankYouClaimed ? "The rescued resident enclosed a thank-you: 15 gold. " : "") + "Send an invitation and receive a Dead-Letter Key. A secret theatre encounter waits in a later shop, even after the two-visit limit. The Keeper remembers your letter.", !Secret.LetterSent && CanSecretItem("SecretLetter"), "SecretLetter") };
             }
         }
 
@@ -134,7 +134,7 @@ namespace ArcaneBrigade
         }
         private bool GiveSecretAlly(string id)
         {
-            UnitDefinition unit = catalog.Unit(id); if (SecretSolo || unit == null || State.Roster.Count >= 20) return false;
+            UnitDefinition unit = catalog.Unit(id); if (SecretSolo || unit == null || State.Roster.Count >= OctoberBalance.AllySoftLimit) return false;
             RosterEntry existing = State.Roster.Find(r => r.UnitId == id && r.WeaponId == unit.Weapon.Id);
             if (existing != null) return false;
             var entry = new RosterEntry { UnitId = id, WeaponId = unit.Weapon.Id }; State.Roster.Add(entry); RememberVariant(entry); return true;
@@ -194,16 +194,25 @@ namespace ArcaneBrigade
             RecordSecret(Secret.Stage == SecretEventStage.Reward ? "Returned to the unchanged shop." : "Left without a deal.");
             Secret.Stage = SecretEventStage.Idle; return true;
         }
+        private bool SecretCompanionRewardUnavailable => catalog.Unit(Secret.RewardId) != null && (SecretSolo || State.Roster.Count >= OctoberBalance.AllySoftLimit || State.Roster.Exists(r => r.UnitId == Secret.RewardId && r.WeaponId == catalog.Unit(Secret.RewardId).Weapon.Id));
+        private string SecretCompanionFallback => Secret.RewardId == "SecretPaperBird" ? "SecretLetter" : "SecretWoodHeart";
+        public string SecretRewardLabel => SecretCompanionRewardUnavailable ? CanSecretItem(SecretCompanionFallback) ? catalog.Item(SecretCompanionFallback).Name + " / RELIC INSTEAD" : "25 GOLD / BRIGADE FULL" : catalog.Item(Secret.RewardId)?.Name ?? catalog.Unit(Secret.RewardId)?.DisplayName;
         public bool ClaimSecretBattleReward()
         {
             if (State.Phase != SessionPhase.Shop || Secret.Stage != SecretEventStage.Reward || string.IsNullOrEmpty(Secret.RewardId)) return false;
             string id = Secret.RewardId;
-            bool success = catalog.Item(id) != null ? GiveSecretItem(id) : GiveSecretAlly(id);
+            bool success;
+            if (SecretCompanionRewardUnavailable)
+            {
+                if (CanSecretItem(SecretCompanionFallback)) { id = SecretCompanionFallback; success = GiveSecretItem(id); }
+                else { State.Gold = BoundedCounter((long)State.Gold + 25); id = ""; success = true; }
+            }
+            else success = catalog.Item(id) != null ? GiveSecretItem(id) : GiveSecretAlly(id);
             if (!success) return false;
             if (Secret.Kind == SecretEventKind.LostProperty) Secret.RescuedToy = true;
             RememberNightmareChoice(Secret.Kind,Secret.Option,true);
             RecountBonds();
-            Secret.RewardId = ""; RecordSecret("Received " + (catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName));
+            Secret.RewardId = ""; RecordSecret("Received " + (string.IsNullOrEmpty(id) ? "25 gold / brigade full" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName));
             return true;
         }
         private void RecordSecret(string text)
@@ -222,7 +231,7 @@ namespace ArcaneBrigade
                 if (stitch.Pattern == 2 && effect == ItemEffect.Health && scope == ModifierScope.Champion) bonus += 18;
                 if (stitch.Pattern == 2 && effect == ItemEffect.Damage) bonus -= .08f;
             }
-            if (SecretSolo && Secret.Contracts.Exists(c => c.Kind == SecretContractKind.BorrowedShadow || c.Kind == SecretContractKind.DreamFriend) && effect == ItemEffect.ChampionDamage && scope == ModifierScope.Champion) bonus += .2f;
+            if ((SecretSolo || State.Roster.Count >= OctoberBalance.AllySoftLimit) && Secret.Contracts.Exists(c => c.Kind == SecretContractKind.BorrowedShadow || c.Kind == SecretContractKind.DreamFriend) && effect == ItemEffect.ChampionDamage && scope == ModifierScope.Champion) bonus += .2f;
             return bonus;
         }
 

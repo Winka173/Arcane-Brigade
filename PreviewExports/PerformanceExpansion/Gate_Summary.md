@@ -1,5 +1,7 @@
 # Expanded painted animation 01 — Windows
 
+Historical delivery record. `Builds/FullRun` has since been rebuilt with Animation-02 / Dream Levitation; use `../Levitation/Gate_Summary.md` for the current player. The Animation-01 ZIP and hashes below remain the record of this earlier 20-sheet build.
+
 ## Artifact and scope
 
 - Player: `Builds/FullRun/ArcaneBrigade.exe`. Distribute the entire FullRun directory, not the executable alone.

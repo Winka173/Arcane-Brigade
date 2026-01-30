@@ -46,13 +46,15 @@ MonoBehaviour:
     run adds 2% weapon damage to this ally, up to 30%, applied when the next battle
     is prepared.\r\n\nSUPPORT WHILE OWNED\nRun / Enemy health: +10%\nRun / Score
     multiplier: +10%\nChampion / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4;
-    merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nEvery 4s
-    in combat, gain 0 gold directly. This is not kill loot and does not count as
-    collecting a coin.\r\n\nNamed talents count bodies and absorbed memories; their
-    stated percentages are not multiplied by star level unless explicitly stated.
-    Listed support modifiers scale separately at 1/2/4.\r\nBonds: astral, archer.
-    Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies
-    merge unless the talent forbids it."
+    merging three units reduces support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA
+    sky fisher whose safety line was tied to the wrong shore. A keeper called the
+    tightening tether protection. They carry their own spool now and search for the
+    crew on the other side.\r\nPERSONAL PASSIVE\nEvery 4s in combat, gain 0 gold
+    directly. This is not kill loot and does not count as collecting a coin.\r\n\nNamed
+    talents count bodies and absorbed memories; their stated percentages are not
+    multiplied by star level unless explicitly stated. Listed support modifiers scale
+    separately at 1/2/4.\r\nBonds: astral, archer. Immortal. Weapon rolls on recruitment;
+    three equal-species/equal-star bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Pointy Hat Witch
   ExclusiveHero: 

@@ -43,13 +43,16 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 0.8
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nOn purchase, recruit two junior
-    helpers, within the 20-body limit.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3 traits
-    \xD71/2/4; merging three units reduces support sources.\n\r\nPERSONAL PASSIVE\nNo
-    additional periodic personal passive.\r\n\nNamed talents count bodies and absorbed
-    memories; their stated percentages are not multiplied by star level unless explicitly
-    stated. Listed support modifiers scale separately at 1/2/4.\r\nSource: dream
-    shop or special reward, subject to hero theme and unlock wave.\r\nBonds: clock,
-    resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    helpers, within the 15-body limit.\r\n\nSUPPORT WHILE OWNED\nTier 1/2/3 traits
+    \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE IN THE WAITING
+    REALM\nA musician from the gear district with two apprentices who argue about
+    tempo. Their mechanical body is ordinary where they were born. They seek the
+    missing final verse of a song officials insist always ended early.\r\nPERSONAL
+    PASSIVE\nNo additional periodic personal passive.\r\n\nNamed talents count bodies
+    and absorbed memories; their stated percentages are not multiplied by star level
+    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:
+    dream shop or special reward, subject to hero theme and unlock wave.\r\nBonds:
+    clock, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
     bodies merge unless the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: '"Smug and Satisfied" Jake'

@@ -46,11 +46,15 @@ MonoBehaviour:
     4% movement AND attack speed per talent. Combined with Bullhorn Warrior, this
     buff is capped at 25%.\r\n\nSUPPORT WHILE OWNED\nChampion / Dodge: +2.5%\nChampion
     / Maximum health: -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces
-    support sources.\n\r\nPERSONAL PASSIVE\nNo additional periodic personal passive.\r\n\nNamed
-    talents count bodies and absorbed memories; their stated percentages are not
-    multiplied by star level unless explicitly stated. Listed support modifiers scale
-    separately at 1/2/4.\r\nBonds: clock, gear. Immortal. Weapon rolls on recruitment;
-    three equal-species/equal-star bodies merge unless the talent forbids it."
+    support sources.\n\r\n\nLIFE IN THE WAITING REALM\nA wetland courier injured
+    in the machinery district, they chose a spring prosthesis made by a friend. The
+    spring helps their life continue; it did not create it. They want to return the
+    friend's tools and report that the crossing worked.\r\nPERSONAL PASSIVE\nNo additional
+    periodic personal passive.\r\n\nNamed talents count bodies and absorbed memories;
+    their stated percentages are not multiplied by star level unless explicitly stated.
+    Listed support modifiers scale separately at 1/2/4.\r\nBonds: clock, gear. Immortal.
+    Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless
+    the talent forbids it."
   ReferenceHero: 
   ReferenceCompanion: Intelligent Construct
   ExclusiveHero: 
