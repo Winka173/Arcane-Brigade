@@ -146,7 +146,29 @@ namespace ArcaneBrigade
         /// <summary>Soft rounded bar (tags, plates, strips). Kept under the old name so every caller restyles at once.</summary>
         public static void Slant(Rect rectangle, Color color)
         {
+            // a nine-slice cannot draw anything smaller than its borders; small marks become soft round dots instead
+            if (rectangle.width < 20 || rectangle.height < 20) { Dot(rectangle, color); return; }
             DrawTinted(Nine(ref pillStyle, ref pill, Color.white, Color.white, 0), rectangle, color);
+        }
+
+        private static Texture2D dot;
+        /// <summary>Small round mark (eyes, flames, notches, pips): a hard-edged disc stretched to the rectangle.</summary>
+        public static void Dot(Rect rectangle, Color color)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            if (dot == null)
+            {
+                dot = new Texture2D(32, 32, TextureFormat.RGBA32, false) { name = "LanternDot", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
+                var pixels = new Color[32 * 32];
+                for (int y = 0; y < 32; y++)
+                    for (int x = 0; x < 32; x++)
+                        pixels[y * 32 + x] = new Color(1, 1, 1, Mathf.Clamp01(15.5f - Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), new Vector2(16, 16))));
+                dot.SetPixels(pixels); dot.Apply(false, true);
+            }
+            Color previous = GUI.color;
+            GUI.color = color;
+            GUI.DrawTexture(rectangle, dot);
+            GUI.color = previous;
         }
 
         /// <summary>Soft elliptical light (lantern glow, spotlight, focus).</summary>

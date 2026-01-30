@@ -296,21 +296,24 @@ namespace ArcaneBrigade
             GUI.skin = previousSkin;
         }
 
-        // Main menu = the Waiting Room (Resources/MienCho/WaitingRoom.png, 1280x720 design space after ScaleAndCrop):
-        // the lit door begins a journey, the empty chair is where you left off, the fallen letter holds the letters you kept.
-        // Entries without an object in the room live only in the bottom row; the row mirrors every entry one-to-one.
+        // Main menu = the Waiting Room (Resources/MienCho/WaitingRoom.png, painted 16:9, 1280x720 design space):
+        // the door begins a journey, the armchair is where you left off, the bookshelf holds everyone you have met,
+        // the letters on the side table are the ones you kept, the lamp sets light and sound. How to play lives only
+        // in the bottom row; the row mirrors every entry one-to-one in the same order as before.
         private static readonly string[] SpotLabels = { "NEW JOURNEY", "CONTINUE", "COLLECTION", "RECORDS", "SETTINGS", "HOW TO PLAY" };
         private static readonly string[] SpotHints = { "Step through the door", "Sit back down where you left off", "Everyone and everything you have met", "The letters you kept", "Light, sound and comfort", "How the night works" };
         private static readonly string[] SpotCues = { "menu.spot.door", "menu.spot.hero", "menu.spot.jar", "menu.spot.printer", "menu.spot.lamp", "menu.spot.bell" };
         public static readonly Rect[] SpotAreas =
         {
-            new Rect(620, 0, 310, 452),    // the lit door
-            new Rect(455, 208, 257, 376),  // the empty chair
-            Rect.zero,
-            new Rect(760, 488, 170, 85),   // the letter on the floor
-            Rect.zero,
+            new Rect(800, 0, 312, 452),    // the carved door
+            new Rect(40, 172, 360, 368),   // the armchair
+            new Rect(1160, 318, 120, 156), // the bookshelf
+            new Rect(400, 280, 160, 86),   // the letters on the side table
+            new Rect(340, 118, 190, 152),  // the lamp
             Rect.zero,
         };
+        // where each entry's paper label sits in the room (centre x, top y)
+        private static readonly Vector2[] SpotTags = { new Vector2(956, 372), new Vector2(222, 300), new Vector2(1180, 280), new Vector2(480, 372), new Vector2(436, 80), new Vector2(0, 0) };
         private int hoveredSpot = -1;
         private GUIStyle smallButton;
         private GUIStyle spotHint;
@@ -369,7 +372,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
             if (spotHint == null) { spotHint = ArcadeTypography.Style(16, false); spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; spotHint.wordWrap = false; }
             spotHint.alignment = TextAnchor.UpperLeft;
-            GUI.Label(new Rect(44, 146, 520, 24), "Someone is waiting. Just move — your light and your companions do the rest.", spotHint);
+            GUI.Label(new Rect(44, 146, 760, 24), "Someone is waiting. Just move: your light and your companions do the rest.", spotHint);
             spotHint.alignment = TextAnchor.MiddleCenter;
 
             int mouseSpot = -1;
@@ -380,7 +383,7 @@ namespace ArcaneBrigade
             if (Event.current.type == EventType.Repaint) hoveredSpot = mouseSpot;
 
             // the door always breathes a little; objects you can use glow faintly so they read as interactive
-            ArcadeSkin.Glow(new Rect(560, -60, 430, 600), new Color(1f, 0.85f, 0.65f, 0.10f + 0.08f * breathe));
+            ArcadeSkin.Glow(new Rect(760, -40, 400, 560), new Color(1f, 0.85f, 0.65f, 0.08f + 0.07f * breathe));
             for (int index = 1; index < SpotAreas.Length; index++)
             {
                 Rect area = SpotAreas[index];
@@ -398,7 +401,7 @@ namespace ArcaneBrigade
             // the hero stands in the room carrying their own light
             UnitDefinition hero = catalog.Champions[selection];
             Sprite pose = hero.AnimationFrames.Length >= 4 ? hero.AnimationFrames[UnitVisual.AnimationFrame(Time.unscaledTime, selection, false, profile.ReducedMotion)] : hero.Body;
-            Rect heroRect = new Rect(240, 340 + (reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.4f) * 4), 220, 250);
+            Rect heroRect = new Rect(540, 345 + (reduced ? 0 : Mathf.Sin(Time.unscaledTime * 1.4f) * 4), 210, 240);
             ArcadeSkin.Glow(new Rect(heroRect.x - 120, heroRect.y - 80, heroRect.width + 240, heroRect.height + 200), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.20f + 0.06f * breathe));
             ArcadeSkin.Glow(new Rect(heroRect.x + 20, heroRect.yMax - 30, heroRect.width - 40, 50), new Color(0, 0, 0, 0.55f));
             Matrix4x4 unflipped = GUI.matrix;
@@ -411,15 +414,12 @@ namespace ArcaneBrigade
             Vector2 tagSize = new Vector2(Mathf.Max(180, chip.CalcSize(new GUIContent(label)).x + 48), 32);
             Rect tag;
             if (focused.width > 0)
-            {
-                float tagY = focus == 3 ? focused.y - 46 : focus == 0 ? focused.yMax - 120 : focused.y - 40;
-                tag = new Rect(Mathf.Clamp(focused.center.x - tagSize.x * 0.5f, 10, 1270 - tagSize.x), tagY, tagSize.x, tagSize.y);
-            }
+                tag = new Rect(Mathf.Clamp(SpotTags[focus].x - tagSize.x * 0.5f, 10, 1270 - tagSize.x), SpotTags[focus].y, tagSize.x, tagSize.y);
             else tag = new Rect(36 + focus * 204 + 98 - tagSize.x * 0.5f, 612, tagSize.x, tagSize.y);
             ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent);
             chip.normal.textColor = ArcadeSkin.Ink;
             GUI.Label(tag, label, chip);
-            GUI.Label(new Rect(tag.center.x - 220, tag.yMax + 4, 440, 22), SpotHints[focus], spotHint);
+            GUI.Label(new Rect(tag.center.x - 220, tag.yMax + 4, 440, 22), focus == 1 && !CanResume ? "Nothing to continue yet" : SpotHints[focus], spotHint);
 
             for (int index = 0; index < SpotAreas.Length; index++)
                 if (SpotAreas[index].width > 0 && GUI.Button(SpotAreas[index], GUIContent.none, GUIStyle.none)) ActivateSpot(index);
@@ -429,7 +429,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < SpotLabels.Length; index++)
             {
                 GUI.enabled = SpotEnabled(index);
-                string caption = index == 1 && !CanResume ? "NOTHING TO CONTINUE" : SpotLabels[index];
+                string caption = SpotLabels[index];
                 if (navigation.Button(new Rect(36 + index * 204, 664, 196, 42), caption, index == 0 ? primary : smallButton)) ActivateSpot(index);
             }
             GUI.enabled = true;
