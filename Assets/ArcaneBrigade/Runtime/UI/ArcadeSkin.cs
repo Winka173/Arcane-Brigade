@@ -138,7 +138,7 @@ namespace ArcaneBrigade
         {
             if (Event.current.type != EventType.Repaint) return;
             Color previous = GUI.color;
-            GUI.color = color;
+            GUI.color = Faded(color, previous);
             style.Draw(rectangle, GUIContent.none, false, false, false, false);
             GUI.color = previous;
         }
@@ -166,7 +166,7 @@ namespace ArcaneBrigade
                 dot.SetPixels(pixels); dot.Apply(false, true);
             }
             Color previous = GUI.color;
-            GUI.color = color;
+            GUI.color = Faded(color, previous);
             GUI.DrawTexture(rectangle, dot);
             GUI.color = previous;
         }
@@ -187,7 +187,7 @@ namespace ArcaneBrigade
                 glow.SetPixels(pixels); glow.Apply(false, true);
             }
             Color previous = GUI.color;
-            GUI.color = color;
+            GUI.color = Faded(color, previous);
             GUI.DrawTexture(rectangle, glow);
             GUI.color = previous;
         }
@@ -238,10 +238,13 @@ namespace ArcaneBrigade
             Line(new Rect(bounds.x + 14, bounds.yMax - 3, bounds.width - 28, 2), new Color(Gold.r, Gold.g, Gold.b, 0.6f + 0.4f * breathe));
         }
 
+        /// <summary>Respect fades already applied to GUI.color (page entrance, reveals) instead of overwriting them.</summary>
+        private static Color Faded(Color color, Color current) => new Color(color.r, color.g, color.b, color.a * current.a);
+
         public static void Line(Rect rectangle, Color color)
         {
             Color previous = GUI.color;
-            GUI.color = color;
+            GUI.color = Faded(color, previous);
             GUI.DrawTexture(rectangle, Texture2D.whiteTexture);
             GUI.color = previous;
         }
