@@ -462,14 +462,15 @@ namespace ArcaneBrigade
             unit.Health *= scaling * (source.IsBoss ? catalog.BossHealthMultiplier : 1);
             if (source.IsBoss) { unit.Health *= CarnivalBalance.BossBulk(State.Wave) * BossEncounterRules.HealthMultiplier; unit.BodyHeight *= BossEncounterRules.BodyScale(source.BossPattern) * .8f; unit.Radius *= BossEncounterRules.CollisionScale * .8f; }
             else if (source.Behavior >= EnemyBehavior.Hopper) unit.Health *= 0.9f;
-            unit.Health *= CarnivalBalance.EnemyHealth(State.Wave) * 1.1f * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
+            unit.Health *= CarnivalBalance.EnemyHealth(State.Wave) * 1.1f * .8f * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
             if (source.SpecialEnemy != SpecialEnemyKind.None) { unit.Health *= 1.6f; unit.BodyHeight *= 1.2f; unit.Radius *= 1.15f; }
             unit.Speed *= CarnivalBalance.EnemySpeed(State.Wave);
             float damageGrowth = Mathf.Max(0, State.Wave - 10);
             unit.ContactDamage = Mathf.Min(14f + damageGrowth * 0.12f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
             float pressure = JourneyBalance.EnemyDamage(State.Difficulty, State.Wave) * CarnivalBalance.EnemyDamage(State.Wave) * 1.08f * OctoberBalance.EndlessDamage(State.Wave, State.Endless);
-            unit.ContactDamage *= pressure; unit.Weapon.Damage *= pressure;
+            unit.ContactDamage *= pressure*1.08f*1.6f; unit.Weapon.Damage *= pressure*1.08f;
+            unit.ContactInterval=Mathf.Max(.45f,unit.ContactInterval*.9f);
             if (source.IsBoss) { unit.ContactDamage *= BossEncounterRules.DamageMultiplier; unit.Weapon.Damage *= BossEncounterRules.DamageMultiplier; unit.Speed *= BossEncounterRules.SpeedMultiplier; }
             if (catalog.StatRevision > 0)
             {

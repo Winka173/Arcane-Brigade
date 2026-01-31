@@ -65,9 +65,10 @@ namespace ArcaneBrigade
             actor.Id = encounter == 2 ? "SecretUnderstudy" : "SecretCabinetActor";
             actor.DisplayName = encounter == 2 ? "The Understudy" : encounter == 3 ? "The Contraband Collector" : encounter == 5 ? "The Leading Actor" : encounter == 6 ? "The Hostile Duet" : "The Cabinet Warden";
             actor.IsBoss = true; actor.HeroMechanic = HeroMechanic.None; actor.SpecialEnemy = SpecialEnemyKind.None; actor.Mutation = EnemyMutation.None;
-            actor.Health = (650 + State.Wave * 140) * (1 + State.Difficulty * .2f) * (encounter == 5 ? 1.3f : 1);
+            actor.Health = (650 + State.Wave * 140) * .8f * (1 + State.Difficulty * .2f) * (encounter == 5 ? 1.3f : 1);
             actor.BodyHeight = encounter == 2 ? 1.5f : 2.3f; actor.Radius = .65f; actor.Speed = encounter == 2 ? 1.15f : .6f;
-            actor.ContactDamage = 5 + State.Wave * .12f; actor.ContactInterval = 1.3f; actor.KnockbackResistance = 1;
+            actor.ContactDamage = (5 + State.Wave * .12f)*1.08f*1.6f; actor.ContactInterval = 1.17f; actor.KnockbackResistance = 1;
+            actor.Weapon.Damage*=1.08f;
             actor.Tint = encounter == 2 ? new Color(.65f, .8f, 1) : Color.white;
             CombatCatalog.Boss = actor;
             if (encounter == 6)

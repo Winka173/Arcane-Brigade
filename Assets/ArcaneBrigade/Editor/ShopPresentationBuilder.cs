@@ -41,9 +41,9 @@ namespace ArcaneBrigade.Editor
             Require(ShopDisplayActor.FocusScale(1, 1, false) >= 1.17f && ShopDisplayActor.FocusScale(0, 1, false) == 1, "Offer focus has visible growth and returns to base");
             Require(ShopDisplayActor.FocusScale(1, .1f, false) != ShopDisplayActor.FocusScale(1, 1, false), "Offer has an event-driven settling bounce");
             Require(ShopDisplayActor.FocusScale(1, .1f, true) == ShopDisplayActor.FocusScale(1, 1, true), "Reduced focus is static but visible");
-            Require(WorldShop.ExitInteractionRadius < WorldShop.InteractionRadius, "Continue requires a more deliberate close approach");
+            Require(WorldShop.ExitInteractionRadius > WorldShop.InteractionRadius && WorldShop.ExitPosition.x==0, "Continue uses a broad lower-centre entrance");
             foreach (float stockRow in new[] { -1.1f, -2f, -3f })
-                for (int index = -1; index <= 1; index++) Require(Vector2.Distance(WorldShop.ExitPosition, new Vector2(index * 3.2f, stockRow)) > WorldShop.ExitInteractionRadius + WorldShop.InteractionRadius + .3f, "Exit cannot overlap merchandise focus " + stockRow + "/" + index);
+                for (int index = -1; index <= 1; index++) Require(Vector2.Distance(WorldShop.ExitPosition, new Vector2(index * 3.2f, stockRow)) > 1.1f, "Exit centre remains below merchandise; nearest station retains focus " + stockRow + "/" + index);
             Require(Vector2.Distance(WorldShop.ExitPosition + Vector2.up * WorldShop.LayoutLift, OutsideStageChoice.ChallengePosition) > WorldShop.ExitInteractionRadius + 1.6f, "Continue is separate from optional Keeper entry");
             var parent = new GameObject("GroundingCheckParent"); var child = new GameObject("GroundingCheckSprite"); child.transform.SetParent(parent.transform, false);
             try

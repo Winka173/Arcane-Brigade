@@ -29,6 +29,7 @@ namespace ArcaneBrigade
         public void Configure(ArenaController controller)
         {
             owner = controller; assets = NightmareAssets.Current; voice = gameObject.AddComponent<MerchantVoice>();
+            gameObject.AddComponent<ShopSceneryLanding>().Configure(controller);
             gameObject.AddComponent<NightmareLighting>().Configure(controller);
             gameObject.AddComponent<SharedLightField>().Configure(controller);
             gameObject.AddComponent<NightLanternField>().Configure(controller);
@@ -94,7 +95,9 @@ namespace ArcaneBrigade
                 float scale = width / Mathf.Max(.01f,view.sprite.bounds.size.x);
                 view.transform.localScale = new Vector3(scale * (1 + motion),scale * (1 - motion),1);
                 Vector3 hovering = DreamLevitation.Offset(now, index + 1, depth, PresentationSettings.ReducedMotion);
-                view.transform.localRotation = Quaternion.Euler(0,0,DreamLevitation.Tilt(now, index + 1, PresentationSettings.ReducedMotion));
+                float tilt=DreamLevitation.Tilt(now,index+1,PresentationSettings.ReducedMotion);
+                if(index!=1 && ShopSceneryLanding.Active!=null){hovering=ShopSceneryLanding.Active.Apply(hovering,index+1);tilt=ShopSceneryLanding.Active.Tilt(tilt,index+1);}
+                view.transform.localRotation = Quaternion.Euler(0,0,tilt);
                 WorldSpriteGrounding.Place(view, (Vector3)position + hovering);
                 view.sortingOrder = index == 2 || index == 4 ? -35 : WorldSpriteGrounding.SortAt(position.y);
                 bool anchor = index == 1 || index >= 6;

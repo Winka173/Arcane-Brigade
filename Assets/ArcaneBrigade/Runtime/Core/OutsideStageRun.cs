@@ -47,7 +47,7 @@ namespace ArcaneBrigade
             OutsideStageAssets assets = OutsideStageAssets.Current;
             if (assets == null || assets.Boss == null) throw new InvalidOperationException("Missing outside-stage encounter");
             CombatCatalog.Boss = BuildEnemy(assets.Boss, 1 + Mathf.Max(0, State.Wave - 13) * 0.06f);
-            CombatCatalog.Boss.Health = assets.Boss.Health * 20 * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
+            CombatCatalog.Boss.Health = assets.Boss.Health * 20 * .8f * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
             CombatCatalog.Boss.BodyHeight = assets.Boss.BodyHeight * 1.75f;
             CombatCatalog.Boss.Weapon.Damage *= 2.8f; CombatCatalog.Boss.ContactDamage *= 2.5f;
             CombatCatalog.Boss.KnockbackResistance = 1;

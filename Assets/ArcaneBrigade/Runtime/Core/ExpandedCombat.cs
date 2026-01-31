@@ -84,7 +84,7 @@ namespace ArcaneBrigade
             foreach (UnitState target in units)
             {
                 Vector2 delta = target.Position - source.Position;
-                if (!CanHit(source.Faction, target) || delta.magnitude > weapon.Range + target.Definition.Radius || Vector2.Dot(delta.normalized, source.AttackDirection) < weapon.ConeDot) continue;
+                if (!CanHit(source.Faction, target) || delta.magnitude > MeleeTactics.Reach(source,target) || Vector2.Dot(delta.normalized, source.AttackDirection) < weapon.ConeDot) continue;
                 bool burning = target.BurnUntil > Elapsed;
                 ApplyWeaponDamage(target, damage, source.Faction, weapon.Element, weapon.Id, source.AttackDirection, weapon, critical, cause);
                 if (weapon.Family == ExpandedWeapon.Hammer && source.ExpandedBeat % 3 == 0 && burning)

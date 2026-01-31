@@ -178,7 +178,7 @@ namespace ArcaneBrigade
                 if (t == "Jungle Folk") { int n = BondLevel("hide") + BondLevel("hare"); w.Damage *= 1 + Mathf.Min(.5f, n * .1f); w.Range *= 1 + Mathf.Min(.2f, n * .05f); }
                 if (t == "\"Cars ARE My Kids\" Chris") { int n = Mathf.Min(3, Talent("Pony")); w.Damage *= 1 + n * .3f; unit.CollisionDamage += n * 5; }
                 if (t == "Inflatable Hammer") { w.Damage *= .3f; w.PushDistance = .45f; }
-                if (t == "Little Cabbage" || t == "Big Cabbage" || t == "Domestic Spiked Ball") { w.Damage = 0; unit.CollisionDamage = t == "Little Cabbage" ? 12 : t == "Big Cabbage" ? 24 : 18; }
+                if (t == "Little Cabbage" || t == "Big Cabbage" || t == "Domestic Spiked Ball") unit.CollisionDamage = t == "Little Cabbage" ? 12 : t == "Big Cabbage" ? 24 : 18;
                 bool Tagged(string tag) => Array.IndexOf(unit.Tags, tag) >= 0;
                 if (Tagged("fruit")) w.Cooldown /= 1 + Mathf.Min(.24f, Talent("Applehead") * .08f);
                 if (Tagged("gear")) { float bonus = Mathf.Min(.25f, Talent("Bullhorn Warrior") * .08f + Talent("Intelligent Construct") * .04f); w.Cooldown /= 1 + bonus; unit.Speed *= 1 + bonus; }
@@ -196,6 +196,7 @@ namespace ArcaneBrigade
                 }
                 if (OctoberHero == "Clementie") unit.CollisionDamage += CombatCatalog.Champion.Speed * 1.5f;
                 if (OctoberHero == "Frosty") { w.Damage *= Mathf.Max(.65f, 1 - State.Roster.Count * .02f); unit.BodyHeight *= Mathf.Max(.75f, 1 - State.Roster.Count * .01f); }
+                w.Damage*=1.08f;unit.CollisionDamage*=1.08f;unit.Speed=Mathf.Min(10,unit.Speed*1.05f);
                 w.Range = Mathf.Min(w.Range, w.Kind == WeaponKind.Melee ? 3.4f : 8); w.Cooldown = Mathf.Max(.28f, w.Cooldown);
             }
             if (OctoberHero == "Periwinky") CombatCatalog.Champion.Health = Mathf.Clamp(State.Gold, 20, 400);

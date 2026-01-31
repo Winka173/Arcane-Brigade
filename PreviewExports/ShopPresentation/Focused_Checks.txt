@@ -19,16 +19,16 @@ PASS Two freestanding toy cabinet replacements imported
 PASS Offer focus has visible growth and returns to base
 PASS Offer has an event-driven settling bounce
 PASS Reduced focus is static but visible
-PASS Continue requires a more deliberate close approach
-PASS Exit cannot overlap merchandise focus -1.1/-1
-PASS Exit cannot overlap merchandise focus -1.1/0
-PASS Exit cannot overlap merchandise focus -1.1/1
-PASS Exit cannot overlap merchandise focus -2/-1
-PASS Exit cannot overlap merchandise focus -2/0
-PASS Exit cannot overlap merchandise focus -2/1
-PASS Exit cannot overlap merchandise focus -3/-1
-PASS Exit cannot overlap merchandise focus -3/0
-PASS Exit cannot overlap merchandise focus -3/1
+PASS Continue uses a broad lower-centre entrance
+PASS Exit centre remains below merchandise; nearest station retains focus -1.1/-1
+PASS Exit centre remains below merchandise; nearest station retains focus -1.1/0
+PASS Exit centre remains below merchandise; nearest station retains focus -1.1/1
+PASS Exit centre remains below merchandise; nearest station retains focus -2/-1
+PASS Exit centre remains below merchandise; nearest station retains focus -2/0
+PASS Exit centre remains below merchandise; nearest station retains focus -2/1
+PASS Exit centre remains below merchandise; nearest station retains focus -3/-1
+PASS Exit centre remains below merchandise; nearest station retains focus -3/0
+PASS Exit centre remains below merchandise; nearest station retains focus -3/1
 PASS Continue is separate from optional Keeper entry
 PASS Visible foot remains grounded GroundedCabinet_00/0.3/-12
 PASS Ground placement never accumulates drift GroundedCabinet_00/0.3/-12

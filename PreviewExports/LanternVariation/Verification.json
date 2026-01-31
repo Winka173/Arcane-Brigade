@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "Smaller antique lamp fixtures, seeded placement and lean, proportional flame anchors and shop framing.",
+  "editorChecks": 512,
+  "newLayoutChecks": 321,
+  "nativeChecks": 520,
+  "images": [
+    {
+      "path": "PreviewExports/LanternVariation/Native/scattered-lamps-another-run.png",
+      "sha256": "A6D929AAFE508B68AA12582D34C5D1FD5C21ABF97DA59C7F763E355A606CD50D"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Native/scattered-lamps-wave-1.png",
+      "sha256": "C458430BE12A251C9573C127ADF45D17445351BBF93BAC939DC769B4AD49F671"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Native/scattered-lamps-wave-19.png",
+      "sha256": "36AEEB84B0E1E28C9BD09384E638ECEB7DFF8277895076125157AD1F1E23402F"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Native/scattered-lamps-wave-9.png",
+      "sha256": "3060E712FE62434EEC33A2ABF93762BB0751F5590DFE695AFF06904201A18FCA"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Native/smaller-asymmetric-shop-lamps.png",
+      "sha256": "E90BBBD3D5E96E9E7B416788482B845D634CB4EC163FA44FC3D4829E8A6D4EFB"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Reduced/scattered-lamps-another-run.png",
+      "sha256": "DDF765A0D1912499C82EDBCA7B416F15129B223C203EBDC88F26857EA838B900"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Reduced/scattered-lamps-wave-1.png",
+      "sha256": "9CCA499CBA57B94B79D75F7D99D6C6B053AE843BDCCEADF887E5F90DCD627872"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Reduced/scattered-lamps-wave-19.png",
+      "sha256": "CBEF91F1B93DA1776A7F8D02496B1104720C921C73E9CF274466222BDB3362F2"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Reduced/scattered-lamps-wave-9.png",
+      "sha256": "41327EB154748A7C1F4B0A3CFF7296FC5F4C97496255101A9012A198D77A7962"
+    },
+    {
+      "path": "PreviewExports/LanternVariation/Reduced/smaller-asymmetric-shop-lamps.png",
+      "sha256": "A4F35035AAD169A13D9E2A5A4692749AA04911B24D71A5884D41F66F83EE8251"
+    }
+  ],
+  "runs": {
+    "Player": "Builds/HeroIdentity/ArcaneBrigade.exe",
+    "Runs": [
+      {
+        "Started": "2026-10-16T20:18:27.6660161+07:00",
+        "ExitCode": 0,
+        "Checks": 260,
+        "Finished": "2026-10-16T20:19:09.1653455+07:00",
+        "Images": 5,
+        "Mode": "Native"
+      },
+      {
+        "Started": "2026-10-16T20:19:09.2189051+07:00",
+        "ExitCode": 0,
+        "Checks": 260,
+        "Finished": "2026-10-16T20:19:28.2430316+07:00",
+        "Images": 5,
+        "Mode": "Reduced"
+      }
+    ],
+    "RuntimeSha256": "9C603AF7375B9B71F13C8467B7EFF13261B677F9C96D50AB764123DF8DAE91D8"
+  },
+  "sourceSha256": {
+    "Assets/ArcaneBrigade/Runtime/Presentation/NightLanternField.cs": "C01385BAE872AB8419B43F724CEEBA46F9EAA6E20A8D633C3A0D5EF2880C25E6",
+    "Assets/ArcaneBrigade/Runtime/Core/MienChoCapture.cs": "FF57D696FA5EE3E0FEC1CF543116E53F90B7CEAB685D252059B739E4FD9111A9",
+    "Assets/ArcaneBrigade/Editor/WaitingActOneChecks.cs": "F193E44040301EF4D29E67B9911CE8EE60F992F72A08E3689C5C439DAE8D71AB",
+    "Tools/Story/Capture_Lantern_Variation.ps1": "B50F657749AA1927C2B58344B5B58F4FFF095715823FD7ADCEEFE2D82846D523"
+  },
+  "limits": [
+    "Focused lamp regression, not a full-campaign replay or performance benchmark.",
+    "Eight independent antique lamps; composite painted room furnishings remain separate art.",
+    "The previously running FullRun player is preserved; the updated binary is in HeroIdentity."
+  ]
+}

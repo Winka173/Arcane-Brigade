@@ -4,7 +4,7 @@ namespace ArcaneBrigade
 {
     public sealed partial class RunSession
     {
-        public int NewRecruitLimit => State.Wave <= 3 ? 2 : 1;
+        public int NewRecruitLimit => 1;
         public int CompanionLimit => OctoberBalance.AllySoftLimit;
         public const int CompanionPurchaseLimit = 3;
         public int CompanionPurchasesRemaining => Math.Max(0, CompanionPurchaseLimit - State.NewRecruitsThisWave);

@@ -111,7 +111,7 @@ namespace ArcaneBrigade
             var floats=FindObjectsByType<DreamSuspension>();
             Check(floats.Length >= 8 && floats.All(f=>f.GetComponentsInChildren<LineRenderer>().Length==0 && !f.GetComponentsInChildren<SpriteRenderer>().Any(r=>r.name=="PaintedSuspensionMist")), "Environment fixtures and merchant float without under-object wind");
             WorldShop.Station exit = owner.Shop.Stations.First(station => station.Action == "NEXT HALL");
-            Check(Vector2.Distance(exit.Position, WorldShop.ExitPosition + Vector2.up * WorldShop.LayoutLift) < .01f, "Actual continue door uses separate right-hand lane");
+            Check(Vector2.Distance(exit.Position, WorldShop.ExitPosition + Vector2.up * WorldShop.LayoutLift) < .01f && exit.Reach>WorldShop.InteractionRadius, "Actual continue door uses broad bottom-centre entrance");
             foreach (WorldShop.Station offer in owner.Shop.Stations.Where(station => station.Offer != null))
             {
                 Check(Vector2.Distance(offer.Position, exit.Position) > offer.Reach + exit.Reach + .3f, "Stock and exit have disjoint interaction regions");

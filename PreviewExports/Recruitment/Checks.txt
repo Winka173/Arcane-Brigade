@@ -2,12 +2,11 @@ PASS Catalog supplies ordinary and special recruit fixtures
 PASS Round quota 1
 PASS New normal species accepted 1/0
 PASS New normal species increments both quotas 1/0
-PASS New normal species accepted 1/1
-PASS New normal species increments both quotas 1/1
 PASS Old offer cannot bypass exhausted quota 1
 PASS Denied purchase leaves currency and roster unchanged 1
 PASS Third copy merges after exhausted new-species quota 1
 PASS Upgrade consumes old purchase quota but not new-species quota 1
+PASS Third total purchase remains available for upgrades 1
 PASS Fourth ordinary purchase blocked including star-upgrade copies 1
 PASS Special shop purchase exempt 1/PillowOracle
 PASS Special purchase increments neither quota 1/PillowOracle
@@ -109,12 +108,11 @@ PASS Reroll never resets either quota 1/29
 PASS Round quota 2
 PASS New normal species accepted 2/0
 PASS New normal species increments both quotas 2/0
-PASS New normal species accepted 2/1
-PASS New normal species increments both quotas 2/1
 PASS Old offer cannot bypass exhausted quota 2
 PASS Denied purchase leaves currency and roster unchanged 2
 PASS Third copy merges after exhausted new-species quota 2
 PASS Upgrade consumes old purchase quota but not new-species quota 2
+PASS Third total purchase remains available for upgrades 2
 PASS Fourth ordinary purchase blocked including star-upgrade copies 2
 PASS Special shop purchase exempt 2/PillowOracle
 PASS Special purchase increments neither quota 2/PillowOracle
@@ -216,12 +214,11 @@ PASS Reroll never resets either quota 2/29
 PASS Round quota 3
 PASS New normal species accepted 3/0
 PASS New normal species increments both quotas 3/0
-PASS New normal species accepted 3/1
-PASS New normal species increments both quotas 3/1
 PASS Old offer cannot bypass exhausted quota 3
 PASS Denied purchase leaves currency and roster unchanged 3
 PASS Third copy merges after exhausted new-species quota 3
 PASS Upgrade consumes old purchase quota but not new-species quota 3
+PASS Third total purchase remains available for upgrades 3
 PASS Fourth ordinary purchase blocked including star-upgrade copies 3
 PASS Special shop purchase exempt 3/PillowOracle
 PASS Special purchase increments neither quota 3/PillowOracle

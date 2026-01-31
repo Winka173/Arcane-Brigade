@@ -8,6 +8,7 @@ namespace ArcaneBrigade
     public sealed class NightLanternField : MonoBehaviour
     {
         public const int Capacity=8;
+        public const float MinimumHeight=1.6f,MaximumHeight=1.9f;
         private static readonly int[] BreakOrder={2,7,4,1,6,0,5,3};
         private ArenaController owner;
         private readonly SpriteRenderer[] sprites=new SpriteRenderer[8],halos=new SpriteRenderer[8];
@@ -43,17 +44,41 @@ namespace ArcaneBrigade
             int rank=System.Array.IndexOf(BreakOrder,index),broken=BrokenFor(wave);
             return rank<broken?2:rank<broken+2 && wave>2?1:0;
         }
-        public static Vector2 PositionFor(int index,Vector2 size)
+        // Presentation-only noise: never consume the run/shop/combat random streams.
+        private static float Variation(int index,int seed,uint channel)
+        {
+            unchecked
+            {
+                uint n=(uint)seed ^ (uint)(index+1)*0x9e3779b9u ^ channel*0x85ebca6bu;
+                n^=n>>16;n*=0x7feb352du;n^=n>>15;n*=0x846ca68bu;n^=n>>16;
+                return (n & 0x00ffffffu)/16777215f;
+            }
+        }
+        public static float HeightFor(int index,int seed)=>Mathf.Lerp(MinimumHeight,MaximumHeight,Variation(index,seed,3));
+        public static float RestTiltFor(int index,int seed)
+            =>(((index ^ seed)&1)==0?-1:1)*Mathf.Lerp(4.5f,10.5f,Variation(index,seed,4));
+        private static float MotionIdentity(int index,int seed)=>211+index+Variation(index,seed,5)*997;
+        public static float TiltFor(int index,int seed,float clock,bool reduced)
+            =>RestTiltFor(index,seed)+(reduced?0:DreamLevitation.Tilt(clock,MotionIdentity(index,seed),false,.65f));
+        public static Vector2 PositionFor(int index,Vector2 size,int seed=0,bool shop=false)
         {
             var h=size*.5f;
-            return index switch
+            Vector2 jitter=new Vector2(Variation(index,seed,1)*2-1,Variation(index,seed,2)*2-1);
+            // Shop fixtures stay in their outer margins, clear of offers and interaction points.
+            if(shop && index<2)return new Vector2(index==0?-7.5f:7.5f,index==0?-4.65f:-2.25f)+Vector2.Scale(jitter,new Vector2(.12f,.15f));
+            Vector2 anchor=index switch
             {
                 0=>new Vector2(-Mathf.Min(6,h.x-2),-3.3f),1=>new Vector2(Mathf.Min(6,h.x-2),-3.3f),
                 2=>new Vector2(-Mathf.Min(6,h.x-2),2.2f),3=>new Vector2(Mathf.Min(6,h.x-2),2.2f),
                 4=>new Vector2(-h.x+3,h.y-3),5=>new Vector2(h.x-3,h.y-3),
                 6=>new Vector2(-h.x*.4f,-h.y+2.2f),_=>new Vector2(h.x*.4f,-h.y+2.2f)
             };
+            Vector2 spread=index<4?new Vector2(1.35f,.85f):new Vector2(1.5f,.7f);
+            Vector2 position=anchor+Vector2.Scale(jitter,spread);
+            return new Vector2(Mathf.Clamp(position.x,-h.x+1.25f,h.x-1.25f),Mathf.Clamp(position.y,-h.y+1.3f,h.y-1.3f));
         }
+        public Vector2 FixtureAnchor(int index)=>PositionFor(index,owner.WorldBounds,owner.Session.State.Seed,owner.Session.State.Phase==SessionPhase.Shop);
+        public float FlameFloorDrop(int index)=>HeightFor(index,owner.Session.State.Seed)*(1.15f/2.7f);
         public void Configure(ArenaController value)
         {
             owner=value;
@@ -92,10 +117,12 @@ namespace ArcaneBrigade
             wave=current;previousShop=shop;wind.volume=PresentationSettings.ReducedAudio?0:PresentationSettings.SfxVolume*(shop?.015f:Mathf.Lerp(.025f,.13f,NightmareRules.Depth(wave)/4f));
             BrokenCount=LitCount=0;
             float dawn=NightmareLighting.Active?.Dawn??0;
+            int seed=owner.Session.State.Seed;
             for(int i=0;i<8;i++)
             {
                 int state=StateFor(i,wave,shop);bool fixtureVisible=!shop || i<2;
-                Vector2 basePosition=shop && i<2?new Vector2(i==0?-8.25f:8.25f,-4.8f):PositionFor(i,owner.WorldBounds);
+                Vector2 basePosition=FixtureAnchor(i);
+                float height=HeightFor(i,seed),sizeRatio=height/2.7f,identity=MotionIdentity(i,seed);
                 if(fixtureVisible){if(state==2)BrokenCount++;else LitCount++;}
                 bool firstFixture=modelStates[i]<0;
                 if(modelStates[i]!=state)
@@ -105,27 +132,27 @@ namespace ArcaneBrigade
                 float light=!fixtureVisible || state==2?0:state==1?.5f:1;
                 if(!PresentationSettings.ReducedFlashes && state==1)light*=.94f+Mathf.Sin(Clock*.8f+i)*.025f;
                 brightness[i]=firstFixture || PresentationSettings.ReducedMotion?light:Mathf.MoveTowards(brightness[i],light,Time.deltaTime*1.6f);
-                Vector3 hover=DreamLevitation.Offset(Clock,211+i,NightmareRules.Depth(wave),PresentationSettings.ReducedMotion);
+                Vector3 hover=DreamLevitation.Offset(Clock,identity,NightmareRules.Depth(wave),PresentationSettings.ReducedMotion);
                 Vector3 foot=(Vector3)basePosition+hover;
-                Quaternion lean=Quaternion.Euler(0,0,DreamLevitation.Tilt(Clock,211+i,PresentationSettings.ReducedMotion));
+                Quaternion lean=Quaternion.Euler(0,0,TiltFor(i,seed,Clock,PresentationSettings.ReducedMotion));
                 ruptures[i]=new Vector4(basePosition.x,basePosition.y,1.6f,state==2 && fixtureVisible?1:0);
                 sprites[i].enabled=fixtureVisible;
                 if(sprites[i].sprite!=null)
                 {
-                    sprites[i].transform.localScale=Vector3.one*(2.7f/sprites[i].sprite.bounds.size.y);
+                    sprites[i].transform.localScale=Vector3.one*(height/sprites[i].sprite.bounds.size.y);
                     sprites[i].transform.rotation=lean;
                     sprites[i].transform.position=foot-sprites[i].transform.TransformVector(LampLocal(sprites[i].sprite,new Vector2(.40f,.025f)));
                     sprites[i].sortingOrder=WorldSpriteGrounding.SortAt(basePosition.y);
                     sprites[i].color=Color.Lerp(new Color(.42f,.46f,.55f),Color.white,Mathf.Max(light,dawn));
                 }
                 Vector3 flame=sprites[i].transform.TransformPoint(LampLocal(sprites[i].sprite,new Vector2(.66f,.49f)));
-                sources[i]=new Vector4(flame.x,flame.y-1.15f,5,brightness[i]*(1-dawn*.75f));
-                halos[i].enabled=fixtureVisible && brightness[i]>.01f;halos[i].transform.position=new Vector3(flame.x,flame.y,0);halos[i].transform.rotation=lean;halos[i].transform.localScale=new Vector3(.9f,1.1f,1);halos[i].color=new Color(1,.52f,.16f,brightness[i]*.19f);halos[i].sortingOrder=WorldSpriteGrounding.SortAt(basePosition.y)+7;
+                sources[i]=new Vector4(flame.x,flame.y-FlameFloorDrop(i),5,brightness[i]*(1-dawn*.75f));
+                halos[i].enabled=fixtureVisible && brightness[i]>.01f;halos[i].transform.position=new Vector3(flame.x,flame.y,0);halos[i].transform.rotation=lean;halos[i].transform.localScale=new Vector3(.9f*sizeRatio,1.1f*sizeRatio,1);halos[i].color=new Color(1,.52f,.16f,brightness[i]*.19f);halos[i].sortingOrder=WorldSpriteGrounding.SortAt(basePosition.y)+7;
                 if(fixtureVisible)
                 {
                     int order=WorldSpriteGrounding.SortAt(basePosition.y);
-                    shadows[i].SortingBase=order-10;shadows[i].Display(sprites[i].sprite,basePosition,.6f,hover.y,.35f);
-                    suspensions[i].Display(basePosition,foot,.85f,Clock,211+i,order-1,.9f,state!=2);
+                    shadows[i].SortingBase=order-10;shadows[i].Display(sprites[i].sprite,basePosition,.6f*sizeRatio,hover.y,.35f);
+                    suspensions[i].Display(basePosition,foot,.85f*sizeRatio,Clock,identity,order-1,.9f,state!=2);
                 }
                 else {shadows[i].Hide();suspensions[i].Hide();}
             }

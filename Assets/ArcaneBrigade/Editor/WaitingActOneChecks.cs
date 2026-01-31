@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace ArcaneBrigade.Editor
@@ -13,6 +14,31 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             notes.Clear();var catalog=Resources.Load<RunCatalog>("RunCatalog");
+            var randomBefore=UnityEngine.Random.state;
+            for(int sample=0;sample<64;sample++)
+            {
+                int seed=unchecked(sample*486187739-170026);
+                var saved=JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(new RunSnapshot{Seed=seed}));
+                var positions=new Vector2[8];bool bounded=true,separated=true,restored=true,smaller=true;
+                for(int i=0;i<8;i++)
+                {
+                    positions[i]=NightLanternField.PositionFor(i,catalog.WorldSize,seed);
+                    bounded&=Mathf.Abs(positions[i].x)<=catalog.WorldSize.x*.5f-1.25f && Mathf.Abs(positions[i].y)<=catalog.WorldSize.y*.5f-1.3f;
+                    restored&=positions[i]==NightLanternField.PositionFor(i,catalog.WorldSize,saved.Seed);
+                    smaller&=NightLanternField.HeightFor(i,seed)>=1.6f && NightLanternField.HeightFor(i,seed)<=1.9f;
+                    for(int j=0;j<i;j++)separated&=Vector2.Distance(positions[i],positions[j])>3.5f;
+                }
+                Check(bounded && separated && restored && smaller,"Scattered lamps stay separated, within the map and stable across save/load seed="+seed);
+                Check(Enumerable.Range(0,8).Any(i=>positions[i]!=NightLanternField.PositionFor(i,catalog.WorldSize,seed+1)),"Different runs get different lamp arrangements seed="+seed);
+                Check(Enumerable.Range(0,8).Any(i=>NightLanternField.RestTiltFor(i,seed)<-4) && Enumerable.Range(0,8).Any(i=>NightLanternField.RestTiltFor(i,seed)>4),"Every run includes left and right lamp lean seed="+seed);
+                for(int i=0;i<2;i++)
+                {
+                    var shop=NightLanternField.PositionFor(i,catalog.WorldSize,seed,true);
+                    float row=i==0?-4.65f:-2.25f;
+                    Check(Mathf.Abs(shop.x)>=7.37f && Mathf.Abs(shop.x)<=7.63f && Mathf.Abs(shop.y-row)<=.151f,"Shop lamps stay in safe outer margins seed="+seed+" / "+i);
+                }
+            }
+            Check(JsonUtility.ToJson(randomBefore)==JsonUtility.ToJson(UnityEngine.Random.state),"Lantern decoration never advances Unity's gameplay random state");
             for(int wave=1;wave<=60;wave++)
             {
                 int broken=0;for(int i=0;i<8;i++)if(NightLanternField.StateFor(i,wave,false)==2)broken++;

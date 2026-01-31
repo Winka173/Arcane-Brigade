@@ -137,7 +137,7 @@ namespace ArcaneBrigade
                     Danger(ExpandedFieldKind.Shockwave, enemy, target, 1.6f, 0.8f, 0.8f);
                     break;
                 case EnemyMutation.RamBackstep:
-                    enemy.EvolutionRepeats = 1; BeginMutationTravel(enemy, enemy.Position - heading * 1.1f, 0.35f);
+                    enemy.EvolutionRepeats = 1; BeginMutationTravel(enemy, enemy.Position + heading * 1.1f, 0.35f);
                     break;
                 case EnemyMutation.CoinBarrage:
                     for (int index = pickups.Count - 1; index >= 0; index--)

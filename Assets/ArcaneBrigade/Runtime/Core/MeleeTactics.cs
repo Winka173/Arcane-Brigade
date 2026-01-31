@@ -4,6 +4,10 @@ namespace ArcaneBrigade
 {
     public static class MeleeTactics
     {
+        // Weapon reach touches the target's body, rather than requiring its centre
+        // to enter the blade. Large bodies must also be able to reach past contact.
+        public static float Reach(UnitState unit,UnitState target)
+            =>Mathf.Max(unit.Definition.Weapon.Range+target.Definition.Radius,unit.Definition.Radius+target.Definition.Radius+.08f);
         public static Vector2 Engage(UnitState unit, UnitState target)
         {
             Vector2 near = unit.Position - target.Position;
@@ -17,7 +21,8 @@ namespace ArcaneBrigade
                 unit.MeleeApproachTarget = target.Id; unit.MeleeApproachAngle = Mathf.Atan2(near.y, near.x) + side;
             }
             Vector2 direction = new Vector2(Mathf.Cos(unit.MeleeApproachAngle), Mathf.Sin(unit.MeleeApproachAngle));
-            float distance = Mathf.Max(unit.Definition.Radius + target.Definition.Radius + 0.04f, unit.Definition.Weapon.Range * 0.55f);
+            float distance = Mathf.Min(Reach(unit,target)-.04f,Mathf.Max(unit.Definition.Radius + target.Definition.Radius + 0.04f, unit.Definition.Weapon.Range * 0.55f));
+            if(unit.Definition.CollisionDamage>0)distance=Mathf.Min(distance,unit.Definition.Radius+target.Definition.Radius-.02f);
             return target.Position + direction * distance;
         }
         public static void Aim(UnitState unit, UnitState target, float delta)

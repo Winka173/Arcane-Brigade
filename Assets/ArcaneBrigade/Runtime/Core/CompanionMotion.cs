@@ -40,7 +40,6 @@ namespace ArcaneBrigade
             if (pursuing)
             {
                 destination = MeleeTactics.Engage(unit, target);
-                MeleeTactics.Aim(unit, target, deltaTime);
                 destination = champion.Position + Vector2.ClampMagnitude(destination - champion.Position, leash * 0.96f);
             }
             else if (target != null && unit.Definition.Weapon.Kind == WeaponKind.Projectile && !resting)

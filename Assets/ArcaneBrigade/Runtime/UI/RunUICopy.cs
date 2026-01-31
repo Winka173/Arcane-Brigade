@@ -91,14 +91,14 @@ namespace ArcaneBrigade
             string innate = unit.Id switch {
                 "LanternKnight" => "Start with +5 HP, +5% movement speed and 0.2 HP/s. Rally strengthens personal attacks with your brigade.",
                 "Postmaster" => "Team flat ranged damage +3 and melee damage -2. After 25s, team melee attacks deal 40% more and ranged attacks 25% less.",
-                "DrowsySeer" => "Basic attacks while moving; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.",
+                "DrowsySeer" => "Basic attacks work while moving or resting; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.",
                 "RootOracle" => "Stationary in battle; walks in shops. Whole-arena pickup, 30% shop discount, no dodge and -100% treasure detection.",
                 "LoneJelly" => "Fight without companion bodies. Buying companions absorbs their talents. Solo weapon damage grows with wave, within its cap.",
-                "GlassDice" => "No ordinary basic attack. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.",
+                "GlassDice" => "Uses the equipped weapon normally. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.",
                 "CometRunner" => "Team movement speed +20%; start with +10% dodge and crit, but armor -0.15.",
                 "MirrorKeeper" => "Each Prizefighter bond level adds 3 hero collision damage. Standing still prepares the borrowed volley.",
-                "StormFencer" => "No basic attack. Hero collision damage doubles. Start with +20% dodge.",
-                "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions fight through conducted responses.",
+                "StormFencer" => "Equipped weapon attacks normally. Hero collision damage doubles. Start with +20% dodge.",
+                "TinVirtuoso" => "Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions use their weapons and also answer conducted phrases.",
                 "LanternWeaver" or "HourglassStag" or "RainArchivist" or "SupperMortar" => "Base weapon and all listed run modifiers still apply.",
                 _ => OctoberContent.HeroCopy(unit.ReferenceHero)
             };

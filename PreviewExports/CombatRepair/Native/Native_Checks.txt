@@ -1,0 +1,109 @@
+PASS Player saves stay isolated
+PASS Actual saved run loaded 4 / True
+PASS Entering the shop starts the scenery landing
+PASS Actual nonblack Windows frame 01-shop-scenery-falling
+PASS Scenery falls while reduced motion stays composed
+PASS Lamp is excluded from the scenery drop 0
+PASS Lamp is excluded from the scenery drop 1
+PASS Lamp is excluded from the scenery drop 2
+PASS Lamp is excluded from the scenery drop 3
+PASS Lamp is excluded from the scenery drop 4
+PASS Lamp is excluded from the scenery drop 5
+PASS Lamp is excluded from the scenery drop 6
+PASS Lamp is excluded from the scenery drop 7
+PASS Actual nonblack Windows frame 02-shop-scenery-landed
+PASS Shop entrance is ready for real interaction
+PASS Door is at bottom centre with a wide entrance
+PASS Door focuses beyond the old global 1.1-unit cap
+PASS Actual nonblack Windows frame 03-bottom-centre-door-wide-focus
+PASS Broad doorway actually accepts the continue action
+PASS Actual saved run loaded 1 / False
+PASS All world scenery is present in the first wave
+PASS Actual nonblack Windows frame 04-world-scenery-intact
+PASS Moving the hero/camera cannot move scenery anchors
+PASS Actual floor shadows stay fixed while the camera moves
+PASS Actual nonblack Windows frame 05-world-scenery-after-camera-move
+PASS Actual saved run loaded 11 / False
+PASS Damaged scenery stays at its original map locations 11
+PASS Actual scenery damage art matches wave 11 / 0
+PASS Actual scenery damage art matches wave 11 / 1
+PASS Actual scenery damage art matches wave 11 / 2
+PASS Actual scenery damage art matches wave 11 / 3
+PASS Actual scenery damage art matches wave 11 / 4
+PASS Actual scenery damage art matches wave 11 / 5
+PASS Actual scenery damage art matches wave 11 / 6
+PASS Actual scenery damage art matches wave 11 / 7
+PASS Actual scenery damage art matches wave 11 / 8
+PASS Actual scenery damage art matches wave 11 / 9
+PASS Actual scenery damage art matches wave 11 / 10
+PASS Actual scenery damage art matches wave 11 / 11
+PASS Actual nonblack Windows frame 06-world-scenery-cracked
+PASS Actual saved run loaded 17 / False
+PASS Damaged scenery stays at its original map locations 17
+PASS Actual scenery damage art matches wave 17 / 0
+PASS Actual scenery damage art matches wave 17 / 1
+PASS Actual scenery damage art matches wave 17 / 2
+PASS Actual scenery damage art matches wave 17 / 3
+PASS Actual scenery damage art matches wave 17 / 4
+PASS Actual scenery damage art matches wave 17 / 5
+PASS Actual scenery damage art matches wave 17 / 6
+PASS Actual scenery damage art matches wave 17 / 7
+PASS Actual scenery damage art matches wave 17 / 8
+PASS Actual scenery damage art matches wave 17 / 9
+PASS Actual scenery damage art matches wave 17 / 10
+PASS Actual scenery damage art matches wave 17 / 11
+PASS Actual nonblack Windows frame 07-world-scenery-broken
+PASS Actual saved run loaded 3 / False
+PASS Art gallery freezes without a pause-menu overlay
+PASS Illustrated mechanic renders LanternKnight
+PASS Illustrated mechanic renders Postmaster
+PASS Illustrated mechanic renders DrowsySeer
+PASS Illustrated mechanic renders RootOracle
+PASS Illustrated mechanic renders LoneJelly
+PASS Illustrated mechanic renders GlassDice
+PASS Illustrated mechanic renders TideSinger
+PASS Illustrated mechanic renders CometRunner
+PASS Illustrated mechanic renders MirrorKeeper
+PASS Illustrated mechanic renders TreasureAcorn
+PASS Illustrated mechanic renders VerdantMatron
+PASS Illustrated mechanic renders CopperCauldron
+PASS Mechanic gallery has no primitive outlines page=0
+PASS Actual nonblack Windows frame 08-mechanic-art-page-0
+PASS Illustrated mechanic renders ChinaMarionette
+PASS Illustrated mechanic renders SoapSkater
+PASS Illustrated mechanic renders VelvetRegent
+PASS Illustrated mechanic renders ButtonCavalier
+PASS Illustrated mechanic renders NightMaw
+PASS Illustrated mechanic renders ThornTreasurer
+PASS Illustrated mechanic renders CitrusMarshal
+PASS Illustrated mechanic renders IvorySovereign
+PASS Illustrated mechanic renders PetalCitadel
+PASS Illustrated mechanic renders PatchworkHost
+PASS Illustrated mechanic renders ArchiveCurator
+PASS Illustrated mechanic renders PennyBroker
+PASS Mechanic gallery has no primitive outlines page=1
+PASS Actual nonblack Windows frame 08-mechanic-art-page-1
+PASS Illustrated mechanic renders StormFencer
+PASS Illustrated mechanic renders TinVirtuoso
+PASS Illustrated mechanic renders MoonProwler
+PASS Illustrated mechanic renders SupperMortar
+PASS Illustrated mechanic renders LanternWeaver
+PASS Illustrated mechanic renders HourglassStag
+PASS Illustrated mechanic renders RainArchivist
+PASS Mechanic gallery has no primitive outlines page=2
+PASS Actual nonblack Windows frame 08-mechanic-art-page-2
+PASS Illustrated mechanic renders Living Stitchwork
+PASS Illustrated mechanic renders Paper Furnace
+PASS Illustrated mechanic renders Clockwork Foundry
+PASS Illustrated mechanic renders Midnight Tea Service
+PASS Illustrated mechanic renders Pocket Constellation
+PASS Illustrated mechanic renders Origami Tempest
+PASS Illustrated mechanic renders Silver Understudy
+PASS Illustrated mechanic renders Toybox Orchestra
+PASS Illustrated mechanic renders Polarity Workshop
+PASS Illustrated mechanic renders Moonlit Regatta
+PASS Illustrated mechanic renders Crystal Music Garden
+PASS Illustrated mechanic renders Impossible Ledger
+PASS Mechanic gallery has no primitive outlines page=3
+PASS Actual nonblack Windows frame 08-mechanic-art-page-3
+PASS Combat repair native verification complete

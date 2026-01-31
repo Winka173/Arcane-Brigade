@@ -63,7 +63,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-Basic attacks while moving; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.
+Basic attacks work while moving or resting; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.
 
 ## The Root Oracle / RootOracle
 
@@ -126,7 +126,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-No ordinary basic attack. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.
+Uses the equipped weapon normally. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.
 
 ## The Tide Singer / TideSinger
 
@@ -299,7 +299,7 @@ Ordinary attacks deal 35% less damage. Push ordinary enemies harder, within the 
 ## Velvet Regent / VelvetRegent
 
 THE THREE COMMANDS
-You do not attack personally. Six allied basic attacks prepare a command, at most once per 4s. Spear selects the closest enemy, Volley favors ranged enemies, and Court favors the toughest enemy. Up to three allies perform their own weapon-shaped responses, sharing one budget. Your choice also changes companion target priorities.
+You fight with your equipped weapon. Six allied basic attacks prepare a command, at most once per 4s. Spear selects the closest enemy, Volley favors ranged enemies, and Court favors the toughest enemy. Up to three allies perform their own weapon-shaped responses, sharing one budget. Your choice also changes companion target priorities.
 
 1. Spear
 After 6 allied basic attacks, up to 3 friends answer with their own weapon shapes. Favor nearby targets. 4s cooldown; response budget uses their weapon damage, capped per performer at twice W.
@@ -315,7 +315,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-You do not attack. Your personal damage, attack speed, critical chance and projectile bonuses also help allies. Shops may sell evolved companions. More enemies appear.
+Your equipped weapon attacks automatically. Your personal damage, attack speed, critical chance and projectile bonuses also help allies. Shops may sell evolved companions. More enemies appear.
 
 ## Button Cavalier / ButtonCavalier
 
@@ -383,7 +383,7 @@ Dream shops always open. At wave start, maximum HP follows saved gold (20–400)
 ## Citrus Marshal / CitrusMarshal
 
 THE CITRUS CONVOY
-You lead a moving convoy and do not attack personally. Allies follow alternating lanes behind your heading, with their existing speed limits. Travel 8 units to peel a short path of contact bursts. Choose a narrow escort, a wide procession, or a close circle. Static-follower relics and pony mounts keep their own rules.
+You fight alongside the moving convoy you lead. Allies follow alternating lanes behind your heading, with their existing speed limits. Travel 8 units to peel a short path of contact bursts. Choose a narrow escort, a wide procession, or a close circle. Static-follower relics and pony mounts keep their own rules.
 
 1. Escort
 Friends follow two close lanes behind your heading. Travel 8 units to leave physical path lines sharing 90% W with 0.5s ordinary slow. 3s cooldown.
@@ -399,7 +399,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-You do not attack. Move 20% faster and gain 50% HP. Allies stay close; contact damage scales with your movement speed. Team attack speed -25%.
+Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; contact damage scales with your movement speed. Team attack speed -25%.
 
 ## Ivory Sovereign / IvorySovereign
 
@@ -525,12 +525,12 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-No basic attack. Hero collision damage doubles. Start with +20% dodge.
+Equipped weapon attacks normally. Hero collision damage doubles. Start with +20% dodge.
 
 ## Tin Virtuoso / TinVirtuoso
 
 THE BRIGADE SCORE
-Your basic attacks conduct the score; critical attacks count twice. Allies keep their response-only rule, but a completed phrase now guarantees a response instead of relying on another random roll. Solo needs 2 beats and one performer; Duet needs 4 and two; Tutti needs 6 and up to four. All responses share one damage budget.
+Your basic attacks conduct the score; critical attacks count twice. Allies use their equipped weapons normally; a completed phrase also guarantees a response instead of relying on another random roll. Solo needs 2 beats and one performer; Duet needs 4 and two; Tutti needs 6 and up to four. All responses share one damage budget.
 
 1. Solo
 A 2-beat phrase guarantees one friend's response; crits count as 2 beats. Response uses the friend's weapon shape, with a 70% own-weapon budget capped at twice W. 1.5s cooldown.
@@ -546,7 +546,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions fight through conducted responses.
+Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions use their weapons and also answer conducted phrases.
 
 ## Moon Prowler / MoonProwler
 

@@ -43,7 +43,7 @@ namespace ArcaneBrigade.Editor
             Check(ordinary.Length == 5 && specials.Length == 3, "Catalog supplies ordinary and special recruit fixtures");
             foreach (int wave in new[] { 1, 2, 3, 4, 8, 20, 30 })
             {
-                using var s = Session(c, wave); int limit = wave <= 3 ? 2 : 1;
+                using var s = Session(c, wave); int limit = 1;
                 string owned = ordinary[4].Id;
                 s.State.Roster.Add(new RosterEntry { UnitId = owned, WeaponId = "SpoonSabre" });
                 s.State.Roster.Add(new RosterEntry { UnitId = owned, WeaponId = "InkPistol" });
@@ -140,7 +140,7 @@ namespace ArcaneBrigade.Editor
                 }
                 Check(counts[0] > counts[1] && counts[1] > counts[2], "Seeded shop rolls reduce new species at 5/6/12 bodies: " + string.Join("/", counts));
             }
-            File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"EarlyNewSpeciesLimit\":2,\"LaterNewSpeciesLimit\":1,\"TotalOrdinaryPurchaseLimit\":3,\"SpecialShopExempt\":true,\"UpgradeUsesTotalQuota\":true}");
+            File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"EarlyNewSpeciesLimit\":1,\"LaterNewSpeciesLimit\":1,\"TotalOrdinaryPurchaseLimit\":3,\"SpecialShopExempt\":true,\"UpgradeUsesTotalQuota\":true}");
             Debug.Log("RECRUITMENT_PASS " + notes.Count);
         }
         public static void VerifyAndBuild() { Run(); HeroIdentityChecks.VerifyAndBuild(); }

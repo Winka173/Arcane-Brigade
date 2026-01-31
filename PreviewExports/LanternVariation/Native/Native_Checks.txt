@@ -1,0 +1,260 @@
+PASS Real player profile is isolated
+PASS Hero and exact companion light budget wave=1 party=4
+PASS Drawn chair appears at world boundary 1
+PASS Lamp air gap and fixed floor shadow 1 / 0
+PASS No under-object wind ribbons or smoke 1 / 0
+PASS Reduced motion keeps the static authored lamp lean 1 / 0
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 0
+PASS Only drawn lamp sprites are displayed 1 / 0
+PASS Lamp air gap and fixed floor shadow 1 / 1
+PASS No under-object wind ribbons or smoke 1 / 1
+PASS Reduced motion keeps the static authored lamp lean 1 / 1
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 1
+PASS Only drawn lamp sprites are displayed 1 / 1
+PASS Lamp air gap and fixed floor shadow 1 / 2
+PASS No under-object wind ribbons or smoke 1 / 2
+PASS Reduced motion keeps the static authored lamp lean 1 / 2
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 2
+PASS Only drawn lamp sprites are displayed 1 / 2
+PASS Lamp air gap and fixed floor shadow 1 / 3
+PASS No under-object wind ribbons or smoke 1 / 3
+PASS Reduced motion keeps the static authored lamp lean 1 / 3
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 3
+PASS Only drawn lamp sprites are displayed 1 / 3
+PASS Lamp air gap and fixed floor shadow 1 / 4
+PASS No under-object wind ribbons or smoke 1 / 4
+PASS Reduced motion keeps the static authored lamp lean 1 / 4
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 4
+PASS Only drawn lamp sprites are displayed 1 / 4
+PASS Lamp air gap and fixed floor shadow 1 / 5
+PASS No under-object wind ribbons or smoke 1 / 5
+PASS Reduced motion keeps the static authored lamp lean 1 / 5
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 5
+PASS Only drawn lamp sprites are displayed 1 / 5
+PASS Lamp air gap and fixed floor shadow 1 / 6
+PASS No under-object wind ribbons or smoke 1 / 6
+PASS Reduced motion keeps the static authored lamp lean 1 / 6
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 6
+PASS Only drawn lamp sprites are displayed 1 / 6
+PASS Lamp air gap and fixed floor shadow 1 / 7
+PASS No under-object wind ribbons or smoke 1 / 7
+PASS Reduced motion keeps the static authored lamp lean 1 / 7
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 7
+PASS Only drawn lamp sprites are displayed 1 / 7
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Damage progression survives smaller scattered lamps wave=1
+PASS Actual nonblack native frame scattered-lamps-wave-1
+PASS All eight lamps respect the motion setting wave=1
+PASS Pause freezes seeded lamps wave=1
+PASS Hero and exact companion light budget wave=9 party=4
+PASS Drawn chair appears at world boundary 9
+PASS Lamp air gap and fixed floor shadow 9 / 0
+PASS No under-object wind ribbons or smoke 9 / 0
+PASS Reduced motion keeps the static authored lamp lean 9 / 0
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 0
+PASS Only drawn lamp sprites are displayed 9 / 0
+PASS Lamp air gap and fixed floor shadow 9 / 1
+PASS No under-object wind ribbons or smoke 9 / 1
+PASS Reduced motion keeps the static authored lamp lean 9 / 1
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 1
+PASS Only drawn lamp sprites are displayed 9 / 1
+PASS Lamp air gap and fixed floor shadow 9 / 2
+PASS No under-object wind ribbons or smoke 9 / 2
+PASS Reduced motion keeps the static authored lamp lean 9 / 2
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 2
+PASS Only drawn lamp sprites are displayed 9 / 2
+PASS Lamp air gap and fixed floor shadow 9 / 3
+PASS No under-object wind ribbons or smoke 9 / 3
+PASS Reduced motion keeps the static authored lamp lean 9 / 3
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 3
+PASS Only drawn lamp sprites are displayed 9 / 3
+PASS Lamp air gap and fixed floor shadow 9 / 4
+PASS No under-object wind ribbons or smoke 9 / 4
+PASS Reduced motion keeps the static authored lamp lean 9 / 4
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 4
+PASS Only drawn lamp sprites are displayed 9 / 4
+PASS Lamp air gap and fixed floor shadow 9 / 5
+PASS No under-object wind ribbons or smoke 9 / 5
+PASS Reduced motion keeps the static authored lamp lean 9 / 5
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 5
+PASS Only drawn lamp sprites are displayed 9 / 5
+PASS Lamp air gap and fixed floor shadow 9 / 6
+PASS No under-object wind ribbons or smoke 9 / 6
+PASS Reduced motion keeps the static authored lamp lean 9 / 6
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 6
+PASS Only drawn lamp sprites are displayed 9 / 6
+PASS Lamp air gap and fixed floor shadow 9 / 7
+PASS No under-object wind ribbons or smoke 9 / 7
+PASS Reduced motion keeps the static authored lamp lean 9 / 7
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 9 / 7
+PASS Only drawn lamp sprites are displayed 9 / 7
+PASS Unity light field remains attached to drawn moving flame 9
+PASS Unity light field remains attached to drawn moving flame 9
+PASS Unity light field remains attached to drawn moving flame 9
+PASS Unity light field remains attached to drawn moving flame 9
+PASS Damaged lamps stay at the original run locations wave=9
+PASS Damage progression survives smaller scattered lamps wave=9
+PASS Actual nonblack native frame scattered-lamps-wave-9
+PASS All eight lamps respect the motion setting wave=9
+PASS Pause freezes seeded lamps wave=9
+PASS Hero and exact companion light budget wave=19 party=4
+PASS Drawn chair appears at world boundary 19
+PASS Lamp air gap and fixed floor shadow 19 / 0
+PASS No under-object wind ribbons or smoke 19 / 0
+PASS Reduced motion keeps the static authored lamp lean 19 / 0
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 0
+PASS Only drawn lamp sprites are displayed 19 / 0
+PASS Lamp air gap and fixed floor shadow 19 / 1
+PASS No under-object wind ribbons or smoke 19 / 1
+PASS Reduced motion keeps the static authored lamp lean 19 / 1
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 1
+PASS Only drawn lamp sprites are displayed 19 / 1
+PASS Lamp air gap and fixed floor shadow 19 / 2
+PASS No under-object wind ribbons or smoke 19 / 2
+PASS Reduced motion keeps the static authored lamp lean 19 / 2
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 2
+PASS Only drawn lamp sprites are displayed 19 / 2
+PASS Lamp air gap and fixed floor shadow 19 / 3
+PASS No under-object wind ribbons or smoke 19 / 3
+PASS Reduced motion keeps the static authored lamp lean 19 / 3
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 3
+PASS Only drawn lamp sprites are displayed 19 / 3
+PASS Lamp air gap and fixed floor shadow 19 / 4
+PASS No under-object wind ribbons or smoke 19 / 4
+PASS Reduced motion keeps the static authored lamp lean 19 / 4
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 4
+PASS Only drawn lamp sprites are displayed 19 / 4
+PASS Lamp air gap and fixed floor shadow 19 / 5
+PASS No under-object wind ribbons or smoke 19 / 5
+PASS Reduced motion keeps the static authored lamp lean 19 / 5
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 5
+PASS Only drawn lamp sprites are displayed 19 / 5
+PASS Lamp air gap and fixed floor shadow 19 / 6
+PASS No under-object wind ribbons or smoke 19 / 6
+PASS Reduced motion keeps the static authored lamp lean 19 / 6
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 6
+PASS Only drawn lamp sprites are displayed 19 / 6
+PASS Lamp air gap and fixed floor shadow 19 / 7
+PASS No under-object wind ribbons or smoke 19 / 7
+PASS Reduced motion keeps the static authored lamp lean 19 / 7
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 19 / 7
+PASS Only drawn lamp sprites are displayed 19 / 7
+PASS Damaged lamps stay at the original run locations wave=19
+PASS Damage progression survives smaller scattered lamps wave=19
+PASS Actual nonblack native frame scattered-lamps-wave-19
+PASS All eight lamps respect the motion setting wave=19
+PASS Pause freezes seeded lamps wave=19
+PASS Hero and exact companion light budget wave=1 party=4
+PASS Drawn chair appears at world boundary 1
+PASS A different saved run seed changes every lamp location
+PASS Lamp air gap and fixed floor shadow 1 / 0
+PASS No under-object wind ribbons or smoke 1 / 0
+PASS Reduced motion keeps the static authored lamp lean 1 / 0
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 0
+PASS Only drawn lamp sprites are displayed 1 / 0
+PASS Lamp air gap and fixed floor shadow 1 / 1
+PASS No under-object wind ribbons or smoke 1 / 1
+PASS Reduced motion keeps the static authored lamp lean 1 / 1
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 1
+PASS Only drawn lamp sprites are displayed 1 / 1
+PASS Lamp air gap and fixed floor shadow 1 / 2
+PASS No under-object wind ribbons or smoke 1 / 2
+PASS Reduced motion keeps the static authored lamp lean 1 / 2
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 2
+PASS Only drawn lamp sprites are displayed 1 / 2
+PASS Lamp air gap and fixed floor shadow 1 / 3
+PASS No under-object wind ribbons or smoke 1 / 3
+PASS Reduced motion keeps the static authored lamp lean 1 / 3
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 3
+PASS Only drawn lamp sprites are displayed 1 / 3
+PASS Lamp air gap and fixed floor shadow 1 / 4
+PASS No under-object wind ribbons or smoke 1 / 4
+PASS Reduced motion keeps the static authored lamp lean 1 / 4
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 4
+PASS Only drawn lamp sprites are displayed 1 / 4
+PASS Lamp air gap and fixed floor shadow 1 / 5
+PASS No under-object wind ribbons or smoke 1 / 5
+PASS Reduced motion keeps the static authored lamp lean 1 / 5
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 5
+PASS Only drawn lamp sprites are displayed 1 / 5
+PASS Lamp air gap and fixed floor shadow 1 / 6
+PASS No under-object wind ribbons or smoke 1 / 6
+PASS Reduced motion keeps the static authored lamp lean 1 / 6
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 6
+PASS Only drawn lamp sprites are displayed 1 / 6
+PASS Lamp air gap and fixed floor shadow 1 / 7
+PASS No under-object wind ribbons or smoke 1 / 7
+PASS Reduced motion keeps the static authored lamp lean 1 / 7
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 1 / 7
+PASS Only drawn lamp sprites are displayed 1 / 7
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Unity light field remains attached to drawn moving flame 1
+PASS Actual nonblack native frame scattered-lamps-another-run
+PASS Hero and exact companion light budget wave=1 party=4
+PASS Drawn chair appears at world boundary 1
+PASS Reloading the original run restores all lamp locations
+PASS Shop entrance has finished before interaction fixture 8
+PASS Hero and exact companion light budget wave=8 party=4
+PASS Drawn chair appears at world boundary 8
+PASS Lamp air gap and fixed floor shadow 8 / 0
+PASS No under-object wind ribbons or smoke 8 / 0
+PASS Reduced motion keeps the static authored lamp lean 8 / 0
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 0
+PASS Only drawn lamp sprites are displayed 8 / 0
+PASS Lamp air gap and fixed floor shadow 8 / 1
+PASS No under-object wind ribbons or smoke 8 / 1
+PASS Reduced motion keeps the static authored lamp lean 8 / 1
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 1
+PASS Only drawn lamp sprites are displayed 8 / 1
+PASS Lamp air gap and fixed floor shadow 8 / 2
+PASS No under-object wind ribbons or smoke 8 / 2
+PASS Reduced motion keeps the static authored lamp lean 8 / 2
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 2
+PASS Only drawn lamp sprites are displayed 8 / 2
+PASS Lamp air gap and fixed floor shadow 8 / 3
+PASS No under-object wind ribbons or smoke 8 / 3
+PASS Reduced motion keeps the static authored lamp lean 8 / 3
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 3
+PASS Only drawn lamp sprites are displayed 8 / 3
+PASS Lamp air gap and fixed floor shadow 8 / 4
+PASS No under-object wind ribbons or smoke 8 / 4
+PASS Reduced motion keeps the static authored lamp lean 8 / 4
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 4
+PASS Only drawn lamp sprites are displayed 8 / 4
+PASS Lamp air gap and fixed floor shadow 8 / 5
+PASS No under-object wind ribbons or smoke 8 / 5
+PASS Reduced motion keeps the static authored lamp lean 8 / 5
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 5
+PASS Only drawn lamp sprites are displayed 8 / 5
+PASS Lamp air gap and fixed floor shadow 8 / 6
+PASS No under-object wind ribbons or smoke 8 / 6
+PASS Reduced motion keeps the static authored lamp lean 8 / 6
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 6
+PASS Only drawn lamp sprites are displayed 8 / 6
+PASS Lamp air gap and fixed floor shadow 8 / 7
+PASS No under-object wind ribbons or smoke 8 / 7
+PASS Reduced motion keeps the static authored lamp lean 8 / 7
+PASS Actual drawn lamp is smaller than the previous 2.7 unit fixture 8 / 7
+PASS Only drawn lamp sprites are displayed 8 / 7
+PASS Unity light field remains attached to drawn moving flame 8
+PASS Unity light field remains attached to drawn moving flame 8
+PASS Both smaller shop lamps stay lit
+PASS Shop lamp stays clear of actual stations 0
+PASS Smaller shop lamp fits inside the camera frame 0
+PASS Shop lamp stays clear of actual stations 1
+PASS Smaller shop lamp fits inside the camera frame 1
+PASS Actual nonblack native frame smaller-asymmetric-shop-lamps
+PASS Smaller seeded lantern verification finished

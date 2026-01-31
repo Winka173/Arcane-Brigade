@@ -7,8 +7,8 @@ namespace ArcaneBrigade
     {
         public const float InteractionRadius = 1.1f;
         public const float LayoutLift = 0.5f;
-        public static readonly Vector2 ExitPosition = new Vector2(6.1f, -3.9f);
-        public const float ExitInteractionRadius = .8f;
+        public static readonly Vector2 ExitPosition = new Vector2(0, -4.5f);
+        public const float ExitInteractionRadius = 1.85f;
         public sealed class Station
         {
             public Vector2 Position;
@@ -115,7 +115,7 @@ namespace ArcaneBrigade
             scenery.SetActive(true); Nearby = null;
             if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
             if (merchant != null) merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
-            float closest = InteractionRadius * InteractionRadius;
+            float closest = float.PositiveInfinity;
             foreach (Station station in stations)
             {
                 if (station.Offer != null && station.Offer.Sold) continue;
@@ -332,7 +332,7 @@ namespace ArcaneBrigade
             Station reroll = AddStation(new Vector2(-5.3f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.\n" + owner.Session.RecruitmentSummary;
             Station exit = AddStation(ExitPosition, "NEXT HALL", art.HallDoor[0], art.HallDoor, false);
-            exit.Reach = ExitInteractionRadius; exit.Description = "Approach the separate doorway to continue.";
+            exit.Reach = ExitInteractionRadius; exit.Description = "The way onward is at the bottom centre. Its broad entrance includes the floating threshold.";
             if (merchantEntrance)
                 foreach (Station fixture in stations)
                     if (fixture.Offer == null && fixture.Actor != null) fixture.Actor.Arrive(0.45f);

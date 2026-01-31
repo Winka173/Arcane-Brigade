@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             State.Nightmare.NarrativeRevision = 1;
             State.Nightmare.Ending = NightmareEndingStage.Customer;
             CombatCatalog.Boss = BuildEnemy(assets.Customer,1 + State.Difficulty * .2f);
-            CombatCatalog.Boss.Health = assets.Customer.Health * (1 + State.Difficulty * .2f);
+            CombatCatalog.Boss.Health = assets.Customer.Health * .8f * (1 + State.Difficulty * .2f);
             CombatCatalog.EnemyBudget = 0;
             CombatCatalog.EnableArenaToys = CombatCatalog.EnableSpectacles = CombatCatalog.EnableBossArenaPhase = false;
             CombatCatalog.ExpandedContent = true;

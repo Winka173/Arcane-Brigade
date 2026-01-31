@@ -107,7 +107,9 @@ namespace ArcaneBrigade
             float width = kind == WaitingEncounter.ReservedTable ? 3.15f : kind == WaitingEncounter.LateReflection ? 1.65f : 1.65f;
             prop.transform.localScale = Vector3.one * (width / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(prop.sprite).width));
             Vector3 hover = DreamLevitation.Offset(AnimationClock, 171 + (int)kind, NightmareRules.Depth(state.Wave), PresentationSettings.ReducedMotion, .75f);
-            prop.transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(AnimationClock, 171 + (int)kind, PresentationSettings.ReducedMotion, .65f));
+            float tilt=DreamLevitation.Tilt(AnimationClock,171+(int)kind,PresentationSettings.ReducedMotion,.65f);
+            if(ShopSceneryLanding.Active!=null){hover=ShopSceneryLanding.Active.Apply(hover,171+(int)kind);tilt=ShopSceneryLanding.Active.Tilt(tilt,171+(int)kind);}
+            prop.transform.rotation = Quaternion.Euler(0,0,tilt);
             WorldSpriteGrounding.Place(prop, (Vector3)Anchor + hover);
             prop.sortingOrder = WorldSpriteGrounding.SortAt(Anchor.y);
             prop.color = Color.white;

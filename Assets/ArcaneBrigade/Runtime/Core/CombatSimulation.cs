@@ -418,6 +418,7 @@ namespace ArcaneBrigade
                 ProcessStatusAndPassive(unit);
                 if (!unit.Alive) continue;
                 if (unit.Definition.IsBoss) ProcessBoss(unit);
+                if(unit.PendingAttack && unit.Definition.Weapon.Kind==WeaponKind.Melee)MeleeTactics.Aim(unit,UnitWithId(unit.AttackTargetId),deltaTime);
                 ProcessAttack(unit);
                 if (unit.Faction == Faction.Enemy) ProcessContact(unit);
                 else ProcessOutgoingCollision(unit);
@@ -585,8 +586,6 @@ namespace ArcaneBrigade
             float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1);
             if (distance > stopDistance)
                 unit.Position = ClampPosition(unit.Position + travelDirection * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
-            else if (ranged && distance < 3f)
-                unit.Position = ClampPosition(unit.Position - unit.Facing * speed * deltaTime, unit.Definition.Radius);
         }
 
         private void ProcessStatusAndPassive(UnitState unit)
@@ -689,18 +688,22 @@ namespace ArcaneBrigade
             return pattern == 1 || pattern == 3 ? Mathf.Atan2(boss.TelegraphDirection.y, boss.TelegraphDirection.x) + (index - count / 2) * 0.16f : index * Mathf.PI * 2f / count + launchTime * 0.3f;
         }
 
-        private UnitState FindTarget(UnitState source, float range)
+        private UnitState FindTarget(UnitState source, float range, bool weaponReach=false)
         {
+            bool melee=weaponReach && source.Definition.Weapon.Kind==WeaponKind.Melee;
             if (source.Faction == Faction.Enemy)
-                return range >= 0 && Champion != null && CanHit(source.Faction, Champion) && (Champion.Position - source.Position).sqrMagnitude < range * range ? Champion : null;
+                return range >= 0 && Champion != null && CanHit(source.Faction, Champion) && (Champion.Position - source.Position).sqrMagnitude <= Mathf.Pow(melee?MeleeTactics.Reach(source,Champion):range,2) ? Champion : null;
             UnitState best = null;
-            float bestDistance = range * range;
-            spatial.Query(source.Position - Vector2.one * range, source.Position + Vector2.one * range, targetCandidates);
+            float bestDistance = float.PositiveInfinity;
+            float search=melee?Mathf.Max(range+maximumRadius,source.Definition.Radius+maximumRadius+.08f):range;
+            spatial.Query(source.Position - Vector2.one * search, source.Position + Vector2.one * search, targetCandidates);
             for (int index = 0; index < targetCandidates.Count; index++)
             {
                 UnitState candidate = targetCandidates[index];
                 if (!CanHit(source.Faction, candidate)) continue;
                 float distance = (candidate.Position - source.Position).sqrMagnitude;
+                float reach=melee?MeleeTactics.Reach(source,candidate):range;
+                if(distance>reach*reach)continue;
                 if (distance < bestDistance) { bestDistance = distance; best = candidate; }
             }
             return best;
@@ -713,7 +716,6 @@ namespace ArcaneBrigade
 
         private void ProcessAttack(UnitState unit)
         {
-            if (OctoberBlocksAttack(unit)) { unit.PendingAttack = false; return; }
             if (RelicBlocksAttack(unit)) { unit.PendingAttack = false; return; }
             if (unit.Variant != null && unit.Variant.Busy(Elapsed)) return;
             if (unit.Faction == Faction.Enemy && (unit.EvolutionReleaseAt > 0 || unit.EvolutionRecoveryUntil > Elapsed || unit.EvolutionTravelUntil > Elapsed)) return;
@@ -739,7 +741,7 @@ namespace ArcaneBrigade
                 else if (weapon.Signature == SignatureWeapon.Stamp && unit.Faction != Faction.Enemy)
                 {
                     UnitState target = UnitWithId(unit.AttackTargetId);
-                    if (target != null && CanHit(unit.Faction, target) && (target.Position - unit.Position).magnitude <= weapon.Range + target.Definition.Radius)
+                    if (target != null && CanHit(unit.Faction, target) && (target.Position - unit.Position).magnitude <= MeleeTactics.Reach(unit,target))
                     {
                         ApplyDamage(target, damage, unit.Faction, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, cause: attackCause);
                         AddStamp(unit, target, damage, attackCause);
@@ -751,7 +753,7 @@ namespace ArcaneBrigade
                     {
                         UnitState target = units[index];
                         Vector2 delta = target.Position - unit.Position;
-                        if (CanHit(unit.Faction, target) && delta.magnitude <= weapon.Range + target.Definition.Radius && Vector2.Dot(delta.normalized, unit.AttackDirection) >= weapon.ConeDot)
+                        if (CanHit(unit.Faction, target) && delta.magnitude <= MeleeTactics.Reach(unit,target) && Vector2.Dot(delta.normalized, unit.AttackDirection) >= weapon.ConeDot)
                             ApplyWeaponDamage(target, damage, unit.Faction, weapon.Element, unit.Definition.DisplayName, unit.AttackDirection, weapon, critical, attackCause);
                     }
                 }
@@ -759,7 +761,7 @@ namespace ArcaneBrigade
                 events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, subject: unit, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
-            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0), true) : FindTarget(unit, weapon.Range);
+            UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0), true) : FindTarget(unit, weapon.Range,true);
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;
             unit.AttackTargetId = nearest.Id;

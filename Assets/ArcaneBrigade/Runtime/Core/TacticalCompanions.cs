@@ -27,13 +27,14 @@ namespace ArcaneBrigade
                 }
             }
             Vector2 center = attackOnly || source.Definition.Weapon.Kind == WeaponKind.Projectile ? source.Position : Champion.Position;
+            if(attackOnly && melee)radius=Mathf.Max(radius,source.Definition.Radius+maximumRadius+.08f);
             spatial.Query(center - Vector2.one * radius, center + Vector2.one * radius, targetCandidates);
             UnitState best = null;
             float bestScore = float.PositiveInfinity;
             foreach (UnitState enemy in targetCandidates)
             {
                 if (!CanHit(source.Faction, enemy) || (enemy.Position - center).sqrMagnitude > radius * radius) continue;
-                if (attackOnly && melee && (enemy.Position - source.Position).magnitude > source.Definition.Weapon.Range + enemy.Definition.Radius) continue;
+                if (attackOnly && melee && (enemy.Position - source.Position).magnitude > MeleeTactics.Reach(source,enemy)) continue;
                 float claims = tacticalClaims.TryGetValue(enemy.Id, out int assignments) ? assignments : 0;
                 if (source.TacticalTargetId == enemy.Id) claims = Mathf.Max(0, claims - 1);
                 float committedDamage = tacticalDamage.TryGetValue(enemy.Id, out float expected) ? expected : 0;

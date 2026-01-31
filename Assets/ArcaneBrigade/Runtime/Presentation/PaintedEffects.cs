@@ -21,7 +21,16 @@ namespace ArcaneBrigade
             bool magic = value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && value.Weapon.Motion != WeaponMotion.Bow;
             bool hit = value.Kind == CombatEventKind.Hit && value.Value > 0 && value.Faction != Faction.Companion;
             bool important = value.Critical || value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss;
-            if (hit && impacts != null)
+            var authored=MechanicEffectArtwork.Current;
+            bool cue=value.Faction!=Faction.Enemy && (value.Kind==CombatEventKind.SignatureMark || value.Kind==CombatEventKind.SignatureBurst || value.Kind==CombatEventKind.SignaturePulse || value.Kind==CombatEventKind.Support || value.Kind==CombatEventKind.Dodge || value.Kind==CombatEventKind.Heal || value.Kind==CombatEventKind.Proc || value.Kind==CombatEventKind.Windup && value.Weapon!=null && (value.Weapon.Motion==WeaponMotion.Cast || value.Weapon.Motion==WeaponMotion.Bell) || value.Kind==CombatEventKind.Fire && value.Weapon!=null && value.Weapon.Motion==WeaponMotion.Bow);
+            if(cue && authored!=null)
+            {
+                bool healing=value.Kind==CombatEventKind.Heal || value.Kind==CombatEventKind.Support;
+                Sprite sprite=healing?authored.Healing:value.Weapon!=null?authored.Form(BuildMorphs.For(value.Weapon)):authored.Impact;
+                frames=new[]{sprite};width=value.Kind==CombatEventKind.SignaturePulse?Mathf.Clamp(value.Value*2,.75f,4.5f):value.Kind==CombatEventKind.SignatureBurst?1.6f:healing?.8f:.6f;
+                duration=value.Kind==CombatEventKind.Windup?Mathf.Max(.1f,value.Weapon.Windup):.35f;
+            }
+            else if (hit && impacts != null)
             {
                 if (!important && nextImpact.TryGetValue(value.SubjectId, out float until) && clock < until) return true;
                 if (nextImpact.Count > 128) nextImpact.Clear(); nextImpact[value.SubjectId] = clock + 0.075f;

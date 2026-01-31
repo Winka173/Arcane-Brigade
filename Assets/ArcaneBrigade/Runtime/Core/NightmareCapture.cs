@@ -61,7 +61,7 @@ namespace ArcaneBrigade
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return null; yield return new WaitForSecondsRealtime(3);
                 ArenaController owner = FindAnyObjectByType<ArenaController>();
                 Check(owner.GetComponent<NightmarePresentation>().VisibleLandmarks >= 5,"Actual illustrated depth landmarks with clear shop exit " + wave);
-                if (wave >= 9) Check(owner.GetComponent<NightmareGrandStage>().VisibleCount == 4, "Four layered perimeter architecture pieces " + wave);
+                Check(owner.GetComponent<NightmareGrandStage>().VisibleCount == NightmareGrandStage.Capacity, "Persistent world scenery is present from early waves " + wave);
                 Check(owner.Shop.Dialogue.CurrentLine != null,"Merchant has depth dialogue " + wave);
                 NightmareLighting lighting = owner.GetComponent<NightmareLighting>();
                 Check(lighting != null && Shader.GetGlobalFloat("_DreamEnabled") == 1, "Native floor lighting enabled " + wave);
@@ -120,7 +120,7 @@ namespace ArcaneBrigade
             finalOwner = final; final.Simulation.Champion.NextAttack = 1000;
             foreach (UnitState ally in final.Simulation.Units) if (ally.Faction == Faction.Companion) ally.NextAttack = 1000;
             yield return Shot("customer-arrival");
-            Check(final.GetComponent<NightmareGrandStage>().VisibleCount == 4 && final.GetComponent<NightmareGrandStage>().Grandeur > .8f, "Wave twenty has a dedicated grand nightmare stage");
+            Check(final.GetComponent<NightmareGrandStage>().VisibleCount == NightmareGrandStage.Capacity && final.GetComponent<NightmareGrandStage>().Grandeur > .8f, "Wave twenty retains damaged world scenery");
             yield return new WaitForSecondsRealtime(2.4f); yield return Shot("customer-stamp");
             final.Simulation.DefeatCustomerCapture();
             yield return new WaitForSecondsRealtime(.25f);

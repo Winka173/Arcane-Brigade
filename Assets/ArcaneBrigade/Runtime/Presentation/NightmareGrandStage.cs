@@ -1,86 +1,68 @@
 using UnityEngine;
-
 namespace ArcaneBrigade
 {
+    // Persistent map fixtures, not parallax borders. Camera movement never moves their anchors.
     [DefaultExecutionOrder(30)]
     public sealed class NightmareGrandStage : MonoBehaviour
     {
+        public const int Capacity=12;
         private ArenaController owner;
-        private Camera viewCamera;
-        private readonly SpriteRenderer[] layers = new SpriteRenderer[4];
-        private readonly DreamSuspension[] suspensions=new DreamSuspension[4];
-        private float reveal;
-        private float arrival;
-        private bool customer;
-        public int VisibleCount { get; private set; }
-        public float Grandeur { get; private set; }
-        public static float StrengthFor(int wave) => Mathf.SmoothStep(0, 1, Mathf.Clamp01((wave - 7) / 13f));
+        private readonly SpriteRenderer[] layers=new SpriteRenderer[Capacity];
+        private readonly GroundShadow[] shadows=new GroundShadow[Capacity];
+        private readonly DreamSuspension[] suspensions=new DreamSuspension[Capacity];
+        private static readonly Vector2[] Slots={new Vector2(-.77f,.67f),new Vector2(-.24f,.74f),new Vector2(.3f,.67f),new Vector2(.77f,.64f),new Vector2(-.72f,0),new Vector2(.72f,-.04f),new Vector2(-.77f,-.64f),new Vector2(-.24f,-.73f),new Vector2(.24f,-.68f),new Vector2(.77f,-.64f),new Vector2(-.53f,.35f),new Vector2(.53f,-.35f)};
+        public int VisibleCount{get;private set;}
+        public float Grandeur{get;private set;}
+        public static float StrengthFor(int wave)=>Mathf.Lerp(.35f,1,Mathf.Clamp01((wave-1)/19f));
+        public static int DamageFor(int index,int wave,int seed)
+            =>wave>=12+index%4+(seed&1)?2:wave>=5+index%3+((seed>>index)&1)?1:0;
+        public static Vector2 AnchorFor(int index,Vector2 size,int seed)
+        {
+            unchecked
+            {
+                uint n=(uint)seed^(uint)(index+1)*2654435761u;n^=n>>16;n*=2246822519u;n^=n>>13;
+                return Vector2.Scale(Slots[index%Capacity],size*.5f)+new Vector2((n&65535)/65535f-.5f,((n>>16)&65535)/65535f-.5f)*.9f;
+            }
+        }
+        public Vector2 FixtureAnchor(int index)=>AnchorFor(index,owner.WorldBounds,owner.Session.State.Seed);
         public void Configure(ArenaController controller)
         {
-            owner = controller; viewCamera = Camera.main;
-            Sprite[] art = NightmareAssets.Current.GrandStage;
-            for (int index = 0; index < layers.Length; index++)
+            owner=controller;
+            for(int i=0;i<Capacity;i++)
             {
-                var child = new GameObject("DreamArchitecture" + index); child.transform.SetParent(transform, false);
-                layers[index] = child.AddComponent<SpriteRenderer>(); layers[index].sortingOrder = -42;
-                suspensions[index]=child.AddComponent<DreamSuspension>();
-                layers[index].sprite = art.Length > index ? art[index] : null;
+                var go=new GameObject("DreamArchitecture"+i);go.transform.SetParent(transform,false);
+                layers[i]=go.AddComponent<SpriteRenderer>();
+                shadows[i]=go.AddComponent<GroundShadow>();shadows[i].PinCastToFoot=true;
+                suspensions[i]=go.AddComponent<DreamSuspension>();
             }
         }
         private void LateUpdate()
         {
-            if (owner == null || owner.Session == null || owner.Simulation == null || viewCamera == null || owner.PresentationPaused) return;
-            RunSnapshot state = owner.Session.State;
-            bool finale = owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId;
-            if (finale && !customer) arrival = owner.PresentationClock;
-            customer = finale;
-            bool dawn = state.Nightmare.CustomerDefeated && !state.Endless;
-            float target = owner.Session.SecretRoomOpen || dawn || state.Phase == SessionPhase.Defeat ? 0 : StrengthFor(state.Wave);
-            reveal = Mathf.MoveTowards(reveal, target, PresentationSettings.ReducedMotion ? 1 : Time.deltaTime * .65f);
-            Grandeur = reveal;
-            Vector2 centre = (Vector2)viewCamera.transform.position * .82f;
-            float halfHeight = viewCamera.orthographicSize;
-            float halfWidth = halfHeight * viewCamera.aspect;
-            float age = Mathf.Max(0, owner.PresentationClock - arrival);
-            float opening = !finale || PresentationSettings.ReducedMotion ? 1 : Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 2.4f));
-            float motion = PresentationSettings.ReducedMotion || NightmareHaunting.Quiet ? 0 : Mathf.Sin(owner.PresentationClock * .37f) * .035f;
-            StagePerformance acting = StagePerformance.Active;
-            int act = finale && acting != null ? acting.BossAct : 0;
-            float impact = acting != null ? acting.Impact : 0;
-            float gesture = finale && acting != null ? acting.ActGesture : 0;
-            float alpha = reveal > .04f ? 1 : 0;
-            VisibleCount = 0;
-            for (int index = 0; index < layers.Length; index++)
+            if(owner?.Session==null || owner.Simulation==null || owner.PresentationPaused)return;
+            var state=owner.Session.State;var art=WaitingSceneryArtwork.Current;
+            bool visible=art!=null && !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible && state.Phase!=SessionPhase.Defeat;
+            Grandeur=StrengthFor(state.Wave);VisibleCount=0;
+            for(int i=0;i<Capacity;i++)
             {
-                SpriteRenderer layer = layers[index]; layer.enabled = layer.sprite != null && alpha > .005f;
-                Sprite redrawn = FinalQualityArtwork.Current?.Frame("architecture-" + index, owner.PresentationClock, PresentationSettings.ReducedMotion);
-                if (redrawn != null) layer.sprite = redrawn;
-                if (!layer.enabled) {suspensions[index].Hide();continue;}
-                Vector2 size = layer.sprite.bounds.size;
-                float width = index == 0 ? halfWidth * 1.45f : index == 3 ? halfWidth * 1.9f : halfWidth * .27f;
-                float scale = width / Mathf.Max(.01f, size.x);
-                if (index == 0) scale = Mathf.Min(scale, halfHeight * 1.08f / Mathf.Max(.01f, size.y));
-                if (index == 1 || index == 2) scale = Mathf.Min(scale, halfHeight * 1.65f / Mathf.Max(.01f, size.y));
-                if (index == 3) scale = Mathf.Min(scale, halfHeight * .32f / Mathf.Max(.01f, size.y));
-                Vector2 offset = index == 0 ? new Vector2(0, halfHeight * .13f + (1 - opening) * 2) : index == 3 ? new Vector2(0, -halfHeight * 1.03f) : new Vector2((index == 1 ? -1 : 1) * (halfWidth * .9f + (1 - opening) * 2), -halfHeight * .8f);
-                layer.transform.position = centre + offset + Vector2.up * motion * (index % 2 == 0 ? 1 : -1);
-                if (index == 0) layer.transform.position = centre + new Vector2(0, halfHeight * .62f + (1 - reveal) * 3);
-                layer.transform.position += new Vector3((index == 1 ? -1 : index == 2 ? 1 : 0) * (act * .24f + gesture * .16f), impact * .08f, 0);
-                layer.transform.localScale = Vector3.one * scale;
-                layer.transform.localRotation = Quaternion.Euler(0, 0, motion * (index == 1 ? 6 : index == 2 ? -6 : 0));
-                layer.transform.localRotation *= Quaternion.Euler(0, 0, (index == 1 ? -1 : 1) * impact * 2);
-                layer.transform.position += DreamLevitation.Offset(owner.PresentationClock, 80 + index, NightmareRules.Depth(state.Wave), PresentationSettings.ReducedMotion, .35f);
-                layer.transform.localRotation *= Quaternion.Euler(0, 0, DreamLevitation.Tilt(owner.PresentationClock, 80 + index, PresentationSettings.ReducedMotion, .22f));
-                layer.color = Color.Lerp(new Color(.64f, .6f, .74f, alpha), new Color(.9f, .75f, .7f, alpha), finale ? opening : 0);
-                if (SharedLightField.Active != null)
-                {
-                    Color shade = layer.color;
-                    float light = SharedLightField.Active.SurfaceVisibility(layer.transform.position);
-                    shade.r *= light; shade.g *= light; shade.b *= light; layer.color = shade;
-                }
+                var view=layers[i];view.enabled=visible;
+                if(!visible){shadows[i].Hide();suspensions[i].Hide();continue;}
+                int damage=DamageFor(i,state.Wave,state.Seed);
+                view.sprite=art.Frame(i%4,damage);if(view.sprite==null){view.enabled=false;continue;}
+                Vector2 floor=FixtureAnchor(i);
+                float width=i%4==0?3.1f:i%4==1?1.7f:i%4==2?2.7f:2.8f;
+                float scale=width/Mathf.Max(.01f,SpriteInkMetrics.BoundsOf(view.sprite).width);
+                view.transform.localScale=Vector3.one*scale;
+                Vector3 hover=DreamLevitation.Offset(owner.PresentationClock,80+i,NightmareRules.Depth(state.Wave),PresentationSettings.ReducedMotion,.65f);
+                float tilt=DreamLevitation.Tilt(owner.PresentationClock,80+i,PresentationSettings.ReducedMotion,.7f)+(damage==2?(i%2==0?-1:1)*5:0);
+                if(ShopSceneryLanding.Active!=null){hover=ShopSceneryLanding.Active.Apply(hover,80+i);tilt=ShopSceneryLanding.Active.Tilt(tilt,80+i);}
+                view.transform.rotation=Quaternion.Euler(0,0,tilt);
+                WorldSpriteGrounding.Place(view,(Vector3)floor+hover);
+                view.sortingOrder=WorldSpriteGrounding.SortAt(floor.y);
+                float light=SharedLightField.Active?.SurfaceVisibility(floor)??1;
+                view.color=new Color(light,light,light,1);
+                shadows[i].SortingBase=view.sortingOrder-8;shadows[i].Display(view.sprite,floor,width*.65f,hover.y,.3f);
+                suspensions[i].Display(floor,(Vector3)floor+hover,width,owner.PresentationClock,80+i,view.sortingOrder-1,.65f);
                 VisibleCount++;
-                Vector3 foot=new Vector3(layer.bounds.center.x,layer.bounds.min.y,0);
-                suspensions[index].Display(foot-Vector3.up*.25f,foot,Mathf.Min(4,layer.bounds.size.x),owner.PresentationClock,80+index,layer.sortingOrder-1,alpha*.5f);
             }
         }
     }

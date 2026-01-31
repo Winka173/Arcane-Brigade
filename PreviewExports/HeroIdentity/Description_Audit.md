@@ -1024,7 +1024,7 @@ Bonds: orchard, resolve. Immortal. Weapon rolls on recruitment; three equal-spec
 
 COMPANION / RARE / 1 STAR
 TALENT
-Wait 30 seconds before attacking. Then deal triple weapon damage for the rest of the wave.
+Attacks from the beginning. After 30 seconds, deal triple weapon damage for the rest of the wave.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -1117,7 +1117,7 @@ Bonds: hearth, knight. Immortal. Weapon rolls on recruitment; three equal-specie
 
 COMPANION / UNCOMMON / 1 STAR
 TALENT
-No basic attack. Deal 24 contact damage. Can carry nursery bonuses.
+Uses its equipped weapon and has 24 base contact damage before brigade bonuses. Can carry nursery bonuses.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -1136,7 +1136,7 @@ Bonds: clock, sprout. Immortal. Weapon rolls on recruitment; three equal-species
 
 COMPANION / UNCOMMON / 1 STAR
 TALENT
-No basic attack. Deal 18 contact damage; gain 1 more per injury this wave, up to 20.
+Uses its equipped weapon and has 18 base contact damage before brigade bonuses; gain 1 more per injury this wave, up to 20.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -1192,7 +1192,7 @@ Bonds: tidal, mask. Immortal. Weapon rolls on recruitment; three equal-species/e
 
 COMPANION / UNCOMMON / 1 STAR
 TALENT
-Nursery-exclusive. No basic attack; deal 12 contact damage. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon, within the 15-body limit.
+Nursery-exclusive. Uses its weapon and has 12 base contact damage before brigade bonuses. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon, within the 15-body limit.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.

@@ -13,6 +13,7 @@ namespace ArcaneBrigade
         private readonly List<SpriteRenderer> props = new List<SpriteRenderer>();
         private readonly List<GroundShadow> propShadows = new List<GroundShadow>();
         private readonly List<EnemyVariantFieldVisual> variantFields = new List<EnemyVariantFieldVisual>();
+        private readonly List<PaintedMechanicView> friendlyFields = new List<PaintedMechanicView>();
         private CarnivalStageAssets stageArt;
         private BuildMorphVisual morphVisual;
         private HeroIdentityVisual heroVisual;
@@ -35,7 +36,6 @@ namespace ArcaneBrigade
                     bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink;
                     if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
                     if (hazard != (priority == 0)) continue;
-                    if (!hazard && !carnival && (field.Kind != ExpandedFieldKind.Link || field.Radius != 0) && field.Kind != ExpandedFieldKind.Strike && field.Kind != ExpandedFieldKind.Echo) continue;
                     if (VisibleCount >= (hazard ? 96 : EffectDensity.Limit(96))) break;
                     int slot = VisibleCount++;
                     LineRenderer line = Acquire(slot);
@@ -154,8 +154,23 @@ namespace ArcaneBrigade
                         variantFields[slot].Display(field, simulation.Elapsed, ReducedMotion);
                     }
                     else variantFields[slot].Hide();
+                    var effectArt=MechanicEffectArtwork.Current;
+                    if(!hazard && effectArt!=null)
+                    {
+                        line.enabled=fill.enabled=false;
+                        bool link=field.Kind==ExpandedFieldKind.Link || field.Kind==ExpandedFieldKind.SewingLink || field.Kind==ExpandedFieldKind.YoYoTether || field.Kind==ExpandedFieldKind.Projector;
+                        Vector2 start=field.Anchor!=null?field.Anchor.Position:field.Source==null?field.Start:field.Source.Position;
+                        Vector2 end=field.Projectile!=null?field.Projectile.Position:field.Target!=null?field.Target.Position:field.Position;
+                        BuildMorphKind kind=BuildMorphs.For(field.ImpactWeapon??field.Source?.Definition.Weapon);
+                        if(field.Kind==ExpandedFieldKind.Tea)kind=BuildMorphKind.Porcelain;
+                        else if(field.Kind==ExpandedFieldKind.Iron)kind=BuildMorphKind.Cinder;
+                        else if(field.Kind==ExpandedFieldKind.Photo)kind=BuildMorphKind.Mirror;
+                        MorphGeometry shape=link?MorphGeometry.Line:field.Kind==ExpandedFieldKind.Strike?MorphGeometry.Crescent:MorphGeometry.Disc;
+                        friendlyFields[slot].Display(effectArt.Form(kind),shape,link?start:field.Position,end,field.Direction,field.Radius,field.At,field.Until,simulation.Elapsed,color,ReducedMotion || PresentationSettings.ReducedMotion);
+                    }
+                    else friendlyFields[slot].Hide();
                 }
-            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); variantFields[index].Hide(); }
+            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); variantFields[index].Hide(); friendlyFields[index].Hide(); }
         }
         private static bool ContainsProjectile(CombatSimulation simulation, ProjectileState projectile)
         {
@@ -166,6 +181,7 @@ namespace ArcaneBrigade
         private LineRenderer Acquire(int index)
         {
             if (index < lines.Count) return lines[index];
+            friendlyFields.Add(new PaintedMechanicView(transform,"Companion and weapon mechanic "+index,1095));
             if (material == null) material = new Material(Shader.Find("Sprites/Default"));
             var child = new GameObject("ExpandedFieldCue"); child.transform.SetParent(transform, false);
             LineRenderer line = child.AddComponent<LineRenderer>(); line.sharedMaterial = material; line.useWorldSpace = true;

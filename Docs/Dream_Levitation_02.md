@@ -1,5 +1,9 @@
 # Lơ lửng — đợt sửa toàn hệ, 16/10/2026
 
+**Cập nhật tiếp theo:** đồ cảnh có animation hạ xuống khi vừa vào shop, chạm sàn/nảy nhẹ rồi nổi lại; đèn được loại trừ theo câu trả lời xác nhận. Kiến trúc nguyên/nứt/vỡ nay neo theo map và có từ wave 1, không bám camera. Giữ quyết định bỏ gió dưới đồ vật. Chi tiết và kiểm tra riêng: [Combat_And_World_Repair.md](Combat_And_World_Repair.md).
+
+**Tinh chỉnh tiếp theo cho đèn:** chiều cao 1,6–1,9 thay cho 2,7; bố trí và độ nghiêng trái/phải theo seed. Riêng đèn giữ góc nghiêng tĩnh khi giảm chuyển động. Chi tiết và nghiệm thu mới: [Lantern_Scale_And_Variation.md](Lantern_Scale_And_Variation.md).
+
 **Cập nhật art tiếp theo:** các đèn và đồ cảnh Miền Chờ đã chuyển sang sprite vẽ mới; không còn nhánh mesh Blender/Point Light cho đèn. Halo và field Unity bám điểm lửa trên sprite sau khi nghiêng. Nguồn và nghiệm thu hiện hành: [Mien_Cho_Painted_Art_Pass.md](Mien_Cho_Painted_Art_Pass.md). Mô tả mesh bên dưới ghi lại bước sửa trước khi đổi art.
 
 Đợt rà lại phát hiện hệ cũ đã áp dụng cho đồ cảnh gốc nhưng **tám đèn cổ mới, ghế Miền Chờ và vật chứng trong phòng khám phá còn đứng yên**. Bản này sửa các phần bị sót và làm lại chuyển động dùng chung. Theo phản hồi mới nhất, **bỏ toàn bộ khói và vệt gió dưới đồ vật**, kể cả ở hệ cũ; giữ khoảng nổi, nghiêng nhẹ, bóng sàn và hạt sáng nhỏ quanh mép trên.

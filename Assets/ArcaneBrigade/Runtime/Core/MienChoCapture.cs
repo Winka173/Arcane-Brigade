@@ -44,11 +44,11 @@ namespace ArcaneBrigade
             if(File.Exists(path))File.Replace(temporary,path,null);else File.Move(temporary,path);
             Destroy(frame);
         }
-        private IEnumerator Load(int wave, int companions, bool shop = false)
+        private IEnumerator Load(int wave, int companions, bool shop = false, int seed = 161026)
         {
             using (var s = new RunSession(content))
             {
-                s.Start("LanternKnight", 161026); s.State.Wave = wave; s.State.Phase = shop ? SessionPhase.Shop : SessionPhase.Combat;
+                s.Start("LanternKnight", seed); s.State.Wave = wave; s.State.Phase = shop ? SessionPhase.Shop : SessionPhase.Combat;
                 s.State.Gold = 1200; s.State.Eggs = 20; s.State.Roster.Clear();
                 foreach (var u in content.Companions.Take(companions)) s.State.Roster.Add(new RosterEntry { UnitId = u.Id, WeaponId = "SpoonSabre" });
                 new RunStorage(RunPaths.Root).SaveRun(s.State);
@@ -76,6 +76,12 @@ namespace ArcaneBrigade
             content = Resources.Load<RunCatalog>("RunCatalog");
             new RunStorage(RunPaths.Root).SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true, ReducedMotion = reduced, ReducedEffects = reduced, ReducedFlashes = reduced, HighReadability = reduced });
             Check(RunPaths.Root.Contains("ArcaneBrigadeDiagnostics"), "Real player profile is isolated");
+            if (Array.IndexOf(args, "-miencho-lanterns") >= 0)
+            {
+                // Keep the launch resolution: changing a hidden DX11 window can stall DXGI.
+                yield return LanternReview();
+                Check(!failed,"Smaller seeded lantern verification finished");Application.Quit(failed?1:0);yield break;
+            }
             Screen.SetResolution(1280, 720, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.4f);
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.6f);
             if (Array.IndexOf(args, "-miencho-actone") >= 0)
@@ -159,6 +165,44 @@ namespace ArcaneBrigade
             var texture=new Texture2D(target.width,target.height,TextureFormat.RGBA32,false);texture.ReadPixels(new Rect(0,0,target.width,target.height),0,0);texture.Apply();RenderTexture.active=previous;
             int hash=17;unchecked{for(int y=7;y<target.height;y+=19)for(int x=7;x<target.width;x+=19)hash=hash*31+((Color32)texture.GetPixel(x,y)).a;}
             UnityEngine.Object.Destroy(texture);return hash;
+        }
+        private IEnumerator LanternReview()
+        {
+            Vector2[] first=null;
+            foreach(int wave in new[]{1,9,19})
+            {
+                yield return Load(wave,4);
+                var field=NightLanternField.Active;
+                CheckFloatingLanterns(field,false,wave);
+                var anchors=Enumerable.Range(0,8).Select(field.FixtureAnchor).ToArray();
+                if(first==null)first=anchors;
+                else Check(first.SequenceEqual(anchors),"Damaged lamps stay at the original run locations wave="+wave);
+                Check(field.BrokenCount==NightLanternField.BrokenFor(wave),"Damage progression survives smaller scattered lamps wave="+wave);
+                yield return Shot("scattered-lamps-wave-"+wave);
+                var before=LanternPoses(field);yield return new WaitForSecondsRealtime(1.1f);
+                Check(reduced?before.SequenceEqual(LanternPoses(field)):before.Where((p,i)=>Vector3.Distance(p,LanternPoses(field)[i])>.001f).Count()==8,"All eight lamps respect the motion setting wave="+wave);
+                owner.TogglePause();before=LanternPoses(field);float clock=field.Clock;
+                yield return new WaitForSecondsRealtime(.3f);
+                Check(before.SequenceEqual(LanternPoses(field)) && clock==field.Clock,"Pause freezes seeded lamps wave="+wave);owner.TogglePause();
+            }
+            yield return Load(1,4,false,170027);
+            Check(Enumerable.Range(0,8).All(i=>Vector2.Distance(first[i],NightLanternField.Active.FixtureAnchor(i))>.01f),"A different saved run seed changes every lamp location");
+            CheckFloatingLanterns(NightLanternField.Active,false,1);
+            yield return Shot("scattered-lamps-another-run");
+            yield return Load(1,4);
+            Check(first.SequenceEqual(Enumerable.Range(0,8).Select(NightLanternField.Active.FixtureAnchor)),"Reloading the original run restores all lamp locations");
+            yield return Load(8,4,true);
+            CheckFloatingLanterns(NightLanternField.Active,true,8);
+            Check(NightLanternField.Active.LitCount==2,"Both smaller shop lamps stay lit");
+            for(int i=0;i<2;i++)
+            {
+                Check(owner.Shop.Stations.All(s=>Vector2.Distance(s.Position,NightLanternField.Active.FixtureAnchor(i))>1.2f),"Shop lamp stays clear of actual stations "+i);
+                var camera=FindAnyObjectByType<ArenaCamera>().GetComponent<Camera>();
+                var sprite=NightLanternField.Active.transform.Find("AntiqueLanternSprite"+i).GetComponent<SpriteRenderer>();
+                Vector3 low=camera.WorldToViewportPoint(sprite.bounds.min),high=camera.WorldToViewportPoint(sprite.bounds.max);
+                Check(low.x>=0 && low.y>=0 && high.x<=1 && high.y<=1,"Smaller shop lamp fits inside the camera frame "+i);
+            }
+            yield return Shot("smaller-asymmetric-shop-lamps");
         }
         private IEnumerator ActOneReview()
         {
@@ -252,18 +296,20 @@ namespace ArcaneBrigade
                 var sprite=field.transform.Find("AntiqueLanternSprite"+i).GetComponent<SpriteRenderer>();
                 var air=field.transform.Find("LanternSuspension"+i).GetComponentsInChildren<LineRenderer>();
                 var shadow=sprite.GetComponent<GroundShadow>();bool visible=!shop || i<2;
-                Vector2 floor=shop && i<2?new Vector2(i==0?-8.25f:8.25f,-4.8f):NightLanternField.PositionFor(i,owner.WorldBounds);
+                Vector2 floor=field.FixtureAnchor(i);
                 Vector3 foot=field.FixtureFoot(i);
                 Check(visible?foot.y-floor.y>.2f && Vector2.Distance(shadow.Contact.transform.position,floor)<.001f:!sprite.enabled && (shadow.Contact==null || !shadow.Contact.enabled),"Lamp air gap and fixed floor shadow "+wave+" / "+i);
                 Check(air.Length==0 && !field.transform.Find("LanternSuspension"+i).GetComponentsInChildren<SpriteRenderer>().Any(r=>r.name=="PaintedSuspensionMist"),"No under-object wind ribbons or smoke "+wave+" / "+i);
-                Check(!reduced || Quaternion.Angle(sprite.transform.rotation,Quaternion.identity)<.01f,"Reduced motion removes lamp tilt "+wave+" / "+i);
+                Check(!reduced || Quaternion.Angle(sprite.transform.rotation,Quaternion.Euler(0,0,NightLanternField.RestTiltFor(i,owner.Session.State.Seed)))<.01f,"Reduced motion keeps the static authored lamp lean "+wave+" / "+i);
+                float height=sprite.sprite.bounds.size.y*sprite.transform.localScale.y;
+                Check(height>=NightLanternField.MinimumHeight-.001f && height<=NightLanternField.MaximumHeight+.001f,"Actual drawn lamp is smaller than the previous 2.7 unit fixture "+wave+" / "+i);
                 var model=field.GetComponentsInChildren<Transform>().FirstOrDefault(t=>t.name.StartsWith("Antique Lantern "+i+" /"));
                 Check(model==null && sprite.enabled==visible,"Only drawn lamp sprites are displayed "+wave+" / "+i);
             }
             foreach(var halo in field.GetComponentsInChildren<SpriteRenderer>().Where(r=>r.enabled && r.name.StartsWith("Flame Bloom")))
             {
                 int i=int.Parse(halo.name.Substring("Flame Bloom ".Length));
-                Check(Vector2.Distance(halo.transform.position,field.SourcePosition(i)+Vector2.up*1.15f)<.001f,"Unity light field remains attached to drawn moving flame "+wave);
+                Check(Vector2.Distance(halo.transform.position,field.SourcePosition(i)+Vector2.up*field.FlameFloorDrop(i))<.001f,"Unity light field remains attached to drawn moving flame "+wave);
             }
             return LanternPoses(field);
         }
@@ -333,7 +379,7 @@ namespace ArcaneBrigade
     {
         public void PrepareMienChoCapture(RunCatalog content)
         {
-            if (!MienChoCapture.Requested) throw new InvalidOperationException("Isolated Waiting Realm capture required");
+            if (!MienChoCapture.Requested && !CombatRepairCapture.Requested) throw new InvalidOperationException("Isolated Waiting Realm capture required");
             catalog.EnemyBudget = 0;
             Champion.Position = Champion.PreviousPosition = Vector2.zero;
             Champion.Health = Champion.Definition.Health;

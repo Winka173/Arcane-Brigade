@@ -19,7 +19,9 @@ namespace ArcaneBrigade
         {
             if(view==null || !view.enabled || view.sprite==null){shadow.Hide();suspension.Hide();return;}
             Vector3 hover=DreamLevitation.Offset(clock,identity,depth,PresentationSettings.ReducedMotion);
-            view.transform.rotation=Quaternion.Euler(0,0,DreamLevitation.Tilt(clock,identity,PresentationSettings.ReducedMotion));
+            float tilt=DreamLevitation.Tilt(clock,identity,PresentationSettings.ReducedMotion);
+            if(ShopSceneryLanding.Active!=null){hover=ShopSceneryLanding.Active.Apply(hover,identity);tilt=ShopSceneryLanding.Active.Tilt(tilt,identity);}
+            view.transform.rotation=Quaternion.Euler(0,0,tilt);
             WorldSpriteGrounding.Place(view,floor+hover);
             shadow.SortingBase=view.sortingOrder-10;
             shadow.Display(view.sprite,floor,view.bounds.size.x*.75f,hover.y,.3f*view.color.a);

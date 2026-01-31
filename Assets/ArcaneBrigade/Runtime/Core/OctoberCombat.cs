@@ -51,14 +51,6 @@ namespace ArcaneBrigade
                 if (rider != null) { rider.MountId = pony.Id; pony.RiderId = rider.Id; }
             }
         }
-        private bool OctoberBlocksAttack(UnitState unit)
-        {
-            if (!catalog.EnableHeroMechanics || unit.Faction == Faction.Enemy) return false;
-            if (unit.Faction == Faction.Champion && (ReferenceHero == "Card King" || ReferenceHero == "Sassy Senior" || ReferenceHero == "Clementie" || ReferenceHero == "Anby" || ReferenceHero == "Frosty" && (unit.Position - unit.PreviousPosition).sqrMagnitude < .000001f)) return true;
-            if (unit.Faction == Faction.Companion && ReferenceHero == "Billy") return true;
-            string t = unit.Definition.ReferenceCompanion;
-            return t == "Big Cabbage" || t == "Little Cabbage" || t == "Domestic Spiked Ball" || t == "\"Triumphant Return\" Daniel" && Elapsed < 30;
-        }
         private float OctoberCycle(UnitState unit)
         {
             if (!catalog.EnableHeroMechanics || unit.Faction == Faction.Enemy) return 1;
@@ -229,7 +221,7 @@ namespace ArcaneBrigade
                     Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.5f, Champion.Definition.Weapon.Damage * .65f, .1f, .35f, NewCause(Champion.Id).Child("hourglass-ring"));
                     foreach (UnitState enemy in units) if (enemy.Faction == Faction.Enemy && !enemy.Definition.IsBoss && (enemy.Position - Champion.Position).sqrMagnitude < 9) enemy.ChillUntil = Elapsed + .7f;
                 }
-                foreach (UnitState u in OctoberUnits("Domestic Spiked Ball")) u.Definition.CollisionDamage = 18 + Mathf.Min(20, octoberInjuries);
+                foreach (UnitState u in OctoberUnits("Domestic Spiked Ball")) u.Definition.CollisionDamage = (18 + Mathf.Min(20, octoberInjuries)) * 1.08f;
             }
             foreach (UnitState nurse in OctoberUnits("Young Lady"))
                 if (Elapsed >= nurse.OctoberNext) { nurse.OctoberNext = Elapsed + 5; DropLoot(LootKind.Heart, nurse.Position, 1); }

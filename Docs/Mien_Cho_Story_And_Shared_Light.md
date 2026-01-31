@@ -2,6 +2,10 @@
 
 Ngày chốt thiết kế cốt truyện: **16/10/2026**. Chủ dự án chấp thuận hướng phát triển trong cuộc trao đổi, sau đó đề xuất thế giới càng sâu càng tối, nhân vật và đồng minh cùng tỏa sáng, mắt đỏ của quái tiến đến từ đêm vô tận.
 
+**Đợt sửa chiến đấu và đồ cảnh:** thay kiến trúc bám camera bằng 12 món neo cố định trên map, có từ wave 1 và đổi art nguyên/nứt/vỡ tại vị trí cũ. Thêm cảnh hạ xuống khi vào shop cho đồ cảnh, đèn được loại trừ theo xác nhận; giữ quyết định bỏ gió dưới chân. Có art mechanic mới, sửa melee/cửa/quota và cân bằng stat theo phản hồi. Chi tiết và kiểm tra mới: [Combat_And_World_Repair.md](Combat_And_World_Repair.md).
+
+**Tinh chỉnh đèn:** tám đèn cổ rời nhỏ hơn khoảng 30–41%, có kích thước/góc nghiêng và vị trí biến thiên theo lượt chơi; cùng save giữ bố cục qua các wave. Hai đèn shop nằm trong khung hình. Nguồn sáng và bóng theo kích thước mới; giảm chuyển động giữ góc nghiêng tĩnh. Chi tiết: [Lantern_Scale_And_Variation.md](Lantern_Scale_And_Variation.md).
+
 **Đổi hướng hình ảnh mới nhất:** đã thay bộ art Blender của Miền Chờ bằng **13 asset vẽ mới**, bám nét viền/màu của đồ cảnh gốc: đèn nguyên/nứt/vỡ, ghế, bàn ăn, điện thoại, gương, ba panel truyện và ba nền phòng. Đèn chạy bằng sprite và field ánh sáng Unity. Các mô tả Blender bên dưới thuộc lịch sử triển khai; xem trạng thái hiện hành, nguồn và nghiệm thu tại [Mien_Cho_Painted_Art_Pass.md](Mien_Cho_Painted_Art_Pass.md).
 
 **Cập nhật lơ lửng:** làm lại chuyển động dùng chung; bổ sung các đèn cổ, ghế và vật chứng từng bị sót. Đèn nghiêng cùng halo và nguồn sáng, bóng neo riêng trên sàn. Theo phản hồi mới nhất, **bỏ khói/vệt gió dưới đồ vật** ở cả hệ cũ và mới. Phạm vi và nghiệm thu: [Dream_Levitation_02.md](Dream_Levitation_02.md).

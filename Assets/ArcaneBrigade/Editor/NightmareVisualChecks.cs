@@ -41,7 +41,7 @@ namespace ArcaneBrigade.Editor
             Check(tooltip.y >= 845 && tooltip.yMax <= 1030, "Tooltip reserves price band and safe bottom");
             NightmareAssets assets = NightmareAssets.Current;
             Check(assets.GrandStage.Length == 4 && System.Array.TrueForAll(assets.GrandStage, sprite => sprite != null), "Four original finale architecture layers imported");
-            Check(NightmareGrandStage.StrengthFor(1) == 0 && NightmareGrandStage.StrengthFor(20) == 1, "Final hall has a distinct maximal composition");
+            Check(NightmareGrandStage.StrengthFor(1) > 0 && NightmareGrandStage.StrengthFor(20) == 1, "Map scenery exists from the first wave and reaches maximal nightmare depth");
             Check(NightmareGrandStage.StrengthFor(9) < NightmareGrandStage.StrengthFor(17), "Architecture builds gradually before finale");
             Check(assets.Customer.Body.texture.name == "LastCustomerIdle_v4", "Larger-cell cartoon customer idle art is active");
             Check(assets.CustomerFrames[4].texture.name == "LastCustomerActions_v4", "Separate four-pose customer attack atlas is active");
