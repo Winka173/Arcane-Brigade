@@ -1,0 +1,32 @@
+# Mode/difficulty balance pass — 16 October 2026
+
+Plan: capture a matched pre-change matrix; separate health, damage and density difficulty curves; investigate first-boss time-to-kill and purchasing power; rerun identical seeds/policies; validate all catalog heroes and endless compilation, plus existing regressions. No targeting/control/art changes or blanket enemy nerf.
+
+Journey has six selectable difficulties. The three challenge modes intentionally require difficulty 0 and a fixed seed in RunSession validation. Do not fabricate unsupported challenge/difficulty combinations. Small Brigade is a six-companion victory objective, not a new hard runtime recruitment cap; its diagnostic buyer respects that objective.
+
+Natural matrix: six representative melee/ranged/solo/rooted heroes, two journey seeds, all six journey difficulties and three fixed-seed challenges (90 runs per pass). Normal-wave cutoff 60 seconds, boss-wave cutoff 180 seconds. A timeout is unresolved; no injected income, immortal champion or fabricated victory. All-hero compiled probes and endless probes are separate from natural campaign wins.
+
+Reference: [official version 1.5 update](https://zenless.hoyoverse.com/m/en-us/news/129572), [community gameplay guide](https://theriagames.com/guide/zenless-zone-zero-bizarre-brigade/), and local prior reference catalogs. The Fandom overview returned HTTP 402 during this pass, so its current numeric tables were not verified. Reference qualitative trade-offs, not alleged exact enemy multipliers: offence/defence/economy choices, companion synergies and escalating waves. Arcane retains its own 20-wave campaign, full between-wave heal, immortal companions and no upkeep. These differences prevent copying raw source balance values.
+
+## Applied changes
+
+- Replace multiplicative difficulty HP `(1 + .18d) * (1 + .07d²)` (up to 5.225x) with `1 + (.17d + .045d²) * ramp` (up to 2.975x). Ramp rises smoothly from .4 at wave 1 to 1 at wave 8. Existing per-wave health, elite variants, boss bulk and endless growth remain.
+- Difficulty damage becomes `.62 * (1 + (.15d + .008d²) * ramp)`. Peaceful remains .62; hardest late reaches 1.209 rather than 1.095. Early waves allow a build to form; harder late waves still punish failed defence rather than merely increasing enemy HP.
+- Difficulty density retains the same final `1 + .12d` multiplier, introduced through the same early ramp. Existing swarm cadence, wave-duration and max budgets remain intact.
+- LoneJelly's own weapon damage gets a bounded 1.2x early to 1.5x late catch-up. No change to other SoloMaw heroes or companion attack stats.
+- Special-shop stage factor is fixed at 1: eggs/health prices do not inflate with wave, restoring the user's prior currency rule. Rarity, tier/veteran price and base costs remain; ordinary gold inflation/income remain unchanged in this pass.
+- Challenge seed/difficulty contracts remain unchanged. First Light is judged on clearing wave 10, not necessarily the wave-20 campaign outcome; Small Brigade requires at most six bodies at final victory. Free gifts can still violate that objective; the diagnostic does not delete them to force a pass.
+
+## Measured first comparison
+
+90 baseline campaign runs (805 wave samples), 90 candidate runs (1,020 wave samples). Both use the same six heroes/two free-journey seeds and fixed challenge seeds, the same movement/purchase policy and cutoff. See `PreviewExports/ModeBalance/Comparison.json` and the CSVs for exact totals. At difficulties 0–5, baseline campaign clears per 12 cases are 6/3/2/0/0/0; candidate clears are 6/5/3/1/0/2. Mean terminal wave increases at all six difficulties; samples are too small and shop RNG branches too different to establish a smooth human win-rate ladder. Hardest must not be advertised as easier than Sleepless based on two bot wins.
+
+Night Shift campaign clears stay 2/6. First Light objective clears improve 4/6 to 5/6. Small Brigade objective stays 1/6, despite two campaign victories; one ends over its body objective. Candidate still has ten unresolved encounters. Timeout is not credited as a defeat or victory. An older 8-wave baseline has separate historical evidence; it is not counted as a full campaign clear.
+
+## Validation and limitations
+
+ModeBalanceChecks passes 4,229 assertions, including all 31 heroes x six difficulties at waves 1/4/8/12/20/21/30, strict compiled multiplier ordering, finite enemy/hero stats, no ranged enemies on wave one, fixed challenge contracts and unscaled special currency. Final wave is correctly tested as the dedicated Customer duel, not as a normal crowd wave. Existing FinalQuality/roster/recruitment/hero/art/October/secrets/nightmare/farewell regressions and the Windows build pass (`Library/ModeBalance-Gate3.log`).
+
+The 18 fixed-loadout endless encounters all fail; this intentionally injected modest build is not a natural late-game army and cannot justify a blanket endless nerf. A separate 90-run pass reproduces the candidate campaign outcomes exactly and carries all 17 successful Free Journey builds through the real ending and EnterEndless boundary, with no extra items/HP/gold. All 17 clear waves 21 and 22; 15 clear wave 23. At wave 24, nine clear, four die and two remain unresolved at the diagnostic cutoff; another two died at wave 23. This is 66 natural endless encounters, not 66 independent runs. No difficulty-4 campaign wins means no natural difficulty-4 endless entrants; compiled and fixed-loadout tests do not fill that human balance gap. No endless stat nerf was applied. Concurrent combat/art repairs are present in the final working tree; do not attribute all observed outcomes to these coefficients alone.
+
+Status: tuned candidate implemented; 270 full campaign diagnostic runs completed (90 baseline, 90 candidate, 90 candidate-replay/earned-endless) plus 18 explicitly injected-loadout probes and 66 earned-endless encounters. Final integration build succeeds with zero errors/warnings (`Library/ModeBalance-FinalGate.log`). Native combat/story smoke passes 58 checks with 21 screenshots. The native shop gate fails because the concurrently changed exit overlaps merchandise interaction regions; its assertion was not weakened, and reduced shop acceptance remains open. This is a candidate, not a fully accepted release. Evidence is in `PreviewExports/ModeBalance/Gate_Summary.md`. Human playtesting, broader seed/build coverage and mobile-device acceptance remain open; no universal balance certification.

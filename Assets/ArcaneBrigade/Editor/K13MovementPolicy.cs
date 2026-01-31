@@ -47,7 +47,7 @@ namespace ArcaneBrigade.Editor
                 if (session.State.Gold <= session.RerollCost + cheapest || !session.Reroll()) break;
             }
         }
-        private static float Score(RunSession session, RunCatalog catalog, ShopOffer offer)
+        internal static float Score(RunSession session, RunCatalog catalog, ShopOffer offer)
         {
             if (offer.Kind == OfferKind.Companion) return ShopMergePreview.Ready(session, offer) ? 100 : 50;
             float value = 0;

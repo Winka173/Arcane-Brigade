@@ -1,0 +1,387 @@
+PASS Actual physical shop opens
+PASS Visible shop material supported LowDreamMist
+PASS Visible shop material supported HD_TiledFloor
+PASS Visible shop material supported HD_PaintedBoundary
+PASS Visible shop material supported Black Fog Between The Lights
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DreamLandmark1
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote4
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityLight1
+PASS Visible shop material supported DriftingReceipt5
+PASS Visible shop material supported DreamLandmark5
+PASS Visible shop material supported RarityMote9
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DriftingReceipt2
+PASS Visible shop material supported RarityLight0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote9
+PASS Visible shop material supported RarityMote6
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityMote2
+PASS Visible shop material supported RarityMote9
+PASS Visible shop material supported RarityLight1
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityMote5
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported BodyVisual
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported MarketPennants
+PASS Visible shop material supported Flame Bloom 0
+PASS Visible shop material supported RarityMote3
+PASS Visible shop material supported RarityMote4
+PASS Visible shop material supported RarityMote2
+PASS Visible shop material supported RarityMote6
+PASS Visible shop material supported RarityMote7
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityLight2
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote6
+PASS Visible shop material supported DreamLandmark4
+PASS Visible shop material supported RarityMote7
+PASS Visible shop material supported MarketCloth
+PASS Visible shop material supported RarityLight2
+PASS Visible shop material supported DreamArchitecture0
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported WaitingEncounterProp
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported SecretInvitation_LostProperty
+PASS Visible shop material supported RarityMote6
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported PaintedMarketRug
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported RarityMote5
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported MarketCloth
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported PaintedRarityBloom0
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote3
+PASS Visible shop material supported HandVisual
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingReceipt6
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported MarketCloth
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityLight2
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported FootDust
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported FootDust
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported Flame Bloom 1
+PASS Visible shop material supported MarketCloth
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityLight0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote3
+PASS Visible shop material supported DreamArchitecture9
+PASS Visible shop material supported RarityMote0
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported PaintedRarityBloom1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DreamLandmark2
+PASS Visible shop material supported DreamArchitecture1
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported WeaponVisual
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DreamArchitecture6
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported RarityMote8
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DreamArchitecture11
+PASS Visible shop material supported RarityMote4
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported RarityLight0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote0
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported RarityMote2
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DreamArchitecture10
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DreamArchitecture2
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported PaintedRarityBloom0
+PASS Visible shop material supported RarityLight1
+PASS Visible shop material supported RarityLight1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported BodyVisual
+PASS Visible shop material supported DriftingReceipt3
+PASS Visible shop material supported DriftingReceipt4
+PASS Visible shop material supported HandVisual
+PASS Visible shop material supported RarityMote2
+PASS Visible shop material supported RarityMote9
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported MerchantUpperActing
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported ChampionBeacon
+PASS Visible shop material supported RarityMote1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityMote0
+PASS Visible shop material supported RarityMote6
+PASS Visible shop material supported RarityMote5
+PASS Visible shop material supported SecretInvitation_SleepingGarden
+PASS Visible shop material supported MarketCloth
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityMote5
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote8
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported PaintedRarityBloom1
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported RarityMote9
+PASS Visible shop material supported WeaponVisual
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityLight1
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingReceipt0
+PASS Visible shop material supported DreamLandmark0
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityLight0
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported RarityMote7
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported CompanionOwnLight
+PASS Visible shop material supported DreamArchitecture4
+PASS Visible shop material supported RarityLight0
+PASS Visible shop material supported RarityMote7
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DreamArchitecture7
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote0
+PASS Visible shop material supported DreamArchitecture3
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DreamArchitecture8
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported AntiqueLanternSprite0
+PASS Visible shop material supported RarityMote1
+PASS Visible shop material supported RarityMote3
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported MerchantLowerWeight
+PASS Visible shop material supported RarityMote0
+PASS Visible shop material supported RarityMote1
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote5
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote1
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote8
+PASS Visible shop material supported CompanionOwnLight
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote2
+PASS Visible shop material supported AntiqueLanternSprite1
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DreamArchitecture5
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported PaintedRarityBloom0
+PASS Visible shop material supported RarityLight2
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported PaintedRarityBloom1
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote1
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote3
+PASS Visible shop material supported RarityLight2
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported RarityMote4
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported AnimatedShopActor
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported RarityMote7
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported RarityMote4
+PASS Visible shop material supported DriftingDreamMote0
+PASS Visible shop material supported MarketCloth
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DriftingDreamMote1
+PASS Visible shop material supported RarityMote8
+PASS Visible shop material supported ShopFloorContact
+PASS Visible shop material supported RarityMote8
+PASS Visible shop material supported DriftingReceipt1
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported DirectionalGroundShadow
+PASS Visible shop material supported SoftGroundPenumbra
+PASS Visible shop material supported TheUnoccupiedChair
+PASS Only shop/display targets carry rarity shop-overview
+PASS Actual stock rarity uses painted animation shop-overview
+PASS Rarity has no target circles shop-overview
+PASS Rarity follows animated merchandise shop-overview
+PASS Only shop/display targets carry rarity shop-overview
+PASS Actual stock rarity uses painted animation shop-overview
+PASS Rarity has no target circles shop-overview
+PASS Rarity follows animated merchandise shop-overview
+PASS Only shop/display targets carry rarity shop-overview
+PASS Actual stock rarity uses painted animation shop-overview
+PASS Rarity has no target circles shop-overview
+PASS Rarity follows animated merchandise shop-overview
+PASS Only shop/display targets carry rarity shop-overview
+PASS Actual stock rarity uses painted animation shop-overview
+PASS Rarity has no target circles shop-overview
+PASS Rarity follows animated merchandise shop-overview
+PASS Only shop/display targets carry rarity shop-overview
+PASS Actual stock rarity uses painted animation shop-overview
+PASS Rarity has no target circles shop-overview
+PASS Rarity follows animated merchandise shop-overview
+PASS Native dimensions shop-overview
+PASS No large shader-error pink block shop-overview
+PASS Keeper has an intentional air gap above its ground shadow
+PASS Only shop/display targets carry rarity suspended-shop-later
+PASS Actual stock rarity uses painted animation suspended-shop-later
+PASS Rarity has no target circles suspended-shop-later
+PASS Rarity follows animated merchandise suspended-shop-later
+PASS Only shop/display targets carry rarity suspended-shop-later
+PASS Actual stock rarity uses painted animation suspended-shop-later
+PASS Rarity has no target circles suspended-shop-later
+PASS Rarity follows animated merchandise suspended-shop-later
+PASS Only shop/display targets carry rarity suspended-shop-later
+PASS Actual stock rarity uses painted animation suspended-shop-later
+PASS Rarity has no target circles suspended-shop-later
+PASS Rarity follows animated merchandise suspended-shop-later
+PASS Only shop/display targets carry rarity suspended-shop-later
+PASS Actual stock rarity uses painted animation suspended-shop-later
+PASS Rarity has no target circles suspended-shop-later
+PASS Rarity follows animated merchandise suspended-shop-later
+PASS Only shop/display targets carry rarity suspended-shop-later
+PASS Actual stock rarity uses painted animation suspended-shop-later
+PASS Rarity has no target circles suspended-shop-later
+PASS Rarity follows animated merchandise suspended-shop-later
+PASS Native dimensions suspended-shop-later
+PASS No large shader-error pink block suspended-shop-later
+PASS Hover drifts in normal mode and stays still in Reduced Motion
+PASS Environment fixtures and merchant float without under-object wind
+PASS Actual continue door uses broad bottom-centre entrance
+PASS Stock and exit have disjoint interaction regions
+PASS Player reaches physical interaction (-3.20, -1.40)
+PASS Approaching stock never selects continue
+PASS Actual merchandise focus animates on approach
+PASS Highlight preserves painted support contact
+PASS Only shop/display targets carry rarity focused-Item-royal-key
+PASS Actual stock rarity uses painted animation focused-Item-royal-key
+PASS Rarity has no target circles focused-Item-royal-key
+PASS Rarity follows animated merchandise focused-Item-royal-key
+PASS Only shop/display targets carry rarity focused-Item-royal-key
+PASS Actual stock rarity uses painted animation focused-Item-royal-key
+PASS Rarity has no target circles focused-Item-royal-key
+PASS Rarity follows animated merchandise focused-Item-royal-key
+PASS Only shop/display targets carry rarity focused-Item-royal-key
+PASS Actual stock rarity uses painted animation focused-Item-royal-key
+PASS Rarity has no target circles focused-Item-royal-key
+PASS Rarity follows animated merchandise focused-Item-royal-key
+PASS Only shop/display targets carry rarity focused-Item-royal-key
+PASS Actual stock rarity uses painted animation focused-Item-royal-key
+PASS Rarity has no target circles focused-Item-royal-key
+PASS Rarity follows animated merchandise focused-Item-royal-key
+PASS Only shop/display targets carry rarity focused-Item-royal-key
+PASS Actual stock rarity uses painted animation focused-Item-royal-key
+PASS Rarity has no target circles focused-Item-royal-key
+PASS Rarity follows animated merchandise focused-Item-royal-key
+PASS Native dimensions focused-Item-royal-key
+PASS No large shader-error pink block focused-Item-royal-key
+FAIL Stock and exit have disjoint interaction regions
+FAIL Runtime InvalidOperationException: Shop presentation: Stock and exit have disjoint interaction regions

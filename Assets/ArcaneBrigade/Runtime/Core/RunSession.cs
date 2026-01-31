@@ -294,7 +294,7 @@ namespace ArcaneBrigade
                 RosterEntry entry = State.Roster[index];
                 CombatCatalog.StartingCompanions[index] = BuildUnit(catalog.Unit(entry.UnitId), catalog.Weapon(entry.WeaponId), entry.Tier, true);
             }
-            float scaling = (1f + (State.Wave - 1) * 0.10f) * (1f + State.Difficulty * 0.18f) * (1f + State.Difficulty * State.Difficulty * 0.07f);
+            float scaling = (1f + (State.Wave - 1) * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave);
             CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
             CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
             if (State.Wave == 1)
@@ -309,7 +309,7 @@ namespace ArcaneBrigade
             if (catalog.Bosses.Length == 10) bossIndex = Mathf.Max(0, bossStage) % 5 + (((State.Seed ^ bossStage) & 1) == 0 ? 0 : 5);
             CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
             CombatCatalog.WaveDuration = OctoberBalance.WaveSeconds;
-            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * (1f + State.Difficulty * 0.12f));
+            CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
             CombatCatalog.EnemyBudget = Mathf.Min(600, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1 : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
             CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
@@ -431,6 +431,7 @@ namespace ArcaneBrigade
             if (companion) unit.BodyHeight *= CompanionTierScaling.Body(tier);
             K10StatRules.ApplyUnit(this, catalog, unit, source, weapon, tier, companion);
             if (!companion && source.HeroMechanic == HeroMechanic.SoloMaw) { unit.Weapon.Damage *= 1.6f * (1 + Mathf.Min(1, Mathf.Max(0, State.Wave - 1) * .04f)); unit.Weapon.Range *= 1.4f; }
+            if (!companion && source.Id == "LoneJelly") unit.Weapon.Damage *= JourneyBalance.LoneJellyDamage(State.Wave);
             if (!companion && source.HeroMechanic == HeroMechanic.RootedOracle) { unit.Weapon.Damage *= 1.8f; unit.Weapon.Range *= 1.6f; }
             if (companion && source.SpecialRecruit) unit.Weapon.Damage *= 1.35f;
             if (unit.Weapon.Kind == WeaponKind.Melee)
@@ -467,7 +468,7 @@ namespace ArcaneBrigade
             float damageGrowth = Mathf.Max(0, State.Wave - 10);
             unit.ContactDamage = Mathf.Min(14f + damageGrowth * 0.12f, source.ContactDamage + State.Wave * 0.35f);
             unit.Weapon.Damage = Mathf.Min((source.IsBoss ? 26f : 14f) + damageGrowth * (source.IsBoss ? 0.2f : 0.12f), source.Weapon.Damage + State.Wave * 0.35f);
-            float pressure = (0.62f + State.Difficulty * 0.095f) * CarnivalBalance.EnemyDamage(State.Wave) * 1.08f * OctoberBalance.EndlessDamage(State.Wave, State.Endless);
+            float pressure = JourneyBalance.EnemyDamage(State.Difficulty, State.Wave) * CarnivalBalance.EnemyDamage(State.Wave) * 1.08f * OctoberBalance.EndlessDamage(State.Wave, State.Endless);
             unit.ContactDamage *= pressure; unit.Weapon.Damage *= pressure;
             if (source.IsBoss) { unit.ContactDamage *= BossEncounterRules.DamageMultiplier; unit.Weapon.Damage *= BossEncounterRules.DamageMultiplier; unit.Speed *= BossEncounterRules.SpeedMultiplier; }
             if (catalog.StatRevision > 0)
@@ -724,7 +725,7 @@ namespace ArcaneBrigade
         }
 
         public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave);
-        public float SpecialStagePriceFactor => 1 + Mathf.Max(0, State.Wave - 7) * .045f;
+        public float SpecialStagePriceFactor => 1;
         public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
         public int HighestOwnedTier(string id)
