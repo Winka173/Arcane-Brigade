@@ -8,6 +8,9 @@ namespace ArcaneBrigade
         private RunBuildReadModel model;
         private int tab;
         private GUIStyle tabStyle;
+        private GUIStyle handStyle;
+        private GUIStyle seatName;
+        private GUIStyle sayHand;
         private int selection;
         private Vector2 scroll;
         private Vector2 explanationScroll;
@@ -24,6 +27,94 @@ namespace ArcaneBrigade
         public const int TabCount = 4;
         public void Show(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null) { if (model == null) CheckpointAudio.PlayInterfaceId("ui.open"); model = RunBuildReadModel.Capture(session, catalog, health, simulation); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; }
         public void Close() { if (model != null) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; GlossaryUI.Close(); }
+        /// <summary>B11: the brigade sits at one long table, a seat per species (back row behind the table, front row before it).
+        /// Clicking someone selects them; they lean in and speak their key facts and a line in their own hand.</summary>
+        private void DrawTable(List<RunBuildReadModel.Row> rows, float rowHeight, int wave)
+        {
+            var seats = new List<int>();
+            var counts = new Dictionary<string, int>();
+            for (int index = 0; index < rows.Count; index++)
+            {
+                string key = rows[index].UnitId ?? rows[index].Name;
+                if (counts.ContainsKey(key)) { counts[key]++; continue; }
+                counts[key] = 1;
+                if (seats.Count < 14) seats.Add(index);
+            }
+            Rect area = new Rect(70, 290, 1060, 340);
+            float breathe = PresentationSettings.ReducedMotion ? 0.6f : 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 1.8f);
+            ArcadeSkin.Glow(new Rect(area.x + 180, area.y + 40, area.width - 360, area.height), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.20f + 0.05f * breathe));
+            Rect top = new Rect(area.x + 90, area.y + 180, area.width - 180, 74);
+            int back = Mathf.CeilToInt(seats.Count / 2f), front = seats.Count - back;
+            int selectedSeat = -1;
+            string selectedKey = selection >= 0 && selection < rows.Count ? rows[selection].UnitId ?? rows[selection].Name : null;
+            for (int k = 0; k < seats.Count; k++) if ((rows[seats[k]].UnitId ?? rows[seats[k]].Name) == selectedKey) selectedSeat = k;
+            Rect SeatRect(int k)
+            {
+                bool backRow = k < back;
+                int n = backRow ? back : front, i = backRow ? k : k - back;
+                float span = top.width - 80, x = top.x + 40 + (n == 1 ? span * 0.5f : span * i / (n - 1)) - 48;
+                float y = backRow ? top.y - 96 : top.y + 30;
+                if (k == selectedSeat) y -= PresentationSettings.ReducedMotion ? 0 : 6;
+                return new Rect(x, y, 96, 104);
+            }
+            // back row sits behind the table
+            for (int k = 0; k < back; k++) DrawSeat(rows, seats[k], counts, SeatRect(k), k == selectedSeat, rowHeight);
+            ArcadeSkin.Slant(new Rect(top.x + 6, top.y + 10, top.width, top.height), new Color(0, 0, 0, 0.5f));
+            ArcadeSkin.Slant(top, new Color(0.30f, 0.19f, 0.11f, 1f));
+            ArcadeSkin.Slant(new Rect(top.x + 8, top.y + 6, top.width - 16, 10), new Color(0.48f, 0.31f, 0.18f, 1f));
+            ArcadeSkin.Divider(new Rect(top.x + 30, top.y + top.height - 16, top.width - 60, 1), new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, 0.25f));
+            // a candle in the middle of the table
+            Vector2 candle = new Vector2(top.center.x, top.y + 6);
+            ArcadeSkin.Line(new Rect(candle.x - 5, candle.y - 26, 10, 28), new Color(0.94f, 0.90f, 0.80f));
+            ArcadeSkin.Glow(new Rect(candle.x - 30, candle.y - 66, 60, 60), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.65f * breathe));
+            ArcadeSkin.Dot(new Rect(candle.x - 5, candle.y - 44, 10, 16), new Color(1f, 0.88f, 0.6f));
+            for (int k = back; k < seats.Count; k++) DrawSeat(rows, seats[k], counts, SeatRect(k), k == selectedSeat, rowHeight);
+            int hidden = counts.Count - seats.Count;
+            if (seatName == null) { seatName = ArcadeTypography.Style(17, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
+            if (hidden > 0) { seatName.normal.textColor = ArcadeSkin.Cream; GUI.Label(new Rect(area.xMax - 220, area.yMax - 28, 210, 22), "+" + hidden + " MORE AT THE TABLE", seatName); }
+            // the selected guest speaks
+            if (selectedSeat >= 0)
+            {
+                RunBuildReadModel.Row row = rows[seats[selectedSeat]];
+                Rect seat = SeatRect(selectedSeat);
+                string said = CompanionVoice.Line(row.UnitId, wave);
+                string facts = row.Name + "  ·  " + (row.Summary ?? "").Split('\n')[0];
+                if (sayHand == null) { sayHand = ArcadeTypography.Style(25); sayHand.font = ArcadeTypography.Hand; sayHand.normal.textColor = new Color(0.25f, 0.20f, 0.14f); sayHand.wordWrap = true; }
+                seatName.normal.textColor = ArcadeSkin.Ink;
+                float width = 640, height = string.IsNullOrEmpty(said) ? 44 : 44 + Mathf.Min(60, sayHand.CalcHeight(new GUIContent(said), width - 36));
+                Rect bubble = new Rect(Mathf.Clamp(seat.center.x - width * 0.5f, area.x, area.xMax - width), area.y - 28, width, height);
+                ArcadeSkin.Ticket(bubble, ArcadeSkin.Paper, ArcadeSkin.Accent);
+                seatName.alignment = TextAnchor.MiddleLeft;
+                GUI.Label(new Rect(bubble.x + 18, bubble.y + 8, width - 30, 24), facts, seatName);
+                seatName.alignment = TextAnchor.MiddleCenter;
+                if (!string.IsNullOrEmpty(said)) GUI.Label(new Rect(bubble.x + 18, bubble.y + 32, width - 30, height - 36), said, sayHand);
+            }
+        }
+
+        private void DrawSeat(List<RunBuildReadModel.Row> rows, int index, Dictionary<string, int> counts, Rect seat, bool chosen, float rowHeight)
+        {
+            RunBuildReadModel.Row row = rows[index];
+            if (chosen) ArcadeSkin.Glow(new Rect(seat.x - 24, seat.y - 18, seat.width + 48, seat.height + 36), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.45f));
+            // chair back, then the guest
+            ArcadeSkin.Slant(new Rect(seat.x + 22, seat.y + 30, seat.width - 44, 64), new Color(0.36f, 0.23f, 0.13f, 0.9f));
+            if (row.Icon != null) RunHud.Sprite(new Rect(seat.x + 4, seat.y, seat.width - 8, seat.height - 10), row.Icon);
+            int many = counts.TryGetValue(row.UnitId ?? row.Name, out int c) ? c : 1;
+            if (many > 1)
+            {
+                if (seatName == null) { seatName = ArcadeTypography.Style(17, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
+                Rect badge = new Rect(seat.xMax - 34, seat.y + 4, 34, 22);
+                ArcadeSkin.Slant(badge, ArcadeSkin.Ink);
+                seatName.normal.textColor = ArcadeSkin.Gold;
+                GUI.Label(badge, "×" + many, seatName);
+            }
+            if (GUI.Button(seat, GUIContent.none, GUIStyle.none))
+            {
+                selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero;
+                scroll.y = index * rowHeight;
+                CheckpointAudio.PlayInterfaceId("ui.select");
+            }
+        }
+
         public void SelectTab(int index)
         {
             int next = Mathf.Clamp(index, 0, TabCount - 1);
@@ -83,7 +174,10 @@ namespace ArcaneBrigade
             }
             List<RunBuildReadModel.Row> rows = tab == 0 ? model.Stats : tab == 1 ? model.Companions : tab == 2 ? model.Relics : model.Links;
             float rowHeight = tab == 0 ? 115 : 145;
-            scroll = GUI.BeginScrollView(new Rect(70, 295, 1060, 670), scroll, new Rect(0, 0, 1005, Mathf.Max(665, rows.Count * rowHeight)));
+            bool table = tab == 1 && rows.Count > 0;
+            if (table) DrawTable(rows, rowHeight, owner.Session.State.Wave);
+            Rect listArea = table ? new Rect(70, 640, 1060, 325) : new Rect(70, 295, 1060, 670);
+            scroll = GUI.BeginScrollView(listArea, scroll, new Rect(0, 0, 1005, Mathf.Max(listArea.height - 5, rows.Count * rowHeight)));
             for (int index = 0; index < rows.Count; index++)
             {
                 RunBuildReadModel.Row row = rows[index];
@@ -113,10 +207,24 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(1310, 340, 480, 70), chosen.Name, text);
             }
             string explanation = rows.Count == 0 ? "" : rows[Mathf.Clamp(selection, 0, rows.Count - 1)].Explanation;
+            float quoteHeight = 0;
+            if (tab == 1 && rows.Count > 0)
+            {
+                // B3: the companion's own words, in their hand, above the facts
+                string said = CompanionVoice.Line(rows[Mathf.Clamp(selection, 0, rows.Count - 1)].UnitId, owner.Session.State.Wave);
+                if (!string.IsNullOrEmpty(said))
+                {
+                    if (handStyle == null) { handStyle = ArcadeTypography.Style(30); handStyle.font = ArcadeTypography.Hand; handStyle.normal.textColor = ArcadeSkin.Paper; }
+                    quoteHeight = Mathf.Min(150, handStyle.CalcHeight(new GUIContent("“" + said + "”"), 590) + 18);
+                    GUI.Label(new Rect(1190, 318, 600, quoteHeight), "“" + said + "”", handStyle);
+                    ArcadeSkin.Divider(new Rect(1190, 318 + quoteHeight, 590, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.4f));
+                    quoteHeight += 12;
+                }
+            }
             if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
             float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
             bool heroSelected = tab == 0 && selection == 0 && owner.Session.HeroIdentityDefinition != null;
-            explanationScroll = GUI.BeginScrollView(new Rect(1180, tab == 2 ? 445 : 325, 625, heroSelected ? 290 : tab == 2 ? 490 : 610), explanationScroll, new Rect(0, 0, 585, explanationHeight));
+            explanationScroll = GUI.BeginScrollView(new Rect(1180, (tab == 2 ? 445 : 325) + quoteHeight, 625, (heroSelected ? 290 : tab == 2 ? 490 : 610) - quoteHeight), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);
             GUI.EndScrollView();
             if (heroSelected) heroOptions.Draw(owner, new Rect(1185, 632, 610, 315), text);

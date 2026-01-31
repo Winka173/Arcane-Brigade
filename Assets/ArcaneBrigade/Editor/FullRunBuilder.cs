@@ -367,6 +367,8 @@ namespace ArcaneBrigade.Editor
             File.Copy(Root + "Resources/Fonts/OFL.txt", "Builds/FullRun/ThirdPartyNotices/Noto-OFL.txt", true);
             File.Copy(Root + "Resources/Fonts/BeVietnamPro-OFL.txt", "Builds/FullRun/ThirdPartyNotices/BeVietnamPro-OFL.txt", true);
             if (File.Exists(Root + "Resources/Fonts/Coiny-OFL.txt")) File.Copy(Root + "Resources/Fonts/Coiny-OFL.txt", "Builds/FullRun/ThirdPartyNotices/Coiny-OFL.txt", true);
+            File.Copy(Root + "Resources/Fonts/YoungSerif-OFL.txt", "Builds/FullRun/ThirdPartyNotices/YoungSerif-OFL.txt", true);
+            File.Copy(Root + "Resources/Fonts/Caveat-OFL.txt", "Builds/FullRun/ThirdPartyNotices/Caveat-OFL.txt", true);
             string licensed = Root + "Resources/Audio/Licensed";
             if (Directory.Exists(licensed))
                 foreach (string notice in Directory.GetFiles(licensed, "*.txt")) File.Copy(notice, "Builds/FullRun/ThirdPartyNotices/" + Path.GetFileName(notice), true);

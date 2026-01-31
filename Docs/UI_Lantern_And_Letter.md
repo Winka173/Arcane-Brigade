@@ -45,8 +45,24 @@ Every screen that draws through `ArcadeSkin` (journal, waiting room, events, mus
 
 Still in another session's uncommitted files and therefore not changed here: hard-coded panel colours in `WaitingRoomController.cs`, `SecretEventRoom.cs`, `NightmarePresentation.cs`, `WaitingShopEncounter.cs`, `OutsideStageChoice.cs`, `WorldShop.cs`.
 
-## Not yet done / open
+## Pass 3 — Lantern & Letter+ (A1), the long table (B11), a word after defeat (B9), handwritten lines (B3)
 
-- Not built or captured yet: drive C: has ~1.8 GB free, too little for a ~1.5 GB player build. Runtime assembly compiles cleanly (Roslyn check).
-- `WorldShop.cs` (hanging price slips) and `RunUICopy.cs` were left untouched because another session has uncommitted work in them. A read-only scan found no player-facing carnival wording there (only the asset name `CarnivalStageAssets`); the price slips already restyle through `ArcadeSkin`.
-- `FullRunBuilder.cs` should copy `YoungSerif-OFL.txt` into `ThirdPartyNotices` (also under another session's uncommitted edits).
+**A1 · letters, not panels**
+- **Torn paper:** every `ArcadeSkin.Ticket` ends in an irregular torn bottom edge (`TornEdge`, a 48×12 repeating tooth texture) instead of a stitched line.
+- **Wax seal:** `ArcadeSkin.Seal(centre, size, letter)` draws an oxblood (`Wax`) poured-wax disc with an embossed serif letter. The focused room label in the Waiting Room carries a “B” seal.
+- **Handwriting:** a fourth face, **Caveat** (SIL OFL, static instance at weight 520, `Resources/Fonts/Caveat-Hand.ttf`, `ArcadeTypography.Hand`), is used only for words someone *wrote*: the Waiting Room tagline and hints (“someone is waiting for you…”), the first-run coach notes, companion lines. Rules and numbers never use it.
+
+**B11 · the Brigade panel is a long dining table**
+- In the Companions tab the top of the panel is a candle-lit table: one seat per species (up to 14; “+n MORE AT THE TABLE” beyond), back row behind the table, front row before it, “×n” for duplicates.
+- Clicking a guest selects their row (the list below scrolls to it); they lift and glow, and a torn-paper speech bubble shows “Name · first summary line” and their own line in handwriting. The list remains below for keyboard / controller use.
+
+**B3 · each companion has their own handwritten line**
+- `Runtime/UI/CompanionVoice.cs`: story companions speak their authored banter for the current stretch (`CreatureLives.Banter`); every other species speaks the last sentence of its biography in the first person (“They want…” → “I want…”), with a small table of fixed lines where the pronoun swap would misread (`RainbowTailor`, `SaffronMechanist`, `SpindleWren`, `MonsterMarble`).
+- Shown above the facts in the Brigade detail panel, and in the shop tooltip of a companion offer (truncated to fit before BUY).
+
+**B9 · a word after defeat**
+- The defeat result no longer only says “Your light goes out…”: a torn note from one companion (chosen deterministically from the run id) with their face and a short comforting line in handwriting (“The door is still there. So are we.”). With no companions, the hero speaks.
+
+## Open
+
+- `WorldShop.cs` and `RunUICopy.cs` remain under another session's uncommitted work; the price slips restyle through `ArcadeSkin`.

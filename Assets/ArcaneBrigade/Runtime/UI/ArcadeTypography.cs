@@ -14,6 +14,9 @@ namespace ArcaneBrigade
         // Miền Chờ: titles, chapter names and the logo use Young Serif (SIL OFL 1.1) — a warm storybook / letter-writing serif.
         // UI controls and body stay on Be Vietnam Pro for small-size legibility; numbers on Noto Sans Mono.
         public static Font Display => display != null ? display : display = Resources.Load<Font>("Fonts/YoungSerif-Regular") ?? Heading;
+        private static Font hand;
+        /// <summary>Handwriting (Caveat, SIL OFL 1.1, static weight 520): notes, companions' own words, the hero's coaching. Use sparingly.</summary>
+        public static Font Hand => hand != null ? hand : hand = Resources.Load<Font>("Fonts/Caveat-Hand") ?? Body;
         public static string DisplayText(string value) => string.IsNullOrEmpty(value) || value.IsNormalized(System.Text.NormalizationForm.FormC) ? value : value.Normalize(System.Text.NormalizationForm.FormC);
 
         public static GUIStyle Style(int size, bool title = false, bool numeric = false)

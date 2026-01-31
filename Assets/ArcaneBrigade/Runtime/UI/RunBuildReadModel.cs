@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class RunBuildReadModel
     {
-        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; public Color Accent; }
+        public sealed class Row { public string Name; public string Summary; public string Explanation; public Dictionary<string, string> CombatValues; public Sprite Icon; public Sprite WeaponIcon; public Color Accent; public string UnitId; }
         public readonly List<Row> Stats = new List<Row>();
         public readonly List<Row> Companions = new List<Row>();
         public readonly List<Row> Relics = new List<Row>();
@@ -54,7 +54,7 @@ namespace ArcaneBrigade
                 int tierSteps = catalog.ContentRevision > 0 ? Mathf.Max(0, entry.Tier - 1) : 0;
                 float range = applied.Weapon.Range;
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
-                model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
+                model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
                     Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Tier bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Tier bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each companion body counts once toward bonds." });
                 model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier);

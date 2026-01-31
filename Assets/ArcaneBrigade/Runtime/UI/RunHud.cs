@@ -14,6 +14,7 @@ namespace ArcaneBrigade
         private GUIStyle primary;
         private GUIStyle bossName;
         private GUIStyle tagStyle;
+        private GUIStyle handStyle;
         private GUIStyle bondHit;
         private string selectedBond;
         private float bondTooltipUntil;
@@ -224,8 +225,10 @@ namespace ArcaneBrigade
                 }
                 Fill(new Rect(80, 200, 630, 750), Panel);
                 ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED · NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : "Until You Return");
-                Sprite(new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
-                Sprite(new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
+                bool fallen = state.Phase == SessionPhase.Defeat;
+                Sprite(fallen ? new Rect(240, 345, 230, 200) : new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
+                Sprite(fallen ? new Rect(450, 450, 90, 90) : new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
+                if (fallen) DrawFallenWord(owner, state, new Rect(115, 552, 565, 96));
                 GUI.Label(new Rect(115, 655, 565, 90), owner.MetaNotice, small);
                 if (state.Phase == SessionPhase.Victory && navigation.Button(new Rect(115, 750, 560, 60), "ENDLESS · KEEP BRIGADE AND RELICS", button)) owner.ContinueEndless();
                 if (navigation.Button(new Rect(115, 825, 270, 65), "PLAY AGAIN", primary)) owner.RestartRun();
@@ -292,6 +295,21 @@ namespace ArcaneBrigade
                     GUI.Label(new Rect(panel.x + 22, panel.y - 14, 150, 26), kind, tagStyle);
                 }
                 GUI.Label(new Rect(panel.x + 24, panel.y + 16, 460, 38), shop.DisplayName(station), text);
+                if (station.Offer != null && station.Offer.Kind == OfferKind.Companion)
+                {
+                    // B3: the companion introduces themselves in their own hand
+                    string said = CompanionVoice.Line(station.Offer.Id, owner.Session.State.Wave);
+                    if (!string.IsNullOrEmpty(said))
+                    {
+                        if (handStyle == null) { handStyle = ArcadeTypography.Style(24); handStyle.font = ArcadeTypography.Hand; handStyle.wordWrap = false; handStyle.clipping = TextClipping.Clip; }
+                        handStyle.normal.textColor = ArcadeSkin.Paper;
+                        float nameWidth = Mathf.Min(420, text.CalcSize(new GUIContent(shop.DisplayName(station))).x);
+                        float room = panel.xMax - 352 - (panel.x + 24 + nameWidth + 18); // stop before INFO
+                        string shown = "“" + said + "”";
+                        while (shown.Length > 8 && handStyle.CalcSize(new GUIContent(shown)).x > room) shown = shown.Substring(0, shown.Length - 6).TrimEnd() + "…”";
+                        if (room > 120) GUI.Label(new Rect(panel.x + 24 + nameWidth + 18, panel.y + 18, room, 36), shown, handStyle);
+                    }
+                }
                 if (station.Offer != null && navigation.Button(new Rect(panel.xMax - 340, panel.y + 18, 100, 36), shopDetails ? "BACK" : "INFO", button)) SetShopDetails(!shopDetails);
                 shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, textWidth + 40, panel.height - 85), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
                 GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, small);
@@ -505,6 +523,27 @@ namespace ArcaneBrigade
                 GlossaryUI.Text(new Rect(1155, tooltipTop + 12, 385, height - 24), tooltip, small);
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
+        }
+
+        private GUIStyle fallenStyle;
+
+        /// <summary>B9: after the light goes out, someone in the brigade says one short thing, in their own hand.</summary>
+        private void DrawFallenWord(ArenaController owner, RunSnapshot state, Rect area)
+        {
+            UnitDefinition speaker = null;
+            if (state.Roster != null && state.Roster.Count > 0)
+            {
+                int hash = 7;
+                foreach (char c in state.RunId ?? "") hash = hash * 31 + c;
+                speaker = owner.Content.Unit(state.Roster[(hash & 0x7fffffff) % state.Roster.Count].UnitId);
+            }
+            string line = speaker != null ? CompanionVoice.Comforting(state.RunId, speaker.Id) : "I'll find the door again. It was there before; it will be there again.";
+            Sprite face = speaker != null ? speaker.Body : owner.Content.Unit(state.ChampionId).Body;
+            ArcadeSkin.Ticket(area, ArcadeSkin.Paper, ArcadeSkin.Accent);
+            Sprite(new Rect(area.x + 12, area.y + 8, 76, area.height - 18), face);
+            if (handStyle == null) { handStyle = ArcadeTypography.Style(24); handStyle.font = ArcadeTypography.Hand; handStyle.wordWrap = false; handStyle.clipping = TextClipping.Clip; }
+            if (fallenStyle == null) { fallenStyle = new GUIStyle(handStyle) { fontSize = 27, wordWrap = true, alignment = TextAnchor.MiddleLeft }; fallenStyle.normal.textColor = new Color(0.24f, 0.19f, 0.13f); }
+            GUI.Label(new Rect(area.x + 100, area.y + 6, area.width - 116, area.height - 16), "“" + line + "”", fallenStyle);
         }
 
         private void DrawReceipt(RunSnapshot state)

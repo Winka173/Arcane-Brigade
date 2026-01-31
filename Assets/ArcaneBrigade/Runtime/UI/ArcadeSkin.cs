@@ -224,9 +224,77 @@ namespace ArcaneBrigade
         public static void Ticket(Rect rectangle, Color paper, Color stamp)
         {
             Slant(new Rect(rectangle.x + 3, rectangle.y + 5, rectangle.width, rectangle.height), new Color(0, 0, 0, 0.45f));
-            Slant(rectangle, paper);
-            Line(new Rect(rectangle.x + 5, rectangle.y + 6, 3, rectangle.height - 12), stamp);
-            Divider(new Rect(rectangle.x + 14, rectangle.yMax - 5, rectangle.width - 26, 1), new Color(Ink.r, Ink.g, Ink.b, 0.35f));
+            Slant(new Rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height - 4), paper);
+            TornEdge(new Rect(rectangle.x + 2, rectangle.yMax - 8, rectangle.width - 4, 9), paper);
+            Line(new Rect(rectangle.x + 5, rectangle.y + 6, 3, rectangle.height - 16), stamp);
+        }
+
+        private static Texture2D torn;
+        /// <summary>Ragged bottom of a page torn from a notebook: an irregular saw edge tiled along the rectangle.</summary>
+        public static void TornEdge(Rect rectangle, Color paper)
+        {
+            if (Event.current.type != EventType.Repaint) return;
+            if (torn == null)
+            {
+                const int w = 48, h = 12;
+                torn = new Texture2D(w, h, TextureFormat.RGBA32, false) { name = "TornEdge", wrapMode = TextureWrapMode.Repeat, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
+                var pixels = new Color[w * h];
+                for (int x = 0; x < w; x++)
+                {
+                    // irregular teeth: two saw waves of different periods
+                    float tooth = Mathf.Abs(Mathf.Repeat(x / 7f, 1f) - 0.5f) * 2f * 0.6f + Mathf.Abs(Mathf.Repeat((x + 3) / 11f, 1f) - 0.5f) * 2f * 0.4f;
+                    float edge = h * (0.25f + 0.7f * tooth); // paper fills from the top down to the edge
+                    for (int y = 0; y < h; y++)
+                    {
+                        float fromTop = h - 1 - y + 0.5f;
+                        pixels[y * w + x] = new Color(1, 1, 1, Mathf.Clamp01(edge - fromTop + 0.5f));
+                    }
+                }
+                torn.SetPixels(pixels); torn.Apply(false, true);
+            }
+            Color previous = GUI.color;
+            GUI.color = Faded(paper, previous);
+            GUI.DrawTextureWithTexCoords(rectangle, torn, new Rect(0, 0, rectangle.width / 48f, 1));
+            GUI.color = previous;
+        }
+
+        private static Texture2D wax;
+        private static GUIStyle sealStyle;
+        public static readonly Color Wax = new Color(0.50f, 0.11f, 0.12f); // oxblood, darker than the hostile ember
+        /// <summary>A wax seal pressed on a letter or label, with an embossed letter.</summary>
+        public static void Seal(Vector2 centre, float size, string letter)
+        {
+            if (wax == null)
+            {
+                const int n = 64;
+                wax = new Texture2D(n, n, TextureFormat.RGBA32, false) { name = "WaxSeal", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
+                var pixels = new Color[n * n];
+                for (int y = 0; y < n; y++)
+                    for (int x = 0; x < n; x++)
+                    {
+                        Vector2 p = new Vector2(x + 0.5f - n / 2f, y + 0.5f - n / 2f);
+                        float angle = Mathf.Atan2(p.y, p.x);
+                        float radius = n * 0.46f + Mathf.Sin(angle * 9f) * 1.2f + Mathf.Sin(angle * 4f + 1f) * 0.9f; // poured, uneven rim
+                        float d = p.magnitude;
+                        float alpha = Mathf.Clamp01(radius - d + 0.5f);
+                        float rim = Mathf.Clamp01((d - (n * 0.30f)) / (n * 0.12f));
+                        float light = 1.05f - 0.35f * rim + 0.25f * Mathf.Clamp01(-(p.x + p.y) / n);
+                        pixels[y * n + x] = new Color(light, light, light, alpha);
+                    }
+                wax.SetPixels(pixels); wax.Apply(false, true);
+            }
+            Color previous = GUI.color;
+            Rect rect = new Rect(centre.x - size * 0.5f, centre.y - size * 0.5f, size, size);
+            GUI.color = Faded(new Color(0, 0, 0, 0.45f), previous);
+            GUI.DrawTexture(new Rect(rect.x + 2, rect.y + 3, size, size), wax);
+            GUI.color = Faded(Wax, previous);
+            GUI.DrawTexture(rect, wax);
+            GUI.color = previous;
+            if (string.IsNullOrEmpty(letter)) return;
+            if (sealStyle == null) { sealStyle = ArcadeTypography.Style(18, true); sealStyle.alignment = TextAnchor.MiddleCenter; sealStyle.wordWrap = false; if (ArcadeTypography.Display != null) sealStyle.font = ArcadeTypography.Display; }
+            sealStyle.fontSize = Mathf.Max(10, Mathf.RoundToInt(size * 0.5f));
+            sealStyle.normal.textColor = Faded(new Color(0.95f, 0.75f, 0.68f, 0.9f), previous);
+            GUI.Label(rect, letter, sealStyle);
         }
 
         /// <summary>Keyboard/controller focus: a small candle light to the left and a warm underline that breathes.</summary>

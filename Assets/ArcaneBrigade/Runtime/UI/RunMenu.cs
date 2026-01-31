@@ -370,9 +370,9 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(44, 58, 620, 90), "Arcane Brigade", logoShadow);
             logo.normal.textColor = ArcadeSkin.Cream;
             GUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
-            if (spotHint == null) { spotHint = ArcadeTypography.Style(16, false); spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; spotHint.wordWrap = false; }
+            if (spotHint == null) { spotHint = ArcadeTypography.Style(24, false); spotHint.font = ArcadeTypography.Hand; spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; spotHint.wordWrap = false; }
             spotHint.alignment = TextAnchor.UpperLeft;
-            GUI.Label(new Rect(44, 146, 760, 24), "Someone is waiting. Just move: your light and your companions do the rest.", spotHint);
+            GUI.Label(new Rect(46, 140, 760, 32), "someone is waiting for you…", spotHint);
             spotHint.alignment = TextAnchor.MiddleCenter;
 
             int mouseSpot = -1;
@@ -419,7 +419,8 @@ namespace ArcaneBrigade
             ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent);
             chip.normal.textColor = ArcadeSkin.Ink;
             GUI.Label(tag, label, chip);
-            GUI.Label(new Rect(tag.center.x - 220, tag.yMax + 4, 440, 22), focus == 1 && !CanResume ? "Nothing to continue yet" : SpotHints[focus], spotHint);
+            ArcadeSkin.Seal(new Vector2(tag.xMax - 4, tag.y + 2), 30, "B");
+            GUI.Label(new Rect(tag.center.x - 220, tag.yMax + 4, 440, 30), focus == 1 && !CanResume ? "nothing to continue yet" : SpotHints[focus].ToLowerInvariant(), spotHint);
 
             for (int index = 0; index < SpotAreas.Length; index++)
                 if (SpotAreas[index].width > 0 && GUI.Button(SpotAreas[index], GUIContent.none, GUIStyle.none)) ActivateSpot(index);

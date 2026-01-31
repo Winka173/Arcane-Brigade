@@ -253,7 +253,7 @@ namespace ArcaneBrigade
 
         private void Bubble(ArenaController owner, Camera camera, string message, float reveal)
         {
-            if (copy == null) { copy = ArcadeTypography.Style(22, true); copy.normal.textColor = ArcadeSkin.Ink; copy.alignment = TextAnchor.MiddleLeft; }
+            if (copy == null) { copy = ArcadeTypography.Style(29); copy.font = ArcadeTypography.Hand; copy.normal.textColor = new Color(0.22f, 0.18f, 0.13f); copy.alignment = TextAnchor.MiddleLeft; }
             Vector3 screen = camera.WorldToScreenPoint(owner.Simulation.Champion.Position + Vector2.up * 1.1f);
             Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
             float width = Mathf.Min(560, copy.CalcSize(new GUIContent(message)).x + 60);
