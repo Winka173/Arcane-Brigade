@@ -169,7 +169,7 @@ namespace ArcaneBrigade
             Paint(field,fieldPainter);
             Shader.SetGlobalTexture("_NightLanternField",field);Shader.SetGlobalVector("_NightLanternRect",rect);Shader.SetGlobalFloat("_NightLanternEnabled",1);
             fogPainter.SetVectorArray("_FogRuptures",ruptures);fogPainter.SetVector("_FogRect",rect);fogPainter.SetFloat("_FogClock",PresentationSettings.ReducedMotion?0:Clock);
-            float depth=NightmareRules.Depth(wave)/4f*(1-dawn);float density=Mathf.Lerp(.12f,.92f,depth)*(shop?.2f:1);
+            float depth=NightmareRules.Depth(wave)/4f*(1-dawn);float density=Mathf.Lerp(.12f,1.12f,depth)*(shop?.2f:1);
             if(PresentationSettings.HighReadability)density*=.55f;if(PresentationSettings.ReducedEffects)density*=.6f;
             density*=1-dawn;
             fogPainter.SetFloat("_FogDensity",density);fogPainter.SetInt("_FogSamples",FogSamples);

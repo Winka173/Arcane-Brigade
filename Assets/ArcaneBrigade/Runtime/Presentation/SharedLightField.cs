@@ -99,7 +99,7 @@ namespace ArcaneBrigade
             if (owner.Session.State.Phase == SessionPhase.Shop) return 1;
             var light = NightmareLighting.Active;
             if (light == null) return 1;
-            return Mathf.Clamp(light.Ambient + Mathf.Max(Strength(position), NightLanternField.Active?.Illumination(position) ?? 0) * .9f + light.Spill(position).maxColorComponent * .3f, PresentationSettings.HighReadability ? .35f : .1f, 1);
+            return Mathf.Clamp(light.Ambient + Mathf.Max(Strength(position), NightLanternField.Active?.Illumination(position) ?? 0) * .9f + light.Spill(position).maxColorComponent * .3f, PresentationSettings.HighReadability ? .35f : .025f, 1);
         }
         private void OnDestroy()
         {

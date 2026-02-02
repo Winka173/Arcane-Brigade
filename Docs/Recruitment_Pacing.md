@@ -1,5 +1,9 @@
 # Nhịp tuyển companion — cập nhật 16/10/2026
 
+**Xác nhận mới nhất:** bỏ trần đội 15 cơ thể; giữ các quota mua đã chốt. Companion cầu vồng/quà không bị từ chối vì quân số. Mốc 15 trong công thức trọng số chỉ là mốc giảm xác suất, không là cap: [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md).
+
+**Luật hiện hành mới nhất:** trước wave 10, mỗi shop tối đa 1 loài mới/wave. Từ wave 10, hai shop gộp chung 1 loài mới mỗi 2 wave: mua ở 10 thì 12 mới mua mới tiếp. Bản trùng vẫn dùng trần 3 lượt mua thường/wave; bản trùng shop đặc biệt không dùng trần mua thường. Counter/cooldown có lưu save. Xem [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md). Phần dưới lưu giải thích nhánh trọng số và lịch sử quota trước cập nhật này; nhãn miễn quota loài mới ở shop đặc biệt không còn áp dụng.
+
 Giữ trần cũ **3 lượt mua companion ở shop thường mỗi round**, gồm cả bản trùng mua để nâng sao. Bổ sung quota loài mới bên trong trần này:
 
 | Round | Tổng lượt companion thường | Trong đó, tối đa loài mới |

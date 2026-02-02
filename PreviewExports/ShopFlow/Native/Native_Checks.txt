@@ -1,0 +1,56 @@
+PASS Player saves stay isolated
+PASS Actual saved run loaded 4 / True
+PASS Initial shop landing finishes
+PASS Real committed reroll succeeds 0
+PASS Reroll cannot replay scenery landing 0
+PASS Real committed reroll succeeds 1
+PASS Reroll cannot replay scenery landing 1
+PASS Real committed reroll succeeds 2
+PASS Reroll cannot replay scenery landing 2
+PASS Real positive-stat purchase succeeds
+PASS Purchase cannot replay scenery landing
+PASS Actual damage gains reported on hero and affected companions
+PASS Actual nonblack Windows frame 01-floating-stat-gains
+PASS Real tradeoff-item purchase succeeds
+PASS Negative stat changes are preserved
+PASS Actual nonblack Windows frame 02-floating-stat-tradeoff
+PASS Pause and resume do not replay scenery landing
+PASS Distant props cannot open story panels
+PASS Floating story object is approachable 0
+PASS Interactable prop floats above its fixed anchor 0
+PASS Click region follows actual floating sprite 0
+PASS Actual nonblack Windows frame 03-archive-cabinet-near
+PASS Nearby object opens its linked content 0
+PASS Actual nonblack Windows frame 04-journal-from-cabinet
+PASS Closing preserves world anchor 0
+PASS Floating story object is approachable 1
+PASS Interactable prop floats above its fixed anchor 1
+PASS Click region follows actual floating sprite 1
+PASS Actual nonblack Windows frame 05-meeting-chair-near
+PASS Nearby object opens its linked content 1
+PASS Actual nonblack Windows frame 06-paths-from-chair
+PASS Closing preserves world anchor 1
+PASS Actual saved run loaded 5 / True
+PASS A genuinely new shop visit still plays its landing
+PASS Actual saved run loaded 1 / False
+PASS Actual nonblack Windows frame 07-early-wave-light
+PASS Actual saved run loaded 17 / False
+PASS Late ambient becomes substantially darker
+PASS Hero still has a complete usable pool of light
+PASS Darkness keeps hero and companions fully visible
+PASS Actual nonblack Windows frame 08-late-wave-deep-night
+PASS Actual saved run loaded 13 / True
+PASS Actual nonblack Windows frame 09-rarity-description-frame
+PASS New Keeper landmark is reachable below the bond HUD
+PASS Actual nonblack Windows frame 10-clear-keeper-challenge-landmark
+PASS One ordinary interaction accepts the Keeper challenge without holding
+PASS Real challenge transition reaches Keeper arena
+PASS Actual Keeper calls guards in the native player
+PASS Larger Keeper anatomy fits the expanded encounter camera
+PASS Actual nonblack Windows frame 11-larger-keeper-with-summoned-guards
+PASS Actual saved run loaded 13 / True
+PASS Actual nonblack Windows frame 12-rainbow-gift-with-twenty-companions
+PASS One ordinary interaction takes a rainbow companion without a claim button
+PASS Rainbow ally joins beyond the old fifteen-body cap
+PASS Single interaction cannot duplicate the gift
+PASS Shop flow native verification complete

@@ -93,7 +93,7 @@ namespace ArcaneBrigade
             foreach (string id in gifts)
             {
                 if (OctoberAbsorbs) { if (State.AbsorbedSkills.Count < 2048) State.AbsorbedSkills.Add(id); continue; }
-                if (State.Roster.Count >= OctoberBalance.AllySoftLimit || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) break;
+                if (catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) break;
                 UnitDefinition friend = catalog.Unit(id); if (friend == null) continue;
                 var choices = new List<WeaponDefinition>(); foreach (WeaponDefinition w in catalog.Weapons) if (RecruitWeaponEligible(id, w) && !State.Roster.Exists(r => r.UnitId == id && r.WeaponId == w.Id)) choices.Add(w);
                 if (choices.Count == 0) continue; var entry = new RosterEntry { UnitId = id, WeaponId = choices[Next(ref State.WeaponRandom, choices.Count)].Id }; State.Roster.Add(entry); RememberVariant(entry);
@@ -102,7 +102,7 @@ namespace ArcaneBrigade
         private void OctoberBoughtRelic(ItemDefinition item)
         {
             if (OctoberHero == "Red Scale" && item.Category == RelicCategory.Drink) State.Gold = BoundedCounter((long)State.Gold + 1 + Mathf.Min(15, Mathf.FloorToInt(MaximumHealth() / 10)));
-            if (OctoberHero != "Periwinky" || item.ReferenceName != "Spiky Yoga Ball" || State.Roster.Count >= OctoberBalance.AllySoftLimit) return;
+            if (OctoberHero != "Periwinky" || item.ReferenceName != "Spiky Yoga Ball") return;
             string id = "BristleBall";
             var pool = Array.FindAll(catalog.Weapons, w => RecruitWeaponEligible(id, w) && !State.Roster.Exists(r => r.UnitId == id && r.WeaponId == w.Id));
             if (pool.Length == 0) return;

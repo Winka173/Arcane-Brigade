@@ -37,6 +37,7 @@ namespace ArcaneBrigade
             gameObject.AddComponent<WaitingRealmStage>().Configure(controller);
             gameObject.AddComponent<WaitingShopEncounter>().Configure(controller);
             gameObject.AddComponent<WaitingJourney>().Configure(controller);
+            gameObject.AddComponent<WaitingArchiveInteractions>().Configure(controller);
             gameObject.AddComponent<NightmareAtmosphere>().Configure(controller);
             gameObject.AddComponent<NightmareHaunting>().Configure(controller);
             gameObject.AddComponent<NightmareGrandStage>().Configure(controller);

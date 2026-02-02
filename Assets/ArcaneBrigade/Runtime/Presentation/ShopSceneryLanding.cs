@@ -5,8 +5,9 @@ namespace ArcaneBrigade
     public sealed class ShopSceneryLanding : MonoBehaviour
     {
         private ArenaController owner;
-        private CombatSimulation observed;
         private bool wasShop;
+        private string visitedRun;
+        private int visitedWave=-1;
         public float StartedAt{get;private set;}=-100;
         public static ShopSceneryLanding Active{get;private set;}
         public void Configure(ArenaController value){owner=value;Active=this;}
@@ -14,9 +15,15 @@ namespace ArcaneBrigade
         public bool Settling=>InShop && owner.PresentationClock-StartedAt<1.45f;
         private void Update()
         {
+            if(owner==null || owner.PresentationPaused)return;
             bool shop=InShop;
-            if(shop && (!wasShop || observed!=owner.Simulation))StartedAt=owner.PresentationClock;
-            observed=owner?.Simulation;wasShop=shop;
+            if(shop && (!wasShop || visitedRun!=owner.Session.State.RunId || visitedWave!=owner.Session.State.Wave))
+            {
+                StartedAt=owner.PresentationClock;
+                visitedRun=owner.Session.State.RunId;visitedWave=owner.Session.State.Wave;
+            }
+            // Purchases rebuild the simulation to compile stats. They are still the same shop visit.
+            wasShop=shop;
         }
         public static Vector3 LandingOffset(Vector3 hover,float age,bool reduced,float identity)
         {

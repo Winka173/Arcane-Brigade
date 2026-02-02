@@ -11,8 +11,8 @@ namespace ArcaneBrigade
             if (reduced) return Vector3.up * height;
             // Different periods as well as phases avoid a roomful of synchronized pistons.
             float breath=time*Mathf.Lerp(.48f,.66f,Mathf.Repeat(identity*.618034f,1));
-            return new Vector3((Mathf.Sin(time*.27f+phase)*.055f+Mathf.Sin(breath*.63f+phase*.7f)*.02f)*strength,
-                height+(Mathf.Sin(breath+phase)*.08f+Mathf.Sin(time*.21f+phase*1.7f)*.02f)*strength,0);
+            return new Vector3((Mathf.Sin(time*.27f+phase)*.12f+Mathf.Sin(breath*.63f+phase*.7f)*.04f)*strength,
+                height+(Mathf.Sin(breath+phase)*.16f+Mathf.Sin(time*.21f+phase*1.7f)*.04f)*strength,0);
         }
         public static float Tilt(float time, float identity, bool reduced, float strength = 1)
             => reduced ? 0 : (Mathf.Sin(identity*1.71f)*1.3f+Mathf.Sin(time*.34f+identity*2.399963f)*2.4f+Mathf.Sin(time*.16f+identity)*.65f)*strength;

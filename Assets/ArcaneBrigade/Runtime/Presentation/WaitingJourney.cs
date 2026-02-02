@@ -36,7 +36,6 @@ namespace ArcaneBrigade
                 if(Input.GetKey(KeyCode.UpArrow))vertical=1;if(Input.GetKey(KeyCode.DownArrow))vertical=-1;
                 scroll.y=Mathf.Max(0,scroll.y-vertical*Time.unscaledDeltaTime*400);return;
             }
-            if(Input.GetKeyDown(KeyCode.K)||Input.GetKeyDown(KeyCode.JoystickButton3))Show();
 
         }
         public bool Choose(int option)
@@ -65,8 +64,6 @@ namespace ArcaneBrigade
             var state=owner.Session.State;
             if(!Open)
             {
-                if(state.Phase==SessionPhase.Shop && !owner.PresentationPaused && !owner.StoryOpen && !owner.Session.SecretRoomOpen && !owner.TransitionPending)
-                    if(Press(new Rect(1540,882,310,60),"PATHS & PEOPLE [K / Y]"))Show();
                 GUI.matrix=matrix;return;
             }
             RunHud.Fill(new Rect(0,0,1920,1080),new Color(.018f,.023f,.045f));

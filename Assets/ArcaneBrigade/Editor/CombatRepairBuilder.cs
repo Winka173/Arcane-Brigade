@@ -26,7 +26,7 @@ namespace ArcaneBrigade.Editor
         }
         public static void Verify()
         {
-            Import();CombatRepairChecks.Verify();RecruitmentChecks.Run();HeroIdentityChecks.Run();ShopPresentationBuilder.Check();
+            Import();CombatRepairChecks.Verify();RecruitmentChecks.Run();HeroIdentityChecks.Run();ShopPresentationBuilder.Check();MienChoChecks.Run();NightmareVisualChecks.Run();ShopFlowChecks.Run();K24OutsideStageChecks.Run();
         }
         public static void Build()
         {

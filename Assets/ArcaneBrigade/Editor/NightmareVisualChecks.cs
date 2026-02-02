@@ -16,7 +16,7 @@ namespace ArcaneBrigade.Editor
                 notes.Add("PASS " + caption);
             }
             float previous = 2;
-            float[] expectedAmbient = { .92f, .7125f, .505f, .2975f, .09f };
+            float[] expectedAmbient = { .92f, .58f, .27f, .075f, .018f };
             for (int depth = 0; depth <= 4; depth++)
             {
                 float ambient = NightmareLighting.AmbientFor(depth, 0);

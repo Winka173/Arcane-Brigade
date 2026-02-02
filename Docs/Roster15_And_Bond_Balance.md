@@ -1,5 +1,7 @@
 # Trần 15 companion và giảm nhẹ bond
 
+**Bản ghi lịch sử:** theo xác nhận mới nhất ngày 16/10, đã bỏ trần 15 cơ thể, giữ quota mua và mức giảm bond mô tả bên dưới. Các đoạn chặn quân số/đổi thưởng khi đầy không còn là hành vi hiện tại. Xem [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md) để biết luật và kiểm tra mới.
+
 Ngày 16/10/2026: trần tuyển mới giảm từ 20 xuống **15 cơ thể**. Shop thường tối đa ba lượt companion/round gồm bản trùng; theo phản hồi mới nhất, loài mới tối đa **một mỗi round, kể cả round 1–3**. Shop đặc biệt miễn quota lượt mua, nhưng vẫn chịu trần cơ thể 15.
 
 Mọi đường thêm roster — shop thường/đặc biệt, quà talent, quà relic, quà Spiky Yoga Ball, Sprout/Grand Sprout, Keeper và giải cứu bí mật — dùng cùng hằng giới hạn. Khi đầy vẫn được mua bản trùng **nếu ghép ngay** và làm giảm quân số, trong quota mua còn lại. Hai bản 3 sao hoặc talent Evil không được giả là có thể ghép để lách trần.

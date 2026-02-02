@@ -10,7 +10,7 @@ namespace ArcaneBrigade
         private Vector3 velocity;
         private float heightVelocity;
         private Vector3 trackedPosition;
-        private float DesiredHeight => owner.Session.State.Phase == SessionPhase.Shop ? owner.Content.RestViewHeight : owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId ? Mathf.Max(6.5f,owner.Content.CombatViewHeight) : owner.Session.State.OutsideStage == OutsideStageStatus.Fighting ? Mathf.Max(5.5f, owner.Content.CombatViewHeight) : owner.Content.CombatViewHeight;
+        private float DesiredHeight => owner.Session.State.Phase == SessionPhase.Shop ? owner.Content.RestViewHeight : owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId ? Mathf.Max(6.5f,owner.Content.CombatViewHeight) : owner.Session.State.OutsideStage == OutsideStageStatus.Fighting ? Mathf.Max(7f, owner.Content.CombatViewHeight) : owner.Content.CombatViewHeight;
         private void Awake() { arenaCamera = GetComponent<Camera>(); Refresh(); }
         private void Update() { Refresh(); }
         public void Follow(ArenaController controller, bool snap = true) { owner = controller; if (snap) Snap(); }

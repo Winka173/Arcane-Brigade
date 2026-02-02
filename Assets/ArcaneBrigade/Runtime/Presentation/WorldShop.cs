@@ -241,7 +241,7 @@ namespace ArcaneBrigade
                 if (result != null)
                 {
                     result.DeniedUntil = owner.PresentationClock + 0.65f;
-                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : owner.Session.RecruitQuotaBlocks(station.Offer) ? owner.Session.RecruitQuotaDenial : owner.Session.CompanionCapacityBlocks(station.Offer) ? "BRIGADE FULL / 15 COMPANIONS" : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
+                    result.Denial = !string.IsNullOrEmpty(owner.SaveError) ? "SAVE FAILED" : owner.Session.RecruitQuotaBlocks(station.Offer) ? owner.Session.RecruitQuotaDenialFor(station.Offer) : station.Recipe != null ? "MISSING MATERIALS" : station.Currency == ShopCurrency.Eggs ? "NOT ENOUGH EGGS" : station.Currency == ShopCurrency.Health ? "NOT ENOUGH HP" : "NOT ENOUGH GOLD";
                 }
             }
             return completed;

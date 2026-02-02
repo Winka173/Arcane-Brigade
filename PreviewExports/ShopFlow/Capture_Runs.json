@@ -1,0 +1,22 @@
+﻿{
+    "Player":  "Builds/HeroIdentity/ArcaneBrigade.exe",
+    "Runs":  [
+                 {
+                     "Started":  "2026-10-16T22:25:58.9549841+07:00",
+                     "ExitCode":  0,
+                     "Checks":  56,
+                     "Finished":  "2026-10-16T22:26:34.2253437+07:00",
+                     "Images":  12,
+                     "Mode":  "Native"
+                 },
+                 {
+                     "Started":  "2026-10-16T22:26:34.2758673+07:00",
+                     "ExitCode":  0,
+                     "Checks":  56,
+                     "Finished":  "2026-10-16T22:27:07.3003044+07:00",
+                     "Images":  12,
+                     "Mode":  "Reduced"
+                 }
+             ],
+    "RuntimeSha256":  "570FED132455A7BE2F8FF4EA40627B4E382E4EE46D2DE4F02852B2DA2E8620AE"
+}

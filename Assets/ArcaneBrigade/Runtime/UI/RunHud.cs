@@ -285,10 +285,10 @@ namespace ArcaneBrigade
                 Rect panel = ShopTooltipBounds(contentHeight);
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
                 ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Rarity : ItemRarity.Common;
-                Color tag = rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
-                Fill(panel, string.IsNullOrEmpty(synergy) ? Color.Lerp(Panel, tag, 0.12f) : Color.Lerp(Panel, synergy.Contains("BOND DOWN:") ? ArcadeSkin.Danger : ArcadeSkin.Teal, 0.28f));
+                Color tag = rarity != ItemRarity.Common ? RunModifierRules.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
+                RarityDescriptionFrame.Draw(panel,rarity,owner.PresentationClock);
                 ArcadeSkin.Line(new Rect(panel.x + 2, panel.y + 2, 8, panel.height - 4), tag);
-                string kind = item ? ArcadeSkin.RarityName(rarity) : station.Offer != null && station.Offer.Kind == OfferKind.Companion ? "COMPANION" : null;
+                string kind = item ? RunModifierRules.RarityName(rarity) : station.Offer != null && station.Offer.Kind == OfferKind.Companion ? "COMPANION" : null;
                 if (kind != null)
                 {
                     ArcadeSkin.Slant(new Rect(panel.x + 22, panel.y - 14, 150, 26), tag);

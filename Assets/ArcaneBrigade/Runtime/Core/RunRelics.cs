@@ -94,7 +94,7 @@ namespace ArcaneBrigade
                 foreach (ShopOffer offer in State.Offers) if (offer.Token != purchasedToken && !offer.Sold && offer.Kind == OfferKind.Item && offer.Currency == ShopCurrency.Gold) offer.Price = Mathf.Max(1, Mathf.CeilToInt(offer.Price * .7f));
             }
             if (item.Mechanic == RelicMechanic.CompanionGift && catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw)
-                for (int index = 0; index < 2 && CompanionPurchasesRemaining > 0 && State.Roster.Count < OctoberBalance.AllySoftLimit; index++)
+                for (int index = 0; index < 2 && CompanionPurchasesRemaining > 0; index++)
                 {
                     var available = new List<UnitDefinition>();
                     foreach (UnitDefinition ally in catalog.Companions)
@@ -105,7 +105,7 @@ namespace ArcaneBrigade
                     foreach (WeaponDefinition weapon in catalog.Weapons) if (RecruitWeaponEligible(chosen.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == chosen.Id && entry.WeaponId == weapon.Id)) weapons.Add(weapon);
                     var recruit = new RosterEntry { UnitId = chosen.Id, WeaponId = BalancedWeapon(weapons, false).Id };
                     bool newSpecies = !OwnsCompanionSpecies(chosen.Id);
-                    State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; if (newSpecies) State.NewSpeciesRecruitsThisWave++; MergeTriples(chosen.Id);
+                    State.Roster.Add(recruit); RememberVariant(recruit); State.NewRecruitsThisWave++; if (newSpecies) RegisterNewShopSpecies(false); MergeTriples(chosen.Id);
                 }
             if (item.Mechanic == RelicMechanic.StatFloor)
                 foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect)))

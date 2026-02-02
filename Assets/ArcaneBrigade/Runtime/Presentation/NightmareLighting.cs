@@ -13,7 +13,12 @@ namespace ArcaneBrigade
         public float Depth { get; private set; }
         public float Dawn { get; private set; }
         public float Ambient => AmbientFor(Depth, Dawn);
-        public static float AmbientFor(float depth, float dawn) => Mathf.Lerp(Mathf.Lerp(.92f, .09f, Mathf.Clamp01(depth / 4)), 1.08f, Mathf.Clamp01(dawn));
+        public static float AmbientFor(float depth, float dawn)
+        {
+            float d=Mathf.Clamp(depth,0,4);
+            float night=d<1?Mathf.Lerp(.92f,.58f,d):d<2?Mathf.Lerp(.58f,.27f,d-1):d<3?Mathf.Lerp(.27f,.075f,d-2):Mathf.Lerp(.075f,.018f,d-3);
+            return Mathf.Lerp(night,1.08f,Mathf.Clamp01(dawn));
+        }
         public static float Falloff(Vector2 offset, float radius)
         {
             if (radius <= 0) return 0;

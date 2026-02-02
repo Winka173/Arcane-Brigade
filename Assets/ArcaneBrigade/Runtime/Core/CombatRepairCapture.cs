@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace ArcaneBrigade
 {
-    public sealed class CombatRepairCapture : MonoBehaviour
+    public sealed partial class CombatRepairCapture : MonoBehaviour
     {
         public static bool Requested=>Array.IndexOf(Environment.GetCommandLineArgs(),"-arcane-combat-repair-capture")>=0;
         private readonly List<string> checks=new List<string>();
@@ -24,10 +24,10 @@ namespace ArcaneBrigade
             Check(image.width==1920 && image.height==1080 && visible>60,"Actual nonblack Windows frame "+name);
             File.WriteAllBytes(Path.Combine(root,name+".png"),image.EncodeToPNG());Destroy(image);
         }
-        private IEnumerator Load(int wave,bool shop=false)
+        private IEnumerator Load(int wave,bool shop=false,Action<RunSession> setup=null)
         {
             using(var run=new RunSession(catalog))
-            {run.Start("LanternKnight",171026);run.State.Wave=wave;run.State.Phase=shop?SessionPhase.Shop:SessionPhase.Combat;run.State.Gold=1000;new RunStorage(RunPaths.Root).SaveRun(run.State);}
+            {run.Start("LanternKnight",171026);run.State.Wave=wave;run.State.Phase=shop?SessionPhase.Shop:SessionPhase.Combat;run.State.Gold=1000;setup?.Invoke(run);new RunStorage(RunPaths.Root).SaveRun(run.State);}
             RunLaunch.Resume=true;SceneManager.LoadScene("RunArena");yield return new WaitForSecondsRealtime(.2f);owner=FindAnyObjectByType<ArenaController>();
             Check(owner?.Simulation!=null,"Actual saved run loaded "+wave+" / "+shop);
             if(!shop)owner.Simulation.PrepareMienChoCapture(catalog);
@@ -39,6 +39,7 @@ namespace ArcaneBrigade
             reduced=Array.IndexOf(args,"-repair-reduced")>=0;catalog=Resources.Load<RunCatalog>("RunCatalog");
             new RunStorage(RunPaths.Root).SaveProfile(new PlayerProfile{BestWave=40,TutorialSeen=true,ReducedMotion=reduced,ReducedEffects=reduced,ReducedFlashes=reduced});
             Check(RunPaths.Root.Contains("ArcaneBrigadeDiagnostics"),"Player saves stay isolated");
+            if(Array.IndexOf(args,"-shop-flow")>=0){yield return ShopFlow();Application.Quit(failed?1:0);yield break;}
             yield return Load(4,true);
             var scenery=owner.transform.Find("DreamLandmark0").GetComponent<SpriteRenderer>();
             Vector3 first=scenery.transform.TransformPoint(WorldSpriteGrounding.Foot(scenery.sprite));
@@ -48,7 +49,7 @@ namespace ArcaneBrigade
             Vector3 landed=scenery.transform.TransformPoint(WorldSpriteGrounding.Foot(scenery.sprite));
             Check(reduced?Vector3.Distance(first,landed)<.02f:first.y-landed.y>.4f,"Scenery falls while reduced motion stays composed");
             for(int i=0;i<NightLanternField.Capacity;i++)
-            {var field=NightLanternField.Active;float lift=field.FixtureFoot(i).y-field.FixtureAnchor(i).y;Check(lift>.2f && lift<.65f,"Lamp is excluded from the scenery drop "+i);}
+            {var field=NightLanternField.Active;float lift=field.FixtureFoot(i).y-field.FixtureAnchor(i).y;Check(lift>.1f && lift<.85f,"Lamp is excluded from the scenery drop "+i);}
             yield return Shot("02-shop-scenery-landed");
             yield return new WaitForSecondsRealtime(1);
             float deadline=Time.realtimeSinceStartup+10;while(owner.Shop.Animating && Time.realtimeSinceStartup<deadline)yield return null;

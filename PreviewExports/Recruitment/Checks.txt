@@ -8,12 +8,13 @@ PASS Third copy merges after exhausted new-species quota 1
 PASS Upgrade consumes old purchase quota but not new-species quota 1
 PASS Third total purchase remains available for upgrades 1
 PASS Fourth ordinary purchase blocked including star-upgrade copies 1
-PASS Special shop purchase exempt 1/PillowOracle
-PASS Special purchase increments neither quota 1/PillowOracle
-PASS Special shop purchase exempt 1/EclipseEgg
-PASS Special purchase increments neither quota 1/EclipseEgg
-PASS Special shop purchase exempt 1/ReelOwl
-PASS Special purchase increments neither quota 1/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 1/0
+PASS Special purchase leaves regular quotas unchanged 1/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 1/1
+PASS Special purchase leaves regular quotas unchanged 1/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 1/2
+PASS Special purchase leaves regular quotas unchanged 1/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 1
 PASS Save/load cannot refresh quota 1
 PASS Paid refresh allowed at quota 1/0
 PASS Normal rolls show items after three purchases 1/0
@@ -114,12 +115,13 @@ PASS Third copy merges after exhausted new-species quota 2
 PASS Upgrade consumes old purchase quota but not new-species quota 2
 PASS Third total purchase remains available for upgrades 2
 PASS Fourth ordinary purchase blocked including star-upgrade copies 2
-PASS Special shop purchase exempt 2/PillowOracle
-PASS Special purchase increments neither quota 2/PillowOracle
-PASS Special shop purchase exempt 2/EclipseEgg
-PASS Special purchase increments neither quota 2/EclipseEgg
-PASS Special shop purchase exempt 2/ReelOwl
-PASS Special purchase increments neither quota 2/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 2/0
+PASS Special purchase leaves regular quotas unchanged 2/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 2/1
+PASS Special purchase leaves regular quotas unchanged 2/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 2/2
+PASS Special purchase leaves regular quotas unchanged 2/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 2
 PASS Save/load cannot refresh quota 2
 PASS Paid refresh allowed at quota 2/0
 PASS Normal rolls show items after three purchases 2/0
@@ -220,12 +222,13 @@ PASS Third copy merges after exhausted new-species quota 3
 PASS Upgrade consumes old purchase quota but not new-species quota 3
 PASS Third total purchase remains available for upgrades 3
 PASS Fourth ordinary purchase blocked including star-upgrade copies 3
-PASS Special shop purchase exempt 3/PillowOracle
-PASS Special purchase increments neither quota 3/PillowOracle
-PASS Special shop purchase exempt 3/EclipseEgg
-PASS Special purchase increments neither quota 3/EclipseEgg
-PASS Special shop purchase exempt 3/ReelOwl
-PASS Special purchase increments neither quota 3/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 3/0
+PASS Special purchase leaves regular quotas unchanged 3/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 3/1
+PASS Special purchase leaves regular quotas unchanged 3/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 3/2
+PASS Special purchase leaves regular quotas unchanged 3/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 3
 PASS Save/load cannot refresh quota 3
 PASS Paid refresh allowed at quota 3/0
 PASS Normal rolls show items after three purchases 3/0
@@ -326,12 +329,13 @@ PASS Third copy merges after exhausted new-species quota 4
 PASS Upgrade consumes old purchase quota but not new-species quota 4
 PASS Third total purchase remains available for upgrades 4
 PASS Fourth ordinary purchase blocked including star-upgrade copies 4
-PASS Special shop purchase exempt 4/PillowOracle
-PASS Special purchase increments neither quota 4/PillowOracle
-PASS Special shop purchase exempt 4/EclipseEgg
-PASS Special purchase increments neither quota 4/EclipseEgg
-PASS Special shop purchase exempt 4/ReelOwl
-PASS Special purchase increments neither quota 4/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 4/0
+PASS Special purchase leaves regular quotas unchanged 4/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 4/1
+PASS Special purchase leaves regular quotas unchanged 4/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 4/2
+PASS Special purchase leaves regular quotas unchanged 4/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 4
 PASS Save/load cannot refresh quota 4
 PASS Paid refresh allowed at quota 4/0
 PASS Normal rolls show items after three purchases 4/0
@@ -432,12 +436,13 @@ PASS Third copy merges after exhausted new-species quota 8
 PASS Upgrade consumes old purchase quota but not new-species quota 8
 PASS Third total purchase remains available for upgrades 8
 PASS Fourth ordinary purchase blocked including star-upgrade copies 8
-PASS Special shop purchase exempt 8/PillowOracle
-PASS Special purchase increments neither quota 8/PillowOracle
-PASS Special shop purchase exempt 8/EclipseEgg
-PASS Special purchase increments neither quota 8/EclipseEgg
-PASS Special shop purchase exempt 8/ReelOwl
-PASS Special purchase increments neither quota 8/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 8/0
+PASS Special purchase leaves regular quotas unchanged 8/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 8/1
+PASS Special purchase leaves regular quotas unchanged 8/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 8/2
+PASS Special purchase leaves regular quotas unchanged 8/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 8
 PASS Save/load cannot refresh quota 8
 PASS Paid refresh allowed at quota 8/0
 PASS Normal rolls show items after three purchases 8/0
@@ -538,12 +543,13 @@ PASS Third copy merges after exhausted new-species quota 20
 PASS Upgrade consumes old purchase quota but not new-species quota 20
 PASS Third total purchase remains available for upgrades 20
 PASS Fourth ordinary purchase blocked including star-upgrade copies 20
-PASS Special shop purchase exempt 20/PillowOracle
-PASS Special purchase increments neither quota 20/PillowOracle
-PASS Special shop purchase exempt 20/EclipseEgg
-PASS Special purchase increments neither quota 20/EclipseEgg
-PASS Special shop purchase exempt 20/ReelOwl
-PASS Special purchase increments neither quota 20/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 20/0
+PASS Special purchase leaves regular quotas unchanged 20/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 20/1
+PASS Special purchase leaves regular quotas unchanged 20/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 20/2
+PASS Special purchase leaves regular quotas unchanged 20/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 20
 PASS Save/load cannot refresh quota 20
 PASS Paid refresh allowed at quota 20/0
 PASS Normal rolls show items after three purchases 20/0
@@ -644,12 +650,13 @@ PASS Third copy merges after exhausted new-species quota 30
 PASS Upgrade consumes old purchase quota but not new-species quota 30
 PASS Third total purchase remains available for upgrades 30
 PASS Fourth ordinary purchase blocked including star-upgrade copies 30
-PASS Special shop purchase exempt 30/PillowOracle
-PASS Special purchase increments neither quota 30/PillowOracle
-PASS Special shop purchase exempt 30/EclipseEgg
-PASS Special purchase increments neither quota 30/EclipseEgg
-PASS Special shop purchase exempt 30/ReelOwl
-PASS Special purchase increments neither quota 30/ReelOwl
+PASS Special new species respects per-wave and shared cooldown 30/0
+PASS Special purchase leaves regular quotas unchanged 30/PillowOracle
+PASS Special new species respects per-wave and shared cooldown 30/1
+PASS Special purchase leaves regular quotas unchanged 30/EclipseEgg
+PASS Special new species respects per-wave and shared cooldown 30/2
+PASS Special purchase leaves regular quotas unchanged 30/ReelOwl
+PASS Special upgrade copy ignores regular and new-species quotas 30
 PASS Save/load cannot refresh quota 30
 PASS Paid refresh allowed at quota 30/0
 PASS Normal rolls show items after three purchases 30/0
@@ -742,9 +749,23 @@ PASS Paid refresh allowed at quota 30/29
 PASS Normal rolls show items after three purchases 30/29
 PASS Reroll never resets either quota 30/29
 PASS Special-first purchase leaves full normal quota
-PASS Normal recruit still available after special recruit
-PASS Special shop generation remains enabled after normal quota
-PASS Special generation and purchase exemption agree
+PASS Special-first recruit blocks new regular species through shared cooldown
+PASS Special rolls keep only upgrade species during cooldown
+PASS Special duplicate generation and purchase agree
+PASS Wave 10 first new species accepted / special=False
+PASS Both shops close new-species purchases immediately
+PASS Saving cannot clear the shared cooldown
+PASS Following wave blocks new species in both shops
+PASS Duplicate remains buyable in the intervening wave
+PASS Reroll never bypasses two-wave cooldown
+PASS New species reopens after two waves in either shop
+PASS Wave 10 first new species accepted / special=True
+PASS Both shops close new-species purchases immediately
+PASS Saving cannot clear the shared cooldown
+PASS Following wave blocks new species in both shops
+PASS Duplicate remains buyable in the intervening wave
+PASS Reroll never bypasses two-wave cooldown
+PASS New species reopens after two waves in either shop
 PASS Merge drought protection still finds third copy after quota
 PASS Ordinary gifts use purchase quota but upgrades do not use new-species quota
 PASS Owned absorbed memory uses purchase quota but not new-species quota

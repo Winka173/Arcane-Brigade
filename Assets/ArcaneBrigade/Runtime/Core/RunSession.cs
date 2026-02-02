@@ -65,6 +65,8 @@ namespace ArcaneBrigade
         public int RerollsThisShop;
         public int NewRecruitsThisWave;
         public int NewSpeciesRecruitsThisWave;
+        public int SpecialNewSpeciesRecruitsThisWave;
+        public int LastNewShopSpeciesWave;
         public int NextReceipt;
         public List<RunTransactionReceipt> Receipts = new List<RunTransactionReceipt>();
         public int LastIncome;
@@ -194,6 +196,7 @@ namespace ArcaneBrigade
             if (snapshot.Roster == null || snapshot.Items == null || snapshot.Offers == null || snapshot.TotalKills < 0 || snapshot.BossKills < 0 || snapshot.NextOffer < 0) throw new InvalidOperationException("Incomplete or invalid save counters");
             if (snapshot.NewRecruitsThisWave < 0 || snapshot.NewRecruitsThisWave > 3) throw new InvalidOperationException("Invalid wave recruitment quota");
             if (snapshot.NewSpeciesRecruitsThisWave < 0 || snapshot.NewSpeciesRecruitsThisWave > 2 || snapshot.NewSpeciesRecruitsThisWave > snapshot.NewRecruitsThisWave) throw new InvalidOperationException("Invalid new-species quota");
+            if(snapshot.SpecialNewSpeciesRecruitsThisWave<0 || snapshot.SpecialNewSpeciesRecruitsThisWave>1 || snapshot.LastNewShopSpeciesWave<0 || snapshot.LastNewShopSpeciesWave>snapshot.Wave)throw new InvalidOperationException("Invalid shared new-species cooldown");
             if (snapshot.MergeDrought != null)
             {
                 var mergeKeys = new HashSet<string>();
@@ -520,6 +523,7 @@ namespace ArcaneBrigade
             State.SpecialShopVisited = false;
             State.NewRecruitsThisWave = 0;
             State.NewSpeciesRecruitsThisWave = 0;
+            State.SpecialNewSpeciesRecruitsThisWave = 0;
             RollShop(true);
         }
 
@@ -544,6 +548,7 @@ namespace ArcaneBrigade
             State.Endless = true;
             State.NewRecruitsThisWave = 0;
             State.NewSpeciesRecruitsThisWave = 0;
+            State.SpecialNewSpeciesRecruitsThisWave = 0;
             State.ParentRunId = State.RunId;
             State.RunId = Guid.NewGuid().ToString("N");
             State.StartHall = State.Wave + 1;
@@ -567,6 +572,7 @@ namespace ArcaneBrigade
             ShopOffer offer = State.Offers.Find(candidate => candidate.Token == token) ?? State.SpecialOffers.Find(candidate => candidate.Token == token);
             if (!CanBuy(offer)) { Notice = "Offer expired, capped or insufficient currency. HP purchases must leave at least 1 HP."; return false; }
             bool countsAsNewRecruit = CountsAsNewRegularRecruit(offer);
+            bool countsAsNewSpecialRecruit=offer.Kind==OfferKind.Companion && State.SpecialOffers.Contains(offer) && !OwnsCompanionSpecies(offer.Id);
             bool countsTowardRecruitLimit = CountsTowardRecruitLimit(offer);
             float previousMaximum = MaximumHealth();
             if (offer.Kind == OfferKind.Companion)
@@ -579,7 +585,7 @@ namespace ArcaneBrigade
                 var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = Mathf.Clamp(offer.Tier, 1, 3) };
                 State.Roster.Add(recruited);
                 if (countsTowardRecruitLimit) State.NewRecruitsThisWave++;
-                if (countsAsNewRecruit) State.NewSpeciesRecruitsThisWave++;
+                if (countsAsNewRecruit || countsAsNewSpecialRecruit) RegisterNewShopSpecies(countsAsNewSpecialRecruit);
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 OctoberPurchase(catalog.Unit(offer.Id));
                 if (OctoberAbsorbs) { State.AbsorbedSkills.Add(offer.Id); State.Roster.Remove(recruited); }
@@ -649,7 +655,7 @@ namespace ArcaneBrigade
                     if (State.Roster.Exists(r => r.UnitId == resultId && r.WeaponId == inherited)) resultId = id;
                     State.Roster.Add(new RosterEntry { UnitId = resultId, Tier = tier + 1, WeaponId = inherited });
                     RememberVariant(State.Roster[State.Roster.Count - 1]);
-                    if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage" && State.Roster.Count < OctoberBalance.AllySoftLimit)
+                    if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage")
                     {
                         var nurseryWeapons = choices.FindAll(w => !State.Roster.Exists(r => r.UnitId == "GrandSprout" && r.WeaponId == w.Id));
                         if (nurseryWeapons.Count > 0)
@@ -775,7 +781,6 @@ namespace ArcaneBrigade
             {
                 bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
                 var available = units.FindAll(unit => OwnsCompanionSpecies(unit.Id) || newRecruit);
-                available = available.FindAll(unit => State.Roster.Count < OctoberBalance.AllySoftLimit || OctoberMergeTier(unit.Id) > 0);
                 var mergeReady = available.FindAll(unit => HighestOwnedTier(unit.Id) < 2 && State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
                 if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) available = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
@@ -811,8 +816,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < 3; index++)
             {
                 var recruits = specialUnits.FindAll(unit => OwnsCompanionSpecies(unit.Id));
-                if (Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
-                recruits = recruits.FindAll(unit => State.Roster.Count < OctoberBalance.AllySoftLimit || OctoberMergeTier(unit.Id) > 0);
+                if (SpecialNewRecruitsRemaining>0 && Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000) recruits = specialUnits;
                 var mergeReady = recruits.FindAll(unit => HighestOwnedTier(unit.Id) < 2 && State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count >= 2);
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
                 if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) recruits = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;

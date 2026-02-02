@@ -290,6 +290,7 @@ namespace ArcaneBrigade
             ResetArenaToys(catalog.RunWave);
             StartSecretCombat();
             ResetExpansion();
+            ResetOutsideSummons();
             ResetRelics();
             ResetOctoberCombat();
             ResetHeroIdentity();

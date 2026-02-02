@@ -873,7 +873,7 @@ Bonds: frost, resolve. Immortal. Weapon rolls on recruitment; three equal-specie
 
 COMPANION / PRISMATIC / 1 STAR
 TALENT
-On purchase, recruit up to 4 friendly marbles, within the 15-body limit.
+On purchase, recruit up to 4 friendly marbles.
 
 SUPPORT WHILE OWNED
 Champion / Healing per second: +0.04
@@ -948,7 +948,7 @@ Bonds: astral. Immortal. Weapon rolls on recruitment; three equal-species/equal-
 
 COMPANION / RARE / 1 STAR
 TALENT
-On purchase, recruit up to 2 Balloon Mallets, within the 15-body limit.
+On purchase, recruit up to 2 Balloon Mallets.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -967,7 +967,7 @@ Bonds: hearth, resolve. Immortal. Weapon rolls on recruitment; three equal-speci
 
 COMPANION / RARE / 1 STAR
 TALENT
-On purchase, recruit two junior helpers, within the 15-body limit.
+On purchase, recruit two junior helpers.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -1192,7 +1192,7 @@ Bonds: tidal, mask. Immortal. Weapon rolls on recruitment; three equal-species/e
 
 COMPANION / UNCOMMON / 1 STAR
 TALENT
-Nursery-exclusive. Uses its weapon and has 12 base contact damage before brigade bonuses. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon, within the 15-body limit.
+Nursery-exclusive. Uses its weapon and has 12 base contact damage before brigade bonuses. Three sprouts grow into a random two-star friend and a Grand Sprout. Each keeps an ingredient weapon.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -2949,7 +2949,7 @@ Champion / Maximum health: -5
 Run / Income: -5
 
 SPECIAL EFFECT
-ON PURCHASE: try to recruit up to 2 ordinary companions from your hero's pool. All gifts use the 3-companion purchase quota. New species also use the quota of 2 in rounds 1-3, then 1. Checks unlock wave, unique weapon and 15-body limit; solo heroes receive no bodies.
+ON PURCHASE: try to recruit up to 2 ordinary companions from your hero's pool. Gifts use the 3-companion regular purchase quota. At most 1 new species per wave; from wave 10 both shops share one new species every 2 waves. Checks unlock wave and unique weapon; no body cap. Solo heroes receive no bodies.
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 

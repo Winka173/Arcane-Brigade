@@ -60,12 +60,15 @@ namespace ArcaneBrigade.Editor
                 Check(s.State.Roster.Any(r => r.UnitId == owned && r.Tier == 2) && s.State.NewSpeciesRecruitsThisWave == limit && s.State.NewRecruitsThisWave == limit + 1, "Upgrade consumes old purchase quota but not new-species quota " + wave);
                 if (limit == 1) Check(s.Buy(Offer(s, owned).Token), "Third total purchase remains available for upgrades " + wave);
                 Check(s.State.NewRecruitsThisWave == 3 && !s.Buy(Offer(s, owned).Token), "Fourth ordinary purchase blocked including star-upgrade copies " + wave);
-                foreach (var unit in specials)
+                for(int index=0;index<specials.Length;index++)
                 {
+                    var unit=specials[index];
                     var offer = Offer(s, unit.Id, true);
-                    Check(!s.RecruitQuotaBlocks(offer) && s.Buy(offer.Token), "Special shop purchase exempt " + wave + "/" + unit.Id);
-                    Check(s.State.NewRecruitsThisWave == 3 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase increments neither quota " + wave + "/" + unit.Id);
+                    bool available=wave<10 && index==0;
+                    Check(s.Buy(offer.Token)==available,"Special new species respects per-wave and shared cooldown " +wave+"/"+index);
+                    Check(s.State.NewRecruitsThisWave == 3 && s.State.NewSpeciesRecruitsThisWave == limit, "Special purchase leaves regular quotas unchanged " + wave + "/" + unit.Id);
                 }
+                Check(s.Buy(Offer(s,owned,true).Token),"Special upgrade copy ignores regular and new-species quotas "+wave);
                 // Sold normal offers are not serialized beyond a shop's slot capacity.
                 s.State.Offers.Clear(); s.State.SpecialOffers.Clear();
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
@@ -80,11 +83,26 @@ namespace ArcaneBrigade.Editor
             using (var s = Session(c, 12))
             {
                 Check(s.Buy(Offer(s, specials[0].Id, true).Token) && s.State.NewRecruitsThisWave == 0, "Special-first purchase leaves full normal quota");
-                Check(s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 1, "Normal recruit still available after special recruit");
+                Check(!s.Buy(Offer(s, ordinary[0].Id).Token) && s.State.NewRecruitsThisWave == 0, "Special-first recruit blocks new regular species through shared cooldown");
                 s.State.NewRecruitsThisWave = 3;
                 Roll(s, true);
-                Check(s.State.SpecialOffers.Any(o => o.Kind == OfferKind.Companion), "Special shop generation remains enabled after normal quota");
-                Check(s.State.SpecialOffers.Where(o => o.Kind == OfferKind.Companion).All(s.CanBuy), "Special generation and purchase exemption agree");
+                Check(s.State.SpecialOffers.Where(o=>o.Kind==OfferKind.Companion).All(o=>s.OwnsCompanionSpecies(o.Id)),"Special rolls keep only upgrade species during cooldown");
+                Check(s.State.SpecialOffers.Where(o => o.Kind == OfferKind.Companion).All(s.CanBuy), "Special duplicate generation and purchase agree");
+            }
+            foreach(bool specialFirst in new[]{false,true})
+            using(var s=Session(c,10))
+            {
+                string first=specialFirst?specials[0].Id:ordinary[0].Id;
+                Check(s.Buy(Offer(s,first,specialFirst).Token),"Wave 10 first new species accepted / special="+specialFirst);
+                Check(s.State.LastNewShopSpeciesWave==10 && s.NewRecruitsRemaining==0 && s.SpecialNewRecruitsRemaining==0,"Both shops close new-species purchases immediately");
+                s.State.Offers.Clear();s.State.SpecialOffers.Clear();s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.NewSpeciesCooldown,"Saving cannot clear the shared cooldown");
+                s.State.Wave=11;s.State.NewRecruitsThisWave=s.State.NewSpeciesRecruitsThisWave=s.State.SpecialNewSpeciesRecruitsThisWave=0;
+                Check(!s.Buy(Offer(s,ordinary[1].Id).Token) && !s.Buy(Offer(s,specials[1].Id,true).Token),"Following wave blocks new species in both shops");
+                Check(s.Buy(Offer(s,first,specialFirst).Token),"Duplicate remains buyable in the intervening wave");
+                Check(s.Reroll() && s.NewSpeciesCooldown,"Reroll never bypasses two-wave cooldown");
+                s.State.Wave=12;s.State.NewRecruitsThisWave=s.State.NewSpeciesRecruitsThisWave=s.State.SpecialNewSpeciesRecruitsThisWave=0;
+                Check(s.Buy(Offer(s,specialFirst?ordinary[1].Id:specials[1].Id,!specialFirst).Token),"New species reopens after two waves in either shop");
             }
             using (var s = Session(c, 12))
             {
@@ -140,7 +158,7 @@ namespace ArcaneBrigade.Editor
                 }
                 Check(counts[0] > counts[1] && counts[1] > counts[2], "Seeded shop rolls reduce new species at 5/6/12 bodies: " + string.Join("/", counts));
             }
-            File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"EarlyNewSpeciesLimit\":1,\"LaterNewSpeciesLimit\":1,\"TotalOrdinaryPurchaseLimit\":3,\"SpecialShopExempt\":true,\"UpgradeUsesTotalQuota\":true}");
+            File.WriteAllText("PreviewExports/Recruitment/Verification.json", "{\"Passed\":true,\"Checks\":" + notes.Count + ",\"EarlyNewSpeciesLimit\":1,\"LaterNewSpeciesLimit\":1,\"TotalOrdinaryPurchaseLimit\":3,\"SpecialShopExempt\":false,\"SpecialNewSpeciesPerWave\":1,\"SharedCooldownStartsAtWave\":10,\"NewSpeciesWaveInterval\":2,\"UpgradeUsesTotalQuota\":true}");
             Debug.Log("RECRUITMENT_PASS " + notes.Count);
         }
         public static void VerifyAndBuild() { Run(); HeroIdentityChecks.VerifyAndBuild(); }

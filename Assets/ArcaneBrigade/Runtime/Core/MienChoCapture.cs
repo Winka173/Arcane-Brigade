@@ -404,7 +404,7 @@ namespace ArcaneBrigade
                 }
             if (Boss != null)
             {
-                Boss.EntranceUntil = 0; Boss.Position = Boss.PreviousPosition = new Vector2(0, 2.8f);
+                Boss.EntranceUntil = 0; Boss.Position = Boss.PreviousPosition = new Vector2(0, Boss.Definition.Id == "OutsideStageKeeper" ? 2f : 2.8f);
                 Boss.NextBossPattern = float.PositiveInfinity; Boss.Definition.ContactDamage = 0;
                 Boss.NextAttack = Boss.NextContact = float.PositiveInfinity;
             }

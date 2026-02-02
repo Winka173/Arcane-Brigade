@@ -39,6 +39,7 @@ namespace ArcaneBrigade
             if (owner?.Session == null) return;
             if (open)
             {
+                if(InputConsumedFrame==Time.frameCount)return;
                 if (!Application.isFocused && !RunPaths.Diagnostic) return;
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance();
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7)) { if (lives) { lives = false; scroll = Vector2.zero; Consume(); } else Close(); }
@@ -58,7 +59,6 @@ namespace ArcaneBrigade
             if (owner.Session.State.Phase == SessionPhase.Victory || owner.Session.State.Phase == SessionPhase.Defeat) return;
             int unread = MienChoStory.NextUnread(owner.Session.State);
             if (unread >= 0 && (!RunPaths.Diagnostic || MienChoCapture.AllowAutomaticScenes)) Show(unread);
-            else if (owner.Session.State.Phase == SessionPhase.Shop && (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.JoystickButton9))) Show(Mathf.Max(0, MienChoStory.Available(owner.Session.State) - 1));
         }
         public void Show(int index)
         {
@@ -118,8 +118,6 @@ namespace ArcaneBrigade
             }
             if (!open)
             {
-                if (owner.Session.State.Phase == SessionPhase.Shop && !owner.PresentationPaused && !owner.Session.SecretRoomOpen && !owner.TransitionPending)
-                    if (Press(new Rect(1540, 955, 310, 55), "WAITING JOURNAL  [J]")) Show(Mathf.Max(0, MienChoStory.Available(owner.Session.State) - 1));
                 GUI.matrix = old; return;
             }
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(.015f, .023f, .043f, 1));

@@ -83,7 +83,7 @@ namespace ArcaneBrigade.Editor
             }
             for (int depth = 0; depth < 5; depth++)
             {
-                Check(NightmareLighting.AmbientFor(depth, 0) >= .08f && NightmareLighting.AmbientFor(depth, 0) <= 1, "Darkness has a finite readable floor " + depth);
+                Check(NightmareLighting.AmbientFor(depth, 0) >= .015f && NightmareLighting.AmbientFor(depth, 0) <= 1, "Ambient stays finite while party lights preserve readability " + depth);
                 if (depth > 0) Check(NightmareLighting.AmbientFor(depth, 0) < NightmareLighting.AmbientFor(depth - 1, 0), "World gets darker at chapter " + depth);
                 Check(NightmareLighting.AmbientFor(depth, 1) > 1, "Real dawn restores light at depth " + depth);
             }

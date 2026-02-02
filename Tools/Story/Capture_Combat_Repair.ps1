@@ -1,4 +1,4 @@
-param([string]$Executable='Builds/HeroIdentity/ArcaneBrigade.exe')
+param([string]$Executable='Builds/HeroIdentity/ArcaneBrigade.exe',[switch]$ShopFlow)
 $ErrorActionPreference='Stop'
 $repoPath=(Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
 $playerPath=(Resolve-Path (Join-Path $repoPath $Executable)).Path
@@ -18,11 +18,14 @@ public static class CombatRepairWindow {
 }
 '@
 $runs=@()
+$exportRoot=if($ShopFlow){'PreviewExports/ShopFlow/'}else{'PreviewExports/CombatRepair/'}
+$expected=if($ShopFlow){'PASS Shop flow native verification complete'}else{'PASS Combat repair native verification complete'}
 foreach($mode in @('Native','Reduced')){
  $started=Get-Date
- $capturePath=Join-Path $repoPath ('PreviewExports/CombatRepair/'+$mode)
+ $capturePath=Join-Path $repoPath ($exportRoot+$mode)
  New-Item -ItemType Directory -Path $capturePath -Force | Out-Null
  $flags=if($mode -eq 'Reduced'){'-repair-reduced'}else{''}
+ if($ShopFlow){$flags+=' -shop-flow'}
  $playerArgs='-screen-fullscreen 0 -screen-width 1920 -screen-height 1080 -force-d3d11 -arcane-combat-repair-capture '+$flags+' -capturePath "'+$capturePath+'" -logFile "'+$capturePath+'\Player.log"'
  $player=Start-Process -FilePath $playerPath -ArgumentList $playerArgs -WindowStyle Hidden -PassThru
  for($attempt=0;$attempt -lt 8;$attempt++){
@@ -38,9 +41,9 @@ foreach($mode in @('Native','Reduced')){
  $player.WaitForExit();$player.Refresh()
  $checkPath=Join-Path $capturePath 'Native_Checks.txt'
  $checks=@(Get-Content -LiteralPath $checkPath -Encoding UTF8)
- if($player.ExitCode -ne 0 -or (Get-Item -LiteralPath $checkPath).LastWriteTime -lt $started -or [string]$checks[-1] -ne 'PASS Combat repair native verification complete' -or @($checks | Where-Object{-not $_.StartsWith('PASS ')}).Count -gt 0){throw ('Incomplete combat repair verification: '+$mode)}
+ if($player.ExitCode -ne 0 -or (Get-Item -LiteralPath $checkPath).LastWriteTime -lt $started -or [string]$checks[-1] -ne $expected -or @($checks | Where-Object{-not $_.StartsWith('PASS ')}).Count -gt 0){throw ('Incomplete combat repair verification: '+$mode)}
  $runs+=@{Mode=$mode;Checks=$checks.Count;Images=@(Get-ChildItem -LiteralPath $capturePath -Filter '*.png').Count;ExitCode=$player.ExitCode;Started=$started.ToString('o');Finished=(Get-Date).ToString('o')}
  $report=@{Player=$Executable;RuntimeSha256=(Get-FileHash -LiteralPath (Join-Path (Split-Path $playerPath) 'ArcaneBrigade_Data/Managed/ArcaneBrigade.Runtime.dll') -Algorithm SHA256).Hash;Runs=$runs}
- $report | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $repoPath 'PreviewExports/CombatRepair/Capture_Runs.json') -Encoding UTF8
+ $report | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $repoPath ($exportRoot+'Capture_Runs.json')) -Encoding UTF8
  $runs[-1] | ConvertTo-Json -Compress
 }

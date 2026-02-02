@@ -47,8 +47,9 @@ namespace ArcaneBrigade
             OutsideStageAssets assets = OutsideStageAssets.Current;
             if (assets == null || assets.Boss == null) throw new InvalidOperationException("Missing outside-stage encounter");
             CombatCatalog.Boss = BuildEnemy(assets.Boss, 1 + Mathf.Max(0, State.Wave - 13) * 0.06f);
-            CombatCatalog.Boss.Health = assets.Boss.Health * 20 * .8f * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
-            CombatCatalog.Boss.BodyHeight = assets.Boss.BodyHeight * 1.75f;
+            CombatCatalog.Boss.Health = assets.Boss.Health * 20 * .8f * 1.8f * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
+            CombatCatalog.Boss.BodyHeight = assets.Boss.BodyHeight * 2.45f;
+            CombatCatalog.Boss.Radius*=1.4f;
             CombatCatalog.Boss.Weapon.Damage *= 2.8f; CombatCatalog.Boss.ContactDamage *= 2.5f;
             CombatCatalog.Boss.KnockbackResistance = 1;
             CombatCatalog.EnemyBudget = 0;
@@ -100,7 +101,6 @@ namespace ArcaneBrigade
             else
             {
                 UnitDefinition ally = catalog.Unit(id);
-                if (State.Roster.Count >= OctoberBalance.AllySoftLimit) return false;
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) return false;
                 var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 1 };
                 State.Roster.Add(entry); RememberVariant(entry); OctoberPurchase(ally);

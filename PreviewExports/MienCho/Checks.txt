@@ -214,18 +214,18 @@ PASS Bounded chapter availability wave 24
 PASS Journal read flags survive real save validation wave 24
 PASS Legacy missing journal migrates without losing run
 PASS Cannot forge future evidence in a saved journal
-PASS Darkness has a finite readable floor 0
+PASS Ambient stays finite while party lights preserve readability 0
 PASS Real dawn restores light at depth 0
-PASS Darkness has a finite readable floor 1
+PASS Ambient stays finite while party lights preserve readability 1
 PASS World gets darker at chapter 1
 PASS Real dawn restores light at depth 1
-PASS Darkness has a finite readable floor 2
+PASS Ambient stays finite while party lights preserve readability 2
 PASS World gets darker at chapter 2
 PASS Real dawn restores light at depth 2
-PASS Darkness has a finite readable floor 3
+PASS Ambient stays finite while party lights preserve readability 3
 PASS World gets darker at chapter 3
 PASS Real dawn restores light at depth 3
-PASS Darkness has a finite readable floor 4
+PASS Ambient stays finite while party lights preserve readability 4
 PASS World gets darker at chapter 4
 PASS Real dawn restores light at depth 4
 PASS Fixed light budget retains solo visibility and fifteen companions

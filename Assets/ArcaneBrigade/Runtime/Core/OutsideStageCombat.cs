@@ -4,9 +4,30 @@ namespace ArcaneBrigade
 {
     public sealed partial class CombatSimulation
     {
+        private float outsideSummonAt;
+        private int outsideSummonCycle;
+        private void ResetOutsideSummons(){outsideSummonAt=6;outsideSummonCycle=0;}
+        private void SummonOutsideGuard(UnitState boss)
+        {
+            if(Elapsed<outsideSummonAt)return;
+            outsideSummonAt=Elapsed+(boss.Health<boss.Definition.Health*.35f?8:11);
+            int alive=0;foreach(var unit in units)if(unit.Alive && unit.Faction==Faction.Enemy && unit!=boss)alive++;
+            int amount=Mathf.Min(12-alive,boss.Health<boss.Definition.Health*.5f?4:3);
+            for(int i=0;i<amount;i++)
+            {
+                float side=(outsideSummonCycle+i)%2==0?-1:1;
+                Vector2 position=ClampPosition(new Vector2(side*(catalog.ArenaSize.x*.5f-1),-3+(outsideSummonCycle+i)%4*2),.6f);
+                if((position-Champion.Position).sqrMagnitude<16)position=ClampPosition(new Vector2(-position.x,position.y),.6f);
+                var guard=Spawn((outsideSummonCycle+i)%2==0?catalog.MeleeEnemy:catalog.RangedEnemy,Faction.Enemy,position);
+                guard.EntranceUntil=Elapsed+1.2f;guard.NextAttack=guard.NextContact=Elapsed+1.6f;guard.SwarmMinion=true;
+                if(guard.Variant!=null){guard.Variant.Summoned=true;guard.Variant.LeaderId=0;}
+            }
+            outsideSummonCycle++;
+        }
         private bool ProcessOutsideStage(UnitState boss)
         {
             if (boss.Definition.Id != "OutsideStageKeeper") return false;
+            SummonOutsideGuard(boss);
             boss.BossPoseTime = Elapsed;
             if (boss.TelegraphUntil > 0)
             {

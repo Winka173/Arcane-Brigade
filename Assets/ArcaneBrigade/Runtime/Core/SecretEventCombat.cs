@@ -29,7 +29,7 @@ namespace ArcaneBrigade
             CombatCatalog.SecretMeleeEcho = Secret.Stitches.Exists(t => t.Pattern == 1 && StackCount(t.ItemId) > 0);
             CombatCatalog.SecretWard = Secret.Stitches.Exists(t => t.Pattern == 2 && StackCount(t.ItemId) > 0);
             CombatCatalog.SecretMirrorEcho = StackCount("SecretMirror") > 0 && !SecretItemSuspended("SecretMirror");
-            if (!SecretSolo && State.Roster.Count < OctoberBalance.AllySoftLimit)
+            if (!SecretSolo)
             {
                 var allies = CombatCatalog.StartingCompanions.ToList();
                 if (Secret.Contracts.Exists(c => c.Kind == SecretContractKind.BorrowedShadow))
