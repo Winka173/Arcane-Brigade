@@ -9,8 +9,28 @@ namespace ArcaneBrigade
     {
         private static GUIStyle caption;
         private static GUIStyle count;
+        private static GUIStyle loss;
+        private static readonly Sprite[] lanterns = new Sprite[3];
 
-        /// <summary>A path of one notch per wave from dusk to dawn. Lit notches are behind you; letters mark chapter waves.</summary>
+        /// <summary>When a lantern goes out, the thing it held is written across the night for a few seconds.</summary>
+        public static void LampLoss(Rect area)
+        {
+            int lamp = NightLanternField.LastLoss;
+            float age = Time.unscaledTime - NightLanternField.LastLossAt;
+            if (lamp < 0 || age > 7f) return;
+            if (loss == null) { loss = ArcadeTypography.Style(34); loss.font = ArcadeTypography.Hand; loss.alignment = TextAnchor.MiddleCenter; loss.wordWrap = true; }
+            float alpha = Mathf.Clamp01(age / 0.8f) * Mathf.Clamp01((7f - age) / 1.6f);
+            Color was = GUI.color;
+            GUI.color = new Color(was.r, was.g, was.b, was.a * alpha);
+            loss.normal.textColor = new Color(0, 0, 0, 0.7f);
+            GUI.Label(new Rect(area.x + 2, area.y + 2, area.width, area.height), ActOneCanon.LampLoss(lamp), loss);
+            loss.normal.textColor = ArcadeSkin.Paper;
+            GUI.Label(area, ActOneCanon.LampLoss(lamp), loss);
+            GUI.color = was;
+        }
+
+        /// <summary>A path of one notch per wave from dusk to dawn. Lit notches are behind you; the eight lanterns stand at the
+        /// waves they go out, and a red tick marks the end of each zone.</summary>
         public static void DawnPath(Rect area, RunSnapshot state, int normalWaves, bool combat)
         {
             if (caption == null)
@@ -27,8 +47,6 @@ namespace ArcaneBrigade
             float step = (right - left) / Mathf.Max(1, normalWaves - 1);
             float done = (current - 1 + (combat ? 0f : 1f)) / Mathf.Max(1, normalWaves - 1);
             ArcadeSkin.Line(new Rect(left, y - 1, (right - left) * Mathf.Clamp01(endless ? 1 : done), 2), new Color(amber.r, amber.g, amber.b, 0.75f));
-            int opened = 0;
-            try { opened = MienChoStory.Available(state); } catch (System.Exception) { opened = 0; }
             for (int wave = 1; wave <= normalWaves; wave++)
             {
                 float x = left + (wave - 1) * step;
@@ -42,17 +60,30 @@ namespace ArcaneBrigade
                     ArcadeSkin.Glow(new Rect(x - 16, y - 16, 32, 32), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.6f * breathe));
                 }
             }
-            // the journal's chapters wait along the road as small letters; opened ones are lit
-            int index = 0;
-            foreach (WaitingChapter chapter in MienChoStory.Chapters)
+            // the eight lanterns of the Thursday visitor stand on the road at the wave each one goes out;
+            // the last stands at dawn and is still burning there
+            if (lanterns[0] == null) for (int i = 0; i < 3; i++) lanterns[i] = Resources.Load<Sprite>("MienCho/Lanterns/" + new[] { "Intact", "Cracked", "Broken" }[i]);
+            int shown = Mathf.Clamp(state.Wave, 1, normalWaves);
+            for (int lamp = 0; lamp < ActOneCanon.BreakWave.Length; lamp++)
             {
-                if (chapter.Wave < 1 || chapter.Wave > normalWaves) { index++; continue; }
-                float x = left + (chapter.Wave - 1) * step;
-                bool open = index < opened;
-                Rect letter = new Rect(x - 5, y - 15, 10, 7);
-                ArcadeSkin.Line(letter, open ? ArcadeSkin.Paper : new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, 0.25f));
-                ArcadeSkin.Line(new Rect(letter.x, letter.y, letter.width, 1), open ? amber : new Color(0, 0, 0, 0.3f));
-                index++;
+                int at = Mathf.Min(ActOneCanon.BreakWave[lamp], normalWaves);
+                float x = left + (at - 1) * step;
+                int stateOf = endless ? (lamp == 7 ? 0 : 2) : ActOneCanon.LampState(lamp, shown);
+                Sprite picture = lanterns[stateOf];
+                // each lantern stands on the road itself, clear of the timer box above it
+                Rect icon = new Rect(x - 5.5f, y - 17, 11, 17);
+                if (stateOf == 0) ArcadeSkin.Glow(new Rect(x - 11, y - 22, 22, 22), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.5f));
+                Color was = GUI.color;
+                if (stateOf == 2) GUI.color = new Color(was.r * 0.55f, was.g * 0.55f, was.b * 0.65f, was.a * 0.45f);
+                if (picture != null) RunHud.Sprite(icon, picture);
+                else ArcadeSkin.Dot(new Rect(x - 3, y - 18, 6, 8), stateOf == 2 ? ArcadeSkin.Card : ArcadeSkin.Gold);
+                GUI.color = was;
+            }
+            // each zone ends with something that does not want you to pass
+            for (int wave = 5; wave < normalWaves; wave += 5)
+            {
+                float x = left + (wave - 1) * step;
+                ArcadeSkin.Line(new Rect(x - 0.5f, y + 4, 1, 6), new Color(ArcadeSkin.Danger.r, ArcadeSkin.Danger.g, ArcadeSkin.Danger.b, wave < current || wave == current && !combat ? 0.35f : 0.8f));
             }
             if (!endless)
             {

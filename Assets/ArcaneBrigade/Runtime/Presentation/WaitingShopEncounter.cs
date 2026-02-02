@@ -30,13 +30,8 @@ namespace ArcaneBrigade
         public int RingCount => rang;
         public int ReflectionUnitId { get; private set; }
         private bool Allowed => owner?.Session != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen && owner.Session.State.OutsideStage != OutsideStageStatus.Reward && !owner.TransitionPending && !owner.HallExitPending && !owner.NightmareEndingVisible;
-        public static WaitingEncounter ForWave(int wave) => wave switch
-        {
-            4 or 5 => WaitingEncounter.ReservedTable,
-            6 or 7 => WaitingEncounter.BreathingPhone,
-            10 or 11 => WaitingEncounter.LateReflection,
-            _ => WaitingEncounter.None
-        };
+        // Retired with the first Act I canon: the table, telephone and mirror beats now live in ActOneCanon's journal entries.
+        public static WaitingEncounter ForWave(int wave) => WaitingEncounter.None;
         public static int ChapterFor(WaitingEncounter kind) => kind switch
         {
             WaitingEncounter.ReservedTable => 1,

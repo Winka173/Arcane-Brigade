@@ -182,7 +182,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(timer.x + (overtime ? 10 : 56), timer.y + 2, overtime ? 140 : 90, timer.height - 4), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
-            if (state.Phase == SessionPhase.Combat) NightHud.DawnPath(new Rect(760, 126, 400, 26), state, owner.Content.NormalWaves, true);
+            if (state.Phase == SessionPhase.Combat) { NightHud.DawnPath(new Rect(760, 126, 400, 26), state, owner.Content.NormalWaves, true); NightHud.LampLoss(new Rect(560, 190, 800, 60)); }
             else if (state.Phase == SessionPhase.Shop) NightHud.DawnPath(new Rect(380, 82, 280, 26), state, owner.Content.NormalWaves, false);
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)

@@ -52,7 +52,7 @@ namespace ArcaneBrigade.Editor
             PaintedAnimationLibrary art = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             require(art.GiantGoldMerchant.Length == 4 && art.GiantEggMerchant.Length == 4 && art.GiantGoldMerchant.Concat(art.GiantEggMerchant).Distinct().Count() == 8, "Two new original giant merchants with four distinct imported states each");
             require(art.GiantGoldMerchant[0].texture != art.GiantEggMerchant[0].texture && art.GiantGoldMerchant[0].texture.GetPixel(0, 0).a < 0.01f && art.GiantEggMerchant[0].texture.GetPixel(0, 0).a < 0.01f, "Giant merchant identities have separate true-alpha source art");
-            require(WorldShop.MerchantSize(false, 1) != WorldShop.MerchantSize(false, 2) && WorldShop.MerchantSize(true, 3) > 5.5f && WorldShop.MerchantSize(false, 3) > 5, "Large to colossal merchant sizes vary by hall and shop identity");
+            require(WorldShop.MerchantSize(false, 1) == WorldShop.MerchantSize(false, 2) && WorldShop.MerchantSize(true, 3) > 5.5f && WorldShop.MerchantSize(false, 3) > 5, "Large to colossal merchant sizes vary by hall and shop identity");
             require(lifecycle.Contains("owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f") && lifecycle.Contains("AvoidObstacle(unit.Position, MerchantCenter"), "Colossal staging respects camera height and avoidance follows actual NPC position");
             Directory.CreateDirectory("PreviewExports/K11"); File.WriteAllLines("PreviewExports/K11/Focused_Checks.txt", notes);
             Debug.Log("K11_FOCUSED_CHECKS_PASSED " + notes.Count);

@@ -167,7 +167,7 @@ namespace ArcaneBrigade.Editor
                 session = new RunSession(catalog);
                 session.Start(catalog.Champions[0].Id, 8008);
                 session.State.Roster.Clear();
-                if (boss) session.State.Wave = 4;
+                if (boss) session.State.Wave = 10; // Act I boss waves are 5, 10, 15, 20; 10 is an ordinary catalog body
                 Catalog = session.PrepareCombat();
                 Catalog.RunWave = 2;
                 Catalog.EnemyBudget = 0;

@@ -22,7 +22,7 @@ namespace ArcaneBrigade
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(snapshot.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) throw new InvalidOperationException("Invalid prismatic reward");
             }
         }
-        public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && State.OutsideTransfers >= 3 && OutsideStageAssets.Current != null;
+        public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && (State.Endless || State.Wave > ActOneCanon.Waves) && State.OutsideTransfers >= 3 && OutsideStageAssets.Current != null;
         public void RegisterOutsideTransfer()
         {
             if (State.LastOutsideTransferWave >= State.Wave) return;

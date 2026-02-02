@@ -142,7 +142,7 @@ namespace ArcaneBrigade.Editor
             }
             using (RunSession s = Room(SecretEventKind.LostProperty))
             {
-                s.State.OutsideTransfers=3;
+                s.State.OutsideTransfers=3;s.State.Endless=true;
                 Check(!s.OutsideChallengeAvailable && !s.AcceptOutsideStage(),"Keeper invitation cannot overlap active secret room");
                 s.LeaveSecretEvent(); Check(s.OutsideChallengeAvailable && s.AcceptOutsideStage(),"Existing Keeper challenge still accepts after secret exit");
                 CheckpointCatalog arena=s.PrepareCombat();Check(arena.Boss.Id=="OutsideStageKeeper" && arena.SecretEncounter==0,"Existing Keeper combat stays separate");

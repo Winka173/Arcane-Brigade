@@ -9,7 +9,7 @@ namespace ArcaneBrigade
         {
             new[] {
                 "Welcome! The little bell says you may stay.","Three fresh miracles. Please mind their teeth.",
-                "That one would suit your peculiar little family.","No charge for looking. The chair is free, too.",
+                "That one would suit your peculiar little family.","No charge for looking. Sit anywhere but the corner.",
                 "Sold! Take good care of that small impossibility.","It stopped trembling when you chose it.",
                 "Just a drop. We do not sell your last heartbeat.","Keep enough blood to get everyone home.",
                 "No hurry. A small purse still belongs to a person.","Come back with coins, not apologies.",
@@ -68,11 +68,11 @@ namespace ArcaneBrigade
         };
         private static readonly string[][] Whispers =
         {
-            new[] { "The kettle is still warm.","A little bell answers your footsteps.","Someone has left a light on.","Your friends know the way you walk." },
-            new[] { "The chair has moved closer to the counter.","The window no longer reflects the street.","Your shadow stops. A friend waits for it.","The lamp is exactly where you remember it." },
-            new[] { "A shelf inhales after you pass.","The receipt remembers a purchase you made.","Something behind the glass looks away first.","A familiar little gesture makes the room feel real." },
-            new[] { "The same ribbon is tied around the wrist and the door.","The shop is trying to remember the shape of outside.","Someone has repaired a heart instead of replacing it.","The dark changes. Your friends still recognize you." },
-            new[] { "The last chair is no longer empty.","There is no price written beneath the lamp.","A door handle waits under the final fold.","Hold on to the things that know you without a receipt." }
+            new[] { "The kettle is still warm.","The chair in the corner is facing you again.","A lantern on the road gutters, then holds.","Your friends know the way you walk." },
+            new[] { "Somewhere down the platform, someone almost hums.","Dust settles on a shoulder that has not moved in years.","The rails are empty in both directions.","An unopened letter waits on every lap." },
+            new[] { "The windows show the room you are standing in.","A pencil mark on the door frame is exactly your height, once.","The letterbox rattles, though there is no wind.","Footsteps in the hall stop a moment after yours." },
+            new[] { "The sheets have been turned down for one.","The cup is exactly where your hand would reach.","A chair along the wall has your name on it.","Nobody in this room is asleep." },
+            new[] { "The last lantern is still burning.","Somebody has left a light on.","The night goes on. So do you.","Hold on to the things that know you without a receipt." }
         };
         public static string Pick(RunSnapshot state, bool special, MerchantMoment moment, int cursor)
         {
@@ -89,18 +89,19 @@ namespace ArcaneBrigade
         }
         private static readonly string[][] Evidence =
         {
-            new[] { "One chair has been reserved. Nobody remembers making the reservation.", "A blank receipt rests beneath the till. There is no price on it.", "The shopkeeper checks the latch, then leaves your side of it open.", "The little cup is warm. Not every comfort is a trick." },
-            new[] { "The chair has one more leg than its shadow.", "The portraits face the wall. One small friend still faces you.", "Someone has polished the empty place where a name should be.", "The shopkeeper counts the guests. Then counts the chairs again." },
-            new[] { "The grain of the wood follows something like a pulse.", "The light beyond the glass closes like an eyelid. It was not a door.", "A glove waits beside a receipt that has never been paid.", "Your friend repeats a familiar gesture. For a moment, the room settles." },
-            new[] { "The shelves bend inward. The shop is remembering a body.", "The keeper's hand belongs to this dreaming place. The visitor only wants to own it.", "A name has been rubbed away until the paper is almost transparent.", "The shopkeeper hides the blank receipt before the chair can see it." },
-            new[] { "Everything has stopped pretending not to wait.", "He remembers every price. There is one name he cannot say.", "The shopkeeper's smile holds a little too long. The lamp stays warm.", "The door is not asking for another purchase. It is waiting for goodbye." }
+            new[] { "Three coins rest on the folded blanket. Nobody saw them arrive.", "The receipt under the till is in a child's handwriting.", "The shopkeeper never looks at the corner. Not once.", "The warm chair is one step closer than it was." },
+            new[] { "Every traveller on the platform sits in a chair that waited for them.", "The lullaby on the speakers is older than you.", "Your name is on the departure board. DEPARTURE: DAWN.", "He tossed the coins through the window. They landed on the seat." },
+            new[] { "The front door's lock was forced from the outside.", "A reply was sewn shut and nailed into the letterbox.", "Tally marks under the table. The last row is in your hand.", "He wore a kind face that was too small for him." },
+            new[] { "One bed. One cup. A chair along the wall with your name.", "The brass key opens a door that was never in this wall.", "His ledger's first entry is his own name.", "The warm chair stands in front of the exit." },
+            new[] { "The last lantern still holds a name.", "Somebody came eight times.", "The shop is still open for anyone who still has a choice.", "Dawn came once. The night keeps its own hours." }
         };
         public static string Whisper(RunSnapshot state, int cursor)
         {
-            int depth = NightmareRules.Depth(state.Wave);
+            // Act I whispers follow the four zones; past dawn the endless night has its own.
+            int depth = state.Endless || state.Wave > ActOneCanon.Waves ? 4 : ActOneCanon.Zone(state.Wave);
             int variation = Math.Abs(cursor / 3 % 4) + ((state.Seed >> (depth * 3)) & 3);
             string text = cursor % 3 == 2 ? Evidence[depth][variation % 4] : Whispers[depth][Math.Abs(cursor % 4)];
-            if (state.Wave == 19) text = "The last bell has not rung yet. He remembers every price, but not the name.";
+            if (state.Wave == 19) text = "The last lantern holds a name he cannot buy.";
             if (NightmareRules.Remembered(state, SecretEventKind.Understudy) && (text.Contains("glass") || text.Contains("window"))) text = "The familiar window holds its shape. Your reflection stays beside you.";
             if (NightmareRules.Remembered(state, SecretEventKind.ImpossibleTailor) && (text.Contains("shelf") || text.Contains("shelves"))) text = "The repaired shelf holds its shape. Something else in the room is breathing.";
             return text;
@@ -134,17 +135,27 @@ namespace ArcaneBrigade
             string[] late = { "The Last Customer counts missing stock. The drawer counts rescued friends.","The tailor can mend a seam. Perhaps even the one that sealed the door.","He wants obedient copies. The mirror offers you a chance to refuse.","Every unlisted parcel is a small hole in his perfect receipt.","He calls every promise a debt. The clock knows better.","The garden is not merchandise. Rest is not another purchase.","He bought the seats. He did not buy the right to choose your ending.","If a letter can leave the shop, perhaps all of you can." };
             return (NightmareRules.Depth(state.Wave) >= 3 ? late : early)[(int)kind];
         }
+        /// <summary>Act I dawn (Docs/Mien_Cho_Act_One_Story.md, "Kết hồi"): four pages after closing the shop, five after
+        /// leaving the last lantern lit. The waking page is always last.</summary>
         public static string Ending(RunSnapshot state, int page)
         {
+            bool light = state.Nightmare?.Farewell == NightmareFarewell.LeaveLight;
+            if (light && page == 3) return Lantern();
+            if (page >= 3) return Waking();
             return page switch
             {
-                0 => "THE RECEIPT ENDS HERE\nThe Customer's contract breaks. His own name is still missing, but he releases the names he took.\nFrom the empty chair, the One Who Stays asks for the old promise. You do not renew it. The door opens anyway.",
-                1 => "THE SHOPKEEPER\nI delayed the directions because I feared being forgotten. I called it shelter.\nThe key is yours. You do not have to forgive me to use it.\nThe letter, the lock and the visitor's register stay in your hands. Someone did come.\n" + (state.Secrets.LetterSent ? "The letter you sent has an answer waiting outside." : "The unsent letter is yours to deliver, or keep. Nobody chooses for you."),
-                2 => "MORNING, TOGETHER\n" + WaitingCompanionQuests.Futures(state) + (state.Roster.Count > 0 ? "Your companions cross as living creatures, each carrying a life beyond this crossing." : "You cross carrying your own light. You did not need to earn company to deserve freedom.") + "\n" + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting beyond the rooms you visited.\n") + (state.OutsideStage == OutsideStageStatus.Completed ? "The Keeper holds the frame and opens its hand." : "Beyond the shop, the Keeper's unanswered door remains a crossing for another day.") + " The One Who Stays remains by the chair. It cannot choose for you.\nMorning is real. Nobody is erased.",
-                3 => "A PLACE WITHOUT A PRICE\nYou ask: 'Does anyone still need me to do something?'\nA chair is pulled closer. 'Sit here a while.'\nThe new tune misses a beat. Someone waits, and you start together.\n" + (state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? "Everyone is outside before you leave a lamp. An invitation, never a debt." : "The shop closes. You do not have to return to prove you remember."),
-                _ => "ONE LIGHT LEFT ON\nThe lamp marks an open route for other travellers. The key has no price.\nBeyond the counter, three knocks belong to someone with a story of their own.\nYou are awake. You may choose to answer another day. This morning is not taken back."
+                0 => "THE CONTRACT BURNS\nThe Last Customer's face slips away one borrowed face at a time, until what is left is smooth and blank: his own, sold long ago.\nThe contract with your name on it catches fire on the counter. Under the last line there is a second signature. It is not his. It is the small shape of a chair.\nOne lantern is still burning on the road behind you. It holds a name, too bright to read here.",
+                1 => (light ? "THE LAST LANTERN STAYS\nYou leave the last lantern burning at the crossing, so that whoever wakes here next can find the road." : "THE SHOP CLOSES\nYou carry the last lantern out with you, and the shopkeeper turns the sign on the door. Nobody new will wake up in front of it.")
+                    + "\nThe shopkeeper does not ask to be forgiven. They hold the door until everyone is through.\n"
+                    + (state.Secrets.LetterSent ? "The letter you sent from the stage is already in Postscript's bag, addressed in your own hand." : "Postscript still carries one unsent letter of yours. It will wait until you are ready to send it."),
+                _ => "MORNING, TOGETHER\nIt is a real dawn. The light does not belong to anyone.\nYou ask, out of habit: 'Is there anything else you need me to do?'\nHob pulls out a chair. An ordinary chair, cold from the night. 'Sit here a while.'\nFor the first time, a chair is only a chair.\n"
+                    + (state.Roster.Count > 0 ? "Your companions decide for themselves who goes on and who stays. Nobody asks you to earn the choice." : "Even alone, you carried enough light to reach the morning.") + "\n"
+                    + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting along the platform.\n")
+                    + (state.OutsideStage == OutsideStageStatus.Completed ? "The Keeper holds the frame of the gate and opens its hand." : "The Keeper stands at the open gate and lets every traveller through.")
             };
         }
+        private static string Lantern() => "FOR WHOEVER COMES NEXT\nThe shopkeeper keeps the lantern trimmed in the window.\nAlong the platform, a few of the travellers who sat down have lifted their heads toward the light. One of them has taken off their hat.\nIt is an invitation, not a debt. You do not have to come back to prove you remember.";
+        private static string Waking() => "THURSDAY\nYou wake on the sofa in your own flat. The armchair beside you is just an armchair.\nYour phone still shows the message: 'See you tomorrow?' You answer it: 'Yes.'\nOn the doormat there is an envelope with no stamp and no postmark, as if someone carried it to the door by hand.\nToday is Thursday.";
 
         public static int AuthoredLineCount
         {

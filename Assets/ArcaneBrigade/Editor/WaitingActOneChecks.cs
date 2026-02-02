@@ -68,7 +68,7 @@ namespace ArcaneBrigade.Editor
             }
             using(var s=new RunSession(catalog))
             {s.Start("LanternKnight",16);s.State.WaitingCampaign=null;s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));WaitingCampaign.Ensure(s.State);Check(s.State.WaitingCampaign.RoomChoices.Length==9,"Legacy run without new journey fields remains loadable");}
-            Check(MienChoStory.Chapters.Length==10 && WaitingCampaign.Act(null)==0,"Scope remains Act I only / twenty waves");
+            Check(MienChoStory.Chapters.Length==21 && WaitingCampaign.Act(null)==0 && ActOneCanon.Waves==20,"Scope remains Act I only / twenty waves");
             Debug.Log("ACT_ONE_CHECKS "+notes.Count+" PASS");
         }
     }

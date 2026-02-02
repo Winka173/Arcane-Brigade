@@ -37,13 +37,16 @@ namespace ArcaneBrigade
         public RenderTexture FogTexture=>fog;
         public RenderTexture LightTexture=>field;
         public int FogSamples=>PresentationSettings.ReducedEffects?4:8;
-        public static int BrokenFor(int wave)=>Mathf.Clamp((Mathf.Max(1,wave)-1)/4,0,4)*2;
+        // Act I: each lamp is one visit of the Thursday visitor and breaks on its canon wave (ActOneCanon.BreakWave).
+        public static int BrokenFor(int wave)=>ActOneCanon.Broken(wave);
         public static int StateFor(int index,int wave,bool shop)
         {
             if(shop && (index==0 || index==1))return 0;
-            int rank=System.Array.IndexOf(BreakOrder,index),broken=BrokenFor(wave);
-            return rank<broken?2:rank<broken+2 && wave>2?1:0;
+            return ActOneCanon.LampState(System.Array.IndexOf(BreakOrder,index),wave);
         }
+        /// <summary>The story lamp (0..7, in break order) that went out most recently, and when; drives the HUD caption.</summary>
+        public static int LastLoss {get;private set;}=-1;
+        public static float LastLossAt {get;private set;}=-100;
         // Presentation-only noise: never consume the run/shop/combat random streams.
         private static float Variation(int index,int seed,uint channel)
         {
@@ -113,7 +116,11 @@ namespace ArcaneBrigade
             SetVisible(true);Clock=owner.PresentationClock;
             int current=owner.Session.State.Wave;bool shop=owner.Session.State.Phase==SessionPhase.Shop;
             bool changed=current!=wave || shop!=previousShop;
-            if(wave>0 && current>wave && BrokenFor(current)>BrokenFor(wave) && !PresentationSettings.ReducedAudio && breakClip!=null)wind.PlayOneShot(breakClip,PresentationSettings.SfxVolume*.2f);
+            if(wave>0 && current>wave && BrokenFor(current)>BrokenFor(wave))
+            {
+                LastLoss=BrokenFor(current)-1;LastLossAt=Time.unscaledTime;
+                if(!PresentationSettings.ReducedAudio && breakClip!=null)wind.PlayOneShot(breakClip,PresentationSettings.SfxVolume*.2f);
+            }
             wave=current;previousShop=shop;wind.volume=PresentationSettings.ReducedAudio?0:PresentationSettings.SfxVolume*(shop?.015f:Mathf.Lerp(.025f,.13f,NightmareRules.Depth(wave)/4f));
             BrokenCount=LitCount=0;
             float dawn=NightmareLighting.Active?.Dawn??0;
@@ -205,6 +212,6 @@ namespace ArcaneBrigade
             if(field!=null){field.Release();Destroy(field);}if(fog!=null){fog.Release();Destroy(fog);}
             if(fieldPainter!=null)Destroy(fieldPainter);if(fogPainter!=null)Destroy(fogPainter);if(fogDisplay!=null)Destroy(fogDisplay);if(white!=null)Destroy(white);if(fogMesh!=null)Destroy(fogMesh);
         }
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]private static void Reset(){Active=null;Shader.SetGlobalFloat("_NightLanternEnabled",0);}
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]private static void Reset(){Active=null;LastLoss=-1;LastLossAt=-100;Shader.SetGlobalFloat("_NightLanternEnabled",0);}
     }
 }

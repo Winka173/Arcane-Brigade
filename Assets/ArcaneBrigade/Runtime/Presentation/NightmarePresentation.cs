@@ -130,14 +130,17 @@ namespace ArcaneBrigade
                 {
                     shownPage = page; pageAt = now;
                     afterwordKnocks = 0;
-                    narrator.MerchantName = page == 1 ? "THE SHOPKEEPER" : "THE WAKING SHOP";
+                    int waking = state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? 4 : 3;
+                    narrator.MerchantName = page == waking ? "THURSDAY" : page == 1 ? "THE SHOPKEEPER" : "DAWN";
                     narrator.Say(NightmareDialogue.Ending(state,page),now,20);
                     CheckpointAudio.PlayInterfaceId(page == 2 ? "voice.gold.farewell" : "ui.page");
                 }
                 voice.Advance(narrator,false,now,false);
-                if (page == 4 && afterwordKnocks < 3 && now - pageAt >= .6f + afterwordKnocks * .55f)
+                // three knocks on the waking page: somebody is at the door, on a Thursday
+                bool last = page == (state.Nightmare.Farewell == NightmareFarewell.LeaveLight ? 4 : 3);
+                if (last && afterwordKnocks < 3 && now - pageAt >= .6f + afterwordKnocks * .55f)
                 { CheckpointAudio.PlayInterfaceId("sig.stamp", .12f); afterwordKnocks++; }
-                if (now - pageAt >= (page == 4 ? 2.6f : 1.2f) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) owner.AdvanceNightmareEnding();
+                if (now - pageAt >= (last ? 2.6f : 1.2f) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0))) owner.AdvanceNightmareEnding();
             }
             else if (owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId && owner.Simulation.Boss.Alive)
             {
@@ -145,7 +148,7 @@ namespace ArcaneBrigade
                 if (beat != bossBeat && beat < 6)
                 {
                     bossBeat = beat;
-                    string[] lines = { "THE LAST CUSTOMER\nEverything on these shelves has a price. Even you.","THE SHOPKEEPER\nThey are guests. Put down the receipt.","THE LAST CUSTOMER\nAn unlisted friend is still missing inventory.","THE SHOPKEEPER\nNo. A promise is not a chain.","THE LAST CUSTOMER\nThen who will pay for the morning?", "YOUR BRIGADE\nNo one gets left on the shelf." };
+                    string[] lines = { "THE LAST CUSTOMER\nJust say it once more. I will wait if you will stay.","THE SHOPKEEPER\nThey do not owe you a word. Put down the receipt.","THE LAST CUSTOMER\nThey had kind eyes, didn't they? I can keep them for you.","HOB\nNobody here is for sale. Not even the ones who sat down.","THE LAST CUSTOMER\nNobody stands up without paying.","YOUR BRIGADE\nThen we pull." };
                     whisper = lines[beat]; whisperAt = now; narrator.Say(whisper,now,5);
                 }
                 voice.Advance(narrator,true,now,false);

@@ -23,7 +23,7 @@ namespace ArcaneBrigade.Editor
             foreach (string hero in new[] { "LanternKnight", "LoneJelly" })
             {
                 using var session = new RunSession(catalog); session.Start(hero, 241077);
-                session.State.Wave = 13; session.State.Phase = SessionPhase.Shop;
+                session.State.Wave = 13; session.State.Phase = SessionPhase.Shop; session.State.Endless = true; // Act I: the optional rematch waits for the endless night
                 session.State.Offers.Add(new ShopOffer { Id = catalog.Items[0].Id, Kind = OfferKind.Item, Price = 10, Token = ++session.State.NextOffer });
                 Check(!session.OutsideChallengeAvailable, "No challenge before three transfers " + hero);
                 foreach (int wave in new[] { 5, 9, 13 }) { session.State.Wave = wave; session.RegisterOutsideTransfer(); session.RegisterOutsideTransfer(); }
@@ -52,7 +52,7 @@ namespace ArcaneBrigade.Editor
             }
             using (var session = new RunSession(catalog))
             {
-                session.Start("LanternKnight", 241077); session.State.Wave = 13; session.State.OutsideTransfers = 3; session.State.Phase = SessionPhase.Shop;
+                session.Start("LanternKnight", 241077); session.State.Wave = 13; session.State.Endless = true; session.State.OutsideTransfers = 3; session.State.Phase = SessionPhase.Shop;
                 int gold = session.State.Gold;
                 Check(session.DeclineOutsideStage() && !session.OutsideChallengeAvailable && session.State.Gold == gold, "Declining has no economic penalty");
             }

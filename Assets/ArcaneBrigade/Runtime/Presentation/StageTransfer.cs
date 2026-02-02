@@ -23,8 +23,9 @@ namespace ArcaneBrigade
         public bool Active => active;
         public float ElapsedSeconds => age;
         public Vector2 VisualPlayerPosition => PresentationSettings.ReducedMotion ? origin : PassengerPosition(origin, age, Kind);
-        public static bool ChangesMap(int wave) => wave > 1 && (wave - 1) % 4 == 0;
-        public static StageCarrier CarrierFor(int wave) => (StageCarrier)(Mathf.Max(0, (wave - 5) / 4) % 3);
+        // Act I moves to a new zone at waves 6, 11 and 16; endless keeps changing every five waves.
+        public static bool ChangesMap(int wave) => wave > 1 && (wave - 1) % 5 == 0;
+        public static StageCarrier CarrierFor(int wave) => (StageCarrier)(Mathf.Max(0, (wave - 6) / 5) % 3);
 
         public void Configure(ArenaController controller, Action onComplete)
         {

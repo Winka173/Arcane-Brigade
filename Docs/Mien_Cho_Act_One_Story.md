@@ -179,3 +179,23 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 - Không mô tả bạo lực với trẻ em; nỗi sợ nằm ở ẩn ý: giọng nói, cánh cửa, đôi giày, chiếc ghế.
 - Đồng hành không phải đồ chơi, không ai sở hữu họ; tiền chỉ mua lối đi.
 - Không có cú “vẫn đang mơ”; bình minh là thật.
+
+---
+
+## 11. Trạng thái triển khai
+
+**Phase 1 — xong (dữ liệu truyện, journal, đèn, boss, shop):**
+- `Runtime/Data/ActOneCanon.cs`: 4 vùng, lịch vỡ 8 đèn, boss wave 5/10/15/20, 21 cảnh truyện (đến nơi + 19 lần shop + sảnh cuối). Journal lưu lại từng cảnh; save cũ (revision 1) tự chuyển và chỉ mở cảnh hiện tại.
+- Lựa chọn trong journal: điện thoại (shop 8: để reo / nghe), cánh cửa (wave 14: trốn / mở). Phím 1–2 hoặc A–Y; Enter không tự chọn.
+- Đèn: vỡ đúng wave 3/5/8/10/13/14/17, ngọn thứ 8 sống sót; tám ngọn đứng trên “con đường tới bình minh” ở HUD; khi đèn vỡ hiện dòng viết tay “You can no longer remember …”.
+- Boss: Keeper ở wave 5 (sức mạnh ngang boss wave 5); wave 10 THE CHAIR PORTER và wave 15 THE DOOR THAT STAYED SHUT dùng thân tạm (Suitcase Leviathan, Undelivered King) đến khi có art; wave 20 Last Customer với thoại mới.
+- Một người bán hàng cố định (THE SHOPKEEPER); đổi map ở wave 6/11/16; thoại thì thầm/vật chứng theo vùng; trang kết mới (đóng tiệm 4 trang, để đèn 5 trang, trang cuối “THURSDAY” có ba tiếng gõ cửa).
+- Gỡ khỏi Hồi 1: bàn/điện thoại/gương cũ trong shop, ghế “PATHS & PEOPLE”, thử thách Keeper tùy chọn (chỉ còn trong endless).
+- Kiểm tra: `ArcaneBrigade.Editor.ActOneStoryChecks.Run` (kết quả ở `PreviewExports/ActOneStory/Checks.txt`).
+
+**Còn lại:**
+- Phase 2: Chiếc Ghế Ấm (19 vị trí, cảnh tiền đặt lên ghế), slot riêng cho Hob/Latch/Postscript/Tally (Tally vắng shop 18–wave 19), trận SIT CLOSER + màn thua “You sat down.”.
+- Phase 3: bán ký ức ở shop 8 (trạng thái “người lạ”), cảnh kéo Hob ở wave 16, thoại Customer thay đổi khi đã thắng SIT CLOSER.
+- Phase 4: art theo `Docs/Act_One_Story_Art_Requests.md` (ghế, Những Người Đã Ngồi Xuống, Customer mượn mặt, 3 boss, 4 sàn vùng, panel journal) và gắn vào game.
+- Phase 5: cảnh ghế bành xoay lại ở menu sau credit.
+- Câu hỏi mở: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” (MOTHER OF A THOUSAND EGG-EYES) chưa có trong canon.

@@ -13,6 +13,7 @@ namespace ArcaneBrigade
         private GUIStyle title, copy, button, small;
         private Vector2 scroll;
         private readonly Texture2D[] panels = new Texture2D[3];
+        private readonly Texture2D[] zonePanels = new Texture2D[4];
         public bool Open => open;
         public int Chapter => chapter;
         public int Page => page;
@@ -24,6 +25,7 @@ namespace ArcaneBrigade
             {
                 owner.Session.State.MienCho ??= new MienChoMemory();
                 if (owner.Session.State.MienCho.Pages == null || owner.Session.State.MienCho.Pages.Length == 0) owner.Session.State.MienCho.Pages = new int[MienChoStory.For(owner.Session.State).Length];
+                if (owner.Session.State.MienCho.Choices == null || owner.Session.State.MienCho.Choices.Length == 0) owner.Session.State.MienCho.Choices = new int[MienChoStory.For(owner.Session.State).Length];
                 return owner.Session.State.MienCho;
             }
         }
@@ -33,6 +35,7 @@ namespace ArcaneBrigade
             panels[0] = Resources.Load<Texture2D>("MienCho/WithheldDawn");
             panels[1] = Resources.Load<Texture2D>("MienCho/WaitingRoom");
             panels[2] = Resources.Load<Texture2D>("MienCho/OpenDawn");
+            for (int i = 0; i < zonePanels.Length; i++) zonePanels[i] = Resources.Load<Texture2D>("MienCho/ActOne/" + ActOneCanon.ZonePanel[i]);
         }
         private void Update()
         {
@@ -41,7 +44,10 @@ namespace ArcaneBrigade
             {
                 if(InputConsumedFrame==Time.frameCount)return;
                 if (!Application.isFocused && !RunPaths.Diagnostic) return;
-                if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance();
+                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) Choose(0);
+                else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.JoystickButton3)) Choose(1);
+                else if (Input.GetKeyDown(KeyCode.JoystickButton0) && ActOneCanon.ChoiceOptions[chapter] != null && page == 0 && Memory.Choices[chapter] == 0) Choose(0);
+                else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance(); // a waiting choice is never taken by Enter
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7)) { if (lives) { lives = false; scroll = Vector2.zero; Consume(); } else Close(); }
                 else if (Input.GetKeyDown(KeyCode.JoystickButton2)) { lives = !lives; scroll = Vector2.zero; Consume(); }
                 else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) { if (lives) { creature = Mathf.Max(0, creature - 1); scroll = Vector2.zero; Consume(); } else Previous(); }
@@ -72,13 +78,15 @@ namespace ArcaneBrigade
             if (!open) return;
             Consume();
             if (lives) { lives = false; scroll = Vector2.zero; return; }
-            if (page + 1 >= MienChoStory.For(owner.Session.State)[chapter].Pages.Length)
+            int next = MienChoStory.NextPage(chapter, page, Memory.Choices[chapter]);
+            if (next < 0) return; // a choice is waiting on this page
+            if (next >= MienChoStory.For(owner.Session.State)[chapter].Pages.Length)
             {
                 int finished = Memory.FinishedMask; Memory.FinishedMask |= 1 << chapter;
                 if (!owner.SaveNightmareBoundary()) { Memory.FinishedMask = finished; return; }
                 Close(); return;
             }
-            SetPage(page + 1);
+            SetPage(next);
             scroll = Vector2.zero; CheckpointAudio.PlayInterfaceId("ui.page");
         }
         private void Consume() => InputConsumedFrame = Time.frameCount;
@@ -88,7 +96,17 @@ namespace ArcaneBrigade
             if (owner.SaveNightmareBoundary()) page = value;
             else Memory.Pages[chapter] = previous;
         }
-        private void Previous() { Consume(); SetPage(Mathf.Max(0, page - 1)); scroll = Vector2.zero; }
+        private void Previous() { Consume(); SetPage(MienChoStory.PreviousPage(chapter, page, Memory.Choices[chapter])); scroll = Vector2.zero; }
+        /// <summary>Commits a story choice once; the branch page follows and the choice is saved with the journal.</summary>
+        public void Choose(int option)
+        {
+            if (!open || ActOneCanon.ChoiceOptions[chapter] == null || Memory.Choices[chapter] != 0 || page != 0) return;
+            Consume();
+            Memory.Choices[chapter] = option + 1;
+            int previous = Memory.Pages[chapter]; Memory.Pages[chapter] = option + 1;
+            if (!owner.SaveNightmareBoundary()) { Memory.Choices[chapter] = 0; Memory.Pages[chapter] = previous; return; }
+            page = option + 1; scroll = Vector2.zero; CheckpointAudio.PlayInterfaceId("ui.confirm");
+        }
         public void SelectChapter(int index)
         {
             if (!open) return;
@@ -123,10 +141,12 @@ namespace ArcaneBrigade
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(.015f, .023f, .043f, 1));
             if (lives) { DrawLives(); GUI.matrix = old; return; }
             var c = MienChoStory.For(owner.Session.State)[chapter];
-            var image = panels[c.Image == "WaitingRoom" ? 1 : c.Image == "OpenDawn" ? 2 : 0];
+            int zone = System.Array.IndexOf(ActOneCanon.ZonePanel, c.Image);
+            var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone == 2 || zone == 3 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
-            GUI.Label(new Rect(70, 55, 1780, 75), "MIEN CHO / " + c.Title, title);
-            GUI.Label(new Rect(80, 790, 680, 120), "EVIDENCE\n" + c.Evidence, small);
+            GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.ZoneNames[ActOneCanon.Zone(c.Wave)] + " / " + c.Title, title);
+            int burning = ActOneCanon.BreakWave.Length - ActOneCanon.Broken(owner.Session.State.Wave);
+            GUI.Label(new Rect(80, 785, 680, 120), "EVIDENCE\n" + c.Evidence + "\n" + burning + " OF 8 LANTERNS STILL BURNING", small);
             if (Press(new Rect(80, 710, 680, 65), "THE PEOPLE TRAVELLING WITH YOU")) ShowLives();
             GUI.Label(new Rect(850, 145, 990, 50), "CHAPTER " + (chapter + 1) + " / PAGE " + (page + 1) + " OF " + c.Pages.Length, small);
             string text = c.Pages[page];
@@ -135,11 +155,22 @@ namespace ArcaneBrigade
             scroll = GUI.BeginScrollView(new Rect(850, 210, 1000, 660), scroll, new Rect(0, 0, 955, height));
             GUI.Label(new Rect(0, 0, 940, height), text, copy); GUI.EndScrollView();
             for (int i = 0; i < MienChoStory.Available(owner.Session.State); i++)
-                if (Press(new Rect(70 + i % 5 * 125, 910 + i / 5 * 65, 110, 50), (i + 1) + ((Memory.FinishedMask & 1 << i) != 0 ? " / READ" : ""))) SelectChapter(i);
+                if (Press(new Rect(70 + i % 7 * 97, 900 + i / 7 * 56, 88, 46), (i + 1) + ((Memory.FinishedMask & 1 << i) != 0 ? " ✓" : ""))) SelectChapter(i);
             if (Press(new Rect(850, 925, 200, 65), "PREVIOUS")) Previous();
-            if (Press(new Rect(1070, 925, 490, 65), page + 1 == c.Pages.Length ? "KEEP THE EVIDENCE / CLOSE" : "CONTINUE  [ENTER]")) Advance();
+            string[] options = ActOneCanon.ChoiceOptions[chapter];
+            if (options != null && page == 0 && Memory.Choices[chapter] == 0)
+            {
+                // the story waits for the traveller: two choices instead of CONTINUE
+                if (Press(new Rect(1070, 925, 240, 65), options[0])) Choose(0);
+                if (Press(new Rect(1320, 925, 240, 65), options[1])) Choose(1);
+            }
+            else
+            {
+                int next = MienChoStory.NextPage(chapter, page, Memory.Choices[chapter]);
+                if (Press(new Rect(1070, 925, 490, 65), next >= c.Pages.Length ? "KEEP THE EVIDENCE / CLOSE" : "CONTINUE  [ENTER]")) Advance();
+            }
             if (Press(new Rect(1580, 925, 270, 65), "READ LATER  [ESC]")) Close();
-            GUI.Label(new Rect(850, 1000, 1000, 65), "Paused / page saved. Stick or arrows: scroll / LB-RB: pages / X: companions / PgUp-PgDn: chapters.", small);
+            GUI.Label(new Rect(850, 1000, 1000, 65), "Paused / page saved. Arrows: scroll / LB-RB: pages / X: companions / PgUp-PgDn: entries / 1-2 or A-Y: choose.", small);
             GUI.matrix = old;
         }
         private bool Press(Rect rectangle, string text)

@@ -1,0 +1,14 @@
+PASS MienCho
+PASS WaitingActOne
+PASS Nightmare
+PASS NightmareFarewell
+FAIL K8Combat: K8 combat: Incoming hit capped against Champion maximum HP
+PASS K11Merchant
+FAIL K20BossAnatomy: Number of parameters specified does not match the expected number.
+FAIL K21BossEncounter: K21 Size at least 55 percent above previous runtime UndeliveredKing actual=3.696 source=2.2
+FAIL K25EnemyAffix: K25 Actual specialist release SmokeWraith/0
+PASS ShopFlow
+PASS K24OutsideStage
+PASS SecretEvent
+PASS FinalQuality
+FAIL RosterCapAndBond: Sixteenth body denied / special=False

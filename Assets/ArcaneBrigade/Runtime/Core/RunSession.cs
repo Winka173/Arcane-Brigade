@@ -307,10 +307,14 @@ namespace ArcaneBrigade
                 CombatCatalog.MeleeEnemy = BuildEnemy(firstContact, scaling);
                 CombatCatalog.RangedEnemy = CombatCatalog.MeleeEnemy;
             }
-            int bossStage = State.Wave / catalog.BossEvery - 1;
+            // Act I closes each of its four zones with a story boss (waves 5, 10, 15, 20); endless keeps the catalog rhythm.
+            bool actOne = !State.Endless && State.Wave <= catalog.NormalWaves;
+            bool bossWave = actOne ? ActOneCanon.BossWave(State.Wave) : State.Wave % catalog.BossEvery == 0;
+            int bossStage = actOne ? State.Wave / 5 - 1 : State.Wave / catalog.BossEvery - 1;
             int bossIndex = Mathf.Max(0, bossStage) % catalog.Bosses.Length;
             if (catalog.Bosses.Length == 10) bossIndex = Mathf.Max(0, bossStage) % 5 + (((State.Seed ^ bossStage) & 1) == 0 ? 0 : 5);
-            CombatCatalog.Boss = State.Wave % catalog.BossEvery == 0 ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
+            CombatCatalog.Boss = bossWave ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
+            if (actOne && bossWave) CombatCatalog.Boss = StoryBoss(CombatCatalog.Boss, scaling);
             CombatCatalog.WaveDuration = OctoberBalance.WaveSeconds;
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
             CombatCatalog.EnemyBudget = Mathf.Min(600, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1 : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
@@ -452,6 +456,28 @@ namespace ArcaneBrigade
             float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), tier - 1) * Mathf.Max(0.1f, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, .3f));
             if (unit.Passive == PassiveKind.Rally) value *= 1f + unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1) * 0.01f * State.Roster.Count;
             return value * (companion ? CarnivalBalance.RecruitDamage(unit.Rarity) : 1);
+        }
+
+        /// <summary>The Keeper guards the gate at wave 5 with the strength of an ordinary wave-5 boss; the Chair Porter and the
+        /// Door That Stayed Shut use stand-in bodies (Suitcase Leviathan, Undelivered King) until their own art lands.</summary>
+        private UnitDefinition StoryBoss(UnitDefinition reference, float scaling)
+        {
+            if (reference == null) return null;
+            if (State.Wave == 5 && OutsideStageAssets.Current != null && OutsideStageAssets.Current.Boss != null)
+            {
+                UnitDefinition keeper = BuildEnemy(OutsideStageAssets.Current.Boss, scaling);
+                keeper.Health = reference.Health;
+                keeper.ContactDamage = reference.ContactDamage;
+                keeper.Weapon.Damage = reference.Weapon.Damage;
+                keeper.BodyHeight = OutsideStageAssets.Current.Boss.BodyHeight * 2.1f;
+                keeper.DisplayName = ActOneCanon.BossName(5);
+                return keeper;
+            }
+            string stand = State.Wave == 10 ? "SuitcaseLeviathan" : State.Wave == 15 ? "UndeliveredKing" : null;
+            UnitDefinition body = stand == null ? null : Array.Find(catalog.Bosses, boss => boss != null && boss.Id == stand);
+            UnitDefinition story = body != null && body.Id != reference.Id ? BuildEnemy(body, scaling) : reference;
+            if (ActOneCanon.BossName(State.Wave) != null) story.DisplayName = ActOneCanon.BossName(State.Wave);
+            return story;
         }
 
         private UnitDefinition BuildEnemy(UnitDefinition source, float scaling)

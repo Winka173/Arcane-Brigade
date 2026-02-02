@@ -54,7 +54,38 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             notes.Clear(); var c = Resources.Load<RunCatalog>("RunCatalog");
-            Check(MienChoStory.Chapters.Length == 10 && MienChoStory.Chapters.Sum(x => x.Pages.Length) == 27, "Ten fixed milestones / twenty-seven authored pages");
+            Check(MienChoStory.Chapters.Length == 21 && MienChoStory.Chapters.All(x => x.Pages.Length >= 1 && x.Pages.All(p => p.Length > 80)), "Act I canon: arrival, nineteen shop beats and the final hall");
+            Check(MienChoStory.Chapters.Where(x => x.Shop).Select(x => x.Wave).SequenceEqual(Enumerable.Range(1, 19)), "Every shop from wave 1 to 19 has its own story beat");
+            for (int i = 1; i < MienChoStory.Chapters.Length; i++) Check(MienChoStory.Chapters[i].Wave >= MienChoStory.Chapters[i - 1].Wave, "Story beats stay in wave order " + i);
+            for (int i = 0; i < MienChoStory.Chapters.Length; i++)
+                Check(ActOneCanon.ChoiceOptions[i] == null || MienChoStory.Chapters[i].Pages.Length == 4 && ActOneCanon.ChoiceOptions[i].Length == 2, "Choice beat has an opening, two branches and an aftermath " + i);
+            Check(MienChoStory.NextPage(8, 0, 0) == -1 && MienChoStory.NextPage(8, 0, 2) == 2 && MienChoStory.NextPage(8, 1, 1) == 3 && MienChoStory.NextPage(8, 2, 2) == 3 && MienChoStory.PreviousPage(8, 3, 1) == 1 && MienChoStory.NextPage(3, 0, 0) == 1, "Choice pages skip the branch not taken");
+            Check(ActOneCanon.Broken(2) == 0 && ActOneCanon.Broken(3) == 1 && ActOneCanon.Broken(14) == 6 && ActOneCanon.Broken(20) == 7 && ActOneCanon.Broken(500) == 7, "Seven lanterns break on their canon waves; the eighth survives the act");
+            Check(ActOneCanon.LampState(7, 18) == 0 && ActOneCanon.LampState(7, 19) == 1 && ActOneCanon.LampState(0, 2) == 1 && ActOneCanon.LampState(0, 3) == 2 && ActOneCanon.LampLoss(4).Contains("face"), "Lantern states flicker before breaking and name what was lost");
+            Check(ActOneCanon.Zone(5) == 0 && ActOneCanon.Zone(6) == 1 && ActOneCanon.Zone(15) == 2 && ActOneCanon.Zone(20) == 3 && ActOneCanon.BossWave(5) && ActOneCanon.BossWave(20) && !ActOneCanon.BossWave(4) && !ActOneCanon.BossWave(12), "Four zones of five waves, each closed by a boss");
+            foreach (int wave in new[] { 4, 5, 10, 15 })
+            {
+                using var s = new RunSession(c); s.Start("LanternKnight", 161040); s.State.Wave = wave;
+                var combat = s.PrepareCombat();
+                Check(wave == 4 ? combat.Boss == null : combat.Boss != null && combat.Boss.DisplayName == ActOneCanon.BossName(wave), "Act I story boss on wave " + wave);
+                if (wave == 5) Check(combat.Boss.Id == "OutsideStageKeeper", "The Keeper guards the gate at wave 5");
+            }
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161041); s.State.Wave = 9; s.State.Phase = SessionPhase.Shop;
+                s.State.MienCho = new MienChoMemory { Revision = 1, ReadMask = 7, FinishedMask = 7, Pages = new int[10] };
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.State.MienCho.Revision == MienChoMemory.CurrentRevision && s.State.MienCho.Pages.Length == 21 && MienChoStory.NextUnread(s.State) == MienChoStory.Available(s.State) - 1, "First-canon save migrates and opens only the current beat");
+                s.State.MienCho.Choices[3] = 1;
+                bool rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "A choice cannot be stored on a beat that has none");
+                s.State.MienCho.Choices[3] = 0; s.State.MienCho.Choices[14] = 2;
+                rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "A future choice cannot be forged");
+                s.State.MienCho.Choices[14] = 0; s.State.MienCho.Choices[8] = 2;
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(MienChoStory.Choice(s.State, 8) == 2, "The telephone choice survives a real save");
+            }
             Check(CreatureLives.SpeciesCount == c.Companions.Length && CreatureLives.ArcCount == 6, "All sixty-six origins and six three-part companion arcs");
             foreach (var hero in c.Champions) Check(WaitingArrivals.For(hero.Id).Length > 100, "Individual dream arrival " + hero.Id);
             foreach (var u in c.Companions)
@@ -67,7 +98,7 @@ namespace ArcaneBrigade.Editor
             {
                 using var s = new RunSession(c); s.Start("LanternKnight", 161026); s.State.Wave = wave; s.State.Phase = SessionPhase.Shop;
                 int unlocked = MienChoStory.Available(s.State);
-                Check(unlocked >= 1 && unlocked <= 10, "Bounded chapter availability wave " + wave);
+                Check(unlocked >= 1 && unlocked <= 21, "Bounded chapter availability wave " + wave);
                 s.State.MienCho.ReadMask = (1 << unlocked) - 1;
                 var json = JsonUtility.ToJson(s.State); s.Restore(JsonUtility.FromJson<RunSnapshot>(json));
                 Check(s.State.MienCho.ReadMask == (1 << unlocked) - 1 && MienChoStory.NextUnread(s.State) == -1, "Journal read flags survive real save validation wave " + wave);

@@ -79,7 +79,8 @@ namespace ArcaneBrigade
         public string MerchantIdentity { get; private set; }
         public Vector2 MerchantCenter { get; private set; }
         public Bounds MerchantBounds => merchant == null ? default : merchant.GetComponent<SpriteRenderer>().bounds;
-        public static float MerchantSize(bool special, int wave) => special ? wave % 3 == 0 ? 5.65f : wave % 3 == 1 ? 5.2f : 4.4f : wave % 3 == 0 ? 5.25f : wave % 3 == 1 ? 4.2f : 3.7f;
+        // Act I canon: it is always the same shop and the same shopkeeper, however deep the road goes.
+        public static float MerchantSize(bool special, int wave) => special ? 5.65f : 5.25f;
         public Station Nearby { get; private set; }
         public int DeniedCount { get; private set; }
         public void Configure(ArenaController controller)
@@ -280,12 +281,12 @@ namespace ArcaneBrigade
             displayedSpecial = Special;
             K8ArenaScenery.CreateMarketFloor(scenery.transform, Special);
             Sprite[] merchantFrames = Special ? art.EggMerchant : art.GoldMerchant;
-            bool giant = state.Wave % 3 != 2;
+            bool giant = true;
             Sprite[] giantFrames = Special ? art.GiantEggMerchant : art.GiantGoldMerchant;
             if (giant && giantFrames != null && giantFrames.Length == 4) merchantFrames = giantFrames;
             MerchantIdentity = giant ? Special ? "GiantEggMerchant" : "GiantGoldMerchant" : Special ? "EggOracle" : "ReceiptMaw";
             MerchantHeight = MerchantSize(Special, state.Wave);
-            dialogue.MerchantName = giant ? Special ? "MOTHER OF A THOUSAND EGG-EYES" : "THE HUNDRED-FOOT VAULT" : Special ? "MADAM DREAMSHELL" : "THE RECEIPT GULPER";
+            dialogue.MerchantName = Special ? "MOTHER OF A THOUSAND EGG-EYES" : "THE SHOPKEEPER";
             MerchantCenter = new Vector2(0, Mathf.Min(1.6f + MerchantHeight * 0.18f, owner.Content.RestViewHeight - MerchantHeight * 0.5f - 0.45f));
             merchant = AddActor(scenery.transform, merchantFrames[0], merchantFrames, MerchantCenter, MerchantHeight, 0.7f);
             merchant.SetMerchantMood(Special);

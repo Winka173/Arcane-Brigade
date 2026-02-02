@@ -23,7 +23,8 @@ namespace ArcaneBrigade
             var view=Prop(index);var shadow=view==null?null:view.GetComponent<GroundShadow>();
             return shadow?.Contact!=null?(Vector2)shadow.Contact.transform.position:view==null?Vector2.zero:new Vector2(view.bounds.center.x,view.bounds.min.y);
         }
-        public bool Near(int index)=>Prop(index)!=null && Prop(index).enabled && Vector2.Distance(owner.Simulation.Champion.Position,Anchor(index))<=Reach;
+        // Act I canon: only the journal cabinet is a story object; the old "paths & people" chair stays scenery.
+        public bool Near(int index)=>index==0 && Prop(index)!=null && Prop(index).enabled && Vector2.Distance(owner.Simulation.Champion.Position,Anchor(index))<=Reach;
         public bool TryInspect(int index)
         {
             if(!Allowed || !Near(index))return false;
@@ -55,7 +56,7 @@ namespace ArcaneBrigade
             {
                 if(!Near(i))continue;
                 Rect bounds=ClickRect(i,camera);
-                string label=i==0?"READ THE ARCHIVE":"PATHS & PEOPLE";
+                string label=i==0?"READ THE JOURNAL":"PATHS & PEOPLE";
                 Rect text=new Rect(Mathf.Clamp(bounds.center.x-150,20,1600),Mathf.Clamp(bounds.yMax+8,185,940),300,48);
                 caption.normal.textColor=new Color(.01f,.015f,.025f,.9f);GUI.Label(new Rect(text.x+1,text.y+2,text.width,text.height),label+"\nClick / Space / A",caption);
                 caption.normal.textColor=ArcadeSkin.Cream;GUI.Label(text,label+"\nClick / Space / A",caption);

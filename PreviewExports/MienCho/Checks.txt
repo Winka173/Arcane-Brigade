@@ -1,4 +1,59 @@
-PASS Ten fixed milestones / twenty-seven authored pages
+PASS Act I canon: arrival, nineteen shop beats and the final hall
+PASS Every shop from wave 1 to 19 has its own story beat
+PASS Story beats stay in wave order 1
+PASS Story beats stay in wave order 2
+PASS Story beats stay in wave order 3
+PASS Story beats stay in wave order 4
+PASS Story beats stay in wave order 5
+PASS Story beats stay in wave order 6
+PASS Story beats stay in wave order 7
+PASS Story beats stay in wave order 8
+PASS Story beats stay in wave order 9
+PASS Story beats stay in wave order 10
+PASS Story beats stay in wave order 11
+PASS Story beats stay in wave order 12
+PASS Story beats stay in wave order 13
+PASS Story beats stay in wave order 14
+PASS Story beats stay in wave order 15
+PASS Story beats stay in wave order 16
+PASS Story beats stay in wave order 17
+PASS Story beats stay in wave order 18
+PASS Story beats stay in wave order 19
+PASS Story beats stay in wave order 20
+PASS Choice beat has an opening, two branches and an aftermath 0
+PASS Choice beat has an opening, two branches and an aftermath 1
+PASS Choice beat has an opening, two branches and an aftermath 2
+PASS Choice beat has an opening, two branches and an aftermath 3
+PASS Choice beat has an opening, two branches and an aftermath 4
+PASS Choice beat has an opening, two branches and an aftermath 5
+PASS Choice beat has an opening, two branches and an aftermath 6
+PASS Choice beat has an opening, two branches and an aftermath 7
+PASS Choice beat has an opening, two branches and an aftermath 8
+PASS Choice beat has an opening, two branches and an aftermath 9
+PASS Choice beat has an opening, two branches and an aftermath 10
+PASS Choice beat has an opening, two branches and an aftermath 11
+PASS Choice beat has an opening, two branches and an aftermath 12
+PASS Choice beat has an opening, two branches and an aftermath 13
+PASS Choice beat has an opening, two branches and an aftermath 14
+PASS Choice beat has an opening, two branches and an aftermath 15
+PASS Choice beat has an opening, two branches and an aftermath 16
+PASS Choice beat has an opening, two branches and an aftermath 17
+PASS Choice beat has an opening, two branches and an aftermath 18
+PASS Choice beat has an opening, two branches and an aftermath 19
+PASS Choice beat has an opening, two branches and an aftermath 20
+PASS Choice pages skip the branch not taken
+PASS Seven lanterns break on their canon waves; the eighth survives the act
+PASS Lantern states flicker before breaking and name what was lost
+PASS Four zones of five waves, each closed by a boss
+PASS Act I story boss on wave 4
+PASS Act I story boss on wave 5
+PASS The Keeper guards the gate at wave 5
+PASS Act I story boss on wave 10
+PASS Act I story boss on wave 15
+PASS First-canon save migrates and opens only the current beat
+PASS A choice cannot be stored on a beat that has none
+PASS A future choice cannot be forged
+PASS The telephone choice survives a real save
 PASS All sixty-six origins and six three-part companion arcs
 PASS Individual dream arrival LanternKnight
 PASS Individual dream arrival Postmaster

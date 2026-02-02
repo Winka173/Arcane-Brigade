@@ -333,7 +333,7 @@ namespace ArcaneBrigade.Editor
             Require(CarnivalHazards.Contains(tentacle, new Vector2(2, 0), 0.1f, 0) && !CarnivalHazards.Contains(tentacle, new Vector2(2, 1), 0.1f, 0), "Tentacle uses a lane, not a disk");
             var wave = new ExpandedField { Kind = ExpandedFieldKind.Shockwave, Position = Vector2.zero, Radius = 4, At = 1, Until = 3 };
             Require(CarnivalHazards.Contains(wave, new Vector2(2, 0), 0.1f, 2) && !CarnivalHazards.Contains(wave, Vector2.zero, 0.1f, 2), "Shockwave ring leaves a safe interior");
-            Require(StageTransfer.ChangesMap(5) && StageTransfer.ChangesMap(9) && !StageTransfer.ChangesMap(4), "Map changes every four cleared waves");
+            Require(StageTransfer.ChangesMap(6) && StageTransfer.ChangesMap(11) && StageTransfer.ChangesMap(16) && !StageTransfer.ChangesMap(5), "Map changes when Act I enters a new zone (waves 6, 11, 16)");
             Require(Vector2.Distance(StageTransfer.PassengerPosition(new Vector2(0, -5), 2.6f), new Vector2(0, -0.2f)) < 0.001f, "Transport lands exactly, without scene loading");
             File.WriteAllLines("PreviewExports/K17/Focused_Checks.txt", notes);
             Debug.Log("K17_CHECKS_PASSED " + notes.Count);

@@ -16,7 +16,7 @@ namespace ArcaneBrigade.Editor
             void Check(bool valid, string caption) { if (!valid) throw new InvalidOperationException("K25 " + caption); notes.Add("PASS " + caption); }
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             EnemyAffixLibrary library = EnemyAffixLibrary.Current;
-            Check(StageTransfer.CarrierFor(5) == StageCarrier.Hand && StageTransfer.CarrierFor(9) == StageCarrier.CarpetTongue && StageTransfer.CarrierFor(13) == StageCarrier.KeyholeEye && StageTransfer.CarrierFor(17) == StageCarrier.Hand, "Three anatomy carriers rotate without changing the four-wave schedule");
+            Check(StageTransfer.CarrierFor(6) == StageCarrier.Hand && StageTransfer.CarrierFor(11) == StageCarrier.CarpetTongue && StageTransfer.CarrierFor(16) == StageCarrier.KeyholeEye && StageTransfer.CarrierFor(21) == StageCarrier.Hand, "Three anatomy carriers rotate across the Act I zone changes");
             foreach (StageCarrier carrier in Enum.GetValues(typeof(StageCarrier)))
             {
                 Vector2 start = new Vector2(3, -2);
