@@ -201,6 +201,8 @@ namespace ArcaneBrigade
         private void DrawLives()
         {
             var ids = new System.Collections.Generic.List<string>();
+            var state = owner.Session.State;
+            for (int i = 0; i < ActOneCanon.StoryIds.Length; i++) if (ActOneCanon.StoryPresent(i, state.Wave, state.Phase == SessionPhase.Shop, state.Endless)) ids.Add("story:" + i);
             foreach (var entry in owner.Session.State.Roster) if (!ids.Contains(entry.UnitId)) ids.Add(entry.UnitId);
             foreach (var entry in owner.Session.State.AcquiredVariants) if (!ids.Contains(entry.UnitId)) ids.Add(entry.UnitId);
             GUI.Label(new Rect(70, 55, 1780, 75), "MIEN CHO / LIVES ALONGSIDE YOURS", title);
@@ -208,10 +210,16 @@ namespace ArcaneBrigade
             else
             {
                 creature = Mathf.Clamp(creature, 0, ids.Count - 1);
-                var id = ids[creature]; var unit = owner.Content.Unit(id);
+                var id = ids[creature];
+                int story = id.StartsWith("story:") ? int.Parse(id.Substring(6)) : -1;
+                if (story >= 0) id = ActOneCanon.StoryIds[story];
+                var unit = owner.Content.Unit(id);
+                bool stranger = story < 0 && owner.Session.Stranger(id);
                 RunHud.Sprite(new Rect(100, 220, 560, 470), unit.Body);
-                GUI.Label(new Rect(100, 730, 650, 120), unit.DisplayName + "\n" + (creature + 1) + " / " + ids.Count, title);
-                string text = "LIFE IN THE WAITING REALM\n" + CreatureLives.Origin(id) + "\n\nALONG THE CROSSING\n" + CreatureLives.Arc(id, owner.Session.State.Wave) + WaitingCompanionQuests.Consequences(owner.Session.State, id);
+                GUI.Label(new Rect(100, 730, 650, 120), (story >= 0 ? ActOneCanon.StoryNames[story] : stranger ? "???" : unit.DisplayName) + "\n" + (creature + 1) + " / " + ids.Count, title);
+                string text = stranger ? "A STRANGER\nYou sold your memory of them to the Last Customer. They still travel with you. You do not know who they are.\n\nThey introduce themselves again at every rest. They are kind about it."
+                    : story >= 0 ? "TRAVELLING WITH YOU\n" + CreatureLives.Arc(id, state.Wave)
+                    : "LIFE IN THE WAITING REALM\n" + CreatureLives.Origin(id) + "\n\nALONG THE CROSSING\n" + CreatureLives.Arc(id, owner.Session.State.Wave);
                 float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
                 scroll = GUI.BeginScrollView(new Rect(850, 180, 1000, 690), scroll, new Rect(0, 0, 955, height));
                 GUI.Label(new Rect(0, 0, 940, height), text, copy); GUI.EndScrollView();

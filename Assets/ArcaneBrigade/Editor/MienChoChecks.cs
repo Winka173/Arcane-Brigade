@@ -156,6 +156,47 @@ namespace ArcaneBrigade.Editor
                 rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
                 Check(rejected, "A sat-down journey cannot continue in the shop");
             }
+            // Phase 3: the Last Customer's offer at shop 8, strangers, and the travelling four's own story
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161070); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Roster.Clear();
+                var friend = c.Companions.First(u => System.Array.IndexOf(ActOneCanon.StoryIds, u.Id) < 0 && u.Tags.Length > 0 && !u.GiftOnly);
+                s.State.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = friend.Weapon.Id });
+                s.State.Roster.Add(new RosterEntry { UnitId = ActOneCanon.StoryIds[0], WeaponId = c.Unit(ActOneCanon.StoryIds[0]).Weapon.Id });
+                Check(!s.CustomerOfferAvailable, "The Customer waits until the telephone beat has been read");
+                s.State.MienCho.ReadMask = (1 << MienChoStory.Available(s.State)) - 1;
+                Check(s.CustomerOfferAvailable && !s.SellMemory(ActOneCanon.StoryIds[0]), "Nobody wearing a travelling companion's body can be sold");
+                s.PrepareCombat(); string tag = friend.Tags[0]; int before = s.BondCounts.TryGetValue(tag, out int n) ? n : 0;
+                int dark = ActOneCanon.Broken(8, s.State.ActOne.RelitMask);
+                Check(s.SellMemory(friend.Id) && s.Stranger(friend.Id) && !s.CustomerOfferAvailable, "A memory is sold once; that companion becomes a stranger");
+                Check(ActOneCanon.Broken(8, s.State.ActOne.RelitMask) == dark - 1 && s.State.Roster.Exists(r => r.UnitId == friend.Id), "The Customer keeps his word: a lantern burns again and the companion stays");
+                s.PrepareCombat(); Check((s.BondCounts.TryGetValue(tag, out int m) ? m : 0) == before - 1, "A stranger no longer counts toward bonds");
+                Check(CompanionVoice.Line(friend.Id, 9, s.State).Contains("don't think we've met") && NightmareDialogue.Ending(s.State, 2).Contains("You do not know who they are"), "Strangers introduce themselves again; dawn remembers the cost");
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.Stranger(friend.Id), "The sold memory survives a real save");
+                s.State.ActOne.SoldMemory = "";
+                bool rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "A sale without a memory is rejected");
+            }
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161071); s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Roster.Clear();
+                var other = c.Companions.First(u => System.Array.IndexOf(ActOneCanon.StoryIds, u.Id) < 0 && !u.GiftOnly);
+                s.State.Roster.Add(new RosterEntry { UnitId = other.Id, WeaponId = other.Weapon.Id });
+                s.State.MienCho.ReadMask = (1 << MienChoStory.Available(s.State)) - 1;
+                int dark = ActOneCanon.Broken(8, s.State.ActOne.RelitMask);
+                Check(s.RefuseCustomer() && s.State.ActOne.Offer == ActOneProgress.Refused && ActOneCanon.Broken(8, s.State.ActOne.RelitMask) == dark && !s.CustomerOfferAvailable, "Walking on costs nothing and the offer does not return");
+                s.State.Wave = 9; Check(!s.CustomerOfferAvailable, "The offer belongs to shop 8 only");
+                s.State.Wave = 6; s.State.ActOne.Offer = ActOneProgress.Refused;
+                bool rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "A refusal cannot be forged before the offer was made");
+            }
+            for (int i = 0; i < ActOneCanon.StoryIds.Length; i++)
+            {
+                string id = ActOneCanon.StoryIds[i];
+                Check(CreatureLives.Arc(id, 20).Contains(ActOneCanon.StoryNames[i]) && CreatureLives.Arc(id, ActOneCanon.JoinShop[i]).Split(new[] { "\n\n" }, StringSplitOptions.None).Length == 1 && CreatureLives.Arc(id, 20).Split(new[] { "\n\n" }, StringSplitOptions.None).Length == 3, "The travelling four tell their own story as the road reaches it " + id);
+                Check(CreatureLives.Banter(id, 1) != CreatureLives.Banter(id, 20), "Their words change along the road " + id);
+            }
             for (int wave = 1; wave <= 24; wave++)
             {
                 using var s = new RunSession(c); s.Start("LanternKnight", 161026); s.State.Wave = wave; s.State.Phase = SessionPhase.Shop;

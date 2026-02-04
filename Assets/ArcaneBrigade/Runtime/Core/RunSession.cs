@@ -275,6 +275,7 @@ namespace ArcaneBrigade
         {
             BondCounts.Clear();
             foreach (RosterEntry entry in State.Roster)
+                if (!Stranger(entry.UnitId))
                 foreach (string tag in catalog.Unit(entry.UnitId).Tags)
                     BondCounts[tag] = BondCounts.TryGetValue(tag, out int count) ? count + 1 : 1;
             if (Talent("\"The All-Knowing\" Walter") > 0)

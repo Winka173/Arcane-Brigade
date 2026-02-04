@@ -12,6 +12,9 @@ namespace ArcaneBrigade
         public int SitCloser;   // the warm chair: None, Fighting, Won (stood up), Lost (sat down: the run ended)
         public int SatWave;     // the shop where the traveller sat down
         public int RelitMask;   // lanterns burning again, by canon lamp index (0..7)
+        public const int Undecided = 0, Refused = 1, Sold = 2;
+        public int Offer;              // shop 8: the Last Customer's offer for a memory
+        public string SoldMemory = ""; // the species the traveller no longer remembers
     }
     public sealed partial class RunSnapshot { public ActOneProgress ActOne = new ActOneProgress(); }
     public sealed partial class CheckpointCatalog
@@ -99,6 +102,27 @@ namespace ArcaneBrigade
             return true;
         }
 
+        /// <summary>Shop 8, after the telephone: "Sell me your memory of one of them, and I'll light a lamp for you."</summary>
+        public bool CustomerOfferAvailable => !State.Endless && State.Phase == SessionPhase.Shop && State.Wave == 8 && !SecretRoomOpen
+            && (State.ActOne?.Offer ?? 0) == ActOneProgress.Undecided && ((State.MienCho?.ReadMask ?? 0) & (1 << 8)) != 0 && State.Roster.Exists(entry => Array.IndexOf(ActOneCanon.StoryIds, entry.UnitId) < 0);
+        public bool SellMemory(string unitId)
+        {
+            if (!CustomerOfferAvailable || string.IsNullOrEmpty(unitId) || Array.IndexOf(ActOneCanon.StoryIds, unitId) >= 0 || !State.Roster.Exists(entry => entry.UnitId == unitId)) return false;
+            State.ActOne.Offer = ActOneProgress.Sold; State.ActOne.SoldMemory = unitId;
+            int lamp = ActOneCanon.RelightTarget(State.Wave, State.ActOne.RelitMask);
+            if (lamp >= 0) State.ActOne.RelitMask |= 1 << lamp;
+            RecountBonds();
+            return true;
+        }
+        public bool RefuseCustomer()
+        {
+            if (!CustomerOfferAvailable) return false;
+            State.ActOne.Offer = ActOneProgress.Refused; return true;
+        }
+        /// <summary>A companion whose memory was sold: still travelling, still kind, but a stranger who no longer counts toward bonds.</summary>
+        public bool Stranger(string unitId) => !string.IsNullOrEmpty(unitId) && (State.ActOne?.Offer ?? 0) == ActOneProgress.Sold && State.ActOne.SoldMemory == unitId;
+        public static bool Stranger(RunSnapshot state, string unitId) => !string.IsNullOrEmpty(unitId) && (state?.ActOne?.Offer ?? 0) == ActOneProgress.Sold && state.ActOne.SoldMemory == unitId;
+
         public static void ValidateActOne(RunSnapshot state)
         {
             ActOneProgress progress = state?.ActOne;
@@ -113,6 +137,9 @@ namespace ArcaneBrigade
                 throw new InvalidOperationException("Sitting down ends the journey");
             for (int lamp = 0; lamp < 8; lamp++)
                 if ((progress.RelitMask & (1 << lamp)) != 0 && state.Wave < ActOneCanon.BreakWave[lamp]) throw new InvalidOperationException("A lantern cannot be relit before it breaks");
+            if (progress.Offer < ActOneProgress.Undecided || progress.Offer > ActOneProgress.Sold || progress.Offer != ActOneProgress.Undecided && state.Wave < 8 && !state.Endless
+                || (progress.Offer == ActOneProgress.Sold) == string.IsNullOrEmpty(progress.SoldMemory))
+                throw new InvalidOperationException("Invalid Customer offer");
         }
     }
 }

@@ -201,8 +201,14 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 - Capture: `-arcane-actone-capture -capturePath DIR` (ghế, thẻ cảnh báo, lựa chọn journal, trận ẩn).
 - Ghi chú cân bằng: trong capture, hero đứng yên chết sau ~4 giây ở SIT CLOSER (wave 10 → kẻ địch như wave 18); cần chơi thử thật.
 
+**Phase 3 — xong (lời đề nghị của Customer, người lạ, tiếng nói của bốn người):**
+- Shop 8, sau khi đọc cảnh điện thoại: thẻ “THE LAST CUSTOMER” cho chọn bán ký ức về một đồng hành thường (phím số / click) hoặc “SAY NOTHING AND WALK ON” (Esc). Bán: một ngọn đèn vỡ cháy lại; người đó ở lại nhưng thành “???”, không tính vào bond, tự giới thiệu lại ở các lần shop, bảng Brigade/journal ghi rõ; bình minh có câu riêng. Không bán được Hob/Latch/Postscript/Tally hay đồng hành cùng loài với họ. Chỉ một lần, chỉ ở shop 8.
+- Bảng Brigade (bàn dài) và journal “THE PEOPLE TRAVELLING WITH YOU” có Hob, Latch, Postscript, Tally với tên và câu chuyện riêng; ghế ngồi tách biệt với đồng hành mua cùng loài.
+- Tiểu sử hành trình và câu nói của bốn người viết lại theo canon, mở dần theo mốc của từng người.
+- Kiểm tra mới trong `MienChoChecks`; capture có thêm thẻ lời đề nghị và bảng Brigade.
+
 **Còn lại:**
-- Phase 3: bán ký ức ở shop 8 (trạng thái “người lạ”), cảnh kéo Hob ở wave 16 (dùng phòng Perfect Room), relic *Thursday Shoes*, đồng hành cốt truyện trong bảng Brigade.
+- Phase 3b: relic *Thursday Shoes* cho trận SIT CLOSER (cần icon `Item_ThursdayShoes.png`), cảnh kéo Hob tương tác ở wave 16 (hiện là đoạn truyện).
 - Phase 4: art theo `Docs/Act_One_Story_Art_Requests.md` (ghế, Những Người Đã Ngồi Xuống, Customer mượn mặt, 3 boss, 4 sàn vùng, panel journal) và gắn vào game.
 - Phase 5: cảnh ghế bành xoay lại ở menu sau credit.
 - Đã chốt: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” giữ làm nội dung phụ.

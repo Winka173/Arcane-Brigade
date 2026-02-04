@@ -54,11 +54,24 @@ namespace ArcaneBrigade
                 int tierSteps = catalog.ContentRevision > 0 ? Mathf.Max(0, entry.Tier - 1) : 0;
                 float range = applied.Weapon.Range;
                 float passive = (unit.Passive == PassiveKind.Scavenge ? Mathf.Round(unit.PassiveStrength) : unit.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, entry.Tier - 1);
-                model.Companions.Add(new Row { Name = RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
+                model.Companions.Add(new Row { Name = session.Stranger(unit.Id) ? "???" : RunUICopy.UnitName(unit), UnitId = unit.Id, Icon = unit.Body, WeaponIcon = actual.Sprite, Summary = "Tier " + entry.Tier + " · " + RunUICopy.WeaponName(actual.Id) + "\n" + RunUICopy.WeaponKindName(actual.Kind) + " / " + RunUICopy.ElementName(actual.Element),
                     CombatValues = new Dictionary<string, string> { { "Damage", damage.ToString("0.###") }, { "Cycle", cooldown.ToString("0.###") + " s" }, { "Crit", Percent(applied.CriticalChance) }, { "Speed", applied.Speed.ToString("0.###") }, { "Projectile", applied.Weapon.ProjectileCount.ToString() }, { "Passive", passive.ToString("0.###") } },
                     Explanation = "Assigned weapon: " + RunUICopy.WeaponName(actual.Id) + "\nDamage: " + damage.ToString("0.0") + " / cycle " + cooldown.ToString("0.00") + " seconds\nRange: " + range.ToString("0.0") + "\n" + (tierSteps > 0 ? actual.Kind == WeaponKind.Projectile ? "Tier bonus: adds " + tierSteps + " projectiles and " + tierSteps + " pierce.\n" : "Tier bonus: increased range, sweep arc and attack speed.\n" : "") + SignatureDescription.Describe(actual, entry.Tier, session.StackCount("reflective-ink") > 0) + "\nImmortal. Each companion body counts once toward bonds." });
                 model.Companions[model.Companions.Count - 1].Explanation += "\n\n" + CompanionDescriptions.Describe(unit,entry.Tier,catalog.TierSupportMultiplier);
             }
+            foreach (UnitDefinition story in compiled.StoryCompanions ?? new UnitDefinition[0])
+            {
+                int tier = ActOneCanon.StoryTier(session.State.Wave);
+                model.Companions.Add(new Row
+                {
+                    Name = story.DisplayName, UnitId = story.Id, Icon = story.Body, WeaponIcon = story.Weapon.Sprite,
+                    Summary = "Travels with you · " + RunUICopy.WeaponName(story.Weapon.Id) + "\nIn their own place · grows with the road (tier " + tier + ")",
+                    CombatValues = new Dictionary<string, string> { { "Damage", story.Weapon.Damage.ToString("0.###") }, { "Cycle", story.Weapon.Cooldown.ToString("0.###") + " s" }, { "Speed", story.Speed.ToString("0.##") } },
+                    Explanation = story.DisplayName.ToUpperInvariant() + "\n" + CreatureLives.Arc(story.Id, session.State.Wave) + "\n\nWeapon: " + RunUICopy.WeaponName(story.Weapon.Id) + "\nDamage: " + story.Weapon.Damage.ToString("0.0") + " / cycle " + story.Weapon.Cooldown.ToString("0.00") + " seconds\nRange: " + story.Weapon.Range.ToString("0.0")
+                        + "\nA travelling companion of the story: never bought, merged or sold, and not counted toward bonds. Their strength follows the zone of the road."
+                });
+            }
+            foreach (Row row in model.Companions) if (row.UnitId != null && session.Stranger(row.UnitId) && row.Name == "???") row.Explanation = "You no longer remember who they are. You sold that memory to the Last Customer. They still walk with you, and they do not count toward bonds.\n\n" + row.Explanation;
             if (catalog.StatRevision > 0) K10BuildReadModel.Append(model, session, catalog, health, compiled);
             BuildMorphReadModel.Append(model, session, catalog, compiled);
             foreach (ItemStack stack in session.State.Items)

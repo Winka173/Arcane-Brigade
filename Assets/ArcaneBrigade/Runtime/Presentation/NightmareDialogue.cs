@@ -102,6 +102,7 @@ namespace ArcaneBrigade
             int variation = Math.Abs(cursor / 3 % 4) + ((state.Seed >> (depth * 3)) & 3);
             string text = cursor % 3 == 2 ? Evidence[depth][variation % 4] : Whispers[depth][Math.Abs(cursor % 4)];
             if (state.Wave == 19) text = "The last lantern holds a name he cannot buy.";
+            if ((state.ActOne?.Offer ?? 0) == ActOneProgress.Sold && cursor % 4 == 1) text = "One of your companions introduces themself again, kindly, as if you had never met.";
             if (NightmareRules.Remembered(state, SecretEventKind.Understudy) && (text.Contains("glass") || text.Contains("window"))) text = "The familiar window holds its shape. Your reflection stays beside you.";
             if (NightmareRules.Remembered(state, SecretEventKind.ImpossibleTailor) && (text.Contains("shelf") || text.Contains("shelves"))) text = "The repaired shelf holds its shape. Something else in the room is breathing.";
             return text;
@@ -152,6 +153,7 @@ namespace ArcaneBrigade
                     + (state.Roster.Count > 0 ? "Your companions decide for themselves who goes on and who stays. Nobody asks you to earn the choice." : "Even alone, you carried enough light to reach the morning.") + "\n"
                     + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting along the platform.\n")
                     + (state.OutsideStage == OutsideStageStatus.Completed ? "The Keeper holds the frame of the gate and opens its hand." : "The Keeper stands at the open gate and lets every traveller through.")
+                    + ((state.ActOne?.Offer ?? 0) == ActOneProgress.Sold ? "\nSomeone at the table pulls out a chair for you as well. You do not know who they are. They do it anyway." : "")
             };
         }
         private static string Lantern() => "FOR WHOEVER COMES NEXT\nThe shopkeeper keeps the lantern trimmed in the window.\nAlong the platform, a few of the travellers who sat down have lifted their heads toward the light. One of them has taken off their hat.\nIt is an invitation, not a debt. You do not have to come back to prove you remember.";

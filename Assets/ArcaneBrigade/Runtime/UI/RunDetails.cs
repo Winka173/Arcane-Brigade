@@ -29,13 +29,13 @@ namespace ArcaneBrigade
         public void Close() { if (model != null) CheckpointAudio.PlayInterfaceId("ui.close"); model = null; GlossaryUI.Close(); }
         /// <summary>B11: the brigade sits at one long table, a seat per species (back row behind the table, front row before it).
         /// Clicking someone selects them; they lean in and speak their key facts and a line in their own hand.</summary>
-        private void DrawTable(List<RunBuildReadModel.Row> rows, float rowHeight, int wave)
+        private void DrawTable(List<RunBuildReadModel.Row> rows, float rowHeight, RunSnapshot state)
         {
             var seats = new List<int>();
             var counts = new Dictionary<string, int>();
             for (int index = 0; index < rows.Count; index++)
             {
-                string key = rows[index].UnitId ?? rows[index].Name;
+                string key = SeatKey(rows[index]);
                 if (counts.ContainsKey(key)) { counts[key]++; continue; }
                 counts[key] = 1;
                 if (seats.Count < 14) seats.Add(index);
@@ -46,8 +46,8 @@ namespace ArcaneBrigade
             Rect top = new Rect(area.x + 90, area.y + 180, area.width - 180, 74);
             int back = Mathf.CeilToInt(seats.Count / 2f), front = seats.Count - back;
             int selectedSeat = -1;
-            string selectedKey = selection >= 0 && selection < rows.Count ? rows[selection].UnitId ?? rows[selection].Name : null;
-            for (int k = 0; k < seats.Count; k++) if ((rows[seats[k]].UnitId ?? rows[seats[k]].Name) == selectedKey) selectedSeat = k;
+            string selectedKey = selection >= 0 && selection < rows.Count ? SeatKey(rows[selection]) : null;
+            for (int k = 0; k < seats.Count; k++) if (SeatKey(rows[seats[k]]) == selectedKey) selectedSeat = k;
             Rect SeatRect(int k)
             {
                 bool backRow = k < back;
@@ -77,7 +77,7 @@ namespace ArcaneBrigade
             {
                 RunBuildReadModel.Row row = rows[seats[selectedSeat]];
                 Rect seat = SeatRect(selectedSeat);
-                string said = CompanionVoice.Line(row.UnitId, wave);
+                string said = CompanionVoice.Line(row.UnitId, state.Wave, state);
                 string facts = row.Name + "  ·  " + (row.Summary ?? "").Split('\n')[0];
                 if (sayHand == null) { sayHand = ArcadeTypography.Style(25); sayHand.font = ArcadeTypography.Hand; sayHand.normal.textColor = new Color(0.25f, 0.20f, 0.14f); sayHand.wordWrap = true; }
                 seatName.normal.textColor = ArcadeSkin.Ink;
@@ -91,6 +91,8 @@ namespace ArcaneBrigade
             }
         }
 
+        private static string SeatKey(RunBuildReadModel.Row row) => (row.UnitId ?? "") + "/" + row.Name;
+
         private void DrawSeat(List<RunBuildReadModel.Row> rows, int index, Dictionary<string, int> counts, Rect seat, bool chosen, float rowHeight)
         {
             RunBuildReadModel.Row row = rows[index];
@@ -98,7 +100,7 @@ namespace ArcaneBrigade
             // chair back, then the guest
             ArcadeSkin.Slant(new Rect(seat.x + 22, seat.y + 30, seat.width - 44, 64), new Color(0.36f, 0.23f, 0.13f, 0.9f));
             if (row.Icon != null) RunHud.Sprite(new Rect(seat.x + 4, seat.y, seat.width - 8, seat.height - 10), row.Icon);
-            int many = counts.TryGetValue(row.UnitId ?? row.Name, out int c) ? c : 1;
+            int many = counts.TryGetValue(SeatKey(row), out int c) ? c : 1;
             if (many > 1)
             {
                 if (seatName == null) { seatName = ArcadeTypography.Style(17, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
@@ -175,7 +177,7 @@ namespace ArcaneBrigade
             List<RunBuildReadModel.Row> rows = tab == 0 ? model.Stats : tab == 1 ? model.Companions : tab == 2 ? model.Relics : model.Links;
             float rowHeight = tab == 0 ? 115 : 145;
             bool table = tab == 1 && rows.Count > 0;
-            if (table) DrawTable(rows, rowHeight, owner.Session.State.Wave);
+            if (table) DrawTable(rows, rowHeight, owner.Session.State);
             Rect listArea = table ? new Rect(70, 640, 1060, 325) : new Rect(70, 295, 1060, 670);
             scroll = GUI.BeginScrollView(listArea, scroll, new Rect(0, 0, 1005, Mathf.Max(listArea.height - 5, rows.Count * rowHeight)));
             for (int index = 0; index < rows.Count; index++)
@@ -211,7 +213,7 @@ namespace ArcaneBrigade
             if (tab == 1 && rows.Count > 0)
             {
                 // B3: the companion's own words, in their hand, above the facts
-                string said = CompanionVoice.Line(rows[Mathf.Clamp(selection, 0, rows.Count - 1)].UnitId, owner.Session.State.Wave);
+                string said = CompanionVoice.Line(rows[Mathf.Clamp(selection, 0, rows.Count - 1)].UnitId, owner.Session.State.Wave, owner.Session.State);
                 if (!string.IsNullOrEmpty(said))
                 {
                     if (handStyle == null) { handStyle = ArcadeTypography.Style(30); handStyle.font = ArcadeTypography.Hand; handStyle.normal.textColor = ArcadeSkin.Paper; }

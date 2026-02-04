@@ -76,21 +76,21 @@ namespace ArcaneBrigade
         private static readonly Dictionary<string, string[]> Arcs = new Dictionary<string, string[]>
         {
             {"TeapotPilgrim", new[] {
-                "The pilgrim pours for everyone and hides their own empty cup. Asked what they need, they list chores. You leave a place at the table without giving it a task. They stand beside it a long time before sitting.",
-                "They miss a serving bell while resting. You return with two cups. 'I have not earned that one,' they say. Nobody takes it away. Outside, the room repeats the bell. They let somebody else answer.",
-                "At the last rest, they ask for tea before offering yours. A companion brings it. 'I still like caring for people. I want to be here when I am tired too.' The reserved chair is no longer empty."}},
+                "Hob is the shop's hearth spirit. It has poured tea for every traveller who ever woke at that counter and has never once sat down. Asked what it needs, Hob lists chores. 'Need? I'm the one who asks that.'",
+                "When the first lantern broke, Hob dropped a cup. It had never dropped anything. Since then it watches the warm chair in the corner the way you watch a pan about to boil over, and refills your cup before it is empty.",
+                "In the perfect room Hob sat down in a chair of its own, because the chair promised it could finally rest. Everyone pulled it out together. Now Hob chooses a stool by the stove, because it wants to, and tells you to stop asking for a minute."}},
             {"HoodWisp", new[] {
-                "The seal inside their hood belongs to an old gate officer. They always cover your left, even when the road is clearer on the right. They do not remember learning that habit.",
-                "The register names them as the guard who stopped your earlier escape. Beside it, a correction in their hand: OPENED FROM INSIDE. They chose to help before the contract erased the night. Anger does not prevent you hearing the whole account.",
-                "At the final gate, they step aside before offering cover. 'You do not need my permission.' They remain on your left by agreement. What survived the erased memory was a choice they can make again."}},
+                "Latch was one of the Keeper's guards. Last time round, it stopped you at the gate; it did what the rewritten orders said. After the Keeper knelt, Latch came with you and took the place on your left without a word.",
+                "The whisper that tells you to hide always comes from the left. Latch has always stood there. It remembers earlier journeys in pieces: which hand shook, which door it held, how far you got before it was told to close the way.",
+                "Latch does not ask to be forgiven for the last time. It stays on your left by agreement now, not by orders, and lets you decide which doors to open. 'You do not need my permission. You never did.'"}},
             {"ShellPostman", new[] {
-                "The courier's envelope is worn soft by years. They will not read the addressee's letter for them. When you recognise the handwriting, they put it in your hands and wait.",
-                "The reply names Thursday; the register confirms a visitor. The courier does not say this fixes everything. 'Would you like me nearby while you read it again?' The question leaves room for no.",
-                "They return the receipt and keep an empty envelope for their own message. 'I have somebody to write to as well.' Their route no longer ends at your story. You ask about that person."}},
+                "Postscript is a courier folded out of an envelope. It walks the last platform leaving letters on the laps of travellers who sat down, and none of them ever opens one. When it saw that you were still standing, it followed you.",
+                "Couriers may open any letterbox. Postscript pulled the nails out of yours with its paper hands and found the reply that was sewn shut: Thursday, the front door, you do not need to bring anything. It held the letter while you read.",
+                "'It's addressed to you. It always was.' Postscript has an empty envelope of its own now, for somebody it wants to write to. Its route no longer ends at your story. Ask it who, some time."}},
             {"PaperDevil", new[] {
-                "They know which boards conceal alarm wires. They first claim to have learned while escaping. An old collection warrant suggests they came from the other direction. They stop making the convenient claim.",
-                "They admit leading collectors to a shelter. A survivor refuses the apology. The tracker gives them the route ledger anyway and accepts the distance. Repair cannot depend on being welcomed back.",
-                "At the crossing, they destroy marks they were paid to preserve. Nobody promises forgiveness. 'I can do this because it is right. The answer afterward belongs to them.' They keep the names, not the warrants."}},
+                "Tally hunted runaways for the Last Customer. Every one it brought back is a neat carved mark on its body, in groups of five. Last time round, it found you and let you go. That is why the Customer is hunting it now.",
+                "Tally reads receipts when it thinks nobody is watching. The Customer has offered to give it its own name back, if it brings you to sit down. For one night it was gone, and you did not know where.",
+                "At the Customer's counter, Tally laid out every name it ever brought back and asked for them to be returned. Nobody promised to forgive it. It came back to the brigade without a word and took its place."}},
             {"CarouselPony", new[] {
                 "They circle the resting group despite room to go straight. A collar counts completed rides. They ask your destination before offering their back. You wait for the offer.",
                 "The carousel tune plays. They stop, choose a rider and cross the old circle diagonally. Nothing breaks except the assumption that whoever holds a ticket owns the route.",
@@ -104,20 +104,25 @@ namespace ArcaneBrigade
         public static int ArcCount => Arcs.Count;
         public static bool Has(string id) => id != null && Origins.ContainsKey(id);
         public static string Origin(string id) => Has(id) ? Origins[id] : "";
+        // the travelling four reveal more of their story as the road reaches their beats (Docs/Mien_Cho_Act_One_Story.md)
+        private static readonly Dictionary<string, int[]> ArcWaves = new Dictionary<string, int[]>
+        {
+            {"TeapotPilgrim", new[] { 1, 3, 16 }}, {"HoodWisp", new[] { 5, 14, 17 }}, {"ShellPostman", new[] { 6, 12, 15 }}, {"PaperDevil", new[] { 11, 17, 19 }},
+        };
         public static string Arc(string id, int wave)
         {
             if (!Arcs.TryGetValue(id, out var pages)) return "They chose this passage with the brigade. Their life continues beyond this journey; their origin is recorded above.";
-            int count = wave >= 17 ? 3 : wave >= 9 ? 2 : 1;
+            int count = ArcWaves.TryGetValue(id, out int[] at) ? (wave >= at[2] ? 3 : wave >= at[1] ? 2 : 1) : wave >= 17 ? 3 : wave >= 9 ? 2 : 1;
             string result = "";
             for (int i = 0; i < count; i++) result += (i > 0 ? "\n\n" : "") + pages[i];
             return result;
         }
         public static string Banter(string id, int wave) => id switch
         {
-            "TeapotPilgrim" => wave >= 17 ? "I would like my tea first today. Will you sit with me?" : wave >= 9 ? "You brought me a cup. I had not done anything for it." : "I poured for everyone. Is that chair really for me?",
-            "HoodWisp" => wave >= 17 ? "Your left, if you want me there. The door is your choice." : wave >= 9 ? "I guarded this door. Then I opened it. Both were me." : "Why do I always know to cover your left?",
-            "ShellPostman" => wave >= 17 ? "My next letter will be my own. Thank you for asking." : wave >= 9 ? "I can wait nearby while you read. Or leave you space." : "This envelope knows your handwriting. You should open it.",
-            "PaperDevil" => wave >= 17 ? "I will break the tracking marks. Nobody owes me forgiveness." : wave >= 9 ? "They refused my apology. I gave them the routes anyway." : "I know the traps because I helped set them. You should know.",
+            "TeapotPilgrim" => wave >= 17 ? "Yes. For you to stop asking for a minute." : wave >= 3 ? "I dropped a cup. I have never dropped a cup." : "Need? I'm the one who asks that.",
+            "HoodWisp" => wave >= 17 ? "Your left, if you want me there. The doors are yours." : wave >= 10 ? "The whisper comes from your left. So do I." : "I stopped you, last time. I will not stop you again.",
+            "ShellPostman" => wave >= 15 ? "I have a letter of my own to write now." : wave >= 12 ? "It's addressed to you. It always was." : "A reply. Any reply.",
+            "PaperDevil" => wave >= 19 ? "I gave the names back. Nobody owes me anything for it." : wave >= 17 ? "Don't ask what's on the receipt." : wave >= 12 ? "Last time, I let you go. He has not forgiven me for it." : "Each mark is somebody I brought back.",
             "CarouselPony" => wave >= 17 ? "Walk beside me a little. I want to choose the road." : wave >= 9 ? "The tune can play. I do not have to circle." : "Ask where I want to go before asking for a ride.",
             "SecretPatchBear" => wave >= 17 ? "Keep the claim ticket. I am keeping my name." : wave >= 9 ? "That patch can stay. Please ask before mending it." : "Do you need a receipt for me to have a seat?",
             _ => null

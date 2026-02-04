@@ -25,6 +25,9 @@ namespace ArcaneBrigade
             { "MonsterMarble", "I want a station sign that begins: ask the traveller their name." },
         };
 
+        public static string Line(string unitId, int wave, RunSnapshot state)
+            => RunSession.Stranger(state, unitId) ? "Hello. I don't think we've met. I'm glad to be walking with you anyway." : Line(unitId, wave);
+
         public static string Line(string unitId, int wave)
         {
             if (string.IsNullOrEmpty(unitId)) return null;

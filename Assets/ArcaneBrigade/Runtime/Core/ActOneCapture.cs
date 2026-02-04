@@ -37,6 +37,22 @@ namespace ArcaneBrigade
             if (!RunPaths.Root.Contains("ArcaneBrigadeDiagnostics")) { Application.Quit(1); yield break; }
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.6f);
+            // A: shop 8, the Last Customer's offer, then the long table with a stranger and the travelling four
+            using (var session = new RunSession(catalog))
+            {
+                session.Start("LanternKnight", 161059); session.State.Wave = 8; session.State.Phase = SessionPhase.Shop; session.State.Gold = 2000;
+                session.State.Roster.Clear();
+                foreach (string id in new[] { "BrassAcorn", "PillowOracle", "HoodWisp" }) if (catalog.Unit(id) != null) session.State.Roster.Add(new RosterEntry { UnitId = id, WeaponId = catalog.Unit(id).Weapon.Id });
+                session.State.MienCho.ReadMask = (1 << MienChoStory.Available(session.State)) - 1;
+                storage.SaveRun(session.State);
+            }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(2.8f);
+            var first = FindAnyObjectByType<ArenaController>();
+            yield return Shot("05-customer-offer");
+            first.SellMemory(first.Session.State.Roster[0].UnitId); yield return new WaitForSecondsRealtime(.6f);
+            first.ToggleDetails(); first.Details.SelectTab(1); yield return new WaitForSecondsRealtime(.5f); yield return Shot("06-brigade-stranger-and-four");
+            first.ToggleDetails(); yield return new WaitForSecondsRealtime(.2f);
+            // B: shop 10, the warm chair
             using (var session = new RunSession(catalog))
             {
                 session.Start("LanternKnight", 161060); session.State.Wave = 10; session.State.Phase = SessionPhase.Shop; session.State.Gold = 2000;
