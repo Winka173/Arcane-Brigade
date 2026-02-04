@@ -94,6 +94,68 @@ namespace ArcaneBrigade.Editor
                 Check(CompanionDescriptions.Describe(u).Contains(CreatureLives.Origin(u.Id)), "Origin reaches actual companion description " + u.Id);
             }
             Check(c.Companions.Select(u => CreatureLives.Origin(u.Id)).Distinct().Count() == 66, "No shared fallback biographies");
+            // Phase 2: the story party, the warm chair and the night you hid
+            foreach (string id in ActOneCanon.StoryIds) Check(c.Unit(id) != null && c.Unit(id).Weapon != null, "Story companion body exists " + id);
+            Check(!ActOneCanon.StoryPresent(0, 1, false, false) && ActOneCanon.StoryPresent(0, 1, true, false) && !ActOneCanon.StoryPresent(1, 5, false, false) && ActOneCanon.StoryPresent(1, 5, true, false)
+                && ActOneCanon.StoryPresent(3, 12, false, false) && !ActOneCanon.StoryPresent(3, 18, true, false) && !ActOneCanon.StoryPresent(3, 19, false, false) && ActOneCanon.StoryPresent(3, 19, true, false) && ActOneCanon.StoryPresent(3, 20, false, false),
+                "Hob, Latch, Postscript and Tally join on their canon shops; Tally is gone from shop 18 to wave 19");
+            Check(ActOneCanon.ChairPosition(1) == new Vector2(7.4f, 3.6f) && Vector2.Distance(ActOneCanon.ChairPosition(19), new Vector2(0, -4.5f)) < 2.6f && Vector2.Distance(ActOneCanon.ChairPosition(19), new Vector2(0, -4.5f)) > 1.9f, "The warm chair creeps from the far corner to beside the exit");
+            for (int wave = 2; wave <= 19; wave++) Check(Vector2.Distance(ActOneCanon.ChairPosition(wave), ActOneCanon.ChairPosition(19)) <= Vector2.Distance(ActOneCanon.ChairPosition(wave - 1), ActOneCanon.ChairPosition(19)) + .001f, "The chair never moves away from the exit " + wave);
+            Check(ActOneCanon.ChairOffering(2, 0) == 2 && ActOneCanon.ChairOffering(8, 1) == 3 && ActOneCanon.ChairOffering(8, 2) == 0 && ActOneCanon.ChairOffering(12, 0) == 1 && ActOneCanon.ChairOffering(3, 0) == 0, "Coins, the jar and the breathing receiver lie on the blanket on their shops");
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161050); s.State.Roster.Clear();
+                s.State.Wave = 1; s.State.Phase = SessionPhase.Combat;
+                Check(s.PrepareCombat().StoryCompanions.Length == 0, "Wave 1: nobody has joined yet");
+                s.State.Phase = SessionPhase.Shop;
+                var shop = s.PrepareCombat();
+                Check(shop.StoryCompanions.Length == 1 && shop.StoryCompanions[0].DisplayName == "Hob" && shop.StartingCompanions.Length == 0, "Hob meets you in the first shop in a place of its own");
+                s.State.Wave = 12; s.State.Phase = SessionPhase.Combat;
+                var full = s.PrepareCombat();
+                Check(full.StoryCompanions.Length == 4 && s.State.Roster.Count == 0, "Four travelling companions fight without taking roster places");
+                var sim = new CombatSimulation(full); sim.Start(161050);
+                Check(sim.Units.Count(u => u.Faction == Faction.Companion) == 4, "Story companions really enter the fight");
+            }
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161051); s.State.Wave = 7; s.State.Phase = SessionPhase.Shop; s.State.Roster.Clear();
+                Check(!s.SitCloserAvailable && !s.AcceptSitCloser(), "The warm chair cannot be sat in before the eighth shop");
+                s.State.Wave = 10;
+                Check(s.SitCloserAvailable && s.AcceptSitCloser() && s.State.Phase == SessionPhase.Combat && s.State.Wave == 10, "Sitting down starts the fight on the same shop visit");
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                var arena = s.PrepareCombat();
+                Check(arena.Boss != null && arena.Boss.DisplayName == "THE BEDSIDE" && arena.KnockDeadline == ActOneCanon.KnockSeconds && arena.EnemyBudget > 0, "The night you hid: the Bedside, its seated travellers and the knocking clock");
+                using (var normal = new RunSession(c)) { normal.Start("LanternKnight", 161051); normal.State.Wave = 10; Check(arena.Boss.Health > normal.PrepareCombat().Boss.Health * 1.5f, "The Bedside is far stronger than the wave's own boss"); }
+                arena.StoryCompanions = new UnitDefinition[0]; arena.Champion.Health = 1e9f; // nobody hits the Bedside; the traveller cannot fall
+                var sim = new CombatSimulation(arena); sim.Start(161051); sim.Champion.NextAttack = float.PositiveInfinity;
+                for (int tick = 0; tick < 2000 && sim.Phase == RunPhase.Combat; tick++) { sim.Champion.Health = 1e9f; sim.Champion.NextAttack = float.PositiveInfinity; sim.Step(.05f, Vector2.zero); }
+                Check(sim.Phase == RunPhase.Defeat && sim.LastDamageSource == "The knocking stopped" && sim.Elapsed <= ActOneCanon.KnockSeconds + .2f, "When the knocking stops with the Bedside standing, the traveller stays seated");
+                s.Settle(sim);
+                Check(s.State.Phase == SessionPhase.Defeat && s.State.ActOne.SitCloser == ActOneProgress.Lost, "Losing in the warm chair ends the journey");
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.State.ActOne.SitCloser == ActOneProgress.Lost, "The lost chair survives the saved result");
+            }
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161052); s.State.Wave = 13; s.State.Phase = SessionPhase.Shop;
+                Check(s.AcceptSitCloser(), "Sit down at shop 13");
+                var arena = s.PrepareCombat(); var sim = new CombatSimulation(arena); sim.Start(161052);
+                sim.DamageFixture(sim.Boss, 1e9f); sim.Step(.05f, Vector2.zero); sim.Step(.05f, Vector2.zero);
+                Check(sim.Phase == RunPhase.Victory, "The door opens the moment the Bedside falls");
+                int burning = 8 - ActOneCanon.Broken(13, s.State.ActOne.RelitMask);
+                s.Settle(sim);
+                Check(s.State.Phase == SessionPhase.Shop && s.State.Wave == 13 && s.State.ActOne.SitCloser == ActOneProgress.Won && (s.State.ActOne.RelitMask & (1 << 4)) != 0, "Standing up returns to the same shop and relights the face lantern");
+                Check(8 - ActOneCanon.Broken(13, s.State.ActOne.RelitMask) == burning + 1 && !s.SitCloserAvailable, "One more lantern burns; the chair is spent for this journey");
+                Check(ActOneCanon.PageExtra(s.State, 19, 1).Contains("Who paid"), "The Customer notices that someone stood up without paying");
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.State.ActOne.RelitMask == 1 << 4, "The relit lantern survives a real save");
+                s.State.ActOne.RelitMask = 1 << 6;
+                bool rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "A lantern cannot be relit before it breaks");
+                s.State.ActOne.RelitMask = 1 << 4; s.State.ActOne.SitCloser = ActOneProgress.Lost;
+                rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "A sat-down journey cannot continue in the shop");
+            }
             for (int wave = 1; wave <= 24; wave++)
             {
                 using var s = new RunSession(c); s.Start("LanternKnight", 161026); s.State.Wave = wave; s.State.Phase = SessionPhase.Shop;

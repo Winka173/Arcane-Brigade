@@ -121,9 +121,9 @@ namespace ArcaneBrigade.Editor
             }
             using (var session = new RunSession(catalog))
             {
-                session.Start(catalog.Champions[0].Id, 13104); session.State.Wave = 4;
+                session.Start(catalog.Champions[0].Id, 13104); session.State.Wave = 10; // Act I boss waves are 5, 10, 15, 20
                 CheckpointCatalog combat = session.PrepareCombat();
-                require(combat.EnableArenaToys && combat.EnableBossArenaPhase && combat.RunWave == 4 && combat.Boss != null, "Authored boss wave enables deterministic toys and arena phase");
+                require(combat.EnableArenaToys && combat.EnableBossArenaPhase && combat.RunWave == 10 && combat.Boss != null, "Authored boss wave enables deterministic toys and arena phase");
                 var simulation = new CombatSimulation(combat); simulation.Start(combat.Seed);
                 require(simulation.ArenaToys.Count >= 2 && simulation.ArenaToys[0].Kind == ArenaToyKind.StageBell && simulation.ArenaToys[1].Kind == ArenaToyKind.ToyCart, "Ordinary Start automatically seeds original toy pair at later wave");
                 simulation.EnterRest(); require(simulation.ArenaToys.Count == 0, "Rest removes toys and all pending arena warnings");

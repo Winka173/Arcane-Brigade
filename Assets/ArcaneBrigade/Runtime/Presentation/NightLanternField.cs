@@ -39,10 +39,11 @@ namespace ArcaneBrigade
         public int FogSamples=>PresentationSettings.ReducedEffects?4:8;
         // Act I: each lamp is one visit of the Thursday visitor and breaks on its canon wave (ActOneCanon.BreakWave).
         public static int BrokenFor(int wave)=>ActOneCanon.Broken(wave);
-        public static int StateFor(int index,int wave,bool shop)
+        public static int StateFor(int index,int wave,bool shop)=>StateFor(index,wave,shop,0);
+        public static int StateFor(int index,int wave,bool shop,int relitMask)
         {
             if(shop && (index==0 || index==1))return 0;
-            return ActOneCanon.LampState(System.Array.IndexOf(BreakOrder,index),wave);
+            return ActOneCanon.LampState(System.Array.IndexOf(BreakOrder,index),wave,relitMask);
         }
         /// <summary>The story lamp (0..7, in break order) that went out most recently, and when; drives the HUD caption.</summary>
         public static int LastLoss {get;private set;}=-1;
@@ -127,7 +128,7 @@ namespace ArcaneBrigade
             int seed=owner.Session.State.Seed;
             for(int i=0;i<8;i++)
             {
-                int state=StateFor(i,wave,shop);bool fixtureVisible=!shop || i<2;
+                int state=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0);bool fixtureVisible=!shop || i<2;
                 Vector2 basePosition=FixtureAnchor(i);
                 float height=HeightFor(i,seed),sizeRatio=height/2.7f,identity=MotionIdentity(i,seed);
                 if(fixtureVisible){if(state==2)BrokenCount++;else LitCount++;}

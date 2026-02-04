@@ -516,6 +516,17 @@ namespace ArcaneBrigade
             stageTransfer.Configure(this, () => { stageTransfer = null; Begin(); });
             return true;
         }
+        public bool AcceptSitCloser()
+        {
+            if (PresentationPaused || TransitionPending || hallExitPending) return false;
+            RunSnapshot before = MergeReveal.Capture(session.State);
+            if (!session.AcceptSitCloser()) return false;
+            if (!PersistBoundary()) { session.Restore(before); return false; }
+            var carrier = new GameObject("WarmChairSitsCloser");
+            stageTransfer = carrier.AddComponent<StageTransfer>();
+            stageTransfer.Configure(this, () => { stageTransfer = null; Begin(); });
+            return true;
+        }
         public bool ClaimOutsideReward(int index)
         {
             if (PresentationPaused || TransitionPending) return false;

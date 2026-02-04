@@ -165,6 +165,8 @@ namespace ArcaneBrigade
             if (owner.SecretRoom != null && owner.SecretRoom.BlocksShop) return false;
             OutsideStageChoice challenge = owner.GetComponent<OutsideStageChoice>();
             if (challenge != null && challenge.Focused) return false;
+            WaitingRealmStage chair = owner.GetComponent<WaitingRealmStage>();
+            if (chair != null && chair.Engaged) return false;
             Display();
             if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;
@@ -422,6 +424,9 @@ namespace ArcaneBrigade
                 }
                 Vector2 position = AvoidObstacle(unit.Position, MerchantCenter, Mathf.Min(2.2f, MerchantHeight * 0.45f), unit.Id);
                 foreach (Station station in stations) position = AvoidObstacle(position, station.Position, station.Action == "NEXT HALL" ? 0.55f : 0.65f, unit.Id);
+                // nobody in the brigade wanders onto the warm chair
+                WaitingRealmStage chair = owner.GetComponent<WaitingRealmStage>();
+                if (chair != null && chair.ChairVisible) position = AvoidObstacle(position, chair.ChairAnchor, 0.8f, unit.Id);
                 position = owner.Simulation.Champion.Position + Vector2.ClampMagnitude(position - owner.Simulation.Champion.Position, owner.Session.CombatCatalog.CompanionLeash);
                 unit.Position = position;
             }

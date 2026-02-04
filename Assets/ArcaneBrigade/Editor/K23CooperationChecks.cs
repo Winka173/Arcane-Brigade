@@ -161,6 +161,7 @@ namespace ArcaneBrigade.Editor
                 session = new RunSession(catalog); session.Start("LanternKnight", 23006); session.State.Roster.Clear(); session.State.Wave = 2;
                 CheckpointCatalog arena = session.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0;
                 arena.EnableArenaToys = arena.EnableBossArenaPhase = arena.EnableSpectacles = arena.EnableHeroMechanics = false;
+                arena.StoryCompanions = new UnitDefinition[0]; // isolate the cooperation pair from Hob's own attacks
                 arena.CompanionLeash = 20;
                 Simulation = new CombatSimulation(arena); Simulation.Start(23006);
                 Simulation.Champion.NextAttack = float.PositiveInfinity;

@@ -278,6 +278,7 @@ namespace ArcaneBrigade
                 AddCompanion(catalog.Companion);
             else if (catalog.StartingCompanions != null)
                 for (int index = 0; index < catalog.StartingCompanions.Length; index++) AddCompanion(catalog.StartingCompanions[index]);
+            if (catalog.StoryCompanions != null) foreach (UnitDefinition story in catalog.StoryCompanions) AddCompanion(story);
             if (catalog.Boss != null)
             {
                 Boss = Spawn(catalog.Boss, Faction.Enemy, ClampPosition(Champion.Position + Vector2.up * (catalog.Boss.Id == "OutsideStageKeeper" ? 2f : 2.8f), catalog.Boss.Radius));
@@ -295,6 +296,8 @@ namespace ArcaneBrigade
             ResetOctoberCombat();
             ResetHeroIdentity();
         }
+
+        public float KnockRemaining => catalog.KnockDeadline > 0 ? Mathf.Max(0, catalog.KnockDeadline - Elapsed) : -1;
 
         public UnitState AddCompanion(UnitDefinition definition)
         {
@@ -389,6 +392,16 @@ namespace ArcaneBrigade
             if (!float.IsFinite(movement.x) || !float.IsFinite(movement.y)) movement = Vector2.zero;
             movement = Vector2.ClampMagnitude(movement, 1f);
             Elapsed += deltaTime;
+            if (catalog.KnockDeadline > 0)
+            {
+                // SIT CLOSER: the door must be answered before the knocking stops
+                if (BossDefeated) { Phase = RunPhase.Victory; return; }
+                if (Elapsed >= catalog.KnockDeadline)
+                {
+                    LastDamageSource = "The knocking stopped"; LastDamageKind = "story"; LastDamageAmount = Champion.Health;
+                    Champion.Health = 0; Champion.Alive = false; Phase = RunPhase.Defeat; return;
+                }
+            }
             if (Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle) movement = Vector2.zero;
             StepRelics(deltaTime, movement);
             if (Phase != RunPhase.Combat) return;

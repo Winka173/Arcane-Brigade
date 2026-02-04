@@ -193,9 +193,16 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 - Gỡ khỏi Hồi 1: bàn/điện thoại/gương cũ trong shop, ghế “PATHS & PEOPLE”, thử thách Keeper tùy chọn (chỉ còn trong endless).
 - Kiểm tra: `ArcaneBrigade.Editor.ActOneStoryChecks.Run` (kết quả ở `PreviewExports/ActOneStory/Checks.txt`).
 
+**Phase 2 — xong (ghế, đoàn đồng hành, trận ẩn):**
+- `Runtime/Core/ActOneRun.cs`: Hob/Latch/Postscript/Tally đi trong slot riêng (không phải roster: không mua, không ghép, không tính quota/bond), gia nhập ở shop 1/5/6/11, Tally vắng từ shop 18 đến hết wave 19, mạnh dần theo vùng (tier 1/2/3). Dùng thân TeapotPilgrim/HoodWisp/ShellPostman/PaperDevil, tên hiện theo canon.
+- Chiếc Ghế Ấm: 19 vị trí từ góc xa tới cạnh lối ra (dọc bên phải, chỗ ghế “paths & people” cũ đã được ẩn); vật trên ghế: lọ thì thầm (shop 2), tiền (shop 4/7/9/12/13/16/19), ống nghe còn thở (shop 8 nếu để chuông reo). Lại gần: “not that one.”; từ shop 8: “sit down?” → thẻ cảnh báo của người bán hàng → SIT DOWN / STEP AWAY. Đồng hành tránh đứng lên ghế.
+- SIT CLOSER: cùng lượt shop, boss THE BEDSIDE (thân tạm Mother Umbra) và quái mạnh như wave +8, tiếng gõ cửa 80 giây là đồng hồ (HUD viết tay đếm ngược); hạ boss → về lại shop, thắp lại ngọn đèn vừa vỡ gần nhất, ghế nguội màu; thua → hết hành trình, màn “You Sat Down” với lời của Hob. Customer ở shop 19 có câu riêng nếu đã thắng.
+- Kiểm tra mới trong `MienChoChecks` + `ActOneStoryChecks.RunWide` (quét rộng; các lỗi còn lại trùng với commit gốc 3ea31647).
+- Capture: `-arcane-actone-capture -capturePath DIR` (ghế, thẻ cảnh báo, lựa chọn journal, trận ẩn).
+- Ghi chú cân bằng: trong capture, hero đứng yên chết sau ~4 giây ở SIT CLOSER (wave 10 → kẻ địch như wave 18); cần chơi thử thật.
+
 **Còn lại:**
-- Phase 2: Chiếc Ghế Ấm (19 vị trí, cảnh tiền đặt lên ghế), slot riêng cho Hob/Latch/Postscript/Tally (Tally vắng shop 18–wave 19), trận SIT CLOSER + màn thua “You sat down.”.
-- Phase 3: bán ký ức ở shop 8 (trạng thái “người lạ”), cảnh kéo Hob ở wave 16, thoại Customer thay đổi khi đã thắng SIT CLOSER.
+- Phase 3: bán ký ức ở shop 8 (trạng thái “người lạ”), cảnh kéo Hob ở wave 16 (dùng phòng Perfect Room), relic *Thursday Shoes*, đồng hành cốt truyện trong bảng Brigade.
 - Phase 4: art theo `Docs/Act_One_Story_Art_Requests.md` (ghế, Những Người Đã Ngồi Xuống, Customer mượn mặt, 3 boss, 4 sàn vùng, panel journal) và gắn vào game.
 - Phase 5: cảnh ghế bành xoay lại ở menu sau credit.
-- Câu hỏi mở: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” (MOTHER OF A THOUSAND EGG-EYES) chưa có trong canon.
+- Đã chốt: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” giữ làm nội dung phụ.

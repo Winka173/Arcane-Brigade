@@ -140,7 +140,7 @@ namespace ArcaneBrigade
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);
             ArcadeSkin.Plate(new Rect(22, 16, 340, 72), ArcadeSkin.Accent);
             Sprite(new Rect(35, 20, 62, 62), owner.Content.Unit(state.ChampionId).Body);
-            NightHud.LightRing(new Vector2(66, 51), 40, state.Roster.Count);
+            NightHud.LightRing(new Vector2(66, 51), 40, state.Roster.Count + ActOneCanon.StoryCount(state.Wave, state.Phase == SessionPhase.Shop, state.Endless));
             ArcadeSkin.Line(new Rect(105, 36, 230, 30), new Color(0.02f, 0.02f, 0.05f, 0.95f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(health / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
@@ -182,7 +182,7 @@ namespace ArcaneBrigade
                 GUI.Label(new Rect(timer.x + (overtime ? 10 : 56), timer.y + 2, overtime ? 140 : 90, timer.height - 4), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
-            if (state.Phase == SessionPhase.Combat) { NightHud.DawnPath(new Rect(760, 126, 400, 26), state, owner.Content.NormalWaves, true); NightHud.LampLoss(new Rect(560, 190, 800, 60)); }
+            if (state.Phase == SessionPhase.Combat) { NightHud.DawnPath(new Rect(760, 126, 400, 26), state, owner.Content.NormalWaves, true); NightHud.LampLoss(new Rect(560, 190, 800, 60)); NightHud.Knocking(new Rect(610, 170, 700, 48), simulation.KnockRemaining); }
             else if (state.Phase == SessionPhase.Shop) NightHud.DawnPath(new Rect(380, 82, 280, 26), state, owner.Content.NormalWaves, false);
             DrawControls(owner);
             if (state.Phase == SessionPhase.Combat)
@@ -217,14 +217,15 @@ namespace ArcaneBrigade
                 {
                     if (owner.Session.EndingChoicePending) { GUI.matrix = previous; GUI.skin = previousSkin; navigation.End(); return; }
                     ArcadeSkin.Plate(new Rect(560, 840, 800, 70), state.Phase == SessionPhase.Defeat ? ArcadeSkin.Danger : ArcadeSkin.Gold);
-                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? "Your light goes out…" : "Dawn has come…", title);
+                    bool satDown = (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost;
+                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? satDown ? "You sat down." : "Your light goes out…" : "Dawn has come…", title);
                     GUI.matrix = previous;
                     GUI.skin = previousSkin;
                     navigation.End();
                     return;
                 }
                 Fill(new Rect(80, 200, 630, 750), Panel);
-                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED · NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : "Until You Return");
+                ArcadeSkin.Header(new Rect(110, 228, 575, 105), "THE NIGHT IS RECORDED · NO STAT REWARDS", state.Phase == SessionPhase.Victory ? "Dawn Has Come" : (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost ? "You Sat Down" : "Until You Return");
                 bool fallen = state.Phase == SessionPhase.Defeat;
                 Sprite(fallen ? new Rect(240, 345, 230, 200) : new Rect(220, 355, 270, 270), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(fallen ? new Rect(450, 450, 90, 90) : new Rect(475, 480, 100, 100), owner.Content.Unit(state.ChampionId).Weapon.Sprite);
@@ -538,6 +539,12 @@ namespace ArcaneBrigade
                 speaker = owner.Content.Unit(state.Roster[(hash & 0x7fffffff) % state.Roster.Count].UnitId);
             }
             string line = speaker != null ? CompanionVoice.Comforting(state.RunId, speaker.Id) : "I'll find the door again. It was there before; it will be there again.";
+            if ((state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost)
+            {
+                // the warm chair kept them: Hob speaks for everyone who pulled
+                speaker = owner.Content.Unit(ActOneCanon.StoryIds[0]) ?? speaker;
+                line = "We pulled as hard as we could. The Keeper had to tear you out of it. Next time, we pull sooner.";
+            }
             Sprite face = speaker != null ? speaker.Body : owner.Content.Unit(state.ChampionId).Body;
             ArcadeSkin.Ticket(area, ArcadeSkin.Paper, ArcadeSkin.Accent);
             Sprite(new Rect(area.x + 12, area.y + 8, 76, area.height - 18), face);

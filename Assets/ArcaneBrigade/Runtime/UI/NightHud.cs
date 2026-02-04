@@ -12,6 +12,16 @@ namespace ArcaneBrigade
         private static GUIStyle loss;
         private static readonly Sprite[] lanterns = new Sprite[3];
 
+        /// <summary>SIT CLOSER: someone is knocking at the door of the night you hid; the fight is lost when it stops.</summary>
+        public static void Knocking(Rect area, float remaining)
+        {
+            if (remaining < 0) return;
+            if (loss == null) { loss = ArcadeTypography.Style(34); loss.font = ArcadeTypography.Hand; loss.alignment = TextAnchor.MiddleCenter; loss.wordWrap = true; }
+            float beat = PresentationSettings.ReducedMotion ? 1 : 0.75f + 0.25f * Mathf.Abs(Mathf.Sin(Time.unscaledTime * Mathf.PI * 0.8f));
+            loss.normal.textColor = remaining < 15 ? new Color(ArcadeSkin.Danger.r, ArcadeSkin.Danger.g, ArcadeSkin.Danger.b, beat) : new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, beat);
+            GUI.Label(area, "someone is knocking · answer before it stops · " + Mathf.CeilToInt(remaining) + "s", loss);
+        }
+
         /// <summary>When a lantern goes out, the thing it held is written across the night for a few seconds.</summary>
         public static void LampLoss(Rect area)
         {
@@ -68,7 +78,8 @@ namespace ArcaneBrigade
             {
                 int at = Mathf.Min(ActOneCanon.BreakWave[lamp], normalWaves);
                 float x = left + (at - 1) * step;
-                int stateOf = endless ? (lamp == 7 ? 0 : 2) : ActOneCanon.LampState(lamp, shown);
+                int relit = state.ActOne?.RelitMask ?? 0;
+                int stateOf = endless ? ((relit & (1 << lamp)) != 0 || lamp == 7 ? 0 : 2) : ActOneCanon.LampState(lamp, shown, relit);
                 Sprite picture = lanterns[stateOf];
                 // each lantern stands on the road itself, clear of the timer box above it
                 Rect icon = new Rect(x - 5.5f, y - 17, 11, 17);

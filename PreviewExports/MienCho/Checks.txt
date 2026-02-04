@@ -219,6 +219,50 @@ PASS Origin reaches actual companion description RibbonOtter
 PASS Individual life and intent SpindleWren
 PASS Origin reaches actual companion description SpindleWren
 PASS No shared fallback biographies
+PASS Story companion body exists TeapotPilgrim
+PASS Story companion body exists HoodWisp
+PASS Story companion body exists ShellPostman
+PASS Story companion body exists PaperDevil
+PASS Hob, Latch, Postscript and Tally join on their canon shops; Tally is gone from shop 18 to wave 19
+PASS The warm chair creeps from the far corner to beside the exit
+PASS The chair never moves away from the exit 2
+PASS The chair never moves away from the exit 3
+PASS The chair never moves away from the exit 4
+PASS The chair never moves away from the exit 5
+PASS The chair never moves away from the exit 6
+PASS The chair never moves away from the exit 7
+PASS The chair never moves away from the exit 8
+PASS The chair never moves away from the exit 9
+PASS The chair never moves away from the exit 10
+PASS The chair never moves away from the exit 11
+PASS The chair never moves away from the exit 12
+PASS The chair never moves away from the exit 13
+PASS The chair never moves away from the exit 14
+PASS The chair never moves away from the exit 15
+PASS The chair never moves away from the exit 16
+PASS The chair never moves away from the exit 17
+PASS The chair never moves away from the exit 18
+PASS The chair never moves away from the exit 19
+PASS Coins, the jar and the breathing receiver lie on the blanket on their shops
+PASS Wave 1: nobody has joined yet
+PASS Hob meets you in the first shop in a place of its own
+PASS Four travelling companions fight without taking roster places
+PASS Story companions really enter the fight
+PASS The warm chair cannot be sat in before the eighth shop
+PASS Sitting down starts the fight on the same shop visit
+PASS The night you hid: the Bedside, its seated travellers and the knocking clock
+PASS The Bedside is far stronger than the wave's own boss
+PASS When the knocking stops with the Bedside standing, the traveller stays seated
+PASS Losing in the warm chair ends the journey
+PASS The lost chair survives the saved result
+PASS Sit down at shop 13
+PASS The door opens the moment the Bedside falls
+PASS Standing up returns to the same shop and relights the face lantern
+PASS One more lantern burns; the chair is spent for this journey
+PASS The Customer notices that someone stood up without paying
+PASS The relit lantern survives a real save
+PASS A lantern cannot be relit before it breaks
+PASS A sat-down journey cannot continue in the shop
 PASS Bounded chapter availability wave 1
 PASS Journal read flags survive real save validation wave 1
 PASS Bounded chapter availability wave 2

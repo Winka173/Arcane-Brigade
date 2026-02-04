@@ -11,12 +11,27 @@ namespace ArcaneBrigade
         private AudioClip waiting, morning;
         private int songWave = -1;
         private bool dawnPlayed;
+        // The warm chair (Docs/Mien_Cho_Act_One_Story.md): the traveller's own chair, one step closer to the exit each visit.
+        private Sprite warm, fallback;
+        private readonly Sprite[] offerings = new Sprite[4];
+        private bool asking;
+        private GUIStyle hand, plain, choice;
         public bool ChairVisible => chair != null && chair.enabled;
+        public bool Asking => asking;
+        private bool ShopChair => owner?.Session != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.State.Endless && owner.Session.State.Wave <= ActOneCanon.Waves;
+        public Vector2 ChairAnchor => ShopChair ? ActOneCanon.ChairPosition(owner.Session.State.Wave) : new Vector2(7.4f, 3.6f);
+        private bool Near => ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null && Vector2.Distance(owner.Simulation.Champion.Position, ChairAnchor) < 1.35f;
+        /// <summary>True while the chair has the traveller's attention, so the shop does not also act on the same press.</summary>
+        public bool Engaged => asking || Near && owner.Session.SitCloserAvailable;
         public void Configure(ArenaController value)
         {
             owner = value;
             var child = new GameObject("TheUnoccupiedChair"); child.transform.SetParent(transform, false);
-            chair = child.AddComponent<SpriteRenderer>(); chair.sprite = Resources.Load<Sprite>("MienCho/EmptyChair");
+            chair = child.AddComponent<SpriteRenderer>();
+            warm = Resources.Load<Sprite>("MienCho/ActOne/WarmChair"); fallback = Resources.Load<Sprite>("MienCho/EmptyChair");
+            string[] lying = { null, "WarmChair_Coins", "WarmChair_Jar", "WarmChair_Phone" };
+            for (int i = 1; i < lying.Length; i++) offerings[i] = Resources.Load<Sprite>("MienCho/ActOne/" + lying[i]);
+            chair.sprite = warm != null ? warm : fallback;
             floatingChair=child.AddComponent<FloatingStoryProp>();floatingChair.Configure(chair,241);
             song = gameObject.AddComponent<AudioSource>(); song.playOnAwake = false; song.spatialBlend = 0;
             waiting = Compose(false); morning = Compose(true);
@@ -53,14 +68,20 @@ namespace ArcaneBrigade
             chair.enabled = chair.sprite != null && !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible && state.Phase != SessionPhase.Defeat;
             if (chair.enabled)
             {
-                Vector2 position = state.Phase == SessionPhase.Shop ? new Vector2(7.4f, 3.6f) : new Vector2(0, owner.WorldBounds.y * .5f - .8f);
-                chair.transform.localScale = Vector3.one * (2 / Mathf.Max(.01f, chair.sprite.bounds.size.y));
+                Vector2 position = state.Phase == SessionPhase.Shop ? ChairAnchor : new Vector2(0, owner.WorldBounds.y * .5f - .8f);
+                int lies = ShopChair ? ActOneCanon.ChairOffering(state.Wave, MienChoStory.Choice(state, 8)) : 0;
+                Sprite shown = lies > 0 && offerings[lies] != null ? offerings[lies] : warm != null ? warm : fallback;
+                if (chair.sprite != shown) chair.sprite = shown;
+                chair.transform.localScale = Vector3.one * ((warm != null ? 1.55f : 2f) / Mathf.Max(.01f, chair.sprite.bounds.size.y));
                 chair.sortingOrder = WorldSpriteGrounding.SortAt(position.y);
                 // The unreachable seat is a narrative landmark, never a hidden threat.
                 chair.color = dawn ? new Color(1, .95f, .86f) : Color.Lerp(new Color(.85f, .78f, .69f), new Color(.24f, .22f, .3f), NightmareRules.Depth(state.Wave) / 4f);
+                // once the traveller has stood up out of it, it is only a chair: no warmth left in the wood
+                if ((state.ActOne?.SitCloser ?? 0) == ActOneProgress.Won) chair.color = Color.Lerp(chair.color, new Color(.55f, .62f, .72f), .6f);
                 floatingChair.Display(position,owner.PresentationClock,NightmareRules.Depth(state.Wave));
             }
             else floatingChair.Display(Vector3.zero,owner.PresentationClock,0);
+            UpdateAsking();
             if (owner.PresentationPaused) { song.Pause(); return; }
             song.UnPause();
             song.volume = PresentationSettings.ReducedAudio ? 0 : PresentationSettings.MusicVolume * .16f;
@@ -68,6 +89,66 @@ namespace ArcaneBrigade
             if (dawn && !dawnPlayed && state.Nightmare.EndingPage >= 2) { song.clip = morning; song.Play(); dawnPlayed = true; }
             else if (restPhrase && !owner.TransitionPending) { song.clip = waiting; song.Play(); songWave = state.Wave; }
             if (state.Phase == SessionPhase.Combat && song.isPlaying) song.Stop();
+        }
+        private void UpdateAsking()
+        {
+            if (!ShopChair || owner.PresentationPaused || owner.TransitionPending || owner.StoryConsumesInput || owner.Details.Open || !owner.Session.SitCloserAvailable) { asking = false; return; }
+            if (!Application.isFocused && !RunPaths.Diagnostic) return;
+            bool press = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return);
+            if (asking)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || !Near) asking = false;
+                else if (press) Sit();
+            }
+            else if (Near && press) { asking = true; CheckpointAudio.PlayInterfaceId("ui.page"); }
+        }
+        public void AskForDiagnostics(bool value = true) => asking = value && RunPaths.Diagnostic;
+        private void Sit()
+        {
+            asking = false;
+            if (owner.AcceptSitCloser()) CheckpointAudio.PlayInterfaceId("sig.stamp", .2f);
+        }
+        private void OnGUI()
+        {
+            if (!ShopChair || chair == null || !chair.enabled || owner.TransitionPending || owner.PresentationPaused || owner.StoryConsumesInput || Camera.main == null) return;
+            var state = owner.Session.State;
+            bool available = owner.Session.SitCloserAvailable;
+            if (!Near && !asking) return;
+            Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
+            if (hand == null)
+            {
+                hand = ArcadeTypography.Style(30); hand.font = ArcadeTypography.Hand; hand.alignment = TextAnchor.MiddleCenter; hand.wordWrap = true;
+                plain = ArcadeTypography.Style(20); plain.alignment = TextAnchor.UpperCenter; plain.wordWrap = true;
+                choice = ArcadeTypography.Style(22, true); choice.alignment = TextAnchor.MiddleCenter;
+            }
+            Vector3 point = Camera.main.WorldToViewportPoint(ChairAnchor);
+            float x = point.x * 1920, y = (1 - point.y) * 1080;
+            if (!asking)
+            {
+                // before the eighth shop it only answers with the shopkeeper's warning
+                string said = !available ? (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Won ? "only a chair now." : "not that one." : "sit down?   [Space / A]";
+                Rect tag = new Rect(Mathf.Clamp(x - 150, 20, 1600), Mathf.Clamp(y + 30, 180, 960), 300, 46);
+                ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Wax);
+                hand.normal.textColor = new Color(.25f, .19f, .14f);
+                GUI.Label(tag, said, hand);
+                if (available && GUI.Button(tag, GUIContent.none, GUIStyle.none)) asking = true;
+            }
+            else
+            {
+                Rect card = new Rect(560, 430, 800, 420); // below the shopkeeper's speech bubble
+                ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
+                ArcadeSkin.Seal(new Vector2(card.xMax - 42, card.y + 40), 46, "!");
+                hand.normal.textColor = new Color(.25f, .19f, .14f);
+                GUI.Label(new Rect(card.x + 40, card.y + 28, card.width - 80, 150), "THE SHOPKEEPER: 'Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.'", hand);
+                plain.normal.textColor = new Color(.18f, .14f, .1f);
+                GUI.Label(new Rect(card.x + 50, card.y + 190, card.width - 100, 110),
+                    "HIDDEN FIGHT · THE NIGHT YOU HID\nThe Bedside and the travellers it wakes fight like wave " + (state.Wave + ActOneCanon.SitWaveBonus) + ". Defeat it before the knocking stops (" + Mathf.RoundToInt(ActOneCanon.KnockSeconds) + " s).\nIf you lose, the journey ends here. Only once per journey.", plain);
+                ArcadeSkin.Plate(new Rect(card.x + 60, card.yMax - 100, 320, 64), ArcadeSkin.Danger);
+                if (GUI.Button(new Rect(card.x + 60, card.yMax - 100, 320, 64), "SIT DOWN  [Space]", choice)) Sit();
+                ArcadeSkin.Plate(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), ArcadeSkin.Teal);
+                if (GUI.Button(new Rect(card.xMax - 380, card.yMax - 100, 320, 64), "STEP AWAY  [Esc]", choice)) asking = false;
+            }
+            GUI.matrix = previous;
         }
         private void OnDestroy() { if (waiting != null) Destroy(waiting); if (morning != null) Destroy(morning); }
     }

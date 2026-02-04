@@ -297,6 +297,7 @@ namespace ArcaneBrigade
                 RosterEntry entry = State.Roster[index];
                 CombatCatalog.StartingCompanions[index] = BuildUnit(catalog.Unit(entry.UnitId), catalog.Weapon(entry.WeaponId), entry.Tier, true);
             }
+            PrepareStoryParty();
             float scaling = (1f + (State.Wave - 1) * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, State.Wave);
             CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
             CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
@@ -408,6 +409,7 @@ namespace ArcaneBrigade
             CombatCatalog.EnemyBudget = Mathf.Min(600, CombatCatalog.EnemyBudget);
             PrepareOutsideStage();
             PrepareSecretCombat();
+            PrepareSitCloser();
             ConfigureRelics();
             PrepareNightmare();
             PrepareBuildMorphs();
@@ -518,6 +520,7 @@ namespace ArcaneBrigade
             OctoberSettled(simulation);
             if (SettleOutsideStage(simulation)) return;
             if (SettleSecretCombat(simulation)) return;
+            if (SettleSitCloser(simulation)) return;
             State.Health = simulation.Champion.Health;
             State.BuildScoreMultiplier = catalog.StatRevision > 0 ? K10StatRules.Factor(Bonus(ItemEffect.ScoreMultiplier), 0.1f, 100) : 1;
             State.LastDamageSource = simulation.LastDamageSource;

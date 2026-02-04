@@ -145,11 +145,11 @@ namespace ArcaneBrigade
             var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone == 2 || zone == 3 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
             GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.ZoneNames[ActOneCanon.Zone(c.Wave)] + " / " + c.Title, title);
-            int burning = ActOneCanon.BreakWave.Length - ActOneCanon.Broken(owner.Session.State.Wave);
+            int burning = ActOneCanon.BreakWave.Length - ActOneCanon.Broken(owner.Session.State.Wave, owner.Session.State.ActOne?.RelitMask ?? 0);
             GUI.Label(new Rect(80, 785, 680, 120), "EVIDENCE\n" + c.Evidence + "\n" + burning + " OF 8 LANTERNS STILL BURNING", small);
             if (Press(new Rect(80, 710, 680, 65), "THE PEOPLE TRAVELLING WITH YOU")) ShowLives();
             GUI.Label(new Rect(850, 145, 990, 50), "CHAPTER " + (chapter + 1) + " / PAGE " + (page + 1) + " OF " + c.Pages.Length, small);
-            string text = c.Pages[page];
+            string text = c.Pages[page] + ActOneCanon.PageExtra(owner.Session.State, chapter, page);
             if (chapter == 0 && page == 0) text += "\n\nYOUR ARRIVAL\n" + WaitingArrivals.For(owner.Session.State.ChampionId);
             float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
             scroll = GUI.BeginScrollView(new Rect(850, 210, 1000, 660), scroll, new Rect(0, 0, 955, height));

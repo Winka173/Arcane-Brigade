@@ -68,8 +68,8 @@ namespace ArcaneBrigade.Editor
             using (var session = new RunSession(catalog))
             {
                 session.Start("LanternKnight", 14000);
-                session.State.Wave = 4; session.State.Roster.Clear();
-                CheckpointCatalog combat = session.PrepareCombat(); combat.EnemyBudget = 0; combat.WaveDuration = 1000;
+                session.State.Wave = 10; session.State.Roster.Clear(); // Act I boss waves are 5, 10, 15, 20
+                CheckpointCatalog combat = session.PrepareCombat(); combat.EnemyBudget = 0; combat.WaveDuration = 1000; combat.StoryCompanions = new UnitDefinition[0];
                 combat.Champion.Health = 10000; combat.Boss.Speed = 0;
                 combat.EnableArenaToys = combat.EnableBossArenaPhase = false;
                 var simulation = new CombatSimulation(combat); simulation.Start(14000);
@@ -85,7 +85,7 @@ namespace ArcaneBrigade.Editor
             for (int difficulty = 0; difficulty < 5; difficulty++)
                 using (var session = new RunSession(catalog))
                 {
-                    session.Start("LanternKnight", 14001, difficulty); session.State.Wave = 8;
+                    session.Start("LanternKnight", 14001, difficulty); session.State.Wave = 10;
                     float health = session.PrepareCombat().Boss.Health;
                     require(health > previousHealth, "Difficulty increases boss durability " + difficulty); previousHealth = health;
                 }

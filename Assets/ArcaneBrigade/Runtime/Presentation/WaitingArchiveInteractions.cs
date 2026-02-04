@@ -23,7 +23,7 @@ namespace ArcaneBrigade
             var view=Prop(index);var shadow=view==null?null:view.GetComponent<GroundShadow>();
             return shadow?.Contact!=null?(Vector2)shadow.Contact.transform.position:view==null?Vector2.zero:new Vector2(view.bounds.center.x,view.bounds.min.y);
         }
-        // Act I canon: only the journal cabinet is a story object; the old "paths & people" chair stays scenery.
+        // Act I canon: only the journal cabinet is a story object; the old "paths & people" chair is hidden in the Act I shop.
         public bool Near(int index)=>index==0 && Prop(index)!=null && Prop(index).enabled && Vector2.Distance(owner.Simulation.Champion.Position,Anchor(index))<=Reach;
         public bool TryInspect(int index)
         {

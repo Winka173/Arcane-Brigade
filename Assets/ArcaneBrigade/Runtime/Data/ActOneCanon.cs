@@ -35,6 +35,63 @@ namespace ArcaneBrigade
             return BreakWave[lamp] - wave <= 1 ? 1 : 0;
         }
 
+        // A relit lamp (won from the warm chair, or bought back from the Customer) burns again whatever its wave.
+        public static int Broken(int wave, int relitMask)
+        {
+            int count = 0;
+            for (int lamp = 0; lamp < BreakWave.Length; lamp++) if (LampState(lamp, wave, relitMask) == 2) count++;
+            return count;
+        }
+        public static int LampState(int lamp, int wave, int relitMask) => (relitMask & (1 << lamp)) != 0 ? 0 : LampState(lamp, wave);
+        /// <summary>The lamp a relighting restores: the most recently broken one that is still dark.</summary>
+        public static int RelightTarget(int wave, int relitMask)
+        {
+            for (int lamp = BreakWave.Length - 1; lamp >= 0; lamp--) if (LampState(lamp, wave, relitMask) == 2) return lamp;
+            return -1;
+        }
+
+        // The four travelling companions of the canon have their own places in the party (never bought, merged or sold).
+        // They reuse existing species bodies: Hob the hearth spirit, Latch the Keeper's guard, Postscript the courier, Tally the hunter.
+        public static readonly string[] StoryIds = { "TeapotPilgrim", "HoodWisp", "ShellPostman", "PaperDevil" };
+        public static readonly string[] StoryNames = { "Hob", "Latch", "Postscript", "Tally" };
+        public static readonly int[] JoinShop = { 1, 5, 6, 11 }; // they meet you in the shop after this wave
+        public static bool StoryPresent(int index, int wave, bool shop, bool endless)
+        {
+            if (endless || wave > Waves) return true;
+            if (shop ? wave < JoinShop[index] : wave <= JoinShop[index]) return false;
+            if (index == 3 && (shop ? wave == 18 : wave == 19)) return false; // Tally is gone from shop 18 until it returns in shop 19
+            return true;
+        }
+        public static int StoryTier(int wave) => wave >= 16 ? 3 : wave >= 11 ? 2 : 1;
+        public static int StoryCount(int wave, bool shop, bool endless)
+        {
+            int count = 0;
+            for (int index = 0; index < StoryIds.Length; index++) if (StoryPresent(index, wave, shop, endless)) count++;
+            return count;
+        }
+
+        // The warm chair creeps from the far corner of the shop toward the exit, one position per shop visit (1..19).
+        public static Vector2 ChairPosition(int wave)
+        {
+            // down the right-hand side (where the old meeting chair stood), clear of the merchant's speech bubble, then beside the exit
+            Vector2[] path = { new Vector2(7.4f, 3.6f), new Vector2(6.6f, 1.4f), new Vector2(5.2f, -0.6f), new Vector2(4.8f, -3.2f), new Vector2(2.3f, -3.9f) };
+            float t = Mathf.Clamp01((Mathf.Clamp(wave, 1, 19) - 1) / 18f) * (path.Length - 1);
+            int segment = Mathf.Min(path.Length - 2, Mathf.FloorToInt(t));
+            return Vector2.Lerp(path[segment], path[segment + 1], t - segment);
+        }
+        /// <summary>What lies on the blanket this visit: 0 nothing, 1 coins, 2 the murmuring jar, 3 the breathing receiver.</summary>
+        public static int ChairOffering(int wave, int telephoneChoice) => wave == 2 ? 2 : wave == 8 && telephoneChoice == 1 ? 3 : wave is 4 or 7 or 9 or 12 or 13 or 16 or 19 ? 1 : 0;
+        public const int SitFrom = 8, SitUntil = 19, SitWaveBonus = 8;
+        public const float KnockSeconds = 80f;
+
+        /// <summary>Lines that only exist if the traveller did something: appended to a beat's page.</summary>
+        public static string PageExtra(RunSnapshot state, int chapter, int page)
+        {
+            if (chapter == 19 && page == 1 && state?.ActOne?.SitCloser == ActOneProgress.Won)
+                return "\n\nHe stops. For the first time the pleasant face forgets to smile.\n\nTHE LAST CUSTOMER: '…You did. Who paid?'\n\nHOB: 'Nobody. We pulled.'";
+            return "";
+        }
+
         // Journal art keys per zone; MienChoPresentation falls back to the older panels while new art is pending.
         public static readonly string[] ZonePanel = { "Panel_Crossing", "Panel_Platform", "Panel_House", "Panel_PerfectRoom" };
 

@@ -4,7 +4,7 @@ PASS Nightmare
 PASS NightmareFarewell
 FAIL K8Combat: K8 combat: Incoming hit capped against Champion maximum HP
 PASS K11Merchant
-FAIL K20BossAnatomy: Number of parameters specified does not match the expected number.
+FAIL K20BossAnatomy: Number of parameters specified does not match the expected number. @ at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <f713e1c3c5f545ce9b1df47230f4f853>:0  |   at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00040] in <f713e1c3c5f545ce9b1df47230f4f853>:0  |   at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <f713e1c3c5f545ce9b1df47230f4f853>:0
 FAIL K21BossEncounter: K21 Size at least 55 percent above previous runtime UndeliveredKing actual=3.696 source=2.2
 FAIL K25EnemyAffix: K25 Actual specialist release SmokeWraith/0
 PASS ShopFlow

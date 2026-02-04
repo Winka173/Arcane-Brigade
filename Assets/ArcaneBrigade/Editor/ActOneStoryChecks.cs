@@ -10,9 +10,25 @@ namespace ArcaneBrigade.Editor
     /// canon touches and records each result, so one failing suite does not hide the others.</summary>
     public static class ActOneStoryChecks
     {
-        public static void Run()
+        /// <summary>Wider regression sweep: suites that build real fights, where the story party now walks in too.</summary>
+        public static void RunWide() => Execute("ActOneWide", new (string name, Action run)[]
         {
-            var suites = new (string name, Action run)[]
+            ("Recruitment", RecruitmentChecks.Run),
+            ("K23Cooperation", K23CooperationChecks.Run),
+            ("CombatRepair", CombatRepairChecks.Verify),
+            ("October", OctoberChecks.Run),
+            ("NightmareVisual", NightmareVisualChecks.Run),
+            ("DreamLevitation", DreamLevitationChecks.Run),
+            ("K10", K10Checks.Run),
+            ("K16", K16Checks.Run),
+            ("K4Arena", K4ArenaChecks.Run),
+            ("HeroIdentity", HeroIdentityChecks.Run),
+            ("BuildMorph", BuildMorphChecks.Run),
+            ("K14", K14Checks.Run),
+            ("K4Final", K4FinalChecks.Run), // stops early on an old three-hero content check (unchanged from base)
+        });
+
+        public static void Run() => Execute("ActOneStory", new (string name, Action run)[]
             {
                 ("MienCho", MienChoChecks.Run),
                 ("WaitingActOne", WaitingActOneChecks.Run),
@@ -28,17 +44,27 @@ namespace ArcaneBrigade.Editor
                 ("SecretEvent", SecretEventChecks.Run),
                 ("FinalQuality", FinalQualityChecks.Run),
                 ("RosterCapAndBond", RosterCapAndBondChecks.Run),
-            };
+            });
+
+        private static void Execute(string folder, (string name, Action run)[] suites)
+        {
             var lines = new List<string>();
             int failed = 0;
             foreach (var (name, run) in suites)
             {
                 try { run(); lines.Add("PASS " + name); }
-                catch (Exception error) { failed++; lines.Add("FAIL " + name + ": " + (error.InnerException ?? error).Message); }
+                catch (Exception error)
+                {
+                    failed++;
+                    Exception root = error.InnerException ?? error;
+                    string[] stack = (root.StackTrace ?? "").Split('\n');
+                    string where = root is InvalidOperationException ? "" : " @ " + string.Join(" | ", stack, 0, Math.Min(3, stack.Length)).Trim();
+                    lines.Add("FAIL " + name + ": " + root.Message + where);
+                }
             }
-            Directory.CreateDirectory("PreviewExports/ActOneStory");
-            File.WriteAllLines("PreviewExports/ActOneStory/Checks.txt", lines);
-            Debug.Log("ACT_ONE_STORY_CHECKS " + (lines.Count - failed) + "/" + lines.Count + " PASS\n" + string.Join("\n", lines));
+            Directory.CreateDirectory("PreviewExports/" + folder);
+            File.WriteAllLines("PreviewExports/" + folder + "/Checks.txt", lines);
+            Debug.Log(folder.ToUpperInvariant() + "_CHECKS " + (lines.Count - failed) + "/" + lines.Count + " PASS\n" + string.Join("\n", lines));
             if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
         }
     }

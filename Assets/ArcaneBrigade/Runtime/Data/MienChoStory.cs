@@ -34,9 +34,12 @@ namespace ArcaneBrigade
         {
             int count = 0;
             foreach (var chapter in For(state))
-                if (state.Wave > chapter.Wave || state.Wave == chapter.Wave && (!chapter.Shop || state.Phase == SessionPhase.Shop || state.Phase == SessionPhase.Victory)) count++;
+                if (state.Wave > chapter.Wave || state.Wave == chapter.Wave && (!chapter.Shop || state.Phase != SessionPhase.Combat || FightFromShop(state))) count++;
             return count;
         }
+        /// <summary>The warm chair, the Keeper's rematch and secret rooms start a fight on the same shop visit.</summary>
+        public static bool FightFromShop(RunSnapshot state)
+            => state.OutsideStage == OutsideStageStatus.Fighting || state.Secrets?.Stage == SecretEventStage.Fighting || (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Fighting;
         public static int NextUnread(RunSnapshot state)
         {
             if (state.Endless) return -1;
@@ -76,6 +79,7 @@ namespace ArcaneBrigade
         public static void Validate(RunSnapshot state)
         {
             WaitingCampaign.Validate(state);
+            RunSession.ValidateActOne(state);
             Migrate(state);
             if (state.MienCho == null) return;
             if (state.MienCho.Revision != MienChoMemory.CurrentRevision || state.MienCho.ReadMask < 0 || (state.MienCho.ReadMask >> Available(state)) != 0) throw new InvalidOperationException("Invalid Waiting Realm journal");
