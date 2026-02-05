@@ -31,6 +31,7 @@ namespace ArcaneBrigade
         public bool TutorialSeen;
         public bool NightmareLampPromise;
         public bool NightmareShopClosed;
+        public bool ActOneChairSpoke; // after the first dawn, the menu armchair has asked its question once
         public List<string> CompletedRuns = new List<string>();
         public List<string> SeenUnits = new List<string>();
         public List<string> SeenItems = new List<string>();

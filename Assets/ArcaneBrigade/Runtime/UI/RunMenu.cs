@@ -335,8 +335,38 @@ namespace ArcaneBrigade
             }
         }
 
+        // After Act I's dawn the Waiting Room's armchair has turned toward the traveller (Docs/Mien_Cho_Act_One_Story.md, after the credits).
+        private bool ActOneDone => profile != null && (profile.NightmareLampPromise || profile.NightmareShopClosed);
+        private Texture2D turnedRoom;
+        private float chairSpokeAt = -1;
+        private GUIStyle chairVoice;
+        /// <summary>Once, the first time the menu opens after dawn: the armchair speaks the line it has been saving all act.</summary>
+        private void DrawChairVoice()
+        {
+            if (!ActOneDone || profile.ActOneChairSpoke && chairSpokeAt < 0) return;
+            if (chairSpokeAt < 0) chairSpokeAt = Time.unscaledTime;
+            float age = Time.unscaledTime - chairSpokeAt;
+            if (age > 8f)
+            {
+                if (!profile.ActOneChairSpoke && !diagnosticState) { profile.ActOneChairSpoke = true; SaveProfile(); }
+                return;
+            }
+            if (chairVoice == null) { chairVoice = ArcadeTypography.Style(30); chairVoice.font = ArcadeTypography.Hand; chairVoice.alignment = TextAnchor.MiddleCenter; chairVoice.wordWrap = true; }
+            float alpha = Mathf.Clamp01((age - 1.2f) / 1.4f) * Mathf.Clamp01((8f - age) / 1.5f);
+            ArcadeSkin.Glow(new Rect(40, 150, 360, 380), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.22f * alpha));
+            chairVoice.normal.textColor = new Color(0, 0, 0, 0.75f * alpha);
+            GUI.Label(new Rect(62, 302, 340, 80), "Would you like me to sit closer?", chairVoice);
+            chairVoice.normal.textColor = new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, alpha);
+            GUI.Label(new Rect(60, 300, 340, 80), "Would you like me to sit closer?", chairVoice);
+        }
+
         private Texture2D Backdrop()
         {
+            if (ActOneDone)
+            {
+                if (turnedRoom == null) turnedRoom = Resources.Load<Texture2D>("MienCho/WaitingRoom_ChairTurned");
+                if (turnedRoom != null) return turnedRoom;
+            }
             if (waitingRoom == null) waitingRoom = Resources.Load<Texture2D>("MienCho/WaitingRoom");
             if (waitingRoom == null && shopIllustration == null) shopIllustration = Resources.Load<Texture2D>("LostShop_v1");
             return waitingRoom != null ? waitingRoom : shopIllustration;
@@ -354,6 +384,7 @@ namespace ArcaneBrigade
                 landingShade.SetPixels(pixels); landingShade.Apply(false, true);
             }
             GUI.DrawTexture(new Rect(0, 0, 600, 720), landingShade);
+            DrawChairVoice();
             ArcadeSkin.Line(new Rect(0, 652, 1280, 68), new Color(0.02f, 0.025f, 0.05f, 0.85f));
             ArcadeSkin.Divider(new Rect(36, 652, 1208, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.3f));
             bool reduced = profile.ReducedMotion;

@@ -76,6 +76,10 @@ namespace ArcaneBrigade
             float until = Time.realtimeSinceStartup + 12;
             while ((owner.TransitionPending || owner.Simulation.Boss == null) && Time.realtimeSinceStartup < until) yield return null;
             yield return new WaitForSecondsRealtime(4f); yield return Shot("04-the-night-you-hid");
+            // C: after the first dawn, the Waiting Room's armchair asks its question once
+            var profile = storage.LoadProfile(); profile.NightmareShopClosed = true; profile.ActOneChairSpoke = false; storage.SaveProfile(profile);
+            SceneManager.LoadScene("RunFrontend"); yield return new WaitForSecondsRealtime(4.2f);
+            yield return Shot("07-menu-after-dawn");
             Application.Quit(0);
         }
     }

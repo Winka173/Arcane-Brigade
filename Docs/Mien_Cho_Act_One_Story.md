@@ -210,5 +210,5 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 **Còn lại:**
 - Phase 3b: relic *Thursday Shoes* cho trận SIT CLOSER (cần icon `Item_ThursdayShoes.png`), cảnh kéo Hob tương tác ở wave 16 (hiện là đoạn truyện).
 - Phase 4: art theo `Docs/Act_One_Story_Art_Requests.md` (ghế, Những Người Đã Ngồi Xuống, Customer mượn mặt, 3 boss, 4 sàn vùng, panel journal) và gắn vào game.
-- Phase 5: cảnh ghế bành xoay lại ở menu sau credit.
+- Phase 5 — xong: lần đầu mở menu sau bình minh, ghế bành ở Phòng Chờ hỏi “Would you like me to sit closer?” (một lần, lưu `ActOneChairSpoke` trong profile); khi có art `WaitingRoom_ChairTurned.png` thì menu dùng ảnh ghế đã xoay.
 - Đã chốt: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” giữ làm nội dung phụ.
