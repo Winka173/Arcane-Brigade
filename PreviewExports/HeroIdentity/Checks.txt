@@ -3,26 +3,32 @@ PASS 31 distinct mechanic names and 93 approaches
 PASS Identity row does not overwrite stat summaries LanternKnight / 0
 PASS Damage row keeps correct compiled value LanternKnight / 0
 PASS Finite and immortal companion behavior LanternKnight / 0
-PASS Actual signature activated LanternKnight / 0 casts=6 injuries=True
+PASS Actual signature activated LanternKnight / 0 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternKnight / 0
 PASS Pause cannot farm mechanic LanternKnight / 0
 PASS Combat glyphs cleared in rest LanternKnight / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LanternKnight / 0
+PASS Mechanic ink clears completely outside combat LanternKnight / 0
 PASS Approach save round trip LanternKnight / 0
 PASS Identity row does not overwrite stat summaries LanternKnight / 1
 PASS Damage row keeps correct compiled value LanternKnight / 1
 PASS Finite and immortal companion behavior LanternKnight / 1
-PASS Actual signature activated LanternKnight / 1 casts=6 injuries=True
+PASS Actual signature activated LanternKnight / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternKnight / 1
 PASS Pause cannot farm mechanic LanternKnight / 1
 PASS Combat glyphs cleared in rest LanternKnight / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LanternKnight / 1
+PASS Mechanic ink clears completely outside combat LanternKnight / 1
 PASS Approach save round trip LanternKnight / 1
 PASS Identity row does not overwrite stat summaries LanternKnight / 2
 PASS Damage row keeps correct compiled value LanternKnight / 2
 PASS Finite and immortal companion behavior LanternKnight / 2
-PASS Actual signature activated LanternKnight / 2 casts=6 injuries=True
+PASS Actual signature activated LanternKnight / 2 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternKnight / 2
 PASS Pause cannot farm mechanic LanternKnight / 2
 PASS Combat glyphs cleared in rest LanternKnight / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LanternKnight / 2
+PASS Mechanic ink clears completely outside combat LanternKnight / 2
 PASS Approach save round trip LanternKnight / 2
 PASS Identity row does not overwrite stat summaries Postmaster / 0
 PASS Damage row keeps correct compiled value Postmaster / 0
@@ -31,6 +37,8 @@ PASS Actual signature activated Postmaster / 0 casts=11 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 0
 PASS Pause cannot farm mechanic Postmaster / 0
 PASS Combat glyphs cleared in rest Postmaster / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines Postmaster / 0
+PASS Mechanic ink clears completely outside combat Postmaster / 0
 PASS Approach save round trip Postmaster / 0
 PASS Identity row does not overwrite stat summaries Postmaster / 1
 PASS Damage row keeps correct compiled value Postmaster / 1
@@ -39,6 +47,8 @@ PASS Actual signature activated Postmaster / 1 casts=11 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 1
 PASS Pause cannot farm mechanic Postmaster / 1
 PASS Combat glyphs cleared in rest Postmaster / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines Postmaster / 1
+PASS Mechanic ink clears completely outside combat Postmaster / 1
 PASS Approach save round trip Postmaster / 1
 PASS Identity row does not overwrite stat summaries Postmaster / 2
 PASS Damage row keeps correct compiled value Postmaster / 2
@@ -47,6 +57,8 @@ PASS Actual signature activated Postmaster / 2 casts=11 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 2
 PASS Pause cannot farm mechanic Postmaster / 2
 PASS Combat glyphs cleared in rest Postmaster / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines Postmaster / 2
+PASS Mechanic ink clears completely outside combat Postmaster / 2
 PASS Approach save round trip Postmaster / 2
 PASS Identity row does not overwrite stat summaries DrowsySeer / 0
 PASS Damage row keeps correct compiled value DrowsySeer / 0
@@ -55,6 +67,8 @@ PASS Actual signature activated DrowsySeer / 0 casts=4 injuries=True
 PASS Bounded visual/projectile queues DrowsySeer / 0
 PASS Pause cannot farm mechanic DrowsySeer / 0
 PASS Combat glyphs cleared in rest DrowsySeer / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines DrowsySeer / 0
+PASS Mechanic ink clears completely outside combat DrowsySeer / 0
 PASS Approach save round trip DrowsySeer / 0
 PASS Identity row does not overwrite stat summaries DrowsySeer / 1
 PASS Damage row keeps correct compiled value DrowsySeer / 1
@@ -63,6 +77,8 @@ PASS Actual signature activated DrowsySeer / 1 casts=4 injuries=True
 PASS Bounded visual/projectile queues DrowsySeer / 1
 PASS Pause cannot farm mechanic DrowsySeer / 1
 PASS Combat glyphs cleared in rest DrowsySeer / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines DrowsySeer / 1
+PASS Mechanic ink clears completely outside combat DrowsySeer / 1
 PASS Approach save round trip DrowsySeer / 1
 PASS Identity row does not overwrite stat summaries DrowsySeer / 2
 PASS Damage row keeps correct compiled value DrowsySeer / 2
@@ -71,6 +87,8 @@ PASS Actual signature activated DrowsySeer / 2 casts=4 injuries=True
 PASS Bounded visual/projectile queues DrowsySeer / 2
 PASS Pause cannot farm mechanic DrowsySeer / 2
 PASS Combat glyphs cleared in rest DrowsySeer / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines DrowsySeer / 2
+PASS Mechanic ink clears completely outside combat DrowsySeer / 2
 PASS Approach save round trip DrowsySeer / 2
 PASS Identity row does not overwrite stat summaries RootOracle / 0
 PASS Damage row keeps correct compiled value RootOracle / 0
@@ -79,6 +97,8 @@ PASS Actual signature activated RootOracle / 0 casts=11 injuries=True
 PASS Bounded visual/projectile queues RootOracle / 0
 PASS Pause cannot farm mechanic RootOracle / 0
 PASS Combat glyphs cleared in rest RootOracle / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RootOracle / 0
+PASS Mechanic ink clears completely outside combat RootOracle / 0
 PASS Approach save round trip RootOracle / 0
 PASS Identity row does not overwrite stat summaries RootOracle / 1
 PASS Damage row keeps correct compiled value RootOracle / 1
@@ -87,6 +107,8 @@ PASS Actual signature activated RootOracle / 1 casts=11 injuries=True
 PASS Bounded visual/projectile queues RootOracle / 1
 PASS Pause cannot farm mechanic RootOracle / 1
 PASS Combat glyphs cleared in rest RootOracle / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RootOracle / 1
+PASS Mechanic ink clears completely outside combat RootOracle / 1
 PASS Approach save round trip RootOracle / 1
 PASS Identity row does not overwrite stat summaries RootOracle / 2
 PASS Damage row keeps correct compiled value RootOracle / 2
@@ -95,30 +117,38 @@ PASS Actual signature activated RootOracle / 2 casts=11 injuries=True
 PASS Bounded visual/projectile queues RootOracle / 2
 PASS Pause cannot farm mechanic RootOracle / 2
 PASS Combat glyphs cleared in rest RootOracle / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RootOracle / 2
+PASS Mechanic ink clears completely outside combat RootOracle / 2
 PASS Approach save round trip RootOracle / 2
 PASS Identity row does not overwrite stat summaries LoneJelly / 0
 PASS Damage row keeps correct compiled value LoneJelly / 0
 PASS Finite and immortal companion behavior LoneJelly / 0
-PASS Actual signature activated LoneJelly / 0 casts=13 injuries=True
+PASS Actual signature activated LoneJelly / 0 casts=14 injuries=True
 PASS Bounded visual/projectile queues LoneJelly / 0
 PASS Pause cannot farm mechanic LoneJelly / 0
 PASS Combat glyphs cleared in rest LoneJelly / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LoneJelly / 0
+PASS Mechanic ink clears completely outside combat LoneJelly / 0
 PASS Approach save round trip LoneJelly / 0
 PASS Identity row does not overwrite stat summaries LoneJelly / 1
 PASS Damage row keeps correct compiled value LoneJelly / 1
 PASS Finite and immortal companion behavior LoneJelly / 1
-PASS Actual signature activated LoneJelly / 1 casts=13 injuries=True
+PASS Actual signature activated LoneJelly / 1 casts=14 injuries=True
 PASS Bounded visual/projectile queues LoneJelly / 1
 PASS Pause cannot farm mechanic LoneJelly / 1
 PASS Combat glyphs cleared in rest LoneJelly / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LoneJelly / 1
+PASS Mechanic ink clears completely outside combat LoneJelly / 1
 PASS Approach save round trip LoneJelly / 1
 PASS Identity row does not overwrite stat summaries LoneJelly / 2
 PASS Damage row keeps correct compiled value LoneJelly / 2
 PASS Finite and immortal companion behavior LoneJelly / 2
-PASS Actual signature activated LoneJelly / 2 casts=13 injuries=True
+PASS Actual signature activated LoneJelly / 2 casts=14 injuries=True
 PASS Bounded visual/projectile queues LoneJelly / 2
 PASS Pause cannot farm mechanic LoneJelly / 2
 PASS Combat glyphs cleared in rest LoneJelly / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LoneJelly / 2
+PASS Mechanic ink clears completely outside combat LoneJelly / 2
 PASS Approach save round trip LoneJelly / 2
 PASS Identity row does not overwrite stat summaries GlassDice / 0
 PASS Damage row keeps correct compiled value GlassDice / 0
@@ -127,6 +157,8 @@ PASS Actual signature activated GlassDice / 0 casts=9 injuries=True
 PASS Bounded visual/projectile queues GlassDice / 0
 PASS Pause cannot farm mechanic GlassDice / 0
 PASS Combat glyphs cleared in rest GlassDice / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines GlassDice / 0
+PASS Mechanic ink clears completely outside combat GlassDice / 0
 PASS Approach save round trip GlassDice / 0
 PASS Identity row does not overwrite stat summaries GlassDice / 1
 PASS Damage row keeps correct compiled value GlassDice / 1
@@ -135,6 +167,8 @@ PASS Actual signature activated GlassDice / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues GlassDice / 1
 PASS Pause cannot farm mechanic GlassDice / 1
 PASS Combat glyphs cleared in rest GlassDice / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines GlassDice / 1
+PASS Mechanic ink clears completely outside combat GlassDice / 1
 PASS Approach save round trip GlassDice / 1
 PASS Identity row does not overwrite stat summaries GlassDice / 2
 PASS Damage row keeps correct compiled value GlassDice / 2
@@ -143,6 +177,8 @@ PASS Actual signature activated GlassDice / 2 casts=9 injuries=True
 PASS Bounded visual/projectile queues GlassDice / 2
 PASS Pause cannot farm mechanic GlassDice / 2
 PASS Combat glyphs cleared in rest GlassDice / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines GlassDice / 2
+PASS Mechanic ink clears completely outside combat GlassDice / 2
 PASS Approach save round trip GlassDice / 2
 PASS Identity row does not overwrite stat summaries TideSinger / 0
 PASS Damage row keeps correct compiled value TideSinger / 0
@@ -151,6 +187,8 @@ PASS Actual signature activated TideSinger / 0 casts=9 injuries=True
 PASS Bounded visual/projectile queues TideSinger / 0
 PASS Pause cannot farm mechanic TideSinger / 0
 PASS Combat glyphs cleared in rest TideSinger / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TideSinger / 0
+PASS Mechanic ink clears completely outside combat TideSinger / 0
 PASS Approach save round trip TideSinger / 0
 PASS Identity row does not overwrite stat summaries TideSinger / 1
 PASS Damage row keeps correct compiled value TideSinger / 1
@@ -159,6 +197,8 @@ PASS Actual signature activated TideSinger / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues TideSinger / 1
 PASS Pause cannot farm mechanic TideSinger / 1
 PASS Combat glyphs cleared in rest TideSinger / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TideSinger / 1
+PASS Mechanic ink clears completely outside combat TideSinger / 1
 PASS Approach save round trip TideSinger / 1
 PASS Identity row does not overwrite stat summaries TideSinger / 2
 PASS Damage row keeps correct compiled value TideSinger / 2
@@ -167,6 +207,8 @@ PASS Actual signature activated TideSinger / 2 casts=9 injuries=True
 PASS Bounded visual/projectile queues TideSinger / 2
 PASS Pause cannot farm mechanic TideSinger / 2
 PASS Combat glyphs cleared in rest TideSinger / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TideSinger / 2
+PASS Mechanic ink clears completely outside combat TideSinger / 2
 PASS Approach save round trip TideSinger / 2
 PASS Identity row does not overwrite stat summaries CometRunner / 0
 PASS Damage row keeps correct compiled value CometRunner / 0
@@ -175,6 +217,8 @@ PASS Actual signature activated CometRunner / 0 casts=12 injuries=True
 PASS Bounded visual/projectile queues CometRunner / 0
 PASS Pause cannot farm mechanic CometRunner / 0
 PASS Combat glyphs cleared in rest CometRunner / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CometRunner / 0
+PASS Mechanic ink clears completely outside combat CometRunner / 0
 PASS Approach save round trip CometRunner / 0
 PASS Identity row does not overwrite stat summaries CometRunner / 1
 PASS Damage row keeps correct compiled value CometRunner / 1
@@ -183,6 +227,8 @@ PASS Actual signature activated CometRunner / 1 casts=12 injuries=True
 PASS Bounded visual/projectile queues CometRunner / 1
 PASS Pause cannot farm mechanic CometRunner / 1
 PASS Combat glyphs cleared in rest CometRunner / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CometRunner / 1
+PASS Mechanic ink clears completely outside combat CometRunner / 1
 PASS Approach save round trip CometRunner / 1
 PASS Identity row does not overwrite stat summaries CometRunner / 2
 PASS Damage row keeps correct compiled value CometRunner / 2
@@ -191,6 +237,8 @@ PASS Actual signature activated CometRunner / 2 casts=12 injuries=True
 PASS Bounded visual/projectile queues CometRunner / 2
 PASS Pause cannot farm mechanic CometRunner / 2
 PASS Combat glyphs cleared in rest CometRunner / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CometRunner / 2
+PASS Mechanic ink clears completely outside combat CometRunner / 2
 PASS Approach save round trip CometRunner / 2
 PASS Identity row does not overwrite stat summaries MirrorKeeper / 0
 PASS Damage row keeps correct compiled value MirrorKeeper / 0
@@ -199,6 +247,8 @@ PASS Actual signature activated MirrorKeeper / 0 casts=33 injuries=False
 PASS Bounded visual/projectile queues MirrorKeeper / 0
 PASS Pause cannot farm mechanic MirrorKeeper / 0
 PASS Combat glyphs cleared in rest MirrorKeeper / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines MirrorKeeper / 0
+PASS Mechanic ink clears completely outside combat MirrorKeeper / 0
 PASS Approach save round trip MirrorKeeper / 0
 PASS Identity row does not overwrite stat summaries MirrorKeeper / 1
 PASS Damage row keeps correct compiled value MirrorKeeper / 1
@@ -207,6 +257,8 @@ PASS Actual signature activated MirrorKeeper / 1 casts=33 injuries=False
 PASS Bounded visual/projectile queues MirrorKeeper / 1
 PASS Pause cannot farm mechanic MirrorKeeper / 1
 PASS Combat glyphs cleared in rest MirrorKeeper / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines MirrorKeeper / 1
+PASS Mechanic ink clears completely outside combat MirrorKeeper / 1
 PASS Approach save round trip MirrorKeeper / 1
 PASS Identity row does not overwrite stat summaries MirrorKeeper / 2
 PASS Damage row keeps correct compiled value MirrorKeeper / 2
@@ -215,6 +267,8 @@ PASS Actual signature activated MirrorKeeper / 2 casts=33 injuries=False
 PASS Bounded visual/projectile queues MirrorKeeper / 2
 PASS Pause cannot farm mechanic MirrorKeeper / 2
 PASS Combat glyphs cleared in rest MirrorKeeper / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines MirrorKeeper / 2
+PASS Mechanic ink clears completely outside combat MirrorKeeper / 2
 PASS Approach save round trip MirrorKeeper / 2
 PASS Identity row does not overwrite stat summaries TreasureAcorn / 0
 PASS Damage row keeps correct compiled value TreasureAcorn / 0
@@ -223,22 +277,28 @@ PASS Actual signature activated TreasureAcorn / 0 casts=8 injuries=True
 PASS Bounded visual/projectile queues TreasureAcorn / 0
 PASS Pause cannot farm mechanic TreasureAcorn / 0
 PASS Combat glyphs cleared in rest TreasureAcorn / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TreasureAcorn / 0
+PASS Mechanic ink clears completely outside combat TreasureAcorn / 0
 PASS Approach save round trip TreasureAcorn / 0
 PASS Identity row does not overwrite stat summaries TreasureAcorn / 1
 PASS Damage row keeps correct compiled value TreasureAcorn / 1
 PASS Finite and immortal companion behavior TreasureAcorn / 1
-PASS Actual signature activated TreasureAcorn / 1 casts=6 injuries=True
+PASS Actual signature activated TreasureAcorn / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues TreasureAcorn / 1
 PASS Pause cannot farm mechanic TreasureAcorn / 1
 PASS Combat glyphs cleared in rest TreasureAcorn / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TreasureAcorn / 1
+PASS Mechanic ink clears completely outside combat TreasureAcorn / 1
 PASS Approach save round trip TreasureAcorn / 1
 PASS Identity row does not overwrite stat summaries TreasureAcorn / 2
 PASS Damage row keeps correct compiled value TreasureAcorn / 2
 PASS Finite and immortal companion behavior TreasureAcorn / 2
-PASS Actual signature activated TreasureAcorn / 2 casts=6 injuries=True
+PASS Actual signature activated TreasureAcorn / 2 casts=8 injuries=True
 PASS Bounded visual/projectile queues TreasureAcorn / 2
 PASS Pause cannot farm mechanic TreasureAcorn / 2
 PASS Combat glyphs cleared in rest TreasureAcorn / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TreasureAcorn / 2
+PASS Mechanic ink clears completely outside combat TreasureAcorn / 2
 PASS Approach save round trip TreasureAcorn / 2
 PASS Identity row does not overwrite stat summaries VerdantMatron / 0
 PASS Damage row keeps correct compiled value VerdantMatron / 0
@@ -247,6 +307,8 @@ PASS Actual signature activated VerdantMatron / 0 casts=5 injuries=True
 PASS Bounded visual/projectile queues VerdantMatron / 0
 PASS Pause cannot farm mechanic VerdantMatron / 0
 PASS Combat glyphs cleared in rest VerdantMatron / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines VerdantMatron / 0
+PASS Mechanic ink clears completely outside combat VerdantMatron / 0
 PASS Approach save round trip VerdantMatron / 0
 PASS Identity row does not overwrite stat summaries VerdantMatron / 1
 PASS Damage row keeps correct compiled value VerdantMatron / 1
@@ -255,6 +317,8 @@ PASS Actual signature activated VerdantMatron / 1 casts=5 injuries=True
 PASS Bounded visual/projectile queues VerdantMatron / 1
 PASS Pause cannot farm mechanic VerdantMatron / 1
 PASS Combat glyphs cleared in rest VerdantMatron / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines VerdantMatron / 1
+PASS Mechanic ink clears completely outside combat VerdantMatron / 1
 PASS Approach save round trip VerdantMatron / 1
 PASS Identity row does not overwrite stat summaries VerdantMatron / 2
 PASS Damage row keeps correct compiled value VerdantMatron / 2
@@ -263,30 +327,38 @@ PASS Actual signature activated VerdantMatron / 2 casts=5 injuries=True
 PASS Bounded visual/projectile queues VerdantMatron / 2
 PASS Pause cannot farm mechanic VerdantMatron / 2
 PASS Combat glyphs cleared in rest VerdantMatron / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines VerdantMatron / 2
+PASS Mechanic ink clears completely outside combat VerdantMatron / 2
 PASS Approach save round trip VerdantMatron / 2
 PASS Identity row does not overwrite stat summaries CopperCauldron / 0
 PASS Damage row keeps correct compiled value CopperCauldron / 0
 PASS Finite and immortal companion behavior CopperCauldron / 0
-PASS Actual signature activated CopperCauldron / 0 casts=8 injuries=True
+PASS Actual signature activated CopperCauldron / 0 casts=7 injuries=True
 PASS Bounded visual/projectile queues CopperCauldron / 0
 PASS Pause cannot farm mechanic CopperCauldron / 0
 PASS Combat glyphs cleared in rest CopperCauldron / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CopperCauldron / 0
+PASS Mechanic ink clears completely outside combat CopperCauldron / 0
 PASS Approach save round trip CopperCauldron / 0
 PASS Identity row does not overwrite stat summaries CopperCauldron / 1
 PASS Damage row keeps correct compiled value CopperCauldron / 1
 PASS Finite and immortal companion behavior CopperCauldron / 1
-PASS Actual signature activated CopperCauldron / 1 casts=8 injuries=True
+PASS Actual signature activated CopperCauldron / 1 casts=7 injuries=True
 PASS Bounded visual/projectile queues CopperCauldron / 1
 PASS Pause cannot farm mechanic CopperCauldron / 1
 PASS Combat glyphs cleared in rest CopperCauldron / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CopperCauldron / 1
+PASS Mechanic ink clears completely outside combat CopperCauldron / 1
 PASS Approach save round trip CopperCauldron / 1
 PASS Identity row does not overwrite stat summaries CopperCauldron / 2
 PASS Damage row keeps correct compiled value CopperCauldron / 2
 PASS Finite and immortal companion behavior CopperCauldron / 2
-PASS Actual signature activated CopperCauldron / 2 casts=8 injuries=True
+PASS Actual signature activated CopperCauldron / 2 casts=7 injuries=True
 PASS Bounded visual/projectile queues CopperCauldron / 2
 PASS Pause cannot farm mechanic CopperCauldron / 2
 PASS Combat glyphs cleared in rest CopperCauldron / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CopperCauldron / 2
+PASS Mechanic ink clears completely outside combat CopperCauldron / 2
 PASS Approach save round trip CopperCauldron / 2
 PASS Identity row does not overwrite stat summaries ChinaMarionette / 0
 PASS Damage row keeps correct compiled value ChinaMarionette / 0
@@ -295,6 +367,8 @@ PASS Actual signature activated ChinaMarionette / 0 casts=20 injuries=True
 PASS Bounded visual/projectile queues ChinaMarionette / 0
 PASS Pause cannot farm mechanic ChinaMarionette / 0
 PASS Combat glyphs cleared in rest ChinaMarionette / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ChinaMarionette / 0
+PASS Mechanic ink clears completely outside combat ChinaMarionette / 0
 PASS Approach save round trip ChinaMarionette / 0
 PASS Identity row does not overwrite stat summaries ChinaMarionette / 1
 PASS Damage row keeps correct compiled value ChinaMarionette / 1
@@ -303,6 +377,8 @@ PASS Actual signature activated ChinaMarionette / 1 casts=20 injuries=True
 PASS Bounded visual/projectile queues ChinaMarionette / 1
 PASS Pause cannot farm mechanic ChinaMarionette / 1
 PASS Combat glyphs cleared in rest ChinaMarionette / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ChinaMarionette / 1
+PASS Mechanic ink clears completely outside combat ChinaMarionette / 1
 PASS Approach save round trip ChinaMarionette / 1
 PASS Identity row does not overwrite stat summaries ChinaMarionette / 2
 PASS Damage row keeps correct compiled value ChinaMarionette / 2
@@ -311,6 +387,8 @@ PASS Actual signature activated ChinaMarionette / 2 casts=20 injuries=True
 PASS Bounded visual/projectile queues ChinaMarionette / 2
 PASS Pause cannot farm mechanic ChinaMarionette / 2
 PASS Combat glyphs cleared in rest ChinaMarionette / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ChinaMarionette / 2
+PASS Mechanic ink clears completely outside combat ChinaMarionette / 2
 PASS Approach save round trip ChinaMarionette / 2
 PASS Identity row does not overwrite stat summaries SoapSkater / 0
 PASS Damage row keeps correct compiled value SoapSkater / 0
@@ -319,6 +397,8 @@ PASS Actual signature activated SoapSkater / 0 casts=23 injuries=True
 PASS Bounded visual/projectile queues SoapSkater / 0
 PASS Pause cannot farm mechanic SoapSkater / 0
 PASS Combat glyphs cleared in rest SoapSkater / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SoapSkater / 0
+PASS Mechanic ink clears completely outside combat SoapSkater / 0
 PASS Approach save round trip SoapSkater / 0
 PASS Identity row does not overwrite stat summaries SoapSkater / 1
 PASS Damage row keeps correct compiled value SoapSkater / 1
@@ -327,6 +407,8 @@ PASS Actual signature activated SoapSkater / 1 casts=23 injuries=True
 PASS Bounded visual/projectile queues SoapSkater / 1
 PASS Pause cannot farm mechanic SoapSkater / 1
 PASS Combat glyphs cleared in rest SoapSkater / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SoapSkater / 1
+PASS Mechanic ink clears completely outside combat SoapSkater / 1
 PASS Approach save round trip SoapSkater / 1
 PASS Identity row does not overwrite stat summaries SoapSkater / 2
 PASS Damage row keeps correct compiled value SoapSkater / 2
@@ -335,102 +417,128 @@ PASS Actual signature activated SoapSkater / 2 casts=23 injuries=True
 PASS Bounded visual/projectile queues SoapSkater / 2
 PASS Pause cannot farm mechanic SoapSkater / 2
 PASS Combat glyphs cleared in rest SoapSkater / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SoapSkater / 2
+PASS Mechanic ink clears completely outside combat SoapSkater / 2
 PASS Approach save round trip SoapSkater / 2
 PASS Identity row does not overwrite stat summaries VelvetRegent / 0
 PASS Damage row keeps correct compiled value VelvetRegent / 0
 PASS Finite and immortal companion behavior VelvetRegent / 0
-PASS Actual signature activated VelvetRegent / 0 casts=4 injuries=True
+PASS Actual signature activated VelvetRegent / 0 casts=9 injuries=True
 PASS Bounded visual/projectile queues VelvetRegent / 0
 PASS Pause cannot farm mechanic VelvetRegent / 0
 PASS Combat glyphs cleared in rest VelvetRegent / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines VelvetRegent / 0
+PASS Mechanic ink clears completely outside combat VelvetRegent / 0
 PASS Approach save round trip VelvetRegent / 0
 PASS Identity row does not overwrite stat summaries VelvetRegent / 1
 PASS Damage row keeps correct compiled value VelvetRegent / 1
 PASS Finite and immortal companion behavior VelvetRegent / 1
-PASS Actual signature activated VelvetRegent / 1 casts=4 injuries=True
+PASS Actual signature activated VelvetRegent / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues VelvetRegent / 1
 PASS Pause cannot farm mechanic VelvetRegent / 1
 PASS Combat glyphs cleared in rest VelvetRegent / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines VelvetRegent / 1
+PASS Mechanic ink clears completely outside combat VelvetRegent / 1
 PASS Approach save round trip VelvetRegent / 1
 PASS Identity row does not overwrite stat summaries VelvetRegent / 2
 PASS Damage row keeps correct compiled value VelvetRegent / 2
 PASS Finite and immortal companion behavior VelvetRegent / 2
-PASS Actual signature activated VelvetRegent / 2 casts=4 injuries=True
+PASS Actual signature activated VelvetRegent / 2 casts=9 injuries=True
 PASS Bounded visual/projectile queues VelvetRegent / 2
 PASS Pause cannot farm mechanic VelvetRegent / 2
 PASS Combat glyphs cleared in rest VelvetRegent / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines VelvetRegent / 2
+PASS Mechanic ink clears completely outside combat VelvetRegent / 2
 PASS Approach save round trip VelvetRegent / 2
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 0
 PASS Damage row keeps correct compiled value ButtonCavalier / 0
 PASS Finite and immortal companion behavior ButtonCavalier / 0
-PASS Actual signature activated ButtonCavalier / 0 casts=9 injuries=True
+PASS Actual signature activated ButtonCavalier / 0 casts=8 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 0
 PASS Pause cannot farm mechanic ButtonCavalier / 0
 PASS Combat glyphs cleared in rest ButtonCavalier / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ButtonCavalier / 0
+PASS Mechanic ink clears completely outside combat ButtonCavalier / 0
 PASS Approach save round trip ButtonCavalier / 0
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 1
 PASS Damage row keeps correct compiled value ButtonCavalier / 1
 PASS Finite and immortal companion behavior ButtonCavalier / 1
-PASS Actual signature activated ButtonCavalier / 1 casts=9 injuries=True
+PASS Actual signature activated ButtonCavalier / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 1
 PASS Pause cannot farm mechanic ButtonCavalier / 1
 PASS Combat glyphs cleared in rest ButtonCavalier / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ButtonCavalier / 1
+PASS Mechanic ink clears completely outside combat ButtonCavalier / 1
 PASS Approach save round trip ButtonCavalier / 1
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 2
 PASS Damage row keeps correct compiled value ButtonCavalier / 2
 PASS Finite and immortal companion behavior ButtonCavalier / 2
-PASS Actual signature activated ButtonCavalier / 2 casts=9 injuries=True
+PASS Actual signature activated ButtonCavalier / 2 casts=8 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 2
 PASS Pause cannot farm mechanic ButtonCavalier / 2
 PASS Combat glyphs cleared in rest ButtonCavalier / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ButtonCavalier / 2
+PASS Mechanic ink clears completely outside combat ButtonCavalier / 2
 PASS Approach save round trip ButtonCavalier / 2
 PASS Identity row does not overwrite stat summaries NightMaw / 0
 PASS Damage row keeps correct compiled value NightMaw / 0
 PASS Finite and immortal companion behavior NightMaw / 0
-PASS Actual signature activated NightMaw / 0 casts=11 injuries=True
+PASS Actual signature activated NightMaw / 0 casts=12 injuries=True
 PASS Bounded visual/projectile queues NightMaw / 0
 PASS Pause cannot farm mechanic NightMaw / 0
 PASS Combat glyphs cleared in rest NightMaw / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines NightMaw / 0
+PASS Mechanic ink clears completely outside combat NightMaw / 0
 PASS Approach save round trip NightMaw / 0
 PASS Identity row does not overwrite stat summaries NightMaw / 1
 PASS Damage row keeps correct compiled value NightMaw / 1
 PASS Finite and immortal companion behavior NightMaw / 1
-PASS Actual signature activated NightMaw / 1 casts=11 injuries=True
+PASS Actual signature activated NightMaw / 1 casts=12 injuries=True
 PASS Bounded visual/projectile queues NightMaw / 1
 PASS Pause cannot farm mechanic NightMaw / 1
 PASS Combat glyphs cleared in rest NightMaw / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines NightMaw / 1
+PASS Mechanic ink clears completely outside combat NightMaw / 1
 PASS Approach save round trip NightMaw / 1
 PASS Identity row does not overwrite stat summaries NightMaw / 2
 PASS Damage row keeps correct compiled value NightMaw / 2
 PASS Finite and immortal companion behavior NightMaw / 2
-PASS Actual signature activated NightMaw / 2 casts=11 injuries=True
+PASS Actual signature activated NightMaw / 2 casts=12 injuries=True
 PASS Bounded visual/projectile queues NightMaw / 2
 PASS Pause cannot farm mechanic NightMaw / 2
 PASS Combat glyphs cleared in rest NightMaw / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines NightMaw / 2
+PASS Mechanic ink clears completely outside combat NightMaw / 2
 PASS Approach save round trip NightMaw / 2
 PASS Identity row does not overwrite stat summaries ThornTreasurer / 0
 PASS Damage row keeps correct compiled value ThornTreasurer / 0
 PASS Finite and immortal companion behavior ThornTreasurer / 0
-PASS Actual signature activated ThornTreasurer / 0 casts=10 injuries=True
+PASS Actual signature activated ThornTreasurer / 0 casts=8 injuries=True
 PASS Bounded visual/projectile queues ThornTreasurer / 0
 PASS Pause cannot farm mechanic ThornTreasurer / 0
 PASS Combat glyphs cleared in rest ThornTreasurer / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ThornTreasurer / 0
+PASS Mechanic ink clears completely outside combat ThornTreasurer / 0
 PASS Approach save round trip ThornTreasurer / 0
 PASS Identity row does not overwrite stat summaries ThornTreasurer / 1
 PASS Damage row keeps correct compiled value ThornTreasurer / 1
 PASS Finite and immortal companion behavior ThornTreasurer / 1
-PASS Actual signature activated ThornTreasurer / 1 casts=10 injuries=True
+PASS Actual signature activated ThornTreasurer / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues ThornTreasurer / 1
 PASS Pause cannot farm mechanic ThornTreasurer / 1
 PASS Combat glyphs cleared in rest ThornTreasurer / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ThornTreasurer / 1
+PASS Mechanic ink clears completely outside combat ThornTreasurer / 1
 PASS Approach save round trip ThornTreasurer / 1
 PASS Identity row does not overwrite stat summaries ThornTreasurer / 2
 PASS Damage row keeps correct compiled value ThornTreasurer / 2
 PASS Finite and immortal companion behavior ThornTreasurer / 2
-PASS Actual signature activated ThornTreasurer / 2 casts=10 injuries=True
+PASS Actual signature activated ThornTreasurer / 2 casts=8 injuries=True
 PASS Bounded visual/projectile queues ThornTreasurer / 2
 PASS Pause cannot farm mechanic ThornTreasurer / 2
 PASS Combat glyphs cleared in rest ThornTreasurer / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ThornTreasurer / 2
+PASS Mechanic ink clears completely outside combat ThornTreasurer / 2
 PASS Approach save round trip ThornTreasurer / 2
 PASS Identity row does not overwrite stat summaries CitrusMarshal / 0
 PASS Damage row keeps correct compiled value CitrusMarshal / 0
@@ -439,6 +547,8 @@ PASS Actual signature activated CitrusMarshal / 0 casts=12 injuries=True
 PASS Bounded visual/projectile queues CitrusMarshal / 0
 PASS Pause cannot farm mechanic CitrusMarshal / 0
 PASS Combat glyphs cleared in rest CitrusMarshal / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CitrusMarshal / 0
+PASS Mechanic ink clears completely outside combat CitrusMarshal / 0
 PASS Approach save round trip CitrusMarshal / 0
 PASS Identity row does not overwrite stat summaries CitrusMarshal / 1
 PASS Damage row keeps correct compiled value CitrusMarshal / 1
@@ -447,6 +557,8 @@ PASS Actual signature activated CitrusMarshal / 1 casts=12 injuries=True
 PASS Bounded visual/projectile queues CitrusMarshal / 1
 PASS Pause cannot farm mechanic CitrusMarshal / 1
 PASS Combat glyphs cleared in rest CitrusMarshal / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CitrusMarshal / 1
+PASS Mechanic ink clears completely outside combat CitrusMarshal / 1
 PASS Approach save round trip CitrusMarshal / 1
 PASS Identity row does not overwrite stat summaries CitrusMarshal / 2
 PASS Damage row keeps correct compiled value CitrusMarshal / 2
@@ -455,6 +567,8 @@ PASS Actual signature activated CitrusMarshal / 2 casts=12 injuries=True
 PASS Bounded visual/projectile queues CitrusMarshal / 2
 PASS Pause cannot farm mechanic CitrusMarshal / 2
 PASS Combat glyphs cleared in rest CitrusMarshal / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines CitrusMarshal / 2
+PASS Mechanic ink clears completely outside combat CitrusMarshal / 2
 PASS Approach save round trip CitrusMarshal / 2
 PASS Identity row does not overwrite stat summaries IvorySovereign / 0
 PASS Damage row keeps correct compiled value IvorySovereign / 0
@@ -463,14 +577,18 @@ PASS Actual signature activated IvorySovereign / 0 casts=21 injuries=True
 PASS Bounded visual/projectile queues IvorySovereign / 0
 PASS Pause cannot farm mechanic IvorySovereign / 0
 PASS Combat glyphs cleared in rest IvorySovereign / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines IvorySovereign / 0
+PASS Mechanic ink clears completely outside combat IvorySovereign / 0
 PASS Approach save round trip IvorySovereign / 0
 PASS Identity row does not overwrite stat summaries IvorySovereign / 1
 PASS Damage row keeps correct compiled value IvorySovereign / 1
 PASS Finite and immortal companion behavior IvorySovereign / 1
-PASS Actual signature activated IvorySovereign / 1 casts=21 injuries=True
+PASS Actual signature activated IvorySovereign / 1 casts=22 injuries=True
 PASS Bounded visual/projectile queues IvorySovereign / 1
 PASS Pause cannot farm mechanic IvorySovereign / 1
 PASS Combat glyphs cleared in rest IvorySovereign / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines IvorySovereign / 1
+PASS Mechanic ink clears completely outside combat IvorySovereign / 1
 PASS Approach save round trip IvorySovereign / 1
 PASS Identity row does not overwrite stat summaries IvorySovereign / 2
 PASS Damage row keeps correct compiled value IvorySovereign / 2
@@ -479,6 +597,8 @@ PASS Actual signature activated IvorySovereign / 2 casts=21 injuries=True
 PASS Bounded visual/projectile queues IvorySovereign / 2
 PASS Pause cannot farm mechanic IvorySovereign / 2
 PASS Combat glyphs cleared in rest IvorySovereign / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines IvorySovereign / 2
+PASS Mechanic ink clears completely outside combat IvorySovereign / 2
 PASS Approach save round trip IvorySovereign / 2
 PASS Identity row does not overwrite stat summaries PetalCitadel / 0
 PASS Damage row keeps correct compiled value PetalCitadel / 0
@@ -487,6 +607,8 @@ PASS Actual signature activated PetalCitadel / 0 casts=8 injuries=True
 PASS Bounded visual/projectile queues PetalCitadel / 0
 PASS Pause cannot farm mechanic PetalCitadel / 0
 PASS Combat glyphs cleared in rest PetalCitadel / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PetalCitadel / 0
+PASS Mechanic ink clears completely outside combat PetalCitadel / 0
 PASS Approach save round trip PetalCitadel / 0
 PASS Identity row does not overwrite stat summaries PetalCitadel / 1
 PASS Damage row keeps correct compiled value PetalCitadel / 1
@@ -495,6 +617,8 @@ PASS Actual signature activated PetalCitadel / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues PetalCitadel / 1
 PASS Pause cannot farm mechanic PetalCitadel / 1
 PASS Combat glyphs cleared in rest PetalCitadel / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PetalCitadel / 1
+PASS Mechanic ink clears completely outside combat PetalCitadel / 1
 PASS Approach save round trip PetalCitadel / 1
 PASS Identity row does not overwrite stat summaries PetalCitadel / 2
 PASS Damage row keeps correct compiled value PetalCitadel / 2
@@ -503,30 +627,38 @@ PASS Actual signature activated PetalCitadel / 2 casts=8 injuries=True
 PASS Bounded visual/projectile queues PetalCitadel / 2
 PASS Pause cannot farm mechanic PetalCitadel / 2
 PASS Combat glyphs cleared in rest PetalCitadel / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PetalCitadel / 2
+PASS Mechanic ink clears completely outside combat PetalCitadel / 2
 PASS Approach save round trip PetalCitadel / 2
 PASS Identity row does not overwrite stat summaries PatchworkHost / 0
 PASS Damage row keeps correct compiled value PatchworkHost / 0
 PASS Finite and immortal companion behavior PatchworkHost / 0
-PASS Actual signature activated PatchworkHost / 0 casts=6 injuries=True
+PASS Actual signature activated PatchworkHost / 0 casts=8 injuries=True
 PASS Bounded visual/projectile queues PatchworkHost / 0
 PASS Pause cannot farm mechanic PatchworkHost / 0
 PASS Combat glyphs cleared in rest PatchworkHost / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PatchworkHost / 0
+PASS Mechanic ink clears completely outside combat PatchworkHost / 0
 PASS Approach save round trip PatchworkHost / 0
 PASS Identity row does not overwrite stat summaries PatchworkHost / 1
 PASS Damage row keeps correct compiled value PatchworkHost / 1
 PASS Finite and immortal companion behavior PatchworkHost / 1
-PASS Actual signature activated PatchworkHost / 1 casts=6 injuries=True
+PASS Actual signature activated PatchworkHost / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues PatchworkHost / 1
 PASS Pause cannot farm mechanic PatchworkHost / 1
 PASS Combat glyphs cleared in rest PatchworkHost / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PatchworkHost / 1
+PASS Mechanic ink clears completely outside combat PatchworkHost / 1
 PASS Approach save round trip PatchworkHost / 1
 PASS Identity row does not overwrite stat summaries PatchworkHost / 2
 PASS Damage row keeps correct compiled value PatchworkHost / 2
 PASS Finite and immortal companion behavior PatchworkHost / 2
-PASS Actual signature activated PatchworkHost / 2 casts=6 injuries=True
+PASS Actual signature activated PatchworkHost / 2 casts=8 injuries=True
 PASS Bounded visual/projectile queues PatchworkHost / 2
 PASS Pause cannot farm mechanic PatchworkHost / 2
 PASS Combat glyphs cleared in rest PatchworkHost / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PatchworkHost / 2
+PASS Mechanic ink clears completely outside combat PatchworkHost / 2
 PASS Approach save round trip PatchworkHost / 2
 PASS Identity row does not overwrite stat summaries ArchiveCurator / 0
 PASS Damage row keeps correct compiled value ArchiveCurator / 0
@@ -535,6 +667,8 @@ PASS Actual signature activated ArchiveCurator / 0 casts=6 injuries=True
 PASS Bounded visual/projectile queues ArchiveCurator / 0
 PASS Pause cannot farm mechanic ArchiveCurator / 0
 PASS Combat glyphs cleared in rest ArchiveCurator / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ArchiveCurator / 0
+PASS Mechanic ink clears completely outside combat ArchiveCurator / 0
 PASS Approach save round trip ArchiveCurator / 0
 PASS Identity row does not overwrite stat summaries ArchiveCurator / 1
 PASS Damage row keeps correct compiled value ArchiveCurator / 1
@@ -543,6 +677,8 @@ PASS Actual signature activated ArchiveCurator / 1 casts=6 injuries=True
 PASS Bounded visual/projectile queues ArchiveCurator / 1
 PASS Pause cannot farm mechanic ArchiveCurator / 1
 PASS Combat glyphs cleared in rest ArchiveCurator / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ArchiveCurator / 1
+PASS Mechanic ink clears completely outside combat ArchiveCurator / 1
 PASS Approach save round trip ArchiveCurator / 1
 PASS Identity row does not overwrite stat summaries ArchiveCurator / 2
 PASS Damage row keeps correct compiled value ArchiveCurator / 2
@@ -551,6 +687,8 @@ PASS Actual signature activated ArchiveCurator / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues ArchiveCurator / 2
 PASS Pause cannot farm mechanic ArchiveCurator / 2
 PASS Combat glyphs cleared in rest ArchiveCurator / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines ArchiveCurator / 2
+PASS Mechanic ink clears completely outside combat ArchiveCurator / 2
 PASS Approach save round trip ArchiveCurator / 2
 PASS Identity row does not overwrite stat summaries PennyBroker / 0
 PASS Damage row keeps correct compiled value PennyBroker / 0
@@ -559,6 +697,8 @@ PASS Actual signature activated PennyBroker / 0 casts=12 injuries=True
 PASS Bounded visual/projectile queues PennyBroker / 0
 PASS Pause cannot farm mechanic PennyBroker / 0
 PASS Combat glyphs cleared in rest PennyBroker / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PennyBroker / 0
+PASS Mechanic ink clears completely outside combat PennyBroker / 0
 PASS Approach save round trip PennyBroker / 0
 PASS Identity row does not overwrite stat summaries PennyBroker / 1
 PASS Damage row keeps correct compiled value PennyBroker / 1
@@ -567,6 +707,8 @@ PASS Actual signature activated PennyBroker / 1 casts=12 injuries=True
 PASS Bounded visual/projectile queues PennyBroker / 1
 PASS Pause cannot farm mechanic PennyBroker / 1
 PASS Combat glyphs cleared in rest PennyBroker / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PennyBroker / 1
+PASS Mechanic ink clears completely outside combat PennyBroker / 1
 PASS Approach save round trip PennyBroker / 1
 PASS Identity row does not overwrite stat summaries PennyBroker / 2
 PASS Damage row keeps correct compiled value PennyBroker / 2
@@ -575,6 +717,8 @@ PASS Actual signature activated PennyBroker / 2 casts=12 injuries=True
 PASS Bounded visual/projectile queues PennyBroker / 2
 PASS Pause cannot farm mechanic PennyBroker / 2
 PASS Combat glyphs cleared in rest PennyBroker / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines PennyBroker / 2
+PASS Mechanic ink clears completely outside combat PennyBroker / 2
 PASS Approach save round trip PennyBroker / 2
 PASS Identity row does not overwrite stat summaries StormFencer / 0
 PASS Damage row keeps correct compiled value StormFencer / 0
@@ -583,6 +727,8 @@ PASS Actual signature activated StormFencer / 0 casts=11 injuries=True
 PASS Bounded visual/projectile queues StormFencer / 0
 PASS Pause cannot farm mechanic StormFencer / 0
 PASS Combat glyphs cleared in rest StormFencer / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines StormFencer / 0
+PASS Mechanic ink clears completely outside combat StormFencer / 0
 PASS Approach save round trip StormFencer / 0
 PASS Identity row does not overwrite stat summaries StormFencer / 1
 PASS Damage row keeps correct compiled value StormFencer / 1
@@ -591,6 +737,8 @@ PASS Actual signature activated StormFencer / 1 casts=11 injuries=True
 PASS Bounded visual/projectile queues StormFencer / 1
 PASS Pause cannot farm mechanic StormFencer / 1
 PASS Combat glyphs cleared in rest StormFencer / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines StormFencer / 1
+PASS Mechanic ink clears completely outside combat StormFencer / 1
 PASS Approach save round trip StormFencer / 1
 PASS Identity row does not overwrite stat summaries StormFencer / 2
 PASS Damage row keeps correct compiled value StormFencer / 2
@@ -599,6 +747,8 @@ PASS Actual signature activated StormFencer / 2 casts=11 injuries=True
 PASS Bounded visual/projectile queues StormFencer / 2
 PASS Pause cannot farm mechanic StormFencer / 2
 PASS Combat glyphs cleared in rest StormFencer / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines StormFencer / 2
+PASS Mechanic ink clears completely outside combat StormFencer / 2
 PASS Approach save round trip StormFencer / 2
 PASS Identity row does not overwrite stat summaries TinVirtuoso / 0
 PASS Damage row keeps correct compiled value TinVirtuoso / 0
@@ -607,14 +757,18 @@ PASS Actual signature activated TinVirtuoso / 0 casts=13 injuries=True
 PASS Bounded visual/projectile queues TinVirtuoso / 0
 PASS Pause cannot farm mechanic TinVirtuoso / 0
 PASS Combat glyphs cleared in rest TinVirtuoso / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TinVirtuoso / 0
+PASS Mechanic ink clears completely outside combat TinVirtuoso / 0
 PASS Approach save round trip TinVirtuoso / 0
 PASS Identity row does not overwrite stat summaries TinVirtuoso / 1
 PASS Damage row keeps correct compiled value TinVirtuoso / 1
 PASS Finite and immortal companion behavior TinVirtuoso / 1
-PASS Actual signature activated TinVirtuoso / 1 casts=6 injuries=True
+PASS Actual signature activated TinVirtuoso / 1 casts=7 injuries=True
 PASS Bounded visual/projectile queues TinVirtuoso / 1
 PASS Pause cannot farm mechanic TinVirtuoso / 1
 PASS Combat glyphs cleared in rest TinVirtuoso / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TinVirtuoso / 1
+PASS Mechanic ink clears completely outside combat TinVirtuoso / 1
 PASS Approach save round trip TinVirtuoso / 1
 PASS Identity row does not overwrite stat summaries TinVirtuoso / 2
 PASS Damage row keeps correct compiled value TinVirtuoso / 2
@@ -623,54 +777,68 @@ PASS Actual signature activated TinVirtuoso / 2 casts=4 injuries=True
 PASS Bounded visual/projectile queues TinVirtuoso / 2
 PASS Pause cannot farm mechanic TinVirtuoso / 2
 PASS Combat glyphs cleared in rest TinVirtuoso / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines TinVirtuoso / 2
+PASS Mechanic ink clears completely outside combat TinVirtuoso / 2
 PASS Approach save round trip TinVirtuoso / 2
 PASS Identity row does not overwrite stat summaries MoonProwler / 0
 PASS Damage row keeps correct compiled value MoonProwler / 0
 PASS Finite and immortal companion behavior MoonProwler / 0
-PASS Actual signature activated MoonProwler / 0 casts=3 injuries=True
+PASS Actual signature activated MoonProwler / 0 casts=1 injuries=True
 PASS Bounded visual/projectile queues MoonProwler / 0
 PASS Pause cannot farm mechanic MoonProwler / 0
 PASS Combat glyphs cleared in rest MoonProwler / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines MoonProwler / 0
+PASS Mechanic ink clears completely outside combat MoonProwler / 0
 PASS Approach save round trip MoonProwler / 0
 PASS Identity row does not overwrite stat summaries MoonProwler / 1
 PASS Damage row keeps correct compiled value MoonProwler / 1
 PASS Finite and immortal companion behavior MoonProwler / 1
-PASS Actual signature activated MoonProwler / 1 casts=3 injuries=True
+PASS Actual signature activated MoonProwler / 1 casts=1 injuries=True
 PASS Bounded visual/projectile queues MoonProwler / 1
 PASS Pause cannot farm mechanic MoonProwler / 1
 PASS Combat glyphs cleared in rest MoonProwler / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines MoonProwler / 1
+PASS Mechanic ink clears completely outside combat MoonProwler / 1
 PASS Approach save round trip MoonProwler / 1
 PASS Identity row does not overwrite stat summaries MoonProwler / 2
 PASS Damage row keeps correct compiled value MoonProwler / 2
 PASS Finite and immortal companion behavior MoonProwler / 2
-PASS Actual signature activated MoonProwler / 2 casts=3 injuries=True
+PASS Actual signature activated MoonProwler / 2 casts=1 injuries=True
 PASS Bounded visual/projectile queues MoonProwler / 2
 PASS Pause cannot farm mechanic MoonProwler / 2
 PASS Combat glyphs cleared in rest MoonProwler / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines MoonProwler / 2
+PASS Mechanic ink clears completely outside combat MoonProwler / 2
 PASS Approach save round trip MoonProwler / 2
 PASS Identity row does not overwrite stat summaries SupperMortar / 0
 PASS Damage row keeps correct compiled value SupperMortar / 0
 PASS Finite and immortal companion behavior SupperMortar / 0
-PASS Actual signature activated SupperMortar / 0 casts=35 injuries=True
+PASS Actual signature activated SupperMortar / 0 casts=33 injuries=True
 PASS Bounded visual/projectile queues SupperMortar / 0
 PASS Pause cannot farm mechanic SupperMortar / 0
 PASS Combat glyphs cleared in rest SupperMortar / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SupperMortar / 0
+PASS Mechanic ink clears completely outside combat SupperMortar / 0
 PASS Approach save round trip SupperMortar / 0
 PASS Identity row does not overwrite stat summaries SupperMortar / 1
 PASS Damage row keeps correct compiled value SupperMortar / 1
 PASS Finite and immortal companion behavior SupperMortar / 1
-PASS Actual signature activated SupperMortar / 1 casts=35 injuries=True
+PASS Actual signature activated SupperMortar / 1 casts=33 injuries=True
 PASS Bounded visual/projectile queues SupperMortar / 1
 PASS Pause cannot farm mechanic SupperMortar / 1
 PASS Combat glyphs cleared in rest SupperMortar / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SupperMortar / 1
+PASS Mechanic ink clears completely outside combat SupperMortar / 1
 PASS Approach save round trip SupperMortar / 1
 PASS Identity row does not overwrite stat summaries SupperMortar / 2
 PASS Damage row keeps correct compiled value SupperMortar / 2
 PASS Finite and immortal companion behavior SupperMortar / 2
-PASS Actual signature activated SupperMortar / 2 casts=35 injuries=True
+PASS Actual signature activated SupperMortar / 2 casts=33 injuries=True
 PASS Bounded visual/projectile queues SupperMortar / 2
 PASS Pause cannot farm mechanic SupperMortar / 2
 PASS Combat glyphs cleared in rest SupperMortar / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines SupperMortar / 2
+PASS Mechanic ink clears completely outside combat SupperMortar / 2
 PASS Approach save round trip SupperMortar / 2
 PASS Identity row does not overwrite stat summaries LanternWeaver / 0
 PASS Damage row keeps correct compiled value LanternWeaver / 0
@@ -679,6 +847,8 @@ PASS Actual signature activated LanternWeaver / 0 casts=5 injuries=True
 PASS Bounded visual/projectile queues LanternWeaver / 0
 PASS Pause cannot farm mechanic LanternWeaver / 0
 PASS Combat glyphs cleared in rest LanternWeaver / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LanternWeaver / 0
+PASS Mechanic ink clears completely outside combat LanternWeaver / 0
 PASS Approach save round trip LanternWeaver / 0
 PASS Identity row does not overwrite stat summaries LanternWeaver / 1
 PASS Damage row keeps correct compiled value LanternWeaver / 1
@@ -687,6 +857,8 @@ PASS Actual signature activated LanternWeaver / 1 casts=5 injuries=True
 PASS Bounded visual/projectile queues LanternWeaver / 1
 PASS Pause cannot farm mechanic LanternWeaver / 1
 PASS Combat glyphs cleared in rest LanternWeaver / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LanternWeaver / 1
+PASS Mechanic ink clears completely outside combat LanternWeaver / 1
 PASS Approach save round trip LanternWeaver / 1
 PASS Identity row does not overwrite stat summaries LanternWeaver / 2
 PASS Damage row keeps correct compiled value LanternWeaver / 2
@@ -695,14 +867,18 @@ PASS Actual signature activated LanternWeaver / 2 casts=5 injuries=True
 PASS Bounded visual/projectile queues LanternWeaver / 2
 PASS Pause cannot farm mechanic LanternWeaver / 2
 PASS Combat glyphs cleared in rest LanternWeaver / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines LanternWeaver / 2
+PASS Mechanic ink clears completely outside combat LanternWeaver / 2
 PASS Approach save round trip LanternWeaver / 2
 PASS Identity row does not overwrite stat summaries HourglassStag / 0
 PASS Damage row keeps correct compiled value HourglassStag / 0
 PASS Finite and immortal companion behavior HourglassStag / 0
-PASS Actual signature activated HourglassStag / 0 casts=8 injuries=True
+PASS Actual signature activated HourglassStag / 0 casts=7 injuries=True
 PASS Bounded visual/projectile queues HourglassStag / 0
 PASS Pause cannot farm mechanic HourglassStag / 0
 PASS Combat glyphs cleared in rest HourglassStag / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines HourglassStag / 0
+PASS Mechanic ink clears completely outside combat HourglassStag / 0
 PASS Approach save round trip HourglassStag / 0
 PASS Identity row does not overwrite stat summaries HourglassStag / 1
 PASS Damage row keeps correct compiled value HourglassStag / 1
@@ -711,6 +887,8 @@ PASS Actual signature activated HourglassStag / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues HourglassStag / 1
 PASS Pause cannot farm mechanic HourglassStag / 1
 PASS Combat glyphs cleared in rest HourglassStag / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines HourglassStag / 1
+PASS Mechanic ink clears completely outside combat HourglassStag / 1
 PASS Approach save round trip HourglassStag / 1
 PASS Identity row does not overwrite stat summaries HourglassStag / 2
 PASS Damage row keeps correct compiled value HourglassStag / 2
@@ -719,6 +897,8 @@ PASS Actual signature activated HourglassStag / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues HourglassStag / 2
 PASS Pause cannot farm mechanic HourglassStag / 2
 PASS Combat glyphs cleared in rest HourglassStag / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines HourglassStag / 2
+PASS Mechanic ink clears completely outside combat HourglassStag / 2
 PASS Approach save round trip HourglassStag / 2
 PASS Identity row does not overwrite stat summaries RainArchivist / 0
 PASS Damage row keeps correct compiled value RainArchivist / 0
@@ -727,6 +907,8 @@ PASS Actual signature activated RainArchivist / 0 casts=6 injuries=True
 PASS Bounded visual/projectile queues RainArchivist / 0
 PASS Pause cannot farm mechanic RainArchivist / 0
 PASS Combat glyphs cleared in rest RainArchivist / 0
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RainArchivist / 0
+PASS Mechanic ink clears completely outside combat RainArchivist / 0
 PASS Approach save round trip RainArchivist / 0
 PASS Identity row does not overwrite stat summaries RainArchivist / 1
 PASS Damage row keeps correct compiled value RainArchivist / 1
@@ -735,6 +917,8 @@ PASS Actual signature activated RainArchivist / 1 casts=6 injuries=True
 PASS Bounded visual/projectile queues RainArchivist / 1
 PASS Pause cannot farm mechanic RainArchivist / 1
 PASS Combat glyphs cleared in rest RainArchivist / 1
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RainArchivist / 1
+PASS Mechanic ink clears completely outside combat RainArchivist / 1
 PASS Approach save round trip RainArchivist / 1
 PASS Identity row does not overwrite stat summaries RainArchivist / 2
 PASS Damage row keeps correct compiled value RainArchivist / 2
@@ -743,6 +927,8 @@ PASS Actual signature activated RainArchivist / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues RainArchivist / 2
 PASS Pause cannot farm mechanic RainArchivist / 2
 PASS Combat glyphs cleared in rest RainArchivist / 2
+PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines RainArchivist / 2
+PASS Mechanic ink clears completely outside combat RainArchivist / 2
 PASS Approach save round trip RainArchivist / 2
 PASS Three detailed approach descriptions LanternKnight
 PASS Full mechanic UI includes approach description LanternKnight / 0

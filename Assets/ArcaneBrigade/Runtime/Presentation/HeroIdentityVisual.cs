@@ -50,7 +50,8 @@ namespace ArcaneBrigade
                 tokens.Add(go.AddComponent<SpriteRenderer>());
             }
             var r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = color; r.sortingOrder = airborne ? AirTokenOrder : GroundTokenOrder;
-            r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale.x, scale.y, 1);
+            float unit = Mathf.Max(.01f, Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y)); // procedural tokens are 1 unit; painted art may differ
+            r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale.x / unit, scale.y / unit, 1);
             return r;
         }
         private void Token(InkToken kind, Vector2 at, float size, float angle, float alpha, bool airborne = true, int face = 0, InkPalette? palette = null, float squash = 1)
@@ -416,7 +417,7 @@ namespace ArcaneBrigade
             {
                 case InkBrush.Bolt: path = InkCanvas.Line(a, b, half * .48f, 0, true, g.Seed); width = .17f; break;
                 case InkBrush.Wave: path = InkCanvas.Line(a, b, half * .3f, 9, false, seed); width = .3f; break;
-                case InkBrush.Thread: path = InkCanvas.Line(a, b, half * .12f, 5, false, seed); width = .14f; break;
+                case InkBrush.Thread: path = InkCanvas.Line(a, b, half * .12f, 5, false, seed); width = .2f; break;
                 case InkBrush.Silk: path = InkCanvas.Line(a, b, half * .22f, 4.5f, false, seed); width = .38f; break;
                 case InkBrush.Flame: path = InkCanvas.Line(a, b, half * .16f, 12, false, seed); width = .36f; break;
                 case InkBrush.Ink: path = InkCanvas.Line(a, b); width = .3f; break;

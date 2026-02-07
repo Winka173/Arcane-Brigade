@@ -47,6 +47,7 @@ namespace ArcaneBrigade.Editor
             var foes=new List<UnitState>();
             for(int i=0;i<3;i++){var u=sim.AddFixture(dummy,Faction.Enemy,new Vector2(1+i*.45f,(i-1)*.5f));u.NextAttack=u.NextContact=float.PositiveInfinity;foes.Add(u);}
             float maxGlyphs=0;bool finite=true;bool injurySeen=false;
+            var stage=new GameObject("Hero mechanic visual check");var visual=stage.AddComponent<HeroIdentityVisual>();int painted=0;
             for(int tick=0;tick<720;tick++)
             {
                 sim.Champion.Health=sim.Champion.Definition.Health;
@@ -64,6 +65,8 @@ namespace ArcaneBrigade.Editor
                 }
                 sim.Step(.05f,movement);
                 injurySeen|=sim.OctoberInjuries>0;maxGlyphs=Mathf.Max(maxGlyphs,sim.HeroIdentityGlyphs.Count);
+                if(tick%9==0){visual.Display(sim);painted=Mathf.Max(painted,visual.VisibleCount);}
+                foreach(var shot in sim.Projectiles)if(HeroIdentityVisual.Missile(shot,a.Projectile,sim.Elapsed,out _,out _)!=null)painted=Mathf.Max(painted,1);
                 if(sim.Units.Any(u=>!float.IsFinite(u.Position.x)||!float.IsFinite(u.Position.y)) || !float.IsFinite(sim.HeroIdentityCharge))finite=false;
             }
             string id=hero.Id+" / "+approach;
@@ -74,6 +77,9 @@ namespace ArcaneBrigade.Editor
             sim.Pause(true);sim.Step(.05f,Vector2.one);
             Check(sim.Elapsed==elapsed && sim.HeroIdentityCharge==charge && sim.HeroIdentityActivations==casts,"Pause cannot farm mechanic "+id);
             sim.Pause(false);sim.EnterRest();Check(sim.HeroIdentityGlyphs.Count==0,"Combat glyphs cleared in rest "+id);
+            Check(painted>0 && stage.GetComponentsInChildren<LineRenderer>(true).Length==0,"Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines "+id);
+            visual.Display(sim);Check(visual.VisibleCount==0 && stage.GetComponentsInChildren<Renderer>().All(r=>!r.enabled),"Mechanic ink clears completely outside combat "+id);
+            UnityEngine.Object.DestroyImmediate(stage);
             s.Validate(s.State);string saved=JsonUtility.ToJson(s.State);s.Restore(JsonUtility.FromJson<RunSnapshot>(saved));
             Check(s.State.HeroIdentity.Approach==approach,"Approach save round trip "+id);
             UnityEngine.Object.DestroyImmediate(dummy.Weapon);UnityEngine.Object.DestroyImmediate(dummy);UnityEngine.Object.DestroyImmediate(weak.Weapon);UnityEngine.Object.DestroyImmediate(weak);

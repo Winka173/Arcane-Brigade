@@ -6,6 +6,9 @@ namespace ArcaneBrigade
     public sealed class MechanicEffectArtwork : ScriptableObject
     {
         public Sprite[] Heroes=Array.Empty<Sprite>(),Forms=Array.Empty<Sprite>();
+        // Optional hand-painted mechanic tokens indexed by InkToken (Docs/Hero_Mechanic_Art_Requests.md); empty slots use procedural ink.
+        public Sprite[] Tokens=Array.Empty<Sprite>();
+        public Sprite PaintedToken(int kind)=>kind>=0 && kind<Tokens.Length?Tokens[kind]:null;
         public static MechanicEffectArtwork Current=>Resources.Load<MechanicEffectArtwork>("MechanicEffectArtwork");
         public Sprite Hero(string id)
         {

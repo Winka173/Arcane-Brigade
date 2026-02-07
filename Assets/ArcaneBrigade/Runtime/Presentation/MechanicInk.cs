@@ -240,8 +240,16 @@ namespace ArcaneBrigade
         private static bool PaperFill(InkToken k) => k == InkToken.Envelope || k == InkToken.Page || k == InkToken.Die || k == InkToken.Puff || k == InkToken.Fang || k == InkToken.Dumpling || k == InkToken.Bubble;
 
         /// <summary>A painted token in this palette. face selects a die face (1-6).</summary>
+        private static MechanicEffectArtwork painted; private static bool paintedLoaded;
+        /// <summary>A hand-painted replacement for this token, when one has been imported (never for dice: faces matter).</summary>
+        public static Sprite Painted(InkToken kind)
+        {
+            if (!paintedLoaded) { paintedLoaded = true; painted = MechanicEffectArtwork.Current; }
+            return kind == InkToken.Die || painted == null ? null : painted.PaintedToken((int)kind);
+        }
         public static Sprite Token(InkToken kind, InkPalette palette, int face = 0)
         {
+            Sprite authored = Painted(kind); if (authored != null) return authored;
             long key = ((long)palette.Key << 12) | ((long)kind << 4) | (long)(face & 15);
             if (tokens.TryGetValue(key, out Sprite cached) && cached != null) return cached;
             const int n = TokenSize; var texture = new Texture2D(n, n, TextureFormat.RGBA32, true) { name = "MechanicInk token " + kind, wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Trilinear };

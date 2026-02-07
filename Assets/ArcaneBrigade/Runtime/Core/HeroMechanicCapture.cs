@@ -51,6 +51,7 @@ namespace ArcaneBrigade
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true, ReducedMotion = reduced, ReducedEffects = reduced, ReducedFlashes = reduced });
             int approach = Mathf.Clamp(int.TryParse(Arg(args, "-mechanic-approach"), out int a) ? a : 0, 0, 2);
             string filter = Arg(args, "-mechanic-heroes");
+            bool crowd = Array.IndexOf(args, "-mechanic-crowd") >= 0, shop = Array.IndexOf(args, "-mechanic-shop") >= 0;
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.6f);
             int index = 0;
             foreach (var hero in HeroIdentities.All)
@@ -65,7 +66,15 @@ namespace ArcaneBrigade
                     foreach (string id in new[] { "TeapotPilgrim", "HoodWisp", "BrassAcorn", "PillowOracle" })
                         if (catalog.Unit(id) != null) session.State.Roster.Add(new RosterEntry { UnitId = id, WeaponId = catalog.Unit(id).Weapon.Id });
                     session.State.HeroIdentity.Approach = approach;
+                    if (shop) { session.State.Phase = SessionPhase.Shop; session.State.Gold = 200; }
                     storage.SaveRun(session.State);
+                }
+                if (shop)
+                {
+                    RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return new WaitForSecondsRealtime(2.6f);
+                    var shopOwner = FindAnyObjectByType<ArenaController>(); shopOwner.ToggleDetails(); shopOwner.Details.SelectTab(0);
+                    yield return new WaitForSecondsRealtime(.5f); yield return Shot(index.ToString("00") + "-" + hero.Id + "-a" + approach + "-shop");
+                    shopOwner.ToggleDetails(); notes.Add("OK " + hero.Id + " shop"); continue;
                 }
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
                 ArenaController owner = null;
@@ -74,7 +83,7 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(.5f);
                 if (Array.IndexOf(args, "-mechanic-tokens") >= 0 && index == 1 || filter != null && Array.IndexOf(args, "-mechanic-tokens") >= 0 && notes.Count == 0) yield return TokenSheet();
                 var sim = owner.Simulation;
-                sim.PrepareMechanicCapture(catalog);
+                sim.PrepareMechanicCapture(catalog, crowd ? 12 : 0);
                 Time.timeScale = .35f;
                 int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
                 while (sim.HeroIdentityActivations == casts && Time.realtimeSinceStartup - started < 16) { sim.NudgeMechanicCapture(); yield return null; }
@@ -132,7 +141,7 @@ namespace ArcaneBrigade
     {
         private UnitState captureTarget;
         /// <summary>Capture-only: replaces the wave with fixed harmless dummies and seeds the trigger the hero reads.</summary>
-        public void PrepareMechanicCapture(RunCatalog c)
+        public void PrepareMechanicCapture(RunCatalog c, int extraFriends = 0)
         {
             if (!HeroMechanicCapture.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
             catalog.EnemyBudget = 0; catalog.Armor = 100; Champion.Health = Champion.Definition.Health;
@@ -145,6 +154,13 @@ namespace ArcaneBrigade
                 if (captureTarget == null) captureTarget = u;
             }
             Vector2 p = Champion.Position;
+            // a crowded brigade (capture only): extra friends standing around the hero, as in a late wave
+            for (int i = 0; i < extraFriends && i < c.Companions.Length; i++)
+            {
+                float a = i * 137.5f * Mathf.Deg2Rad, d = 1.1f + (i % 4) * .45f;
+                var friend = Spawn(c.Companions[(i * 5) % c.Companions.Length], Faction.Companion, p + new Vector2(Mathf.Cos(a) * d - .6f, Mathf.Sin(a) * d * .8f));
+                friend.Position = ClampPosition(friend.Position, friend.Definition.Radius); spatial.Move(friend);
+            }
             switch (IdentityId)
             {
                 case "Postmaster": foreach (UnitState u in units) if (u.Faction == Faction.Enemy && u.Alive) IdentityMarkTarget(u); break;
