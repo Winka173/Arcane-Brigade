@@ -190,6 +190,12 @@ namespace ArcaneBrigade
                     Reveal.EnqueueCommitted(before, owner.Session.State, true, position, false);
                 }
             }
+            else if (station.Action == "NEXT HALL" && owner.Session.HobRescueNeeded)
+            {
+                // the road waits while Hob is still sitting in the perfect room: the journal opens on that page instead
+                owner.GetComponent<MienChoPresentation>()?.Show(ActOneCanon.HobChapter);
+                return false;
+            }
             else if (station.Action == "NEXT HALL")
             {
                 if (Special)
@@ -405,6 +411,7 @@ namespace ArcaneBrigade
         public string DisplayName(Station station)
         {
             if (station.Action == "REROLL") return "REROLL";
+            if (station.Action == "NEXT HALL" && owner.Session.HobRescueNeeded) return "HOB IS STILL SITTING";
             if (station.Action == "NEXT HALL") return Special ? "HEAD DOWN · GOLD SHOP" : "HEAD DOWN · NEXT WAVE";
             if (station.Action == "GOLD SHOP") return "GOLD SHOP";
             if (station.Action == "DREAM ALTAR") return "DREAM SHOP";

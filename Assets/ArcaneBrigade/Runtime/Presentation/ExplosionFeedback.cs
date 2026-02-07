@@ -31,9 +31,23 @@ namespace ArcaneBrigade
         private int burstsInWindow;
         public int ActiveCount { get; private set; }
         public const int Capacity = 40;
+        public static ExplosionFeedback Active { get; private set; }
+        private float skidWindow;
+        private int skidsInWindow;
+        private void OnDestroy() { if (Active == this) Active = null; }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetActive() => Active = null;
+        /// <summary>A puff of floor dust where a knocked-back body skids.</summary>
+        public void Skid(Vector2 position, Vector2 direction)
+        {
+            if (PresentationSettings.ReducedEffects) return;
+            if (Time.unscaledTime > skidWindow) { skidWindow = Time.unscaledTime + 0.1f; skidsInWindow = 0; }
+            if (++skidsInWindow > 8) return;
+            Spawn(Kind.Smudge, position - direction * 0.05f, 0.32f, new Color(0.66f, 0.58f, 0.47f), false);
+        }
 
         private void Awake()
         {
+            Active = this;
             glow = Make("ExplosionGlow", 128, (d, a) => Mathf.Pow(Mathf.Clamp01(1 - d), 1.6f));
             // the shock ring: a soft painted band with a darker inked outer edge
             ring = Make("ExplosionRing", 192, (d, a) => { float band = Mathf.Clamp01(1 - Mathf.Abs(d - 0.82f) / 0.16f); float ink = Mathf.Clamp01(1 - Mathf.Abs(d - 0.96f) / 0.04f); return Mathf.Max(band * band * 0.9f, ink); });
@@ -246,7 +260,8 @@ namespace ArcaneBrigade
                 Vector2 offset = i == 0 ? Vector2.zero : new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * r * 0.35f;
                 view.transform.position = blast.Position + offset * (still ? 1 : Ease(puffT));
                 view.transform.localScale = Vector3.one * (2f * r * (i == 0 ? 0.7f : 0.45f) * (still ? 1 : Mathf.Lerp(0.6f, 1.1f, Ease(puffT))));
-                view.color = new Color(0.14f, 0.1f, 0.17f, (1 - puffT) * (blast.Kind == Kind.Smudge ? 0.6f : 0.32f));
+                Color smudge = blast.Kind == Kind.Smudge ? blast.Color : new Color(0.14f, 0.1f, 0.17f);
+                view.color = new Color(smudge.r, smudge.g, smudge.b, (1 - puffT) * (blast.Kind == Kind.Smudge ? 0.55f : 0.32f));
             }
         }
         private static float Ease(float t) => 1 - Mathf.Pow(1 - Mathf.Clamp01(t), 3);

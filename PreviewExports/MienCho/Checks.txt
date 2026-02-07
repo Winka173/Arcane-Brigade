@@ -259,11 +259,19 @@ PASS Sit down at shop 13
 PASS The door opens the moment the Bedside falls
 PASS Standing up returns to the same shop and asks which lost detail comes back
 PASS Only a dark lantern can be chosen; the face comes back
+PASS Standing up earns the Thursday Shoes, which are never sold
+PASS The Thursday Shoes really quicken the traveller
 PASS One more lantern burns; the chair is spent for this journey
 PASS The Customer notices that someone stood up without paying
 PASS The relit lantern survives a real save
 PASS A lantern cannot be relit before it breaks
 PASS A sat-down journey cannot continue in the shop
+PASS In shop 16 Hob is still sitting in the perfect room, not in the brigade
+PASS Everyone pulls Hob up once
+PASS Hob is back with the brigade
+PASS The rescue survives a real save
+PASS Hob cannot be pulled up before it sits down
+PASS Older saves past shop 16 are never blocked
 PASS The Customer waits until the telephone beat has been read
 PASS Nobody wearing a travelling companion's body can be sold
 PASS A memory is sold once; that companion becomes a stranger

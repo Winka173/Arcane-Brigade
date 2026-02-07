@@ -169,7 +169,7 @@ namespace ArcaneBrigade
             return null;
         }
         public WeaponDefinition Weapon(string id) { foreach (WeaponDefinition weapon in Weapons) if (weapon.Id == id) return weapon; return null; }
-        public ItemDefinition Item(string id) { foreach (ItemDefinition item in Items) if (item.Id == id) return item; return null; }
+        public ItemDefinition Item(string id) { foreach (ItemDefinition item in Items) if (item.Id == id) return item; return ActOneCanon.StoryItem(id); }
     }
 
     [System.Serializable]

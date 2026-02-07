@@ -47,6 +47,7 @@ namespace ArcaneBrigade
                 if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) Choose(0);
                 else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.JoystickButton3)) Choose(1);
                 else if (Input.GetKeyDown(KeyCode.JoystickButton0) && ActOneCanon.ChoiceOptions[chapter] != null && page == 0 && Memory.Choices[chapter] == 0) Choose(0);
+                else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) && HobWaits) EnterHobRoom();
                 else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance(); // a waiting choice is never taken by Enter
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7)) { if (lives) { lives = false; scroll = Vector2.zero; Consume(); } else Close(); }
                 else if (Input.GetKeyDown(KeyCode.JoystickButton2)) { lives = !lives; scroll = Vector2.zero; Consume(); }
@@ -80,6 +81,7 @@ namespace ArcaneBrigade
             if (lives) { lives = false; scroll = Vector2.zero; return; }
             int next = MienChoStory.NextPage(chapter, page, Memory.Choices[chapter]);
             if (next < 0) return; // a choice is waiting on this page
+            if (HobWaits) return;  // the story goes on once everyone has pulled Hob up
             if (next >= MienChoStory.For(owner.Session.State)[chapter].Pages.Length)
             {
                 int finished = Memory.FinishedMask; Memory.FinishedMask |= 1 << chapter;
@@ -90,6 +92,17 @@ namespace ArcaneBrigade
             scroll = Vector2.zero; CheckpointAudio.PlayInterfaceId("ui.page");
         }
         private void Consume() => InputConsumedFrame = Time.frameCount;
+        private bool HobWaits => chapter == ActOneCanon.HobChapter && page == 0 && owner.Session.HobRescueNeeded;
+        /// <summary>Walks into the perfect room, where Hob is sitting (the walkable room scene, rescue mode).</summary>
+        public bool EnterHobRoom()
+        {
+            var state = owner.Session.State;
+            if (!owner.Session.HobRescueNeeded || owner.TransitionPending) return false;
+            WaitingCampaign.Ensure(state); state.WaitingCampaign.Room = 2;
+            if (!owner.SaveNightmareBoundary()) { state.WaitingCampaign.Room = 0; return false; }
+            open = false; owner.SetStoryOpen(false);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("WaitingRoom"); return true;
+        }
         private void SetPage(int value)
         {
             int previous = Memory.Pages[chapter]; Memory.Pages[chapter] = value;
@@ -163,6 +176,10 @@ namespace ArcaneBrigade
                 // the story waits for the traveller: two choices instead of CONTINUE
                 if (Press(new Rect(1070, 925, 240, 65), options[0])) Choose(0);
                 if (Press(new Rect(1320, 925, 240, 65), options[1])) Choose(1);
+            }
+            else if (HobWaits)
+            {
+                if (Press(new Rect(1070, 925, 490, 65), "GO TO HOB  [ENTER]")) EnterHobRoom();
             }
             else
             {

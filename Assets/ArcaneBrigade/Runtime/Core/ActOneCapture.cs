@@ -76,6 +76,18 @@ namespace ArcaneBrigade
             float until = Time.realtimeSinceStartup + 12;
             while ((owner.TransitionPending || owner.Simulation.Boss == null) && Time.realtimeSinceStartup < until) yield return null;
             yield return new WaitForSecondsRealtime(4f); yield return Shot("04-the-night-you-hid");
+            // C2: shop 16, the perfect room: Hob sitting, then pulled up by everyone
+            using (var session = new RunSession(catalog))
+            {
+                session.Start("LanternKnight", 161061); session.State.Wave = 16; session.State.Phase = SessionPhase.Shop;
+                session.State.MienCho.ReadMask = (1 << MienChoStory.Available(session.State)) - 1;
+                WaitingCampaign.Ensure(session.State); session.State.WaitingCampaign.Room = 2;
+                storage.SaveRun(session.State);
+            }
+            SceneManager.LoadScene("WaitingRoom"); yield return new WaitForSecondsRealtime(2f);
+            var perfect = FindAnyObjectByType<WaitingRoomController>();
+            yield return Shot("08-perfect-room-hob-sitting");
+            if (perfect != null) { perfect.DiagnosticPull(WaitingRoomController.PullSeconds + 0.1f); yield return new WaitForSecondsRealtime(1.2f); yield return Shot("09-hob-pulled-up"); }
             // C: after the first dawn, the Waiting Room's armchair asks its question once
             var profile = storage.LoadProfile(); profile.NightmareShopClosed = true; profile.ActOneChairSpoke = false; storage.SaveProfile(profile);
             SceneManager.LoadScene("RunFrontend"); yield return new WaitForSecondsRealtime(4.2f);

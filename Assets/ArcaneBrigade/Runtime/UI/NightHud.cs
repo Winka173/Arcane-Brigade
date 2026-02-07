@@ -2,12 +2,11 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>HUD pieces that only make sense in Miền Chờ: the road down through the night to dawn (with the journal's
-    /// letters along it), red eyes at the screen edge for what is still coming out of the dark, and the ring of small
-    /// flames around the hero — one for every companion sharing their light.</summary>
+    /// <summary>HUD pieces that only make sense in Miền Chờ: the eight lanterns of the Thursday visitor, red eyes at the
+    /// screen edge for what is still coming out of the dark, and the ring of small flames around the hero — one for every
+    /// companion sharing their light.</summary>
     public static class NightHud
     {
-        private static GUIStyle caption;
         private static GUIStyle count;
         private static GUIStyle loss;
         private static readonly Sprite[] lanterns = new Sprite[3];
@@ -39,73 +38,29 @@ namespace ArcaneBrigade
             GUI.color = was;
         }
 
-        /// <summary>A path of one notch per wave from dusk to dawn. Lit notches are behind you; the eight lanterns stand at the
-        /// waves they go out, and a red tick marks the end of each zone.</summary>
-        public static void DawnPath(Rect area, RunSnapshot state, int normalWaves, bool combat)
+        /// <summary>The eight lanterns of the Thursday visitor as a small row under the wallet: lit, flickering or dark.
+        /// No text and no wave road, so it never competes with the fight.</summary>
+        public static void Lanterns(Rect area, RunSnapshot state)
         {
-            if (caption == null)
-            {
-                caption = ArcadeTypography.Style(12, false, true); caption.alignment = TextAnchor.MiddleCenter; caption.wordWrap = false;
-            }
-            normalWaves = Mathf.Max(1, normalWaves);
-            float y = area.center.y;
-            Color amber = ArcadeSkin.Accent;
-            bool endless = state.Endless || state.Wave > normalWaves;
-            float left = area.x, right = area.xMax - (endless ? 0 : 26);
-            ArcadeSkin.Line(new Rect(left, y - 1, right - left, 2), new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, 0.16f));
-            int current = Mathf.Clamp(state.Wave, 1, normalWaves);
-            float step = (right - left) / Mathf.Max(1, normalWaves - 1);
-            float done = (current - 1 + (combat ? 0f : 1f)) / Mathf.Max(1, normalWaves - 1);
-            ArcadeSkin.Line(new Rect(left, y - 1, (right - left) * Mathf.Clamp01(endless ? 1 : done), 2), new Color(amber.r, amber.g, amber.b, 0.75f));
-            for (int wave = 1; wave <= normalWaves; wave++)
-            {
-                float x = left + (wave - 1) * step;
-                bool passed = wave < current || wave == current && !combat || endless;
-                bool here = wave == current && !endless;
-                float size = here ? 7 : 4;
-                ArcadeSkin.Slant(new Rect(x - size * 0.5f, y - size * 0.5f, size, size), passed || here ? amber : new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, 0.28f));
-                if (here)
-                {
-                    float breathe = PresentationSettings.ReducedMotion ? 0.7f : 0.6f + 0.4f * Mathf.Sin(Time.unscaledTime * 2.4f);
-                    ArcadeSkin.Glow(new Rect(x - 16, y - 16, 32, 32), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.6f * breathe));
-                }
-            }
-            // the eight lanterns of the Thursday visitor stand on the road at the wave each one goes out;
-            // the last stands at dawn and is still burning there
             if (lanterns[0] == null) for (int i = 0; i < 3; i++) lanterns[i] = Resources.Load<Sprite>("MienCho/Lanterns/" + new[] { "Intact", "Cracked", "Broken" }[i]);
-            int shown = Mathf.Clamp(state.Wave, 1, normalWaves);
+            bool endless = state.Endless || state.Wave > ActOneCanon.Waves;
+            int relit = state.ActOne?.RelitMask ?? 0;
+            ArcadeSkin.Plate(area, new Color(ArcadeSkin.Card.r, ArcadeSkin.Card.g, ArcadeSkin.Card.b, 0.85f));
+            float step = (area.width - 16) / ActOneCanon.BreakWave.Length;
             for (int lamp = 0; lamp < ActOneCanon.BreakWave.Length; lamp++)
             {
-                int at = Mathf.Min(ActOneCanon.BreakWave[lamp], normalWaves);
-                float x = left + (at - 1) * step;
-                int relit = state.ActOne?.RelitMask ?? 0;
-                int stateOf = endless ? ((relit & (1 << lamp)) != 0 || lamp == 7 ? 0 : 2) : ActOneCanon.LampState(lamp, shown, relit);
-                Sprite picture = lanterns[stateOf];
-                // each lantern stands on the road itself, clear of the timer box above it
-                Rect icon = new Rect(x - 5.5f, y - 17, 11, 17);
-                if (stateOf == 0) ArcadeSkin.Glow(new Rect(x - 11, y - 22, 22, 22), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.5f));
+                int stateOf = endless ? ((relit & (1 << lamp)) != 0 || lamp == 7 ? 0 : 2) : ActOneCanon.LampState(lamp, Mathf.Max(1, state.Wave), relit);
+                float x = area.x + 8 + step * (lamp + 0.5f);
+                Rect icon = new Rect(x - 8, area.y + 4, 16, area.height - 8);
+                if (stateOf == 0) ArcadeSkin.Glow(new Rect(x - 13, area.y + 2, 26, area.height - 4), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.45f));
+                if (stateOf == 1 && !PresentationSettings.ReducedFlashes) ArcadeSkin.Glow(new Rect(x - 11, area.y + 4, 22, area.height - 8), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.18f + 0.14f * Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f + lamp))));
                 Color was = GUI.color;
                 if (stateOf == 2) GUI.color = new Color(was.r * 0.55f, was.g * 0.55f, was.b * 0.65f, was.a * 0.45f);
+                Sprite picture = lanterns[stateOf];
                 if (picture != null) RunHud.Sprite(icon, picture);
-                else ArcadeSkin.Dot(new Rect(x - 3, y - 18, 6, 8), stateOf == 2 ? ArcadeSkin.Card : ArcadeSkin.Gold);
+                else ArcadeSkin.Dot(new Rect(x - 3, area.y + 8, 6, 10), stateOf == 2 ? ArcadeSkin.Card : ArcadeSkin.Gold);
                 GUI.color = was;
             }
-            // each zone ends with something that does not want you to pass
-            for (int wave = 5; wave < normalWaves; wave += 5)
-            {
-                float x = left + (wave - 1) * step;
-                ArcadeSkin.Line(new Rect(x - 0.5f, y + 4, 1, 6), new Color(ArcadeSkin.Danger.r, ArcadeSkin.Danger.g, ArcadeSkin.Danger.b, wave < current || wave == current && !combat ? 0.35f : 0.8f));
-            }
-            if (!endless)
-            {
-                // dawn waits at the end of the road
-                ArcadeSkin.Glow(new Rect(area.xMax - 30, y - 22, 44, 44), new Color(ArcadeSkin.Dawn.r, ArcadeSkin.Dawn.g, ArcadeSkin.Dawn.b, 0.55f));
-                ArcadeSkin.Slant(new Rect(area.xMax - 14, y - 6, 12, 12), ArcadeSkin.Dawn);
-            }
-            int remaining = normalWaves - current + (combat ? 1 : 0);
-            string text = endless ? "THE NIGHT DOES NOT END" : remaining <= 1 ? (combat ? "LAST WAVE BEFORE DAWN" : "DAWN IS NEXT") : "DAWN IN " + remaining + " WAVES";
-            caption.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, 0.75f);
-            GUI.Label(new Rect(area.x, y + 8, area.width, 16), text, caption);
         }
 
         private const int Buckets = 28;

@@ -146,6 +146,9 @@ namespace ArcaneBrigade.Editor
                 s.Settle(sim);
                 Check(s.State.Phase == SessionPhase.Shop && s.State.Wave == 13 && s.State.ActOne.SitCloser == ActOneProgress.Won && s.RelightChoiceOpen && s.State.ActOne.RelitMask == 0, "Standing up returns to the same shop and asks which lost detail comes back");
                 Check(!s.ChooseRelight(6) && s.ChooseRelight(4) && (s.State.ActOne.RelitMask & (1 << 4)) != 0 && !s.RelightChoiceOpen, "Only a dark lantern can be chosen; the face comes back");
+                Check(s.State.Items.Count(stack => stack.Id == ActOneCanon.ThursdayShoesId) == 1 && c.Item(ActOneCanon.ThursdayShoesId) != null && !c.Items.Any(item => item.Id == ActOneCanon.ThursdayShoesId), "Standing up earns the Thursday Shoes, which are never sold");
+                float speed = s.Bonus(ItemEffect.MoveSpeed), dodge = s.Bonus(ItemEffect.Dodge);
+                Check(speed >= 0.12f - 0.0001f && dodge >= 0.06f - 0.0001f, "The Thursday Shoes really quicken the traveller");
                 Check(8 - ActOneCanon.Broken(13, s.State.ActOne.RelitMask) == burning + 1 && !s.SitCloserAvailable, "One more lantern burns; the chair is spent for this journey");
                 Check(ActOneCanon.PageExtra(s.State, 19, 1).Contains("Who paid"), "The Customer notices that someone stood up without paying");
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
@@ -157,6 +160,24 @@ namespace ArcaneBrigade.Editor
                 rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
                 Check(rejected, "A sat-down journey cannot continue in the shop");
             }
+            // Shop 16: Hob sits down in a chair of its own; the road waits until everyone pulls it up
+            using (var s = new RunSession(c))
+            {
+                s.Start("LanternKnight", 161080); s.State.Wave = 16; s.State.Phase = SessionPhase.Shop;
+                Check(s.HobRescueNeeded && !s.PrepareCombat().StoryCompanions.Any(u => u.DisplayName == "Hob"), "In shop 16 Hob is still sitting in the perfect room, not in the brigade");
+                s.State.WaitingCampaign.Room = 2;
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.PullHobUp() && !s.HobRescueNeeded && !s.PullHobUp(), "Everyone pulls Hob up once");
+                s.State.WaitingCampaign.Room = 0;
+                Check(s.PrepareCombat().StoryCompanions.Any(u => u.DisplayName == "Hob"), "Hob is back with the brigade");
+                s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
+                Check(s.State.ActOne.HobRescued == 1, "The rescue survives a real save");
+                s.State.Wave = 12;
+                bool rejected = false; try { s.Restore(s.State); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "Hob cannot be pulled up before it sits down");
+            }
+            using (var s = new RunSession(c)) { s.Start("LanternKnight", 161081); s.State.Wave = 17; s.State.Phase = SessionPhase.Shop; Check(!s.HobRescueNeeded, "Older saves past shop 16 are never blocked"); }
+
             // Phase 3: the Last Customer's offer at shop 8, strangers, and the travelling four's own story
             using (var s = new RunSession(c))
             {

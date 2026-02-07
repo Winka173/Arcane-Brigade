@@ -34,23 +34,42 @@ namespace ArcaneBrigade
         public bool Paused=>paused;
         public float Clock=>clock;
         private bool Modal=>selected>=0 || paused;
+        // Act I, shop 16: the perfect room where Hob sat down in a chair of its own (Docs/Mien_Cho_Act_One_Story.md)
+        private bool rescue,rescued;
+        private SpriteRenderer hob,hobChair;
+        private SpriteRenderer[] seated=new SpriteRenderer[0];
+        private Sprite turnedHead;
+        private readonly Vector2 hobFloor=new Vector2(0,1.5f);
+        private float pull,helperAt,risenAt=-1;
+        private int helpers;
+        private GUIStyle hand;
+        public const float PullSeconds=2.4f;
+        public bool Rescue=>rescue;
+        public bool Rescued=>rescued;
+        public int Helpers=>helpers;
         private void Start()
         {
             storage=new RunStorage(RunPaths.Root);content=Resources.Load<RunCatalog>("RunCatalog");session=new RunSession(content);
             var state=storage.LoadRun(session);
             if(state==null || state.WaitingCampaign?.Room<1){RunLaunch.Resume=true;SceneManager.LoadScene("RunArena");return;}
             session.Restore(state);WaitingCampaign.Ensure(session.State);room=session.State.WaitingCampaign.Room;
+            rescue=room==2 && session.HobRescueNeeded;
             PresentationSettings.Apply(storage.LoadProfile());
             view=Camera.main;if(view==null){var go=new GameObject("JourneyRoomCamera");go.tag="MainCamera";view=go.AddComponent<Camera>();}
             view.clearFlags=CameraClearFlags.SolidColor;view.orthographic=true;view.orthographicSize=6.94f;view.transform.position=new Vector3(0,0,-10);view.backgroundColor=new Color(.015f,.02f,.035f);
             if(FindAnyObjectByType<AudioListener>()==null)view.gameObject.AddComponent<AudioListener>();
             AudioListener.pause=false;AudioListener.volume=storage.LoadProfile().Volume;
             sound=gameObject.AddComponent<AudioSource>();sound.playOnAwake=false;
-            backdrop=Make("A Room With An Inside Release",Resources.Load<Sprite>("MienCho/Journey/"+WaitingRooms.Art(room)+"_Painted_v1"),Vector2.zero,18.5f,-100);
+            Sprite roomArt=rescue?Resources.Load<Sprite>("MienCho/Journey/PerfectRoom_Hob_v1"):null;
+            backdrop=Make("A Room With An Inside Release",roomArt!=null?roomArt:Resources.Load<Sprite>("MienCho/Journey/"+WaitingRooms.Art(room)+"_Painted_v1"),Vector2.zero,18.5f,-100);
             var material=Resources.Load<Material>("MienCho/JourneyRoomLight");if(material!=null){floorMaterial=new Material(material);backdrop.sharedMaterial=floorMaterial;}
             traveller=Make("The Traveller",content.Unit(state.ChampionId).Body,position,1.1f,50);
-            int count=Mathf.Min(15,state.Roster.Count);friends=new SpriteRenderer[count];
-            for(int i=0;i<count;i++)friends[i]=Make("A Living Companion",content.Unit(state.Roster[i].UnitId).Body,position+Vector2.left, .9f,49);
+            // in the perfect room the travelling companions come first: they are the ones who pull
+            var bodies=new System.Collections.Generic.List<Sprite>();
+            if(rescue)for(int i=1;i<ActOneCanon.StoryIds.Length;i++)if(ActOneCanon.StoryPresent(i,state.Wave,true,state.Endless) && content.Unit(ActOneCanon.StoryIds[i])!=null)bodies.Add(content.Unit(ActOneCanon.StoryIds[i]).Body);
+            for(int i=0;i<state.Roster.Count && bodies.Count<15;i++)bodies.Add(content.Unit(state.Roster[i].UnitId).Body);
+            int count=bodies.Count;friends=new SpriteRenderer[count];
+            for(int i=0;i<count;i++)friends[i]=Make("A Living Companion",bodies[i],position+Vector2.left, .9f,49);
             markers=new SpriteRenderer[3];labels=new TextMesh[3];floatingRecords=new FloatingStoryProp[3];
             for(int i=0;i<3;i++)
             {
@@ -64,8 +83,67 @@ namespace ArcaneBrigade
             chair=Make("The Chair Can Be Moved",Resources.Load<Sprite>("MienCho/EmptyChair"),new Vector2(-4,2.6f),1.2f,10);
             floatingChair=chair.gameObject.AddComponent<FloatingStoryProp>();floatingChair.Configure(chair,254);
             window=Make("A Light From Another House",content.Unit(state.ChampionId).Body,new Vector2(0,4.1f),.5f,10);window.sharedMaterial=Resources.Load<Material>("MienCho/WaitingGlow");window.transform.localScale=new Vector3(2.4f,.4f,1);
+            if(rescue)BuildRescue();
             var audio=Resources.Load<AudioClip>("MienCho/Audio/Room"+room);if(audio!=null){sound.clip=audio;sound.loop=true;sound.volume=PresentationSettings.ReducedAudio?0:PresentationSettings.MusicVolume*.22f;sound.Play();}
             ApplyChoices();DisplayProps();
+        }
+        private void BuildRescue()
+        {
+            for(int i=0;i<3;i++){markers[i].enabled=false;labels[i].gameObject.SetActive(false);}
+            chair.enabled=false;window.enabled=false;
+            Sprite own=Resources.Load<Sprite>("MienCho/ActOne/WarmChair");if(own==null)own=Resources.Load<Sprite>("MienCho/EmptyChair");
+            hobChair=Make("A Chair Of Hob's Own",own,hobFloor,1.7f,20);
+            var body=content.Unit(ActOneCanon.StoryIds[0]);
+            hob=Make("Hob, Sitting",body!=null?body.Body:null,hobFloor+new Vector2(0,.35f),.95f,21);
+            // the travellers who sat down line the walls, facing the bed; one will turn its head when you leave
+            string[] names={"SeatedOne_A","SeatedOne_B","SeatedOne_C","SeatedOne_D","SeatedOne_E"};
+            Vector2[] along={new Vector2(-6.2f,2.6f),new Vector2(6.2f,2.6f),new Vector2(-6.2f,-.4f),new Vector2(6.2f,-.4f),new Vector2(-3.4f,3.3f),new Vector2(3.4f,3.3f)};
+            var list=new System.Collections.Generic.List<SpriteRenderer>();
+            for(int i=0;i<along.Length;i++)
+            {
+                Sprite figure=Resources.Load<Sprite>("MienCho/ActOne/"+names[i%names.Length]);
+                if(figure==null)continue;
+                var view=Make("One Who Sat Down",figure,along[i],1.5f,18);view.flipX=along[i].x>0;view.color=new Color(.78f,.76f,.8f);list.Add(view);
+            }
+            seated=list.ToArray();turnedHead=Resources.Load<Sprite>("MienCho/ActOne/SeatedOne_A_Turned");
+        }
+        /// <summary>Hold to pull. Companions join one by one; one traveller alone cannot lift it.</summary>
+        private void UpdateRescue()
+        {
+            if(rescued)
+            {
+                float age=clock-risenAt;
+                hob.transform.position=(Vector3)(hobFloor+new Vector2(0,.35f))+Vector3.up*(PresentationSettings.ReducedMotion?.4f:Mathf.Min(.4f,age*2.2f)+Mathf.Sin(Mathf.Min(1,age*2)*Mathf.PI)*.25f);
+                hob.color=Color.white;
+                return;
+            }
+            bool near=Vector2.Distance(position,hobFloor)<1.9f;
+            bool hold=near && (Input.GetKey(KeyCode.E)||Input.GetKey(KeyCode.Space)||Input.GetKey(KeyCode.JoystickButton0));
+            if(hold)
+            {
+                pull+=Time.deltaTime;
+                if(clock>=helperAt && helpers<friends.Length){helpers++;helperAt=clock+.45f;CheckpointAudio.PlayInterfaceId("ui.select",.08f);}
+            }
+            else pull=Mathf.Max(0,pull-Time.deltaTime*.6f);
+            int required=Mathf.Min(3,friends.Length);
+            float share=Mathf.Clamp01(pull/PullSeconds);
+            hob.color=Color.Lerp(new Color(.55f,.55f,.6f),Color.white,share*.7f);
+            float strain=hold && !PresentationSettings.ReducedMotion?Mathf.Sin(clock*40)*.03f*share:0;
+            hob.transform.position=(Vector3)(hobFloor+new Vector2(strain,.35f+share*.12f));
+            if(pull>=PullSeconds && helpers>=required)
+            {
+                var before=JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
+                if(!session.PullHobUp())return;
+                if(!Save()){session.Restore(before);return;}
+                rescued=true;risenAt=clock;CheckpointAudio.PlayInterfaceId("up.star3",.2f);
+                if(seated.Length>0 && turnedHead!=null)seated[0].sprite=turnedHead;
+            }
+        }
+        /// <summary>Diagnostics: pulls as if the button were held with the whole brigade beside you.</summary>
+        public void DiagnosticPull(float seconds)
+        {
+            if(!RunPaths.Diagnostic || !rescue)return;
+            position=hobFloor+Vector2.down*.9f;pull=seconds;helpers=friends.Length;UpdateRescue();
         }
         private SpriteRenderer Make(string name,Sprite sprite,Vector2 point,float width,int sort)
         {
@@ -76,7 +154,7 @@ namespace ArcaneBrigade
         {
             if(session==null || traveller==null)return;
             if(Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.JoystickButton1)){if(selected>=0){selected=-1;scroll=Vector2.zero;}else paused=!paused;}
-            for(int i=0;i<3;i++)labels[i].gameObject.SetActive(Vector2.Distance(position,points[i])<2.4f);
+            for(int i=0;i<3;i++)labels[i].gameObject.SetActive(!rescue && Vector2.Distance(position,points[i])<2.4f);
             if(Modal)
             {
                 if(selected>=0){if(Input.GetKeyDown(KeyCode.Alpha1))Choose(1);if(Input.GetKeyDown(KeyCode.Alpha2))Choose(2);if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.JoystickButton0))CloseRecord();}
@@ -86,9 +164,12 @@ namespace ArcaneBrigade
             var input=new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));input+=ArcadeNavigation.Pad;
             position+=Vector2.ClampMagnitude(input,1)*Time.deltaTime*3.6f;position.x=Mathf.Clamp(position.x,-6.8f,6.8f);position.y=Mathf.Clamp(position.y,-4.8f,3.5f);
             traveller.transform.position=position;traveller.flipX=input.x<0;
+            if(rescue)UpdateRescue();
             for(int i=0;i<friends.Length;i++)
             {
                 Vector2 target=position+new Vector2(Mathf.Cos(i*2.39996f)*(.9f+i*.035f),Mathf.Sin(i*2.39996f)*.65f);
+                // those who have joined the pull hold on around Hob's chair
+                if(rescue && i<helpers)target=hobFloor+new Vector2(Mathf.Cos(i*1.9f+.4f)*1.05f,Mathf.Sin(i*1.9f+.4f)*.55f-.25f);
                 friends[i].transform.position=Vector2.Lerp(friends[i].transform.position,target,Time.deltaTime*4);
             }
             if(floorMaterial!=null)
@@ -102,7 +183,7 @@ namespace ArcaneBrigade
                 nextFootstep=clock+2.7f;
                 if(!PresentationSettings.ReducedAudio)sound.PlayOneShot(Resources.Load<AudioClip>("MienCho/Audio/ExtraFootstep"),PresentationSettings.SfxVolume*.16f);
             }
-            if(Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.JoystickButton2))for(int i=0;i<3;i++)if(TryInspect(i))break;
+            if(!rescue && (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.JoystickButton2)))for(int i=0;i<3;i++)if(TryInspect(i))break;
             if(Input.GetKeyDown(KeyCode.Tab)||Input.GetKeyDown(KeyCode.JoystickButton7))ReturnToShop();
         }
         public bool TryInspect(int index)
@@ -133,7 +214,7 @@ namespace ArcaneBrigade
         {
             var c=session.State.WaitingCampaign;
             for(int i=0;i<3;i++){bool done=c.RoomChoices[(room-1)*3+i]>0;markers[i].color=done?new Color(.35f,.95f,.8f):new Color(.95f,.55f,.28f);labels[i].text=WaitingRooms.Label(room,i)+(done?" / RECORDED":" / E");}
-            chair.enabled=room==2;
+            chair.enabled=room==2 && !rescue;
             if(room==2){chairFloor=c.RoomChoices[3]==1?new Vector2(-3,-1):c.RoomChoices[3]==2?new Vector2(2,0):new Vector2(-4,2.6f);}
             window.color=c.RoomChoices[4]>0?new Color(.1f,.7f,1,.7f):new Color(1,.45f,.1f,.35f);
             if(room==1){labels[1].text=c.RoomChoices[1]==1?"COAST / VERIFIED ROUTE":c.RoomChoices[1]==2?"REED SETTLEMENT / VERIFIED ROUTE":"WHEN YOU ARE GOOD ENOUGH";}
@@ -141,6 +222,7 @@ namespace ArcaneBrigade
         }
         private void DisplayProps()
         {
+            if(rescue)return;
             float depth=NightmareRules.Depth(session.State.Wave);
             for(int i=0;i<3;i++)floatingRecords[i].Display(points[i],clock,depth);
             floatingChair.Display(chairFloor,clock,depth);
@@ -154,12 +236,13 @@ namespace ArcaneBrigade
             heading??=ArcadeTypography.Style(32,true);copy??=ArcadeTypography.Style(25);copy.wordWrap=true;
             button??=ArcadeTypography.Style(22,true);button.wordWrap=true;button.alignment=TextAnchor.MiddleCenter;small??=ArcadeTypography.Style(20);small.wordWrap=true;
             ArcadeSkin.Plate(new Rect(45,20,1830,105),ArcadeSkin.Teal);
-            GUI.Label(new Rect(75,28,1750,48),WaitingCampaign.RoomName(room),heading);
-            GUI.Label(new Rect(75,80,1750,42),"Walk: WASD / arrows / stick. Examine nearby records: E / R / X. Return: TAB / START. Pause: ESC / B.",small);
+            GUI.Label(new Rect(75,28,1750,48),rescue?"THE PERFECT ROOM":WaitingCampaign.RoomName(room),heading);
+            GUI.Label(new Rect(75,80,1750,42),rescue?"Walk: WASD / arrows / stick. Beside Hob, hold E / Space / A to pull. Return: TAB / START. Pause: ESC / B.":"Walk: WASD / arrows / stick. Examine nearby records: E / R / X. Return: TAB / START. Pause: ESC / B.",small);
+            if(rescue)DrawRescue();
             if(GUI.Button(new Rect(1450,955,410,70),"RETURN TO THE SHOP",button))ReturnToShop();
             string consequences="";
             for(int i=0;i<6;i++){var q=session.State.WaitingCampaign.CompanionChoices;if(q[i*3+2]>0)consequences+=WaitingCompanionQuests.Routes[i].Outcomes[4+q[i*3+2]-1]+"\n";}
-            if(!Modal && consequences.Length>0){ArcadeSkin.Plate(new Rect(60,750,1300,200),ArcadeSkin.Teal);GUI.Label(new Rect(80,770,1260,170),consequences,small);}
+            if(!rescue && !Modal && consequences.Length>0){ArcadeSkin.Plate(new Rect(60,750,1300,200),ArcadeSkin.Teal);GUI.Label(new Rect(80,770,1260,170),consequences,small);}
             if(paused){RunHud.Fill(new Rect(450,390,1020,250),new Color(.02f,.03f,.06f));GUI.Label(new Rect(500,420,900,70),"PAUSED / THE ROOM WAITS",heading);if(GUI.Button(new Rect(650,530,620,65),"RESUME",button))paused=false;}
             if(selected>=0)
             {
@@ -177,6 +260,25 @@ namespace ArcaneBrigade
             }
             if(error.Length>0)GUI.Label(new Rect(50,1015,1800,55),error,small);
             GUI.matrix=matrix;
+        }
+        private void DrawRescue()
+        {
+            if(hand==null){hand=ArcadeTypography.Style(34);hand.font=ArcadeTypography.Hand;hand.alignment=TextAnchor.MiddleCenter;hand.wordWrap=true;}
+            Rect card=new Rect(460,800,1000,145);
+            ArcadeSkin.Ticket(card,ArcadeSkin.Paper,ArcadeSkin.Accent);
+            hand.normal.textColor=new Color(.25f,.19f,.14f);
+            string line=rescued?"Hob comes up out of the chair like something pulled out of deep water."
+                : Vector2.Distance(position,hobFloor)<1.9f?(helpers<Mathf.Min(3,friends.Length)?"One of you cannot lift it. Keep holding — they are coming.":"Everyone has hold of Hob. Keep pulling.")
+                : "Hob is sitting in a chair of its own. Dust is settling on its shoulders.";
+            GUI.Label(new Rect(card.x+30,card.y+8,card.width-60,72),line,hand);
+            if(!rescued)
+            {
+                ArcadeSkin.Line(new Rect(card.x+120,card.y+86,card.width-240,10),new Color(.1f,.08f,.08f,.6f));
+                ArcadeSkin.Line(new Rect(card.x+120,card.y+86,(card.width-240)*Mathf.Clamp01(pull/PullSeconds),10),ArcadeSkin.Accent);
+                Color was=small.normal.textColor;small.normal.textColor=new Color(.2f,.15f,.1f);
+                GUI.Label(new Rect(card.x+120,card.y+100,card.width-240,26),helpers+" PULLING",small);
+                small.normal.textColor=was;
+            }
         }
         private void OnDestroy(){session?.Dispose();if(floorMaterial!=null)Destroy(floorMaterial);}
     }

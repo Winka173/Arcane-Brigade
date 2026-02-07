@@ -82,6 +82,33 @@ namespace ArcaneBrigade
         /// <summary>What lies on the blanket this visit: 0 nothing, 1 coins, 2 the murmuring jar, 3 the breathing receiver.</summary>
         public static int ChairOffering(int wave, int telephoneChoice) => wave == 2 ? 2 : wave == 8 && telephoneChoice == 1 ? 3 : wave is 4 or 7 or 9 or 12 or 13 or 16 or 19 ? 1 : 0;
         public const int SitFrom = 8, SitUntil = 19, SitWaveBonus = 8;
+        public const int HobChapter = 16; // the journal beat of the perfect room
+
+        // The relic for standing up from the warm chair. It lives here rather than in the shop catalogue: it is never sold.
+        public const string ThursdayShoesId = "act1-thursday-shoes";
+        private static ItemDefinition thursdayShoes;
+        public static ItemDefinition ThursdayShoes
+        {
+            get
+            {
+                if (thursdayShoes != null) return thursdayShoes;
+                thursdayShoes = new ItemDefinition
+                {
+                    Id = ThursdayShoesId, Name = "Thursday Shoes", Rarity = ItemRarity.Mythic, Stacking = StackPolicy.Unique, MaximumStacks = 1,
+                    Description = "The small shoes you laced every evening, in case someone came. This time you answered the door. +12% movement speed, +6% dodge.",
+                    Effect = ItemEffect.MoveSpeed, Value = 0.12f, ShopWeight = 0, Price = 0,
+                    Modifiers = new[]
+                    {
+                        new StatModifier { Effect = ItemEffect.MoveSpeed, Value = 0.12f, Scope = RunModifierRules.DefaultScope(ItemEffect.MoveSpeed) },
+                        new StatModifier { Effect = ItemEffect.Dodge, Value = 0.06f, Scope = RunModifierRules.DefaultScope(ItemEffect.Dodge) },
+                    },
+                    Icon = Resources.Load<Sprite>("MienCho/ActOne/Item_ThursdayShoes") ?? Resources.Load<Sprite>("MienCho/Lanterns/Intact"),
+                };
+                return thursdayShoes;
+            }
+        }
+        public static ItemDefinition StoryItem(string id) => id == ThursdayShoesId ? ThursdayShoes : null;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetItems() => thursdayShoes = null;
         public const float KnockSeconds = 80f;
 
         /// <summary>Lines that only exist if the traveller did something: appended to a beat's page.</summary>

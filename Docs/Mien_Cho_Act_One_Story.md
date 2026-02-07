@@ -208,7 +208,8 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 - Kiểm tra mới trong `MienChoChecks`; capture có thêm thẻ lời đề nghị và bảng Brigade.
 
 **Còn lại:**
-- Phase 3b: relic *Thursday Shoes* cho trận SIT CLOSER (cần icon `Item_ThursdayShoes.png`), cảnh kéo Hob tương tác ở wave 16 (hiện là đoạn truyện).
+- Phase 3b — xong: thắng SIT CLOSER nhận relic *Thursday Shoes* (+12% tốc chạy, +6% né; không bán ở shop; icon tạm là đèn lồng đến khi có `Item_ThursdayShoes.png`) và tự chọn chi tiết ký ức được trả lại. Shop 16: trang journal Hob ngồi xuống có nút “GO TO HOB” vào phòng Perfect Room; giữ E / Space / A bên Hob, đồng hành lần lượt góp tay, đủ người thì Hob đứng dậy; chưa kéo Hob thì không rời được shop 16 (save cũ quá wave 16 không bị chặn).
+- HUD: bỏ thanh “DAWN IN n WAVES”; tám ngọn đèn thành một hàng nhỏ dưới ô xu/trứng.
 - Phase 4: art theo `Docs/Act_One_Story_Art_Requests.md` (ghế, Những Người Đã Ngồi Xuống, Customer mượn mặt, 3 boss, 4 sàn vùng, panel journal) và gắn vào game.
 - Phase 5 — xong: lần đầu mở menu sau bình minh, ghế bành ở Phòng Chờ hỏi “Would you like me to sit closer?” (một lần, lưu `ActOneChairSpoke` trong profile); khi có art `WaitingRoom_ChairTurned.png` thì menu dùng ảnh ghế đã xoay.
 - Đã chốt: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” giữ làm nội dung phụ.

@@ -283,6 +283,8 @@ namespace ArcaneBrigade
                 groundedWeapon.Display(weapon.sprite, new Vector2(weapon.transform.position.x, ground.y), K8Motion.WeaponWidth(state), lift, 0.1f);
         }
 
+        private Vector2 slide;          // knockback skid: the body starts where it was struck and slides to where it was pushed
+        private float slideHit = -100f;
         public void Display(float simulationTime, float interpolation)
         {
             if (state == null) return;
@@ -309,6 +311,26 @@ namespace ArcaneBrigade
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+            if (state.Faction == Faction.Enemy && !ReducedMotion)
+            {
+                if (state.LastHit != slideHit)
+                {
+                    slideHit = state.LastHit;
+                    Vector2 jump = state.Position - state.PreviousPosition;
+                    float walk = state.Definition.Speed * 0.035f;
+                    if (jump.magnitude > Mathf.Max(0.12f, walk * 2f))
+                    {
+                        slide -= jump - jump.normalized * walk;
+                        ExplosionFeedback.Active?.Skid(state.Position - jump * 0.6f, jump.normalized);
+                    }
+                }
+                if (slide.sqrMagnitude > 0.00001f)
+                {
+                    transform.position += (Vector3)slide;
+                    slide = Vector2.MoveTowards(slide * Mathf.Exp(-motionDelta / 0.045f), Vector2.zero, motionDelta * 0.4f);
+                }
+            }
+            else slide = Vector2.zero;
             float entrance = state.Definition.IsBoss ? Mathf.Clamp01((state.EntranceUntil - simulationTime) / 1.2f) : 0;
             if (!ReducedMotion && entrance > 0)
             {
@@ -432,6 +454,12 @@ namespace ArcaneBrigade
             else if (groundedWeapon != null) groundedWeapon.Hide();
             shadow.enabled = false;
             body.color = state.Definition.Tint;
+            if (state.Faction == Faction.Champion && !PresentationSettings.ReducedFlashes)
+            {
+                // the hero blinks red when struck, so losing light is never missed in a crowd
+                float hurtRed = Mathf.Clamp01(1f - (simulationTime - state.LastHit) / 0.24f);
+                if (hurtRed > 0 && state.LastHit > 0) body.color = Color.Lerp(body.color, new Color(1f, 0.3f, 0.26f), hurtRed * (Mathf.Repeat(simulationTime * 16f, 1f) < 0.5f ? 0.8f : 0.35f));
+            }
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
             body.GetPropertyBlock(flashProperties);
