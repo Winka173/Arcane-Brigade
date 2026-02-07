@@ -100,8 +100,8 @@ namespace ArcaneBrigade
             {
                 identityStepAt = Elapsed + .35f;
                 if (identityTrail.Count >= 4) identityTrail.RemoveAt(0); identityTrail.Add(Champion.Position);
-                foreach (var m in identityMarks) IdentityGlyph(MorphGeometry.Seal, m.Target.Position, m.Target.Position, .23f,.4f);
-                if (identityBounty != null && identityBounty.Alive && IdentityId == "TreasureAcorn") IdentityGlyph(MorphGeometry.Seal,identityBounty.Position,identityBounty.Position,.32f,.4f);
+                foreach (var m in identityMarks) IdentityGlyph(MorphGeometry.Seal, m.Target.Position, m.Target.Position, .23f,.4f, role: HeroGlyphRole.Mark);
+                if (identityBounty != null && identityBounty.Alive && IdentityId == "TreasureAcorn") IdentityGlyph(MorphGeometry.Seal,identityBounty.Position,identityBounty.Position,.32f,.4f,role:HeroGlyphRole.Mark);
             }
             UnitState target = IdentityTarget(Champion.Position, 8, IdentityId == "VelvetRegent" || IdentityId == "TreasureAcorn" ? IdentityApproach : 0);
             switch (IdentityId)
@@ -135,7 +135,7 @@ namespace ArcaneBrigade
                             var dreamTarget = IdentityTarget(identityGhost,6);
                             if (dreamTarget != null) { IdentityPattern(dreamTarget,IdentityPower * .3f,origin:identityGhost,element:IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); identityGhostAt = Elapsed + .85f; }
                         }
-                        if (Elapsed >= identityTickAt) { identityTickAt = Elapsed + .3f; var g = IdentityGlyph(MorphGeometry.Ring,identityGhost,identityGhost,.4f,.4f); g.Portrait = Champion.Definition.Body; }
+                        if (Elapsed >= identityTickAt) { identityTickAt = Elapsed + .3f; var g = IdentityGlyph(MorphGeometry.Ring,identityGhost,identityGhost,.4f,.4f,role:HeroGlyphRole.Ambient); g.Portrait = Champion.Definition.Body; }
                     }
                     break;
                 case "RootOracle": ProcessIdentityRoots(target); break;
@@ -195,7 +195,7 @@ namespace ArcaneBrigade
                         for(int i=projectiles.Count-1;i>=0;i--)
                         {
                             var p=projectiles[i]; if(p.Faction!=Faction.Enemy || (p.Position-Champion.Position).sqrMagnitude>7.84f)continue;
-                            identityReflections.Add(new IdentityReflection { Direction=-p.Velocity.normalized,Element=p.Element }); projectiles.RemoveAt(i); identitySecondAt=Elapsed+1; break;
+                            identityReflections.Add(new IdentityReflection { Direction=-p.Velocity.normalized,Element=p.Element }); IdentityGlyph(MorphGeometry.Ring,p.Position,Champion.Position,.35f,.35f,role:HeroGlyphRole.Catch); projectiles.RemoveAt(i); identitySecondAt=Elapsed+1; break;
                         }
                     }
                     identityCharge=identityReflections.Count;
@@ -265,7 +265,7 @@ namespace ArcaneBrigade
                         else if(IdentityApproach==2)IdentityHit(MorphGeometry.Crescent,Champion.Position,target.Position,3.4f,budget);
                         else IdentityEcho(identityLead,target,budget,true);
                         if(identityLead.Definition.Passive==PassiveKind.HealChampion)Heal(2,IdentityCause());
-                        IdentityGlyph(MorphGeometry.Line,identityLead.Position,Champion.Position,0,.6f);identityCharge=0;identityAt=Elapsed+3;IdentityCast();
+                        IdentityGlyph(MorphGeometry.Line,identityLead.Position,Champion.Position,0,.6f,role:HeroGlyphRole.Link);identityCharge=0;identityAt=Elapsed+3;IdentityCast();
                     }
                     break;
                 case "ArchiveCurator":
@@ -289,7 +289,7 @@ namespace ArcaneBrigade
                 case "MoonProwler":
                     identityCharge=Mathf.Min(5,identityCharge+moved);
                     if(identityCharge>=5 && target!=null && (identityBounty==null || !identityBounty.Alive)){identityBounty=target;identityGhost=target.Facing;identityRearSpent=false;}
-                    if(identityCharge>=5 && identityBounty!=null && Elapsed>=identityTickAt){IdentityGlyph(MorphGeometry.Line,identityBounty.Position,identityBounty.Position-identityGhost*1.1f,0,.4f);identityTickAt=Elapsed+.35f;}
+                    if(identityCharge>=5 && identityBounty!=null && Elapsed>=identityTickAt){IdentityGlyph(MorphGeometry.Line,identityBounty.Position,identityBounty.Position-identityGhost*1.1f,0,.4f,role:HeroGlyphRole.Mark);identityTickAt=Elapsed+.35f;}
                     break;
                 case "LanternWeaver":
                     identityCharge=identityMarks.Count;
@@ -330,7 +330,7 @@ namespace ArcaneBrigade
             if(Elapsed>=identityTickAt)
             {
                 identityTickAt=Elapsed+.4f;
-                for(int i=0;i<3;i++){Vector2 p=Champion.Position+(Vector2)(Quaternion.Euler(0,0,90+i*120)*Vector2.right)*1.8f;IdentityGlyph(MorphGeometry.Line,Champion.Position,p,0,.45f);IdentityGlyph(MorphGeometry.Seal,p,p,.2f,.45f);}
+                for(int i=0;i<3;i++){Vector2 p=Champion.Position+(Vector2)(Quaternion.Euler(0,0,90+i*120)*Vector2.right)*1.8f;IdentityGlyph(MorphGeometry.Line,Champion.Position,p,0,.45f,role:HeroGlyphRole.Ambient);IdentityGlyph(MorphGeometry.Seal,p,p,.2f,.45f,role:HeroGlyphRole.Ambient);}
             }
             if(identityCharge<3 || target==null)return;
             Vector2 root=Champion.Position+(Vector2)(Quaternion.Euler(0,0,90+(identityCycle++%3)*120)*Vector2.right)*1.8f;
@@ -342,7 +342,7 @@ namespace ArcaneBrigade
         }
         private void CatchIdentityBullet(Vector2 position,float radius)
         {
-            for(int i=projectiles.Count-1;i>=0;i--)if(projectiles[i].Faction==Faction.Enemy && (projectiles[i].Position-position).sqrMagnitude<=radius*radius){projectiles.RemoveAt(i);IdentityGlyph(MorphGeometry.Ring,position,position,.6f,.3f);return;}
+            for(int i=projectiles.Count-1;i>=0;i--)if(projectiles[i].Faction==Faction.Enemy && (projectiles[i].Position-position).sqrMagnitude<=radius*radius){projectiles.RemoveAt(i);IdentityGlyph(MorphGeometry.Ring,position,position,.6f,.3f,role:HeroGlyphRole.Catch);return;}
         }
         private void ReleaseIdentityReflections()
         {

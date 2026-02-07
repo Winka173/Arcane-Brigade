@@ -4,8 +4,12 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
+    /// <summary>What a glyph means to the presentation; never read by gameplay.</summary>
+    public enum HeroGlyphRole { Emblem, Strike, Link, Lob, Mark, Ambient, Catch, Poise }
     public sealed class HeroIdentityGlyph
     {
+        public HeroGlyphRole Role;
+        public int Seed;
         public MorphGeometry Shape;
         public Vector2 Position, End, Direction;
         public float Radius, Width, Created, At, Until;
@@ -43,6 +47,26 @@ namespace ArcaneBrigade
         private int IdentityApproach => catalog.HeroApproach;
         private float IdentityPower => Mathf.Max(1, Champion.Definition.Weapon.Damage);
         public IReadOnlyList<HeroIdentityGlyph> HeroIdentityGlyphs => identityGlyphs;
+        // Read-only views of the mechanic's live state for the presentation layer.
+        public int HeroIdentityMarkCount => identityMarks.Count;
+        public UnitState HeroIdentityMarked(int index) => identityMarks[index].Target;
+        public float HeroIdentityMarkUntil(int index) => identityMarks[index].Until;
+        public UnitState HeroIdentityBounty => identityBounty != null && identityBounty.Alive ? identityBounty : null;
+        public Vector2 HeroIdentityRearDirection => identityGhost;
+        public bool HeroIdentityDreaming => IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed;
+        public Vector2 HeroIdentityDreamPosition => identityGhost;
+        public float HeroIdentityDreamUntil => identityGhostUntil;
+        public int HeroIdentityStored => identityReflections.Count;
+        public IReadOnlyList<Vector2> HeroIdentityRoute => identityTrail;
+        public float HeroIdentityReadyAt => identityAt;
+        public UnitState HeroIdentityLead => identityLead;
+        public int HeroIdentityNextFace => identityFace;
+        public int HeroIdentityRootTurn => identityCycle % 3;
+        public float HeroIdentityStillTime => identityStill;
+        public float HeroIdentityBankAge => identityBankAt < 0 ? -1 : Elapsed - identityBankAt;
+        public int HeroIdentityPetal(int index) => index >= 0 && index < catalog.HeroPetals.Length ? catalog.HeroPetals[index] : 0;
+        public int HeroIdentityApproach => IdentityApproach;
+        public int HeroIdentitySpecimens => identitySpecimens.Count;
         public float HeroIdentityCharge => identityCharge;
         public float HeroIdentityRequired => IdentityId switch {
             "LanternKnight" => 8, "Postmaster" => 3, "DrowsySeer" => 6, "RootOracle" => 3,
@@ -104,10 +128,11 @@ namespace ArcaneBrigade
             var cause = IdentityCause(); RecordActivation(cause);
             events.Add(new CombatEvent(CombatEventKind.HeroIdentityCast, Champion.Position, Faction.Champion, subject: Champion, cause: cause));
         }
-        private HeroIdentityGlyph IdentityGlyph(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float duration = .6f, float delay = 0)
+        private int identityGlyphSeed;
+        private HeroIdentityGlyph IdentityGlyph(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float duration = .6f, float delay = 0, HeroGlyphRole role = HeroGlyphRole.Emblem)
         {
             if (identityGlyphs.Count >= 40) identityGlyphs.RemoveAt(0);
-            var g = new HeroIdentityGlyph { Shape = shape, Position = at, End = end, Radius = radius, Width = .2f,
+            var g = new HeroIdentityGlyph { Role = role, Seed = ++identityGlyphSeed, Shape = shape, Position = at, End = end, Radius = radius, Width = .2f,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
                 Created = Elapsed, At = Elapsed + delay, Until = Elapsed + delay + duration };
             identityGlyphs.Add(g); return g;
@@ -118,7 +143,7 @@ namespace ArcaneBrigade
             identityStrikes.Add(new IdentityStrike { Shape = shape, Position = at, End = end, Radius = radius, Width = .25f, At = Elapsed + delay,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
                 Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Cause = IdentityCause() });
-            IdentityGlyph(shape, at, end, radius, .35f, delay);
+            IdentityGlyph(shape, at, end, radius, .35f, delay, HeroGlyphRole.Strike).Width = .25f;
         }
         private void ResolveIdentityStrikes()
         {
@@ -195,7 +220,7 @@ namespace ArcaneBrigade
             {
                 UnitState u = identityPerformers[(identityCycle + i) % identityPerformers.Count];
                 UnitState target = IdentityTarget(u.Position, 7, IdentityId == "VelvetRegent" ? IdentityApproach : 0); if (target == null) continue;
-                IdentityEcho(u, target, ownWeapons ? budget*Mathf.Max(1,u.Definition.Weapon.Damage)/Mathf.Max(1,weights) : budget / count); IdentityGlyph(MorphGeometry.Line, Champion.Position, u.Position, 0, .35f);
+                IdentityEcho(u, target, ownWeapons ? budget*Mathf.Max(1,u.Definition.Weapon.Damage)/Mathf.Max(1,weights) : budget / count); IdentityGlyph(MorphGeometry.Line, Champion.Position, u.Position, 0, .35f, role: HeroGlyphRole.Link);
             }
             identityCycle++;
         }
@@ -228,7 +253,7 @@ namespace ArcaneBrigade
                 float d = Vector2.Distance(p.Position, Champion.Position), collision = Champion.Definition.Radius + p.Radius;
                 if (d <= collision + .12f || d > collision + .65f || Vector2.Dot(p.Velocity, p.Position - Champion.Position) <= 0) continue;
                 identityNearMisses.Add(p.Id); identityCharge = Mathf.Min(3, identityCharge + 1); identityNearAt = Elapsed + .8f;
-                IdentityGlyph(MorphGeometry.Ring, Champion.Position, Champion.Position, .5f, .25f); break;
+                IdentityGlyph(MorphGeometry.Ring, Champion.Position, Champion.Position, .5f, .25f, role: HeroGlyphRole.Poise); break;
             }
             if (identityNearMisses.Count > 64) identityNearMisses.RemoveWhere(id => !projectiles.Exists(p => p.Id == id));
         }
@@ -260,7 +285,7 @@ namespace ArcaneBrigade
                 Vector2 at = target.Position + Vector2.right * (i == 0 ? -.55f : .55f);
                 if (IdentityApproach == 1) IdentityHit(MorphGeometry.Line, at - Vector2.up, at + Vector2.up, 0, damage * .5f, .85f + i * .15f, element: DamageElement.Ember);
                 else IdentityHit(MorphGeometry.Disc, at, at, 1.05f + food, damage * .5f, .85f + i * .15f, element: IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Physical, slow: IdentityApproach == 2 ? 1 : 0);
-                IdentityGlyph(MorphGeometry.Line, source.Position, at, 0, .85f);
+                IdentityGlyph(MorphGeometry.Line, source.Position, at, 0, .85f + i * .15f, role: HeroGlyphRole.Lob);
             }
             identityCharge = 2; IdentityCast(); return true;
         }
