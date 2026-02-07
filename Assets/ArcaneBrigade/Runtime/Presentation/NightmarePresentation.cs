@@ -36,6 +36,7 @@ namespace ArcaneBrigade
             gameObject.AddComponent<MienChoPresentation>().Configure(controller);
             gameObject.AddComponent<WaitingRealmStage>().Configure(controller);
             gameObject.AddComponent<CustomerOffer>().Configure(controller);
+            gameObject.AddComponent<MemoryReturn>().Configure(controller);
             gameObject.AddComponent<WaitingShopEncounter>().Configure(controller);
             gameObject.AddComponent<WaitingJourney>().Configure(controller);
             gameObject.AddComponent<WaitingArchiveInteractions>().Configure(controller);

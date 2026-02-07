@@ -144,7 +144,8 @@ namespace ArcaneBrigade.Editor
                 Check(sim.Phase == RunPhase.Victory, "The door opens the moment the Bedside falls");
                 int burning = 8 - ActOneCanon.Broken(13, s.State.ActOne.RelitMask);
                 s.Settle(sim);
-                Check(s.State.Phase == SessionPhase.Shop && s.State.Wave == 13 && s.State.ActOne.SitCloser == ActOneProgress.Won && (s.State.ActOne.RelitMask & (1 << 4)) != 0, "Standing up returns to the same shop and relights the face lantern");
+                Check(s.State.Phase == SessionPhase.Shop && s.State.Wave == 13 && s.State.ActOne.SitCloser == ActOneProgress.Won && s.RelightChoiceOpen && s.State.ActOne.RelitMask == 0, "Standing up returns to the same shop and asks which lost detail comes back");
+                Check(!s.ChooseRelight(6) && s.ChooseRelight(4) && (s.State.ActOne.RelitMask & (1 << 4)) != 0 && !s.RelightChoiceOpen, "Only a dark lantern can be chosen; the face comes back");
                 Check(8 - ActOneCanon.Broken(13, s.State.ActOne.RelitMask) == burning + 1 && !s.SitCloserAvailable, "One more lantern burns; the chair is spent for this journey");
                 Check(ActOneCanon.PageExtra(s.State, 19, 1).Contains("Who paid"), "The Customer notices that someone stood up without paying");
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));

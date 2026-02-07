@@ -257,7 +257,8 @@ PASS Losing in the warm chair ends the journey
 PASS The lost chair survives the saved result
 PASS Sit down at shop 13
 PASS The door opens the moment the Bedside falls
-PASS Standing up returns to the same shop and relights the face lantern
+PASS Standing up returns to the same shop and asks which lost detail comes back
+PASS Only a dark lantern can be chosen; the face comes back
 PASS One more lantern burns; the chair is spent for this journey
 PASS The Customer notices that someone stood up without paying
 PASS The relit lantern survives a real save

@@ -169,6 +169,8 @@ namespace ArcaneBrigade
             if (chair != null && chair.Engaged) return false;
             CustomerOffer offer = owner.GetComponent<CustomerOffer>();
             if (offer != null && (offer.Open || offer.InputConsumedFrame == Time.frameCount)) return false;
+            MemoryReturn memory = owner.GetComponent<MemoryReturn>();
+            if (memory != null && memory.Open) return false;
             Display();
             if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;

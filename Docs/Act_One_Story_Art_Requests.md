@@ -1,5 +1,7 @@
 # Act I story rework — art requests
 
+> **Đã gộp vào [Art_Master_List.md](Art_Master_List.md)** (17/10/2026), kèm các mục vẽ lại mới. Dùng danh sách tổng.
+
 For the image agent. Story canon: [Mien_Cho_Act_One_Story.md](Mien_Cho_Act_One_Story.md). Everything here is new art the rework needs; anything not listed reuses existing sprites (Hob = TeapotPilgrim, Latch = HoodWisp, Postscript = ShellPostman, Tally = PaperDevil, the Keeper = OutsideStageAssets boss, the Shopkeeper = the existing merchant, the menu armchair = `Resources/MienCho/EmptyChair.png`, telephone = `Encounters/BreathingPhone.png`, lanterns = `Lanterns/*`).
 
 ## Shared prompt (prefix every object request with this)

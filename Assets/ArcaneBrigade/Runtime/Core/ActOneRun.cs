@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         public const int Undecided = 0, Refused = 1, Sold = 2;
         public int Offer;              // shop 8: the Last Customer's offer for a memory
         public string SoldMemory = ""; // the species the traveller no longer remembers
+        public int PendingRelight;     // 1 after standing up from the warm chair: the traveller chooses which lost detail comes back
     }
     public sealed partial class RunSnapshot { public ActOneProgress ActOne = new ActOneProgress(); }
     public sealed partial class CheckpointCatalog
@@ -94,8 +95,8 @@ namespace ArcaneBrigade
             if (simulation.Phase == RunPhase.Defeat) { State.ActOne.SitCloser = ActOneProgress.Lost; State.Phase = SessionPhase.Defeat; return true; }
             if (!simulation.BossDefeated) throw new InvalidOperationException("Standing up from the warm chair requires the Bedside to fall");
             State.ActOne.SitCloser = ActOneProgress.Won;
-            int lamp = ActOneCanon.RelightTarget(State.Wave, State.ActOne.RelitMask);
-            if (lamp >= 0) State.ActOne.RelitMask |= 1 << lamp;
+            // the door opened: back in the shop the traveller chooses which lost detail of the visitor returns
+            State.ActOne.PendingRelight = ActOneCanon.RelightTarget(State.Wave, State.ActOne.RelitMask) >= 0 ? 1 : 0;
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
             State.Health = MaximumHealth();
             State.Phase = SessionPhase.Shop;
@@ -123,6 +124,15 @@ namespace ArcaneBrigade
         public bool Stranger(string unitId) => !string.IsNullOrEmpty(unitId) && (State.ActOne?.Offer ?? 0) == ActOneProgress.Sold && State.ActOne.SoldMemory == unitId;
         public static bool Stranger(RunSnapshot state, string unitId) => !string.IsNullOrEmpty(unitId) && (state?.ActOne?.Offer ?? 0) == ActOneProgress.Sold && state.ActOne.SoldMemory == unitId;
 
+        public bool RelightChoiceOpen => State.Phase == SessionPhase.Shop && (State.ActOne?.PendingRelight ?? 0) == 1;
+        /// <summary>Relights one broken lantern of the traveller's choosing (its detail of the Thursday visitor comes back).</summary>
+        public bool ChooseRelight(int lamp)
+        {
+            if (!RelightChoiceOpen || ActOneCanon.LampState(lamp, State.Wave, State.ActOne.RelitMask) != 2) return false;
+            State.ActOne.RelitMask |= 1 << lamp; State.ActOne.PendingRelight = 0;
+            return true;
+        }
+
         public static void ValidateActOne(RunSnapshot state)
         {
             ActOneProgress progress = state?.ActOne;
@@ -140,6 +150,8 @@ namespace ArcaneBrigade
             if (progress.Offer < ActOneProgress.Undecided || progress.Offer > ActOneProgress.Sold || progress.Offer != ActOneProgress.Undecided && state.Wave < 8 && !state.Endless
                 || (progress.Offer == ActOneProgress.Sold) == string.IsNullOrEmpty(progress.SoldMemory))
                 throw new InvalidOperationException("Invalid Customer offer");
+            if (progress.PendingRelight < 0 || progress.PendingRelight > 1 || progress.PendingRelight == 1 && progress.SitCloser != ActOneProgress.Won)
+                throw new InvalidOperationException("A lantern can only be chosen after standing up from the warm chair");
         }
     }
 }
