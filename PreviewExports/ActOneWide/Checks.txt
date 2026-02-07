@@ -11,3 +11,6 @@ PASS HeroIdentity
 PASS BuildMorph
 PASS K14
 FAIL K4Final: Full run check failed: Content roster
+PASS K15Feel
+PASS K8Audio
+PASS K7

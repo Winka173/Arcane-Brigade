@@ -209,6 +209,9 @@ namespace ArcaneBrigade
                 field.NextTick = Elapsed + (field.Kind == ExpandedFieldKind.Shockwave ? 0.05f : 0.4f); field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector && field.Kind != ExpandedFieldKind.Shockwave && field.Kind != ExpandedFieldKind.ShadowPool;
                 ExpandedPayoffs++;
                 if (field.Source == null || field.Source.Faction != Faction.Enemy) RecordActivation(field.Cause);
+                // fuse and echo blasts are heard and seen as explosions (presentation only; Value = blast radius)
+                if ((field.Kind == ExpandedFieldKind.Fuse || field.Kind == ExpandedFieldKind.Echo) && field.Radius >= 1f && (field.Source == null || field.Source.Faction != Faction.Enemy))
+                    events.Add(new CombatEvent(CombatEventKind.Detonation, field.Position, field.Source == null ? Faction.Companion : field.Source.Faction, field.Radius, field.Direction, field.ImpactWeapon, cause: field.Cause));
                 if (CarnivalHazards.IsHostile(field.Kind))
                 {
                     ProcessHostileCollateral(field);

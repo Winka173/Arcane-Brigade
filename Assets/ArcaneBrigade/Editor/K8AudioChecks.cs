@@ -117,14 +117,14 @@ namespace ArcaneBrigade.Editor
         public static bool ReservedLanesAreIsolated()
         {
             foreach (bool reduced in new[] { false, true })
-                for (int occupied = 0; occupied < 256; occupied++)
+                for (int occupied = 0; occupied < 65536; occupied += 7)
                     for (int cursor = 0; cursor < 2; cursor++)
                     {
                         if (CheckpointAudio.AllocateVoice(true, false, reduced, cursor, occupied) != cursor) return false;
                         if (CheckpointAudio.AllocateVoice(true, true, reduced, cursor, occupied) != cursor) return false;
                         if (CheckpointAudio.AllocateVoice(false, true, reduced, cursor, occupied) != 2 + cursor) return false;
                         int expected = -1;
-                        for (int index = 4; index < (reduced ? 6 : 8); index++)
+                        for (int index = 4; index < 4 + (reduced ? CheckpointAudio.ReducedCombatLanes : CheckpointAudio.CombatLanes); index++)
                             if ((occupied & (1 << index)) == 0) { expected = index; break; }
                         if (CheckpointAudio.AllocateVoice(false, false, reduced, cursor, occupied) != expected) return false;
                     }

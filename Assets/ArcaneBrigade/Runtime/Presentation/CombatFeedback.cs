@@ -28,6 +28,9 @@ namespace ArcaneBrigade
             public float Age = 1f;
             public bool Champion;
             public TextMesh Outline;
+            public TextMesh[] Outlines = new TextMesh[0]; // four-way ink outline plus a drop shadow
+            public Vector2 Velocity;
+            public float Scale = 1f;
             public int SubjectId;
             public float Amount;
             public bool Critical;
@@ -126,7 +129,8 @@ namespace ArcaneBrigade
                 {
                     existing.Amount += combatEvent.Value;
                     existing.View.text = Mathf.CeilToInt(existing.Amount) + (existing.Critical ? "!" : "");
-                    existing.Outline.text = existing.View.text;
+                    foreach (TextMesh outline in existing.Outlines) outline.text = existing.View.text;
+                    existing.Age = Mathf.Min(existing.Age, 0.04f); // a merged number pops again
                     return;
                 }
             }
@@ -152,32 +156,43 @@ namespace ArcaneBrigade
                 MeshRenderer renderer = child.GetComponent<MeshRenderer>();
                 renderer.sharedMaterial = font.material;
                 renderer.sortingOrder = 2600;
-                var outlineObject = new GameObject("DamageOutline");
-                outlineObject.transform.SetParent(child.transform, false);
-                outlineObject.transform.localPosition = new Vector3(0.025f, -0.025f, 0.01f);
-                TextMesh outline = outlineObject.AddComponent<TextMesh>();
-                outline.font = font;
-                outline.fontSize = view.fontSize;
-                outline.characterSize = view.characterSize;
-                outline.anchor = view.anchor;
-                outline.fontStyle = view.fontStyle;
-                MeshRenderer outlineRenderer = outlineObject.GetComponent<MeshRenderer>();
-                outlineRenderer.sharedMaterial = font.material;
-                outlineRenderer.sortingOrder = 2599;
-                number = new DamageNumber { View = view, Outline = outline };
+                Vector3[] offsets = { new Vector3(0.022f, 0, 0.01f), new Vector3(-0.022f, 0, 0.01f), new Vector3(0, 0.022f, 0.01f), new Vector3(0, -0.022f, 0.01f), new Vector3(0.03f, -0.04f, 0.02f) };
+                var outlines = new TextMesh[offsets.Length];
+                for (int o = 0; o < offsets.Length; o++)
+                {
+                    var outlineObject = new GameObject(o < 4 ? "DamageOutline" : "DamageShadow");
+                    outlineObject.transform.SetParent(child.transform, false);
+                    outlineObject.transform.localPosition = offsets[o];
+                    TextMesh outline = outlineObject.AddComponent<TextMesh>();
+                    outline.font = font;
+                    outline.fontSize = view.fontSize;
+                    outline.characterSize = view.characterSize;
+                    outline.anchor = view.anchor;
+                    outline.fontStyle = view.fontStyle;
+                    MeshRenderer outlineRenderer = outlineObject.GetComponent<MeshRenderer>();
+                    outlineRenderer.sharedMaterial = font.material;
+                    outlineRenderer.sortingOrder = o < 4 ? 2599 : 2598;
+                    outlines[o] = outline;
+                }
+                number = new DamageNumber { View = view, Outline = outlines[0], Outlines = outlines };
                 numbers.Add(number);
             }
             number.Champion = champion;
             number.SubjectId = combatEvent.SubjectId; number.Amount = combatEvent.Value; number.Critical = combatEvent.Critical;
-            number.Position = combatEvent.Position + new Vector2((sequence % 3 - 1) * 0.12f, 0.55f);
-            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.white;
+            number.Position = combatEvent.Position + new Vector2((sequence % 5 - 2) * 0.16f, 0.5f + (sequence % 3) * 0.14f); // fanned so fast repeats do not stack
+            // size and warmth follow how much of the target's life the hit took
+            float maxHealth = combatEvent.Subject != null && combatEvent.Subject.Definition != null ? combatEvent.Subject.Definition.Health : 100f;
+            float weight = Mathf.Sqrt(Mathf.Clamp01(combatEvent.Value / Mathf.Max(1f, maxHealth)));
+            number.Color = champion ? new Color(1f, 0.4f, 0.35f) : combatEvent.Critical ? new Color(1f, 0.85f, 0.22f) : Color.Lerp(Color.white, new Color(1f, 0.74f, 0.42f), Mathf.Clamp01((weight - 0.45f) * 2f));
             number.Age = 0f;
-            number.Life = champion ? 0.7f : combatEvent.Critical ? 0.8f : 0.45f;
-            float size = champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.72f;
-            number.View.characterSize = number.Outline.characterSize = 0.055f * size;
+            number.Life = champion ? 0.75f : combatEvent.Critical ? 0.9f : 0.6f;
+            float size = (champion ? 1.1f : combatEvent.Critical ? 1.45f : 0.78f) * (1f + (champion ? 0 : 0.85f * weight));
+            number.Scale = size;
+            float side = ((sequence % 5) - 2) * 0.28f + (combatEvent.Direction.x != 0 ? Mathf.Sign(combatEvent.Direction.x) * 0.25f : 0);
+            number.Velocity = new Vector2(side, combatEvent.Critical ? 2.6f : 2.1f);
+            number.View.characterSize = 0.055f * size;
             number.View.text = Mathf.CeilToInt(combatEvent.Value) + (combatEvent.Critical ? "!" : "");
-            number.Outline.text = number.View.text;
-            number.Outline.color = new Color(0.06f, 0.035f, 0.10f);
+            foreach (TextMesh outline in number.Outlines) { outline.characterSize = number.View.characterSize; outline.text = number.View.text; outline.color = new Color(0.06f, 0.035f, 0.10f); }
             number.View.color = number.Color;
             number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
             number.View.transform.localScale = Vector3.one;
@@ -192,11 +207,18 @@ namespace ArcaneBrigade
             {
                 if (number.Age >= number.Life) continue;
                 number.Age += deltaTime;
-                if (!PresentationSettings.ReducedMotion) number.Position += Vector2.up * deltaTime * 0.7f;
+                if (!PresentationSettings.ReducedMotion)
+                {
+                    // thrown up and to the side, then falling: an arc instead of a slow lift
+                    number.Position += number.Velocity * deltaTime;
+                    number.Velocity += Vector2.down * 6.5f * deltaTime;
+                    number.Velocity.x *= 1f - Mathf.Min(1f, deltaTime * 2.5f);
+                }
                 number.View.transform.position = new Vector3(number.Position.x, number.Position.y, -2f);
-                number.View.transform.localScale = Vector3.one * (1f + (PresentationSettings.ReducedMotion ? 0 : 0.35f * Mathf.Clamp01(1f - number.Age / 0.08f)));
-                number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01((1f - number.Age / number.Life) * 2.5f));
-                number.Outline.color = new Color(0.06f, 0.035f, 0.10f, number.View.color.a);
+                float pop = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01(1f - number.Age / 0.1f);
+                number.View.transform.localScale = new Vector3(1f + 0.55f * pop, 1f + 0.35f * pop, 1);
+                number.View.color = new Color(number.Color.r, number.Color.g, number.Color.b, Mathf.Clamp01((1f - number.Age / number.Life) * 3f));
+                foreach (TextMesh outline in number.Outlines) outline.color = new Color(0.06f, 0.035f, 0.10f, number.View.color.a * 0.92f);
                 if (number.Age >= number.Life) number.View.gameObject.SetActive(false);
             }
             foreach (Spark spark in sparks)

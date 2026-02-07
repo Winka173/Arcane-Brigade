@@ -38,7 +38,7 @@ namespace ArcaneBrigade
             Vector3 next = Vector3.SmoothDamp(trackedPosition, new Vector3(center.x, center.y, transform.position.z), ref velocity, 0.16f, Mathf.Infinity, Time.deltaTime);
             Vector2 clamped = ClampCenter(next, owner.WorldBounds, height, 16f / 9f);
             trackedPosition = new Vector3(clamped.x, clamped.y, next.z);
-            Vector2 accented = ClampCenter(clamped + owner.CameraAccent, owner.WorldBounds, height, 16f / 9f);
+            Vector2 accented = ClampCenter(clamped + owner.CameraAccent, owner.WorldBounds + Vector2.one * (CombatFeel.MaxShake * 2f), height, 16f / 9f);
             transform.position = new Vector3(accented.x, accented.y, next.z);
         }
         public static Vector2 ClampCenter(Vector2 target, Vector2 bounds, float halfHeight, float aspect)

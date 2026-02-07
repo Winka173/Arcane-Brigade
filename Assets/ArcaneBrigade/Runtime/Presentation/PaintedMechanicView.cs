@@ -28,7 +28,7 @@ namespace ArcaneBrigade
             float phase=Mathf.Clamp01((time-at)/Mathf.Max(.08f,until-at));
             float fade=preparing?.22f:Mathf.Min(1,(until-time)/.22f);
             float motion=reduced?1:Mathf.Lerp(.86f,1.06f,Mathf.SmoothStep(0,1,phase));
-            float alpha=fade*EffectDensity.AlliedAlpha*(PresentationSettings.HighReadability?.62f:.78f);
+            float alpha=fade*EffectDensity.AreaAlpha*(PresentationSettings.HighReadability?.75f:.92f);
             Color color=Color.Lerp(Color.white,tint,.12f);color.a=alpha;
             float angle=Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
             float width=line?.75f:Mathf.Clamp(radius*2,.65f,6.8f);

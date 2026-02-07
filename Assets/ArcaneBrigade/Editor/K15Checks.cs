@@ -35,7 +35,16 @@ namespace ArcaneBrigade.Editor
             var feel = new CombatFeel();
             var hit = new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Champion, 10, Vector2.right);
             feel.Play(new[] { hit }, new Dictionary<int, UnitVisual>(), 1); feel.Advance(0.025f);
-            require(feel.CameraOffset.magnitude > 0 && feel.CameraOffset.magnitude <= 0.09f, "Camera accent has a small bounded displacement");
+            require(feel.CameraOffset.magnitude > 0 && feel.CameraOffset.magnitude <= CombatFeel.MaxShake, "Camera accent has a bounded displacement");
+            var heavy = new CombatFeel();
+            var detonation = new CombatEvent(CombatEventKind.Detonation, Vector2.zero, Faction.Champion, 2, Vector2.right);
+            heavy.Play(new[] { detonation }, new Dictionary<int, UnitVisual>(), 1);
+            require(heavy.Frozen && !heavy.SlowMotion && heavy.Trauma > 0.1f, "An explosion holds the frame and shakes the camera");
+            heavy.Advance(0.2f); require(!heavy.Frozen, "The hit hold is brief");
+            var routine = new CombatFeel(); var kills = new List<CombatEvent>();
+            for (int i = 0; i < 200; i++) kills.Add(new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: i + 2));
+            routine.Play(kills, new Dictionary<int, UnitVisual>(), 1);
+            require(routine.Trauma <= 0.43f, "Swarm kills alone cannot shake the screen into noise");
             PresentationSettings.Apply(new PlayerProfile { ReducedShake = true });
             require(feel.CameraOffset == Vector2.zero, "Independent reduced shake removes accents");
             PresentationSettings.Apply(new PlayerProfile { ReducedMotion = true });

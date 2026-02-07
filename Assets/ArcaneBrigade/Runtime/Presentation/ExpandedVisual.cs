@@ -72,7 +72,7 @@ namespace ArcaneBrigade
                     if (!hazard && field.ImpactWeapon != null && field.ImpactWeapon.Mechanic == CarnivalWeapon.BloomOrb) color = new Color(0.55f, 1, 0.8f);
                     else if (!hazard && field.ImpactWeapon != null && field.ImpactWeapon.Mechanic == CarnivalWeapon.EchoBlade) color = new Color(0.65f, 0.8f, 1);
                     color.a = warning ? 0.65f + (ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
-                    if (!hazard) color.a *= EffectDensity.AlliedAlpha;
+                    if (!hazard) color.a *= EffectDensity.AreaAlpha;
                     line.startColor = line.endColor = color; line.widthMultiplier = hazard ? 0.06f : 0.04f; line.loop = true;
                     if (field.Kind == ExpandedFieldKind.Shockwave && !warning) line.widthMultiplier = 0.44f;
                     if (field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink || field.Kind == ExpandedFieldKind.Link && field.Radius == 0)

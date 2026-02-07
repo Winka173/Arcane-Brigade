@@ -30,6 +30,7 @@ namespace ArcaneBrigade
             public float Age = 10;
             public float Duration;
             public float Weight;
+            public float Force = 1; // crit kills and overkill launch the body further and spin it harder
             public bool Important;
             public BodyMaterial Material;
             public int Identity;
@@ -78,12 +79,14 @@ namespace ArcaneBrigade
             pool.Add(remnant);
             return remnant;
         }
-        public void Play(UnitVisual visual, UnitState state)
+        /// <summary>Returns false when every remnant is busy (the caller then shows a cheap burst instead of nothing).</summary>
+        public bool Play(UnitVisual visual, UnitState state, float force = 1f)
         {
-            if (visual == null || state == null || state.Definition == null) return;
+            if (visual == null || state == null || state.Definition == null) return false;
             bool important = state.Definition.IsBoss || state.Faction == Faction.Champion;
             Remnant remnant = Acquire(important);
-            if (remnant == null) return;
+            if (remnant == null) return false;
+            remnant.Force = PresentationSettings.ReducedMotion ? 1f : Mathf.Clamp(force, 1f, 3f);
             if (state.Faction == Faction.Enemy && !state.Definition.IsBoss) EnemyAffixDeparture.Play(state, visual.BodyRenderer);
             foreach (BossPartDeathScatter debris in remnant.BossDebris)
                 if (debris != null) { debris.gameObject.SetActive(false); debris.transform.SetParent(null); Destroy(debris.gameObject); }
@@ -121,7 +124,7 @@ namespace ArcaneBrigade
             remnant.Gesture = EnsembleMotion.For(state.Definition);
             remnant.Evolution = state.Definition.EvolutionStage;
             remnant.SpeciesIdentity = AnimationTiming.Phase(state.Definition.Id);
-            remnant.Duration = remnant.Boss ? DurationBoss : state.Faction == Faction.Champion ? 0.95f : 0.65f;
+            remnant.Duration = remnant.Boss ? DurationBoss : state.Faction == Faction.Champion ? 0.95f : 0.65f + 0.12f * (remnant.Force - 1f);
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
             if (remnant.Finale != null) remnant.Finale.Hide();
@@ -134,6 +137,7 @@ namespace ArcaneBrigade
             Draw(remnant);
             ActiveCount = 0;
             foreach (Remnant candidate in pool) if (candidate.Age < candidate.Duration) ActiveCount++;
+            return true;
         }
         public void Clear()
         {
@@ -166,14 +170,14 @@ namespace ArcaneBrigade
             if (remnant.Material == BodyMaterial.Metal || remnant.Material == BodyMaterial.Wood) collapse *= 0.3f;
             if (remnant.Material == BodyMaterial.Glass) collapse = Mathf.Clamp01(collapse * 1.5f);
             float alpha = 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((progress - 0.45f) / 0.5f));
-            remnant.Root.position = (Vector3)(remnant.Position + remnant.Direction * (0.22f * Mathf.SmoothStep(0, 1, progress)));
+            remnant.Root.position = (Vector3)(remnant.Position + remnant.Direction * (0.22f * remnant.Force * Mathf.SmoothStep(0, 1, progress)));
             float pivotOffset = (remnant.Body.sprite.pivot.y / remnant.Body.sprite.rect.height - remnant.SourcePivot) * remnant.SourceHeight * remnant.BodyScale.y;
-            remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (pivotOffset + kick * 0.17f * remnant.Weight - collapse * 0.09f);
+            remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (pivotOffset + kick * 0.17f * remnant.Weight * Mathf.Sqrt(remnant.Force) - collapse * 0.09f);
             Vector2 shape = MaterialDeathPose.Shape(remnant.Material, collapse);
             if (authoredDefeat) shape = Vector2.Lerp(Vector2.one, shape, .22f);
             float poseScale = remnant.SourceHeight / Mathf.Max(.01f, remnant.Body.sprite.bounds.size.y);
             remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(shape.x * poseScale, shape.y * poseScale, 1));
-            float materialTilt = remnant.Material == BodyMaterial.Metal ? progress * 70 : remnant.Material == BodyMaterial.Fabric ? Mathf.Sin(progress * Mathf.PI) * 12 : kick * 14 + collapse * 25;
+            float materialTilt = Mathf.Lerp(1f, remnant.Force, 0.8f) * (remnant.Material == BodyMaterial.Metal ? progress * 70 : remnant.Material == BodyMaterial.Fabric ? Mathf.Sin(progress * Mathf.PI) * 12 : kick * 14 + collapse * 25);
             if (authoredDefeat) materialTilt *= .2f;
             remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, (remnant.Direction.x < 0 ? -1 : 1) * materialTilt);
             if (remnant.Species)

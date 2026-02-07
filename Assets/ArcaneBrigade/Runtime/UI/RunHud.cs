@@ -135,6 +135,8 @@ namespace ArcaneBrigade
             ArcadeMusic.Danger = danger;
             LowHealthVignette.Draw(new Vector2(1920, 1080), danger);
             if (state.Phase == SessionPhase.Combat) NightHud.EdgeEyes(simulation, camera, new Vector2(1920, 1080));
+            float bossFlash = owner.Feel != null ? owner.Feel.ScreenFlash : 0;
+            if (bossFlash > 0.01f) Fill(new Rect(0, 0, 1920, 1080), new Color(1f, 0.96f, 0.86f, bossFlash * 0.55f)); // a boss falls: the night flashes white
             if (Event.current.type == EventType.Repaint) ObserveMoments(owner);
             if (PresentationSettings.ReducedMotion || health > healthTrail) healthTrail = health;
             else if (Event.current.type == EventType.Repaint && simulation.Phase != RunPhase.Paused) healthTrail = Mathf.MoveTowards(healthTrail, health, Mathf.Min(Time.unscaledDeltaTime, 0.05f) * maximum * 0.5f);

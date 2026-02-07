@@ -20,7 +20,8 @@ namespace ArcaneBrigade
             bool slash = value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Melee && value.Weapon.Family != ExpandedWeapon.Fish;
             bool magic = value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && value.Weapon.Motion != WeaponMotion.Bow;
             bool hit = value.Kind == CombatEventKind.Hit && value.Value > 0 && value.Faction != Faction.Companion;
-            bool important = value.Critical || value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss;
+            // kills are never thinned out by crowd budgets: what landed always shows
+            bool important = value.Critical || value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss || value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy;
             var authored=MechanicEffectArtwork.Current;
             bool cue=value.Faction!=Faction.Enemy && (value.Kind==CombatEventKind.SignatureMark || value.Kind==CombatEventKind.SignatureBurst || value.Kind==CombatEventKind.SignaturePulse || value.Kind==CombatEventKind.Support || value.Kind==CombatEventKind.Dodge || value.Kind==CombatEventKind.Heal || value.Kind==CombatEventKind.Proc || value.Kind==CombatEventKind.Windup && value.Weapon!=null && (value.Weapon.Motion==WeaponMotion.Cast || value.Weapon.Motion==WeaponMotion.Bell) || value.Kind==CombatEventKind.Fire && value.Weapon!=null && value.Weapon.Motion==WeaponMotion.Bow);
             if(cue && authored!=null)
@@ -34,7 +35,7 @@ namespace ArcaneBrigade
             {
                 if (!important && nextImpact.TryGetValue(value.SubjectId, out float until) && clock < until) return true;
                 if (nextImpact.Count > 128) nextImpact.Clear(); nextImpact[value.SubjectId] = clock + 0.075f;
-                frames = impacts.For(value.Weapon); width = value.Critical ? 0.85f : 0.48f; duration = value.Critical ? 0.24f : 0.18f;
+                frames = impacts.For(value.Weapon); width = value.Critical ? 1.0f : 0.6f; duration = value.Critical ? 0.26f : 0.19f;
                 if (value.Weapon != null && (value.Weapon.Motion == WeaponMotion.Hammer || value.Weapon.Motion == WeaponMotion.Slam || value.Weapon.Mechanic == CarnivalWeapon.SpringHammer)) { width *= 1.45f; duration = 0.28f; }
             }
             else if (value.Kind == CombatEventKind.BossLanded) { frames = library.Dust; width = value.Subject.Definition.BodyHeight * 1.5f; duration = 0.42f; position += Vector2.down * value.Subject.Definition.BodyHeight * 0.5f; }

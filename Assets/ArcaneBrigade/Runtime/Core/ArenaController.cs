@@ -48,6 +48,7 @@ namespace ArcaneBrigade
         private BossTelegraph bossTelegraph;
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
+        private ExplosionFeedback explosions;
         private ArenaToyVisual arenaToyVisual;
         private ExpandedVisual expandedVisual;
         private float transitionRemaining;
@@ -98,6 +99,7 @@ namespace ArcaneBrigade
         private MidwaveSpectacleVisual spectacleVisual;
         private readonly CombatFeel combatFeel = new CombatFeel();
         public Vector2 CameraAccent => combatFeel.CameraOffset;
+        public CombatFeel Feel => combatFeel;
         public CombatSimulation Simulation => simulation;
 
         public void Configure(CheckpointCatalog definition, Camera camera) { catalog = definition; arenaCamera = camera; }
@@ -134,6 +136,7 @@ namespace ArcaneBrigade
             spectacleVisual = gameObject.AddComponent<MidwaveSpectacleVisual>();
             deathFeedback = gameObject.AddComponent<DeathFeedback>();
             deathFeedback.Configure(catalog.ImpactSprite, null, Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary"));
+            explosions = gameObject.AddComponent<ExplosionFeedback>();
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
@@ -216,6 +219,7 @@ namespace ArcaneBrigade
                 if (combatFeedback != null) combatFeedback.Clear();
                 if (arcadeEffects != null) arcadeEffects.Clear();
                 if (deathFeedback != null) deathFeedback.Clear();
+                if (explosions != null) explosions.Clear();
                 WalletPulse = 0;
                 transitionRemaining = resultRevealRemaining = 0;
             }
@@ -269,6 +273,7 @@ namespace ArcaneBrigade
             if (lowHealth && !lowHealthAudio && !pauseGate.Paused) audioFeedback.PlayCue(25, true);
             lowHealthAudio = lowHealth;
             float interpolation = simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Rest ? Mathf.Clamp01((Time.time - Time.fixedTime) / Time.fixedDeltaTime) : 1f;
+            if (combatFeel.Frozen && simulation.Phase == RunPhase.Combat) interpolation = 1f; // the held frame stays still
             Render(interpolation);
             if (footDust != null) footDust.Display(simulation, simulation.Phase == RunPhase.Paused ? 0 : Time.deltaTime);
             if (bossTelegraph != null) bossTelegraph.Display(simulation);
@@ -279,13 +284,16 @@ namespace ArcaneBrigade
             }
             if (!pauseGate.Paused && simulation.Phase != RunPhase.Paused)
             {
-                PresentationClock += Time.deltaTime;
+                // effects, numbers and deaths slow almost to a stop during a hit hold, and to a third in a boss's slow motion
+                float feltDelta = Time.deltaTime * combatFeel.PresentationSpeed;
+                PresentationClock += feltDelta;
                 combatFeel.Advance(Time.deltaTime);
-                if (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat) terminalVisualAge += Time.deltaTime;
-                if (combatFeedback != null) combatFeedback.Advance(Time.deltaTime);
-                if (arcadeEffects != null) arcadeEffects.Advance(Time.deltaTime);
-                if (paintedEffects != null) paintedEffects.Advance(Time.deltaTime);
-                if (deathFeedback != null) deathFeedback.Advance(Time.deltaTime);
+                if (simulation.Phase == RunPhase.Victory || simulation.Phase == RunPhase.Defeat) terminalVisualAge += feltDelta;
+                if (combatFeedback != null) combatFeedback.Advance(feltDelta);
+                if (arcadeEffects != null) arcadeEffects.Advance(feltDelta);
+                if (paintedEffects != null) paintedEffects.Advance(feltDelta);
+                if (deathFeedback != null) deathFeedback.Advance(feltDelta);
+                if (explosions != null) explosions.Advance(feltDelta);
                 WalletPulse = Mathf.Max(0, WalletPulse - Time.deltaTime * 3);
                 resultRevealRemaining = Mathf.Max(0, resultRevealRemaining - Time.deltaTime);
                 if (hallExitPending)
@@ -314,8 +322,10 @@ namespace ArcaneBrigade
                 return;
             }
             if (session != null && session.State.Phase != SessionPhase.Combat) return;
+            if (simulation.Phase == RunPhase.Combat && combatFeel.Frozen) return;
             long simulationStarted = AnimationStressMeasurement.Recording ? System.Diagnostics.Stopwatch.GetTimestamp() : 0;
-            simulation.Step(Time.fixedDeltaTime, moveIntent);
+            // a boss's fall plays in slow motion: the same simulation, smaller steps
+            simulation.Step(Time.fixedDeltaTime * (combatFeel.SlowMotion ? 0.35f : 1f), moveIntent);
             if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.SimulationMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - simulationStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
             combatFeel.Play(simulation.Events, units, simulation.VisualElapsed);
             foreach (CombatEvent value in simulation.Events)
@@ -323,17 +333,23 @@ namespace ArcaneBrigade
                 if (stagePerformance != null) stagePerformance.Observe(value);
                 if (value.Kind == CombatEventKind.Pickup && value.Value > 0 && (value.Loot == LootKind.Coin || value.Loot == LootKind.Egg)) WalletPulse = 1;
                 if (value.Kind != CombatEventKind.Kill || value.Subject == null || deathFeedback == null) continue;
-                if (units.TryGetValue(value.SubjectId, out UnitVisual existing)) { existing.Display(simulation.VisualElapsed, 1); deathFeedback.Play(existing, value.Subject); }
+                float force = 1f + (value.Critical ? 0.7f : 0f) + Mathf.Min(1.3f, value.Value);
+                bool shown;
+                if (units.TryGetValue(value.SubjectId, out UnitVisual existing)) { existing.Display(simulation.VisualElapsed, 1); shown = deathFeedback.Play(existing, value.Subject, force); }
                 else
                 {
                     UnitVisual temporary = unitPool.Count > 0 ? unitPool.Pop() : Instantiate(catalog.UnitPrefab, transform).GetComponent<UnitVisual>();
                     temporary.gameObject.SetActive(true);
                     temporary.Bind(value.Subject, catalog);
-                    deathFeedback.Play(temporary, value.Subject);
+                    shown = deathFeedback.Play(temporary, value.Subject, force);
                     temporary.gameObject.SetActive(false);
                     unitPool.Push(temporary);
                 }
+                if (explosions != null) explosions.Observe(value, shown);
             }
+            if (explosions != null)
+                foreach (CombatEvent value in simulation.Events)
+                    if (value.Kind == CombatEventKind.Detonation || value.Kind == CombatEventKind.BossLanded) explosions.Observe(value, true);
             if (arcadeEffects != null)
                 foreach (CombatEvent value in simulation.Events)
                     if (paintedEffects == null || !paintedEffects.Play(value)) arcadeEffects.Play(value);

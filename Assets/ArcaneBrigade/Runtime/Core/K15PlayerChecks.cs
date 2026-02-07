@@ -40,7 +40,7 @@ namespace ArcaneBrigade
                 owner.Profile.ReducedShake = owner.Profile.ReducedFlashes = owner.Profile.ReducedEffects = true;
                 PresentationSettings.Apply(owner.Profile); configured = owner;
             }
-            badCamera |= owner.CameraAccent.magnitude > 0.091f || reduced && owner.CameraAccent != Vector2.zero;
+            badCamera |= owner.CameraAccent.magnitude > CombatFeel.MaxShake + 0.001f || reduced && owner.CameraAccent != Vector2.zero;
             PaintedEffects effects = owner.GetComponent<PaintedEffects>();
             badPool |= effects != null && effects.ActiveCount > EffectDensity.Limit(64);
             Material paint = Resources.Load<Material>("UnitFlash");

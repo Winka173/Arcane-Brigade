@@ -151,6 +151,8 @@ namespace ArcaneBrigade
             {
                 var s = identityStrikes[i]; if (Elapsed < s.At) continue;
                 identityStrikes.RemoveAt(i); identityTargets.Clear();
+                if ((s.Shape == MorphGeometry.Disc || s.Shape == MorphGeometry.Ring) && s.Radius >= 1f)
+                    events.Add(new CombatEvent(CombatEventKind.Detonation, s.Position, Faction.Champion, s.Radius, s.Direction, element: s.Element, cause: s.Cause));
                 foreach (UnitState u in units)
                 {
                     if (!CanHit(Faction.Champion, u)) continue;

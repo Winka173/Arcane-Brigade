@@ -252,6 +252,10 @@ namespace ArcaneBrigade
                     else if (value.Subject != null && value.Subject.Definition != null)
                         id = IsLargeEnemy(value.Subject.Definition) ? "enemy.die.large" : "enemy.die." + MaterialNames[(int)value.Subject.Definition.Material];
                     else id = "enemy.die.wood";
+                    if (!boss && value.Faction == Faction.Enemy && (value.Critical || value.Value > 0.6f)) gainScale = 1.25f; // a killing blow with room to spare lands louder
+                    break;
+                case CombatEventKind.Detonation:
+                    id = "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1.15f);
                     break;
                 case CombatEventKind.Pickup:
                     id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : "loot.coin.pickup";

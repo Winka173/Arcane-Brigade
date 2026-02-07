@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 {
     public enum RunPhase { Preparing, Combat, Paused, Victory, Defeat, Rest }
     public enum CompanionTravelMode { Patrol, Pursuit }
-    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast }
+    public enum CombatEventKind { Windup, Fire, Hit, Kill, Pickup, Heal, ChestOpened, Proc, SignatureMark, SignaturePulse, SignatureBurst, Support, Dodge, BossLanded, ProjectileReturn, ProjectilePierce, ProjectileSplit, ProjectileBounce, Knockback, LootDrop, BossPhase, ContactWindup, StatusApplied, LootAttract, MimicWake, BuildMorphCast, HeroIdentityCast, Detonation }
 
     public readonly struct CombatEvent
     {
@@ -961,7 +961,7 @@ namespace ArcaneBrigade
             RememberVariantDeath(target);
             target.PendingAttack = false;
             QueueDeathReaction(target);
-            events.Add(new CombatEvent(CombatEventKind.Kill, target.Position, target.Faction, direction: direction, subjectId: target.Id, subject: target, cause: cause));
+            events.Add(new CombatEvent(CombatEventKind.Kill, target.Position, target.Faction, Mathf.Clamp(-target.Health / Mathf.Max(1f, target.Definition.Health), 0f, 9f), direction, weapon, critical, element, target.Id, target, cause));
             if (target.Faction == Faction.Champion) Phase = RunPhase.Defeat;
             else
             {

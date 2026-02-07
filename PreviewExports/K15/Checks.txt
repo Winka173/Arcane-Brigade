@@ -68,7 +68,10 @@ PASS Bounded weapon feel RibbonWheel
 PASS Bounded weapon feel MoonseedOrb
 PASS Bounded weapon feel AfterimageSabre
 PASS Bounded weapon feel SatelliteDisc
-PASS Camera accent has a small bounded displacement
+PASS Camera accent has a bounded displacement
+PASS An explosion holds the frame and shakes the camera
+PASS The hit hold is brief
+PASS Swarm kills alone cannot shake the screen into noise
 PASS Independent reduced shake removes accents
 PASS Reduced motion also removes accents
 PASS Reduced effects caps cosmetic work
