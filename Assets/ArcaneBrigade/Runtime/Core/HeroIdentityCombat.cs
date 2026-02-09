@@ -35,12 +35,21 @@ namespace ArcaneBrigade
         private readonly List<Vector2> identityTrail = new List<Vector2>();
         private readonly HashSet<int> identityNearMisses = new HashSet<int>();
         private readonly List<int> identityPages = new List<int>();
-        private float identityCharge, identityAt, identitySecondAt, identityNearAt, identityStill, identityTickAt, identityStepAt, identityGhostUntil, identityGhostAt, identityBank, identityBankAt, identityRecovered;
+        private float identityCharge, identityAt, identitySecondAt, identityNearAt, identityStill, identityTickAt, identityStepAt, identityGhostUntil, identityGhostAt, identityBank, identityBankAt, identityRecovered, identityFullAt, identityBlastAt;
+        // Area caps shared by every identity strike: the painted area always equals the tested area, so capping the
+        // gameplay shape is what keeps a late-run mechanic from ballooning across the screen.
+        public const float MaxDiscRadius = 1.6f, MaxRingRadius = 1.8f, MaxCrescentRadius = 2.4f, MaxLineLength = 4.5f;
         private int identityAttacks, identityCycle, identityCounter, identityPayouts, identityFace, identityThorns;
         private Vector2 identityHeading, identityGhost;
-        private UnitState identityBounty, identityLead;
+        private UnitState identityBounty, identityLead, identityDebtor;
         private bool identityRearSpent;
         public int HeroIdentityActivations { get; private set; }
+        /// <summary>Measurement only (diagnostics read these): value the mechanic adds outside its own damage ledger.</summary>
+        public float HeroIdentityBonusDamage { get; private set; }
+        public float HeroIdentityDeferredDamage { get; private set; }
+        public float HeroIdentityReplacedDamage { get; private set; }
+        public float HeroIdentityPrevented { get; private set; }
+        public int HeroIdentityGold { get; private set; }
         public float HeroIdentityLastCast { get; private set; } = -100;
         public bool HeroIdentityEnabled => catalog.EnableHeroIdentities && Champion != null && HeroIdentities.For(Champion.Definition.Id) != null;
         private string IdentityId => Champion.Definition.Id;
@@ -69,14 +78,14 @@ namespace ArcaneBrigade
         public int HeroIdentitySpecimens => identitySpecimens.Count;
         public float HeroIdentityCharge => identityCharge;
         public float HeroIdentityRequired => IdentityId switch {
-            "LanternKnight" => 8, "Postmaster" => 3, "DrowsySeer" => 6, "RootOracle" => 3,
+            "LanternKnight" => 8, "Postmaster" => 3, "DrowsySeer" => 4, "RootOracle" => 3,
             "LoneJelly" => 3, "GlassDice" => 6, "TideSinger" => 3, "CometRunner" => 10,
             "MirrorKeeper" => 3, "TreasureAcorn" => 3, "VerdantMatron" => 6, "CopperCauldron" => 6,
             "ChinaMarionette" => 3, "SoapSkater" => 3, "VelvetRegent" => 6, "ButtonCavalier" => 3,
             "NightMaw" => 3, "ThornTreasurer" => 4, "CitrusMarshal" => 8, "IvorySovereign" => 3,
             "PetalCitadel" => 4, "PatchworkHost" => 4, "ArchiveCurator" => 3, "PennyBroker" => 10,
             "StormFencer" => 3, "TinVirtuoso" => 2 + IdentityApproach * 2, "MoonProwler" => 5,
-            "SupperMortar" => 2, "LanternWeaver" => 3, "HourglassStag" => IdentityPower * 2,
+            "SupperMortar" => 2, "LanternWeaver" => 3, "HourglassStag" => IdentityPower * 3,
             "RainArchivist" => 3, _ => 1 };
         public string HeroIdentityStatus
         {
@@ -99,12 +108,13 @@ namespace ArcaneBrigade
         {
             ClearHeroIdentity();
             identityCharge = identityStill = identityBank = identityRecovered = 0;
-            identityAt = identitySecondAt = identityNearAt = identityTickAt = identityStepAt = identityGhostAt = 0;
+            identityAt = identitySecondAt = identityNearAt = identityTickAt = identityStepAt = identityGhostAt = identityBlastAt = 0; identityFullAt = -1;
             identityGhostUntil = 0; identityBankAt = -1; identityHeading = Vector2.right;
             identityAttacks = identityCycle = identityCounter = identityPayouts = 0;
             identityFace = Mathf.Clamp(catalog.HeroDiceFace, 1, 6); identityThorns = Mathf.Clamp(catalog.HeroWallet / 30, 0, 4);
-            identityBounty = identityLead = null; identityRearSpent = false;
+            identityBounty = identityLead = identityDebtor = null; identityRearSpent = false;
             HeroIdentityActivations = 0; HeroIdentityLastCast = -100;
+            HeroIdentityBonusDamage = HeroIdentityDeferredDamage = HeroIdentityReplacedDamage = HeroIdentityPrevented = 0; HeroIdentityGold = 0;
             identityTrail.Add(Champion.Position);
             if (!HeroIdentityEnabled) return;
             foreach (UnitState u in units)
@@ -140,6 +150,8 @@ namespace ArcaneBrigade
         private void IdentityHit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .2f, int maxTargets = 3, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
         {
             if (identityStrikes.Count >= 32 || !float.IsFinite(budget) || budget <= 0) return;
+            if (shape == MorphGeometry.Line) { Vector2 span = end - at; if (span.sqrMagnitude > MaxLineLength * MaxLineLength) end = at + span.normalized * MaxLineLength; }
+            else radius = Mathf.Min(radius, shape == MorphGeometry.Crescent ? MaxCrescentRadius : shape == MorphGeometry.Ring ? MaxRingRadius : MaxDiscRadius);
             identityStrikes.Add(new IdentityStrike { Shape = shape, Position = at, End = end, Radius = radius, Width = .25f, At = Elapsed + delay,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
                 Budget = budget, Targets = Mathf.Clamp(maxTargets, 1, 5), Element = element, Slow = slow, Push = push, Cause = IdentityCause() });
@@ -151,8 +163,11 @@ namespace ArcaneBrigade
             {
                 var s = identityStrikes[i]; if (Elapsed < s.At) continue;
                 identityStrikes.RemoveAt(i); identityTargets.Clear();
-                if ((s.Shape == MorphGeometry.Disc || s.Shape == MorphGeometry.Ring) && s.Radius >= 1f)
-                    events.Add(new CombatEvent(CombatEventKind.Detonation, s.Position, Faction.Champion, s.Radius, s.Direction, element: s.Element, cause: s.Cause));
+                // Filled discs of radius >= 1 still detonate. The explosion's bloom reaches 1.4x the event value, so the value
+                // is the radius / 1.4: the whole blast stays inside the hit area. Rings are hollow (only the band is tested), so a
+                // filled blast at their centre would lie about the area; they no longer detonate. One blast per 0.3s at most.
+                if (s.Shape == MorphGeometry.Disc && s.Radius >= 1f && Elapsed >= identityBlastAt)
+                { identityBlastAt = Elapsed + .3f; events.Add(new CombatEvent(CombatEventKind.Detonation, s.Position, Faction.Champion, s.Radius / 1.4f, s.Direction, element: s.Element, cause: s.Cause)); }
                 foreach (UnitState u in units)
                 {
                     if (!CanHit(Faction.Champion, u)) continue;
@@ -205,8 +220,8 @@ namespace ArcaneBrigade
             if (target == null) return;
             Vector2 at = origin ?? Champion.Position, dir = (target.Position - at).normalized;
             int mode = approach < 0 ? IdentityApproach : approach;
-            if (mode == 0) IdentityHit(MorphGeometry.Line, at, at + dir * Mathf.Min(6, Vector2.Distance(at, target.Position) + 1), 0, budget, element: element);
-            else if (mode == 1) IdentityHit(MorphGeometry.Crescent, at, at + dir, Mathf.Min(4, Vector2.Distance(at, target.Position) + .5f), budget, element: element);
+            if (mode == 0) IdentityHit(MorphGeometry.Line, at, at + dir * Mathf.Min(MaxLineLength, Vector2.Distance(at, target.Position) + 1), 0, budget, element: element);
+            else if (mode == 1) IdentityHit(MorphGeometry.Crescent, at, at + dir, Mathf.Clamp(Vector2.Distance(at, target.Position) + .5f, 1.2f, MaxCrescentRadius), budget, element: element);
             else { IdentityHit(MorphGeometry.Line, target.Position - Vector2.one, target.Position + Vector2.one, 0, budget * .5f, element: element); IdentityHit(MorphGeometry.Line, target.Position + new Vector2(-1,1), target.Position + new Vector2(1,-1), 0, budget * .5f, .35f, element: element); }
         }
         private void IdentityPerform(float budget, int wanted)
@@ -216,7 +231,9 @@ namespace ArcaneBrigade
             if (identityPerformers.Count == 0) identityPerformers.Add(Champion);
             int count = Mathf.Min(wanted, identityPerformers.Count);
             bool ownWeapons = IdentityId == "TinVirtuoso" || IdentityId == "VelvetRegent";
-            if (ownWeapons) { budget = 0; for (int i=0;i<count;i++) budget += Mathf.Min(IdentityPower*2, identityPerformers[(identityCycle+i)%identityPerformers.Count].Definition.Weapon.Damage*.7f); }
+            // Velvet commands up to three friends every 4s, so each answer is capped lower than a Tin Virtuoso phrase
+            float cap = IdentityId == "VelvetRegent" ? .75f : 2, share = IdentityId == "VelvetRegent" ? .5f : .7f;
+            if (ownWeapons) { budget = 0; for (int i=0;i<count;i++) budget += Mathf.Min(IdentityPower*cap, identityPerformers[(identityCycle+i)%identityPerformers.Count].Definition.Weapon.Damage*share); }
             float weights = 0; for (int i=0;i<count;i++) weights += Mathf.Max(1,identityPerformers[(identityCycle+i)%identityPerformers.Count].Definition.Weapon.Damage);
             for (int i = 0; i < count; i++)
             {
@@ -231,7 +248,7 @@ namespace ArcaneBrigade
             Vector2 from = fromHero ? Champion.Position : performer.Position;
             var w = performer.Definition.Weapon;
             if (w.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, budget, Mathf.Min(3, w.ProjectileCount), element: w.Element, sprite: w.ProjectileSprite);
-            else IdentityHit(MorphGeometry.Crescent, from, target.Position, Mathf.Clamp(Vector2.Distance(from, target.Position) + .3f, .8f, 3.4f), budget, element: w.Element);
+            else IdentityHit(MorphGeometry.Crescent, from, target.Position, Mathf.Clamp(Vector2.Distance(from, target.Position) + .3f, .8f, 2.2f), budget, element: w.Element);
         }
         private void IdentityMarkTarget(UnitState target)
         {
@@ -262,32 +279,42 @@ namespace ArcaneBrigade
         private float IdentityDamage(UnitState target, float damage, Faction source, CombatCause cause)
         {
             if (!HeroIdentityEnabled || target.Faction != Faction.Enemy || source != Faction.Champion || cause.SourceUnitId != Champion.Id || cause.Depth != 0 || IdentityId != "HourglassStag") return damage;
-            float banked = Mathf.Min(damage * .25f, Mathf.Max(0, IdentityPower * 2 - identityBank));
+            // a finishing blow is never deferred: the debt is only written against an enemy that survives the hit
+            if (damage >= target.Health) return damage;
+            float banked = Mathf.Min(damage * .35f, Mathf.Max(0, IdentityPower * 3 - identityBank));
             if (banked <= 0) return damage;
-            identityBank += banked; identityCharge = identityBank;
+            identityBank += banked; identityCharge = identityBank; HeroIdentityDeferredDamage += banked; identityDebtor = target;
             if (identityBankAt < 0) identityBankAt = Elapsed;
             return damage - banked;
         }
         private float IdentityAttackDamage(UnitState source, float damage)
         {
             if (!HeroIdentityEnabled || source != Champion || IdentityId != "MoonProwler" || identityCharge < 5) return damage;
-            var target = units.Find(u => u.Id == source.AttackTargetId);
-            if (target == null || target != identityBounty || Vector2.Dot((Champion.Position - target.Position).normalized, identityGhost) > -.25f) return damage;
-            identityCharge = 0; identityRearSpent = true; identityBounty = target; IdentityCast();
-            IdentityPattern(target, damage * .2f); return damage * 1.45f;
+            var target = units.Find(u => u.Id == source.AttackTargetId && CanHit(Faction.Champion, u));
+            if (target == null) return damage;
+            Vector2 toHero = Champion.Position - target.Position; toHero = toHero.sqrMagnitude > .0001f ? toHero.normalized : -Champion.Facing;
+            identityCharge = 0; identityRearSpent = true; identityBounty = target; identityGhost = toHero; IdentityCast();
+            // the shadow steps out of the target's far side and cuts back through it
+            IdentityPattern(target, IdentityPower * .8f, origin: ClampPosition(target.Position - toHero * 1.1f, .1f));
+            bool rear = Vector2.Dot(toHero, target.Facing.sqrMagnitude > .0001f ? target.Facing.normalized : Vector2.right) <= -.25f;
+            if (!rear) return damage;
+            HeroIdentityBonusDamage += damage * .45f; return damage * 1.45f;
         }
         private bool IdentityMortar(UnitState source, float damage)
         {
             if (!HeroIdentityEnabled || source != Champion || IdentityId != "SupperMortar") return false;
             UnitState target = units.Find(u => u.Id == source.AttackTargetId && CanHit(Faction.Champion,u));
             if (target == null) return true;
-            float food = Mathf.Min(.35f, catalog.HeroFood * .025f);
+            float food = Mathf.Min(.35f, catalog.HeroFood * .025f); HeroIdentityReplacedDamage += damage;
+            // served where the diner will be: aimed at the target's position after the flight, within 1.2 units
             for (int i = 0; i < 2; i++)
             {
-                Vector2 at = target.Position + Vector2.right * (i == 0 ? -.55f : .55f);
-                if (IdentityApproach == 1) IdentityHit(MorphGeometry.Line, at - Vector2.up, at + Vector2.up, 0, damage * .5f, .85f + i * .15f, element: DamageElement.Ember);
-                else IdentityHit(MorphGeometry.Disc, at, at, 1.05f + food, damage * .5f, .85f + i * .15f, element: IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Physical, slow: IdentityApproach == 2 ? 1 : 0);
-                IdentityGlyph(MorphGeometry.Line, source.Position, at, 0, .85f + i * .15f, role: HeroGlyphRole.Lob);
+                float flight = .4f + i * .1f;
+                Vector2 lead = Vector2.ClampMagnitude(target.Velocity * flight, 1.2f);
+                Vector2 at = ClampPosition(target.Position + lead + Vector2.right * (i == 0 ? -.4f : .4f), .1f);
+                if (IdentityApproach == 1) IdentityHit(MorphGeometry.Line, at - Vector2.up, at + Vector2.up, 0, damage * 1.1f, flight, element: DamageElement.Ember);
+                else IdentityHit(MorphGeometry.Disc, at, at, 1.05f + food, damage * .85f, flight, element: IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Physical, slow: IdentityApproach == 2 ? 1 : 0);
+                IdentityGlyph(MorphGeometry.Line, source.Position, at, 0, flight, role: HeroGlyphRole.Lob);
             }
             identityCharge = 2; IdentityCast(); return true;
         }

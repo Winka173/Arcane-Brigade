@@ -46,7 +46,7 @@ namespace ArcaneBrigade.Editor
             weak.Weapon=UnityEngine.Object.Instantiate(weak.Weapon);weak.Speed=0;weak.Health=1;weak.ContactDamage=0;weak.CollisionDamage=0;weak.Behavior=EnemyBehavior.Standard;weak.SpecialEnemy=SpecialEnemyKind.None;
             var foes=new List<UnitState>();
             for(int i=0;i<3;i++){var u=sim.AddFixture(dummy,Faction.Enemy,new Vector2(1+i*.45f,(i-1)*.5f));u.NextAttack=u.NextContact=float.PositiveInfinity;foes.Add(u);}
-            float maxGlyphs=0;bool finite=true;bool injurySeen=false;
+            float maxGlyphs=0;bool finite=true;bool injurySeen=false;bool capped=true;bool blastsFit=true;int blasts=0;float lastBlast=-1;bool blastSpaced=true;string oversize="";
             var stage=new GameObject("Hero mechanic visual check");var visual=stage.AddComponent<HeroIdentityVisual>();int painted=0;
             for(int tick=0;tick<720;tick++)
             {
@@ -65,6 +65,19 @@ namespace ArcaneBrigade.Editor
                 }
                 sim.Step(.05f,movement);
                 injurySeen|=sim.OctoberInjuries>0;maxGlyphs=Mathf.Max(maxGlyphs,sim.HeroIdentityGlyphs.Count);
+                foreach(var g in sim.HeroIdentityGlyphs)
+                {
+                    if(g.Role!=HeroGlyphRole.Strike)continue;
+                    float limit=g.Shape==MorphGeometry.Crescent?CombatSimulation.MaxCrescentRadius:g.Shape==MorphGeometry.Ring?CombatSimulation.MaxRingRadius:CombatSimulation.MaxDiscRadius;
+                    bool ok=g.Shape==MorphGeometry.Line?Vector2.Distance(g.Position,g.End)<=CombatSimulation.MaxLineLength+.001f:g.Radius<=limit+.001f;
+                    if(!ok){capped=false;oversize=g.Shape+" r="+g.Radius.ToString("0.00")+" len="+Vector2.Distance(g.Position,g.End).ToString("0.00");}
+                }
+                foreach(var ev in sim.Events)
+                {
+                    if(ev.Kind!=CombatEventKind.Detonation || ev.Cause.ItemId==null || !ev.Cause.ItemId.StartsWith("hero-identity-",StringComparison.Ordinal))continue;
+                    blasts++;blastsFit&=ev.Value*1.4f<=CombatSimulation.MaxDiscRadius+.001f;
+                    if(lastBlast>=0 && sim.Elapsed-lastBlast<.29f)blastSpaced=false;lastBlast=sim.Elapsed;
+                }
                 if(tick%9==0){visual.Display(sim);painted=Mathf.Max(painted,visual.VisibleCount);}
                 foreach(var shot in sim.Projectiles)if(HeroIdentityVisual.Missile(shot,a.Projectile,sim.Elapsed,out _,out _)!=null)painted=Mathf.Max(painted,1);
                 if(sim.Units.Any(u=>!float.IsFinite(u.Position.x)||!float.IsFinite(u.Position.y)) || !float.IsFinite(sim.HeroIdentityCharge))finite=false;
@@ -73,6 +86,8 @@ namespace ArcaneBrigade.Editor
             Check(finite && sim.Champion.Alive && sim.Units.Where(u=>u.Faction==Faction.Companion).All(u=>u.Alive&&float.IsPositiveInfinity(u.Health)),"Finite and immortal companion behavior "+id);
             Check(sim.HeroIdentityActivations>0,"Actual signature activated "+id+" casts="+sim.HeroIdentityActivations+" injuries="+injurySeen);
             Check(maxGlyphs<=40 && sim.Projectiles.Count<1100,"Bounded visual/projectile queues "+id);
+            Check(capped,"Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) "+id+" "+oversize);
+            Check(blastsFit && blastSpaced,"Identity detonations sized inside their disc and at most one per 0.3s "+id+" blasts="+blasts);
             float elapsed=sim.Elapsed,charge=sim.HeroIdentityCharge;int casts=sim.HeroIdentityActivations;
             sim.Pause(true);sim.Step(.05f,Vector2.one);
             Check(sim.Elapsed==elapsed && sim.HeroIdentityCharge==charge && sim.HeroIdentityActivations==casts,"Pause cannot farm mechanic "+id);

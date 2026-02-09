@@ -20,7 +20,10 @@ namespace ArcaneBrigade
         private CombatSimulation sim;
         private HeroMechanicStyle style;
         private InkPalette ink;
-        private float t, strength;
+        private float t, strength, screenCap = 3;
+        /// <summary>Largest radius any identity shape may be painted at: the simulation caps the real area
+        /// (CombatSimulation.MaxCrescentRadius and friends) and this is a safety net of a fraction of the visible screen.</summary>
+        private float Fit(float radius) => Mathf.Min(radius, screenCap);
         private bool still, sparse, calm, plain;
         public int VisibleCount { get; private set; }
         public int TokenCount => used;
@@ -78,6 +81,8 @@ namespace ArcaneBrigade
                 still = PresentationSettings.ReducedMotion; sparse = PresentationSettings.ReducedEffects || AnimationDetailBudget.Level >= 2;
                 calm = PresentationSettings.ReducedFlashes; plain = PresentationSettings.HighReadability;
                 strength = Mathf.Lerp(1, .72f, EffectDensity.CrowdPressure) * (sparse ? .85f : 1);
+                sparse |= EffectDensity.CrowdPressure > .6f; // in a crowd keep the washes and rims, drop the flurries of tokens
+                var cam = Camera.main; screenCap = cam != null && cam.orthographic ? Mathf.Max(1.2f, cam.orthographicSize * .45f) : 3;
                 if (simulation.Champion.Alive)
                 {
                     DrawState();
@@ -146,7 +151,7 @@ namespace ArcaneBrigade
                 Vector2 die = feet + new Vector2(rx + .16f, -.02f);
                 Token(InkToken.Die, die, .26f * (1 + ready * .1f), still ? 0 : Mathf.Sin(t * 2) * 6, 1, false, sim.HeroIdentityNextFace);
             }
-            if (fraction >= 1 && !calm) Glow(feet, rx * 2.2f, ink.Glow, .1f + ready * .06f);
+            if (fraction >= 1 && !calm) Glow(feet, rx * 1.5f, ink.Glow, .08f + ready * .05f);
         }
         private static readonly InkPalette GoldPalette = new InkPalette(new Color(.24f, .13f, .03f), new Color(.96f, .74f, .28f), new Color(1, .95f, .74f), new Color(1, .8f, .4f), new Color(.6f, .38f, .16f));
         private static readonly Color[] PetalColours = { new Color(.96f, .48f, .56f), new Color(.34f, .7f, .78f), new Color(.5f, .86f, .5f), new Color(.5f, .66f, 1f) };
@@ -262,7 +267,7 @@ namespace ArcaneBrigade
             float fadeIn = Mathf.Clamp01((4 - (sim.HeroIdentityDreamUntil - t)) / .35f), fade = Mathf.Min(fadeIn, Mathf.Clamp01((sim.HeroIdentityDreamUntil - t) / .3f));
             Vector2 floor = at - Vector2.up * sim.Champion.Definition.BodyHeight * .5f;
             ground.Stroke(InkCanvas.Arc(floor, .66f, .3f, 90, 90 + 360 * left), Brush(.08f, .9f * fade, 3));
-            Glow(floor, 1.5f, ink.Glow, .22f * fade);
+            Glow(floor, 1.2f, ink.Glow, .2f * fade);
             var body = sim.Champion.Definition.Body;
             if (body != null)
             {
@@ -320,7 +325,7 @@ namespace ArcaneBrigade
             Vector2 feet = Feet(sim.Champion); float e = OutCubic(k);
             float rx = still ? .8f : Mathf.Lerp(.32f, .95f, e);
             ground.Stroke(InkCanvas.Arc(feet, rx, rx * .46f, 0, 360), Brush(.1f * (1 - k * .7f), 1 - k, 5), true);
-            if (!calm) Glow(feet + Vector2.up * .3f, 1.6f, ink.Glow, .26f * (1 - k));
+            if (!calm) Glow(feet + Vector2.up * .3f, 1.2f, ink.Glow, .22f * (1 - k));
             if (sparse) return;
             for (int i = 0; i < 3; i++)
             {
@@ -361,7 +366,7 @@ namespace ArcaneBrigade
         private void DiscStrike(HeroIdentityGlyph g, bool seal)
         {
             Phases(g, out bool pre, out float q, out float p, out float fade);
-            Vector2 c = g.Position; float r = Mathf.Max(.2f, g.Radius), s = Seed(g);
+            Vector2 c = g.Position; float r = Fit(Mathf.Max(.2f, g.Radius)), s = Seed(g);
             if (pre)
             {
                 ground.Sector(c, r, 0, 360, A(ink.Glow, .015f), A(ink.Body, (.06f + .12f * q) * strength));
@@ -385,8 +390,9 @@ namespace ArcaneBrigade
             int n = sparse ? 3 : 6;
             for (int i = 0; i < n; i++)
             {
-                float a = s + i * 360f / n + (i % 2) * 17; float d = Mathf.Min(r - .12f, r * .82f * (still ? .7f : OutCubic(p)));
-                Token(style.Token, c + Dir(a) * Mathf.Max(0, d), .22f * (1 + .5f * Mathf.Pow(1 - p, 3)), a + p * 120, fade);
+                float a = s + i * 360f / n + (i % 2) * 17, size = Mathf.Min(.22f * (1 + .5f * Mathf.Pow(1 - p, 3)), r * .5f);
+                float d = Mathf.Min(r - size * .55f, r * .82f * (still ? .7f : OutCubic(p)));
+                Token(style.Token, c + Dir(a) * Mathf.Max(0, d), size, a + p * 120, fade);
             }
             if (seal || style.Id == "SupperMortar")
             {
@@ -447,7 +453,7 @@ namespace ArcaneBrigade
         private void CrescentStrike(HeroIdentityGlyph g)
         {
             Phases(g, out bool pre, out float q, out float p, out float fade);
-            Vector2 c = g.Position; float r = Mathf.Max(.3f, g.Radius); Vector2 d = g.Direction.sqrMagnitude > .01f ? g.Direction : Vector2.right;
+            Vector2 c = g.Position; float r = Fit(Mathf.Max(.3f, g.Radius)); Vector2 d = g.Direction.sqrMagnitude > .01f ? g.Direction : Vector2.right;
             float heading = Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg, sweep = g.Seed % 2 == 0 ? 1 : -1;
             if (pre)
             {
@@ -480,13 +486,13 @@ namespace ArcaneBrigade
                     Token(style.Token, pos - outward * (.1f + i * .06f), .18f * (1 - i * .2f), heading + i * 40 + p * 90, fade * (1 - i * .25f));
                 }
             }
-            if (head < 1 && !calm) Glow(tip, .7f, ink.Glow, .35f * fade, true);
+            if (head < 1 && !calm) Glow(tip, Mathf.Min(.6f, r * .5f), ink.Glow, .3f * fade, true);
         }
 
         private void RingStrike(HeroIdentityGlyph g)
         {
             Phases(g, out bool pre, out float q, out float p, out float fade);
-            Vector2 c = g.Position; float r = Mathf.Max(.3f, g.Radius), half = Mathf.Max(.1f, g.Width), s = Seed(g);
+            Vector2 c = g.Position; float r = Fit(Mathf.Max(.3f, g.Radius)), half = Mathf.Max(.1f, g.Width), s = Seed(g);
             if (pre)
             {
                 ground.Annulus(c, Mathf.Max(0, r - half), r + half, A(ink.Body, (.04f + .08f * q) * strength), A(ink.Body, .02f * strength));
@@ -575,7 +581,7 @@ namespace ArcaneBrigade
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created));
             float size = Mathf.Clamp(g.Radius * 1.4f, .3f, 1.1f) * (still ? 1 : OutBack(Mathf.Min(1, p / .3f)));
-            if (!calm) Glow(g.Position, size * 2.2f, ink.Glow, .3f * (1 - p), true);
+            if (!calm) Glow(g.Position, size * 1.5f, ink.Glow, .26f * (1 - p), true);
             Token(style.Token, g.Position + Vector2.up * (.3f + (still ? 0 : .35f * p)), size, still ? 0 : Mathf.Sin(p * 6) * 12, 1 - Smooth(.6f, 1, p), true, style.Token == InkToken.Die ? 6 : 0);
         }
     }

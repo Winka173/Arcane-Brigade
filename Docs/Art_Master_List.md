@@ -206,6 +206,17 @@ Thứ tự nên vẽ:
 
 GIỮ: đạn giấc mơ, yo-yo, kim, các bộ impact Cut/Slam/Pierce/Orb, bụi, khói chết, chớp nòng phe ta, art trường build-morph (`Forms_v1`).
 
+## Ưu tiên 2 — vật phẩm nhặt trong trận (nhịp chơi mới) — MỚI
+
+Đang tạm dùng icon đèn lồng và icon relic Marching Bell. Giao vào `Assets/ArcaneBrigade/Resources/MienCho/ActOne/` (sprite đơn, importer có sẵn), 512×512, nhìn từ trên xuống 3/4 như đồng xu và rương trong trận; phải đọc rõ khi chỉ cao khoảng 60 px trên màn hình.
+
+| File | Subject |
+| --- | --- |
+| `Pickup_LanternFlare.png` | A small brass hand-lantern with its shutter thrown open, a bright warm-white flame flaring inside and a few cream sparks escaping the top. Friendly warm light, not fire damage; no ember red. |
+| `Pickup_ShopkeeperBell.png` | The shopkeeper's brass counter bell (round dome bell on a dark wooden base), polished and slightly dented, a tiny burgundy ribbon tied to the base. |
+
+Ghi chú gameplay: Lantern Flare = nhặt vào thì đốt sạch quái nhỏ trên màn hình; chuông = mọi đồng xu trong sảnh chạy về người chơi.
+
 ---
 
 ## Không cần vẽ (đã bỏ khỏi Hồi 1 hoặc giữ nguyên)
@@ -214,3 +225,15 @@ GIỮ: đạn giấc mơ, yo-yo, kim, các bộ impact Cut/Slam/Pierce/Orb, bụ
 - `Resources/MienCho/EmptyChair.png` — chỉ còn là hình dự phòng khi chưa có `WarmChair.png`.
 - `Resources/MienCho/Journey/Station_Painted_v1.png`, `FootstepHall_Painted_v1.png` — phòng đi lại cũ, hiện không dùng.
 - Keeper (`Art/October/Keeper.png`), đèn lồng (`Resources/MienCho/Lanterns/*`), điện thoại, menu Phòng Chờ gốc, quầy dream shop và các phòng bí mật (nội dung phụ) — giữ.
+
+---
+
+## Ưu tiên 3b — token cơ chế hero sau đợt rework 17/10 (3 ảnh, MỚI)
+
+Từ [Hero_Mechanics_Review.md](Hero_Mechanics_Review.md). Ba cơ chế được làm lại và giờ kích hoạt thường xuyên (Drowsy Seer ~5 lần/phút, Mirror Keeper ~11, Hourglass Stag ~10), nên token procedural nhỏ của chúng hiện rất nhiều trên màn hình. Dùng **prompt chung** ở trên, chỉ thay dòng `Subject:`. Lưu vào `Assets/ArcaneBrigade/Art/MechanicEffects/Tokens/{Token}_v1.png` (1 frame, vuông 512 hoặc 1024), rồi chạy `ArcaneBrigade.Editor.HeroMechanicArtImporter.Import`. Token chỉ là vật thể nhỏ (hiện ở 0.15–0.4 đơn vị), không vẽ vùng đánh — vùng đánh vẫn do mực procedural vẽ đúng kích thước gameplay.
+
+| Token (file) | Hero | Subject |
+| --- | --- | --- |
+| `Star_v1.png` | Drowsy Seer (giấc mơ ở lại chờ), Patchwork Host | One small sleepy five-pointed star made of folded cream paper with soft midnight-blue shading, its points slightly crooked and drooping as if dozing, a tiny brass stitch at its centre, warm candle-cream light along the top edges |
+| `Shard_v1.png` | Mirror Keeper (phát đạn mượn), China Marionette | One single slim shard of old silvered mirror glass with a chipped brass frame corner still attached, pale teal-blue reflections and one cream glint, edges hand-inked and slightly uneven, no reflection of any face |
+| `Sand_v1.png` | Hourglass Stag (khoản nợ thời gian) | One small closed pouch of fine golden sand tied with a burgundy thread and a tiny blank brass tag, a thin trickle of sand curling from its neck, painted midnight-blue shadow underneath the pouch only (no floor) |
