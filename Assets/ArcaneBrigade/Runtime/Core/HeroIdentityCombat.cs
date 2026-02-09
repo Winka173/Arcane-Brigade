@@ -97,7 +97,7 @@ namespace ArcaneBrigade
                 if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAM " + (identityGhostUntil - Elapsed).ToString("0.0") + "s";
                 if (IdentityId == "PatchworkHost") return identityLead == null ? "CHOOSE A FEATURED FRIEND IN SHOP" : "LEAD: " + identityLead.Definition.DisplayName;
                 if (IdentityId == "PetalCitadel") return "PETALS " + string.Join(" / ", catalog.HeroPetals);
-                if (IdentityId == "SupperMortar") return HeroIdentities.For(IdentityId).Approaches[IdentityApproach] + " / TWO SHELLS";
+                if (IdentityId == "SupperMortar") return HeroIdentities.For(IdentityId).Approaches[IdentityApproach] + " / TWO COURSES";
                 if (IdentityId == "HourglassStag") return "DEBT " + identityBank.ToString("0.0");
                 if (IdentityId == "MoonProwler" && identityCharge >= 5) return "REAR STRIKE READY";
                 return Mathf.FloorToInt(identityCharge) + " / " + HeroIdentityRequired.ToString("0") + "  " + HeroIdentities.For(IdentityId).Resource.ToUpperInvariant();
