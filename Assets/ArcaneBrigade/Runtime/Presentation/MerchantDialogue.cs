@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -11,6 +12,7 @@ namespace ArcaneBrigade
         private int cursor;
         private string focus;
         private float nextInspect;
+        private string lastTrigger;
         private GUIStyle copy;
         private GUIStyle name;
         public int SpokenCount { get; private set; }
@@ -18,7 +20,14 @@ namespace ArcaneBrigade
         public string CurrentLine => line;
         public string MerchantName { get; set; }
         public float ExpiresAt => expires;
+        public float SpokeAt => began;
         public RunSnapshot Context { get; set; }
+        /// <summary>When set, every spoken line also appears as a speech box pinned to this world point (the merchant's head).</summary>
+        public string BubbleKey { get; set; }
+        public Func<Vector3?> Anchor { get; set; }
+        /// <summary>The last voiced bark, if the line was one (its subtitle is the start of <see cref="CurrentLine"/>).</summary>
+        public VoiceLine LastBark { get; private set; }
+        public static string Bank(bool special) => special ? VoiceLines.DreamMother : VoiceLines.Shopkeeper;
         public int VisibleGlyphs(float now, bool reduced) => line == null ? 0 : reduced ? line.Length : Mathf.Clamp(Mathf.FloorToInt((now - began) * 58), 0, line.Length);
         public bool IsSpeaking(float now) => line != null && now >= began && now < expires && VisibleGlyphs(now, false) < line.Length;
 
@@ -63,11 +72,80 @@ namespace ArcaneBrigade
             return selected < choices.Length ? choices[selected] : extra[selected - choices.Length];
         }
 
-        public void Speak(bool special, MerchantMoment moment, float now)
+        /// <summary>The voiced bark each committed moment uses (Inspect stays a written aside with murmurs).</summary>
+        public static string Trigger(MerchantMoment moment) => moment switch
         {
-            LastMoment = moment; line = NightmareDialogue.Pick(Context,special,moment,cursor++); began = now; expires = now + Mathf.Max(3.8f,line.Length / 32f + 1.5f); SpokenCount++;
+            MerchantMoment.Enter => "enter",
+            MerchantMoment.Buy => "purchase",
+            MerchantMoment.BloodBuy => "blood",
+            MerchantMoment.Denied => "cant_afford",
+            MerchantMoment.Reroll => "reroll",
+            MerchantMoment.Fuse => "fuse",
+            MerchantMoment.Leave => "leave",
+            _ => null
+        };
+
+        /// <summary>Speak a committed moment. <paramref name="trigger"/> narrows the bark (purchase_rare, purchase_companion, or
+        /// "story:N" for a numbered story line); the written line is the bark itself, and on entry the bark is followed by the
+        /// shop's depth-aware line.</summary>
+        public void Speak(bool special, MerchantMoment moment, float now, string trigger = null)
+        {
+            LastMoment = moment;
+            string bank = Bank(special);
+            string wanted = trigger ?? Trigger(moment);
+            // the same bark is still being heard: let it finish rather than stacking a second line over it
+            if (wanted != null && wanted == lastTrigger && line != null && now < expires && VoiceDirector.Speaking(bank))
+            {
+                SpokenCount++; expires = Mathf.Max(expires, now + 1.4f); nextInspect = now + 2.2f;
+                return;
+            }
+            VoiceLine bark = Bark(bank, wanted, moment == MerchantMoment.Enter || moment == MerchantMoment.Leave || wanted != null && wanted.StartsWith("story") ? VoiceDirector.Important : VoiceDirector.Normal);
+            string canon = NightmareDialogue.Pick(Context, special, moment, cursor++);
+            LastBark = bark; lastTrigger = bark != null ? wanted : null;
+            bool story = wanted != null && wanted.StartsWith("story");
+            line = bark == null ? canon : moment == MerchantMoment.Enter && !story ? bark.Text + "\n" + canon : bark.Text;
+            began = now;
+            float voiced = bark != null ? VoiceDirector.Remaining(bank) : 0;
+            expires = now + (bark == null || moment == MerchantMoment.Enter && !story ? Mathf.Max(3.8f, line.Length / 32f + 1.5f) : Mathf.Max(2.6f, line.Length / 22f + 1.4f, voiced + 0.6f));
+            SpokenCount++;
             nextInspect = now + (moment == MerchantMoment.Inspect ? 1.6f : 2.2f);
+            Pin(special, moment == MerchantMoment.Inspect ? 1 : 2);
         }
+
+        /// <summary>A bark outside the purchase flow (idle, the warm chair): voiced and pinned, without changing the moment.</summary>
+        public bool Say(bool special, string trigger, float now, int priority = VoiceDirector.Normal)
+        {
+            string bank = Bank(special);
+            VoiceLine bark = trigger.StartsWith("story:") ? Bark(bank, trigger, priority) : VoiceDirector.Say(bank, trigger, priority);
+            if (bark == null || string.IsNullOrEmpty(bark.Text)) return false;
+            LastBark = bark; lastTrigger = trigger;
+            line = bark.Text; began = now; expires = now + Mathf.Max(2.6f, line.Length / 22f + 1.4f, VoiceDirector.Remaining(bank) + 0.6f);
+            SpokenCount++; nextInspect = now + 2.2f;
+            Pin(special, priority);
+            return true;
+        }
+
+        private static VoiceLine Bark(string bank, string trigger, int priority)
+        {
+            if (trigger == null) return null;
+            if (trigger.StartsWith("story:"))
+            {
+                VoiceLine exact = VoiceDirector.Exact(bank, "story", int.TryParse(trigger.Substring(6), out int index) ? index : -1);
+                if (exact != null) VoiceDirector.Active?.Play(exact, VoiceDirector.Story);
+                return exact;
+            }
+            // the dream altar has a smaller bank: a rare or companion purchase falls back to its plain purchase lines
+            if (VoiceLines.Bank(bank, trigger).Length == 0 && trigger.StartsWith("purchase")) trigger = "purchase";
+            if (VoiceLines.Bank(bank, trigger).Length == 0) return null;
+            return VoiceDirector.Say(bank, trigger, trigger == "purchase_rare" ? VoiceDirector.Important : priority, true);
+        }
+
+        private void Pin(bool special, int priority)
+        {
+            if (BubbleKey == null || string.IsNullOrEmpty(line)) return;
+            SpeechBubbles.Show(BubbleKey, MerchantName ?? (special ? "MOTHER OF A THOUSAND EGG-EYES" : "THE SHOPKEEPER"), line, Anchor, special ? SpeechTone.Dream : SpeechTone.Shopkeeper, expires - began, priority + 1, BubbleSide.Right);
+        }
+
         public void Observe(bool special, string station, float now)
         {
             if (focus == station) return;
@@ -79,8 +157,9 @@ namespace ArcaneBrigade
         public void ResetFocus() { focus = null; }
         public void Say(string text, float now, float seconds)
         {
-            line = text; began = now; expires = now + seconds; SpokenCount++;
+            line = text; began = now; expires = now + seconds; SpokenCount++; LastBark = null;
         }
+        /// <summary>Legacy fixed-rect card (kept for diagnostics that draw a detached dialogue); the game pins lines as speech boxes.</summary>
         public void Draw(bool special, float now, bool reduced)
         {
             if (line == null || now >= expires) return;

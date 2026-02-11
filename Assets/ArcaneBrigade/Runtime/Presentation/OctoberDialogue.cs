@@ -8,7 +8,6 @@ namespace ArcaneBrigade
         private float next, until;
         private string speaker, line;
         private int cursor, lastWave;
-        private GUIStyle copy, nameStyle;
         public void Configure(ArenaController controller) => owner = controller;
         public static string HeroLine(string reference, int index)
         {
@@ -74,19 +73,31 @@ namespace ArcaneBrigade
             if (lastWave != owner.Session.State.Wave) { lastWave = owner.Session.State.Wave; next = owner.PresentationClock + 8; }
             if (owner.Session.State.Phase != SessionPhase.Shop || owner.HallExitPending || owner.Session.SecretRoomOpen || owner.TransitionPending || owner.Session.State.OutsideStage == OutsideStageStatus.Reward) { until = 0; return; }
             if (owner.PresentationClock < next || owner.Shop?.Dialogue.ExpiresAt > owner.PresentationClock) return;
+            // banter waits politely for anyone who has just joined or ranked up, and for the journal
+            if (owner.StoryOpen || Time.unscaledTime - SpeechBubbles.LastCompanionAt < 4f) { next = owner.PresentationClock + 2; return; }
             UnitDefinition u = owner.Content.Unit(owner.Session.State.ChampionId);
-            if (cursor % 2 != 0 && owner.Session.State.Roster.Count > 0) u = owner.Content.Unit(owner.Session.State.Roster[(cursor / 2) % owner.Session.State.Roster.Count].UnitId);
+            UnitState body = owner.Simulation?.Champion;
+            bool hero = true;
+            if (cursor % 2 != 0 && owner.Session.State.Roster.Count > 0)
+            {
+                RosterEntry entry = owner.Session.State.Roster[(cursor / 2) % owner.Session.State.Roster.Count];
+                u = owner.Content.Unit(entry.UnitId); body = FindCompanion(entry.UnitId); hero = false;
+            }
             speaker = u.DisplayName; line = string.IsNullOrEmpty(u.ReferenceHero) ? AllyLine(u, cursor / 2, owner.Session.State.Wave) : HeroLine(u.ReferenceHero, cursor / 2);
             cursor++; until = owner.PresentationClock + 5; next = owner.PresentationClock + 16;
+            if (body == null || string.IsNullOrEmpty(line)) return;
+            UnitState held = body;
+            SpeechBubbles.Show(hero ? "Hero" : "Companion:" + u.Id, hero ? speaker : RunSession.Stranger(owner.Session.State, u.Id) ? "???" : speaker, line,
+                () => held.Alive && owner.Session.State.Phase == SessionPhase.Shop ? SpeechBubbles.Head(held) : (Vector3?)null,
+                hero ? SpeechTone.Hero : SpeechTone.Companion, 5f, 0);
         }
-        private void OnGUI()
+        private UnitState FindCompanion(string id)
         {
-            if (owner == null || owner.PresentationPaused || owner.PresentationClock >= until || string.IsNullOrEmpty(line)) return;
-            Matrix4x4 previous = GUI.matrix;
-            GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
-            copy ??= ArcadeTypography.Style(18); nameStyle ??= ArcadeTypography.Style(17, true);
-            Rect card = new Rect(45, 805, 440, 155); ArcadeSkin.Ticket(card, new Color(.12f, .1f, .2f, .96f), ArcadeSkin.Teal);
-            GUI.Label(new Rect(65, 819, 400, 38), speaker, nameStyle); GUI.Label(new Rect(65, 860, 400, 86), line, copy); GUI.matrix = previous;
+            if (owner.Simulation == null) return null;
+            foreach (UnitState unit in owner.Simulation.Units) if (unit.Faction == Faction.Companion && unit.Alive && unit.Definition.Id == id) return unit;
+            return null;
         }
+        /// <summary>The line most recently said in the shop (the box itself is pinned above the speaker by SpeechBubbles).</summary>
+        public string CurrentLine => owner != null && owner.PresentationClock < until ? line : null;
     }
 }

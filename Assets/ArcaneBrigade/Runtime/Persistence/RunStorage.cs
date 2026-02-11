@@ -21,6 +21,7 @@ namespace ArcaneBrigade
         public bool ReducedMotion;
         public float MusicVolume = 0.8f;
         public float SfxVolume = 0.85f;
+        public float VoiceVolume = 1f; // shopkeeper / boss / companion voice lines (VoiceDirector); absent in older saves = 1
         public bool ReducedAudio;
         public bool ShowDamageNumbers = true;
         public bool ShowLootIndicators = true;
@@ -111,6 +112,7 @@ namespace ArcaneBrigade
                     if (profile.Version < 3) { profile.MusicVolume = 0.8f; profile.SfxVolume = 0.85f; profile.ShowDamageNumbers = profile.ShowLootIndicators = true; }
                     if (!float.IsFinite(profile.MusicVolume) || !float.IsFinite(profile.SfxVolume)) throw new InvalidOperationException("Invalid audio bus settings");
                     profile.MusicVolume = Mathf.Clamp01(profile.MusicVolume); profile.SfxVolume = Mathf.Clamp01(profile.SfxVolume);
+                    profile.VoiceVolume = float.IsFinite(profile.VoiceVolume) ? Mathf.Clamp01(profile.VoiceVolume) : 1f;
                     profile.Version = PlayerProfile.CurrentVersion;
                     return profile;
                 }

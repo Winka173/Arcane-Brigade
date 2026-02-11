@@ -574,9 +574,10 @@ namespace ArcaneBrigade
 
         private void DrawSettings()
         {
-            DrawVolume(175, "Master volume", profile.Volume, value => profile.Volume = value);
-            DrawVolume(230, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
-            DrawVolume(285, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
+            DrawVolume(160, "Master volume", profile.Volume, value => profile.Volume = value);
+            DrawVolume(204, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
+            DrawVolume(248, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
+            DrawVolume(292, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
             if (Button(new Rect(75, 350, 540, 55), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
             {
                 int before = profile.Cosmetic;

@@ -45,7 +45,9 @@ namespace ArcaneBrigade
             source.volume = PresentationSettings.SfxVolume * (PresentationSettings.ReducedAudio ? 0.08f : 0.24f);
             int glyph = dialogue.VisibleGlyphs(now, false);
             if (utterance != dialogue.SpokenCount) { utterance = dialogue.SpokenCount; previousGlyph = 0; nextSyllable = now; wordLetters = 0; utteranceSyllables = 0; pauseUntil = 0; }
-            bool quiet = paused || !focused || backgrounded || now >= dialogue.ExpiresAt || PresentationSettings.ReducedAudio;
+            // a real voiced clip (VoiceDirector) replaces the murmured syllables for that line
+            bool voiced = dialogue.LastBark != null && VoiceDirector.Speaking(dialogue.LastBark.Speaker);
+            bool quiet = paused || !focused || backgrounded || now >= dialogue.ExpiresAt || PresentationSettings.ReducedAudio || voiced;
             if (quiet) { source.Stop(); previousGlyph = glyph; return; }
             ArcaneCueDef def = ArcaneCueLibrary.Get(special ? "voice.dream.syl" : "voice.gold.syl");
             string line = dialogue.CurrentLine;
@@ -93,6 +95,7 @@ namespace ArcaneBrigade
             ArcaneCueDef def = ArcaneCueLibrary.Get((special ? "voice.dream." : "voice.gold.") + kind);
             AudioClip clip = def != null ? ArcaneCueLibrary.Pick(def) : null;
             if (clip == null || source == null || !focused || backgrounded || AudioListener.pause || CheckpointAudio.SimulationPaused || PresentationSettings.ReducedAudio) return;
+            if (VoiceDirector.Speaking(VoiceLines.Shopkeeper) || VoiceDirector.Speaking(VoiceLines.DreamMother)) return; // the spoken line is the reaction
             source.Stop();
             gestureUntil = Time.unscaledTime + clip.length;
             source.pitch = 1f;

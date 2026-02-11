@@ -17,7 +17,7 @@ namespace ArcaneBrigade
         public static float DangerUntil { get; private set; }
         public static void Apply(PlayerProfile profile)
         {
-            MusicVolume = profile.MusicVolume; SfxVolume = profile.SfxVolume;
+            MusicVolume = profile.MusicVolume; SfxVolume = profile.SfxVolume; VoiceVolume = profile.VoiceVolume;
             ReducedAudio = profile.ReducedAudio; ReducedMotion = profile.ReducedMotion;
             DamageNumbers = profile.ShowDamageNumbers; LootIndicators = profile.ShowLootIndicators;
             HighReadability = profile.HighReadability;
@@ -26,6 +26,10 @@ namespace ArcaneBrigade
             ArcadeSkin.Bundle = profile.Cosmetic;
         }
         public static void Danger(float seconds = 0.5f) { DangerUntil = Mathf.Max(DangerUntil, Time.unscaledTime + seconds); }
-        public static float MusicDuck => Time.unscaledTime < DangerUntil ? 0.48f : 1f;
+        // a voiced line ducks the music lightly while it is audible (VoiceDirector)
+        public static float VoiceVolume { get; private set; } = 1f;
+        public static float VoiceDuckUntil { get; private set; }
+        public static void VoiceDuck(float seconds) { VoiceDuckUntil = Mathf.Max(VoiceDuckUntil, Time.unscaledTime + seconds); }
+        public static float MusicDuck => Time.unscaledTime < DangerUntil ? 0.48f : Time.unscaledTime < VoiceDuckUntil ? 0.72f : 1f;
     }
 }

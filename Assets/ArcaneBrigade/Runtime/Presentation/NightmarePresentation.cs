@@ -72,6 +72,8 @@ namespace ArcaneBrigade
                 whisper = NightmareDialogue.Whisper(state,state.Nightmare.WhisperCursor++);
                 state.Nightmare.LastWhisperWave = state.Wave; whisperAt = now;
                 owner.SaveNightmareBoundary();
+                // a voice without a body: a quiet caption at the left edge (the one who stays always whispers from the left)
+                SpeechBubbles.Show("Whisper", null, whisper, null, SpeechTone.Whisper, 5.5f, 0);
             }
             VisibleLandmarks = 0;
             Vector2 half = owner.WorldBounds * .5f;
@@ -150,8 +152,8 @@ namespace ArcaneBrigade
                 if (beat != bossBeat && beat < 6)
                 {
                     bossBeat = beat;
-                    string[] lines = { "THE LAST CUSTOMER\nJust say it once more. I will wait if you will stay.","THE SHOPKEEPER\nThey do not owe you a word. Put down the receipt.","THE LAST CUSTOMER\nThey had kind eyes, didn't they? I can keep them for you.","HOB\nNobody here is for sale. Not even the ones who sat down.","THE LAST CUSTOMER\nNobody stands up without paying.","YOUR BRIGADE\nThen we pull." };
-                    whisper = lines[beat]; whisperAt = now; narrator.Say(whisper,now,5);
+                    if (!CustomerBeat(beat)) { string[] lines = { "Just say it once more. I will wait if you will stay.","They do not owe you a word. Put down the receipt.","They had kind eyes, didn't they? I can keep them for you.","Nobody here is for sale. Not even the ones who sat down.","Nobody stands up without paying.","Then we pull." }; narrator.Say(lines[beat],now,5); }
+                    else narrator.Say("", now, 0);
                 }
                 voice.Advance(narrator,true,now,false);
             }
@@ -182,13 +184,39 @@ namespace ArcaneBrigade
                 { if (owner.PresentationPaused) owner.TogglePause(); else owner.AdvanceNightmareEnding(); }
                 GUI.enabled = true;
             }
-            else if (!string.IsNullOrEmpty(whisper) && owner.PresentationClock - whisperAt < 5.5f && !owner.Session.SecretRoomOpen && (owner.Session.State.Phase == SessionPhase.Shop || owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId && owner.Simulation.Boss.Alive))
-            {
-                float fade = Mathf.Clamp01((5.5f - owner.PresentationClock + whisperAt) * 2);
-                Color color = GUI.color; GUI.color = new Color(1,1,1,fade);
-                GUI.Label(new Rect(430,owner.Session.State.Phase == SessionPhase.Shop ? 115 : 790,1060,85),whisper,copy); GUI.color = color;
-            }
+            // speech boxes pinned to whoever speaks (the shop draws them first, under its tooltips; this covers the fight)
+            else if (!owner.Session.SecretRoomOpen) SpeechBubbles.Draw(camera, owner.Session.State.Phase == SessionPhase.Combat);
             GUI.matrix = previous;
+        }
+
+        /// <summary>The Last Customer's fight is a conversation: each beat is said by its own speaker, in a box above them,
+        /// and voiced when the clip exists. Returns true when a clip carries the line (no murmured syllables then).</summary>
+        private bool CustomerBeat(int beat)
+        {
+            UnitState customer = owner.Simulation.Boss;
+            SpeechBubbleCast cast = owner.GetComponent<SpeechBubbleCast>();
+            VoiceLine line;
+            switch (beat)
+            {
+                case 0: case 2: case 4:
+                    line = VoiceDirector.Exact(VoiceLines.LastCustomer, "story", beat / 2);
+                    if (line == null || cast == null) return false;
+                    bool spoken = VoiceDirector.Active != null && VoiceDirector.Active.Play(line, VoiceDirector.Story);
+                    cast.ShowBoss(VoiceLines.LastCustomer, customer, line.Text, VoiceDirector.Story, 5f);
+                    return spoken;
+                case 1:
+                    line = VoiceDirector.Exact(VoiceLines.Shopkeeper, "story", 4);
+                    SpeechBubbleCast.Offscreen(VoiceLines.Shopkeeper, "THE SHOPKEEPER", line);
+                    return VoiceDirector.Speaking(VoiceLines.Shopkeeper);
+                case 3:
+                    if (cast != null && cast.StorySays(0, "story", 0, VoiceDirector.Story)) return VoiceDirector.Speaking(VoiceLines.Hob);
+                    SpeechBubbleCast.Offscreen(VoiceLines.Hob, "HOB", VoiceDirector.Exact(VoiceLines.Hob, "story", 0));
+                    return VoiceDirector.Speaking(VoiceLines.Hob);
+                default:
+                    UnitState champion = owner.Simulation.Champion;
+                    SpeechBubbles.Show("Brigade", "YOUR BRIGADE", "Then we pull.", () => champion == null || !champion.Alive ? (Vector3?)null : SpeechBubbles.Head(champion), SpeechTone.Hero, 4f, 4);
+                    return false;
+            }
         }
     }
 }

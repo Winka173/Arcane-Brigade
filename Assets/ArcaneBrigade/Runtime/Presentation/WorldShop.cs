@@ -90,7 +90,25 @@ namespace ArcaneBrigade
             ItemPickup = gameObject.AddComponent<ShopPickupEffect>(); ItemPickup.Configure(controller);
             MergePreview = gameObject.AddComponent<ShopMergePreview>(); MergePreview.Configure(controller);
             voice = gameObject.AddComponent<MerchantVoice>();
+            // spoken lines are pinned above whoever says them; the shopkeeper's box hangs beside its head
+            if (GetComponent<VoiceDirector>() == null) gameObject.AddComponent<VoiceDirector>();
+            gameObject.AddComponent<SpeechBubbleCast>().Configure(controller);
+            dialogue.BubbleKey = "Shopkeeper";
+            dialogue.Anchor = MerchantMouth;
         }
+        /// <summary>Where the shopkeeper's words come from: beside the head, a little to the right of the face.</summary>
+        public Vector3? MerchantMouth()
+        {
+            if (merchant == null || scenery == null || !scenery.activeSelf || NightmareHaunting.Quiet) return null;
+            // the portrait rig draws the merchant in pieces and switches this renderer off, so measure its sprite directly
+            SpriteRenderer view = merchant.GetComponent<SpriteRenderer>();
+            if (view == null || view.sprite == null || view.color.a <= 0.01f) return null;
+            Bounds local = view.sprite.bounds;
+            Vector3 centre = view.transform.TransformPoint(local.center);
+            Vector3 size = Vector3.Scale(local.size, view.transform.lossyScale);
+            return new Vector3(centre.x + Mathf.Abs(size.x) * 0.14f, centre.y + Mathf.Abs(size.y) * 0.2f, 0);
+        }
+        private void Voiced() { if (voice != null && dialogue.LastBark != null && VoiceDirector.Speaking(dialogue.LastBark.Speaker)) voice.Silence(); }
         public void Display()
         {
             dialogue.Context = owner.Session.State;
@@ -138,7 +156,7 @@ namespace ArcaneBrigade
             if (merchant != null) merchant.Inspect(Nearby != null);
             MergePreview.Observe(Nearby, false);
             voice.Advance(dialogue, Special, owner.PresentationClock, NightmareHaunting.Quiet);
-            if (merchant != null) merchant.Speak(!NightmareHaunting.Quiet && dialogue.IsSpeaking(owner.PresentationClock));
+            if (merchant != null) merchant.Speak(!NightmareHaunting.Quiet && (dialogue.IsSpeaking(owner.PresentationClock) || VoiceDirector.Speaking(MerchantDialogue.Bank(Special))));
             foreach (Station station in stations)
             {
                 float target = station == Nearby && !owner.HallExitPending ? 1 : 0;
@@ -201,10 +219,10 @@ namespace ArcaneBrigade
                 if (Special)
                 {
                     leavingSpecial = true; specialDepartureAt = owner.PresentationClock + MarketMotion.HandoffDuration;
-                    Depart(); dialogue.Speak(true, MerchantMoment.Leave, owner.PresentationClock); return true;
+                    Depart(); dialogue.Speak(true, MerchantMoment.Leave, owner.PresentationClock); Voiced(); return true;
                 }
                 bool exit = owner.BeginHallExit(position);
-                if (exit) dialogue.Speak(Special, MerchantMoment.Leave, owner.PresentationClock);
+                if (exit) { dialogue.Speak(Special, MerchantMoment.Leave, owner.PresentationClock); Voiced(); }
                 return exit;
             }
             else if (station.Action == "REROLL")
@@ -239,7 +257,13 @@ namespace ArcaneBrigade
                     if (rarity != ItemRarity.Common) CheckpointAudio.PlayInterfaceId(rarity == ItemRarity.Mythic ? "up.rarity.gold" : rarity == ItemRarity.Rare ? "up.rarity.purple" : "up.rarity.blue", 0.09f);
                 }
                 if (station.Offer != null || station.Recipe != null || station.Action == "REROLL")
-                    dialogue.Speak(Special, station.Recipe != null ? MerchantMoment.Fuse : station.Action == "REROLL" ? MerchantMoment.Reroll : station.Currency == ShopCurrency.Health ? MerchantMoment.BloodBuy : MerchantMoment.Buy, owner.PresentationClock);
+                {
+                    // a companion or a rare relic gets its own kind of reaction
+                    string bark = null;
+                    if (station.Offer != null && station.Currency != ShopCurrency.Health)
+                        bark = station.Offer.Kind == OfferKind.Companion ? "purchase_companion" : owner.Content.Item(station.Offer.Id).Rarity >= ItemRarity.Rare ? "purchase_rare" : null;
+                    dialogue.Speak(Special, station.Recipe != null ? MerchantMoment.Fuse : station.Action == "REROLL" ? MerchantMoment.Reroll : station.Currency == ShopCurrency.Health ? MerchantMoment.BloodBuy : MerchantMoment.Buy, owner.PresentationClock, bark);
+                }
                 if (merchant != null) merchant.Celebrate();
                 if (voice != null) voice.Gesture(station.Recipe != null ? "gasp" : "laugh", Special);
                 if (result != null) { result.ReactUntil = owner.PresentationClock + 0.8f; if (result.Actor != null) result.Actor.Celebrate(); }
@@ -306,7 +330,10 @@ namespace ArcaneBrigade
             if (merchantEntrance)
             {
                 merchant.Arrive(MarketMotion.MerchantArrivalDelay); MerchantEntranceEffect.Play(owner, scenery.transform, merchant.transform.localPosition, Special);
-                dialogue.ResetFocus(); dialogue.Speak(Special, MerchantMoment.Enter, owner.PresentationClock);
+                // Act I: on shop 1 and 13 the shopkeeper's welcome is the story's own line (Docs/Mien_Cho_Act_One_Story.md);
+                // shop 16's key comes after Hob is pulled up (SpeechBubbleCast)
+                string beat = Special || state.Endless ? null : state.Wave == 1 ? "story:0" : state.Wave == 13 ? "story:2" : null;
+                dialogue.ResetFocus(); dialogue.Speak(Special, MerchantMoment.Enter, owner.PresentationClock, beat);
                 CheckpointAudio.PlayInterfaceId(Special ? "shop.keeper.enter.dream" : "shop.keeper.enter.gold");
             }
             List<ShopOffer> offers = Special ? state.SpecialOffers : state.Offers;
@@ -406,7 +433,9 @@ namespace ArcaneBrigade
         }
         public void DrawMerchantDialogue()
         {
-            if (scenery != null && scenery.activeSelf && !owner.HallExitPending && !NightmareHaunting.Quiet) dialogue.Draw(Special, owner.PresentationClock, owner.Profile != null && owner.Profile.ReducedMotion);
+            // every speech box (shopkeeper, companions, hero) is drawn here in the shop, under the tooltips; the merchant's
+            // own box follows its head and hides itself while the shop is dark
+            SpeechBubbles.Draw(Camera.main);
         }
         public string DisplayName(Station station)
         {
@@ -510,6 +539,8 @@ namespace ArcaneBrigade
         public void DrawPriceTags(Camera camera)
         {
             if (scenery == null || !scenery.activeSelf || owner.HallExitPending || Animating || leavingSpecial) return;
+            // the Last Customer's offer and the lantern choice are cards over the shop: no price tags drawn through them
+            if (owner.GetComponent<CustomerOffer>()?.Open == true || owner.GetComponent<MemoryReturn>()?.Open == true) return;
             if (priceStyle == null)
             {
                 priceStyle = ArcadeTypography.Style(25, true); priceStyle.normal.textColor = ArcadeSkin.Ink; priceStyle.alignment = TextAnchor.MiddleLeft; priceStyle.wordWrap = false;
