@@ -21,7 +21,7 @@ namespace ArcaneBrigade
             var groups = new Dictionary<int, Marker>();
             foreach (PickupState loot in pickups)
             {
-                if (loot.Kind != LootKind.Chest && loot.Kind != LootKind.Egg || worldView.Contains(loot.Position)) continue;
+                if (loot.Kind != LootKind.Chest && loot.Kind != LootKind.Egg && loot.Kind < LootKind.Flare || worldView.Contains(loot.Position)) continue;
                 Vector2 offset = loot.Position - worldView.center;
                 Vector2 direction = new Vector2(offset.x / worldView.width, -offset.y / worldView.height).normalized;
                 int sector = Mathf.RoundToInt(Mathf.Atan2(direction.y, direction.x) * 4 / Mathf.PI + 8) % 8;
@@ -36,13 +36,14 @@ namespace ArcaneBrigade
                 marker.Count++; marker.Distance = Mathf.Min(marker.Distance, offset.magnitude);
             }
             var result = new List<Marker>(groups.Values);
-            result.Sort((first, second) => first.Kind != second.Kind ? (first.Kind == LootKind.Chest ? -1 : 1) : first.Distance != second.Distance ? first.Distance.CompareTo(second.Distance) : first.Key.CompareTo(second.Key));
+            result.Sort((first, second) => first.Kind != second.Kind ? Priority(first.Kind).CompareTo(Priority(second.Kind)) : first.Distance != second.Distance ? first.Distance.CompareTo(second.Distance) : first.Key.CompareTo(second.Key));
             if (result.Count > 6) result.RemoveRange(6, result.Count - 6);
             for (int index = 0; index < result.Count; index++)
                 for (int previous = 0; previous < index; previous++)
                     if ((result[index].Position - result[previous].Position).sqrMagnitude < 150 * 150) result[index].Position = Vector2.MoveTowards(result[index].Position, safeArea.center, 170);
             return result;
         }
+        private static int Priority(LootKind kind) => kind == LootKind.Flare ? 0 : kind == LootKind.Bell ? 1 : kind == LootKind.Chest ? 2 : 3;
         public void Draw(CombatSimulation simulation, RunCatalog catalog, Camera camera, GUIStyle text)
         {
             Vector2 half = new Vector2(camera.orthographicSize * camera.aspect, camera.orthographicSize);
@@ -73,7 +74,7 @@ namespace ArcaneBrigade
                 Color previous = GUI.color;
                 GUI.color = new Color(1, 1, 1, marker.Alpha);
                 RunHud.Fill(new Rect(marker.Position.x - 70, marker.Position.y - 33, 140, 66), new Color(ArcadeSkin.Deep.r, ArcadeSkin.Deep.g, ArcadeSkin.Deep.b, 0.9f));
-                RunHud.Sprite(new Rect(marker.Position.x - 55, marker.Position.y - 24, 42, 42), marker.Kind == LootKind.Chest ? catalog.ChestSprite : catalog.EggSprite);
+                RunHud.Sprite(new Rect(marker.Position.x - 55, marker.Position.y - 24, 42, 42), marker.Kind == LootKind.Chest ? catalog.ChestSprite : marker.Kind >= LootKind.Flare ? PacingArtwork.For(marker.Kind, catalog) : catalog.EggSprite);
                 GUI.Label(new Rect(marker.Position.x - 3, marker.Position.y - 22, 69, 54), "×" + marker.Count + "\n" + Mathf.CeilToInt(marker.Distance) + "m", text);
                 GUI.color = previous;
             }

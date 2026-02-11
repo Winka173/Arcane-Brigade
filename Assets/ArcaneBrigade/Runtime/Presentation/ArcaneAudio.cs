@@ -258,8 +258,10 @@ namespace ArcaneBrigade
                     id = "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1.15f);
                     break;
                 case CombatEventKind.Pickup:
-                    id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : "loot.coin.pickup";
+                    id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
                     break;
+                case CombatEventKind.Flare: id = "sig.alarm.boom"; gainScale = 1.2f; break;
+                case CombatEventKind.Bell: id = "loot.coin.vacuum"; gainScale = 1.15f; break;
                 case CombatEventKind.Heal: id = "plr.heal"; break;
                 case CombatEventKind.ChestOpened: id = "loot.chest.open"; break;
                 case CombatEventKind.Dodge: id = "plr.dodge"; break;
@@ -285,7 +287,7 @@ namespace ArcaneBrigade
                 case CombatEventKind.MimicWake: id = "enemy.mimic.wake"; break;
                 case CombatEventKind.BossLanded: id = value.Subject == null || value.Subject.Definition == null ? null : BossVoiceId(value.Subject.Definition.Id); break;
                 case CombatEventKind.LootDrop:
-                    id = value.Loot == LootKind.Coin ? "loot.coin.drop" : value.Loot == LootKind.Chest ? "loot.chest.appear" : null;
+                    id = value.Loot == LootKind.Coin ? "loot.coin.drop" : value.Loot == LootKind.Chest || value.Loot >= LootKind.Flare ? "loot.chest.appear" : null;
                     break;
             }
             return id != null && Get(id) != null ? id : null;

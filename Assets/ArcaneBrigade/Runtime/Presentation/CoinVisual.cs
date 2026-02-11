@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             Vector2 ground = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             renderer.transform.position = ground + Vector2.up * height;
             float spin = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
-            float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f : 0.4f;
+            float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f + Mathf.Min(0.12f, Mathf.Max(0, state.Value - 1) * 0.015f) : state.Kind >= LootKind.Flare ? 0.56f : 0.4f;
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
             if (state.Kind == LootKind.Chest && !PresentationSettings.ReducedMotion)
@@ -55,13 +55,14 @@ namespace ArcaneBrigade
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(renderer.sprite); }
             grounded.Display(renderer.sprite, ground, width * 0.95f, height, 0.3f);
             shadow.gameObject.SetActive(false);
-            chestGlow.gameObject.SetActive(state.Kind == LootKind.Chest);
-            if (state.Kind == LootKind.Chest)
+            bool glows = state.Kind == LootKind.Chest || state.Kind >= LootKind.Flare;
+            chestGlow.gameObject.SetActive(glows);
+            if (glows)
             {
                 chestGlow.transform.position = ground;
                 chestGlow.transform.localScale = new Vector3(1.8f / parentScale.x, .8f / parentScale.y, 1) / chestGlow.sprite.bounds.size.x;
                 chestGlow.sortingOrder = 488;
-                chestGlow.color = new Color(1, .7f, .2f, PresentationSettings.ReducedFlashes ? .6f : .6f + .08f * Mathf.Sin(age * 2));
+                chestGlow.color = state.Kind == LootKind.Bell ? new Color(.95f, .78f, .42f, .55f + (PresentationSettings.ReducedFlashes ? 0 : .12f * Mathf.Sin(age * 3))) : state.Kind == LootKind.Flare ? new Color(1f, .82f, .45f, .62f + (PresentationSettings.ReducedFlashes ? 0 : .18f * Mathf.Sin(age * 4))) : new Color(1, .7f, .2f, PresentationSettings.ReducedFlashes ? .6f : .6f + .08f * Mathf.Sin(age * 2));
             }
             float pulse = PresentationSettings.ReducedFlashes || PresentationSettings.ReducedEffects ? 0 : Mathf.Pow(Mathf.Max(0, Mathf.Cos(age * 4 + state.Id * 1.3f)), 12);
             glint.gameObject.SetActive(pulse > 0.05f); glint.sprite = spark;

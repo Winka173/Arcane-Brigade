@@ -159,7 +159,7 @@ namespace ArcaneBrigade.Editor
             using (RunSession s = Room(SecretEventKind.LostProperty))
             {
                 s.ChooseSecretEvent(0);var sim=new CombatSimulation(s.PrepareCombat());sim.Start(5);
-                sim.DamageFixture(sim.Champion,sim.Champion.Health+1);s.Settle(sim);
+                sim.DamageFixture(sim.Champion,sim.Champion.Health*10+1);s.Settle(sim);
                 Check(s.State.Phase==SessionPhase.Defeat && !s.ClaimSecretBattleReward() && !s.LeaveSecretEvent(),"Optional battle defeat ends run without a reward escape");
                 Roundtrip(s,"secret defeat");
             }

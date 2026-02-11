@@ -26,7 +26,7 @@ namespace ArcaneBrigade
             if (target.Variant != null && target.Variant.Summoned) return 0;
             if (!target.SwarmMinion) return catalog.GoldPerKill;
             swarmGoldKills++;
-            return swarmGoldKills % 3 == 0 ? catalog.GoldPerKill : 0;
+            return Mathf.Max(0, catalog.MinionCoin); // every swarm body drops a small coin
         }
     }
 }

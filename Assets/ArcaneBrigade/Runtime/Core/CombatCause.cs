@@ -2,7 +2,7 @@ using System;
 
 namespace ArcaneBrigade
 {
-    public enum LootKind { Coin, Egg, Heart, Chest }
+    public enum LootKind { Coin, Egg, Heart, Chest, Flare, Bell }
     public enum ProcTrigger { CoinCollected, ChestOpened, EnemyKilled }
     public enum ProcAction { HealChampion, DamagePulse }
 

@@ -317,9 +317,10 @@ namespace ArcaneBrigade
             if (catalog.Bosses.Length == 10) bossIndex = Mathf.Max(0, bossStage) % 5 + (((State.Seed ^ bossStage) & 1) == 0 ? 0 : 5);
             CombatCatalog.Boss = bossWave ? BuildEnemy(catalog.Bosses[bossIndex], scaling) : null;
             if (actOne && bossWave) CombatCatalog.Boss = StoryBoss(CombatCatalog.Boss, scaling);
-            CombatCatalog.WaveDuration = OctoberBalance.WaveSeconds;
+            if (actOne && bossWave && CombatCatalog.Boss != null) CombatCatalog.Boss.Health *= WaveCadence.StoryBossBulk(State.Wave);
+            CombatCatalog.WaveDuration = actOne && !bossWave ? WaveCadence.WaveLength(State.Wave) : OctoberBalance.WaveSeconds;
             CombatCatalog.EnemyBudget = Mathf.CeilToInt((30 + Mathf.Min(State.Wave, 30) * 3) * CarnivalBalance.EnemyDensity(State.Wave) * JourneyBalance.EnemyDensity(State.Difficulty, State.Wave));
-            CombatCatalog.EnemyBudget = Mathf.Min(600, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1 : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
+            CombatCatalog.EnemyBudget = Mathf.Min(600, Mathf.CeilToInt(CombatCatalog.EnemyBudget * (State.Wave < 3 ? 1.4f : 1.65f * WaveCadence.SwarmPressure(State.Wave))));
             CombatCatalog.SpawnInterval = CarnivalBalance.SpawnInterval(State.Wave);
             CombatCatalog.CompanionLeash = catalog.Arena.CompanionLeash + Bonus(ItemEffect.Roam);
             CombatCatalog.CompanionRoamOuterRadius = CombatCatalog.CompanionLeash * 0.84f;
@@ -406,8 +407,12 @@ namespace ArcaneBrigade
                 CombatCatalog.GoldPerKill = active.GoldPerKill;
                 CombatCatalog.PassiveHeal += active.Healing;
             }
-            CombatCatalog.GoldPerKill = Mathf.Max(1, Mathf.RoundToInt(CombatCatalog.GoldPerKill * (1 + Mathf.Min(2, Mathf.Max(0, State.Wave - 2) / 8f))));
+            // economy: every swarm body now drops a coin of 1, so a full enemy's coin grows slowly (1 -> 3, it was 2 -> 6)
+            CombatCatalog.GoldPerKill = Mathf.Max(1, Mathf.RoundToInt(CombatCatalog.GoldPerKill * 0.5f * (1 + Mathf.Min(2, Mathf.Max(0, State.Wave - 1) / 6f))));
+            CombatCatalog.MinionCoin = 1;
             CombatCatalog.EnemyBudget = Mathf.Min(600, CombatCatalog.EnemyBudget);
+            CombatCatalog.BossSwarmBudget = bossWave ? Mathf.CeilToInt(CombatCatalog.EnemyBudget * 0.22f) : 0;
+            CombatCatalog.FinalDuel = false;
             PrepareOutsideStage();
             PrepareSecretCombat();
             PrepareSitCloser();
@@ -527,6 +532,7 @@ namespace ArcaneBrigade
             State.LastDamageSource = simulation.LastDamageSource;
             State.LastDamageAmount = simulation.LastDamageAmount;
             State.LastDamageKind = simulation.LastDamageKind;
+            simulation.SweepRemaining();
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
@@ -545,8 +551,8 @@ namespace ArcaneBrigade
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
             State.Health = MaximumHealth();
             if (!State.Endless && State.Wave >= catalog.NormalWaves) { State.LastIncome = State.LastInterest = 0; SettleSecretContracts(); State.Phase = SessionPhase.Victory; return; }
-            State.LastInterest = Mathf.Min(catalog.InterestCap + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), State.Gold / Mathf.Max(1, catalog.InterestDivisor));
-            State.LastIncome = BoundedCounter((long)catalog.Income + (long)State.Wave * 3 / 2 + Mathf.FloorToInt(Bonus(ItemEffect.Income)));
+            State.LastInterest = Mathf.Min(Mathf.Min(10, catalog.InterestCap) + Mathf.FloorToInt(Bonus(ItemEffect.Interest)), State.Gold / Mathf.Max(1, catalog.InterestDivisor));
+            State.LastIncome = BoundedCounter((long)catalog.Income * 3 / 4 + State.Wave + Mathf.FloorToInt(Bonus(ItemEffect.Income)));
             State.Gold = BoundedCounter((long)State.Gold + State.LastInterest + State.LastIncome);
             SettleSecretContracts();
             State.Phase = SessionPhase.Shop;
@@ -677,7 +683,7 @@ namespace ArcaneBrigade
                     string resultId = id;
                     if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage")
                     {
-                        UnitDefinition[] pool = Array.FindAll(catalog.Companions, u => !u.SpecialRecruit && string.IsNullOrEmpty(u.ExclusiveHero) && u.UnlockWave <= State.Wave && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), u));
+                        UnitDefinition[] pool = Array.FindAll(catalog.Companions, u => !u.SpecialRecruit && !StorySpecies(u.Id) && string.IsNullOrEmpty(u.ExclusiveHero) && u.UnlockWave <= State.Wave && K11HeroRules.Eligible(catalog.Unit(State.ChampionId), u));
                         pool = HeroNurseryPool(pool);
                         if (pool.Length > 0) resultId = pool[Next(ref State.WeaponRandom, pool.Length)].Id;
                     }
@@ -761,7 +767,7 @@ namespace ArcaneBrigade
             }
         }
 
-        public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave);
+        public float StagePriceFactor => CarnivalBalance.ShopPrice(State.Wave) * WaveCadence.PriceRamp(State.Wave);
         public float SpecialStagePriceFactor => 1;
         public float CompanionOfferChance => CompanionPurchasesRemaining == 0 ? 0 : State.NewRecruitsThisWave >= 2 ? .15f : 1;
         public int MergeMisses(string id) => State.MergeDrought.Find(entry => entry.UnitId == id)?.Misses ?? 0;
@@ -803,7 +809,7 @@ namespace ArcaneBrigade
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();
-            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && CompanionPurchasesRemaining > 0 && (NewRecruitsRemaining > 0 || OwnsCompanionSpecies(unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
+            foreach (UnitDefinition unit in catalog.Companions) if (!unit.SpecialRecruit && !StorySpecies(unit.Id) && unit.UnlockWave <= State.Wave && (catalog.HeroRevision == 0 || K11HeroRules.Eligible(catalog.Unit(State.ChampionId), unit)) && CompanionPurchasesRemaining > 0 && (NewRecruitsRemaining > 0 || OwnsCompanionSpecies(unit.Id)) && Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) units.Add(unit);
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");

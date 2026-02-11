@@ -29,8 +29,10 @@ namespace ArcaneBrigade
             State.Nightmare.NarrativeRevision = 1;
             State.Nightmare.Ending = NightmareEndingStage.Customer;
             CombatCatalog.Boss = BuildEnemy(assets.Customer,1 + State.Difficulty * .2f);
-            CombatCatalog.Boss.Health = assets.Customer.Health * .8f * (1 + State.Difficulty * .2f);
+            CombatCatalog.Boss.Health = assets.Customer.Health * .8f * (1 + State.Difficulty * .2f) * WaveCadence.StoryBossBulk(20);
             CombatCatalog.EnemyBudget = 0;
+            CombatCatalog.BossSwarmBudget = 42; // the waiting keep coming through the whole duel
+            CombatCatalog.FinalDuel = true;     // and stand up in walls at 70% and 35%
             CombatCatalog.EnableArenaToys = CombatCatalog.EnableSpectacles = CombatCatalog.EnableBossArenaPhase = false;
             CombatCatalog.ExpandedContent = true;
             CombatCatalog.ArenaSize = new Vector2(28,20);

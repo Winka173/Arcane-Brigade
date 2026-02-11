@@ -73,6 +73,9 @@ namespace ArcaneBrigade
                     case CombatEventKind.Kill when boss: AddTrauma(0.9f, false); hold = Mathf.Max(hold, 0.12f); if (!PresentationSettings.ReducedMotion) slow = 0.9f; flash = 1f; bias = direction; break;
                     case CombatEventKind.Kill when value.Faction == Faction.Enemy: kills++; AddTrauma(value.Critical || value.Value > 0.6f ? 0.09f : 0.03f, true); break;
                     case CombatEventKind.BossLanded: AddTrauma(0.55f, false); hold = Mathf.Max(hold, 0.06f); bias = Vector2.down; break;
+                    case CombatEventKind.Detonation when value.Cause.ItemId == "ink-bloater": AddTrauma(0.08f, true); break; // chains rattle, they do not freeze
+                    case CombatEventKind.Flare: AddTrauma(0.45f, false); hold = Mathf.Max(hold, 0.08f); flash = Mathf.Max(flash, 0.35f); break;
+                    case CombatEventKind.Detonation when value.Cause.ItemId != null && value.Cause.ItemId.StartsWith("hero-identity-"): AddTrauma(0.07f, true); break; // the hero's own blasts rattle, they do not shake the room
                     case CombatEventKind.Detonation: AddTrauma(Mathf.Clamp(value.Value * 0.16f, 0.14f, 0.34f), false); hold = Mathf.Max(hold, 0.045f); break;
                     case CombatEventKind.Hit when value.Value > 0 && value.Faction == Faction.Champion:
                         // being hurt shakes hard, but a swarm of small bites cannot keep the screen at full tilt; only real blows hold

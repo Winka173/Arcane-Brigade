@@ -49,6 +49,7 @@ namespace ArcaneBrigade
         private ArcadeEffects arcadeEffects;
         private DeathFeedback deathFeedback;
         private ExplosionFeedback explosions;
+        private PacingFeedback pacing;
         private ArenaToyVisual arenaToyVisual;
         private ExpandedVisual expandedVisual;
         private float transitionRemaining;
@@ -137,6 +138,7 @@ namespace ArcaneBrigade
             deathFeedback = gameObject.AddComponent<DeathFeedback>();
             deathFeedback.Configure(catalog.ImpactSprite, null, Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary"));
             explosions = gameObject.AddComponent<ExplosionFeedback>();
+            pacing = gameObject.AddComponent<PacingFeedback>(); pacing.Configure(this, arenaCamera);
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
@@ -220,6 +222,7 @@ namespace ArcaneBrigade
                 if (arcadeEffects != null) arcadeEffects.Clear();
                 if (deathFeedback != null) deathFeedback.Clear();
                 if (explosions != null) explosions.Clear();
+                if (pacing != null) pacing.Clear();
                 WalletPulse = 0;
                 transitionRemaining = resultRevealRemaining = 0;
             }
@@ -328,6 +331,7 @@ namespace ArcaneBrigade
             simulation.Step(Time.fixedDeltaTime * (combatFeel.SlowMotion ? 0.35f : 1f), moveIntent);
             if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.SimulationMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - simulationStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
             combatFeel.Play(simulation.Events, units, simulation.VisualElapsed);
+            if (pacing != null) pacing.Observe(simulation.Events, simulation.VisualElapsed);
             foreach (CombatEvent value in simulation.Events)
             {
                 if (stagePerformance != null) stagePerformance.Observe(value);
@@ -674,7 +678,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < simulation.Pickups.Count; index++)
             {
                 PickupState state = simulation.Pickups[index];
-                Sprite lootSprite = state.Kind == LootKind.Egg ? runCatalog?.EggSprite : state.Kind == LootKind.Heart ? runCatalog?.HeartSprite : state.Kind == LootKind.Chest ? runCatalog?.ChestSprite : catalog.Coin;
+                Sprite lootSprite = state.Kind == LootKind.Egg ? runCatalog?.EggSprite : state.Kind == LootKind.Heart ? runCatalog?.HeartSprite : state.Kind == LootKind.Chest ? runCatalog?.ChestSprite : state.Kind >= LootKind.Flare ? PacingArtwork.For(state.Kind, runCatalog) : catalog.Coin;
                 if (lootSprite == null) lootSprite = catalog.Coin;
                 liveIds.Add(state.Id);
                 if (!pickupViews.TryGetValue(state.Id, out SpriteRenderer view))

@@ -47,6 +47,7 @@ namespace ArcaneBrigade.Editor
                 ("SecretEvent", SecretEventChecks.Run),
                 ("FinalQuality", FinalQualityChecks.Run),
                 ("RosterCapAndBond", RosterCapAndBondChecks.Run),
+                ("Pacing", PacingChecks.Run),
             });
 
         private static void Execute(string folder, (string name, Action run)[] suites)

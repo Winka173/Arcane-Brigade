@@ -39,7 +39,7 @@ namespace ArcaneBrigade.Editor
             {
                 using var s = new RunSession(c); s.Start(hero.Id, 662314);
                 s.State.Wave = 12; CheckpointCatalog a = s.PrepareCombat();
-                Check(a.WaveDuration == 45 && float.IsFinite(a.Champion.Health) && a.Champion.Health > 0 && a.Champion.Weapon.Cooldown >= .28f, "Playable compiles with 45s cadence and bounded stats " + hero.Id);
+                Check(Mathf.Approximately(a.WaveDuration, WaveCadence.WaveLength(12)) && float.IsFinite(a.Champion.Health) && a.Champion.Health > 0 && a.Champion.Weapon.Cooldown >= .28f, "Playable compiles with the wave-length ramp and bounded stats " + hero.Id);
                 var sim = new CombatSimulation(a); sim.Start(662314);
                 for (int tick = 0; tick < 120; tick++) { sim.Champion.Health = sim.Champion.Definition.Health; sim.Step(.05f, new Vector2(.4f, .2f)); }
                 Check(sim.Units.All(u => float.IsFinite(u.Position.x) && float.IsFinite(u.Position.y) && (u.Faction != Faction.Companion || u.Alive && float.IsPositiveInfinity(u.Health))), "Playable live simulation finite; allies immortal " + hero.Id);

@@ -38,7 +38,7 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             notes.Clear(); var c = Resources.Load<RunCatalog>("RunCatalog");
-            var ordinary = c.Companions.Where(u => !u.SpecialRecruit && !u.GiftOnly && string.IsNullOrEmpty(u.ExclusiveHero)).Take(5).ToArray();
+            var ordinary = c.Companions.Where(u => !u.SpecialRecruit && !u.GiftOnly && string.IsNullOrEmpty(u.ExclusiveHero) && !RunSession.StorySpecies(u.Id)).Take(5).ToArray();
             var specials = c.Companions.Where(u => u.SpecialRecruit && !u.GiftOnly).Take(3).ToArray();
             Check(ordinary.Length == 5 && specials.Length == 3, "Catalog supplies ordinary and special recruit fixtures");
             foreach (int wave in new[] { 1, 2, 3, 4, 8, 20, 30 })

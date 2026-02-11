@@ -67,7 +67,7 @@ namespace ArcaneBrigade.Editor
                     UnitState target = simulation.AddFixture(minion, Faction.Enemy, new Vector2(8, 0)); target.SwarmMinion = true;
                     simulation.DamageFixture(target, target.Health + 100);
                 }
-                Check(simulation.Pickups.Where(pickup => pickup.Kind == LootKind.Coin).Sum(pickup => pickup.Value) == arena.GoldPerKill * 2, "Six extra kills mint two payouts at the reviewed one-in-three rate");
+                Check(simulation.Pickups.Where(pickup => pickup.Kind == LootKind.Coin).Sum(pickup => pickup.Value) == arena.MinionCoin * 6, "Six extra kills each drop their own small coin");
             }
             foreach (int wave in new[] { 1, 3, 5, 9, 16 })
             {

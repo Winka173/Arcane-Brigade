@@ -46,6 +46,9 @@ namespace ArcaneBrigade
             CombatCatalog.StoryCompanions = party.ToArray();
         }
 
+        /// <summary>The four's kinds are never sold: a bought teapot beside Hob looks like a merge that left one behind.</summary>
+        public static bool StorySpecies(string unitId) => Array.IndexOf(ActOneCanon.StoryIds, unitId) >= 0;
+
         public bool SitCloserAvailable => !State.Endless && State.Phase == SessionPhase.Shop && !SecretRoomOpen
             && State.Wave >= ActOneCanon.SitFrom && State.Wave <= ActOneCanon.SitUntil
             && (State.ActOne?.SitCloser ?? 0) == ActOneProgress.None && State.OutsideStage != OutsideStageStatus.Fighting && State.OutsideStage != OutsideStageStatus.Reward;
@@ -74,11 +77,13 @@ namespace ArcaneBrigade
                 UnitDefinition body = Array.Find(catalog.Bosses, boss => boss != null && boss.Id == "UmbraCradle") ?? catalog.Bosses[0];
                 CombatCatalog.Boss = BuildEnemy(body, scaling);
                 CombatCatalog.Boss.DisplayName = "THE BEDSIDE";
+                CombatCatalog.Boss.Health *= WaveCadence.StoryBossBulk(real); // as much sturdier as the wave's own story boss
                 CombatCatalog.MeleeEnemy = BuildEnemy(catalog.Enemies[(State.Wave - 1) % catalog.Enemies.Length], scaling);
                 CombatCatalog.RangedEnemy = BuildEnemy(catalog.Enemies[State.Wave % catalog.Enemies.Length], scaling);
             }
             finally { State.Wave = real; }
             CombatCatalog.EnemyBudget = 140;
+            CombatCatalog.BossSwarmBudget = 0;
             CombatCatalog.WaveDuration = ActOneCanon.KnockSeconds;
             CombatCatalog.KnockDeadline = ActOneCanon.KnockSeconds;
             CombatCatalog.ArenaSize = new Vector2(24, 13);

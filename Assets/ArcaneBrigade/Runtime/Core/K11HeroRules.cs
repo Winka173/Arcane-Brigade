@@ -25,6 +25,12 @@ namespace ArcaneBrigade
                 if (candidate == null) throw new InvalidOperationException("No themed starter: " + champion.Id);
                 unit = candidate.Id; weapon = champion.Weapon.Kind == WeaponKind.Melee ? "SpoonSabre" : "InkPistol";
             }
+            if (Array.IndexOf(ActOneCanon.StoryIds, unit) >= 0)
+            {
+                // Hob, Latch, Postscript and Tally travel as themselves; a second body of their kind in the brigade reads as a broken merge
+                UnitDefinition candidate = Array.Find(catalog.Companions, ally => !ally.SpecialRecruit && Array.IndexOf(ActOneCanon.StoryIds, ally.Id) < 0 && Eligible(champion, ally));
+                if (candidate != null) unit = candidate.Id;
+            }
             if (catalog.Unit(unit) == null || catalog.Weapon(weapon) == null || !Eligible(champion, catalog.Unit(unit))) throw new InvalidOperationException("Invalid themed starting brigade: " + champion.Id);
             return new RosterEntry { UnitId = unit, WeaponId = weapon };
         }

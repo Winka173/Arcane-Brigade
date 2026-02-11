@@ -44,9 +44,11 @@ namespace ArcaneBrigade.Editor
                 Check(arena.Boss.Id == NightmareRules.CustomerId && arena.EnemyBudget == 0,"Final customer available without any secret visits");
                 Check(session.State.ShopRandom == shopRandom && session.State.WeaponRandom == weaponRandom,"Narrative does not consume economy RNG");
                 arena.StartingCompanions = Array.Empty<UnitDefinition>();
+                Check(arena.FinalDuel && arena.BossSwarmBudget > 0, "The waiting keep coming through the final duel");
+                arena.BossSwarmBudget = 0; arena.FinalDuel = false; // the attack cycle is read without the swarm (PacingChecks covers it)
                 var simulation = new CombatSimulation(arena); simulation.Start(arena.Seed); simulation.Champion.NextAttack = float.PositiveInfinity;
                 var attacks = new HashSet<int>();
-                for (int tick = 0; tick < 1000 && simulation.Phase == RunPhase.Combat; tick++)
+                for (int tick = 0; tick < 2400 && simulation.Phase == RunPhase.Combat && attacks.Count < 6; tick++) // the duel now lasts a minute or more
                 {
                     simulation.Champion.Health = simulation.Champion.Definition.Health;
                     simulation.Champion.Position = simulation.Champion.PreviousPosition = new Vector2(9,-7);

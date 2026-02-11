@@ -439,6 +439,13 @@ namespace ArcaneBrigade
                 float heightLimit = state.Definition.IsBoss ? 1.05f : 1.18f;
                 body.transform.localScale *= Mathf.Min(1, height * heightLimit / Mathf.Max(0.01f, projectedHeight));
             }
+            if (state.Role != SwarmRole.None)
+            {
+                // ink bloaters sit swollen and throb; a lit fuse runner swells toward its blast
+                float swell = state.Role == SwarmRole.Bloater ? 1.28f + (ReducedMotion ? 0 : Mathf.Sin(simulationTime * 5.2f + state.Id) * 0.05f)
+                    : state.FuseAt > 0 ? 1f + Mathf.Clamp01(1 - (state.FuseAt - simulationTime) / SwarmPacingRules.FuseLight) * 0.45f : 1.06f;
+                body.transform.localScale *= swell;
+            }
             shadow.transform.localPosition = new Vector3(0f, -height * 0.5f, 0f);
             shadow.transform.localScale = new Vector3(height * 0.65f, height * 0.16f, 1);
             if (grounded == null) { grounded = gameObject.AddComponent<GroundShadow>(); grounded.Configure(body.sprite); }
@@ -462,6 +469,13 @@ namespace ArcaneBrigade
             }
             if (state.ChillUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(0.55f, 0.85f, 1f), 0.35f);
             else if (state.BurnUntil > simulationTime) body.color = Color.Lerp(body.color, new Color(1f, 0.6f, 0.3f), 0.2f + Mathf.PingPong(simulationTime * 2f, 0.15f));
+            if (state.Role == SwarmRole.Bloater) body.color = Color.Lerp(body.color, new Color(0.42f, 0.32f, 0.62f), 0.45f);
+            else if (state.Role == SwarmRole.Fuse)
+            {
+                bool lit = state.FuseAt > 0;
+                float blink = PresentationSettings.ReducedFlashes ? 0.5f : Mathf.Repeat(simulationTime * (lit ? 12f : 3f), 1f) < 0.5f ? 1f : 0.25f;
+                body.color = Color.Lerp(body.color, lit ? new Color(1f, 0.92f, 0.8f) : new Color(1f, 0.38f, 0.24f), (lit ? 0.75f : 0.35f) * blink);
+            }
             body.GetPropertyBlock(flashProperties);
             // Capped, flickering flash: a target under constant fire never turns into a solid white silhouette.
             float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
