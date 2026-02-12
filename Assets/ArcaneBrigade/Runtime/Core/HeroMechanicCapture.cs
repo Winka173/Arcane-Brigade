@@ -61,7 +61,7 @@ namespace ArcaneBrigade
                 if (catalog.Unit(hero.Id) == null) { notes.Add("MISSING " + hero.Id); continue; }
                 using (var session = new RunSession(catalog))
                 {
-                    session.Start(hero.Id, 171017 + index); session.State.Wave = 3;
+                    session.Start(hero.Id, 171017 + index); session.State.Wave = int.TryParse(Arg(args, "-mechanic-wave"), out int wave) ? wave : 3;
                     session.State.Roster.Clear();
                     foreach (string id in new[] { "TeapotPilgrim", "HoodWisp", "BrassAcorn", "PillowOracle" })
                         if (catalog.Unit(id) != null) session.State.Roster.Add(new RosterEntry { UnitId = id, WeaponId = catalog.Unit(id).Weapon.Id });
@@ -83,6 +83,7 @@ namespace ArcaneBrigade
                 yield return new WaitForSecondsRealtime(.5f);
                 if (Array.IndexOf(args, "-mechanic-tokens") >= 0 && index == 1 || filter != null && Array.IndexOf(args, "-mechanic-tokens") >= 0 && notes.Count == 0) yield return TokenSheet();
                 var sim = owner.Simulation;
+                if (Array.IndexOf(args, "-mechanic-live") >= 0) { yield return LiveSurvey(sim, index.ToString("00") + "-" + hero.Id + "-a" + approach); continue; }
                 sim.PrepareMechanicCapture(catalog, crowd ? 12 : 0);
                 Time.timeScale = .35f;
                 int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
@@ -107,6 +108,44 @@ namespace ArcaneBrigade
             Time.timeScale = 1;
             File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
             Application.Quit(0);
+        }
+        /// <summary>-mechanic-live [-mechanic-wave N]: ordinary play, nothing seeded, for 30 s. Every frame it looks for
+        /// anything larger than 1.3 units drawn over the hero apart from the hero, its weapon, companions' own lights
+        /// and ground shadows; it logs each one (what it is, its art, tint, size) and saves a frame the first time each
+        /// kind appears, to find what paints over the hero during a normal fight.</summary>
+        private IEnumerator LiveSurvey(CombatSimulation sim, string stem)
+        {
+            var lines = new List<string>(); var seen = new HashSet<string>(); float started = Time.realtimeSinceStartup, lastHealth = sim.Champion.Health, lastStep = -1;
+            while (sim.Phase == RunPhase.Combat && Time.realtimeSinceStartup - started < 30)
+            {
+                yield return null;
+                Vector2 hero = sim.Champion.Position;
+                if (Mathf.Abs(sim.Champion.Health - lastHealth) > .5f) { lines.Add($"t={sim.Elapsed:0.00} hp {lastHealth:0} -> {sim.Champion.Health:0} dreaming={sim.HeroIdentityDreaming} {sim.HeroIdentityStatus}"); lastHealth = sim.Champion.Health; }
+                if (sim.Elapsed != lastStep)
+                {
+                    lastStep = sim.Elapsed;
+                    foreach (CombatEvent e in sim.Events)
+                        if (e.Kind != CombatEventKind.Hit && e.Kind != CombatEventKind.Fire && e.Kind != CombatEventKind.Kill && (e.Position - hero).sqrMagnitude < 2.25f)
+                            lines.Add($"t={sim.Elapsed:0.00} EVENT {e.Kind} {e.Faction} value {e.Value:0.00} weapon {e.Weapon?.Id ?? "-"} cause {e.Cause.ItemId ?? "-"} subject {e.Subject?.Definition?.Id ?? "-"}");
+                }
+                string fresh = null;
+                foreach (Renderer view in FindObjectsByType<Renderer>(FindObjectsSortMode.None))
+                {
+                    if (!view.enabled || !view.gameObject.activeInHierarchy) continue;
+                    Bounds b = view.bounds; float size = Mathf.Max(b.size.x, b.size.y);
+                    if (size < 1.3f || size > 14f) continue;
+                    if (Mathf.Abs(b.center.x - hero.x) > b.extents.x || Mathf.Abs(b.center.y - hero.y - .4f) > b.extents.y) continue;
+                    string path = view.name; Transform up = view.transform.parent; for (int depth = 0; up != null && depth < 2; depth++, up = up.parent) path = up.name + "/" + path;
+                    if (path.Contains("CompanionOwnLight") || path.Contains("BodyVisual") || path.Contains("WeaponVisual") || path.Contains("GroundShadow") || path.Contains("identity portrait")) continue;
+                    string art = view is SpriteRenderer s ? (s.sprite != null ? s.sprite.name : "-") + " tint " + ColorUtility.ToHtmlStringRGBA(s.color)
+                        : view is LineRenderer l ? "line " + ColorUtility.ToHtmlStringRGBA(l.startColor) : view.sharedMaterial != null ? view.sharedMaterial.name : "-";
+                    lines.Add($"t={sim.Elapsed:0.00}   {size:0.0}u order {view.sortingOrder} {view.GetType().Name} {path} :: {art}");
+                    string key = path + "|" + (view is SpriteRenderer named && named.sprite != null ? named.sprite.name.Split('_')[0] : "");
+                    if (seen.Add(key)) fresh = key;
+                }
+                if (fresh != null) yield return Shot(stem + "-live-" + seen.Count.ToString("00"));
+            }
+            File.WriteAllLines(Path.Combine(root, stem + "-live.txt"), lines);
         }
         /// <summary>Every hero's painted tokens laid out on a dark card for review.</summary>
         private IEnumerator TokenSheet()

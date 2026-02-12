@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class PaintedEffects : MonoBehaviour
     {
-        private sealed class Burst { public SpriteRenderer View; public Sprite[] Frames; public float Age = 10; public float Duration; public float Width; public Color Tint; public bool Important; }
+        private sealed class Burst { public SpriteRenderer View; public Sprite[] Frames; public float Age = 10; public float Duration; public float Width; public Color Tint; public bool Important, FloorWave; }
         private readonly List<Burst> pool = new List<Burst>();
         private PaintedAnimationLibrary library;
         private ImpactAnimationLibrary impacts;
@@ -69,11 +69,16 @@ namespace ArcaneBrigade
                 var child = new GameObject("PaintedBurst"); child.transform.SetParent(transform, false);
                 burst = new Burst { View = child.AddComponent<SpriteRenderer>() }; pool.Add(burst);
             }
-            burst.Important = important; burst.View.sortingOrder = value.Faction == Faction.Enemy && value.Kind == CombatEventKind.Fire ? 1850 : 1450;
+            burst.Important = important; bool floorWave = cue && authored != null && value.Kind == CombatEventKind.SignaturePulse;
+            // a signature pulse painted with its form (the bell's ribbon of notes) is a wave across the floor under the
+            // bodies, see-through, swelling out to the real radius; the gold ring (ArcadeEffects) still marks the edge
+            burst.View.sortingOrder = floorWave ? 63 : value.Faction == Faction.Enemy && value.Kind == CombatEventKind.Fire ? 1850 : 1450;
+            burst.FloorWave = floorWave;
             burst.Age = 0; burst.Duration = duration; burst.Frames = frames; burst.Width = width;
             burst.Tint = slash || magic || value.Kind == CombatEventKind.SignaturePulse ? Color.Lerp(Color.white, ArcadeEffects.ElementColor(value.Element), 0.3f) : Color.white;
             if (PresentationSettings.ReducedFlashes) burst.Tint *= new Color(0.8f, 0.8f, 0.8f, 1);
             if (!important) { Color quiet = burst.Tint; quiet.a = EffectDensity.AlliedAlpha; burst.Tint = quiet; }
+            if (floorWave) { Color wave = burst.Tint; wave.a *= 0.5f; burst.Tint = wave; }
             burst.View.sprite = frames[0]; burst.View.enabled = true; burst.View.color = Color.white;
             burst.View.transform.position = position;
             burst.View.transform.rotation = Quaternion.Euler(0, 0, slash ? Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg : 0);
@@ -89,7 +94,7 @@ namespace ArcaneBrigade
                 burst.Age += delta; float progress = Mathf.Clamp01(burst.Age / burst.Duration);
                 burst.View.sprite = burst.Frames[Mathf.Min(burst.Frames.Length - 1, Mathf.FloorToInt(progress * burst.Frames.Length))];
                 float scale = burst.Width / burst.View.sprite.bounds.size.x;
-                burst.View.transform.localScale = Vector3.one * scale * (PresentationSettings.ReducedMotion ? 1 : 0.9f + progress * 0.18f);
+                burst.View.transform.localScale = Vector3.one * scale * (PresentationSettings.ReducedMotion ? 1 : burst.FloorWave ? 0.6f + 0.4f * (1 - (1 - progress) * (1 - progress)) : 0.9f + progress * 0.18f);
                 Color tint = burst.Tint; tint.a *= Mathf.Clamp01((1 - progress) * 3); burst.View.color = tint;
                 if (progress >= 1) burst.View.enabled = false;
             }
