@@ -68,7 +68,7 @@ namespace ArcaneBrigade
                     else propShadows[slot].Hide();
                     bool warning = simulation.Elapsed < field.At;
                     float progress = Mathf.Clamp01((simulation.Elapsed - field.At) / Mathf.Max(0.05f, field.Until - field.At));
-                    Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
+                    Color color = hazard ? warning ? new Color(1f, 0.7f, 0.24f) : new Color(1f, 0.25f, 0.37f) : field.Kind == ExpandedFieldKind.Tea ? new Color(0.78f, 0.5f, 0.22f) : field.Kind == ExpandedFieldKind.Iron ? new Color(1f, 0.45f, 0.24f) : field.Kind == ExpandedFieldKind.Photo ? new Color(0.4f, 1f, 0.83f) : new Color(0.83f, 0.64f, 1f);
                     if (!hazard && field.ImpactWeapon != null && field.ImpactWeapon.Mechanic == CarnivalWeapon.BloomOrb) color = new Color(0.55f, 1, 0.8f);
                     else if (!hazard && field.ImpactWeapon != null && field.ImpactWeapon.Mechanic == CarnivalWeapon.EchoBlade) color = new Color(0.65f, 0.8f, 1);
                     color.a = warning ? 0.65f + (ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : Mathf.Sin(simulation.Elapsed * 8f) * 0.2f) : 0.8f * (1 - progress * 0.75f);
@@ -126,6 +126,7 @@ namespace ArcaneBrigade
                     fill.enabled = (hazard || field.Kind == ExpandedFieldKind.Projector) && field.Radius > 0;
                     if (hazard) fill.enabled = !warning && field.Kind == ExpandedFieldKind.ShadowPool;
                     if (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave) fill.enabled = false;
+                    if (field.Kind == ExpandedFieldKind.Tea) { fill.enabled = field.Radius > 0; line.enabled = false; } // spilt tea: a soft amber stain, not porcelain
                     if (fill.enabled)
                     {
                         fill.transform.position = field.Position; fill.transform.localScale = Vector3.one * field.Radius;
@@ -144,7 +145,7 @@ namespace ArcaneBrigade
                             fill.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                             fill.transform.localScale = new Vector3(direction.magnitude + field.Radius, field.Radius, 1);
                         }
-                        Color wash = color; wash.a *= hazard ? 0.14f : 0.65f;
+                        Color wash = color; wash.a *= hazard ? 0.14f : field.Kind == ExpandedFieldKind.Tea ? 0.32f : 0.65f;
                         tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
                     }
                     bool painted = hazard && field.Source != null && field.Source.Variant != null && (field.Source.Variant.Affix != EnemyAffix.None || field.Source.Definition.SpecialEnemy != SpecialEnemyKind.None) && field.Kind != ExpandedFieldKind.FallingProp;
@@ -155,7 +156,7 @@ namespace ArcaneBrigade
                     }
                     else variantFields[slot].Hide();
                     var effectArt=MechanicEffectArtwork.Current;
-                    if(!hazard && effectArt!=null)
+                    if(!hazard && effectArt!=null && field.Kind!=ExpandedFieldKind.Tea) // the porcelain swirl read as broken crockery on every death; tea is drawn as its stain
                     {
                         line.enabled=fill.enabled=false;
                         bool link=field.Kind==ExpandedFieldKind.Link || field.Kind==ExpandedFieldKind.SewingLink || field.Kind==ExpandedFieldKind.YoYoTether || field.Kind==ExpandedFieldKind.Projector;

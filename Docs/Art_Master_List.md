@@ -215,6 +215,8 @@ GIỮ: đạn giấc mơ, yo-yo, kim, các bộ impact Cut/Slam/Pierce/Orb, bụ
 | `Pickup_LanternFlare.png` | A small brass hand-lantern with its shutter thrown open, a bright warm-white flame flaring inside and a few cream sparks escaping the top. Friendly warm light, not fire damage; no ember red. |
 | `Pickup_ShopkeeperBell.png` | The shopkeeper's brass counter bell (round dome bell on a dark wooden base), polished and slightly dented, a tiny burgundy ribbon tied to the base. |
 
+| `Form_TeaSpill.png` | VẼ LẠI ô "Porcelain" của `Art/MechanicEffects/Forms_v1.png`, vì chủ dự án thấy nó như bát đĩa xanh vỡ mỗi khi quái chết. Vẽ thành: a warm amber splash of spilt tea seen from above, a soft round stain with a few droplets and two thin curls of steam; cream highlights; at most two tiny cream china chips. No blue-and-white crockery, no plates or bowls. Vùng trong suốt ở giữa để đọc như vùng ảnh hưởng tròn. |
+
 Ghi chú gameplay: Lantern Flare = nhặt vào thì đốt sạch quái nhỏ trên màn hình; chuông = mọi đồng xu trong sảnh chạy về người chơi.
 
 ---
