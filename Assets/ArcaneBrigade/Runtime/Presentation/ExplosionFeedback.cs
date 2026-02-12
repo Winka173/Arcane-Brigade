@@ -26,11 +26,12 @@ namespace ArcaneBrigade
             public readonly SpriteRenderer[] Puffs = new SpriteRenderer[3];
         }
         private readonly List<Blast> pool = new List<Blast>();
-        private Sprite glow, ring, chip, puff, white;
+        private Sprite glow, ring, chip, puff, white, spark;
+        private Sprite[] deathBlast = System.Array.Empty<Sprite>();
         private Material bloom;
         private PaintedAnimationLibrary painted;
         public int ActiveCount { get; private set; }
-        public const int Capacity = 96;
+        public const int Capacity = 120;
         /// <summary>Most enemy pops started per tenth of a second (the squashing body still shows for the rest).</summary>
         public const int PopsPerWindow = 26, ReducedPopsPerWindow = 9;
         private float popWindow;
@@ -60,7 +61,23 @@ namespace ArcaneBrigade
             white = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, Texture2D.whiteTexture.width, Texture2D.whiteTexture.height), Vector2.one * 0.5f, Texture2D.whiteTexture.width);
             bloom = Resources.Load<Material>("MienCho/WaitingGlow");
             painted = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
+            // a hot streak: a long thin diamond, brightest along its spine, drawn along each spark's flight
+            spark = Make("ExplosionSpark", 64, (d, a) => { float x = Mathf.Abs(d * Mathf.Cos(a)), y = Mathf.Abs(d * Mathf.Sin(a)); return Mathf.Clamp01((1 - x - y * 3.4f) * 1.8f); });
+            deathBlast = LoadDeathBlast();
             puff = Make("ExplosionSmudge", 96, (d, a) => { float wobble = 1 + 0.12f * Mathf.Sin(a * 5) + 0.06f * Mathf.Cos(a * 9); return Mathf.Clamp01((1 - d * wobble) * 1.6f) * (0.65f + 0.35f * Mathf.Clamp01(1 - d * 1.4f)); });
+        }
+        /// <summary>The painted golden blast every ordinary kill goes up in (Resources/Effects/DeathBlast_f0..3, one world
+        /// unit wide). Loaded as textures so the import type never matters; empty when the art is missing.</summary>
+        private static Sprite[] LoadDeathBlast()
+        {
+            var frames = new List<Sprite>();
+            for (int i = 0; i < 4; i++)
+            {
+                var texture = Resources.Load<Texture2D>("Effects/DeathBlast_f" + i);
+                if (texture == null) break;
+                frames.Add(Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.width, 0, SpriteMeshType.FullRect));
+            }
+            return frames.ToArray();
         }
         private static Sprite Make(string name, int size, System.Func<float, float, float> alpha)
         {
@@ -115,7 +132,7 @@ namespace ArcaneBrigade
             if (!budget && !critical && bodyShown) return;
             float height = unit != null ? Mathf.Max(0.3f, unit.BodyHeight) : 0.8f;
             float force = 1f + (critical ? 0.45f : 0f) + Mathf.Clamp(overkill, 0f, 1.5f) * 0.35f;
-            float radius = Mathf.Clamp(height * 0.55f, 0.32f, 1.05f) * force;
+            float radius = Mathf.Clamp(height * 0.6f, 0.36f, 1.15f) * force;
             Vector2 centre = position + Vector2.up * height * 0.3f;
             Color tint = critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), Tint(element, Faction.Companion), 0.35f);
             if (Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown)) PopsShown++;
@@ -189,88 +206,96 @@ namespace ArcaneBrigade
             Draw(blast);
             return true;
         }
-        public const float PopDuration = 0.34f;
-        private const int PopChips = 7;
-        /// <summary>The ink pop of an ordinary kill. Cheap on purpose: flash, painted burst, a thin snap ring, seven chips
-        /// and one smoke puff, all from the shared pool and all gone in about a third of a second.</summary>
+        public const float PopDuration = 0.44f;
+        private const int PopChips = 8;
+        /// <summary>An ordinary kill goes up in a small golden explosion: a white-hot snap, the painted blast punching past
+        /// full size and settling, a snap ring, hot sparks streaking out and dragging to a stop, then one curl of smoke.
+        /// No debris of any kind (no crockery, wood or metal chips). All from the shared pool, gone in under half a second.</summary>
         private void DrawPop(Blast blast)
         {
             float age = blast.Age, r = blast.Radius;
             bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
             float flashGain = PresentationSettings.ReducedFlashes ? 0.3f : 1f;
             blast.Rim.enabled = false;
-            // the snap of the hit: a white-hot point blowing out to the edge in 90 ms
-            float flashT = Mathf.Clamp01(age / 0.09f);
+            // the snap of the hit: a white-hot point blowing out in 60 ms
+            float flashT = Mathf.Clamp01(age / 0.06f);
             blast.Flash.enabled = flashT < 1f;
             if (blast.Flash.enabled)
             {
+                blast.Flash.sprite = glow;
                 blast.Flash.transform.position = blast.Position;
-                blast.Flash.transform.localScale = Vector3.one * (2f * r * Mathf.Lerp(0.5f, 1.15f, Ease(flashT)));
-                blast.Flash.color = new Color(1f, Mathf.Lerp(0.98f, blast.Color.g, flashT), Mathf.Lerp(0.92f, blast.Color.b, flashT), (1 - flashT * flashT) * 0.95f * flashGain);
+                blast.Flash.transform.localScale = Vector3.one * (2f * r * Mathf.Lerp(0.6f, 1.4f, Ease(flashT)));
+                blast.Flash.color = new Color(1f, 0.98f, 0.9f, (1 - flashT * flashT) * flashGain);
             }
-            // a short spill of warm light over the crowd (stronger for crits)
-            float bloomT = Mathf.Clamp01(age / (blast.Important ? 0.16f : 0.12f));
+            // warm light spilling over the crowd (stronger for crits and overkill)
+            float bloomT = Mathf.Clamp01(age / (blast.Important ? 0.22f : 0.17f));
             blast.Bloom.enabled = bloom != null && bloomT < 1f && !sparse;
             if (blast.Bloom.enabled)
             {
                 blast.Bloom.transform.position = blast.Position;
-                blast.Bloom.transform.localScale = Vector3.one * (2.4f * r * Mathf.Lerp(0.7f, 1.05f, Ease(bloomT)));
-                blast.Bloom.color = new Color(blast.Color.r, blast.Color.g * 0.92f, blast.Color.b * 0.8f, (1 - bloomT) * (blast.Important ? 0.6f : 0.38f) * flashGain);
+                blast.Bloom.transform.localScale = Vector3.one * (2.8f * r * Mathf.Lerp(0.7f, 1.1f, Ease(bloomT)));
+                blast.Bloom.color = new Color(1f, 0.78f, 0.42f, (1 - bloomT) * (blast.Important ? 0.75f : 0.5f) * flashGain);
             }
-            // the burst itself: the game's painted ink-and-ember explosion (PaintedEffects_v1, bottom row)
-            Sprite[] frames = painted == null ? null : painted.Death;
-            float coreT = Mathf.Clamp01(age / 0.27f);
+            // the fireball: four painted frames in 0.3 s, punching past full size, holding, then burning out
+            bool paintedBlast = deathBlast.Length > 0;
+            Sprite[] frames = paintedBlast ? deathBlast : painted == null ? null : painted.Death;
+            float coreT = Mathf.Clamp01(age / 0.3f);
             blast.Core.enabled = frames != null && frames.Length > 0 && coreT < 1f;
             if (blast.Core.enabled)
             {
-                Sprite frame = frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(Mathf.Pow(coreT, 0.8f) * frames.Length))];
+                Sprite frame = frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(coreT * frames.Length))];
                 blast.Core.sprite = frame;
                 blast.Core.transform.position = blast.Position;
-                float width = 2f * r * (still ? 1f : Mathf.Lerp(0.7f, 1.3f, Ease(coreT)));
-                blast.Core.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(frame).width));
-                blast.Core.transform.rotation = Quaternion.Euler(0, 0, blast.Spin);
-                Color tint = Color.Lerp(Color.white, blast.Color, 0.25f);
-                blast.Core.color = new Color(tint.r, tint.g, tint.b, Mathf.Clamp01((1 - coreT) * 1.7f));
+                float punch = still ? 1f : coreT < 0.25f ? Mathf.Lerp(0.55f, 1.18f, Ease(coreT / 0.25f)) : Mathf.Lerp(1.18f, 1.05f, (coreT - 0.25f) / 0.75f);
+                float inkWidth = paintedBlast ? 0.93f : Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(frame).width);
+                blast.Core.transform.localScale = Vector3.one * (2.3f * r * punch / inkWidth);
+                blast.Core.transform.rotation = Quaternion.Euler(0, 0, still ? 0 : blast.Spin % 40f - 20f);
+                float alpha = Mathf.Clamp01((1 - coreT) * 2.5f);
+                Color tint = paintedBlast ? Color.white : Color.Lerp(Color.white, blast.Color, 0.25f);
+                if (PresentationSettings.ReducedFlashes) tint = Color.Lerp(tint, new Color(0.85f, 0.78f, 0.7f), 0.3f);
+                blast.Core.color = new Color(tint.r, tint.g, tint.b, alpha);
             }
             // a thin ring snaps out once
-            float ringT = Mathf.Clamp01(age / 0.17f);
-            float ringAlpha = Mathf.Pow(1 - ringT, 1.5f) * 0.85f;
+            float ringT = Mathf.Clamp01(age / 0.2f);
+            float ringAlpha = Mathf.Pow(1 - ringT, 1.5f) * 0.8f;
             blast.Ring.enabled = ringAlpha > 0.02f;
             if (blast.Ring.enabled)
             {
                 blast.Ring.sprite = ring;
                 blast.Ring.transform.position = blast.Position;
-                blast.Ring.transform.localScale = Vector3.one * (2f * r * (still ? 1.1f : Mathf.Lerp(0.45f, 1.35f, Ease(ringT))));
-                blast.Ring.color = new Color(Mathf.Lerp(blast.Color.r, 1f, 0.5f), Mathf.Lerp(blast.Color.g, 1f, 0.5f), Mathf.Lerp(blast.Color.b, 1f, 0.5f), ringAlpha);
+                blast.Ring.transform.localScale = Vector3.one * (2f * r * (still ? 1.2f : Mathf.Lerp(0.5f, 1.5f, Ease(ringT))));
+                blast.Ring.color = new Color(1f, 0.9f, 0.62f, ringAlpha);
             }
-            // ink, paper and colour chips thrown out hard and dropping
+            // hot sparks: white, then gold, then ember, streaking along their flight and dragging to a stop
             int shown = still ? 0 : sparse ? 3 : PopChips;
-            float chipT = Mathf.Clamp01(age / (blast.Duration * 0.9f));
+            float sparkT = Mathf.Clamp01(age / 0.32f);
             for (int i = 0; i < blast.Chips.Length; i++)
             {
                 SpriteRenderer view = blast.Chips[i];
-                view.enabled = i < shown && chipT < 1f;
+                view.enabled = i < shown && sparkT < 1f;
                 if (!view.enabled) continue;
-                view.sprite = chip;
-                float travel = (1 - Mathf.Pow(1 - chipT, 2.4f)) * blast.Duration * 0.6f;
-                view.transform.position = blast.Position + blast.ChipVelocity[i] * travel + Vector2.down * chipT * chipT * 0.22f * r;
-                view.transform.rotation = Quaternion.Euler(0, 0, blast.ChipSpin[i] * age);
-                float size = 0.2f * Mathf.Sqrt(r) * (1 - chipT * 0.55f);
-                view.transform.localScale = new Vector3(size * 1.5f, size, 1);
-                Color c = view.color;
-                view.color = new Color(c.r, c.g, c.b, 1 - chipT * chipT);
+                view.sprite = spark;
+                Vector2 velocity = blast.ChipVelocity[i];
+                float travel = (1 - Mathf.Pow(1 - sparkT, 3f)) * 0.2f;
+                view.transform.position = blast.Position + velocity * travel;
+                view.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
+                float speed = (1 - sparkT) * (1 - sparkT), size = Mathf.Sqrt(r);
+                view.transform.localScale = new Vector3(Mathf.Lerp(0.1f, 0.62f, speed) * size, 0.1f * size * (1 - sparkT * 0.5f), 1);
+                Color hot = sparkT < 0.3f ? Color.Lerp(new Color(1f, 1f, 0.92f), new Color(1f, 0.86f, 0.36f), sparkT / 0.3f)
+                    : Color.Lerp(new Color(1f, 0.86f, 0.36f), new Color(1f, 0.42f, 0.16f), (sparkT - 0.3f) / 0.7f);
+                view.color = new Color(hot.r, hot.g, hot.b, 1 - sparkT * sparkT);
             }
-            // one small puff of smoke where it stood
-            float puffT = Mathf.Clamp01((age - 0.05f) / (blast.Duration - 0.05f));
+            // one curl of smoke once the fire is out
+            float puffT = Mathf.Clamp01((age - 0.14f) / (blast.Duration - 0.14f));
             for (int i = 0; i < blast.Puffs.Length; i++)
             {
                 SpriteRenderer view = blast.Puffs[i];
                 view.enabled = i == 0 && puffT > 0 && puffT < 1;
                 if (!view.enabled) continue;
                 view.sprite = puff;
-                view.transform.position = blast.Position + (still ? Vector2.zero : Vector2.up * puffT * 0.25f * r);
-                view.transform.localScale = Vector3.one * (2f * r * (still ? 0.9f : Mathf.Lerp(0.55f, 1.05f, Ease(puffT))));
-                view.color = new Color(0.14f, 0.1f, 0.17f, (1 - puffT) * 0.4f);
+                view.transform.position = blast.Position + (still ? Vector2.zero : Vector2.up * puffT * 0.3f * r);
+                view.transform.localScale = Vector3.one * (2f * r * (still ? 0.9f : Mathf.Lerp(0.6f, 1.1f, Ease(puffT))));
+                view.color = new Color(0.16f, 0.11f, 0.17f, (1 - puffT) * 0.42f);
             }
         }
 

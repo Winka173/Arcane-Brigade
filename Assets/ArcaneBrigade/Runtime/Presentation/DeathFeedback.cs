@@ -257,9 +257,9 @@ namespace ArcaneBrigade
             float squash = t < hold ? Mathf.Sin(t / hold * Mathf.PI * 0.5f) : 1f;
             float burst = t < hold ? 0f : (t - hold) / (1f - hold);
             float punch = Mathf.Sqrt(remnant.Force);
-            float sx = still ? 1f : Mathf.Lerp(1f, 1f + 0.26f * punch, squash) + 0.32f * burst * punch;
-            float sy = still ? 1f : Mathf.Lerp(1f, 1f - 0.3f, squash) + 0.62f * burst * punch;
-            float alpha = 1f - Mathf.Pow(burst, 0.8f);
+            float sx = still ? 1f : Mathf.Lerp(1f, 1f + 0.26f * punch, squash) + 0.16f * burst * punch;
+            float sy = still ? 1f : Mathf.Lerp(1f, 1f - 0.3f, squash) + 0.26f * burst * punch;
+            float alpha = 1f - Mathf.Pow(burst, 0.55f); // gone fast: the explosion, not a swelling white body, carries the burst
             float poseScale = remnant.SourceHeight / Mathf.Max(.01f, remnant.Body.sprite.bounds.size.y);
             // squash about the feet, swell about the middle as it comes apart
             float pivot = remnant.Body.sprite.pivot.y / remnant.Body.sprite.rect.height;
@@ -270,15 +270,15 @@ namespace ArcaneBrigade
             remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (pivotOffset + feet);
             remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(sx * poseScale, sy * poseScale, 1));
             remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, still ? 0 : (remnant.Direction.x < 0 ? 1 : -1) * 6f * squash * (1f - burst));
-            // the hit flash: full white on the blow (a soft warm tint with reduced flashes), burning off as it bursts
-            float flash = PresentationSettings.ReducedFlashes ? 0.25f * (1f - t) : t < hold ? 1f : 1f - burst * 0.7f;
+            // the hit flash: full white on the blow (a soft warm tint with reduced flashes), then it catches fire as it bursts
+            float flash = PresentationSettings.ReducedFlashes ? 0.25f * (1f - t) : t < hold ? 1f : 0.45f * (1f - burst);
             remnant.Properties.Clear();
             Rect rectangle = remnant.Body.sprite.rect; Texture texture = remnant.Body.sprite.texture;
             remnant.Properties.SetVector(UvRectId, new Vector4(rectangle.x / texture.width, rectangle.y / texture.height, rectangle.width / texture.width, rectangle.height / texture.height));
             remnant.Properties.SetVector(DissolveId, Vector4.zero);
             remnant.Properties.SetFloat(FlashId, flash);
             remnant.Body.SetPropertyBlock(remnant.Properties);
-            Color body = Color.Lerp(PresentationSettings.ReducedFlashes ? remnant.BodyColor : Color.white, remnant.BodyColor, burst); body.a = alpha; remnant.Body.color = body;
+            Color body = t < hold || PresentationSettings.ReducedFlashes ? Color.Lerp(PresentationSettings.ReducedFlashes ? remnant.BodyColor : Color.white, remnant.BodyColor, burst) : Color.Lerp(new Color(1f, 0.62f, 0.3f), remnant.BodyColor * new Color(1f, 0.5f, 0.3f), burst); body.a = alpha; remnant.Body.color = body;
             remnant.Shadow.transform.localScale = remnant.ShadowScale * (1f + 0.25f * squash - 0.6f * burst);
             Color shadow = remnant.ShadowColor; shadow.a *= alpha; remnant.Shadow.color = shadow;
             remnant.Grounded.Display(remnant.Body.sprite, new Vector2(remnant.Root.position.x, remnant.Position.y - remnant.BodyScale.y * remnant.SourceHeight * 0.5f), remnant.BodyScale.x * poseScale * remnant.Body.sprite.bounds.size.x * 0.75f, 0, 0.34f * alpha);
