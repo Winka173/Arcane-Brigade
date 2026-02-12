@@ -19,6 +19,31 @@ namespace ArcaneBrigade
         public int Page => page;
         public int InputConsumedFrame { get; private set; } = -1;
         private float nextNavigation;
+        // Story pages no longer take over the screen after every wave: a sealed note says a page is waiting, and the
+        // traveller opens it (J, the note, or the journal cabinet) when they want to. Everything they look at counts as read.
+        private int viewedMask;
+        private bool arrivalOpen;
+        private int noticedUnread = -1;
+        private float noticeAt = -100;
+        private GUIStyle noteHand, noteKey;
+        /// <summary>Profile setting: story pages open by themselves (old behaviour) or only announce themselves (default).</summary>
+        public bool AutoOpen => owner?.Profile != null && owner.Profile.StoryPagesAutoOpen;
+        /// <summary>Chapters the traveller can read now and has not opened yet.</summary>
+        public int Unread
+        {
+            get
+            {
+                if (owner?.Session == null || owner.Session.State.Endless) return 0;
+                int read = owner.Session.State.MienCho?.ReadMask ?? 0, count = 0;
+                for (int i = 0; i < MienChoStory.Available(owner.Session.State); i++) if ((read & (1 << i)) == 0) count++;
+                return count;
+            }
+        }
+        /// <summary>Where the "new page" note sits on the 1920x1080 HUD (under the wallet and the lantern row).</summary>
+        public static readonly Rect NoticeRect = new Rect(22, 232, 248, 56);
+        private bool NoticeAllowed => !open && owner?.Session != null && owner.Simulation != null && Unread > 0 && !owner.PresentationPaused && !owner.TransitionPending && !owner.HallExitPending && !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible && !owner.Details.Open && !owner.MenuConfirmation
+            && (owner.Session.State.Phase == SessionPhase.Shop || owner.Session.State.Phase == SessionPhase.Combat);
+        public bool NoticeVisible => NoticeAllowed;
         private MienChoMemory Memory
         {
             get
@@ -50,6 +75,7 @@ namespace ArcaneBrigade
                 else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) && HobWaits) EnterHobRoom();
                 else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance(); // a waiting choice is never taken by Enter
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7)) { if (lives) { lives = false; scroll = Vector2.zero; Consume(); } else Close(); }
+                else if (Input.GetKeyDown(KeyCode.J)) Close();
                 else if (Input.GetKeyDown(KeyCode.JoystickButton2)) { lives = !lives; scroll = Vector2.zero; Consume(); }
                 else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) { if (lives) { creature = Mathf.Max(0, creature - 1); scroll = Vector2.zero; Consume(); } else Previous(); }
                 else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) { if (lives) { creature++; scroll = Vector2.zero; Consume(); } else Advance(); }
@@ -65,12 +91,42 @@ namespace ArcaneBrigade
             if (owner.PresentationPaused || owner.TransitionPending || owner.Session.SecretRoomOpen || owner.NightmareEndingVisible) return;
             if (owner.Session.State.Phase == SessionPhase.Victory || owner.Session.State.Phase == SessionPhase.Defeat) return;
             int unread = MienChoStory.NextUnread(owner.Session.State);
-            if (unread >= 0 && (!RunPaths.Diagnostic || MienChoCapture.AllowAutomaticScenes)) Show(unread);
+            int waiting = Unread;
+            if (waiting > noticedUnread && noticedUnread >= 0 && !AutoOpen) { noticeAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("ui.page"); }
+            noticedUnread = waiting;
+            // The arrival may open once, at the very first run start, and closes on the first Esc; everything else waits
+            // for the traveller unless they asked for pages to open automatically.
+            bool arrival = unread == 0 && owner.Session.State.Wave == 1 && owner.Profile != null && !owner.Profile.StoryArrivalShown;
+            if (unread >= 0 && (AutoOpen || arrival) && (!RunPaths.Diagnostic || MienChoCapture.AllowAutomaticScenes))
+            {
+                Show(unread);
+                if (open && arrival) { arrivalOpen = true; RememberArrival(); }
+                return;
+            }
+            if ((Application.isFocused || RunPaths.Diagnostic) && Input.GetKeyDown(KeyCode.J) && InputConsumedFrame != Time.frameCount) OpenNext();
+        }
+        private void RememberArrival()
+        {
+            if (owner.Profile == null || owner.Profile.StoryArrivalShown) return;
+            owner.Profile.StoryArrivalShown = true;
+            if (RunPaths.Diagnostic) return;
+            try { new RunStorage(RunPaths.Root).SaveProfile(owner.Profile); } catch (System.Exception exception) { Debug.LogWarning("Arrival flag not saved: " + exception.Message); }
+        }
+        /// <summary>Opens the oldest unread page, or the newest chapter when everything has been read. Returns true if open.</summary>
+        public bool OpenNext()
+        {
+            if (owner?.Session == null || open) return open;
+            if (owner.Details.Open || owner.MenuConfirmation || owner.NightmareEndingVisible) return false;
+            if (owner.Session.State.Phase != SessionPhase.Shop && owner.Session.State.Phase != SessionPhase.Combat) return false;
+            int unread = MienChoStory.NextUnread(owner.Session.State);
+            Show(unread >= 0 ? unread : Mathf.Max(0, MienChoStory.Available(owner.Session.State) - 1));
+            return open;
         }
         public void Show(int index)
         {
             if (owner?.Simulation == null || owner.Session.SecretRoomOpen || owner.TransitionPending || owner.HallExitPending || owner.PresentationPaused && !open || index < 0 || index >= MienChoStory.Available(owner.Session.State)) return;
             chapter = index; page = Memory.Pages[index]; lives = false; scroll = Vector2.zero; open = true; Consume();
+            viewedMask = 1 << index; arrivalOpen = false;
             owner.SetStoryOpen(true);
             CheckpointAudio.PlayInterfaceId("ui.page");
         }
@@ -125,6 +181,7 @@ namespace ArcaneBrigade
             if (!open) return;
             chapter = Mathf.Clamp(index, 0, MienChoStory.Available(owner.Session.State) - 1);
             page = Memory.Pages[chapter]; lives = false; scroll = Vector2.zero; Consume();
+            viewedMask |= 1 << chapter;
         }
         public void Close()
         {
@@ -133,9 +190,10 @@ namespace ArcaneBrigade
             var state = owner.Session.State;
             state.MienCho ??= new MienChoMemory();
             int before = state.MienCho.ReadMask;
-            state.MienCho.ReadMask |= 1 << chapter;
+            int available = MienChoStory.Available(state);
+            state.MienCho.ReadMask |= (viewedMask | 1 << chapter) & (available >= 31 ? int.MaxValue : (1 << available) - 1);
             if (!owner.SaveNightmareBoundary()) { state.MienCho.ReadMask = before; return; }
-            open = false; owner.SetStoryOpen(false);
+            open = false; arrivalOpen = false; viewedMask = 0; noticedUnread = Unread; owner.SetStoryOpen(false);
         }
         public void Draw(Camera camera)
         {
@@ -149,6 +207,7 @@ namespace ArcaneBrigade
             }
             if (!open)
             {
+                if (NoticeAllowed) DrawNotice();
                 GUI.matrix = old; return;
             }
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(.015f, .023f, .043f, 1));
@@ -158,8 +217,9 @@ namespace ArcaneBrigade
             var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone == 2 || zone == 3 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
             GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.ZoneNames[ActOneCanon.Zone(c.Wave)] + " / " + c.Title, title);
-            int burning = ActOneCanon.BreakWave.Length - ActOneCanon.Broken(owner.Session.State.Wave, owner.Session.State.ActOne?.RelitMask ?? 0);
-            GUI.Label(new Rect(80, 785, 680, 120), "EVIDENCE\n" + c.Evidence + "\n" + burning + " OF 8 LANTERNS STILL BURNING", small);
+            // the lanterns still burning are shown as the HUD's own lantern row, not counted out in words
+            GUI.Label(new Rect(80, 785, 680, 80), "EVIDENCE\n" + c.Evidence, small);
+            NightHud.Lanterns(new Rect(80, 862, 230, 30), owner.Session.State);
             if (Press(new Rect(80, 710, 680, 65), "THE PEOPLE TRAVELLING WITH YOU")) ShowLives();
             GUI.Label(new Rect(850, 145, 990, 50), "CHAPTER " + (chapter + 1) + " / PAGE " + (page + 1) + " OF " + c.Pages.Length, small);
             string text = c.Pages[page] + ActOneCanon.PageExtra(owner.Session.State, chapter, page);
@@ -168,7 +228,12 @@ namespace ArcaneBrigade
             scroll = GUI.BeginScrollView(new Rect(850, 210, 1000, 660), scroll, new Rect(0, 0, 955, height));
             GUI.Label(new Rect(0, 0, 940, height), text, copy); GUI.EndScrollView();
             for (int i = 0; i < MienChoStory.Available(owner.Session.State); i++)
-                if (Press(new Rect(70 + i % 7 * 97, 900 + i / 7 * 56, 88, 46), (i + 1) + ((Memory.FinishedMask & 1 << i) != 0 ? " ✓" : ""))) SelectChapter(i);
+            {
+                Rect entry = new Rect(70 + i % 7 * 97, 900 + i / 7 * 56, 88, 46);
+                if (Press(entry, (i + 1) + ((Memory.FinishedMask & 1 << i) != 0 ? " ✓" : ""))) SelectChapter(i);
+                // a page not opened yet still carries its wax seal
+                if (((owner.Session.State.MienCho?.ReadMask ?? 0) & (1 << i)) == 0 && (viewedMask & (1 << i)) == 0) ArcadeSkin.Seal(new Vector2(entry.xMax - 8, entry.y + 6), 18, null);
+            }
             if (Press(new Rect(850, 925, 200, 65), "PREVIOUS")) Previous();
             string[] options = ActOneCanon.ChoiceOptions[chapter];
             if (options != null && page == 0 && Memory.Choices[chapter] == 0)
@@ -186,9 +251,37 @@ namespace ArcaneBrigade
                 int next = MienChoStory.NextPage(chapter, page, Memory.Choices[chapter]);
                 if (Press(new Rect(1070, 925, 490, 65), next >= c.Pages.Length ? "KEEP THE EVIDENCE / CLOSE" : "CONTINUE  [ENTER]")) Advance();
             }
-            if (Press(new Rect(1580, 925, 270, 65), "READ LATER  [ESC]")) Close();
-            GUI.Label(new Rect(850, 1000, 1000, 65), "Paused / page saved. Arrows: scroll / LB-RB: pages / X: companions / PgUp-PgDn: entries / 1-2 or A-Y: choose.", small);
+            if (Press(new Rect(1580, 925, 270, 65), arrivalOpen ? "SKIP  [ESC]" : "READ LATER  [ESC]")) Close();
+            GUI.Label(new Rect(850, 1000, 1000, 65), arrivalOpen ? "Esc / B skips straight to the fight. The journal keeps this page: press J or click the sealed note any time." : "Paused / page saved. Arrows: scroll / LB-RB: pages / X: companions / PgUp-PgDn: entries / 1-2 or A-Y: choose / J: close.", small);
             GUI.matrix = old;
+        }
+        /// <summary>The non-blocking "a new page in the journal" note: a handwritten ticket with a wax seal holding the
+        /// number of unread pages. Clicking it (or J) opens the oldest unread page; play is never interrupted.</summary>
+        private void DrawNotice()
+        {
+            int count = Unread;
+            if (noteHand == null)
+            {
+                noteHand = ArcadeTypography.Style(27); noteHand.font = ArcadeTypography.Hand; noteHand.alignment = TextAnchor.MiddleLeft; noteHand.wordWrap = false;
+                noteKey = ArcadeTypography.Style(15, true); noteKey.alignment = TextAnchor.MiddleCenter; noteKey.wordWrap = false;
+            }
+            float age = Time.unscaledTime - noticeAt;
+            bool still = PresentationSettings.ReducedMotion;
+            // a fresh page slides in from the left and settles; afterwards the note keeps very still
+            float slide = still ? 0 : Mathf.Pow(1 - Mathf.Clamp01(age / 0.45f), 3) * -80;
+            float sway = still || age > 2.4f ? 0 : Mathf.Sin(age * 7f) * Mathf.Clamp01(1 - age / 2.4f) * 2.2f;
+            Rect note = new Rect(NoticeRect.x + slide, NoticeRect.y, NoticeRect.width, NoticeRect.height);
+            Matrix4x4 before = GUI.matrix;
+            if (sway != 0) GUIUtility.RotateAroundPivot(sway, new Vector2(note.x + 12, note.y + 6));
+            ArcadeSkin.Ticket(note, ArcadeSkin.Paper, ArcadeSkin.Wax);
+            noteHand.normal.textColor = new Color(.25f, .19f, .14f);
+            GUI.Label(new Rect(note.x + 16, note.y + 2, note.width - 64, 34), count > 1 ? count + " new pages" : "a new page", noteHand);
+            noteKey.normal.textColor = new Color(.25f, .19f, .14f, .8f);
+            noteKey.alignment = TextAnchor.MiddleLeft;
+            GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "IN THE JOURNAL  ·  J", noteKey);
+            ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 9 ? "9+" : count.ToString());
+            GUI.matrix = before;
+            if (GUI.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();
         }
         private bool Press(Rect rectangle, string text)
         {

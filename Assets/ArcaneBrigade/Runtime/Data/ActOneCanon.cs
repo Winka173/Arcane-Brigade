@@ -73,9 +73,12 @@ namespace ArcaneBrigade
         // The warm chair creeps from the far corner of the shop toward the exit, one position per shop visit (1..19).
         public static Vector2 ChairPosition(int wave)
         {
-            // down the right-hand side (where the old meeting chair stood), clear of the merchant's speech bubble, then beside the exit
-            Vector2[] path = { new Vector2(7.4f, 3.6f), new Vector2(6.6f, 1.4f), new Vector2(5.2f, -0.6f), new Vector2(4.8f, -3.2f), new Vector2(2.3f, -3.9f) };
-            float t = Mathf.Clamp01((Mathf.Clamp(wave, 1, 19) - 1) / 18f) * (path.Length - 1);
+            // Down the right-hand edge of the shop: from the far corner under the bonds card (right of the merchant's speech
+            // bubble), past the lantern-less strip, round the bottom-right corner below the stock, and on the last visit
+            // beside the exit. Every position is reserved in ShopLayout, so no stall, offer or decoration is ever under it.
+            if (wave >= 19) return new Vector2(1.9f, -4.75f);
+            Vector2[] path = { new Vector2(6.75f, 0.55f), new Vector2(6.85f, -1.7f), new Vector2(6.0f, -4.5f), new Vector2(4.75f, -4.6f) };
+            float t = Mathf.Clamp01((Mathf.Clamp(wave, 1, 18) - 1) / 17f) * (path.Length - 1);
             int segment = Mathf.Min(path.Length - 2, Mathf.FloorToInt(t));
             return Vector2.Lerp(path[segment], path[segment + 1], t - segment);
         }

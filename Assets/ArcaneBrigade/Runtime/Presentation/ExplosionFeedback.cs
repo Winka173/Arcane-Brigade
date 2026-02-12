@@ -5,11 +5,12 @@ namespace ArcaneBrigade
 {
     /// <summary>Explosions you can feel: a warm flash, an inked shock ring at the real blast radius, paper-and-ink chips and
     /// a settling smudge of ink. Plays on Detonation events (fuse and echo blasts, hero area strikes), boss landings and
-    /// boss deaths, crit or overkill kills (a small burst), and as a cheap stand-in when every death remnant is busy.
+    /// boss deaths (and the closing blast of every boss finale), and every ordinary enemy kill as a short ink POP sized by
+    /// the body, the overkill and the crit. Pops are pooled and rate-limited so hundreds of kills a second stay cheap.
     /// Presentation only: sizes come from the event, nothing here touches the simulation.</summary>
     public sealed class ExplosionFeedback : MonoBehaviour
     {
-        private enum Kind { Blast, Burst, Smudge, Shock }
+        private enum Kind { Blast, Burst, Smudge, Shock, Pop }
         private sealed class Blast
         {
             public Kind Kind;
@@ -17,6 +18,7 @@ namespace ArcaneBrigade
             public float Radius, Age = 10, Duration;
             public Color Color;
             public bool Important;
+            public float Spin;
             public SpriteRenderer Flash, Ring, Rim, Core, Bloom;
             public readonly SpriteRenderer[] Chips = new SpriteRenderer[12];
             public readonly Vector2[] ChipVelocity = new Vector2[12];
@@ -27,10 +29,13 @@ namespace ArcaneBrigade
         private Sprite glow, ring, chip, puff, white;
         private Material bloom;
         private PaintedAnimationLibrary painted;
-        private float burstWindow;
-        private int burstsInWindow;
         public int ActiveCount { get; private set; }
-        public const int Capacity = 40;
+        public const int Capacity = 96;
+        /// <summary>Most enemy pops started per tenth of a second (the squashing body still shows for the rest).</summary>
+        public const int PopsPerWindow = 26, ReducedPopsPerWindow = 9;
+        private float popWindow;
+        private int popsInWindow;
+        public int PopsShown { get; private set; }
         public static ExplosionFeedback Active { get; private set; }
         private float skidWindow;
         private int skidsInWindow;
@@ -96,15 +101,33 @@ namespace ArcaneBrigade
                     Spawn(Kind.Blast, value.Position, 2.2f, new Color(1f, 0.82f, 0.48f), true);
                     break;
                 case CombatEventKind.Kill when value.Faction == Faction.Enemy:
-                    if (!deathShown) Spawn(Kind.Smudge, value.Position, 0.55f, new Color(0.16f, 0.12f, 0.2f), false);
-                    else if ((value.Critical || value.Value > 0.6f) && AllowBurst()) Spawn(Kind.Burst, value.Position, value.Critical ? 0.85f : 0.7f, Tint(value.Element, Faction.Companion), false);
+                    Pop(value.Subject?.Definition, value.Position, value.Critical, value.Value, value.Element, deathShown);
                     break;
             }
         }
-        private bool AllowBurst()
+        /// <summary>An ordinary enemy goes pop: a brief white flash, an ink burst sized by the body (bigger for overkill
+        /// and crits), a thin snap ring, a spray of ink and paper chips and a small puff of smoke. ~0.35 s, no lingering.</summary>
+        public void Pop(UnitDefinition unit, Vector2 position, bool critical, float overkill, DamageElement element, bool bodyShown = true)
         {
-            if (Time.unscaledTime > burstWindow) { burstWindow = Time.unscaledTime + 0.1f; burstsInWindow = 0; }
-            return ++burstsInWindow <= (PresentationSettings.ReducedEffects ? 2 : 6);
+            if (Time.unscaledTime > popWindow) { popWindow = Time.unscaledTime + 0.1f; popsInWindow = 0; }
+            bool budget = ++popsInWindow <= (PresentationSettings.ReducedEffects ? ReducedPopsPerWindow : PopsPerWindow);
+            // a crit always lands; when no body could be shown the burst has to carry the death on its own
+            if (!budget && !critical && bodyShown) return;
+            float height = unit != null ? Mathf.Max(0.3f, unit.BodyHeight) : 0.8f;
+            float force = 1f + (critical ? 0.45f : 0f) + Mathf.Clamp(overkill, 0f, 1.5f) * 0.35f;
+            float radius = Mathf.Clamp(height * 0.55f, 0.32f, 1.05f) * force;
+            Vector2 centre = position + Vector2.up * height * 0.3f;
+            Color tint = critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), Tint(element, Faction.Companion), 0.35f);
+            if (Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown)) PopsShown++;
+        }
+        /// <summary>The end of a boss finale: the body goes up in one big blast with a ground shock.</summary>
+        public void BossFinale(Vector2 position, float height)
+        {
+            float size = Mathf.Clamp(height, 1.2f, 4f);
+            Spawn(Kind.Shock, position, size * 1.6f, new Color(1f, 0.9f, 0.7f), true);
+            Spawn(Kind.Blast, position, size * 0.95f, new Color(1f, 0.74f, 0.4f), true);
+            Spawn(Kind.Pop, position + new Vector2(-0.3f, 0.2f) * size, size * 0.45f, new Color(1f, 0.86f, 0.6f), true);
+            Spawn(Kind.Pop, position + new Vector2(0.35f, -0.1f) * size, size * 0.4f, new Color(1f, 0.8f, 0.5f), true);
         }
         private static Color Tint(DamageElement element, Faction faction)
         {
@@ -145,22 +168,110 @@ namespace ArcaneBrigade
             return view;
         }
 
-        private void Spawn(Kind kind, Vector2 position, float radius, Color color, bool important)
+        private bool Spawn(Kind kind, Vector2 position, float radius, Color color, bool important)
         {
             Blast blast = Acquire(important);
-            if (blast == null) return;
+            if (blast == null) return false;
+            if (blast.Age < blast.Duration) Hide(blast); // stolen from a quieter effect: clear what it was showing
             blast.Kind = kind; blast.Position = position; blast.Radius = radius; blast.Color = color; blast.Important = important; blast.Age = 0;
-            blast.Duration = kind == Kind.Shock ? 0.75f : kind == Kind.Smudge ? 0.6f : kind == Kind.Burst ? 0.38f : 0.55f;
+            blast.Duration = kind == Kind.Shock ? 0.75f : kind == Kind.Smudge ? 0.6f : kind == Kind.Burst ? 0.38f : kind == Kind.Pop ? PopDuration : 0.55f;
             int seed = Mathf.Abs(Mathf.RoundToInt(position.x * 97 + position.y * 31)) + pool.IndexOf(blast) * 13;
+            int spread = kind == Kind.Pop ? PopChips : blast.Chips.Length;
             for (int i = 0; i < blast.Chips.Length; i++)
             {
-                float angle = (i + (seed % 7) * 0.13f) * Mathf.PI * 2f / blast.Chips.Length + Mathf.Sin(seed + i) * 0.35f;
-                float speed = (kind == Kind.Burst ? 2.4f : 3.4f) * Mathf.Sqrt(radius) * (0.7f + 0.3f * Mathf.Abs(Mathf.Sin(seed * 0.37f + i * 1.7f)));
+                float angle = (i + (seed % 7) * 0.13f) * Mathf.PI * 2f / spread + Mathf.Sin(seed + i) * 0.35f;
+                float speed = (kind == Kind.Burst ? 2.4f : kind == Kind.Pop ? 4.6f : 3.4f) * Mathf.Sqrt(radius) * (0.7f + 0.3f * Mathf.Abs(Mathf.Sin(seed * 0.37f + i * 1.7f)));
                 blast.ChipVelocity[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
                 blast.ChipSpin[i] = (i % 2 == 0 ? 1 : -1) * (360 + 180 * Mathf.Abs(Mathf.Sin(seed + i)));
                 blast.Chips[i].color = i % 3 == 0 ? new Color(0.13f, 0.09f, 0.14f) : i % 3 == 1 ? Color.Lerp(color, Color.white, 0.35f) : new Color(0.93f, 0.86f, 0.72f);
             }
+            blast.Spin = (seed % 360) * 1f;
             Draw(blast);
+            return true;
+        }
+        public const float PopDuration = 0.34f;
+        private const int PopChips = 7;
+        /// <summary>The ink pop of an ordinary kill. Cheap on purpose: flash, painted burst, a thin snap ring, seven chips
+        /// and one smoke puff, all from the shared pool and all gone in about a third of a second.</summary>
+        private void DrawPop(Blast blast)
+        {
+            float age = blast.Age, r = blast.Radius;
+            bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
+            float flashGain = PresentationSettings.ReducedFlashes ? 0.3f : 1f;
+            blast.Rim.enabled = false;
+            // the snap of the hit: a white-hot point blowing out to the edge in 90 ms
+            float flashT = Mathf.Clamp01(age / 0.09f);
+            blast.Flash.enabled = flashT < 1f;
+            if (blast.Flash.enabled)
+            {
+                blast.Flash.transform.position = blast.Position;
+                blast.Flash.transform.localScale = Vector3.one * (2f * r * Mathf.Lerp(0.5f, 1.15f, Ease(flashT)));
+                blast.Flash.color = new Color(1f, Mathf.Lerp(0.98f, blast.Color.g, flashT), Mathf.Lerp(0.92f, blast.Color.b, flashT), (1 - flashT * flashT) * 0.95f * flashGain);
+            }
+            // a short spill of warm light over the crowd (stronger for crits)
+            float bloomT = Mathf.Clamp01(age / (blast.Important ? 0.16f : 0.12f));
+            blast.Bloom.enabled = bloom != null && bloomT < 1f && !sparse;
+            if (blast.Bloom.enabled)
+            {
+                blast.Bloom.transform.position = blast.Position;
+                blast.Bloom.transform.localScale = Vector3.one * (2.4f * r * Mathf.Lerp(0.7f, 1.05f, Ease(bloomT)));
+                blast.Bloom.color = new Color(blast.Color.r, blast.Color.g * 0.92f, blast.Color.b * 0.8f, (1 - bloomT) * (blast.Important ? 0.6f : 0.38f) * flashGain);
+            }
+            // the burst itself: the game's painted ink-and-ember explosion (PaintedEffects_v1, bottom row)
+            Sprite[] frames = painted == null ? null : painted.Death;
+            float coreT = Mathf.Clamp01(age / 0.27f);
+            blast.Core.enabled = frames != null && frames.Length > 0 && coreT < 1f;
+            if (blast.Core.enabled)
+            {
+                Sprite frame = frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(Mathf.Pow(coreT, 0.8f) * frames.Length))];
+                blast.Core.sprite = frame;
+                blast.Core.transform.position = blast.Position;
+                float width = 2f * r * (still ? 1f : Mathf.Lerp(0.7f, 1.3f, Ease(coreT)));
+                blast.Core.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(frame).width));
+                blast.Core.transform.rotation = Quaternion.Euler(0, 0, blast.Spin);
+                Color tint = Color.Lerp(Color.white, blast.Color, 0.25f);
+                blast.Core.color = new Color(tint.r, tint.g, tint.b, Mathf.Clamp01((1 - coreT) * 1.7f));
+            }
+            // a thin ring snaps out once
+            float ringT = Mathf.Clamp01(age / 0.17f);
+            float ringAlpha = Mathf.Pow(1 - ringT, 1.5f) * 0.85f;
+            blast.Ring.enabled = ringAlpha > 0.02f;
+            if (blast.Ring.enabled)
+            {
+                blast.Ring.sprite = ring;
+                blast.Ring.transform.position = blast.Position;
+                blast.Ring.transform.localScale = Vector3.one * (2f * r * (still ? 1.1f : Mathf.Lerp(0.45f, 1.35f, Ease(ringT))));
+                blast.Ring.color = new Color(Mathf.Lerp(blast.Color.r, 1f, 0.5f), Mathf.Lerp(blast.Color.g, 1f, 0.5f), Mathf.Lerp(blast.Color.b, 1f, 0.5f), ringAlpha);
+            }
+            // ink, paper and colour chips thrown out hard and dropping
+            int shown = still ? 0 : sparse ? 3 : PopChips;
+            float chipT = Mathf.Clamp01(age / (blast.Duration * 0.9f));
+            for (int i = 0; i < blast.Chips.Length; i++)
+            {
+                SpriteRenderer view = blast.Chips[i];
+                view.enabled = i < shown && chipT < 1f;
+                if (!view.enabled) continue;
+                view.sprite = chip;
+                float travel = (1 - Mathf.Pow(1 - chipT, 2.4f)) * blast.Duration * 0.6f;
+                view.transform.position = blast.Position + blast.ChipVelocity[i] * travel + Vector2.down * chipT * chipT * 0.22f * r;
+                view.transform.rotation = Quaternion.Euler(0, 0, blast.ChipSpin[i] * age);
+                float size = 0.2f * Mathf.Sqrt(r) * (1 - chipT * 0.55f);
+                view.transform.localScale = new Vector3(size * 1.5f, size, 1);
+                Color c = view.color;
+                view.color = new Color(c.r, c.g, c.b, 1 - chipT * chipT);
+            }
+            // one small puff of smoke where it stood
+            float puffT = Mathf.Clamp01((age - 0.05f) / (blast.Duration - 0.05f));
+            for (int i = 0; i < blast.Puffs.Length; i++)
+            {
+                SpriteRenderer view = blast.Puffs[i];
+                view.enabled = i == 0 && puffT > 0 && puffT < 1;
+                if (!view.enabled) continue;
+                view.sprite = puff;
+                view.transform.position = blast.Position + (still ? Vector2.zero : Vector2.up * puffT * 0.25f * r);
+                view.transform.localScale = Vector3.one * (2f * r * (still ? 0.9f : Mathf.Lerp(0.55f, 1.05f, Ease(puffT))));
+                view.color = new Color(0.14f, 0.1f, 0.17f, (1 - puffT) * 0.4f);
+            }
         }
 
         public void Advance(float delta)
@@ -179,6 +290,7 @@ namespace ArcaneBrigade
 
         private void Draw(Blast blast)
         {
+            if (blast.Kind == Kind.Pop) { DrawPop(blast); return; }
             float t = Mathf.Clamp01(blast.Age / blast.Duration);
             bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
             float flashGain = PresentationSettings.ReducedFlashes ? 0.35f : 1f;

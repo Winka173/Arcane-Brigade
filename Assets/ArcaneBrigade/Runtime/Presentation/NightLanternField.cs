@@ -9,6 +9,7 @@ namespace ArcaneBrigade
     {
         public const int Capacity=8;
         public const float MinimumHeight=1.6f,MaximumHeight=1.9f;
+        public const float ShopLampHeight=1.62f; // the shop is a small room: its two lamps stand no taller than this
         private static readonly int[] BreakOrder={2,7,4,1,6,0,5,3};
         private ArenaController owner;
         private readonly SpriteRenderer[] sprites=new SpriteRenderer[8],halos=new SpriteRenderer[8];
@@ -69,7 +70,8 @@ namespace ArcaneBrigade
             var h=size*.5f;
             Vector2 jitter=new Vector2(Variation(index,seed,1)*2-1,Variation(index,seed,2)*2-1);
             // Shop fixtures stay in their outer margins, clear of offers and interaction points.
-            if(shop && index<2)return new Vector2(index==0?-7.5f:7.5f,index==0?-4.65f:-2.25f)+Vector2.Scale(jitter,new Vector2(.12f,.15f));
+            // (only a wish there: ShopLayout gives each shop lamp the nearest spot clear of stalls, chair path and props)
+            if(shop && index<2)return new Vector2(index==0?-5.0f:-3.55f,index==0?-4.72f:.55f)+Vector2.Scale(jitter,new Vector2(.04f,.06f));
             Vector2 anchor=index switch
             {
                 0=>new Vector2(-Mathf.Min(6,h.x-2),-3.3f),1=>new Vector2(Mathf.Min(6,h.x-2),-3.3f),
@@ -81,7 +83,20 @@ namespace ArcaneBrigade
             Vector2 position=anchor+Vector2.Scale(jitter,spread);
             return new Vector2(Mathf.Clamp(position.x,-h.x+1.25f,h.x-1.25f),Mathf.Clamp(position.y,-h.y+1.3f,h.y-1.3f));
         }
-        public Vector2 FixtureAnchor(int index)=>PositionFor(index,owner.WorldBounds,owner.Session.State.Seed,owner.Session.State.Phase==SessionPhase.Shop);
+        public Vector2 FixtureAnchor(int index)
+        {
+            bool shop=owner.Session.State.Phase==SessionPhase.Shop;
+            Vector2 wish=PositionFor(index,owner.WorldBounds,owner.Session.State.Seed,shop);
+            return shop && index<2 && ShopLayout.Active!=null && ShopLayout.Active.TryFoot("lantern"+index,out Vector2 foot)?foot:wish;
+        }
+        /// <summary>Asks the shop layout for room for a shop lamp; false when this shop has none (the lamp stays dark and hidden).</summary>
+        private bool ShopPlace(int index,int seed)
+        {
+            if(ShopLayout.Active==null || sprites[index].sprite==null)return true;
+            float height=Mathf.Min(HeightFor(index,seed),ShopLampHeight);
+            Vector2 size=SpriteInkMetrics.BoundsOf(sprites[index].sprite).size*(height/Mathf.Max(.01f,sprites[index].sprite.bounds.size.y))+new Vector2(.3f,0); // lean
+            return ShopLayout.Active.Place("lantern"+index,PositionFor(index,owner.WorldBounds,seed,true),size,2+index,out _);
+        }
         public float FlameFloorDrop(int index)=>HeightFor(index,owner.Session.State.Seed)*(1.15f/2.7f);
         public void Configure(ArenaController value)
         {
@@ -128,9 +143,9 @@ namespace ArcaneBrigade
             int seed=owner.Session.State.Seed;
             for(int i=0;i<8;i++)
             {
-                int state=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0);bool fixtureVisible=!shop || i<2;
+                int state=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0);bool fixtureVisible=!shop || i<2 && ShopPlace(i,seed);
                 Vector2 basePosition=FixtureAnchor(i);
-                float height=HeightFor(i,seed),sizeRatio=height/2.7f,identity=MotionIdentity(i,seed);
+                float height=shop?Mathf.Min(HeightFor(i,seed),ShopLampHeight):HeightFor(i,seed),sizeRatio=height/2.7f,identity=MotionIdentity(i,seed);
                 if(fixtureVisible){if(state==2)BrokenCount++;else LitCount++;}
                 bool firstFixture=modelStates[i]<0;
                 if(modelStates[i]!=state)

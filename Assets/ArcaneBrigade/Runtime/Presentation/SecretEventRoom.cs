@@ -20,7 +20,9 @@ namespace ArcaneBrigade
         private GUIStyle heading, body, small, card, label, primary;
         private Texture2D panel, paper, disabled;
         private Vector2 journalScroll;
-        private static readonly Vector2[] Positions = { new Vector2(-6.3f, 1.3f), new Vector2(-6.3f, -3.5f) };
+        // shop spots clear of the HUD wallet, the merchant, the stalls and the reroll machine; ShopLayout keeps the
+        // decorations off them (the first used to sit under the wallet, the second on the reroll machine)
+        private static readonly Vector2[] Positions = { new Vector2(-4.3f, -.4f), new Vector2(-6.6f, -3.6f) };
         public void Configure(ArenaController controller) { owner = controller; }
         public bool InRoom => owner?.Session?.SecretRoomOpen == true;
         public bool Focused => !InRoom && NearestPortal() >= 0;

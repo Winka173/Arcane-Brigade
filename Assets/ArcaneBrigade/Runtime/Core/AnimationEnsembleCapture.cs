@@ -75,8 +75,9 @@ namespace ArcaneBrigade
                 if (group != "companions")
                 {
                     foreach (UnitVisual actor in actors) { deaths.Play(actor, actor.State); actor.gameObject.SetActive(false); }
-                    yield return new WaitForSecondsRealtime(.28f); yield return Shot(group + "-" + first / 10 + "-death");
-                    Check(deaths.ActiveCount == actors.Count, "Species death pool coverage " + group + " " + first / 10); deaths.Clear();
+                    Check(deaths.ActiveCount == actors.Count, "Species death pool coverage " + group + " " + first / 10); // counted before the ~0.2 s pops finish
+                    yield return new WaitForSecondsRealtime(.08f); yield return Shot(group + "-" + first / 10 + "-death");
+                    deaths.Clear();
                 }
             }
         }

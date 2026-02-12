@@ -3,9 +3,17 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
+    /// <summary>What a defeated body does on screen. Ordinary enemies POP: a white hit flash, the body squashes against
+    /// the blow and bursts within a fifth of a second (ExplosionFeedback paints the ink burst around it) — no lingering
+    /// ragdoll, dissolve or flying plates. Bosses keep their long finale and end in a big blast; the hero keeps a fall.</summary>
     public sealed class DeathFeedback : MonoBehaviour
     {
         public const float DurationBoss = 2.4f;
+        /// <summary>Length of an ordinary enemy's squash-and-burst (before force scaling).</summary>
+        public const float PopDuration = 0.2f;
+        /// <summary>When, inside the boss finale, the body goes up in its final blast.</summary>
+        public const float BossBlastAt = 1.38f;
+        private static readonly int FlashId = Shader.PropertyToID("_Flash"), UvRectId = Shader.PropertyToID("_UvRect"), DissolveId = Shader.PropertyToID("_Dissolve");
         private sealed class Remnant
         {
             public Transform Root;
@@ -45,6 +53,9 @@ namespace ArcaneBrigade
             public readonly MaterialPropertyBlock Properties = new MaterialPropertyBlock();
             public BossFinaleVisual Finale;
             public BossPartDeathScatter[] BossDebris = System.Array.Empty<BossPartDeathScatter>();
+            public bool Pop;          // an ordinary enemy: squash and burst, then gone
+            public bool BossBlasted;  // the finale's closing blast has gone off
+            public float Height;
         }
         private readonly List<Remnant> pool = new List<Remnant>();
         private Sprite fragmentSprite;
@@ -124,9 +135,15 @@ namespace ArcaneBrigade
             remnant.Gesture = EnsembleMotion.For(state.Definition);
             remnant.Evolution = state.Definition.EvolutionStage;
             remnant.SpeciesIdentity = AnimationTiming.Phase(state.Definition.Id);
-            remnant.Duration = remnant.Boss ? DurationBoss : state.Faction == Faction.Champion ? 0.95f : 0.65f + 0.12f * (remnant.Force - 1f);
+            remnant.Pop = remnant.Species;
+            remnant.BossBlasted = false;
+            remnant.Height = Mathf.Max(0.3f, state.Definition.BodyHeight);
+            // a pop holds the struck (hurt) pose; the long painted collapse belongs to heroes and bosses
+            if (remnant.Pop && remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0) remnant.DefeatFrames = new[] { remnant.DefeatFrames[0] };
+            remnant.Duration = remnant.Boss ? DurationBoss : remnant.Pop ? PopDuration * (1f + 0.15f * (remnant.Force - 1f)) : state.Faction == Faction.Champion ? 0.95f : 0.65f + 0.12f * (remnant.Force - 1f);
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
+            if (!remnant.Pop) { remnant.Properties.Clear(); remnant.Body.SetPropertyBlock(remnant.Properties); }
             if (remnant.Finale != null) remnant.Finale.Hide();
             if (remnant.Boss)
             {
@@ -155,12 +172,19 @@ namespace ArcaneBrigade
                 if (remnant.Age >= remnant.Duration) { remnant.Root.gameObject.SetActive(false); continue; }
                 ActiveCount++;
                 Draw(remnant);
-                if (!remnant.Boss) foreach (BossPartDeathScatter debris in remnant.BossDebris) if (debris != null) debris.Step(delta);
+                if (!remnant.Boss) { foreach (BossPartDeathScatter debris in remnant.BossDebris) if (debris != null) debris.Step(delta); }
+                else if (!remnant.BossBlasted && remnant.Age >= BossBlastAt)
+                {
+                    // the finale ends with the body going up: a big blast as it starts to fade
+                    remnant.BossBlasted = true;
+                    ExplosionFeedback.Active?.BossFinale(remnant.Position + Vector2.up * remnant.Height * 0.35f, remnant.Height);
+                }
             }
         }
         private static void Draw(Remnant remnant)
         {
             if (remnant.Boss) { remnant.Finale.Draw(remnant.Age); return; }
+            if (remnant.Pop) { DrawPop(remnant); return; }
             bool authoredDefeat = !PresentationSettings.ReducedMotion && remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0;
             if (authoredDefeat)
                 remnant.Body.sprite = CharacterActingEntry.Frame(remnant.DefeatFrames, remnant.Age / Mathf.Max(.01f, remnant.Duration * .65f));
@@ -221,6 +245,49 @@ namespace ArcaneBrigade
                 color.a = 1 - travel;
                 fragment.color = color;
             }
+        }
+        /// <summary>An ordinary enemy's death: struck white, squashed flat against the blow, then swelling and bursting
+        /// apart while the ink burst (ExplosionFeedback.Pop) blooms over it. Done within ~0.2 s; no body is left lying.</summary>
+        private static void DrawPop(Remnant remnant)
+        {
+            bool still = PresentationSettings.ReducedMotion;
+            if (remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0 && remnant.DefeatFrames[0] != null && !still) remnant.Body.sprite = remnant.DefeatFrames[0];
+            float t = Mathf.Clamp01(remnant.Age / Mathf.Max(0.01f, remnant.Duration));
+            const float hold = 0.38f; // share of the pop spent squashed under the hit
+            float squash = t < hold ? Mathf.Sin(t / hold * Mathf.PI * 0.5f) : 1f;
+            float burst = t < hold ? 0f : (t - hold) / (1f - hold);
+            float punch = Mathf.Sqrt(remnant.Force);
+            float sx = still ? 1f : Mathf.Lerp(1f, 1f + 0.26f * punch, squash) + 0.32f * burst * punch;
+            float sy = still ? 1f : Mathf.Lerp(1f, 1f - 0.3f, squash) + 0.62f * burst * punch;
+            float alpha = 1f - Mathf.Pow(burst, 0.8f);
+            float poseScale = remnant.SourceHeight / Mathf.Max(.01f, remnant.Body.sprite.bounds.size.y);
+            // squash about the feet, swell about the middle as it comes apart
+            float pivot = remnant.Body.sprite.pivot.y / remnant.Body.sprite.rect.height;
+            float feet = pivot * remnant.SourceHeight * remnant.BodyScale.y * (Mathf.Lerp(1f, 0.7f, squash) - 1f) * (1f - burst);
+            float pivotOffset = (pivot - remnant.SourcePivot) * remnant.SourceHeight * remnant.BodyScale.y;
+            Vector2 knock = still ? Vector2.zero : remnant.Direction * (0.07f * punch * squash);
+            remnant.Root.position = (Vector3)(remnant.Position + knock);
+            remnant.Body.transform.localPosition = remnant.BodyPosition + Vector3.up * (pivotOffset + feet);
+            remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(sx * poseScale, sy * poseScale, 1));
+            remnant.Body.transform.localRotation = remnant.BodyRotation * Quaternion.Euler(0, 0, still ? 0 : (remnant.Direction.x < 0 ? 1 : -1) * 6f * squash * (1f - burst));
+            // the hit flash: full white on the blow (a soft warm tint with reduced flashes), burning off as it bursts
+            float flash = PresentationSettings.ReducedFlashes ? 0.25f * (1f - t) : t < hold ? 1f : 1f - burst * 0.7f;
+            remnant.Properties.Clear();
+            Rect rectangle = remnant.Body.sprite.rect; Texture texture = remnant.Body.sprite.texture;
+            remnant.Properties.SetVector(UvRectId, new Vector4(rectangle.x / texture.width, rectangle.y / texture.height, rectangle.width / texture.width, rectangle.height / texture.height));
+            remnant.Properties.SetVector(DissolveId, Vector4.zero);
+            remnant.Properties.SetFloat(FlashId, flash);
+            remnant.Body.SetPropertyBlock(remnant.Properties);
+            Color body = Color.Lerp(PresentationSettings.ReducedFlashes ? remnant.BodyColor : Color.white, remnant.BodyColor, burst); body.a = alpha; remnant.Body.color = body;
+            remnant.Shadow.transform.localScale = remnant.ShadowScale * (1f + 0.25f * squash - 0.6f * burst);
+            Color shadow = remnant.ShadowColor; shadow.a *= alpha; remnant.Shadow.color = shadow;
+            remnant.Grounded.Display(remnant.Body.sprite, new Vector2(remnant.Root.position.x, remnant.Position.y - remnant.BodyScale.y * remnant.SourceHeight * 0.5f), remnant.BodyScale.x * poseScale * remnant.Body.sprite.bounds.size.x * 0.75f, 0, 0.34f * alpha);
+            // whatever it held is knocked loose and goes with the body
+            remnant.Grip.localPosition = remnant.GripPosition + (still ? Vector3.zero : new Vector3(remnant.Direction.x * 0.18f * burst, 0.12f * burst, 0));
+            remnant.Grip.localRotation = remnant.GripRotation * Quaternion.Euler(0, 0, still ? 0 : burst * 70 * (remnant.Direction.x < 0 ? -1 : 1));
+            float held = alpha * alpha;
+            SetAlpha(remnant.Weapon, held); SetAlpha(remnant.Hand, held); SetAlpha(remnant.DrawHand, held);
+            foreach (SpriteRenderer fragment in remnant.Fragments) fragment.enabled = false;
         }
         private static void SetAlpha(SpriteRenderer renderer, float alpha) { Color color = renderer.color; color.a = alpha; renderer.color = color; }
     }

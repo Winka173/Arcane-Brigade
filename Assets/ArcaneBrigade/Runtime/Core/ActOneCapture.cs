@@ -37,6 +37,7 @@ namespace ArcaneBrigade
             if (!RunPaths.Root.Contains("ArcaneBrigadeDiagnostics")) { Application.Quit(1); yield break; }
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.6f);
+            if (ShopLayoutCapture.Requested) { yield return ShopLayoutCapture.Run(this, root, Shot); Application.Quit(0); yield break; }
             // A: shop 8, the Last Customer's offer, then the long table with a stranger and the travelling four
             using (var session = new RunSession(catalog))
             {

@@ -46,7 +46,10 @@ namespace ArcaneBrigade
                 position += value.Direction * value.Weapon.Range * 0.4f;
             }
             else if (magic) { frames = library.Magic; width = 0.48f; duration = 0.18f; position += value.Direction * 0.65f; }
-            else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy) { frames = library.Death; width = value.Subject != null && value.Subject.Definition.IsBoss ? value.Subject.Definition.BodyHeight * 1.4f : 0.7f; duration = value.Subject != null && value.Subject.Definition.IsBoss ? 0.8f : 0.34f; }
+            // ordinary kills are drawn by ExplosionFeedback.Pop (flash, ink burst, chips) around the squashing body; a
+            // second puff here would only stack another sprite on the same spot, so the event is consumed
+            else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy && (value.Subject == null || !value.Subject.Definition.IsBoss)) return true;
+            else if (value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy) { frames = library.Death; width = value.Subject.Definition.BodyHeight * 1.4f; duration = 0.8f; }
             else if (value.Kind == CombatEventKind.SignaturePulse || value.Kind == CombatEventKind.SignatureBurst || value.Kind == CombatEventKind.ChestOpened || value.Kind == CombatEventKind.Heal || value.Kind == CombatEventKind.Proc)
             { frames = library.Magic; width = Mathf.Clamp(value.Value * 0.25f, 0.55f, 1.2f); duration = 0.3f; }
             else return false;

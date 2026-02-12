@@ -34,8 +34,9 @@ namespace ArcaneBrigade.Editor
                 for(int i=0;i<2;i++)
                 {
                     var shop=NightLanternField.PositionFor(i,catalog.WorldSize,seed,true);
-                    float row=i==0?-4.65f:-2.25f;
-                    Check(Mathf.Abs(shop.x)>=7.37f && Mathf.Abs(shop.x)<=7.63f && Mathf.Abs(shop.y-row)<=.151f,"Shop lamps stay in safe outer margins seed="+seed+" / "+i);
+                    // only a wish in the shop: ShopLayout moves each lamp to the nearest spot clear of stalls, chair path and props
+                    Vector2 wish=i==0?new Vector2(-5.0f,-4.72f):new Vector2(-3.55f,.55f);
+                    Check(Mathf.Abs(shop.x-wish.x)<=.041f && Mathf.Abs(shop.y-wish.y)<=.061f && Vector2.Distance(shop,WorldShop.ExitPosition)>1.5f,"Shop lamps wish for open corners inside the room seed="+seed+" / "+i);
                 }
             }
             Check(JsonUtility.ToJson(randomBefore)==JsonUtility.ToJson(UnityEngine.Random.state),"Lantern decoration never advances Unity's gameplay random state");

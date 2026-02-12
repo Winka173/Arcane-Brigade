@@ -71,7 +71,7 @@ namespace ArcaneBrigade.Editor
                 Vector2 position = enemy.Position;
                 feedback.Play(visual, enemy);
                 require(feedback.ActiveCount == 1 && health == enemy.Health && position == enemy.Position, "Death snapshot is independent of logical body");
-                feedback.Advance(0.3f);
+                feedback.Advance(0.1f); // an ordinary enemy pops in ~0.2 s (squash and burst); still on screen after cleanup
                 require(feedback.ActiveCount == 1, "Death remnant survives logical cleanup");
                 feedback.Advance(2);
                 require(feedback.ActiveCount == 0, "Death remnant and attached grip expire");

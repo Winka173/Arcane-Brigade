@@ -28,7 +28,7 @@ namespace ArcaneBrigade
         public bool TryInspect(int index)
         {
             if(!Allowed || !Near(index))return false;
-            if(index==0)owner.GetComponent<MienChoPresentation>().Show(Mathf.Max(0,MienChoStory.Available(owner.Session.State)-1));
+            if(index==0)owner.GetComponent<MienChoPresentation>().OpenNext(); // the oldest unread page first, else the newest chapter
             else owner.GetComponent<WaitingJourney>().Show();
             bool opened=index==0?owner.GetComponent<MienChoPresentation>().Open:owner.GetComponent<WaitingJourney>().Open;
             if(opened)InputConsumedFrame=Time.frameCount;

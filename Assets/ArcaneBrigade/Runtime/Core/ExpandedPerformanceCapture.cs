@@ -235,9 +235,9 @@ namespace ArcaneBrigade
                     }
                     if (kind == "enemies" && phase == 3)
                     {
-                        deaths.Advance(.45f);
+                        deaths.Advance(.06f); // ordinary enemies pop (struck pose, squash, burst) instead of lying in a painted collapse
                         foreach (SpriteRenderer corpse in deaths.GetComponentsInChildren<SpriteRenderer>().Where(view => view.name == "Body" && view.enabled))
-                            Check(reduced || entries.Skip(first).Take(count).Any(entry => entry.Frames[3] == corpse.sprite), "Enemy pooled death displays its painted collapse");
+                            Check(reduced || entries.Skip(first).Take(count).Any(entry => entry.Frames[2] == corpse.sprite || entry.Frames[3] == corpse.sprite), "Enemy pooled death shows its painted struck pose as it pops");
                         Check(deaths.ActiveCount == count, "Every normal/evolved enemy has an actual pooled death");
                     }
                     LayerExpandedRemnants(); caption = kind.ToUpperInvariant() + " / PAGE " + first / 8 + " / POSE " + phase;

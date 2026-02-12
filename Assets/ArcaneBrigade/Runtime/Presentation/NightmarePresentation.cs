@@ -26,10 +26,14 @@ namespace ArcaneBrigade
         public bool EndingVisible => owner != null && owner.Session.EndingPending && owner.TerminalDelayComplete;
         public int VisibleLandmarks { get; private set; }
         public int DeparturePartyCount => departure.PartyCount;
+        /// <summary>Who gets a spot first when the shop is crowded: the journal cabinet, then the lamp, the reserved place,
+        /// the keepsakes, and last the landmark that would only stand behind the merchant.</summary>
+        private static int LandmarkPriority(int index) => index == 2 ? 0 : index == 1 ? 1 : index == 5 ? 4 : index >= 6 ? 5 : index == 4 ? 9 : 6;
         public void Configure(ArenaController controller)
         {
             owner = controller; assets = NightmareAssets.Current; voice = gameObject.AddComponent<MerchantVoice>();
             gameObject.AddComponent<ShopSceneryLanding>().Configure(controller);
+            gameObject.AddComponent<ShopLayout>().Configure(controller);
             gameObject.AddComponent<NightmareLighting>().Configure(controller);
             gameObject.AddComponent<SharedLightField>().Configure(controller);
             gameObject.AddComponent<NightLanternField>().Configure(controller);
@@ -91,11 +95,19 @@ namespace ArcaneBrigade
                 Vector2 position = NightmareLighting.LandmarkPosition(index, shop, half);
                 if (!shop && index == 3) position = new Vector2(half.x - 2, .5f);
                 if (!shop && index == 7) position = new Vector2(-half.x + 4, -half.y + 2.3f);
-                if (shop && index == 6) position = new Vector2(-4.9f, -4.2f);
-                if (shop && index == 7) position = new Vector2(-3.3f, -4.2f);
-                if (shop) position = NightmareHaunting.UnsettledPosition(index, state.Seed, state.Wave, now, position, owner.Simulation.Champion.Position, owner.Simulation.Champion.Facing);
                 float motion = 0;
                 float width = index < 5 ? index == 0 ? 2.4f : 3.2f : .8f;
+                if (shop && ShopLayout.Active != null)
+                {
+                    // the shop is a small room: the big landmarks come in a little smaller and every one asks the layout
+                    // for a spot clear of the stalls, the chair's path, the HUD and each other (or sits this shop out)
+                    if (index == 1) width = 2.0f; else if (index == 2) width = 2.2f; else if (index == 4) width = 2.6f;
+                    Vector2 inked = SpriteInkMetrics.BoundsOf(view.sprite).size * (width / Mathf.Max(.01f, view.sprite.bounds.size.x));
+                    if (!ShopLayout.Active.Place("landmark" + index, position, inked, LandmarkPriority(index), index == 1 || index == 2, false, out position, out float fit))
+                    { view.enabled = false; shadows[index].Hide(); puppets[index].Hide(); suspensions[index].Hide(); continue; }
+                    width *= fit; // the journal cabinet and the lamp come in smaller rather than not at all
+                }
+                if (shop) position = NightmareHaunting.UnsettledPosition(index, state.Seed, state.Wave, now, position, owner.Simulation.Champion.Position, owner.Simulation.Champion.Facing);
                 view.transform.position = position;
                 float scale = width / Mathf.Max(.01f,view.sprite.bounds.size.x);
                 view.transform.localScale = new Vector3(scale * (1 + motion),scale * (1 - motion),1);

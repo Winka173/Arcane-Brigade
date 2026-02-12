@@ -109,7 +109,9 @@ namespace ArcaneBrigade
             }
             else if (value.Kind == CombatEventKind.Kill)
             {
-                Spawn(Shape.Puff, value.Position, 0, 0.6f, 0.32f, new Color(0.17f, 0.13f, 0.26f));
+                // ordinary enemy kills already burst in ExplosionFeedback.Pop; only other deaths get the soft puff
+                if (value.Faction != Faction.Enemy || value.Subject != null && value.Subject.Definition.IsBoss)
+                    Spawn(Shape.Puff, value.Position, 0, 0.6f, 0.32f, new Color(0.17f, 0.13f, 0.26f));
             }
             else if (value.Kind == CombatEventKind.Pickup)
                 Spawn(Shape.Star, value.Position, 0, 0.23f, 0.25f, value.Loot == LootKind.Egg ? new Color(0.45f, 1f, 0.86f) : value.Loot == LootKind.Heart ? new Color(1f, 0.4f, 0.58f) : new Color(1f, 0.88f, 0.45f));

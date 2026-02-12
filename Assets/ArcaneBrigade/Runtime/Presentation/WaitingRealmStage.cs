@@ -19,7 +19,21 @@ namespace ArcaneBrigade
         public bool ChairVisible => chair != null && chair.enabled;
         public bool Asking => asking;
         private bool ShopChair => owner?.Session != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.State.Endless && owner.Session.State.Wave <= ActOneCanon.Waves;
-        public Vector2 ChairAnchor => ShopChair ? ActOneCanon.ChairPosition(owner.Session.State.Wave) : new Vector2(7.4f, 3.6f);
+        public Vector2 ChairAnchor => ShopChair ? ActOneCanon.ChairPosition(owner.Session.State.Wave) : ActOneCanon.ChairPosition(1);
+        /// <summary>Painted width and height of the chair as drawn (ShopLayout reserves this at all 19 positions).</summary>
+        // the older wide armchair is drawn a little smaller so it fits the same reserved spots as the warm chair
+        private float ChairHeight => warm != null ? 1.55f : 1.45f;
+        public Vector2 ChairSize
+        {
+            get
+            {
+                Sprite shown = chair != null && chair.sprite != null ? chair.sprite : warm != null ? warm : fallback;
+                if (shown == null) return new Vector2(1.3f, 1.6f);
+                Rect ink = SpriteInkMetrics.BoundsOf(shown);
+                float scale = ChairHeight / Mathf.Max(.01f, ink.height);
+                return ink.size * scale;
+            }
+        }
         private bool Near => ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null && Vector2.Distance(owner.Simulation.Champion.Position, ChairAnchor) < 1.35f;
         /// <summary>True while the chair has the traveller's attention, so the shop does not also act on the same press.</summary>
         public bool Engaged => asking || Near && owner.Session.SitCloserAvailable;
@@ -72,7 +86,7 @@ namespace ArcaneBrigade
                 int lies = ShopChair ? ActOneCanon.ChairOffering(state.Wave, MienChoStory.Choice(state, 8)) : 0;
                 Sprite shown = lies > 0 && offerings[lies] != null ? offerings[lies] : warm != null ? warm : fallback;
                 if (chair.sprite != shown) chair.sprite = shown;
-                chair.transform.localScale = Vector3.one * ((warm != null ? 1.55f : 2f) / Mathf.Max(.01f, chair.sprite.bounds.size.y));
+                chair.transform.localScale = Vector3.one * (ChairHeight / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(chair.sprite).height));
                 chair.sortingOrder = WorldSpriteGrounding.SortAt(position.y);
                 // The unreachable seat is a narrative landmark, never a hidden threat.
                 chair.color = dawn ? new Color(1, .95f, .86f) : Color.Lerp(new Color(.85f, .78f, .69f), new Color(.24f, .22f, .3f), NightmareRules.Depth(state.Wave) / 4f);

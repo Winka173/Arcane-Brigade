@@ -24,17 +24,23 @@ namespace ArcaneBrigade
             if (radius <= 0) return 0;
             return Mathf.Exp(-offset.sqrMagnitude * 2.7f / (radius * radius));
         }
+        /// <summary>Where each landmark would like to stand. In the shop these are only wishes: ShopLayout moves a landmark
+        /// to the nearest free spot (or leaves it out) so it never covers a stall, the chair's path, the HUD or another
+        /// prop; use <see cref="ShopLandmark"/> for where it actually is.</summary>
         public static Vector2 LandmarkPosition(int index, bool shop, Vector2 half) => index switch
         {
             0 => shop ? new Vector2(6.5f, 1) : half - Vector2.one * 2,
-            1 => shop ? new Vector2(-6.8f, -3.7f) : new Vector2(-half.x + 2, -half.y + 2),
-            2 => shop ? new Vector2(-6.8f, .5f) : new Vector2(-half.x + 2, half.y - 2),
+            1 => shop ? new Vector2(-7.15f, -4.7f) : new Vector2(-half.x + 2, -half.y + 2),
+            2 => shop ? new Vector2(-7.2f, -.5f) : new Vector2(-half.x + 2, half.y - 2),
             3 => shop ? new Vector2(6.5f, -3.7f) : new Vector2(half.x - 2, -half.y + 2),
-            4 => new Vector2(0, shop ? 1.4f : half.y - 2),
-            5 => new Vector2(6.5f, -1),
-            6 => new Vector2(-6, -3.8f),
-            _ => new Vector2(-5.9f, -3.4f)
+            4 => shop ? new Vector2(3.9f, 2.9f) : new Vector2(0, half.y - 2),
+            5 => shop ? new Vector2(4.6f, -.75f) : new Vector2(6.5f, -1),
+            6 => shop ? new Vector2(-3.3f, -4.75f) : new Vector2(-6, -3.8f),
+            _ => shop ? new Vector2(-2.1f, -4.75f) : new Vector2(-5.9f, -3.4f)
         };
+        /// <summary>The landmark's real floor contact in the shop after layout (falls back to its wish).</summary>
+        public static Vector2 ShopLandmark(int index, Vector2 half)
+            => ShopLayout.Active != null && ShopLayout.Active.TryFoot("landmark" + index, out Vector2 foot) ? foot : LandmarkPosition(index, true, half);
         public void Configure(ArenaController controller) { owner = controller; Active = this; }
         private void LateUpdate()
         {
@@ -47,8 +53,8 @@ namespace ArcaneBrigade
             Depth = Mathf.Lerp(Depth, NightmareRules.Depth(owner.Session.State.Wave), blend);
             Dawn = Mathf.Lerp(Dawn, dawn ? 1 : 0, blend);
             Vector2 half = owner.WorldBounds * .5f;
-            Vector2 lamp = LandmarkPosition(1, shop, half) + Vector2.up * .6f;
-            Vector2 window = LandmarkPosition(2, shop, half);
+            Vector2 lamp = (shop ? ShopLandmark(1, half) : LandmarkPosition(1, false, half)) + Vector2.up * .6f;
+            Vector2 window = shop ? ShopLandmark(2, half) : LandmarkPosition(2, false, half);
             Vector2 player = owner.VisualChampionPosition;
             float breath = reduced || PresentationSettings.ReducedFlashes ? 1 : 1 + Mathf.Sin(owner.PresentationClock * 1.15f) * .025f;
             float retreat = shop ? 1 : Mathf.Lerp(1, .08f, Depth / 4 * (1 - Dawn));

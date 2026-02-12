@@ -73,6 +73,40 @@ namespace ArcaneBrigade
                 while (Time.realtimeSinceStartup - started < t) yield return null;
                 yield return Shot("B-shock-" + Mathf.RoundToInt(t * 1000) + "ms");
             }
+            // D: ordinary deaths: every enemy near the hero is left on its last breath, the brigade's real hits finish them,
+            // and the pops are photographed as they happen (no bowls, no lying bodies: flash, squash, ink burst, gone)
+            yield return new WaitForSecondsRealtime(0.8f);
+            var deaths = owner.GetComponent<DeathFeedback>();
+            int popsBefore = blasts.PopsShown;
+            for (int round = 0; round < 3; round++)
+            {
+                hero = owner.Simulation.Champion.Position;
+                foreach (UnitState unit in owner.Simulation.Units)
+                    if (unit.Alive && unit.Faction == Faction.Enemy && !unit.Definition.IsBoss && Vector2.Distance(unit.Position, hero) < 7f) unit.Health = Mathf.Min(unit.Health, 0.01f);
+                started = Time.realtimeSinceStartup;
+                foreach (float t in new[] { 0.05f, 0.12f, 0.22f })
+                {
+                    while (Time.realtimeSinceStartup - started < t) yield return null;
+                    yield return Shot("D-pops-" + round + "-" + Mathf.RoundToInt(t * 1000) + "ms");
+                }
+                log.Add("pops round " + round + ": explosions active " + blasts.ActiveCount + ", death remnants active " + deaths.ActiveCount);
+                yield return new WaitForSecondsRealtime(0.6f);
+            }
+            log.Add("enemy pops shown " + (blasts.PopsShown - popsBefore));
+            // E: a staged crit pop of a large body and the closing blast of a boss finale, frame by frame
+            hero = owner.Simulation.Champion.Position;
+            blasts.Pop(catalog.Unit("UndeliveredKing") ?? owner.Simulation.Champion.Definition, hero + new Vector2(2.2f, 0.6f), true, 1.4f, DamageElement.Ember);
+            blasts.BossFinale(hero + new Vector2(-2.6f, 0.4f), 2.4f);
+            UnitDefinition ordinary = null;
+            foreach (UnitState unit in owner.Simulation.Units) if (unit.Faction == Faction.Enemy && !unit.Definition.IsBoss) { ordinary = unit.Definition; break; }
+            blasts.Pop(ordinary, hero + new Vector2(0.6f, -1.9f), false, 0.1f, DamageElement.Physical);
+            blasts.Pop(ordinary, hero + new Vector2(1.9f, -1.6f), false, 1.2f, DamageElement.Frost);
+            started = Time.realtimeSinceStartup;
+            foreach (float t in new[] { 0.04f, 0.12f, 0.25f, 0.45f })
+            {
+                while (Time.realtimeSinceStartup - started < t) yield return null;
+                yield return Shot("E-crit-and-boss-" + Mathf.RoundToInt(t * 1000) + "ms");
+            }
             // C: twelve seconds of the real fight: how hard and how often the screen moves and holds
             float peak = 0, sum = 0; int frames = 0, holdFrames = 0, holds = 0; bool wasHeld = false;
             started = Time.realtimeSinceStartup;

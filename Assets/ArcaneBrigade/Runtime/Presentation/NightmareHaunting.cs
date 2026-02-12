@@ -44,11 +44,15 @@ namespace ArcaneBrigade
             fog.enabled = !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible;
             fog.transform.localScale = new Vector3(owner.WorldBounds.x, owner.WorldBounds.y, 1);
             int depth = NightmareRules.Depth(state.Wave);
-            reserved.enabled = depth >= 2 && state.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen;
+            // the little silhouette sits on the reserved place itself, wherever the shop layout put it this visit
+            bool tagged = depth >= 2 && state.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen;
+            Vector2 place = NightmareLighting.LandmarkPosition(5, true, owner.WorldBounds * .5f);
+            if (tagged && ShopLayout.Active != null) tagged = ShopLayout.Active.TryFoot("landmark5", out place);
+            reserved.enabled = tagged;
             if (reserved.enabled)
             {
                 reserved.sprite = owner.Simulation.Champion.Definition.Body;
-                reserved.transform.position = NightmareLighting.LandmarkPosition(5, true, owner.WorldBounds * .5f) + Vector2.up * .17f;
+                reserved.transform.position = place + Vector2.up * .17f;
                 reserved.transform.localScale = Vector3.one * (.27f / Mathf.Max(.01f, reserved.sprite.bounds.size.x));
                 reserved.color = new Color(.12f, .08f, .19f, .72f);
             }

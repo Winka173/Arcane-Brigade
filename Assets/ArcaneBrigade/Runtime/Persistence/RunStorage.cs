@@ -33,6 +33,8 @@ namespace ArcaneBrigade
         public bool NightmareLampPromise;
         public bool NightmareShopClosed;
         public bool ActOneChairSpoke; // after the first dawn, the menu armchair has asked its question once
+        public bool StoryPagesAutoOpen; // false (default): new journal pages only show a sealed note; true: they open by themselves
+        public bool StoryArrivalShown;  // the wave-1 arrival page has opened by itself once (first run start)
         public List<string> CompletedRuns = new List<string>();
         public List<string> SeenUnits = new List<string>();
         public List<string> SeenItems = new List<string>();

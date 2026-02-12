@@ -268,7 +268,7 @@ namespace ArcaneBrigade
                     break;
                 case Page.Settings: DrawSettings(); break;
                 case Page.Help:
-                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Moving is the only control.\nYour companions fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, companions, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  Walk to the archive cabinet in the shop and click it to reread chapters. The floating meeting chair opens paths and companion stories.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your companions' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
+                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Moving is the only control.\nYour companions fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, companions, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; press J, click the note, or click the archive cabinet in the shop to read and reread chapters. Settings can make pages open by themselves. The floating meeting chair opens paths and companion stories.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your companions' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
                     break;
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
@@ -578,7 +578,7 @@ namespace ArcaneBrigade
             DrawVolume(204, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
             DrawVolume(248, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
             DrawVolume(292, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
-            if (Button(new Rect(75, 350, 540, 55), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
+            if (Button(new Rect(75, 340, 540, 52), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
             {
                 int before = profile.Cosmetic;
                 int candidate = (before + 1) % 3;
@@ -587,15 +587,23 @@ namespace ArcaneBrigade
                 if (!SaveProfile()) profile.Cosmetic = before;
                 PresentationSettings.Apply(profile);
             }
-            ToggleOption(new Rect(645, 350, 560, 55), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
-            ToggleOption(new Rect(75, 425, 540, 55), "REDUCED AUDIO CLUTTER", profile.ReducedAudio, value => profile.ReducedAudio = value);
-            ToggleOption(new Rect(645, 425, 560, 55), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
-            ToggleOption(new Rect(75, 500, 540, 55), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
-            ToggleOption(new Rect(645, 500, 560, 55), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
-            ToggleOption(new Rect(75, 565, 365, 44), "REDUCED SHAKE", profile.ReducedShake, value => profile.ReducedShake = value);
-            ToggleOption(new Rect(460, 565, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
-            ToggleOption(new Rect(845, 565, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
-            Label(new Rect(75, 620, 1130, 65), RunUIHints.Menu + "\nCosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
+            ToggleOption(new Rect(645, 340, 560, 52), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
+            ToggleOption(new Rect(75, 402, 540, 52), "REDUCED AUDIO CLUTTER", profile.ReducedAudio, value => profile.ReducedAudio = value);
+            ToggleOption(new Rect(645, 402, 560, 52), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
+            ToggleOption(new Rect(75, 464, 540, 52), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
+            ToggleOption(new Rect(645, 464, 560, 52), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
+            ToggleOption(new Rect(75, 526, 365, 44), "REDUCED SHAKE", profile.ReducedShake, value => profile.ReducedShake = value);
+            ToggleOption(new Rect(460, 526, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
+            ToggleOption(new Rect(845, 526, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
+            // story pages: open by themselves after a wave, or only leave a sealed note (press J when you want to read)
+            if (Button(new Rect(75, 578, 1130, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN AUTOMATICALLY" : "NOTIFY ONLY  ·  PRESS J TO READ")))
+            {
+                bool before = profile.StoryPagesAutoOpen;
+                profile.StoryPagesAutoOpen = !before;
+                CheckpointAudio.PlayInterfaceId("ui.setting");
+                if (!SaveProfile()) profile.StoryPagesAutoOpen = before;
+            }
+            Label(new Rect(75, 626, 1130, 64), RunUIHints.Menu + "\nCosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
         }
 
         private void DrawVolume(float top, string caption, float value, Action<float> setter)
