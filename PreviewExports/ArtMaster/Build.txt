@@ -1,0 +1,6 @@
+Scope: Available artwork; Customer HD frames and two companion atlas edge repairs pending image-generation quota
+Result: Succeeded
+Errors: 0
+Warnings: 20
+Bytes: 3482276566
+Player: Builds/ArtMaster/ArcaneBrigade.exe

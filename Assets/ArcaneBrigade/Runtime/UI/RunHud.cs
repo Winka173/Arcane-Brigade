@@ -193,9 +193,11 @@ namespace ArcaneBrigade
                 if (simulation.Boss != null && simulation.Boss.Alive)
                 {
                     float bossShare = Mathf.Clamp01(simulation.Boss.Health / simulation.Boss.Definition.Health);
-                    ArcadeSkin.Slant(new Rect(420, 908, 420, 40), ArcadeSkin.Danger);
+                    string bossTitle = RunUICopy.UnitName(simulation.Boss.Definition).ToUpperInvariant();
+                    float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(new GUIContent(bossTitle)).x + 16, 350, 990);
+                    ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
                     Sprite(new Rect(432, 906, 42, 42), simulation.Boss.Definition.Body);
-                    GUI.Label(new Rect(480, 908, 350, 40), RunUICopy.UnitName(simulation.Boss.Definition).ToUpperInvariant(), bossName);
+                    GUI.Label(new Rect(480, 908, bossTitleWidth, 40), bossTitle, bossName);
                     ArcadeSkin.Line(new Rect(424, 954, 1076, 40), new Color(0.01f, 0.01f, 0.02f, 0.75f));
                     ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
                     ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);

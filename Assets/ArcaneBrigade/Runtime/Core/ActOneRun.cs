@@ -41,6 +41,7 @@ namespace ArcaneBrigade
                 if (source == null || source.Weapon == null) continue;
                 UnitDefinition unit = BuildUnit(source, source.Weapon, ActOneCanon.StoryTier(State.Wave), true);
                 unit.DisplayName = ActOneCanon.StoryNames[index];
+                ActOneArtwork.Apply(unit);
                 party.Add(unit);
             }
             CombatCatalog.StoryCompanions = party.ToArray();

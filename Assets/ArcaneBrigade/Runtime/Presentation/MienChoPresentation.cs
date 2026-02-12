@@ -60,6 +60,7 @@ namespace ArcaneBrigade
             panels[0] = Resources.Load<Texture2D>("MienCho/WithheldDawn");
             panels[1] = Resources.Load<Texture2D>("MienCho/WaitingRoom");
             panels[2] = Resources.Load<Texture2D>("MienCho/OpenDawn");
+            panels[2] = Resources.Load<Texture2D>("MienCho/ActOne/Panel_Dawn") ?? panels[2];
             for (int i = 0; i < zonePanels.Length; i++) zonePanels[i] = Resources.Load<Texture2D>("MienCho/ActOne/" + ActOneCanon.ZonePanel[i]);
         }
         private void Update()
@@ -215,11 +216,17 @@ namespace ArcaneBrigade
             var c = MienChoStory.For(owner.Session.State)[chapter];
             int zone = System.Array.IndexOf(ActOneCanon.ZonePanel, c.Image);
             var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone == 2 || zone == 3 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
+            if (chapter == ActOneCanon.HobChapter && page == 0)
+                image = Resources.Load<Texture2D>("MienCho/Journey/PerfectRoom_Hob_v1") ?? image;
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
             GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.ZoneNames[ActOneCanon.Zone(c.Wave)] + " / " + c.Title, title);
             // the lanterns still burning are shown as the HUD's own lantern row, not counted out in words
-            GUI.Label(new Rect(80, 785, 680, 80), "EVIDENCE\n" + c.Evidence, small);
-            NightHud.Lanterns(new Rect(80, 862, 230, 30), owner.Session.State);
+            string evidenceArt = chapter switch { 1 or 18 or 19 => "Item_Receipt", 12 => "Item_SewnLetter", 15 => "Item_Umbrella", 16 => "Item_ExitKey", _ => null };
+            if (chapter == ActOneCanon.HobChapter && page == 0) evidenceArt = null;
+            Sprite evidence = ActOneArtwork.Picture(evidenceArt);
+            if (evidence != null) RunHud.Sprite(new Rect(75, 785, 125, 105), evidence);
+            GUI.Label(new Rect(evidence != null ? 220 : 80, 785, evidence != null ? 550 : 680, 80), "EVIDENCE\n" + c.Evidence, small);
+            NightHud.Lanterns(new Rect(evidence != null ? 220 : 80, 862, 230, 30), owner.Session.State);
             if (Press(new Rect(80, 710, 680, 65), "THE PEOPLE TRAVELLING WITH YOU")) ShowLives();
             GUI.Label(new Rect(850, 145, 990, 50), "CHAPTER " + (chapter + 1) + " / PAGE " + (page + 1) + " OF " + c.Pages.Length, small);
             string text = c.Pages[page] + ActOneCanon.PageExtra(owner.Session.State, chapter, page);
@@ -325,7 +332,7 @@ namespace ArcaneBrigade
                 if (story >= 0) id = ActOneCanon.StoryIds[story];
                 var unit = owner.Content.Unit(id);
                 bool stranger = story < 0 && owner.Session.Stranger(id);
-                RunHud.Sprite(new Rect(100, 220, 560, 470), unit.Body);
+                RunHud.Sprite(new Rect(100, 220, 560, 470), story >= 0 ? ActOneArtwork.Picture(ActOneCanon.StoryNames[story]) ?? unit.Body : unit.Body);
                 GUI.Label(new Rect(100, 730, 650, 120), (story >= 0 ? ActOneCanon.StoryNames[story] : stranger ? "???" : unit.DisplayName) + "\n" + (creature + 1) + " / " + ids.Count, title);
                 string text = stranger ? "A STRANGER\nYou sold your memory of them to the Last Customer. They still travel with you. You do not know who they are.\n\nThey introduce themselves again at every rest. They are kind about it."
                     : story >= 0 ? "TRAVELLING WITH YOU\n" + CreatureLives.Arc(id, state.Wave)

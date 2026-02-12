@@ -18,6 +18,8 @@ namespace ArcaneBrigade
         public void Build(UnitState unit, SpriteRenderer reference)
         {
             Clear(); body = reference; anatomy = BossAnatomy.For(unit.Definition);
+            // Canon bosses are drawn as complete bodies; stand-in organs must not cover the new silhouette.
+            if (ActOneArtwork.Has(unit.Definition)) { anatomy = null; return; }
             if (anatomy == null) return;
             Rect ink = SpriteInkMetrics.BoundsOf(body.sprite);
             artworkHeight = ink.height;

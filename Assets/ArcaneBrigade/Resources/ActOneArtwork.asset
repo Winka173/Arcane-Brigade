@@ -1,0 +1,350 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7dab7af8cc9d1488c42e32901d5bf0, type: 3}
+  m_Name: ActOneArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.ActOneArtwork
+  Entries:
+  - Name: Floor_Crossing
+    Frames:
+    - {fileID: 21300000, guid: d2bccd7aa72a2a2499b84137e78e98f8, type: 3}
+    Motion: {fileID: 0}
+  - Name: Floor_House
+    Frames:
+    - {fileID: 21300000, guid: ac6a68ddacb8a0b44b456bc994420bc8, type: 3}
+    Motion: {fileID: 0}
+  - Name: Floor_NightYouHid
+    Frames:
+    - {fileID: 21300000, guid: 4b264d4749c53004c98fbb661193e488, type: 3}
+    Motion: {fileID: 0}
+  - Name: Floor_PerfectRoom
+    Frames:
+    - {fileID: 21300000, guid: a0744b7fce4e7f74f8bd1a3c6bc31111, type: 3}
+    Motion: {fileID: 0}
+  - Name: Floor_Platform
+    Frames:
+    - {fileID: 21300000, guid: 6161c71dc8fd07e418ac27a02e091c90, type: 3}
+    Motion: {fileID: 0}
+  - Name: Form_TeaSpill
+    Frames:
+    - {fileID: 21300000, guid: 31f7d77990d86d64dbc1782456369c65, type: 3}
+    Motion: {fileID: 0}
+  - Name: Hob
+    Frames:
+    - {fileID: -2049651177, guid: 0a36ac8e8907b9942a469890ea6445f2, type: 3}
+    - {fileID: 2004254843, guid: 0a36ac8e8907b9942a469890ea6445f2, type: 3}
+    - {fileID: 2046584880, guid: 0a36ac8e8907b9942a469890ea6445f2, type: 3}
+    - {fileID: -1770721855, guid: 0a36ac8e8907b9942a469890ea6445f2, type: 3}
+    Motion: {fileID: 11400000, guid: 6f15a1b549332de4eaf73a475b29f8c5, type: 2}
+  - Name: Item_ExitKey
+    Frames:
+    - {fileID: 21300000, guid: 78f526cbc0c75ed4ebda1e09f88e8781, type: 3}
+    Motion: {fileID: 0}
+  - Name: Item_Receipt
+    Frames:
+    - {fileID: 21300000, guid: 12ddab55053185a4d9a3e51761efd206, type: 3}
+    Motion: {fileID: 0}
+  - Name: Item_SewnLetter
+    Frames:
+    - {fileID: 21300000, guid: 7ff6889d246611d4d8e07fc9d00dcb13, type: 3}
+    Motion: {fileID: 0}
+  - Name: Item_ThursdayShoes
+    Frames:
+    - {fileID: 21300000, guid: f988a9705640f6c4990b588255013baa, type: 3}
+    Motion: {fileID: 0}
+  - Name: Item_Umbrella
+    Frames:
+    - {fileID: 21300000, guid: 206428631c3caf34da2854feb29767c1, type: 3}
+    Motion: {fileID: 0}
+  - Name: LastCustomer_Blank
+    Frames:
+    - {fileID: 21300000, guid: 22359f150cdb5104f8a4f6050ac86b3b, type: 3}
+    Motion: {fileID: 0}
+  - Name: LastCustomer_BorrowedFace
+    Frames:
+    - {fileID: 456220834, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 746949469, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 191799247, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 1881180593, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -261601275, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -919823666, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 949413496, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -2070251586, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -1939869431, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 1296477565, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 1284064837, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: 627994294, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -791803848, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -79251855, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -1546317705, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    - {fileID: -771759733, guid: 1400b3fc50b2e904d81da05bef72bac5, type: 3}
+    Motion: {fileID: 11400000, guid: 50c45eac92689aa4dbccf0a2377bcc12, type: 2}
+  - Name: LastCustomer_Pleasant
+    Frames:
+    - {fileID: -1080914692, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -678083254, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: 2068739757, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -1814785972, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: 1505422590, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: 849660109, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -444173407, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -1069696687, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: 1014917292, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -2053590689, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -2008261395, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -749920123, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: 2014022137, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -1141578750, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -1654544506, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    - {fileID: -595951659, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+    Motion: {fileID: 11400000, guid: ed0a0e2da0471ad4893d7b2d3ea197c0, type: 2}
+  - Name: Latch
+    Frames:
+    - {fileID: 1728820342, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+    - {fileID: -674603417, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+    - {fileID: -582767678, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+    - {fileID: 875211400, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+    Motion: {fileID: 11400000, guid: 1bc5976c9052f32439c417c3e4502f63, type: 2}
+  - Name: Memory_Face
+    Frames:
+    - {fileID: 21300000, guid: fb2135acb87514d429d014baaf65c1ac, type: 3}
+    Motion: {fileID: 0}
+  - Name: Memory_Handwriting
+    Frames:
+    - {fileID: 21300000, guid: 6a1d58d811ed51a458298f13e943f145, type: 3}
+    Motion: {fileID: 0}
+  - Name: Memory_Height
+    Frames:
+    - {fileID: 21300000, guid: 4db9d4daba335384e8b9fb7fd01008f7, type: 3}
+    Motion: {fileID: 0}
+  - Name: Memory_Knock
+    Frames:
+    - {fileID: 21300000, guid: e96a78da8f8f99e4597b1580222e6f2a, type: 3}
+    Motion: {fileID: 0}
+  - Name: Memory_Rain
+    Frames:
+    - {fileID: 21300000, guid: ce674143f5873c54091334f9cbb17553, type: 3}
+    Motion: {fileID: 0}
+  - Name: Memory_Raincoat
+    Frames:
+    - {fileID: 21300000, guid: b21d78180bc615742b3c90d27967d929, type: 3}
+    Motion: {fileID: 0}
+  - Name: Memory_Voice
+    Frames:
+    - {fileID: 21300000, guid: cda8f39c0c7fe1448a677810bee84ac8, type: 3}
+    Motion: {fileID: 0}
+  - Name: Panel_Crossing
+    Frames:
+    - {fileID: 21300000, guid: b7e4ac0142af6f74091891a0bb407cf0, type: 3}
+    Motion: {fileID: 0}
+  - Name: Panel_Dawn
+    Frames:
+    - {fileID: 21300000, guid: 8851cddf8386b6a4fbfb0b0522f73002, type: 3}
+    Motion: {fileID: 0}
+  - Name: Panel_House
+    Frames:
+    - {fileID: 21300000, guid: cba3fafc76902f245a6c08ebfba27760, type: 3}
+    Motion: {fileID: 0}
+  - Name: Panel_PerfectRoom
+    Frames:
+    - {fileID: 21300000, guid: 8f1909693fe70dd4baa93967b07bc326, type: 3}
+    Motion: {fileID: 0}
+  - Name: Panel_Platform
+    Frames:
+    - {fileID: 21300000, guid: 247af34bbbc74654faf2fd848690d25f, type: 3}
+    Motion: {fileID: 0}
+  - Name: Panel_Thursday
+    Frames:
+    - {fileID: 21300000, guid: f505d4c50265e9641bbedce97db9b956, type: 3}
+    Motion: {fileID: 0}
+  - Name: Pickup_LanternFlare
+    Frames:
+    - {fileID: 21300000, guid: 83e882abce2641347929033c4cb8ee39, type: 3}
+    Motion: {fileID: 0}
+  - Name: Pickup_ShopkeeperBell
+    Frames:
+    - {fileID: 21300000, guid: f928e880d953e3646937453b7ee42fec, type: 3}
+    Motion: {fileID: 0}
+  - Name: Postscript
+    Frames:
+    - {fileID: -35838019, guid: 4460924d46e16b04788a0559ac65d149, type: 3}
+    - {fileID: -580938178, guid: 4460924d46e16b04788a0559ac65d149, type: 3}
+    - {fileID: -209701067, guid: 4460924d46e16b04788a0559ac65d149, type: 3}
+    - {fileID: 1844333407, guid: 4460924d46e16b04788a0559ac65d149, type: 3}
+    Motion: {fileID: 11400000, guid: 2bac6993e48e98d418247260822a7544, type: 2}
+  - Name: Prop_BoundaryGate
+    Frames:
+    - {fileID: 21300000, guid: 6c675e6cb1d5a8f44acbeef85365b3bb, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_DepartureBoard
+    Frames:
+    - {fileID: 21300000, guid: f0f69c04538d180408498cdba305a02b, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_DiningTable
+    Frames:
+    - {fileID: 21300000, guid: 7ff68fd5ecb826e4fab99f3dffe1345e, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_FrontDoorMarks
+    Frames:
+    - {fileID: 21300000, guid: afe0083105597734dbe598977dccc84d, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_InwardWindow
+    Frames:
+    - {fileID: 21300000, guid: bbf54e44c2ecb2f44bf035afef9eacca, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_Ledger
+    Frames:
+    - {fileID: 21300000, guid: c3059b58d57faa34d9a1bed30a50f478, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_NailedLetterbox
+    Frames:
+    - {fileID: 21300000, guid: e83a80be9dad4bc40b16ab316b96162d, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_Nightstand
+    Frames:
+    - {fileID: 21300000, guid: a4c5b09af6a12a548bd0f4207ca1cb9b, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_PhoneBooth
+    Frames:
+    - {fileID: 21300000, guid: 891f1258204979a4c9b88819b70ed3b5, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_PlatformBench
+    Frames:
+    - {fileID: 21300000, guid: c948d32a4b6c87d4cae25a43d2244d14, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_ReceiptChair
+    Frames:
+    - {fileID: 21300000, guid: ea3207cb013701348a8fc1f16ba52706, type: 3}
+    Motion: {fileID: 0}
+  - Name: Prop_SingleBed
+    Frames:
+    - {fileID: 21300000, guid: 67fe27f7760e1114d8eb70a9ffc4b460, type: 3}
+    Motion: {fileID: 0}
+  - Name: SeatedOne_A
+    Frames:
+    - {fileID: 21300000, guid: b3f1812f7eeae91419d76b405041428a, type: 3}
+    Motion: {fileID: 0}
+  - Name: SeatedOne_A_Turned
+    Frames:
+    - {fileID: 21300000, guid: aa65f522e1e2a58499217bfdc989f37a, type: 3}
+    Motion: {fileID: 0}
+  - Name: SeatedOne_B
+    Frames:
+    - {fileID: 21300000, guid: 1a88a3c31a98e844a9ffa13819b907d7, type: 3}
+    Motion: {fileID: 0}
+  - Name: SeatedOne_C
+    Frames:
+    - {fileID: 21300000, guid: 3190d5fa6b5521948a90b5931aea2b52, type: 3}
+    Motion: {fileID: 0}
+  - Name: SeatedOne_D
+    Frames:
+    - {fileID: 21300000, guid: df2af3055bb44f54da74ddf20faa1490, type: 3}
+    Motion: {fileID: 0}
+  - Name: SeatedOne_E
+    Frames:
+    - {fileID: 21300000, guid: 5b8339c02a1a14f4593f3813f9a4e7cb, type: 3}
+    Motion: {fileID: 0}
+  - Name: Shopkeeper_Idle
+    Frames:
+    - {fileID: 21300000, guid: 2168334d5671c7f41b45a0d837bd7e03, type: 3}
+    Motion: {fileID: 0}
+  - Name: Shopkeeper_Pour
+    Frames:
+    - {fileID: 21300000, guid: e05b5b7e89248ae46b52338b1c9a0197, type: 3}
+    Motion: {fileID: 0}
+  - Name: Shopkeeper_Warn
+    Frames:
+    - {fileID: 21300000, guid: e934d1044cdcaff4bae3666d46b6fc37, type: 3}
+    Motion: {fileID: 0}
+  - Name: Shopkeeper_Wipe
+    Frames:
+    - {fileID: 21300000, guid: f7ba50a0e2773e14284658ebd61d6ac5, type: 3}
+    Motion: {fileID: 0}
+  - Name: Tally
+    Frames:
+    - {fileID: -1842906545, guid: a5daa15460145ce45abd3b05f30c3176, type: 3}
+    - {fileID: 1093268722, guid: a5daa15460145ce45abd3b05f30c3176, type: 3}
+    - {fileID: -1650157092, guid: a5daa15460145ce45abd3b05f30c3176, type: 3}
+    - {fileID: 1091212225, guid: a5daa15460145ce45abd3b05f30c3176, type: 3}
+    Motion: {fileID: 11400000, guid: b13b0e6e186c6a840bab61d5ce505588, type: 2}
+  - Name: WarmChair
+    Frames:
+    - {fileID: 21300000, guid: 0e6c52530f45cfd48ab1816fed66df20, type: 3}
+    Motion: {fileID: 0}
+  - Name: WarmChair_Coins
+    Frames:
+    - {fileID: 21300000, guid: 5ca57f8f6055d1d499a1f4388b7fabaf, type: 3}
+    Motion: {fileID: 0}
+  - Name: WarmChair_Jar
+    Frames:
+    - {fileID: 21300000, guid: 9aca663cfc4797f46b4e2c9293cd7445, type: 3}
+    Motion: {fileID: 0}
+  - Name: WarmChair_Phone
+    Frames:
+    - {fileID: 21300000, guid: 45ba5c94db7382a49b648c1ab259da5c, type: 3}
+    Motion: {fileID: 0}
+  - Name: ChairPorter
+    Frames:
+    - {fileID: 21300000, guid: 7730244d1146aed4b80889dc1c18301a, type: 3}
+    - {fileID: 21300000, guid: 5458478b2adc03d49af557553183050e, type: 3}
+    - {fileID: 21300000, guid: 6aed2324c6c74834199212137b43e11e, type: 3}
+    - {fileID: 21300000, guid: 98b9c59edb5d7c544ab330cecdc236b9, type: 3}
+    - {fileID: 21300000, guid: e6be16027f625c64baa94380ddd7a3fc, type: 3}
+    - {fileID: 21300000, guid: b1cf106d908b11249b6fc93fa160605c, type: 3}
+    - {fileID: 21300000, guid: 25fcad4c719bd9c4b8eb1026fd75da6b, type: 3}
+    - {fileID: 21300000, guid: c78f1056048b1684396d554ecc55008b, type: 3}
+    - {fileID: 21300000, guid: 664d30ba7b403e546966affb46cbb180, type: 3}
+    - {fileID: 21300000, guid: a98fa9fc41247974c938d0815aabfc8b, type: 3}
+    - {fileID: 21300000, guid: a5e1d4b78d0a7d64fa249e8a9eb45657, type: 3}
+    - {fileID: 21300000, guid: ae6556e7c9baaef41a69202df0f3b739, type: 3}
+    - {fileID: 21300000, guid: 7ceb6210af1977e4faee27c127e50f7f, type: 3}
+    - {fileID: 21300000, guid: 61f7d559be80c144392c4ec3a45dbe87, type: 3}
+    - {fileID: 21300000, guid: 068449981d918d048a178ec285fa19b2, type: 3}
+    - {fileID: 21300000, guid: 846971fee6d3e9347ad6f24ec10fa74a, type: 3}
+    Motion: {fileID: 11400000, guid: d92f37b00bfe69840879baff387bd9a4, type: 2}
+  - Name: DoorThatStayedShut
+    Frames:
+    - {fileID: 21300000, guid: ad42a806dc265a542856c418585ae4d9, type: 3}
+    - {fileID: 21300000, guid: 4af25e040ea4ad64eaeca4342f15268a, type: 3}
+    - {fileID: 21300000, guid: ec4c7e7139abd4c4e91f0211c6023a8a, type: 3}
+    - {fileID: 21300000, guid: 974b018852c179d42bb137c52ae13481, type: 3}
+    - {fileID: 21300000, guid: dfb0e193bad2c6241a00c15017336314, type: 3}
+    - {fileID: 21300000, guid: e6b42c2192ae2cc4e817fa82e4883f0c, type: 3}
+    - {fileID: 21300000, guid: 8051d60637aa0fc4aa446321731d39a5, type: 3}
+    - {fileID: 21300000, guid: 07ac4a8b1a6be674a9e1dbdbfa39f860, type: 3}
+    - {fileID: 21300000, guid: 9067447e1568f5743aba9478ac8777d4, type: 3}
+    - {fileID: 21300000, guid: 9480acdfb3869c5419087ed2289d1c6b, type: 3}
+    - {fileID: 21300000, guid: be05664bd51b33a4c9b430763a54fb9d, type: 3}
+    - {fileID: 21300000, guid: 4488c6e24994b25459a5cbc3177d685d, type: 3}
+    - {fileID: 21300000, guid: 476647f5b865e23459a8b8afbe180b0d, type: 3}
+    - {fileID: 21300000, guid: a95a31601cc5d7b42a4120322660eb23, type: 3}
+    - {fileID: 21300000, guid: 07471429d1cd11741b32ae3078321d5b, type: 3}
+    - {fileID: 21300000, guid: 54dba963f5505ab44a0e2418ff2f8fe0, type: 3}
+    Motion: {fileID: 11400000, guid: 536749997e8b24246bb4e5ec0a49507a, type: 2}
+  - Name: TheBedside
+    Frames:
+    - {fileID: 21300000, guid: a4716aed3ed19d34a9e9a1422b8a34c3, type: 3}
+    - {fileID: 21300000, guid: ef0b25c6c86c93349bfb7af53ad0e1bc, type: 3}
+    - {fileID: 21300000, guid: 7d6f576deb47b1f4e93c58b869f240fa, type: 3}
+    - {fileID: 21300000, guid: c9149831d82d35546886c9cf086f2d56, type: 3}
+    - {fileID: 21300000, guid: 25fc7563ca0868745b852d854dfdc2b0, type: 3}
+    - {fileID: 21300000, guid: cafca398a0e3e244ebeb44c97cae83e8, type: 3}
+    - {fileID: 21300000, guid: 82c4e36d8418c5c40872a954ce7a2273, type: 3}
+    - {fileID: 21300000, guid: 2d1f9b0192dfdf44289d2cd6809b5939, type: 3}
+    - {fileID: 21300000, guid: 6e6d31a05c0522646a0ec005bf564c20, type: 3}
+    - {fileID: 21300000, guid: e4053398cf908d64787d9b031db06a62, type: 3}
+    - {fileID: 21300000, guid: 8d4aa72788d67024ebfd307cae9d5112, type: 3}
+    - {fileID: 21300000, guid: 3bc5e5a9c2c62b84faf9a95ea0fd0969, type: 3}
+    - {fileID: 21300000, guid: 9b2af4d97f7adea43976d9a818e0e524, type: 3}
+    - {fileID: 21300000, guid: 065f9fafeb64f104193b2e744b4de1db, type: 3}
+    - {fileID: 21300000, guid: 4cba496a0603b664a80c3fcce296a428, type: 3}
+    - {fileID: 21300000, guid: 529db408256a29541be8264c7da1809c, type: 3}
+    Motion: {fileID: 11400000, guid: 1f865ae140c4516478feefbf5b944733, type: 2}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: LatchMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 1728820342, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  - {fileID: -674603417, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  Walk:
+  - {fileID: -582767678, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  - {fileID: 875211400, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  - {fileID: 875211400, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  Windup:
+  - {fileID: -674603417, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  - {fileID: -674603417, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  Release:
+  - {fileID: -582767678, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  - {fileID: 875211400, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  Recovery:
+  - {fileID: -674603417, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  - {fileID: 1728820342, guid: 4e9d355e00fe5d847bf2d274e2b65b1e, type: 3}
+  IllustratedHeight: 5.2578125

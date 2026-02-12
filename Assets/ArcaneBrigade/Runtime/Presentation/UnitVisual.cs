@@ -181,6 +181,7 @@ namespace ArcaneBrigade
 
         public void Bind(UnitState unit, CheckpointCatalog catalog, bool preview = false)
         {
+            ActOneArtwork.Apply(unit.Definition);
             if (anatomyVisual != null) anatomyVisual.Clear();
             if (morphAppearance != null) morphAppearance.Clear();
             if (adornment != null) { adornment.Clear(); if (Application.isPlaying) Destroy(adornment); else DestroyImmediate(adornment); adornment = null; }
@@ -189,6 +190,7 @@ namespace ArcaneBrigade
             actingArt = CharacterActingLibrary.Current != null ? CharacterActingLibrary.Current.Find(unit.Definition.Id) : null;
             expandedGait = ExpandedPerformanceLibrary.Current?.Find("locomotion", unit.Definition.Id);
             expandedReaction = unit.Faction == Faction.Enemy ? ExpandedPerformanceLibrary.Reaction(unit.Definition) : null;
+            if (ActOneArtwork.Has(unit.Definition)) { actingArt = null; expandedGait = null; expandedReaction = null; }
             if (weaponMechanism != null) weaponMechanism.Clear();
             if (paintedAction != null) paintedAction.Clear();
             paintedWeaponIdentity = null;
@@ -369,6 +371,8 @@ namespace ArcaneBrigade
             if (actingFrame != null) body.sprite = actingFrame;
             Sprite reactionFrame = expandedReaction?.Select(state, simulationTime, ReducedMotion);
             if (reactionFrame != null && entrance <= 0) body.sprite = reactionFrame;
+            Sprite canonFace = ActOneArtwork.CustomerFace(state, simulationTime);
+            if (canonFace != null) body.sprite = canonFace;
             K8Motion.Pose pose = K8Motion.Attack(definition, age, poseWindup, ReducedMotion);
             float idle = IdleBeat(state, simulationTime, attacking, ReducedMotion);
             Vector2 facing = attacking ? state.AttackDirection : state.Facing;
@@ -412,6 +416,8 @@ namespace ArcaneBrigade
             if (state.Definition.IsBoss || state.Faction == Faction.Enemy && state.Definition.AuthoredMotion != null) referenceHeight = body.sprite.bounds.size.y;
             if (expandedFrame != null && actingFrame == null) referenceHeight = expandedGait.ReferenceHeight;
             if (reactionFrame != null && entrance <= 0) referenceHeight = expandedReaction.ReferenceHeight;
+            bool canonActor = ActOneArtwork.Has(state.Definition);
+            if (canonActor) referenceHeight = state.Definition.AuthoredMotion.ReferenceHeight;
             float scale = height / Mathf.Max(0.01f, referenceHeight);
             float hitAge = simulationTime - state.LastHit;
             float hurt = ReducedMotion ? 0 : Mathf.Clamp01(1f - hitAge / 0.14f);
@@ -419,6 +425,7 @@ namespace ArcaneBrigade
             body.transform.localScale = new Vector3(scale * (1f + bob * 0.8f + impactSquash), scale * (1f - bob * 0.8f - impactSquash), 1f);
             float pivotHeight = body.sprite == null ? 0 : body.sprite.pivot.y / body.sprite.rect.height;
             body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * 0.09f, height * (pivotHeight - 0.5f) + Mathf.Abs(bob) + state.HitDirection.y * hurt * 0.09f, 0f);
+            if (canonActor) body.transform.localPosition = new Vector3(state.HitDirection.x * hurt * .09f, -height * .5f - SpriteInkMetrics.BoundsOf(body.sprite).yMin * scale + Mathf.Abs(bob) + state.HitDirection.y * hurt * .09f, 0);
             float celebrationLift = ReducedMotion || celebrationAge < 0 || celebrationAge > 0.5f ? 0 : Mathf.Sin(celebrationAge / 0.5f * Mathf.PI) * 0.12f;
             body.transform.localPosition += Vector3.up * (celebrationLift + (ReducedMotion ? 0 : state.BodyLift));
             float personality = state.Id % 2 == 0 ? -1 : 1;
@@ -435,7 +442,8 @@ namespace ArcaneBrigade
             if (state.Faction == Faction.Enemy && state.Definition.AuthoredMotion != null)
             {
                 float turn = body.transform.localEulerAngles.z * Mathf.Deg2Rad;
-                float projectedHeight = Mathf.Abs(Mathf.Sin(turn)) * body.sprite.bounds.size.x * body.transform.localScale.x + Mathf.Abs(Mathf.Cos(turn)) * body.sprite.bounds.size.y * body.transform.localScale.y;
+                Rect visibleInk = SpriteInkMetrics.BoundsOf(body.sprite);
+                float projectedHeight = Mathf.Abs(Mathf.Sin(turn)) * visibleInk.width * body.transform.localScale.x + Mathf.Abs(Mathf.Cos(turn)) * visibleInk.height * body.transform.localScale.y;
                 float heightLimit = state.Definition.IsBoss ? 1.05f : 1.18f;
                 body.transform.localScale *= Mathf.Min(1, height * heightLimit / Mathf.Max(0.01f, projectedHeight));
             }

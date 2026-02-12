@@ -14,6 +14,7 @@ namespace ArcaneBrigade
         private readonly List<GroundShadow> propShadows = new List<GroundShadow>();
         private readonly List<EnemyVariantFieldVisual> variantFields = new List<EnemyVariantFieldVisual>();
         private readonly List<PaintedMechanicView> friendlyFields = new List<PaintedMechanicView>();
+        private readonly List<CombatFieldPainting> fieldPaintings = new List<CombatFieldPainting>();
         private CarnivalStageAssets stageArt;
         private BuildMorphVisual morphVisual;
         private HeroIdentityVisual heroVisual;
@@ -32,7 +33,7 @@ namespace ArcaneBrigade
                 for (int priority = 0; priority < 2; priority++)
                 foreach (ExpandedField field in simulation.ExpandedFields)
                 {
-                    bool hazard = CarnivalHazards.IsHostile(field.Kind);
+                    bool hazard = CarnivalHazards.IsHostile(field.Kind) || field.Source?.Faction == Faction.Enemy;
                     bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink;
                     if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
                     if (hazard != (priority == 0)) continue;
@@ -44,7 +45,13 @@ namespace ArcaneBrigade
                     if (prop.enabled)
                     {
                         BossAnatomyEntry anatomy = BossAnatomy.For(field.Source.Definition);
-                        if (!field.Source.Definition.IsBoss && EnemyEvolutionLibrary.Current != null && EnemyEvolutionLibrary.Current.BodyFragments.Length == 16)
+                        string canon = ActOneArtwork.Identity(field.Source.Definition);
+                        Sprite canonThrow = canon == "ChairPorter" ? ActOneArtwork.Picture("WarmChair")
+                            : canon == "DoorThatStayedShut" ? CombatVfxArtwork.Frame("Mutation_4", simulation.Elapsed)
+                            : canon == "TheBedside" ? CombatVfxArtwork.Frame("Mutation_2", simulation.Elapsed)
+                            : canon == "LastCustomer_Pleasant" ? CombatVfxArtwork.Frame("Secret_Paper", simulation.Elapsed) : null;
+                        if (canonThrow != null) prop.sprite = canonThrow;
+                        else if (!field.Source.Definition.IsBoss && EnemyEvolutionLibrary.Current != null && EnemyEvolutionLibrary.Current.BodyFragments.Length == 16)
                             prop.sprite = EnemyEvolutionLibrary.Fragment(field.Source.Definition, Mathf.FloorToInt(simulation.Elapsed * 7));
                         else if (anatomy != null)
                         {
@@ -61,8 +68,9 @@ namespace ArcaneBrigade
                         float flight = Mathf.Clamp01((simulation.Elapsed - field.Created) / Mathf.Max(0.05f, field.At - field.Created));
                         prop.transform.position = ReducedMotion ? field.Position : Vector2.Lerp(field.Start, field.Position, flight) + Vector2.up * Mathf.Sin(flight * Mathf.PI) * 2.5f;
                         prop.transform.rotation = Quaternion.Euler(0, 0, ReducedMotion ? 0 : flight * 210);
-                        prop.transform.localScale = Vector3.one * (0.7f / Mathf.Max(0.01f, prop.sprite.bounds.size.x));
+                        prop.transform.localScale = Vector3.one * (0.7f / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(prop.sprite).width));
                         prop.color = new Color(1, 0.7f, 0.6f, simulation.Elapsed < field.At ? 1 : Mathf.Clamp01((field.Until - simulation.Elapsed) / 0.4f));
+                        if (canonThrow != null) prop.color = new Color(1, 1, 1, prop.color.a);
                         propShadows[slot].Display(prop.sprite, Vector2.Lerp(field.Start, field.Position, flight), 0.7f, ReducedMotion ? 0 : Mathf.Sin(flight * Mathf.PI) * 2.5f, 0.3f * prop.color.a);
                     }
                     else propShadows[slot].Hide();
@@ -120,7 +128,7 @@ namespace ArcaneBrigade
                         if (field.Kind == ExpandedFieldKind.Strike) line.loop = false;
                     }
                     line.enabled = hazard || carnival || field.Kind == ExpandedFieldKind.Link && field.Radius == 0 || field.Kind == ExpandedFieldKind.Strike || field.Kind == ExpandedFieldKind.Echo;
-                    if (hazard) line.enabled = !warning && (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave);
+                    if (CarnivalHazards.IsHostile(field.Kind)) line.enabled = !warning && (field.Kind == ExpandedFieldKind.Tentacle || field.Kind == ExpandedFieldKind.Shockwave);
                     if (field.Kind == ExpandedFieldKind.Projector) line.enabled = false;
                     MeshRenderer fill = fills[slot];
                     fill.enabled = (hazard || field.Kind == ExpandedFieldKind.Projector) && field.Radius > 0;
@@ -148,7 +156,7 @@ namespace ArcaneBrigade
                         Color wash = color; wash.a *= hazard ? 0.14f : field.Kind == ExpandedFieldKind.Tea ? 0.32f : 0.65f;
                         tint.SetColor("_Color", wash); fill.SetPropertyBlock(tint);
                     }
-                    bool painted = hazard && field.Source != null && field.Source.Variant != null && (field.Source.Variant.Affix != EnemyAffix.None || field.Source.Definition.SpecialEnemy != SpecialEnemyKind.None) && field.Kind != ExpandedFieldKind.FallingProp;
+                    bool painted = CarnivalHazards.IsHostile(field.Kind) && field.Source != null && field.Source.Variant != null && (field.Source.Variant.Affix != EnemyAffix.None || field.Source.Definition.SpecialEnemy != SpecialEnemyKind.None) && field.Kind != ExpandedFieldKind.FallingProp;
                     if (painted)
                     {
                         line.enabled = fill.enabled = false;
@@ -170,8 +178,13 @@ namespace ArcaneBrigade
                         friendlyFields[slot].Display(effectArt.Form(kind),shape,link?start:field.Position,end,field.Direction,field.Radius,field.At,field.Until,simulation.Elapsed,color,ReducedMotion || PresentationSettings.ReducedMotion);
                     }
                     else friendlyFields[slot].Hide();
+                    if (fieldPaintings[slot].Display(field, simulation.Elapsed))
+                    {
+                        line.enabled = fill.enabled = false;
+                        variantFields[slot].Hide(); friendlyFields[slot].Hide();
+                    }
                 }
-            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); variantFields[index].Hide(); friendlyFields[index].Hide(); }
+            for (int index = VisibleCount; index < lines.Count; index++) { lines[index].enabled = false; fills[index].enabled = false; props[index].enabled = false; propShadows[index].Hide(); variantFields[index].Hide(); friendlyFields[index].Hide(); fieldPaintings[index].Hide(); }
         }
         private static bool ContainsProjectile(CombatSimulation simulation, ProjectileState projectile)
         {
@@ -183,6 +196,7 @@ namespace ArcaneBrigade
         {
             if (index < lines.Count) return lines[index];
             friendlyFields.Add(new PaintedMechanicView(transform,"Companion and weapon mechanic "+index,1095));
+            fieldPaintings.Add(new CombatFieldPainting(transform, index));
             if (material == null) material = new Material(Shader.Find("Sprites/Default"));
             var child = new GameObject("ExpandedFieldCue"); child.transform.SetParent(transform, false);
             LineRenderer line = child.AddComponent<LineRenderer>(); line.sharedMaterial = material; line.useWorldSpace = true;

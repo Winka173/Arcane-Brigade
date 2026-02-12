@@ -67,6 +67,7 @@ namespace ArcaneBrigade
         {
             body = new Pose(bodyView); shadow = new Pose(shadowView); grounded = ground;
             paintedDefeat = ExpandedPerformanceLibrary.Reaction(state.Definition);
+            if (ActOneArtwork.Has(state.Definition)) paintedDefeat = null;
             capturedHeight = paintedDefeat != null && System.Array.IndexOf(paintedDefeat.Frames, bodyView.sprite) >= 0 ? paintedDefeat.ReferenceHeight : bodyView.sprite.bounds.size.y;
             hands = new[] { new Pose(weapon), new Pose(hand), new Pose(drawHand) };
             grip = gripRoot; gripPosition = grip.localPosition; gripRotation = grip.localRotation;
@@ -119,10 +120,11 @@ namespace ArcaneBrigade
                 shape = new Vector2(1 - release * .08f, 1 - release * .18f);
                 tilt = release * 14;
                 if (NightmareAssets.Current != null)
-                    body.View.sprite = NightmareAssets.Current.CustomerFrames[7];
+                    body.View.sprite = ActOneArtwork.Picture("LastCustomer_Blank") ?? NightmareAssets.Current.CustomerFrames[7];
             }
             float kick = Mathf.Sin(Mathf.Clamp01(age / 0.34f) * Mathf.PI);
             float paintedScale = 1;
+            if (treatment == Treatment.Customer) paintedScale = capturedHeight / Mathf.Max(.01f, body.View.sprite.bounds.size.y);
             if (!reduced && paintedDefeat != null)
             {
                 body.View.sprite = paintedDefeat.Frames[age < .3f ? 2 : 3];

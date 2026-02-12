@@ -39,6 +39,7 @@ namespace ArcaneBrigade
             gameObject.AddComponent<NightLanternField>().Configure(controller);
             gameObject.AddComponent<MienChoPresentation>().Configure(controller);
             gameObject.AddComponent<WaitingRealmStage>().Configure(controller);
+            gameObject.AddComponent<ActOneWorldArt>().Configure(controller);
             gameObject.AddComponent<CustomerOffer>().Configure(controller);
             gameObject.AddComponent<MemoryReturn>().Configure(controller);
             gameObject.AddComponent<WaitingShopEncounter>().Configure(controller);
@@ -186,7 +187,8 @@ namespace ArcaneBrigade
                 float pan = PresentationSettings.ReducedMotion ? 0 : Mathf.Clamp01((owner.PresentationClock - pageAt) / 12) * 8;
                 Rect image = new Rect(450 - pan * 1.5f,30 - pan,1020 + pan * 3,680 + pan * 2);
                 int illustration = Mathf.Min(page, 3);
-                if (page == 3 && owner.GetComponent<MienChoPresentation>() != null) owner.GetComponent<MienChoPresentation>().DrawDawn(image);
+                if (page == 2 && owner.GetComponent<MienChoPresentation>() != null) owner.GetComponent<MienChoPresentation>().DrawDawn(image);
+                else if (page >= 3 && !(page == 3 && owner.Session.State.Nightmare.Farewell == NightmareFarewell.LeaveLight) && ActOneArtwork.Picture("Panel_Thursday") != null) GUI.DrawTexture(image, ActOneArtwork.Picture("Panel_Thursday").texture, ScaleMode.ScaleToFit);
                 else if (page == 4 && assets.PromiseIllustration != null) GUI.DrawTexture(image, assets.PromiseIllustration, ScaleMode.ScaleToFit);
                 else GUI.DrawTextureWithTexCoords(image,assets.EndingIllustration,new Rect(illustration % 2 * .5f,1 - (illustration / 2 + 1) * .5f,.5f,.5f));
                 departure.Draw(image, owner, page, owner.PresentationClock - pageAt);

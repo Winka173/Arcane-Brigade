@@ -48,10 +48,10 @@ MonoBehaviour:
   - {fileID: -970641457, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   - {fileID: -129732050, guid: 588a6a24645fdd948ad111654506c2e3, type: 3}
   GiantGoldMerchant:
-  - {fileID: -166845428, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
-  - {fileID: -868876378, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
-  - {fileID: 1281639069, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
-  - {fileID: -851989769, guid: 1579992c6391b164ab6fea6d2028f375, type: 3}
+  - {fileID: 21300000, guid: 2168334d5671c7f41b45a0d837bd7e03, type: 3}
+  - {fileID: 21300000, guid: e05b5b7e89248ae46b52338b1c9a0197, type: 3}
+  - {fileID: 21300000, guid: f7ba50a0e2773e14284658ebd61d6ac5, type: 3}
+  - {fileID: 21300000, guid: e934d1044cdcaff4bae3666d46b6fc37, type: 3}
   GiantEggMerchant:
   - {fileID: 1867400005, guid: 72929147727500e41bdc67d20ccac123, type: 3}
   - {fileID: 66019994, guid: 72929147727500e41bdc67d20ccac123, type: 3}

@@ -219,6 +219,7 @@ namespace ArcaneBrigade
         private float restElapsed;
         private float finaleElapsed;
         public IReadOnlyList<UnitState> Units => units;
+        public UnitState UnitForPresentation(int id) => UnitWithId(id);
         public IReadOnlyList<ProjectileState> Projectiles => projectiles;
         public IReadOnlyList<PickupState> Pickups => pickups;
         public IReadOnlyList<CombatEvent> Events => events;

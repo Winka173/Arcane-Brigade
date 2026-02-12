@@ -379,7 +379,7 @@ namespace ArcaneBrigade
     {
         public void PrepareMienChoCapture(RunCatalog content)
         {
-            if (!MienChoCapture.Requested && !CombatRepairCapture.Requested) throw new InvalidOperationException("Isolated Waiting Realm capture required");
+            if (!MienChoCapture.Requested && !CombatRepairCapture.Requested && !ArtMasterCapture.Requested) throw new InvalidOperationException("Isolated Waiting Realm capture required");
             catalog.EnemyBudget = 0;
             Champion.Position = Champion.PreviousPosition = Vector2.zero;
             Champion.Health = Champion.Definition.Health;

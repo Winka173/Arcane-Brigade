@@ -1,0 +1,48 @@
+{
+  "status": "incomplete: painted usage_limit_reached",
+  "resetUTC": "2026-10-17T19:02:24Z",
+  "resetVietnam": "2026-10-18 02:02:24 +07:00",
+  "delivered": 237,
+  "target": 261,
+  "missing": [
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f1.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f10.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f15.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f2.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f3.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f4.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f5.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f6.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f7.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f8.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f9.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f1.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f12.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f13.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f14.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f15.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f2.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f3.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f4.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f5.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f6.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f7.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f8.png",
+    "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f9.png"
+  ],
+  "repairs": [
+    {
+      "name": "Hob_Atlas",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Hob_Atlas.png",
+      "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary.",
+      "reason": "The outermost cup/wing edge touches its image border; shrink individual poses into their cells using painted."
+    },
+    {
+      "name": "Tally_Atlas",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Tally_Atlas.png",
+      "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary.",
+      "reason": "The outermost cup/wing edge touches its image border; shrink individual poses into their cells using painted."
+    }
+  ],
+  "notes": "No CLI/API fallback authorized. Customer has complete 16-pose atlases in the available build; 24 additional full-resolution poses remain pending. Three other bosses already use 16 independent full-resolution poses each."
+}

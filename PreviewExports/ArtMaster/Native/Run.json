@@ -1,0 +1,10 @@
+﻿{
+    "Failures":  0,
+    "Checks":  77,
+    "ExitCode":  0,
+    "Started":  "2026-10-17T09:07:00.2767995+07:00",
+    "Images":  36,
+    "RuntimeSha256":  "33FF56C712B288F25638642C84DA5558F68B53C141FCB4AAF8CDFC5CD0AE38C8",
+    "Mode":  "Native",
+    "Finished":  "2026-10-17T09:07:58.0268473+07:00"
+}

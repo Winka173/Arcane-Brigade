@@ -9,11 +9,12 @@ namespace ArcaneBrigade
         public Sprite[] Windup;
         public Sprite[] Release;
         public Sprite[] Recovery;
-        public float ReferenceHeight => Idle != null && Idle.Length > 0 && Idle[0] != null ? Idle[0].bounds.size.y : 1;
+        public float IllustratedHeight;
+        public float ReferenceHeight => IllustratedHeight > 0 ? IllustratedHeight : Idle != null && Idle.Length > 0 && Idle[0] != null ? Idle[0].bounds.size.y : 1;
         public Sprite Select(UnitState unit, float time, bool reduced)
         {
             if (reduced) return Idle[0];
-            if (unit.Definition.Id == NightmareRules.CustomerId && NightmareAssets.Current != null)
+            if (unit.Definition.Id == NightmareRules.CustomerId && NightmareAssets.Current != null && !ActOneArtwork.Has(unit.Definition))
             {
                 Sprite[] poses = NightmareAssets.Current.CustomerFrames;
                 int attack = unit.BossVolley % 6;

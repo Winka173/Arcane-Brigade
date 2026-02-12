@@ -15,6 +15,7 @@ namespace ArcaneBrigade
         private float arrivalDelay;
         private Vector3 launchOffset;
         private bool merchantActor;
+        private bool canonMerchant;
         private bool departing;
         private Material emergence;
         private float attention;
@@ -85,7 +86,11 @@ namespace ArcaneBrigade
             origin = transform.localPosition;
         }
         public void Celebrate() { cheerUntil = owner.PresentationClock + 0.8f; if (merchantActor) handoffAt = owner.PresentationClock; }
-        public void SetMerchantIdentity(string identity) { handoff = EnsembleArtwork.Current?.Merchant(identity); }
+        public void SetMerchantIdentity(string identity)
+        {
+            canonMerchant = identity == "GiantGoldMerchant" && ActOneArtwork.Picture("Shopkeeper_Idle") != null;
+            handoff = canonMerchant ? null : EnsembleArtwork.Current?.Merchant(identity);
+        }
         public void Reject() { denialUntil = owner.PresentationClock + 0.55f; }
         public void LookAt(float direction) { attention = Mathf.Clamp(direction, -1, 1); }
         public void SetMerchantMood(bool special)
@@ -143,6 +148,7 @@ namespace ArcaneBrigade
                 if (frames.Length == 4 && denied && !reduced) frame = 1;
                 else if (frames.Length == 4 && inspecting && !cheer && !reduced) frame = 2;
                 if (frames.Length == 4 && speaking && !cheer && !denied && !reduced) frame = 2 + Mathf.FloorToInt(owner.PresentationClock * 9.5f) % 2;
+                if (canonMerchant) frame = denied ? 3 : cheer ? 1 : inspecting ? 2 : !reduced && Mathf.Repeat(time, 12) > 10 ? 1 : 0;
                 if (pedestalDisplay) frame = reduced ? 0 : Mathf.FloorToInt(time * 3) % frames.Length;
                 view.sprite = frames[frame];
             }

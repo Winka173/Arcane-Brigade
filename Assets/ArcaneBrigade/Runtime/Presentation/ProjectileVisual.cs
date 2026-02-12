@@ -10,8 +10,10 @@ namespace ArcaneBrigade
         private LineRenderer streak;
         private LineRenderer motif;
         private Material material;
+        private ArenaController owner;
         private readonly Vector2[] history = new Vector2[4];
         private int identity = -1;
+        private string paintedKey;
         private float sampledAt = -100;
         private static readonly Vector2[] FishMotif = { new Vector2(0.19f, 0), new Vector2(-0.03f, 0.1f), new Vector2(-0.16f, -0.12f), new Vector2(-0.16f, 0.12f), new Vector2(-0.03f, -0.1f) };
         private static readonly Vector2[] NoteMotif = { new Vector2(-0.03f, -0.08f), new Vector2(0.05f, -0.08f), new Vector2(0.05f, 0.22f), new Vector2(0.14f, 0.18f), new Vector2(0.14f, 0.1f) };
@@ -48,7 +50,20 @@ namespace ArcaneBrigade
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
-            if (identity != state.Id || time < sampledAt)
+            if (owner == null) owner = GetComponentInParent<ArenaController>();
+            bool newShot = identity != state.Id || time < sampledAt;
+            // Classify once: a bullet keeps its appearance after its shooter dies, without a unit search every frame.
+            if (newShot) paintedKey = CombatVfxArtwork.ProjectileKey(state, owner?.Simulation);
+            Sprite painted = CombatVfxArtwork.Frame(paintedKey, time, state.Id);
+            if (painted != null)
+            {
+                body.sprite = painted;
+                float inkWidth = Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(painted).width);
+                float paintedWidth = hostile ? Mathf.Max(.36f, state.VisualWidth) : state.VisualWidth > 0 ? state.VisualWidth : .22f;
+                body.transform.localScale = Vector3.one * (paintedWidth / inkWidth);
+                body.color = new Color(1, 1, 1, body.color.a);
+            }
+            if (newShot)
             {
                 identity = state.Id; sampledAt = time;
                 for (int index = 0; index < history.Length; index++) history[index] = position;
@@ -65,7 +80,7 @@ namespace ArcaneBrigade
             body.sortingOrder = order;
             if (hostile)
             {
-                Color danger = Color.Lerp(body.color, new Color(1, 0.24f, 0.42f, body.color.a), bodyFragment ? 0.2f : 0.65f);
+                Color danger = Color.Lerp(body.color, new Color(1, 0.24f, 0.42f, body.color.a), painted != null ? 0 : bodyFragment ? 0.2f : 0.65f);
                 body.color = danger;
             }
             halo.sortingOrder = order - 1; core.sortingOrder = order + 1;
@@ -74,11 +89,11 @@ namespace ArcaneBrigade
                 body.transform.rotation = Quaternion.Euler(0, 0, time * 650 + state.Id * 31);
             bool arrow = state.Sprite != null && state.Sprite.name == "ArrowBolt";
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
-            bool authored = bodyFragment || MechanicInk.IsInk(body.sprite) || state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
+            bool authored = painted != null || bodyFragment || MechanicInk.IsInk(body.sprite) || state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
             halo.enabled = core.enabled = magic && !authored && (hostile || EffectDensity.CosmeticProjectile(state.Id));
             if (state.Weapon != null && (state.Weapon.Family == ExpandedWeapon.Fish || state.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)) halo.enabled = core.enabled = false;
             float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;
-            if (hostile && body.sprite != null)
+            if (hostile && body.sprite != null && painted == null)
                 body.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, body.sprite.bounds.size.x));
             if (magic)
             {
@@ -92,7 +107,7 @@ namespace ArcaneBrigade
             streak.enabled = hostile || !PresentationSettings.ReducedMotion && EffectDensity.CosmeticProjectile(state.Id) && (arrow || magic || MechanicInk.IsInk(body.sprite));
             streak.widthMultiplier = arrow || state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.Sewing ? 0.024f : 0.065f;
             // One danger hue for every hostile shot so it never reads like an allied ember bolt.
-            Color trail = hostile ? new Color(1f, 0.16f, 0.48f) : state.Color;
+            Color trail = hostile ? painted != null ? new Color(.8f, .18f, .08f) : new Color(1f, 0.16f, 0.48f) : painted != null ? new Color(.9f, .72f, .4f) : state.Color;
             streak.startColor = new Color(trail.r, trail.g, trail.b, 0.03f);
             streak.endColor = new Color(trail.r, trail.g, trail.b, hostile ? 0.8f : EffectDensity.AlliedAlpha);
             for (int index = 0; index < history.Length; index++)
@@ -107,7 +122,7 @@ namespace ArcaneBrigade
                 core.transform.localScale = new Vector3(1 + Mathf.Sin(time * 5 + state.Id) * .08f, 1 - Mathf.Sin(time * 5 + state.Id) * .08f, 1) * (width / Mathf.Max(.001f, body.transform.localScale.x) / Mathf.Max(.01f, core.sprite.bounds.size.x) * .45f);
             }
             ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;
-            motif.enabled = family == ExpandedWeapon.MusicBox;
+            motif.enabled = painted == null && family == ExpandedWeapon.MusicBox;
             if (motif.enabled)
             {
                 Vector2 direction = state.Velocity.normalized; Vector2 normal = new Vector2(-direction.y, direction.x);
@@ -116,7 +131,7 @@ namespace ArcaneBrigade
                 Vector2[] points = family == ExpandedWeapon.Fish ? FishMotif : NoteMotif;
                 for (int index = 0; index < points.Length; index++) motif.SetPosition(index, position + direction * points[index].x + normal * points[index].y);
             }
-            if (state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.BloomOrb)
+            if (painted == null && state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.BloomOrb)
             {
                 motif.enabled = EffectDensity.CosmeticProjectile(state.Id); motif.loop = true; motif.positionCount = 12;
                 Color color = state.Weapon.Mechanic == CarnivalWeapon.BloomOrb ? new Color(0.55f, 1, 0.8f, EffectDensity.AlliedAlpha) : new Color(1, 0.78f, 0.3f, EffectDensity.AlliedAlpha);

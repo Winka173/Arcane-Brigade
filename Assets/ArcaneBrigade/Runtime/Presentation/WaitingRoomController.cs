@@ -40,6 +40,7 @@ namespace ArcaneBrigade
         private SpriteRenderer[] seated=new SpriteRenderer[0];
         private Sprite turnedHead;
         private readonly Vector2 hobFloor=new Vector2(0,1.5f);
+        private Vector2 hobSeat;
         private float pull,helperAt,risenAt=-1;
         private int helpers;
         private GUIStyle hand;
@@ -60,13 +61,13 @@ namespace ArcaneBrigade
             if(FindAnyObjectByType<AudioListener>()==null)view.gameObject.AddComponent<AudioListener>();
             AudioListener.pause=false;AudioListener.volume=storage.LoadProfile().Volume;
             sound=gameObject.AddComponent<AudioSource>();sound.playOnAwake=false;
-            Sprite roomArt=rescue?Resources.Load<Sprite>("MienCho/Journey/PerfectRoom_Hob_v1"):null;
-            backdrop=Make("A Room With An Inside Release",roomArt!=null?roomArt:Resources.Load<Sprite>("MienCho/Journey/"+WaitingRooms.Art(room)+"_Painted_v1"),Vector2.zero,18.5f,-100);
+            // The composed Hob image belongs to the journal; the live rescue needs movable actors over the empty room.
+            backdrop=Make("A Room With An Inside Release",Resources.Load<Sprite>("MienCho/Journey/"+WaitingRooms.Art(room)+"_Painted_v1"),Vector2.zero,18.5f,-100);
             var material=Resources.Load<Material>("MienCho/JourneyRoomLight");if(material!=null){floorMaterial=new Material(material);backdrop.sharedMaterial=floorMaterial;}
             traveller=Make("The Traveller",content.Unit(state.ChampionId).Body,position,1.1f,50);
             // in the perfect room the travelling companions come first: they are the ones who pull
             var bodies=new System.Collections.Generic.List<Sprite>();
-            if(rescue)for(int i=1;i<ActOneCanon.StoryIds.Length;i++)if(ActOneCanon.StoryPresent(i,state.Wave,true,state.Endless) && content.Unit(ActOneCanon.StoryIds[i])!=null)bodies.Add(content.Unit(ActOneCanon.StoryIds[i]).Body);
+            if(rescue)for(int i=1;i<ActOneCanon.StoryIds.Length;i++)if(ActOneCanon.StoryPresent(i,state.Wave,true,state.Endless) && content.Unit(ActOneCanon.StoryIds[i])!=null)bodies.Add(ActOneArtwork.Picture(ActOneCanon.StoryNames[i]) ?? content.Unit(ActOneCanon.StoryIds[i]).Body);
             for(int i=0;i<state.Roster.Count && bodies.Count<15;i++)bodies.Add(content.Unit(state.Roster[i].UnitId).Body);
             int count=bodies.Count;friends=new SpriteRenderer[count];
             for(int i=0;i<count;i++)friends[i]=Make("A Living Companion",bodies[i],position+Vector2.left, .9f,49);
@@ -93,8 +94,11 @@ namespace ArcaneBrigade
             chair.enabled=false;window.enabled=false;
             Sprite own=Resources.Load<Sprite>("MienCho/ActOne/WarmChair");if(own==null)own=Resources.Load<Sprite>("MienCho/EmptyChair");
             hobChair=Make("A Chair Of Hob's Own",own,hobFloor,1.7f,20);
+            Rect chairInk=SpriteInkMetrics.BoundsOf(own);
+            hobSeat=hobChair.transform.TransformPoint(new Vector2(chairInk.center.x,Mathf.Lerp(chairInk.yMin,chairInk.yMax,.42f)));
             var body=content.Unit(ActOneCanon.StoryIds[0]);
-            hob=Make("Hob, Sitting",body!=null?body.Body:null,hobFloor+new Vector2(0,.35f),.95f,21);
+            hob=Make("Hob, Sitting",ActOneArtwork.Picture("Hob") ?? (body!=null?body.Body:null),hobFloor+new Vector2(0,.35f),.95f,21);
+            WorldSpriteGrounding.Place(hob,hobSeat);
             // the travellers who sat down line the walls, facing the bed; one will turn its head when you leave
             string[] names={"SeatedOne_A","SeatedOne_B","SeatedOne_C","SeatedOne_D","SeatedOne_E"};
             Vector2[] along={new Vector2(-6.2f,2.6f),new Vector2(6.2f,2.6f),new Vector2(-6.2f,-.4f),new Vector2(6.2f,-.4f),new Vector2(-3.4f,3.3f),new Vector2(3.4f,3.3f)};
@@ -113,7 +117,7 @@ namespace ArcaneBrigade
             if(rescued)
             {
                 float age=clock-risenAt;
-                hob.transform.position=(Vector3)(hobFloor+new Vector2(0,.35f))+Vector3.up*(PresentationSettings.ReducedMotion?.4f:Mathf.Min(.4f,age*2.2f)+Mathf.Sin(Mathf.Min(1,age*2)*Mathf.PI)*.25f);
+                WorldSpriteGrounding.Place(hob,(Vector3)hobSeat+Vector3.up*(PresentationSettings.ReducedMotion?.4f:Mathf.Min(.4f,age*2.2f)+Mathf.Sin(Mathf.Min(1,age*2)*Mathf.PI)*.25f));
                 hob.color=Color.white;
                 return;
             }
@@ -129,7 +133,7 @@ namespace ArcaneBrigade
             float share=Mathf.Clamp01(pull/PullSeconds);
             hob.color=Color.Lerp(new Color(.55f,.55f,.6f),Color.white,share*.7f);
             float strain=hold && !PresentationSettings.ReducedMotion?Mathf.Sin(clock*40)*.03f*share:0;
-            hob.transform.position=(Vector3)(hobFloor+new Vector2(strain,.35f+share*.12f));
+            WorldSpriteGrounding.Place(hob,hobSeat+new Vector2(strain,share*.12f));
             if(pull>=PullSeconds && helpers>=required)
             {
                 var before=JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
@@ -148,7 +152,7 @@ namespace ArcaneBrigade
         private SpriteRenderer Make(string name,Sprite sprite,Vector2 point,float width,int sort)
         {
             var go=new GameObject(name);go.transform.SetParent(transform,false);var r=go.AddComponent<SpriteRenderer>();r.sprite=sprite;r.transform.position=point;r.sortingOrder=sort;
-            if(sprite!=null)r.transform.localScale=Vector3.one*(width/Mathf.Max(.01f,sprite.bounds.size.x));return r;
+            if(sprite!=null)r.transform.localScale=Vector3.one*(width/Mathf.Max(.01f,SpriteInkMetrics.BoundsOf(sprite).width));return r;
         }
         private void Update()
         {

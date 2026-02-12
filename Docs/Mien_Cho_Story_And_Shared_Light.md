@@ -1,5 +1,7 @@
 # Miền Chờ — cốt truyện đã chốt và hướng ánh sáng đồng hành
 
+**Art theo canon Hồi 1, 17/10:** đã giao 237 PNG, tích hợp nhân vật truyện, boss, đồ cảnh theo vùng, journal, token và VFX. Còn 24 frame HD Customer và hai atlas sửa mép chờ quota vẽ; xem [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
+
 > **Hồi 1 đã viết lại (16/10/2026):** canon mới ở [Mien_Cho_Act_One_Story.md](Mien_Cho_Act_One_Story.md). Khi mâu thuẫn, bản đó là chuẩn và game sẽ rework theo nó. Mục 8 (ánh sáng đồng hành) bên dưới vẫn giữ; mắt đỏ chỉ là hiệu ứng hình ảnh, không thuộc cốt truyện.
 
 **Phản hồi tiếp theo:** bỏ trần 15 cơ thể, giữ quota mua; nhận companion cầu vồng bằng một lần Space tại quà. Điểm thách đấu Keeper chuyển khỏi HUD bond, dễ nhận diện hơn; Keeper to/trâu hơn và triệu hồi vệ binh. Mô tả có khung màu/animation rarity. Popup stat có icon, chữ đậm, số nguyên; dưới 1 ghi `<1`. Những ghi chú trần 15 trước đây là lịch sử: [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md).

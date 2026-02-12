@@ -1,0 +1,1025 @@
+{
+  "expected": 261,
+  "present": 237,
+  "manifest": 237,
+  "failures": [
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f1.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f10.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f15.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f2.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f3.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f4.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f5.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f6.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f7.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f8.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f9.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f1.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f12.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f13.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f14.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f15.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f2.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f3.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f4.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f5.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f6.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f7.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f8.png",
+    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f9.png"
+  ],
+  "visualReview": [
+    "Atlas border needs visual review ChairPorter_Atlas:10",
+    "Atlas border needs visual review ChairPorter_Atlas:11",
+    "Atlas border needs visual review ChairPorter_Atlas:14",
+    "Atlas border needs visual review ChairPorter_Atlas:15",
+    "Atlas border needs visual review TheBedside_Atlas:0",
+    "Atlas border needs visual review TheBedside_Atlas:3",
+    "Atlas border needs visual review TheBedside_Atlas:4",
+    "Atlas border needs visual review TheBedside_Atlas:5",
+    "Atlas border needs visual review TheBedside_Atlas:6",
+    "Atlas border needs visual review TheBedside_Atlas:8",
+    "Atlas border needs visual review TheBedside_Atlas:9",
+    "Atlas border needs visual review TheBedside_Atlas:10",
+    "Ink touches outside border: Hob_Atlas",
+    "Atlas border needs visual review Hob_Atlas:0",
+    "Atlas border needs visual review Hob_Atlas:1",
+    "Atlas border needs visual review Hob_Atlas:2",
+    "Atlas border needs visual review Hob_Atlas:3",
+    "Ink touches outside border: LastCustomer_Blank",
+    "Atlas border needs visual review LastCustomer_BorrowedFace_Atlas:10",
+    "Atlas border needs visual review LastCustomer_BorrowedFace_Atlas:11",
+    "Ink touches outside border: LastCustomer_BorrowedFace",
+    "Atlas border needs visual review LastCustomer_Pleasant_Atlas:10",
+    "Atlas border needs visual review LastCustomer_Pleasant_Atlas:11",
+    "Atlas border needs visual review Tally_Atlas:0",
+    "Atlas border needs visual review Tally_Atlas:1",
+    "Atlas border needs visual review Tally_Atlas:2"
+  ],
+  "dimensions": {
+    "ChairPorter_Atlas": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f1": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f10": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f11": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f12": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f13": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f14": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f15": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f2": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f3": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f4": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f5": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f6": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f7": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f8": [
+      1254,
+      1254
+    ],
+    "ChairPorter_f9": [
+      1254,
+      1254
+    ],
+    "ChairPorter": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_Atlas": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f1": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f10": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f11": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f12": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f13": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f14": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f15": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f2": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f3": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f4": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f5": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f6": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f7": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f8": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut_f9": [
+      1254,
+      1254
+    ],
+    "DoorThatStayedShut": [
+      1254,
+      1254
+    ],
+    "TheBedside_Atlas": [
+      1254,
+      1254
+    ],
+    "TheBedside_f1": [
+      1145,
+      1374
+    ],
+    "TheBedside_f10": [
+      1145,
+      1374
+    ],
+    "TheBedside_f11": [
+      1145,
+      1374
+    ],
+    "TheBedside_f12": [
+      1145,
+      1374
+    ],
+    "TheBedside_f13": [
+      1145,
+      1374
+    ],
+    "TheBedside_f14": [
+      1145,
+      1374
+    ],
+    "TheBedside_f15": [
+      1145,
+      1374
+    ],
+    "TheBedside_f2": [
+      1145,
+      1374
+    ],
+    "TheBedside_f3": [
+      1145,
+      1374
+    ],
+    "TheBedside_f4": [
+      1145,
+      1374
+    ],
+    "TheBedside_f5": [
+      1145,
+      1374
+    ],
+    "TheBedside_f6": [
+      1145,
+      1374
+    ],
+    "TheBedside_f7": [
+      1145,
+      1374
+    ],
+    "TheBedside_f8": [
+      1145,
+      1374
+    ],
+    "TheBedside_f9": [
+      1145,
+      1374
+    ],
+    "TheBedside": [
+      1145,
+      1374
+    ],
+    "AcornPellet_v1": [
+      1774,
+      887
+    ],
+    "AllySpark_v1": [
+      1774,
+      887
+    ],
+    "ArrowBolt_v2": [
+      1774,
+      887
+    ],
+    "BellChime_v1": [
+      1774,
+      887
+    ],
+    "Bubble_v1": [
+      1254,
+      1254
+    ],
+    "ButtonDart_v1": [
+      1774,
+      887
+    ],
+    "CompassDart_v1": [
+      1774,
+      887
+    ],
+    "FilmFrame_v1": [
+      1774,
+      887
+    ],
+    "GlobeShard_v1": [
+      1774,
+      887
+    ],
+    "InkBullet_v1": [
+      1774,
+      887
+    ],
+    "LanternEmber_v1": [
+      1774,
+      887
+    ],
+    "LeafBolt_v1": [
+      1774,
+      887
+    ],
+    "Letter_v1": [
+      1774,
+      887
+    ],
+    "MagnetBolt_v1": [
+      1774,
+      887
+    ],
+    "MusicNote_v1": [
+      1774,
+      887
+    ],
+    "RuneOrb_v2": [
+      1254,
+      1254
+    ],
+    "ShellShot_v1": [
+      1774,
+      887
+    ],
+    "Star_v1": [
+      1254,
+      1254
+    ],
+    "TeaDrop_v1": [
+      1774,
+      887
+    ],
+    "Thread_v1": [
+      1774,
+      887
+    ],
+    "Thrust_f0_v1": [
+      1774,
+      887
+    ],
+    "Thrust_f1_v1": [
+      1774,
+      887
+    ],
+    "Thrust_f2_v1": [
+      1774,
+      887
+    ],
+    "Thrust_f3_v1": [
+      1774,
+      887
+    ],
+    "TinFish_v1": [
+      1254,
+      1254
+    ],
+    "BlueFlameBolt_f0_v1": [
+      1774,
+      887
+    ],
+    "BlueFlameBolt_f1_v1": [
+      1774,
+      887
+    ],
+    "BlueFlameBolt_f2_v1": [
+      1774,
+      887
+    ],
+    "BlueFlameBolt_f3_v1": [
+      1774,
+      887
+    ],
+    "BossOrb_f0_v1": [
+      1774,
+      887
+    ],
+    "BossOrb_f1_v1": [
+      1774,
+      887
+    ],
+    "Curtain_f0_v1": [
+      1254,
+      1254
+    ],
+    "Curtain_f1_v1": [
+      1254,
+      1254
+    ],
+    "HeroHurt_f0_v1": [
+      1254,
+      1254
+    ],
+    "HeroHurt_f1_v1": [
+      1254,
+      1254
+    ],
+    "HeroHurt_f2_v1": [
+      1254,
+      1254
+    ],
+    "HeroHurt_f3_v1": [
+      1254,
+      1254
+    ],
+    "HostileBolt_f0_v1": [
+      1774,
+      887
+    ],
+    "HostileBolt_f1_v1": [
+      1774,
+      887
+    ],
+    "HostileMuzzle_f0_v1": [
+      1536,
+      1024
+    ],
+    "HostileMuzzle_f1_v1": [
+      1536,
+      1024
+    ],
+    "HostileMuzzle_f2_v1": [
+      1536,
+      1024
+    ],
+    "HostileMuzzle_f3_v1": [
+      1536,
+      1024
+    ],
+    "Mutation_0_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_0_b_v1": [
+      1774,
+      887
+    ],
+    "Mutation_1_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_1_b_v1": [
+      1774,
+      887
+    ],
+    "Mutation_2_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_2_b_v1": [
+      1774,
+      887
+    ],
+    "Mutation_3_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_3_b_v1": [
+      1774,
+      887
+    ],
+    "Mutation_4_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_4_b_v1": [
+      1774,
+      887
+    ],
+    "Mutation_5_a_v1": [
+      1254,
+      1254
+    ],
+    "Mutation_5_b_v1": [
+      1254,
+      1254
+    ],
+    "Mutation_6_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_6_b_v1": [
+      1774,
+      887
+    ],
+    "Mutation_7_a_v1": [
+      1774,
+      887
+    ],
+    "Mutation_7_b_v1": [
+      1774,
+      887
+    ],
+    "OfficeHazard_f0_v1": [
+      1254,
+      1254
+    ],
+    "OfficeHazard_f1_v1": [
+      1254,
+      1254
+    ],
+    "RedFlameBolt_f0_v1": [
+      1774,
+      887
+    ],
+    "RedFlameBolt_f1_v1": [
+      1774,
+      887
+    ],
+    "RedFlameBolt_f2_v1": [
+      1774,
+      887
+    ],
+    "RedFlameBolt_f3_v1": [
+      1774,
+      887
+    ],
+    "Secret_Dream_v1": [
+      1774,
+      887
+    ],
+    "Secret_Paper_v1": [
+      1774,
+      887
+    ],
+    "Secret_Patch_v1": [
+      1774,
+      887
+    ],
+    "ShadowPool_f0_v1": [
+      1536,
+      1024
+    ],
+    "ShadowPool_f1_v1": [
+      1536,
+      1024
+    ],
+    "ShadowPool_f2_v1": [
+      1536,
+      1024
+    ],
+    "ShockRing_v1": [
+      1536,
+      1024
+    ],
+    "ShotH2_ClockBat_v1": [
+      1774,
+      887
+    ],
+    "ShotH3_FurnaceToad_v1": [
+      1774,
+      887
+    ],
+    "ShotH4_RuneWisp_v1": [
+      1774,
+      887
+    ],
+    "ShotH5_SirenSeal_v1": [
+      1774,
+      887
+    ],
+    "ShotH6_RibbonHydra_v1": [
+      1774,
+      887
+    ],
+    "TelegraphCircle_v1": [
+      1536,
+      1024
+    ],
+    "TelegraphLane_v1": [
+      2172,
+      724
+    ],
+    "Tentacle_f0_v1": [
+      2172,
+      724
+    ],
+    "Tentacle_f1_v1": [
+      2172,
+      724
+    ],
+    "ToyHazard_f0_v1": [
+      1254,
+      1254
+    ],
+    "ToyHazard_f1_v1": [
+      1254,
+      1254
+    ],
+    "BlastFlash_f0_v1": [
+      1254,
+      1254
+    ],
+    "BlastFlash_f1_v1": [
+      1254,
+      1254
+    ],
+    "BlastFlash_f2_v1": [
+      1254,
+      1254
+    ],
+    "BlastFlash_f3_v1": [
+      1254,
+      1254
+    ],
+    "BlastRing_v1": [
+      1536,
+      1024
+    ],
+    "Chip_0_v1": [
+      1254,
+      1254
+    ],
+    "Chip_1_v1": [
+      1254,
+      1254
+    ],
+    "Chip_2_v1": [
+      1254,
+      1254
+    ],
+    "Chip_3_v1": [
+      1254,
+      1254
+    ],
+    "Chip_4_v1": [
+      1254,
+      1254
+    ],
+    "Chip_5_v1": [
+      1254,
+      1254
+    ],
+    "HostileBlast_f0_v1": [
+      1254,
+      1254
+    ],
+    "HostileBlast_f1_v1": [
+      1254,
+      1254
+    ],
+    "HostileBlast_f2_v1": [
+      1254,
+      1254
+    ],
+    "HostileBlast_f3_v1": [
+      1254,
+      1254
+    ],
+    "InkPuff_f0_v1": [
+      1254,
+      1254
+    ],
+    "InkPuff_f1_v1": [
+      1254,
+      1254
+    ],
+    "InkPuff_f2_v1": [
+      1254,
+      1254
+    ],
+    "InkPuff_f3_v1": [
+      1254,
+      1254
+    ],
+    "Dumpling_v1": [
+      1254,
+      1254
+    ],
+    "Fang_v1": [
+      1254,
+      1254
+    ],
+    "Knot_v1": [
+      1254,
+      1254
+    ],
+    "Moon_v1": [
+      1254,
+      1254
+    ],
+    "Patch_v1": [
+      1254,
+      1254
+    ],
+    "Puff_v1": [
+      1254,
+      1254
+    ],
+    "Token_Sand_v1": [
+      1254,
+      1254
+    ],
+    "Seal_v1": [
+      1254,
+      1254
+    ],
+    "Token_Shard_v1": [
+      1254,
+      1254
+    ],
+    "Token_Star_v1": [
+      1254,
+      1254
+    ],
+    "Thorn_v1": [
+      1254,
+      1254
+    ],
+    "Floor_Crossing": [
+      1254,
+      1254
+    ],
+    "Floor_House": [
+      1254,
+      1254
+    ],
+    "Floor_NightYouHid": [
+      1254,
+      1254
+    ],
+    "Floor_PerfectRoom": [
+      1254,
+      1254
+    ],
+    "Floor_Platform": [
+      1254,
+      1254
+    ],
+    "Form_TeaSpill": [
+      1254,
+      1254
+    ],
+    "Hob_Atlas": [
+      2172,
+      724
+    ],
+    "Hob": [
+      1226,
+      1283
+    ],
+    "Item_ExitKey": [
+      1254,
+      1254
+    ],
+    "Item_Receipt": [
+      1254,
+      1254
+    ],
+    "Item_SewnLetter": [
+      1254,
+      1254
+    ],
+    "Item_ThursdayShoes": [
+      1254,
+      1254
+    ],
+    "Item_Umbrella": [
+      1254,
+      1254
+    ],
+    "LastCustomer_Blank": [
+      552,
+      576
+    ],
+    "LastCustomer_BorrowedFace_Atlas": [
+      1254,
+      1254
+    ],
+    "LastCustomer_BorrowedFace_f11": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f12": [
+      1227,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f13": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f14": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace": [
+      1228,
+      1281
+    ],
+    "LastCustomer_Pleasant_Atlas": [
+      1254,
+      1254
+    ],
+    "LastCustomer_Pleasant_f10": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f11": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant": [
+      1227,
+      1281
+    ],
+    "Latch_Atlas": [
+      2172,
+      724
+    ],
+    "Latch": [
+      1196,
+      1315
+    ],
+    "Memory_Face": [
+      1254,
+      1254
+    ],
+    "Memory_Handwriting": [
+      1536,
+      1024
+    ],
+    "Memory_Height": [
+      1254,
+      1254
+    ],
+    "Memory_Knock": [
+      1254,
+      1254
+    ],
+    "Memory_Rain": [
+      1355,
+      1161
+    ],
+    "Memory_Raincoat": [
+      1254,
+      1254
+    ],
+    "Memory_Voice": [
+      1254,
+      1254
+    ],
+    "Panel_Crossing": [
+      1672,
+      941
+    ],
+    "Panel_Dawn": [
+      1672,
+      941
+    ],
+    "Panel_House": [
+      1672,
+      941
+    ],
+    "Panel_PerfectRoom": [
+      1672,
+      941
+    ],
+    "Panel_Platform": [
+      1672,
+      941
+    ],
+    "Panel_Thursday": [
+      1672,
+      941
+    ],
+    "Pickup_LanternFlare": [
+      1254,
+      1254
+    ],
+    "Pickup_ShopkeeperBell": [
+      1254,
+      1254
+    ],
+    "Postscript_Atlas": [
+      2172,
+      724
+    ],
+    "Postscript": [
+      1254,
+      1254
+    ],
+    "Prop_BoundaryGate": [
+      1254,
+      1254
+    ],
+    "Prop_DepartureBoard": [
+      1254,
+      1254
+    ],
+    "Prop_DiningTable": [
+      1374,
+      1145
+    ],
+    "Prop_FrontDoorMarks": [
+      1254,
+      1254
+    ],
+    "Prop_InwardWindow": [
+      1254,
+      1254
+    ],
+    "Prop_Ledger": [
+      1254,
+      1254
+    ],
+    "Prop_NailedLetterbox": [
+      1254,
+      1254
+    ],
+    "Prop_Nightstand": [
+      1254,
+      1254
+    ],
+    "Prop_PhoneBooth": [
+      1254,
+      1254
+    ],
+    "Prop_PlatformBench": [
+      1536,
+      1024
+    ],
+    "Prop_ReceiptChair": [
+      1254,
+      1254
+    ],
+    "Prop_SingleBed": [
+      1254,
+      1254
+    ],
+    "SeatedOne_A_Turned": [
+      1254,
+      1254
+    ],
+    "SeatedOne_A": [
+      1254,
+      1254
+    ],
+    "SeatedOne_B": [
+      1254,
+      1254
+    ],
+    "SeatedOne_C": [
+      1254,
+      1254
+    ],
+    "SeatedOne_D": [
+      1254,
+      1254
+    ],
+    "SeatedOne_E": [
+      1254,
+      1254
+    ],
+    "Shopkeeper_Idle": [
+      1254,
+      1254
+    ],
+    "Shopkeeper_Pour": [
+      1254,
+      1254
+    ],
+    "Shopkeeper_Warn": [
+      1254,
+      1254
+    ],
+    "Shopkeeper_Wipe": [
+      1254,
+      1254
+    ],
+    "Tally_Atlas": [
+      2172,
+      724
+    ],
+    "Tally": [
+      1424,
+      1105
+    ],
+    "WarmChair_Coins": [
+      1145,
+      1374
+    ],
+    "WarmChair_Jar": [
+      1145,
+      1374
+    ],
+    "WarmChair_Phone": [
+      1145,
+      1374
+    ],
+    "WarmChair": [
+      1145,
+      1374
+    ],
+    "PerfectRoom_Hob_v1": [
+      1448,
+      1086
+    ],
+    "WaitingRoom_ChairTurned": [
+      1672,
+      941
+    ]
+  },
+  "complete": false,
+  "availablePassed": true,
+  "pendingRepairs": [
+    {
+      "name": "Hob_Atlas",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Hob_Atlas.png",
+      "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary.",
+      "reason": "The outermost cup/wing edge touches its image border; shrink individual poses into their cells using painted."
+    },
+    {
+      "name": "Tally_Atlas",
+      "path": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Tally_Atlas.png",
+      "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary.",
+      "reason": "The outermost cup/wing edge touches its image border; shrink individual poses into their cells using painted."
+    }
+  ]
+}

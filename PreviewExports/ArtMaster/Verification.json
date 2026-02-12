@@ -1,0 +1,44 @@
+{
+  "scope": "available artwork; not complete HD delivery",
+  "date": "2026-10-17",
+  "unity": "6000.4.8f1",
+  "assets": {
+    "delivered": 237,
+    "target": 261,
+    "missingCustomerHD": 24,
+    "pendingAtlasRepairs": [
+      "Hob_Atlas",
+      "Tally_Atlas"
+    ],
+    "complete": false
+  },
+  "checks": {
+    "artMaster": 208,
+    "mienCho": 399,
+    "actOne": 512,
+    "heroIdentity": 2702
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 20,
+    "path": "Builds/ArtMaster/ArcaneBrigade.exe",
+    "runtimeSHA256": "33FF56C712B288F25638642C84DA5558F68B53C141FCB4AAF8CDFC5CD0AE38C8"
+  },
+  "windows": {
+    "native": {
+      "passed": 77,
+      "failed": 0,
+      "images": 36
+    },
+    "reduced": {
+      "passed": 77,
+      "failed": 0,
+      "images": 36
+    }
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+  "imageTool": "painting pass",
+  "promptManifest": "Docs/Act_One_Story_Image_Prompts.json"
+}

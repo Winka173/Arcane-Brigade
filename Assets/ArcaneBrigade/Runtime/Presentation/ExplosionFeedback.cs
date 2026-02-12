@@ -17,7 +17,7 @@ namespace ArcaneBrigade
             public Vector2 Position;
             public float Radius, Age = 10, Duration;
             public Color Color;
-            public bool Important;
+            public bool Important, Hostile;
             public float Spin;
             public SpriteRenderer Flash, Ring, Rim, Core, Bloom;
             public readonly SpriteRenderer[] Chips = new SpriteRenderer[12];
@@ -108,10 +108,10 @@ namespace ArcaneBrigade
             switch (value.Kind)
             {
                 case CombatEventKind.Detonation:
-                    Spawn(Kind.Blast, value.Position, Mathf.Max(0.8f, value.Value), Tint(value.Element, value.Faction), true);
+                    Spawn(Kind.Blast, value.Position, Mathf.Max(0.8f, value.Value), Tint(value.Element, value.Faction), true, value.Faction == Faction.Enemy);
                     break;
                 case CombatEventKind.BossLanded:
-                    Spawn(Kind.Shock, value.Position, 2.6f, new Color(0.86f, 0.74f, 0.55f), true);
+                    Spawn(Kind.Shock, value.Position, 2.6f, new Color(0.86f, 0.74f, 0.55f), true, true);
                     break;
                 case CombatEventKind.Kill when boss:
                     Spawn(Kind.Shock, value.Position, 4.4f, new Color(1f, 0.92f, 0.74f), true);
@@ -185,12 +185,12 @@ namespace ArcaneBrigade
             return view;
         }
 
-        private bool Spawn(Kind kind, Vector2 position, float radius, Color color, bool important)
+        private bool Spawn(Kind kind, Vector2 position, float radius, Color color, bool important, bool hostile = false)
         {
             Blast blast = Acquire(important);
             if (blast == null) return false;
             if (blast.Age < blast.Duration) Hide(blast); // stolen from a quieter effect: clear what it was showing
-            blast.Kind = kind; blast.Position = position; blast.Radius = radius; blast.Color = color; blast.Important = important; blast.Age = 0;
+            blast.Kind = kind; blast.Position = position; blast.Radius = radius; blast.Color = color; blast.Important = important; blast.Hostile = hostile; blast.Age = 0;
             blast.Duration = kind == Kind.Shock ? 0.75f : kind == Kind.Smudge ? 0.6f : kind == Kind.Burst ? 0.38f : kind == Kind.Pop ? PopDuration : 0.55f;
             int seed = Mathf.Abs(Mathf.RoundToInt(position.x * 97 + position.y * 31)) + pool.IndexOf(blast) * 13;
             int spread = kind == Kind.Pop ? PopChips : blast.Chips.Length;
@@ -350,9 +350,9 @@ namespace ArcaneBrigade
                 blast.Core.sprite = frame;
                 blast.Core.transform.position = blast.Position;
                 float coreWidth = 2f * r * (blast.Kind == Kind.Burst ? 0.9f : 0.95f) * Mathf.Lerp(0.75f, 1.05f, Ease(coreT));
-                blast.Core.transform.localScale = Vector3.one * (coreWidth / Mathf.Max(0.01f, frame.bounds.size.x));
+                blast.Core.transform.localScale = Vector3.one * (coreWidth / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(frame).width));
                 blast.Core.transform.rotation = Quaternion.Euler(0, 0, blast.Position.x * 47f % 360f);
-                Color tint = Color.Lerp(Color.white, blast.Color, 0.35f);
+                Color tint = Color.Lerp(Color.white, blast.Color, blast.Hostile ? .8f : .35f);
                 blast.Core.color = new Color(tint.r, tint.g, tint.b, Mathf.Clamp01((1 - coreT) * 1.6f));
             }
             // shock ring and its inked rim: out to just past the real radius, easing out
@@ -363,11 +363,14 @@ namespace ArcaneBrigade
             blast.Ring.enabled = blast.Rim.enabled = ringAlpha > 0.01f;
             if (blast.Ring.enabled)
             {
+                Sprite inkRing = CombatVfxArtwork.Frame("BlastRing", 0);
+                blast.Ring.sprite = inkRing != null ? inkRing : ring;
                 blast.Ring.transform.position = blast.Rim.transform.position = blast.Position;
-                blast.Ring.transform.localScale = Vector3.one * ringScale;
+                blast.Ring.transform.localScale = Vector3.one * (ringScale / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(blast.Ring.sprite).width));
                 blast.Rim.transform.localScale = Vector3.one * ringScale * 1.03f;
                 blast.Ring.color = new Color(Mathf.Lerp(blast.Color.r, 1f, 0.3f), Mathf.Lerp(blast.Color.g, 1f, 0.3f), Mathf.Lerp(blast.Color.b, 1f, 0.3f), ringAlpha);
                 blast.Rim.color = new Color(0.11f, 0.07f, 0.12f, ringAlpha * 0.7f);
+                if (inkRing != null) { blast.Rim.enabled = false; blast.Ring.color = blast.Hostile ? new Color(.95f, .3f, .2f, ringAlpha) : new Color(1, 1, 1, ringAlpha); }
             }
             // chips: paper, ink and coloured flecks thrown outward, slowing and spinning, then gone
             bool chips = blast.Kind != Kind.Smudge && !still && !sparse;
@@ -375,6 +378,8 @@ namespace ArcaneBrigade
             for (int i = 0; i < blast.Chips.Length; i++)
             {
                 SpriteRenderer view = blast.Chips[i];
+                Sprite inkChip = CombatVfxArtwork.Frame("Chip_" + (i % 6 == 4 ? 3 : i % 6), 0); // never the blue-and-white porcelain shard
+                view.sprite = inkChip != null ? inkChip : chip;
                 view.enabled = chips && chipT < 1f && (blast.Kind != Kind.Burst || i < 7);
                 if (!view.enabled) continue;
                 float travel = (1 - Mathf.Pow(1 - chipT, 2.2f)) * blast.Duration * 0.55f;
@@ -382,8 +387,10 @@ namespace ArcaneBrigade
                 view.transform.position = at;
                 view.transform.rotation = Quaternion.Euler(0, 0, blast.ChipSpin[i] * blast.Age);
                 float size = (blast.Kind == Kind.Burst ? 0.18f : 0.26f) * Mathf.Sqrt(r) * (1 - chipT * 0.6f);
-                view.transform.localScale = new Vector3(size * 1.5f, size, 1);
+                float inkWidth = Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).width);
+                view.transform.localScale = Vector3.one * (size * 1.5f / inkWidth);
                 Color c = view.color; view.color = new Color(c.r, c.g, c.b, 1 - chipT * chipT);
+                if (inkChip != null) view.color = new Color(1, 1, 1, 1 - chipT * chipT);
             }
             // a smudge of ink settles where it happened
             int puffs = blast.Kind == Kind.Burst ? 1 : sparse ? 1 : 3;
@@ -391,15 +398,44 @@ namespace ArcaneBrigade
             for (int i = 0; i < blast.Puffs.Length; i++)
             {
                 SpriteRenderer view = blast.Puffs[i];
+                Sprite[] inkPuffs = CombatVfxArtwork.Frames("InkPuff");
+                Sprite inkPuff = inkPuffs == null || inkPuffs.Length == 0 ? null : inkPuffs[Mathf.Min(inkPuffs.Length - 1, Mathf.FloorToInt(puffT * inkPuffs.Length))];
+                view.sprite = inkPuff != null ? inkPuff : puff;
                 view.enabled = i < puffs && puffT > 0 && puffT < 1;
                 if (!view.enabled) continue;
                 float angle = i * 2.1f + blast.Position.x;
                 Vector2 offset = i == 0 ? Vector2.zero : new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * r * 0.35f;
                 view.transform.position = blast.Position + offset * (still ? 1 : Ease(puffT));
-                view.transform.localScale = Vector3.one * (2f * r * (i == 0 ? 0.7f : 0.45f) * (still ? 1 : Mathf.Lerp(0.6f, 1.1f, Ease(puffT))));
+                view.transform.localScale = Vector3.one * (2f * r * (i == 0 ? 0.7f : 0.45f) * (still ? 1 : Mathf.Lerp(0.6f, 1.1f, Ease(puffT))) / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(view.sprite).width));
                 Color smudge = blast.Kind == Kind.Smudge ? blast.Color : new Color(0.14f, 0.1f, 0.17f);
                 view.color = new Color(smudge.r, smudge.g, smudge.b, (1 - puffT) * (blast.Kind == Kind.Smudge ? 0.55f : 0.32f));
+                if (inkPuff != null) view.color = new Color(1, 1, 1, (1 - puffT) * .6f);
             }
+            ApplyPaintedFlash(blast);
+        }
+        private static Sprite Once(string key, float progress)
+        {
+            var frames = CombatVfxArtwork.Frames(key);
+            return frames == null || frames.Length == 0 ? null : frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(Mathf.Clamp01(progress) * frames.Length))];
+        }
+        private static void FitPainted(SpriteRenderer view, Sprite image, float width)
+        {
+            if (!view.enabled || image == null) return;
+            Vector3 centre = view.transform.position; float alpha = view.color.a;
+            Rect ink = SpriteInkMetrics.BoundsOf(image); view.sprite = image;
+            view.transform.localScale = Vector3.one * (width / Mathf.Max(.01f, ink.width));
+            view.transform.position = centre - view.transform.TransformVector(ink.center);
+            view.color = new Color(1, 1, 1, alpha);
+        }
+        private static void ApplyPaintedFlash(Blast blast)
+        {
+            float life = blast.Kind == Kind.Pop ? .09f : blast.Kind == Kind.Shock ? .2f : .15f;
+            FitPainted(blast.Flash, Once(blast.Hostile ? "HostileBlast" : "BlastFlash", blast.Age / life), blast.Flash.transform.localScale.x);
+            // The ordinary-death path is independently pooled; replace its geometry as well as large detonations.
+            if (blast.Kind != Kind.Pop) return;
+            FitPainted(blast.Ring, CombatVfxArtwork.Frame("BlastRing", 0), blast.Ring.transform.localScale.x);
+            for (int i = 0; i < blast.Chips.Length; i++) FitPainted(blast.Chips[i], CombatVfxArtwork.Frame("Chip_" + (i % 6 == 4 ? 3 : i % 6), 0), blast.Chips[i].transform.localScale.x);
+            foreach (var puff in blast.Puffs) FitPainted(puff, Once("InkPuff", blast.Age / blast.Duration), puff.transform.localScale.x);
         }
         private static float Ease(float t) => 1 - Mathf.Pow(1 - Mathf.Clamp01(t), 3);
         private static void Hide(Blast blast)
