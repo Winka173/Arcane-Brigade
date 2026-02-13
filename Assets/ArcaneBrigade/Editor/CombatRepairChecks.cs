@@ -22,13 +22,14 @@ namespace ArcaneBrigade.Editor
             var parent=new GameObject("Mechanic art verification");
             try
             {
-                var view=new PaintedMechanicView(parent.transform,"Authored spell",1080);
-                foreach(var hero in c.Champions)
+                var view=new PaintedMechanicView(parent.transform,"Mechanic area",1080);
+                foreach(MorphGeometry shape in new[]{MorphGeometry.Disc,MorphGeometry.Ring,MorphGeometry.Crescent,MorphGeometry.Line})
                 {
-                    view.Display(art.Hero(hero.Id),MorphGeometry.Disc,Vector2.zero,Vector2.right,Vector2.right,1.2f,0,1,.25f,Color.white,false);
-                    Check(view.VisibleSprites>0 && parent.GetComponentsInChildren<LineRenderer>().Length==0,"Actual sprite spell renders without primitive outlines "+hero.Id);
+                    view.Display(art.Form(BuildMorphKind.Chorus),shape,Vector2.zero,Vector2.right*2,Vector2.right,1.2f,0,1,.25f,Color.white,false);
+                    var drawn=parent.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();
+                    Check(view.VisibleSprites>0 && drawn.All(r=>r.sortingOrder<100) && drawn.OfType<SpriteRenderer>().All(r=>r.sprite==null || !art.Forms.Contains(r.sprite)),"Mechanic area draws as clean geometry on the floor, never a painted wreath: "+shape);
                 }
-                view.Hide();Check(parent.GetComponentsInChildren<SpriteRenderer>().All(r=>!r.enabled),"Pooled spell layers clear completely");
+                view.Hide();Check(parent.GetComponentsInChildren<Renderer>().All(r=>!r.enabled),"Pooled area layers clear completely");
             }
             finally{UnityEngine.Object.DestroyImmediate(parent);}
             var hover=new Vector3(.03f,.4f,0);

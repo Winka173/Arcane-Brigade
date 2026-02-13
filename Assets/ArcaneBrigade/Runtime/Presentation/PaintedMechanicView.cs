@@ -1,53 +1,116 @@
 using UnityEngine;
 namespace ArcaneBrigade
 {
-    // Reusable illustrated layers; geometry remains in simulation, never in the art.
+    // Clean geometry for every build-morph strike and companion-weapon area: a bright edge swelling out to the real
+    // radius over a faint wash, an arc for sweeps, a beam for lines, in the mechanic's colour, on the floor under the
+    // bodies. Geometry stays in the simulation and what is drawn is exactly what is hit. The painted "wreath" motifs
+    // (MechanicEffectArtwork.Forms: crockery, ribbons of notes, gears, leaves) are no longer drawn: at area size they
+    // sheeted over the brigade and read as clutter rather than as the hit.
     public sealed class PaintedMechanicView
     {
-        private readonly SpriteRenderer body,trail,echo,spark;
-        public int VisibleSprites=>(body.enabled?1:0)+(trail.enabled?1:0)+(echo.enabled?1:0)+(spark.enabled?1:0);
-        public PaintedMechanicView(Transform parent,string name,int order)
+        private const int Floor = 64; // with the other area washes (fields 61-65), under every body
+        private const int CircleSegments = 48, ArcSegments = 24;
+        private static Sprite wash;
+        private static Material ink;
+        private static readonly AnimationCurve Flat = AnimationCurve.Constant(0, 1, 1);
+        private static readonly AnimationCurve Taper = new AnimationCurve(new Keyframe(0, .15f), new Keyframe(.5f, 1), new Keyframe(1, .15f));
+        private readonly SpriteRenderer fill;
+        private readonly LineRenderer edge, shade;
+        public int VisibleSprites => (fill.enabled ? 1 : 0) + (edge.enabled ? 1 : 0) + (shade.enabled ? 1 : 0);
+
+        /// <param name="order">Kept for callers; every area now draws on the floor layer.</param>
+        public PaintedMechanicView(Transform parent, string name, int order)
         {
-            SpriteRenderer Make(string suffix,int layer)
-            {var child=new GameObject(name+suffix);child.transform.SetParent(parent,false);var view=child.AddComponent<SpriteRenderer>();view.sortingOrder=layer;view.enabled=false;return view;}
-            body=Make(" / painted motif",order);trail=Make(" / brush trail",order-1);echo=Make(" / drifting fragments",order+1);spark=Make(" / ink echo",order-2);
+            if (ink == null) ink = new Material(Shader.Find("Sprites/Default")) { name = "MechanicAreaInk", hideFlags = HideFlags.DontSave };
+            if (wash == null) wash = SoftDisc();
+            var go = new GameObject(name + " / wash"); go.transform.SetParent(parent, false);
+            fill = go.AddComponent<SpriteRenderer>(); fill.sprite = wash; fill.sortingOrder = Floor; fill.enabled = false;
+            shade = Line(parent, name + " / ink edge", Floor + 1);
+            edge = Line(parent, name + " / light edge", Floor + 2);
         }
-        private static void Place(SpriteRenderer view,Sprite sprite,Vector2 at,float width,float angle,Color color,float height=0)
+        private static LineRenderer Line(Transform parent, string name, int order)
         {
-            view.enabled=sprite!=null && color.a>.005f;if(!view.enabled)return;
-            view.sprite=sprite;view.color=color;Rect ink=SpriteInkMetrics.BoundsOf(sprite);
-            float scale=width/Mathf.Max(.01f,ink.width),vertical=height>0?height/Mathf.Max(.01f,ink.height):scale;
-            view.transform.localScale=new Vector3(scale,vertical,1);view.transform.rotation=Quaternion.Euler(0,0,angle);
-            view.transform.position=(Vector3)at-view.transform.TransformVector(new Vector3(ink.center.x,ink.center.y,0));
+            var go = new GameObject(name); go.transform.SetParent(parent, false);
+            var line = go.AddComponent<LineRenderer>();
+            line.sharedMaterial = ink; line.useWorldSpace = true; line.sortingOrder = order; line.numCapVertices = 4; line.numCornerVertices = 2;
+            line.enabled = false;
+            return line;
         }
-        public void Display(Sprite motif,MorphGeometry geometry,Vector2 position,Vector2 end,Vector2 direction,float radius,float at,float until,float time,Color tint,bool reduced)
+        /// <summary>A one-unit disc: a faint flat wash that brightens toward a crisp rim.</summary>
+        private static Sprite SoftDisc()
         {
-            Hide();if(motif==null || time>=until)return;
-            var art=MechanicEffectArtwork.Current;
-            bool preparing=time<at,line=geometry==MorphGeometry.Line,crescent=geometry==MorphGeometry.Crescent;
-            float phase=Mathf.Clamp01((time-at)/Mathf.Max(.08f,until-at));
-            float fade=preparing?.22f:Mathf.Min(1,(until-time)/.22f);
-            float motion=reduced?1:Mathf.Lerp(.86f,1.06f,Mathf.SmoothStep(0,1,phase));
-            float alpha=fade*EffectDensity.AreaAlpha*(PresentationSettings.HighReadability?.75f:.92f);
-            Color color=Color.Lerp(Color.white,tint,.12f);color.a=alpha;
-            float angle=Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
-            float width=line?.75f:Mathf.Clamp(radius*2,.65f,6.8f);
-            Vector2 centre=line?end:position+(crescent?direction*radius*.25f:Vector2.zero);
-            if(crescent)width*=.8f;
-            float twist=reduced?0:(phase-.35f)*12;
-            Place(body,motif,centre,width*motion,line||crescent?angle+twist:twist,color);
-            if(line)
+            const int size = 128;
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = "MechanicAreaWash", filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
+            var pixels = new Color32[size * size]; float half = (size - 1) * .5f;
+            for (int y = 0; y < size; y++)
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = (x - half) / half, dy = (y - half) / half, d = Mathf.Sqrt(dx * dx + dy * dy);
+                    float a = Mathf.Lerp(.45f, 1f, d * d * d) * Mathf.Clamp01((1 - d) * 24);
+                    pixels[y * size + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(a) * 255));
+                }
+            texture.SetPixels32(pixels); texture.Apply(false, true);
+            return Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(.5f, .5f), size, 0, SpriteMeshType.FullRect);
+        }
+
+        /// <summary>Draws one area. <paramref name="motif"/> is ignored (kept so callers need not change).</summary>
+        public void Display(Sprite motif, MorphGeometry geometry, Vector2 position, Vector2 end, Vector2 direction, float radius, float at, float until, float time, Color tint, bool reduced)
+        {
+            Hide(); if (time >= until) return;
+            bool preparing = time < at;
+            float phase = Mathf.Clamp01((time - at) / Mathf.Max(.08f, until - at));
+            float fade = preparing ? .35f : Mathf.Min(1, (until - time) / .2f);
+            float alpha = fade * EffectDensity.AreaAlpha * (PresentationSettings.HighReadability ? 1f : .9f);
+            float rise = Mathf.Clamp01(phase / .4f);
+            float swell = reduced || preparing ? 1f : Mathf.Lerp(.78f, 1f, 1 - Mathf.Pow(1 - rise, 3));
+            float edgeAlpha = alpha * (preparing ? .5f : Mathf.Lerp(1f, .55f, phase));
+            Color light = Color.Lerp(tint, Color.white, .25f); light.a = edgeAlpha;
+            Color dark = new Color(.08f, .06f, .1f, edgeAlpha * .35f);
+            Vector2 facing = direction.sqrMagnitude > .0001f ? direction.normalized : Vector2.right;
+            float r = Mathf.Max(.05f, radius) * swell;
+            switch (geometry)
             {
-                Vector2 axis=end-position;Color stroke=Color.Lerp(Color.white,tint,.4f);stroke.a=alpha*.75f;
-                Place(trail,art?.Thrust,(position+end)*.5f,axis.magnitude,Mathf.Atan2(axis.y,axis.x)*Mathf.Rad2Deg,stroke,preparing?.12f:.25f);
+                case MorphGeometry.Line:
+                    Stroke(edge, Taper, preparing ? .08f : .2f, light, position, end);
+                    if (!PresentationSettings.ReducedEffects) Stroke(shade, Taper, preparing ? .12f : .26f, dark, position, end);
+                    return;
+                case MorphGeometry.Crescent:
+                    Arc(edge, Taper, preparing ? .08f : .22f, light, position, r, facing);
+                    if (!PresentationSettings.ReducedEffects) Arc(shade, Taper, preparing ? .12f : .28f, dark, position, r, facing);
+                    return;
+                default:
+                    float width = geometry == MorphGeometry.Ring ? Mathf.Clamp(radius * .09f, .07f, .14f) : Mathf.Clamp(radius * .07f, .05f, .11f);
+                    Circle(edge, width, light, position, r);
+                    if (!PresentationSettings.ReducedEffects) Circle(shade, width + .06f, dark, position, r);
+                    if (geometry == MorphGeometry.Disc)
+                    {
+                        fill.enabled = true; fill.transform.position = position; fill.transform.localScale = Vector3.one * (2 * r);
+                        Color inside = tint; inside.a = alpha * (preparing ? .1f : .2f * (1 - phase * .5f)); fill.color = inside;
+                    }
+                    return;
             }
-            if(preparing || PresentationSettings.ReducedEffects || AnimationDetailBudget.Level>=2)return;
-            Vector2 drift=reduced?Vector2.zero:new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad+1),Mathf.Sin(angle*Mathf.Deg2Rad+1))*phase*width*.09f;
-            Color light=color;light.a*=.19f*(1-phase);
-            Place(echo,motif,centre+drift,width*motion*1.12f,twist-8,light);
-            if(crescent)
-            {light=color;light.a*=.45f;Place(spark,art?.Slash,position+direction*radius*.35f,width*.9f,angle-25,light);}
         }
-        public void Hide(){body.enabled=trail.enabled=echo.enabled=spark.enabled=false;}
+        private static void Stroke(LineRenderer line, AnimationCurve curve, float width, Color color, Vector2 from, Vector2 to)
+        {
+            line.enabled = color.a > .005f; if (!line.enabled) return;
+            line.loop = false; line.widthCurve = curve; line.widthMultiplier = width; line.startColor = line.endColor = color;
+            line.positionCount = 2; line.SetPosition(0, from); line.SetPosition(1, to);
+        }
+        private static void Circle(LineRenderer line, float width, Color color, Vector2 centre, float radius)
+        {
+            line.enabled = color.a > .005f; if (!line.enabled) return;
+            line.loop = true; line.widthCurve = Flat; line.widthMultiplier = width; line.startColor = line.endColor = color;
+            line.positionCount = CircleSegments;
+            for (int i = 0; i < CircleSegments; i++) { float a = i * Mathf.PI * 2 / CircleSegments; line.SetPosition(i, centre + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius); }
+        }
+        // a sweep: about a hundred degrees either side of the strike's direction (the default cone, Dot >= -0.2)
+        private static void Arc(LineRenderer line, AnimationCurve curve, float width, Color color, Vector2 centre, float radius, Vector2 facing)
+        {
+            line.enabled = color.a > .005f; if (!line.enabled) return;
+            line.loop = false; line.widthCurve = curve; line.widthMultiplier = width; line.startColor = line.endColor = color;
+            line.positionCount = ArcSegments; float middle = Mathf.Atan2(facing.y, facing.x), spread = 100 * Mathf.Deg2Rad;
+            for (int i = 0; i < ArcSegments; i++) { float a = middle - spread + 2 * spread * i / (ArcSegments - 1); line.SetPosition(i, centre + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius); }
+        }
+        public void Hide() { fill.enabled = edge.enabled = shade.enabled = false; }
     }
 }

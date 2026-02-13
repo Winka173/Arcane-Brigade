@@ -1,37 +1,10 @@
 PASS Every hero has distinct illustrated mechanic art
 PASS All twelve build themes and four supporting brush effects imported
-PASS Actual sprite spell renders without primitive outlines LanternKnight
-PASS Actual sprite spell renders without primitive outlines Postmaster
-PASS Actual sprite spell renders without primitive outlines DrowsySeer
-PASS Actual sprite spell renders without primitive outlines RootOracle
-PASS Actual sprite spell renders without primitive outlines LoneJelly
-PASS Actual sprite spell renders without primitive outlines GlassDice
-PASS Actual sprite spell renders without primitive outlines TideSinger
-PASS Actual sprite spell renders without primitive outlines CometRunner
-PASS Actual sprite spell renders without primitive outlines MirrorKeeper
-PASS Actual sprite spell renders without primitive outlines TreasureAcorn
-PASS Actual sprite spell renders without primitive outlines VerdantMatron
-PASS Actual sprite spell renders without primitive outlines CopperCauldron
-PASS Actual sprite spell renders without primitive outlines ChinaMarionette
-PASS Actual sprite spell renders without primitive outlines SoapSkater
-PASS Actual sprite spell renders without primitive outlines VelvetRegent
-PASS Actual sprite spell renders without primitive outlines ButtonCavalier
-PASS Actual sprite spell renders without primitive outlines NightMaw
-PASS Actual sprite spell renders without primitive outlines ThornTreasurer
-PASS Actual sprite spell renders without primitive outlines CitrusMarshal
-PASS Actual sprite spell renders without primitive outlines IvorySovereign
-PASS Actual sprite spell renders without primitive outlines PetalCitadel
-PASS Actual sprite spell renders without primitive outlines PatchworkHost
-PASS Actual sprite spell renders without primitive outlines ArchiveCurator
-PASS Actual sprite spell renders without primitive outlines PennyBroker
-PASS Actual sprite spell renders without primitive outlines StormFencer
-PASS Actual sprite spell renders without primitive outlines TinVirtuoso
-PASS Actual sprite spell renders without primitive outlines MoonProwler
-PASS Actual sprite spell renders without primitive outlines SupperMortar
-PASS Actual sprite spell renders without primitive outlines LanternWeaver
-PASS Actual sprite spell renders without primitive outlines HourglassStag
-PASS Actual sprite spell renders without primitive outlines RainArchivist
-PASS Pooled spell layers clear completely
+PASS Mechanic area draws as clean geometry on the floor, never a painted wreath: Disc
+PASS Mechanic area draws as clean geometry on the floor, never a painted wreath: Ring
+PASS Mechanic area draws as clean geometry on the floor, never a painted wreath: Crescent
+PASS Mechanic area draws as clean geometry on the floor, never a painted wreath: Line
+PASS Pooled area layers clear completely
 PASS Shop scenery begins above the floor
 PASS Shop scenery visibly lands on the fixed floor
 PASS Landing has a small rebound

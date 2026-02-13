@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class PaintedEffects : MonoBehaviour
     {
-        private sealed class Burst { public SpriteRenderer View; public Sprite[] Frames; public float Age = 10; public float Duration; public float Width; public Color Tint; public bool Important, FloorWave; }
+        private sealed class Burst { public SpriteRenderer View; public Sprite[] Frames; public float Age = 10; public float Duration; public float Width; public Color Tint; public bool Important; }
         private readonly List<Burst> pool = new List<Burst>();
         private PaintedAnimationLibrary library;
         private ImpactAnimationLibrary impacts;
@@ -22,26 +22,17 @@ namespace ArcaneBrigade
             bool hit = value.Kind == CombatEventKind.Hit && value.Value > 0 && value.Faction != Faction.Companion;
             // kills are never thinned out by crowd budgets: what landed always shows
             bool important = value.Critical || value.Faction == Faction.Champion || value.Subject != null && value.Subject.Definition.IsBoss || value.Kind == CombatEventKind.Kill && value.Faction == Faction.Enemy;
-            var authored=MechanicEffectArtwork.Current;
             string combatArt = hit && value.Faction == Faction.Champion ? "HeroHurt" :
                 value.Kind == CombatEventKind.Fire && value.Weapon != null && value.Weapon.Kind == WeaponKind.Projectile && value.Faction == Faction.Enemy ? "HostileMuzzle" :
                 slash && value.Weapon.Motion == WeaponMotion.Thrust ? "Thrust" : null;
             Sprite[] combatFrames = CombatVfxArtwork.Frames(combatArt);
             bool illustrated = combatFrames != null && combatFrames.Length > 0;
-            bool cue=value.Faction!=Faction.Enemy && (value.Kind==CombatEventKind.SignatureMark || value.Kind==CombatEventKind.SignatureBurst || value.Kind==CombatEventKind.SignaturePulse || value.Kind==CombatEventKind.Support || value.Kind==CombatEventKind.Dodge || value.Kind==CombatEventKind.Heal || value.Kind==CombatEventKind.Proc || value.Kind==CombatEventKind.Windup && value.Weapon!=null && (value.Weapon.Motion==WeaponMotion.Cast || value.Weapon.Motion==WeaponMotion.Bell) || value.Kind==CombatEventKind.Fire && value.Weapon!=null && value.Weapon.Motion==WeaponMotion.Bow);
             if (illustrated)
             {
                 frames = combatFrames;
                 width = combatArt == "Thrust" ? Mathf.Clamp(value.Weapon.Range * 0.85f, 0.6f, 3.4f) : combatArt == "HeroHurt" ? 0.85f : 0.55f;
                 duration = combatArt == "HeroHurt" ? 0.28f : 0.22f;
                 if (combatArt != "HeroHurt") position += value.Direction * (combatArt == "Thrust" ? value.Weapon.Range * 0.4f : 0.4f);
-            }
-            else if(cue && authored!=null)
-            {
-                bool healing=value.Kind==CombatEventKind.Heal || value.Kind==CombatEventKind.Support;
-                Sprite sprite=healing?authored.Healing:value.Weapon!=null?authored.Form(BuildMorphs.For(value.Weapon)):authored.Impact;
-                frames=new[]{sprite};width=value.Kind==CombatEventKind.SignaturePulse?Mathf.Clamp(value.Value*2,.75f,4.5f):value.Kind==CombatEventKind.SignatureBurst?1.6f:healing?.8f:.6f;
-                duration=value.Kind==CombatEventKind.Windup?Mathf.Max(.1f,value.Weapon.Windup):.35f;
             }
             else if (hit && impacts != null)
             {
@@ -81,16 +72,11 @@ namespace ArcaneBrigade
                 var child = new GameObject("PaintedBurst"); child.transform.SetParent(transform, false);
                 burst = new Burst { View = child.AddComponent<SpriteRenderer>() }; pool.Add(burst);
             }
-            burst.Important = important; bool floorWave = cue && authored != null && value.Kind == CombatEventKind.SignaturePulse;
-            // a signature pulse painted with its form (the bell's ribbon of notes) is a wave across the floor under the
-            // bodies, see-through, swelling out to the real radius; the gold ring (ArcadeEffects) still marks the edge
-            burst.View.sortingOrder = floorWave ? 63 : value.Faction == Faction.Enemy && value.Kind == CombatEventKind.Fire ? 1850 : 1450;
-            burst.FloorWave = floorWave;
+            burst.Important = important; burst.View.sortingOrder = value.Faction == Faction.Enemy && value.Kind == CombatEventKind.Fire ? 1850 : 1450;
             burst.Age = 0; burst.Duration = duration; burst.Frames = frames; burst.Width = width;
             burst.Tint = !illustrated && (slash || magic || value.Kind == CombatEventKind.SignaturePulse) ? Color.Lerp(Color.white, ArcadeEffects.ElementColor(value.Element), 0.3f) : Color.white;
             if (PresentationSettings.ReducedFlashes) burst.Tint *= new Color(0.8f, 0.8f, 0.8f, 1);
             if (!important) { Color quiet = burst.Tint; quiet.a = EffectDensity.AlliedAlpha; burst.Tint = quiet; }
-            if (floorWave) { Color wave = burst.Tint; wave.a *= 0.5f; burst.Tint = wave; }
             burst.View.sprite = frames[0]; burst.View.enabled = true; burst.View.color = Color.white;
             burst.View.transform.position = position;
             burst.View.transform.rotation = Quaternion.Euler(0, 0, slash || combatArt == "HostileMuzzle" ? Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg : 0);
@@ -106,7 +92,7 @@ namespace ArcaneBrigade
                 burst.Age += delta; float progress = Mathf.Clamp01(burst.Age / burst.Duration);
                 burst.View.sprite = burst.Frames[Mathf.Min(burst.Frames.Length - 1, Mathf.FloorToInt(progress * burst.Frames.Length))];
                 float scale = burst.Width / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(burst.View.sprite).width);
-                burst.View.transform.localScale = Vector3.one * scale * (PresentationSettings.ReducedMotion ? 1 : burst.FloorWave ? 0.6f + 0.4f * (1 - (1 - progress) * (1 - progress)) : 0.9f + progress * 0.18f);
+                burst.View.transform.localScale = Vector3.one * scale * (PresentationSettings.ReducedMotion ? 1 : 0.9f + progress * 0.18f);
                 Color tint = burst.Tint; tint.a *= Mathf.Clamp01((1 - progress) * 3); burst.View.color = tint;
                 if (progress >= 1) burst.View.enabled = false;
             }
