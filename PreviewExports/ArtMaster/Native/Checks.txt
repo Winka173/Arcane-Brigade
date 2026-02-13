@@ -4,8 +4,8 @@ PASS The built tea mechanic uses painted amber tea, never broken dishes
 PASS Built boss keeps full-resolution pose textures: ChairPorter
 PASS Built boss keeps full-resolution pose textures: DoorThatStayedShut
 PASS Built boss keeps full-resolution pose textures: TheBedside
-PASS Available Customer retains its full sixteen-pose atlas; HD art remains pending: LastCustomer_Pleasant
-PASS Available Customer retains its full sixteen-pose atlas; HD art remains pending: LastCustomer_BorrowedFace
+PASS Built boss keeps full-resolution pose textures: LastCustomer_Pleasant
+PASS Built boss keeps full-resolution pose textures: LastCustomer_BorrowedFace
 PASS Real saved session loads at wave 1
 PASS Actual Windows frame: Combat-01
 PASS Canon zone prop exists in the real arena: 1
@@ -14,24 +14,24 @@ PASS Real saved session loads at wave 7
 PASS Actual Windows frame: Combat-07
 PASS Canon zone prop exists in the real arena: 7
 PASS Live canon actor uses new sheet: Latch
-PASS Live canon actor uses new sheet: Hob
 PASS Live canon actor uses new sheet: Postscript
+PASS Live canon actor uses new sheet: Hob
 PASS Actual Windows frame: Zone-props-07
 PASS Real saved session loads at wave 12
 PASS Actual Windows frame: Combat-12
 PASS Canon zone prop exists in the real arena: 12
-PASS Live canon actor uses new sheet: Postscript
-PASS Live canon actor uses new sheet: Tally
-PASS Live canon actor uses new sheet: Hob
 PASS Live canon actor uses new sheet: Latch
+PASS Live canon actor uses new sheet: Postscript
+PASS Live canon actor uses new sheet: Hob
+PASS Live canon actor uses new sheet: Tally
 PASS Actual Windows frame: Zone-props-12
 PASS Real saved session loads at wave 17
 PASS Actual Windows frame: Combat-17
 PASS Canon zone prop exists in the real arena: 17
-PASS Live canon actor uses new sheet: Postscript
+PASS Live canon actor uses new sheet: Latch
 PASS Live canon actor uses new sheet: Tally
 PASS Live canon actor uses new sheet: Hob
-PASS Live canon actor uses new sheet: Latch
+PASS Live canon actor uses new sheet: Postscript
 PASS Actual Windows frame: Zone-props-17
 PASS Real saved session loads at wave 12
 PASS Actual Windows frame: Painted-blasts-both-factions

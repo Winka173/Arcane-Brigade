@@ -27,6 +27,8 @@ for job in jobs:
                 alpha = image.getchannel('A')
                 if max(alpha.crop((0, 0, image.width, 1)).getextrema()[1], alpha.crop((0, image.height-1, image.width, image.height)).getextrema()[1], alpha.crop((0, 0, 1, image.height)).getextrema()[1], alpha.crop((image.width-1, 0, image.width, image.height)).getextrema()[1]) > 64:
                     warnings.append('Ink touches outside border: ' + name)
+                    if name in ('Hob_Atlas', 'Tally_Atlas'):
+                        failures.append('Companion atlas still clips the outside edge: ' + name)
         if name.endswith('_Atlas'):
             cols, rows = 4, 4 if name.startswith(('ChairPorter', 'DoorThat', 'TheBedside', 'LastCustomer')) else 1
             for row in range(rows):
@@ -36,6 +38,8 @@ for job in jobs:
                     if ink is None: failures.append(f'Empty atlas cell {name}:{row*cols+col}')
                     elif ink[0] < 2 or ink[1] < 2 or ink[2] >= cell.width-1 or ink[3] >= cell.height-1:
                         warnings.append(f'Atlas border needs visual review {name}:{row*cols+col}')
+                        if name in ('Hob_Atlas', 'Tally_Atlas'):
+                            failures.append(f'Companion pose still crosses its cell edge {name}:{row*cols+col}')
         images.append((name, path, image.size))
 report = dict(expected=len(jobs), present=len(images), manifest=len(records), failures=failures, visualReview=warnings,
               dimensions={n: list(s) for n, _, s in images})

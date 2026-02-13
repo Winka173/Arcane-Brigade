@@ -133,11 +133,19 @@ PASS Sixteen separate poses, including anticipation/release: TheBedside
 PASS Large boss uses sixteen full-resolution images, not small atlas cells: TheBedside
 PASS Stable scale and distinct attack poses: TheBedside
 PASS Sixteen separate poses, including anticipation/release: LastCustomer_Pleasant
-PASS Available Customer uses its complete sixteen-pose atlas while HD deliveries are pending: LastCustomer_Pleasant
+PASS Large boss uses sixteen full-resolution images, not small atlas cells: LastCustomer_Pleasant
 PASS Stable scale and distinct attack poses: LastCustomer_Pleasant
 PASS Sixteen separate poses, including anticipation/release: LastCustomer_BorrowedFace
-PASS Available Customer uses its complete sixteen-pose atlas while HD deliveries are pending: LastCustomer_BorrowedFace
+PASS Large boss uses sixteen full-resolution images, not small atlas cells: LastCustomer_BorrowedFace
 PASS Stable scale and distinct attack poses: LastCustomer_BorrowedFace
+PASS Companion atlas imports four whole separate poses: Hob
+PASS Companion anticipation and attack use different authored poses: Hob
+PASS Companion atlas imports four whole separate poses: Latch
+PASS Companion anticipation and attack use different authored poses: Latch
+PASS Companion atlas imports four whole separate poses: Postscript
+PASS Companion anticipation and attack use different authored poses: Postscript
+PASS Companion atlas imports four whole separate poses: Tally
+PASS Companion anticipation and attack use different authored poses: Tally
 PASS All four canon companions enter the late combat
 PASS Actual story build selects its own art: Hob
 PASS Actual story build selects its own art: Latch

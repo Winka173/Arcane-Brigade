@@ -139,10 +139,10 @@ TextureImporter:
       name: Tally_00
       rect:
         serializedVersion: 2
-        x: 8
-        y: 95
-        width: 544
-        height: 512
+        x: 64
+        y: 158
+        width: 418
+        height: 390
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,10 +161,10 @@ TextureImporter:
       name: Tally_01
       rect:
         serializedVersion: 2
-        x: 558
-        y: 95
-        width: 532
-        height: 528
+        x: 601
+        y: 158
+        width: 427
+        height: 394
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: Tally_02
       rect:
         serializedVersion: 2
-        x: 1096
-        y: 93
-        width: 529
-        height: 518
+        x: 1138
+        y: 153
+        width: 432
+        height: 399
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,10 +205,10 @@ TextureImporter:
       name: Tally_03
       rect:
         serializedVersion: 2
-        x: 1640
-        y: 93
-        width: 521
-        height: 517
+        x: 1678
+        y: 155
+        width: 427
+        height: 395
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

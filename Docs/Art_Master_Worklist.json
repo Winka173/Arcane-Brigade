@@ -1862,10 +1862,10 @@
     "transparent": true,
     "depends": "Hob",
     "refs": [
-      "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Hob.png"
+      "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Hob_Atlas.png"
     ],
     "mode": "grid4x1",
-    "prompt": "Use case: precise-object-edit / sprite animation sheet. Input is the approved single Hob character, EDIT TARGET for identity. Create ONE production transparent RGBA animation atlas, EXACTLY FOUR columns and ONE row, four equal cells. Each cell is a separately drawn pose of the EXACT SAME creature from the input. Preserve its clothing, objects, face, anatomy, proportions, elevated front three-quarter camera, scale and floor-foot anchor across all cells. Left to right: idle, gentle breathing, left stride, right stride. Keep friendly personality; no extra equipment. All full bodies contained within their own equal cell with 12% transparent padding and feet on same baseline. Keep each full-height scale identical. No gridlines, letters, numbers, labels, scenes, floor, shadows, glow aura or wind. Drawn dark-ink storybook art, NOT repeated identical tiles, no 3D. Largest suitable canvas, ideally 2048x512."
+    "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary."
   },
   {
     "name": "Hob",
@@ -2169,9 +2169,10 @@
     "transparent": true,
     "depends": "LastCustomer_Pleasant",
     "refs": [
+      "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f13.png",
       "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant.png"
     ],
-    "prompt": "Use case: precise-object-edit, single HIGH-DEFINITION game animation pose. EDIT TARGET is the approved LastCustomer_Pleasant full-body illustration. Draw exactly ONE new full-body pose: leaning forward as if listening at a door. Preserve the EXACT character identity, body proportions, clothes, face, objects, ink contours, painterly shading, elevated front3/4 camera and original palette of the input. Keep original canvas size/aspect and SAME body scale with feet on the original ground baseline; keep at least12% clear margins, no cropped limbs. Keep hand-drawn detail crisp at a large boss gameplay size. One complete isolated figure only, genuine transparent RGBA background. No sheet, no multiple figures, no text, no floor, no cast shadow, no external glow/projectile/effects. Change the pose itself; do not merely rotate or translate the entire source picture."
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: preserve its EXACT current full-body pose, face, hat, costume, seal in the same hand, palette, scale, camera and canvas. Image 2 is the approved character REFERENCE for the missing object. Restore ONE long curled blank cream paper receipt in the free hand, like the paper he holds in image 2. The hand doing the listening/casting/stagger gesture must still grip the top of this blank receipt; let the complete receipt hang or trail naturally without hiding the face or seal. Keep every existing limb and pose unchanged, only adjust the fingers as needed to grip the paper. Both original carried objects must be present: brass/red seal AND long blank receipt. No new props, no letters on the paper. Full paper end inside the canvas. Genuine transparent RGBA background, isolated complete figure, same hand-ink storybook illustration and original image aspect. No floor, cast shadow, extra effects or text."
   },
   {
     "name": "LastCustomer_Pleasant_f14",
@@ -2179,9 +2180,10 @@
     "transparent": true,
     "depends": "LastCustomer_Pleasant",
     "refs": [
+      "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f14.png",
       "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant.png"
     ],
-    "prompt": "Use case: precise-object-edit, single HIGH-DEFINITION game animation pose. EDIT TARGET is the approved LastCustomer_Pleasant full-body illustration. Draw exactly ONE new full-body pose: casting gesture: raised hand or chain or shawl, no external effect. Preserve the EXACT character identity, body proportions, clothes, face, objects, ink contours, painterly shading, elevated front3/4 camera and original palette of the input. Keep original canvas size/aspect and SAME body scale with feet on the original ground baseline; keep at least12% clear margins, no cropped limbs. Keep hand-drawn detail crisp at a large boss gameplay size. One complete isolated figure only, genuine transparent RGBA background. No sheet, no multiple figures, no text, no floor, no cast shadow, no external glow/projectile/effects. Change the pose itself; do not merely rotate or translate the entire source picture."
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: preserve its EXACT current full-body pose, face, hat, costume, seal in the same hand, palette, scale, camera and canvas. Image 2 is the approved character REFERENCE for the missing object. Restore ONE long curled blank cream paper receipt in the free hand, like the paper he holds in image 2. The hand doing the listening/casting/stagger gesture must still grip the top of this blank receipt; let the complete receipt hang or trail naturally without hiding the face or seal. Keep every existing limb and pose unchanged, only adjust the fingers as needed to grip the paper. Both original carried objects must be present: brass/red seal AND long blank receipt. No new props, no letters on the paper. Full paper end inside the canvas. Genuine transparent RGBA background, isolated complete figure, same hand-ink storybook illustration and original image aspect. No floor, cast shadow, extra effects or text."
   },
   {
     "name": "LastCustomer_Pleasant_f15",
@@ -2767,10 +2769,10 @@
     "transparent": true,
     "depends": "Tally",
     "refs": [
-      "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Tally.png"
+      "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Tally_Atlas.png"
     ],
     "mode": "grid4x1",
-    "prompt": "Use case: precise-object-edit / sprite animation sheet. Input is the approved single Tally character, EDIT TARGET for identity. Create ONE production transparent RGBA animation atlas, EXACTLY FOUR columns and ONE row, four equal cells. Each cell is a separately drawn pose of the EXACT SAME creature from the input. Preserve its clothing, objects, face, anatomy, proportions, elevated front three-quarter camera, scale and floor-foot anchor across all cells. Left to right: idle, gentle breathing, left stride, right stride. Keep friendly personality; no extra equipment. All full bodies contained within their own equal cell with 12% transparent padding and feet on same baseline. Keep each full-height scale identical. No gridlines, letters, numbers, labels, scenes, floor, shadows, glow aura or wind. Drawn dark-ink storybook art, NOT repeated identical tiles, no 3D. Largest suitable canvas, ideally 2048x512."
+    "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary."
   },
   {
     "name": "Tally",

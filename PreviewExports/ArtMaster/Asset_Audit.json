@@ -1,33 +1,8 @@
 {
   "expected": 261,
-  "present": 237,
-  "manifest": 237,
-  "failures": [
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f1.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f10.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f15.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f2.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f3.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f4.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f5.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f6.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f7.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f8.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_BorrowedFace_f9.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f1.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f12.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f13.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f14.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f15.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f2.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f3.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f4.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f5.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f6.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f7.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f8.png",
-    "Missing Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Pleasant_f9.png"
-  ],
+  "present": 261,
+  "manifest": 261,
+  "failures": [],
   "visualReview": [
     "Atlas border needs visual review ChairPorter_Atlas:10",
     "Atlas border needs visual review ChairPorter_Atlas:11",
@@ -41,20 +16,13 @@
     "Atlas border needs visual review TheBedside_Atlas:8",
     "Atlas border needs visual review TheBedside_Atlas:9",
     "Atlas border needs visual review TheBedside_Atlas:10",
-    "Ink touches outside border: Hob_Atlas",
-    "Atlas border needs visual review Hob_Atlas:0",
-    "Atlas border needs visual review Hob_Atlas:1",
-    "Atlas border needs visual review Hob_Atlas:2",
-    "Atlas border needs visual review Hob_Atlas:3",
     "Ink touches outside border: LastCustomer_Blank",
     "Atlas border needs visual review LastCustomer_BorrowedFace_Atlas:10",
     "Atlas border needs visual review LastCustomer_BorrowedFace_Atlas:11",
+    "Ink touches outside border: LastCustomer_BorrowedFace_f8",
     "Ink touches outside border: LastCustomer_BorrowedFace",
     "Atlas border needs visual review LastCustomer_Pleasant_Atlas:10",
-    "Atlas border needs visual review LastCustomer_Pleasant_Atlas:11",
-    "Atlas border needs visual review Tally_Atlas:0",
-    "Atlas border needs visual review Tally_Atlas:1",
-    "Atlas border needs visual review Tally_Atlas:2"
+    "Atlas border needs visual review LastCustomer_Pleasant_Atlas:11"
   ],
   "dimensions": {
     "ChairPorter_Atlas": [
@@ -773,6 +741,14 @@
       1254,
       1254
     ],
+    "LastCustomer_BorrowedFace_f1": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f10": [
+      1228,
+      1281
+    ],
     "LastCustomer_BorrowedFace_f11": [
       1228,
       1281
@@ -789,6 +765,42 @@
       1228,
       1281
     ],
+    "LastCustomer_BorrowedFace_f15": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f2": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f3": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f4": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f5": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f6": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f7": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f8": [
+      1228,
+      1281
+    ],
+    "LastCustomer_BorrowedFace_f9": [
+      1228,
+      1281
+    ],
     "LastCustomer_BorrowedFace": [
       1228,
       1281
@@ -797,11 +809,63 @@
       1254,
       1254
     ],
+    "LastCustomer_Pleasant_f1": [
+      1227,
+      1281
+    ],
     "LastCustomer_Pleasant_f10": [
       1227,
       1281
     ],
     "LastCustomer_Pleasant_f11": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f12": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f13": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f14": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f15": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f2": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f3": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f4": [
+      1227,
+      1282
+    ],
+    "LastCustomer_Pleasant_f5": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f6": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f7": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f8": [
+      1227,
+      1281
+    ],
+    "LastCustomer_Pleasant_f9": [
       1227,
       1281
     ],
@@ -1006,20 +1070,7 @@
       941
     ]
   },
-  "complete": false,
+  "complete": true,
   "availablePassed": true,
-  "pendingRepairs": [
-    {
-      "name": "Hob_Atlas",
-      "path": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Hob_Atlas.png",
-      "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary.",
-      "reason": "The outermost cup/wing edge touches its image border; shrink individual poses into their cells using painted."
-    },
-    {
-      "name": "Tally_Atlas",
-      "path": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Tally_Atlas.png",
-      "prompt": "Use case: precise-object-edit. Repair this exact 4-column, 1-row game sprite animation sheet. Preserve all four distinct poses and the exact character identity, palette, paper/porcelain material and hand-ink illustration. SHRINK EACH INDIVIDUAL CHARACTER to 70% of its current size inside ITS OWN equally-sized column. Centre it inside that column, align feet to the same baseline at 82% of canvas height. Restore any cut-off cup, hand, wing tip or spout. Each entire figure must have generous transparent space on ALL FOUR SIDES of its own cell, at least 12% each side, including at both outside edges of the entire sheet. Four isolated figures total, evenly spaced, not touching. Transparent RGBA backdrop, keep original wide canvas aspect, no floor/shadows/text/grid. Do not shrink the sheet as a whole: shrink each figure separately so it cannot cross a cell boundary.",
-      "reason": "The outermost cup/wing edge touches its image border; shrink individual poses into their cells using painted."
-    }
-  ]
+  "pendingRepairs": []
 }

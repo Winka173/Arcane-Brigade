@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: LastCustomer_PleasantMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1080914692, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  - {fileID: -678083254, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+  - {fileID: 21300000, guid: be96fe187639ef4478f679deffcfefb6, type: 3}
+  - {fileID: 21300000, guid: a9c87ac4237397640b3d47b659106898, type: 3}
   Walk:
-  - {fileID: 2068739757, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  - {fileID: -1814785972, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  - {fileID: 1505422590, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+  - {fileID: 21300000, guid: a29473fea509e9144aa3eeb665f2c744, type: 3}
+  - {fileID: 21300000, guid: 0278742aae66da84b89a83a3b3a60faf, type: 3}
+  - {fileID: 21300000, guid: 0eac228e7b140f34aa185029a6281f7a, type: 3}
   Windup:
-  - {fileID: 849660109, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  - {fileID: -444173407, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+  - {fileID: 21300000, guid: 1b80fc12d37d6f742b90a6da4bc9bad9, type: 3}
+  - {fileID: 21300000, guid: 5c31dd2652ac41942af83f57c496ee76, type: 3}
   Release:
-  - {fileID: -1069696687, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  - {fileID: 1014917292, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
+  - {fileID: 21300000, guid: 96d1895f5c57b1a4192eab75245913cc, type: 3}
+  - {fileID: 21300000, guid: b82aeee2541c06b498f4972edafc6ce3, type: 3}
   Recovery:
-  - {fileID: -2053590689, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  - {fileID: -2008261395, guid: f681805b7bd448b4bbea7b41e52d3162, type: 3}
-  IllustratedHeight: 1.6796875
+  - {fileID: 21300000, guid: 21f3c9f2e5049804db980b7c6c8295fd, type: 3}
+  - {fileID: 21300000, guid: 7e75fc135fbf63c48ae1663093d354f8, type: 3}
+  IllustratedHeight: 4.6875

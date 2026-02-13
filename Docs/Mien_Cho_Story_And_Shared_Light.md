@@ -1,6 +1,6 @@
 # Miền Chờ — cốt truyện đã chốt và hướng ánh sáng đồng hành
 
-**Art theo canon Hồi 1, 17/10:** đã giao 237 PNG, tích hợp nhân vật truyện, boss, đồ cảnh theo vùng, journal, token và VFX. Còn 24 frame HD Customer và hai atlas sửa mép chờ quota vẽ; xem [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
+**Art theo canon Hồi 1, 17/10:** đã giao đủ 261 PNG, tích hợp nhân vật truyện, boss, đồ cảnh theo vùng, journal, token và VFX. Hai mặt Customer đã đủ frame HD, atlas Hob/Tally đã sửa mép; xem [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
 
 > **Hồi 1 đã viết lại (16/10/2026):** canon mới ở [Mien_Cho_Act_One_Story.md](Mien_Cho_Act_One_Story.md). Khi mâu thuẫn, bản đó là chuẩn và game sẽ rework theo nó. Mục 8 (ánh sáng đồng hành) bên dưới vẫn giữ; mắt đỏ chỉ là hiệu ứng hình ảnh, không thuộc cốt truyện.
 

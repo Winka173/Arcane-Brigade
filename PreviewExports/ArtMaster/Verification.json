@@ -1,19 +1,16 @@
 {
-  "scope": "available artwork; not complete HD delivery",
+  "scope": "complete 261-image delivery; all five boss pose sets use independent HD textures",
   "date": "2026-10-17",
   "unity": "6000.4.8f1",
   "assets": {
-    "delivered": 237,
+    "delivered": 261,
     "target": 261,
-    "missingCustomerHD": 24,
-    "pendingAtlasRepairs": [
-      "Hob_Atlas",
-      "Tally_Atlas"
-    ],
-    "complete": false
+    "missingCustomerHD": 0,
+    "pendingAtlasRepairs": [],
+    "complete": true
   },
   "checks": {
-    "artMaster": 208,
+    "artMaster": 216,
     "mienCho": 399,
     "actOne": 512,
     "heroIdentity": 2702
@@ -21,9 +18,9 @@
   "build": {
     "result": "Succeeded",
     "errors": 0,
-    "warnings": 20,
+    "warnings": 19,
     "path": "Builds/ArtMaster/ArcaneBrigade.exe",
-    "runtimeSHA256": "33FF56C712B288F25638642C84DA5558F68B53C141FCB4AAF8CDFC5CD0AE38C8"
+    "runtimeSHA256": "9FD91863643D1BA42BDF29DC2C4CD854AFF76060476CF4966A00D81C0D684812"
   },
   "windows": {
     "native": {

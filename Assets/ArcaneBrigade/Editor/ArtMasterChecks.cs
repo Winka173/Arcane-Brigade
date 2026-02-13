@@ -38,6 +38,14 @@ namespace ArcaneBrigade.Editor
                 Check(entry.Motion.IllustratedHeight > 0 && entry.Motion.Windup[0] != entry.Motion.Release[0], "Stable scale and distinct attack poses: " + name);
             }
             var catalog = Resources.Load<RunCatalog>("RunCatalog");
+            foreach (string name in new[] { "Hob", "Latch", "Postscript", "Tally" })
+            {
+                var companion = ActOneArtwork.Find(name);
+                Check(companion?.Frames.Length == 4 && companion.Frames.Distinct().Count() == 4,
+                    "Companion atlas imports four whole separate poses: " + name);
+                Check(companion.Motion.Windup[0] != companion.Motion.Release[0],
+                    "Companion anticipation and attack use different authored poses: " + name);
+            }
             Sprite[] ordinary = ActOneCanon.StoryIds.Select(id => catalog.Unit(id).Body).ToArray();
             using (var run = new RunSession(catalog))
             {
