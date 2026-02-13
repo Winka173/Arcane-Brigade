@@ -1,5 +1,5 @@
 PASS MienCho
-FAIL WaitingActOne: Shop lamps stay in safe outer margins seed=-170026 / 0
+PASS WaitingActOne
 PASS Nightmare
 PASS NightmareFarewell
 FAIL K8Combat: K8 combat: Incoming hit capped against Champion maximum HP

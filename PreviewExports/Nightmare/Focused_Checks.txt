@@ -115,6 +115,7 @@ PASS Depth-aware merchant copy 500/Fuse
 PASS Depth-aware merchant copy 500/Leave
 PASS Final customer available without any secret visits
 PASS Narrative does not consume economy RNG
+PASS The waiting keep coming through the final duel
 PASS Six actual non-projectile customer attack sequences execute
 PASS Customer retains six signature sequences; only the new telegraphed encore adds projectiles
 PASS Pause freezes final battle

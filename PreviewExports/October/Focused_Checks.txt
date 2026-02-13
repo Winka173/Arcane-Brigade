@@ -142,97 +142,97 @@ PASS New ally odds fall monotonically from 10 to 20 bodies
 PASS Merge stock declines less than new species
 PASS Prices rise more noticeably after wave 8
 PASS Endless pressure rises each wave from 20
-PASS Playable compiles with 45s cadence and bounded stats LanternKnight
+PASS Playable compiles with the wave-length ramp and bounded stats LanternKnight
 PASS Playable live simulation finite; allies immortal LanternKnight
 PASS Progress save round trip LanternKnight
-PASS Playable compiles with 45s cadence and bounded stats Postmaster
+PASS Playable compiles with the wave-length ramp and bounded stats Postmaster
 PASS Playable live simulation finite; allies immortal Postmaster
 PASS Progress save round trip Postmaster
-PASS Playable compiles with 45s cadence and bounded stats DrowsySeer
+PASS Playable compiles with the wave-length ramp and bounded stats DrowsySeer
 PASS Playable live simulation finite; allies immortal DrowsySeer
 PASS Progress save round trip DrowsySeer
-PASS Playable compiles with 45s cadence and bounded stats RootOracle
+PASS Playable compiles with the wave-length ramp and bounded stats RootOracle
 PASS Playable live simulation finite; allies immortal RootOracle
 PASS Progress save round trip RootOracle
-PASS Playable compiles with 45s cadence and bounded stats LoneJelly
+PASS Playable compiles with the wave-length ramp and bounded stats LoneJelly
 PASS Playable live simulation finite; allies immortal LoneJelly
 PASS Progress save round trip LoneJelly
-PASS Playable compiles with 45s cadence and bounded stats GlassDice
+PASS Playable compiles with the wave-length ramp and bounded stats GlassDice
 PASS Playable live simulation finite; allies immortal GlassDice
 PASS Progress save round trip GlassDice
-PASS Playable compiles with 45s cadence and bounded stats TideSinger
+PASS Playable compiles with the wave-length ramp and bounded stats TideSinger
 PASS Playable live simulation finite; allies immortal TideSinger
 PASS Progress save round trip TideSinger
-PASS Playable compiles with 45s cadence and bounded stats CometRunner
+PASS Playable compiles with the wave-length ramp and bounded stats CometRunner
 PASS Playable live simulation finite; allies immortal CometRunner
 PASS Progress save round trip CometRunner
-PASS Playable compiles with 45s cadence and bounded stats MirrorKeeper
+PASS Playable compiles with the wave-length ramp and bounded stats MirrorKeeper
 PASS Playable live simulation finite; allies immortal MirrorKeeper
 PASS Progress save round trip MirrorKeeper
-PASS Playable compiles with 45s cadence and bounded stats TreasureAcorn
+PASS Playable compiles with the wave-length ramp and bounded stats TreasureAcorn
 PASS Playable live simulation finite; allies immortal TreasureAcorn
 PASS Progress save round trip TreasureAcorn
-PASS Playable compiles with 45s cadence and bounded stats VerdantMatron
+PASS Playable compiles with the wave-length ramp and bounded stats VerdantMatron
 PASS Playable live simulation finite; allies immortal VerdantMatron
 PASS Progress save round trip VerdantMatron
-PASS Playable compiles with 45s cadence and bounded stats CopperCauldron
+PASS Playable compiles with the wave-length ramp and bounded stats CopperCauldron
 PASS Playable live simulation finite; allies immortal CopperCauldron
 PASS Progress save round trip CopperCauldron
-PASS Playable compiles with 45s cadence and bounded stats ChinaMarionette
+PASS Playable compiles with the wave-length ramp and bounded stats ChinaMarionette
 PASS Playable live simulation finite; allies immortal ChinaMarionette
 PASS Progress save round trip ChinaMarionette
-PASS Playable compiles with 45s cadence and bounded stats SoapSkater
+PASS Playable compiles with the wave-length ramp and bounded stats SoapSkater
 PASS Playable live simulation finite; allies immortal SoapSkater
 PASS Progress save round trip SoapSkater
-PASS Playable compiles with 45s cadence and bounded stats VelvetRegent
+PASS Playable compiles with the wave-length ramp and bounded stats VelvetRegent
 PASS Playable live simulation finite; allies immortal VelvetRegent
 PASS Progress save round trip VelvetRegent
-PASS Playable compiles with 45s cadence and bounded stats ButtonCavalier
+PASS Playable compiles with the wave-length ramp and bounded stats ButtonCavalier
 PASS Playable live simulation finite; allies immortal ButtonCavalier
 PASS Progress save round trip ButtonCavalier
-PASS Playable compiles with 45s cadence and bounded stats NightMaw
+PASS Playable compiles with the wave-length ramp and bounded stats NightMaw
 PASS Playable live simulation finite; allies immortal NightMaw
 PASS Progress save round trip NightMaw
-PASS Playable compiles with 45s cadence and bounded stats ThornTreasurer
+PASS Playable compiles with the wave-length ramp and bounded stats ThornTreasurer
 PASS Playable live simulation finite; allies immortal ThornTreasurer
 PASS Progress save round trip ThornTreasurer
-PASS Playable compiles with 45s cadence and bounded stats CitrusMarshal
+PASS Playable compiles with the wave-length ramp and bounded stats CitrusMarshal
 PASS Playable live simulation finite; allies immortal CitrusMarshal
 PASS Progress save round trip CitrusMarshal
-PASS Playable compiles with 45s cadence and bounded stats IvorySovereign
+PASS Playable compiles with the wave-length ramp and bounded stats IvorySovereign
 PASS Playable live simulation finite; allies immortal IvorySovereign
 PASS Progress save round trip IvorySovereign
-PASS Playable compiles with 45s cadence and bounded stats PetalCitadel
+PASS Playable compiles with the wave-length ramp and bounded stats PetalCitadel
 PASS Playable live simulation finite; allies immortal PetalCitadel
 PASS Progress save round trip PetalCitadel
-PASS Playable compiles with 45s cadence and bounded stats PatchworkHost
+PASS Playable compiles with the wave-length ramp and bounded stats PatchworkHost
 PASS Playable live simulation finite; allies immortal PatchworkHost
 PASS Progress save round trip PatchworkHost
-PASS Playable compiles with 45s cadence and bounded stats ArchiveCurator
+PASS Playable compiles with the wave-length ramp and bounded stats ArchiveCurator
 PASS Playable live simulation finite; allies immortal ArchiveCurator
 PASS Progress save round trip ArchiveCurator
-PASS Playable compiles with 45s cadence and bounded stats PennyBroker
+PASS Playable compiles with the wave-length ramp and bounded stats PennyBroker
 PASS Playable live simulation finite; allies immortal PennyBroker
 PASS Progress save round trip PennyBroker
-PASS Playable compiles with 45s cadence and bounded stats StormFencer
+PASS Playable compiles with the wave-length ramp and bounded stats StormFencer
 PASS Playable live simulation finite; allies immortal StormFencer
 PASS Progress save round trip StormFencer
-PASS Playable compiles with 45s cadence and bounded stats TinVirtuoso
+PASS Playable compiles with the wave-length ramp and bounded stats TinVirtuoso
 PASS Playable live simulation finite; allies immortal TinVirtuoso
 PASS Progress save round trip TinVirtuoso
-PASS Playable compiles with 45s cadence and bounded stats MoonProwler
+PASS Playable compiles with the wave-length ramp and bounded stats MoonProwler
 PASS Playable live simulation finite; allies immortal MoonProwler
 PASS Progress save round trip MoonProwler
-PASS Playable compiles with 45s cadence and bounded stats SupperMortar
+PASS Playable compiles with the wave-length ramp and bounded stats SupperMortar
 PASS Playable live simulation finite; allies immortal SupperMortar
 PASS Progress save round trip SupperMortar
-PASS Playable compiles with 45s cadence and bounded stats LanternWeaver
+PASS Playable compiles with the wave-length ramp and bounded stats LanternWeaver
 PASS Playable live simulation finite; allies immortal LanternWeaver
 PASS Progress save round trip LanternWeaver
-PASS Playable compiles with 45s cadence and bounded stats HourglassStag
+PASS Playable compiles with the wave-length ramp and bounded stats HourglassStag
 PASS Playable live simulation finite; allies immortal HourglassStag
 PASS Progress save round trip HourglassStag
-PASS Playable compiles with 45s cadence and bounded stats RainArchivist
+PASS Playable compiles with the wave-length ramp and bounded stats RainArchivist
 PASS Playable live simulation finite; allies immortal RainArchivist
 PASS Progress save round trip RainArchivist
 PASS Seeded normal offers respect hero themes 1
@@ -473,28 +473,4 @@ PASS Altar retains one ingredient weapon IronLocomotive
 PASS Executable reference altar recipe VioletRemnant
 PASS Altar retains one ingredient weapon VioletRemnant
 PASS Full party can complete a tier-two merge without exceeding the saved body cap
-PASS Full party rejects a new body that cannot immediately merge
-PASS Gift-only allies never enter ordinary theme pools
-PASS Achievement journal has distinct attainable conditions
-PASS Six distinct live projectile patterns UndeliveredKing
-PASS Telegraphed new boss movement UndeliveredKing
-PASS Six distinct live projectile patterns ScarletIndex
-PASS Telegraphed new boss movement ScarletIndex
-PASS Six distinct live projectile patterns SleepCollector
-PASS Telegraphed new boss movement SleepCollector
-PASS Six distinct live projectile patterns WaxAdmiral
-PASS Telegraphed new boss movement WaxAdmiral
-PASS Six distinct live projectile patterns LastLantern
-PASS Telegraphed new boss movement LastLantern
-PASS Six distinct live projectile patterns MarqueeMaw
-PASS Telegraphed new boss movement MarqueeMaw
-PASS Six distinct live projectile patterns UmbraCradle
-PASS Telegraphed new boss movement UmbraCradle
-PASS Six distinct live projectile patterns CoinWidow
-PASS Telegraphed new boss movement CoinWidow
-PASS Six distinct live projectile patterns ChoirEngine
-PASS Telegraphed new boss movement ChoirEngine
-PASS Six distinct live projectile patterns SuitcaseLeviathan
-PASS Telegraphed new boss movement SuitcaseLeviathan
-PASS Six distinct live projectile patterns OutsideStageKeeper
-PASS Six distinct live projectile patterns TheLastCustomer
+FAIL Full party rejects a new body that cannot immediately merge

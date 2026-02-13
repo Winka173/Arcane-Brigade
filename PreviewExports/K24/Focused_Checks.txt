@@ -26,7 +26,7 @@ PASS Solo hero never receives unusable ally choices
 PASS Save-loaded reward claims once LoneJelly
 PASS Return to same wave shop after reward LoneJelly
 PASS Declining has no economic penalty
-PASS Six extra kills mint two payouts at the reviewed one-in-three rate
+PASS Six extra kills each drop their own small coin
 PASS Swarm crest and breathing interval 1
 PASS Swarms consist of small melee bodies 1
 PASS Balanced melee weapon retains increased source reach 1

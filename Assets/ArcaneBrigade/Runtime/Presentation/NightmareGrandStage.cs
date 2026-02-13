@@ -52,10 +52,9 @@ namespace ArcaneBrigade
                 Vector2 floor=FixtureAnchor(i);
                 float width=i%4==0?3.1f:i%4==1?1.7f:i%4==2?2.7f:2.8f;
                 float scale=width/Mathf.Max(.01f,SpriteInkMetrics.BoundsOf(view.sprite).width);
-                // in the shop the architecture is the lowest-priority decoration: it keeps its map anchor when that spot
-                // is free, otherwise takes the nearest free one, otherwise stays out of this small room
-                if(shop && ShopLayout.Active!=null && !ShopLayout.Active.Place("architecture"+i,floor,new Vector2(width,SpriteInkMetrics.BoundsOf(view.sprite).height*scale),20+i,out floor))
-                {view.enabled=false;shadows[i].Hide();suspensions[i].Hide();continue;}
+                // the shop keeps only things with a story you can click and read (ShopInspect): this map architecture
+                // (arch, letter cabinet, screen, bench) has none, so it stays out of the shop room
+                if(shop){view.enabled=false;shadows[i].Hide();suspensions[i].Hide();continue;}
                 view.transform.localScale=Vector3.one*scale;
                 Vector3 hover=DreamLevitation.Offset(owner.PresentationClock,80+i,NightmareRules.Depth(state.Wave),PresentationSettings.ReducedMotion,.65f);
                 float tilt=DreamLevitation.Tilt(owner.PresentationClock,80+i,PresentationSettings.ReducedMotion,.7f)+(damage==2?(i%2==0?-1:1)*5:0);

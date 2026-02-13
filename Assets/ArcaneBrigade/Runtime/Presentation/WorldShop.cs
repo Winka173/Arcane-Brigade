@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public sealed class WorldShop : MonoBehaviour
+    public sealed class WorldShop : MonoBehaviour, ShopFocus.ISource
     {
         public const float InteractionRadius = 1.1f;
         public const float LayoutLift = 0.5f;
@@ -95,6 +95,16 @@ namespace ArcaneBrigade
             gameObject.AddComponent<SpeechBubbleCast>().Configure(controller);
             dialogue.BubbleKey = "Shopkeeper";
             dialogue.Anchor = MerchantMouth;
+            ShopFocus.Register(this);
+            gameObject.AddComponent<ShopInspect>().Configure(controller); // every placed thing can be clicked and read
+        }
+        private void OnDestroy() => ShopFocus.Unregister(this);
+        // every unsold stall, the reroll machine, the way out and the altar, while the room is up and settled
+        public int SpotCount => stations.Count;
+        public bool Spot(int index, out Vector2 position, out float reach)
+        {
+            Station station = stations[index]; position = station.Position; reach = station.Reach;
+            return scenery != null && scenery.activeSelf && !Animating && !leavingSpecial && !(station.Offer != null && station.Offer.Sold);
         }
         /// <summary>Where the shopkeeper's words come from: beside the head, a little to the right of the face.</summary>
         public Vector3? MerchantMouth()
@@ -107,6 +117,16 @@ namespace ArcaneBrigade
             Vector3 centre = view.transform.TransformPoint(local.center);
             Vector3 size = Vector3.Scale(local.size, view.transform.lossyScale);
             return new Vector3(centre.x + Mathf.Abs(size.x) * 0.14f, centre.y + Mathf.Abs(size.y) * 0.2f, 0);
+        }
+        /// <summary>The merchant's painted box in the world (for clicking it), or null while it is not in the room.</summary>
+        public Rect? MerchantRect()
+        {
+            if (merchant == null || scenery == null || !scenery.activeSelf) return null;
+            SpriteRenderer view = merchant.GetComponent<SpriteRenderer>();
+            if (view == null || view.sprite == null) return null;
+            Bounds local = view.sprite.bounds;
+            Vector3 centre = view.transform.TransformPoint(local.center), size = Vector3.Scale(local.size, view.transform.lossyScale);
+            return new Rect(centre.x - Mathf.Abs(size.x) * 0.5f, centre.y - Mathf.Abs(size.y) * 0.5f, Mathf.Abs(size.x), Mathf.Abs(size.y));
         }
         private void Voiced() { if (voice != null && dialogue.LastBark != null && VoiceDirector.Speaking(dialogue.LastBark.Speaker)) voice.Silence(); }
         public void Display()
@@ -134,13 +154,9 @@ namespace ArcaneBrigade
             scenery.SetActive(true); Nearby = null;
             if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
             if (merchant != null) merchant.LookAt((owner.Simulation.Champion.Position.x - merchant.transform.position.x) * 0.25f);
-            float closest = float.PositiveInfinity;
-            foreach (Station station in stations)
-            {
-                if (station.Offer != null && station.Offer.Sold) continue;
-                float distance = (station.Position - owner.Simulation.Champion.Position).sqrMagnitude;
-                if (distance <= station.Reach * station.Reach && distance <= closest) { closest = distance; Nearby = station; }
-            }
+            // the stall in front of the traveller, unless something else in the room is nearer (ShopFocus)
+            for (int index = 0; index < stations.Count; index++)
+                if (ShopFocus.Has(this, index, owner.Simulation.Champion.Position)) Nearby = stations[index];
             if (owner.Simulation.Phase == RunPhase.Paused) { voice.Advance(dialogue, Special, owner.PresentationClock, true); return; }
             if (Nearby != audioFocus)
             {
@@ -343,7 +359,7 @@ namespace ArcaneBrigade
                 string name = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).DisplayName : catalog.Item(offer.Id).Name;
                 Sprite icon = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
                 Sprite[] frames = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).AnimationFrames : null;
-                float stockRow = Mathf.Min(-1.1f, MerchantCenter.y - MerchantHeight * 0.5f - 2.05f);
+                float stockRow = Mathf.Clamp(MerchantCenter.y - MerchantHeight * 0.5f - 2.05f, -2.85f, -1.1f); // never so low that a stall sits on the exit door (and 1.65 clear of its threshold)
                 Station station = AddStation(new Vector2((index - 1) * 3.2f, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
@@ -369,7 +385,7 @@ namespace ArcaneBrigade
                 if (offer.Sold)
                     foreach (SpriteRenderer renderer in station.Renderers) if (renderer.gameObject.name != "ShopFloorContact") renderer.color = new Color(0.45f, 0.45f, 0.45f, 0.7f);
             }
-            Station reroll = AddStation(new Vector2(-5.3f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
+            Station reroll = AddStation(new Vector2(-5.0f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.\n" + owner.Session.RecruitmentSummary;
             Station exit = AddStation(ExitPosition, "NEXT HALL", art.HallDoor[0], art.HallDoor, false);
             exit.Reach = ExitInteractionRadius; exit.Description = "The way onward is at the bottom centre. Its broad entrance includes the floating threshold.";

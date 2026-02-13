@@ -3,20 +3,26 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public sealed class OutsideStageChoice : MonoBehaviour
+    public sealed class OutsideStageChoice : MonoBehaviour, ShopFocus.ISource
     {
         private ArenaController owner;
         private readonly List<GameObject> actors = new List<GameObject>();
         private readonly Vector2[] rewardPositions = { new Vector2(-3, -0.8f), new Vector2(0, -0.8f), new Vector2(3, -0.8f) };
         public static readonly Vector2 ChallengePosition = new Vector2(5.2f, -3.3f);
-        public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && Vector2.Distance(owner.Simulation.Champion.Position, ChallengePosition) < 1.6f;
+        public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
+        public int SpotCount => mode == 1 ? 1 : mode == 2 ? 3 : 0;
+        public bool Spot(int index, out Vector2 position, out float reach)
+        {
+            position = mode == 1 ? ChallengePosition : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 1.6f : 1.05f;
+            return owner?.Simulation != null && (mode == 1 ? owner.Session.OutsideChallengeAvailable : mode == 2);
+        }
         private int mode;
         private int selection = -1;
         private GUIStyle title;
         private GUIStyle copy;
         private Vector2 descriptionScroll;
         private int preview;
-        public void Configure(ArenaController controller) { owner = controller; }
+        public void Configure(ArenaController controller) { owner = controller; ShopFocus.Register(this); }
         private void Clear() { foreach (GameObject actor in actors) Destroy(actor); actors.Clear(); selection = -1; }
         private void Update()
         {
@@ -27,7 +33,7 @@ namespace ArcaneBrigade
             Vector2 player = owner.Simulation.Champion.Position;
             int near = -1;
             if (mode == 1) { if (Focused) near = 0; }
-            else for (int index = 0; index < 3; index++) if (Vector2.Distance(player, rewardPositions[index]) < 1.05f) near = index;
+            else for (int index = 0; index < 3; index++) if (ShopFocus.Has(this, index, player)) near = index;
             if (selection != near) { selection = near; if (near >= 0) { preview = near; descriptionScroll = Vector2.zero; } }
             float time = owner.PresentationClock;
             for (int index = 0; index < actors.Count; index++)
@@ -117,6 +123,6 @@ namespace ArcaneBrigade
             GUI.matrix = matrix;
             GUI.skin = previousSkin;
         }
-        private void OnDestroy() => Clear();
+        private void OnDestroy() { ShopFocus.Unregister(this); Clear(); }
     }
 }

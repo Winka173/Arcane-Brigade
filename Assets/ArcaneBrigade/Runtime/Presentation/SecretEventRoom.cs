@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ArcaneBrigade
 {
     [DefaultExecutionOrder(-30)]
-    public sealed class SecretEventRoom : MonoBehaviour
+    public sealed class SecretEventRoom : MonoBehaviour, ShopFocus.ISource
     {
         private ArenaController owner;
         private readonly List<SpriteRenderer> portals = new List<SpriteRenderer>();
@@ -20,10 +20,19 @@ namespace ArcaneBrigade
         private GUIStyle heading, body, small, card, label, primary;
         private Texture2D panel, paper, disabled;
         private Vector2 journalScroll;
-        // shop spots clear of the HUD wallet, the merchant, the stalls and the reroll machine; ShopLayout keeps the
-        // decorations off them (the first used to sit under the wallet, the second on the reroll machine)
-        private static readonly Vector2[] Positions = { new Vector2(-4.3f, -.4f), new Vector2(-6.6f, -3.6f) };
-        public void Configure(ArenaController controller) { owner = controller; }
+        // shop spots at least 1.8 from every other thing you can use (stalls, reroll machine, fusion altar, way out, the
+        // warm chair's whole path): the first sat 0.9 from the reroll machine and blocked it, the second 0.4 from the
+        // altar. Left, above the reroll machine and clear of the wallet and the merchant; right, under the merchant's speech, clear of
+        // the chair. ShopLayout keeps the decorations off them; ShopLayoutCapture measures the spacing in every shop.
+        public static readonly Vector2[] Positions = { new Vector2(-3.95f, 0.85f), new Vector2(4.7f, -1.4f) };
+        public void Configure(ArenaController controller) { owner = controller; ShopFocus.Register(this); }
+        public const float InvitationReach = 1.5f;
+        public int SpotCount => portals.Count;
+        public bool Spot(int index, out Vector2 position, out float reach)
+        {
+            position = Positions[Mathf.Min(index, Positions.Length - 1)]; reach = InvitationReach;
+            return owner?.Simulation != null && owner.Session != null && !InRoom && owner.Session.State.Phase == SessionPhase.Shop && !owner.TransitionPending && index < Positions.Length;
+        }
         public bool InRoom => owner?.Session?.SecretRoomOpen == true;
         public bool Focused => !InRoom && NearestPortal() >= 0;
         public bool BlocksShop => InRoom || Focused;
@@ -31,7 +40,7 @@ namespace ArcaneBrigade
         private int NearestPortal()
         {
             if (owner?.Simulation == null || owner.Session == null || owner.Session.State.Phase != SessionPhase.Shop || owner.TransitionPending) return -1;
-            for (int i = 0; i < portals.Count; i++) if (Vector2.Distance(owner.Simulation.Champion.Position, Positions[i]) < 1.5f) return i;
+            for (int i = 0; i < portals.Count; i++) if (ShopFocus.Has(this, i, owner.Simulation.Champion.Position)) return i;
             return -1;
         }
         private void Update()
@@ -89,7 +98,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < available.Length; i++)
             {
                 kinds.Add(available[i]);
-                SpriteRenderer p = Prop(transform, "SecretInvitation_" + available[i], SecretEventAssets.Current.Portals[(int)available[i] * 2], Positions[i], 1.65f, 315);
+                SpriteRenderer p = Prop(transform, "SecretInvitation_" + available[i], SecretEventAssets.Current.Portals[(int)available[i] * 2], Positions[i], 1.4f, 315); // 1.4 tall: the widest (the train) fits between the wallet and the merchant
                 portals.Add(p);
                 var glow = new GameObject("PortalGlow"); glow.transform.SetParent(p.transform, false); glow.AddComponent<ShopRarityGlow>().Configure(ItemRarity.Rare, owner, i * 2, p, false);
             }
@@ -210,6 +219,7 @@ namespace ArcaneBrigade
         }
         private void OnDestroy()
         {
+            ShopFocus.Unregister(this);
             foreach (SpriteRenderer p in portals) if (p != null) Destroy(p.gameObject);
             if (gallery != null) Destroy(gallery);
             foreach (Texture2D t in new[] { panel, paper, disabled }) if (t != null) Destroy(t);

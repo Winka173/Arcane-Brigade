@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             var catalog = Resources.Load<RunCatalog>("RunCatalog"); var storage = new RunStorage(RunPaths.Root);
             var log = new List<string>();
             int failures = 0;
-            var cases = new (int wave, bool dream, bool card)[] { (1, false, false), (4, false, false), (8, false, false), (12, false, false), (16, false, false), (19, false, false), (12, true, false), (4, true, false), (8, false, true) };
+            var cases = new (int wave, bool dream, bool card)[] { (1, false, false), (4, false, false), (8, false, false), (12, false, false), (16, false, false), (19, false, false), (12, true, false), (4, true, false), (8, false, true), (3, false, false), (7, true, false), (11, false, false) }; // 3/7/11: secret invitations in the room
             foreach (var c in cases)
             {
                 using (var session = new RunSession(catalog))
@@ -52,6 +52,13 @@ namespace ArcaneBrigade
                 int bad = Report(owner, items, label, log, root);
                 failures += bad;
                 yield return shot("layout-" + label);
+                // what a click shows: an invitation's card in the invitation shops, the journal window's elsewhere
+                var inspector = owner.GetComponent<ShopInspect>();
+                if (inspector != null && inspector.Entries.Count > 0 && (c.wave == 3 || c.wave == 8 && !c.card || c.wave == 7 && c.dream))
+                {
+                    string key = inspector.Entries.FirstOrDefault(e => e.Key.StartsWith("SecretInvitation_"))?.Key ?? inspector.Entries.FirstOrDefault(e => e.Key == "TheUnoccupiedChair")?.Key ?? inspector.Entries[0].Key;
+                    inspector.Show(key); yield return new WaitForSecondsRealtime(.3f); yield return shot("card-" + label); inspector.Close();
+                }
             }
             // the sealed note for unread pages, in a shop and in a fight
             using (var session = new RunSession(catalog))
@@ -180,6 +187,36 @@ namespace ArcaneBrigade
             if (ShopLayout.Active != null) foreach (string line in ShopLayout.Active.Describe()) log.Add("    " + line);
             if (ShopLayout.Active != null) log.Add("  layout: plans=" + ShopLayout.Active.Plans + " left out of this shop=" + ShopLayout.Active.Hidden + " reserved=" + ShopLayout.Active.Reserved.Count);
             log.Add("  overlaps: " + bad);
+            // every usable thing answers when you stand at it, and stands clear of the other usable things
+            var spots = ShopFocus.Spots();
+            foreach (var spot in spots)
+            {
+                string who = spot.source.GetType().Name + "#" + spot.index;
+                var holder = ShopFocus.Holder(spot.position, out int held);
+                log.Add("  spot " + who + " at " + spot.position.ToString("0.00") + " reach " + spot.reach.ToString("0.00") + (holder == spot.source && held == spot.index ? "" : " FAIL another thing answers here: " + holder?.GetType().Name + "#" + held));
+                if (holder != spot.source || held != spot.index) bad++;
+                foreach (var other in spots)
+                {
+                    if (ReferenceEquals(other.source, spot.source) && other.index <= spot.index && spot.source is WorldShop) continue; // stalls of one shop are spaced by design (3.2)
+                    if (ReferenceEquals(other.source, spot.source) && other.index == spot.index) continue;
+                    if (string.CompareOrdinal(other.source.GetType().Name + "#" + other.index, who) <= 0) continue;
+                    float apart = Vector2.Distance(spot.position, other.position);
+                    if (apart < 1.6f) { bad++; log.Add("  TOO CLOSE " + who + " x " + other.source.GetType().Name + "#" + other.index + " " + apart.ToString("0.00")); }
+                }
+            }
+            // every placed thing can be clicked and read: each visible prop is covered by an inspect card
+            var inspect = owner.GetComponent<ShopInspect>();
+            if (owner.GetComponent<CustomerOffer>()?.Open == true) { log.Add("  inspect: the Customer's card is up, so the room's cards wait (by design)"); return bad; }
+            int cards = inspect == null ? 0 : inspect.Entries.Count, uncovered = 0;
+            foreach (Item item in items.Where(i => !i.Reserved))
+            {
+                if (item.Group == "APlaceReservedForYou") continue; // drawn on the sign; the sign's card tells of it
+                float own = item.World.width * item.World.height;
+                bool covered = inspect != null && inspect.Entries.Any(entry => entry.Key == item.Group || Overlap(entry.World, item.World) >= own * 0.5f);
+                if (!covered) { uncovered++; bad++; log.Add("  NO CARD " + item.Group + " " + Fmt(item.World)); }
+            }
+            if (inspect != null) foreach (var entry in inspect.Entries) log.Add("    card " + entry.Key + " " + Fmt(entry.World));
+            log.Add("  inspect cards: " + cards + " (" + string.Join(", ", inspect == null ? new string[0] : inspect.Entries.Select(e => e.Title)) + ") uncovered props: " + uncovered);
             return bad;
         }
         private static bool Pair(Item a, Item b, string x, string y) => a.Group == x && b.Group == y || a.Group == y && b.Group == x;

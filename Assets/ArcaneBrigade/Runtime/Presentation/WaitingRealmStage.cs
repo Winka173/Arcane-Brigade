@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public sealed class WaitingRealmStage : MonoBehaviour
+    public sealed class WaitingRealmStage : MonoBehaviour, ShopFocus.ISource
     {
         private ArenaController owner;
         private SpriteRenderer chair;
@@ -34,12 +34,15 @@ namespace ArcaneBrigade
                 return ink.size * scale;
             }
         }
-        private bool Near => ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null && Vector2.Distance(owner.Simulation.Champion.Position, ChairAnchor) < 1.35f;
+        public const float ChairReach = 1.35f;
+        public int SpotCount => 1;
+        public bool Spot(int index, out Vector2 position, out float reach) { position = ChairAnchor; reach = ChairReach; return ShopChair && chair != null && chair.enabled && owner.Simulation?.Champion != null; }
+        private bool Near => Spot(0, out _, out _) && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
         /// <summary>True while the chair has the traveller's attention, so the shop does not also act on the same press.</summary>
         public bool Engaged => asking || Near && owner.Session.SitCloserAvailable;
         public void Configure(ArenaController value)
         {
-            owner = value;
+            owner = value; ShopFocus.Register(this);
             var child = new GameObject("TheUnoccupiedChair"); child.transform.SetParent(transform, false);
             chair = child.AddComponent<SpriteRenderer>();
             warm = Resources.Load<Sprite>("MienCho/ActOne/WarmChair"); fallback = Resources.Load<Sprite>("MienCho/EmptyChair");
@@ -164,6 +167,6 @@ namespace ArcaneBrigade
             }
             GUI.matrix = previous;
         }
-        private void OnDestroy() { if (waiting != null) Destroy(waiting); if (morning != null) Destroy(morning); }
+        private void OnDestroy() { ShopFocus.Unregister(this); if (waiting != null) Destroy(waiting); if (morning != null) Destroy(morning); }
     }
 }

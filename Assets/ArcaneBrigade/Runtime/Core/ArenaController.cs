@@ -268,7 +268,7 @@ namespace ArcaneBrigade
             if ((RunPaths.K2Capture || RunPaths.K3FinalCapture || RunPaths.K7Capture) && presentationMoveTarget.HasValue && (simulation.Phase == RunPhase.Combat || RunPaths.K7Capture && simulation.Phase == RunPhase.Rest)) moveIntent = Vector2.ClampMagnitude((presentationMoveTarget.Value - simulation.Champion.Position) * 4, 1);
             if (hallExitPending) moveIntent = Vector2.ClampMagnitude((hallExitTarget - simulation.Champion.Position) * 4, 1);
             if (SecretRoom != null && SecretRoom.MenuOpen) moveIntent = Vector2.zero;
-            if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); }
+            if (Shop != null && !TransitionPending) { Shop.Display(); if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0)) Shop.Interact(); } // Space or E, like every other thing in the room
             bool warning = simulation.Boss != null && simulation.Boss.Alive && simulation.Boss.TelegraphUntil > simulation.Elapsed;
             if (warning && !warningAudio && !pauseGate.Paused && !ArcaneCueLibrary.Available) audioFeedback.PlayCue(24, true);
             warningAudio = warning;

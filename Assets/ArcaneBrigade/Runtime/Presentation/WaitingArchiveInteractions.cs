@@ -4,14 +4,17 @@ namespace ArcaneBrigade
 {
     // The archive cabinet and meeting chair already own their floating animation and floor shadows.
     [DefaultExecutionOrder(-65)]
-    public sealed class WaitingArchiveInteractions : MonoBehaviour
+    public sealed class WaitingArchiveInteractions : MonoBehaviour, ShopFocus.ISource
     {
         public const float Reach=2;
         private ArenaController owner;
         private readonly SpriteRenderer[] props=new SpriteRenderer[2];
         private GUIStyle caption;
         public int InputConsumedFrame{get;private set;}=-1;
-        public void Configure(ArenaController value)=>owner=value;
+        public void Configure(ArenaController value){owner=value;ShopFocus.Register(this);}
+        private void OnDestroy()=>ShopFocus.Unregister(this);
+        public int SpotCount=>1;
+        public bool Spot(int index,out Vector2 position,out float reach){position=Anchor(0);reach=Reach;return owner?.Simulation!=null && Prop(0)!=null && Prop(0).enabled;}
         private bool Allowed=>owner?.Session!=null && owner.Simulation?.Phase==RunPhase.Rest && owner.Session.State.Phase==SessionPhase.Shop && !owner.StoryConsumesInput && !owner.PresentationPaused && !owner.Details.Open && !owner.MenuConfirmation && !owner.TransitionPending && !owner.HallExitPending && !owner.Session.SecretRoomOpen && !owner.Shop.Animating && !owner.NightmareEndingVisible;
         public SpriteRenderer Prop(int index)
         {
@@ -24,7 +27,7 @@ namespace ArcaneBrigade
             return shadow?.Contact!=null?(Vector2)shadow.Contact.transform.position:view==null?Vector2.zero:new Vector2(view.bounds.center.x,view.bounds.min.y);
         }
         // Act I canon: only the journal cabinet is a story object; the old "paths & people" chair is hidden in the Act I shop.
-        public bool Near(int index)=>index==0 && Prop(index)!=null && Prop(index).enabled && Vector2.Distance(owner.Simulation.Champion.Position,Anchor(index))<=Reach;
+        public bool Near(int index)=>index==0 && Spot(0,out _,out _) && ShopFocus.Has(this,0,owner.Simulation.Champion.Position);
         public bool TryInspect(int index)
         {
             if(!Allowed || !Near(index))return false;
@@ -37,7 +40,7 @@ namespace ArcaneBrigade
         private void Update()
         {
             if(!Allowed || !Application.isFocused && !RunPaths.Diagnostic)return;
-            if(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.JoystickButton0))return;
+            if(!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.E) && !Input.GetKeyDown(KeyCode.JoystickButton0))return;
             int nearest=-1;float distance=float.PositiveInfinity;
             for(int i=0;i<2;i++)if(Near(i)){float d=Vector2.Distance(owner.Simulation.Champion.Position,Anchor(i));if(d<distance){distance=d;nearest=i;}}
             if(nearest>=0)TryInspect(nearest);
