@@ -9,9 +9,9 @@ namespace ArcaneBrigade
         public CombatFieldPainting(Transform parent, int index)
         {
             var go = new GameObject("Illustrated field " + index); go.transform.SetParent(parent, false);
-            view = go.AddComponent<SpriteRenderer>(); view.sortingOrder = 1098;
+            view = go.AddComponent<SpriteRenderer>(); view.sortingOrder = 62; // on the floor with every other area, under the bodies
             var danger = new GameObject("Illustrated warning edge " + index); danger.transform.SetParent(parent, false);
-            outline = danger.AddComponent<SpriteRenderer>(); outline.sortingOrder = 1099;
+            outline = danger.AddComponent<SpriteRenderer>(); outline.sortingOrder = 63;
         }
         public void Hide() { view.enabled = outline.enabled = false; }
         public bool Display(ExpandedField field, float time)

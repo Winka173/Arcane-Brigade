@@ -137,6 +137,8 @@ namespace ArcaneBrigade
             State.Health = MaximumHealth();
         }
 
+        /// <summary>Story bosses that can be fought but are not roster bosses, so never boss discoveries.</summary>
+        public static bool IsStoryBossId(string id) => id == "OutsideStageKeeper" || id == NightmareRules.CustomerId;
         public void Restore(RunSnapshot snapshot)
         {
             Validate(snapshot);
@@ -172,6 +174,9 @@ namespace ArcaneBrigade
 
         public void Validate(RunSnapshot snapshot)
         {
+            // runs saved while a story boss was wrongly recorded as a discovery: drop it here, where loading and every
+            // transaction check validate, so the run loads and plays on
+            snapshot?.DefeatedBosses?.RemoveAll(id => IsStoryBossId(id) && !Array.Exists(catalog.Bosses, boss => boss.Id == id));
             ValidateHeroIdentity(snapshot);
             ValidateSecretEvents(snapshot);
             ValidateOutsideStage(snapshot);
@@ -546,7 +551,9 @@ namespace ArcaneBrigade
                     State.Nightmare ??= new NightmareProgress();
                     State.Nightmare.CustomerDefeated = true; State.Nightmare.Ending = NightmareEndingStage.Dawn; State.Nightmare.EndingPage = 0;
                 }
-                else RunMeta.Add(State.DefeatedBosses, simulation.Boss.Definition.Id);
+                // only roster bosses are discoveries; story bosses outside the roster (the Keeper of the outside stage,
+                // like the Last Customer above) were once recorded here and made every later save fail validation
+                else if (Array.Exists(catalog.Bosses, boss => boss.Id == simulation.Boss.Definition.Id)) RunMeta.Add(State.DefeatedBosses, simulation.Boss.Definition.Id);
             }
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return; }
             State.Health = MaximumHealth();

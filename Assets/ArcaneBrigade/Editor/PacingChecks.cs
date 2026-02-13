@@ -46,6 +46,19 @@ namespace ArcaneBrigade.Editor
         {
             RunCatalog c = Resources.Load<RunCatalog>("RunCatalog");
 
+            // a run that beat the wave-5 Keeper (a story boss outside the roster) still saves, loads and trades
+            using (var s = new RunSession(c))
+            {
+                s.Start("DrowsySeer", 5005);
+                Check(!c.Bosses.Any(boss => boss.Id == "OutsideStageKeeper") && RunSession.IsStoryBossId("OutsideStageKeeper"), "The Keeper is a story boss, not a roster boss");
+                s.State.DefeatedBosses.Add("OutsideStageKeeper");
+                s.Validate(s.State); // threw "Invalid boss discovery" and rolled back every purchase and the way out
+                Check(!s.State.DefeatedBosses.Contains("OutsideStageKeeper"), "A story boss recorded by mistake is dropped from the discoveries");
+                var copy = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)); copy.DefeatedBosses.Add("NotABoss");
+                bool rejected = false; try { s.Validate(copy); } catch (InvalidOperationException) { rejected = true; }
+                Check(rejected, "Unknown boss ids are still rejected");
+            }
+
             // merging beside the story party
             using (var s = new RunSession(c))
             {
