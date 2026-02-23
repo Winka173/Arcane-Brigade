@@ -4,7 +4,7 @@ Eight optional rooms are implemented by `SecretEventRun`, `SecretEventCombat` an
 
 ## Discovery and pacing
 
-Shops after waves 3, 7, 11, 15 and 19 offer two doors chosen deterministically from the run seed and current wave. The choices use their own hash, preserving the shop/weapon RNG streams. Each ordinary visit consumes one of two discoveries per run, even when the player leaves without a deal. At most one room can be visited in the same shop. Previously visited kinds do not appear again.
+In Act I, shops after waves 3, 8, 13 and 18 (the middle of each zone, never a boss night's shop; endless keeps waves 23, 27, …) offer two doors chosen deterministically from the run seed and current wave. The choices use their own hash, preserving the shop/weapon RNG streams. Each ordinary visit consumes one of two discoveries per run, even when the player leaves without a deal. At most one room can be visited in the same shop. Previously visited kinds do not appear again.
 
 Posting outside the stage can reserve an unvisited Empty Theatre in a later shop. This saved follow-up can exceed the two ordinary visits, but still cannot repeat the same event. Optional rooms consume no normal wave. The unchanged stock, sold flags, gold/egg currency and wave remain waiting on return. Normal and dream shop interactions are blocked while inside a room. The Keeper invitation cannot overlap a secret room, and secret portals are hidden during Keeper reward selection.
 

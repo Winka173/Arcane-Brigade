@@ -59,6 +59,30 @@ namespace ArcaneBrigade.Editor
                 Check(rejected, "Unknown boss ids are still rejected");
             }
 
+            // the secret rooms and the Keeper's hand on the Act I rhythm
+            using (var s = new RunSession(c))
+            {
+                s.Start("DrowsySeer", 5006);
+                var invited = Enumerable.Range(1, 20).Where(w => { s.State.Wave = w; s.State.Phase = SessionPhase.Shop; return s.SecretPortals().Length > 0; }).ToArray();
+                Check(invited.SequenceEqual(new[] { 3, 8, 13, 18 }), "Act I invitations come in the middle of each zone (3, 8, 13, 18), never on a boss night's shop: " + string.Join(",", invited));
+                var hand = Enumerable.Range(1, 20).Where(w => { s.State.Wave = w; s.State.Phase = SessionPhase.Shop; return s.OutsideChallengeAvailable; }).ToArray();
+                Check(hand.SequenceEqual(new[] { ActOneCanon.KeeperReturnShop }), "The Keeper's hand comes back once in Act I, at shop 17: " + string.Join(",", hand));
+                s.State.Wave = ActOneCanon.KeeperReturnShop; s.State.Phase = SessionPhase.Shop;
+                Check(s.AcceptOutsideStage(), "The Keeper can be challenged at shop 17");
+                CheckpointCatalog fight = s.PrepareCombat();
+                Check(fight.Boss != null && fight.Boss.Id == "OutsideStageKeeper" && fight.BossSwarmBudget == 0 && fight.EnemyBudget == 0 && !fight.StoryKeeper, "The Keeper's fight has its guards and no boss-night swarm");
+                s.State.Phase = SessionPhase.Shop; s.State.OutsideStage = OutsideStageStatus.Completed;
+                Check(ActOneCanon.PageExtra(s.State, ActOneCanon.KeeperReturnShop + 1, 0).Contains("every colour"), "The next page remembers beating the Keeper");
+                (s.State.Secrets ??= new SecretEventProgress()).RoomNights.Add(8 * 16 + (int)SecretEventKind.ContrabandTrain);
+                Check(ActOneCanon.PageExtra(s.State, 9, 0).Contains("little train") && ActOneCanon.PageExtra(s.State, 8, 0) == "", "A secret room is remembered on the next night's first page");
+            }
+            using (var s = new RunSession(c))
+            {
+                s.Start("DrowsySeer", 5007); s.State.Wave = 5; s.State.Phase = SessionPhase.Combat;
+                CheckpointCatalog five = s.PrepareCombat();
+                Check(five.Boss != null && five.Boss.Id == "OutsideStageKeeper" && five.StoryKeeper && five.BossSwarmBudget > 0, "The wave-5 Keeper kneels (no guards) over its night's swarm");
+            }
+
             // merging beside the story party
             using (var s = new RunSession(c))
             {

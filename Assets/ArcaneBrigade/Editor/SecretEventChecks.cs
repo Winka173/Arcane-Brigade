@@ -17,7 +17,7 @@ namespace ArcaneBrigade.Editor
             for (int seed = 0; seed < 500; seed++)
             {
                 var s = new RunSession(c); s.Start((solo ? c.Champions.First(u => u.HeroMechanic == HeroMechanic.SoloMaw) : c.Champions.First(u => u.HeroMechanic != HeroMechanic.SoloMaw)).Id, seed);
-                s.State.Wave = 7; s.State.Phase = SessionPhase.Shop; s.State.Gold = 200;
+                s.State.Wave = 8; s.State.Phase = SessionPhase.Shop; s.State.Gold = 200; // Act I invites in the middle of each zone: shops 3, 8, 13, 18
                 s.State.Items.Add(new ItemStack { Id = c.Items.First(i => !i.Id.StartsWith("Secret") && i.Rarity < ItemRarity.Crimson && i.EffectiveModifiers.Any(m => m.Value > 0)).Id, Count = 1 });
                 if (Array.Exists(s.SecretPortals(), k => k == kind)) { Check(s.EnterSecretEvent(kind), "Natural seeded entry " + kind); return s; }
                 s.Dispose();

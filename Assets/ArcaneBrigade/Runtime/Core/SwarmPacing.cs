@@ -11,6 +11,7 @@ namespace ArcaneBrigade
         public int BossSwarmBudget;   // a light swarm that keeps coming while a boss stands (and through the whole final duel)
         public bool FinalDuel;        // the Last Customer: walls of the waiting come at two thresholds of its health
         public int MinionCoin = 1;    // every swarm body drops a small coin
+        public bool StoryKeeper;      // the Act I wave-5 Keeper kneels: it never calls guards (its night's swarm is there) and strikes a beat slower
     }
 
     public static class SwarmPacingRules

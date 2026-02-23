@@ -7,6 +7,10 @@ namespace ArcaneBrigade
     public static class ActOneCanon
     {
         public const int Waves = 20;
+        /// <summary>The one Act I shop where the Keeper's open hand comes back: an optional fight for an impossible gift.</summary>
+        public const int KeeperReturnShop = 17;
+        /// <summary>Act I shops with secret invitations: one in the middle of each zone, never a boss night's shop.</summary>
+        public static bool SecretShop(int wave) => wave >= 3 && wave <= Waves && wave % 5 == 3;
         public static readonly string[] ZoneNames = { "THE CROSSING", "THE LAST PLATFORM", "THE HOUSE WITH INWARD WINDOWS", "THE PERFECT ROOM" };
         public static int Zone(int wave) => Mathf.Clamp((Mathf.Max(1, wave) - 1) / 5, 0, 3);
         public static bool ZoneStarts(int wave) => wave > 1 && wave <= Waves && (wave - 1) % 5 == 0;
@@ -113,13 +117,33 @@ namespace ArcaneBrigade
         public static ItemDefinition StoryItem(string id) => id == ThursdayShoesId ? ThursdayShoes : null;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetItems() => thursdayShoes = null;
         public const float KnockSeconds = 80f;
+        /// <summary>One line per secret room (SecretEventKind order), written on the next night's first journal page.</summary>
+        public static readonly string[] RoomMemory =
+        {
+            "Last night a drawer in the shop knocked from the inside, and you opened it. Whatever you found there has not forgotten your hands.",
+            "Last night a red thread sewed a door into the wall. You went through it and came back with something mended.",
+            "Last night your reflection kept moving after you stopped. You met it on the other side of the glass.",
+            "Last night a little train arrived without a timetable. You rode it as far as the collector's crate.",
+            "Last night the clock struck once too many, and you spent the extra hour in its bank.",
+            "Last night the lamp fell asleep. You walked through its shadow's garden and did not wake it.",
+            "Last night there was applause behind the curtain. You went on, though nobody had bought a ticket.",
+            "Last night a letter was waiting for your name. Postscript has not asked what you wrote.",
+        };
 
         /// <summary>Lines that only exist if the traveller did something: appended to a beat's page.</summary>
         public static string PageExtra(RunSnapshot state, int chapter, int page)
         {
             if (chapter == 19 && page == 1 && state?.ActOne?.SitCloser == ActOneProgress.Won)
                 return "\n\nHe stops. For the first time the pleasant face forgets to smile.\n\nTHE LAST CUSTOMER: '…You did. Who paid?'\n\nHOB: 'Nobody. We pulled.'";
-            return "";
+            if (page != 0 || state == null) return "";
+            string extra = "";
+            // the secret room found the night before is remembered on the next night's first page
+            if (state.Secrets?.RoomNights != null)
+                foreach (int night in state.Secrets.RoomNights)
+                    if (night / 16 == chapter - 1 && night % 16 < RoomMemory.Length) extra += "\n\n" + RoomMemory[night % 16];
+            if (chapter == KeeperReturnShop + 1 && state.OutsideStage == OutsideStageStatus.Completed)
+                extra += "\n\nThe Keeper did not kneel this time. When it was over it opened its hand, and what was in it had every colour.";
+            return extra;
         }
 
         // Journal art keys per zone; MienChoPresentation falls back to the older panels while new art is pending.

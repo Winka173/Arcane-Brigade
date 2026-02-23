@@ -27,7 +27,7 @@ namespace ArcaneBrigade
         private bool ProcessOutsideStage(UnitState boss)
         {
             if (boss.Definition.Id != "OutsideStageKeeper") return false;
-            SummonOutsideGuard(boss);
+            if (!catalog.StoryKeeper) SummonOutsideGuard(boss); // the story Keeper (wave 5) kneels and calls no one
             boss.BossPoseTime = Elapsed;
             if (boss.TelegraphUntil > 0)
             {
@@ -64,7 +64,7 @@ namespace ArcaneBrigade
                 boss.BossVolley++; boss.BossOrganReleaseAt = Elapsed;
                 boss.AttackStarted = Elapsed - boss.AttackWindup;
                 boss.BossRecoveryUntil = Elapsed + 1.2f;
-                boss.NextBossPattern = Elapsed + (boss.Health < boss.Definition.Health * 0.35f ? 2.8f : 3.5f);
+                boss.NextBossPattern = Elapsed + (boss.Health < boss.Definition.Health * 0.35f ? 2.8f : 3.5f) + (catalog.StoryKeeper ? 0.6f : 0);
                 events.Add(new CombatEvent(CombatEventKind.Fire, boss.Position, Faction.Enemy, subject: boss));
                 return true;
             }

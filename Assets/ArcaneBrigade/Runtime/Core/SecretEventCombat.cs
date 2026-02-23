@@ -47,7 +47,7 @@ namespace ArcaneBrigade
             if (!SecretFighting) return;
             CombatCatalog.EnableArenaToys = CombatCatalog.EnableSpectacles = CombatCatalog.EnableBossArenaPhase = false;
             CombatCatalog.ArenaSize = new Vector2(22, 12); CombatCatalog.ExtendedLoot = false; CombatCatalog.GoldPerKill = 0;
-            CombatCatalog.ChestInterval = 100000; CombatCatalog.EnemyBudget = 0; CombatCatalog.WaveDuration = 0;
+            CombatCatalog.ChestInterval = 100000; CombatCatalog.EnemyBudget = 0; CombatCatalog.BossSwarmBudget = 0; CombatCatalog.WaveDuration = 0; // no boss-night swarm in a secret fight
             CombatCatalog.EnemyPool = Array.Empty<UnitDefinition>(); CombatCatalog.AffixedEnemies = Array.Empty<UnitDefinition>();
             CombatCatalog.Boss = null;
             int encounter = Secret.Kind == SecretEventKind.LostProperty ? 1 : Secret.Kind == SecretEventKind.Understudy ? 2 : Secret.Kind == SecretEventKind.ContrabandTrain ? 3 : 4 + Secret.Option;

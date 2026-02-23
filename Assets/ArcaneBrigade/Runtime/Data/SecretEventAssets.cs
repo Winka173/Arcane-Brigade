@@ -30,6 +30,8 @@ namespace ArcaneBrigade
         public int QueuedEvent = -1;
         public bool LetterSent;
         public bool RescuedToy;
+        public string RescuedId = "";                       // who (or what) came out of the lost-property drawer
+        public List<int> RoomNights = new List<int>();       // wave * 16 + kind for each secret room entered (journal memory)
         public bool ThankYouClaimed;
         public string TargetItem = "";
         public string TargetUnit = "";

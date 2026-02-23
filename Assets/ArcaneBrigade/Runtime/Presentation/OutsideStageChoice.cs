@@ -9,11 +9,15 @@ namespace ArcaneBrigade
         private readonly List<GameObject> actors = new List<GameObject>();
         private readonly Vector2[] rewardPositions = { new Vector2(-3, -0.8f), new Vector2(0, -0.8f), new Vector2(3, -0.8f) };
         public static readonly Vector2 ChallengePosition = new Vector2(5.2f, -3.3f);
+        /// <summary>In Act I (shop 17) the warm chair stands by the bottom-right corner, so the hand waits on the right under
+        /// the merchant's speech instead (the secret invitations' spot; shop 17 has none).</summary>
+        public static readonly Vector2 ActOneChallengePosition = new Vector2(5.05f, -1.3f);
+        private Vector2 HandAt => owner?.Session != null && !owner.Session.State.Endless && owner.Session.State.Wave <= ActOneCanon.Waves ? ActOneChallengePosition : ChallengePosition;
         public bool Focused => owner != null && owner.Session.OutsideChallengeAvailable && ShopFocus.Has(this, 0, owner.Simulation.Champion.Position);
         public int SpotCount => mode == 1 ? 1 : mode == 2 ? 3 : 0;
         public bool Spot(int index, out Vector2 position, out float reach)
         {
-            position = mode == 1 ? ChallengePosition : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 1.6f : 1.05f;
+            position = mode == 1 ? HandAt : rewardPositions[Mathf.Clamp(index, 0, 2)]; reach = mode == 1 ? 1.6f : 1.05f;
             return owner?.Simulation != null && (mode == 1 ? owner.Session.OutsideChallengeAvailable : mode == 2);
         }
         private int mode;
@@ -38,7 +42,7 @@ namespace ArcaneBrigade
             float time = owner.PresentationClock;
             for (int index = 0; index < actors.Count; index++)
             {
-                Vector2 origin = mode == 1 ? ChallengePosition : rewardPositions[index];
+                Vector2 origin = mode == 1 ? HandAt : rewardPositions[index];
                 Vector3 hovering = DreamLevitation.Offset(time, 70 + index, NightmareRules.Depth(owner.Session.State.Wave), PresentationSettings.ReducedMotion);
                 SpriteRenderer view = actors[index].GetComponent<SpriteRenderer>();
                 actors[index].transform.rotation = Quaternion.Euler(0, 0, DreamLevitation.Tilt(time, 70 + index, PresentationSettings.ReducedMotion));
@@ -70,7 +74,7 @@ namespace ArcaneBrigade
                     ItemDefinition item = owner.Content.Item(id); sprite.sprite = item == null ? owner.Content.Unit(id).Body : item.Icon;
                 }
                 sprite.sortingOrder = 950; actor.transform.localScale = Vector3.one * ((mode == 1 ? 2.5f : 1.1f) / Mathf.Max(0.01f, sprite.sprite.bounds.size.x));
-                GroundShadow shadow = actor.AddComponent<GroundShadow>(); shadow.Display(sprite.sprite, mode == 1 ? ChallengePosition : rewardPositions[index], mode == 1 ? 2.2f : 0.8f, 0.5f, 0.22f);
+                GroundShadow shadow = actor.AddComponent<GroundShadow>(); shadow.Display(sprite.sprite, mode == 1 ? HandAt : rewardPositions[index], mode == 1 ? 2.2f : 0.8f, 0.5f, 0.22f);
                 actor.AddComponent<DreamSuspension>();
                 var glow = new GameObject("BoundPrismaticLight"); glow.transform.SetParent(actor.transform, false);
                 glow.AddComponent<ShopRarityGlow>().Configure(ItemRarity.Rainbow, owner, index, sprite);
@@ -92,11 +96,11 @@ namespace ArcaneBrigade
             GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
             if (mode == 1)
             {
-                Vector3 point=Camera.main.WorldToViewportPoint(ChallengePosition);
-                Rect badge=new Rect(Mathf.Clamp(point.x*1920-185,30,1520),Mathf.Clamp((1-point.y)*1080+16,190,898),370,100);
+                Vector3 point=Camera.main.WorldToViewportPoint(HandAt);
+                Rect badge=new Rect(Mathf.Clamp(point.x*1920-(HandAt.x>0?110:185),30,1520),Mathf.Clamp((1-point.y)*1080+16,190,898),370,100);
                 RarityDescriptionFrame.Draw(badge,ItemRarity.Rainbow,owner.PresentationClock);
                 GUI.Label(new Rect(badge.x+8,badge.y+5,354,32),"OPTIONAL BOSS / THE KEEPER",copy);
-                GUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Space / A / Click to challenge\nDefeat ends the run":"Approach the glowing hand\nWin a rainbow companion or relic",copy);
+                GUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Space / E / A to challenge\nDefeat ends the run":owner.Session.State.Secrets!=null && owner.Session.State.Secrets.LetterSent?"It remembers your letter.\nWin a rainbow companion or relic":"Approach the glowing hand\nWin a rainbow companion or relic",copy);
                 if(Focused && GUI.Button(badge,GUIContent.none,GUIStyle.none))Interact();
             }
             else

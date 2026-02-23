@@ -11,7 +11,7 @@ namespace ArcaneBrigade.Editor
     /// Bot observations, not human balance acceptance. Batch: -executeMethod ArcaneBrigade.Editor.PacingEconomyDiagnostics.Run</summary>
     public static class PacingEconomyDiagnostics
     {
-        private static readonly string[] Heroes = { "LanternKnight", "Postmaster", "DrowsySeer" };
+        private static readonly string[] Heroes = { "LanternKnight", "Postmaster", "DrowsySeer", "VerdantMatron", "TideSinger", "IvorySovereign" };
         public static void Run()
         {
             string root = "PreviewExports/Pacing";
@@ -27,6 +27,7 @@ namespace ArcaneBrigade.Editor
             RunCatalog catalog = Resources.Load<RunCatalog>("RunCatalog");
             var rows = new List<string> { "hero,wave,seconds,kills,peak_alive,mean_alive,combat_gold,chests,income,interest,wallet_after_settle,spent,outcome" };
             var summary = new List<string> { "hero,outcome,last_wave,total_combat_gold,total_income,total_interest,total_spent,total_kills" };
+            var keeper = new List<string> { "hero,difficulty,keeper_hp,brigade,result,seconds,hero_hp_left,keeper_hp_left_pct,wave15_boss_seconds" };
             foreach (string heroId in Heroes)
             {
                 if (catalog.Unit(heroId) == null) continue;
@@ -57,6 +58,7 @@ namespace ArcaneBrigade.Editor
                     if (session.State.Phase == SessionPhase.Victory) outcome = "VICTORY";
                     int wallet = session.State.Gold;
                     income += session.State.LastIncome; interest += session.State.LastInterest;
+                    if (session.State.Phase == SessionPhase.Shop && session.OutsideChallengeAvailable) keeper.Add(KeeperProbe(catalog, session, rows));
                     if (session.State.Phase == SessionPhase.Shop) K13MovementPolicy.Purchase(session, catalog);
                     spent += wallet - session.State.Gold;
                     rows.Add(string.Format(CultureInfo.InvariantCulture, "{0},{1},{2:0.0},{3},{4},{5:0.0},{6},{7},{8},{9},{10},{11},{12}", heroId, w, seconds, waveKills, peak, samples == 0 ? 0 : aliveSum / (float)samples, combatGold, chests, session.State.LastIncome, session.State.LastInterest, wallet, wallet - session.State.Gold, state));
@@ -69,7 +71,25 @@ namespace ArcaneBrigade.Editor
             Directory.CreateDirectory(root);
             File.WriteAllLines(Path.Combine(root, "Waves.csv"), rows);
             File.WriteAllLines(Path.Combine(root, "Summary.csv"), summary);
+            File.WriteAllLines(Path.Combine(root, "Keeper17.csv"), keeper);
             Debug.Log("PACING_REPORT_FINISHED " + root);
+        }
+
+        /// <summary>The Act I Keeper's hand (shop 17), fought on a copy of the bot's run so the campaign itself goes on.</summary>
+        private static string KeeperProbe(RunCatalog catalog, RunSession session, List<string> rows)
+        {
+            using var probe = new RunSession(catalog);
+            probe.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State)));
+            if (!probe.AcceptOutsideStage()) return session.State.ChampionId + ",could not accept";
+            var simulation = new CombatSimulation(probe.PrepareCombat()); simulation.Start(5017);
+            float keeperHp = simulation.Boss != null ? simulation.Boss.Definition.Health : 0;
+            for (int tick = 0; tick < 300 * 60 && simulation.Phase == RunPhase.Combat; tick++) simulation.Step(1f / 60, K13MovementPolicy.Steer(simulation));
+            string result = simulation.Phase == RunPhase.Combat ? "TIMEOUT" : simulation.BossDefeated ? "WIN" : "LOSS";
+            string boss15 = rows.Where(r => r.StartsWith(session.State.ChampionId + ",15,")).Select(r => r.Split(',')[2]).FirstOrDefault() ?? "-";
+            string line = string.Format(CultureInfo.InvariantCulture, "{0},{1},{2:0},{3},{4},{5:0.0},{6:0},{7:0},{8}", session.State.ChampionId, session.State.Difficulty, keeperHp, session.State.Roster.Count, result, simulation.Elapsed,
+                simulation.Champion.Health, simulation.Boss == null || keeperHp <= 0 ? 0 : 100 * Mathf.Max(0, simulation.Boss.Health) / keeperHp, boss15);
+            Debug.Log("KEEPER17 " + line);
+            return line;
         }
     }
 }

@@ -484,6 +484,7 @@ namespace ArcaneBrigade
                 keeper.Weapon.Damage = reference.Weapon.Damage;
                 keeper.BodyHeight = OutsideStageAssets.Current.Boss.BodyHeight * 2.1f;
                 keeper.DisplayName = ActOneCanon.BossName(5);
+                CombatCatalog.StoryKeeper = true;
                 return keeper;
             }
             string stand = State.Wave == 10 ? "SuitcaseLeviathan" : State.Wave == 15 ? "UndeliveredKing" : null;

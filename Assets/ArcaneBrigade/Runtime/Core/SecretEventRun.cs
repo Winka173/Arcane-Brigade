@@ -21,7 +21,9 @@ namespace ArcaneBrigade
         {
             if (SecretEventAssets.Current == null || State.Phase != SessionPhase.Shop || SecretRoomOpen || State.OutsideStage == OutsideStageStatus.Reward) return Array.Empty<SecretEventKind>();
             if (Secret.QueuedEvent >= 0 && Secret.VisitWave != State.Wave) return new[] { (SecretEventKind)Secret.QueuedEvent };
-            if (Secret.Visits >= 2 || State.Wave < 3 || State.Wave % 4 != 3 || Secret.VisitWave == State.Wave) return Array.Empty<SecretEventKind>();
+            // Act I: the middle of each zone (shops 3, 8, 13, 18), never a boss night's shop; endless keeps every fourth
+            bool invited = !State.Endless && State.Wave <= ActOneCanon.Waves ? ActOneCanon.SecretShop(State.Wave) : State.Wave >= 3 && State.Wave % 4 == 3;
+            if (Secret.Visits >= 2 || !invited || Secret.VisitWave == State.Wave) return Array.Empty<SecretEventKind>();
             var kinds = Enumerable.Range(0, 8).Where(k => (Secret.VisitedMask & (1 << k)) == 0).ToList();
             uint hash = unchecked((uint)State.Seed ^ (uint)State.Wave * 0x9e3779b9u);
             var result = new List<SecretEventKind>();
@@ -39,6 +41,7 @@ namespace ArcaneBrigade
             bool queued = Secret.QueuedEvent == (int)kind;
             Secret.Kind = kind; Secret.Stage = SecretEventStage.Choosing; Secret.Option = -1;
             Secret.VisitWave = State.Wave; Secret.VisitedMask |= 1 << (int)kind;
+            Secret.RoomNights ??= new List<int>(); Secret.RoomNights.Add(State.Wave * 16 + (int)kind); // the next night's journal page remembers it
             if (queued) Secret.QueuedEvent = -1; else Secret.Visits++;
             Secret.TargetItem = SecretTargets.FirstOrDefault() ?? "";
             RosterEntry first = State.Roster.FirstOrDefault();
@@ -209,7 +212,7 @@ namespace ArcaneBrigade
             }
             else success = catalog.Item(id) != null ? GiveSecretItem(id) : GiveSecretAlly(id);
             if (!success) return false;
-            if (Secret.Kind == SecretEventKind.LostProperty) Secret.RescuedToy = true;
+            if (Secret.Kind == SecretEventKind.LostProperty) { Secret.RescuedToy = true; Secret.RescuedId = id ?? ""; }
             RememberNightmareChoice(Secret.Kind,Secret.Option,true);
             RecountBonds();
             Secret.RewardId = ""; RecordSecret("Received " + (string.IsNullOrEmpty(id) ? "25 gold / alternate reward" : catalog.Item(id)?.Name ?? catalog.Unit(id)?.DisplayName));

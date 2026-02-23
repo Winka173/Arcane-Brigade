@@ -117,7 +117,7 @@ namespace ArcaneBrigade
             }
         }
         // interactive story props owned elsewhere: reserved where they are (their systems test the player against those spots)
-        private static bool Foreign(string name) => name.StartsWith("SecretInvitation_") || name.StartsWith("OutsideStage");
+        private static bool Foreign(string name) => name.StartsWith("SecretInvitation_") || name.StartsWith("OutsideStage") || name == "TheHandWaits" || name.StartsWith("PrismaticReward"); // the Keeper's hand and gifts too
         private sealed class Adopted { public Transform Root; public SpriteRenderer View; public GroundShadow Shadow; public Vector2 Wish, Size, Applied; public string Id; public int Priority; public float Scale; }
         private readonly List<Adopted> adopted = new List<Adopted>();
         /// <summary>Act I's standing story figures (the seated travellers, the Last Customer beside the warm chair) are
@@ -238,6 +238,7 @@ namespace ArcaneBrigade
                 Vector2 merchant = owner.Shop.MerchantCenter; float height = owner.Shop.MerchantHeight;
                 Bounds drawn = owner.Shop.MerchantBounds; // the painted merchant's own proportions (it may still be arriving)
                 float half = drawn.size.y > 0.1f ? Mathf.Clamp(height * drawn.size.x / drawn.size.y * 0.5f, height * 0.4f, height * 0.62f) : height * 0.46f;
+                half += 0.35f; // its painted ink (hands, cup, ledger) reaches past the estimate; the lamps kept brushing it
                 Reserve("merchant", Rect.MinMaxRect(merchant.x - half, merchant.y - height * 0.5f - 0.05f, merchant.x + half, merchant.y + height * 0.5f + 0.1f));
                 Reserve("merchant:speech", Rect.MinMaxRect(1.85f, 1.15f, 5.7f, 2.75f));
                 foreach (WorldShop.Station station in owner.Shop.Stations)

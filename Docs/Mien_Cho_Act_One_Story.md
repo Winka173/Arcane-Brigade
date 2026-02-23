@@ -190,7 +190,8 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 - Đèn: vỡ đúng wave 3/5/8/10/13/14/17, ngọn thứ 8 sống sót; tám ngọn đứng trên “con đường tới bình minh” ở HUD; khi đèn vỡ hiện dòng viết tay “You can no longer remember …”.
 - Boss: Keeper ở wave 5 (sức mạnh ngang boss wave 5); wave 10 THE CHAIR PORTER và wave 15 THE DOOR THAT STAYED SHUT dùng thân tạm (Suitcase Leviathan, Undelivered King) đến khi có art; wave 20 Last Customer với thoại mới.
 - Một người bán hàng cố định (THE SHOPKEEPER); đổi map ở wave 6/11/16; thoại thì thầm/vật chứng theo vùng; trang kết mới (đóng tiệm 4 trang, để đèn 5 trang, trang cuối “THURSDAY” có ba tiếng gõ cửa).
-- Gỡ khỏi Hồi 1: bàn/điện thoại/gương cũ trong shop, ghế “PATHS & PEOPLE”, thử thách Keeper tùy chọn (chỉ còn trong endless).
+- Gỡ khỏi Hồi 1: bàn/điện thoại/gương cũ trong shop, ghế “PATHS & PEOPLE”.
+- (17/10/2026) Keeper wave 5 “quỳ”: đứng yên, không gọi lính (đã có đàn quái của đêm boss), ra đòn chậm hơn 0.6 s. Bàn tay Keeper quay lại **một lần ở shop 17**: trận tùy chọn (thua là hết lượt), máu = boss wave 15 của lượt đó × 3.5 × 3, đòn × 1.6; thắng chọn 1 trong 3 quà cầu vồng (Rainbow Crown/Heart/Thread/Prism, đồng minh Rainbow Tailor/Bell). Bot: thắng trong 31–41 s, có hero còn 11 HP (`PreviewExports/Pacing/Keeper17.csv`). Endless vẫn có lần thử thách riêng nếu chưa gặp. Trang 18 nhớ chiến thắng; kết thúc “Keeper mở bàn tay” nay đạt được; thẻ thách đấu nhắc lá thư nếu đã gửi ở Dead Letters.
 - Kiểm tra: `ArcaneBrigade.Editor.ActOneStoryChecks.Run` (kết quả ở `PreviewExports/ActOneStory/Checks.txt`).
 
 **Phase 2 — xong (ghế, đoàn đồng hành, trận ẩn):**
@@ -212,4 +213,4 @@ Căn hộ ban đêm. Tin nhắn *“See you tomorrow?”*. Ta chưa trả lời,
 - HUD: bỏ thanh “DAWN IN n WAVES”; tám ngọn đèn thành một hàng nhỏ dưới ô xu/trứng.
 - Phase 4: art theo `Docs/Act_One_Story_Art_Requests.md` (ghế, Những Người Đã Ngồi Xuống, Customer mượn mặt, 3 boss, 4 sàn vùng, panel journal) và gắn vào game.
 - Phase 5 — xong: lần đầu mở menu sau bình minh, ghế bành ở Phòng Chờ hỏi “Would you like me to sit closer?” (một lần, lưu `ActOneChairSpoke` trong profile); khi có art `WaitingRoom_ChairTurned.png` thì menu dùng ảnh ghế đã xoay.
-- Đã chốt: các phòng bí mật (wave 3/7/11/15/19) và quầy “dream shop” giữ làm nội dung phụ.
+- Đã chốt: các phòng bí mật và quầy “dream shop” giữ làm nội dung phụ. (17/10/2026) Thư mời theo nhịp Hồi 1: shop 3/8/13/18 (giữa mỗi vùng, không trùng shop sau boss), tối đa 2 phòng mỗi lượt; mỗi phòng đã vào để lại một dòng ở trang đầu của đêm hôm sau (`ActOneCanon.RoomMemory`). Endless giữ nhịp cũ (mỗi 4 wave).

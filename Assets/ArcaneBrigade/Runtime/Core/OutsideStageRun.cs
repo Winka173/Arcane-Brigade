@@ -22,7 +22,9 @@ namespace ArcaneBrigade
                 if (ally == null || ally.Rarity != ItemRarity.Rainbow || catalog.Unit(snapshot.ChampionId).HeroMechanic == HeroMechanic.SoloMaw) throw new InvalidOperationException("Invalid prismatic reward");
             }
         }
-        public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && (State.Endless || State.Wave > ActOneCanon.Waves) && State.OutsideTransfers >= 3 && OutsideStageAssets.Current != null;
+        public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && (State.Endless || State.Wave > ActOneCanon.Waves ? State.OutsideTransfers >= 3 : State.Wave == ActOneCanon.KeeperReturnShop) && OutsideStageAssets.Current != null;
+        /// <summary>The Keeper's hand in Act I (shop 17) rather than the endless rematch.</summary>
+        private bool ActOneKeeperReturn => !State.Endless && State.Wave <= ActOneCanon.Waves;
         public void RegisterOutsideTransfer()
         {
             if (State.LastOutsideTransferWave >= State.Wave) return;
@@ -47,12 +49,24 @@ namespace ArcaneBrigade
             OutsideStageAssets assets = OutsideStageAssets.Current;
             if (assets == null || assets.Boss == null) throw new InvalidOperationException("Missing outside-stage encounter");
             CombatCatalog.Boss = BuildEnemy(assets.Boss, 1 + Mathf.Max(0, State.Wave - 13) * 0.06f);
-            CombatCatalog.Boss.Health = assets.Boss.Health * 20 * .8f * 1.8f * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
+            if (ActOneKeeperReturn)
+            {
+                // Act I (shop 17): as strong as this run's wave-15 story boss and a little more, so it sits in the run's own curve
+                float scaling = (1f + 14 * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, 15);
+                int stage = 2, index = catalog.Bosses.Length == 10 ? stage % 5 + (((State.Seed ^ stage) & 1) == 0 ? 0 : 5) : stage % catalog.Bosses.Length;
+                UnitDefinition door = BuildEnemy(catalog.Bosses[index], scaling);
+                CombatCatalog.Boss.Health = door.Health * WaveCadence.StoryBossBulk(15) * 3f; // it stands still and fights alone with its guards, so the whole brigade is on it (bots: 1.2x fell in 17 s)
+                CombatCatalog.Boss.Weapon.Damage = door.Weapon.Damage * 1.6f; CombatCatalog.Boss.ContactDamage = door.ContactDamage * 1.6f;
+            }
+            else
+            {
+                CombatCatalog.Boss.Health = assets.Boss.Health * 20 * .8f * 1.8f * (1 + State.Difficulty * 0.25f + Mathf.Max(0, State.Wave - 13) * 0.08f) * OctoberBalance.EndlessHealth(State.Wave, State.Endless);
+                CombatCatalog.Boss.Weapon.Damage *= 2.8f; CombatCatalog.Boss.ContactDamage *= 2.5f;
+            }
             CombatCatalog.Boss.BodyHeight = assets.Boss.BodyHeight * 2.45f;
             CombatCatalog.Boss.Radius*=1.4f;
-            CombatCatalog.Boss.Weapon.Damage *= 2.8f; CombatCatalog.Boss.ContactDamage *= 2.5f;
             CombatCatalog.Boss.KnockbackResistance = 1;
-            CombatCatalog.EnemyBudget = 0;
+            CombatCatalog.EnemyBudget = 0; CombatCatalog.BossSwarmBudget = 0; CombatCatalog.StoryKeeper = false; // its guards are its swarm
             CombatCatalog.ArenaSize = new Vector2(22, 12);
             CombatCatalog.EnableArenaToys = CombatCatalog.EnableSpectacles = CombatCatalog.EnableBossArenaPhase = false;
             CombatCatalog.WaveDuration = 0;
