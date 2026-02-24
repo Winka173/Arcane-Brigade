@@ -1,0 +1,10 @@
+﻿{
+    "Failures":  0,
+    "Checks":  23,
+    "ExitCode":  0,
+    "Started":  "2026-10-17T10:22:19.9391099+07:00",
+    "Images":  13,
+    "RuntimeSha256":  "4CD5C4AF488DAB801AB315EE1A61AAB3B364CFE90116A31AB41E2E8E36E8F0E2",
+    "Mode":  "Reduced",
+    "Finished":  "2026-10-17T10:22:35.0320859+07:00"
+}

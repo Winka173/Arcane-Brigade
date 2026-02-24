@@ -13,12 +13,12 @@ namespace ArcaneBrigade
                 foreach (RosterEntry entry in session.State.Roster) if (entry.UnitId == unit.Id) tiers[entry.Tier]++;
                 float before = 0; for (int tier = 1; tier < tiers.Length; tier++) before += tiers[tier] * UnitDefinition.ModifierScale(tier);
                 int projected = UnityEngine.Mathf.Clamp(offer.Tier, 1, 3); tiers[projected]++;
-                for (int tier = 1; tier < catalog.MaximumTier; tier++)
+                for (int tier = 1; tier < catalog.MaximumTier && unit.ReferenceCompanion != "Evil"; tier++)
                     if (tiers[tier] >= 3) { tiers[tier + 1] += tiers[tier] / 3; tiers[tier] %= 3; projected = tier + 1; }
                 float after = 0; for (int tier = 1; tier < tiers.Length; tier++) after += tiers[tier] * UnitDefinition.ModifierScale(tier);
-                string result = projected > 1 ? "Upgrade to " + projected + " stars" : "Add one ally. Random weapon";
+                string result = projected > offer.Tier ? "Merge to " + projected + " stars" : "Recruit " + offer.Tier + "-star ally. Random weapon";
                 StatModifier[] modifiers = unit.CompanionModifiers;
-                string stats = string.Join(". ", modifiers.Where(value => value.Value * (after - before) != 0).Take(2).Select(value => ScopeLabel(value.Scope) + StatName(value.Effect) + " " + RunModifierRules.ValueText(value.Effect, value.Value * (after - before))));
+                string stats = string.Join(". ", modifiers.Where(value => value.Value * (after - before) != 0).Select(value => ScopeLabel(value.Scope) + StatName(value.Effect) + " " + RunModifierRules.ValueText(value.Effect, value.Value * (after - before))));
                 return result + (stats.Length == 0 ? "" : "\n" + stats) + "\n" + CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier);
             }
             ItemDefinition item = catalog.Item(offer.Id);

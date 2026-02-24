@@ -16,12 +16,15 @@ namespace ArcaneBrigade
             public string Key, Title, Body, Use;
             public Rect World;
             public int Order;
+            public ShopOffer Offer;
         }
         private ArenaController owner;
         private readonly List<Entry> entries = new List<Entry>();
         private Entry hovered, open;
         private Vector2 openedFor;
         private GUIStyle name, title, body, hint;
+        private readonly ShopDescriptionCard offerCard = new ShopDescriptionCard();
+        private Vector2 offerScroll;
         public IReadOnlyList<Entry> Entries => entries;
         public Entry Open => open;
         public void Configure(ArenaController value) => owner = value;
@@ -43,7 +46,7 @@ namespace ArcaneBrigade
         public bool Show(string key)
         {
             Entry entry = entries.Find(e => e.Key == key); if (entry == null) return false;
-            open = entry; openedFor = owner.Simulation.Champion.Position; return true;
+            open = entry; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; return true;
         }
         public void Close() => open = null;
 
@@ -65,6 +68,7 @@ namespace ArcaneBrigade
                 else if (station.Action == "NEXT HALL") { use = "Step onto the threshold and press Space or E"; text = shop.Special ? "The way back to the gold shop. The dream altar closes behind you." : owner.Session.HobRescueNeeded ? "Hob is still sitting in the perfect room. The road waits until you go back for Hob (the journal opens on that page)." : "The way on, down into the next night. Everything you bought comes with you."; }
                 else use = "Walk up to it and press Space or E · paid in eggs";
                 Add("station:" + station.Action, shop.DisplayName(station), text, use, area.Value, 500);
+                entries[entries.Count - 1].Offer = station.Offer;
             }
             if (shop.MerchantRect() is Rect merchant)
                 Add("merchant", shop.Special ? "MOTHER OF A THOUSAND EGG-EYES" : "THE SHOPKEEPER",
@@ -153,7 +157,7 @@ namespace ArcaneBrigade
         {
             if (!Allowed || entries.Count == 0) return;
             Camera camera = Camera.main; if (camera == null) return;
-            GUI.depth = 5; // behind the HUD: its buttons see the click first
+            GUI.depth = open?.Offer != null ? -1 : 5; // purchase cards must also cover the merchant's speech bubble
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             name ??= ArcadeTypography.Style(17, true); name.alignment = TextAnchor.MiddleCenter;
             title ??= ArcadeTypography.Style(26, true); title.wordWrap = true;
@@ -165,7 +169,7 @@ namespace ArcaneBrigade
             hovered = overHud || RunUIHints.Device != RunUIDevice.KeyboardMouse ? null : At(mouse, camera);
             if (current.type == EventType.MouseDown && current.button == 0)
             {
-                if (hovered != null) { open = open != null && open.Key == hovered.Key ? null : hovered; openedFor = owner.Simulation.Champion.Position; current.Use(); }
+                if (hovered != null && (open == null || !CardRect(open, camera).Contains(mouse))) { open = open != null && open.Key == hovered.Key ? null : hovered; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; current.Use(); }
                 else if (open != null && !CardRect(open, camera).Contains(mouse)) open = null;
             }
             if (hovered != null && (open == null || open.Key != hovered.Key))
@@ -178,6 +182,10 @@ namespace ArcaneBrigade
             }
             if (open != null)
             {
+                if (open.Offer != null)
+                {
+                    DrawOffer(camera); GUI.matrix = previous; return;
+                }
                 Rect card = CardRect(open, camera);
                 ArcadeSkin.Panel(card, ArcadeSkin.CardLit);
                 ArcadeSkin.Line(new Rect(card.x, card.y, card.width, 3), ArcadeSkin.Accent);
@@ -190,6 +198,7 @@ namespace ArcaneBrigade
         }
         private Rect CardRect(Entry entry, Camera camera)
         {
+            if (entry.Offer != null) return new Rect(485, 190, 950, 430);
             const float width = 560;
             float inner = width - 40;
             title ??= ArcadeTypography.Style(26, true); body ??= ArcadeTypography.Style(20); hint ??= ArcadeTypography.Style(16);
@@ -197,6 +206,26 @@ namespace ArcaneBrigade
             Rect box = Screen(entry.World, camera);
             float x = box.center.x < 960 ? box.xMax + 24 : box.xMin - 24 - width; // beside the thing, toward the middle of the room
             return new Rect(Mathf.Clamp(x, 16, 1904 - width), Mathf.Clamp(box.center.y - height * 0.5f, 190, 990 - height), width, height);
+        }
+        private void DrawOffer(Camera camera)
+        {
+            offerCard.Refresh(owner.Session, owner.Content, open.Offer);
+            Rect card = CardRect(open, camera);
+            RarityDescriptionFrame.Draw(card, offerCard.Rarity, owner.PresentationClock);
+            ShopDescriptionCard.DrawSprite(new Rect(card.x + 20, card.y + 14, 42, 42), offerCard.Portrait);
+            title.normal.textColor = RunModifierRules.RarityColor(offerCard.Rarity);
+            GUI.Label(new Rect(card.x + 74, card.y + 12, 810, 37), open.Title, title);
+            hint.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(card.x + 74, card.y + 48, 830, 24), offerCard.Identity, hint);
+            if (GUI.Button(new Rect(card.xMax - 48, card.y + 12, 32, 32), "×")) { Close(); return; }
+            float header = offerCard.HeaderHeight;
+            offerCard.DrawHeader(new Rect(card.x + 20, card.y + 82, card.width - 40, header));
+            float y = card.y + 84 + header, width = card.width - 70;
+            string copy = offerCard.Details + "\n\n" + open.Use;
+            body.normal.textColor = ArcadeSkin.Cream;
+            float height = GlossaryUI.Height(copy, body, width);
+            offerScroll = GUI.BeginScrollView(new Rect(card.x + 20, y, card.width - 40, card.yMax - y - 16), offerScroll, new Rect(0, 0, width, height));
+            GlossaryUI.Text(new Rect(0, 0, width, height), copy, body); GUI.EndScrollView();
+            GlossaryUI.Draw(new Vector2(1920, 1080));
         }
     }
 }

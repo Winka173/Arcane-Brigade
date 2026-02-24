@@ -183,7 +183,7 @@ namespace ArcaneBrigade
                 int growth=Stacks(RelicMechanic.FoodGrowth);if(growth>0)b.AppendLine("Food relics: +"+(growth*10)+" maximum HP, +"+(growth*.5f).ToString("0.###")+" HP/s and +"+(growth*5)+"% body size this run.");
                 if(s.State.ChampionId=="SupperMortar")b.AppendLine("Supper Mortar: food expands shell radius by 0.025, up to +0.35 units.");
             }
-            if(s.State.ChampionId=="ThornTreasurer" && item.ReferenceName=="Spiky Yoga Ball")b.AppendLine("Thorn Treasurer: buying this relic also attempts to recruit a Bristle Ball, within the body and unique-weapon limits.");
+            if(s.State.ChampionId=="ThornTreasurer" && item.ReferenceName=="Spiky Yoga Ball")b.AppendLine("Thorn Treasurer: buying this relic also attempts to recruit a Bristle Ball, subject to unused weapon variants.");
             if((s.State.ChampionId=="NightMaw"||s.State.ChampionId=="IvorySovereign") && (Array.Exists(item.EffectiveModifiers,m=>m.Effect==ItemEffect.Heal||m.Effect==ItemEffect.HeartHealing)||item.Mechanic==RelicMechanic.StillRecovery))b.AppendLine("Your hero restricts ordinary healing; these recovery effects cannot bypass that rule.");
             return b.Length==0?"":"\n\nON PURCHASE / YOUR CURRENT BRIGADE\n"+b.ToString().Trim();
         }

@@ -1,0 +1,1701 @@
+PASS Live catalog loads
+PASS Inspection preserves RNG, currency, roster and receipts: TeapotPilgrim / 1
+PASS Valid weapon icon and compiled random-weapon bounds: TeapotPilgrim / 1
+PASS Every bond has its own icon and real threshold: TeapotPilgrim / 1
+PASS All support values and scopes included: TeapotPilgrim / 1 / Heal
+PASS All support values and scopes included: TeapotPilgrim / 1 / MoveSpeed
+PASS Complete talent and personal lore: TeapotPilgrim / 1
+PASS Inspection preserves RNG, currency, roster and receipts: TeapotPilgrim / 2
+PASS Valid weapon icon and compiled random-weapon bounds: TeapotPilgrim / 2
+PASS Every bond has its own icon and real threshold: TeapotPilgrim / 2
+PASS All support values and scopes included: TeapotPilgrim / 2 / Heal
+PASS All support values and scopes included: TeapotPilgrim / 2 / MoveSpeed
+PASS Complete talent and personal lore: TeapotPilgrim / 2
+PASS Inspection preserves RNG, currency, roster and receipts: TeapotPilgrim / 3
+PASS Valid weapon icon and compiled random-weapon bounds: TeapotPilgrim / 3
+PASS Every bond has its own icon and real threshold: TeapotPilgrim / 3
+PASS All support values and scopes included: TeapotPilgrim / 3 / Heal
+PASS All support values and scopes included: TeapotPilgrim / 3 / MoveSpeed
+PASS Complete talent and personal lore: TeapotPilgrim / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CandleSnail / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CandleSnail / 1
+PASS Every bond has its own icon and real threshold: CandleSnail / 1
+PASS All support values and scopes included: CandleSnail / 1 / Armor
+PASS All support values and scopes included: CandleSnail / 1 / MoveSpeed
+PASS Complete talent and personal lore: CandleSnail / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CandleSnail / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CandleSnail / 2
+PASS Every bond has its own icon and real threshold: CandleSnail / 2
+PASS All support values and scopes included: CandleSnail / 2 / Armor
+PASS All support values and scopes included: CandleSnail / 2 / MoveSpeed
+PASS Complete talent and personal lore: CandleSnail / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CandleSnail / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CandleSnail / 3
+PASS Every bond has its own icon and real threshold: CandleSnail / 3
+PASS All support values and scopes included: CandleSnail / 3 / Armor
+PASS All support values and scopes included: CandleSnail / 3 / MoveSpeed
+PASS Complete talent and personal lore: CandleSnail / 3
+PASS Inspection preserves RNG, currency, roster and receipts: MailboxImp / 1
+PASS Valid weapon icon and compiled random-weapon bounds: MailboxImp / 1
+PASS Every bond has its own icon and real threshold: MailboxImp / 1
+PASS All support values and scopes included: MailboxImp / 1 / Pickup
+PASS All support values and scopes included: MailboxImp / 1 / Luck
+PASS Complete talent and personal lore: MailboxImp / 1
+PASS Inspection preserves RNG, currency, roster and receipts: MailboxImp / 2
+PASS Valid weapon icon and compiled random-weapon bounds: MailboxImp / 2
+PASS Every bond has its own icon and real threshold: MailboxImp / 2
+PASS All support values and scopes included: MailboxImp / 2 / Pickup
+PASS All support values and scopes included: MailboxImp / 2 / Luck
+PASS Complete talent and personal lore: MailboxImp / 2
+PASS Inspection preserves RNG, currency, roster and receipts: MailboxImp / 3
+PASS Valid weapon icon and compiled random-weapon bounds: MailboxImp / 3
+PASS Every bond has its own icon and real threshold: MailboxImp / 3
+PASS All support values and scopes included: MailboxImp / 3 / Pickup
+PASS All support values and scopes included: MailboxImp / 3 / Luck
+PASS Complete talent and personal lore: MailboxImp / 3
+PASS Inspection preserves RNG, currency, roster and receipts: PillowOracle / 1
+PASS Valid weapon icon and compiled random-weapon bounds: PillowOracle / 1
+PASS Every bond has its own icon and real threshold: PillowOracle / 1
+PASS All support values and scopes included: PillowOracle / 1 / Health
+PASS All support values and scopes included: PillowOracle / 1 / AttackSpeed
+PASS Complete talent and personal lore: PillowOracle / 1
+PASS Inspection preserves RNG, currency, roster and receipts: PillowOracle / 2
+PASS Valid weapon icon and compiled random-weapon bounds: PillowOracle / 2
+PASS Every bond has its own icon and real threshold: PillowOracle / 2
+PASS All support values and scopes included: PillowOracle / 2 / Health
+PASS All support values and scopes included: PillowOracle / 2 / AttackSpeed
+PASS Complete talent and personal lore: PillowOracle / 2
+PASS Inspection preserves RNG, currency, roster and receipts: PillowOracle / 3
+PASS Valid weapon icon and compiled random-weapon bounds: PillowOracle / 3
+PASS Every bond has its own icon and real threshold: PillowOracle / 3
+PASS All support values and scopes included: PillowOracle / 3 / Health
+PASS All support values and scopes included: PillowOracle / 3 / AttackSpeed
+PASS Complete talent and personal lore: PillowOracle / 3
+PASS Inspection preserves RNG, currency, roster and receipts: MushroomLibrarian / 1
+PASS Valid weapon icon and compiled random-weapon bounds: MushroomLibrarian / 1
+PASS Every bond has its own icon and real threshold: MushroomLibrarian / 1
+PASS All support values and scopes included: MushroomLibrarian / 1 / Luck
+PASS All support values and scopes included: MushroomLibrarian / 1 / CompanionAttackSpeed
+PASS Complete talent and personal lore: MushroomLibrarian / 1
+PASS Inspection preserves RNG, currency, roster and receipts: MushroomLibrarian / 2
+PASS Valid weapon icon and compiled random-weapon bounds: MushroomLibrarian / 2
+PASS Every bond has its own icon and real threshold: MushroomLibrarian / 2
+PASS All support values and scopes included: MushroomLibrarian / 2 / Luck
+PASS All support values and scopes included: MushroomLibrarian / 2 / CompanionAttackSpeed
+PASS Complete talent and personal lore: MushroomLibrarian / 2
+PASS Inspection preserves RNG, currency, roster and receipts: MushroomLibrarian / 3
+PASS Valid weapon icon and compiled random-weapon bounds: MushroomLibrarian / 3
+PASS Every bond has its own icon and real threshold: MushroomLibrarian / 3
+PASS All support values and scopes included: MushroomLibrarian / 3 / Luck
+PASS All support values and scopes included: MushroomLibrarian / 3 / CompanionAttackSpeed
+PASS Complete talent and personal lore: MushroomLibrarian / 3
+PASS Inspection preserves RNG, currency, roster and receipts: HoodWisp / 1
+PASS Valid weapon icon and compiled random-weapon bounds: HoodWisp / 1
+PASS Every bond has its own icon and real threshold: HoodWisp / 1
+PASS All support values and scopes included: HoodWisp / 1 / Crit
+PASS All support values and scopes included: HoodWisp / 1 / Health
+PASS Complete talent and personal lore: HoodWisp / 1
+PASS Inspection preserves RNG, currency, roster and receipts: HoodWisp / 2
+PASS Valid weapon icon and compiled random-weapon bounds: HoodWisp / 2
+PASS Every bond has its own icon and real threshold: HoodWisp / 2
+PASS All support values and scopes included: HoodWisp / 2 / Crit
+PASS All support values and scopes included: HoodWisp / 2 / Health
+PASS Complete talent and personal lore: HoodWisp / 2
+PASS Inspection preserves RNG, currency, roster and receipts: HoodWisp / 3
+PASS Valid weapon icon and compiled random-weapon bounds: HoodWisp / 3
+PASS Every bond has its own icon and real threshold: HoodWisp / 3
+PASS All support values and scopes included: HoodWisp / 3 / Crit
+PASS All support values and scopes included: HoodWisp / 3 / Health
+PASS Complete talent and personal lore: HoodWisp / 3
+PASS Inspection preserves RNG, currency, roster and receipts: JellySwordsman / 1
+PASS Valid weapon icon and compiled random-weapon bounds: JellySwordsman / 1
+PASS Every bond has its own icon and real threshold: JellySwordsman / 1
+PASS All support values and scopes included: JellySwordsman / 1 / CompanionDamage
+PASS All support values and scopes included: JellySwordsman / 1 / MoveSpeed
+PASS Complete talent and personal lore: JellySwordsman / 1
+PASS Inspection preserves RNG, currency, roster and receipts: JellySwordsman / 2
+PASS Valid weapon icon and compiled random-weapon bounds: JellySwordsman / 2
+PASS Every bond has its own icon and real threshold: JellySwordsman / 2
+PASS All support values and scopes included: JellySwordsman / 2 / CompanionDamage
+PASS All support values and scopes included: JellySwordsman / 2 / MoveSpeed
+PASS Complete talent and personal lore: JellySwordsman / 2
+PASS Inspection preserves RNG, currency, roster and receipts: JellySwordsman / 3
+PASS Valid weapon icon and compiled random-weapon bounds: JellySwordsman / 3
+PASS Every bond has its own icon and real threshold: JellySwordsman / 3
+PASS All support values and scopes included: JellySwordsman / 3 / CompanionDamage
+PASS All support values and scopes included: JellySwordsman / 3 / MoveSpeed
+PASS Complete talent and personal lore: JellySwordsman / 3
+PASS Inspection preserves RNG, currency, roster and receipts: BrassAcorn / 1
+PASS Valid weapon icon and compiled random-weapon bounds: BrassAcorn / 1
+PASS Every bond has its own icon and real threshold: BrassAcorn / 1
+PASS All support values and scopes included: BrassAcorn / 1 / ScoreMultiplier
+PASS All support values and scopes included: BrassAcorn / 1 / Health
+PASS Complete talent and personal lore: BrassAcorn / 1
+PASS Inspection preserves RNG, currency, roster and receipts: BrassAcorn / 2
+PASS Valid weapon icon and compiled random-weapon bounds: BrassAcorn / 2
+PASS Every bond has its own icon and real threshold: BrassAcorn / 2
+PASS All support values and scopes included: BrassAcorn / 2 / ScoreMultiplier
+PASS All support values and scopes included: BrassAcorn / 2 / Health
+PASS Complete talent and personal lore: BrassAcorn / 2
+PASS Inspection preserves RNG, currency, roster and receipts: BrassAcorn / 3
+PASS Valid weapon icon and compiled random-weapon bounds: BrassAcorn / 3
+PASS Every bond has its own icon and real threshold: BrassAcorn / 3
+PASS All support values and scopes included: BrassAcorn / 3 / ScoreMultiplier
+PASS All support values and scopes included: BrassAcorn / 3 / Health
+PASS Complete talent and personal lore: BrassAcorn / 3
+PASS Inspection preserves RNG, currency, roster and receipts: BreadCrab / 1
+PASS Valid weapon icon and compiled random-weapon bounds: BreadCrab / 1
+PASS Every bond has its own icon and real threshold: BreadCrab / 1
+PASS All support values and scopes included: BreadCrab / 1 / CollisionDamage
+PASS All support values and scopes included: BreadCrab / 1 / Health
+PASS Complete talent and personal lore: BreadCrab / 1
+PASS Inspection preserves RNG, currency, roster and receipts: BreadCrab / 2
+PASS Valid weapon icon and compiled random-weapon bounds: BreadCrab / 2
+PASS Every bond has its own icon and real threshold: BreadCrab / 2
+PASS All support values and scopes included: BreadCrab / 2 / CollisionDamage
+PASS All support values and scopes included: BreadCrab / 2 / Health
+PASS Complete talent and personal lore: BreadCrab / 2
+PASS Inspection preserves RNG, currency, roster and receipts: BreadCrab / 3
+PASS Valid weapon icon and compiled random-weapon bounds: BreadCrab / 3
+PASS Every bond has its own icon and real threshold: BreadCrab / 3
+PASS All support values and scopes included: BreadCrab / 3 / CollisionDamage
+PASS All support values and scopes included: BreadCrab / 3 / Health
+PASS Complete talent and personal lore: BreadCrab / 3
+PASS Inspection preserves RNG, currency, roster and receipts: KettleBat / 1
+PASS Valid weapon icon and compiled random-weapon bounds: KettleBat / 1
+PASS Every bond has its own icon and real threshold: KettleBat / 1
+PASS All support values and scopes included: KettleBat / 1 / MeleeDamage
+PASS All support values and scopes included: KettleBat / 1 / Health
+PASS Complete talent and personal lore: KettleBat / 1
+PASS Inspection preserves RNG, currency, roster and receipts: KettleBat / 2
+PASS Valid weapon icon and compiled random-weapon bounds: KettleBat / 2
+PASS Every bond has its own icon and real threshold: KettleBat / 2
+PASS All support values and scopes included: KettleBat / 2 / MeleeDamage
+PASS All support values and scopes included: KettleBat / 2 / Health
+PASS Complete talent and personal lore: KettleBat / 2
+PASS Inspection preserves RNG, currency, roster and receipts: KettleBat / 3
+PASS Valid weapon icon and compiled random-weapon bounds: KettleBat / 3
+PASS Every bond has its own icon and real threshold: KettleBat / 3
+PASS All support values and scopes included: KettleBat / 3 / MeleeDamage
+PASS All support values and scopes included: KettleBat / 3 / Health
+PASS Complete talent and personal lore: KettleBat / 3
+PASS Inspection preserves RNG, currency, roster and receipts: BookmarkGolem / 1
+PASS Valid weapon icon and compiled random-weapon bounds: BookmarkGolem / 1
+PASS Every bond has its own icon and real threshold: BookmarkGolem / 1
+PASS All support values and scopes included: BookmarkGolem / 1 / RangedDamage
+PASS All support values and scopes included: BookmarkGolem / 1 / Health
+PASS Complete talent and personal lore: BookmarkGolem / 1
+PASS Inspection preserves RNG, currency, roster and receipts: BookmarkGolem / 2
+PASS Valid weapon icon and compiled random-weapon bounds: BookmarkGolem / 2
+PASS Every bond has its own icon and real threshold: BookmarkGolem / 2
+PASS All support values and scopes included: BookmarkGolem / 2 / RangedDamage
+PASS All support values and scopes included: BookmarkGolem / 2 / Health
+PASS Complete talent and personal lore: BookmarkGolem / 2
+PASS Inspection preserves RNG, currency, roster and receipts: BookmarkGolem / 3
+PASS Valid weapon icon and compiled random-weapon bounds: BookmarkGolem / 3
+PASS Every bond has its own icon and real threshold: BookmarkGolem / 3
+PASS All support values and scopes included: BookmarkGolem / 3 / RangedDamage
+PASS All support values and scopes included: BookmarkGolem / 3 / Health
+PASS Complete talent and personal lore: BookmarkGolem / 3
+PASS Inspection preserves RNG, currency, roster and receipts: TinTick / 1
+PASS Valid weapon icon and compiled random-weapon bounds: TinTick / 1
+PASS Every bond has its own icon and real threshold: TinTick / 1
+PASS All support values and scopes included: TinTick / 1 / AttackRange
+PASS All support values and scopes included: TinTick / 1 / Health
+PASS Complete talent and personal lore: TinTick / 1
+PASS Inspection preserves RNG, currency, roster and receipts: TinTick / 2
+PASS Valid weapon icon and compiled random-weapon bounds: TinTick / 2
+PASS Every bond has its own icon and real threshold: TinTick / 2
+PASS All support values and scopes included: TinTick / 2 / AttackRange
+PASS All support values and scopes included: TinTick / 2 / Health
+PASS Complete talent and personal lore: TinTick / 2
+PASS Inspection preserves RNG, currency, roster and receipts: TinTick / 3
+PASS Valid weapon icon and compiled random-weapon bounds: TinTick / 3
+PASS Every bond has its own icon and real threshold: TinTick / 3
+PASS All support values and scopes included: TinTick / 3 / AttackRange
+PASS All support values and scopes included: TinTick / 3 / Health
+PASS Complete talent and personal lore: TinTick / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SpringDuck / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SpringDuck / 1
+PASS Every bond has its own icon and real threshold: SpringDuck / 1
+PASS All support values and scopes included: SpringDuck / 1 / Dodge
+PASS All support values and scopes included: SpringDuck / 1 / Health
+PASS Complete talent and personal lore: SpringDuck / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SpringDuck / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SpringDuck / 2
+PASS Every bond has its own icon and real threshold: SpringDuck / 2
+PASS All support values and scopes included: SpringDuck / 2 / Dodge
+PASS All support values and scopes included: SpringDuck / 2 / Health
+PASS Complete talent and personal lore: SpringDuck / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SpringDuck / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SpringDuck / 3
+PASS Every bond has its own icon and real threshold: SpringDuck / 3
+PASS All support values and scopes included: SpringDuck / 3 / Dodge
+PASS All support values and scopes included: SpringDuck / 3 / Health
+PASS Complete talent and personal lore: SpringDuck / 3
+PASS Inspection preserves RNG, currency, roster and receipts: ButtonBeetle / 1
+PASS Valid weapon icon and compiled random-weapon bounds: ButtonBeetle / 1
+PASS Every bond has its own icon and real threshold: ButtonBeetle / 1
+PASS All support values and scopes included: ButtonBeetle / 1 / Income
+PASS All support values and scopes included: ButtonBeetle / 1 / Health
+PASS Complete talent and personal lore: ButtonBeetle / 1
+PASS Inspection preserves RNG, currency, roster and receipts: ButtonBeetle / 2
+PASS Valid weapon icon and compiled random-weapon bounds: ButtonBeetle / 2
+PASS Every bond has its own icon and real threshold: ButtonBeetle / 2
+PASS All support values and scopes included: ButtonBeetle / 2 / Income
+PASS All support values and scopes included: ButtonBeetle / 2 / Health
+PASS Complete talent and personal lore: ButtonBeetle / 2
+PASS Inspection preserves RNG, currency, roster and receipts: ButtonBeetle / 3
+PASS Valid weapon icon and compiled random-weapon bounds: ButtonBeetle / 3
+PASS Every bond has its own icon and real threshold: ButtonBeetle / 3
+PASS All support values and scopes included: ButtonBeetle / 3 / Income
+PASS All support values and scopes included: ButtonBeetle / 3 / Health
+PASS Complete talent and personal lore: ButtonBeetle / 3
+PASS Inspection preserves RNG, currency, roster and receipts: StapleMole / 1
+PASS Valid weapon icon and compiled random-weapon bounds: StapleMole / 1
+PASS Every bond has its own icon and real threshold: StapleMole / 1
+PASS All support values and scopes included: StapleMole / 1 / BulletPierce
+PASS All support values and scopes included: StapleMole / 1 / Health
+PASS Complete talent and personal lore: StapleMole / 1
+PASS Inspection preserves RNG, currency, roster and receipts: StapleMole / 2
+PASS Valid weapon icon and compiled random-weapon bounds: StapleMole / 2
+PASS Every bond has its own icon and real threshold: StapleMole / 2
+PASS All support values and scopes included: StapleMole / 2 / BulletPierce
+PASS All support values and scopes included: StapleMole / 2 / Health
+PASS Complete talent and personal lore: StapleMole / 2
+PASS Inspection preserves RNG, currency, roster and receipts: StapleMole / 3
+PASS Valid weapon icon and compiled random-weapon bounds: StapleMole / 3
+PASS Every bond has its own icon and real threshold: StapleMole / 3
+PASS All support values and scopes included: StapleMole / 3 / BulletPierce
+PASS All support values and scopes included: StapleMole / 3 / Health
+PASS Complete talent and personal lore: StapleMole / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SnowSpoon / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SnowSpoon / 1
+PASS Every bond has its own icon and real threshold: SnowSpoon / 1
+PASS All support values and scopes included: SnowSpoon / 1 / BulletSplit
+PASS All support values and scopes included: SnowSpoon / 1 / Health
+PASS Complete talent and personal lore: SnowSpoon / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SnowSpoon / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SnowSpoon / 2
+PASS Every bond has its own icon and real threshold: SnowSpoon / 2
+PASS All support values and scopes included: SnowSpoon / 2 / BulletSplit
+PASS All support values and scopes included: SnowSpoon / 2 / Health
+PASS Complete talent and personal lore: SnowSpoon / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SnowSpoon / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SnowSpoon / 3
+PASS Every bond has its own icon and real threshold: SnowSpoon / 3
+PASS All support values and scopes included: SnowSpoon / 3 / BulletSplit
+PASS All support values and scopes included: SnowSpoon / 3 / Health
+PASS Complete talent and personal lore: SnowSpoon / 3
+PASS Inspection preserves RNG, currency, roster and receipts: IceCreamOwl / 1
+PASS Valid weapon icon and compiled random-weapon bounds: IceCreamOwl / 1
+PASS Every bond has its own icon and real threshold: IceCreamOwl / 1
+PASS All support values and scopes included: IceCreamOwl / 1 / BulletBounce
+PASS All support values and scopes included: IceCreamOwl / 1 / Health
+PASS Complete talent and personal lore: IceCreamOwl / 1
+PASS Inspection preserves RNG, currency, roster and receipts: IceCreamOwl / 2
+PASS Valid weapon icon and compiled random-weapon bounds: IceCreamOwl / 2
+PASS Every bond has its own icon and real threshold: IceCreamOwl / 2
+PASS All support values and scopes included: IceCreamOwl / 2 / BulletBounce
+PASS All support values and scopes included: IceCreamOwl / 2 / Health
+PASS Complete talent and personal lore: IceCreamOwl / 2
+PASS Inspection preserves RNG, currency, roster and receipts: IceCreamOwl / 3
+PASS Valid weapon icon and compiled random-weapon bounds: IceCreamOwl / 3
+PASS Every bond has its own icon and real threshold: IceCreamOwl / 3
+PASS All support values and scopes included: IceCreamOwl / 3 / BulletBounce
+PASS All support values and scopes included: IceCreamOwl / 3 / Health
+PASS Complete talent and personal lore: IceCreamOwl / 3
+PASS Inspection preserves RNG, currency, roster and receipts: FridgeWisp / 1
+PASS Valid weapon icon and compiled random-weapon bounds: FridgeWisp / 1
+PASS Every bond has its own icon and real threshold: FridgeWisp / 1
+PASS All support values and scopes included: FridgeWisp / 1 / BulletSize
+PASS All support values and scopes included: FridgeWisp / 1 / Health
+PASS Complete talent and personal lore: FridgeWisp / 1
+PASS Inspection preserves RNG, currency, roster and receipts: FridgeWisp / 2
+PASS Valid weapon icon and compiled random-weapon bounds: FridgeWisp / 2
+PASS Every bond has its own icon and real threshold: FridgeWisp / 2
+PASS All support values and scopes included: FridgeWisp / 2 / BulletSize
+PASS All support values and scopes included: FridgeWisp / 2 / Health
+PASS Complete talent and personal lore: FridgeWisp / 2
+PASS Inspection preserves RNG, currency, roster and receipts: FridgeWisp / 3
+PASS Valid weapon icon and compiled random-weapon bounds: FridgeWisp / 3
+PASS Every bond has its own icon and real threshold: FridgeWisp / 3
+PASS All support values and scopes included: FridgeWisp / 3 / BulletSize
+PASS All support values and scopes included: FridgeWisp / 3 / Health
+PASS Complete talent and personal lore: FridgeWisp / 3
+PASS Inspection preserves RNG, currency, roster and receipts: PearMoth / 1
+PASS Valid weapon icon and compiled random-weapon bounds: PearMoth / 1
+PASS Every bond has its own icon and real threshold: PearMoth / 1
+PASS All support values and scopes included: PearMoth / 1 / BulletSpeed
+PASS All support values and scopes included: PearMoth / 1 / Health
+PASS Complete talent and personal lore: PearMoth / 1
+PASS Inspection preserves RNG, currency, roster and receipts: PearMoth / 2
+PASS Valid weapon icon and compiled random-weapon bounds: PearMoth / 2
+PASS Every bond has its own icon and real threshold: PearMoth / 2
+PASS All support values and scopes included: PearMoth / 2 / BulletSpeed
+PASS All support values and scopes included: PearMoth / 2 / Health
+PASS Complete talent and personal lore: PearMoth / 2
+PASS Inspection preserves RNG, currency, roster and receipts: PearMoth / 3
+PASS Valid weapon icon and compiled random-weapon bounds: PearMoth / 3
+PASS Every bond has its own icon and real threshold: PearMoth / 3
+PASS All support values and scopes included: PearMoth / 3 / BulletSpeed
+PASS All support values and scopes included: PearMoth / 3 / Health
+PASS Complete talent and personal lore: PearMoth / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CitrusToad / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CitrusToad / 1
+PASS Every bond has its own icon and real threshold: CitrusToad / 1
+PASS All support values and scopes included: CitrusToad / 1 / BulletDistance
+PASS All support values and scopes included: CitrusToad / 1 / Health
+PASS Complete talent and personal lore: CitrusToad / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CitrusToad / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CitrusToad / 2
+PASS Every bond has its own icon and real threshold: CitrusToad / 2
+PASS All support values and scopes included: CitrusToad / 2 / BulletDistance
+PASS All support values and scopes included: CitrusToad / 2 / Health
+PASS Complete talent and personal lore: CitrusToad / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CitrusToad / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CitrusToad / 3
+PASS Every bond has its own icon and real threshold: CitrusToad / 3
+PASS All support values and scopes included: CitrusToad / 3 / BulletDistance
+PASS All support values and scopes included: CitrusToad / 3 / Health
+PASS Complete talent and personal lore: CitrusToad / 3
+PASS Inspection preserves RNG, currency, roster and receipts: RadishJester / 1
+PASS Valid weapon icon and compiled random-weapon bounds: RadishJester / 1
+PASS Every bond has its own icon and real threshold: RadishJester / 1
+PASS All support values and scopes included: RadishJester / 1 / Knockback
+PASS All support values and scopes included: RadishJester / 1 / Health
+PASS Complete talent and personal lore: RadishJester / 1
+PASS Inspection preserves RNG, currency, roster and receipts: RadishJester / 2
+PASS Valid weapon icon and compiled random-weapon bounds: RadishJester / 2
+PASS Every bond has its own icon and real threshold: RadishJester / 2
+PASS All support values and scopes included: RadishJester / 2 / Knockback
+PASS All support values and scopes included: RadishJester / 2 / Health
+PASS Complete talent and personal lore: RadishJester / 2
+PASS Inspection preserves RNG, currency, roster and receipts: RadishJester / 3
+PASS Valid weapon icon and compiled random-weapon bounds: RadishJester / 3
+PASS Every bond has its own icon and real threshold: RadishJester / 3
+PASS All support values and scopes included: RadishJester / 3 / Knockback
+PASS All support values and scopes included: RadishJester / 3 / Health
+PASS Complete talent and personal lore: RadishJester / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SeedHedgehog / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SeedHedgehog / 1
+PASS Every bond has its own icon and real threshold: SeedHedgehog / 1
+PASS All support values and scopes included: SeedHedgehog / 1 / BodySize
+PASS All support values and scopes included: SeedHedgehog / 1 / Health
+PASS Complete talent and personal lore: SeedHedgehog / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SeedHedgehog / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SeedHedgehog / 2
+PASS Every bond has its own icon and real threshold: SeedHedgehog / 2
+PASS All support values and scopes included: SeedHedgehog / 2 / BodySize
+PASS All support values and scopes included: SeedHedgehog / 2 / Health
+PASS Complete talent and personal lore: SeedHedgehog / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SeedHedgehog / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SeedHedgehog / 3
+PASS Every bond has its own icon and real threshold: SeedHedgehog / 3
+PASS All support values and scopes included: SeedHedgehog / 3 / BodySize
+PASS All support values and scopes included: SeedHedgehog / 3 / Health
+PASS Complete talent and personal lore: SeedHedgehog / 3
+PASS Inspection preserves RNG, currency, roster and receipts: MoonJelly / 1
+PASS Valid weapon icon and compiled random-weapon bounds: MoonJelly / 1
+PASS Every bond has its own icon and real threshold: MoonJelly / 1
+PASS All support values and scopes included: MoonJelly / 1 / CompanionSize
+PASS All support values and scopes included: MoonJelly / 1 / Health
+PASS Complete talent and personal lore: MoonJelly / 1
+PASS Inspection preserves RNG, currency, roster and receipts: MoonJelly / 2
+PASS Valid weapon icon and compiled random-weapon bounds: MoonJelly / 2
+PASS Every bond has its own icon and real threshold: MoonJelly / 2
+PASS All support values and scopes included: MoonJelly / 2 / CompanionSize
+PASS All support values and scopes included: MoonJelly / 2 / Health
+PASS Complete talent and personal lore: MoonJelly / 2
+PASS Inspection preserves RNG, currency, roster and receipts: MoonJelly / 3
+PASS Valid weapon icon and compiled random-weapon bounds: MoonJelly / 3
+PASS Every bond has its own icon and real threshold: MoonJelly / 3
+PASS All support values and scopes included: MoonJelly / 3 / CompanionSize
+PASS All support values and scopes included: MoonJelly / 3 / Health
+PASS Complete talent and personal lore: MoonJelly / 3
+PASS Inspection preserves RNG, currency, roster and receipts: StarSock / 1
+PASS Valid weapon icon and compiled random-weapon bounds: StarSock / 1
+PASS Every bond has its own icon and real threshold: StarSock / 1
+PASS All support values and scopes included: StarSock / 1 / EnemyCount
+PASS All support values and scopes included: StarSock / 1 / ScoreMultiplier
+PASS All support values and scopes included: StarSock / 1 / Health
+PASS Complete talent and personal lore: StarSock / 1
+PASS Inspection preserves RNG, currency, roster and receipts: StarSock / 2
+PASS Valid weapon icon and compiled random-weapon bounds: StarSock / 2
+PASS Every bond has its own icon and real threshold: StarSock / 2
+PASS All support values and scopes included: StarSock / 2 / EnemyCount
+PASS All support values and scopes included: StarSock / 2 / ScoreMultiplier
+PASS All support values and scopes included: StarSock / 2 / Health
+PASS Complete talent and personal lore: StarSock / 2
+PASS Inspection preserves RNG, currency, roster and receipts: StarSock / 3
+PASS Valid weapon icon and compiled random-weapon bounds: StarSock / 3
+PASS Every bond has its own icon and real threshold: StarSock / 3
+PASS All support values and scopes included: StarSock / 3 / EnemyCount
+PASS All support values and scopes included: StarSock / 3 / ScoreMultiplier
+PASS All support values and scopes included: StarSock / 3 / Health
+PASS Complete talent and personal lore: StarSock / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CometKite / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CometKite / 1
+PASS Every bond has its own icon and real threshold: CometKite / 1
+PASS All support values and scopes included: CometKite / 1 / EnemyHealth
+PASS All support values and scopes included: CometKite / 1 / ScoreMultiplier
+PASS All support values and scopes included: CometKite / 1 / Health
+PASS Complete talent and personal lore: CometKite / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CometKite / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CometKite / 2
+PASS Every bond has its own icon and real threshold: CometKite / 2
+PASS All support values and scopes included: CometKite / 2 / EnemyHealth
+PASS All support values and scopes included: CometKite / 2 / ScoreMultiplier
+PASS All support values and scopes included: CometKite / 2 / Health
+PASS Complete talent and personal lore: CometKite / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CometKite / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CometKite / 3
+PASS Every bond has its own icon and real threshold: CometKite / 3
+PASS All support values and scopes included: CometKite / 3 / EnemyHealth
+PASS All support values and scopes included: CometKite / 3 / ScoreMultiplier
+PASS All support values and scopes included: CometKite / 3 / Health
+PASS Complete talent and personal lore: CometKite / 3
+PASS Inspection preserves RNG, currency, roster and receipts: EclipseEgg / 1
+PASS Valid weapon icon and compiled random-weapon bounds: EclipseEgg / 1
+PASS Every bond has its own icon and real threshold: EclipseEgg / 1
+PASS All support values and scopes included: EclipseEgg / 1 / EnemySpeed
+PASS All support values and scopes included: EclipseEgg / 1 / ScoreMultiplier
+PASS All support values and scopes included: EclipseEgg / 1 / Health
+PASS Complete talent and personal lore: EclipseEgg / 1
+PASS Inspection preserves RNG, currency, roster and receipts: EclipseEgg / 2
+PASS Valid weapon icon and compiled random-weapon bounds: EclipseEgg / 2
+PASS Every bond has its own icon and real threshold: EclipseEgg / 2
+PASS All support values and scopes included: EclipseEgg / 2 / EnemySpeed
+PASS All support values and scopes included: EclipseEgg / 2 / ScoreMultiplier
+PASS All support values and scopes included: EclipseEgg / 2 / Health
+PASS Complete talent and personal lore: EclipseEgg / 2
+PASS Inspection preserves RNG, currency, roster and receipts: EclipseEgg / 3
+PASS Valid weapon icon and compiled random-weapon bounds: EclipseEgg / 3
+PASS Every bond has its own icon and real threshold: EclipseEgg / 3
+PASS All support values and scopes included: EclipseEgg / 3 / EnemySpeed
+PASS All support values and scopes included: EclipseEgg / 3 / ScoreMultiplier
+PASS All support values and scopes included: EclipseEgg / 3 / Health
+PASS Complete talent and personal lore: EclipseEgg / 3
+PASS Inspection preserves RNG, currency, roster and receipts: OrbitMoth / 1
+PASS Valid weapon icon and compiled random-weapon bounds: OrbitMoth / 1
+PASS Every bond has its own icon and real threshold: OrbitMoth / 1
+PASS All support values and scopes included: OrbitMoth / 1 / HeartHealing
+PASS All support values and scopes included: OrbitMoth / 1 / Health
+PASS Complete talent and personal lore: OrbitMoth / 1
+PASS Inspection preserves RNG, currency, roster and receipts: OrbitMoth / 2
+PASS Valid weapon icon and compiled random-weapon bounds: OrbitMoth / 2
+PASS Every bond has its own icon and real threshold: OrbitMoth / 2
+PASS All support values and scopes included: OrbitMoth / 2 / HeartHealing
+PASS All support values and scopes included: OrbitMoth / 2 / Health
+PASS Complete talent and personal lore: OrbitMoth / 2
+PASS Inspection preserves RNG, currency, roster and receipts: OrbitMoth / 3
+PASS Valid weapon icon and compiled random-weapon bounds: OrbitMoth / 3
+PASS Every bond has its own icon and real threshold: OrbitMoth / 3
+PASS All support values and scopes included: OrbitMoth / 3 / HeartHealing
+PASS All support values and scopes included: OrbitMoth / 3 / Health
+PASS Complete talent and personal lore: OrbitMoth / 3
+PASS Inspection preserves RNG, currency, roster and receipts: DreamCompass / 1
+PASS Valid weapon icon and compiled random-weapon bounds: DreamCompass / 1
+PASS Every bond has its own icon and real threshold: DreamCompass / 1
+PASS All support values and scopes included: DreamCompass / 1 / ChestQuality
+PASS All support values and scopes included: DreamCompass / 1 / Health
+PASS Complete talent and personal lore: DreamCompass / 1
+PASS Inspection preserves RNG, currency, roster and receipts: DreamCompass / 2
+PASS Valid weapon icon and compiled random-weapon bounds: DreamCompass / 2
+PASS Every bond has its own icon and real threshold: DreamCompass / 2
+PASS All support values and scopes included: DreamCompass / 2 / ChestQuality
+PASS All support values and scopes included: DreamCompass / 2 / Health
+PASS Complete talent and personal lore: DreamCompass / 2
+PASS Inspection preserves RNG, currency, roster and receipts: DreamCompass / 3
+PASS Valid weapon icon and compiled random-weapon bounds: DreamCompass / 3
+PASS Every bond has its own icon and real threshold: DreamCompass / 3
+PASS All support values and scopes included: DreamCompass / 3 / ChestQuality
+PASS All support values and scopes included: DreamCompass / 3 / Health
+PASS Complete talent and personal lore: DreamCompass / 3
+PASS Inspection preserves RNG, currency, roster and receipts: ShellPostman / 1
+PASS Valid weapon icon and compiled random-weapon bounds: ShellPostman / 1
+PASS Every bond has its own icon and real threshold: ShellPostman / 1
+PASS All support values and scopes included: ShellPostman / 1 / RecruitDiscount
+PASS All support values and scopes included: ShellPostman / 1 / Health
+PASS Complete talent and personal lore: ShellPostman / 1
+PASS Inspection preserves RNG, currency, roster and receipts: ShellPostman / 2
+PASS Valid weapon icon and compiled random-weapon bounds: ShellPostman / 2
+PASS Every bond has its own icon and real threshold: ShellPostman / 2
+PASS All support values and scopes included: ShellPostman / 2 / RecruitDiscount
+PASS All support values and scopes included: ShellPostman / 2 / Health
+PASS Complete talent and personal lore: ShellPostman / 2
+PASS Inspection preserves RNG, currency, roster and receipts: ShellPostman / 3
+PASS Valid weapon icon and compiled random-weapon bounds: ShellPostman / 3
+PASS Every bond has its own icon and real threshold: ShellPostman / 3
+PASS All support values and scopes included: ShellPostman / 3 / RecruitDiscount
+PASS All support values and scopes included: ShellPostman / 3 / Health
+PASS Complete talent and personal lore: ShellPostman / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CoralTeacup / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CoralTeacup / 1
+PASS Every bond has its own icon and real threshold: CoralTeacup / 1
+PASS All support values and scopes included: CoralTeacup / 1 / RelicDiscount
+PASS All support values and scopes included: CoralTeacup / 1 / Health
+PASS Complete talent and personal lore: CoralTeacup / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CoralTeacup / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CoralTeacup / 2
+PASS Every bond has its own icon and real threshold: CoralTeacup / 2
+PASS All support values and scopes included: CoralTeacup / 2 / RelicDiscount
+PASS All support values and scopes included: CoralTeacup / 2 / Health
+PASS Complete talent and personal lore: CoralTeacup / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CoralTeacup / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CoralTeacup / 3
+PASS Every bond has its own icon and real threshold: CoralTeacup / 3
+PASS All support values and scopes included: CoralTeacup / 3 / RelicDiscount
+PASS All support values and scopes included: CoralTeacup / 3 / Health
+PASS Complete talent and personal lore: CoralTeacup / 3
+PASS Inspection preserves RNG, currency, roster and receipts: BubbleKoi / 1
+PASS Valid weapon icon and compiled random-weapon bounds: BubbleKoi / 1
+PASS Every bond has its own icon and real threshold: BubbleKoi / 1
+PASS All support values and scopes included: BubbleKoi / 1 / ShopRarity
+PASS All support values and scopes included: BubbleKoi / 1 / Health
+PASS Complete talent and personal lore: BubbleKoi / 1
+PASS Inspection preserves RNG, currency, roster and receipts: BubbleKoi / 2
+PASS Valid weapon icon and compiled random-weapon bounds: BubbleKoi / 2
+PASS Every bond has its own icon and real threshold: BubbleKoi / 2
+PASS All support values and scopes included: BubbleKoi / 2 / ShopRarity
+PASS All support values and scopes included: BubbleKoi / 2 / Health
+PASS Complete talent and personal lore: BubbleKoi / 2
+PASS Inspection preserves RNG, currency, roster and receipts: BubbleKoi / 3
+PASS Valid weapon icon and compiled random-weapon bounds: BubbleKoi / 3
+PASS Every bond has its own icon and real threshold: BubbleKoi / 3
+PASS All support values and scopes included: BubbleKoi / 3 / ShopRarity
+PASS All support values and scopes included: BubbleKoi / 3 / Health
+PASS Complete talent and personal lore: BubbleKoi / 3
+PASS Inspection preserves RNG, currency, roster and receipts: AnchorSnail / 1
+PASS Valid weapon icon and compiled random-weapon bounds: AnchorSnail / 1
+PASS Every bond has its own icon and real threshold: AnchorSnail / 1
+PASS All support values and scopes included: AnchorSnail / 1 / HealthCorrection
+PASS All support values and scopes included: AnchorSnail / 1 / Health
+PASS Complete talent and personal lore: AnchorSnail / 1
+PASS Inspection preserves RNG, currency, roster and receipts: AnchorSnail / 2
+PASS Valid weapon icon and compiled random-weapon bounds: AnchorSnail / 2
+PASS Every bond has its own icon and real threshold: AnchorSnail / 2
+PASS All support values and scopes included: AnchorSnail / 2 / HealthCorrection
+PASS All support values and scopes included: AnchorSnail / 2 / Health
+PASS Complete talent and personal lore: AnchorSnail / 2
+PASS Inspection preserves RNG, currency, roster and receipts: AnchorSnail / 3
+PASS Valid weapon icon and compiled random-weapon bounds: AnchorSnail / 3
+PASS Every bond has its own icon and real threshold: AnchorSnail / 3
+PASS All support values and scopes included: AnchorSnail / 3 / HealthCorrection
+PASS All support values and scopes included: AnchorSnail / 3 / Health
+PASS Complete talent and personal lore: AnchorSnail / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SailSquid / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SailSquid / 1
+PASS Every bond has its own icon and real threshold: SailSquid / 1
+PASS All support values and scopes included: SailSquid / 1 / DamageCorrection
+PASS All support values and scopes included: SailSquid / 1 / Health
+PASS Complete talent and personal lore: SailSquid / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SailSquid / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SailSquid / 2
+PASS Every bond has its own icon and real threshold: SailSquid / 2
+PASS All support values and scopes included: SailSquid / 2 / DamageCorrection
+PASS All support values and scopes included: SailSquid / 2 / Health
+PASS Complete talent and personal lore: SailSquid / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SailSquid / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SailSquid / 3
+PASS Every bond has its own icon and real threshold: SailSquid / 3
+PASS All support values and scopes included: SailSquid / 3 / DamageCorrection
+PASS All support values and scopes included: SailSquid / 3 / Health
+PASS Complete talent and personal lore: SailSquid / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SockCyclops / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SockCyclops / 1
+PASS Every bond has its own icon and real threshold: SockCyclops / 1
+PASS All support values and scopes included: SockCyclops / 1 / SpeedCorrection
+PASS All support values and scopes included: SockCyclops / 1 / Health
+PASS Complete talent and personal lore: SockCyclops / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SockCyclops / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SockCyclops / 2
+PASS Every bond has its own icon and real threshold: SockCyclops / 2
+PASS All support values and scopes included: SockCyclops / 2 / SpeedCorrection
+PASS All support values and scopes included: SockCyclops / 2 / Health
+PASS Complete talent and personal lore: SockCyclops / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SockCyclops / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SockCyclops / 3
+PASS Every bond has its own icon and real threshold: SockCyclops / 3
+PASS All support values and scopes included: SockCyclops / 3 / SpeedCorrection
+PASS All support values and scopes included: SockCyclops / 3 / Health
+PASS Complete talent and personal lore: SockCyclops / 3
+PASS Inspection preserves RNG, currency, roster and receipts: DiceCrab / 1
+PASS Valid weapon icon and compiled random-weapon bounds: DiceCrab / 1
+PASS Every bond has its own icon and real threshold: DiceCrab / 1
+PASS All support values and scopes included: DiceCrab / 1 / ArmorCorrection
+PASS All support values and scopes included: DiceCrab / 1 / Health
+PASS Complete talent and personal lore: DiceCrab / 1
+PASS Inspection preserves RNG, currency, roster and receipts: DiceCrab / 2
+PASS Valid weapon icon and compiled random-weapon bounds: DiceCrab / 2
+PASS Every bond has its own icon and real threshold: DiceCrab / 2
+PASS All support values and scopes included: DiceCrab / 2 / ArmorCorrection
+PASS All support values and scopes included: DiceCrab / 2 / Health
+PASS Complete talent and personal lore: DiceCrab / 2
+PASS Inspection preserves RNG, currency, roster and receipts: DiceCrab / 3
+PASS Valid weapon icon and compiled random-weapon bounds: DiceCrab / 3
+PASS Every bond has its own icon and real threshold: DiceCrab / 3
+PASS All support values and scopes included: DiceCrab / 3 / ArmorCorrection
+PASS All support values and scopes included: DiceCrab / 3 / Health
+PASS Complete talent and personal lore: DiceCrab / 3
+PASS Inspection preserves RNG, currency, roster and receipts: MaskPepper / 1
+PASS Valid weapon icon and compiled random-weapon bounds: MaskPepper / 1
+PASS Every bond has its own icon and real threshold: MaskPepper / 1
+PASS All support values and scopes included: MaskPepper / 1 / HealCorrection
+PASS All support values and scopes included: MaskPepper / 1 / Health
+PASS Complete talent and personal lore: MaskPepper / 1
+PASS Inspection preserves RNG, currency, roster and receipts: MaskPepper / 2
+PASS Valid weapon icon and compiled random-weapon bounds: MaskPepper / 2
+PASS Every bond has its own icon and real threshold: MaskPepper / 2
+PASS All support values and scopes included: MaskPepper / 2 / HealCorrection
+PASS All support values and scopes included: MaskPepper / 2 / Health
+PASS Complete talent and personal lore: MaskPepper / 2
+PASS Inspection preserves RNG, currency, roster and receipts: MaskPepper / 3
+PASS Valid weapon icon and compiled random-weapon bounds: MaskPepper / 3
+PASS Every bond has its own icon and real threshold: MaskPepper / 3
+PASS All support values and scopes included: MaskPepper / 3 / HealCorrection
+PASS All support values and scopes included: MaskPepper / 3 / Health
+PASS Complete talent and personal lore: MaskPepper / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CrayonGremlin / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CrayonGremlin / 1
+PASS Every bond has its own icon and real threshold: CrayonGremlin / 1
+PASS All support values and scopes included: CrayonGremlin / 1 / CollisionFrequency
+PASS All support values and scopes included: CrayonGremlin / 1 / Health
+PASS Complete talent and personal lore: CrayonGremlin / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CrayonGremlin / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CrayonGremlin / 2
+PASS Every bond has its own icon and real threshold: CrayonGremlin / 2
+PASS All support values and scopes included: CrayonGremlin / 2 / CollisionFrequency
+PASS All support values and scopes included: CrayonGremlin / 2 / Health
+PASS Complete talent and personal lore: CrayonGremlin / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CrayonGremlin / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CrayonGremlin / 3
+PASS Every bond has its own icon and real threshold: CrayonGremlin / 3
+PASS All support values and scopes included: CrayonGremlin / 3 / CollisionFrequency
+PASS All support values and scopes included: CrayonGremlin / 3 / Health
+PASS Complete talent and personal lore: CrayonGremlin / 3
+PASS Inspection preserves RNG, currency, roster and receipts: MirrorNewt / 1
+PASS Valid weapon icon and compiled random-weapon bounds: MirrorNewt / 1
+PASS Every bond has its own icon and real threshold: MirrorNewt / 1
+PASS All support values and scopes included: MirrorNewt / 1 / ScoreMultiplier
+PASS All support values and scopes included: MirrorNewt / 1 / Health
+PASS Complete talent and personal lore: MirrorNewt / 1
+PASS Inspection preserves RNG, currency, roster and receipts: MirrorNewt / 2
+PASS Valid weapon icon and compiled random-weapon bounds: MirrorNewt / 2
+PASS Every bond has its own icon and real threshold: MirrorNewt / 2
+PASS All support values and scopes included: MirrorNewt / 2 / ScoreMultiplier
+PASS All support values and scopes included: MirrorNewt / 2 / Health
+PASS Complete talent and personal lore: MirrorNewt / 2
+PASS Inspection preserves RNG, currency, roster and receipts: MirrorNewt / 3
+PASS Valid weapon icon and compiled random-weapon bounds: MirrorNewt / 3
+PASS Every bond has its own icon and real threshold: MirrorNewt / 3
+PASS All support values and scopes included: MirrorNewt / 3 / ScoreMultiplier
+PASS All support values and scopes included: MirrorNewt / 3 / Health
+PASS Complete talent and personal lore: MirrorNewt / 3
+PASS Inspection preserves RNG, currency, roster and receipts: RibbonSpider / 1
+PASS Valid weapon icon and compiled random-weapon bounds: RibbonSpider / 1
+PASS Every bond has its own icon and real threshold: RibbonSpider / 1
+PASS All support values and scopes included: RibbonSpider / 1 / CollisionDamage
+PASS All support values and scopes included: RibbonSpider / 1 / Health
+PASS Complete talent and personal lore: RibbonSpider / 1
+PASS Inspection preserves RNG, currency, roster and receipts: RibbonSpider / 2
+PASS Valid weapon icon and compiled random-weapon bounds: RibbonSpider / 2
+PASS Every bond has its own icon and real threshold: RibbonSpider / 2
+PASS All support values and scopes included: RibbonSpider / 2 / CollisionDamage
+PASS All support values and scopes included: RibbonSpider / 2 / Health
+PASS Complete talent and personal lore: RibbonSpider / 2
+PASS Inspection preserves RNG, currency, roster and receipts: RibbonSpider / 3
+PASS Valid weapon icon and compiled random-weapon bounds: RibbonSpider / 3
+PASS Every bond has its own icon and real threshold: RibbonSpider / 3
+PASS All support values and scopes included: RibbonSpider / 3 / CollisionDamage
+PASS All support values and scopes included: RibbonSpider / 3 / Health
+PASS Complete talent and personal lore: RibbonSpider / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CoilKettle / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CoilKettle / 1
+PASS Every bond has its own icon and real threshold: CoilKettle / 1
+PASS All support values and scopes included: CoilKettle / 1 / Knockback
+PASS All support values and scopes included: CoilKettle / 1 / MoveSpeed
+PASS Complete talent and personal lore: CoilKettle / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CoilKettle / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CoilKettle / 2
+PASS Every bond has its own icon and real threshold: CoilKettle / 2
+PASS All support values and scopes included: CoilKettle / 2 / Knockback
+PASS All support values and scopes included: CoilKettle / 2 / MoveSpeed
+PASS Complete talent and personal lore: CoilKettle / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CoilKettle / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CoilKettle / 3
+PASS Every bond has its own icon and real threshold: CoilKettle / 3
+PASS All support values and scopes included: CoilKettle / 3 / Knockback
+PASS All support values and scopes included: CoilKettle / 3 / MoveSpeed
+PASS Complete talent and personal lore: CoilKettle / 3
+PASS Inspection preserves RNG, currency, roster and receipts: ThimbleMoth / 1
+PASS Valid weapon icon and compiled random-weapon bounds: ThimbleMoth / 1
+PASS Every bond has its own icon and real threshold: ThimbleMoth / 1
+PASS All support values and scopes included: ThimbleMoth / 1 / AttackSpeed
+PASS All support values and scopes included: ThimbleMoth / 1 / Damage
+PASS Complete talent and personal lore: ThimbleMoth / 1
+PASS Inspection preserves RNG, currency, roster and receipts: ThimbleMoth / 2
+PASS Valid weapon icon and compiled random-weapon bounds: ThimbleMoth / 2
+PASS Every bond has its own icon and real threshold: ThimbleMoth / 2
+PASS All support values and scopes included: ThimbleMoth / 2 / AttackSpeed
+PASS All support values and scopes included: ThimbleMoth / 2 / Damage
+PASS Complete talent and personal lore: ThimbleMoth / 2
+PASS Inspection preserves RNG, currency, roster and receipts: ThimbleMoth / 3
+PASS Valid weapon icon and compiled random-weapon bounds: ThimbleMoth / 3
+PASS Every bond has its own icon and real threshold: ThimbleMoth / 3
+PASS All support values and scopes included: ThimbleMoth / 3 / AttackSpeed
+PASS All support values and scopes included: ThimbleMoth / 3 / Damage
+PASS Complete talent and personal lore: ThimbleMoth / 3
+PASS Inspection preserves RNG, currency, roster and receipts: ReelOwl / 1
+PASS Valid weapon icon and compiled random-weapon bounds: ReelOwl / 1
+PASS Every bond has its own icon and real threshold: ReelOwl / 1
+PASS All support values and scopes included: ReelOwl / 1 / AttackRange
+PASS All support values and scopes included: ReelOwl / 1 / AttackSpeed
+PASS Complete talent and personal lore: ReelOwl / 1
+PASS Inspection preserves RNG, currency, roster and receipts: ReelOwl / 2
+PASS Valid weapon icon and compiled random-weapon bounds: ReelOwl / 2
+PASS Every bond has its own icon and real threshold: ReelOwl / 2
+PASS All support values and scopes included: ReelOwl / 2 / AttackRange
+PASS All support values and scopes included: ReelOwl / 2 / AttackSpeed
+PASS Complete talent and personal lore: ReelOwl / 2
+PASS Inspection preserves RNG, currency, roster and receipts: ReelOwl / 3
+PASS Valid weapon icon and compiled random-weapon bounds: ReelOwl / 3
+PASS Every bond has its own icon and real threshold: ReelOwl / 3
+PASS All support values and scopes included: ReelOwl / 3 / AttackRange
+PASS All support values and scopes included: ReelOwl / 3 / AttackSpeed
+PASS Complete talent and personal lore: ReelOwl / 3
+PASS Inspection preserves RNG, currency, roster and receipts: RainbowTailor / 1
+PASS Valid weapon icon and compiled random-weapon bounds: RainbowTailor / 1
+PASS Every bond has its own icon and real threshold: RainbowTailor / 1
+PASS All support values and scopes included: RainbowTailor / 1 / Heal
+PASS All support values and scopes included: RainbowTailor / 1 / MoveSpeed
+PASS Complete talent and personal lore: RainbowTailor / 1
+PASS Inspection preserves RNG, currency, roster and receipts: RainbowTailor / 2
+PASS Valid weapon icon and compiled random-weapon bounds: RainbowTailor / 2
+PASS Every bond has its own icon and real threshold: RainbowTailor / 2
+PASS All support values and scopes included: RainbowTailor / 2 / Heal
+PASS All support values and scopes included: RainbowTailor / 2 / MoveSpeed
+PASS Complete talent and personal lore: RainbowTailor / 2
+PASS Inspection preserves RNG, currency, roster and receipts: RainbowTailor / 3
+PASS Valid weapon icon and compiled random-weapon bounds: RainbowTailor / 3
+PASS Every bond has its own icon and real threshold: RainbowTailor / 3
+PASS All support values and scopes included: RainbowTailor / 3 / Heal
+PASS All support values and scopes included: RainbowTailor / 3 / MoveSpeed
+PASS Complete talent and personal lore: RainbowTailor / 3
+PASS Inspection preserves RNG, currency, roster and receipts: RainbowBell / 1
+PASS Valid weapon icon and compiled random-weapon bounds: RainbowBell / 1
+PASS Every bond has its own icon and real threshold: RainbowBell / 1
+PASS All support values and scopes included: RainbowBell / 1 / Heal
+PASS All support values and scopes included: RainbowBell / 1 / MoveSpeed
+PASS Complete talent and personal lore: RainbowBell / 1
+PASS Inspection preserves RNG, currency, roster and receipts: RainbowBell / 2
+PASS Valid weapon icon and compiled random-weapon bounds: RainbowBell / 2
+PASS Every bond has its own icon and real threshold: RainbowBell / 2
+PASS All support values and scopes included: RainbowBell / 2 / Heal
+PASS All support values and scopes included: RainbowBell / 2 / MoveSpeed
+PASS Complete talent and personal lore: RainbowBell / 2
+PASS Inspection preserves RNG, currency, roster and receipts: RainbowBell / 3
+PASS Valid weapon icon and compiled random-weapon bounds: RainbowBell / 3
+PASS Every bond has its own icon and real threshold: RainbowBell / 3
+PASS All support values and scopes included: RainbowBell / 3 / Heal
+PASS All support values and scopes included: RainbowBell / 3 / MoveSpeed
+PASS Complete talent and personal lore: RainbowBell / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SecretPatchBear / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SecretPatchBear / 1
+PASS Every bond has its own icon and real threshold: SecretPatchBear / 1
+PASS All support values and scopes included: SecretPatchBear / 1 / Damage
+PASS Complete talent and personal lore: SecretPatchBear / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SecretPatchBear / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SecretPatchBear / 2
+PASS Every bond has its own icon and real threshold: SecretPatchBear / 2
+PASS All support values and scopes included: SecretPatchBear / 2 / Damage
+PASS Complete talent and personal lore: SecretPatchBear / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SecretPatchBear / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SecretPatchBear / 3
+PASS Every bond has its own icon and real threshold: SecretPatchBear / 3
+PASS All support values and scopes included: SecretPatchBear / 3 / Damage
+PASS Complete talent and personal lore: SecretPatchBear / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SecretPaperBird / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SecretPaperBird / 1
+PASS Every bond has its own icon and real threshold: SecretPaperBird / 1
+PASS All support values and scopes included: SecretPaperBird / 1 / AttackSpeed
+PASS Complete talent and personal lore: SecretPaperBird / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SecretPaperBird / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SecretPaperBird / 2
+PASS Every bond has its own icon and real threshold: SecretPaperBird / 2
+PASS All support values and scopes included: SecretPaperBird / 2 / AttackSpeed
+PASS Complete talent and personal lore: SecretPaperBird / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SecretPaperBird / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SecretPaperBird / 3
+PASS Every bond has its own icon and real threshold: SecretPaperBird / 3
+PASS All support values and scopes included: SecretPaperBird / 3 / AttackSpeed
+PASS Complete talent and personal lore: SecretPaperBird / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SecretDreamLamb / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SecretDreamLamb / 1
+PASS Every bond has its own icon and real threshold: SecretDreamLamb / 1
+PASS All support values and scopes included: SecretDreamLamb / 1 / AttackRange
+PASS Complete talent and personal lore: SecretDreamLamb / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SecretDreamLamb / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SecretDreamLamb / 2
+PASS Every bond has its own icon and real threshold: SecretDreamLamb / 2
+PASS All support values and scopes included: SecretDreamLamb / 2 / AttackRange
+PASS Complete talent and personal lore: SecretDreamLamb / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SecretDreamLamb / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SecretDreamLamb / 3
+PASS Every bond has its own icon and real threshold: SecretDreamLamb / 3
+PASS All support values and scopes included: SecretDreamLamb / 3 / AttackRange
+PASS Complete talent and personal lore: SecretDreamLamb / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SaffronMechanist / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SaffronMechanist / 1
+PASS Every bond has its own icon and real threshold: SaffronMechanist / 1
+PASS Complete talent and personal lore: SaffronMechanist / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SaffronMechanist / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SaffronMechanist / 2
+PASS Every bond has its own icon and real threshold: SaffronMechanist / 2
+PASS Complete talent and personal lore: SaffronMechanist / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SaffronMechanist / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SaffronMechanist / 3
+PASS Every bond has its own icon and real threshold: SaffronMechanist / 3
+PASS Complete talent and personal lore: SaffronMechanist / 3
+PASS Inspection preserves RNG, currency, roster and receipts: ClockworkPiper / 1
+PASS Valid weapon icon and compiled random-weapon bounds: ClockworkPiper / 1
+PASS Every bond has its own icon and real threshold: ClockworkPiper / 1
+PASS Complete talent and personal lore: ClockworkPiper / 1
+PASS Inspection preserves RNG, currency, roster and receipts: ClockworkPiper / 2
+PASS Valid weapon icon and compiled random-weapon bounds: ClockworkPiper / 2
+PASS Every bond has its own icon and real threshold: ClockworkPiper / 2
+PASS Complete talent and personal lore: ClockworkPiper / 2
+PASS Inspection preserves RNG, currency, roster and receipts: ClockworkPiper / 3
+PASS Valid weapon icon and compiled random-weapon bounds: ClockworkPiper / 3
+PASS Every bond has its own icon and real threshold: ClockworkPiper / 3
+PASS Complete talent and personal lore: ClockworkPiper / 3
+PASS Inspection preserves RNG, currency, roster and receipts: VelvetChampion / 1
+PASS Valid weapon icon and compiled random-weapon bounds: VelvetChampion / 1
+PASS Every bond has its own icon and real threshold: VelvetChampion / 1
+PASS Complete talent and personal lore: VelvetChampion / 1
+PASS Inspection preserves RNG, currency, roster and receipts: VelvetChampion / 2
+PASS Valid weapon icon and compiled random-weapon bounds: VelvetChampion / 2
+PASS Every bond has its own icon and real threshold: VelvetChampion / 2
+PASS Complete talent and personal lore: VelvetChampion / 2
+PASS Inspection preserves RNG, currency, roster and receipts: VelvetChampion / 3
+PASS Valid weapon icon and compiled random-weapon bounds: VelvetChampion / 3
+PASS Every bond has its own icon and real threshold: VelvetChampion / 3
+PASS Complete talent and personal lore: VelvetChampion / 3
+PASS Inspection preserves RNG, currency, roster and receipts: PaperInventor / 1
+PASS Valid weapon icon and compiled random-weapon bounds: PaperInventor / 1
+PASS Every bond has its own icon and real threshold: PaperInventor / 1
+PASS Complete talent and personal lore: PaperInventor / 1
+PASS Inspection preserves RNG, currency, roster and receipts: PaperInventor / 2
+PASS Valid weapon icon and compiled random-weapon bounds: PaperInventor / 2
+PASS Every bond has its own icon and real threshold: PaperInventor / 2
+PASS Complete talent and personal lore: PaperInventor / 2
+PASS Inspection preserves RNG, currency, roster and receipts: PaperInventor / 3
+PASS Valid weapon icon and compiled random-weapon bounds: PaperInventor / 3
+PASS Every bond has its own icon and real threshold: PaperInventor / 3
+PASS Complete talent and personal lore: PaperInventor / 3
+PASS Inspection preserves RNG, currency, roster and receipts: ReturnCaptain / 1
+PASS Valid weapon icon and compiled random-weapon bounds: ReturnCaptain / 1
+PASS Every bond has its own icon and real threshold: ReturnCaptain / 1
+PASS Complete talent and personal lore: ReturnCaptain / 1
+PASS Inspection preserves RNG, currency, roster and receipts: ReturnCaptain / 2
+PASS Valid weapon icon and compiled random-weapon bounds: ReturnCaptain / 2
+PASS Every bond has its own icon and real threshold: ReturnCaptain / 2
+PASS Complete talent and personal lore: ReturnCaptain / 2
+PASS Inspection preserves RNG, currency, roster and receipts: ReturnCaptain / 3
+PASS Valid weapon icon and compiled random-weapon bounds: ReturnCaptain / 3
+PASS Every bond has its own icon and real threshold: ReturnCaptain / 3
+PASS Complete talent and personal lore: ReturnCaptain / 3
+PASS Inspection preserves RNG, currency, roster and receipts: DoughForeman / 1
+PASS Valid weapon icon and compiled random-weapon bounds: DoughForeman / 1
+PASS Every bond has its own icon and real threshold: DoughForeman / 1
+PASS Complete talent and personal lore: DoughForeman / 1
+PASS Inspection preserves RNG, currency, roster and receipts: DoughForeman / 2
+PASS Valid weapon icon and compiled random-weapon bounds: DoughForeman / 2
+PASS Every bond has its own icon and real threshold: DoughForeman / 2
+PASS Complete talent and personal lore: DoughForeman / 2
+PASS Inspection preserves RNG, currency, roster and receipts: DoughForeman / 3
+PASS Valid weapon icon and compiled random-weapon bounds: DoughForeman / 3
+PASS Every bond has its own icon and real threshold: DoughForeman / 3
+PASS Complete talent and personal lore: DoughForeman / 3
+PASS Inspection preserves RNG, currency, roster and receipts: IronLocomotive / 1
+PASS Valid weapon icon and compiled random-weapon bounds: IronLocomotive / 1
+PASS Every bond has its own icon and real threshold: IronLocomotive / 1
+PASS Complete talent and personal lore: IronLocomotive / 1
+PASS Inspection preserves RNG, currency, roster and receipts: IronLocomotive / 2
+PASS Valid weapon icon and compiled random-weapon bounds: IronLocomotive / 2
+PASS Every bond has its own icon and real threshold: IronLocomotive / 2
+PASS Complete talent and personal lore: IronLocomotive / 2
+PASS Inspection preserves RNG, currency, roster and receipts: IronLocomotive / 3
+PASS Valid weapon icon and compiled random-weapon bounds: IronLocomotive / 3
+PASS Every bond has its own icon and real threshold: IronLocomotive / 3
+PASS Complete talent and personal lore: IronLocomotive / 3
+PASS Inspection preserves RNG, currency, roster and receipts: VioletRemnant / 1
+PASS Valid weapon icon and compiled random-weapon bounds: VioletRemnant / 1
+PASS Every bond has its own icon and real threshold: VioletRemnant / 1
+PASS Complete talent and personal lore: VioletRemnant / 1
+PASS Inspection preserves RNG, currency, roster and receipts: VioletRemnant / 2
+PASS Valid weapon icon and compiled random-weapon bounds: VioletRemnant / 2
+PASS Every bond has its own icon and real threshold: VioletRemnant / 2
+PASS Complete talent and personal lore: VioletRemnant / 2
+PASS Inspection preserves RNG, currency, roster and receipts: VioletRemnant / 3
+PASS Valid weapon icon and compiled random-weapon bounds: VioletRemnant / 3
+PASS Every bond has its own icon and real threshold: VioletRemnant / 3
+PASS Complete talent and personal lore: VioletRemnant / 3
+PASS Inspection preserves RNG, currency, roster and receipts: VelvetEnchantress / 1
+PASS Valid weapon icon and compiled random-weapon bounds: VelvetEnchantress / 1
+PASS Every bond has its own icon and real threshold: VelvetEnchantress / 1
+PASS Complete talent and personal lore: VelvetEnchantress / 1
+PASS Inspection preserves RNG, currency, roster and receipts: VelvetEnchantress / 2
+PASS Valid weapon icon and compiled random-weapon bounds: VelvetEnchantress / 2
+PASS Every bond has its own icon and real threshold: VelvetEnchantress / 2
+PASS Complete talent and personal lore: VelvetEnchantress / 2
+PASS Inspection preserves RNG, currency, roster and receipts: VelvetEnchantress / 3
+PASS Valid weapon icon and compiled random-weapon bounds: VelvetEnchantress / 3
+PASS Every bond has its own icon and real threshold: VelvetEnchantress / 3
+PASS Complete talent and personal lore: VelvetEnchantress / 3
+PASS Inspection preserves RNG, currency, roster and receipts: GrandSprout / 1
+PASS Valid weapon icon and compiled random-weapon bounds: GrandSprout / 1
+PASS Every bond has its own icon and real threshold: GrandSprout / 1
+PASS Complete talent and personal lore: GrandSprout / 1
+PASS Inspection preserves RNG, currency, roster and receipts: GrandSprout / 2
+PASS Valid weapon icon and compiled random-weapon bounds: GrandSprout / 2
+PASS Every bond has its own icon and real threshold: GrandSprout / 2
+PASS Complete talent and personal lore: GrandSprout / 2
+PASS Inspection preserves RNG, currency, roster and receipts: GrandSprout / 3
+PASS Valid weapon icon and compiled random-weapon bounds: GrandSprout / 3
+PASS Every bond has its own icon and real threshold: GrandSprout / 3
+PASS Complete talent and personal lore: GrandSprout / 3
+PASS Inspection preserves RNG, currency, roster and receipts: BristleBall / 1
+PASS Valid weapon icon and compiled random-weapon bounds: BristleBall / 1
+PASS Every bond has its own icon and real threshold: BristleBall / 1
+PASS Complete talent and personal lore: BristleBall / 1
+PASS Inspection preserves RNG, currency, roster and receipts: BristleBall / 2
+PASS Valid weapon icon and compiled random-weapon bounds: BristleBall / 2
+PASS Every bond has its own icon and real threshold: BristleBall / 2
+PASS Complete talent and personal lore: BristleBall / 2
+PASS Inspection preserves RNG, currency, roster and receipts: BristleBall / 3
+PASS Valid weapon icon and compiled random-weapon bounds: BristleBall / 3
+PASS Every bond has its own icon and real threshold: BristleBall / 3
+PASS Complete talent and personal lore: BristleBall / 3
+PASS Inspection preserves RNG, currency, roster and receipts: PaperDevil / 1
+PASS Valid weapon icon and compiled random-weapon bounds: PaperDevil / 1
+PASS Every bond has its own icon and real threshold: PaperDevil / 1
+PASS Complete talent and personal lore: PaperDevil / 1
+PASS Inspection preserves RNG, currency, roster and receipts: PaperDevil / 2
+PASS Valid weapon icon and compiled random-weapon bounds: PaperDevil / 2
+PASS Every bond has its own icon and real threshold: PaperDevil / 2
+PASS Complete talent and personal lore: PaperDevil / 2
+PASS Inspection preserves RNG, currency, roster and receipts: PaperDevil / 3
+PASS Valid weapon icon and compiled random-weapon bounds: PaperDevil / 3
+PASS Every bond has its own icon and real threshold: PaperDevil / 3
+PASS Complete talent and personal lore: PaperDevil / 3
+PASS Inspection preserves RNG, currency, roster and receipts: BalloonMallet / 1
+PASS Valid weapon icon and compiled random-weapon bounds: BalloonMallet / 1
+PASS Every bond has its own icon and real threshold: BalloonMallet / 1
+PASS Complete talent and personal lore: BalloonMallet / 1
+PASS Inspection preserves RNG, currency, roster and receipts: BalloonMallet / 2
+PASS Valid weapon icon and compiled random-weapon bounds: BalloonMallet / 2
+PASS Every bond has its own icon and real threshold: BalloonMallet / 2
+PASS Complete talent and personal lore: BalloonMallet / 2
+PASS Inspection preserves RNG, currency, roster and receipts: BalloonMallet / 3
+PASS Valid weapon icon and compiled random-weapon bounds: BalloonMallet / 3
+PASS Every bond has its own icon and real threshold: BalloonMallet / 3
+PASS Complete talent and personal lore: BalloonMallet / 3
+PASS Inspection preserves RNG, currency, roster and receipts: LittleSprout / 1
+PASS Valid weapon icon and compiled random-weapon bounds: LittleSprout / 1
+PASS Every bond has its own icon and real threshold: LittleSprout / 1
+PASS Complete talent and personal lore: LittleSprout / 1
+PASS Inspection preserves RNG, currency, roster and receipts: LittleSprout / 2
+PASS Valid weapon icon and compiled random-weapon bounds: LittleSprout / 2
+PASS Every bond has its own icon and real threshold: LittleSprout / 2
+PASS Complete talent and personal lore: LittleSprout / 2
+PASS Inspection preserves RNG, currency, roster and receipts: LittleSprout / 3
+PASS Valid weapon icon and compiled random-weapon bounds: LittleSprout / 3
+PASS Every bond has its own icon and real threshold: LittleSprout / 3
+PASS Complete talent and personal lore: LittleSprout / 3
+PASS Inspection preserves RNG, currency, roster and receipts: MonsterMarble / 1
+PASS Valid weapon icon and compiled random-weapon bounds: MonsterMarble / 1
+PASS Every bond has its own icon and real threshold: MonsterMarble / 1
+PASS Complete talent and personal lore: MonsterMarble / 1
+PASS Inspection preserves RNG, currency, roster and receipts: MonsterMarble / 2
+PASS Valid weapon icon and compiled random-weapon bounds: MonsterMarble / 2
+PASS Every bond has its own icon and real threshold: MonsterMarble / 2
+PASS Complete talent and personal lore: MonsterMarble / 2
+PASS Inspection preserves RNG, currency, roster and receipts: MonsterMarble / 3
+PASS Valid weapon icon and compiled random-weapon bounds: MonsterMarble / 3
+PASS Every bond has its own icon and real threshold: MonsterMarble / 3
+PASS Complete talent and personal lore: MonsterMarble / 3
+PASS Inspection preserves RNG, currency, roster and receipts: CarouselPony / 1
+PASS Valid weapon icon and compiled random-weapon bounds: CarouselPony / 1
+PASS Every bond has its own icon and real threshold: CarouselPony / 1
+PASS Complete talent and personal lore: CarouselPony / 1
+PASS Inspection preserves RNG, currency, roster and receipts: CarouselPony / 2
+PASS Valid weapon icon and compiled random-weapon bounds: CarouselPony / 2
+PASS Every bond has its own icon and real threshold: CarouselPony / 2
+PASS Complete talent and personal lore: CarouselPony / 2
+PASS Inspection preserves RNG, currency, roster and receipts: CarouselPony / 3
+PASS Valid weapon icon and compiled random-weapon bounds: CarouselPony / 3
+PASS Every bond has its own icon and real threshold: CarouselPony / 3
+PASS Complete talent and personal lore: CarouselPony / 3
+PASS Inspection preserves RNG, currency, roster and receipts: TeacupCricket / 1
+PASS Valid weapon icon and compiled random-weapon bounds: TeacupCricket / 1
+PASS Every bond has its own icon and real threshold: TeacupCricket / 1
+PASS Complete talent and personal lore: TeacupCricket / 1
+PASS Inspection preserves RNG, currency, roster and receipts: TeacupCricket / 2
+PASS Valid weapon icon and compiled random-weapon bounds: TeacupCricket / 2
+PASS Every bond has its own icon and real threshold: TeacupCricket / 2
+PASS Complete talent and personal lore: TeacupCricket / 2
+PASS Inspection preserves RNG, currency, roster and receipts: TeacupCricket / 3
+PASS Valid weapon icon and compiled random-weapon bounds: TeacupCricket / 3
+PASS Every bond has its own icon and real threshold: TeacupCricket / 3
+PASS Complete talent and personal lore: TeacupCricket / 3
+PASS Inspection preserves RNG, currency, roster and receipts: RibbonOtter / 1
+PASS Valid weapon icon and compiled random-weapon bounds: RibbonOtter / 1
+PASS Every bond has its own icon and real threshold: RibbonOtter / 1
+PASS Complete talent and personal lore: RibbonOtter / 1
+PASS Inspection preserves RNG, currency, roster and receipts: RibbonOtter / 2
+PASS Valid weapon icon and compiled random-weapon bounds: RibbonOtter / 2
+PASS Every bond has its own icon and real threshold: RibbonOtter / 2
+PASS Complete talent and personal lore: RibbonOtter / 2
+PASS Inspection preserves RNG, currency, roster and receipts: RibbonOtter / 3
+PASS Valid weapon icon and compiled random-weapon bounds: RibbonOtter / 3
+PASS Every bond has its own icon and real threshold: RibbonOtter / 3
+PASS Complete talent and personal lore: RibbonOtter / 3
+PASS Inspection preserves RNG, currency, roster and receipts: SpindleWren / 1
+PASS Valid weapon icon and compiled random-weapon bounds: SpindleWren / 1
+PASS Every bond has its own icon and real threshold: SpindleWren / 1
+PASS Complete talent and personal lore: SpindleWren / 1
+PASS Inspection preserves RNG, currency, roster and receipts: SpindleWren / 2
+PASS Valid weapon icon and compiled random-weapon bounds: SpindleWren / 2
+PASS Every bond has its own icon and real threshold: SpindleWren / 2
+PASS Complete talent and personal lore: SpindleWren / 2
+PASS Inspection preserves RNG, currency, roster and receipts: SpindleWren / 3
+PASS Valid weapon icon and compiled random-weapon bounds: SpindleWren / 3
+PASS Every bond has its own icon and real threshold: SpindleWren / 3
+PASS Complete talent and personal lore: SpindleWren / 3
+PASS Item icon, category and rarity: key-oil
+PASS Every item modifier includes icon, scope and exact value: key-oil / Damage
+PASS Item mechanics, conditions and RNG preserved: key-oil
+PASS Item icon, category and rarity: clock-spring
+PASS Every item modifier includes icon, scope and exact value: clock-spring / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: clock-spring
+PASS Item icon, category and rarity: honey-pot
+PASS Every item modifier includes icon, scope and exact value: honey-pot / Health
+PASS Item mechanics, conditions and RNG preserved: honey-pot
+PASS Item icon, category and rarity: felt-boots
+PASS Every item modifier includes icon, scope and exact value: felt-boots / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: felt-boots
+PASS Item icon, category and rarity: coin-compass
+PASS Every item modifier includes icon, scope and exact value: coin-compass / Pickup
+PASS Item mechanics, conditions and RNG preserved: coin-compass
+PASS Item icon, category and rarity: wandering-map
+PASS Every item modifier includes icon, scope and exact value: wandering-map / Roam
+PASS Item mechanics, conditions and RNG preserved: wandering-map
+PASS Item icon, category and rarity: guardian-canopy
+PASS Every item modifier includes icon, scope and exact value: guardian-canopy / Interceptor
+PASS Item mechanics, conditions and RNG preserved: guardian-canopy
+PASS Item icon, category and rarity: warm-tea
+PASS Every item modifier includes icon, scope and exact value: warm-tea / Heal
+PASS Item mechanics, conditions and RNG preserved: warm-tea
+PASS Item icon, category and rarity: oracle-lens
+PASS Every item modifier includes icon, scope and exact value: oracle-lens / Crit
+PASS Item mechanics, conditions and RNG preserved: oracle-lens
+PASS Item icon, category and rarity: twin-seal
+PASS Every item modifier includes icon, scope and exact value: twin-seal / Projectiles
+PASS Item mechanics, conditions and RNG preserved: twin-seal
+PASS Item icon, category and rarity: piggy-mail
+PASS Every item modifier includes icon, scope and exact value: piggy-mail / Interest
+PASS Item mechanics, conditions and RNG preserved: piggy-mail
+PASS Item icon, category and rarity: pillow-mail
+PASS Every item modifier includes icon, scope and exact value: pillow-mail / Armor
+PASS Item mechanics, conditions and RNG preserved: pillow-mail
+PASS Item icon, category and rarity: royal-key
+PASS Every item modifier includes icon, scope and exact value: royal-key / ChampionDamage
+PASS Item mechanics, conditions and RNG preserved: royal-key
+PASS Item icon, category and rarity: brigade-banner
+PASS Every item modifier includes icon, scope and exact value: brigade-banner / CompanionDamage
+PASS Item mechanics, conditions and RNG preserved: brigade-banner
+PASS Item icon, category and rarity: marching-bell
+PASS Every item modifier includes icon, scope and exact value: marching-bell / CompanionAttackSpeed
+PASS Item mechanics, conditions and RNG preserved: marching-bell
+PASS Item icon, category and rarity: coupon-book
+PASS Every item modifier includes icon, scope and exact value: coupon-book / Discount
+PASS Item mechanics, conditions and RNG preserved: coupon-book
+PASS Item icon, category and rarity: long-atlas
+PASS Every item modifier includes icon, scope and exact value: long-atlas / Roam
+PASS Every item modifier includes icon, scope and exact value: long-atlas / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: long-atlas
+PASS Item icon, category and rarity: starlight-quilt
+PASS Every item modifier includes icon, scope and exact value: starlight-quilt / Health
+PASS Item mechanics, conditions and RNG preserved: starlight-quilt
+PASS Item icon, category and rarity: echo-postage
+PASS Every item modifier includes icon, scope and exact value: echo-postage / Projectiles
+PASS Every item modifier includes icon, scope and exact value: echo-postage / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: echo-postage
+PASS Item icon, category and rarity: tarnished-crown
+PASS Every item modifier includes icon, scope and exact value: tarnished-crown / ChampionDamage
+PASS Item mechanics, conditions and RNG preserved: tarnished-crown
+PASS Item icon, category and rarity: fortune-egg
+PASS Every item modifier includes icon, scope and exact value: fortune-egg / Luck
+PASS Item mechanics, conditions and RNG preserved: fortune-egg
+PASS Item icon, category and rarity: treasure-whisper
+PASS Every item modifier includes icon, scope and exact value: treasure-whisper / TreasureDetection
+PASS Item mechanics, conditions and RNG preserved: treasure-whisper
+PASS Item icon, category and rarity: coin-salve
+PASS Item mechanics, conditions and RNG preserved: coin-salve
+PASS Item icon, category and rarity: chest-thunder
+PASS Item mechanics, conditions and RNG preserved: chest-thunder
+PASS Item icon, category and rarity: altar-ember
+PASS Every item modifier includes icon, scope and exact value: altar-ember / ChampionDamage
+PASS Every item modifier includes icon, scope and exact value: altar-ember / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: altar-ember
+PASS Item icon, category and rarity: harvest-receipt
+PASS Every item modifier includes icon, scope and exact value: harvest-receipt / Pickup
+PASS Item mechanics, conditions and RNG preserved: harvest-receipt
+PASS Item icon, category and rarity: reflective-ink
+PASS Item mechanics, conditions and RNG preserved: reflective-ink
+PASS Item icon, category and rarity: carbon-ribbon
+PASS Every item modifier includes icon, scope and exact value: carbon-ribbon / Crit
+PASS Item mechanics, conditions and RNG preserved: carbon-ribbon
+PASS Item icon, category and rarity: office-lens
+PASS Every item modifier includes icon, scope and exact value: office-lens / Crit
+PASS Every item modifier includes icon, scope and exact value: office-lens / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: office-lens
+PASS Item icon, category and rarity: tea-coaster
+PASS Every item modifier includes icon, scope and exact value: tea-coaster / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: tea-coaster
+PASS Item icon, category and rarity: scratch-record
+PASS Every item modifier includes icon, scope and exact value: scratch-record / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: scratch-record
+PASS Item icon, category and rarity: treasure-ribbon
+PASS Every item modifier includes icon, scope and exact value: treasure-ribbon / Damage
+PASS Item mechanics, conditions and RNG preserved: treasure-ribbon
+PASS Item icon, category and rarity: patch-spring
+PASS Every item modifier includes icon, scope and exact value: patch-spring / CompanionAttackSpeed
+PASS Item mechanics, conditions and RNG preserved: patch-spring
+PASS Item icon, category and rarity: thermal-ink
+PASS Every item modifier includes icon, scope and exact value: thermal-ink / Crit
+PASS Item mechanics, conditions and RNG preserved: thermal-ink
+PASS Item icon, category and rarity: repair-coupon
+PASS Every item modifier includes icon, scope and exact value: repair-coupon / Pickup
+PASS Item mechanics, conditions and RNG preserved: repair-coupon
+PASS Item icon, category and rarity: k10-scoremultiplier
+PASS Every item modifier includes icon, scope and exact value: k10-scoremultiplier / ScoreMultiplier
+PASS Every item modifier includes icon, scope and exact value: k10-scoremultiplier / Health
+PASS Item mechanics, conditions and RNG preserved: k10-scoremultiplier
+PASS Item icon, category and rarity: k10-collisiondamage
+PASS Every item modifier includes icon, scope and exact value: k10-collisiondamage / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: k10-collisiondamage / Health
+PASS Item mechanics, conditions and RNG preserved: k10-collisiondamage
+PASS Item icon, category and rarity: k10-meleedamage
+PASS Every item modifier includes icon, scope and exact value: k10-meleedamage / MeleeDamage
+PASS Every item modifier includes icon, scope and exact value: k10-meleedamage / Health
+PASS Item mechanics, conditions and RNG preserved: k10-meleedamage
+PASS Item icon, category and rarity: k10-rangeddamage
+PASS Every item modifier includes icon, scope and exact value: k10-rangeddamage / RangedDamage
+PASS Every item modifier includes icon, scope and exact value: k10-rangeddamage / Health
+PASS Item mechanics, conditions and RNG preserved: k10-rangeddamage
+PASS Item icon, category and rarity: k10-attackrange
+PASS Every item modifier includes icon, scope and exact value: k10-attackrange / AttackRange
+PASS Every item modifier includes icon, scope and exact value: k10-attackrange / Health
+PASS Item mechanics, conditions and RNG preserved: k10-attackrange
+PASS Item icon, category and rarity: k10-dodge
+PASS Every item modifier includes icon, scope and exact value: k10-dodge / Dodge
+PASS Every item modifier includes icon, scope and exact value: k10-dodge / Health
+PASS Item mechanics, conditions and RNG preserved: k10-dodge
+PASS Item icon, category and rarity: k10-income
+PASS Every item modifier includes icon, scope and exact value: k10-income / Income
+PASS Every item modifier includes icon, scope and exact value: k10-income / Health
+PASS Item mechanics, conditions and RNG preserved: k10-income
+PASS Item icon, category and rarity: k10-bulletpierce
+PASS Every item modifier includes icon, scope and exact value: k10-bulletpierce / BulletPierce
+PASS Every item modifier includes icon, scope and exact value: k10-bulletpierce / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bulletpierce
+PASS Item icon, category and rarity: k10-bulletsplit
+PASS Every item modifier includes icon, scope and exact value: k10-bulletsplit / BulletSplit
+PASS Every item modifier includes icon, scope and exact value: k10-bulletsplit / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bulletsplit
+PASS Item icon, category and rarity: k10-bulletbounce
+PASS Every item modifier includes icon, scope and exact value: k10-bulletbounce / BulletBounce
+PASS Every item modifier includes icon, scope and exact value: k10-bulletbounce / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bulletbounce
+PASS Item icon, category and rarity: k10-bulletsize
+PASS Every item modifier includes icon, scope and exact value: k10-bulletsize / BulletSize
+PASS Every item modifier includes icon, scope and exact value: k10-bulletsize / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bulletsize
+PASS Item icon, category and rarity: k10-bulletspeed
+PASS Every item modifier includes icon, scope and exact value: k10-bulletspeed / BulletSpeed
+PASS Every item modifier includes icon, scope and exact value: k10-bulletspeed / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bulletspeed
+PASS Item icon, category and rarity: k10-bulletdistance
+PASS Every item modifier includes icon, scope and exact value: k10-bulletdistance / BulletDistance
+PASS Every item modifier includes icon, scope and exact value: k10-bulletdistance / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bulletdistance
+PASS Item icon, category and rarity: k10-knockback
+PASS Every item modifier includes icon, scope and exact value: k10-knockback / Knockback
+PASS Every item modifier includes icon, scope and exact value: k10-knockback / Health
+PASS Item mechanics, conditions and RNG preserved: k10-knockback
+PASS Item icon, category and rarity: k10-bodysize
+PASS Every item modifier includes icon, scope and exact value: k10-bodysize / BodySize
+PASS Every item modifier includes icon, scope and exact value: k10-bodysize / Health
+PASS Item mechanics, conditions and RNG preserved: k10-bodysize
+PASS Item icon, category and rarity: k10-companionsize
+PASS Every item modifier includes icon, scope and exact value: k10-companionsize / CompanionSize
+PASS Every item modifier includes icon, scope and exact value: k10-companionsize / Health
+PASS Item mechanics, conditions and RNG preserved: k10-companionsize
+PASS Item icon, category and rarity: k10-enemycount
+PASS Every item modifier includes icon, scope and exact value: k10-enemycount / EnemyCount
+PASS Every item modifier includes icon, scope and exact value: k10-enemycount / ScoreMultiplier
+PASS Every item modifier includes icon, scope and exact value: k10-enemycount / Health
+PASS Item mechanics, conditions and RNG preserved: k10-enemycount
+PASS Item icon, category and rarity: k10-enemyhealth
+PASS Every item modifier includes icon, scope and exact value: k10-enemyhealth / EnemyHealth
+PASS Every item modifier includes icon, scope and exact value: k10-enemyhealth / ScoreMultiplier
+PASS Every item modifier includes icon, scope and exact value: k10-enemyhealth / Health
+PASS Item mechanics, conditions and RNG preserved: k10-enemyhealth
+PASS Item icon, category and rarity: k10-enemyspeed
+PASS Every item modifier includes icon, scope and exact value: k10-enemyspeed / EnemySpeed
+PASS Every item modifier includes icon, scope and exact value: k10-enemyspeed / ScoreMultiplier
+PASS Every item modifier includes icon, scope and exact value: k10-enemyspeed / Health
+PASS Item mechanics, conditions and RNG preserved: k10-enemyspeed
+PASS Item icon, category and rarity: k10-hearthealing
+PASS Every item modifier includes icon, scope and exact value: k10-hearthealing / HeartHealing
+PASS Every item modifier includes icon, scope and exact value: k10-hearthealing / Health
+PASS Item mechanics, conditions and RNG preserved: k10-hearthealing
+PASS Item icon, category and rarity: k10-chestquality
+PASS Every item modifier includes icon, scope and exact value: k10-chestquality / ChestQuality
+PASS Every item modifier includes icon, scope and exact value: k10-chestquality / Health
+PASS Item mechanics, conditions and RNG preserved: k10-chestquality
+PASS Item icon, category and rarity: k10-recruitdiscount
+PASS Every item modifier includes icon, scope and exact value: k10-recruitdiscount / RecruitDiscount
+PASS Every item modifier includes icon, scope and exact value: k10-recruitdiscount / Health
+PASS Item mechanics, conditions and RNG preserved: k10-recruitdiscount
+PASS Item icon, category and rarity: k10-relicdiscount
+PASS Every item modifier includes icon, scope and exact value: k10-relicdiscount / RelicDiscount
+PASS Every item modifier includes icon, scope and exact value: k10-relicdiscount / Health
+PASS Item mechanics, conditions and RNG preserved: k10-relicdiscount
+PASS Item icon, category and rarity: k10-shoprarity
+PASS Every item modifier includes icon, scope and exact value: k10-shoprarity / ShopRarity
+PASS Every item modifier includes icon, scope and exact value: k10-shoprarity / Health
+PASS Item mechanics, conditions and RNG preserved: k10-shoprarity
+PASS Item icon, category and rarity: k10-healthcorrection
+PASS Every item modifier includes icon, scope and exact value: k10-healthcorrection / HealthCorrection
+PASS Every item modifier includes icon, scope and exact value: k10-healthcorrection / Health
+PASS Item mechanics, conditions and RNG preserved: k10-healthcorrection
+PASS Item icon, category and rarity: k10-damagecorrection
+PASS Every item modifier includes icon, scope and exact value: k10-damagecorrection / DamageCorrection
+PASS Every item modifier includes icon, scope and exact value: k10-damagecorrection / Health
+PASS Item mechanics, conditions and RNG preserved: k10-damagecorrection
+PASS Item icon, category and rarity: k10-speedcorrection
+PASS Every item modifier includes icon, scope and exact value: k10-speedcorrection / SpeedCorrection
+PASS Every item modifier includes icon, scope and exact value: k10-speedcorrection / Health
+PASS Item mechanics, conditions and RNG preserved: k10-speedcorrection
+PASS Item icon, category and rarity: k10-armorcorrection
+PASS Every item modifier includes icon, scope and exact value: k10-armorcorrection / ArmorCorrection
+PASS Every item modifier includes icon, scope and exact value: k10-armorcorrection / Health
+PASS Item mechanics, conditions and RNG preserved: k10-armorcorrection
+PASS Item icon, category and rarity: k10-healcorrection
+PASS Every item modifier includes icon, scope and exact value: k10-healcorrection / HealCorrection
+PASS Every item modifier includes icon, scope and exact value: k10-healcorrection / Health
+PASS Item mechanics, conditions and RNG preserved: k10-healcorrection
+PASS Item icon, category and rarity: k10-collisionfrequency
+PASS Every item modifier includes icon, scope and exact value: k10-collisionfrequency / CollisionFrequency
+PASS Every item modifier includes icon, scope and exact value: k10-collisionfrequency / Health
+PASS Item mechanics, conditions and RNG preserved: k10-collisionfrequency
+PASS Item icon, category and rarity: long-pocket
+PASS Every item modifier includes icon, scope and exact value: long-pocket / ChestReach
+PASS Every item modifier includes icon, scope and exact value: long-pocket / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: long-pocket
+PASS Item icon, category and rarity: velvet-first-aid
+PASS Every item modifier includes icon, scope and exact value: velvet-first-aid / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: velvet-first-aid / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: velvet-first-aid
+PASS Item icon, category and rarity: brass-avalanche
+PASS Every item modifier includes icon, scope and exact value: brass-avalanche / Knockback
+PASS Every item modifier includes icon, scope and exact value: brass-avalanche / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: brass-avalanche
+PASS Item icon, category and rarity: RainbowCrown
+PASS Every item modifier includes icon, scope and exact value: RainbowCrown / Damage
+PASS Every item modifier includes icon, scope and exact value: RainbowCrown / Projectiles
+PASS Item mechanics, conditions and RNG preserved: RainbowCrown
+PASS Item icon, category and rarity: RainbowHeart
+PASS Every item modifier includes icon, scope and exact value: RainbowHeart / Health
+PASS Every item modifier includes icon, scope and exact value: RainbowHeart / Heal
+PASS Item mechanics, conditions and RNG preserved: RainbowHeart
+PASS Item icon, category and rarity: RainbowThread
+PASS Every item modifier includes icon, scope and exact value: RainbowThread / MeleeDamage
+PASS Every item modifier includes icon, scope and exact value: RainbowThread / Knockback
+PASS Item mechanics, conditions and RNG preserved: RainbowThread
+PASS Item icon, category and rarity: RainbowPrism
+PASS Every item modifier includes icon, scope and exact value: RainbowPrism / BulletSplit
+PASS Every item modifier includes icon, scope and exact value: RainbowPrism / RangedDamage
+PASS Item mechanics, conditions and RNG preserved: RainbowPrism
+PASS Item icon, category and rarity: CrimsonSeal
+PASS Every item modifier includes icon, scope and exact value: CrimsonSeal / ChampionDamage
+PASS Every item modifier includes icon, scope and exact value: CrimsonSeal / CollisionDamage
+PASS Item mechanics, conditions and RNG preserved: CrimsonSeal
+PASS Item icon, category and rarity: CrimsonSpring
+PASS Every item modifier includes icon, scope and exact value: CrimsonSpring / AttackSpeed
+PASS Every item modifier includes icon, scope and exact value: CrimsonSpring / AttackRange
+PASS Item mechanics, conditions and RNG preserved: CrimsonSpring
+PASS Item icon, category and rarity: K26Defense0
+PASS Every item modifier includes icon, scope and exact value: K26Defense0 / Health
+PASS Every item modifier includes icon, scope and exact value: K26Defense0 / Heal
+PASS Item mechanics, conditions and RNG preserved: K26Defense0
+PASS Item icon, category and rarity: K26Defense1
+PASS Every item modifier includes icon, scope and exact value: K26Defense1 / Armor
+PASS Every item modifier includes icon, scope and exact value: K26Defense1 / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: K26Defense1
+PASS Item icon, category and rarity: K26Defense2
+PASS Every item modifier includes icon, scope and exact value: K26Defense2 / Dodge
+PASS Every item modifier includes icon, scope and exact value: K26Defense2 / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: K26Defense2
+PASS Item icon, category and rarity: K26Defense3
+PASS Every item modifier includes icon, scope and exact value: K26Defense3 / MoveSpeed
+PASS Every item modifier includes icon, scope and exact value: K26Defense3 / Health
+PASS Item mechanics, conditions and RNG preserved: K26Defense3
+PASS Item icon, category and rarity: K26Defense4
+PASS Every item modifier includes icon, scope and exact value: K26Defense4 / HealthCorrection
+PASS Every item modifier includes icon, scope and exact value: K26Defense4 / Heal
+PASS Item mechanics, conditions and RNG preserved: K26Defense4
+PASS Item icon, category and rarity: K26Defense5
+PASS Every item modifier includes icon, scope and exact value: K26Defense5 / Heal
+PASS Every item modifier includes icon, scope and exact value: K26Defense5 / Income
+PASS Item mechanics, conditions and RNG preserved: K26Defense5
+PASS Item icon, category and rarity: K26Defense6
+PASS Every item modifier includes icon, scope and exact value: K26Defense6 / Armor
+PASS Every item modifier includes icon, scope and exact value: K26Defense6 / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: K26Defense6
+PASS Item icon, category and rarity: K26Defense7
+PASS Every item modifier includes icon, scope and exact value: K26Defense7 / Heal
+PASS Every item modifier includes icon, scope and exact value: K26Defense7 / Armor
+PASS Item mechanics, conditions and RNG preserved: K26Defense7
+PASS Item icon, category and rarity: SecretWoodHeart
+PASS Every item modifier includes icon, scope and exact value: SecretWoodHeart / Health
+PASS Every item modifier includes icon, scope and exact value: SecretWoodHeart / Heal
+PASS Item mechanics, conditions and RNG preserved: SecretWoodHeart
+PASS Item icon, category and rarity: SecretMirror
+PASS Every item modifier includes icon, scope and exact value: SecretMirror / Crit
+PASS Every item modifier includes icon, scope and exact value: SecretMirror / AttackRange
+PASS Item mechanics, conditions and RNG preserved: SecretMirror
+PASS Item icon, category and rarity: SecretThread
+PASS Every item modifier includes icon, scope and exact value: SecretThread / AttackRange
+PASS Every item modifier includes icon, scope and exact value: SecretThread / Knockback
+PASS Item mechanics, conditions and RNG preserved: SecretThread
+PASS Item icon, category and rarity: SecretTicket
+PASS Every item modifier includes icon, scope and exact value: SecretTicket / Discount
+PASS Every item modifier includes icon, scope and exact value: SecretTicket / Luck
+PASS Item mechanics, conditions and RNG preserved: SecretTicket
+PASS Item icon, category and rarity: SecretHour
+PASS Every item modifier includes icon, scope and exact value: SecretHour / AttackSpeed
+PASS Every item modifier includes icon, scope and exact value: SecretHour / Damage
+PASS Item mechanics, conditions and RNG preserved: SecretHour
+PASS Item icon, category and rarity: SecretDream
+PASS Every item modifier includes icon, scope and exact value: SecretDream / Health
+PASS Every item modifier includes icon, scope and exact value: SecretDream / HeartHealing
+PASS Item mechanics, conditions and RNG preserved: SecretDream
+PASS Item icon, category and rarity: SecretCrown
+PASS Every item modifier includes icon, scope and exact value: SecretCrown / Damage
+PASS Every item modifier includes icon, scope and exact value: SecretCrown / Crit
+PASS Item mechanics, conditions and RNG preserved: SecretCrown
+PASS Item icon, category and rarity: SecretLetter
+PASS Every item modifier includes icon, scope and exact value: SecretLetter / Pickup
+PASS Every item modifier includes icon, scope and exact value: SecretLetter / TreasureDetection
+PASS Item mechanics, conditions and RNG preserved: SecretLetter
+PASS Item icon, category and rarity: OctoberRelic0
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic0 / AttackRange
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic0 / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: OctoberRelic0
+PASS Item icon, category and rarity: OctoberRelic1
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic1 / Heal
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic1 / Income
+PASS Item mechanics, conditions and RNG preserved: OctoberRelic1
+PASS Item icon, category and rarity: OctoberRelic2
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic2 / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic2 / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: OctoberRelic2
+PASS Item icon, category and rarity: OctoberRelic3
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic3 / HeartHealing
+PASS Every item modifier includes icon, scope and exact value: OctoberRelic3 / Health
+PASS Item mechanics, conditions and RNG preserved: OctoberRelic3
+PASS Item icon, category and rarity: CurioOrchardFizz
+PASS Every item modifier includes icon, scope and exact value: CurioOrchardFizz / Health
+PASS Every item modifier includes icon, scope and exact value: CurioOrchardFizz / Income
+PASS Item mechanics, conditions and RNG preserved: CurioOrchardFizz
+PASS Item icon, category and rarity: CurioGraveChime
+PASS Every item modifier includes icon, scope and exact value: CurioGraveChime / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: CurioGraveChime / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioGraveChime
+PASS Item icon, category and rarity: CurioBreathJar
+PASS Every item modifier includes icon, scope and exact value: CurioBreathJar / Damage
+PASS Every item modifier includes icon, scope and exact value: CurioBreathJar / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioBreathJar
+PASS Item icon, category and rarity: CurioCoralBroth
+PASS Every item modifier includes icon, scope and exact value: CurioCoralBroth / Heal
+PASS Every item modifier includes icon, scope and exact value: CurioCoralBroth / Health
+PASS Item mechanics, conditions and RNG preserved: CurioCoralBroth
+PASS Item icon, category and rarity: CurioFangPin
+PASS Every item modifier includes icon, scope and exact value: CurioFangPin / Knockback
+PASS Every item modifier includes icon, scope and exact value: CurioFangPin / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioFangPin
+PASS Item icon, category and rarity: CurioRicochetSeltzer
+PASS Every item modifier includes icon, scope and exact value: CurioRicochetSeltzer / RangedDamage
+PASS Every item modifier includes icon, scope and exact value: CurioRicochetSeltzer / BulletBounce
+PASS Every item modifier includes icon, scope and exact value: CurioRicochetSeltzer / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioRicochetSeltzer
+PASS Item icon, category and rarity: CurioNoonSpark
+PASS Every item modifier includes icon, scope and exact value: CurioNoonSpark / MeleeDamage
+PASS Every item modifier includes icon, scope and exact value: CurioNoonSpark / Crit
+PASS Item mechanics, conditions and RNG preserved: CurioNoonSpark
+PASS Item icon, category and rarity: CurioQuietHour
+PASS Every item modifier includes icon, scope and exact value: CurioQuietHour / Armor
+PASS Every item modifier includes icon, scope and exact value: CurioQuietHour / TreasureDetection
+PASS Item mechanics, conditions and RNG preserved: CurioQuietHour
+PASS Item icon, category and rarity: CurioBentTape
+PASS Every item modifier includes icon, scope and exact value: CurioBentTape / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioBentTape
+PASS Item icon, category and rarity: CurioMeadowTonic
+PASS Every item modifier includes icon, scope and exact value: CurioMeadowTonic / Dodge
+PASS Every item modifier includes icon, scope and exact value: CurioMeadowTonic / Luck
+PASS Item mechanics, conditions and RNG preserved: CurioMeadowTonic
+PASS Item icon, category and rarity: CurioKindlingGloves
+PASS Every item modifier includes icon, scope and exact value: CurioKindlingGloves / Heal
+PASS Item mechanics, conditions and RNG preserved: CurioKindlingGloves
+PASS Item icon, category and rarity: CurioInterestTin
+PASS Every item modifier includes icon, scope and exact value: CurioInterestTin / Pickup
+PASS Item mechanics, conditions and RNG preserved: CurioInterestTin
+PASS Item icon, category and rarity: CurioStormDryer
+PASS Every item modifier includes icon, scope and exact value: CurioStormDryer / Damage
+PASS Every item modifier includes icon, scope and exact value: CurioStormDryer / Knockback
+PASS Item mechanics, conditions and RNG preserved: CurioStormDryer
+PASS Item icon, category and rarity: CurioRetortCup
+PASS Every item modifier includes icon, scope and exact value: CurioRetortCup / Armor
+PASS Every item modifier includes icon, scope and exact value: CurioRetortCup / Luck
+PASS Item mechanics, conditions and RNG preserved: CurioRetortCup
+PASS Item icon, category and rarity: CurioShatteredPager
+PASS Every item modifier includes icon, scope and exact value: CurioShatteredPager / Income
+PASS Every item modifier includes icon, scope and exact value: CurioShatteredPager / BulletSplit
+PASS Item mechanics, conditions and RNG preserved: CurioShatteredPager
+PASS Item icon, category and rarity: CurioWatchfulTea
+PASS Every item modifier includes icon, scope and exact value: CurioWatchfulTea / Heal
+PASS Item mechanics, conditions and RNG preserved: CurioWatchfulTea
+PASS Item icon, category and rarity: CurioSunfireFlask
+PASS Every item modifier includes icon, scope and exact value: CurioSunfireFlask / AttackRange
+PASS Every item modifier includes icon, scope and exact value: CurioSunfireFlask / Projectiles
+PASS Every item modifier includes icon, scope and exact value: CurioSunfireFlask / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioSunfireFlask
+PASS Item icon, category and rarity: CurioGiltOrbit
+PASS Every item modifier includes icon, scope and exact value: CurioGiltOrbit / RangedDamage
+PASS Item mechanics, conditions and RNG preserved: CurioGiltOrbit
+PASS Item icon, category and rarity: CurioEmberEspresso
+PASS Every item modifier includes icon, scope and exact value: CurioEmberEspresso / AttackSpeed
+PASS Every item modifier includes icon, scope and exact value: CurioEmberEspresso / CollisionDamage
+PASS Item mechanics, conditions and RNG preserved: CurioEmberEspresso
+PASS Item icon, category and rarity: CurioPrismRecord
+PASS Every item modifier includes icon, scope and exact value: CurioPrismRecord / AttackRange
+PASS Item mechanics, conditions and RNG preserved: CurioPrismRecord
+PASS Item icon, category and rarity: CurioCitrusStorm
+PASS Every item modifier includes icon, scope and exact value: CurioCitrusStorm / RangedDamage
+PASS Every item modifier includes icon, scope and exact value: CurioCitrusStorm / EnemyCount
+PASS Item mechanics, conditions and RNG preserved: CurioCitrusStorm
+PASS Item icon, category and rarity: CurioMoonMilk
+PASS Every item modifier includes icon, scope and exact value: CurioMoonMilk / HeartHealing
+PASS Every item modifier includes icon, scope and exact value: CurioMoonMilk / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioMoonMilk
+PASS Item icon, category and rarity: CurioPocketSun
+PASS Every item modifier includes icon, scope and exact value: CurioPocketSun / BodySize
+PASS Every item modifier includes icon, scope and exact value: CurioPocketSun / Luck
+PASS Item mechanics, conditions and RNG preserved: CurioPocketSun
+PASS Item icon, category and rarity: CurioInkFeather
+PASS Item mechanics, conditions and RNG preserved: CurioInkFeather
+PASS Item icon, category and rarity: CurioMulberryRiot
+PASS Every item modifier includes icon, scope and exact value: CurioMulberryRiot / Income
+PASS Every item modifier includes icon, scope and exact value: CurioMulberryRiot / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: CurioMulberryRiot / Armor
+PASS Item mechanics, conditions and RNG preserved: CurioMulberryRiot
+PASS Item icon, category and rarity: CurioDreamBlindfold
+PASS Every item modifier includes icon, scope and exact value: CurioDreamBlindfold / Luck
+PASS Every item modifier includes icon, scope and exact value: CurioDreamBlindfold / TreasureDetection
+PASS Item mechanics, conditions and RNG preserved: CurioDreamBlindfold
+PASS Item icon, category and rarity: CurioSleepyMist
+PASS Every item modifier includes icon, scope and exact value: CurioSleepyMist / Damage
+PASS Every item modifier includes icon, scope and exact value: CurioSleepyMist / MoveSpeed
+PASS Every item modifier includes icon, scope and exact value: CurioSleepyMist / EnemySpeed
+PASS Item mechanics, conditions and RNG preserved: CurioSleepyMist
+PASS Item icon, category and rarity: CurioClearSip
+PASS Every item modifier includes icon, scope and exact value: CurioClearSip / CollisionDamage
+PASS Item mechanics, conditions and RNG preserved: CurioClearSip
+PASS Item icon, category and rarity: CurioOddElixir
+PASS Item mechanics, conditions and RNG preserved: CurioOddElixir
+PASS Item icon, category and rarity: CurioDaylightBonnet
+PASS Every item modifier includes icon, scope and exact value: CurioDaylightBonnet / Health
+PASS Item mechanics, conditions and RNG preserved: CurioDaylightBonnet
+PASS Item icon, category and rarity: CurioNeedleTarget
+PASS Every item modifier includes icon, scope and exact value: CurioNeedleTarget / BulletPierce
+PASS Every item modifier includes icon, scope and exact value: CurioNeedleTarget / Crit
+PASS Every item modifier includes icon, scope and exact value: CurioNeedleTarget / MeleeDamage
+PASS Item mechanics, conditions and RNG preserved: CurioNeedleTarget
+PASS Item icon, category and rarity: CurioManyDoorKey
+PASS Every item modifier includes icon, scope and exact value: CurioManyDoorKey / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: CurioManyDoorKey / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioManyDoorKey
+PASS Item icon, category and rarity: CurioCourageJuice
+PASS Every item modifier includes icon, scope and exact value: CurioCourageJuice / MoveSpeed
+PASS Every item modifier includes icon, scope and exact value: CurioCourageJuice / MeleeDamage
+PASS Every item modifier includes icon, scope and exact value: CurioCourageJuice / Health
+PASS Item mechanics, conditions and RNG preserved: CurioCourageJuice
+PASS Item icon, category and rarity: CurioCrookedEight
+PASS Every item modifier includes icon, scope and exact value: CurioCrookedEight / Luck
+PASS Every item modifier includes icon, scope and exact value: CurioCrookedEight / BulletBounce
+PASS Every item modifier includes icon, scope and exact value: CurioCrookedEight / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioCrookedEight
+PASS Item icon, category and rarity: CurioTornAlmanac
+PASS Every item modifier includes icon, scope and exact value: CurioTornAlmanac / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioTornAlmanac
+PASS Item icon, category and rarity: CurioHoardersLocket
+PASS Item mechanics, conditions and RNG preserved: CurioHoardersLocket
+PASS Item icon, category and rarity: CurioSplitKernel
+PASS Every item modifier includes icon, scope and exact value: CurioSplitKernel / Heal
+PASS Item mechanics, conditions and RNG preserved: CurioSplitKernel
+PASS Item icon, category and rarity: CurioWildPigment
+PASS Every item modifier includes icon, scope and exact value: CurioWildPigment / MoveSpeed
+PASS Every item modifier includes icon, scope and exact value: CurioWildPigment / MeleeDamage
+PASS Every item modifier includes icon, scope and exact value: CurioWildPigment / RangedDamage
+PASS Item mechanics, conditions and RNG preserved: CurioWildPigment
+PASS Item icon, category and rarity: CurioStillwaterUrn
+PASS Every item modifier includes icon, scope and exact value: CurioStillwaterUrn / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioStillwaterUrn
+PASS Item icon, category and rarity: CurioPanicBell
+PASS Item mechanics, conditions and RNG preserved: CurioPanicBell
+PASS Item icon, category and rarity: CurioOilyLozenge
+PASS Every item modifier includes icon, scope and exact value: CurioOilyLozenge / Health
+PASS Item mechanics, conditions and RNG preserved: CurioOilyLozenge
+PASS Item icon, category and rarity: CurioLodestoneLabel
+PASS Every item modifier includes icon, scope and exact value: CurioLodestoneLabel / RangedDamage
+PASS Every item modifier includes icon, scope and exact value: CurioLodestoneLabel / Pickup
+PASS Item mechanics, conditions and RNG preserved: CurioLodestoneLabel
+PASS Item icon, category and rarity: CurioHungryLedger
+PASS Item mechanics, conditions and RNG preserved: CurioHungryLedger
+PASS Item icon, category and rarity: CurioStoneCrust
+PASS Every item modifier includes icon, scope and exact value: CurioStoneCrust / AttackSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioStoneCrust
+PASS Item icon, category and rarity: CurioBitterHoney
+PASS Every item modifier includes icon, scope and exact value: CurioBitterHoney / Heal
+PASS Every item modifier includes icon, scope and exact value: CurioBitterHoney / TreasureDetection
+PASS Every item modifier includes icon, scope and exact value: CurioBitterHoney / EnemySpeed
+PASS Item mechanics, conditions and RNG preserved: CurioBitterHoney
+PASS Item icon, category and rarity: CurioBurdenCollar
+PASS Every item modifier includes icon, scope and exact value: CurioBurdenCollar / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: CurioBurdenCollar / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioBurdenCollar
+PASS Item icon, category and rarity: CurioHushEarmuffs
+PASS Every item modifier includes icon, scope and exact value: CurioHushEarmuffs / Dodge
+PASS Every item modifier includes icon, scope and exact value: CurioHushEarmuffs / Crit
+PASS Item mechanics, conditions and RNG preserved: CurioHushEarmuffs
+PASS Item icon, category and rarity: CurioProfitSlide
+PASS Every item modifier includes icon, scope and exact value: CurioProfitSlide / Income
+PASS Item mechanics, conditions and RNG preserved: CurioProfitSlide
+PASS Item icon, category and rarity: CurioAngryReliquary
+PASS Item mechanics, conditions and RNG preserved: CurioAngryReliquary
+PASS Item icon, category and rarity: CurioPetalTonic
+PASS Every item modifier includes icon, scope and exact value: CurioPetalTonic / Health
+PASS Every item modifier includes icon, scope and exact value: CurioPetalTonic / Heal
+PASS Item mechanics, conditions and RNG preserved: CurioPetalTonic
+PASS Item icon, category and rarity: CurioSorrowLantern
+PASS Every item modifier includes icon, scope and exact value: CurioSorrowLantern / Dodge
+PASS Item mechanics, conditions and RNG preserved: CurioSorrowLantern
+PASS Item icon, category and rarity: CurioMuteClock
+PASS Every item modifier includes icon, scope and exact value: CurioMuteClock / AttackSpeed
+PASS Every item modifier includes icon, scope and exact value: CurioMuteClock / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioMuteClock
+PASS Item icon, category and rarity: CurioUrchinBall
+PASS Every item modifier includes icon, scope and exact value: CurioUrchinBall / Armor
+PASS Every item modifier includes icon, scope and exact value: CurioUrchinBall / MoveSpeed
+PASS Item mechanics, conditions and RNG preserved: CurioUrchinBall
+PASS Item icon, category and rarity: CurioSourMandarin
+PASS Item mechanics, conditions and RNG preserved: CurioSourMandarin
+PASS Item icon, category and rarity: CurioWakefulCordial
+PASS Every item modifier includes icon, scope and exact value: CurioWakefulCordial / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: CurioWakefulCordial / Knockback
+PASS Every item modifier includes icon, scope and exact value: CurioWakefulCordial / Crit
+PASS Item mechanics, conditions and RNG preserved: CurioWakefulCordial
+PASS Item icon, category and rarity: CurioGlassLotus
+PASS Item mechanics, conditions and RNG preserved: CurioGlassLotus
+PASS Item icon, category and rarity: CurioNestDumpling
+PASS Every item modifier includes icon, scope and exact value: CurioNestDumpling / Armor
+PASS Item mechanics, conditions and RNG preserved: CurioNestDumpling
+PASS Item icon, category and rarity: CurioVictorDraught
+PASS Every item modifier includes icon, scope and exact value: CurioVictorDraught / Crit
+PASS Every item modifier includes icon, scope and exact value: CurioVictorDraught / BulletPierce
+PASS Every item modifier includes icon, scope and exact value: CurioVictorDraught / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioVictorDraught
+PASS Item icon, category and rarity: CurioWishWick
+PASS Every item modifier includes icon, scope and exact value: CurioWishWick / Health
+PASS Every item modifier includes icon, scope and exact value: CurioWishWick / Income
+PASS Item mechanics, conditions and RNG preserved: CurioWishWick
+PASS Item icon, category and rarity: CurioShieldBlower
+PASS Every item modifier includes icon, scope and exact value: CurioShieldBlower / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: CurioShieldBlower / Interceptor
+PASS Item mechanics, conditions and RNG preserved: CurioShieldBlower
+PASS Item icon, category and rarity: CurioLiarMask
+PASS Every item modifier includes icon, scope and exact value: CurioLiarMask / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioLiarMask
+PASS Item icon, category and rarity: CurioOrbitPastry
+PASS Every item modifier includes icon, scope and exact value: CurioOrbitPastry / BodySize
+PASS Every item modifier includes icon, scope and exact value: CurioOrbitPastry / BulletSize
+PASS Every item modifier includes icon, scope and exact value: CurioOrbitPastry / BulletSpeed
+PASS Every item modifier includes icon, scope and exact value: CurioOrbitPastry / ChampionDamage
+PASS Item mechanics, conditions and RNG preserved: CurioOrbitPastry
+PASS Item icon, category and rarity: CurioOathParcel
+PASS Item mechanics, conditions and RNG preserved: CurioOathParcel
+PASS Item icon, category and rarity: CurioFortunePear
+PASS Every item modifier includes icon, scope and exact value: CurioFortunePear / Luck
+PASS Every item modifier includes icon, scope and exact value: CurioFortunePear / Income
+PASS Item mechanics, conditions and RNG preserved: CurioFortunePear
+PASS Item icon, category and rarity: CurioEmeraldInvoice
+PASS Every item modifier includes icon, scope and exact value: CurioEmeraldInvoice / RelicDiscount
+PASS Every item modifier includes icon, scope and exact value: CurioEmeraldInvoice / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioEmeraldInvoice
+PASS Item icon, category and rarity: CurioBatteringHelm
+PASS Every item modifier includes icon, scope and exact value: CurioBatteringHelm / CollisionDamage
+PASS Every item modifier includes icon, scope and exact value: CurioBatteringHelm / CollisionFrequency
+PASS Every item modifier includes icon, scope and exact value: CurioBatteringHelm / RangedDamage
+PASS Item mechanics, conditions and RNG preserved: CurioBatteringHelm
+PASS Item icon, category and rarity: CurioGambleSandwich
+PASS Every item modifier includes icon, scope and exact value: CurioGambleSandwich / Armor
+PASS Item mechanics, conditions and RNG preserved: CurioGambleSandwich
+PASS Item icon, category and rarity: CurioFeastBucket
+PASS Every item modifier includes icon, scope and exact value: CurioFeastBucket / Health
+PASS Every item modifier includes icon, scope and exact value: CurioFeastBucket / Heal
+PASS Every item modifier includes icon, scope and exact value: CurioFeastBucket / BodySize
+PASS Every item modifier includes icon, scope and exact value: CurioFeastBucket / Dodge
+PASS Item mechanics, conditions and RNG preserved: CurioFeastBucket
+PASS Item icon, category and rarity: CurioWanderLetter
+PASS Every item modifier includes icon, scope and exact value: CurioWanderLetter / Crit
+PASS Every item modifier includes icon, scope and exact value: CurioWanderLetter / Armor
+PASS Item mechanics, conditions and RNG preserved: CurioWanderLetter
+PASS Item icon, category and rarity: CurioVenomPass
+PASS Item mechanics, conditions and RNG preserved: CurioVenomPass
+PASS Item icon, category and rarity: CurioTruceBottle
+PASS Every item modifier includes icon, scope and exact value: CurioTruceBottle / Damage
+PASS Every item modifier includes icon, scope and exact value: CurioTruceBottle / Crit
+PASS Every item modifier includes icon, scope and exact value: CurioTruceBottle / AttackRange
+PASS Every item modifier includes icon, scope and exact value: CurioTruceBottle / Armor
+PASS Item mechanics, conditions and RNG preserved: CurioTruceBottle
+PASS Item icon, category and rarity: CurioThornPerfume
+PASS Every item modifier includes icon, scope and exact value: CurioThornPerfume / EnemySpeed
+PASS Item mechanics, conditions and RNG preserved: CurioThornPerfume
+PASS Item icon, category and rarity: CurioLastHopeMotor
+PASS Item mechanics, conditions and RNG preserved: CurioLastHopeMotor
+PASS Item icon, category and rarity: CurioAnchorTack
+PASS Item mechanics, conditions and RNG preserved: CurioAnchorTack
+PASS Item icon, category and rarity: CurioVoidDoubloon
+PASS Every item modifier includes icon, scope and exact value: CurioVoidDoubloon / Damage
+PASS Item mechanics, conditions and RNG preserved: CurioVoidDoubloon
+PASS Item icon, category and rarity: CurioSixfoldRoot
+PASS Item mechanics, conditions and RNG preserved: CurioSixfoldRoot
+PASS Tier-two offers count tier-two ingredients
+PASS Maximum-tier offer does not promise a fourth star
+PASS Buying a high-star body is not falsely labeled a merge
+PASS Quota or insufficient currency never hides inspection
+PASS Enemy reductions are beneficial; ally stat penalties are drawbacks

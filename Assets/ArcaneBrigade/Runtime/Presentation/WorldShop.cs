@@ -438,7 +438,7 @@ namespace ArcaneBrigade
             else
             {
                 UnitDefinition unit = catalog.Unit(offer.Id);
-                int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == 1).Count;
+                int copies = owner.Session.State.Roster.FindAll(entry => entry.UnitId == unit.Id && entry.Tier == offer.Tier).Count;
                 result = CompanionDescriptions.Describe(unit, offer.Tier, catalog.TierSupportMultiplier) + "\nRandom weapon · " + (ShopMergePreview.Ready(owner.Session, offer) ? "Buy: tier " + ShopMergePreview.ProjectedTier(owner.Session, offer) : copies + "/3 copies");
                 foreach (string tag in unit.Tags)
                     foreach (BondDefinition bond in catalog.Bonds)

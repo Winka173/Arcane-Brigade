@@ -282,13 +282,16 @@ namespace ArcaneBrigade
                     return;
                 }
                 if (tooltipStation != station) { tooltipStation = station; shopScroll = Vector2.zero; shopDetails = false; }
-                string description = station.Offer != null ? shopDetails ? shop.DescribeOfferDetails(station.Offer) : shop.DescribeOffer(station.Offer) : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
-                string synergy = shop.BondPreview(station.Offer);
-                if (!string.IsNullOrEmpty(synergy)) description = synergy + "\n" + description;
-                bool compare = shopDetails && station.Offer != null && BuildPreview(owner, station.Offer) > 0;
-                float textWidth = compare ? 470 : 670;
+                if (station.Offer != null) offerCard.Refresh(owner.Session, owner.Content, station.Offer);
+                string description = station.Offer != null ? shopDetails ? offerCard.Details : offerCard.Summary : station.Recipe != null ? owner.Session.RecipePreview(station.Recipe) : station.Description;
+                if (shopDetails && station.Offer != null && BuildPreview(owner, station.Offer) > 0)
+                    foreach (var row in previewRows) description += "\n" + row.name + " " + row.before + " → " + row.after;
+                if (station.Offer?.Currency == ShopCurrency.Health) description += "\nPay current HP; must leave at least 1 HP.";
+                float textWidth = 880;
                 float contentHeight = GlossaryUI.Height(description, small, textWidth) + 8;
                 Rect panel = ShopTooltipBounds(contentHeight);
+                float headerHeight = station.Offer != null ? offerCard.HeaderHeight : 0;
+                if (station.Offer != null) { panel.height = shopDetails ? Mathf.Max(455, headerHeight + 280) : headerHeight > 0 ? headerHeight + 270 : 276; panel.y = 1030 - panel.height; }
                 bool item = station.Offer != null && station.Offer.Kind == OfferKind.Item;
                 ItemRarity rarity = item ? owner.Content.Item(station.Offer.Id).Rarity : station.Offer != null ? owner.Content.Unit(station.Offer.Id).Rarity : ItemRarity.Common;
                 Color tag = rarity != ItemRarity.Common ? RunModifierRules.RarityColor(rarity) : station.Offer != null ? ArcadeSkin.Teal : ArcadeSkin.Cream;
@@ -300,27 +303,22 @@ namespace ArcaneBrigade
                     ArcadeSkin.Slant(new Rect(panel.x + 22, panel.y - 14, 150, 26), tag);
                     GUI.Label(new Rect(panel.x + 22, panel.y - 14, 150, 26), kind, tagStyle);
                 }
-                GUI.Label(new Rect(panel.x + 24, panel.y + 16, 460, 38), shop.DisplayName(station), text);
-                if (station.Offer != null && station.Offer.Kind == OfferKind.Companion)
+                if (station.Offer != null) ShopDescriptionCard.DrawSprite(new Rect(panel.x + 24, panel.y + 12, 38, 38), offerCard.Portrait);
+                GUI.Label(new Rect(panel.x + (station.Offer != null ? 70 : 24), panel.y + 12, 500, 38), shop.DisplayName(station), text);
+                if (station.Offer != null) { small.normal.textColor = tag; GUI.Label(new Rect(panel.x + 70, panel.y + 47, 520, 27), offerCard.Identity, small); small.normal.textColor = ArcadeSkin.Cream; }
+                if (station.Offer != null)
                 {
-                    // B3: the companion introduces themselves in their own hand
-                    string said = CompanionVoice.Line(station.Offer.Id, owner.Session.State.Wave);
-                    if (!string.IsNullOrEmpty(said))
-                    {
-                        if (handStyle == null) { handStyle = ArcadeTypography.Style(24); handStyle.font = ArcadeTypography.Hand; handStyle.wordWrap = false; handStyle.clipping = TextClipping.Clip; }
-                        handStyle.normal.textColor = ArcadeSkin.Paper;
-                        float nameWidth = Mathf.Min(420, text.CalcSize(new GUIContent(shop.DisplayName(station))).x);
-                        float room = panel.xMax - 352 - (panel.x + 24 + nameWidth + 18); // stop before INFO
-                        string shown = "“" + said + "”";
-                        while (shown.Length > 8 && handStyle.CalcSize(new GUIContent(shown)).x > room) shown = shown.Substring(0, shown.Length - 6).TrimEnd() + "…”";
-                        if (room > 120) GUI.Label(new Rect(panel.x + 24 + nameWidth + 18, panel.y + 18, room, 36), shown, handStyle);
-                    }
+                    Rect costIcon = new Rect(panel.xMax - 320, panel.y + 54, 24, 24);
+                    if (station.Offer.Currency == ShopCurrency.Health) StatGlyph.Draw(costIcon, ItemEffect.Health);
+                    else Sprite(costIcon, station.Offer.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
+                    GUI.Label(new Rect(costIcon.xMax + 6, costIcon.y, 265, 24), station.Offer.Price + " " + (station.Offer.Currency == ShopCurrency.Health ? "HP · leave 1 HP" : station.Offer.Currency == ShopCurrency.Eggs ? "eggs" : "gold"), small);
                 }
                 if (station.Offer != null && navigation.Button(new Rect(panel.xMax - 340, panel.y + 18, 100, 36), shopDetails ? "BACK" : "INFO", button)) SetShopDetails(!shopDetails);
-                shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + 64, textWidth + 40, panel.height - 85), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
+                if (headerHeight > 0) offerCard.DrawHeader(new Rect(panel.x + 24, panel.y + 80, 902, headerHeight));
+                float bodyY = station.Offer != null ? 84 + headerHeight : 64;
+                shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + bodyY, textWidth + 26, panel.height - bodyY - 15), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
                 GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, small);
                 GUI.EndScrollView();
-                if (compare) DrawPreview(new Rect(panel.x + 540, panel.y + 66, 390, panel.height - 80));
                 if (navigation.Button(new Rect(panel.xMax - 230, panel.y + 14, 205, 46), RunUIHints.Device == RunUIDevice.Controller ? "A · BUY" : RunUIHints.Device == RunUIDevice.Touch ? "BUY" : "Space · BUY", primary)) shop.Interact();
                 GlossaryUI.Draw(new Vector2(1920, 1080));
             }
@@ -330,6 +328,7 @@ namespace ArcaneBrigade
             float height = Mathf.Clamp(contentHeight + 85, 155, 185);
             return new Rect(485, 1030 - height, 950, height);
         }
+        private readonly ShopDescriptionCard offerCard = new ShopDescriptionCard();
         public static string CombatTimerCaption(bool bossOvertime, float secondsRemaining) => bossOvertime ? "BOSSES" : Mathf.Max(0, Mathf.CeilToInt(secondsRemaining)).ToString();
 
         private void DrawControls(ArenaController owner)

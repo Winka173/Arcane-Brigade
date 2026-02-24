@@ -10,7 +10,23 @@ namespace ArcaneBrigade
     {
         public sealed class Entry { public string Name; public string Description; public ItemEffect Effect; }
         private static readonly Dictionary<string, Entry> entries = Build();
-        private static readonly Regex tokens = new Regex("((?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static readonly Regex tokens = new Regex("(\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static readonly Regex signedValue = new Regex("^[+−-]\\d+(?:\\.\\d+)?%?$", RegexOptions.CultureInvariant);
+        public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.ScopeName(scope) + " / " + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
+        private static ItemEffect NearbyEffect(MatchCollection all, int index)
+        {
+            int distance = 40; ItemEffect effect = ItemEffect.Damage;
+            for (int i = Mathf.Max(0, index - 6); i <= Mathf.Min(all.Count - 1, index + 6); i++)
+            {
+                if (i == index) continue;
+                var entry = Find(all[i].Value);
+                if (entry == null || entry.Name == "Effect scope" || entry.Name == "Champion" || entry.Name == "Companions") continue;
+                int gap = i < index ? all[index].Index - all[i].Index - all[i].Length : all[i].Index - all[index].Index - all[index].Length;
+                if (gap >= distance) continue;
+                distance = gap; effect = entry.Effect;
+            }
+            return effect;
+        }
         private static Entry selected;
         private static float openedAt;
         private static readonly Dictionary<GUIStyle, GUIStyle> wordStyles = new Dictionary<GUIStyle, GUIStyle>();
@@ -55,7 +71,7 @@ namespace ArcaneBrigade
             Add(result, "dodge", "Dodge", ItemEffect.Dodge, "Rolled separately for every incoming hit, capped at 60%. Success prevents that hit's damage; there is no shared damage-immunity window after each hit.", "dodge");
             Add(result, "armor", "Armor", ItemEffect.Armor, "Positive armor reduces incoming damage by 1/(1+armor). Negative armor increases damage, up to ×2 before the per-hit cap.", "armor");
             Add(result, "damage", "Damage", ItemEffect.Damage, "Flat melee/ranged damage adds to base damage before percentage multipliers. Critical hits, reactions and secondary effects use separate rules; contributions record actual HP lost.");
-            Add(result, "bond", "Bond synergy", ItemEffect.CompanionDamage, "Counts roster units with that tag, not stars. Thresholds 2/4/6 grant bonuses. Each bond has 4–6 recruitable species, not an ownership cap.");
+            Add(result, "bond", "Bond synergy", ItemEffect.CompanionDamage, "Counts roster bodies with that tag, not stars. Each bond has its own repeating threshold and may grant extra rewards at specific counts. Its card shows the actual next threshold and reward, before final combat limits. Story travellers do not count as recruited bodies.");
             Add(result, "merge", "Tier merge", ItemEffect.CompanionDamage, "Three units of the same species/tier merge into one higher-tier unit. Tier 1/2/3 support ×1/2/4 does not preserve three old sources. Recruit weapons are random; identical species + weapon variants cannot coexist.", "tier");
             Add(result, "altar", "Dream shop", ItemEffect.Luck, "A special shop that uses eggs or current HP. HP purchases must leave at least 1 HP; the new item's bonuses cannot pay its purchase cost.");
             Add(result, "reroll", "Reroll stock", ItemEffect.Discount, "Pay gold to replace displayed wares. No selling or locking stock; item discounts do not discount rerolls.");
@@ -147,13 +163,42 @@ namespace ArcaneBrigade
             if (draw && words.font != null) words.font.RequestCharactersInTexture(text ?? "", words.fontSize, words.fontStyle);
             float line = Mathf.Max(style.lineHeight, style.fontSize * 1.25f);
             float horizontal = 0, vertical = 0;
-            foreach (Match token in tokens.Matches(text ?? ""))
+            MatchCollection all = tokens.Matches(text ?? "");
+            for (int tokenIndex = 0; tokenIndex < all.Count; tokenIndex++)
             {
+                Match token = all[tokenIndex];
                 string word = token.Value;
                 if (word.Contains("\n")) { horizontal = 0; vertical += line; continue; }
                 Entry entry = Find(word);
-                float icon = entry == null ? 0 : line * 0.85f;
-                float width = words.CalcSize(new GUIContent(word)).x + icon + (entry == null ? 0 : 2);
+                string[] bonus = word.StartsWith("{bonus:", StringComparison.Ordinal) ? word.Substring(7, word.Length - 8).Split('|') : null;
+                bool formatted = bonus != null && bonus.Length == 3 && Enum.TryParse(bonus[0], out ItemEffect _);
+                if (formatted)
+                {
+                    ItemEffect effect = (ItemEffect)Enum.Parse(typeof(ItemEffect), bonus[0]);
+                    float glyph = line * .85f;
+                    string caption = bonus[1] + " " + bonus[2];
+                    float normalValue = words.CalcSize(new GUIContent(bonus[2])).x;
+                    FontStyle measuredStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
+                    float boldValue = words.CalcSize(new GUIContent(bonus[2])).x; words.fontStyle = measuredStyle;
+                    float size = words.CalcSize(new GUIContent(caption)).x + glyph + 5 + boldValue - normalValue;
+                    if (horizontal > 0 && horizontal + size > bounds.width) { horizontal = 0; vertical += line; }
+                    if (draw)
+                    {
+                        Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, size, line);
+                        StatGlyph.Draw(new Rect(target.x, target.y, glyph, line), effect);
+                        GUI.Label(new Rect(target.x + glyph + 3, target.y, size - glyph, line), bonus[1], words);
+                        float offset = glyph + 3 + words.CalcSize(new GUIContent(bonus[1] + " ")).x;
+                        Color prior = GUI.color; GUI.color *= ShopDescriptionCard.BenefitColor(effect, bonus[2].StartsWith("-") ? -1 : 1);
+                        FontStyle previousStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
+                        GUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
+                        if (GUI.Button(target, GUIContent.none, GUIStyle.none)) Show(RunModifierRules.ModifierName(effect));
+                    }
+                    horizontal += size; continue;
+                }
+                float icon = entry == null || entry.Name == "Effect scope" || entry.Name == "Champion" || entry.Name == "Companions" ? 0 : line * 0.85f;
+                bool number = signedValue.IsMatch(word) || char.IsDigit(word[0]);
+                FontStyle measuredWordStyle = words.fontStyle; if (number) words.fontStyle = FontStyle.Bold;
+                float width = words.CalcSize(new GUIContent(word)).x + icon + (entry == null ? 0 : 2); words.fontStyle = measuredWordStyle;
                 if (horizontal > 0 && horizontal + width > bounds.width) { horizontal = 0; vertical += line; }
                 if (draw)
                 {
@@ -168,7 +213,15 @@ namespace ArcaneBrigade
                         GUI.color = previous;
                         if (target.Contains(Event.current.mousePosition)) ArcadeSkin.Line(new Rect(target.x + icon, target.yMax - 2, width - icon, 2), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.8f));
                     }
-                    else GUI.Label(target, word, words);
+                    else
+                    {
+                        Color previous = GUI.color;
+                        if (signedValue.IsMatch(word)) GUI.color *= ShopDescriptionCard.BenefitColor(NearbyEffect(all, tokenIndex), word[0] == '+' ? 1 : -1);
+                        else if (char.IsDigit(word[0])) GUI.color *= ArcadeSkin.Gold;
+                        FontStyle previousStyle = words.fontStyle;
+                        if (signedValue.IsMatch(word) || char.IsDigit(word[0])) words.fontStyle = FontStyle.Bold;
+                        GUI.Label(target, word, words); words.fontStyle = previousStyle; GUI.color = previous;
+                    }
                 }
                 horizontal += width;
             }
