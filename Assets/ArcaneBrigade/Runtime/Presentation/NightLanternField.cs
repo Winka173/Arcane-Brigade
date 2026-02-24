@@ -98,6 +98,15 @@ namespace ArcaneBrigade
             return ShopLayout.Active.Place("lantern"+index,PositionFor(index,owner.WorldBounds,seed,true),size,2+index,out _);
         }
         public float FlameFloorDrop(int index)=>HeightFor(index,owner.Session.State.Seed)*(1.15f/2.7f);
+        public static float RuptureInfluence(Vector2 offset)=>Mathf.Exp(-offset.sqrMagnitude*.18f);
+        public static float SourceTransmission(float darkness,float party,float dawn,bool shop)
+            =>shop?1:Mathf.Lerp(1,.22f,Mathf.Clamp01(darkness)*(1-Mathf.Clamp01(party)*.7f)*(1-Mathf.Clamp01(dawn)));
+        public float RuptureStrength(Vector2 position)
+        {
+            float value=0;
+            foreach(var zone in ruptures)value+=RuptureInfluence(position-(Vector2)zone)*zone.w;
+            return Mathf.Clamp01(value);
+        }
         public void Configure(ArenaController value)
         {
             owner=value;
@@ -141,6 +150,13 @@ namespace ArcaneBrigade
             BrokenCount=LitCount=0;
             float dawn=NightmareLighting.Active?.Dawn??0;
             int seed=owner.Session.State.Seed;
+            // Establish every dark pocket before evaluating any source. Array order must not decide which lamps dim.
+            for(int i=0;i<8;i++)
+            {
+                Vector2 anchor=FixtureAnchor(i);
+                bool broken=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0)==2;
+                ruptures[i]=new Vector4(anchor.x,anchor.y,1.6f,!shop && broken?1:0);
+            }
             for(int i=0;i<8;i++)
             {
                 int state=StateFor(i,wave,shop,owner.Session.State.ActOne?.RelitMask??0);bool fixtureVisible=!shop || i<2 && ShopPlace(i,seed);
@@ -158,7 +174,6 @@ namespace ArcaneBrigade
                 Vector3 hover=DreamLevitation.Offset(Clock,identity,NightmareRules.Depth(wave),PresentationSettings.ReducedMotion);
                 Vector3 foot=(Vector3)basePosition+hover;
                 Quaternion lean=Quaternion.Euler(0,0,TiltFor(i,seed,Clock,PresentationSettings.ReducedMotion));
-                ruptures[i]=new Vector4(basePosition.x,basePosition.y,1.6f,state==2 && fixtureVisible?1:0);
                 sprites[i].enabled=fixtureVisible;
                 if(sprites[i].sprite!=null)
                 {
@@ -166,18 +181,31 @@ namespace ArcaneBrigade
                     sprites[i].transform.rotation=lean;
                     sprites[i].transform.position=foot-sprites[i].transform.TransformVector(LampLocal(sprites[i].sprite,new Vector2(.40f,.025f)));
                     sprites[i].sortingOrder=WorldSpriteGrounding.SortAt(basePosition.y);
-                    sprites[i].color=Color.Lerp(new Color(.42f,.46f,.55f),Color.white,Mathf.Max(light,dawn));
                 }
                 Vector3 flame=sprites[i].transform.TransformPoint(LampLocal(sprites[i].sprite,new Vector2(.66f,.49f)));
-                sources[i]=new Vector4(flame.x,flame.y-FlameFloorDrop(i),5,brightness[i]*(1-dawn*.75f));
-                halos[i].enabled=fixtureVisible && brightness[i]>.01f;halos[i].transform.position=new Vector3(flame.x,flame.y,0);halos[i].transform.rotation=lean;halos[i].transform.localScale=new Vector3(.9f*sizeRatio,1.1f*sizeRatio,1);halos[i].color=new Color(1,.52f,.16f,brightness[i]*.19f);halos[i].sortingOrder=WorldSpriteGrounding.SortAt(basePosition.y)+7;
+                float party=SharedLightField.Active?.Strength(basePosition)??0;
+                float transmission=SourceTransmission(RuptureStrength(basePosition),party,dawn,shop);
+                sources[i]=new Vector4(flame.x,flame.y-FlameFloorDrop(i),5,brightness[i]*(1-dawn*.75f)*transmission);
+                halos[i].enabled=fixtureVisible && brightness[i]>.01f;halos[i].transform.position=new Vector3(flame.x,flame.y,0);halos[i].transform.rotation=lean;halos[i].transform.localScale=new Vector3(.9f*sizeRatio,1.1f*sizeRatio,1);halos[i].sortingOrder=WorldSpriteGrounding.SortAt(basePosition.y)+7;
                 if(fixtureVisible)
                 {
                     int order=WorldSpriteGrounding.SortAt(basePosition.y);
                     shadows[i].SortingBase=order-10;shadows[i].Display(sprites[i].sprite,basePosition,.6f*sizeRatio,hover.y,.35f);
-                    suspensions[i].Display(basePosition,foot,.85f*sizeRatio,Clock,identity,order-1,.9f,state!=2);
                 }
                 else {shadows[i].Hide();suspensions[i].Hide();}
+            }
+            // Sprite art and additive bloom belong to the same world light as their surroundings.
+            // Evaluate after ALL source strengths are current; the tint never feeds back into emitted energy.
+            for(int i=0;i<8;i++)
+            {
+                Vector2 anchor=FixtureAnchor(i);
+                float surface=shop?1:(SharedLightField.Active?.SurfaceVisibility(anchor)??NightmareLighting.Active?.Ambient??1);
+                float visibility=Mathf.Clamp(surface,PresentationSettings.HighReadability?.16f:.025f,1);
+                int state=modelStates[i];
+                Color tint=Color.Lerp(new Color(.42f,.46f,.55f),Color.white,Mathf.Max(state==2?0:state==1?.5f:1,dawn))*visibility;
+                tint.a=1;sprites[i].color=tint;
+                halos[i].color=new Color(1,.52f,.16f,sources[i].w*.19f*visibility);
+                if(sprites[i].enabled)suspensions[i].Display(anchor,FixtureFoot(i),.85f*HeightFor(i,seed)/2.7f,Clock,MotionIdentity(i,seed),sprites[i].sortingOrder-1,.9f*visibility,state!=2);
             }
             // Known scenery bounds cast soft analytical occlusion into the floor field.
             if(changed)
