@@ -47,7 +47,7 @@ PASS Lantern states flicker before breaking and name what was lost
 PASS Four zones of five waves, each closed by a boss
 PASS Act I story boss on wave 4
 PASS Act I story boss on wave 5
-PASS The Keeper guards the gate at wave 5
+PASS The Coin Widow holds the gate at wave 5 (the Keeper carries the shop and tests you at shop 17)
 PASS Act I story boss on wave 10
 PASS Act I story boss on wave 15
 PASS First-canon save migrates and opens only the current beat

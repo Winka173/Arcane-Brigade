@@ -11,7 +11,7 @@ namespace ArcaneBrigade.Editor
     /// Bot observations, not human balance acceptance. Batch: -executeMethod ArcaneBrigade.Editor.PacingEconomyDiagnostics.Run</summary>
     public static class PacingEconomyDiagnostics
     {
-        private static readonly string[] Heroes = { "LanternKnight", "Postmaster", "DrowsySeer", "VerdantMatron", "TideSinger", "IvorySovereign" };
+        private static readonly string[] Heroes = { "LanternKnight", "Postmaster", "DrowsySeer", "VerdantMatron", "IvorySovereign", "CometRunner", "ArchiveCurator" };
         public static void Run()
         {
             string root = "PreviewExports/Pacing";
@@ -83,8 +83,17 @@ namespace ArcaneBrigade.Editor
             if (!probe.AcceptOutsideStage()) return session.State.ChampionId + ",could not accept";
             var simulation = new CombatSimulation(probe.PrepareCombat()); simulation.Start(5017);
             float keeperHp = simulation.Boss != null ? simulation.Boss.Definition.Health : 0;
-            for (int tick = 0; tick < 300 * 60 && simulation.Phase == RunPhase.Combat; tick++) simulation.Step(1f / 60, K13MovementPolicy.Steer(simulation));
-            string result = simulation.Phase == RunPhase.Combat ? "TIMEOUT" : simulation.BossDefeated ? "WIN" : "LOSS";
+            for (int tick = 0; tick < 300 * 60 && simulation.Phase == RunPhase.Combat; tick++)
+            {
+                simulation.Step(1f / 60, K13MovementPolicy.Steer(simulation));
+                if (tick % (20 * 60) == 0 && simulation.Boss != null)
+                {
+                    UnitState k = simulation.Boss;
+                    Debug.Log(string.Format(CultureInfo.InvariantCulture, "KEEPER17_TRACE {0} t={1:0} hp={2:0.0}% parts={3:0}/{4:0}/{5:0} broken={6}{7}{8} kneel={9} guard={10:0.00} dist={11:0.0}", session.State.ChampionId, simulation.Elapsed, 100 * k.Health / keeperHp,
+                        k.LeftPartDamage, k.RightPartDamage, k.CenterPartDamage, BossPartRules.Broken(k, 0) ? 1 : 0, BossPartRules.Broken(k, 1) ? 1 : 0, BossPartRules.Broken(k, 2) ? 1 : 0, k.KneelUntil > simulation.Elapsed, CombatSimulation.KeeperGuard(k, simulation.Elapsed), Vector2.Distance(k.Position, simulation.Champion.Position)));
+                }
+            }
+            string result = simulation.Phase == RunPhase.Combat ? "TIMEOUT" : simulation.BossDefeated ? "WIN" : simulation.KeeperWithdrew ? "SET_DOWN" : "LOSS";
             string boss15 = rows.Where(r => r.StartsWith(session.State.ChampionId + ",15,")).Select(r => r.Split(',')[2]).FirstOrDefault() ?? "-";
             string line = string.Format(CultureInfo.InvariantCulture, "{0},{1},{2:0},{3},{4},{5:0.0},{6:0},{7:0},{8}", session.State.ChampionId, session.State.Difficulty, keeperHp, session.State.Roster.Count, result, simulation.Elapsed,
                 simulation.Champion.Health, simulation.Boss == null || keeperHp <= 0 ? 0 : 100 * Mathf.Max(0, simulation.Boss.Health) / keeperHp, boss15);

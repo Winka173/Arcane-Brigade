@@ -18,7 +18,7 @@ namespace ArcaneBrigade
         // Story bosses close each zone. Wave 20 stays the Last Customer's final hall.
         public static bool BossWave(int wave) => wave >= 5 && wave <= Waves && wave % 5 == 0;
         public const string KeeperWave = "Keeper";
-        public static string BossName(int wave) => wave switch { 5 => "THE KEEPER", 10 => "THE CHAIR PORTER", 15 => "THE DOOR THAT STAYED SHUT", _ => null };
+        public static string BossName(int wave) => wave switch { 5 => "THE COIN WIDOW", 10 => "THE CHAIR PORTER", 15 => "THE DOOR THAT STAYED SHUT", _ => null };
 
         // Each lamp is one of the eight times the visitor came looking. The eighth never goes out in Act I.
         public static readonly int[] BreakWave = { 3, 5, 8, 10, 13, 14, 17, int.MaxValue };
@@ -141,8 +141,11 @@ namespace ArcaneBrigade
             if (state.Secrets?.RoomNights != null)
                 foreach (int night in state.Secrets.RoomNights)
                     if (night / 16 == chapter - 1 && night % 16 < RoomMemory.Length) extra += "\n\n" + RoomMemory[night % 16];
+            // the Keeper carries the shop between zones: its hand (wave 6), its carpet (11), its eye (16); then it tests you (17)
+            if (chapter == 11) extra += "\n\nThis time it was not the hand. A long red carpet unrolled under the shop like a tongue and carried everything, chairs and all, to this house.\n\nLATCH: 'It is still the Keeper. All of it is.'";
+            if (chapter == 16) extra += "\n\nThe road gave way to an eye: a keyhole as tall as the shop, which looked at you once and let you through. On this side the Keeper's voice is very close.\n\nTHE KEEPER: 'Before the end I will ask to see what you carry.'";
             if (chapter == KeeperReturnShop + 1 && state.OutsideStage == OutsideStageStatus.Completed)
-                extra += "\n\nThe Keeper did not kneel this time. When it was over it opened its hand, and what was in it had every colour.";
+                extra += "\n\nIt tested you the way it used to stand travellers on their feet: hard, and never quite to hurt. Its hand, its carpet, its eye. When it was done it knelt, and opened its hand, and what was in it had every colour.";
             return extra;
         }
 
@@ -167,11 +170,11 @@ namespace ArcaneBrigade
                 "Hob drops a cup. It is the first thing Hob has ever dropped; the shopkeeper says so, quietly, as they sweep it up.\n\nYou ask about the chair.\n\nTHE SHOPKEEPER: 'Some furniture comes with the building.'\n\nWhen you look again, the chair is one step closer than it was."),
 
             Beat(4, true, "IT USED TO PULL PEOPLE UP", "A notice board on a distant gate.",
-                "Far down the road, past the last lit lantern, there is a gate in a stone arch. Something tall stands in front of it.\n\nTHE SHOPKEEPER: 'The Keeper. It used to pull people up. Travellers who sat down where they shouldn't. It would take them by the shoulders and stand them on their feet and point them home.' They wipe the same glass twice. 'Now it only keeps them in.'\n\nYou ask what changed.\n\n'Someone rewrote its orders.'\n\nThere are coins on the warm chair again. Nobody saw anyone come in."),
+                "Far down the road, past the last lit lantern, there is a gate in a stone arch. Something tall stands in front of it.\n\nTHE SHOPKEEPER: 'The Keeper. It used to pull people up. Travellers who sat down where they shouldn't. It would take them by the shoulders and stand them on their feet and point them home.' They wipe the same glass twice. 'Now it cannot even stand.'\n\nYou ask what changed.\n\n'Someone came to collect it.' The shopkeeper does not say who. They glance at the warm chair.\n\nThere are coins on the warm chair again. Nobody saw anyone come in."),
 
             Beat(5, true, "THE KEEPER KNEELS", "OPEN, written over as CLOSED.",
-                "The notice on the gate reads HOLD THE CROSSING OPEN UNTIL EVERY TRAVELLER HAS CHOSEN. Someone has written CLOSED over OPEN in brown receipt ink.\n\nThe Keeper fought you the way a parent catches a child who runs into the road: hard, and never quite to hurt. When it falls, it kneels instead of breaking.\n\nTHE KEEPER: 'Last time, you did not get this far.'\n\nAnother lantern goes dark behind you. You can no longer remember the colour of their raincoat.",
-                "One of the Keeper's guards follows you back to the shop. It is a small hooded thing called Latch, and it does not explain itself. It simply takes the place on your left and stays there, facing the warm chair.\n\nWhen you step outside, the shop is no longer where it was. The bell rings above a different threshold, at the edge of a railway platform."),
+                "The notice on the gate reads HOLD THE CROSSING OPEN UNTIL EVERY TRAVELLER HAS CHOSEN. Someone has written CLOSED over OPEN in brown receipt ink.\n\nThe one who wrote it is still there: the Coin Widow, who collects for the Last Customer. She is counting the Keeper out of its own gate like a debt, and its great hands are chained to the arch with receipts.\n\nWhen she falls, the receipts go slack. The Keeper does not stand. It kneels, slowly, the way a gate settles on its hinges, and turns its open hand toward you.\n\nTHE KEEPER: 'Last time, you did not get this far.'\n\nAnother lantern goes dark behind you. You can no longer remember the colour of their raincoat.",
+                "One of the Keeper's guards follows you back to the shop. It is a small hooded thing called Latch, and it does not explain itself. It simply takes the place on your left and stays there, facing the warm chair.\n\nTHE KEEPER: 'I cannot walk the road with you. But I can carry you across it.'\n\nWhen you step outside, an enormous hand closes gently around the whole shop. When it opens again, the bell rings above a different threshold, at the edge of a railway platform."),
 
             Beat(6, true, "THE LAST PLATFORM", "Everyone on the platform sits in a chair of their own.",
                 "The platform has no end. Along it, in their own mismatched chairs, sit the travellers who came before you: a dining chair, a rocking chair, a stool, a bench seat with a suitcase beside it. Their coats are grey with dust. They face the empty rails.\n\nNobody moves. Nobody is asleep.\n\nA courier made of a folded envelope walks among them, leaving a letter on each lap. None of the letters is ever opened. When it sees that you are still standing, it follows you.",

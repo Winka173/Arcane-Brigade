@@ -221,6 +221,29 @@ GIỮ: đạn giấc mơ, yo-yo, kim, các bộ impact Cut/Slam/Pierce/Orb, bụ
 
 | `Form_TeaSpill.png` | VẼ LẠI ô "Porcelain" của `Art/MechanicEffects/Forms_v1.png`, vì chủ dự án thấy nó như bát đĩa xanh vỡ mỗi khi quái chết. Vẽ thành: a warm amber splash of spilt tea seen from above, a soft round stain with a few droplets and two thin curls of steam; cream highlights; at most two tiny cream china chips. No blue-and-white crockery, no plates or bowls. Vùng trong suốt ở giữa để đọc như vùng ảnh hưởng tròn. |
 
+## Ưu tiên 3 — THE KEEPER, WHOLE và mảnh lăng kính (18/10/2026) — MỚI
+
+Concept: bàn tay, tấm thảm-lưỡi và con mắt-lỗ khóa chở shop qua các vùng (wave 6/11/16) là **ba bộ phận của một sinh vật khổng lồ: Keeper**. Ở shop 17 nó hiện nguyên hình để **thử thách** người chơi trước khi tặng quà cầu vồng (không bị tha hóa, không dán hóa đơn: nghiêm nhưng hiền, như cổng đá biết nói). Đang tạm dùng 16 khung `Art/K24/OutsideStage_v1.png`. Giao vào `Assets/ArcaneBrigade/Resources/MienCho/ActOne/`, nền trong suốt, cùng style painted với các boss Act I.
+
+| File | Subject | Đã nối vào code |
+| --- | --- | --- |
+| `Keeper_Silhouette.png` | Thân Keeper khổng lồ nhìn từ dưới lên, chỉ phần vai, đầu và hai cánh tay mờ trong bóng tối; rộng ngang, 2048×1024, sẽ được tô tối 60% và trồi lên mép trên màn hình khi một bộ phận đang chở shop. | Có (`StageTransfer`) |
+| `Pickup_PrismShard.png` | Một mảnh lăng kính nhỏ bảy màu, lơ lửng, có tia sáng cầu vồng nhẹ; 512×512, nhìn từ trên xuống 3/4 như đồng xu. | Có (vật phẩm nhặt + HUD + thẻ Bedside) |
+| `Keeper_Whole_Body.png` | Thân Keeper nguyên hình khi ra trận ở shop 17: tượng cổng đá cổ khổng lồ, có vòm và tấm biển OPEN, quỳ một gối; hai tay, thảm và mắt tách rời để vẽ riêng. | Chưa (cần nối khi có) |
+| `Keeper_Hand_Intact.png` / `Keeper_Hand_Broken.png` | The Carrying Hand: bàn tay sứ/đá khổng lồ; bản vỡ có vết nứt vàng kintsugi, buông xuôi. | Chưa |
+| `Keeper_Carpet_Intact.png` / `Keeper_Carpet_Broken.png` | The Living Carpet: tấm thảm đỏ dài như lưỡi, hoa văn tiệm cũ; bản vỡ cuộn lại, rách mép. | Chưa |
+| `Keeper_Eye_Open.png` / `Keeper_Eye_Closed.png` | The Keyhole Eye: con mắt trong ổ khóa đồng; bản vỡ nhắm lại, ổ khóa mở. | Chưa |
+| `Keeper_Kneel.png` | Keeper quỳ hẳn xuống, hai tay mở về phía người chơi (khoảnh khắc 7 giây khi ba bộ phận đã vỡ), ánh cầu vồng trong lòng bàn tay. | Chưa |
+| `Boss_CoinWidow_Gate.png` (tùy chọn) | Coin Widow (boss wave 5) đứng trước cổng, tay cầm sổ cái, xích hóa đơn quấn vòm cổng; dùng cho trang journal 5. | Chưa |
+
+## Ưu tiên 4 — hiệu ứng độ hiếm mượt hơn (18/10/2026) — MỚI
+
+Chủ dự án thích hiệu ứng độ hiếm hiện tại và muốn **nhiều khung hơn cho mượt**. Hiện là `Art/ShopPresentation/RarityBloom_v1.png`: 4 hàng × 4 khung. Code đã sẵn sàng nhận bản 12 khung (tự dùng khi file có mặt, chu kỳ giữ nguyên 1.65 s nên chỉ mượt hơn, không nhanh hơn).
+
+| File | Yêu cầu |
+| --- | --- |
+| `Art/ShopPresentation/RarityBloom_v2.png` | **4 hàng × 12 cột**, mỗi ô 384×256, nền trong suốt, cùng style và màu với v1: hàng 1 Uncommon xanh băng, hàng 2 Rare tím, hàng 3 Mythic vàng, hàng 4 Rainbow ngũ sắc. Mỗi hàng là **một vòng lặp liền mạch 12 khung**: hai cánh lửa ánh sáng mọc lên từ đáy, dày dần, đỉnh ở khung 6–7 với vài tia lấp lánh bay lên, rồi lắng lại; khung 12 phải nối mượt về khung 1. Giữ phần giữa ô trống (món hàng đứng ở đó), chân hiệu ứng ở mép dưới như v1. Khung liền kề chỉ khác nhau một chút (chuyển động nhỏ, không nhảy). |
+
 Ghi chú gameplay: Lantern Flare = nhặt vào thì đốt sạch quái nhỏ trên màn hình; chuông = mọi đồng xu trong sảnh chạy về người chơi.
 
 ---

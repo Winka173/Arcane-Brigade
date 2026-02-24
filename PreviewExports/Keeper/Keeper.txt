@@ -1,0 +1,7 @@
+wave 5 boss: CoinWidow / THE COIN WIDOW
+transfer: CarpetTongue
+looming body: OutsideStage_00 bounds Center: (0.55, 3.87, 0.00), Extents: (7.31, 5.93, 0.53) colour RGBA(0.320, 0.260, 0.420, 0.550) order 820
+prism gift: Reward RainbowHeart,RainbowBell,RainbowCrown
+challenge offered: True accepted: True
+keeper: THE KEEPER, WHOLE hp 533097/533652 guard 0.20
+kneeling: guard 1.60

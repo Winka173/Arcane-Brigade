@@ -11,7 +11,8 @@ namespace ArcaneBrigade
         public int BossSwarmBudget;   // a light swarm that keeps coming while a boss stands (and through the whole final duel)
         public bool FinalDuel;        // the Last Customer: walls of the waiting come at two thresholds of its health
         public int MinionCoin = 1;    // every swarm body drops a small coin
-        public bool StoryKeeper;      // the Act I wave-5 Keeper kneels: it never calls guards (its night's swarm is there) and strikes a beat slower
+        public bool WholeKeeper;      // THE KEEPER, WHOLE (shop 17): its body shrugs off damage while its hand, carpet and eye hold
+        public int PrismDrops;        // prism shards an elite may still drop this night (the run allows two)
     }
 
     public static class SwarmPacingRules
@@ -40,7 +41,9 @@ namespace ArcaneBrigade
         private Vector2 surgeDirection;
         private int surgeSide = -1, surgesFired;
         private float flareAt, bellAt;
-        private int flaresDropped, bellsDropped;
+        private int flaresDropped, bellsDropped, prismsDropped;
+        public int PrismShards { get; private set; }   // picked up this night; the session banks them
+        public float LowestChampionShare { get; private set; } = 1; // the lowest the traveller's health fell, as a share of its maximum
         private float lastBossFraction = 1;
         public float SurgeAt => surgeAt;
         public Vector2 SurgeDirection => surgeDirection;
@@ -281,6 +284,9 @@ namespace ArcaneBrigade
         private void PacingLoot(UnitState target)
         {
             if (!catalog.ExtendedLoot || target.Faction != Faction.Enemy || target.Definition.IsBoss) return;
+            // a very rare prism shard from an elite (an affixed enemy): at most one a night and two a run
+            if (prismsDropped < Mathf.Min(1, catalog.PrismDrops) && target.Variant != null && target.Variant.Affix != EnemyAffix.None && !target.SwarmMinion && combatRandom.NextDouble() < 0.04)
+            { DropLoot(LootKind.Prism, target.Position, 1); prismsDropped++; return; }
             int flares = catalog.RunWave >= 12 ? 2 : 1, bells = catalog.RunWave >= 10 ? 2 : 1;
             if (flaresDropped < flares && Elapsed >= flareAt && !target.SwarmMinion)
             {
@@ -359,6 +365,14 @@ namespace ArcaneBrigade
         // ---- capture and check fixtures (diagnostics saves only) ---------------------------------------------------------
         private static void RequireFixture() { if (!RunPaths.Diagnostic) throw new System.InvalidOperationException("Pacing fixtures need the diagnostics save"); }
         public void PacingFixtureSurge(float lead) { RequireFixture(); surgeAt = -1; nextSurge = Elapsed + lead; }
+        /// <summary>Capture fixture: breaks the whole Keeper's hand, carpet and eye at once, so it kneels.</summary>
+        public void KeeperFixtureBreakAll()
+        {
+            RequireFixture(); if (Boss == null || !catalog.WholeKeeper) return;
+            Boss.LeftPartBrokenAt = Boss.RightPartBrokenAt = Boss.CenterPartBrokenAt = Elapsed;
+            Boss.KneelUntil = Elapsed + KeeperKneelSeconds; Boss.TelegraphUntil = 0; Boss.NextBossPattern = Boss.KneelUntil + 0.6f;
+        }
+        public void PrismFixtureDrop(Vector2 position) { RequireFixture(); DropLoot(LootKind.Prism, position, 1); }
         public UnitState PacingFixtureRole(SwarmRole role, Vector2 position, float health)
         {
             RequireFixture();

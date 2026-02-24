@@ -84,6 +84,9 @@ namespace ArcaneBrigade
         public OutsideStageStatus OutsideStage;
         public List<string> OutsideRewards = new List<string>();
         public int OutsideTransfers;
+        public int PrismShards;             // three make a rainbow gift at the next shop
+        public int PrismShardDrops;         // shards elites have dropped this run (two at most)
+        public int OutsideBeforeGift = -1;  // the Keeper's status to return to once a prism gift is taken (-1: the gift is the Keeper's own)
         public int LastOutsideTransferWave;
         public int RelicWave;
         public int RelicDiscountWave;
@@ -418,6 +421,7 @@ namespace ArcaneBrigade
             CombatCatalog.EnemyBudget = Mathf.Min(600, CombatCatalog.EnemyBudget);
             CombatCatalog.BossSwarmBudget = bossWave ? Mathf.CeilToInt(CombatCatalog.EnemyBudget * 0.22f) : 0;
             CombatCatalog.FinalDuel = false;
+            CombatCatalog.PrismDrops = State.Endless ? 0 : Mathf.Max(0, 2 - State.PrismShardDrops);
             PrepareOutsideStage();
             PrepareSecretCombat();
             PrepareSitCloser();
@@ -476,20 +480,13 @@ namespace ArcaneBrigade
         private UnitDefinition StoryBoss(UnitDefinition reference, float scaling)
         {
             if (reference == null) return null;
-            if (State.Wave == 5 && OutsideStageAssets.Current != null && OutsideStageAssets.Current.Boss != null)
-            {
-                UnitDefinition keeper = BuildEnemy(OutsideStageAssets.Current.Boss, scaling);
-                keeper.Health = reference.Health;
-                keeper.ContactDamage = reference.ContactDamage;
-                keeper.Weapon.Damage = reference.Weapon.Damage;
-                keeper.BodyHeight = OutsideStageAssets.Current.Boss.BodyHeight * 2.1f;
-                keeper.DisplayName = ActOneCanon.BossName(5);
-                CombatCatalog.StoryKeeper = true;
-                return keeper;
-            }
-            string stand = State.Wave == 10 ? "SuitcaseLeviathan" : State.Wave == 15 ? "UndeliveredKing" : null;
+            // wave 5: the Coin Widow, who collects for the Last Customer and has chained the Keeper to its own gate. The Keeper
+            // is not fought on the road; it carries the shop (hand, carpet, eye) and tests the traveller once, at shop 17.
+            string stand = State.Wave == 5 ? "CoinWidow" : State.Wave == 10 ? "SuitcaseLeviathan" : State.Wave == 15 ? "UndeliveredKing" : null;
             UnitDefinition body = stand == null ? null : Array.Find(catalog.Bosses, boss => boss != null && boss.Id == stand);
             UnitDefinition story = body != null && body.Id != reference.Id ? BuildEnemy(body, scaling) : reference;
+            // the first boss night keeps the first boss's weight: the Coin Widow borrows its health and blows (as the Keeper did)
+            if (State.Wave == 5 && story != reference) { story.Health = reference.Health; story.ContactDamage = reference.ContactDamage; story.Weapon.Damage = reference.Weapon.Damage; }
             if (ActOneCanon.BossName(State.Wave) != null) story.DisplayName = ActOneCanon.BossName(State.Wave);
             return story;
         }
@@ -544,6 +541,9 @@ namespace ArcaneBrigade
             State.CombatSeconds += simulation.Elapsed;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
             State.Eggs = BoundedCounter((long)State.Eggs + simulation.Eggs + (simulation.BossDefeated ? 3 : 1));
+            State.PrismShards = Mathf.Min(99, State.PrismShards + simulation.PrismShards); State.PrismShardDrops = Mathf.Min(99, State.PrismShardDrops + simulation.PrismShards);
+            // a story boss (wave 10 or 15) beaten without the traveller ever falling below half health gives a shard
+            if (simulation.BossDefeated && !State.Endless && (State.Wave == 10 || State.Wave == 15) && simulation.LowestChampionShare >= 0.5f) State.PrismShards = Mathf.Min(99, State.PrismShards + 1);
             if (simulation.BossDefeated)
             {
                 State.BossKills = BoundedCounter((long)State.BossKills + 1);
@@ -569,6 +569,7 @@ namespace ArcaneBrigade
             State.NewSpeciesRecruitsThisWave = 0;
             State.SpecialNewSpeciesRecruitsThisWave = 0;
             RollShop(true);
+            OfferPrismGift();
         }
 
         public void ContinueWave()

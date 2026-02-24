@@ -19,6 +19,7 @@ namespace ArcaneBrigade
         private bool outsideHand;
         private readonly SpriteRenderer[] trail = new SpriteRenderer[6];
         private Sprite[] dust;
+        private SpriteRenderer giant; // the Keeper itself, looming behind whichever part of it is carrying the shop
         public StageCarrier Kind { get; private set; }
         public bool Active => active;
         public float ElapsedSeconds => age;
@@ -44,7 +45,7 @@ namespace ArcaneBrigade
             passengers = FindObjectsByType<UnitVisual>();
             CarrierArtwork artwork = CarrierArtwork.Current;
             if (artwork != null && artwork.For(Kind)?.Length == 3) { frames = artwork.For(Kind); outsideHand = true; }
-            courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 500;
+            courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 830; // in front of the Keeper's looming body (820)
             grounded = gameObject.AddComponent<GroundShadow>();
             PaintedAnimationLibrary painted = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
             dust = painted != null ? painted.Dust : null;
@@ -56,6 +57,13 @@ namespace ArcaneBrigade
             }
             CheckpointAudio.PlayInterfaceId("shop.descend");
             CheckpointAudio.PlayInterfaceId("boss.telegraph");
+            // the hand, the carpet and the eye are one creature: its body shows for a moment above the room, dark and enormous
+            Sprite body = Resources.Load<Sprite>("MienCho/ActOne/Keeper_Silhouette") ?? (outside != null && outside.BossFrames.Length > 0 ? outside.BossFrames[0] : null);
+            if (body != null && owner.Session.State.OutsideStage != OutsideStageStatus.Fighting)
+            {
+                var looming = new GameObject("TheKeeperLooms"); looming.transform.SetParent(owner.transform, false);
+                giant = looming.AddComponent<SpriteRenderer>(); giant.sprite = body; giant.sharedMaterial = new Material(Shader.Find("Sprites/Default")) { hideFlags = HideFlags.DontSave }; giant.sortingOrder = 820; giant.color = Color.clear; // above the night fog (800) so it reads as a shape, under every body
+            }
         }
 
         public static Vector2 PassengerPosition(Vector2 start, float seconds)
@@ -121,7 +129,21 @@ namespace ArcaneBrigade
                 grounded.Configure(courier.sprite);
                 grounded.Display(courier.sprite, (Vector2)transform.position - Vector2.up * (reduced ? 0 : 1.1f), width, reduced ? 0 : 1.1f, 0.22f * courier.color.a);
             }
+            if (giant != null && Camera.main != null)
+            {
+                Camera view = Camera.main; float top = view.transform.position.y + view.orthographicSize, wide = view.orthographicSize * view.aspect * 2.1f;
+                float share = Mathf.Clamp01(age / 0.5f) * Mathf.Clamp01((2.5f - age) / 0.5f);
+                // measured by its painted ink, not the sprite's transparent margins: a quarter of it hangs into the room at
+                // first, rising to two fifths as it carries the shop
+                Rect ink = SpriteInkMetrics.BoundsOf(giant.sprite);
+                float scale = wide / Mathf.Max(0.01f, ink.width), hang = reduced ? 0.33f : Mathf.Lerp(0.25f, 0.4f, Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 1.6f)));
+                giant.transform.localScale = Vector3.one * scale;
+                float bottom = top - ink.height * scale * hang;
+                giant.transform.position = new Vector3(view.transform.position.x - ink.center.x * scale, bottom - ink.yMin * scale, 0);
+                giant.color = new Color(0.32f, 0.26f, 0.42f, 0.55f * share); // night violet: dark enough to be a shape behind the room, light enough to read on its floor
+            }
             if (age < (reduced ? 0.6f : 2.6f)) return;
+            if (giant != null) Destroy(giant.gameObject);
             active = false;
             Vector2 destination = new Vector2(0, -0.2f);
             foreach (UnitState unit in owner.Simulation.Units)
@@ -158,6 +180,7 @@ namespace ArcaneBrigade
         {
             RestorePassengers();
             foreach (SpriteRenderer cloud in trail) if (cloud != null) Destroy(cloud.gameObject);
+            if (giant != null) Destroy(giant.gameObject);
         }
     }
 }

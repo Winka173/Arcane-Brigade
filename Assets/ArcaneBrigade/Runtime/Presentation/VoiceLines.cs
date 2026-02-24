@@ -19,7 +19,7 @@ namespace ArcaneBrigade
     public static class VoiceLines
     {
         public const string Shopkeeper = "Shopkeeper", DreamMother = "DreamMother", Keeper = "Keeper", ChairPorter = "ChairPorter",
-            Door = "Door", LastCustomer = "LastCustomer", Bedside = "Bedside", Hob = "Hob", Latch = "Latch", Postscript = "Postscript",
+            Door = "Door", LastCustomer = "LastCustomer", Bedside = "Bedside", CoinWidow = "CoinWidow", Hob = "Hob", Latch = "Latch", Postscript = "Postscript",
             Tally = "Tally", Companion = "Companion";
         private static readonly Dictionary<string, VoiceLine[]> banks = new Dictionary<string, VoiceLine[]>(StringComparer.Ordinal);
         private static readonly List<VoiceLine> all = new List<VoiceLine>();
@@ -168,35 +168,64 @@ namespace ArcaneBrigade
                 "Dream well, wanderer.|blessing",
                 "The eggs will remember you.|fond");
 
-            // THE KEEPER (boss, wave 5): vast, old, gentle-stern. Built to pull travellers up; its order was overwritten to keep them in.
+            // THE COIN WIDOW (boss, wave 5): collects for the Last Customer; counts the Keeper out of its own gate like a debt.
+            B(CoinWidow, "enter",
+                "Payment is due, traveller.|silken, counting coins",
+                "The gate is closed. I closed it.|polite, proprietary",
+                "Everything here is spoken for.|a ledger voice",
+                "Mind the receipts.|amused warning");
+            B(CoinWidow, "attack",
+                "Pay.|clipped",
+                "Every penny.|greedy relish",
+                "Interest accrues.|cold, smiling",
+                "You owe for the road.|matter-of-fact",
+                "Count them. Count them!|shrill, eager",
+                "Nothing is free.|the house rule");
+            B(CoinWidow, "hurt",
+                "That will cost you.|offended",
+                "My ledger!|startled",
+                "Careless spending.|tutting");
+            B(CoinWidow, "phase",
+                "He paid for this gate.|losing composure",
+                "Stay where you are owed.|the Customer's order, recited",
+                "The chains are paid in full.|clutching");
+            B(CoinWidow, "defeat",
+                "The account... is closed.|a last sigh",
+                "He will collect from you.|fading threat",
+                "Keep your change.|bitter, letting go");
+            B(CoinWidow, "story",
+                "Everyone here is collateral.|explaining, kindly cruel");
+
+            // THE KEEPER, WHOLE (optional boss, shop 17): vast, old, gentle-stern. It carried the shop with its hand, its
+            // carpet and its eye; before it gives the colours it tests whether the traveller can carry them.
             B(Keeper, "enter",
-                "The crossing is closed.|vast, slow, final",
-                "Turn back, traveller.|stern, not cruel",
-                "You again. I remember.|ancient recognition",
-                "None pass. Not tonight.|a gate speaking");
+                "Let me see what you carry.|vast, slow, kind",
+                "Stand. Show me.|a gate speaking",
+                "You came back for the colours.|ancient recognition",
+                "One more test. Then I give.|patient");
             B(Keeper, "attack",
-                "Stand still.|command",
-                "Back. Go back.|pushing, heavy",
-                "I hold the gate.|duty",
-                "Forgive me.|regret under the effort",
-                "Do not make me.|pained warning",
-                "Stay where you are.|the overwritten order, recited");
+                "Hold on to them.|command, protective",
+                "Stand up straight.|pushing, heavy",
+                "Again. Hold.|steady",
+                "Do not let go.|urgent",
+                "Can you carry this?|testing",
+                "Feet under you.|the old order, true again");
             B(Keeper, "hurt",
                 "You have grown strong.|surprised respect",
                 "Hm. Again.|stoic",
-                "Well struck.|approval despite itself",
+                "Well struck.|approval",
                 "Not like last time.|remembering the last loop");
             B(Keeper, "phase",
-                "The sign says closed.|confused, reciting",
-                "I was made to lift you.|realisation",
-                "My hands remember otherwise.|conflicted, slower");
+                "My hand remembers you.|the hand breaks",
+                "The road was never mine to keep.|slower",
+                "Look. Through the keyhole.|the eye opens");
             B(Keeper, "defeat",
-                "Last time, you did not get this far.|kneeling, almost proud",
-                "Go. Before it closes.|urgent kindness",
+                "Enough. You can carry it.|kneeling, proud",
+                "Take them. All the colours.|giving",
                 "Pull them up. All of them.|a last order, its true one");
             B(Keeper, "story",
-                "It used to say open.|quiet grief",
-                "Has every traveller chosen?|the original order, half remembered");
+                "I cannot walk the road with you.|quiet",
+                "But I can carry you across it.|warm, enormous");
 
             // THE CHAIR PORTER (boss, wave 10): weary, creaking, carries a tower of chairs and sitters to the Customer as collateral.
             B(ChairPorter, "enter",

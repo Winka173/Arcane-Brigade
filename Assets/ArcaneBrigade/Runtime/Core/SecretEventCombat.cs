@@ -88,6 +88,7 @@ namespace ArcaneBrigade
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return true; }
             Secret.Stage = SecretEventStage.Reward; State.Phase = SessionPhase.Shop;
+            State.PrismShards = Mathf.Min(99, State.PrismShards + 1); // a secret fight won leaves a prism shard
             Secret.Result = "THE PERFORMANCE IS OVER\nClaim your chosen gift. Your normal shop, stock and wave are waiting unchanged. Health spent in this encounter stays spent.";
             RecordSecret("Won the optional encounter."); return true;
         }

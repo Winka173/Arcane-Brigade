@@ -13,6 +13,9 @@ namespace ArcaneBrigade
             if (snapshot == null) throw new InvalidOperationException("Missing run");
             if (!Enum.IsDefined(typeof(OutsideStageStatus), snapshot.OutsideStage) || snapshot.OutsideTransfers < 0 || snapshot.OutsideTransfers > 1000 || snapshot.LastOutsideTransferWave < 0 || snapshot.LastOutsideTransferWave > snapshot.Wave) throw new InvalidOperationException("Invalid outside-stage progress");
             if (snapshot.OutsideStage == OutsideStageStatus.Fighting && snapshot.Phase != SessionPhase.Combat && snapshot.Phase != SessionPhase.Defeat) throw new InvalidOperationException("Invalid challenge phase");
+            if (snapshot.PrismShards < 0 || snapshot.PrismShards > 99 || snapshot.PrismShardDrops < 0 || snapshot.PrismShardDrops > 99 || snapshot.OutsideBeforeGift < -1 || snapshot.OutsideBeforeGift > (int)OutsideStageStatus.Completed
+                || snapshot.OutsideBeforeGift >= 0 && snapshot.OutsideStage != OutsideStageStatus.Reward || snapshot.OutsideBeforeGift == (int)OutsideStageStatus.Reward || snapshot.OutsideBeforeGift == (int)OutsideStageStatus.Fighting)
+                throw new InvalidOperationException("Invalid prism shards");
             if (snapshot.OutsideStage != OutsideStageStatus.Reward) return;
             if (snapshot.Phase != SessionPhase.Shop || snapshot.OutsideRewards == null || snapshot.OutsideRewards.Count != 3 || new HashSet<string>(snapshot.OutsideRewards).Count != 3) throw new InvalidOperationException("Invalid prismatic choices");
             foreach (string id in snapshot.OutsideRewards)
@@ -25,6 +28,8 @@ namespace ArcaneBrigade
         public bool OutsideChallengeAvailable => !SecretRoomOpen && State.Phase == SessionPhase.Shop && State.OutsideStage == OutsideStageStatus.Unseen && (State.Endless || State.Wave > ActOneCanon.Waves ? State.OutsideTransfers >= 3 : State.Wave == ActOneCanon.KeeperReturnShop) && OutsideStageAssets.Current != null;
         /// <summary>The Keeper's hand in Act I (shop 17) rather than the endless rematch.</summary>
         private bool ActOneKeeperReturn => !State.Endless && State.Wave <= ActOneCanon.Waves;
+        /// <summary>The whole Keeper's health as a share of this run's wave-15 story boss (with its x3.5 bulk).</summary>
+        public const float KeeperHealthShare = 1.5f;
         public void RegisterOutsideTransfer()
         {
             if (State.LastOutsideTransferWave >= State.Wave) return;
@@ -51,11 +56,14 @@ namespace ArcaneBrigade
             CombatCatalog.Boss = BuildEnemy(assets.Boss, 1 + Mathf.Max(0, State.Wave - 13) * 0.06f);
             if (ActOneKeeperReturn)
             {
+                // THE KEEPER, WHOLE: it tests the traveller before it gives. Its body takes a fifth of each blow while its hand,
+                // carpet and eye hold (KeeperGuard); break all three and it kneels.
                 // Act I (shop 17): as strong as this run's wave-15 story boss and a little more, so it sits in the run's own curve
                 float scaling = (1f + 14 * 0.10f) * JourneyBalance.EnemyHealth(State.Difficulty, 15);
                 int stage = 2, index = catalog.Bosses.Length == 10 ? stage % 5 + (((State.Seed ^ stage) & 1) == 0 ? 0 : 5) : stage % catalog.Bosses.Length;
                 UnitDefinition door = BuildEnemy(catalog.Bosses[index], scaling);
-                CombatCatalog.Boss.Health = door.Health * WaveCadence.StoryBossBulk(15) * 3f; // it stands still and fights alone with its guards, so the whole brigade is on it (bots: 1.2x fell in 17 s)
+                CombatCatalog.Boss.Health = door.Health * WaveCadence.StoryBossBulk(15) * KeeperHealthShare; // see PreviewExports/Pacing/Keeper17.csv
+                CombatCatalog.Boss.DisplayName = "THE KEEPER, WHOLE"; CombatCatalog.WholeKeeper = true;
                 CombatCatalog.Boss.Weapon.Damage = door.Weapon.Damage * 1.6f; CombatCatalog.Boss.ContactDamage = door.ContactDamage * 1.6f;
             }
             else
@@ -66,7 +74,7 @@ namespace ArcaneBrigade
             CombatCatalog.Boss.BodyHeight = assets.Boss.BodyHeight * 2.45f;
             CombatCatalog.Boss.Radius*=1.4f;
             CombatCatalog.Boss.KnockbackResistance = 1;
-            CombatCatalog.EnemyBudget = 0; CombatCatalog.BossSwarmBudget = 0; CombatCatalog.StoryKeeper = false; // its guards are its swarm
+            CombatCatalog.EnemyBudget = 0; CombatCatalog.BossSwarmBudget = 0; // its guards are its swarm
             CombatCatalog.ArenaSize = new Vector2(22, 12);
             CombatCatalog.EnableArenaToys = CombatCatalog.EnableSpectacles = CombatCatalog.EnableBossArenaPhase = false;
             CombatCatalog.WaveDuration = 0;
@@ -81,23 +89,54 @@ namespace ArcaneBrigade
             State.LastDamageAmount = simulation.LastDamageAmount;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
             if (simulation.Phase == RunPhase.Defeat) { State.Phase = SessionPhase.Defeat; return true; }
+            if (simulation.KeeperWithdrew && !simulation.BossDefeated)
+            {
+                // 'Not yet.' The Keeper sets the traveller down: no gift, the run goes on (the hand does not come back)
+                State.OutsideStage = OutsideStageStatus.Declined; State.Phase = SessionPhase.Shop; State.Health = MaximumHealth();
+                Notice = "THE KEEPER: 'Not yet.' It sets you down gently. No gift this time."; return true;
+            }
             if (!simulation.BossDefeated || simulation.Boss == null || simulation.Boss.Definition.Id != "OutsideStageKeeper") throw new InvalidOperationException("Outside-stage victory requires its boss");
             State.Health = MaximumHealth();
-            State.OutsideStage = OutsideStageStatus.Reward; State.Phase = SessionPhase.Shop;
+            State.OutsideStage = OutsideStageStatus.Reward; State.Phase = SessionPhase.Shop; State.OutsideBeforeGift = -1;
+            State.OutsideRewards = RainbowChoices(0) ?? new List<string> { "RainbowCrown", "RainbowHeart", "RainbowThread" };
+            return true;
+        }
+        /// <summary>Three rainbow gifts not already owned (an ally among them for a hero who keeps a brigade), or null when fewer
+        /// than three are left. Deterministic per run and per gift.</summary>
+        private List<string> RainbowChoices(int salt)
+        {
+            bool brigade = catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw;
             var choices = new List<string> { "RainbowCrown", "RainbowHeart", "RainbowThread", "RainbowPrism" };
-            if (catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw)
-            {
-                choices.Insert(0, "RainbowTailor"); choices.Insert(1, "RainbowBell");
-            }
-            State.OutsideRewards = new List<string>();
-            uint seed = unchecked((uint)State.Seed ^ 0x728a53b1);
-            while (State.OutsideRewards.Count < 3)
+            if (brigade) { choices.Insert(0, "RainbowTailor"); choices.Insert(1, "RainbowBell"); }
+            choices.RemoveAll(id => State.Items.Exists(stack => stack.Id == id) || State.Roster.Exists(entry => entry.UnitId == id) || catalog.Item(id) == null && catalog.Unit(id) == null);
+            if (choices.Count < 3) return null;
+            var picked = new List<string>();
+            uint seed = unchecked((uint)State.Seed ^ 0x728a53b1 ^ (uint)salt * 0x9e3779b9u);
+            while (picked.Count < 3)
             {
                 seed = unchecked(seed * 1664525 + 1013904223);
                 int index = (int)(seed % (uint)choices.Count);
-                State.OutsideRewards.Add(choices[index]); choices.RemoveAt(index);
+                picked.Add(choices[index]); choices.RemoveAt(index);
             }
-            if (catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw && !State.OutsideRewards.Exists(id => id == "RainbowTailor" || id == "RainbowBell")) State.OutsideRewards[2] = "RainbowTailor";
+            if (brigade && !picked.Exists(id => id == "RainbowTailor" || id == "RainbowBell"))
+            {
+                string ally = State.Roster.Exists(entry => entry.UnitId == "RainbowTailor") ? "RainbowBell" : "RainbowTailor";
+                if (!State.Roster.Exists(entry => entry.UnitId == ally)) picked[2] = ally;
+            }
+            return picked;
+        }
+        /// <summary>Three prism shards become a rainbow gift: the shop opens on three choices (the same table as the Keeper's).
+        /// The Keeper's own status is kept and comes back once the gift is taken.</summary>
+        public bool OfferPrismGift(bool free = false)
+        {
+            if (State.Phase != SessionPhase.Shop || SecretRoomOpen || State.OutsideStage == OutsideStageStatus.Reward || State.OutsideStage == OutsideStageStatus.Fighting) return false;
+            if (!free && State.PrismShards < 3) return false;
+            List<string> choices = RainbowChoices(State.Wave * 7 + State.PrismShardDrops + (free ? 1000 : 0));
+            if (choices == null) return false;
+            if (!free) State.PrismShards -= 3;
+            State.OutsideBeforeGift = (int)State.OutsideStage;
+            State.OutsideStage = OutsideStageStatus.Reward; State.OutsideRewards = choices;
+            Notice = "THE COLOURS: choose one rainbow gift.";
             return true;
         }
         public bool ClaimOutsideStageReward(int index)
@@ -119,7 +158,8 @@ namespace ArcaneBrigade
                 var entry = new RosterEntry { UnitId = id, WeaponId = ally.Weapon.Id, Tier = 1 };
                 State.Roster.Add(entry); RememberVariant(entry); OctoberPurchase(ally);
             }
-            State.OutsideStage = OutsideStageStatus.Completed;
+            State.OutsideStage = State.OutsideBeforeGift >= 0 ? (OutsideStageStatus)State.OutsideBeforeGift : OutsideStageStatus.Completed; // a prism gift leaves the Keeper as it was
+            State.OutsideBeforeGift = -1;
             RecountBonds();
             State.Health = Mathf.Min(MaximumHealth(), State.Health + Mathf.Max(0, MaximumHealth() - previousMaximum));
             State.OutsideRewards.Clear();

@@ -110,6 +110,7 @@ namespace ArcaneBrigade
         public float RightPartBrokenAt = -100;
         public float CenterPartDamage;
         public float CenterPartBrokenAt = -100;
+        public float KneelUntil = -1;   // THE KEEPER, WHOLE: all three parts broken, it kneels and takes the brigade's full weight
         public int ActiveBossOrgan = -1;
         public float BossOrganReleaseAt = -100;
         public float LastBossVacuumTime;
@@ -467,6 +468,8 @@ namespace ArcaneBrigade
                 }
                 ProcessSecretEchoes();
                 if (Phase == RunPhase.Combat && SecretVictoryReady()) Phase = RunPhase.Victory;
+                // the whole Keeper's test has an end: three minutes without falling and it sets the traveller down, gift unkept
+                if (Phase == RunPhase.Combat && catalog.WholeKeeper && Elapsed >= KeeperTestSeconds && Champion.Alive) { KeeperWithdrew = true; Phase = RunPhase.Victory; }
             }
             for (int index = units.Count - 1; index >= 0; index--)
                 if (!units[index].Alive && units[index].Faction != Faction.Champion) { unitLookup.Remove(units[index].Id); units.RemoveAt(index); }
@@ -958,7 +961,9 @@ namespace ArcaneBrigade
             if (target.Faction == Faction.Champion) { LastDamageSource = string.IsNullOrEmpty(sourceName) ? "Enemy damage" : sourceName; LastDamageAmount = damage; LastDamageKind = element + " / " + (weapon == null ? "Contact / arena" : weapon.Kind.ToString()); }
             DamageBossPart(target, damage, source, direction, cause);
             float overkill = damage - target.Health;
+            if (catalog.WholeKeeper && target.Definition.Id == "OutsideStageKeeper") damage *= KeeperGuard(target);
             target.Health = Mathf.Max(0f, target.Health - damage);
+            if (target == Champion && target.Definition.Health > 0) LowestChampionShare = Mathf.Min(LowestChampionShare, target.Health / target.Definition.Health);
             target.LastHit = Elapsed;
             target.HitDirection = direction;
             if (target.Health > 0 && target.Faction == Faction.Enemy && source != Faction.Enemy && weapon != null && direction.sqrMagnitude > 0.001f)
@@ -1064,6 +1069,7 @@ namespace ArcaneBrigade
                 pickups.RemoveAt(index);
                 if (pickup.Kind == LootKind.Flare) { LanternFlare(); if (Phase != RunPhase.Combat) return; }
                 else if (pickup.Kind == LootKind.Bell) RingBell();
+                else if (pickup.Kind == LootKind.Prism) PrismShards++;
             }
         }
 

@@ -70,7 +70,11 @@ namespace ArcaneBrigade.Editor
                 s.State.Wave = ActOneCanon.KeeperReturnShop; s.State.Phase = SessionPhase.Shop;
                 Check(s.AcceptOutsideStage(), "The Keeper can be challenged at shop 17");
                 CheckpointCatalog fight = s.PrepareCombat();
-                Check(fight.Boss != null && fight.Boss.Id == "OutsideStageKeeper" && fight.BossSwarmBudget == 0 && fight.EnemyBudget == 0 && !fight.StoryKeeper, "The Keeper's fight has its guards and no boss-night swarm");
+                Check(fight.Boss != null && fight.Boss.Id == "OutsideStageKeeper" && fight.Boss.DisplayName == "THE KEEPER, WHOLE" && fight.WholeKeeper && fight.BossSwarmBudget == 0 && fight.EnemyBudget == 0, "The Keeper's test at shop 17 is THE KEEPER, WHOLE: its guards, no boss-night swarm");
+                var keeper = new UnitState { Definition = fight.Boss };
+                Check(Mathf.Approximately(CombatSimulation.KeeperGuard(keeper, 0), 0.2f), "Its body takes a fifth of each blow while hand, carpet and eye hold");
+                keeper.LeftPartBrokenAt = keeper.RightPartBrokenAt = keeper.CenterPartBrokenAt = 1; keeper.KneelUntil = 8;
+                Check(CombatSimulation.KeeperGuard(keeper, 5) > 1.5f && Mathf.Approximately(CombatSimulation.KeeperGuard(keeper, 9), 1f), "All three broken: it kneels and takes more, then the full blow");
                 s.State.Phase = SessionPhase.Shop; s.State.OutsideStage = OutsideStageStatus.Completed;
                 Check(ActOneCanon.PageExtra(s.State, ActOneCanon.KeeperReturnShop + 1, 0).Contains("every colour"), "The next page remembers beating the Keeper");
                 (s.State.Secrets ??= new SecretEventProgress()).RoomNights.Add(8 * 16 + (int)SecretEventKind.ContrabandTrain);
@@ -80,7 +84,20 @@ namespace ArcaneBrigade.Editor
             {
                 s.Start("DrowsySeer", 5007); s.State.Wave = 5; s.State.Phase = SessionPhase.Combat;
                 CheckpointCatalog five = s.PrepareCombat();
-                Check(five.Boss != null && five.Boss.Id == "OutsideStageKeeper" && five.StoryKeeper && five.BossSwarmBudget > 0, "The wave-5 Keeper kneels (no guards) over its night's swarm");
+                Check(five.Boss != null && five.Boss.Id == "CoinWidow" && five.Boss.DisplayName == "THE COIN WIDOW" && !five.WholeKeeper && five.BossSwarmBudget > 0, "Wave 5 is the Coin Widow (the Keeper is not fought on the road)");
+            }
+            // prism shards: three make a rainbow gift; the Keeper's hand at shop 17 is still there after it
+            using (var s = new RunSession(c))
+            {
+                s.Start("DrowsySeer", 5008); s.State.Wave = ActOneCanon.KeeperReturnShop; s.State.Phase = SessionPhase.Shop; s.State.PrismShards = 3;
+                Check(s.OfferPrismGift() && s.State.OutsideStage == OutsideStageStatus.Reward && s.State.PrismShards == 0 && s.State.OutsideRewards.Count == 3 && s.State.OutsideRewards.Distinct().Count() == 3, "Three shards open three rainbow choices");
+                s.Validate(s.State);
+                Check(!s.OutsideChallengeAvailable && s.ClaimOutsideStageReward(0) && s.State.OutsideStage == OutsideStageStatus.Unseen && s.OutsideChallengeAvailable, "Taking the gift leaves the Keeper's hand where it was");
+                string first = s.State.Items.Select(i => i.Id).Concat(s.State.Roster.Select(r => r.UnitId)).First(id => id.StartsWith("Rainbow"));
+                s.State.PrismShards = 3; Check(s.OfferPrismGift() && !s.State.OutsideRewards.Contains(first), "A second gift never offers what you already own");
+                s.State.OutsideRewards.Clear(); s.State.OutsideStage = OutsideStageStatus.Unseen; s.State.OutsideBeforeGift = -1;
+                s.State.ActOne ??= new ActOneProgress(); s.State.ActOne.PendingRelight = 1;
+                Check(s.ColoursAvailable && s.ChooseColours() && s.State.OutsideStage == OutsideStageStatus.Reward && !s.RelightChoiceOpen, "After the Bedside the colours can be taken instead of a lantern");
             }
 
             // merging beside the story party

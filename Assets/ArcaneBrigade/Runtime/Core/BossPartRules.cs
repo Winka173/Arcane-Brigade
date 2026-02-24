@@ -110,8 +110,14 @@ namespace ArcaneBrigade
     {
         private void DamageBossPart(UnitState target, float damage, Faction source, Vector2 direction, CombatCause cause)
         {
-            if (!catalog.ExpandedContent || !target.Definition.IsBoss || source == Faction.Enemy || direction.sqrMagnitude < 0.001f) return;
-            int part = BossAnatomy.For(target.Definition) == null ? direction.x >= 0 ? 0 : 1 : BossPartRules.HitZone(direction);
+            bool whole = catalog.WholeKeeper && target.Definition.Id == "OutsideStageKeeper";
+            // the whole Keeper counts every blow toward a part, even one with no direction (homing parcels, fields, echoes):
+            // otherwise a brigade without side hits could never break it and its body would shrug them off for ever
+            if (!catalog.ExpandedContent || !target.Definition.IsBoss || source == Faction.Enemy || direction.sqrMagnitude < 0.001f && !whole) return;
+            int part = direction.sqrMagnitude < 0.001f ? 2 : BossAnatomy.For(target.Definition) == null ? direction.x >= 0 ? 0 : 1 : BossPartRules.HitZone(direction);
+            // the whole Keeper: a blow at a part already broken lands on one still holding (eye, then hand, then carpet)
+            if (whole && BossPartRules.Broken(target, part))
+                foreach (int other in new[] { 2, 0, 1 }) if (!BossPartRules.Broken(target, other)) { part = other; break; }
             if (BossPartRules.Broken(target, part)) return;
             if (part == 0) target.LeftPartDamage += damage;
             else if (part == 1) target.RightPartDamage += damage;
@@ -131,6 +137,26 @@ namespace ArcaneBrigade
             target.NextBossPattern = Mathf.Max(target.NextBossPattern, Elapsed + 0.9f);
             Vector2 outward = part == 0 ? Vector2.left : part == 1 ? Vector2.right : Vector2.down;
             events.Add(new CombatEvent(CombatEventKind.BossPhase, BossPartRules.Position(target, part), Faction.Enemy, value: part + 1, direction: outward, subjectId: target.Id, subject: target, cause: cause));
+            if (catalog.WholeKeeper && target.Definition.Id == "OutsideStageKeeper" && BossPartRules.Broken(target, 0) && BossPartRules.Broken(target, 1) && BossPartRules.Broken(target, 2))
+            {
+                // hand, carpet and eye all broken: it kneels for a while, the way a gate settles on its hinges
+                target.KneelUntil = Elapsed + KeeperKneelSeconds; target.TelegraphUntil = 0; target.NextBossPattern = target.KneelUntil + 0.6f;
+                events.Add(new CombatEvent(CombatEventKind.BossLanded, target.Position, Faction.Enemy, subjectId: target.Id, subject: target, cause: cause));
+            }
         }
+        public const float KeeperKneelSeconds = 7f, KeeperBodyGuard = 0.2f, KeeperKneelExposure = 1.6f;
+        /// <summary>How much of a blow reaches the whole Keeper's body: a fifth while all three parts hold, more for each part
+        /// broken, the full blow once all are broken, and more than that while it kneels.</summary>
+        public static float KeeperGuard(UnitState keeper, float elapsed)
+        {
+            // it is a test, not a siege: after a minute and a half it has seen enough and gives way more every second
+            float patience = elapsed > KeeperPatienceSeconds ? 1 + (elapsed - KeeperPatienceSeconds) / 30f : 1;
+            if (keeper.KneelUntil > elapsed) return KeeperKneelExposure * patience;
+            int broken = (BossPartRules.Broken(keeper, 0) ? 1 : 0) + (BossPartRules.Broken(keeper, 1) ? 1 : 0) + (BossPartRules.Broken(keeper, 2) ? 1 : 0);
+            return (KeeperBodyGuard + (1 - KeeperBodyGuard) * broken / 3f) * patience;
+        }
+        public const float KeeperPatienceSeconds = 90f, KeeperTestSeconds = 180f;
+        public bool KeeperWithdrew { get; private set; } // the test ran out: no gift, and no harm
+        private float KeeperGuard(UnitState keeper) => KeeperGuard(keeper, Elapsed);
     }
 }

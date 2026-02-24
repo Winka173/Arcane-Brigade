@@ -258,7 +258,7 @@ namespace ArcaneBrigade
                     id = "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1.15f);
                     break;
                 case CombatEventKind.Pickup:
-                    id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
+                    id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
                     break;
                 case CombatEventKind.Flare: id = "sig.alarm.boom"; gainScale = 1.2f; break;
                 case CombatEventKind.Bell: id = "loot.coin.vacuum"; gainScale = 1.15f; break;

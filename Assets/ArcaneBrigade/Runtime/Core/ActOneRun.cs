@@ -143,6 +143,15 @@ namespace ArcaneBrigade
         }
         public bool RelightChoiceOpen => State.Phase == SessionPhase.Shop && (State.ActOne?.PendingRelight ?? 0) == 1;
         /// <summary>Relights one broken lantern of the traveller's choosing (its detail of the Thursday visitor comes back).</summary>
+        /// <summary>Instead of a lantern, the colours: a rainbow gift opens in this shop (the Bedside's other reward).</summary>
+        public bool ChooseColours()
+        {
+            if (!RelightChoiceOpen) return false;
+            State.ActOne.PendingRelight = 0;
+            if (OfferPrismGift(true)) return true;
+            State.ActOne.PendingRelight = 1; return false; // nothing rainbow left to give: the lanterns stay the choice
+        }
+        public bool ColoursAvailable => RelightChoiceOpen && RainbowChoices(State.Wave * 7 + State.PrismShardDrops + 1000) != null;
         public bool ChooseRelight(int lamp)
         {
             if (!RelightChoiceOpen || ActOneCanon.LampState(lamp, State.Wave, State.ActOne.RelitMask) != 2) return false;

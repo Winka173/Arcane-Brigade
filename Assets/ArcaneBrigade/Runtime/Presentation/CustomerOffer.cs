@@ -109,6 +109,7 @@ namespace ArcaneBrigade
             Gather();
             for (int i = 0; i < dark.Count; i++)
                 if (Input.GetKeyDown(KeyCode.Alpha1 + i) || Input.GetKeyDown(KeyCode.Keypad1 + i)) { owner.ChooseRelight(dark[i]); return; }
+            if (owner.Session.ColoursAvailable && (Input.GetKeyDown(KeyCode.Alpha1 + dark.Count) || Input.GetKeyDown(KeyCode.Keypad1 + dark.Count))) owner.ChooseColours();
         }
         private void OnGUI()
         {
@@ -122,23 +123,34 @@ namespace ArcaneBrigade
                 label = ArcadeTypography.Style(17, true); label.alignment = TextAnchor.MiddleCenter; label.wordWrap = true;
             }
             RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(0, 0, 0, 0.45f));
-            float width = Mathf.Max(820, 120 + dark.Count * 165);
+            bool colours = owner.Session.ColoursAvailable; int slots = dark.Count + (colours ? 1 : 0);
+            float width = Mathf.Max(820, 120 + slots * 165);
             Rect card = new Rect((1920 - width) * 0.5f, 405, width, 440);
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
             GUI.Label(new Rect(card.x + 50, card.y + 24, card.width - 100, 90), "You stood up. Nobody paid. Outside, one of the dark lanterns is warm again.", hand);
             plain.normal.textColor = new Color(.18f, .14f, .1f);
-            GUI.Label(new Rect(card.x + 50, card.y + 118, card.width - 100, 30), "Choose what comes back to you.", plain);
+            GUI.Label(new Rect(card.x + 50, card.y + 118, card.width - 100, 30), colours ? "Choose what comes back to you, or take the colours instead." : "Choose what comes back to you.", plain);
             for (int i = 0; i < dark.Count; i++)
             {
                 int lamp = dark[i];
-                Rect slot = new Rect(card.x + (card.width - dark.Count * 165) * 0.5f + i * 165 + 8, card.y + 165, 150, 190);
+                Rect slot = new Rect(card.x + (card.width - slots * 165) * 0.5f + i * 165 + 8, card.y + 165, 150, 190);
                 ArcadeSkin.Plate(slot, ArcadeSkin.Card);
                 if (icons[lamp] != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), icons[lamp]);
                 else ArcadeSkin.Glow(new Rect(slot.x + 35, slot.y + 20, 80, 80), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.5f));
                 label.normal.textColor = ArcadeSkin.Cream;
                 GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (i + 1) + " · " + ActOneCanon.LampHeld[lamp], label);
                 if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) owner.ChooseRelight(lamp);
+            }
+            if (colours)
+            {
+                Rect slot = new Rect(card.x + (card.width - slots * 165) * 0.5f + dark.Count * 165 + 8, card.y + 165, 150, 190);
+                ArcadeSkin.Plate(slot, ArcadeSkin.Card);
+                Sprite prism = PacingArtwork.Prism(owner.Content);
+                if (prism != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), prism);
+                label.normal.textColor = new Color(0.68f, 1, 0.92f);
+                GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (dark.Count + 1) + " · the colours: a rainbow gift", label);
+                if (GUI.Button(slot, GUIContent.none, GUIStyle.none)) owner.ChooseColours();
             }
             GUI.matrix = previous;
         }
@@ -147,6 +159,7 @@ namespace ArcaneBrigade
     public sealed partial class ArenaController
     {
         public bool ChooseRelight(int lamp) => CommitStory(() => session.ChooseRelight(lamp), "up.star2");
+        public bool ChooseColours() => CommitStory(() => session.ChooseColours(), "up.rarity.gold");
         public bool SellMemory(string unitId) => CommitStory(() => session.SellMemory(unitId), "sig.stamp");
         public bool RefuseCustomer() => CommitStory(() => session.RefuseCustomer(), "ui.close");
         /// <summary>Applies a story decision, saves it, and rebuilds the shop so bonds and lanterns reflect it.</summary>

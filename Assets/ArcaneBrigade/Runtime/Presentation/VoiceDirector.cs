@@ -154,7 +154,8 @@ namespace ArcaneBrigade
             if (boss.Id == NightmareRules.CustomerId) return VoiceLines.LastCustomer;
             return boss.DisplayName switch
             {
-                "THE KEEPER" => VoiceLines.Keeper,
+                "THE KEEPER" or "THE KEEPER, WHOLE" => VoiceLines.Keeper,
+                "THE COIN WIDOW" => VoiceLines.CoinWidow,
                 "THE CHAIR PORTER" => VoiceLines.ChairPorter,
                 "THE DOOR THAT STAYED SHUT" => VoiceLines.Door,
                 "THE BEDSIDE" => VoiceLines.Bedside,

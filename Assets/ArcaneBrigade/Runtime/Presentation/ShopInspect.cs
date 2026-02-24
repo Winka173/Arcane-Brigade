@@ -101,7 +101,7 @@ namespace ArcaneBrigade
                     Add(id, "THE LAST CUSTOMER", id.EndsWith("BorrowedFace", StringComparison.Ordinal) ? "It stands by the warm chair wearing a face you almost know. It has been buying all night, and it has never once paid." : "A pleasant stranger who stands by the warm chair. It buys what nobody should sell, and it would like to buy something from you.",
                         state.Wave == 8 ? "It will make you an offer once you have read the telephone page" : "It only waits", Ink(view), view.sortingOrder);
                 else if (id == "TheHandWaits")
-                    Add(id, "THE KEEPER'S HAND", "The Keeper has come back to the edge of the road, and its hand is open. An optional boss: win and you choose an impossible gift; lose and the run ends.", "Walk up to it and press Space or E to challenge", Ink(view), view.sortingOrder);
+                    Add(id, "THE KEEPER, WHOLE", "The Keeper that carried the shop with its hand, its carpet and its eye has come to the edge of the road, whole, and its hand is open. Before it gives you the colours it will test you. Its body takes only a fifth of each blow while the hand, the carpet and the eye hold; break all three and it kneels. Win: choose one rainbow gift. Hold on for three minutes without winning and it sets you down: no gift, no harm. Fall, and the run ends.", "Walk up to it and press Space or E to take the test", Ink(view), view.sortingOrder);
                 else if (id.StartsWith("PrismaticReward", StringComparison.Ordinal))
                     Add(id, "AN IMPOSSIBLE GIFT", "The Keeper's reward. Take one of the three; the others go back into the dark.", "Walk up to it and press Space or E to take it", Ink(view), view.sortingOrder);
             }

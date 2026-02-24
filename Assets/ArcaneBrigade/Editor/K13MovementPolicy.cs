@@ -36,6 +36,8 @@ namespace ArcaneBrigade.Editor
         }
         public static void Purchase(RunSession session, RunCatalog catalog)
         {
+            // a rainbow gift waiting (the Keeper's or three prism shards'): take the first; the shop and the next hall wait on it
+            if (session.State.OutsideStage == OutsideStageStatus.Reward) session.ClaimOutsideStageReward(0);
             foreach (ShopOffer offer in session.State.SpecialOffers.OrderByDescending(offer => Score(session, catalog, offer)).ToArray())
                 if (Score(session, catalog, offer) > 0 && session.CanBuy(offer)) session.Buy(offer.Token);
             session.State.SpecialShopVisited = true;

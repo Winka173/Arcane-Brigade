@@ -68,7 +68,7 @@ namespace ArcaneBrigade.Editor
                 using var s = new RunSession(c); s.Start("LanternKnight", 161040); s.State.Wave = wave;
                 var combat = s.PrepareCombat();
                 Check(wave == 4 ? combat.Boss == null : combat.Boss != null && combat.Boss.DisplayName == ActOneCanon.BossName(wave), "Act I story boss on wave " + wave);
-                if (wave == 5) Check(combat.Boss.Id == "OutsideStageKeeper", "The Keeper guards the gate at wave 5");
+                if (wave == 5) Check(combat.Boss.Id == "CoinWidow", "The Coin Widow holds the gate at wave 5 (the Keeper carries the shop and tests you at shop 17)");
             }
             using (var s = new RunSession(c))
             {
