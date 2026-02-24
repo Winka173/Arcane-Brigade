@@ -75,6 +75,20 @@ namespace ArcaneBrigade
         public static void ClearAll() => bubbles.Clear();
         public static int CountTone(SpeechTone tone) { int count = 0; float now = Time.unscaledTime; foreach (SpeechBubble bubble in bubbles) if (bubble.Tone == tone && now < bubble.Expires) count++; return count; }
 
+        /// <summary>Shop stat text uses the same 1920x1080 canvas and leaves live dialogue, including its tail, clear.</summary>
+        public static bool OverlapsDialogue(Rect bounds)
+        {
+            float now = Time.unscaledTime;
+            foreach (var bubble in bubbles)
+            {
+                if (!bubble.Drawn || now >= bubble.Expires) continue;
+                Rect area = bubble.Placed;
+                area.xMin -= 8; area.xMax += 8; area.yMin -= 8; area.yMax += 30;
+                if (area.Overlaps(bounds)) return true;
+            }
+            return false;
+        }
+
         /// <summary>Head-top anchor of a simulated unit (positions are body centres).</summary>
         public static Vector3 Head(UnitState unit) => (Vector3)(unit.Position + Vector2.up * (Mathf.Min(K8Motion.BodyHeight(unit) * 0.5f, 2.1f) + 0.12f));
 

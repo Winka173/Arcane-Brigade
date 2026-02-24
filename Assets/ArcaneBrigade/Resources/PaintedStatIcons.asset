@@ -1,0 +1,848 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbee0fdf099cf44b89ca97c8980cb57, type: 3}
+  m_Name: PaintedStatIcons
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.PaintedStatIcons
+  Entries:
+  - Effect: 0
+    Picture: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1981
+      height: 633
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 45
+    Source: CorkscrewRapier
+  - Effect: 1
+    Picture: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 243
+      height: 271
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: clock-spring
+  - Effect: 2
+    Picture: {fileID: 569732327, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 264
+      height: 272
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: honey-pot / vitality
+  - Effect: 3
+    Picture: {fileID: -425318756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 284
+      height: 252
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: felt-boots
+  - Effect: 4
+    Picture: {fileID: -1212393455, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 296
+      height: 301
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: coin-compass
+  - Effect: 5
+    Picture: {fileID: -701530378, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 337
+      height: 294
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: wandering-map
+  - Effect: 6
+    Picture: {fileID: 2109384157, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 223
+      height: 319
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: guardian-canopy
+  - Effect: 7
+    Picture: {fileID: 377026984, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 287
+      height: 300
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: warm-tea / recovery
+  - Effect: 8
+    Picture: {fileID: 1535964756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 231
+      height: 302
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: oracle-lens
+  - Effect: 9
+    Picture: {fileID: 1957318737, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 318
+      height: 259
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: twin-seal
+  - Effect: 10
+    Picture: {fileID: 1537366379, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 258
+      height: 227
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: piggy-mail
+  - Effect: 11
+    Picture: {fileID: 1632686187, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 314
+      height: 242
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: pillow-mail
+  - Effect: 12
+    Picture: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    Badge: {fileID: 712256120, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1981
+      height: 633
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 294
+      height: 291
+    Rotation: 45
+    Source: rapier + royal-key / hero
+  - Effect: 13
+    Picture: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    Badge: {fileID: -63557585, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1981
+      height: 633
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 267
+      height: 299
+    Rotation: 45
+    Source: rapier + brigade-banner / companions
+  - Effect: 14
+    Picture: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: -63557585, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 243
+      height: 271
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 267
+      height: 299
+    Rotation: 0
+    Source: spring + brigade-banner / companions
+  - Effect: 15
+    Picture: {fileID: -1281663758, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 315
+      height: 283
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: coupon-book
+  - Effect: 16
+    Picture: {fileID: 1591840258, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 251
+      height: 266
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: Lucky Leaves bond
+  - Effect: 17
+    Picture: {fileID: -821530288, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
+    Badge: {fileID: 1535964756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 494
+      height: 418
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 231
+      height: 302
+    Rotation: 0
+    Source: chest + oracle-lens / detection
+  - Effect: 18
+    Picture: {fileID: -789286955, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 272
+      height: 215
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: tarnished-crown / score
+  - Effect: 19
+    Picture: {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 254
+      height: 219
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: BristleBall / contact
+  - Effect: 20
+    Picture: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    Badge: {fileID: -1159395267, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1981
+      height: 633
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 311
+      height: 301
+    Rotation: 45
+    Source: rapier + gauntlet / flat melee
+  - Effect: 21
+    Picture: {fileID: -892290310, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 117
+      height: 247
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: CrescentBow
+  - Effect: 22
+    Picture: {fileID: 21685886, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 283
+      height: 235
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: long-atlas / reach
+  - Effect: 23
+    Picture: {fileID: -128994627, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 306
+      height: 289
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: Springstep bond
+  - Effect: 24
+    Picture: {fileID: -1589700613, guid: c01ddd2345183a748957710cb09f682d, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 138
+      height: 138
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: painted coin
+  - Effect: 25
+    Picture: {fileID: 1438538688, guid: 095719b9b1c16e144bb720908212f050, type: 3}
+    Badge: {fileID: 397209000, guid: 8148d6fc4ea5367419df19ef98ef0e97, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1404
+      height: 884
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1424
+      height: 860
+    Rotation: 0
+    Source: leaf crossbow + arrow / pierce
+  - Effect: 26
+    Picture: {fileID: 1957318737, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 397209000, guid: 8148d6fc4ea5367419df19ef98ef0e97, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 318
+      height: 259
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1424
+      height: 860
+    Rotation: 0
+    Source: twin seal + arrow / split
+  - Effect: 27
+    Picture: {fileID: 291779487, guid: 2b48c86237673a34e83b8a5ddf536abd, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1390
+      height: 853
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: CrescentBoomerang / return
+  - Effect: 28
+    Picture: {fileID: 1308484604, guid: 783d1c25e01578e46bc850cedab9ad63, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1681
+      height: 547
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 45
+    Source: SnowGlobeOrb / size
+  - Effect: 29
+    Picture: {fileID: 397209000, guid: 8148d6fc4ea5367419df19ef98ef0e97, type: 3}
+    Badge: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1424
+      height: 860
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 243
+      height: 271
+    Rotation: 0
+    Source: dart + spring / speed
+  - Effect: 30
+    Picture: {fileID: 397209000, guid: 8148d6fc4ea5367419df19ef98ef0e97, type: 3}
+    Badge: {fileID: -701530378, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1424
+      height: 860
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 337
+      height: 294
+    Rotation: 0
+    Source: dart + atlas / distance
+  - Effect: 31
+    Picture: {fileID: 1067514590, guid: 1f3a92ca7b3a0974d9cfcec27c12be44, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 353
+      height: 182
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: BookPaddle / push
+  - Effect: 32
+    Picture: {fileID: 1956717586, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Badge: {fileID: 712256120, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 286
+      height: 235
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 294
+      height: 291
+    Rotation: 0
+    Source: quilt + royal-key / hero size
+  - Effect: 33
+    Picture: {fileID: 1956717586, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Badge: {fileID: -63557585, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 286
+      height: 235
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 267
+      height: 299
+    Rotation: 0
+    Source: quilt + brigade-banner / companion size
+  - Effect: 34
+    Picture: {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+    Badge: {fileID: 1957318737, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 264
+      height: 278
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 318
+      height: 259
+    Rotation: 0
+    Source: enemy + twin-seal / count
+  - Effect: 35
+    Picture: {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+    Badge: {fileID: 569732327, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 264
+      height: 278
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 264
+      height: 272
+    Rotation: 0
+    Source: enemy + honey-pot / vitality
+  - Effect: 36
+    Picture: {fileID: 113143527, guid: d2affc0dbfb9e094387fb85517c8ed53, type: 3}
+    Badge: {fileID: -425318756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 264
+      height: 278
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 284
+      height: 252
+    Rotation: 0
+    Source: enemy + boots / speed
+  - Effect: 37
+    Picture: {fileID: 21300000, guid: a90467885db2c4a4a80316b8c705cd16, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 175.84775
+      height: 170.91096
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: painted heart pickup
+  - Effect: 38
+    Picture: {fileID: -821530288, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
+    Badge: {fileID: -789286955, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 494
+      height: 418
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 272
+      height: 215
+    Rotation: 0
+    Source: chest + crown / quality
+  - Effect: 39
+    Picture: {fileID: -1281663758, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: -63557585, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 315
+      height: 283
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 267
+      height: 299
+    Rotation: 0
+    Source: coupon + companion flag
+  - Effect: 40
+    Picture: {fileID: -1281663758, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 1535964756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 315
+      height: 283
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 231
+      height: 302
+    Rotation: 0
+    Source: coupon + oracle-lens / relic
+  - Effect: 41
+    Picture: {fileID: -1580028238, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
+    Badge: {fileID: 0}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 213
+      height: 288
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Rotation: 0
+    Source: fortune-egg / rarity
+  - Effect: 42
+    Picture: {fileID: 569732327, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 35065156, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 264
+      height: 272
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 449
+      height: 236
+    Rotation: 0
+    Source: Health + CloudScissors / correction
+  - Effect: 43
+    Picture: {fileID: -1623546316, guid: 9d238cbd0d9a287419f3b50d86e76b55, type: 3}
+    Badge: {fileID: 35065156, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1981
+      height: 633
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 449
+      height: 236
+    Rotation: 45
+    Source: Damage + CloudScissors / correction
+  - Effect: 44
+    Picture: {fileID: -425318756, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 35065156, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 284
+      height: 252
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 449
+      height: 236
+    Rotation: 0
+    Source: MoveSpeed + CloudScissors / correction
+  - Effect: 45
+    Picture: {fileID: 1632686187, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 35065156, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 314
+      height: 242
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 449
+      height: 236
+    Rotation: 0
+    Source: Armor + CloudScissors / correction
+  - Effect: 46
+    Picture: {fileID: 377026984, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Badge: {fileID: 35065156, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 287
+      height: 300
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 449
+      height: 236
+    Rotation: 0
+    Source: Heal + CloudScissors / correction
+  - Effect: 47
+    Picture: {fileID: -1315724860, guid: 02bdf652aade41449b1de729df4d8c8a, type: 3}
+    Badge: {fileID: -979232144, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 254
+      height: 219
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 243
+      height: 271
+    Rotation: 0
+    Source: contact + spring / frequency
+  - Effect: 48
+    Picture: {fileID: -821530288, guid: 7ce0017a425db4840b93e0a3cb8ef763, type: 3}
+    Badge: {fileID: -1212393455, guid: c7d24a39418c18f4e8f7bf6ee2a8d8f2, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 494
+      height: 418
+    BadgeInk:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 296
+      height: 301
+    Rotation: 0
+    Source: chest + compass / collection reach

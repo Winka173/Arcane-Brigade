@@ -8,6 +8,7 @@ namespace ArcaneBrigade
         private static readonly Dictionary<ItemEffect, Texture2D> cache = new Dictionary<ItemEffect, Texture2D>();
         public static void Draw(Rect bounds, ItemEffect effect)
         {
+            if (PaintedStatIcons.TryDraw(bounds, effect)) return;
             if (!cache.TryGetValue(effect, out Texture2D texture)) { texture = Create(effect); cache[effect] = texture; }
             GUI.DrawTexture(bounds, texture, ScaleMode.ScaleToFit, true);
         }

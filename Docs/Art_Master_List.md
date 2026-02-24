@@ -1,5 +1,7 @@
 # Arcane Brigade — danh sách art tổng (cho agent vẽ)
 
+**Bổ sung UI và thoại 17/10:** đã nối 49 icon stat phối từ art vẽ tay hiện có và 198 lời bình riêng cho 66 companion khi mua đồ, mở bond, ghép sao. Atlas 49 icon vẽ mới **còn chờ hạn mức công cụ ảnh**, không tính vào 261 PNG đã giao. Chi tiết và nghiệm thu: [Painted_Stats_And_Companion_Reactions.md](Painted_Stats_And_Companion_Reactions.md).
+
 **Hoàn tất art 17/10:** đã giao đủ 261/261 PNG, gồm 24 frame HD Customer bổ sung và hai atlas Hob/Tally đã sửa mép. Cả năm bộ boss dùng 16 frame độ phân giải riêng mỗi bộ. Chi tiết, nguồn ảnh và kiểm tra: [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
 
 Cập nhật 17/10/2026. Đây là **danh sách duy nhất cần làm**: gom yêu cầu cốt truyện Hồi 1, các art hiện có bị đánh giá **chưa khớp cốt truyện** (vẽ lại), token cơ chế hero và hiệu ứng chiến đấu. Canon: [Mien_Cho_Act_One_Story.md](Mien_Cho_Act_One_Story.md). Bản cũ [Act_One_Story_Art_Requests.md](Act_One_Story_Art_Requests.md) đã được gộp vào đây.

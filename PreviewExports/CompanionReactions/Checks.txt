@@ -1,0 +1,380 @@
+PASS Painted art covers every stat
+PASS Traceable nonempty painted stat icon: Damage
+PASS Scope/correction badge is complete: Damage
+PASS Traceable nonempty painted stat icon: AttackSpeed
+PASS Scope/correction badge is complete: AttackSpeed
+PASS Traceable nonempty painted stat icon: Health
+PASS Scope/correction badge is complete: Health
+PASS Traceable nonempty painted stat icon: MoveSpeed
+PASS Scope/correction badge is complete: MoveSpeed
+PASS Traceable nonempty painted stat icon: Pickup
+PASS Scope/correction badge is complete: Pickup
+PASS Traceable nonempty painted stat icon: Roam
+PASS Scope/correction badge is complete: Roam
+PASS Traceable nonempty painted stat icon: Interceptor
+PASS Scope/correction badge is complete: Interceptor
+PASS Traceable nonempty painted stat icon: Heal
+PASS Scope/correction badge is complete: Heal
+PASS Traceable nonempty painted stat icon: Crit
+PASS Scope/correction badge is complete: Crit
+PASS Traceable nonempty painted stat icon: Projectiles
+PASS Scope/correction badge is complete: Projectiles
+PASS Traceable nonempty painted stat icon: Interest
+PASS Scope/correction badge is complete: Interest
+PASS Traceable nonempty painted stat icon: Armor
+PASS Scope/correction badge is complete: Armor
+PASS Traceable nonempty painted stat icon: ChampionDamage
+PASS Scope/correction badge is complete: ChampionDamage
+PASS Traceable nonempty painted stat icon: CompanionDamage
+PASS Scope/correction badge is complete: CompanionDamage
+PASS Traceable nonempty painted stat icon: CompanionAttackSpeed
+PASS Scope/correction badge is complete: CompanionAttackSpeed
+PASS Traceable nonempty painted stat icon: Discount
+PASS Scope/correction badge is complete: Discount
+PASS Traceable nonempty painted stat icon: Luck
+PASS Scope/correction badge is complete: Luck
+PASS Traceable nonempty painted stat icon: TreasureDetection
+PASS Scope/correction badge is complete: TreasureDetection
+PASS Traceable nonempty painted stat icon: ScoreMultiplier
+PASS Scope/correction badge is complete: ScoreMultiplier
+PASS Traceable nonempty painted stat icon: CollisionDamage
+PASS Scope/correction badge is complete: CollisionDamage
+PASS Traceable nonempty painted stat icon: MeleeDamage
+PASS Scope/correction badge is complete: MeleeDamage
+PASS Traceable nonempty painted stat icon: RangedDamage
+PASS Scope/correction badge is complete: RangedDamage
+PASS Traceable nonempty painted stat icon: AttackRange
+PASS Scope/correction badge is complete: AttackRange
+PASS Traceable nonempty painted stat icon: Dodge
+PASS Scope/correction badge is complete: Dodge
+PASS Traceable nonempty painted stat icon: Income
+PASS Scope/correction badge is complete: Income
+PASS Traceable nonempty painted stat icon: BulletPierce
+PASS Scope/correction badge is complete: BulletPierce
+PASS Traceable nonempty painted stat icon: BulletSplit
+PASS Scope/correction badge is complete: BulletSplit
+PASS Traceable nonempty painted stat icon: BulletBounce
+PASS Scope/correction badge is complete: BulletBounce
+PASS Traceable nonempty painted stat icon: BulletSize
+PASS Scope/correction badge is complete: BulletSize
+PASS Traceable nonempty painted stat icon: BulletSpeed
+PASS Scope/correction badge is complete: BulletSpeed
+PASS Traceable nonempty painted stat icon: BulletDistance
+PASS Scope/correction badge is complete: BulletDistance
+PASS Traceable nonempty painted stat icon: Knockback
+PASS Scope/correction badge is complete: Knockback
+PASS Traceable nonempty painted stat icon: BodySize
+PASS Scope/correction badge is complete: BodySize
+PASS Traceable nonempty painted stat icon: CompanionSize
+PASS Scope/correction badge is complete: CompanionSize
+PASS Traceable nonempty painted stat icon: EnemyCount
+PASS Scope/correction badge is complete: EnemyCount
+PASS Traceable nonempty painted stat icon: EnemyHealth
+PASS Scope/correction badge is complete: EnemyHealth
+PASS Traceable nonempty painted stat icon: EnemySpeed
+PASS Scope/correction badge is complete: EnemySpeed
+PASS Traceable nonempty painted stat icon: HeartHealing
+PASS Scope/correction badge is complete: HeartHealing
+PASS Traceable nonempty painted stat icon: ChestQuality
+PASS Scope/correction badge is complete: ChestQuality
+PASS Traceable nonempty painted stat icon: RecruitDiscount
+PASS Scope/correction badge is complete: RecruitDiscount
+PASS Traceable nonempty painted stat icon: RelicDiscount
+PASS Scope/correction badge is complete: RelicDiscount
+PASS Traceable nonempty painted stat icon: ShopRarity
+PASS Scope/correction badge is complete: ShopRarity
+PASS Traceable nonempty painted stat icon: HealthCorrection
+PASS Scope/correction badge is complete: HealthCorrection
+PASS Traceable nonempty painted stat icon: DamageCorrection
+PASS Scope/correction badge is complete: DamageCorrection
+PASS Traceable nonempty painted stat icon: SpeedCorrection
+PASS Scope/correction badge is complete: SpeedCorrection
+PASS Traceable nonempty painted stat icon: ArmorCorrection
+PASS Scope/correction badge is complete: ArmorCorrection
+PASS Traceable nonempty painted stat icon: HealCorrection
+PASS Scope/correction badge is complete: HealCorrection
+PASS Traceable nonempty painted stat icon: CollisionFrequency
+PASS Scope/correction badge is complete: CollisionFrequency
+PASS Traceable nonempty painted stat icon: ChestReach
+PASS Scope/correction badge is complete: ChestReach
+PASS Personal reaction bank covers the entire companion catalog
+PASS Authored short personal reaction: TeapotPilgrim / Purchase
+PASS Authored short personal reaction: TeapotPilgrim / Bond
+PASS Authored short personal reaction: TeapotPilgrim / Merge
+PASS Merge uses species identity: TeapotPilgrim
+PASS Authored short personal reaction: CandleSnail / Purchase
+PASS Authored short personal reaction: CandleSnail / Bond
+PASS Authored short personal reaction: CandleSnail / Merge
+PASS Merge uses species identity: CandleSnail
+PASS Authored short personal reaction: MailboxImp / Purchase
+PASS Authored short personal reaction: MailboxImp / Bond
+PASS Authored short personal reaction: MailboxImp / Merge
+PASS Merge uses species identity: MailboxImp
+PASS Authored short personal reaction: PillowOracle / Purchase
+PASS Authored short personal reaction: PillowOracle / Bond
+PASS Authored short personal reaction: PillowOracle / Merge
+PASS Merge uses species identity: PillowOracle
+PASS Authored short personal reaction: MushroomLibrarian / Purchase
+PASS Authored short personal reaction: MushroomLibrarian / Bond
+PASS Authored short personal reaction: MushroomLibrarian / Merge
+PASS Merge uses species identity: MushroomLibrarian
+PASS Authored short personal reaction: HoodWisp / Purchase
+PASS Authored short personal reaction: HoodWisp / Bond
+PASS Authored short personal reaction: HoodWisp / Merge
+PASS Merge uses species identity: HoodWisp
+PASS Authored short personal reaction: JellySwordsman / Purchase
+PASS Authored short personal reaction: JellySwordsman / Bond
+PASS Authored short personal reaction: JellySwordsman / Merge
+PASS Merge uses species identity: JellySwordsman
+PASS Authored short personal reaction: BrassAcorn / Purchase
+PASS Authored short personal reaction: BrassAcorn / Bond
+PASS Authored short personal reaction: BrassAcorn / Merge
+PASS Merge uses species identity: BrassAcorn
+PASS Authored short personal reaction: BreadCrab / Purchase
+PASS Authored short personal reaction: BreadCrab / Bond
+PASS Authored short personal reaction: BreadCrab / Merge
+PASS Merge uses species identity: BreadCrab
+PASS Authored short personal reaction: KettleBat / Purchase
+PASS Authored short personal reaction: KettleBat / Bond
+PASS Authored short personal reaction: KettleBat / Merge
+PASS Merge uses species identity: KettleBat
+PASS Authored short personal reaction: BookmarkGolem / Purchase
+PASS Authored short personal reaction: BookmarkGolem / Bond
+PASS Authored short personal reaction: BookmarkGolem / Merge
+PASS Merge uses species identity: BookmarkGolem
+PASS Authored short personal reaction: TinTick / Purchase
+PASS Authored short personal reaction: TinTick / Bond
+PASS Authored short personal reaction: TinTick / Merge
+PASS Merge uses species identity: TinTick
+PASS Authored short personal reaction: SpringDuck / Purchase
+PASS Authored short personal reaction: SpringDuck / Bond
+PASS Authored short personal reaction: SpringDuck / Merge
+PASS Merge uses species identity: SpringDuck
+PASS Authored short personal reaction: ButtonBeetle / Purchase
+PASS Authored short personal reaction: ButtonBeetle / Bond
+PASS Authored short personal reaction: ButtonBeetle / Merge
+PASS Merge uses species identity: ButtonBeetle
+PASS Authored short personal reaction: StapleMole / Purchase
+PASS Authored short personal reaction: StapleMole / Bond
+PASS Authored short personal reaction: StapleMole / Merge
+PASS Merge uses species identity: StapleMole
+PASS Authored short personal reaction: SnowSpoon / Purchase
+PASS Authored short personal reaction: SnowSpoon / Bond
+PASS Authored short personal reaction: SnowSpoon / Merge
+PASS Merge uses species identity: SnowSpoon
+PASS Authored short personal reaction: IceCreamOwl / Purchase
+PASS Authored short personal reaction: IceCreamOwl / Bond
+PASS Authored short personal reaction: IceCreamOwl / Merge
+PASS Merge uses species identity: IceCreamOwl
+PASS Authored short personal reaction: FridgeWisp / Purchase
+PASS Authored short personal reaction: FridgeWisp / Bond
+PASS Authored short personal reaction: FridgeWisp / Merge
+PASS Merge uses species identity: FridgeWisp
+PASS Authored short personal reaction: PearMoth / Purchase
+PASS Authored short personal reaction: PearMoth / Bond
+PASS Authored short personal reaction: PearMoth / Merge
+PASS Merge uses species identity: PearMoth
+PASS Authored short personal reaction: CitrusToad / Purchase
+PASS Authored short personal reaction: CitrusToad / Bond
+PASS Authored short personal reaction: CitrusToad / Merge
+PASS Merge uses species identity: CitrusToad
+PASS Authored short personal reaction: RadishJester / Purchase
+PASS Authored short personal reaction: RadishJester / Bond
+PASS Authored short personal reaction: RadishJester / Merge
+PASS Merge uses species identity: RadishJester
+PASS Authored short personal reaction: SeedHedgehog / Purchase
+PASS Authored short personal reaction: SeedHedgehog / Bond
+PASS Authored short personal reaction: SeedHedgehog / Merge
+PASS Merge uses species identity: SeedHedgehog
+PASS Authored short personal reaction: MoonJelly / Purchase
+PASS Authored short personal reaction: MoonJelly / Bond
+PASS Authored short personal reaction: MoonJelly / Merge
+PASS Merge uses species identity: MoonJelly
+PASS Authored short personal reaction: StarSock / Purchase
+PASS Authored short personal reaction: StarSock / Bond
+PASS Authored short personal reaction: StarSock / Merge
+PASS Merge uses species identity: StarSock
+PASS Authored short personal reaction: CometKite / Purchase
+PASS Authored short personal reaction: CometKite / Bond
+PASS Authored short personal reaction: CometKite / Merge
+PASS Merge uses species identity: CometKite
+PASS Authored short personal reaction: EclipseEgg / Purchase
+PASS Authored short personal reaction: EclipseEgg / Bond
+PASS Authored short personal reaction: EclipseEgg / Merge
+PASS Merge uses species identity: EclipseEgg
+PASS Authored short personal reaction: OrbitMoth / Purchase
+PASS Authored short personal reaction: OrbitMoth / Bond
+PASS Authored short personal reaction: OrbitMoth / Merge
+PASS Merge uses species identity: OrbitMoth
+PASS Authored short personal reaction: DreamCompass / Purchase
+PASS Authored short personal reaction: DreamCompass / Bond
+PASS Authored short personal reaction: DreamCompass / Merge
+PASS Merge uses species identity: DreamCompass
+PASS Authored short personal reaction: ShellPostman / Purchase
+PASS Authored short personal reaction: ShellPostman / Bond
+PASS Authored short personal reaction: ShellPostman / Merge
+PASS Merge uses species identity: ShellPostman
+PASS Authored short personal reaction: CoralTeacup / Purchase
+PASS Authored short personal reaction: CoralTeacup / Bond
+PASS Authored short personal reaction: CoralTeacup / Merge
+PASS Merge uses species identity: CoralTeacup
+PASS Authored short personal reaction: BubbleKoi / Purchase
+PASS Authored short personal reaction: BubbleKoi / Bond
+PASS Authored short personal reaction: BubbleKoi / Merge
+PASS Merge uses species identity: BubbleKoi
+PASS Authored short personal reaction: AnchorSnail / Purchase
+PASS Authored short personal reaction: AnchorSnail / Bond
+PASS Authored short personal reaction: AnchorSnail / Merge
+PASS Merge uses species identity: AnchorSnail
+PASS Authored short personal reaction: SailSquid / Purchase
+PASS Authored short personal reaction: SailSquid / Bond
+PASS Authored short personal reaction: SailSquid / Merge
+PASS Merge uses species identity: SailSquid
+PASS Authored short personal reaction: SockCyclops / Purchase
+PASS Authored short personal reaction: SockCyclops / Bond
+PASS Authored short personal reaction: SockCyclops / Merge
+PASS Merge uses species identity: SockCyclops
+PASS Authored short personal reaction: DiceCrab / Purchase
+PASS Authored short personal reaction: DiceCrab / Bond
+PASS Authored short personal reaction: DiceCrab / Merge
+PASS Merge uses species identity: DiceCrab
+PASS Authored short personal reaction: MaskPepper / Purchase
+PASS Authored short personal reaction: MaskPepper / Bond
+PASS Authored short personal reaction: MaskPepper / Merge
+PASS Merge uses species identity: MaskPepper
+PASS Authored short personal reaction: CrayonGremlin / Purchase
+PASS Authored short personal reaction: CrayonGremlin / Bond
+PASS Authored short personal reaction: CrayonGremlin / Merge
+PASS Merge uses species identity: CrayonGremlin
+PASS Authored short personal reaction: MirrorNewt / Purchase
+PASS Authored short personal reaction: MirrorNewt / Bond
+PASS Authored short personal reaction: MirrorNewt / Merge
+PASS Merge uses species identity: MirrorNewt
+PASS Authored short personal reaction: RibbonSpider / Purchase
+PASS Authored short personal reaction: RibbonSpider / Bond
+PASS Authored short personal reaction: RibbonSpider / Merge
+PASS Merge uses species identity: RibbonSpider
+PASS Authored short personal reaction: CoilKettle / Purchase
+PASS Authored short personal reaction: CoilKettle / Bond
+PASS Authored short personal reaction: CoilKettle / Merge
+PASS Merge uses species identity: CoilKettle
+PASS Authored short personal reaction: ThimbleMoth / Purchase
+PASS Authored short personal reaction: ThimbleMoth / Bond
+PASS Authored short personal reaction: ThimbleMoth / Merge
+PASS Merge uses species identity: ThimbleMoth
+PASS Authored short personal reaction: ReelOwl / Purchase
+PASS Authored short personal reaction: ReelOwl / Bond
+PASS Authored short personal reaction: ReelOwl / Merge
+PASS Merge uses species identity: ReelOwl
+PASS Authored short personal reaction: RainbowTailor / Purchase
+PASS Authored short personal reaction: RainbowTailor / Bond
+PASS Authored short personal reaction: RainbowTailor / Merge
+PASS Merge uses species identity: RainbowTailor
+PASS Authored short personal reaction: RainbowBell / Purchase
+PASS Authored short personal reaction: RainbowBell / Bond
+PASS Authored short personal reaction: RainbowBell / Merge
+PASS Merge uses species identity: RainbowBell
+PASS Authored short personal reaction: SecretPatchBear / Purchase
+PASS Authored short personal reaction: SecretPatchBear / Bond
+PASS Authored short personal reaction: SecretPatchBear / Merge
+PASS Merge uses species identity: SecretPatchBear
+PASS Authored short personal reaction: SecretPaperBird / Purchase
+PASS Authored short personal reaction: SecretPaperBird / Bond
+PASS Authored short personal reaction: SecretPaperBird / Merge
+PASS Merge uses species identity: SecretPaperBird
+PASS Authored short personal reaction: SecretDreamLamb / Purchase
+PASS Authored short personal reaction: SecretDreamLamb / Bond
+PASS Authored short personal reaction: SecretDreamLamb / Merge
+PASS Merge uses species identity: SecretDreamLamb
+PASS Authored short personal reaction: SaffronMechanist / Purchase
+PASS Authored short personal reaction: SaffronMechanist / Bond
+PASS Authored short personal reaction: SaffronMechanist / Merge
+PASS Merge uses species identity: SaffronMechanist
+PASS Authored short personal reaction: ClockworkPiper / Purchase
+PASS Authored short personal reaction: ClockworkPiper / Bond
+PASS Authored short personal reaction: ClockworkPiper / Merge
+PASS Merge uses species identity: ClockworkPiper
+PASS Authored short personal reaction: VelvetChampion / Purchase
+PASS Authored short personal reaction: VelvetChampion / Bond
+PASS Authored short personal reaction: VelvetChampion / Merge
+PASS Merge uses species identity: VelvetChampion
+PASS Authored short personal reaction: PaperInventor / Purchase
+PASS Authored short personal reaction: PaperInventor / Bond
+PASS Authored short personal reaction: PaperInventor / Merge
+PASS Merge uses species identity: PaperInventor
+PASS Authored short personal reaction: ReturnCaptain / Purchase
+PASS Authored short personal reaction: ReturnCaptain / Bond
+PASS Authored short personal reaction: ReturnCaptain / Merge
+PASS Merge uses species identity: ReturnCaptain
+PASS Authored short personal reaction: DoughForeman / Purchase
+PASS Authored short personal reaction: DoughForeman / Bond
+PASS Authored short personal reaction: DoughForeman / Merge
+PASS Merge uses species identity: DoughForeman
+PASS Authored short personal reaction: IronLocomotive / Purchase
+PASS Authored short personal reaction: IronLocomotive / Bond
+PASS Authored short personal reaction: IronLocomotive / Merge
+PASS Merge uses species identity: IronLocomotive
+PASS Authored short personal reaction: VioletRemnant / Purchase
+PASS Authored short personal reaction: VioletRemnant / Bond
+PASS Authored short personal reaction: VioletRemnant / Merge
+PASS Merge uses species identity: VioletRemnant
+PASS Authored short personal reaction: VelvetEnchantress / Purchase
+PASS Authored short personal reaction: VelvetEnchantress / Bond
+PASS Authored short personal reaction: VelvetEnchantress / Merge
+PASS Merge uses species identity: VelvetEnchantress
+PASS Authored short personal reaction: GrandSprout / Purchase
+PASS Authored short personal reaction: GrandSprout / Bond
+PASS Authored short personal reaction: GrandSprout / Merge
+PASS Merge uses species identity: GrandSprout
+PASS Authored short personal reaction: BristleBall / Purchase
+PASS Authored short personal reaction: BristleBall / Bond
+PASS Authored short personal reaction: BristleBall / Merge
+PASS Merge uses species identity: BristleBall
+PASS Authored short personal reaction: PaperDevil / Purchase
+PASS Authored short personal reaction: PaperDevil / Bond
+PASS Authored short personal reaction: PaperDevil / Merge
+PASS Merge uses species identity: PaperDevil
+PASS Authored short personal reaction: BalloonMallet / Purchase
+PASS Authored short personal reaction: BalloonMallet / Bond
+PASS Authored short personal reaction: BalloonMallet / Merge
+PASS Merge uses species identity: BalloonMallet
+PASS Authored short personal reaction: LittleSprout / Purchase
+PASS Authored short personal reaction: LittleSprout / Bond
+PASS Authored short personal reaction: LittleSprout / Merge
+PASS Merge uses species identity: LittleSprout
+PASS Authored short personal reaction: MonsterMarble / Purchase
+PASS Authored short personal reaction: MonsterMarble / Bond
+PASS Authored short personal reaction: MonsterMarble / Merge
+PASS Merge uses species identity: MonsterMarble
+PASS Authored short personal reaction: CarouselPony / Purchase
+PASS Authored short personal reaction: CarouselPony / Bond
+PASS Authored short personal reaction: CarouselPony / Merge
+PASS Merge uses species identity: CarouselPony
+PASS Authored short personal reaction: TeacupCricket / Purchase
+PASS Authored short personal reaction: TeacupCricket / Bond
+PASS Authored short personal reaction: TeacupCricket / Merge
+PASS Merge uses species identity: TeacupCricket
+PASS Authored short personal reaction: RibbonOtter / Purchase
+PASS Authored short personal reaction: RibbonOtter / Bond
+PASS Authored short personal reaction: RibbonOtter / Merge
+PASS Merge uses species identity: RibbonOtter
+PASS Authored short personal reaction: SpindleWren / Purchase
+PASS Authored short personal reaction: SpindleWren / Bond
+PASS Authored short personal reaction: SpindleWren / Merge
+PASS Merge uses species identity: SpindleWren
+PASS No shared generic line in Purchase
+PASS No shared generic line in Bond
+PASS No shared generic line in Merge
+PASS Inspecting an unsold offer cannot create a purchase line
+PASS Failed-save transaction rolls back
+PASS Failed persistence produces no companion reaction
+PASS A drink purchase commits
+PASS The drink-reactive companion answers its actual purchase
+PASS Planning a response changes no saved counters or RNG
+PASS Reloading or observing an old receipt cannot replay it
+PASS Flat ranged benefits choose a ranged user, not a melee user
+PASS Hero-only damage does not pretend to benefit a companion
+PASS A drawback alone produces no benefit reaction
+PASS A second matching bond body is bought
+PASS A real threshold crossing selects a member of that bond; at most one response
+PASS Combat is outside purchase chatter

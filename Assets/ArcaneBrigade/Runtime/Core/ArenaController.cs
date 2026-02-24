@@ -459,7 +459,14 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public bool BuyOffer(int token) => Transaction("Shop purchase", () => session.Buy(token), -1);
+        public bool BuyOffer(int token)
+        {
+            ShopOffer offer = session.State.Offers.Find(o => o.Token == token) ?? session.State.SpecialOffers.Find(o => o.Token == token);
+            RunSnapshot before = MergeReveal.Capture(session.State);
+            bool committed = Transaction("Shop purchase", () => session.Buy(token), -1);
+            if (committed) GetComponent<SpeechBubbleCast>()?.CommittedPurchase(before, offer);
+            return committed;
+        }
         public void SetShopDetails(bool expanded) { runHud.SetShopDetails(expanded); }
         public bool ShopDetailsOpen => runHud.ShopDetailsOpen;
         public void PlayCommittedArrival(RunSnapshot before, Vector2 origin)

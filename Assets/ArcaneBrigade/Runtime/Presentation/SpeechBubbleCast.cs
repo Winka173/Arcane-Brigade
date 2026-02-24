@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>Who says what, and when, outside the purchase flow. It only observes state (the roster, the travelling four,
+    /// <summary>Who says what, and when, after committed purchases and observed state changes (the roster, the travelling four,
     /// the boss, the warm chair) and never changes it: a companion who joins or ranks up says a short line above its head,
     /// the story bosses bark on entry, attacks, wounds, the half-way turn and their fall, and the shopkeeper speaks when the
     /// shop is quiet or when someone wanders too close to the warm chair. Chatter keeps polite gaps (see Voice_System.md).</summary>
     public sealed class SpeechBubbleCast : MonoBehaviour
     {
-        private sealed class Pending { public float At, Until; public Func<bool> Run; public bool Companion; }
+        private sealed class Pending { public float At, Until; public Func<bool> Run; public bool Companion, Context; }
         private const float CompanionGap = 2.6f;
         private ArenaController owner;
         private string runId;
@@ -28,8 +28,13 @@ namespace ArcaneBrigade
         private bool bossEntered, bossPhased, bossStory, bossDefeated;
         private int bossVolley;
         private float bossSkill;
+        private int reactedReceipt = -1;
+        private string reactedRun;
+        private readonly HashSet<string> contextSaid = new HashSet<string>();
         public int Joins { get; private set; }
         public int StarUps { get; private set; }
+        public int ContextLines { get; private set; }
+        public CompanionReactionKind LastContext { get; private set; }
         public int BossLines { get; private set; }
 
         public void Configure(ArenaController controller) => owner = controller;
@@ -43,7 +48,7 @@ namespace ArcaneBrigade
             {
                 // a different run (restart): forget the old voices; the first look at a run keeps the welcome already said
                 if (runId != null) SpeechBubbles.ClearAll();
-                runId = state.RunId; baseline = false; queue.Clear(); boss = null; chairConfessed = false;
+                runId = state.RunId; baseline = false; queue.Clear(); contextSaid.Clear(); boss = null; chairConfessed = false;
                 shopWave = state.Phase == SessionPhase.Shop ? state.Wave : -1; hobRescued = state.ActOne?.HobRescued ?? 0;
             }
             bool blocked = owner.PresentationPaused || owner.StoryOpen || owner.TransitionPending || owner.Session.EndingPending || owner.Session.SecretRoomOpen;
@@ -68,7 +73,11 @@ namespace ArcaneBrigade
                     if (pair.Value <= before) continue;
                     int split = pair.Key.LastIndexOf('#');
                     string id = pair.Key.Substring(0, split); int tier = int.Parse(pair.Key.Substring(split + 1));
-                    if (tier >= 2) StarUp(id, tier); else Join(id);
+                    // A directly bought high-star body joins; a real merge consumed lower-star ingredients.
+                    string lower = id + "#" + (tier - 1);
+                    int remaining = scratch.TryGetValue(lower, out int bodies) ? bodies : 0;
+                    bool merged = tier >= 2 && roster.TryGetValue(lower, out int ingredients) && ingredients - remaining >= 2;
+                    if (merged) StarUp(id, tier); else Join(id);
                 }
             }
             roster.Clear(); foreach (KeyValuePair<string, int> pair in scratch) roster[pair.Key] = pair.Value;
@@ -88,6 +97,8 @@ namespace ArcaneBrigade
         }
         public static string StarLine(string unitId, int tier, int wave)
         {
+            string personal = CompanionReactions.Line(unitId, CompanionReactionKind.Merge);
+            if (personal != null) return personal;
             string[] lines = tier >= 3 ? ThirdStar : SecondStar;
             return lines[Hash(unitId + tier + wave) % lines.Length];
         }
@@ -115,10 +126,45 @@ namespace ArcaneBrigade
         {
             Func<Vector3?> anchor = () => { UnitState unit = FindCompanion(id, tier); return unit == null ? (Vector3?)null : SpeechBubbles.Head(unit); };
             if (anchor() == null) return false;
-            VoiceDirector.Say(VoiceLines.Companion, trigger, priority, true);
+            // Personal merge/context copy has no new recording: do not play an unrelated generic spoken sentence over it.
+            if (trigger == "join" || !CompanionReactions.Has(id)) VoiceDirector.Say(VoiceLines.Companion, trigger, priority, true);
             SpeechBubbles.Show("Companion:" + id, name, text, anchor, tone, 0, priority + 1);
-            if (trigger == "join") Joins++; else StarUps++;
+            if (trigger == "join") Joins++; else if (trigger == "starup") StarUps++; else ContextLines++;
             return true;
+        }
+
+        public void CommittedPurchase(RunSnapshot before, ShopOffer offer)
+        {
+            if (owner?.Session == null) return;
+            var state = owner.Session.State;
+            if (reactedRun == state.RunId && state.NextReceipt <= reactedReceipt) return;
+            if (state.NextReceipt <= before.NextReceipt) return;
+            reactedRun = state.RunId; reactedReceipt = state.NextReceipt;
+            foreach (var reaction in CompanionReactions.AfterPurchase(owner.Content, before, owner.Session, offer))
+            {
+                var held = reaction; int wave = state.Wave; string run = state.RunId;
+                string once = wave + ":" + held.UnitId + ":" + held.Kind;
+                if (!contextSaid.Add(once)) continue;
+                // The merchant and the actual recruit/merge reveal speak first. A sale has one additional response at most.
+                Enqueue(3.5f, 14f, true, () =>
+                {
+                    if (owner.Session.State.Phase != SessionPhase.Shop || owner.Session.State.Wave != wave || owner.Session.State.RunId != run) return true;
+                    bool said;
+                    if (!string.IsNullOrEmpty(held.StoryName))
+                    {
+                        var actor = FindStory(held.StoryName);
+                        if (actor == null) return false;
+                        SpeechBubbles.Show("Story:" + held.StoryName, held.StoryName, held.Text, () =>
+                        {
+                            var current = FindStory(held.StoryName); return current == null ? (Vector3?)null : SpeechBubbles.Head(current);
+                        }, SpeechTone.Story, 0, VoiceDirector.Chatter + 1);
+                        ContextLines++; said = true;
+                    }
+                    else said = CompanionSays(held.UnitId, held.Tier, owner.Content.Unit(held.UnitId).DisplayName, held.Text, held.Kind == CompanionReactionKind.Bond ? "bond" : "purchase", VoiceDirector.Chatter, SpeechTone.Companion);
+                    if (said) LastContext = held.Kind;
+                    return said;
+                }, context: true);
+            }
         }
 
         private UnitState FindCompanion(string id, int tier)
@@ -273,11 +319,11 @@ namespace ArcaneBrigade
 
         // ----- timing -----
 
-        private void Enqueue(float delay, float patience, bool companion, Func<bool> run)
+        private void Enqueue(float delay, float patience, bool companion, Func<bool> run, bool context = false)
         {
             if (queue.Count >= 6) queue.RemoveAt(0);
             float now = Time.unscaledTime;
-            queue.Add(new Pending { At = now + delay, Until = now + patience, Run = run, Companion = companion });
+            queue.Add(new Pending { At = now + delay, Until = now + patience, Run = run, Companion = companion, Context = context });
         }
 
         private void Flush(bool blocked)
@@ -290,6 +336,8 @@ namespace ArcaneBrigade
                 if (now > pending.Until) { queue.RemoveAt(index--); continue; }
                 if (now < pending.At) continue;
                 if (pending.Companion && now - SpeechBubbles.LastCompanionAt < CompanionGap) continue;
+                if (pending.Companion && owner.Shop?.Dialogue.ExpiresAt > owner.PresentationClock) continue;
+                if (pending.Context && (SpeechBubbles.CountTone(SpeechTone.Companion) > 0 || SpeechBubbles.CountTone(SpeechTone.Story) > 0)) continue;
                 // a merge or arrival reveal has the stage: the new friend speaks once it has landed
                 if (pending.Companion && owner.Shop?.Reveal != null && owner.Shop.Reveal.PendingCount > 0) continue;
                 if (pending.Run()) { queue.RemoveAt(index); return; } // one new voice per frame

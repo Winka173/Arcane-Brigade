@@ -1,0 +1,36 @@
+PASS Real profile and run save remain isolated
+PASS Player includes all 49 painted stat mappings
+PASS Saved fixture validates before loading:
+PASS Loaded actual saved shop fixture: False
+PASS Actual Windows frame Painted-icons-24-and-40px / 1920x1080
+PASS The real station is focused: CurioOrchardFizz
+PASS Purchase commits through the real shop: CurioOrchardFizz
+PASS Actual Windows frame Merchant-before-companion / 1920x1080
+PASS Expected actual companion speaks: Story:Hob
+PASS Reaction waits for the merchant to finish
+PASS Hob uses its personal response as a separate canon traveller
+PASS Actual Windows frame Hob-drink-response / 1920x1080
+PASS The real station is focused: CrayonGremlin
+PASS Purchase commits through the real shop: CrayonGremlin
+PASS Expected actual companion speaks: Companion:CrayonGremlin
+PASS Reaction waits for the merchant to finish
+PASS Buying a three-star body with two lower-star bodies still present is a join, not a fabricated merge
+PASS Actual Windows frame Bought-three-star-joins / 1920x1080
+PASS The real station is focused: ButtonBeetle
+PASS Purchase commits through the real shop: ButtonBeetle
+PASS Expected actual companion speaks: Companion:ButtonBeetle
+PASS Reaction waits for the merchant to finish
+PASS Real merge uses the beetle's personal line once
+PASS Actual Windows frame Beetle-merge-response / 1920x1080
+PASS Saved fixture validates before loading:
+PASS Loaded actual saved shop fixture: True
+PASS The real station is focused: SpringDuck
+PASS Purchase commits through the real shop: SpringDuck
+PASS Pause holds pending contextual dialogue
+PASS Expected actual companion speaks: Companion:SpringDuck
+PASS Reaction waits for the merchant to finish
+PASS Only one contextual response follows a real bond threshold
+PASS Actual Windows frame Duck-bond-response / 1920x1080
+PASS The same saved receipt never replays its response
+PASS An expired/invalid offer produces no success line
+PASS All native checks passed

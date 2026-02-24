@@ -55,7 +55,7 @@ namespace ArcaneBrigade
                 Rect rect=new Rect(x,y,280,54);
                 for(int tries=0;tries<20;tries++)
                 {
-                    bool overlap=false;foreach(var other in placed)if(rect.Overlaps(other)){overlap=true;break;}if(!overlap)break;
+                    bool overlap=SpeechBubbles.OverlapsDialogue(rect);foreach(var other in placed)if(rect.Overlaps(other)){overlap=true;break;}if(!overlap)break;
                     rect.y-=58;if(rect.y<175){rect.y=175;rect.x=Mathf.Clamp(rect.x+285,20,1620);}
                 }
                 placed.Add(rect);
