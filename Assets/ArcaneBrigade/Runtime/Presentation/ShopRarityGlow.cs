@@ -22,7 +22,9 @@ namespace ArcaneBrigade
         private float appearedAt = -1;
         private bool prismatic;
         public SpriteRenderer Target => target;
-        public bool UsesPaintedAura => StockPresentation && artwork != null && artwork.Frames.Length == 16;
+        public bool UsesPaintedAura => StockPresentation && artwork != null && artwork.PerRarity >= 4;
+        /// <summary>One bloom cycle lasts the same whatever the painted frame count, so more frames only make it smoother.</summary>
+        public const float CycleSeconds = 1.65f;
         public static bool CanDecorate(SpriteRenderer merchandise) => merchandise != null && merchandise.GetComponentInParent<UnitVisual>() == null;
         public static float AuraWidth(float bodySize, float focus, ItemRarity rarity) => Mathf.Clamp(bodySize, .45f, 1.65f) * (rarity >= ItemRarity.Mythic ? 2.8f : rarity == ItemRarity.Rare ? 2.55f : 2.3f) * (1 + Mathf.Clamp01(focus) * .18f);
         public void Configure(ItemRarity rarity, ArenaController controller, float offset, SpriteRenderer merchandise, bool stockPresentation = true)
@@ -90,16 +92,21 @@ namespace ArcaneBrigade
             transform.localScale = new Vector3(size / Mathf.Max(.001f, Mathf.Abs(inherited.x)), size / Mathf.Max(.001f, Mathf.Abs(inherited.y)), 1) * Mathf.Lerp(.8f, 1, reveal);
             transform.rotation = Quaternion.identity;
             float focus = inspected == null ? 0 : inspected.FocusAmount;
-            float frameTime = reduced ? 1 : Mathf.Repeat(time * 2.4f, 4);
-            int frame = Mathf.FloorToInt(frameTime); float blend = reduced ? 0 : Mathf.SmoothStep(0, 1, frameTime - frame);
+            // a continuous cross-fade through the painted loop (linear, not held-then-jumped), plus a slow breath and sway on
+            // top so the bloom never looks like it is stepping, even with four frames
+            int frames = artwork != null && artwork.PerRarity > 0 ? artwork.PerRarity : 4;
+            float frameTime = reduced ? 1 : Mathf.Repeat(time / CycleSeconds * frames, frames);
+            int frame = Mathf.FloorToInt(frameTime); float blend = reduced ? 0 : frameTime - frame;
+            float breath = reduced ? 1 : 1 + Mathf.Sin(time * 2.1f) * 0.035f, sway = reduced ? 0 : Mathf.Sin(time * 0.9f + phase) * 2.2f;
             for (int index = 0; index < painted.Length; index++)
             {
                 SpriteRenderer view = painted[index]; if (!view.enabled) continue;
                 view.sprite = artwork.Frame(rarity, (frame + index) % 4);
                 float width = AuraWidth(size, focus, rarity) / Mathf.Max(.01f, size);
                 float paintedScale = width / Mathf.Max(.01f, view.sprite.bounds.size.x);
-                view.transform.localScale = Vector3.one * paintedScale;
-                view.transform.localPosition = new Vector3(0, -.08f, 0);
+                view.transform.localScale = Vector3.one * paintedScale * breath;
+                view.transform.localPosition = new Vector3(0, -.08f + (reduced ? 0 : Mathf.Sin(time * 2.1f) * .015f), 0);
+                view.transform.localRotation = Quaternion.Euler(0, 0, sway * (index == 0 ? 1 : -0.6f));
                 view.sortingOrder = target.sortingOrder - 2;
                 Color color = rarity == ItemRarity.Crimson ? new Color(1, .2f, .2f) : Color.white;
                 color.a = (index == 0 ? 1 - blend : blend) * visibility * reveal * (soft ? .58f : .9f) * (1 + focus * .08f);

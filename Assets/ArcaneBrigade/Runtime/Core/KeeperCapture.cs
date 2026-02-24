@@ -45,6 +45,16 @@ namespace ArcaneBrigade
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.5f);
 
+            // 0. -rarity-strip: twelve frames 0.1 s apart of a shop's stock, to judge how smoothly the rarity bloom moves
+            if (Array.IndexOf(args, "-rarity-strip") >= 0)
+            {
+                yield return Load(s => { s.State.Wave = 12; s.State.Phase = SessionPhase.Shop; typeof(RunSession).GetMethod("RollShop", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)?.Invoke(s, new object[] { false }); s.State.SpecialShopVisited = true; s.State.SpecialOffers.Clear(); }, catalog, storage);
+                var shopOwner = FindAnyObjectByType<ArenaController>();
+                shopOwner.Simulation.Champion.Position = shopOwner.Simulation.Champion.PreviousPosition = new Vector2(-1.35f, -0.95f);
+                yield return new WaitForSecondsRealtime(2f);
+                for (int i = 0; i < 12; i++) { yield return Shot("rarity-" + i.ToString("00")); yield return new WaitForSecondsRealtime(0.1f); }
+                Write(); Application.Quit(0); yield break;
+            }
             // 1. the wave-5 gate: the Coin Widow
             yield return Load(s => { s.State.Wave = 5; s.State.Phase = SessionPhase.Combat; }, catalog, storage);
             var owner = FindAnyObjectByType<ArenaController>();

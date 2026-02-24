@@ -11,7 +11,10 @@ namespace ArcaneBrigade.Editor
     {
         public static void Build()
         {
-            Sprite[] frames = K25AtlasImporter.Import("Assets/ArcaneBrigade/Art/ShopPresentation/RarityBloom_v1.png", "RarityBloom", 4, 4, Enumerable.Range(0, 16).ToArray());
+            // RarityBloom_v2 (12 frames per rarity, a seamless loop) replaces v1 (4 per rarity) as soon as it is delivered
+            bool smooth = System.IO.File.Exists("Assets/ArcaneBrigade/Art/ShopPresentation/RarityBloom_v2.png");
+            Sprite[] frames = smooth ? K25AtlasImporter.Import("Assets/ArcaneBrigade/Art/ShopPresentation/RarityBloom_v2.png", "RarityBloom", 12, 4, Enumerable.Range(0, 48).ToArray())
+                : K25AtlasImporter.Import("Assets/ArcaneBrigade/Art/ShopPresentation/RarityBloom_v1.png", "RarityBloom", 4, 4, Enumerable.Range(0, 16).ToArray());
             const string auraPath = "Assets/ArcaneBrigade/Resources/ShopRarityArtwork.asset";
             ShopRarityArtwork aura = AssetDatabase.LoadAssetAtPath<ShopRarityArtwork>(auraPath);
             if (aura == null) { aura = ScriptableObject.CreateInstance<ShopRarityArtwork>(); AssetDatabase.CreateAsset(aura, auraPath); }
@@ -29,7 +32,7 @@ namespace ArcaneBrigade.Editor
             var notes = new List<string>();
             void Require(bool value, string label) { if (!value) throw new InvalidOperationException("Shop presentation: " + label); notes.Add("PASS " + label); }
             ShopRarityArtwork aura = ShopRarityArtwork.Current;
-            Require(aura != null && aura.Frames.Length == 16, "Sixteen original rarity animation cells imported");
+            Require(aura != null && (aura.Frames.Length == 16 || aura.Frames.Length == 48), "Rarity animation cells imported (4 or 12 per rarity)");
             foreach (ItemRarity rarity in new[] { ItemRarity.Uncommon, ItemRarity.Rare, ItemRarity.Mythic, ItemRarity.Crimson, ItemRarity.Rainbow })
             {
                 Require(aura.Frame(rarity, -1) == aura.Frame(rarity, 0) && aura.Frame(rarity, 99) == aura.Frame(rarity, 3), "Aura frame bounds " + rarity);
