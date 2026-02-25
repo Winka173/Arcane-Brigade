@@ -9,7 +9,14 @@ namespace ArcaneBrigade
     /// <summary>A data-driven purchase card. Bonds count bodies; support counts stars; attack ranges never promise a rolled weapon.</summary>
     public sealed class ShopDescriptionCard
     {
-        public sealed class BondRow { public BondDefinition Bond; public int Count, Next; }
+        public sealed class BondRow
+        {
+            public BondDefinition Bond; public int Count, Next, After;
+            public bool Preview;
+            public float BeforeReward => Bond.Reward(Count);
+            public float AfterReward => Bond.Reward(After);
+            public bool Activates => Preview && After > Count && Mathf.Abs(AfterReward - BeforeReward) > .00001f;
+        }
         public readonly List<BondRow> Bonds = new List<BondRow>();
         public string Summary, Details, Identity;
         public ItemRarity Rarity;
@@ -50,11 +57,23 @@ namespace ArcaneBrigade
             var unit = catalog.Unit(offer.Id); Rarity = unit.Rarity; Portrait = unit.Body;
             Identity = "COMPANION · " + RunModifierRules.RarityName(Rarity) + " · " + offer.Tier + " STAR";
             Attack = session.InspectRecruitAttack(unit.Id, offer.Tier);
+            // Run the real recruitment/merge/absorption rules on an isolated copy, never on the live roster or RNG.
+            using var preview = new RunSession(catalog);
+            preview.Restore(MergeReveal.Capture(session.State));
+            bool purchased = preview.Buy(offer.Token);
             foreach (string tag in unit.Tags ?? Array.Empty<string>())
             {
                 var bond = Array.Find(catalog.Bonds, b => b.Id == tag); if (bond == null) continue;
                 session.BondCounts.TryGetValue(tag, out int count);
-                Bonds.Add(new BondRow { Bond = bond, Count = count, Next = bond.NextThreshold(count) });
+                preview.BondCounts.TryGetValue(tag, out int after);
+                Bonds.Add(new BondRow { Bond = bond, Count = count, Next = bond.NextThreshold(count), After = purchased ? after : count, Preview = purchased });
+            }
+            // Nursery transformations and purchase talents can affect bonds beyond the offered species' tags.
+            if (purchased) foreach (var bond in catalog.Bonds)
+            {
+                session.BondCounts.TryGetValue(bond.Id, out int count); preview.BondCounts.TryGetValue(bond.Id, out int after);
+                if (after != count && !Bonds.Any(row => row.Bond.Id == bond.Id))
+                    Bonds.Add(new BondRow { Bond = bond, Count = count, Next = bond.NextThreshold(count), After = after, Preview = true });
             }
             var b = new StringBuilder();
             b.AppendLine("SUPPORT WHILE OWNED · offered " + offer.Tier + "-star body");
@@ -77,13 +96,13 @@ namespace ArcaneBrigade
             foreach (var row in Bonds)
             {
                 var bond = row.Bond;
-                Details += "\n\n" + bond.Name + " / " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(bond.Effect)) + ": " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(bond.Value)) + " every " + bond.Threshold + " bodies. Card shows cumulative reward at the next threshold.";
+                Details += "\n\n" + bond.Name + " / " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(bond.Effect)) + ": " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(bond.Value)) + " every " + bond.Threshold + " bodies. " + (row.Preview ? "After buying: " + row.Count + " → " + row.After + " bodies; total reward " + RunModifierRules.ValueText(bond.Effect, row.AfterReward) + "." : "Purchase unavailable; no after-purchase result shown.");
                 foreach (var extra in bond.ExtraBonuses ?? Array.Empty<BondThresholdBonus>()) Details += " Extra at " + extra.Threshold + " bodies: " + GlossaryUI.Modifier(bond.Effect, RunModifierRules.DefaultScope(bond.Effect), bond.BalanceReward(extra.Value)) + ".";
             }
         }
 
         public float HeaderHeight => Attack == null ? 0 : Mathf.Max(125, Mathf.CeilToInt(Bonds.Count / 3f) * 115 + 8);
-        public void DrawHeader(Rect bounds)
+        public void DrawHeader(Rect bounds, float clock = 0)
         {
             if (Attack == null) return;
             label ??= ArcadeTypography.Style(17, true); value ??= ArcadeTypography.Style(20, true); muted ??= ArcadeTypography.Style(15);
@@ -101,14 +120,35 @@ namespace ArcaneBrigade
             {
                 var row = Bonds[i]; var bond = row.Bond;
                 Rect box = new Rect(bounds.x + 230 + i % columns * (width + 8), bounds.y + i / columns * 115, width, 108);
-                ArcadeSkin.Panel(box, ArcadeSkin.Surface); DrawSprite(new Rect(box.x + 8, box.y + 10, 36, 36), bond.Icon);
+                bool activates = row.Activates;
+                Color accent = BenefitColor(bond.Effect, row.AfterReward - row.BeforeReward);
+                ArcadeSkin.Panel(box, activates ? Color.Lerp(ArcadeSkin.Surface, accent, .16f) : ArcadeSkin.Surface);
+                bool animate = activates && !PresentationSettings.ReducedMotion && !PresentationSettings.ReducedEffects && !PresentationSettings.ReducedFlashes;
+                if (activates)
+                {
+                    ArcadeSkin.Line(new Rect(box.x, box.y, box.width, 3), accent);
+                    ArcadeSkin.Line(new Rect(box.x, box.yMax - 3, box.width, 3), accent);
+                    ArcadeSkin.Line(new Rect(box.x, box.y, 3, box.height), accent);
+                    ArcadeSkin.Line(new Rect(box.xMax - 3, box.y, 3, box.height), accent);
+                    if (animate)
+                    {
+                        float travel = Mathf.Repeat(clock * .28f, 1), shine = Mathf.Min(38, box.width * .2f);
+                        ArcadeSkin.Line(new Rect(box.x + (box.width - shine) * travel, box.y, shine, 3), Color.Lerp(accent, Color.white, .65f));
+                    }
+                }
+                float grow = animate ? 1 + Mathf.Sin(clock * 2.4f) * .045f : 1;
+                DrawSprite(new Rect(box.x + 26 - 18 * grow, box.y + 28 - 18 * grow, 36 * grow, 36 * grow), bond.Icon);
                 label.normal.textColor = ArcadeSkin.Cream; FitLabel(new Rect(box.x + 50, box.y + 5, width - 55, 23), bond.Name, label, 17);
-                muted.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(box.x + 50, box.y + 28, width - 55, 24), row.Count + "/" + row.Next + " · " + RunModifierRules.ScopeName(RunModifierRules.DefaultScope(bond.Effect)), muted);
+                int target = activates ? row.Next : bond.NextThreshold(row.After);
+                muted.normal.textColor = activates ? accent : ArcadeSkin.Teal;
+                FitLabel(new Rect(box.x + 50, box.y + 28, width - 55, 24), (row.Preview ? row.Count + " → " + row.After + "/" + target : "Unavailable · " + row.Count + "/" + row.Next), muted, 15);
                 StatGlyph.Draw(new Rect(box.x + 9, box.y + 55, 23, 23), bond.Effect);
-                value.normal.textColor = BenefitColor(bond.Effect, bond.Reward(row.Next));
-                FitLabel(new Rect(box.x + 39, box.y + 52, width - 44, 27), RunModifierRules.ValueText(bond.Effect, bond.Reward(row.Next)) + " " + ShortOfferCopy.StatName(bond.Effect), value, 20);
+                value.normal.textColor = BenefitColor(bond.Effect, row.AfterReward);
+                FitLabel(new Rect(box.x + 39, box.y + 52, width - 44, 27), RunModifierRules.ValueText(bond.Effect, row.AfterReward) + " " + ShortOfferCopy.StatName(bond.Effect), value, 20);
                 muted.normal.textColor = ArcadeSkin.Teal;
-                GUI.Label(new Rect(box.x + 10, box.y + 80, width - 15, 23), "Now " + RunModifierRules.ValueText(bond.Effect, bond.Reward(row.Count)) + " · next at " + row.Next, muted);
+                muted.normal.textColor = activates ? accent : ArcadeSkin.Teal;
+                string status = !row.Preview ? "Cannot buy this offer" : activates ? (row.BeforeReward == 0 ? "ACTIVATES ON BUY" : "UPGRADES ON BUY") : row.After < row.Count ? "MERGE · FEWER BOND BODIES" : row.AfterReward == 0 ? "NOT ACTIVE · next at " + target : "AFTER BUY · next at " + target;
+                FitLabel(new Rect(box.x + 10, box.y + 80, width - 15, 23), status, muted, 15);
             }
         }
         private static void FitLabel(Rect rect, string text, GUIStyle style, int size)

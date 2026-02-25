@@ -314,7 +314,7 @@ namespace ArcaneBrigade
                     GUI.Label(new Rect(costIcon.xMax + 6, costIcon.y, 265, 24), station.Offer.Price + " " + (station.Offer.Currency == ShopCurrency.Health ? "HP · leave 1 HP" : station.Offer.Currency == ShopCurrency.Eggs ? "eggs" : "gold"), small);
                 }
                 if (station.Offer != null && navigation.Button(new Rect(panel.xMax - 340, panel.y + 18, 100, 36), shopDetails ? "BACK" : "INFO", button)) SetShopDetails(!shopDetails);
-                if (headerHeight > 0) offerCard.DrawHeader(new Rect(panel.x + 24, panel.y + 80, 902, headerHeight));
+                if (headerHeight > 0) offerCard.DrawHeader(new Rect(panel.x + 24, panel.y + 80, 902, headerHeight), owner.PresentationClock);
                 float bodyY = station.Offer != null ? 84 + headerHeight : 64;
                 shopScroll = GUI.BeginScrollView(new Rect(panel.x + 24, panel.y + bodyY, textWidth + 26, panel.height - bodyY - 15), shopScroll, new Rect(0, 0, textWidth + 5, contentHeight));
                 GlossaryUI.Text(new Rect(0, 0, textWidth, contentHeight), description, small);

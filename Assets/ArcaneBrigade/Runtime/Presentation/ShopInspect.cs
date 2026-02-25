@@ -218,7 +218,7 @@ namespace ArcaneBrigade
             hint.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(card.x + 74, card.y + 48, 830, 24), offerCard.Identity, hint);
             if (GUI.Button(new Rect(card.xMax - 48, card.y + 12, 32, 32), "×")) { Close(); return; }
             float header = offerCard.HeaderHeight;
-            offerCard.DrawHeader(new Rect(card.x + 20, card.y + 82, card.width - 40, header));
+            offerCard.DrawHeader(new Rect(card.x + 20, card.y + 82, card.width - 40, header), owner.PresentationClock);
             float y = card.y + 84 + header, width = card.width - 70;
             string copy = offerCard.Details + "\n\n" + open.Use;
             body.normal.textColor = ArcadeSkin.Cream;
