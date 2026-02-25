@@ -430,8 +430,20 @@ namespace ArcaneBrigade
             PrepareBuildMorphs();
             CompileOctoberRoster();
             PrepareHeroIdentity();
+            ApplyEnemyDifficultyRelief();
             RunAchievements.Observe(this, catalog, CombatCatalog);
             return CombatCatalog;
+        }
+
+        private void ApplyEnemyDifficultyRelief()
+        {
+            // Apply last: special encounters replace boss health after BuildEnemy, and pools can share definitions.
+            var enemies = new HashSet<UnitDefinition>();
+            void Add(UnitDefinition unit) { if (unit != null) enemies.Add(unit); }
+            Add(CombatCatalog.MeleeEnemy); Add(CombatCatalog.RangedEnemy); Add(CombatCatalog.Boss); Add(CombatCatalog.SecretPartner);
+            foreach (var unit in CombatCatalog.EnemyPool ?? Array.Empty<UnitDefinition>()) Add(unit);
+            foreach (var unit in CombatCatalog.AffixedEnemies ?? Array.Empty<UnitDefinition>()) Add(unit);
+            foreach (var unit in enemies) unit.Health *= OctoberBalance.EnemyHealthRelief;
         }
 
         private UnitDefinition BuildUnit(UnitDefinition source, WeaponDefinition weapon, int tier, bool companion)

@@ -944,6 +944,8 @@ namespace ArcaneBrigade
                 if (catalog.SecretWard && !injectedDamage) damage *= .85f;
                 if (!injectedDamage) damage = OctoberIncoming(damage);
             }
+            // All hostile contact, weapon and skill damage gets the same relief, including hits reaching the HP cap.
+            if (source == Faction.Enemy && !injectedDamage && !healthCost) damage *= OctoberBalance.EnemyDamageRelief;
             float baseDamage = damage;
             if (target.Faction == Faction.Enemy && weapon != null && weapon.Motion == WeaponMotion.Bow && treasureUntil > Elapsed && source != Faction.Enemy)
                 damage *= 1f + Mathf.Min(0.45f, catalog.TreasureStacks * 0.15f);
