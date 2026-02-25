@@ -7,8 +7,7 @@ namespace ArcaneBrigade
     public enum SpeechTone { Shopkeeper, Dream, Companion, Story, Hero, Boss, Offscreen, Whisper }
     public enum BubbleSide { Above, Right, Left }
 
-    /// <summary>One spoken line, pinned to the speaker's head in the world. The anchor returns null while the speaker is
-    /// not on screen (the bubble then waits, hidden, until it expires).</summary>
+    /// <summary>One spoken line. Its first visible placement is locked in screen space until it expires.</summary>
     public sealed class SpeechBubble
     {
         public string Speaker;
@@ -22,11 +21,13 @@ namespace ArcaneBrigade
         public float Expires;
         public Rect Placed { get; internal set; }
         public bool Drawn { get; internal set; }
+        internal bool PlacementLocked;
+        internal Vector2 LockedAnchor;
     }
 
     /// <summary>World-anchored speech boxes for everyone who talks (shopkeeper, bosses, companions, the hero) and a quiet
     /// caption for voices without a body (the whisper from the left, narration). Drawn in the 1920x1080 HUD space,
-    /// clamped to the screen, stacked so boxes never cover each other, short-lived, and calm under Reduced Motion.</summary>
+    /// placed clear of existing boxes once, then held still while the sentence is read.</summary>
     public static class SpeechBubbles
     {
         public const int MaxBubbles = 5;
@@ -147,6 +148,9 @@ namespace ArcaneBrigade
             placed.Clear(); order.Clear(); order.AddRange(bubbles);
             placed.AddRange(AlwaysReserved);
             if (combat) placed.AddRange(CombatReserved);
+            // Existing sentences keep their space even when a newly queued voice has higher priority.
+            foreach (var visible in bubbles)
+                if (visible.PlacementLocked) placed.Add(new Rect(visible.Placed.x - 6, visible.Placed.y - 6, visible.Placed.width + 12, visible.Placed.height + 12));
             // important voices claim their place first; among equals, the older box keeps its spot
             order.Sort((a, b) => a.Priority != b.Priority ? b.Priority.CompareTo(a.Priority) : a.Began.CompareTo(b.Began));
             float offscreenY = Bounds.y + 6;
@@ -156,7 +160,8 @@ namespace ArcaneBrigade
                 if (bubble.Tone == SpeechTone.Whisper) { DrawWhisper(bubble, now, reduced); continue; }
                 Vector2 anchor;
                 bool tailed = bubble.Tone != SpeechTone.Offscreen;
-                if (tailed)
+                if (bubble.PlacementLocked) anchor = bubble.LockedAnchor;
+                else if (tailed)
                 {
                     Vector3? world = bubble.Anchor?.Invoke();
                     if (world == null) continue;
@@ -179,9 +184,10 @@ namespace ArcaneBrigade
                 float top = named ? 30 : 12;
                 var size = new Vector2(textWidth + 44, textHeight + top + 18);
 
-                Rect rect = tailed ? Place(anchor, size, bubble.Prefer) : Stack(new Rect(anchor.x - size.x * 0.5f, anchor.y, size.x, size.y));
+                Rect rect = bubble.PlacementLocked ? bubble.Placed : tailed ? Place(anchor, size, bubble.Prefer) : Stack(new Rect(anchor.x - size.x * 0.5f, anchor.y, size.x, size.y));
                 if (!tailed) offscreenY = rect.yMax + 8;
-                placed.Add(new Rect(rect.x - 6, rect.y - 6, rect.width + 12, rect.height + 12));
+                if (!bubble.PlacementLocked) placed.Add(new Rect(rect.x - 6, rect.y - 6, rect.width + 12, rect.height + 12));
+                bubble.PlacementLocked = true; bubble.LockedAnchor = anchor;
                 bubble.Placed = rect; bubble.Drawn = true; DrawnCount++;
 
                 float age = now - bubble.Began;
@@ -192,7 +198,7 @@ namespace ArcaneBrigade
                 Color previous = GUI.color;
                 GUI.color = new Color(1, 1, 1, alpha);
                 Vector2 tailBase = tailed ? ClosestEdge(rect, anchor) : rect.center;
-                if (pop < 0.999f) GUIUtility.ScaleAroundPivot(Vector2.one * pop, tailed ? anchor : rect.center);
+                if (pop < 0.999f) GUIUtility.ScaleAroundPivot(Vector2.one * pop, rect.center);
                 if (tailed) DrawTail(tailBase + new Vector2(3, 5), anchor + new Vector2(3, 5), new Color(0, 0, 0, 0.4f));
                 ArcadeSkin.Ticket(rect, paper, stamp);
                 if (tailed) DrawTail(tailBase, anchor, paper);
@@ -304,10 +310,10 @@ namespace ArcaneBrigade
         {
             float age = now - bubble.Began;
             float alpha = Mathf.Clamp01(age / 0.6f) * Mathf.Clamp01((bubble.Expires - now) / 0.9f) * 0.9f;
-            float drift = reduced ? 0 : (1 - Mathf.Clamp01(age / 0.8f)) * -14;
             var content = new GUIContent(bubble.Text);
             float height = whisperStyle.CalcHeight(content, 470);
-            Rect rect = new Rect(46 + drift, 470 - height * 0.5f, 470, height);
+            Rect rect = bubble.PlacementLocked ? bubble.Placed : new Rect(46, 470 - height * 0.5f, 470, height);
+            bubble.PlacementLocked = true;
             Color previous = GUI.color;
             GUI.color = new Color(1, 1, 1, alpha);
             ArcadeSkin.Glow(new Rect(rect.x - 70, rect.y - 50, rect.width + 140, rect.height + 100), new Color(0.02f, 0.02f, 0.04f, 0.85f));
