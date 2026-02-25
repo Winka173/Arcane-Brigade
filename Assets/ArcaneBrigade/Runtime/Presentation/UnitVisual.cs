@@ -28,6 +28,7 @@ namespace ArcaneBrigade
         private GroundShadow grounded;
         private GroundShadow groundedWeapon;
         private Material entranceMaterial;
+        private BossEmergence emergence;
         private float lastDisplayTime;
         private readonly SpriteRenderer[] tierStars = new SpriteRenderer[3];
         private SpriteRenderer tierCrest;
@@ -499,6 +500,14 @@ namespace ArcaneBrigade
             }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
+            // a boss rising from below comes up out of an ink pool: a silhouette whose colour arrives as it clears the surface
+            if (state.Definition.IsBoss && state.Definition.BossPattern % 2 != 0 && state.Definition.Id != NightmareRules.CustomerId && entrance > 0)
+            {
+                emergence ??= gameObject.AddComponent<BossEmergence>();
+                Color dusk = emergence.Rise(new Vector2(state.Position.x, state.Position.y - state.Definition.BodyHeight * 0.5f), state.Definition.BodyHeight * 0.95f, state.Definition.BodyHeight, 1 - entrance, body.sortingOrder, simulationTime);
+                body.color = new Color(body.color.r * dusk.r, body.color.g * dusk.g, body.color.b * dusk.b, body.color.a);
+            }
+            else if (emergence != null) emergence.Settle(body.sortingOrder, simulationTime);
             if (puppet != null)
             {
                 if (actingFrame != null || expandedFrame != null || reactionFrame != null && entrance <= 0 || state.Faction == Faction.Enemy && !state.Definition.IsBoss && AnimationDetailBudget.Level >= 2) { puppet.Hide(); body.enabled = true; }

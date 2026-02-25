@@ -6,6 +6,8 @@ namespace ArcaneBrigade
     {
         private readonly List<PaintedMechanicView> pool=new List<PaintedMechanicView>();
         public int VisibleCount{get;private set;}
+        // each build theme moves its own painted motes through its strikes
+        private static string Mote(BuildMorphKind kind)=>kind switch{BuildMorphKind.Thread=>"Thread",BuildMorphKind.Cinder=>"LanternEmber",BuildMorphKind.Clockwork=>"CompassDart",BuildMorphKind.Porcelain=>"TeaDrop",BuildMorphKind.Constellation=>"Star",BuildMorphKind.Paper=>"Letter",BuildMorphKind.Mirror=>"FilmFrame",BuildMorphKind.Chorus=>"MusicNote",BuildMorphKind.Magnet=>"MagnetBolt",BuildMorphKind.Tide=>"Bubble",BuildMorphKind.Frost=>"GlobeShard",BuildMorphKind.Seal=>"Letter",_=>"AllySpark"};
         public void Display(CombatSimulation simulation,bool reduced)
         {
             VisibleCount=0;
@@ -14,7 +16,7 @@ namespace ArcaneBrigade
             {
                 if(VisibleCount>=EffectDensity.Limit(48))break;
                 if(VisibleCount==pool.Count)pool.Add(new PaintedMechanicView(transform,"Build mechanic "+VisibleCount,1100));
-                pool[VisibleCount++].Display(null,strike.Geometry,strike.Position,strike.End,strike.Direction,strike.Radius,strike.At,strike.Until,simulation.Elapsed,BuildMorphs.Get(strike.Kind).Color,reduced);
+                pool[VisibleCount++].Display(null,strike.Geometry,strike.Position,strike.End,strike.Direction,strike.Radius,strike.At,strike.Until,simulation.Elapsed,BuildMorphs.Get(strike.Kind).Color,reduced,Mote(strike.Kind));
             }
             for(int i=VisibleCount;i<pool.Count;i++)pool[i].Hide();
         }

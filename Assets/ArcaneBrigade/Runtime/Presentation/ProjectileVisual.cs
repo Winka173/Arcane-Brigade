@@ -9,14 +9,13 @@ namespace ArcaneBrigade
         private SpriteRenderer core;
         private LineRenderer streak;
         private LineRenderer motif;
+        private readonly SpriteRenderer[] petals = new SpriteRenderer[6]; // painted companions of a bloom orb / music-box shot
         private Material material;
         private ArenaController owner;
         private readonly Vector2[] history = new Vector2[4];
         private int identity = -1;
         private string paintedKey;
         private float sampledAt = -100;
-        private static readonly Vector2[] FishMotif = { new Vector2(0.19f, 0), new Vector2(-0.03f, 0.1f), new Vector2(-0.16f, -0.12f), new Vector2(-0.16f, 0.12f), new Vector2(-0.03f, -0.1f) };
-        private static readonly Vector2[] NoteMotif = { new Vector2(-0.03f, -0.08f), new Vector2(0.05f, -0.08f), new Vector2(0.05f, 0.22f), new Vector2(0.14f, 0.18f), new Vector2(0.14f, 0.1f) };
 
         public void Configure(Sprite disc)
         {
@@ -35,6 +34,7 @@ namespace ArcaneBrigade
             var glyph = new GameObject("ProjectileMotif"); glyph.transform.SetParent(transform, false);
             motif = glyph.AddComponent<LineRenderer>(); motif.sharedMaterial = material; motif.sortingOrder = 1804;
             motif.numCapVertices = 4; motif.numCornerVertices = 4; motif.widthMultiplier = 0.035f;
+            for (int i = 0; i < petals.Length; i++) { var petal = new GameObject("ProjectilePetal" + i); petal.transform.SetParent(transform, false); petals[i] = petal.AddComponent<SpriteRenderer>(); petals[i].sortingOrder = 1805; petals[i].enabled = false; }
         }
 
         private SpriteRenderer Child(string name, Sprite sprite)
@@ -121,28 +121,34 @@ namespace ArcaneBrigade
                 core.transform.localRotation = Quaternion.Euler(0, 0, time * 65 + state.Id * 31);
                 core.transform.localScale = new Vector3(1 + Mathf.Sin(time * 5 + state.Id) * .08f, 1 - Mathf.Sin(time * 5 + state.Id) * .08f, 1) * (width / Mathf.Max(.001f, body.transform.localScale.x) / Mathf.Max(.01f, core.sprite.bounds.size.x) * .45f);
             }
+            // no outline glyphs: a bloom orb is ringed by six painted leaves turning slowly, a music-box shot trails painted notes
             ExpandedWeapon family = state.Weapon == null ? ExpandedWeapon.None : state.Weapon.Family;
-            motif.enabled = painted == null && family == ExpandedWeapon.MusicBox;
-            if (motif.enabled)
+            motif.enabled = false;
+            bool bloom = painted == null && state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.BloomOrb;
+            bool notes = painted == null && family == ExpandedWeapon.MusicBox;
+            Sprite petalArt = bloom ? CombatVfxArtwork.Frame("LeafBolt", 0) : notes ? CombatVfxArtwork.Frame("MusicNote", 0) : null;
+            int count = petalArt == null || !EffectDensity.CosmeticProjectile(state.Id) ? 0 : bloom ? (PresentationSettings.ReducedEffects ? 3 : 6) : 3;
+            bool still = PresentationSettings.ReducedMotion;
+            Vector2 heading = state.Velocity.sqrMagnitude > .0001f ? state.Velocity.normalized : Vector2.right;
+            for (int index = 0; index < petals.Length; index++)
             {
-                Vector2 direction = state.Velocity.normalized; Vector2 normal = new Vector2(-direction.y, direction.x);
-                motif.startColor = motif.endColor = family == ExpandedWeapon.Fish ? new Color(0.3f, 1, 0.8f) : new Color(1, 0.86f, 0.45f);
-                motif.loop = family == ExpandedWeapon.Fish; motif.positionCount = 5;
-                Vector2[] points = family == ExpandedWeapon.Fish ? FishMotif : NoteMotif;
-                for (int index = 0; index < points.Length; index++) motif.SetPosition(index, position + direction * points[index].x + normal * points[index].y);
-            }
-            if (painted == null && state.Weapon != null && state.Weapon.Mechanic == CarnivalWeapon.BloomOrb)
-            {
-                motif.enabled = EffectDensity.CosmeticProjectile(state.Id); motif.loop = true; motif.positionCount = 12;
-                Color color = state.Weapon.Mechanic == CarnivalWeapon.BloomOrb ? new Color(0.55f, 1, 0.8f, EffectDensity.AlliedAlpha) : new Color(1, 0.78f, 0.3f, EffectDensity.AlliedAlpha);
-                motif.startColor = motif.endColor = color;
-                float turn = PresentationSettings.ReducedMotion ? 0 : time * (state.Weapon.Mechanic == CarnivalWeapon.BloomOrb ? 0.8f : 3);
-                for (int index = 0; index < 12; index++)
+                SpriteRenderer petal = petals[index]; petal.enabled = index < count; if (!petal.enabled) continue;
+                petal.sprite = petalArt;
+                Vector2 at; float size, angle;
+                if (bloom)
                 {
-                    float angle = index * Mathf.PI / 6 + turn;
-                    float radius = state.VisualWidth * (index % 2 == 0 ? 0.7f : 0.48f);
-                    motif.SetPosition(index, position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius);
+                    float turn = (still ? 0 : time * 1.6f) + index * Mathf.PI * 2 / count;
+                    float reach = Mathf.Max(.12f, state.VisualWidth) * (.62f + (still ? 0 : Mathf.Sin(time * 4 + index) * .06f));
+                    at = position + new Vector2(Mathf.Cos(turn), Mathf.Sin(turn)) * reach; size = Mathf.Max(.09f, state.VisualWidth) * .42f; angle = turn * Mathf.Rad2Deg - 90;
                 }
+                else
+                {
+                    float back = .18f + index * .17f; Vector2 side = new Vector2(-heading.y, heading.x);
+                    at = position - heading * back + side * (still ? 0 : Mathf.Sin(time * 9 + index * 2.1f) * .07f); size = .13f - index * .02f; angle = still ? 0 : Mathf.Sin(time * 6 + index) * 18;
+                }
+                petal.transform.position = at; petal.transform.rotation = Quaternion.Euler(0, 0, angle);
+                petal.transform.localScale = Vector3.one * (size / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(petalArt).width) / Mathf.Max(.0001f, Mathf.Abs(transform.lossyScale.x)));
+                petal.color = bloom ? new Color(.75f, 1, .88f, EffectDensity.AlliedAlpha) : new Color(1, .95f, .8f, EffectDensity.AlliedAlpha * (1 - index * .25f));
             }
         }
 
@@ -157,6 +163,6 @@ namespace ArcaneBrigade
             Color end = streak.endColor; end.a *= alpha; streak.endColor = end;
             Color glyph = motif.startColor; glyph.a *= alpha; motif.startColor = motif.endColor = glyph;
         }
-        public void Hide() { if (halo != null) { halo.enabled = core.enabled = streak.enabled = motif.enabled = false; } if (grounded != null) grounded.Hide(); }
+        public void Hide() { if (halo != null) { halo.enabled = core.enabled = streak.enabled = motif.enabled = false; foreach (SpriteRenderer petal in petals) if (petal != null) petal.enabled = false; } if (grounded != null) grounded.Hide(); }
     }
 }

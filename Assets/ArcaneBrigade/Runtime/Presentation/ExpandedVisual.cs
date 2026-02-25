@@ -175,7 +175,7 @@ namespace ArcaneBrigade
                         else if(field.Kind==ExpandedFieldKind.Iron)kind=BuildMorphKind.Cinder;
                         else if(field.Kind==ExpandedFieldKind.Photo)kind=BuildMorphKind.Mirror;
                         MorphGeometry shape=link?MorphGeometry.Line:field.Kind==ExpandedFieldKind.Strike?MorphGeometry.Crescent:MorphGeometry.Disc;
-                        friendlyFields[slot].Display(effectArt.Form(kind),shape,link?start:field.Position,end,field.Direction,field.Radius,field.At,field.Until,simulation.Elapsed,color,ReducedMotion || PresentationSettings.ReducedMotion);
+                        friendlyFields[slot].Display(effectArt.Form(kind),shape,link?start:field.Position,end,field.Direction,field.Radius,field.At,field.Until,simulation.Elapsed,color,ReducedMotion || PresentationSettings.ReducedMotion,ArcadeEffects.MoteKey(field.ImpactWeapon??field.Source?.Definition.Weapon));
                     }
                     else friendlyFields[slot].Hide();
                     if (fieldPaintings[slot].Display(field, simulation.Elapsed))

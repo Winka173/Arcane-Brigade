@@ -45,8 +45,8 @@ namespace ArcaneBrigade.Editor
             try
             {
                 effects.Play(new CombatEvent(CombatEventKind.Heal, Vector2.zero, Faction.Champion));
-                Mesh mesh = effectObject.GetComponentInChildren<MeshFilter>().sharedMesh;
-                require(mesh.vertexCount >= 292 && mesh.colors.Any(color => color.a == 0), "72-segment ring with soft edge alpha, no coarse 24-sided ring");
+                var drawn = effectObject.GetComponentsInChildren<SpriteRenderer>().Where(view => view.enabled && view.sprite != null).ToArray();
+                require(drawn.Length >= 5, "A heal is a painted moment (ring, glow and rising motes), not a lone outline");
                 effects.Advance(1); require(effects.ActiveCount == 0, "Polished effects still expire through existing pool lifetime");
             }
             finally { UnityEngine.Object.DestroyImmediate(effectObject); }

@@ -3,34 +3,75 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
+    /// <summary>The small combat cues: a weapon's wind-up gathering, its muzzle and swing, a signature mark, burst or pulse,
+    /// a proc, a heal, a pickup, a chest. Each is a short painted moment in several stages, not a lone outline: a flash,
+    /// the painted ring / sparkle / crescent / ink puff of PaintedAnimationLibrary and CombatVFX, and motes themed by the
+    /// weapon that made it (leaves, notes, bubbles, tea drops, stars, magnet sparks, film frames, embers...) that gather,
+    /// burst, rise or trail. Large areas lie on the floor under the bodies; small cues sit over them.</summary>
     public sealed class ArcadeEffects : MonoBehaviour
     {
         private enum Shape { Ring, Slash, Star, Puff, Glyph }
+        private enum Drift { Out, Rise }
+        private const int Motes = 8;
         private sealed class Burst
         {
-            public Mesh Mesh;
-            public MeshRenderer Renderer;
             public Transform Transform;
+            public SpriteRenderer Core, Glow, Ring;
+            public readonly SpriteRenderer[] Motes = new SpriteRenderer[ArcadeEffects.Motes];
+            public readonly Vector2[] Heading = new Vector2[ArcadeEffects.Motes];
+            public readonly float[] Spin = new float[ArcadeEffects.Motes];
             public Shape Shape;
-            public float Age = 10f;
-            public float Duration;
-            public float Radius;
+            public Drift Drift;
+            public Sprite Mote;
+            public float Age = 10f, Duration, Radius, Angle;
             public Color Color;
+            public bool Floor;
         }
         private readonly List<Burst> bursts = new List<Burst>();
-        private readonly List<Vector3> vertices = new List<Vector3>();
-        private readonly List<Color> colors = new List<Color>();
-        private readonly List<int> triangles = new List<int>();
-        private Material material;
+        private PaintedAnimationLibrary library;
+        private static Sprite softGlow, fallbackRing, ripple;
+        private string theme;
+        private Drift motion;
+        private int seed;
         public int ActiveCount { get; private set; }
 
-        private void Awake() { material = new Material(Shader.Find("Sprites/Default")); }
+        private void Awake()
+        {
+            library = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");
+            softGlow ??= Make("ArcadeSoftGlow", 96, d => Mathf.Pow(Mathf.Clamp01(1 - d), 2.2f));
+            fallbackRing ??= Make("ArcadeRing", 160, d => Mathf.Clamp01(1 - Mathf.Abs(d - 0.86f) / 0.12f));
+            ripple ??= Make("ArcadeRipple", 256, d => Mathf.Pow(Mathf.Clamp01(1 - Mathf.Abs(d - 0.93f) / 0.06f), 1.6f) + 0.18f * Mathf.Clamp01(1 - Mathf.Abs(d - 0.8f) / 0.12f));
+        }
+        private static Sprite Make(string name, int size, System.Func<float, float> alpha)
+        {
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = name, filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
+            var pixels = new Color32[size * size]; float half = (size - 1) * 0.5f;
+            for (int y = 0; y < size; y++)
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = (x - half) / half, dy = (y - half) / half;
+                    pixels[y * size + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(alpha(Mathf.Sqrt(dx * dx + dy * dy))) * 255));
+                }
+            texture.SetPixels32(pixels); texture.Apply(false, true);
+            return Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), size, 0, SpriteMeshType.FullRect);
+        }
 
         public void Clear()
         {
-            foreach (Burst burst in bursts) { burst.Age = 10f; burst.Renderer.enabled = false; }
+            foreach (Burst burst in bursts) { burst.Age = 10f; Hide(burst); }
             ActiveCount = 0;
         }
+
+        /// <summary>The painted mote a weapon's cues are made of (its own projectile art), a soft spark otherwise.</summary>
+        public static string MoteKey(WeaponDefinition weapon) => weapon?.Id switch
+        {
+            "CrescentBow" => "ArrowBolt", "RuneStaff" or "DreamOrbStaff" or "MoonseedOrb" or "PlasmaTrident" => "RuneOrb", "BellFork" => "BellChime", "AcornSling" => "AcornPellet",
+            "BubbleWand" => "Bubble", "ButtonBow" => "ButtonDart", "InkPistol" => "InkBullet", "LanternStaff" or "DreamIron" or "FireExtinguisher" => "LanternEmber",
+            "LeafCrossbow" or "MoonFeatherFan" or "PaperFan" => "LeafBolt", "MailboxLauncher" or "DreamStamp" or "StampHammer" => "Letter", "MusicBox" or "RibbonHarp" or "StarKazoo" => "MusicNote",
+            "ShellCannon" => "ShellShot", "SnowGlobeOrb" => "GlobeShard", "TeapotPopgun" or "TeabagFlail" => "TeaDrop", "TinFish" or "CrescentBoomerang" or "SatelliteDisc" => "TinFish",
+            "DartCompass" or "ClockCrescent" or "ClockworkYoYo" or "AlarmMortar" => "CompassDart", "ScrapMagnet" => "MagnetBolt", "DreamProjector" or "SleepCamera" => "FilmFrame",
+            "NeedleSinger" or "CloudScissors" or "TapeWhip" or "TwinSabres" or "RibbonWheel" => "Thread", _ => "AllySpark"
+        };
 
         public static Color ElementColor(DamageElement element)
         {
@@ -39,7 +80,7 @@ namespace ArcaneBrigade
 
         public void Play(CombatEvent value)
         {
-            WeaponDefinition weapon = value.Weapon;
+            WeaponDefinition weapon = value.Weapon; theme = MoteKey(weapon); motion = value.Kind == CombatEventKind.Heal || value.Kind == CombatEventKind.ChestOpened || value.Kind == CombatEventKind.Support ? Drift.Rise : Drift.Out;
             Color color = ElementColor(value.Element);
             float angle = Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg;
             if (value.Kind == CombatEventKind.Dodge)
@@ -132,26 +173,36 @@ namespace ArcaneBrigade
             if (burst == null)
             {
                 if (bursts.Count >= EffectDensity.Limit(96)) return;
-                var child = new GameObject("Arcade" + shape);
-                child.transform.SetParent(transform, false);
-                var mesh = new Mesh { name = "PooledArcadeCue" };
-                mesh.MarkDynamic();
-                child.AddComponent<MeshFilter>().sharedMesh = mesh;
-                MeshRenderer renderer = child.AddComponent<MeshRenderer>();
-                renderer.sharedMaterial = material;
-                burst = new Burst { Mesh = mesh, Renderer = renderer, Transform = child.transform };
+                var child = new GameObject("ArcadeCue"); child.transform.SetParent(transform, false);
+                burst = new Burst { Transform = child.transform };
+                burst.Glow = Part(child.transform, "Glow"); burst.Ring = Part(child.transform, "Ring"); burst.Core = Part(child.transform, "Core");
+                for (int i = 0; i < Motes; i++) burst.Motes[i] = Part(child.transform, "Mote" + i);
                 bursts.Add(burst);
             }
-            burst.Shape = shape;
-            burst.Age = 0;
-            burst.Duration = Mathf.Max(0.06f, duration);
-            burst.Radius = radius;
-            burst.Color = color;
-            burst.Transform.position = position;
-            burst.Transform.rotation = Quaternion.Euler(0, 0, angle);
-            burst.Renderer.sortingOrder = shape == Shape.Puff ? 700 : 2100;
-            burst.Renderer.enabled = true;
+            // a wide pulse is a soft sound-wave: it needs time to roll out
+            if (shape == Shape.Ring && radius > 1.2f) duration = Mathf.Max(duration, 0.7f);
+            burst.Shape = shape; burst.Drift = motion; burst.Age = 0; burst.Duration = Mathf.Max(0.08f, duration);
+            burst.Radius = radius; burst.Color = color; burst.Angle = angle;
+            burst.Mote = CombatVfxArtwork.Frame(theme ?? "AllySpark", 0) ?? CombatVfxArtwork.Frame("AllySpark", 0) ?? softGlow;
+            burst.Transform.position = position; burst.Transform.rotation = Quaternion.identity;
+            // a pulse or field wider than a body lies on the floor under the brigade; small cues sit over it
+            burst.Floor = shape == Shape.Ring && radius > 1.2f || shape == Shape.Puff;
+            int order = burst.Floor ? 66 : 2100;
+            burst.Glow.sortingOrder = order; burst.Ring.sortingOrder = order + 1; burst.Core.sortingOrder = order + 2;
+            seed = unchecked(seed * 1103515245 + 12345);
+            for (int i = 0; i < Motes; i++)
+            {
+                float a = (i + (seed >> 8 & 7) * 0.11f) * Mathf.PI * 2f / Motes + Mathf.Sin(seed + i) * 0.3f;
+                burst.Heading[i] = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
+                burst.Spin[i] = (i % 2 == 0 ? 1 : -1) * (120 + 90 * Mathf.Abs(Mathf.Sin(seed * 0.3f + i)));
+                burst.Motes[i].sortingOrder = order + 3;
+            }
             Draw(burst);
+        }
+        private static SpriteRenderer Part(Transform parent, string name)
+        {
+            var go = new GameObject(name); go.transform.SetParent(parent, false);
+            var view = go.AddComponent<SpriteRenderer>(); view.enabled = false; return view;
         }
 
         public void Advance(float delta)
@@ -161,88 +212,134 @@ namespace ArcaneBrigade
             {
                 if (burst.Age >= burst.Duration) continue;
                 burst.Age += delta;
-                if (burst.Age >= burst.Duration) { burst.Renderer.enabled = false; continue; }
+                if (burst.Age >= burst.Duration) { Hide(burst); continue; }
                 ActiveCount++;
                 Draw(burst);
             }
         }
+        private static void Hide(Burst burst)
+        {
+            burst.Core.enabled = burst.Glow.enabled = burst.Ring.enabled = false;
+            foreach (SpriteRenderer mote in burst.Motes) mote.enabled = false;
+        }
+        private static float Ease(float t) => 1 - Mathf.Pow(1 - Mathf.Clamp01(t), 3);
+        private static void Fit(SpriteRenderer view, Sprite sprite, Vector2 at, float width, float angle, Color color)
+        {
+            view.enabled = sprite != null && color.a > 0.004f; if (!view.enabled) return;
+            view.sprite = sprite; view.color = color;
+            float ink = Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(sprite).width);
+            view.transform.position = at; view.transform.rotation = Quaternion.Euler(0, 0, angle);
+            view.transform.localScale = Vector3.one * (width / ink);
+        }
+        private static Sprite Frame(Sprite[] frames, float t) => frames == null || frames.Length == 0 ? null : frames[Mathf.Min(frames.Length - 1, Mathf.FloorToInt(Mathf.Clamp01(t) * frames.Length))];
 
         private void Draw(Burst burst)
         {
-            vertices.Clear(); colors.Clear(); triangles.Clear();
-            float progress = Mathf.Clamp01(burst.Age / burst.Duration);
-            Color color = burst.Color;
-            color.a = Mathf.Pow(1f - progress, 1.4f) * (burst.Shape == Shape.Puff ? 0.22f : 0.95f);
-            float eased = 1f - Mathf.Pow(1f - progress, 3);
-            float radius = burst.Radius * (burst.Shape == Shape.Star ? 1f - eased * 0.3f : 0.75f + eased * 0.4f);
-            const int segments = 72;
-            if (burst.Shape == Shape.Ring || burst.Shape == Shape.Slash || burst.Shape == Shape.Glyph)
+            float t = Mathf.Clamp01(burst.Age / burst.Duration);
+            bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
+            float flash = PresentationSettings.ReducedFlashes ? 0.4f : 1f;
+            Vector2 centre = burst.Transform.position;
+            Color tint = burst.Color, light = Color.Lerp(burst.Color, Color.white, 0.3f);
+            float r = burst.Radius, fade = Mathf.Pow(1 - t, 1.3f);
+            int motes = sparse ? 3 : burst.Shape == Shape.Star ? 4 : burst.Shape == Shape.Slash ? 3 : Motes;
+            float moteSize = Mathf.Clamp(0.1f + r * 0.08f, 0.1f, 0.24f);
+            Burst b = burst;
+            switch (b.Shape)
             {
-                float first = burst.Shape == Shape.Slash ? -1.15f + progress * 0.35f : 0f;
-                float length = burst.Shape == Shape.Slash ? 2.3f : Mathf.PI * 2f;
-                for (int index = 0; index <= segments; index++)
+                case Shape.Ring when b.Floor:
                 {
-                    float fraction = index / (float)segments;
-                    float angle = first + fraction * length;
-                    Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                    float width = burst.Shape == Shape.Slash ? 0.22f * Mathf.Sin(fraction * Mathf.PI) : 0.045f;
-                    Color visible = color;
-                    if (burst.Shape == Shape.Slash) visible.a *= Mathf.Clamp01(Mathf.Sin(fraction * Mathf.PI) * 4);
-                    for (int edge = 0; edge < 4; edge++)
+                    // wide pulses (the bell's sound, a field's beat): three thin, faint ripples rolling out one after another,
+                    // over the floor and under the bodies, so a big area reads without covering anyone
+                    SpriteRenderer[] waves = { b.Ring, b.Glow, b.Core };
+                    for (int k = 0; k < waves.Length; k++)
                     {
-                        float edgeRadius = edge == 0 ? radius + 0.014f : edge == 1 ? radius : edge == 2 ? radius - width : radius - width - 0.014f;
-                        vertices.Add(direction * Mathf.Max(0, edgeRadius));
-                        colors.Add(edge == 0 || edge == 3 ? new Color(visible.r, visible.g, visible.b, 0) : visible);
+                        float p = still ? .7f : Mathf.Clamp01((t - k * .2f) / .8f);
+                        Fit(waves[k], p <= 0 || p >= 1 ? null : ripple, centre, 2 * r * (.25f + .75f * Ease(p)), 0, new Color(light.r, light.g, light.b, .3f * Mathf.Pow(1 - p, 1.2f) * (k == 0 ? 1 : .7f)));
                     }
-                    if (index > 0)
-                        for (int edge = 0; edge < 3; edge++)
-                        {
-                            int previous = (index - 1) * 4 + edge; int current = index * 4 + edge;
-                            triangles.Add(previous); triangles.Add(current); triangles.Add(previous + 1);
-                            triangles.Add(previous + 1); triangles.Add(current); triangles.Add(current + 1);
-                        }
+                    for (int i = 0; i < b.Motes.Length; i++)
+                    {
+                        SpriteRenderer mote = b.Motes[i]; if (i >= Mathf.Min(motes, 3) || still) { mote.enabled = false; continue; }
+                        Vector2 at = centre + b.Heading[i * 2 % Motes] * r * (.3f + .7f * Ease(t)) + Vector2.up * t * .3f;
+                        Fit(mote, b.Mote, at, moteSize * .9f, b.Spin[i] * b.Age * .3f, new Color(1, 1, 1, .55f * Mathf.Sin(t * Mathf.PI)));
+                    }
+                    break;
                 }
-                if (burst.Shape == Shape.Glyph)
+                case Shape.Ring:
                 {
-                    for (int rune = 0; rune < 4; rune++)
+                    // a flash at the heart, the painted ring opening outward, motes thrown off its rim (or rising, for a heal)
+                    Sprite ring = CombatVfxArtwork.Frame("BlastRing", 0) ?? fallbackRing;
+                    float open = still ? 1 : 0.35f + 0.65f * Ease(t);
+                    Fit(b.Ring, ring, centre, 2 * r * open, still ? 0 : t * 30, new Color(light.r, light.g, light.b, fade * (b.Floor ? 0.6f : 0.85f)));
+                    Fit(b.Glow, softGlow, centre, 2 * r * (0.5f + 0.6f * t), 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.45f * flash));
+                    b.Core.enabled = false;
+                    for (int i = 0; i < b.Motes.Length; i++)
                     {
-                        float angle = rune * Mathf.PI * 0.5f + progress * 0.5f;
-                        Vector2 center = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius * 0.8f;
-                        int firstVertex = vertices.Count;
-                        vertices.Add(center + Vector2.up * 0.045f); vertices.Add(center + Vector2.right * 0.035f); vertices.Add(center + Vector2.down * 0.045f); vertices.Add(center + Vector2.left * 0.035f);
-                        for (int corner = 0; corner < 4; corner++) colors.Add(color);
-                        triangles.Add(firstVertex); triangles.Add(firstVertex + 1); triangles.Add(firstVertex + 2); triangles.Add(firstVertex); triangles.Add(firstVertex + 2); triangles.Add(firstVertex + 3);
+                        SpriteRenderer mote = b.Motes[i]; if (i >= motes || still) { mote.enabled = false; continue; }
+                        Vector2 at = b.Drift == Drift.Rise ? centre + b.Heading[i] * r * 0.6f * (0.5f + 0.5f * Ease(t)) + Vector2.up * t * (0.5f + r * 0.4f)
+                                                           : centre + b.Heading[i] * r * open * (1 + 0.25f * t);
+                        Fit(mote, b.Mote, at, moteSize * (1 - 0.4f * t), b.Spin[i] * b.Age, new Color(1, 1, 1, fade));
                     }
+                    break;
+                }
+                case Shape.Star:
+                {
+                    // the painted sparkle in four frames, opening and turning, with a few motes flicked away
+                    Sprite[] frames = library != null ? library.Magic : null;
+                    Fit(b.Core, Frame(frames, t), centre, 2.6f * r * (still ? 1 : 0.7f + 0.5f * Ease(t)), b.Angle + (still ? 0 : t * 25), new Color(light.r, light.g, light.b, Mathf.Clamp01((1 - t) * 1.8f) * flash));
+                    Fit(b.Glow, softGlow, centre, 2.2f * r, 0, new Color(tint.r, tint.g, tint.b, Mathf.Pow(1 - t, 2) * 0.4f * flash));
+                    b.Ring.enabled = false;
+                    for (int i = 0; i < b.Motes.Length; i++)
+                    {
+                        SpriteRenderer mote = b.Motes[i]; if (i >= motes || still) { mote.enabled = false; continue; }
+                        Fit(mote, b.Mote, centre + b.Heading[i] * r * (0.6f + 1.4f * Ease(t)), moteSize * 0.8f * (1 - 0.5f * t), b.Spin[i] * b.Age, new Color(1, 1, 1, fade));
+                    }
+                    break;
+                }
+                case Shape.Glyph:
+                {
+                    // a gathering: motes spiral in from all round, the glow swells, the painted ring tightens, then a spark
+                    float gather = Ease(t), spiral = still ? 0 : (1 - t) * 160f;
+                    Sprite ring = CombatVfxArtwork.Frame("BlastRing", 0) ?? fallbackRing;
+                    Fit(b.Ring, ring, centre, 2 * r * (still ? 1 : 1.6f - 0.9f * gather), still ? 0 : -t * 60, new Color(light.r, light.g, light.b, Mathf.Sin(t * Mathf.PI) * 0.7f));
+                    Fit(b.Glow, softGlow, centre, 2 * r * (0.4f + 1.1f * gather), 0, new Color(tint.r, tint.g, tint.b, (0.2f + 0.5f * gather) * flash * Mathf.Clamp01((1 - t) * 6)));
+                    Sprite[] frames = library != null ? library.Magic : null;
+                    Fit(b.Core, t > 0.8f ? Frame(frames, (t - 0.8f) / 0.2f) : null, centre, 2.2f * r, b.Angle, new Color(1, 1, 1, flash));
+                    for (int i = 0; i < b.Motes.Length; i++)
+                    {
+                        SpriteRenderer mote = b.Motes[i]; if (i >= motes) { mote.enabled = false; continue; }
+                        Vector2 heading = Quaternion.Euler(0, 0, spiral) * b.Heading[i];
+                        Fit(mote, b.Mote, centre + heading * r * 2.2f * (still ? 0.6f : 1 - gather), moteSize * (0.6f + 0.4f * gather), b.Spin[i] * b.Age, new Color(1, 1, 1, Mathf.Clamp01(t * 4) * Mathf.Clamp01((1 - t) * 5)));
+                    }
+                    break;
+                }
+                case Shape.Slash:
+                {
+                    // the painted crescent in four frames along the swing, motes trailing off its tip
+                    Sprite[] frames = library != null ? library.Slash : null;
+                    Vector2 facing = new Vector2(Mathf.Cos(b.Angle * Mathf.Deg2Rad), Mathf.Sin(b.Angle * Mathf.Deg2Rad));
+                    Fit(b.Core, Frame(frames, t), centre + facing * r * 0.45f, 1.7f * r, b.Angle, new Color(light.r, light.g, light.b, Mathf.Clamp01((1 - t) * 2.2f)));
+                    b.Glow.enabled = b.Ring.enabled = false;
+                    for (int i = 0; i < b.Motes.Length; i++)
+                    {
+                        SpriteRenderer mote = b.Motes[i]; if (i >= motes || still) { mote.enabled = false; continue; }
+                        float sweep = (b.Angle - 60 + 120 * (t * 0.7f + i * 0.15f)) * Mathf.Deg2Rad;
+                        Fit(mote, b.Mote, centre + new Vector2(Mathf.Cos(sweep), Mathf.Sin(sweep)) * r * (0.85f + 0.2f * t), moteSize * 0.8f * (1 - t), b.Spin[i] * b.Age, new Color(1, 1, 1, fade));
+                    }
+                    break;
+                }
+                default:
+                {
+                    // a painted ink puff (three frames), drifting up and thinning
+                    Sprite[] frames = CombatVfxArtwork.Frames("InkPuff");
+                    if (frames == null || frames.Length == 0) frames = library != null ? library.Dust : null;
+                    Fit(b.Core, Frame(frames, t), centre + (still ? Vector2.zero : Vector2.up * t * r * 0.5f), 2.2f * r * (still ? 1 : 0.7f + 0.5f * Ease(t)), 0, new Color(tint.r, tint.g, tint.b, (1 - t) * 0.6f * Mathf.Max(0.35f, tint.a)));
+                    b.Glow.enabled = b.Ring.enabled = false;
+                    foreach (SpriteRenderer mote in b.Motes) mote.enabled = false;
+                    break;
                 }
             }
-            else
-            {
-                vertices.Add(Vector3.zero); colors.Add(color);
-                int points = burst.Shape == Shape.Star ? 12 : 20;
-                for (int index = 0; index <= points; index++)
-                {
-                    float angle = index * Mathf.PI * 2f / points;
-                    float size = burst.Shape == Shape.Star ? (index % 2 == 0 ? 1f : 0.3f) : 0.9f + Mathf.Sin(index * 2.4f) * 0.12f;
-                    vertices.Add(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius * size);
-                    colors.Add(color);
-                    if (index > 0) { triangles.Add(0); triangles.Add(index); triangles.Add(index + 1); }
-                }
-            }
-            burst.Mesh.Clear();
-            burst.Mesh.SetVertices(vertices); burst.Mesh.SetColors(colors); burst.Mesh.SetTriangles(triangles, 0);
-            burst.Mesh.RecalculateBounds();
         }
 
-        private void Quad(int index)
-        {
-            triangles.Add(index); triangles.Add(index + 2); triangles.Add(index + 1);
-            triangles.Add(index + 1); triangles.Add(index + 2); triangles.Add(index + 3);
-        }
-
-        private void OnDestroy()
-        {
-            foreach (Burst burst in bursts) Destroy(burst.Mesh);
-            if (material != null) Destroy(material);
-        }
+        private void OnDestroy() { foreach (Burst burst in bursts) if (burst.Transform != null) Destroy(burst.Transform.gameObject); }
     }
 }

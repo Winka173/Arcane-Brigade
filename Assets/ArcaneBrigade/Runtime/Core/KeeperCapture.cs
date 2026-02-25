@@ -45,6 +45,17 @@ namespace ArcaneBrigade
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.5f);
 
+            // 0a. -emergence-strip: the wave-5 boss rising out of the dark, twelve frames 0.12 s apart from the night's start
+            if (Array.IndexOf(args, "-emergence-strip") >= 0)
+            {
+                using (var session = new RunSession(catalog)) { session.Start("LanternKnight", 171705); session.State.Wave = 5; session.State.Phase = SessionPhase.Combat; storage.SaveRun(session.State); }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+                ArenaController rising = null;
+                for (float t = 0; t < 8 && (rising == null || rising.Simulation == null || rising.Simulation.Boss == null); t += .02f) { yield return new WaitForSecondsRealtime(.02f); rising = FindAnyObjectByType<ArenaController>(); }
+                log.Add("rising boss: " + rising?.Simulation?.Boss?.Definition.DisplayName + " entrance until " + rising?.Simulation?.Boss?.EntranceUntil.ToString("0.00") + " at " + rising?.Simulation?.Elapsed.ToString("0.00"));
+                for (int i = 0; i < 12; i++) { yield return Shot("emerge-" + i.ToString("00")); yield return new WaitForSecondsRealtime(0.12f); }
+                Write(); Application.Quit(0); yield break;
+            }
             // 0. -rarity-strip: twelve frames 0.1 s apart of a shop's stock, to judge how smoothly the rarity bloom moves
             if (Array.IndexOf(args, "-rarity-strip") >= 0)
             {
