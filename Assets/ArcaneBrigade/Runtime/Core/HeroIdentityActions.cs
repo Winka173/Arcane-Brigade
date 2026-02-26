@@ -112,7 +112,7 @@ namespace ArcaneBrigade
             switch (IdentityId)
             {
                 case "LanternKnight":
-                    if (identityCharge >= 8 && target != null && Elapsed >= identityAt) { IdentityPerform(IdentityPower * 1.8f, IdentityApproach == 1 ? 4 : 3); if(IdentityApproach==2){IdentityHit(MorphGeometry.Ring,Champion.Position,Champion.Position,1.7f,IdentityPower*.35f);CatchIdentityBullet(Champion.Position,2);}else IdentityPattern(target,IdentityPower * .6f); identityCharge = 0; identityAt = Elapsed + 4; IdentityCast(); }
+                    if (identityCharge >= 8 && target != null && Elapsed >= identityAt) { IdentityPerform(IdentityPower * 1.8f, IdentityApproach == 1 ? 4 : 3); if(IdentityApproach==2){IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower*.35f,3,14,DamageElement.Ember);CatchIdentityBullet(Champion.Position,2);}else IdentityPattern(target,IdentityPower * .6f); identityCharge = 0; identityAt = Elapsed + 4; IdentityCast(); }
                     break;
                 case "Postmaster":
                     identityCharge = Mathf.Min(3,identityCharge);
@@ -175,7 +175,7 @@ namespace ArcaneBrigade
                     if (identityCharge >= 3 && target != null && Elapsed >= identityAt)
                     {
                         int notes = 2 + Mathf.Min(3,catalog.HeroDrinks/2);
-                        if (IdentityApproach == 1) { Heal(3,IdentityCause()); IdentityHit(MorphGeometry.Ring,Champion.Position,Champion.Position,1.6f,IdentityPower * 1.6f,slow:.6f,push:.25f); }
+                        if (IdentityApproach == 1) { Heal(3,IdentityCause()); Vector2 tide=(target.Position-Champion.Position).normalized; IdentityHit(MorphGeometry.Line,Champion.Position+tide*.4f,Champion.Position+tide*3.4f,0,IdentityPower * 1.6f,slow:.6f,push:.25f); }
                         else if (IdentityApproach == 0) IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower * 2.2f,notes,12,DamageElement.Frost);
                         else IdentityHit(MorphGeometry.Crescent,Champion.Position,target.Position,2.2f,IdentityPower * 2.2f,slow:.5f,push:.4f);
                         identityCharge = 0; identityAt = Elapsed + 4; IdentityCast();
@@ -244,7 +244,8 @@ namespace ArcaneBrigade
                             identityCharge++;identitySecondAt=Elapsed+1.2f;
                             float power=IdentityPower*(identityCharge>=3?1.8f:.7f);float size=identityCharge>=3?1.4f:.9f;
                             if(IdentityApproach==0)IdentityHit(MorphGeometry.Line,Champion.PreviousPosition-heading,Champion.Position+heading,0,power,.65f,slow:.7f,push:.2f);
-                            else IdentityHit(IdentityApproach==1?MorphGeometry.Crescent:MorphGeometry.Disc,Champion.Position,Champion.Position+heading,size,power,.65f,slow:.7f,push:.25f);
+                            else if(IdentityApproach==1)IdentityHit(MorphGeometry.Crescent,Champion.Position,Champion.Position+heading,size,power,.65f,slow:.7f,push:.25f);
+                            else IdentityHit(MorphGeometry.Disc,Champion.Position+heading*(size+.6f),Champion.Position+heading*(size+1.2f),size,power,.65f,slow:.7f,push:.25f); // the splash lands ahead of the skater
                             if(identityCharge>=3)identityCharge=0;IdentityCast();
                         }
                         identityGhost=heading;
@@ -368,7 +369,7 @@ namespace ArcaneBrigade
             int count=identityReflections.Count;
             for(int i=0;i<count;i++)
             {
-                Vector2 dir=IdentityApproach==1?identityReflections[i].Direction:IdentityApproach==2?(Vector2)(Quaternion.Euler(0,0,i*360f/count)*Vector2.right):(Vector2)(Quaternion.Euler(0,0,(i-(count-1)*.5f)*15)*(target.Position-Champion.Position).normalized);
+                Vector2 dir=IdentityApproach==1?identityReflections[i].Direction:IdentityApproach==2?(Vector2)(Quaternion.Euler(0,0,(i-(count-1)*.5f)*Mathf.Min(24,120f/count))*(target.Position-Champion.Position).normalized):(Vector2)(Quaternion.Euler(0,0,(i-(count-1)*.5f)*15)*(target.Position-Champion.Position).normalized);
                 // each borrowed shot is returned with 60% W of its own
                 IdentityShot(Champion.Position,dir,IdentityPower*.6f,element:identityReflections[i].Element);
             }

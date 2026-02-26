@@ -176,6 +176,9 @@ namespace ArcaneBrigade
         public Vector2 OrbitCenter;
         public Vector2 LaunchVelocity;
         public readonly HashSet<int> Victims = new HashSet<int>();
+        public HashSet<int> Volley;       // shared by the shots of one fan: each foe is struck once per volley
+        public int ExtraPierce;           // foes passed through beyond the weapon's own pierce
+        public bool SignatureShot;        // a bell chime or umbrella drop carrying the signature payoff
     }
 
     public sealed class PickupState

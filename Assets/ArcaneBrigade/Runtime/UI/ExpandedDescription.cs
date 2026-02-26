@@ -9,7 +9,7 @@ namespace ArcaneBrigade
                 CarnivalWeapon.YoYo => tier >= 2 ? "Returning yo-yo. Pulls its victim; the string slows up to " + tier + " nearby foes." : "Returning yo-yo. Pulls and briefly slows its victim.",
                 CarnivalWeapon.Sewing => tier >= 2 ? "Three piercing needles. Stitches " + (tier - 1) + " nearby foes for 18% damage each; no recursive chains." : "Three piercing needles. Briefly slows victims.",
                 CarnivalWeapon.Projector => tier >= 2 ? "Lingering spotlight. Gathers and slows ordinary foes; bosses resist the pull." : "Lingering spotlight. Repeated area damage.",
-                CarnivalWeapon.Magnet => "Pulls and strikes up to " + (3 + UnityEngine.Mathf.Clamp(tier, 1, 3)) + " foes. Bosses resist the pull.",
+                CarnivalWeapon.Magnet => "Fires a magnet bolt. The foe it strikes is yanked toward you and up to " + (2 + UnityEngine.Mathf.Clamp(tier, 1, 3)) + " neighbours are dragged in after it for 60% damage. Bosses resist the pull.",
                 CarnivalWeapon.SpringHammer => "Charged splash and knockback. Crits and primary-hit relics apply.",
                 _ => "Two crossing cuts. The follow-up moves with its wielder."
             };

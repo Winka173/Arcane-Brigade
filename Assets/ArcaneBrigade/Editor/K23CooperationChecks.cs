@@ -88,7 +88,7 @@ namespace ArcaneBrigade.Editor
             UnitState melee = fixture.Unit("PaperFan", Faction.Companion, Vector2.zero);
             var targets = new List<UnitState>();
             for (int index = 0; index < 5; index++) targets.Add(fixture.Unit("LanternStaff", Faction.Enemy, new Vector2(2.3f, index * 0.04f)));
-            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(800, collector.Id));
+            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(800, collector.Id)); Land(simulation);
             Require(targets.Take(4).All(target => target.Position.x < 2.3f), "magnet actually collects enemies before sweep");
             float[] health = targets.Select(target => target.Health).ToArray();
             Invoke(simulation, "ResolveCooperationAttack", collector, 20f, new CombatCause(801, collector.Id));
@@ -102,6 +102,12 @@ namespace ArcaneBrigade.Editor
             Require(simulation.CooperationPayoffs == 0, "rest clears collect state");
             simulation.Start(23006);
             Require(simulation.CooperationPayoffs == 0, "restart clears all cooperation cooldowns");
+        }
+
+        // the magnet fires a bolt now: step until it has struck (or expired) so its pull has happened
+        private static void Land(CombatSimulation simulation)
+        {
+            for (int tick = 0; tick < 20 && simulation.Projectiles.Count > 0; tick++) simulation.Step(0.05f, Vector2.zero);
         }
 
         private static void CheckRejectedIngredients(RunCatalog catalog)
@@ -129,15 +135,15 @@ namespace ArcaneBrigade.Editor
             UnitState melee = fixture.Unit("PaperFan", Faction.Companion, Vector2.zero);
             UnitState target = fixture.Unit("LanternStaff", Faction.Enemy, new Vector2(2.3f, 0));
             target.Definition.KnockbackResistance = 1;
-            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(910, collector.Id));
+            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(910, collector.Id)); Land(simulation);
             Invoke(simulation, "ResolveCooperationAttack", melee, 20f, new CombatCause(911, melee.Id));
             Require(simulation.CooperationPayoffs == 0 && target.Position.x == 2.3f, "fully resisted pulls cannot prime sweep");
             target.Definition.KnockbackResistance = 0; target.Definition.IsBoss = true;
-            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(912, collector.Id));
+            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(912, collector.Id)); Land(simulation);
             Invoke(simulation, "ResolveCooperationAttack", melee, 20f, new CombatCause(913, melee.Id));
             Require(simulation.CooperationPayoffs == 0 && target.Position.x == 2.3f, "bosses cannot prime sweep");
             target.Definition.IsBoss = false;
-            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(914, collector.Id));
+            Invoke(simulation, "ResolveExpandedAttack", collector, 1f, false, new CombatCause(914, collector.Id)); Land(simulation);
             float health = target.Health;
             simulation.Pause(true); simulation.Step(0.1f, Vector2.zero); simulation.Pause(false);
             Require(target.Health == health, "paused setup does not deal damage");

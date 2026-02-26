@@ -11,7 +11,7 @@ namespace ArcaneBrigade
             "LanternKnight" => new[] {
                 "At 8 sparks, up to 3 friends share 180% W in weapon-shaped responses, followed by a 60% W line toward the target. 4s cooldown.",
                 "At 8 sparks, up to 4 friends share 180% W in weapon-shaped responses, followed by a 60% W forward crescent. 4s cooldown.",
-                "At 8 sparks, up to 3 friends share 180% W in responses. Add a 35% W ring of radius 1.7 around you and remove one hostile shot within 2 units. 4s cooldown." },
+                "At 8 sparks, up to 3 friends share 180% W in responses. Throw 3 lantern embers at the target sharing 35% W and remove one hostile shot within 2 units. 4s cooldown." },
             "Postmaster" => new[] {
                 "Every third personal attack sends one homing parcel per address. Parcels share 160% W total physical damage. Up to 3 addresses; 2.5s cooldown.",
                 "The same delivery uses ember parcels instead of physical parcels, sharing 160% W across all addresses. 2.5s cooldown.",
@@ -34,7 +34,7 @@ namespace ArcaneBrigade
                 "Faces 1-3 keep their dart/cross/frost effects. Face 4 grants 1 gold plus crossing lines sharing 120% W; face 5 heals 2 HP plus the same lines; face 6 crosses for 320% W total. Six collected gold; 4s cooldown." },
             "TideSinger" => new[] {
                 "Three coin pickups release 2 frost notes, plus one per 2 drinks bought, up to 5 notes. Notes share 220% W. 4s cooldown; buying drinks does not count as collecting coins.",
-                "Three coin pickups attempt to heal 3 HP and make a radius-1.6 ring with a 160% W budget. Ordinary enemies are slowed 0.6s and gently pushed. 4s cooldown.",
+                "Three coin pickups attempt to heal 3 HP and roll a 3-unit tide line toward the target with a 160% W budget. Ordinary enemies are slowed 0.6s and gently pushed. 4s cooldown.",
                 "Three coin pickups create a radius-2.2 forward crescent with a 220% W budget, 0.5s ordinary slow and capped push. 4s cooldown." },
             "CometRunner" => new[] {
                 "Travel 10 units to ignite recent path segments as ember lines. All segments share 230% W, with staggered short warnings. 3s cooldown.",
@@ -43,7 +43,7 @@ namespace ArcaneBrigade
             "MirrorKeeper" => new[] {
                 "The mirror catches a hostile shot that comes within 1 unit (2 units after you stand still for 0.5s), one every 2s, up to 3. Your next basic attack, or 2s of waiting, returns them toward the target in a 15-degree fan, 60% W each, keeping the caught element.",
                 "Caught shots are returned opposite their original travel direction, 60% W each, keeping the caught element. Same 1-unit (2 when still) catch and 2s catch cooldown.",
-                "Caught shots are returned at evenly spaced radial angles, 60% W each, keeping the caught element. Same catch rules; 1s release cooldown." },
+                "Caught shots are returned toward the target in a wide fan (up to 24 degrees apart), 60% W each, keeping the caught element. Same catch rules; 1s release cooldown." },
             "TreasureAcorn" => new[] {
                 "Prefer the nearest bounty. Settling 3 stamps or its kill pays 1 gold, at most 8 payouts per wave, and makes an 85% W line. 3s cooldown.",
                 "Prefer a ranged enemy as the next bounty. Settlement pays the same capped gold and makes an 85% W forward crescent. 3s cooldown.",
@@ -63,7 +63,7 @@ namespace ArcaneBrigade
             "SoapSkater" => new[] {
                 "A qualifying turn leaves a line bubble that pops after 0.65s. Budget 70% W, or 180% W on every third turn; 0.7s ordinary slow and gentle push. At most one turn counted per 1.2s.",
                 "A qualifying turn leaves a forward crescent bubble, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push.",
-                "A qualifying turn leaves a full disc bubble, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push." },
+                "A qualifying turn splashes a disc bubble ahead of you, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push." },
             "VelvetRegent" => new[] {
                 "After 6 allied basic attacks, up to 3 friends answer with their own weapon shapes. Favor nearby targets. 4s cooldown; each performer adds 50% of its weapon damage, capped at 75% W.",
                 "The same 6-attack command favors ranged enemies and shifts companion targeting toward ranged threats. Up to 3 performers, 50% own weapon each capped at 75% W; 4s cooldown.",

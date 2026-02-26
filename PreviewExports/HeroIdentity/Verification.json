@@ -575,7 +575,7 @@
         "PASS Identity row does not overwrite stat summaries ButtonCavalier / 2",
         "PASS Damage row keeps correct compiled value ButtonCavalier / 2",
         "PASS Finite and immortal companion behavior ButtonCavalier / 2",
-        "PASS Actual signature activated ButtonCavalier / 2 casts=11 injuries=True",
+        "PASS Actual signature activated ButtonCavalier / 2 casts=12 injuries=True",
         "PASS Bounded visual/projectile queues ButtonCavalier / 2",
         "PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 2 ",
         "PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 2 blasts=0",

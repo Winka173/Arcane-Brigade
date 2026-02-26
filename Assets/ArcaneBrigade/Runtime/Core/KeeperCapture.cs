@@ -27,6 +27,15 @@ namespace ArcaneBrigade
             Texture2D image = ScreenCapture.CaptureScreenshotAsTexture();
             File.WriteAllBytes(Path.Combine(root, name + ".png"), image.EncodeToPNG()); Destroy(image);
         }
+        private ItemRarity? sample;
+        private void OnGUI()
+        {
+            if (sample == null) return;
+            GUI.depth = -200;
+            RarityDescriptionFrame.Draw(new Rect(520, 700, 880, 300), sample.Value, Time.unscaledTime); // the shop tooltip
+            RarityDescriptionFrame.Draw(new Rect(1300, 260, 460, 220), sample.Value, Time.unscaledTime); // an inspected card
+            GUI.color = Color.white; GUI.Label(new Rect(540, 720, 600, 40), sample.Value.ToString().ToUpperInvariant());
+        }
         private void Write() => File.WriteAllLines(Path.Combine(root, "Keeper.txt"), log);
         private void OnLog(string message, string trace, LogType type) { if (type == LogType.Error || type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }
         private IEnumerator Load(Action<RunSession> setup, RunCatalog catalog, RunStorage storage)
@@ -55,6 +64,18 @@ namespace ArcaneBrigade
                 log.Add("rising boss: " + rising?.Simulation?.Boss?.Definition.DisplayName + " entrance until " + rising?.Simulation?.Boss?.EntranceUntil.ToString("0.00") + " at " + rising?.Simulation?.Elapsed.ToString("0.00"));
                 for (int i = 0; i < 12; i++) { yield return Shot("emerge-" + i.ToString("00")); yield return new WaitForSecondsRealtime(0.12f); }
                 Write(); Application.Quit(0); yield break;
+            }
+            // 0b. -rarity-frames: the description frame of each high rarity, wings and all, drawn over a shop at tooltip and card size
+            if (Array.IndexOf(args, "-rarity-frames") >= 0)
+            {
+                yield return Load(s => { s.State.Wave = 12; s.State.Phase = SessionPhase.Shop; }, catalog, storage);
+                yield return new WaitForSecondsRealtime(1f);
+                foreach (ItemRarity rarity in new[] { ItemRarity.Uncommon, ItemRarity.Rare, ItemRarity.Mythic, ItemRarity.Crimson, ItemRarity.Rainbow })
+                {
+                    sample = rarity; yield return new WaitForSecondsRealtime(.6f);
+                    yield return Shot("frame-" + (int)rarity + "-" + rarity);
+                }
+                sample = null; Write(); Application.Quit(0); yield break;
             }
             // 0. -rarity-strip: twelve frames 0.1 s apart of a shop's stock, to judge how smoothly the rarity bloom moves
             if (Array.IndexOf(args, "-rarity-strip") >= 0)

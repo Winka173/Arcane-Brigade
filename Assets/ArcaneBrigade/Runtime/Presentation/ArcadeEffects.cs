@@ -66,7 +66,7 @@ namespace ArcaneBrigade
         public static string MoteKey(WeaponDefinition weapon) => weapon?.Id switch
         {
             "CrescentBow" => "ArrowBolt", "RuneStaff" or "DreamOrbStaff" or "MoonseedOrb" or "PlasmaTrident" => "RuneOrb", "BellFork" => "BellChime", "AcornSling" => "AcornPellet",
-            "BubbleWand" => "Bubble", "ButtonBow" => "ButtonDart", "InkPistol" => "InkBullet", "LanternStaff" or "DreamIron" or "FireExtinguisher" => "LanternEmber",
+            "BubbleWand" or "UmbrellaLance" => "Bubble", "ButtonBow" => "ButtonDart", "InkPistol" => "InkBullet", "LanternStaff" or "DreamIron" or "FireExtinguisher" => "LanternEmber",
             "LeafCrossbow" or "MoonFeatherFan" or "PaperFan" => "LeafBolt", "MailboxLauncher" or "DreamStamp" or "StampHammer" => "Letter", "MusicBox" or "RibbonHarp" or "StarKazoo" => "MusicNote",
             "ShellCannon" => "ShellShot", "SnowGlobeOrb" => "GlobeShard", "TeapotPopgun" or "TeabagFlail" => "TeaDrop", "TinFish" or "CrescentBoomerang" or "SatelliteDisc" => "TinFish",
             "DartCompass" or "ClockCrescent" or "ClockworkYoYo" or "AlarmMortar" => "CompassDart", "ScrapMagnet" => "MagnetBolt", "DreamProjector" or "SleepCamera" => "FilmFrame",
@@ -102,8 +102,9 @@ namespace ArcaneBrigade
             }
             else if (value.Kind == CombatEventKind.SignaturePulse)
             {
+                // the muzzle bloom of a thrown volley (bell chimes, umbrella drops): a small flourish at the wielder's front
                 bool umbrella = weapon != null && weapon.Signature == SignatureWeapon.Umbrella;
-                Spawn(umbrella ? Shape.Slash : Shape.Ring, value.Position, angle, value.Value, 0.32f, umbrella ? new Color(0.35f, 0.95f, 0.88f) : new Color(1, 0.82f, 0.35f));
+                Spawn(umbrella ? Shape.Slash : Shape.Ring, value.Position, angle, weapon != null ? Mathf.Min(0.6f, value.Value) : value.Value, 0.26f, umbrella ? new Color(0.35f, 0.95f, 0.88f) : new Color(1, 0.82f, 0.35f));
             }
             else if (value.Kind == CombatEventKind.Fire && weapon != null)
             {

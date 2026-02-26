@@ -66,7 +66,7 @@ namespace ArcaneBrigade
                 "BubbleWand" => "Bubble", "ButtonBow" => "ButtonDart", "InkPistol" => "InkBullet", "LanternStaff" => "LanternEmber",
                 "LeafCrossbow" => "LeafBolt", "MailboxLauncher" => "Letter", "MusicBox" or "RibbonHarp" => "MusicNote",
                 "ShellCannon" => "ShellShot", "SnowGlobeOrb" => "GlobeShard", "StarKazoo" => "Star", "TeapotPopgun" => "TeaDrop",
-                "TinFish" => "TinFish", "DartCompass" => "CompassDart", "ScrapMagnet" => "MagnetBolt", "DreamProjector" => "FilmFrame", _ => null
+                "TinFish" => "TinFish", "DartCompass" => "CompassDart", "ScrapMagnet" => "MagnetBolt", "DreamProjector" => "FilmFrame", "UmbrellaLance" => "Bubble", _ => null
             };
             if (friendly != null) return friendly;
             return shot.Sprite == null || shot.Sprite.name == "Projectile" || shot.Sprite.texture.name == "Disc" ? "AllySpark" : null;

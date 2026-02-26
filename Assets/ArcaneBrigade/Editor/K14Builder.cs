@@ -21,7 +21,7 @@ namespace ArcaneBrigade.Editor
             float[] damages = { 15, 10, 5, 24, 13, 17 };
             float[] ranges = { 3.8f, 3.6f, 6.4f, 2.4f, 6.2f, 2.3f };
             float[] cooldowns = { 1.1f, 1.2f, 0.95f, 1.45f, 1.65f, 1.05f };
-            string[] weaponSummaries = { "Homing throw. Returns on its tether.", "Pulls up to 4 foes. Bosses resist pull.", "3 piercing needles. Briefly slows on hit.", "Slow charge. Heavy splash and knockback.", "Projects a lingering damage pool. Dream only.", "Two delayed ribbon cuts in a wide arc." };
+            string[] weaponSummaries = { "Homing throw. Returns on its tether.", "Magnet bolt yanks its target and 3 neighbours in.", "3 piercing needles. Briefly slows on hit.", "Slow charge. Heavy splash and knockback.", "Projects a lingering damage pool. Dream only.", "Two delayed ribbon cuts in a wide arc." };
             for (int index = 0; index < ids.Length; index++)
             {
                 WeaponDefinition weapon = LoadOrCreate<WeaponDefinition>(ids[index]);

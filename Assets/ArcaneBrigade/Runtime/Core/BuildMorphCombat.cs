@@ -109,7 +109,8 @@ namespace ArcaneBrigade
                     }
                     break;
                 case BuildMorphKind.Chorus:
-                    for (int i = 0; i < stage + 1; i++) Strike(MorphGeometry.Ring, origin, origin, .9f + i * .85f, .12f + i * .16f, .43f);
+                    // a sung phrase thrown at the target: notes land one after another along the way, rising and falling
+                    for (int i = 0; i < stage + 2; i++) Strike(MorphGeometry.Disc, Vector2.Lerp(origin + direction * .7f, point, (i + 1f) / (stage + 2)) + side * ((i % 2 == 0 ? 1 : -1) * .22f), point, .5f + stage * .06f, .1f + i * .12f);
                     if (stage == 3) Strike(MorphGeometry.Ring, point, point, .8f, .78f, .35f);
                     break;
                 case BuildMorphKind.Magnet:

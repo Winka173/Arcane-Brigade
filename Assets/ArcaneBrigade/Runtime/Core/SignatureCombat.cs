@@ -129,21 +129,61 @@ namespace ArcaneBrigade
                 WeaponDefinition weapon = pulse.Source.Definition.Weapon;
                 if (weapon.Signature == SignatureWeapon.Bell) BellWaves++; else UmbrellaOpenings++;
                 RecordActivation(pulse.Cause);
-                events.Add(new CombatEvent(CombatEventKind.SignaturePulse, pulse.Position, pulse.Source.Faction, pulse.Radius, pulse.Direction, weapon, cause: pulse.Cause));
-                foreach (UnitState target in units)
+                SignatureVolley(pulse, weapon);
+            }
+        }
+
+        /// <summary>A bell's wave and an umbrella's opening are thrown, not radiated from the wielder: a fan of painted chimes
+        /// (bell) or rain drops (umbrella) leaves the wielder's front along its facing. Each foe is struck once per volley; the
+        /// shots pass through a few foes and die after about the old payoff reach, so the cadence and damage keep their size
+        /// while nothing rings round the wielder's own body.</summary>
+        private void SignatureVolley(SignaturePulse pulse, WeaponDefinition weapon)
+        {
+            UnitState source = pulse.Source;
+            bool bell = weapon.Signature == SignatureWeapon.Bell, echo = pulse.Cause.ItemId == "bell-echo";
+            Vector2 aim = pulse.Direction;
+            UnitState target = UnitWithId(source.AttackTargetId);
+            if (target != null && CanHit(source.Faction, target)) aim = target.Position - source.Position;
+            if (aim.sqrMagnitude < 0.0001f)
+            {
+                float best = float.PositiveInfinity;
+                foreach (UnitState enemy in units)
                 {
-                    Vector2 delta = target.Position - pulse.Position;
-                    if (!target.Alive || target.Faction != Faction.Enemy || delta.sqrMagnitude > pulse.Radius * pulse.Radius) continue;
-                    if (weapon.Signature == SignatureWeapon.Umbrella && Vector2.Dot(delta.normalized, pulse.Direction) < 0) continue;
-                    ApplyDamage(target, pulse.Damage, pulse.Source.Faction, weapon.Id + " payoff", pulse.Direction, weapon, cause: pulse.Cause);
-                    if (target.Alive && weapon.Signature == SignatureWeapon.Bell && target.VisibleMarks > 0 && catalog.ChorusStacks > 0 && pulse.Cause.ItemId == "bell-wave")
-                        ApplyDamage(target, pulse.Damage * Mathf.Min(0.5f, catalog.ChorusStacks * 0.25f), pulse.Source.Faction, "Chorus marked target", cause: pulse.Cause.Child("scratch-record"));
-                    if (target.Alive && weapon.Signature == SignatureWeapon.Bell && catalog.CarbonRibbon)
-                    {
-                        target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.5f);
-                        RecordActivation(pulse.Cause.Child("carbon-exposure"));
-                    }
+                    float distance = (enemy.Position - source.Position).sqrMagnitude;
+                    if (CanHit(source.Faction, enemy) && distance < best) { best = distance; aim = enemy.Position - source.Position; }
                 }
+            }
+            aim = aim.sqrMagnitude < 0.0001f ? Vector2.right : aim.normalized;
+            Vector2 muzzle = source.Position + aim * Mathf.Min(0.3f, source.Definition.Radius);
+            int count = bell ? (echo ? 3 : 5) : 5;
+            float spread = (bell ? 11f : 22f) * Mathf.Deg2Rad, speed = bell ? 6.5f : 7.5f;
+            float reach = bell ? pulse.Radius * 1.5f : pulse.Radius * 1.15f;
+            var volley = new HashSet<int>();
+            events.Add(new CombatEvent(CombatEventKind.SignaturePulse, muzzle, source.Faction, 0.45f, aim, weapon, cause: pulse.Cause));
+            for (int index = 0; index < count && projectiles.Count < 4096; index++)
+            {
+                Vector2 heading = Quaternion.Euler(0f, 0f, (index - (count - 1) * 0.5f) * spread * Mathf.Rad2Deg) * aim;
+                projectiles.Add(new ProjectileState
+                {
+                    Id = ++nextId, Faction = source.Faction, Position = muzzle, PreviousPosition = source.Position, LaunchSegment = true,
+                    Velocity = heading * speed, LaunchVelocity = heading * speed, Damage = pulse.Damage, Remaining = reach / speed,
+                    Color = bell ? new Color(1f, 0.85f, 0.45f) : new Color(0.5f, 0.9f, 1f), Element = weapon.Element,
+                    SourceName = weapon.Id + " payoff", Sprite = weapon.ProjectileSprite, VisualWidth = bell ? (echo ? 0.32f : 0.42f) : 0.26f,
+                    Radius = bell ? 0.16f : 0.12f, SourceUnitId = source.Id, Cause = pulse.Cause, Weapon = weapon,
+                    Volley = volley, ExtraPierce = bell ? 2 : 1, SignatureShot = true, IsFragment = true
+                });
+            }
+        }
+
+        private void OnSignatureShotHit(ProjectileState shot, UnitState target)
+        {
+            if (!target.Alive || shot.Weapon == null || shot.Weapon.Signature != SignatureWeapon.Bell) return;
+            if (target.VisibleMarks > 0 && catalog.ChorusStacks > 0 && shot.Cause.ItemId == "bell-wave")
+                ApplyDamage(target, shot.Damage * Mathf.Min(0.5f, catalog.ChorusStacks * 0.25f), shot.Faction, "Chorus marked target", cause: shot.Cause.Child("scratch-record"));
+            if (target.Alive && catalog.CarbonRibbon)
+            {
+                target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.5f);
+                RecordActivation(shot.Cause.Child("carbon-exposure"));
             }
         }
 

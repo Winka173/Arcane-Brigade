@@ -14,7 +14,7 @@ Hero	CopperCauldron	RubberHammer	17	457.79	PASS
 Hero	ChinaMarionette	DreamStamp	23	411.88	PASS
 Hero	SoapSkater	TinFish	19	123.50	PASS
 Hero	VelvetRegent	BellFork	16	231.75	PASS
-Hero	ButtonCavalier	UmbrellaLance	21	422.11	PASS
+Hero	ButtonCavalier	UmbrellaLance	21	438.79	PASS
 Hero	NightMaw	SpoonSabre	28	504.00	PASS
 Hero	ThornTreasurer	DreamStamp	23	371.37	PASS
 Hero	CitrusMarshal	RubberHammer	13	281.72	PASS
@@ -23,7 +23,7 @@ Hero	PetalCitadel	SnowGlobeOrb	20	456.63	PASS
 Hero	PatchworkHost	InkPistol	16	365.50	PASS
 Hero	ArchiveCurator	SleepCamera	14	162.00	PASS
 Hero	PennyBroker	InkPistol	16	305.50	PASS
-Hero	StormFencer	UmbrellaLance	21	491.32	PASS
+Hero	StormFencer	UmbrellaLance	21	508.01	PASS
 Hero	TinVirtuoso	InkPistol	16	853.00	PASS
 Hero	MoonProwler	SpoonSabre	28	504.00	PASS
 Hero	SupperMortar	TeapotPopgun	21	348.50	PASS
@@ -98,7 +98,7 @@ Companion	RibbonOtter	KeyCleaver	24	796.67	PASS
 Companion	SpindleWren	KeyCleaver	24	796.67	PASS
 Weapon	KeyCleaver	KeyCleaver	24	675.14	PASS
 Weapon	TeapotPopgun	TeapotPopgun	24	775.25	PASS
-Weapon	UmbrellaLance	UmbrellaLance	24	627.41	PASS
+Weapon	UmbrellaLance	UmbrellaLance	24	653.69	PASS
 Weapon	MailboxLauncher	MailboxLauncher	24	324.00	PASS
 Weapon	BellFork	BellFork	18	325.22	PASS
 Weapon	BookPaddle	BookPaddle	40	750.16	PASS

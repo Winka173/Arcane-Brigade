@@ -27,7 +27,7 @@ namespace ArcaneBrigade
                 {
                     bool interceptor = projectile.Faction == Faction.Enemy && target.Alive && target.Faction == Faction.Companion && catalog.CompanionInterceptor;
                     bool blocker = catalog.ExpandedContent && EnemyInteractionRules.CanBlock(projectile, target);
-                    if ((!CanHit(projectile.Faction, target) && !interceptor && !blocker) || projectile.Victims.Contains(target.Id)) continue;
+                    if ((!CanHit(projectile.Faction, target) && !interceptor && !blocker) || projectile.Victims.Contains(target.Id) || projectile.Volley != null && projectile.Volley.Contains(target.Id)) continue;
                     float fraction = SegmentCircle(start, destination, target.Position, target.Definition.Radius + projectile.Radius);
                     if (fraction >= 0f && fraction < hitFraction) { hitFraction = fraction; hit = target; }
                 }
@@ -47,7 +47,7 @@ namespace ArcaneBrigade
                 else
                 {
                     int previousVictims = projectile.Victims.Count;
-                    projectile.Victims.Add(hit.Id);
+                    projectile.Victims.Add(hit.Id); projectile.Volley?.Add(hit.Id);
                     if (EnemyInteractionRules.CanBlock(projectile, hit))
                     {
                         ApplyDamage(hit, Mathf.Min(projectile.Damage * 0.35f, hit.Definition.Health * 0.015f), Faction.Enemy, "Blocked hostile shot", projectile.Velocity.normalized, cause: projectile.Cause.Child("hostile-block"));
@@ -55,6 +55,7 @@ namespace ArcaneBrigade
                     }
                     ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, projectile.Weapon, projectile.Critical, projectile.Cause);
                     OnExpandedProjectileHit(projectile, hit);
+                    if (projectile.SignatureShot) OnSignatureShotHit(projectile, hit);
                     if (Phase != RunPhase.Combat) return false;
                     if (hit.Faction == Faction.Companion) return false;
                     if (projectile.SplitOnImpact) SplitCombatProjectile(projectile);
@@ -69,7 +70,7 @@ namespace ArcaneBrigade
                     if (randomBounce && projectile.RicochetsRemaining <= 0) projectile.RicochetsRemaining = 1;
                     bool ricochet = (guaranteed || randomBounce) && TryCombatRicochet(projectile);
                     if (ricochet && randomBounce) projectile.RandomBounces--;
-                    if (!ricochet && (projectile.Weapon == null || previousVictims >= projectile.Weapon.ProjectilePierce)) return false;
+                    if (!ricochet && (projectile.Weapon == null || previousVictims >= projectile.Weapon.ProjectilePierce + projectile.ExtraPierce)) return false;
                     if (!ricochet) ProjectileAudioEvent(CombatEventKind.ProjectilePierce, projectile);
                 }
                 start = projectile.Position;

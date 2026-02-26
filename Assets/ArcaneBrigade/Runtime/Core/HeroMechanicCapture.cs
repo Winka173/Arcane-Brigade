@@ -233,7 +233,8 @@ namespace ArcaneBrigade
                         // Movement comes from the player's stick; reproduce the cast this mechanic makes on a sharp turn.
                         Vector2 heading = new Vector2(.6f, .8f); identityCharge = 3; float power = IdentityPower * .8f, size = 1.7f;
                         if (IdentityApproach == 0) IdentityHit(MorphGeometry.Line, Champion.Position - heading, Champion.Position + heading, 0, power, .65f, slow: .7f, push: .2f);
-                        else IdentityHit(IdentityApproach == 1 ? MorphGeometry.Crescent : MorphGeometry.Disc, Champion.Position, Champion.Position + heading, size, power, .65f, slow: .7f, push: .25f);
+                        else if (IdentityApproach == 1) IdentityHit(MorphGeometry.Crescent, Champion.Position, Champion.Position + heading, size, power, .65f, slow: .7f, push: .25f);
+                        else IdentityHit(MorphGeometry.Disc, Champion.Position + heading * (size + .6f), Champion.Position + heading * (size + 1.2f), size, power, .65f, slow: .7f, push: .25f);
                         identityCharge = 0; IdentityCast(); break;
                     }
                 case "ThornTreasurer":

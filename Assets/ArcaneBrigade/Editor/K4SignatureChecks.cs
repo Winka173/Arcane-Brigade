@@ -15,6 +15,12 @@ namespace ArcaneBrigade.Editor
         public static void Run()
         {
             VisualQualityChecks.Run();
+            RunSignatures();
+        }
+
+        /// <summary>The signature rules alone (bell chimes, umbrella drops, stamp marks), without the visual suite.</summary>
+        public static void RunSignatures()
+        {
             var results = new List<string>();
             Action<bool, string> require = (condition, name) => { if (!condition) throw new InvalidOperationException(name); results.Add("PASS " + name); };
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
@@ -44,6 +50,22 @@ namespace ArcaneBrigade.Editor
                     require(loaded.PrepareCombat().StartingCompanions[0].Weapon.Id == "DreamStamp", "Stamp roster survives save restore without schema change");
                 }
             }
+            RunSignatureRules(catalog, results, require);
+            Directory.CreateDirectory("PreviewExports/K4"); File.WriteAllLines("PreviewExports/K4/Signature_Checks.txt", results);
+            Debug.Log("ARCANE_K4_SIGNATURE_CHECKS_PASSED " + results.Count);
+        }
+
+        /// <summary>The combat rules of the signatures: bell chimes, umbrella drops and stamp marks in real fixtures.</summary>
+        public static void RunSignatureRules()
+        {
+            var results = new List<string>();
+            Action<bool, string> require = (condition, name) => { if (!condition) throw new InvalidOperationException(name); results.Add("PASS " + name); };
+            RunSignatureRules(AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset"), results, require);
+            Directory.CreateDirectory("PreviewExports/K4"); File.WriteAllLines("PreviewExports/K4/Signature_Rules.txt", results);
+        }
+
+        private static void RunSignatureRules(RunCatalog catalog, List<string> results, Action<bool, string> require)
+        {
             using (var fixture = new Fixture(catalog, "BellFork"))
             {
                 UnitState front = fixture.Enemy(new Vector2(1, 0)); UnitState back = fixture.Enemy(new Vector2(-1, 0)); UnitState far = fixture.Enemy(new Vector2(8, 0));
@@ -53,10 +75,14 @@ namespace ArcaneBrigade.Editor
                 require(fixture.Simulation.PendingSignaturePulses == 1 && front.Health == 1000, "Bell schedules rather than instant damage");
                 fixture.Simulation.Pause(true); fixture.Tick(20);
                 require(fixture.Simulation.Elapsed == 0 && front.Health == 1000, "Pause freezes delayed wave");
-                fixture.Simulation.Pause(false); fixture.Tick(4);
+                fixture.Simulation.Pause(false);
+                bool secondary = false;
+                for (int tick = 0; tick < 5; tick++) { fixture.Tick(1); secondary |= fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.SignaturePulse && value.Cause.Depth == 1); }
+                require(fixture.Simulation.Projectiles.Count(shot => shot.SignatureShot) == 5, "Bell wave is thrown as a fan of five chimes, not a ring round the wielder");
+                fixture.Tick(6);
                 float expected = 1000 - fixture.Weapon.Damage * fixture.Weapon.SignatureScale;
-                require(Mathf.Approximately(front.Health, expected) && Mathf.Approximately(back.Health, expected) && far.Health == 1000, "Bell wave hits both sides in radius only");
-                require(fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.SignaturePulse && value.Cause.Depth == 1), "Bell secondary cause cannot activate root procs");
+                require(Mathf.Approximately(front.Health, expected) && back.Health == 1000 && far.Health == 1000, "Bell chimes strike the foe ahead once per volley, never behind the wielder or past their reach");
+                require(secondary, "Bell secondary cause cannot activate root procs");
                 fixture.Tick(30); require(Mathf.Approximately(front.Health, expected), "No echo recursion at tier one");
                 fixture.Source.Definition.CombatTier = 2;
                 for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
@@ -71,8 +97,8 @@ namespace ArcaneBrigade.Editor
             {
                 UnitState front = fixture.Enemy(new Vector2(1, 0)); UnitState back = fixture.Enemy(new Vector2(-1, 0)); UnitState boss = fixture.Enemy(new Vector2(1, 0.4f), true);
                 for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
-                fixture.Tick(5);
-                require(front.Health < 1000 && back.Health == 1000, "Umbrella payoff is forward-only, not another full ring");
+                fixture.Tick(9);
+                require(front.Health < 1000 && back.Health == 1000, "Umbrella drops fly forward only, not another full ring");
                 require(front.Position.x > 1 && front.Position.x <= 1.8f, "Umbrella pushes enemy within bounded distance");
                 require(boss.Position.x - 1 < front.Position.x - 1, "Boss resists umbrella push");
                 require(float.IsPositiveInfinity(fixture.Simulation.AddCompanion(fixture.Source.Definition).Health), "Ally remains immortal, no signature ally damage");
@@ -80,7 +106,7 @@ namespace ArcaneBrigade.Editor
                 fixture.Source.Definition.CombatTier = 2;
                 UnitState outer = fixture.Enemy(new Vector2(2.4f, 0));
                 for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
-                fixture.Tick(5); require(outer.Health < 1000, "Tier umbrella widens only the opening payoff");
+                fixture.Tick(14); require(outer.Health < 1000, "Tier umbrella drops fly farther");
             }
             using (var fixture = new Fixture(catalog, "BellFork"))
             {
@@ -88,7 +114,7 @@ namespace ArcaneBrigade.Editor
                 fixture.Combat.Procs = new[] { new ActiveProc { Stacks = 1, Rule = new ProcRule { Id = "k4-kill-heal", ItemId = "fixture", Trigger = ProcTrigger.EnemyKilled, Action = ProcAction.HealChampion, Power = 10, Chance = 1, Cooldown = 0.1f } } };
                 UnitState target = fixture.Enemy(new Vector2(1, 0)); target.Health = 1;
                 for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
-                fixture.Tick(5);
+                fixture.Tick(10);
                 require(!target.Alive && fixture.Simulation.Kills == 1 && fixture.Source.Health == 20, "Secondary signature kill cannot trigger kill-heal proc");
                 require(fixture.Simulation.Pickups.Count(value => value.Kind == LootKind.Coin) == 1, "Payoff kill produces normal loot once without multiplying it");
             }
@@ -130,8 +156,6 @@ namespace ArcaneBrigade.Editor
                     fixture.Tick(Mathf.CeilToInt((fixture.Weapon.Windup + 0.1f) / 0.05f));
                     require((fixture.Simulation.Projectiles.Count > 0 || target.Health < 1000) && fixture.Simulation.PendingSignaturePulses == 0, "Existing projectile behavior intact " + id);
                 }
-            Directory.CreateDirectory("PreviewExports/K4"); File.WriteAllLines("PreviewExports/K4/Signature_Checks.txt", results);
-            Debug.Log("ARCANE_K4_SIGNATURE_CHECKS_PASSED " + results.Count);
         }
 
         private sealed class Fixture : IDisposable

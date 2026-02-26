@@ -53,4 +53,4 @@ MonoBehaviour:
   PushDistance: 0.12
   Family: 0
   Mechanic: 2
-  GameplaySummary: Pulls up to 4 foes. Bosses resist pull.
+  GameplaySummary: Magnet bolt yanks its target and 3 neighbours in.

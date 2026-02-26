@@ -10,6 +10,7 @@ FAIL K4Arena: K4 arena: distinct actual melee attacks reach warned charge
 PASS HeroIdentity
 PASS BuildMorph
 PASS K14
+FAIL K4Signature: Bell secondary cause cannot activate root procs
 FAIL K4Final: Full run check failed: Content roster
 PASS K15Feel
 PASS K8Audio

@@ -93,7 +93,7 @@ namespace ArcaneBrigade
             if (weapon.Family == ExpandedWeapon.Iron)
                 Field(ExpandedFieldKind.Iron, source, source.Position + source.AttackDirection, source.AttackDirection, source.Definition.CombatTier >= 2 ? 0.55f : 0.4f, damage * 0.3f, 0, 1.4f, cause);
             else if (weapon.Family == ExpandedWeapon.Hammer && source.ExpandedBeat % 3 == 0)
-                Field(ExpandedFieldKind.Echo, source, source.Position + source.AttackDirection * 0.8f, source.AttackDirection, 1.7f, damage * 0.55f, 0.1f, 0.16f, cause);
+                Field(ExpandedFieldKind.Echo, source, source.Position + source.AttackDirection * 1.5f, source.AttackDirection, 1.2f, damage * 0.55f, 0.1f, 0.16f, cause); // the slam lands ahead, not round the wielder
             return true;
         }
 
@@ -150,6 +150,7 @@ namespace ArcaneBrigade
             UnitState source = UnitWithId(projectile.SourceUnitId);
             if (source == null) return;
             ApplyCarnivalProjectilePayoff(projectile, target, source);
+            if (projectile.Weapon.Mechanic == CarnivalWeapon.Magnet && !projectile.IsFragment && projectile.Cause.Depth == 0) MagnetBoltHit(projectile, target, source);
             if (projectile.Weapon.Mechanic == CarnivalWeapon.BloomOrb && !projectile.IsFragment)
             {
                 Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.5f, projectile.Damage * 0.45f, 0.28f, 0.35f, projectile.Cause.Child("moonseed-bloom"));
@@ -190,6 +191,36 @@ namespace ArcaneBrigade
                 if (ownedMark != null) ownedMark.Expires = Mathf.Max(ownedMark.Expires, Elapsed + 0.6f);
                 if (catalog.ChorusStacks > 0)
                     Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.3f, projectile.Damage * Mathf.Min(0.7f, 0.35f * catalog.ChorusStacks), 0.3f, 0.18f, projectile.Cause);
+            }
+        }
+
+        /// <summary>The magnet bolt sticks in the foe it strikes and yanks it toward the wielder; up to 2 + tier of its
+        /// neighbours (within 1.8) are dragged in after it and struck for 60%, each with a spark line to the bolt. Bosses resist.</summary>
+        private void MagnetBoltHit(ProjectileState bolt, UnitState target, UnitState source)
+        {
+            WeaponDefinition weapon = bolt.Weapon;
+            Vector2 heading = bolt.Velocity.sqrMagnitude > 0.0001f ? bolt.Velocity.normalized : source.AttackDirection;
+            Vector2 anchor = target.Position;
+            if (target.Alive)
+            {
+                float resistance = target.Definition.IsBoss ? 1 : Mathf.Clamp01(target.Definition.KnockbackResistance);
+                Vector2 before = target.Position;
+                target.Position = ClampPosition(Vector2.MoveTowards(target.Position, source.Position + heading * 1.4f, 0.65f * (1 - resistance)), target.Definition.Radius);
+                spatial.Move(target); anchor = target.Position;
+                RegisterCooperationPull(source, target, before, bolt.Cause);
+            }
+            int pulled = 0, most = 2 + Mathf.Clamp(source.Definition.CombatTier, 1, 3);
+            foreach (UnitState enemy in units)
+            {
+                if (enemy == target || !CanHit(source.Faction, enemy) || (enemy.Position - anchor).sqrMagnitude > 1.8f * 1.8f) continue;
+                if (pulled++ >= most) break;
+                float resistance = enemy.Definition.IsBoss ? 1 : Mathf.Clamp01(enemy.Definition.KnockbackResistance);
+                Vector2 before = enemy.Position;
+                enemy.Position = ClampPosition(Vector2.MoveTowards(enemy.Position, anchor, 0.65f * (1 - resistance)), enemy.Definition.Radius);
+                spatial.Move(enemy);
+                fields.Add(new ExpandedField { Kind = ExpandedFieldKind.Link, Start = before, Position = anchor, At = Elapsed, Until = Elapsed + 0.26f, Resolved = true });
+                ApplyWeaponDamage(enemy, bolt.Damage * 0.6f, source.Faction, weapon.Element, weapon.Id, (anchor - before).normalized, weapon, bolt.Critical, bolt.Cause);
+                RegisterCooperationPull(source, enemy, before, bolt.Cause);
             }
         }
 

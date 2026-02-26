@@ -14,7 +14,7 @@ At 8 sparks, up to 3 friends share 180% W in weapon-shaped responses, followed b
 At 8 sparks, up to 4 friends share 180% W in weapon-shaped responses, followed by a 60% W forward crescent. 4s cooldown.
 
 3. Hold ground
-At 8 sparks, up to 3 friends share 180% W in responses. Add a 35% W ring of radius 1.7 around you and remove one hostile shot within 2 units. 4s cooldown.
+At 8 sparks, up to 3 friends share 180% W in responses. Throw 3 lantern embers at the target sharing 35% W and remove one hostile shot within 2 units. 4s cooldown.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
@@ -137,7 +137,7 @@ Every 3 coin pickups mix a tide, at most once per 4s. Every two drinks bought ad
 Three coin pickups release 2 frost notes, plus one per 2 drinks bought, up to 5 notes. Notes share 220% W. 4s cooldown; buying drinks does not count as collecting coins.
 
 2. Shore
-Three coin pickups attempt to heal 3 HP and make a radius-1.6 ring with a 160% W budget. Ordinary enemies are slowed 0.6s and gently pushed. 4s cooldown.
+Three coin pickups attempt to heal 3 HP and roll a 3-unit tide line toward the target with a 160% W budget. Ordinary enemies are slowed 0.6s and gently pushed. 4s cooldown.
 
 3. Breaker
 Three coin pickups create a radius-2.2 forward crescent with a 220% W budget, 0.5s ordinary slow and capped push. 4s cooldown.
@@ -182,7 +182,7 @@ The mirror catches a hostile shot that comes within 1 unit (2 units after you st
 Caught shots are returned opposite their original travel direction, 60% W each, keeping the caught element. Same 1-unit (2 when still) catch and 2s catch cooldown.
 
 3. Prism ring
-Caught shots are returned at evenly spaced radial angles, 60% W each, keeping the caught element. Same catch rules; 1s release cooldown.
+Caught shots are returned toward the target in a wide fan (up to 24 degrees apart), 60% W each, keeping the caught element. Same catch rules; 1s release cooldown.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
@@ -287,7 +287,7 @@ A qualifying turn leaves a line bubble that pops after 0.65s. Budget 70% W, or 1
 A qualifying turn leaves a forward crescent bubble, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push.
 
 3. Bubble
-A qualifying turn leaves a full disc bubble, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push.
+A qualifying turn splashes a disc bubble ahead of you, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
