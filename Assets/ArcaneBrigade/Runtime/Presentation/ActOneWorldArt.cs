@@ -20,7 +20,11 @@ namespace ArcaneBrigade
             new[] { "Prop_SingleBed", "Prop_Nightstand", "Prop_ReceiptChair", "Prop_Ledger" }
         };
         private static readonly string[] Floors = { "Floor_Crossing", "Floor_Platform", "Floor_House", "Floor_PerfectRoom" };
-        public void Configure(ArenaController value) => owner = value;
+        public void Configure(ArenaController value)
+        {
+            owner = value;
+            if (GetComponent<ActOneRestingScenes>() == null) gameObject.AddComponent<ActOneRestingScenes>().Configure(value);
+        }
         private void LateUpdate()
         {
             if (owner?.Session == null || owner.Simulation == null) return;

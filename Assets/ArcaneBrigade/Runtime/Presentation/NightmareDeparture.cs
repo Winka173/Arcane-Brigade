@@ -18,6 +18,7 @@ namespace ArcaneBrigade
             if (run != owner.Session.State.RunId)
             {
                 run = owner.Session.State.RunId; guests.Clear(); weapons.Clear(); tiers.Clear();
+                foreach (var companion in EndingTravellers.Story(owner)) Add(companion);
                 // whoever actually came out of the drawer (the paper bird is a rescue too); older runs only knew it was the bear
                 if (owner.Session.State.Secrets.RescuedToy) Add(owner.Content.Unit(string.IsNullOrEmpty(owner.Session.State.Secrets.RescuedId) ? "SecretPatchBear" : owner.Session.State.Secrets.RescuedId));
                 if (owner.Session.State.Secrets.LetterSent && !guests.Contains(owner.Content.Unit("SecretPaperBird"))) Add(owner.Content.Unit("SecretPaperBird"));
@@ -47,11 +48,12 @@ namespace ArcaneBrigade
                 float travel = Travel(localElapsed, index, reduced);
                 float start = stage.x + 40 + index % 10 * 55;
                 float horizontal = Mathf.Lerp(start, doorway.center.x - 12, travel);
-                float bob = (reduced ? 0 : Mathf.Sin(elapsed * 9 + index) * 3 * (travel > 0 && travel < 1 ? 1 : 0)) - index / 10 * 28 * (1 - travel);
+                float rowStep = Mathf.Min(28,56f / Mathf.Max(1,Mathf.CeilToInt(guests.Count / 10f)-1));
+                float bob = (reduced ? 0 : Mathf.Sin(elapsed * 9 + index) * 3 * (travel > 0 && travel < 1 ? 1 : 0)) - index / 10 * rowStep * (1 - travel);
                 float size = (58 + Mathf.Clamp(unit.BodyHeight, .5f, 2) * 10) * (1 + (tiers[index] - 1) * .12f);
-                Sprite sprite = unit.AnimationFrames.Length > 0 ? unit.AnimationFrames[reduced ? 0 : Mathf.FloorToInt(elapsed * 6 + index) % unit.AnimationFrames.Length] : unit.Body;
+                Sprite sprite = EndingTravellers.Frame(unit, elapsed, index, travel > 0 && travel < 1);
                 Vector3 acting = EnsembleMotion.Goodbye(unit, localElapsed, index, reduced);
-                CharacterActingEntry art = CharacterActingLibrary.Current?.Find(unit.Id);
+                CharacterActingEntry art = EndingTravellers.IsStory(unit) ? null : CharacterActingLibrary.Current?.Find(unit.Id);
                 if (!reduced && art != null && acting.x > 0) sprite = CharacterActingEntry.Frame(art.Curious, acting.x * .7f);
                 if (!reduced && art != null && localElapsed - index * .22f >= 1.65f && localElapsed - index * .22f < 2.3f) sprite = CharacterActingEntry.Frame(art.Cheer, (localElapsed - index * .22f - 1.65f) / .65f);
                 Color previous = GUI.color;

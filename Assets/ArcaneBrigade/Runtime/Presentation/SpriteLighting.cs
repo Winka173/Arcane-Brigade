@@ -29,7 +29,7 @@ namespace ArcaneBrigade
                 properties.SetColor(RimColorId, hostile ? new Color(.89f, .54f, .66f) : new Color(1, .88f, .62f));
                 properties.SetFloat(ShadeAmountId, prop ? .045f : .085f);
                 properties.SetFloat(RimAmountId, prop ? .06f : .12f);
-                properties.SetFloat(SaturationId, 1.06f);
+                properties.SetFloat(SaturationId, prop ? 1.06f : .93f);
             }
             else
             {
@@ -40,7 +40,7 @@ namespace ArcaneBrigade
                 properties.SetColor(ShadeColorId, Color.Lerp(hostile ? new Color(.48f, .51f, .69f) : new Color(.62f, .74f, .84f), spill / Mathf.Max(.01f, spill.maxColorComponent), amount * .28f));
                 properties.SetFloat(RimAmountId, (prop ? .09f : .16f) + amount * .2f);
                 properties.SetFloat(ShadeAmountId, (prop ? .06f : .09f) + lighting.Depth * .015f);
-                properties.SetFloat(SaturationId, prop ? .97f : 1.03f);
+                properties.SetFloat(SaturationId, prop ? .97f : .93f);
             }
         }
     }

@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         public void Build(UnitState unit, SpriteRenderer reference)
         {
             Clear(); body = reference; anatomy = BossAnatomy.For(unit.Definition);
+            if (unit.Definition.Id == "OutsideStageKeeper") body.sprite = ActOneArtwork.Picture("Keeper_BodyShell") ?? body.sprite;
             // Canon bosses are drawn as complete bodies; stand-in organs must not cover the new silhouette.
             if (ActOneArtwork.Has(unit.Definition)) { anatomy = null; return; }
             if (anatomy == null) return;
@@ -59,6 +60,11 @@ namespace ArcaneBrigade
                 float release = active && releaseAge >= 0 && releaseAge < 0.5f ? Mathf.Sin(releaseAge / 0.5f * Mathf.PI) : 0;
                 SpriteRenderer organ = organs[part]; SpriteRenderer scar = scars[part]; SpriteRenderer shadow = shadows[part];
                 Sprite image = release > 0.1f && definition.Release != null ? definition.Release : winding && charge > 0.35f || release > 0.1f ? definition.Charged : definition.Rest;
+                if (unit.Definition.Id == "OutsideStageKeeper")
+                {
+                    image = ActOneArtwork.KeeperPart(part, broken, image);
+                    scar.sprite = ActOneArtwork.KeeperPart(part, true, definition.Scar);
+                }
                 organ.sprite = image; shadow.sprite = image;
                 float breathe = reduced ? 0 : Mathf.Sin(time * (part == 2 ? 2.2f : 1.7f) + part * 1.8f) * 0.025f;
                 int act = AnimationTiming.BossAct(unit.Health, unit.Definition.Health);

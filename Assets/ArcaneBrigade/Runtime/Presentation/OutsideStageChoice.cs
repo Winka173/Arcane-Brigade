@@ -67,7 +67,7 @@ namespace ArcaneBrigade
             {
                 var actor = new GameObject(mode == 1 ? "TheHandWaits" : "PrismaticReward" + index); actor.transform.SetParent(transform, false);
                 SpriteRenderer sprite = actor.AddComponent<SpriteRenderer>();
-                if (mode == 1) sprite.sprite = CarrierArtwork.Current != null ? CarrierArtwork.Current.Hand[0] : assets.BossFrames[4];
+                if (mode == 1) sprite.sprite = ActOneArtwork.Picture("Keeper_Hand_Intact") ?? (CarrierArtwork.Current != null ? CarrierArtwork.Current.Hand[0] : assets.BossFrames[4]);
                 else
                 {
                     string id = owner.Session.State.OutsideRewards[index];

@@ -77,13 +77,15 @@ namespace ArcaneBrigade
         public static string Pick(RunSnapshot state, bool special, MerchantMoment moment, int cursor)
         {
             if (state == null) return MerchantDialogue.Pick(special,moment,cursor);
-            int depth = NightmareRules.Depth(state.Wave);
+            int depth = state.Endless ? 4 : ActOneCanon.Zone(state.Wave);
             if (cursor % 4 == 3 && (moment == MerchantMoment.Enter || moment == MerchantMoment.Inspect || moment == MerchantMoment.Leave || moment == MerchantMoment.Buy))
             {
                 string memory = Memory(state,Math.Abs(cursor / 4));
                 if (!string.IsNullOrEmpty(memory)) return memory;
             }
-            if (cursor % 3 == 0 && moment == MerchantMoment.Inspect) return MienChoStory.Chapters[Mathf.Clamp(MienChoStory.Available(state) - 1, 0, MienChoStory.Chapters.Length - 1)].Evidence;
+            if (cursor % 3 == 0 && moment == MerchantMoment.Inspect)
+                for (int i = MienChoStory.Available(state) - 1; i >= 0; i--)
+                    if (((state.MienCho?.FinishedMask ?? 0) & (1 << i)) != 0) return MienChoStory.Chapters[i].Evidence;
             if (special) return Dream[depth][(int)moment];
             return Layers[depth][(int)moment * 2 + Math.Abs(cursor % 2)];
         }
@@ -99,14 +101,30 @@ namespace ArcaneBrigade
         {
             // Act I whispers follow the four zones; past dawn the endless night has its own.
             int depth = state.Endless || state.Wave > ActOneCanon.Waves ? 4 : ActOneCanon.Zone(state.Wave);
+            if (depth > 0 && depth < 4 && !FinishedAt(state, depth * 5 + 1)) depth--;
             int variation = Math.Abs(cursor / 3 % 4) + ((state.Seed >> (depth * 3)) & 3);
-            string text = cursor % 3 == 2 ? Evidence[depth][variation % 4] : Whispers[depth][Math.Abs(cursor % 4)];
-            if (state.Wave == 19) text = "The last lantern holds a name he cannot buy.";
+            int evidence = variation % 4;
+            string text = cursor % 3 == 2 && EvidenceKnown(state, depth, evidence) ? Evidence[depth][evidence] : Whispers[depth][Math.Abs(cursor % 4)];
+            if (state.Wave == 19 && FinishedAt(state, 19)) text = "The last lantern holds a name he cannot buy.";
             if ((state.ActOne?.Offer ?? 0) == ActOneProgress.Sold && cursor % 4 == 1) text = "One of your companions introduces themself again, kindly, as if you had never met.";
             if (NightmareRules.Remembered(state, SecretEventKind.Understudy) && (text.Contains("glass") || text.Contains("window"))) text = "The familiar window holds its shape. Your reflection stays beside you.";
             if (NightmareRules.Remembered(state, SecretEventKind.ImpossibleTailor) && (text.Contains("shelf") || text.Contains("shelves"))) text = "The repaired shelf holds its shape. Something else in the room is breathing.";
             return text;
         }
+        private static readonly int[][] EvidenceWaves = {
+            new[] { 2, 1, 2, 3 }, new[] { 6, 7, 10, 7 },
+            new[] { 12, 12, 11, 13 }, new[] { 16, 16, 19, 18 }, new[] { 20, 20, 20, 20 }
+        };
+        private static bool FinishedAt(RunSnapshot state, int wave)
+        {
+            if (wave == 20) return state.Nightmare?.CustomerDefeated == true;
+            int finished = state.MienCho?.FinishedMask ?? 0;
+            for (int i = MienChoStory.Available(state) - 1; i >= 0; i--)
+                if (MienChoStory.Chapters[i].Wave == wave && MienChoStory.Chapters[i].Shop) return (finished & (1 << i)) != 0;
+            return false;
+        }
+        private static bool EvidenceKnown(RunSnapshot state, int zone, int line)
+            => FinishedAt(state, EvidenceWaves[zone][line]);
         public static string Memory(RunSnapshot state, int cursor)
         {
             NightmareProgress story = state.Nightmare;

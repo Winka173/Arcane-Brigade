@@ -8,7 +8,7 @@ namespace ArcaneBrigade
     {
         public static OctoberRoster Roster => JsonUtility.FromJson<OctoberRoster>(Resources.Load<TextAsset>("October/ReferenceRoster").text);
         public static readonly string[] BondIds = { "hare", "archer", "root", "gauntlet", "regal", "clover", "fruit", "gear", "hat", "horn", "sprout", "knight", "ball", "morning", "rune", "mask", "hide", "resolve", "shoe" };
-        public static readonly string[] BondNames = { "Springstep", "Longbow", "Rootkin", "Prizefighters", "Velvet Court", "Lucky Leaves", "Fruit Basket", "Clockwork Union", "Hat Society", "Little Horns", "Jade Nursery", "Toy Knights", "Playtime", "Morning Bells", "Runic School", "Masked Carnival", "Wild Stitch", "Unbroken", "Quicksoles" };
+        public static readonly string[] BondNames = { "Springstep", "Longbow", "Rootkin", "Prizefighters", "Velvet Court", "Lucky Leaves", "Fruit Basket", "Clockwork Union", "Hat Society", "Little Horns", "Jade Nursery", "Crossing Knights", "Lantern Revel", "Morning Bells", "Runic School", "Masked Carnival", "Wild Stitch", "Unbroken", "Quicksoles" };
         public static readonly string[] ReferenceBonds = { "Bouncy Rabbit Ears", "Bow and Arrow", "Carrot", "Crimson Gauntlets", "Empire", "Four-Leaf Clover", "Fruit", "Gear", "Hat", "Horned Head", "Jade Cabbage", "Knight", "Melon-Striped Ball", "Morning Star", "Mysterious Rune", "Ominous Mask", "Primitive Leather Skirt", "Resolve!", "Shoe" };
         public static string HeroCopy(string reference) => reference switch
         {
@@ -27,7 +27,7 @@ namespace ArcaneBrigade
             "Porcelain Doll" => "Healing is 2.5 times as effective, but armor starts 0.25 lower. Each Wild Stitch activation adds 0.4 regeneration. Taking damage adds 1 contact damage.",
             "Slippy" => "Ordinary attacks deal 35% less damage. Push ordinary enemies harder, within the push cap. Each Clockwork Union activation adds 4 wave income. Treasure +20%.",
             "Card King" => "Your equipped weapon attacks automatically. Your personal damage, attack speed, critical chance and projectile bonuses also help allies. Shops may sell evolved companions. More enemies appear.",
-            "Sir Purrcival" => "Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detection for this run. Toy Knights deal 30% more damage.",
+            "Sir Purrcival" => "Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detection for this run. Crossing Knights deal 30% more damage.",
             "Omnom" => "Lose 1 HP each second in battle. Each enemy defeated heals 1 HP. Regeneration and hearts do not heal. Every fourth wave raises everyone's movement speed.",
             "Periwinky" => "Dream shops always open. At wave start, maximum HP follows saved gold (20–400). Buying a spiked relic recruits a Bristle Ball. Team damage -20%.",
             "Clementie" => "Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; contact damage scales with your movement speed. Team attack speed -25%.",

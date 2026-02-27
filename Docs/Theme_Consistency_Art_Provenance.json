@@ -1,0 +1,375 @@
+{
+  "date": "2026-10-17",
+  "tool": "painted",
+  "operation": "New raster art; connected-ink slicing and transparent padding for Unity integration",
+  "sources": [
+    {
+      "file": "exec-8ac4c34d-0550-47d8-be06-16734f0fedf8.png",
+      "sha256": "b7edaf1e14166789df5864732339a4ecf055c4d8b0ac759ab656ea4020660f33"
+    },
+    {
+      "file": "exec-eaafafa7-d81b-49a9-93c1-f706e7047af5.png",
+      "sha256": "48650886817696fd93addf44a3ffe96bb41ba7070ec014c1f7ccb0795ac902a9"
+    },
+    {
+      "file": "exec-6b834883-0c81-4717-a000-4c57791a1b00.png",
+      "sha256": "88c0f91b107d8e0976c48dc6b075c012dbbc3dd42ee7f20e17009d3cdd205440"
+    },
+    {
+      "file": "exec-f8b4b651-240e-4187-b64d-83f0d878ad36.png",
+      "sha256": "fce29298a056d3bfa2f3f9a177b0968462c995e81ef4e135431408b836b41c5a"
+    }
+  ],
+  "assets": [
+    {
+      "name": "Keeper_Whole_Body",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Whole_Body.png",
+      "sha256": "5b91cfcb4364ed559813834291ad4a6cacaa50e17e9c1ee32c25346fe8c161e1"
+    },
+    {
+      "name": "Keeper_Kneel",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Kneel.png",
+      "sha256": "7526cb65732ebf04dbfa717c0406de01185f22d4e9fff370b869ebdb250186cc"
+    },
+    {
+      "name": "Keeper_Silhouette",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Silhouette.png",
+      "sha256": "0b405a79dd56981879829fb6126c41b1fbab075bf2a5c225f94c42ff81e8a678"
+    },
+    {
+      "name": "Pickup_PrismShard",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Pickup_PrismShard.png",
+      "sha256": "6ea0340084ab7dd7d8c9474d93d74577fd8f6c459aea4f7f2c6986ab3a31983e"
+    },
+    {
+      "name": "Keeper_Hand_Intact",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Hand_Intact.png",
+      "sha256": "b3558c62ee011d4a06ec736a676353e791ec6c59d5bf2fc0f0eeda77cc3822f7"
+    },
+    {
+      "name": "Keeper_Hand_Broken",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Hand_Broken.png",
+      "sha256": "112c8ab75c11d48bb464446432d45604842d93423e1c5086d845d5f1161d385c"
+    },
+    {
+      "name": "Keeper_Carpet_Intact",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Carpet_Intact.png",
+      "sha256": "41c78da463a0278e12890a01f8fa8cd41050d71e185917ff4bf6b6c77eea69ed"
+    },
+    {
+      "name": "Keeper_Carpet_Broken",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Carpet_Broken.png",
+      "sha256": "7e89ce64203fdc96db359db56eb903b5fbf0c0de0f53398ab5c3a18d9f4043cd"
+    },
+    {
+      "name": "Keeper_Eye_Open",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Eye_Open.png",
+      "sha256": "59484107b72c54738d0f8ec1c38eaa2bdc1eb6eeabc0cbbdeeb0f4dc109a404c"
+    },
+    {
+      "name": "Keeper_Eye_Closed",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Eye_Closed.png",
+      "sha256": "6fd6d74cec1455fd2378f60c17e16a9a32815d54d9aef570fcde10a44bc18a53"
+    },
+    {
+      "name": "Prop_OrdinaryStool",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_OrdinaryStool.png",
+      "sha256": "10a99a9ecb076c62c4044c7711f9b825a1510a2f706e855a91ca29d8af259ede"
+    },
+    {
+      "name": "Prop_StoryTelephone",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_StoryTelephone.png",
+      "sha256": "c855f4b0564a92285cb24cdd0b63aa584a8709c59cc9f4c7d9667def78fd3f43"
+    },
+    {
+      "name": "Stat_Damage",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Damage.png",
+      "sha256": "061478ad62240b7b0ea0df443f19b9a1098009b9835f96aeba1ffb05fdb17342"
+    },
+    {
+      "name": "Stat_AttackSpeed",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_AttackSpeed.png",
+      "sha256": "7b578c4ce79bb2073749d667fde078ac3108fd2e35d2c4e0be03db182eadf9c0"
+    },
+    {
+      "name": "Stat_Health",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Health.png",
+      "sha256": "79d7f7f0247e5861bc6e86a17592473e10d40d0d96c476120074569c4a39a8c6"
+    },
+    {
+      "name": "Stat_MoveSpeed",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_MoveSpeed.png",
+      "sha256": "0cd724eb6736b102da30e19947d3c7a31abe1f28512cdf5ea61cd3a32d25046b"
+    },
+    {
+      "name": "Stat_Pickup",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Pickup.png",
+      "sha256": "a4f7f07239306ab7b049341b4e7f64abfb5a884d9a3260ff28097cf8509f30f7"
+    },
+    {
+      "name": "Stat_Roam",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Roam.png",
+      "sha256": "730a054ba06ac72388e0d2fd409925df6046d2fb513dffeb560f82e372954b23"
+    },
+    {
+      "name": "Stat_Interceptor",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Interceptor.png",
+      "sha256": "8f8a379e2a9712b47957ea21c3c16c43b4c87bc955f55eb738bd813c50f696aa"
+    },
+    {
+      "name": "Stat_Heal",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Heal.png",
+      "sha256": "bbb82a37ddb1333f8dcdc9fe25e17ccb8c357921a80200704397fd82e716ed27"
+    },
+    {
+      "name": "Stat_Crit",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Crit.png",
+      "sha256": "7e11bb6190133f11f2e8377f61fbf165add08e167051f468aa519bbeedf21202"
+    },
+    {
+      "name": "Stat_Projectiles",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Projectiles.png",
+      "sha256": "9fa9313e48bb7b46af1c744f9e59d29ebfd4f0913139a1e863c301e89f0ea2c9"
+    },
+    {
+      "name": "Stat_Interest",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Interest.png",
+      "sha256": "bb42aa27ee3d6a8dd7c4e1e3c33737a6833ca0375203da083547c7ee3c80f627"
+    },
+    {
+      "name": "Stat_Armor",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Armor.png",
+      "sha256": "db185323154cab278b911ffa7420a9a15f229a6655855c30bda2bc2e5103dc95"
+    },
+    {
+      "name": "Stat_ChampionDamage",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_ChampionDamage.png",
+      "sha256": "a1ffed424df59428a42ec84f0e00469dbe661ac78a930b1f31b3cfccc3ce777f"
+    },
+    {
+      "name": "Stat_CompanionDamage",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_CompanionDamage.png",
+      "sha256": "191571841c4bacc3426f829b29f5915da6959489951d9df50198118adaf41b9a"
+    },
+    {
+      "name": "Stat_CompanionAttackSpeed",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_CompanionAttackSpeed.png",
+      "sha256": "fc2296786237e75173daf06a3d0e9aa1a5d435a906eae7aa31da85b476392685"
+    },
+    {
+      "name": "Stat_Discount",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Discount.png",
+      "sha256": "12fd2d288f59a4a1f9d25117dcf91fac733f1151f7e1654ff2821b489e579dc1"
+    },
+    {
+      "name": "Stat_Luck",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Luck.png",
+      "sha256": "f5fde5f63fd64ec9d466ba25edbd5c15df8045378a45a68ede2a937ad826d4d6"
+    },
+    {
+      "name": "Stat_TreasureDetection",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_TreasureDetection.png",
+      "sha256": "ac8d247b45196cc128e093da5c3f9e60e13116067a9f1fddbcfe46ce314c2431"
+    },
+    {
+      "name": "Stat_ScoreMultiplier",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_ScoreMultiplier.png",
+      "sha256": "bca2869090638c32e88479795a27a75f15531da8539ffd22e44488ee9657b70a"
+    },
+    {
+      "name": "Stat_CollisionDamage",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_CollisionDamage.png",
+      "sha256": "6c7a6177d80d8c290cccf5c1deff268f95f61ed35e48c1967c9d0dfbfd282809"
+    },
+    {
+      "name": "Stat_MeleeDamage",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_MeleeDamage.png",
+      "sha256": "240cb06f30b15ed683d4c6a1c05d3dc455a0ed00f9a578f9340d776579c73d77"
+    },
+    {
+      "name": "Stat_RangedDamage",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_RangedDamage.png",
+      "sha256": "30c7b9d9d7a88e57c379d071df7052832f09f7fec86f2fc30f500b7abd120989"
+    },
+    {
+      "name": "Stat_AttackRange",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_AttackRange.png",
+      "sha256": "9b6d202b133927614b970b1cb69f0445057a81c26ec901d051913280de32bdff"
+    },
+    {
+      "name": "Stat_Dodge",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Dodge.png",
+      "sha256": "c49ceb8d312074364c4191a6d0d28d9be9a59244f3c007bb1007a12ba48c5498"
+    },
+    {
+      "name": "Stat_Income",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Income.png",
+      "sha256": "a0ad532a35dba36a705af9c3efba2d35570ed6bfc5db1da69bb0ca25243102a3"
+    },
+    {
+      "name": "Stat_BulletPierce",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BulletPierce.png",
+      "sha256": "ba75a4d60e382c2786b99f0ec5f9cbb1011460ac1516e71f541a68b441cb43d4"
+    },
+    {
+      "name": "Stat_BulletSplit",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BulletSplit.png",
+      "sha256": "af3d3c754bbc3a44fee1f8fb805afdd47a760296d4d09bbf2a707076df226af5"
+    },
+    {
+      "name": "Stat_BulletBounce",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BulletBounce.png",
+      "sha256": "86d26f771b35e9409e6e652450538e6ab524b70dadbe0a10b14f5a3fa8a8f50a"
+    },
+    {
+      "name": "Stat_BulletSize",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BulletSize.png",
+      "sha256": "78654a6e1e835fb702fc0e852c98e14b4277cbdd9244f75f08a3a8bf1b8cad7f"
+    },
+    {
+      "name": "Stat_BulletSpeed",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BulletSpeed.png",
+      "sha256": "9d16ed0b9914975d23422422413acfa206b5cd2b86f0b389e12fcb6c1198b8cd"
+    },
+    {
+      "name": "Stat_BulletDistance",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BulletDistance.png",
+      "sha256": "963af85eb4671c59e1487155101210b149efac180b0484fdf505ad8406cc6fa6"
+    },
+    {
+      "name": "Stat_Knockback",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_Knockback.png",
+      "sha256": "8b516b1e9effa45d5e83d4179798b934bd12c390284676be80ddfaf085471461"
+    },
+    {
+      "name": "Stat_BodySize",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_BodySize.png",
+      "sha256": "ab00dacbcf4edf98989cc1a813ed8b1c348427c6b3631a97d3ad98e4472e81fa"
+    },
+    {
+      "name": "Stat_CompanionSize",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_CompanionSize.png",
+      "sha256": "20af3c48a992db56e7e242158f55952b25653306d13e2b0a0a0ea1b246a7c6f6"
+    },
+    {
+      "name": "Stat_EnemyCount",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_EnemyCount.png",
+      "sha256": "196262f448b4e0b0c6be52856dc1af82506fc39792fc6d346c1d51c7880ddbd2"
+    },
+    {
+      "name": "Stat_EnemyHealth",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_EnemyHealth.png",
+      "sha256": "722d33c6c849544258b3735c72bb651b437feff24deeeca5bd9df01f67b305f4"
+    },
+    {
+      "name": "Stat_EnemySpeed",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_EnemySpeed.png",
+      "sha256": "29b280dae6f8cc2dc3b422405d28f892f295da0fa075c7c1f42f9d6dbe74fb8d"
+    },
+    {
+      "name": "Stat_HeartHealing",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_HeartHealing.png",
+      "sha256": "d4a2a91aa04e117b16d2e3c63a50ceda38bf47f0600593d3664a18c488ec9306"
+    },
+    {
+      "name": "Stat_ChestQuality",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_ChestQuality.png",
+      "sha256": "02f5b3609031d82d0e6ff4cff7bec428877b1a73e63b3b2b889637d9835bc34c"
+    },
+    {
+      "name": "Stat_RecruitDiscount",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_RecruitDiscount.png",
+      "sha256": "cff03578abe5f89c79a9ca0f5f7a4a060f36146373cd44986e41d3c0c83da0e9"
+    },
+    {
+      "name": "Stat_RelicDiscount",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_RelicDiscount.png",
+      "sha256": "b22e278214313920d4ec501360e3219f74d1f450b01fa5ffd9daf8aadc20d14f"
+    },
+    {
+      "name": "Stat_ShopRarity",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_ShopRarity.png",
+      "sha256": "9ea5983d315f3133dce46908e3e2baeed78a5e805fa22fb6c3b9ea32a73dcc02"
+    },
+    {
+      "name": "Stat_HealthCorrection",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_HealthCorrection.png",
+      "sha256": "e2b198eabcb211226c64645493df36122afc41597788192135842d0cd942286b"
+    },
+    {
+      "name": "Stat_DamageCorrection",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_DamageCorrection.png",
+      "sha256": "9d988fa285dc6eaf29a44b190e9195f2cbc3369271e975a6cc45dcb41d164edb"
+    },
+    {
+      "name": "Stat_SpeedCorrection",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_SpeedCorrection.png",
+      "sha256": "6aa08db9f09bc4c2917a2098c97decc888df555eb07ac0be8cfc979df96b1084"
+    },
+    {
+      "name": "Stat_ArmorCorrection",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_ArmorCorrection.png",
+      "sha256": "2b514fa7ce1c95d139c0a8b7710fdcae082bb1cbd8d613dc9f661ccaced4089c"
+    },
+    {
+      "name": "Stat_HealCorrection",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_HealCorrection.png",
+      "sha256": "b2ab6587719a50c9764d5deb085949de33eefda07ba4960f5718aebf85aa1b82"
+    },
+    {
+      "name": "Stat_CollisionFrequency",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_CollisionFrequency.png",
+      "sha256": "4b4f3cfa18f3fb241bcbf53ba4117ea3beb36fe6fc65f4950de1dbf7674d923a"
+    },
+    {
+      "name": "Stat_ChestReach",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Stat_ChestReach.png",
+      "sha256": "69827b6864057da11e258165b3cd3b95cabde6dc304c7926115c5df6229aead6"
+    },
+    {
+      "name": "Prop_HeightMarks",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_HeightMarks.png",
+      "sha256": "93e961e07131fdac550f32edc4cf7395fdcaf2958695a9da5ec7368513a8c0b8"
+    },
+    {
+      "name": "Prop_ExtraFootprints",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_ExtraFootprints.png",
+      "sha256": "ddf170b3aaf3211e5c49b6ae4b1ec997679a789b827dcc19bb1d195d5f4b8727"
+    },
+    {
+      "name": "Prop_SewnReply",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_SewnReply.png",
+      "sha256": "c9897e739de0919c812ee56bcf667201625a74921e833ce4a30cc211defaa5ed"
+    },
+    {
+      "name": "Prop_InsideRelease",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_InsideRelease.png",
+      "sha256": "bd8050b4e1dc6733869c2117c93a76343ff590f93280077b5b5e59385636bbee"
+    },
+    {
+      "name": "Prop_WetUmbrella",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_WetUmbrella.png",
+      "sha256": "2c135c3d010c9e1ac165ba66869b76835350e8ced6d4f80834d7b60bb84990e9"
+    },
+    {
+      "name": "Prop_WaitingNote",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_WaitingNote.png",
+      "sha256": "5cfe20bdeb7d7185d8f151e0d28e80313e3d085635c53ae48961b108a3b5521a"
+    },
+    {
+      "name": "Prop_VisitorRaincoat",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_VisitorRaincoat.png",
+      "sha256": "477a0569b6d905f6b461cc65591ab153e92c02c549f8526d2c0e827a0b28fa1a"
+    },
+    {
+      "name": "Prop_BurntContract",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BurntContract.png",
+      "sha256": "584b3ff22aad78cb9e59b9d1730d323dd59fd14f78236412e9a7245fa12d7d28"
+    },
+    {
+      "name": "Keeper_BodyShell",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_BodyShell.png",
+      "sha256": "91a1df1c8d9f9e521a90f471915e25c0c84f951cfd9d5bb3c5f9b87ccebdf5f7"
+    }
+  ]
+}

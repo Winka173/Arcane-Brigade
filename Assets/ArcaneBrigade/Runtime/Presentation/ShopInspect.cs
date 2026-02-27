@@ -86,7 +86,7 @@ namespace ArcaneBrigade
                 string id = child.name;
                 if (id.StartsWith("SecretInvitation_", StringComparison.Ordinal) && Enum.TryParse(id.Substring(17), out SecretEventKind kind))
                     Add(id, SecretEventAssets.Titles[(int)kind], SecretEventAssets.Hints[(int)kind] + " A door into a secret room: a deal, a trade or a fight. Fights in there end the run if you lose; at most two rooms are visited each run.",
-                        "Stand beside it and hold Space or E", Ink(view), view.sortingOrder);
+                        "Stand beside it and press Space or E", Ink(view), view.sortingOrder);
                 else if (id == "TheUnoccupiedChair")
                     Add(id, "THE WARM CHAIR", "It is always a little warm, as if someone has only just stood up. The shopkeeper: “Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.”",
                         owner.Session.SitCloserAvailable ? "Walk up to it and press Space or E to sit · a hidden fight; losing ends the run" : state.Wave < ActOneCanon.SitFrom ? "Not yet. It moves a little closer every night." : "Only a chair now.", Ink(view), view.sortingOrder);
@@ -114,7 +114,7 @@ namespace ArcaneBrigade
             {
                 case 0: Add(id, "AN EMPTY CHAIR", "Do not mind the chair. It has always been empty.", "It only waits", Ink(view), view.sortingOrder); break;
                 case 1: Add(id, "THE COUNTER LAMP", "A lamp, a teacup and a sprout by the counter. “I kept the lamp lit. I did not know what else to do.” Its warm light is the one the whole shop is read by.", "It keeps burning", Ink(view), view.sortingOrder); break;
-                case 2: Add(id, "THE JOURNAL WINDOW", "A lit shop window that shows the room you are standing in. Your journal is kept behind the glass: every page the night has written about you, and the ones still waiting to be read.", "Walk up to it and press Space or E (or click it there) · J opens it from anywhere", Ink(view), view.sortingOrder); break;
+                case 2: Add(id, "THE JOURNAL WINDOW", "A lit shop window that shows the room you are standing in. Your journal is kept behind the glass: every page the night has written about you, and the ones still waiting to be read.", "Walk up to it and press Space or E (or click it there)", Ink(view), view.sortingOrder); break;
                 case 4: Add(id, "THE CLOSED CURTAIN", "Heavy curtains over a stage nobody uses. There is applause behind them, though nobody has come to watch." + (NightmareRules.Depth(state.Wave) >= 2 ? " Lately an eye watches from the fold; it is afraid to close." : ""), "It only listens", Ink(view), view.sortingOrder); break;
                 case 5: Add(id, "THE BLANK SIGN", "A hanging sign with nothing written on it yet." + (NightmareRules.Depth(state.Wave) >= 2 ? " A small figure that looks like you has started sitting on it: a place being kept for you." : ""), "It only waits", Ink(view), view.sortingOrder); break;
                 case 6: Add(id, "THE WOODEN HEART", "Taken gently from the drawer in the lost-property vault. The cabinet remembers that you were kind to it.", "A keepsake from a secret room", Ink(view), view.sortingOrder); break;

@@ -1,5 +1,7 @@
 # Rà độ thống nhất theme toàn app — 17/10/2026
 
+**Đã có đợt sửa sau audit:** [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md). Giữ snapshot và bằng chứng bên dưới để đối chiếu; các lỗi ghi tại thời điểm audit không mặc nhiên còn nguyên. Vũ khí/mechanic được giao cho agent khác; đợt sửa theme chưa build/test runtime mới.
+
 Chuẩn đối chiếu: `Mien_Cho_Act_One_Story.md` là canon Hồi 1; `Art_Master_List.md` là hướng art hiện hành. Miền Chờ có cư dân sống, sự chờ đợi và tình thương có điều kiện; kinh dị qua dấu vết, khoảng trống và lựa chọn. Art raster cổ tích tối, nét mực, đồng thau/hổ phách/teal/kem; không dựng lại bằng Blender. Đỏ ember là tín hiệu thù địch; ánh sáng đoàn là sự đồng hành. Giữ các khoảng ấm, hình dạng kỳ quặc và sự dễ đọc của combat.
 
 Đây là **audit, chưa sửa gameplay/art/truyện**. Không build/chạy test theo yêu cầu chốt nhanh trước đó. Quét danh mục 326 file C# trong UI/Presentation/Core/Data, đọc các đường thực thi liên quan, đối chiếu canon và xem trực tiếp 11 ảnh/contact sheet đã có. Không đọc sát từng dòng của cả 326 file, không duyệt từng frame của toàn catalog, không nghe toàn soundtrack. Ảnh lưu chỉ chứng minh bản tại thời điểm chụp; các thay đổi code mới hơn được ghi riêng. Snapshot bắt đầu tại `fe67d31d`; workspace còn thay đổi VFX/description của công việc khác, được giữ nguyên.

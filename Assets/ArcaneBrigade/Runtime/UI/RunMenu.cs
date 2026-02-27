@@ -268,7 +268,7 @@ namespace ArcaneBrigade
                     break;
                 case Page.Settings: DrawSettings(); break;
                 case Page.Help:
-                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Moving is the only control.\nYour companions fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, companions, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; press J, click the note, or click the archive cabinet in the shop to read and reread chapters. Settings can make pages open by themselves. The floating meeting chair opens paths and companion stories.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your companions' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
+                    Label(new Rect(110, 175, 1060, 440), "MOVE  —  WASD / arrow keys / left stick, or drag the lower-left of the screen. Attacks happen automatically while you move.\nYour companions fight beside you on their own; there are no attack or skill buttons.\nTHE SHOP  —  walk up to a stand and press Space / A, or tap USE. Nothing is bought for you.\nCompanions cannot fall and ask nothing in return. They only block shots when a relic says so. Stock cannot be sold or held back.\nTHE PEOPLE WITH YOU  —  notebook icon / I: stats, companions, relics and links. Tab or LB/RB changes tabs; I / Esc / B closes.\nTHE WAITING JOURNAL  —  A sealed note under your lanterns means a new page is waiting; click the note, or approach the archive cabinet and press Space / A to read and reread chapters. Settings can make pages open by themselves. The people tab records the companions you have met. The warm chair is a separate, dangerous invitation.\nPAUSE  —  pause icon / Esc / Start. Leaving the app pauses too.\nClearing a wave restores your full health. The deeper you go, the darker it becomes; your light, and your companions' light, go with you.\nYour profile keeps unlocks, cosmetics and records only, never permanent stat growth.");
                     break;
                 case Page.Records: DrawRecords(); break;
                 case Page.Achievements: achievementBook.Draw(catalog, profile); break;
@@ -595,8 +595,8 @@ namespace ArcaneBrigade
             ToggleOption(new Rect(75, 526, 365, 44), "REDUCED SHAKE", profile.ReducedShake, value => profile.ReducedShake = value);
             ToggleOption(new Rect(460, 526, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
             ToggleOption(new Rect(845, 526, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
-            // story pages: open by themselves after a wave, or only leave a sealed note (press J when you want to read)
-            if (Button(new Rect(75, 578, 1130, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN AUTOMATICALLY" : "NOTIFY ONLY  ·  PRESS J TO READ")))
+            // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
+            if (Button(new Rect(75, 578, 1130, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN AUTOMATICALLY" : "NOTIFY ONLY  ·  OPEN THE NOTE TO READ")))
             {
                 bool before = profile.StoryPagesAutoOpen;
                 profile.StoryPagesAutoOpen = !before;

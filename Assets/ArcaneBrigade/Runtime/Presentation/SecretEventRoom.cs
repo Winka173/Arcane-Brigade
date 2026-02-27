@@ -51,6 +51,7 @@ namespace ArcaneBrigade
             if (signature != key) { signature = key; Rebuild(); enteredAt = owner.PresentationClock; selected = 0; hold = 0; armed = false; }
             if (owner.PresentationPaused || owner.TransitionPending || owner.HallExitPending) { hold = 0; return; }
             bool pressed = Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.JoystickButton0);
+            bool confirm = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton0);
             if (!pressed) armed = true;
             if (!InRoom)
             {
@@ -61,16 +62,14 @@ namespace ArcaneBrigade
                     float sway = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(owner.PresentationClock * 1.4f + i) * .022f;
                     portals[i].transform.localRotation = Quaternion.Euler(0, 0, sway * 20);
                 }
-                hold = near >= 0 && pressed && armed ? hold + Time.deltaTime : 0;
-                if (hold >= .85f) { armed = false; owner.EnterSecret(kinds[near]); hold = 0; }
+                if (near >= 0 && confirm && armed && owner.PresentationClock - enteredAt > .2f) { armed = false; owner.EnterSecret(kinds[near]); }
             }
             else if (MenuOpen)
             {
                 if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) { selected = (selected + 2) % 3; hold = 0; }
                 if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) { selected = (selected + 1) % 3; hold = 0; }
                 for (int i = 0; i < 3; i++) if (Input.GetKeyDown(KeyCode.Alpha1 + i)) { selected = i; hold = 0; }
-                hold = pressed && armed ? hold + Time.deltaTime : 0;
-                if (hold >= .85f)
+                if (confirm && armed && owner.PresentationClock - enteredAt > .2f)
                 {
                     armed = false; hold = 0;
                     if (s.Stage == SecretEventStage.Choosing) owner.ChooseSecret(selected);
@@ -139,7 +138,7 @@ namespace ArcaneBrigade
                 {
                     ArcadeSkin.Panel(new Rect(400, 850, 1120, 148), ArcadeSkin.Surface);
                     GUI.Label(new Rect(420, 858, 1080, 44), SecretEventAssets.Titles[(int)kinds[near]], heading);
-                    GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "\nHold E / Space / A to discover  ·  " + Mathf.FloorToInt(hold / .85f * 100) + "%", label);
+                    GUI.Label(new Rect(440, 906, 800, 64), SecretEventAssets.Hints[(int)kinds[near]] + "\nPress Space / E / A to discover", label);
                     if (GUI.Button(new Rect(1260, 916, 230, 56), "DISCOVER", primary)) owner.EnterSecret(kinds[near]);
                 }
             }
@@ -165,7 +164,7 @@ namespace ArcaneBrigade
                         if (c.Icon != null) DrawSprite(new Rect(x + 175, 450, 90, 80), c.Icon);
                     }
                     ArcadeSkin.Panel(new Rect(490, 862, 940, 44), ArcadeSkin.Surface);
-                    GUI.Label(new Rect(500, 866, 920, 36), "1–3 / ← → / LB RB: select  ·  Hold E / Enter / A to agree: " + Mathf.FloorToInt(hold / .85f * 100) + "%", label);
+                    GUI.Label(new Rect(500, 866, 920, 36), "1–3 / ← → / LB RB: select  ·  Space / Enter / A: agree", label);
                     GUI.enabled = choices[selected].Enabled;
                     if (GUI.Button(new Rect(500, 920, 440, 58), "AGREE TO SELECTED OFFER", primary)) owner.ChooseSecret(selected);
                     GUI.enabled = true;

@@ -51,7 +51,7 @@ namespace ArcaneBrigade
             "Original:TeacupCricket" => "Every fifth basic attack releases a short echo at 40% weapon damage.",
             "Original:RibbonOtter" => "Collecting a heart grants 1 extra HP of healing. Its Rain Script bond supports recovery.",
             "Original:SpindleWren" => "Lantern Guild allies gain 8% reach. Its threadwork belongs to both clockwork and lantern themes.",
-            _ => "An original toy companion. Its listed support traits apply during this run."
+            _ => "A resident of the Waiting Realm with a life beyond this crossing. Its listed support traits apply during this run."
         };
     }
 }

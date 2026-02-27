@@ -20,7 +20,7 @@ namespace ArcaneBrigade
         public int InputConsumedFrame { get; private set; } = -1;
         private float nextNavigation;
         // Story pages no longer take over the screen after every wave: a sealed note says a page is waiting, and the
-        // traveller opens it (J, the note, or the journal cabinet) when they want to. Everything they look at counts as read.
+        // traveller opens the note or the journal cabinet when they want to. Individual pages retain their reading position.
         private int viewedMask;
         private bool arrivalOpen;
         private int noticedUnread = -1;
@@ -76,7 +76,6 @@ namespace ArcaneBrigade
                 else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) && HobWaits) EnterHobRoom();
                 else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) Advance(); // a waiting choice is never taken by Enter
                 else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.JoystickButton7)) { if (lives) { lives = false; scroll = Vector2.zero; Consume(); } else Close(); }
-                else if (Input.GetKeyDown(KeyCode.J)) Close();
                 else if (Input.GetKeyDown(KeyCode.JoystickButton2)) { lives = !lives; scroll = Vector2.zero; Consume(); }
                 else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton4)) { if (lives) { creature = Mathf.Max(0, creature - 1); scroll = Vector2.zero; Consume(); } else Previous(); }
                 else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton5)) { if (lives) { creature++; scroll = Vector2.zero; Consume(); } else Advance(); }
@@ -104,7 +103,6 @@ namespace ArcaneBrigade
                 if (open && arrival) { arrivalOpen = true; RememberArrival(); }
                 return;
             }
-            if ((Application.isFocused || RunPaths.Diagnostic) && Input.GetKeyDown(KeyCode.J) && InputConsumedFrame != Time.frameCount) OpenNext();
         }
         private void RememberArrival()
         {
@@ -285,7 +283,7 @@ namespace ArcaneBrigade
             GUI.Label(new Rect(note.x + 16, note.y + 2, note.width - 64, 34), count > 1 ? count + " new pages" : "a new page", noteHand);
             noteKey.normal.textColor = new Color(.25f, .19f, .14f, .8f);
             noteKey.alignment = TextAnchor.MiddleLeft;
-            GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "IN THE JOURNAL  ·  J", noteKey);
+            GUI.Label(new Rect(note.x + 18, note.y + 32, note.width - 64, 18), "OPEN THE NOTE OR ARCHIVE", noteKey);
             ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 9 ? "9+" : count.ToString());
             GUI.matrix = before;
             if (GUI.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();
@@ -299,19 +297,23 @@ namespace ArcaneBrigade
         public void DrawDawn(Rect rectangle)
         {
             if (panels[2] != null) GUI.DrawTexture(rectangle, panels[2], ScaleMode.ScaleToFit);
-            var ids = new System.Collections.Generic.List<string> { owner.Session.State.ChampionId };
-            foreach (var ally in owner.Session.State.Roster) ids.Add(ally.UnitId);
+            var cast = new System.Collections.Generic.List<UnitDefinition> { owner.Content.Unit(owner.Session.State.ChampionId) };
+            cast.AddRange(EndingTravellers.Story(owner));
+            foreach (var ally in owner.Session.State.Roster) cast.Add(owner.Content.Unit(ally.UnitId));
             GUI.BeginGroup(rectangle);
-            int columns = Mathf.Min(8, ids.Count);
+            int columns = Mathf.Min(8, cast.Count);
             float width = Mathf.Min(112, (rectangle.width - 40) / Mathf.Max(1, columns));
-            for (int i = 0; i < ids.Count; i++)
+            int rows = Mathf.Max(1, Mathf.CeilToInt(cast.Count / (float)columns));
+            float rowHeight = Mathf.Min(108, Mathf.Max(20, rectangle.height - 55) / rows);
+            float actorSize = Mathf.Min(width,Mathf.Min(105,rowHeight));
+            for (int i = 0; i < cast.Count; i++)
             {
-                var unit = owner.Content.Unit(ids[i]);
+                var unit = cast[i];
                 if (unit == null) continue;
-                Sprite frame = unit.AnimationFrames.Length == 0 ? unit.Body : unit.AnimationFrames[PresentationSettings.ReducedMotion ? 0 : Mathf.FloorToInt(owner.PresentationClock * 1.8f + i) % unit.AnimationFrames.Length];
+                Sprite frame = EndingTravellers.Frame(unit, owner.PresentationClock, i, false);
                 float x = (rectangle.width - columns * width) * .5f + i % columns * width;
-                float y = rectangle.height - 125 - i / columns * 108;
-                RunHud.Sprite(new Rect(x, y, width, 105), frame);
+                float y = rectangle.height - 20 - actorSize - i / columns * rowHeight;
+                RunHud.Sprite(new Rect(x + (width-actorSize)*.5f, y, actorSize, actorSize), frame);
             }
             GUI.EndGroup();
         }

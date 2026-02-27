@@ -1,12 +1,14 @@
 # Miền Chờ — cốt truyện đã chốt và hướng ánh sáng đồng hành
 
+**Đồng bộ theme 17/10:** bổ sung bộ Keeper/icon/vật chứng, sửa đoàn ending, spoiler, diễn xuất cứu Hob và ánh sáng nhận mọi đồng minh. Điện thoại shop 8 và vật chứng shop 12/15/17/18 có mặt trên map. **Sáu tuyến lựa chọn và phòng Station/FootstepHall đời cũ đã retired trong canon Hồi 1**, không tính là nội dung đang chơi. Journal canon và phòng cứu Hob vẫn hiện hành. Chưa build/test mới; xem [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md). Các báo cáo cũ bên dưới là lịch sử, không nghiệm thu đợt này.
+
 **Art theo canon Hồi 1, 17/10:** đã giao đủ 261 PNG, tích hợp nhân vật truyện, boss, đồ cảnh theo vùng, journal, token và VFX. Hai mặt Customer đã đủ frame HD, atlas Hob/Tally đã sửa mép; xem [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
 
 > **Hồi 1 đã viết lại (16/10/2026):** canon mới ở [Mien_Cho_Act_One_Story.md](Mien_Cho_Act_One_Story.md). Khi mâu thuẫn, bản đó là chuẩn và game sẽ rework theo nó. Mục 8 (ánh sáng đồng hành) bên dưới vẫn giữ; mắt đỏ chỉ là hiệu ứng hình ảnh, không thuộc cốt truyện.
 
 **Phản hồi tiếp theo:** bỏ trần 15 cơ thể, giữ quota mua; nhận companion cầu vồng bằng một lần Space tại quà. Điểm thách đấu Keeper chuyển khỏi HUD bond, dễ nhận diện hơn; Keeper to/trâu hơn và triệu hồi vệ binh. Mô tả có khung màu/animation rarity. Popup stat có icon, chữ đậm, số nguyên; dưới 1 ghi `<1`. Những ghi chú trần 15 trước đây là lịch sử: [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md).
 
-**Cập nhật shop/đêm mới nhất:** đồ cảnh không rơi lại khi mua/reroll; stat dùng chữ nổi có animation, bỏ box. Bỏ nút HUD và shortcut K/Y/J, mở journal qua tủ xanh bên trái và Paths & People qua ghế bên phải; vật tương tác vẫn lơ lửng, tăng biên độ trôi/nhấp nhô. Shop đặc biệt tối đa 1 loài mới/wave; từ wave 10 hai shop chung 1 loài mới mỗi 2 wave. Nền tối hơn rõ ở wave 13+, ánh sáng đoàn và cảnh báo chiến đấu giữ được đọc. Chi tiết và nghiệm thu: [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md).
+**Cập nhật shop/đêm:** đồ cảnh không rơi lại khi mua/reroll; stat dùng chữ nổi có animation, bỏ box. Bỏ nút HUD và shortcut K/Y/J, journal mở qua tủ hoặc tờ ghi chú; ghế Paths & People cũ không dùng trong canon mới. Vật tương tác vẫn lơ lửng, tăng biên độ trôi/nhấp nhô. Shop đặc biệt tối đa 1 loài mới/wave; từ wave 10 hai shop chung 1 loài mới mỗi 2 wave. Nền tối hơn rõ ở wave 13+, ánh sáng đoàn và cảnh báo chiến đấu giữ được đọc. Lịch sử: [Shop_Flow_And_Deeper_Night.md](Shop_Flow_And_Deeper_Night.md).
 
 Ngày chốt thiết kế cốt truyện: **16/10/2026**. Chủ dự án chấp thuận hướng phát triển trong cuộc trao đổi, sau đó đề xuất thế giới càng sâu càng tối, nhân vật và đồng minh cùng tỏa sáng, mắt đỏ của quái tiến đến từ đêm vô tận.
 

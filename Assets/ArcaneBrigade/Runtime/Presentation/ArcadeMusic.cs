@@ -220,6 +220,7 @@ namespace ArcaneBrigade
 
             float dt = Time.unscaledDeltaTime;
             float busTarget = PresentationSettings.MusicVolume * PresentationSettings.MusicDuck * BusGain(paused, PresentationSettings.ReducedAudio) * (NightmareHaunting.Quiet ? .3f : 1);
+            if (WaitingRealmStage.BedsideLullabyActive) busTarget = 0; // the familiar, incomplete lullaby takes over this encounter
             if (PresentationSettings.MusicVolume <= 0f) busSmooth = 0f;
             else busSmooth += (busTarget - busSmooth) * (1f - Mathf.Exp(-dt * (busTarget < busSmooth ? 7f : 3f)));
 

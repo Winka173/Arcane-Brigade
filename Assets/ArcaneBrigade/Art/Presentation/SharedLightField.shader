@@ -12,6 +12,8 @@ Shader "ArcaneBrigade/SharedLightField"
             #include "UnityCG.cginc"
             float4 _PartyLights[16], _PartyColors[16], _PartyRect;
             int _PartyCount;
+            sampler2D _MainTex;
+            float _Accumulate;
             fixed4 frag(v2f_img i) : SV_Target
             {
                 float2 world = _PartyRect.xy + i.uv * _PartyRect.zw;
@@ -25,7 +27,7 @@ Shader "ArcaneBrigade/SharedLightField"
                     color = max(color, _PartyColors[j].rgb * f);
                     strongest = max(strongest, f);
                 }
-                return fixed4(color, strongest);
+                return max(fixed4(color, strongest), tex2D(_MainTex, i.uv) * _Accumulate);
             }
             ENDCG
         }

@@ -1,5 +1,7 @@
 # Icon stat và lời bình theo tình huống
 
+**Cập nhật sau đợt fallback:** công cụ ảnh đã dùng lại được; đã vẽ và tích hợp **49 icon stat chuyên dụng** trong `Resources/MienCho/ActOne/Stat_*.png`. Runtime ưu tiên chúng, bộ phối cũ chỉ dự phòng. Đợt mới không chạy test/build; prompt/provenance và phạm vi xem [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md). Những ảnh và số kiểm tra dưới đây thuộc bộ fallback cũ.
+
 Cập nhật 17/10/2026. Phạm vi: thay phần hiển thị icon stat và thêm phản ứng companion khi mua món phù hợp, mở mốc bond và ghép sao. Không đổi bonus, quota mua, RNG chiến đấu hay quy tắc ghép.
 
 ## Art đang dùng và phần còn chờ

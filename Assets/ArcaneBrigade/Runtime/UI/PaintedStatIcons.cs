@@ -20,6 +20,7 @@ namespace ArcaneBrigade
         public PaintedStatIcon[] Entries = Array.Empty<PaintedStatIcon>();
         private static PaintedStatIcons current;
         private Dictionary<ItemEffect, PaintedStatIcon> lookup;
+        private static readonly Dictionary<ItemEffect, Sprite> dedicated = new Dictionary<ItemEffect, Sprite>();
         public static PaintedStatIcons Current => current != null ? current : current = Resources.Load<PaintedStatIcons>("PaintedStatIcons");
         public PaintedStatIcon Find(ItemEffect effect)
         {
@@ -28,6 +29,12 @@ namespace ArcaneBrigade
         }
         public static bool TryDraw(Rect bounds, ItemEffect effect)
         {
+            if (!dedicated.TryGetValue(effect, out var painted))
+            {
+                painted = Resources.Load<Sprite>("MienCho/ActOne/Stat_" + effect);
+                dedicated[effect] = painted;
+            }
+            if (painted != null) { Draw(bounds, painted, default); return true; }
             var icon = Current?.Find(effect); if (icon?.Picture == null) return false;
             Rect main = bounds;
             if (icon.Badge != null) { main.width *= .84f; main.height *= .84f; }
@@ -49,6 +56,6 @@ namespace ArcaneBrigade
             GUI.matrix = matrix;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Reset() { current = null; }
+        private static void Reset() { current = null; dedicated.Clear(); }
     }
 }

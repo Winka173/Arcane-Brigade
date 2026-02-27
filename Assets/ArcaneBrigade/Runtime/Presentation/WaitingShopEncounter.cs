@@ -6,7 +6,7 @@ namespace ArcaneBrigade
 
     // Optional, repeatable story interactions in the shop. No colliders, prices or build effects.
     [DefaultExecutionOrder(-55)]
-    public sealed class WaitingShopEncounter : MonoBehaviour
+    public sealed class WaitingShopEncounter : MonoBehaviour, ShopFocus.ISource
     {
         public static readonly Vector2 Anchor = new Vector2(-3.15f, -4.65f);
         public const float Reach = 1.65f;
@@ -29,21 +29,25 @@ namespace ArcaneBrigade
         public float AnimationClock { get; private set; }
         public int RingCount => rang;
         public int ReflectionUnitId { get; private set; }
+        public int SpotCount => Visible && Allowed ? 1 : 0;
+        public bool Spot(int index, out Vector2 position, out float reach)
+        { position = Anchor; reach = Reach; return index == 0 && Visible && Allowed; }
         private bool Allowed => owner?.Session != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen && owner.Session.State.OutsideStage != OutsideStageStatus.Reward && !owner.TransitionPending && !owner.HallExitPending && !owner.NightmareEndingVisible;
-        // Retired with the first Act I canon: the table, telephone and mirror beats now live in ActOneCanon's journal entries.
-        public static WaitingEncounter ForWave(int wave) => WaitingEncounter.None;
+        // Only restore the encounter that belongs to the current Act I canon. Earlier table/mirror scenes stay retired.
+        public static WaitingEncounter ForWave(int wave) => wave == 8 ? WaitingEncounter.BreathingPhone : WaitingEncounter.None;
         public static int ChapterFor(WaitingEncounter kind) => kind switch
         {
             WaitingEncounter.ReservedTable => 1,
-            WaitingEncounter.BreathingPhone => 2,
+            WaitingEncounter.BreathingPhone => System.Array.FindIndex(MienChoStory.Chapters, c => c.Wave == 8 && c.Shop),
             WaitingEncounter.LateReflection => 4,
             _ => -1
         };
         public void Configure(ArenaController controller)
         {
-            owner = controller;
+            owner = controller; ShopFocus.Register(this);
             string[] names = { "ReservedTable", "BreathingPhone", "LateReflection" };
             for (int i = 0; i < names.Length; i++) artwork[i] = Resources.Load<Sprite>("MienCho/Encounters/" + names[i]);
+            artwork[(int)WaitingEncounter.BreathingPhone] = ActOneArtwork.Picture("Prop_StoryTelephone") ?? artwork[(int)WaitingEncounter.BreathingPhone];
             prop = Make("WaitingEncounterProp"); reflection = Make("WitnessInTheGlass"); tear = Make("ImpossibleTear");
             reflection.sharedMaterial = Resources.Load<Material>("MienCho/MirrorWitness");
             var texture = Texture2D.whiteTexture;
@@ -111,7 +115,7 @@ namespace ArcaneBrigade
             shadow.SortingBase = prop.sortingOrder - 5;
             shadow.Display(prop.sprite, Anchor, width * .8f, hover.y, .25f);
             suspension.Display(Anchor, (Vector3)Anchor + hover, width, AnimationClock, 171 + (int)kind, prop.sortingOrder - 1, 1, true);
-            Near = Vector2.Distance(owner.Simulation.Champion.Position, Anchor + Vector2.up * .35f) <= Reach;
+            Near = ShopFocus.Has(this,0,owner.Simulation.Champion.Position);
             if (owner.Shop?.Nearby != null || owner.Shop?.Animating == true) Near = false;
             UpdateReflection(kind);
             voice.volume = PresentationSettings.ReducedAudio ? 0 : PresentationSettings.SfxVolume * .2f;
@@ -120,7 +124,7 @@ namespace ArcaneBrigade
                 if (!PresentationSettings.ReducedAudio) voice.PlayOneShot(ring);
                 rang++; nextRing = AnimationClock + 4;
             }
-            if (Near && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton2))) TryInspect();
+            if (Near && !owner.StoryConsumesInput && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton2))) TryInspect();
         }
         private void UpdateReflection(WaitingEncounter kind)
         {
@@ -167,11 +171,12 @@ namespace ArcaneBrigade
             var panel = new Rect(1000, 820, 510, 120); ArcadeSkin.Plate(panel, ArcadeSkin.Teal);
             string title = active == WaitingEncounter.ReservedTable ? "THREE CHAIRS. TWO CUPS. A NAME YOU HAVE NOT MET." : active == WaitingEncounter.BreathingPhone ? "THE WIRE IS CUT. THE TELEPHONE STILL RINGS." : "THE REFLECTION DOES NOT FOLLOW YOU.";
             GUI.Label(new Rect(1020, 830, 470, 48), title, caption);
-            if (GUI.Button(new Rect(1020, 883, 470, 45), "EXAMINE  [R / X]", prompt)) TryInspect();
+            if (GUI.Button(new Rect(1020, 883, 470, 45), "LIFT THE RECEIVER  [Space / X]", prompt)) TryInspect();
             GUI.matrix = previous;
         }
         private void OnDestroy()
         {
+            ShopFocus.Unregister(this);
             if (ring != null) Destroy(ring); if (tearSprite != null) Destroy(tearSprite);
         }
     }

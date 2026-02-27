@@ -7841,14 +7841,14 @@ MonoBehaviour:
     Value: 0.1
     ExtraBonuses: []
   - Id: knight
-    Name: Toy Knights
+    Name: Crossing Knights
     Threshold: 2
     Icon: {fileID: 1848290475, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 19
     Value: 5
     ExtraBonuses: []
   - Id: ball
-    Name: Playtime
+    Name: Lantern Revel
     Threshold: 2
     Icon: {fileID: -883730457, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 19

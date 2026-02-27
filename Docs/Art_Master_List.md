@@ -1,6 +1,8 @@
 # Arcane Brigade — danh sách art tổng (cho agent vẽ)
 
-**Bổ sung UI và thoại 17/10:** đã nối 49 icon stat phối từ art vẽ tay hiện có và 198 lời bình riêng cho 66 companion khi mua đồ, mở bond, ghép sao. Atlas 49 icon vẽ mới **còn chờ hạn mức công cụ ảnh**, không tính vào 261 PNG đã giao. Chi tiết và nghiệm thu: [Painted_Stats_And_Companion_Reactions.md](Painted_Stats_And_Companion_Reactions.md).
+**Đợt đồng bộ theme 17/10:** bổ sung **70 PNG**, gồm 49 icon stat chuyên dụng, bộ Keeper/lăng kính với thân modular và các đạo cụ vật chứng. Đã nối source, chưa build/test/nghiệm thu runtime mới theo yêu cầu chốt nhanh. Vũ khí và mechanic do agent khác phụ trách. Phạm vi/giới hạn: [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md).
+
+**UI và thoại đợt trước:** 49 mapping phối art cũ nay chỉ là fallback; giữ 198 lời bình riêng cho 66 companion khi mua đồ, mở bond, ghép sao. Lịch sử nghiệm thu: [Painted_Stats_And_Companion_Reactions.md](Painted_Stats_And_Companion_Reactions.md).
 
 **Hoàn tất art 17/10:** đã giao đủ 261/261 PNG, gồm 24 frame HD Customer bổ sung và hai atlas Hob/Tally đã sửa mép. Cả năm bộ boss dùng 16 frame độ phân giải riêng mỗi bộ. Chi tiết, nguồn ảnh và kiểm tra: [Art_Master_Runtime_Pass.md](Art_Master_Runtime_Pass.md).
 
@@ -223,17 +225,17 @@ GIỮ: đạn giấc mơ, yo-yo, kim, các bộ impact Cut/Slam/Pierce/Orb, bụ
 
 ## Ưu tiên 3 — THE KEEPER, WHOLE và mảnh lăng kính (18/10/2026) — MỚI
 
-Concept: bàn tay, tấm thảm-lưỡi và con mắt-lỗ khóa chở shop qua các vùng (wave 6/11/16) là **ba bộ phận của một sinh vật khổng lồ: Keeper**. Ở shop 17 nó hiện nguyên hình để **thử thách** người chơi trước khi tặng quà cầu vồng (không bị tha hóa, không dán hóa đơn: nghiêm nhưng hiền, như cổng đá biết nói). Đang tạm dùng 16 khung `Art/K24/OutsideStage_v1.png`. Giao vào `Assets/ArcaneBrigade/Resources/MienCho/ActOne/`, nền trong suốt, cùng style painted với các boss Act I.
+Concept: bàn tay, tấm thảm-lưỡi và con mắt-lỗ khóa chở shop qua các vùng (wave 6/11/16) là **ba bộ phận của một sinh vật khổng lồ: Keeper**. Ở shop 17 nó hiện nguyên hình để **thử thách** người chơi trước khi tặng quà cầu vồng (không bị tha hóa, không dán hóa đơn: nghiêm nhưng hiền, như cổng đá biết nói). **Đã giao bộ painted vào `Resources/MienCho/ActOne/`**; source ưu tiên bộ này, K24 còn là fallback. Bổ sung `Keeper_BodyShell.png` để lắp bộ phận mà không nhân đôi tay/thảm/mắt. Chưa có lượt nghiệm thu player mới.
 
 | File | Subject | Đã nối vào code |
 | --- | --- | --- |
 | `Keeper_Silhouette.png` | Thân Keeper khổng lồ nhìn từ dưới lên, chỉ phần vai, đầu và hai cánh tay mờ trong bóng tối; rộng ngang, 2048×1024, sẽ được tô tối 60% và trồi lên mép trên màn hình khi một bộ phận đang chở shop. | Có (`StageTransfer`) |
 | `Pickup_PrismShard.png` | Một mảnh lăng kính nhỏ bảy màu, lơ lửng, có tia sáng cầu vồng nhẹ; 512×512, nhìn từ trên xuống 3/4 như đồng xu. | Có (vật phẩm nhặt + HUD + thẻ Bedside) |
-| `Keeper_Whole_Body.png` | Thân Keeper nguyên hình khi ra trận ở shop 17: tượng cổng đá cổ khổng lồ, có vòm và tấm biển OPEN, quỳ một gối; hai tay, thảm và mắt tách rời để vẽ riêng. | Chưa (cần nối khi có) |
-| `Keeper_Hand_Intact.png` / `Keeper_Hand_Broken.png` | The Carrying Hand: bàn tay sứ/đá khổng lồ; bản vỡ có vết nứt vàng kintsugi, buông xuôi. | Chưa |
-| `Keeper_Carpet_Intact.png` / `Keeper_Carpet_Broken.png` | The Living Carpet: tấm thảm đỏ dài như lưỡi, hoa văn tiệm cũ; bản vỡ cuộn lại, rách mép. | Chưa |
-| `Keeper_Eye_Open.png` / `Keeper_Eye_Closed.png` | The Keyhole Eye: con mắt trong ổ khóa đồng; bản vỡ nhắm lại, ổ khóa mở. | Chưa |
-| `Keeper_Kneel.png` | Keeper quỳ hẳn xuống, hai tay mở về phía người chơi (khoảnh khắc 7 giây khi ba bộ phận đã vỡ), ánh cầu vồng trong lòng bàn tay. | Chưa |
+| `Keeper_Whole_Body.png` | Thân Keeper nguyên hình khi ra trận ở shop 17: tượng cổng đá cổ khổng lồ, có vòm và tấm biển OPEN, quỳ một gối; hai tay, thảm và mắt tách rời để vẽ riêng. | Source: đã nối, chưa nghiệm thu player |
+| `Keeper_Hand_Intact.png` / `Keeper_Hand_Broken.png` | The Carrying Hand: bàn tay sứ/đá khổng lồ; bản vỡ có vết nứt vàng kintsugi, buông xuôi. | Source: đã nối, chưa nghiệm thu player |
+| `Keeper_Carpet_Intact.png` / `Keeper_Carpet_Broken.png` | The Living Carpet: tấm thảm đỏ dài như lưỡi, hoa văn tiệm cũ; bản vỡ cuộn lại, rách mép. | Source: đã nối, chưa nghiệm thu player |
+| `Keeper_Eye_Open.png` / `Keeper_Eye_Closed.png` | The Keyhole Eye: con mắt trong ổ khóa đồng; bản vỡ nhắm lại, ổ khóa mở. | Source: đã nối, chưa nghiệm thu player |
+| `Keeper_Kneel.png` | Keeper quỳ hẳn xuống, hai tay mở về phía người chơi (khoảnh khắc 7 giây khi ba bộ phận đã vỡ), ánh cầu vồng trong lòng bàn tay. | Source: đã nối, chưa nghiệm thu player |
 | `Boss_CoinWidow_Gate.png` (tùy chọn) | Coin Widow (boss wave 5) đứng trước cổng, tay cầm sổ cái, xích hóa đơn quấn vòm cổng; dùng cho trang journal 5. | Chưa |
 
 ## Ưu tiên 4 — hiệu ứng độ hiếm mượt hơn (18/10/2026) — MỚI

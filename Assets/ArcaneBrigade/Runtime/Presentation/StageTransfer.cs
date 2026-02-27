@@ -45,6 +45,12 @@ namespace ArcaneBrigade
             passengers = FindObjectsByType<UnitVisual>();
             CarrierArtwork artwork = CarrierArtwork.Current;
             if (artwork != null && artwork.For(Kind)?.Length == 3) { frames = artwork.For(Kind); outsideHand = true; }
+            Sprite carrier = ActOneArtwork.Picture(Kind == StageCarrier.Hand ? "Keeper_Hand_Intact" : Kind == StageCarrier.CarpetTongue ? "Keeper_Carpet_Intact" : "Keeper_Eye_Open");
+            if (carrier != null)
+            {
+                Sprite closed = Kind == StageCarrier.KeyholeEye ? ActOneArtwork.Picture("Keeper_Eye_Closed") ?? carrier : carrier;
+                frames = new[] { closed, carrier, carrier }; outsideHand = true;
+            }
             courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 830; // in front of the Keeper's looming body (820)
             grounded = gameObject.AddComponent<GroundShadow>();
             PaintedAnimationLibrary painted = Resources.Load<PaintedAnimationLibrary>("PaintedAnimationLibrary");

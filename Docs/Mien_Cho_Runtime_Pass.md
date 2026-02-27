@@ -1,10 +1,12 @@
 # Miền Chờ — bản triển khai cốt truyện và ánh sáng đồng hành
 
+**Đính chính theo canon hiện tại 17/10:** đây là nghiệm thu lịch sử trước khi viết lại Hồi 1. Ba phòng/sáu tuyến ở các mục dưới không đồng nghĩa đang truy cập được trong game canon: Station/FootstepHall và sáu route lựa chọn đã retired; phòng cứu Hob và journal Hồi 1 vẫn dùng. Các sửa theme mới, 70 PNG bổ sung và giới hạn nghiệm thu được ghi tại [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md).
+
 **Art hiện hành:** bộ Blender đã được thay bằng [13 asset vẽ mới theo theme game](Mien_Cho_Painted_Art_Pass.md). Các phần mô tả tạo asset Blender dưới đây là lịch sử; logic truyện và tương tác vẫn được giữ.
 
 Ngày triển khai: 16/10/2026. Bản này đưa hướng đã chốt trong [tài liệu thiết kế](Mien_Cho_Story_And_Shared_Light.md) vào chiến dịch 20 wave hiện tại.
 
-**Bản mở rộng hồi 1 mới hơn:** [đèn cổ và sương đen](Act_One_Lanterns_And_Black_Fog.md) thay thế giới hạn cũ về các cảnh chỉ được kể trong journal: hiện có thêm ba phòng khám phá 2D đi lại được, sáu tuyến có lựa chọn, đèn mesh/Point Light và sương nhiều lớp. Các gate/số đo ở phần dưới là lịch sử của đợt truyện ban đầu; bản Player hiện tại dùng gate [ActOne](../PreviewExports/ActOne/). Hồi 2–3 chưa triển khai.
+**Bản mở rộng trước đợt viết lại canon:** [đèn cổ và sương đen](Act_One_Lanterns_And_Black_Fog.md) từng bổ sung ba phòng khám phá 2D, sáu tuyến có lựa chọn, đèn mesh/Point Light và sương nhiều lớp. Các gate/số đo ở phần dưới và [ActOne](../PreviewExports/ActOne/) là lịch sử, không nghiệm thu source mới nhất. Hồi 2–3 chưa triển khai.
 
 ## Cốt truyện đang có trong game
 

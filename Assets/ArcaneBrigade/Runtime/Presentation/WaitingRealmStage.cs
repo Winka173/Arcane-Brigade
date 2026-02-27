@@ -4,6 +4,7 @@ namespace ArcaneBrigade
 {
     public sealed class WaitingRealmStage : MonoBehaviour, ShopFocus.ISource
     {
+        public static bool BedsideLullabyActive { get; private set; }
         private ArenaController owner;
         private SpriteRenderer chair;
         private FloatingStoryProp floatingChair;
@@ -81,6 +82,7 @@ namespace ArcaneBrigade
         {
             if (owner?.Session == null || owner.Simulation == null) return;
             var state = owner.Session.State;
+            BedsideLullabyActive = state.Phase == SessionPhase.Combat && state.ActOne?.SitCloser == ActOneProgress.Fighting;
             bool dawn = state.Nightmare.CustomerDefeated && !state.Endless;
             chair.enabled = chair.sprite != null && !owner.Session.SecretRoomOpen && !owner.NightmareEndingVisible && state.Phase != SessionPhase.Defeat;
             if (chair.enabled)
@@ -101,7 +103,13 @@ namespace ArcaneBrigade
             UpdateAsking();
             if (owner.PresentationPaused) { song.Pause(); return; }
             song.UnPause();
-            song.volume = PresentationSettings.ReducedAudio ? 0 : PresentationSettings.MusicVolume * .16f;
+            song.volume = PresentationSettings.MusicVolume * PresentationSettings.MusicDuck * (PresentationSettings.ReducedAudio ? .1f : .16f);
+            if (BedsideLullabyActive)
+            {
+                if (song.clip != waiting || !song.loop) { song.Stop(); song.clip = waiting; song.loop = true; song.Play(); }
+                return;
+            }
+            if (song.loop) { song.Stop(); song.loop = false; }
             bool restPhrase = state.Phase == SessionPhase.Shop && (state.Wave == 1 || state.Wave == 8 || state.Wave == 16) && state.Wave != songWave;
             if (dawn && !dawnPlayed && state.Nightmare.EndingPage >= 2) { song.clip = morning; song.Play(); dawnPlayed = true; }
             else if (restPhrase && !owner.TransitionPending) { song.clip = waiting; song.Play(); songWave = state.Wave; }
@@ -167,6 +175,7 @@ namespace ArcaneBrigade
             }
             GUI.matrix = previous;
         }
-        private void OnDestroy() { ShopFocus.Unregister(this); if (waiting != null) Destroy(waiting); if (morning != null) Destroy(morning); }
+        private void OnDestroy() { BedsideLullabyActive = false; ShopFocus.Unregister(this); if (waiting != null) Destroy(waiting); if (morning != null) Destroy(morning); }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetMusic() => BedsideLullabyActive = false;
     }
 }
