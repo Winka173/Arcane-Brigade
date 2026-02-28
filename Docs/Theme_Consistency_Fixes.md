@@ -1,5 +1,7 @@
 # Đồng bộ theme Hồi 1 — bản sửa 17/10/2026
 
+**Rà soát lần hai:** còn 10 điểm cần xử lý, gồm cache diễn viên sau giao dịch, resume phòng cứu Hob, spoiler trong tiểu sử và mảnh thừa ở atlas Keeper. Đây là bản ghi những gì đã sửa, không phải xác nhận đã hết lỗi. Xem [Theme_Consistency_Reaudit.md](Theme_Consistency_Reaudit.md).
+
 Phạm vi được chủ dự án duyệt: sửa các điểm trong [audit](Theme_Consistency_Audit.md), **giữ nguyên vũ khí và mechanic vì agent khác đang phụ trách**. Canon là [Hồi 1](Mien_Cho_Act_One_Story.md). Không triển khai Hồi 2–3.
 
 ## Art và ánh sáng

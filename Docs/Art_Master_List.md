@@ -1,6 +1,6 @@
 # Arcane Brigade — danh sách art tổng (cho agent vẽ)
 
-**Đợt đồng bộ theme 17/10:** bổ sung **70 PNG**, gồm 49 icon stat chuyên dụng, bộ Keeper/lăng kính với thân modular và các đạo cụ vật chứng. Đã nối source, chưa build/test/nghiệm thu runtime mới theo yêu cầu chốt nhanh. Vũ khí và mechanic do agent khác phụ trách. Phạm vi/giới hạn: [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md).
+**Đợt đồng bộ theme 17/10:** bổ sung **70 PNG**, gồm 49 icon stat chuyên dụng, bộ Keeper/lăng kính với thân modular và các đạo cụ vật chứng. Đã nối source, chưa build/test/nghiệm thu runtime mới theo yêu cầu chốt nhanh. **Rà lại còn mảnh thừa trong một số PNG Keeper và các thiếu sót trình bày/canon**; xem [rà soát lần hai](Theme_Consistency_Reaudit.md). Vũ khí và mechanic do agent khác phụ trách. Phạm vi: [Theme_Consistency_Fixes.md](Theme_Consistency_Fixes.md).
 
 **UI và thoại đợt trước:** 49 mapping phối art cũ nay chỉ là fallback; giữ 198 lời bình riêng cho 66 companion khi mua đồ, mở bond, ghép sao. Lịch sử nghiệm thu: [Painted_Stats_And_Companion_Reactions.md](Painted_Stats_And_Companion_Reactions.md).
 
