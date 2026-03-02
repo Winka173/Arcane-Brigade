@@ -89,6 +89,7 @@ namespace ArcaneBrigade
             {
                 Vector2 position = state.Phase == SessionPhase.Shop ? ChairAnchor : new Vector2(0, owner.WorldBounds.y * .5f - .8f);
                 int lies = ShopChair ? ActOneCanon.ChairOffering(state.Wave, MienChoStory.Choice(state, 8)) : 0;
+                if (ShopChair && GetComponent<ActOneCustomerVisits>()?.DeferOffering == true) lies = 0;
                 Sprite shown = lies > 0 && offerings[lies] != null ? offerings[lies] : warm != null ? warm : fallback;
                 if (chair.sprite != shown) chair.sprite = shown;
                 chair.transform.localScale = Vector3.one * (ChairHeight / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(chair.sprite).height));

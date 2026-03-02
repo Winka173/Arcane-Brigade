@@ -92,7 +92,7 @@ namespace ArcaneBrigade
         public static string JoinLine(string unitId, RunSnapshot state)
         {
             // their own authored first line (or story-arc line) reads best as a hello; biographies are the fallback
-            string line = RunSession.Stranger(state, unitId) || !CompanionBanter.Has(unitId) ? CompanionVoice.Line(unitId, state.Wave, state) : CompanionBanter.Line(unitId, 0, state.Wave);
+            string line = RunSession.Stranger(state, unitId) || !CompanionBanter.Has(unitId) ? CompanionVoice.Line(unitId, state.Wave, state) : CompanionBanter.Line(unitId, 0, state.Wave, state);
             return !string.IsNullOrEmpty(line) && line.Length <= 90 ? line : JoinFallback[Hash(unitId + state.Wave) % JoinFallback.Length];
         }
         public static string StarLine(string unitId, int tier, int wave)

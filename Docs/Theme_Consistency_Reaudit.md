@@ -1,5 +1,7 @@
 # Rà soát theme lần hai — 17/10/2026
 
+**Cập nhật triển khai:** 10 phát hiện dưới đây đã được sửa source/asset trong [Theme_Consistency_Completion.md](Theme_Consistency_Completion.md). Giữ nguyên bản rà này làm lịch sử; chưa có nghiệm thu runtime mới.
+
 Snapshot: `c08e0b2c`, sau [đợt sửa theme](Theme_Consistency_Fixes.md). Rà source vừa sửa và các đường gọi liên quan, đối chiếu canon Hồi 1; xem trực tiếp 7 PNG mới của Keeper/icon. **Không chạy build, test, player hoặc đo hiệu năng** theo yêu cầu trước. Đây là phát hiện bằng đọc code và xem asset, không phải lỗi đã tái hiện trên Windows. Không sửa vũ khí/mechanic hoặc gameplay trong lượt rà này.
 
 Kết quả: **còn 10 điểm cần xử lý**, có cả lỗi ở phần trình bày vừa thêm. Chưa thể coi đợt trước là đã hoàn thiện toàn bộ.

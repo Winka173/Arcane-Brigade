@@ -62,8 +62,8 @@ namespace ArcaneBrigade
                 Sprite image = release > 0.1f && definition.Release != null ? definition.Release : winding && charge > 0.35f || release > 0.1f ? definition.Charged : definition.Rest;
                 if (unit.Definition.Id == "OutsideStageKeeper")
                 {
-                    image = ActOneArtwork.KeeperPart(part, broken, image);
-                    scar.sprite = ActOneArtwork.KeeperPart(part, true, definition.Scar);
+                    image = ActOneArtwork.KeeperPart(part, broken, winding && charge > .35f, release > .1f, image);
+                    scar.sprite = ActOneArtwork.Picture("Keeper_Socket") ?? definition.Scar;
                 }
                 organ.sprite = image; shadow.sprite = image;
                 float breathe = reduced ? 0 : Mathf.Sin(time * (part == 2 ? 2.2f : 1.7f) + part * 1.8f) * 0.025f;
@@ -88,7 +88,7 @@ namespace ArcaneBrigade
                 shadow.transform.localPosition = (local + new Vector3(0.015f, -0.02f) * sizes[part]) * compensation;
                 shadow.transform.localRotation = organ.transform.localRotation; shadow.transform.localScale = organ.transform.localScale * 1.04f;
                 shadow.color = new Color(0.09f, 0.03f, 0.13f, 0.7f);
-                scar.enabled = unit.Alive && broken; scar.sortingOrder = order + 5;
+                scar.enabled = unit.Alive && broken && !(unit.Definition.Id == "OutsideStageKeeper" && unit.KneelUntil > time); scar.sortingOrder = order + 5;
                 scar.transform.localPosition = origins[part] * compensation; scar.transform.localScale = Vector3.one * sizes[part] * compensation * 0.73f / Mathf.Max(0.01f, scar.sprite.bounds.size.y);
                 scar.color = new Color(0.7f, 0.65f, 0.7f);
                 if (scar.enabled) VisibleScars++;

@@ -76,10 +76,10 @@ namespace ArcaneBrigade
         };
         public static int SpeciesCount => Lines.Count;
         public static bool Has(string id) => id != null && Lines.ContainsKey(id);
-        public static string Line(string id, int index, int wave = 1)
+        public static string Line(string id, int index, int wave = 1, RunSnapshot state = null)
         {
             if (!Has(id)) return null;
-            string story = CreatureLives.Banter(id, wave);
+            string story = CreatureLives.Banter(id, state);
             if (story != null) return story;
             string[] lines = Lines[id];
             int variation = (index % 3 + 3) % 3;

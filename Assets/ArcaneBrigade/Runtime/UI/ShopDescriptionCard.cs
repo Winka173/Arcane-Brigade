@@ -86,7 +86,7 @@ namespace ArcaneBrigade
             b.AppendLine("Immortal · " + copies + " matching " + offer.Tier + "-star bodies owned. " + (unit.ReferenceCompanion == "Evil" ? "Cannot merge." : offer.Tier >= catalog.MaximumTier ? "Maximum star level; no further merge." : "Three matching bodies merge; one of their weapons is kept."));
             b.AppendLine("Shown support is per body, not the purchase delta; merging replaces its ingredients.");
             b.AppendLine("Random weapon: displayed attack ranges use your current build before this purchase. " + (Attack.Melee && Attack.Ranged ? "Melee and ranged weapons are eligible." : Attack.Ranged ? "Ranged weapons are eligible." : "Close-range weapons are eligible."));
-            string voice = CompanionVoice.Line(unit.Id, session.State.Wave);
+            string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
             if (!string.IsNullOrEmpty(voice)) b.AppendLine("“" + voice + "”");
             Summary = b.ToString().Trim();
             Details = Summary + "\n\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(unit.Id)

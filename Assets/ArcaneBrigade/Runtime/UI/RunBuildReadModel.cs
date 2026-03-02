@@ -67,7 +67,7 @@ namespace ArcaneBrigade
                     Name = story.DisplayName, UnitId = story.Id, Icon = story.Body, WeaponIcon = story.Weapon.Sprite,
                     Summary = "Travels with you · " + RunUICopy.WeaponName(story.Weapon.Id) + "\nIn their own place · grows with the road (tier " + tier + ")",
                     CombatValues = new Dictionary<string, string> { { "Damage", story.Weapon.Damage.ToString("0.###") }, { "Cycle", story.Weapon.Cooldown.ToString("0.###") + " s" }, { "Speed", story.Speed.ToString("0.##") } },
-                    Explanation = story.DisplayName.ToUpperInvariant() + "\n" + CreatureLives.Arc(story.Id, session.State.Wave) + "\n\nWeapon: " + RunUICopy.WeaponName(story.Weapon.Id) + "\nDamage: " + story.Weapon.Damage.ToString("0.0") + " / cycle " + story.Weapon.Cooldown.ToString("0.00") + " seconds\nRange: " + story.Weapon.Range.ToString("0.0")
+                    Explanation = story.DisplayName.ToUpperInvariant() + "\n" + CreatureLives.Arc(story.Id, session.State) + "\n\nWeapon: " + RunUICopy.WeaponName(story.Weapon.Id) + "\nDamage: " + story.Weapon.Damage.ToString("0.0") + " / cycle " + story.Weapon.Cooldown.ToString("0.00") + " seconds\nRange: " + story.Weapon.Range.ToString("0.0")
                         + "\nA travelling companion of the story: never bought, merged or sold, and not counted toward bonds. Their strength follows the zone of the road."
                 });
             }

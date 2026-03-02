@@ -18,68 +18,100 @@
     {
       "file": "exec-f8b4b651-240e-4187-b64d-83f0d878ad36.png",
       "sha256": "fce29298a056d3bfa2f3f9a177b0968462c995e81ef4e135431408b836b41c5a"
+    },
+    {
+      "file": "exec-00cf60a9-e96e-4d7a-b82a-380e1a0727bd.png",
+      "sha256": "cffae694a93465b6c64dde6049ecef4f48818e0352367d5e9b80d630a27a865b"
+    },
+    {
+      "file": "exec-a7fd51c9-df11-4531-85c7-cb90516d957a.png",
+      "sha256": "37c5e200845fcebab21edeb98cf1a34af8008fc9960830b2b16a03ade8e06b49"
+    },
+    {
+      "file": "exec-de1209b5-467e-4f27-8c1e-84ac0c3170a8.png",
+      "sha256": "b225623b358ed15cf84aa4db8c502be0233009b021279f81e10301c4abfbbf58"
+    },
+    {
+      "file": "exec-ce15b8f3-976b-4ce3-b985-5245cb34a170.png",
+      "sha256": "1e909bf70a7582b5bf0c2a231044eba5e8060636850820db2edcef7ccce3bb0b"
+    },
+    {
+      "file": "exec-759e894e-9782-4314-90ea-af43dee67e59.png",
+      "sha256": "6954a2ffb02b644fbca6574508f317028666b635f37a6561f673e985e99fa41e"
+    },
+    {
+      "file": "exec-96aa8d3d-6383-4e60-a013-86033938ec25.png",
+      "sha256": "2c615d2322cc7f93571ed0bef0d279880b3f8e622cca4a182ccfe0ec1519ae0a"
+    },
+    {
+      "file": "exec-1304ee0b-296e-402c-b53f-34aba105b533.png",
+      "sha256": "2a2db4358747d760fc3e27d7a88848eea6e6480daefdcc9716d35aa5b8866c81"
+    },
+    {
+      "file": "exec-f8726773-bb2d-481a-9dd0-af4d2b7e7e3d.png",
+      "sha256": "245f71b2cd2a2ca05314f868bc65b3498ccace72709f67c6431ec8b524fa59dd"
     }
   ],
   "assets": [
     {
       "name": "Keeper_Whole_Body",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Whole_Body.png",
-      "sha256": "5b91cfcb4364ed559813834291ad4a6cacaa50e17e9c1ee32c25346fe8c161e1"
+      "sha256": "2e5e65cbd34cf7f7fdf8560f54c75a16a2beb115c3b47448cbc954953e1c140f"
     },
     {
       "name": "Keeper_Kneel",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Kneel.png",
-      "sha256": "7526cb65732ebf04dbfa717c0406de01185f22d4e9fff370b869ebdb250186cc"
+      "sha256": "400a0ce3804f07690336ef52c2e7e6370df09c59b49b55873659304d8e4b1a70"
     },
     {
       "name": "Keeper_Silhouette",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Silhouette.png",
-      "sha256": "0b405a79dd56981879829fb6126c41b1fbab075bf2a5c225f94c42ff81e8a678"
+      "sha256": "e9cb57c306030becf95eb858035281aa5cd031c3da4fa3bcf68202907613f0ed"
     },
     {
       "name": "Pickup_PrismShard",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Pickup_PrismShard.png",
-      "sha256": "6ea0340084ab7dd7d8c9474d93d74577fd8f6c459aea4f7f2c6986ab3a31983e"
+      "sha256": "d923cafb65c975d30c91803dcff1b5bd54f8270bdf678a194f5bd97afee4c70a"
     },
     {
       "name": "Keeper_Hand_Intact",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Hand_Intact.png",
-      "sha256": "b3558c62ee011d4a06ec736a676353e791ec6c59d5bf2fc0f0eeda77cc3822f7"
+      "sha256": "affc229228ef60952fc1ad9c2ca47ef2a04df49de43fd70462e4065b4954a0e0"
     },
     {
       "name": "Keeper_Hand_Broken",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Hand_Broken.png",
-      "sha256": "112c8ab75c11d48bb464446432d45604842d93423e1c5086d845d5f1161d385c"
+      "sha256": "b98e97b25caf85b704694e2b42b79c922f512157bb56f426e5207a5878baf9a9"
     },
     {
       "name": "Keeper_Carpet_Intact",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Carpet_Intact.png",
-      "sha256": "41c78da463a0278e12890a01f8fa8cd41050d71e185917ff4bf6b6c77eea69ed"
+      "sha256": "fcea0b27939383197d2e807d60258e7d58cf96a2efa06016d86e5316df6bf606"
     },
     {
       "name": "Keeper_Carpet_Broken",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Carpet_Broken.png",
-      "sha256": "7e89ce64203fdc96db359db56eb903b5fbf0c0de0f53398ab5c3a18d9f4043cd"
+      "sha256": "33fff6658ddf79f888b8126aabcb91d4156bd4e43e1f16bedbb908c6db2f252f"
     },
     {
       "name": "Keeper_Eye_Open",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Eye_Open.png",
-      "sha256": "59484107b72c54738d0f8ec1c38eaa2bdc1eb6eeabc0cbbdeeb0f4dc109a404c"
+      "sha256": "11225f655d46f6a563df6875278e33f0bafd0d1a749bcebde9263038b7259518"
     },
     {
       "name": "Keeper_Eye_Closed",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Eye_Closed.png",
-      "sha256": "6fd6d74cec1455fd2378f60c17e16a9a32815d54d9aef570fcde10a44bc18a53"
+      "sha256": "cb91763b1a1e6e73c7d61386e106a7ba0f508456e9dc4de7ab9fa71de738af6c"
     },
     {
       "name": "Prop_OrdinaryStool",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_OrdinaryStool.png",
-      "sha256": "10a99a9ecb076c62c4044c7711f9b825a1510a2f706e855a91ca29d8af259ede"
+      "sha256": "a69364cc6873741547ef66bbf97dfc55c6a6fde94debc35943f939732e892fc3"
     },
     {
       "name": "Prop_StoryTelephone",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_StoryTelephone.png",
-      "sha256": "c855f4b0564a92285cb24cdd0b63aa584a8709c59cc9f4c7d9667def78fd3f43"
+      "sha256": "e5515eea782f0da16d535e61f19a309a970d04bb3da6b6b0f17fa18c4e7f0728"
     },
     {
       "name": "Stat_Damage",
@@ -370,6 +402,46 @@
       "name": "Keeper_BodyShell",
       "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_BodyShell.png",
       "sha256": "91a1df1c8d9f9e521a90f471915e25c0c84f951cfd9d5bb3c5f9b87ccebdf5f7"
+    },
+    {
+      "name": "Keeper_KneelShell",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_KneelShell.png",
+      "sha256": "3b755e284d954d7b96d32ef457e6d3d5817fb055408e6c1123b0108bada2aacf"
+    },
+    {
+      "name": "Keeper_Hand_Charged",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Hand_Charged.png",
+      "sha256": "b3d30bd5e0b697239c44e5e3b3e8d8b8fff7661d8f0f9f6fa805a39fc624287d"
+    },
+    {
+      "name": "Keeper_Hand_Release",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Hand_Release.png",
+      "sha256": "d4a46c10e2d70c660e9311336233835057f080c8ef7bf4315c3a9a0f81ce0ee4"
+    },
+    {
+      "name": "Keeper_Carpet_Charged",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Carpet_Charged.png",
+      "sha256": "ce13d30c8dd367c194724933281975042c942f0be98c450bae5a2a7276b2f7fa"
+    },
+    {
+      "name": "Keeper_Carpet_Release",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Carpet_Release.png",
+      "sha256": "63e12627e17c1448530606c83c23bd213ac04945bdd3c443a4cf32245f205c6b"
+    },
+    {
+      "name": "Keeper_Eye_Charged",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Eye_Charged.png",
+      "sha256": "a83afa10c6f9e94f3ca893874c98b4112c6433dedb1fd7cf5cf11421865fe1ce"
+    },
+    {
+      "name": "Keeper_Socket",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Keeper_Socket.png",
+      "sha256": "c8483d70d45e5d96d113a5a24e231485ac995fd0d4a1c50c36dc0d350b941a23"
+    },
+    {
+      "name": "LastCustomer_Kneel",
+      "file": "Assets/ArcaneBrigade/Resources/MienCho/ActOne/LastCustomer_Kneel.png",
+      "sha256": "01dbaf446910fb2886c6dfcbca9354feb63e6d830d943c1a1b7b8914b967cddf"
     }
   ]
 }

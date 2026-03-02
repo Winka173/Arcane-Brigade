@@ -1,6 +1,6 @@
 """Integrate painting art: connected-ink slicing only; no new raster drawing.
 
-Pass the generated Keeper sheet and stat sheet paths as two arguments.
+Pass Keeper/stat sheets, optional evidence/body sheets and an optional single-sprite JSON manifest.
 """
 from pathlib import Path
 import hashlib
@@ -35,30 +35,29 @@ def save_sprite(name, original, mask):
     return {'name': name, 'file': str(target.relative_to(ROOT)).replace('\\', '/'), 'sha256': hashlib.sha256(target.read_bytes()).hexdigest()}
 
 
-def components(path):
+def components(path, fringe=None):
     pixels = np.array(Image.open(path).convert('RGBA'))
     labels, _ = label(pixels[:, :, 3] > 32)
     # Assign faint antialiased edges to their nearest solid ink component.
-    indices = distance_transform_edt(labels == 0, return_distances=False, return_indices=True)
+    distance, indices = distance_transform_edt(labels == 0, return_indices=True)
     extended = labels[tuple(indices)]
+    # Only retain the immediate antialiased fringe. Distant low-alpha atlas residue
+    # is not an edge, even when its nearest solid component happens to be this sprite.
+    if fringe is not None: extended[distance > fringe] = 0
     return pixels, labels, extended, find_objects(labels)
 
 
 def main():
     keeper, stats = map(Path, sys.argv[1:3])
     records = []
-    pixels, solid, ink, boxes = components(keeper)
+    pixels, solid, ink, boxes = components(keeper, fringe=2)
     mapping = {1:'Keeper_Whole_Body', 2:'Keeper_Kneel', 3:'Keeper_Silhouette', 4:'Pickup_PrismShard',
                6:'Keeper_Hand_Intact', 7:'Keeper_Hand_Broken', 5:'Keeper_Carpet_Intact', 8:'Keeper_Carpet_Broken',
                10:'Keeper_Eye_Open', 11:'Keeper_Eye_Closed', 13:'Prop_OrdinaryStool', 12:'Prop_StoryTelephone'}
-    # Include any detached ink nearest to each object's authored centre.
-    centres = [(label_id, np.array([(boxes[label_id-1][1].start + boxes[label_id-1][1].stop)/2,
-                                  (boxes[label_id-1][0].start + boxes[label_id-1][0].stop)/2])) for label_id in mapping]
+    # These twelve objects each have one connected ink silhouette. Never attach an unowned
+    # fragment by distance: an atlas neighbor's finger can be closer than its own object's centre.
     groups = np.zeros(len(boxes)+1, dtype=int)
-    for i, box in enumerate(boxes):
-        if box is None: continue
-        point = np.array([(box[1].start+box[1].stop)/2, (box[0].start+box[0].stop)/2])
-        groups[i+1] = i+1 if i+1 in mapping else min(centres, key=lambda pair: np.sum((pair[1]-point)**2))[0]
+    for label_id in mapping: groups[label_id] = label_id
     for n, name in mapping.items(): records.append(save_sprite(name, pixels, groups[ink] == n))
     pixels, solid, ink, boxes = components(stats)
     source = (ROOT/'Assets/ArcaneBrigade/Runtime/Data/RunCatalog.cs').read_text()
@@ -87,6 +86,11 @@ def main():
         shell = Path(sys.argv[4]); inputs.append(shell)
         pixels = np.array(Image.open(shell).convert('RGBA'))
         records.append(save_sprite('Keeper_BodyShell', pixels, pixels[:, :, 3] > 0))
+    if len(sys.argv) > 5:
+        for art in json.loads(Path(sys.argv[5]).read_text(encoding='utf-8')):
+            source=Path(art['source']); inputs.append(source)
+            pixels=np.array(Image.open(source).convert('RGBA'))
+            records.append(save_sprite(art['name'],pixels,pixels[:,:,3]>0))
     manifest = {'date':'2026-10-17', 'tool':'painted', 'operation':'New raster art; connected-ink slicing and transparent padding for Unity integration',
                 'sources':[{'file':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in inputs], 'assets':records}
     (ROOT/'Docs/Theme_Consistency_Art_Provenance.json').write_text(json.dumps(manifest,indent=2)+'\n')

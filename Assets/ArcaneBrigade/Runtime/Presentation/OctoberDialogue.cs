@@ -47,9 +47,9 @@ namespace ArcaneBrigade
             };
             return lines[Math.Abs(index % lines.Length)];
         }
-        public static string AllyLine(UnitDefinition u, int index, int wave = 1)
+        public static string AllyLine(UnitDefinition u, int index, int wave = 1, RunSnapshot state = null)
         {
-            string personal = CompanionBanter.Line(u.Id, index, wave);
+            string personal = CompanionBanter.Line(u.Id, index, wave, state);
             if (personal != null) return personal;
             if (u.ReferenceCompanion == "Pony") return index % 2 == 0 ? "Climb on. I know these stairs." : "Two friends travel better than one.";
             if (u.ReferenceCompanion == "Little Cabbage") return index % 2 == 0 ? "Do you think I will be tall tomorrow?" : "I found a root shaped like your hand.";
@@ -83,7 +83,7 @@ namespace ArcaneBrigade
                 RosterEntry entry = owner.Session.State.Roster[(cursor / 2) % owner.Session.State.Roster.Count];
                 u = owner.Content.Unit(entry.UnitId); body = FindCompanion(entry.UnitId); hero = false;
             }
-            speaker = u.DisplayName; line = string.IsNullOrEmpty(u.ReferenceHero) ? AllyLine(u, cursor / 2, owner.Session.State.Wave) : HeroLine(u.ReferenceHero, cursor / 2);
+            speaker = u.DisplayName; line = string.IsNullOrEmpty(u.ReferenceHero) ? AllyLine(u, cursor / 2, owner.Session.State.Wave, owner.Session.State) : HeroLine(u.ReferenceHero, cursor / 2);
             cursor++; until = owner.PresentationClock + 5; next = owner.PresentationClock + 16;
             if (body == null || string.IsNullOrEmpty(line)) return;
             UnitState held = body;

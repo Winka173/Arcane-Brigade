@@ -337,8 +337,8 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(100, 220, 560, 470), story >= 0 ? ActOneArtwork.Picture(ActOneCanon.StoryNames[story]) ?? unit.Body : unit.Body);
                 GUI.Label(new Rect(100, 730, 650, 120), (story >= 0 ? ActOneCanon.StoryNames[story] : stranger ? "???" : unit.DisplayName) + "\n" + (creature + 1) + " / " + ids.Count, title);
                 string text = stranger ? "A STRANGER\nYou sold your memory of them to the Last Customer. They still travel with you. You do not know who they are.\n\nThey introduce themselves again at every rest. They are kind about it."
-                    : story >= 0 ? "TRAVELLING WITH YOU\n" + CreatureLives.Arc(id, state.Wave)
-                    : "LIFE IN THE WAITING REALM\n" + CreatureLives.Origin(id) + "\n\nALONG THE CROSSING\n" + CreatureLives.Arc(id, owner.Session.State.Wave);
+                    : story >= 0 ? "TRAVELLING WITH YOU\n" + CreatureLives.Arc(id, state)
+                    : "LIFE IN THE WAITING REALM\n" + CreatureLives.Origin(id) + "\n\nALONG THE CROSSING\n" + CreatureLives.Arc(id, owner.Session.State);
                 float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
                 scroll = GUI.BeginScrollView(new Rect(850, 180, 1000, 690), scroll, new Rect(0, 0, 955, height));
                 GUI.Label(new Rect(0, 0, 940, height), text, copy); GUI.EndScrollView();

@@ -60,7 +60,10 @@ namespace ArcaneBrigade
             var state=storage.LoadRun(session);
             if(state==null || state.WaitingCampaign?.Room<1){RunLaunch.Resume=true;SceneManager.LoadScene("RunArena");return;}
             session.Restore(state);WaitingCampaign.Ensure(session.State);room=session.State.WaitingCampaign.Room;
-            rescue=room==2 && session.HobRescueNeeded;
+            // Room 2 at the Act I rescue boundary remains a rescue scene after its saved success.
+            rescue=room==2 && session.State.Wave==16 && !session.State.Endless;
+            rescued=rescue && (session.State.ActOne?.HobRescued ?? 0)>0;
+            if(rescued)risenAt=-10;
             PresentationSettings.Apply(storage.LoadProfile());
             view=Camera.main;if(view==null){var go=new GameObject("JourneyRoomCamera");go.tag="MainCamera";view=go.AddComponent<Camera>();}
             view.clearFlags=CameraClearFlags.SolidColor;view.orthographic=true;view.orthographicSize=6.94f;view.transform.position=new Vector3(0,0,-10);view.backgroundColor=new Color(.015f,.02f,.035f);
@@ -124,6 +127,7 @@ namespace ArcaneBrigade
                 var view=Make("One Who Sat Down",figure,along[i],1.5f,18);view.flipX=along[i].x>0;view.color=new Color(.78f,.76f,.8f);list.Add(view);
             }
             seated=list.ToArray();turnedHead=Resources.Load<Sprite>("MienCho/ActOne/SeatedOne_A_Turned");
+            if(rescued && seated.Length>0 && turnedHead!=null)seated[0].sprite=turnedHead;
         }
         /// <summary>One press starts the whole party's pull; the animation does not require holding a button.</summary>
         private void UpdateRescue()

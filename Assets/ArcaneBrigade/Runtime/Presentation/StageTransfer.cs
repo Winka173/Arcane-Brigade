@@ -48,8 +48,11 @@ namespace ArcaneBrigade
             Sprite carrier = ActOneArtwork.Picture(Kind == StageCarrier.Hand ? "Keeper_Hand_Intact" : Kind == StageCarrier.CarpetTongue ? "Keeper_Carpet_Intact" : "Keeper_Eye_Open");
             if (carrier != null)
             {
-                Sprite closed = Kind == StageCarrier.KeyholeEye ? ActOneArtwork.Picture("Keeper_Eye_Closed") ?? carrier : carrier;
-                frames = new[] { closed, carrier, carrier }; outsideHand = true;
+                string stem = Kind == StageCarrier.Hand ? "Keeper_Hand_" : Kind == StageCarrier.CarpetTongue ? "Keeper_Carpet_" : "Keeper_Eye_";
+                Sprite closed = Kind == StageCarrier.KeyholeEye ? ActOneArtwork.Picture(stem + "Closed") ?? carrier : carrier;
+                Sprite charged = ActOneArtwork.Picture(stem + "Charged") ?? carrier;
+                Sprite released = Kind == StageCarrier.KeyholeEye ? carrier : ActOneArtwork.Picture(stem + "Release") ?? carrier;
+                frames = new[] { closed, charged, released }; outsideHand = true;
             }
             courier = gameObject.AddComponent<SpriteRenderer>(); courier.sortingOrder = 830; // in front of the Keeper's looming body (820)
             grounded = gameObject.AddComponent<GroundShadow>();

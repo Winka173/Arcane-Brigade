@@ -116,13 +116,7 @@ namespace ArcaneBrigade
             new[] { 12, 12, 11, 13 }, new[] { 16, 16, 19, 18 }, new[] { 20, 20, 20, 20 }
         };
         private static bool FinishedAt(RunSnapshot state, int wave)
-        {
-            if (wave == 20) return state.Nightmare?.CustomerDefeated == true;
-            int finished = state.MienCho?.FinishedMask ?? 0;
-            for (int i = MienChoStory.Available(state) - 1; i >= 0; i--)
-                if (MienChoStory.Chapters[i].Wave == wave && MienChoStory.Chapters[i].Shop) return (finished & (1 << i)) != 0;
-            return false;
-        }
+            => ActOneKnowledge.Known(state,wave);
         private static bool EvidenceKnown(RunSnapshot state, int zone, int line)
             => FinishedAt(state, EvidenceWaves[zone][line]);
         public static string Memory(RunSnapshot state, int cursor)
@@ -168,7 +162,7 @@ namespace ArcaneBrigade
                     + "\nThe shopkeeper does not ask to be forgiven. They hold the door until everyone is through.\n"
                     + (state.Secrets.LetterSent ? "The letter you sent from the stage is already in Postscript's bag, addressed in your own hand." : "Postscript still carries one unsent letter of yours. It will wait until you are ready to send it."),
                 _ => "MORNING, TOGETHER\nIt is a real dawn. The light does not belong to anyone.\nYou ask, out of habit: 'Is there anything else you need me to do?'\nHob pulls out a chair. An ordinary chair, cold from the night. 'Sit here a while.'\nFor the first time, a chair is only a chair.\n"
-                    + (state.Roster.Count > 0 ? "Your companions decide for themselves who goes on and who stays. Nobody asks you to earn the choice." : "Even alone, you carried enough light to reach the morning.") + "\n"
+                    + (ActOneKnowledge.HasCompany(state) ? "Your companions decide for themselves who goes on and who stays. Nobody asks you to earn the choice." : "You carried enough light to reach the morning. There is a place for you at the table.") + "\n"
                     + (state.Secrets.RescuedToy ? "The creature you rescued takes its own first step into morning.\n" : "There are other lives still waiting along the platform.\n")
                     + (state.OutsideStage == OutsideStageStatus.Completed ? "The Keeper holds the frame of the gate and opens its hand." : "The Keeper stands at the open gate and lets every traveller through.")
                     + ((state.ActOne?.Offer ?? 0) == ActOneProgress.Sold ? "\nSomeone at the table pulls out a chair for you as well. You do not know who they are. They do it anyway." : "")

@@ -17,6 +17,8 @@ namespace ArcaneBrigade
         private float noticedAt = -1;
         private Vector2 hobLight;
         private GUIStyle caption;
+        private CombatSimulation castSimulation;
+        private string layoutId;
         public static ActOneRestingScenes Active { get; private set; }
         public int SpotCount => visible ? 1 : 0;
         private bool Rest => owner?.Session != null && owner.Simulation != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.State.Endless
@@ -38,15 +40,16 @@ namespace ArcaneBrigade
         public static Vector2 PartyLightPosition(UnitState unit, Vector2 ordinary)
         {
             var scene = Active;
-            return scene != null && scene.Rest && scene.visible && scene.hob != null && scene.wave == 17 && unit.Definition.DisplayName == "Hob"
+            return scene != null && scene.Rest && scene.visible && scene.IsActor(scene.hob,"Hob") && ReferenceEquals(scene.hob.State,unit) && scene.wave == 17
                 ? scene.hobLight : ordinary;
         }
         private void LateUpdate()
         {
-            if (!Rest) { visible = false; evidence.enabled = receipt.enabled = false; suspended.Display(Vector3.zero, owner?.PresentationClock ?? 0, 0); return; }
+            if (!Rest) { ReleaseLayout(); visible = false; evidence.enabled = receipt.enabled = false; suspended.Display(Vector3.zero, owner?.PresentationClock ?? 0, 0); return; }
             var state = owner.Session.State;
             if (wave != state.Wave)
             {
+                ReleaseLayout();
                 wave = state.Wave; noticedAt = -1; hob = tally = null;
                 art = wave == 12 ? "Prop_SewnReply" : wave == 15 ? "Prop_WetUmbrella" : wave == 17 ? "Prop_OrdinaryStool" : wave == 18 ? "Prop_WaitingNote" : null;
                 chapter = System.Array.FindIndex(MienChoStory.Chapters, entry => entry.Wave == wave && entry.Shop);
@@ -60,7 +63,11 @@ namespace ArcaneBrigade
             var size = ink.size * scale;
             float fit = 1;
             anchor = wave == 15 ? new Vector2(-2.7f,-3.8f) : new Vector2(-4.6f,-1.8f);
-            if (visible && ShopLayout.Active != null) visible = ShopLayout.Active.Place("story:rest:" + wave, anchor, size, 180, true, false, out anchor, out fit);
+            if (visible && ShopLayout.Active != null)
+            {
+                layoutId = "story:rest:" + wave;
+                visible = ShopLayout.Active.Place(layoutId, anchor, size, 180, true, false, out anchor, out fit);
+            }
             evidence.enabled = visible;
             if (visible)
             {
@@ -73,11 +80,14 @@ namespace ArcaneBrigade
         }
         private void PerformRest()
         {
+            if (!ReferenceEquals(castSimulation, owner.Simulation)) { castSimulation = owner.Simulation; hob = tally = null; }
+            if (!IsActor(hob,"Hob")) hob = null;
+            if (!IsActor(tally,"Tally")) tally = null;
             if (hob == null || tally == null)
                 foreach (var actor in FindObjectsByType<UnitVisual>())
                 {
-                    if (actor.State?.Definition.DisplayName == "Hob") hob = actor;
-                    if (actor.State?.Definition.DisplayName == "Tally") tally = actor;
+                    if (IsActor(actor,"Hob")) hob = actor;
+                    if (IsActor(actor,"Tally")) tally = actor;
                 }
             if (hob != null)
             {
@@ -107,6 +117,17 @@ namespace ArcaneBrigade
             receipt.transform.rotation = Quaternion.Euler(0,0,Mathf.Lerp(-13,24,fold));
             receipt.sortingOrder = WorldSpriteGrounding.SortAt(point.y) + 18;
         }
+        private bool IsActor(UnitVisual actor,string name)
+        {
+            if (actor == null || !actor.gameObject.activeInHierarchy || actor.State?.Definition.DisplayName != name || actor.State.Faction != Faction.Companion) return false;
+            foreach (var unit in owner.Simulation.Units) if (ReferenceEquals(unit,actor.State)) return true;
+            return false;
+        }
+        private void ReleaseLayout()
+        {
+            if (layoutId != null) ShopLayout.Active?.Release(layoutId);
+            layoutId = null;
+        }
         private bool Inspect()
         {
             if (!Rest || !visible || owner.PresentationPaused || owner.StoryConsumesInput || owner.Details.Open || owner.Shop?.Animating == true || !ShopFocus.Has(this, 0, owner.Simulation.Champion.Position)) return false;
@@ -120,6 +141,7 @@ namespace ArcaneBrigade
         {
             if (!Rest || !visible || owner.StoryConsumesInput || owner.PresentationPaused || Camera.main == null || !ShopFocus.Has(this,0,owner.Simulation.Champion.Position)) return;
             var matrix = ArcadeTypography.BeginViewport(Camera.main.pixelRect,1920,1080);
+            if (GUI.Button(StoryPropInput.ClickRect(evidence,Camera.main),GUIContent.none,GUIStyle.none)) Inspect();
             caption ??= ArcadeTypography.Style(23,true); caption.wordWrap = true; caption.alignment = TextAnchor.MiddleCenter;
             string line = wave == 17 ? "HOB CHOSE THIS SEAT" : wave == 18 ? "TALLY'S PLACE IS EMPTY" : wave == 15 ? "THE UMBRELLA IS STILL WET" : "THE REPLY WAS SEWN SHUT";
             Rect panel = new Rect(650,835,620,112); ArcadeSkin.Ticket(panel,ArcadeSkin.Paper,ArcadeSkin.Wax);
@@ -127,7 +149,7 @@ namespace ArcaneBrigade
             if (GUI.Button(panel,line + "\nExamine · Space / A",caption)) Inspect();
             GUI.matrix = matrix;
         }
-        private void OnDestroy() { if (Active == this) Active = null; ShopFocus.Unregister(this); }
+        private void OnDestroy() { ReleaseLayout(); if (Active == this) Active = null; ShopFocus.Unregister(this); }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void Reset() => Active = null;
     }
 }

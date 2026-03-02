@@ -26,12 +26,12 @@ namespace ArcaneBrigade
         };
 
         public static string Line(string unitId, int wave, RunSnapshot state)
-            => RunSession.Stranger(state, unitId) ? "Hello. I don't think we've met. I'm glad to be walking with you anyway." : Line(unitId, wave);
+            => RunSession.Stranger(state, unitId) ? "Hello. I don't think we've met. I'm glad to be walking with you anyway." : CreatureLives.Banter(unitId,state) ?? Line(unitId, wave);
 
         public static string Line(string unitId, int wave)
         {
             if (string.IsNullOrEmpty(unitId)) return null;
-            string banter = CreatureLives.Banter(unitId, wave);
+            string banter = CreatureLives.Banter(unitId,(RunSnapshot)null);
             if (!string.IsNullOrEmpty(banter)) return banter;
             if (Fixed.TryGetValue(unitId, out string fixedLine)) return fixedLine;
             if (cache.TryGetValue(unitId, out string line)) return line;

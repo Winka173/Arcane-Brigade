@@ -24,6 +24,7 @@ namespace ArcaneBrigade
         {
             owner = value;
             if (GetComponent<ActOneRestingScenes>() == null) gameObject.AddComponent<ActOneRestingScenes>().Configure(value);
+            if (GetComponent<ActOneCustomerVisits>() == null) gameObject.AddComponent<ActOneCustomerVisits>().Configure(value);
         }
         private void LateUpdate()
         {
@@ -58,8 +59,6 @@ namespace ArcaneBrigade
                 int seated = shop ? Mathf.Clamp((state.Wave - 8) / 2, 0, 5) : zone == 0 ? 0 : zone + 2;
                 for (int i = 0; i < seated; i++)
                     Add("SeatedOne_" + (char)('A' + i % 5), new Vector2((i % 2 == 0 ? -1 : 1) * (shop ? 8.4f : 10f), 3.8f - (i / 2) * 2.4f), 1.65f, false);
-                if (shop && (state.Wave == 8 || state.Wave == 12 || state.Wave == 13))
-                    Add(state.Wave >= 13 ? "LastCustomer_BorrowedFace" : "LastCustomer_Pleasant", ActOneCanon.ChairPosition(state.Wave) + Vector2.left * 1.6f, 2.6f, false);
             }
             foreach (var pair in floating) pair.prop.Display(pair.anchor, owner.PresentationClock, NightmareRules.Depth(state.Wave));
             foreach (var surface in surfaces)
@@ -92,7 +91,7 @@ namespace ArcaneBrigade
         }
         private void Clear()
         {
-            foreach (var go in objects) if (go != null) { go.SetActive(false); Destroy(go); }
+            foreach (var go in objects) if (go != null) { ShopLayout.Active?.Release("story:" + go.name); go.SetActive(false); Destroy(go); }
             objects.Clear(); floating.Clear(); surfaces.Clear();
         }
         private void OnDestroy() => Clear();

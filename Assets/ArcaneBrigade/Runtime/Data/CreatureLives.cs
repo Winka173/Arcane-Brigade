@@ -117,6 +117,35 @@ namespace ArcaneBrigade
             for (int i = 0; i < count; i++) result += (i > 0 ? "\n\n" : "") + pages[i];
             return result;
         }
+        public static string Arc(string id,RunSnapshot state)
+        {
+            if (!ArcWaves.TryGetValue(id,out var at)) return Arc(id,state?.Wave ?? 1);
+            if (state==null || !ActOneKnowledge.Known(state,at[0])) return "They travel beside you. Their account unfolds in the journal as you discover the road together.";
+            int count=1;
+            if (ActOneKnowledge.Known(state,at[1])) count=2;
+            bool last=ActOneKnowledge.Known(state,id=="TeapotPilgrim"?17:at[2]);
+            if (id=="TeapotPilgrim") last &= ActOneKnowledge.HobRescued(state);
+            if (last) count=3;
+            string result="";
+            for (int i=0;i<count;i++)
+            {
+                string page=Arcs[id][i];
+                if (id=="PaperDevil" && i==1) page=ActOneKnowledge.Known(state,18)
+                    ? "Tally's place is empty. A folded receipt remains where it had been reading. Nobody yet knows where it has gone."
+                    : "Tally reads a receipt when it thinks nobody is watching. It folds the paper small and puts it away. You do not yet know what it says.";
+                result+=(i>0?"\n\n":"")+page;
+            }
+            if (id=="TeapotPilgrim" && ActOneKnowledge.HobRescued(state) && !last) result+="\n\nHob is on its feet again. Everyone helped. Nobody asks for repayment.";
+            return result;
+        }
+        public static string Banter(string id,RunSnapshot state) => id switch
+        {
+            "TeapotPilgrim" => ActOneKnowledge.HobRescued(state) && ActOneKnowledge.Known(state,17) ? "Yes. For you to stop asking for a minute." : ActOneKnowledge.Known(state,3) ? "I dropped a cup. I have never dropped a cup." : "Need? I'm the one who asks that.",
+            "HoodWisp" => ActOneKnowledge.Known(state,17) ? "Your left, if you want me there. The doors are yours." : ActOneKnowledge.Known(state,14) ? "The whisper comes from your left. So do I." : "I'll walk on this side, if you don't mind.",
+            "ShellPostman" => ActOneKnowledge.Known(state,15) ? "I have a letter of my own to write now." : ActOneKnowledge.Known(state,12) ? "It's addressed to you. It always was." : "A reply. Any reply.",
+            "PaperDevil" => ActOneKnowledge.Known(state,19) ? "I asked for the names back. Nobody owes me anything for it." : ActOneKnowledge.Known(state,17) ? "Don't ask what's on the receipt." : ActOneKnowledge.Known(state,11) ? "Each mark is somebody I brought back." : "I'll keep watch from here.",
+            _ => Banter(id,state?.Wave ?? 1)
+        };
         public static string Banter(string id, int wave) => id switch
         {
             "TeapotPilgrim" => wave >= 17 ? "Yes. For you to stop asking for a minute." : wave >= 3 ? "I dropped a cup. I have never dropped a cup." : "Need? I'm the one who asks that.",

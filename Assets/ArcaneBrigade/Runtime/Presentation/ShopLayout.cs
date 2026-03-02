@@ -44,6 +44,12 @@ namespace ArcaneBrigade
         private void OnDestroy() { if (Active == this) Active = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetActive() => Active = null;
         public bool InShop => owner?.Session != null && owner.Simulation != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen;
+        /// <summary>Remove a scene-owned footprint as soon as that scene ends. Stable props keep their registration.</summary>
+        public void Release(string id)
+        {
+            if (id == null || !props.TryGetValue(id,out Prop prop)) return;
+            props.Remove(id); order.Remove(prop); dirty = true;
+        }
 
         /// <summary>The footprint a prop of this size covers when its floor contact is at foot (float clearance included).</summary>
         public static Rect Footprint(Vector2 foot, Vector2 size) => new Rect(foot.x - size.x * 0.5f - 0.16f, foot.y + 0.05f, size.x + 0.32f, size.y + Hover);
@@ -125,8 +131,8 @@ namespace ArcaneBrigade
         /// chair's path or another prop. Their system keeps drawing them; only their spot is moved.</summary>
         private void LateUpdate()
         {
-            if (!InShop) { adopted.Clear(); return; }
-            adopted.RemoveAll(entry => entry.Root == null);
+            if (!InShop) { foreach (var entry in adopted) Release(entry.Id); adopted.Clear(); return; }
+            adopted.RemoveAll(entry => { if (entry.Root != null) return false; Release(entry.Id); return true; });
             foreach (Transform child in owner.transform)
             {
                 if (!child.name.StartsWith("ActOne-") || !child.gameObject.activeSelf || child.GetComponent<FloatingStoryProp>() != null) continue;
@@ -174,9 +180,9 @@ namespace ArcaneBrigade
                 if (prop.Transient)
                     for (float fit = 1f; !prop.Visible && fit > 0.55f; fit -= 0.13f)
                         if (prop.Visible = Find(prop, prop.Size * fit, view, out prop.Foot, 3.5f)) prop.Fit = fit;
-                if (!prop.Visible) prop.Visible = Find(prop, prop.Size, view, out prop.Foot);
+                if (!prop.Visible && !prop.Transient) prop.Visible = Find(prop, prop.Size, view, out prop.Foot);
                 // the journal cabinet and the lamp are part of the story: rather smaller than missing
-                for (float fit = 0.85f; !prop.Visible && prop.Shrink && fit > 0.5f; fit -= 0.13f)
+                for (float fit = 0.85f; !prop.Visible && prop.Shrink && !prop.Transient && fit > 0.5f; fit -= 0.13f)
                     if (prop.Visible = Find(prop, prop.Size * fit, view, out prop.Foot)) prop.Fit = fit;
                 if (prop.Visible) placed.Add(Footprint(prop.Foot, prop.Size * prop.Fit)); else Hidden++;
             }

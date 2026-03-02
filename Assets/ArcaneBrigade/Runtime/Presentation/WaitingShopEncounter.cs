@@ -23,6 +23,9 @@ namespace ArcaneBrigade
         private float entered, nextRing;
         private int rang;
         private bool wasPaused;
+        private Vector2 placedAnchor;
+        private bool registeredLayout;
+        private const string LayoutId="story:telephone";
         public WaitingEncounter Active => active;
         public bool Visible => prop != null && prop.enabled;
         public bool Near { get; private set; }
@@ -31,7 +34,7 @@ namespace ArcaneBrigade
         public int ReflectionUnitId { get; private set; }
         public int SpotCount => Visible && Allowed ? 1 : 0;
         public bool Spot(int index, out Vector2 position, out float reach)
-        { position = Anchor; reach = Reach; return index == 0 && Visible && Allowed; }
+        { position = placedAnchor; reach = Reach; return index == 0 && Visible && Allowed; }
         private bool Allowed => owner?.Session != null && owner.Session.State.Phase == SessionPhase.Shop && !owner.Session.SecretRoomOpen && owner.Session.State.OutsideStage != OutsideStageStatus.Reward && !owner.TransitionPending && !owner.HallExitPending && !owner.NightmareEndingVisible;
         // Only restore the encounter that belongs to the current Act I canon. Earlier table/mirror scenes stay retired.
         public static WaitingEncounter ForWave(int wave) => wave == 8 ? WaitingEncounter.BreathingPhone : WaitingEncounter.None;
@@ -79,6 +82,7 @@ namespace ArcaneBrigade
         }
         private void Hide()
         {
+            if (registeredLayout) { ShopLayout.Active?.Release(LayoutId); registeredLayout=false; }
             prop.enabled = reflection.enabled = tear.enabled = false; Near = false;
             shadow.Hide(); suspension.Hide(); voice.Stop();
         }
@@ -104,17 +108,26 @@ namespace ArcaneBrigade
             AnimationClock = owner.PresentationClock;
             prop.enabled = true;
             float width = kind == WaitingEncounter.ReservedTable ? 3.15f : kind == WaitingEncounter.LateReflection ? 1.65f : 1.65f;
+            placedAnchor=Anchor;
+            float fit=1;
+            if (ShopLayout.Active!=null)
+            {
+                registeredLayout=true;
+                if (!ShopLayout.Active.Place(LayoutId,Anchor,ShopLayout.SizeAtWidth(prop.sprite,width),80,true,false,out placedAnchor,out fit))
+                { prop.enabled=false; Near=false; shadow.Hide(); suspension.Hide(); voice.Stop(); return; }
+                width*=fit;
+            }
             prop.transform.localScale = Vector3.one * (width / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(prop.sprite).width));
             Vector3 hover = DreamLevitation.Offset(AnimationClock, 171 + (int)kind, NightmareRules.Depth(state.Wave), PresentationSettings.ReducedMotion, .75f);
             float tilt=DreamLevitation.Tilt(AnimationClock,171+(int)kind,PresentationSettings.ReducedMotion,.65f);
             if(ShopSceneryLanding.Active!=null){hover=ShopSceneryLanding.Active.Apply(hover,171+(int)kind);tilt=ShopSceneryLanding.Active.Tilt(tilt,171+(int)kind);}
             prop.transform.rotation = Quaternion.Euler(0,0,tilt);
-            WorldSpriteGrounding.Place(prop, (Vector3)Anchor + hover);
-            prop.sortingOrder = WorldSpriteGrounding.SortAt(Anchor.y);
+            WorldSpriteGrounding.Place(prop, (Vector3)placedAnchor + hover);
+            prop.sortingOrder = WorldSpriteGrounding.SortAt(placedAnchor.y);
             prop.color = Color.white;
             shadow.SortingBase = prop.sortingOrder - 5;
-            shadow.Display(prop.sprite, Anchor, width * .8f, hover.y, .25f);
-            suspension.Display(Anchor, (Vector3)Anchor + hover, width, AnimationClock, 171 + (int)kind, prop.sortingOrder - 1, 1, true);
+            shadow.Display(prop.sprite, placedAnchor, width * .8f, hover.y, .25f);
+            suspension.Display(placedAnchor, (Vector3)placedAnchor + hover, width, AnimationClock, 171 + (int)kind, prop.sortingOrder - 1, 1, true);
             Near = ShopFocus.Has(this,0,owner.Simulation.Champion.Position);
             if (owner.Shop?.Nearby != null || owner.Shop?.Animating == true) Near = false;
             UpdateReflection(kind);
@@ -124,7 +137,7 @@ namespace ArcaneBrigade
                 if (!PresentationSettings.ReducedAudio) voice.PlayOneShot(ring);
                 rang++; nextRing = AnimationClock + 4;
             }
-            if (Near && !owner.StoryConsumesInput && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton2))) TryInspect();
+            if (Near && !owner.StoryConsumesInput && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.JoystickButton2))) TryInspect();
         }
         private void UpdateReflection(WaitingEncounter kind)
         {
@@ -166,16 +179,18 @@ namespace ArcaneBrigade
         {
             if (!Visible || !Near || owner.PresentationPaused || owner.StoryConsumesInput) return;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
+            if (GUI.Button(StoryPropInput.ClickRect(prop,Camera.main),GUIContent.none,GUIStyle.none)) TryInspect();
             prompt ??= ArcadeTypography.Style(22, true); prompt.alignment = TextAnchor.MiddleCenter;
             caption ??= ArcadeTypography.Style(19); caption.alignment = TextAnchor.MiddleCenter;
             var panel = new Rect(1000, 820, 510, 120); ArcadeSkin.Plate(panel, ArcadeSkin.Teal);
             string title = active == WaitingEncounter.ReservedTable ? "THREE CHAIRS. TWO CUPS. A NAME YOU HAVE NOT MET." : active == WaitingEncounter.BreathingPhone ? "THE WIRE IS CUT. THE TELEPHONE STILL RINGS." : "THE REFLECTION DOES NOT FOLLOW YOU.";
             GUI.Label(new Rect(1020, 830, 470, 48), title, caption);
-            if (GUI.Button(new Rect(1020, 883, 470, 45), "LIFT THE RECEIVER  [Space / X]", prompt)) TryInspect();
+            if (GUI.Button(new Rect(1020, 883, 470, 45), "LIFT THE RECEIVER  [Space / E / A]", prompt)) TryInspect();
             GUI.matrix = previous;
         }
         private void OnDestroy()
         {
+            if (registeredLayout) ShopLayout.Active?.Release(LayoutId);
             ShopFocus.Unregister(this);
             if (ring != null) Destroy(ring); if (tearSprite != null) Destroy(tearSprite);
         }

@@ -50,7 +50,7 @@ namespace ArcaneBrigade
         public static Sprite CustomerFace(UnitState unit, float time)
         {
             if (unit?.Definition.Id == "OutsideStageKeeper")
-                return Picture(!unit.Alive ? "Keeper_Kneel" : "Keeper_BodyShell");
+                return Picture(!unit.Alive ? "Keeper_Kneel" : unit.KneelUntil > time ? "Keeper_KneelShell" : "Keeper_BodyShell");
             if (unit?.Definition.Id != NightmareRules.CustomerId) return null;
             // The borrowed face holds through a threat and its recovery; it is not a flashing timer effect.
             bool threatens = unit.PendingAttack || unit.TelegraphUntil > time || unit.BossRecoveryUntil > time;
@@ -61,10 +61,18 @@ namespace ArcaneBrigade
         }
         private static readonly string[] KeeperIntact = { "Keeper_Hand_Intact", "Keeper_Carpet_Intact", "Keeper_Eye_Open" };
         private static readonly string[] KeeperBroken = { "Keeper_Hand_Broken", "Keeper_Carpet_Broken", "Keeper_Eye_Closed" };
+        private static readonly string[] KeeperCharged = { "Keeper_Hand_Charged", "Keeper_Carpet_Charged", "Keeper_Eye_Charged" };
+        private static readonly string[] KeeperReleased = { "Keeper_Hand_Release", "Keeper_Carpet_Release", "Keeper_Eye_Open" };
         public static Sprite KeeperPart(int part, bool broken, Sprite fallback)
         {
             string[] names = broken ? KeeperBroken : KeeperIntact;
             return part >= 0 && part < names.Length ? Picture(names[part]) ?? fallback : fallback;
+        }
+        public static Sprite KeeperPart(int part, bool broken, bool charged, bool released, Sprite fallback)
+        {
+            if (broken || !charged && !released) return KeeperPart(part, broken, fallback);
+            string[] names = released ? KeeperReleased : KeeperCharged;
+            return part >= 0 && part < names.Length ? Picture(names[part]) ?? KeeperPart(part, false, fallback) : fallback;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void Reset() { cached = null; lookup = null; pictures.Clear(); }
     }
