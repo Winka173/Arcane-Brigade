@@ -17,6 +17,10 @@ namespace ArcaneBrigade
         }
         public static RosterEntry Starter(RunCatalog catalog, UnitDefinition champion)
         {
+            // each hero's own starting friend and its complementing weapon (HeroLoadout); the older themed pick below is the fallback
+            if (HeroLoadout.Heroes.TryGetValue(champion.Id, out HeroLoadout.Entry plan) && catalog.Unit(plan.Friend) is UnitDefinition friend
+                && catalog.Weapon(plan.FriendWeapon) != null && Eligible(champion, friend) && Array.IndexOf(ActOneCanon.StoryIds, friend.Id) < 0)
+                return new RosterEntry { UnitId = plan.Friend, WeaponId = plan.FriendWeapon };
             string unit = champion.Id == "LanternKnight" ? "TeapotPilgrim" : champion.Id == "Postmaster" ? "BrassAcorn" : "HoodWisp";
             string weapon = champion.Id == "LanternKnight" ? "SpoonSabre" : champion.Id == "Postmaster" ? "InkPistol" : "SnowGlobeOrb";
             if (champion.HeroMechanic >= HeroMechanic.RootedOracle || !string.IsNullOrEmpty(champion.ReferenceHero) && champion.Id != "LanternKnight" && champion.Id != "Postmaster" && champion.Id != "DrowsySeer")

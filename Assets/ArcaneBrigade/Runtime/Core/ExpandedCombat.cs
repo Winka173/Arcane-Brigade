@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         private float nextRepair;
         private bool bossMotifConsumed;
         private void ResetExpansion() { ClearExpansion(); ExpandedPayoffs = 0; bossMotifConsumed = false; }
-        private void ClearExpansion() { fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); ClearBuildMorphs(); ClearOctoberBosses(); }
+        private void ClearExpansion() { ClearArsenal(); fields.Clear(); treasureUntil = nextRepair = 0; ClearSpectacle(); deathReactions.Clear(); ClearCooperation(); ClearEnemyVariants(); ClearBuildMorphs(); ClearOctoberBosses(); }
 
         private void Field(ExpandedFieldKind kind, UnitState source, Vector2 position, Vector2 direction, float radius, float damage, float delay, float duration, CombatCause cause, UnitState target = null)
         {
@@ -49,6 +49,7 @@ namespace ArcaneBrigade
         {
             ResolveCooperationAttack(source, damage, cause);
             WeaponDefinition weapon = source.Definition.Weapon;
+            if (weapon.Arsenal != ArsenalWeapon.None && source.Faction != Faction.Enemy) return ResolveArsenalAttack(source, damage, critical, cause);
             if (weapon.Mechanic != CarnivalWeapon.None && source.Faction != Faction.Enemy) return ResolveCarnivalAttack(source, damage, critical, cause);
             if (weapon.Family == ExpandedWeapon.None || source.Faction == Faction.Enemy) return false;
             source.ExpandedBeat++;
@@ -228,7 +229,7 @@ namespace ArcaneBrigade
         {
             ProcessCooperation();
             ProcessDeathReactions();
-            ProcessExpandedRelics(); ProcessBossMotif();
+            ProcessExpandedRelics(); ProcessBossMotif(); ProcessArsenal(delta);
             for (int index = fields.Count - 1; index >= 0; index--)
             {
                 ExpandedField field = fields[index];

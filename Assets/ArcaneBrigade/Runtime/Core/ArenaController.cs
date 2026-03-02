@@ -52,6 +52,7 @@ namespace ArcaneBrigade
         private PacingFeedback pacing;
         private ArenaToyVisual arenaToyVisual;
         private ExpandedVisual expandedVisual;
+        private ArsenalVisual arsenalVisual;
         private float transitionRemaining;
         private float resultRevealRemaining;
         private float terminalVisualAge;
@@ -142,6 +143,7 @@ namespace ArcaneBrigade
             bossTelegraph = gameObject.AddComponent<BossTelegraph>();
             if (runCatalog != null) arenaToyVisual = gameObject.AddComponent<ArenaToyVisual>();
             if (runCatalog != null) expandedVisual = gameObject.AddComponent<ExpandedVisual>();
+            if (runCatalog != null) arsenalVisual = gameObject.AddComponent<ArsenalVisual>();
             if (runCatalog != null) arcadeEffects = gameObject.AddComponent<ArcadeEffects>();
             if (runCatalog != null) { Shop = gameObject.AddComponent<WorldShop>(); Shop.Configure(this); }
             if (runCatalog != null) gameObject.AddComponent<OutsideStageChoice>().Configure(this);
@@ -357,7 +359,10 @@ namespace ArcaneBrigade
                     if (value.Kind == CombatEventKind.Detonation || value.Kind == CombatEventKind.BossLanded) explosions.Observe(value, true);
             if (arcadeEffects != null)
                 foreach (CombatEvent value in simulation.Events)
+                {
                     if (paintedEffects == null || !paintedEffects.Play(value)) arcadeEffects.Play(value);
+                    if (arsenalVisual != null) arsenalVisual.Play(value, Time.time);
+                }
             if (combatFeedback != null)
                 for (int index = 0; index < simulation.Events.Count; index++) combatFeedback.Play(simulation.Events[index]);
             if (audioFeedback != null)
@@ -621,6 +626,7 @@ namespace ArcaneBrigade
             if (spectacleVisual != null) spectacleVisual.Display(simulation);
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
             if (expandedVisual != null) { expandedVisual.ReducedMotion = profile != null && profile.ReducedMotion; expandedVisual.Display(simulation); }
+            if (arsenalVisual != null) arsenalVisual.Display(simulation, Time.time);
             liveIds.Clear();
             for (int index = 0; index < simulation.Units.Count; index++)
             {

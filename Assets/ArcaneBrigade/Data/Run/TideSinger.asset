@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -1677870521, guid: e2602925b599b034588002e05e50be83, type: 3}
   - {fileID: 869675029, guid: e2602925b599b034588002e05e50be83, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: ad9ec2baabb910d4b94e54edd6fe4538, type: 2}
-  Weapon: {fileID: 11400000, guid: 3a552c526a3998a428518fbbccaa188b, type: 2}
+  Weapon: {fileID: 11400000, guid: a9b27cddf2286b24bacaed7af9c6ba1f, type: 2}
   Health: 120
   Speed: 3.1
   Radius: 0.25

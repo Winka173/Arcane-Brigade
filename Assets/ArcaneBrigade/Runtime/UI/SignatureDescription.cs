@@ -13,6 +13,7 @@ namespace ArcaneBrigade
             if (weapon.Id == "MoonFeatherFan") return "Four weak feathers spread wide. Each pierces one additional target before tier/stat bonuses.";
             if (weapon.Id == "ClockCrescent") return "Dream elite weapon. Homes toward an unhit target, then returns on hit or after 0.7s. Each target takes one hit per throw.";
             if (weapon.Id == "ParasolNeedle") return "Long, narrow thrust. Position to line up enemies; melee range and damage bonuses apply.";
+            if (weapon.Arsenal != ArsenalWeapon.None) return ArsenalDescription.Describe(weapon, tier);
             if (weapon.Family != ExpandedWeapon.None) return ExpandedDescription.Describe(weapon, tier);
             if (weapon.Signature == SignatureWeapon.None) return weapon.Kind == WeaponKind.Projectile ? weapon.ProjectileCount + " projectiles per attack · pierces " + weapon.ProjectilePierce + " additional targets.\nOne projectile cannot hit the same target twice." : "";
             string details = weapon.Signature == SignatureWeapon.Stamp

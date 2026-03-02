@@ -39,6 +39,14 @@ namespace ArcaneBrigade
         {
             if (w == null || w.Kind == WeaponKind.Contact) return BuildMorphKind.None;
             if (w.Mechanic == CarnivalWeapon.Sewing || w.Family == ExpandedWeapon.Scissors) return BuildMorphKind.Thread;
+            switch (w.Arsenal)
+            {
+                case ArsenalWeapon.GrabberClaw: case ArsenalWeapon.PlungerPopper: return BuildMorphKind.Magnet;
+                case ArsenalWeapon.RoseBouquet: case ArsenalWeapon.PaperShuriken: return BuildMorphKind.Paper;
+                case ArsenalWeapon.SquirtTrio: case ArsenalWeapon.PlushShark: return BuildMorphKind.Tide;
+                case ArsenalWeapon.GlitchToybox: case ArsenalWeapon.TwinMoonStaff: return BuildMorphKind.Mirror;
+                case ArsenalWeapon.DreamRacket: case ArsenalWeapon.BalloonBuddy: return BuildMorphKind.Constellation;
+            }
             if (w.Signature == SignatureWeapon.Stamp) return BuildMorphKind.Seal;
             if (w.Mechanic == CarnivalWeapon.Magnet || w.Mechanic == CarnivalWeapon.YoYo) return BuildMorphKind.Magnet;
             if (w.Family == ExpandedWeapon.Tea) return BuildMorphKind.Porcelain;

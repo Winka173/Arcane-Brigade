@@ -1,0 +1,126 @@
+PASS 24 distinct weapons
+PASS a weapon is only in the catalog with its art
+PASS every hero carries a different weapon now
+PASS every hero's own weapon is different
+PASS hero assets carry their loadout weapon
+PASS starting friends and their weapons all differ
+PASS starting friend LanternKnight = KettleBat with CrescentBow
+PASS friend's weapon differs from the hero's LanternKnight
+PASS starting friend Postmaster = BookmarkGolem with BookPaddle
+PASS friend's weapon differs from the hero's Postmaster
+PASS starting friend DrowsySeer = IceCreamOwl with ForkTrident
+PASS friend's weapon differs from the hero's DrowsySeer
+PASS starting friend RootOracle = OrbitMoth with DreamIron
+PASS friend's weapon differs from the hero's RootOracle
+PASS starting friend LoneJelly = JellySwordsman with TwinSabres
+PASS friend's weapon differs from the hero's LoneJelly
+PASS starting friend GlassDice = DiceCrab with PaperFan
+PASS friend's weapon differs from the hero's GlassDice
+PASS starting friend TideSinger = AnchorSnail with RubberHammer
+PASS friend's weapon differs from the hero's TideSinger
+PASS starting friend CometRunner = CometKite with ShellCannon
+PASS friend's weapon differs from the hero's CometRunner
+PASS starting friend MirrorKeeper = MirrorNewt with UmbrellaHook
+PASS friend's weapon differs from the hero's MirrorKeeper
+PASS starting friend TreasureAcorn = BrassAcorn with SpoonSabre
+PASS friend's weapon differs from the hero's TreasureAcorn
+PASS starting friend VerdantMatron = LittleSprout with TapeWhip
+PASS friend's weapon differs from the hero's VerdantMatron
+PASS starting friend CopperCauldron = CoilKettle with SpringKnocker
+PASS friend's weapon differs from the hero's CopperCauldron
+PASS starting friend ChinaMarionette = RibbonSpider with RibbonWheel
+PASS friend's weapon differs from the hero's ChinaMarionette
+PASS starting friend SoapSkater = SailSquid with UmbrellaLance
+PASS friend's weapon differs from the hero's SoapSkater
+PASS starting friend VelvetRegent = ButtonBeetle with ButtonBow
+PASS friend's weapon differs from the hero's VelvetRegent
+PASS starting friend ButtonCavalier = TinTick with InkPistol
+PASS friend's weapon differs from the hero's ButtonCavalier
+PASS starting friend NightMaw = MaskPepper with DartCompass
+PASS friend's weapon differs from the hero's NightMaw
+PASS starting friend ThornTreasurer = SeedHedgehog with LollipopLance
+PASS friend's weapon differs from the hero's ThornTreasurer
+PASS starting friend CitrusMarshal = CitrusToad with StarKazoo
+PASS friend's weapon differs from the hero's CitrusMarshal
+PASS starting friend IvorySovereign = CrayonGremlin with RuneStaff
+PASS friend's weapon differs from the hero's IvorySovereign
+PASS starting friend PetalCitadel = PearMoth with PizzaWheel
+PASS friend's weapon differs from the hero's PetalCitadel
+PASS starting friend PatchworkHost = SockCyclops with CloudScissors
+PASS friend's weapon differs from the hero's PatchworkHost
+PASS starting friend ArchiveCurator = SpindleWren with ClockworkYoYo
+PASS friend's weapon differs from the hero's ArchiveCurator
+PASS starting friend PennyBroker = MailboxImp with StampHammer
+PASS friend's weapon differs from the hero's PennyBroker
+PASS starting friend StormFencer = SpringDuck with AfterimageSabre
+PASS friend's weapon differs from the hero's StormFencer
+PASS starting friend TinVirtuoso = StapleMole with MaracaHammer
+PASS friend's weapon differs from the hero's TinVirtuoso
+PASS starting friend MoonProwler = CoralTeacup with MoonFeatherFan
+PASS friend's weapon differs from the hero's MoonProwler
+PASS starting friend SupperMortar = BreadCrab with ToastCleaver
+PASS friend's weapon differs from the hero's SupperMortar
+PASS starting friend LanternWeaver = VioletRemnant with TeabagFlail
+PASS friend's weapon differs from the hero's LanternWeaver
+PASS starting friend HourglassStag = TeacupCricket with ParasolNeedle
+PASS friend's weapon differs from the hero's HourglassStag
+PASS starting friend RainArchivist = RibbonOtter with TinFish
+PASS friend's weapon differs from the hero's RainArchivist
+PASS CherryFuseBomb the bomb is still in the air
+PASS CherryFuseBomb bursts where it landed and hits beside the target
+PASS CherryFuseBomb never strikes the enemy right behind the wielder
+PASS PopperSticks three sticks thrown
+PASS PopperSticks every stick pops by itself
+PASS PopperSticks an enemy on a stick sets it off
+PASS PopperSticks never strikes the enemy right behind the wielder
+PASS DreamRacket the ball bounces through the group
+PASS DreamRacket never strikes the enemy right behind the wielder
+PASS BambooVase bamboo springs up in a line past the target
+PASS BambooVase never strikes the enemy right behind the wielder
+PASS RoseBouquet petals left along the path
+PASS RoseBouquet the petal ribbon hurts what stands in it
+PASS RoseBouquet never strikes the enemy right behind the wielder
+PASS HomeRunBat the batted enemy flies into another
+PASS HomeRunBat never strikes the enemy right behind the wielder
+PASS CandyDrill pierces four, then drills in
+PASS CandyDrill never strikes the enemy right behind the wielder
+PASS InkyOctopus clings and keeps hurting
+PASS InkyOctopus comes home after 3 s
+PASS InkyOctopus never strikes the enemy right behind the wielder
+PASS GrabberClaw reels the enemy in
+PASS GrabberClaw never strikes the enemy right behind the wielder
+PASS StarforgeClaymore the blade blocks a shot during its wind-up
+PASS StarforgeClaymore sweeps 200 degrees in front
+PASS StarforgeClaymore never strikes the enemy right behind the wielder
+PASS DragonLanternGlaive sweeps do not reach far
+PASS DragonLanternGlaive the third beat is a long thrust
+PASS DragonLanternGlaive never strikes the enemy right behind the wielder
+PASS TwinMoonStaff grinds at the end and comes back
+PASS TwinMoonStaff never strikes the enemy right behind the wielder
+PASS PlushShark thrown at the farthest, chomping on the way
+PASS PlushShark swims home
+PASS PlushShark never strikes the enemy right behind the wielder
+PASS DrumstickClub slam ahead and a shock running forward
+PASS DrumstickClub never strikes the enemy right behind the wielder
+PASS PaperShuriken stars bounce between enemies
+PASS PaperShuriken never strikes the enemy right behind the wielder
+PASS SquirtTrio soaks and slows
+PASS SquirtTrio never strikes the enemy right behind the wielder
+PASS ConfettiBlunderbuss several pellets land up close
+PASS ConfettiBlunderbuss never strikes the enemy right behind the wielder
+PASS PlungerPopper pulls in, then pops
+PASS PlungerPopper never strikes the enemy right behind the wielder
+PASS SignpostSlammer the third swing plants a slowing sign
+PASS SignpostSlammer never strikes the enemy right behind the wielder
+PASS DetonatorBox bombs wait for the plunger
+PASS DetonatorBox the plunger sets every bomb off
+PASS DetonatorBox never strikes the enemy right behind the wielder
+PASS FirecrackerPinwheel the pinwheel waits
+PASS FirecrackerPinwheel an enemy close by sets it off
+PASS FirecrackerPinwheel never strikes the enemy right behind the wielder
+PASS GumballGatling a hot barrel fires sooner
+PASS GumballGatling never strikes the enemy right behind the wielder
+PASS BalloonBuddy floats into the crowd and pops
+PASS BalloonBuddy never strikes the enemy right behind the wielder
+PASS GlitchToybox borrows different pool weapons and shows the next
+PASS GlitchToybox never strikes the enemy right behind the wielder

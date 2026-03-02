@@ -89,6 +89,11 @@ namespace ArcaneBrigade
         public float CameraWeakUntil;
         public int WeaknessSourceId;
         public int ExpandedBeat;
+        public int ArsenalBeat;              // Bizarre Arsenal combo / plant counter
+        public float ArsenalHeat;            // Gumball Gatling barrel heat (0..1)
+        public float ArsenalLastShot = -100;
+        public WeaponDefinition Borrowed;    // Glitch Toybox: the weapon this attack borrowed
+        public WeaponDefinition BorrowNext;  // Glitch Toybox: the next pick, shown above the box
         public int MorphAttacks;
         public float NextMorph;
         public float LastMorphAt = -100;
@@ -179,6 +184,12 @@ namespace ArcaneBrigade
         public HashSet<int> Volley;       // shared by the shots of one fan: each foe is struck once per volley
         public int ExtraPierce;           // foes passed through beyond the weapon's own pierce
         public bool SignatureShot;        // a bell chime or umbrella drop carrying the signature payoff
+        public ArsenalWeapon Arsenal;     // a Bizarre Arsenal shot (racket ball, claw, drill, shark...)
+        public int ArsenalStage;          // its phase: out, hover, return...
+        public float ArsenalTimer;
+        public int ArsenalHops;
+        public Vector2 ArsenalHome;
+        public float ArsenalTick;
     }
 
     public sealed class PickupState
@@ -807,10 +818,10 @@ namespace ArcaneBrigade
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
 
-        private void EmitProjectile(UnitState unit, float damage, bool critical, CombatCause cause)
+        private void EmitProjectile(UnitState unit, float damage, bool critical, CombatCause cause, WeaponDefinition borrowed = null)
         {
             if (unit.Faction == Faction.Enemy && catalog.RunWave == 1) return;
-            WeaponDefinition weapon = unit.Definition.Weapon;
+            WeaponDefinition weapon = borrowed ?? unit.Definition.Weapon;
             Vector2 muzzleOffset = weapon.HasMuzzleOffset ? weapon.ProjectileMuzzleOffset : Vector2.right * weapon.MuzzleDistance;
             Vector2 rotatedMuzzle = Quaternion.Euler(0f, 0f, Mathf.Atan2(unit.AttackDirection.y, unit.AttackDirection.x) * Mathf.Rad2Deg) * muzzleOffset;
             Vector2 position = unit.Position + unit.AttackDirection * (weapon.MountDistance - weapon.RecoilDistance) + rotatedMuzzle;
@@ -902,6 +913,8 @@ namespace ArcaneBrigade
                     if (address != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (address.Position - projectile.Position).normalized * 5.5f, Mathf.Clamp01(deltaTime * 9));
                 }
                 if (projectile.Faction == Faction.Enemy) HostileBallistics.Advance(projectile, deltaTime);
+                int arsenalMotion = MoveArsenalProjectile(projectile, deltaTime);
+                if (arsenalMotion != 0) { if (arsenalMotion < 0) projectiles.RemoveAt(index); continue; }
                 int expandedMotion = MoveExpandedProjectile(projectile, deltaTime);
                 if (expandedMotion != 0) { if (expandedMotion < 0) projectiles.RemoveAt(index); continue; }
                 if (!AdvanceCombatProjectile(projectile, deltaTime)) projectiles.RemoveAt(index);

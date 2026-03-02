@@ -56,6 +56,7 @@ namespace ArcaneBrigade
                     ApplyWeaponDamage(hit, projectile.Damage, projectile.Faction, projectile.Element, projectile.SourceName, projectile.Velocity.normalized, projectile.Weapon, projectile.Critical, projectile.Cause);
                     OnExpandedProjectileHit(projectile, hit);
                     if (projectile.SignatureShot) OnSignatureShotHit(projectile, hit);
+                    if (projectile.Arsenal != ArsenalWeapon.None) OnArsenalHit(projectile, hit);
                     if (Phase != RunPhase.Combat) return false;
                     if (hit.Faction == Faction.Companion) return false;
                     if (projectile.SplitOnImpact) SplitCombatProjectile(projectile);
