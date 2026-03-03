@@ -9,7 +9,7 @@ Sources: research notes in the session scratchpad (`bb/`, `bb2/`): Fandom wikite
 
 ---
 
-## 1. New weapons (24 + 8 from pass 3 = 32)
+## 1. New weapons (24 + 8 from pass 3 + 3 own takes + 6 from pass 4 = 41)
 
 Numbers are tier-1 values; tier 2/3 follow the usual `CompanionTierScaling`. W = weapon damage. "Hero" = the playable character who carries it (§2). All are `ArsenalWeapon` mechanics resolved in `Runtime/Core/ArsenalCombat.cs`.
 
@@ -64,6 +64,20 @@ Also clarified by pass 3 (already covered): the slingshot (AcornSling), the red 
 | 35 | BuzzerBlock | the yellow block with a red button | planted | Places a prank buzzer 1.8 ahead (up to 2). The enemy that steps on it and 3 neighbours in a chain are shocked (60%) and stopped 0.3 s. | Yellow buzzer jumping when pressed; a zig-zag toy lightning chain. |
 
 Rejected as duplicates of what we already have: boomerang (CrescentBoomerang), slingshot (AcornSling), thrown fish (TinFish), cleaver (ToastCleaver/KeyCleaver), flail/spiked club (TeabagFlail), fan (PaperFan), fire extinguisher, glow stick (AfterimageSabre), axe (KeyCleaver), machete (TwinSabres), trident, spear, bow, magic staffs, water-bubble wand.
+
+### Research pass 4 (6 more, 41 total)
+Pass 4 scanned 40 new videos (30 YouTube, 10 Bilibili; English, Japanese, Korean, Thai, Vietnamese, Spanish, Chinese), 33 of them with shop screens: difficulty-5 runs, endless to wave 99, co-op, two Potato-relic runs, and one Bilibili video (av114227373153171) that ranks **every companion weapon** with burned-in captions, the most useful source of the pass. Companion weapons are random per the wiki, so the companion/weapon pairs seen are observations, not fixed. The Naming Demon did not appear in any new video.
+
+| # | Id | From Bizarre Brigade | Kind | Mechanic | Look |
+|---|---|---|---|---|---|
+| 36 | PawMitten | beast-claw glove (兽爪): very fast, tiny reach, "weakest weapon" | melee | Very quick short swipes (90% W, cone 0.55, 0.42 s). Every fifth swipe rakes three claw lines 0.5 further (50% W each). | Blue-grey paw mitten with felt pads and blunt claws; cream claw-swipe streaks. |
+| 37 | HearthBrick | a brick held by Red Hood and the caveman, thrown | lob | Lobs a brick at the target (0.5 s flight); it thuds down for 130% W (r 0.7), dazes 0.7 s and shoves. Tier 2+: it skips on 1.2 once more for 60% of that. | Terracotta hearth brick with a chalk star, tumbling; low brick-dust puff. |
+| 38 | VerdictGavel | the Judge's gavel (裁决官): small area, luck and wage add damage, rare | melee | Bangs down on the enemy in front (r 0.65). +25% per point of luck (up to 2) and up to +50% for coins gathered this hall (200). | Dark wooden gavel; a big golden gavel head stamps down with a cream ring. |
+| 39 | TalismanIngot | the Hopping Zombie's charm-sealed gold (蹦蹦僵尸): small blast, 3× a plain shot, bursts with pauses | projectile | Fast throws (0.5 s); each ingot hits, then pops in a small blast (r 0.6) for the same again. After every fourth throw a 1.2 s pause. | Gold ingot with a pasted cream paper charm (teal swirl, no readable text); gold-leaf and paper burst. |
+| 40 | KunaiFan | three fanned black kunai with red-wrapped grips (Orange Hood, orange robot) | projectile | The three kunai leave one after another (0.12 s apart) down the same line, 60% W each, each through one enemy. | Black kunai with wine cloth and tassels. |
+| 41 | BareKnuckles | no weapon, just fists (猛?王): fast, very low damage, crits explode nearby | melee | Very fast short punches (0.38 s). A critical punch also pops the air just ahead (r 0.8, 120% W). | Cream cloth hand-wraps; a cream-and-teal air-pop ring and jab star. |
+
+Possible but not added: the Little Witch's crystal ball (it may only be the existing purple orb staff's shots), and the Camo Shroom's black-and-red "pruning shears" (most likely the kunai fan). Also clarified by pass 4 (already covered): the air hammer, plunger, signpost (360° sweep), the cyan double-ended spear, Guan Dao, golden trident, thrown shark, claymore, pirate hook, the white and black staffs, bamboo vase, sound-ring gun, hunting rifle, pink octopus, bomb, cannon (splits 1 into 4), detonator, rose bouquet, horn, triple water pistol, striped drill.
 
 ## 2. One weapon per playable character (31, all different)
 
@@ -186,6 +200,12 @@ Per weapon: `<Id>_Held_v1.png` — the weapon alone, lying horizontally, **point
 | GumballGatling | `Gumball_f0..f3` (four colours) |
 | BalloonBuddy | `BalloonAnimal_f0..f1` (bob), `BalloonPop_f0..f2` |
 | GlitchToybox | `JackBox_f0..f2` (lid shut / popping / open), `TvStatic` |
+| PawMitten | `PawSwipe` |
+| HearthBrick | `BrickShot_f0..f1` (tumble), `BrickDust_f0..f2` |
+| VerdictGavel | `GavelStamp_f0..f2` (raised / striking / lifting) |
+| TalismanIngot | `IngotShot_f0..f1` (spin), `IngotBlast_f0..f2` |
+| KunaiFan | `KunaiShot` |
+| BareKnuckles | `KnucklePop_f0..f2`, `FistJab` |
 
 ### 5.2 Animation art
 - `Art/Acting/<HeroId>_Idle_f0..f3_v1.png`, `<HeroId>_Walk_f0..f7_v1.png` for the 31 heroes (edit of the hero's existing pose; same scale, feet on the same line).

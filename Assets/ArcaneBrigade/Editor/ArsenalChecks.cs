@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         {
             results.Clear();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Require(ArsenalSpecs.All.Length == 35 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 35, "35 distinct weapons");
+            Require(ArsenalSpecs.All.Length == 41 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 41, "41 distinct weapons");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
             foreach (ArsenalSpecs.Spec spec in ArsenalSpecs.All)
@@ -341,6 +341,63 @@ namespace ArcaneBrigade.Editor
                     Require(one > 0 && t.ChillUntil > sim.Elapsed && low - t.Health >= one * 2.9f, id + " dazes, and the third swat crushes the weak");
                     break;
                 }
+                case ArsenalWeapon.PawMitten:
+                {
+                    UnitState t = f.Enemy(new Vector2(0.8f, 0)), reach = f.Enemy(new Vector2(1.4f, 0.1f));
+                    for (int i = 0; i < 4; i++) sim.ArsenalAttackFixture(me, t);
+                    Require(t.Health < f.Full && reach.Health == f.Full, id + " swipes reach only up close");
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(reach.Health < f.Full, id + " the fifth swipe rakes claw lines further");
+                    break;
+                }
+                case ArsenalWeapon.HearthBrick:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.3f);
+                    Require(t.Health == f.Full, id + " the brick is still in the air");
+                    f.Tick(0.5f);
+                    Require(t.Health < f.Full && t.ChillUntil > sim.Elapsed && t.Position.x > 3, id + " it thuds down, dazing and shoving");
+                    break;
+                }
+                case ArsenalWeapon.VerdictGavel:
+                {
+                    UnitState t = f.Enemy(new Vector2(1, 0)), beyond = f.Enemy(new Vector2(2.6f, 0));
+                    sim.ArsenalAttackFixture(me, t); float plain = f.Full - t.Health;
+                    Require(plain > 0 && beyond.Health == f.Full, id + " the verdict lands on the enemy in front only");
+                    f.Arena.Luck = 2; float before = t.Health;
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(before - t.Health >= plain * 1.49f, id + " luck makes the verdict heavier");
+                    f.Arena.Luck = 0;
+                    break;
+                }
+                case ArsenalWeapon.TalismanIngot:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0)), side = f.Enemy(new Vector2(3, 0.5f));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.6f);
+                    Require(t.Health < f.Full && side.Health < f.Full, id + " the ingot pops in a small blast");
+                    for (int i = 0; i < 3; i++) { me.AttackStarted = sim.Elapsed; me.NextAttack = sim.Elapsed + spec.Cooldown; sim.ArsenalAttackFixture(me, t); }
+                    Require(me.NextAttack >= me.AttackStarted + spec.Cooldown + 1.19f, id + " a pause after every fourth throw");
+                    me.NextAttack = float.PositiveInfinity;
+                    break;
+                }
+                case ArsenalWeapon.KunaiFan:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0)), next = f.Enemy(new Vector2(4, 0.05f));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.05f);
+                    Require(sim.Projectiles.Count(p => p.Arsenal == ArsenalWeapon.KunaiFan) == 1, id + " the kunai leave one at a time");
+                    f.Tick(0.8f);
+                    Require(f.Full - t.Health >= w * 0.6f * 3 * 0.99f && next.Health < f.Full, id + " all three fly down the line, each through one enemy");
+                    break;
+                }
+                case ArsenalWeapon.BareKnuckles:
+                {
+                    UnitState t = f.Enemy(new Vector2(0.8f, 0)), ahead = f.Enemy(new Vector2(2.0f, 0));
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(t.Health < f.Full && ahead.Health == f.Full, id + " punches reach only up close");
+                    sim.ArsenalAttackFixture(me, t, true);
+                    Require(ahead.Health < f.Full, id + " a critical punch pops the air ahead");
+                    break;
+                }
             }
             Require(behind.Health == f.Full, id + " never strikes the enemy right behind the wielder");
         }
@@ -353,12 +410,13 @@ namespace ArcaneBrigade.Editor
             public readonly CombatSimulation Simulation;
             public readonly UnitState Me;
             public readonly float Full = 10000;
+            public readonly CheckpointCatalog Arena;
 
             public Fixture(RunCatalog catalog, ArsenalSpecs.Spec spec)
             {
                 this.catalog = catalog;
                 session = new RunSession(catalog); session.Start("LanternKnight", 24017); session.State.Roster.Clear(); session.State.Wave = 2;
-                CheckpointCatalog arena = session.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0;
+                CheckpointCatalog arena = session.PrepareCombat(); arena.Boss = null; arena.EnemyBudget = 0; Arena = arena;
                 arena.EnableArenaToys = arena.EnableBossArenaPhase = arena.EnableSpectacles = arena.EnableHeroMechanics = false;
                 arena.StoryCompanions = new UnitDefinition[0]; arena.CompanionLeash = 20;
                 Simulation = new CombatSimulation(arena); Simulation.Start(24017);

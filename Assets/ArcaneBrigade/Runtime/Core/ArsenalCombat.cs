@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>The Bizarre Arsenal (Docs/Bizarre_Arsenal.md §1): 24 weapons found in Bizarre Brigade research. Every attack is
+    /// <summary>The Bizarre Arsenal (Docs/Bizarre_Arsenal.md §1): 41 weapons found in Bizarre Brigade research. Every attack is
     /// thrown, fired, planted ahead or swung in front; nothing radiates from the wielder's body. Delayed and planted pieces are
     /// ArsenalProps (capped, deterministic, cleared at rest); special flights are ProjectileStates tagged with Arsenal.</summary>
     public sealed partial class CombatSimulation
@@ -350,9 +350,55 @@ namespace ArcaneBrigade
                     }
                     return true;
                 }
+                // research pass 4
+                case ArsenalWeapon.PawMitten:
+                {
+                    // very quick, very short swipes; every fifth rakes three claw lines a little further through the target
+                    ArsenalSweep(source, weapon, aim, weapon.Range, 0.55f, damage * 0.9f, critical, cause);
+                    if (source.ArsenalBeat % 5 == 0)
+                    {
+                        Vector2 side = new Vector2(-aim.y, aim.x);
+                        for (int i = -1; i <= 1; i++) ArsenalLine(source, weapon, source.Position + side * (0.18f * i), source.Position + side * (0.18f * i) + aim * (weapon.Range + 0.5f), 0.05f, damage * 0.5f, critical, cause.Child("paw-rake"));
+                    }
+                    return true;
+                }
+                case ArsenalWeapon.HearthBrick:
+                {
+                    ArsenalProp brick = PlaceProp(ArsenalPropKind.Brick, source, ClampPosition(point, 0.3f), damage * 1.3f, 0.7f, critical, cause);
+                    brick.LandAt = Elapsed + 0.5f; brick.Until = brick.LandAt + 0.1f; brick.Stage = tier >= 2 ? 1 : 0;
+                    return true;
+                }
+                case ArsenalWeapon.VerdictGavel:
+                {
+                    // the verdict lands on the enemy in front; luck and the coins gathered this hall make it heavier
+                    Vector2 at = target != null && (target.Position - source.Position).magnitude <= weapon.Range + target.Definition.Radius + 0.4f ? target.Position : source.Position + aim * weapon.Range * 0.75f;
+                    ArsenalBurst(source, weapon, at, 0.65f, damage * Verdict(), critical, cause);
+                    return true;
+                }
+                case ArsenalWeapon.TalismanIngot:
+                    ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 7.5f, weapon.Range + 0.5f, damage, critical, cause, 0.14f);
+                    // four charms to a sheet: after every fourth throw, a short pause to write new ones
+                    if (source.ArsenalBeat % 4 == 0) source.NextAttack = Mathf.Max(source.NextAttack, source.AttackStarted + weapon.Cooldown + 1.2f);
+                    return true;
+                case ArsenalWeapon.KunaiFan:
+                {
+                    // the three kunai leave one after another down the same line
+                    ArsenalProp fan = PlaceProp(ArsenalPropKind.Kunai, source, source.Position, damage * 0.6f, 0, critical, cause);
+                    Vector2 line = point - ArsenalMuzzle(source);
+                    fan.Direction = line.sqrMagnitude > 0.0001f ? line.normalized : aim; fan.FuseAt = Elapsed; fan.Until = Elapsed + 1f;
+                    return true;
+                }
+                case ArsenalWeapon.BareKnuckles:
+                    ArsenalSweep(source, weapon, aim, weapon.Range, 0.6f, damage, critical, cause);
+                    // no weapon at all: a critical punch pops the air just ahead of the fist
+                    if (critical) ArsenalBurst(source, weapon, source.Position + aim * (weapon.Range + 0.3f), 0.8f, damage * 1.2f, true, cause.Child("knuckle-pop"));
+                    return true;
             }
             return false;
         }
+
+        /// <summary>Verdict Gavel weight: +25% per point of luck (up to 2) and up to +50% for the coins gathered this hall (200).</summary>
+        public float Verdict() => 1 + Mathf.Clamp(catalog.Luck, 0, 2) * 0.25f + Mathf.Min(Gold, 200) / 200f * 0.5f;
 
         // ---- shapes ----
         private void ArsenalSweep(UnitState source, WeaponDefinition weapon, Vector2 aim, float range, float coneDot, float damage, bool critical, CombatCause cause)
@@ -521,6 +567,9 @@ namespace ArcaneBrigade
                         grab.TargetId = target.Id; grab.Start = target.Position; grab.LandAt = Elapsed + 0.3f; grab.Until = grab.LandAt + 0.3f; grab.Victims.Add(target.Id);
                         grab.Direction = (combatRandom.Next(2) == 0 ? 1 : -1) * new Vector2(-ArsenalAim(source).y, ArsenalAim(source).x);
                     }
+                    shot.Remaining = 0; return;
+                case ArsenalWeapon.TalismanIngot:
+                    ArsenalBurst(source, shot.Weapon, target.Position, 0.6f, shot.Damage, shot.Critical, shot.Cause.Child("ingot-blast"));
                     shot.Remaining = 0; return;
                 case ArsenalWeapon.PlungerPopper:
                 {
@@ -722,6 +771,26 @@ namespace ArcaneBrigade
                         if (Elapsed > p.Until) arsenalProps.Remove(p);
                         break;
                     }
+                    case ArsenalPropKind.Brick:
+                        if (Elapsed < p.LandAt) break;
+                        ArsenalBurst(source, weapon, p.Position, p.Radius, p.Damage, p.Critical, p.Cause, push: 0.25f, chill: 0.7f);
+                        if (p.Stage > 0)
+                        {
+                            // tier 2+: the brick skips on once more, lower and lighter
+                            p.Stage--; p.Start = p.Position; p.Position = ClampPosition(p.Position + p.Direction.normalized * 1.2f, 0.3f);
+                            p.Born = Elapsed; p.LandAt = Elapsed + 0.3f; p.Until = p.LandAt + 0.1f; p.Damage *= 0.6f;
+                        }
+                        else arsenalProps.Remove(p);
+                        break;
+                    case ArsenalPropKind.Kunai:
+                        while (p.Stage < 3 && Elapsed >= p.FuseAt)
+                        {
+                            Vector2 from = source.Position + p.Direction * Mathf.Max(0.3f, weapon.MuzzleDistance);
+                            ArsenalShot(source, from, p.Direction, 11f, weapon.Range + 0.5f, p.Damage, p.Critical, p.Stage == 0 ? p.Cause : p.Cause.Child("kunai-" + p.Stage), 0.1f, 1, weapon);
+                            p.Stage++; p.FuseAt += 0.12f;
+                        }
+                        if (p.Stage >= 3) arsenalProps.Remove(p);
+                        break;
                     case ArsenalPropKind.Fizz:
                         if (Elapsed < p.LandAt) break;
                         if (Elapsed >= p.NextTick)
@@ -820,11 +889,11 @@ namespace ArcaneBrigade
         }
 
 #if UNITY_EDITOR
-        public bool ArsenalAttackFixture(UnitState source, UnitState target)
+        public bool ArsenalAttackFixture(UnitState source, UnitState target, bool critical = false)
         {
             source.AttackTargetId = target != null ? target.Id : 0;
             if (target != null) source.AttackDirection = (target.Position - source.Position).normalized;
-            return ResolveArsenalAttack(source, source.Definition.Weapon.Damage, false, NewCause(source.Id));
+            return ResolveArsenalAttack(source, source.Definition.Weapon.Damage, critical, NewCause(source.Id));
         }
         public ProjectileState ProjectileFixtureShot(Vector2 position, Vector2 velocity)
         {

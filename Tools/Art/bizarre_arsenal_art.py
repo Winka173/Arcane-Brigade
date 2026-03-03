@@ -91,6 +91,13 @@ W = {
     "DowsingRod": "a forked wooden dowsing twig with a little glowing cyan bead at its tip",
     "StarKnuckle": "a silver knuckle-duster glove with blunt star-shaped studs",
     "BuzzerBlock": "a brass-yellow buzzer block with a big wine-red push button",
+    # research pass 4
+    "PawMitten": "a soft blue-grey mitten shaped like an animal paw, pink felt pads and blunt cream claws, a wine velvet cuff",
+    "HearthBrick": "a single old hearth brick, warm terracotta with soot at one end and a chalk star scribbled on it",
+    "VerdictGavel": "a small judge's gavel in dark polished wood with brass bands",
+    "TalismanIngot": "a small gold boat-shaped ingot with a cream paper charm strip pasted across it, the charm inked with a teal swirl (no readable text)",
+    "KunaiFan": "three black kunai fanned out together, their grips wrapped in wine cloth with little tassels",
+    "BareKnuckles": "a pair of rolled cream cloth hand-wraps with wine stitching, loosely tied, the kind wound round bare fists",
 }
 for wid, subject in W.items():
     add(wid + "_Held", subject, "held")
@@ -169,6 +176,17 @@ add("StarShard", "a small silver star shard", "shot")
 add("PunchStar", "a cartoon punch impact star, silver and cream", "fx")
 add("BuzzerFloor", "the yellow buzzer block lying on the floor, red button up", "floor", ["button up, still", "button pressed, the block jumping with little lightning sparks"])
 add("ZapChain", "a short zig-zag of friendly cyan-gold lightning, horizontal", "tile")
+# research pass 4
+add("PawSwipe", "three short curved claw-swipe streaks in cream and soft blue-grey, opening to the right", "fx")
+add("BrickShot", "the terracotta hearth brick tumbling", "round", ["long side facing us", "turned end over end, short end facing us"])
+add("BrickDust", "a puff of warm terracotta brick dust with a few chips", "fx", ["the thud, a tight low puff", "the puff spreading wide and low", "settling, a few chips left"])
+add("GavelStamp", "a big golden gavel head coming down onto the floor", "fx",
+    ["the gold gavel head raised high, about to fall", "the gavel head striking the floor with a cream impact ring", "the head lifting away, a ring of dust left"])
+add("IngotShot", "the charm-sealed gold ingot spinning, the paper charm fluttering", "round", ["charm strip facing us", "turned 90 degrees, the charm strip trailing"])
+add("IngotBlast", "a small burst of gold leaf and torn cream charm paper with teal ink flecks", "fx", ["tight bright burst", "open, paper scraps flying", "fading, a few flakes falling"])
+add("KunaiShot", "a single black kunai flying point first, a wine tassel trailing", "shot")
+add("KnucklePop", "a small pop of air ahead of a punch: a cream-and-teal ring burst with little star flecks", "fx", ["the pop, tight", "the ring opening", "the ring fading"])
+add("FistJab", "a cartoon jab impact: a short cream star-burst with three speed ticks, opening to the right", "fx")
 
 # animation art (Docs/Bizarre_Arsenal.md §5.2)
 heroes = ["LanternKnight", "Postmaster", "DrowsySeer", "RootOracle", "LoneJelly", "GlassDice", "TideSinger", "CometRunner", "MirrorKeeper",

@@ -43,6 +43,12 @@ namespace ArcaneBrigade
                 ArsenalWeapon.DowsingRod => "Throws a twig at the weakest enemy in reach (120%); it bends toward it and exposes it for 2 s.",
                 ArsenalWeapon.StarKnuckle => "Quick jabs (80%). Every fourth is a star uppercut (150%) that dazes and throws 3 star shards forward.",
                 ArsenalWeapon.BuzzerBlock => "Places a prank buzzer ahead (up to 2). The enemy who steps on it and 3 neighbours in a chain are shocked (60%) and stopped briefly.",
+                ArsenalWeapon.PawMitten => "Very quick, very short paw swipes (90%). Every fifth swipe rakes three claw lines a little further (50% each).",
+                ArsenalWeapon.HearthBrick => "Lobs a brick at the target. It thuds down for 130% in a small area, dazing and shoving." + (tier >= 2 ? " Tier 2+: it skips on once more for 60% of that." : ""),
+                ArsenalWeapon.VerdictGavel => "Bangs a verdict down on the enemy in front (small area). +25% per point of luck (up to 2) and up to +50% for the coins gathered this hall.",
+                ArsenalWeapon.TalismanIngot => "Throws charm-sealed gold ingots fast; each hits, then pops in a small blast for the same again. After every fourth throw, a 1.2 s pause to write new charms.",
+                ArsenalWeapon.KunaiFan => "Throws its three kunai one after another down the same line, 60% each; each passes through one enemy.",
+                ArsenalWeapon.BareKnuckles => "No weapon at all: very fast short punches. A critical punch also pops the air just ahead for 120% in a small area.",
                 _ => weapon.GameplaySummary
             };
             return (string.IsNullOrEmpty(weapon.GameplaySummary) ? "" : weapon.GameplaySummary + "\n") + rules + "\nNothing it does comes from the wielder's own body: every hit is thrown, fired, planted or swung in front.";

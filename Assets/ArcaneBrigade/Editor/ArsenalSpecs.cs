@@ -52,6 +52,13 @@ namespace ArcaneBrigade.Editor
             S("StarKnuckle", ArsenalWeapon.StarKnuckle, M, WeaponMotion.Thrust, DamageElement.Physical, 9, 1.2f, 0.55f, 0.1f, "Quick jabs; every fourth is a star uppercut.", "StarShard", "PunchStar"),
             S("BuzzerBlock", ArsenalWeapon.BuzzerBlock, P, WeaponMotion.Cast, DamageElement.Arcane, 12, 4.0f, 1.15f, 0.2f, "A prank buzzer on the floor shocks a chain of enemies.", "BuzzerFloor_f0", "BuzzerFloor_f1", "ZapChain"),
             S("FlySwatter", ArsenalWeapon.FlySwatter, M, WeaponMotion.Slam, DamageElement.Physical, 12, 1.4f, 0.9f, 0.2f, "Swats flat and dazes; every third swat crushes the weak.", "SwatPrint"),
+            // research pass 4
+            S("PawMitten", ArsenalWeapon.PawMitten, M, WeaponMotion.Thrust, DamageElement.Physical, 6, 1.0f, 0.42f, 0.08f, "Very quick, very short paw swipes; every fifth rakes three claw lines.", "PawSwipe"),
+            S("HearthBrick", ArsenalWeapon.HearthBrick, P, WeaponMotion.Recoil, DamageElement.Physical, 14, 4.2f, 1.35f, 0.3f, "Lobs a brick: it thuds down, dazing and shoving what it lands on.", "BrickShot_f0", "BrickShot_f1", "BrickDust_f0", "BrickDust_f1", "BrickDust_f2"),
+            S("VerdictGavel", ArsenalWeapon.VerdictGavel, M, WeaponMotion.Slam, DamageElement.Physical, 9, 1.3f, 1.05f, 0.26f, "Bangs a verdict down in front; luck and gathered coins make it heavier.", "GavelStamp_f0", "GavelStamp_f1", "GavelStamp_f2"),
+            S("TalismanIngot", ArsenalWeapon.TalismanIngot, P, WeaponMotion.Recoil, DamageElement.Arcane, 6, 4.5f, 0.5f, 0.1f, "Throws charm-sealed gold ingots in fours; each pops in a small blast.", "IngotShot_f0", "IngotShot_f1", "IngotBlast_f0", "IngotBlast_f1", "IngotBlast_f2"),
+            S("KunaiFan", ArsenalWeapon.KunaiFan, P, WeaponMotion.Recoil, DamageElement.Physical, 8, 6.0f, 1.1f, 0.16f, "Throws its three kunai one after another down one line.", "KunaiShot"),
+            S("BareKnuckles", ArsenalWeapon.BareKnuckles, M, WeaponMotion.Thrust, DamageElement.Physical, 5, 0.95f, 0.38f, 0.06f, "No weapon at all: very fast punches; a critical punch pops the air ahead.", "KnucklePop_f0", "KnucklePop_f1", "KnucklePop_f2", "FistJab"),
         };
     }
 }

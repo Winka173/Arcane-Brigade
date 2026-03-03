@@ -71,7 +71,8 @@ namespace ArcaneBrigade
                 (string art, float ahead, float size) cue = value.Weapon.Arsenal switch
                 {
                     ArsenalWeapon.CorkRifle => ("CorkPop", 0.7f, 0.6f), ArsenalWeapon.LeekBaton => ("LeekSwipe", 0.8f, 1.6f),
-                    ArsenalWeapon.FlySwatter => ("SwatPrint", 1.1f, 0.9f), _ => (null, 0, 0)
+                    ArsenalWeapon.FlySwatter => ("SwatPrint", 1.1f, 0.9f), ArsenalWeapon.PawMitten => ("PawSwipe", 0.5f, 0.75f),
+                    ArsenalWeapon.BareKnuckles => ("FistJab", 0.55f, 0.5f), _ => (null, 0, 0)
                 };
                 if (cue.art != null && ArsenalArtwork.Frames(cue.art) != null)
                     flashes.Add(new Flash { Art = cue.art, At = value.Position + value.Direction.normalized * cue.ahead, Born = time, Life = 0.28f, Size = cue.size, Angle = cue.art == "SwatPrint" ? 0 : facing });
@@ -85,7 +86,8 @@ namespace ArcaneBrigade
             string art = value.Weapon.Arsenal switch
             {
                 ArsenalWeapon.CherryFuseBomb => "CottonPop", ArsenalWeapon.PopperSticks => "PopperBurst", ArsenalWeapon.DetonatorBox => "CandyFlossCloud",
-                ArsenalWeapon.FirecrackerPinwheel => "PaperScraps", ArsenalWeapon.BalloonBuddy => "BalloonPop", ArsenalWeapon.ConfettiBlunderbuss => "ConfettiBurst", _ => null
+                ArsenalWeapon.FirecrackerPinwheel => "PaperScraps", ArsenalWeapon.BalloonBuddy => "BalloonPop", ArsenalWeapon.ConfettiBlunderbuss => "ConfettiBurst",
+                ArsenalWeapon.HearthBrick => "BrickDust", ArsenalWeapon.VerdictGavel => "GavelStamp", ArsenalWeapon.TalismanIngot => "IngotBlast", ArsenalWeapon.BareKnuckles => "KnucklePop", _ => null
             };
             if (art == null || ArsenalArtwork.Frames(art) == null) return;
             flashes.Add(new Flash { Art = art, At = value.Position, Born = time, Life = 0.5f, Size = Mathf.Max(0.8f, value.Value * 2.1f) });
@@ -248,6 +250,15 @@ namespace ArcaneBrigade
                     }
                     float life = Mathf.InverseLerp(p.LandAt, p.Until, now);
                     Draw(ArsenalArtwork.Frame("FizzPuddle", still ? 0.5f : life), at, 1.7f, 0, 64, new Color(1, 1, 1, Mathf.Clamp01((1 - life) * 3)), 0.5f);
+                    break;
+                }
+                case ArsenalPropKind.Brick:
+                {
+                    // a tumbling brick on a low arc over its floor shadow
+                    float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
+                    Vector2 air = Arc(p.Start, p.Position, t, 0.7f);
+                    ShadowAt(Vector2.Lerp(p.Start, p.Position, t) + Vector2.down * 0.1f, 0.36f * (0.6f + 0.4f * t));
+                    Draw(ArsenalArtwork.Frame("BrickShot", still ? 0 : now, still ? 0 : 8), air, 0.36f, still ? 0 : t * 400, Order(air));
                     break;
                 }
                 case ArsenalPropKind.Catch:

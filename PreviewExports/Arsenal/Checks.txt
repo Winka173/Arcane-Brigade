@@ -1,4 +1,4 @@
-PASS 35 distinct weapons
+PASS 41 distinct weapons
 PASS a weapon is only in the catalog with its art
 PASS every hero carries a different weapon now
 PASS every hero's own weapon is different
@@ -150,3 +150,21 @@ PASS BuzzerBlock stepping on it shocks a chain
 PASS BuzzerBlock never strikes the enemy right behind the wielder
 PASS FlySwatter dazes, and the third swat crushes the weak
 PASS FlySwatter never strikes the enemy right behind the wielder
+PASS PawMitten swipes reach only up close
+PASS PawMitten the fifth swipe rakes claw lines further
+PASS PawMitten never strikes the enemy right behind the wielder
+PASS HearthBrick the brick is still in the air
+PASS HearthBrick it thuds down, dazing and shoving
+PASS HearthBrick never strikes the enemy right behind the wielder
+PASS VerdictGavel the verdict lands on the enemy in front only
+PASS VerdictGavel luck makes the verdict heavier
+PASS VerdictGavel never strikes the enemy right behind the wielder
+PASS TalismanIngot the ingot pops in a small blast
+PASS TalismanIngot a pause after every fourth throw
+PASS TalismanIngot never strikes the enemy right behind the wielder
+PASS KunaiFan the kunai leave one at a time
+PASS KunaiFan all three fly down the line, each through one enemy
+PASS KunaiFan never strikes the enemy right behind the wielder
+PASS BareKnuckles punches reach only up close
+PASS BareKnuckles a critical punch pops the air ahead
+PASS BareKnuckles never strikes the enemy right behind the wielder
