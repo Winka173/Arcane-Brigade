@@ -12,6 +12,45 @@ namespace ArcaneBrigade
         [SerializeField] private Transform muzzle;
         private UnitState state;
         private MaterialPropertyBlock flashProperties;
+        // frame blending: when the body changes pose, the previous pose lies over it and dissolves in 85 ms, so two- and
+        // four-frame cycles read as motion rather than as a flip-book (off under Reduced Motion)
+        private SpriteRenderer frameGhost;
+        private MaterialPropertyBlock ghostProperties;
+        private Sprite shownFrame;
+        private float ghostAge = 1;
+        private const float GhostFade = 0.085f;
+        private void BlendFrames(float delta, UnitState state)
+        {
+            if (body == null) return;
+            if (ReducedMotion || state.Definition.IsBoss && state.EntranceUntil > lastDisplayTime)
+            {
+                if (frameGhost != null) frameGhost.enabled = false;
+                shownFrame = body.sprite; return;
+            }
+            if (shownFrame != null && body.sprite != shownFrame && body.sprite != null)
+            {
+                if (frameGhost == null)
+                {
+                    var go = new GameObject("FrameBlend"); go.transform.SetParent(body.transform.parent, false);
+                    frameGhost = go.AddComponent<SpriteRenderer>(); ghostProperties = new MaterialPropertyBlock();
+                }
+                frameGhost.sprite = shownFrame; ghostAge = 0;
+            }
+            shownFrame = body.sprite;
+            ghostAge += delta;
+            if (frameGhost == null) return;
+            if (ghostAge >= GhostFade || !body.enabled) { frameGhost.enabled = false; return; }
+            frameGhost.enabled = true;
+            frameGhost.sharedMaterial = body.sharedMaterial; frameGhost.flipX = body.flipX; frameGhost.flipY = body.flipY;
+            frameGhost.sortingLayerID = body.sortingLayerID; frameGhost.sortingOrder = body.sortingOrder + 1;
+            frameGhost.transform.SetPositionAndRotation(body.transform.position, body.transform.rotation);
+            frameGhost.transform.localScale = body.transform.localScale;
+            Color c = body.color; c.a *= 1 - ghostAge / GhostFade; frameGhost.color = c;
+            body.GetPropertyBlock(ghostProperties);
+            SpriteLighting.Apply(frameGhost, ghostProperties, state.Faction == Faction.Enemy);
+            ghostProperties.SetFloat("_Flash", 0);
+            frameGhost.SetPropertyBlock(ghostProperties);
+        }
         private LineRenderer bowString;
         private Material bowMaterial;
         private SpriteRenderer drawHand;
@@ -508,6 +547,7 @@ namespace ArcaneBrigade
                 body.color = new Color(body.color.r * dusk.r, body.color.g * dusk.g, body.color.b * dusk.b, body.color.a);
             }
             else if (emergence != null) emergence.Settle(body.sortingOrder, simulationTime);
+            BlendFrames(motionDelta, state);
             if (puppet != null)
             {
                 if (actingFrame != null || expandedFrame != null || reactionFrame != null && entrance <= 0 || state.Faction == Faction.Enemy && !state.Definition.IsBoss && AnimationDetailBudget.Level >= 2) { puppet.Hide(); body.enabled = true; }

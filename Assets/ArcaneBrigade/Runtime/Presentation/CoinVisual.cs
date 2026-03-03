@@ -28,6 +28,9 @@ namespace ArcaneBrigade
             float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f + Mathf.Min(0.12f, Mathf.Max(0, state.Value - 1) * 0.015f) : state.Kind >= LootKind.Flare ? 0.56f : 0.4f;
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
+            // painted spin frames when they exist (Art/Arsenal/CoinSpin); otherwise the squash turns, its rim darkening edge-on
+            Sprite[] turn = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? ArsenalArtwork.Frames("CoinSpin") : null;
+            if (turn != null) { renderer.sprite = turn[Mathf.Abs(Mathf.FloorToInt(age * (state.Attracting ? 24 : 10) + state.Id)) % turn.Length]; renderer.transform.localScale = new Vector3(width / renderer.sprite.bounds.size.x, width / renderer.sprite.bounds.size.x, 1); }
             if (state.Kind == LootKind.Chest && !PresentationSettings.ReducedMotion)
             {
                 float anticipation = AnimationTiming.Pulse(Mathf.Repeat(age + state.Id * .31f, 4.8f), .45f);
@@ -44,7 +47,8 @@ namespace ArcaneBrigade
                 suspension.Display(ground, (Vector3)ground + hover, width, time, state.Id, 1699, 1, true);
             }
             else if (suspension != null) suspension.Hide();
-            renderer.color = Color.white;
+            float edge = state.Kind == LootKind.Coin && turn == null && !PresentationSettings.ReducedMotion ? Mathf.InverseLerp(0.42f, 1f, spin) : 1;
+            renderer.color = Color.Lerp(new Color(0.72f, 0.6f, 0.45f), Color.white, edge);
             renderer.sortingOrder = 1700;
             shadow.gameObject.SetActive(true); shadow.sprite = disc;
             shadow.transform.position = ground;

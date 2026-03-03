@@ -1,4 +1,4 @@
-PASS 24 distinct weapons
+PASS 32 distinct weapons
 PASS a weapon is only in the catalog with its art
 PASS every hero carries a different weapon now
 PASS every hero's own weapon is different
@@ -124,3 +124,21 @@ PASS BalloonBuddy floats into the crowd and pops
 PASS BalloonBuddy never strikes the enemy right behind the wielder
 PASS GlitchToybox borrows different pool weapons and shows the next
 PASS GlitchToybox never strikes the enemy right behind the wielder
+PASS SaucerBlaster the saucer pierces the line
+PASS SaucerBlaster never strikes the enemy right behind the wielder
+PASS FanfareHorn the fan of fins strikes each foe once
+PASS FanfareHorn never strikes the enemy right behind the wielder
+PASS WindupWrench the wound-up enemy spins into its neighbour
+PASS WindupWrench never strikes the enemy right behind the wielder
+PASS CorkRifle a long shot through the whole line
+PASS CorkRifle never strikes the enemy right behind the wielder
+PASS CatcherMitt catches a shot in front
+PASS CatcherMitt throws the catch back after the fastball
+PASS CatcherMitt never strikes the enemy right behind the wielder
+PASS FizzBottle the bottle is still flying
+PASS FizzBottle the fizzing puddle hurts and slows
+PASS FizzBottle never strikes the enemy right behind the wielder
+PASS LeekBaton a wide stinging swing that pushes
+PASS LeekBaton never strikes the enemy right behind the wielder
+PASS FlySwatter dazes, and the third swat crushes the weak
+PASS FlySwatter never strikes the enemy right behind the wielder

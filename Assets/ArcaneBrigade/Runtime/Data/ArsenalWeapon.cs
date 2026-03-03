@@ -8,14 +8,16 @@ namespace ArcaneBrigade
     {
         None, CherryFuseBomb, PopperSticks, DreamRacket, BambooVase, RoseBouquet, HomeRunBat, CandyDrill, InkyOctopus, GrabberClaw,
         StarforgeClaymore, DragonLanternGlaive, TwinMoonStaff, PlushShark, DrumstickClub, PaperShuriken, SquirtTrio, ConfettiBlunderbuss,
-        PlungerPopper, SignpostSlammer, DetonatorBox, FirecrackerPinwheel, GumballGatling, BalloonBuddy, GlitchToybox
+        PlungerPopper, SignpostSlammer, DetonatorBox, FirecrackerPinwheel, GumballGatling, BalloonBuddy, GlitchToybox,
+        // research pass 3 (the Naming Demon's full cycle and the Potato relic)
+        SaucerBlaster, FanfareHorn, WindupWrench, CorkRifle, CatcherMitt, FizzBottle, LeekBaton, FlySwatter
     }
 
     public sealed partial class WeaponDefinition { public ArsenalWeapon Arsenal; }
 
     /// <summary>Something an Arsenal weapon leaves in the room: a lobbed bomb, a firecracker mine, a bamboo shoot, a petal
     /// ribbon, a clinging octopus, a planted sign, a pinwheel trap, a grinding drill, a batted or grabbed enemy in flight.</summary>
-    public enum ArsenalPropKind { Bomb, Bomblet, Stick, Vase, Shoot, Petals, Octopus, Sign, ToyBomb, Pinwheel, Drill, Bump, Batted, Grab, Plunge }
+    public enum ArsenalPropKind { Bomb, Bomblet, Stick, Vase, Shoot, Petals, Octopus, Sign, ToyBomb, Pinwheel, Drill, Bump, Batted, Grab, Plunge, Wound, Fizz, Catch }
 
     public sealed class ArsenalProp
     {

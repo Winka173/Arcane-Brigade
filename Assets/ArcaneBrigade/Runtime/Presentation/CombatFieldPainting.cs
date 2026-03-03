@@ -48,11 +48,14 @@ namespace ArcaneBrigade
                 angle = Mathf.Atan2(end.y - start.y, end.x - start.x) * Mathf.Rad2Deg;
             }
             Rect ink = SpriteInkMetrics.BoundsOf(image);
+            // a staged hazard gathers during its warning (75% -> full) while its true edge is shown at full size
+            float gather = warning && staged && !PresentationSettings.ReducedMotion ? Mathf.InverseLerp(field.Created, field.At, time) : 1;
+            Vector2 shown = size * (warning && staged ? .75f + .25f * gather : 1);
             view.sprite = image; view.enabled = true;
             view.transform.rotation = Quaternion.Euler(0, 0, angle);
-            view.transform.localScale = new Vector3(size.x / Mathf.Max(.01f, ink.width), size.y / Mathf.Max(.01f, ink.height), 1);
+            view.transform.localScale = new Vector3(shown.x / Mathf.Max(.01f, ink.width), shown.y / Mathf.Max(.01f, ink.height), 1);
             view.transform.position = (Vector3)position - view.transform.TransformVector(ink.center);
-            float fade = warning ? .85f : Mathf.Lerp(1, .5f, Mathf.Clamp01((time - field.At) / Mathf.Max(.05f, field.Until - field.At)));
+            float fade = warning ? (staged ? .55f + .3f * gather : .85f) : Mathf.Lerp(staged ? .95f : 1, staged ? .2f : .5f, Mathf.Clamp01((time - field.At) / Mathf.Max(.05f, field.Until - field.At)));
             view.color = new Color(1, 1, 1, fade * (key == "Thread" ? EffectDensity.AlliedAlpha : 1));
             if (warning && staged)
             {
@@ -63,7 +66,9 @@ namespace ArcaneBrigade
                     outline.transform.rotation = view.transform.rotation;
                     outline.transform.localScale = new Vector3(size.x / Mathf.Max(.01f, border.width), size.y / Mathf.Max(.01f, border.height), 1);
                     outline.transform.position = (Vector3)position - outline.transform.TransformVector(border.center);
-                    outline.color = new Color(1, 1, 1, .8f);
+                    // the edge brightens and beats faster as the blow comes
+                    float beat = PresentationSettings.ReducedFlashes || PresentationSettings.ReducedMotion ? 0 : .12f * Mathf.Sin(time * (8 + 22 * gather));
+                    outline.color = new Color(1, 1, 1, Mathf.Clamp01(.45f + .4f * gather + beat));
                 }
             }
             return true;

@@ -21,6 +21,7 @@ namespace ArcaneBrigade
         private ArenaController owner;
         private readonly List<Entry> entries = new List<Entry>();
         private Entry hovered, open;
+        private string shownKey; private float shownAt;   // when the open card appeared, for its pop-in
         private Vector2 openedFor;
         private GUIStyle name, title, body, hint;
         private readonly ShopDescriptionCard offerCard = new ShopDescriptionCard();
@@ -180,11 +181,21 @@ namespace ArcaneBrigade
                 ArcadeSkin.Panel(tag, ArcadeSkin.Card);
                 name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title + "  ·  click to read", name);
             }
+            if (open?.Key != shownKey) { shownKey = open?.Key; shownAt = Time.unscaledTime; }
+            Color tint = GUI.color;
+            if (open != null && !PresentationSettings.ReducedMotion)
+            {
+                // the card pops in: rises from 92% with a small overshoot and fades up over 0.22 s
+                float t = Mathf.Clamp01((Time.unscaledTime - shownAt) / 0.22f), back = 1 + 2.2f * Mathf.Pow(t - 1, 3) + 1.2f * Mathf.Pow(t - 1, 2);
+                Rect pivot = CardRect(open, camera);
+                GUIUtility.ScaleAroundPivot(Vector2.one * (0.92f + 0.08f * back), pivot.center + Vector2.up * (1 - t) * 14);
+                GUI.color = new Color(tint.r, tint.g, tint.b, tint.a * Mathf.Clamp01(t * 1.6f));
+            }
             if (open != null)
             {
                 if (open.Offer != null)
                 {
-                    DrawOffer(camera); GUI.matrix = previous; return;
+                    DrawOffer(camera); GUI.matrix = previous; GUI.color = tint; return;
                 }
                 Rect card = CardRect(open, camera);
                 ArcadeSkin.Panel(card, ArcadeSkin.CardLit);
@@ -194,7 +205,7 @@ namespace ArcaneBrigade
                 body.normal.textColor = ArcadeSkin.Cream; h = body.CalcHeight(new GUIContent(open.Body), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Body, body); y += h + 12;
                 hint.normal.textColor = ArcadeSkin.Teal; h = hint.CalcHeight(new GUIContent(open.Use + "   ·   click anywhere to close"), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Use + "   ·   click anywhere to close", hint);
             }
-            GUI.matrix = previous;
+            GUI.matrix = previous; GUI.color = tint;
         }
         private Rect CardRect(Entry entry, Camera camera)
         {

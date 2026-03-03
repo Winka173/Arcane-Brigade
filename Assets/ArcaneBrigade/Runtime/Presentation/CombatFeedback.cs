@@ -17,6 +17,8 @@ namespace ArcaneBrigade
             public float Size;
             public bool Important;
             public Vector2 Shape;
+            public Sprite[] Frames;   // painted spark frames (AllySpark / HeroHurt), played over the spark's short life
+            public float Ink = 1;
         }
 
         private readonly List<Spark> sparks = new List<Spark>();
@@ -108,12 +110,18 @@ namespace ArcaneBrigade
                 spark.Duration = kill ? 0.34f : 0.20f;
                 spark.Size = kill ? 0.09f : 0.065f;
                 spark.Important = important;
+                // a painted spark, not a flat disc: brass motes for our hits, the hurt splash when the hero is struck
+                spark.Frames = CombatVfxArtwork.Frames(combatEvent.Faction == Faction.Champion && hit ? "HeroHurt" : "AllySpark");
+                Sprite first = spark.Frames != null && spark.Frames.Length > 0 ? spark.Frames[(sequence + index) % spark.Frames.Length] : sprite;
+                spark.View.sprite = first;
+                spark.Ink = Mathf.Max(0.01f, spark.Frames != null ? SpriteInkMetrics.BoundsOf(first).width : sprite.bounds.size.x);
+                if (spark.Frames != null) { spark.Size *= 2.6f; spark.Color = Color.Lerp(Color.white, color, 0.45f); }
                 bool sliver = hit && (combatEvent.Weapon == null || combatEvent.Weapon.Kind == WeaponKind.Melee || combatEvent.Weapon.Motion == WeaponMotion.Bow);
                 spark.Shape = sliver ? new Vector2(1.7f, 0.45f) : Vector2.one;
                 spark.View.transform.position = spark.Position;
                 spark.View.transform.localRotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-                spark.View.transform.localScale = new Vector3(spark.Shape.x, spark.Shape.y, 1) * (spark.Size / Mathf.Max(0.01f, sprite.bounds.size.x));
-                spark.View.color = color;
+                spark.View.transform.localScale = new Vector3(spark.Shape.x, spark.Shape.y, 1) * (spark.Size / spark.Ink);
+                spark.View.color = spark.Color;
                 spark.View.gameObject.SetActive(true);
             }
             sequence++;
@@ -229,7 +237,8 @@ namespace ArcaneBrigade
                 float remaining = Mathf.Clamp01(1f - spark.Age / spark.Duration);
                 spark.Position += spark.Velocity * deltaTime;
                 spark.View.transform.position = spark.Position;
-                spark.View.transform.localScale = new Vector3(spark.Shape.x, spark.Shape.y, 1) * (spark.Size * remaining / Mathf.Max(0.01f, sprite.bounds.size.x));
+                if (spark.Frames != null && spark.Frames.Length > 1) spark.View.sprite = spark.Frames[Mathf.Min(spark.Frames.Length - 1, Mathf.FloorToInt((1 - remaining) * spark.Frames.Length))];
+                spark.View.transform.localScale = new Vector3(spark.Shape.x, spark.Shape.y, 1) * (spark.Size * (0.45f + 0.55f * remaining) / spark.Ink);
                 spark.View.color = new Color(spark.Color.r, spark.Color.g, spark.Color.b, remaining);
                 if (remaining <= 0f) spark.View.gameObject.SetActive(false);
             }

@@ -74,6 +74,14 @@ W = {
     "GumballGatling": "a gumball machine turned into a hand-crank gatling: glass globe full of multicoloured gumballs, brass barrels and crank",
     "BalloonBuddy": "a twisted balloon animal (a poodle) on a string tied to a brass ring handle",
     "GlitchToybox": "a jack-in-the-box with a brass crank, lid shut, slightly glitching colour fringe on its edges",
+    "SaucerBlaster": "a blue toy ray gun shaped like a flying saucer, a cyan dome on top and a ring nozzle",
+    "FanfareHorn": "a golden flared fanfare horn with a brown wooden mouthpiece and a tassel",
+    "WindupWrench": "a big white toy wrench with a brass wind-up key on its handle",
+    "CorkRifle": "a brown wooden toy hunting rifle that fires corks, a cork on a string at the muzzle",
+    "CatcherMitt": "a brown leather baseball catcher's mitt worn on a little hand, a ball tucked in it",
+    "FizzBottle": "a green glass soda bottle with a yellow-dotted label and a fizzing cap",
+    "LeekBaton": "a long fresh spring onion / leek held like a baton, green leaves at the right end",
+    "FlySwatter": "a red toy fly swatter with a cream handle and a mesh of little stars",
 }
 for wid, subject in W.items():
     add(wid + "_Held", subject, "held")
@@ -133,6 +141,19 @@ add("BalloonAnimal", "the twisted poodle balloon animal floating on its string",
 add("BalloonPop", "a balloon popping into a spinning deflating scrap, ribbons and an air ripple", "fx", ["the pop", "scrap spinning", "ribbons falling"])
 add("JackBox", "the jack-in-the-box", "round", ["lid shut", "lid popping, spring rising", "a jester head springing out"])
 add("TvStatic", "a small patch of colourful TV static", "fx")
+add("SaucerShot", "a cyan toy flying saucer with a glowing dome", "round", ["lights on the rim lit", "the other rim lights lit"])
+add("SaucerRing", "a thin cyan ring wake with tiny bubbles, seen from above", "round")
+add("SoundFin", "a golden sound fin: a curved fan-shaped wave of brass musical shimmer opening to the right", "shot", ["narrow, just blown", "wider", "widest and fading"])
+add("WindupKey", "a brass wind-up key", "round", ["upright", "turned 90 degrees"])
+add("DizzyStars", "a little ring of three cartoon dizzy stars", "fx")
+add("CorkBullet", "a cork flying point first with a short string", "shot")
+add("CorkPop", "a cork-gun muzzle puff with a POP", "fx")
+add("Fastball", "a white baseball with red stitches spinning", "round")
+add("MittCatch", "a little THWAP of a ball landing in a mitt: a leather-brown burst with a dust ring", "fx")
+add("SodaBottleShot", "the green soda bottle tumbling", "shot")
+add("FizzPuddle", "a puddle of green soda fizzing with bubbles on the floor", "floor", ["just splashed, wide", "bubbling", "flattening, fewer bubbles"])
+add("LeekSwipe", "a crescent swipe trail of fresh green leek streaks opening to the right", "fx")
+add("SwatPrint", "a flat star-mesh swat print with a little dust puff", "floor")
 
 # animation art (Docs/Bizarre_Arsenal.md §5.2)
 heroes = ["LanternKnight", "Postmaster", "DrowsySeer", "RootOracle", "LoneJelly", "GlassDice", "TideSinger", "CometRunner", "MirrorKeeper",

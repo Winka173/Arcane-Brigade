@@ -118,8 +118,9 @@ namespace ArcaneBrigade
             if (fraction >= 1 && gaugeFull < 0) gaugeFull = t; else if (fraction < 1) gaugeFull = -1;
             float ready = fraction >= 1 && !still ? .5f + .5f * Mathf.Sin((t - gaugeFull) * 6) : 0;
             float rx = plain ? .76f : .68f, ry = rx * .44f, from = 204, to = 336;
-            ground.Stroke(InkCanvas.Arc(feet, rx, ry, from - 4, to + 4), new InkStroke { Width = .035f, Head = 1, Alpha = .38f * strength, Ink = ink.Ink, Body = ink.Ink, Light = ink.Light, InkOnly = true, Taper = 1 });
             int count = GaugeCount();
+            // a pip gauge is its row of tokens alone (no thin ring under the hero); a continuous one keeps a faint track to fill
+            if (count == 0) ground.Stroke(InkCanvas.Arc(feet, rx, ry, from - 4, to + 4), new InkStroke { Width = .03f, Head = 1, Alpha = .2f * strength, Ink = ink.Ink, Body = ink.Ink, Light = ink.Light, InkOnly = true, Taper = 1 });
             if (count > 0)
             {
                 InkToken pip = id == "GlassDice" ? InkToken.Coin : style.Token;
@@ -151,7 +152,7 @@ namespace ArcaneBrigade
                 Vector2 die = feet + new Vector2(rx + .16f, -.02f);
                 Token(InkToken.Die, die, .26f * (1 + ready * .1f), still ? 0 : Mathf.Sin(t * 2) * 6, 1, false, sim.HeroIdentityNextFace);
             }
-            if (fraction >= 1 && !calm) Glow(feet, rx * 1.5f, ink.Glow, .08f + ready * .05f);
+            if (fraction >= 1 && !calm) Glow(feet, rx * 1.1f, ink.Glow, .05f + ready * .04f);
         }
         private static readonly InkPalette GoldPalette = new InkPalette(new Color(.24f, .13f, .03f), new Color(.96f, .74f, .28f), new Color(1, .95f, .74f), new Color(1, .8f, .4f), new Color(.6f, .38f, .16f));
         private static readonly Color[] PetalColours = { new Color(.96f, .48f, .56f), new Color(.34f, .7f, .78f), new Color(.5f, .86f, .5f), new Color(.5f, .66f, 1f) };

@@ -259,6 +259,59 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.GlitchToybox:
                     return Glitch(source, damage, critical, cause);
+                case ArsenalWeapon.SaucerBlaster:
+                    ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 6f, 6f, damage * 0.7f, critical, cause, 0.2f, 3);
+                    return true;
+                case ArsenalWeapon.FanfareHorn:
+                {
+                    // three golden sound fins blown forward in a fan; each foe is struck once per blast
+                    var blast = new HashSet<int>();
+                    for (int i = -1; i <= 1; i++) ArsenalShot(source, ArsenalMuzzle(source), ArsenalTurn(point - ArsenalMuzzle(source), i * 20), 6f, 3.5f, damage * 0.45f, critical, cause, 0.3f, 99).Volley = blast;
+                    return true;
+                }
+                case ArsenalWeapon.WindupWrench:
+                    ArsenalSweep(source, weapon, aim, weapon.Range, weapon.ConeDot, damage, critical, cause);
+                    if (source.ArsenalBeat % 3 == 0 && target != null && target.Alive && !target.Definition.IsBoss)
+                    {
+                        ArsenalProp wound = PlaceProp(ArsenalPropKind.Wound, source, target.Position, damage * 0.5f, 0.9f, critical, cause.Child("wound-up"));
+                        wound.TargetId = target.Id; wound.FuseAt = Elapsed + 1f; wound.Until = wound.FuseAt + 0.6f;
+                    }
+                    return true;
+                case ArsenalWeapon.CorkRifle:
+                    ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 14f, weapon.Range + 1, damage * 1.7f, critical, cause, 0.1f, 99);
+                    return true;
+                case ArsenalWeapon.CatcherMitt:
+                {
+                    // a fastball at the target, then every shot the mitt caught thrown back after it
+                    ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 11f, weapon.Range + 1, damage * 1.3f, critical, cause, 0.12f);
+                    int caught = 0;
+                    for (int i = arsenalProps.Count - 1; i >= 0; i--) if (arsenalProps[i].Source == source && arsenalProps[i].Kind == ArsenalPropKind.Catch) { arsenalProps.RemoveAt(i); caught++; }
+                    for (int i = 0; i < caught; i++) ArsenalShot(source, ArsenalMuzzle(source), ArsenalTurn(point - ArsenalMuzzle(source), (i + 1) * (i % 2 == 0 ? 7 : -7)), 11f, weapon.Range + 1, damage * 0.8f, critical, cause.Child("mitt-return"), 0.12f);
+                    return true;
+                }
+                case ArsenalWeapon.FizzBottle:
+                {
+                    ArsenalProp fizz = PlaceProp(ArsenalPropKind.Fizz, source, ClampPosition(point, 0.3f), damage * 0.15f, 0.8f, critical, cause);
+                    fizz.LandAt = Elapsed + 0.45f; fizz.Until = fizz.LandAt + 2.5f; return true;
+                }
+                case ArsenalWeapon.LeekBaton:
+                case ArsenalWeapon.FlySwatter:
+                {
+                    bool leek = weapon.Arsenal == ArsenalWeapon.LeekBaton, flatten = !leek && source.ArsenalBeat % 3 == 0;
+                    float cone = leek ? 0.26f : 0.3f;
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        UnitState u = units[i];
+                        Vector2 delta = u.Position - source.Position;
+                        if (!CanHit(source.Faction, u) || delta.magnitude > weapon.Range + u.Definition.Radius || Vector2.Dot(delta.normalized, aim) < cone) continue;
+                        bool weak = u.Health <= u.Definition.Health * 0.3f;
+                        ApplyWeaponDamage(u, damage * (leek ? 0.8f : 1.1f) * (flatten && weak ? 2 : 1), source.Faction, weapon.Element, weapon.Id, aim, weapon, critical, cause);
+                        if (!u.Alive || u.Definition.IsBoss) continue;
+                        u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + (leek ? 0.8f : 0.6f));
+                        if (leek) { u.Position = ClampPosition(u.Position + aim * OctoberBalance.Push(u.Definition, 0.4f), u.Definition.Radius); spatial.Move(u); }
+                    }
+                    return true;
+                }
             }
             return false;
         }
@@ -607,6 +660,34 @@ namespace ArcaneBrigade
                         if (Elapsed > p.Until) arsenalProps.Remove(p);
                         break;
                     }
+                    case ArsenalPropKind.Wound:
+                    {
+                        // wound up: a second later the enemy spins like a top, dizzy, knocking into its neighbours
+                        UnitState wound = UnitWithId(p.TargetId);
+                        if (wound == null || !wound.Alive) { arsenalProps.Remove(p); break; }
+                        p.Position = wound.Position;
+                        if (p.Stage == 0 && Elapsed >= p.FuseAt)
+                        {
+                            p.Stage = 1; wound.ChillUntil = Mathf.Max(wound.ChillUntil, Elapsed + 0.6f);
+                            ArsenalBurst(source, weapon, wound.Position, p.Radius, p.Damage, p.Critical, p.Cause, push: 0.3f, loud: false);
+                        }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
+                    }
+                    case ArsenalPropKind.Fizz:
+                        if (Elapsed < p.LandAt) break;
+                        if (Elapsed >= p.NextTick)
+                        {
+                            p.NextTick = Elapsed + 0.25f;
+                            foreach (UnitState u in units)
+                            {
+                                if (!CanHit(source.Faction, u) || (u.Position - p.Position).sqrMagnitude > Mathf.Pow(p.Radius + u.Definition.Radius, 2)) continue;
+                                ApplyDamage(u, p.Damage, source.Faction, weapon.Id, Vector2.zero, weapon, p.Critical, cause: p.Cause);
+                                if (u.Alive) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + 0.4f);
+                            }
+                        }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
                     case ArsenalPropKind.Plunge:
                     {
                         UnitState stuck = UnitWithId(p.TargetId);
@@ -635,6 +716,7 @@ namespace ArcaneBrigade
         {
             foreach (UnitState unit in units)
             {
+                if (unit.Alive && unit.Faction != Faction.Enemy && unit.Definition.Weapon.Arsenal == ArsenalWeapon.CatcherMitt) { Catch(unit); continue; }
                 if (!unit.Alive || unit.Faction == Faction.Enemy || unit.Definition.Weapon.Arsenal != ArsenalWeapon.StarforgeClaymore) continue;
                 bool guarding = unit.PendingAttack || Elapsed <= unit.ImpactTime + 0.25f;
                 if (!guarding) continue;
@@ -647,6 +729,24 @@ namespace ArcaneBrigade
                     projectiles.RemoveAt(i);
                     events.Add(new CombatEvent(CombatEventKind.Proc, shot.Position, unit.Faction, 0.3f, aim, unit.Definition.Weapon, cause: NewCause(unit.Id).Child("claymore-block")));
                 }
+            }
+        }
+
+        /// <summary>Catcher Mitt: catches one hostile shot in front (within 1.4) every 0.6 s, holding up to three to throw back.</summary>
+        private void Catch(UnitState unit)
+        {
+            if (Elapsed - unit.ArsenalLastShot < 0.6f || OwnedProps(unit, ArsenalPropKind.Catch) >= 3) return;
+            Vector2 aim = ArsenalAim(unit);
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                ProjectileState shot = projectiles[i];
+                Vector2 off = shot.Position - unit.Position;
+                if (shot.Faction != Faction.Enemy || off.sqrMagnitude > 1.96f || off.sqrMagnitude > 0.0001f && Vector2.Dot(off.normalized, aim) < 0.2f) continue;
+                projectiles.RemoveAt(i); unit.ArsenalLastShot = Elapsed;
+                ArsenalProp ball = PlaceProp(ArsenalPropKind.Catch, unit, unit.Position, 0, 0, false, NewCause(unit.Id).Child("mitt-catch"));
+                ball.Until = float.PositiveInfinity;
+                events.Add(new CombatEvent(CombatEventKind.Proc, shot.Position, unit.Faction, 0.3f, aim, unit.Definition.Weapon, cause: ball.Cause));
+                return;
             }
         }
 

@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         {
             results.Clear();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Require(ArsenalSpecs.All.Length == 24 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 24, "24 distinct weapons");
+            Require(ArsenalSpecs.All.Length == 32 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 32, "32 distinct weapons");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
             foreach (ArsenalSpecs.Spec spec in ArsenalSpecs.All)
@@ -249,6 +249,70 @@ namespace ArcaneBrigade.Editor
                     var seen = new HashSet<string>();
                     for (int i = 0; i < 6; i++) { sim.ArsenalAttackFixture(me, t); if (me.Borrowed != null) seen.Add(me.Borrowed.Id); f.Tick(0.6f); }
                     Require(seen.Count >= 2 && seen.All(s => CombatSimulation.GlitchPool.Contains(s)) && me.BorrowNext != null, id + " borrows different pool weapons and shows the next");
+                    break;
+                }
+                case ArsenalWeapon.SaucerBlaster:
+                {
+                    var row = Enumerable.Range(0, 4).Select(i => f.Enemy(new Vector2(1.8f + i * 1.1f, 0))).ToList();
+                    sim.ArsenalAttackFixture(me, row[0]); f.Tick(1.2f);
+                    Require(row.All(e => e.Health < f.Full), id + " the saucer pierces the line");
+                    break;
+                }
+                case ArsenalWeapon.FanfareHorn:
+                {
+                    UnitState t = f.Enemy(new Vector2(2.2f, 0)), left = f.Enemy(new Vector2(2.4f, 0.9f)), right = f.Enemy(new Vector2(2.4f, -0.9f));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.8f);
+                    Require(t.Health < f.Full && left.Health < f.Full && right.Health < f.Full && f.Full - t.Health <= w * 0.45f * 1.01f, id + " the fan of fins strikes each foe once");
+                    break;
+                }
+                case ArsenalWeapon.WindupWrench:
+                {
+                    UnitState t = f.Enemy(new Vector2(1.2f, 0)), next = f.Enemy(new Vector2(1.6f, 0.8f));
+                    for (int i = 0; i < 3; i++) sim.ArsenalAttackFixture(me, t);
+                    float before = next.Health; f.Tick(1.2f);
+                    Require(next.Health < before && t.ChillUntil > sim.Elapsed - 0.5f, id + " the wound-up enemy spins into its neighbour");
+                    break;
+                }
+                case ArsenalWeapon.CorkRifle:
+                {
+                    UnitState near = f.Enemy(new Vector2(2, 0)), far = f.Enemy(new Vector2(7.5f, 0.05f));
+                    sim.ArsenalAttackFixture(me, near); f.Tick(0.8f);
+                    Require(near.Health < f.Full && far.Health < f.Full, id + " a long shot through the whole line");
+                    break;
+                }
+                case ArsenalWeapon.CatcherMitt:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0));
+                    ProjectileState shot = sim.ProjectileFixtureShot(new Vector2(1.0f, 0.1f), Vector2.left * 0.5f);
+                    f.Tick(0.1f);
+                    Require(!sim.Projectiles.Contains(shot) && sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Catch) == 1, id + " catches a shot in front");
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.5f);
+                    Require(f.Full - t.Health > w * 1.3f * 1.2f && sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Catch) == 0, id + " throws the catch back after the fastball");
+                    break;
+                }
+                case ArsenalWeapon.FizzBottle:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.4f);
+                    Require(t.Health == f.Full, id + " the bottle is still flying");
+                    f.Tick(1.2f);
+                    Require(t.Health < f.Full && t.ChillUntil > sim.Elapsed, id + " the fizzing puddle hurts and slows");
+                    break;
+                }
+                case ArsenalWeapon.LeekBaton:
+                {
+                    UnitState t = f.Enemy(new Vector2(1.2f, 0)), side = f.Enemy(new Vector2(0.5f, 1.2f));
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(t.Health < f.Full && side.Health < f.Full && t.Position.x > 1.2f && t.ChillUntil > sim.Elapsed, id + " a wide stinging swing that pushes");
+                    break;
+                }
+                case ArsenalWeapon.FlySwatter:
+                {
+                    UnitState t = f.Enemy(new Vector2(1.1f, 0));
+                    sim.ArsenalAttackFixture(me, t); float one = f.Full - t.Health;
+                    t.Health = f.Full * 0.2f; float low = t.Health;
+                    sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
+                    Require(one > 0 && t.ChillUntil > sim.Elapsed && low - t.Health >= one * 2.9f, id + " dazes, and the third swat crushes the weak");
                     break;
                 }
             }

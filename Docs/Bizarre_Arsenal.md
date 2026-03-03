@@ -9,7 +9,7 @@ Sources: research notes in the session scratchpad (`bb/`, `bb2/`): Fandom wikite
 
 ---
 
-## 1. New weapons (24)
+## 1. New weapons (24 + 8 from pass 3 = 32)
 
 Numbers are tier-1 values; tier 2/3 follow the usual `CompanionTierScaling`. W = weapon damage. "Hero" = the playable character who carries it (§2). All are `ArsenalWeapon` mechanics resolved in `Runtime/Core/ArsenalCombat.cs`.
 
@@ -39,6 +39,22 @@ Numbers are tier-1 values; tier 2/3 follow the usual `CompanionTierScaling`. W =
 | 22 | GumballGatling | machine gun (Billy) | projectile | Rapid gumballs (cooldown 0.32, 38% W). Consecutive shots heat the barrel: each shot −4% cooldown, down to −40%; 1.2 s without a target cools it. | A gumball machine with a crank; the glass globe empties as it fires; multicoloured gumballs; the barrel blushes orange when hot. | Thorn Treasurer |
 | 23 | BalloonBuddy | balloon (support) | projectile | Releases an animal balloon that floats slowly (2.2/s) toward the densest enemy group within 5; it pops on contact or after 3 s: r 1.0, 60% W, push 0.6, slow 30% 1.5 s. | Twisted balloon animal bobbing on a string; pops with a spinning deflate, falling ribbon and an air ripple. | — |
 | 24 | GlitchToybox | "Naming Demon" weapon glitch | special | Each attack borrows a random weapon from a fixed list of 12 simple pool weapons (seeded, deterministic) and performs that weapon's own attack at 90% of its damage. The next pick is shown above the box. | A jack-in-the-box; each swap flickers TV static and a slot-machine roll of tiny weapon icons. | Lady Loaded Dice |
+
+### Research pass 3 (8 more)
+Pass 3 read the Naming Demon's complete 32-item cycle frame by frame in three videos (same order every time) and the Potato relic's six orbiting weapons. New items beyond passes 1–2:
+
+| # | Id | From Bizarre Brigade | Kind | Mechanic | Look |
+|---|---|---|---|---|---|
+| 25 | SaucerBlaster | blue UFO gun firing cyan saucers that trail rings | projectile | A saucer (70% W) pierces up to 4 enemies over 6.0. | Toy saucer with a glowing dome; thin cyan ring wakes and bubbles behind it. |
+| 26 | FanfareHorn | golden horn blowing a fan of golden sound fins | projectile fan | 3 sound fins in a 40° fan travel 3.5, piercing; each enemy struck once per blast (45% W). | Brass horn; fins widen as they travel and fade. |
+| 27 | WindupWrench | white wrench | melee | Swing 100% W. Every third hit winds the enemy up: 1 s later it spins dizzy (stopped 0.6 s) and knocks its neighbours (r 0.9, 50% W). | Wrench with a wind-up key; the key turns in the enemy's back, dizzy stars. |
+| 28 | CorkRifle | wooden hunting rifle | projectile | Slow (1.55 s), long (8.0) cork shot through the whole line, 170% W. | Cork on a string; a POP puff at the muzzle. |
+| 29 | CatcherMitt | baseball mitt | projectile | Catches an enemy shot in front (within 1.4) every 0.6 s, holds 3. Each attack: a fastball (130%) then every caught shot thrown back (80%). | THWAP catch burst; stitched baseball fastballs. |
+| 30 | FizzBottle | green glass bottle | lob | The bottle bursts into a fizzing puddle (r 0.8, 2.5 s): 15% W every 0.25 s and slow. | Soda bottle tumbling; green puddle bubbling and flattening. |
+| 31 | LeekBaton | spring onion / leek | melee | Wide quick swing (150°, 80% W): pushes 0.4 and slows 0.8 s. | Fresh leek streaks. |
+| 32 | FlySwatter | red fly swatter | melee | Flat swat (110% W) dazes 0.6 s; every third swat deals double to enemies below 30% health. | Star-mesh swat print and dust. |
+
+Also clarified by pass 3 (already covered): the slingshot (AcornSling), the red round uchiwa fan (PaperFan), the black and gold tridents (ForkTrident/PlasmaTrident), the hunting rifle's shotgun cousin (ConfettiBlunderbuss), the cyan heart-gem staff (staffs), the curved white glaive (MoonScythe), the V boomerang (CrescentBoomerang), the thrown shark (PlushShark). Still unidentified at 40–60 px: a thin wooden stick, a silver spiked fist, a yellow block with a red button (likely the detonator).
 
 Rejected as duplicates of what we already have: boomerang (CrescentBoomerang), slingshot (AcornSling), thrown fish (TinFish), cleaver (ToastCleaver/KeyCleaver), flail/spiked club (TeabagFlail), fan (PaperFan), fire extinguisher, glow stick (AfterimageSabre), axe (KeyCleaver), machete (TwinSabres), trident, spear, bow, magic staffs, water-bubble wand.
 
@@ -120,16 +136,16 @@ Before: Teapot Pilgrim started for 9 heroes, Jelly Swordsman for 11, Mailbox Imp
 
 ## 4. Animation pass (everything from the audit)
 
-| # | Item | Code now | Art requested (image agent) |
-|---|---|---|---|
-| A1 | Characters have few frames (idle 2, walk 4, attack 2+2+2; enemies and roster bosses 4) | Smooth in-betweening between frames (cross-fade + squash/stretch + secondary bob), anticipation and follow-through on attacks, idle breathing, footfall dust timed to walk frames | Idle 4 and walk 8 frames for the 31 playable heroes first, then companions, then enemies (§5.2) |
-| A2 | Hero identity visuals: thin gold lines, orange ring under the hero, MechanicInk strokes | Replace line/ring primitives with painted forms (the BuildMorph/CombatVFX painted shapes), motes and soft glows; no ring under the hero | — (uses existing painted forms) |
-| A3 | Hostile "Curtain" red ring, large, often round the hero | Draw as a faint painted curtain edge (H16 art when it lands), lower alpha, warning pulse only before it bites | H16 already requested in `Combat_VFX_Art_Requests.md` |
-| A4 | Shop rarity bloom only 4 frames | 12-frame v2 already wired (`RarityBloom_v2`); interpolation between frames meanwhile | RarityBloom_v2 (already requested) |
-| A5 | Carrier 3 frames; Keeper silhouette placeholder | Keeper parts now painted (other session's Act I delivery); smoother carrier bob and cloth sway in code | Carrier 6-frame walk |
-| A6 | Coins/pickups static; ImpactSpark is a flat disc | Coins spin (squash on X), bob and glint; pickups bob and sparkle; ImpactSpark uses the painted AllySpark/BlastFlash frames | Coin spin 6 frames |
-| A7 | UI cards static; journal page turn; merchant gestures | Card hover lift/tilt/shine; journal page-turn curl; merchant idle gestures from existing poses with timing and secondary motion | Merchant gesture poses (3) |
-| A8 | Done earlier: death pop, boss rising from darkness, weapon cue moments | — | — |
+| # | Item | Status | Done in code | Art requested (image agent) |
+|---|---|---|---|---|
+| A1 | Characters have few frames (idle 2, walk 4, attack 2+2+2; enemies and roster bosses 4) | done (code), art queued | Frame blending in `UnitVisual.BlendFrames`: when the body changes pose the previous pose lies over it and dissolves in 85 ms, lit like the body; off under Reduced Motion and during a boss entrance. The existing gait bob, transition squash, landing and attack squash stay. | Idle 4 and walk 8 frames for the 31 heroes (§5.2) |
+| A2 | Hero identity visuals: thin rings and lines under the hero | done | `HeroIdentityVisual.DrawGauge`: a pip gauge is its row of tokens only (no thin ring under the hero); a continuous gauge keeps a fainter track; the ready glow is smaller and softer. | — |
+| A3 | Hostile "Curtain" ring, large, often round the hero | done | `CombatFieldPainting`: during its warning a staged hazard gathers from 75% to full size while its true edge is shown; the edge brightens and beats faster as the blow comes; after the blow it fades to 20% instead of 50%. | H16 (already in `Combat_VFX_Art_Requests.md`) |
+| A4 | Shop rarity bloom only 4 frames | done earlier | Linear cross-fade, breath and sway between frames; 12-frame `RarityBloom_v2` imported automatically when it exists. | RarityBloom_v2 (already requested) |
+| A5 | Carrier 3 frames; Keeper silhouette placeholder | waiting | The Keeper parts were repainted by the Act I art delivery. Carrier bob/cloth code waits: `StageTransfer.cs` is being edited by another session. | Carrier 6-frame walk |
+| A6 | Coins/pickups; ImpactSpark flat disc | done (code), art queued | Coins already spun, bounced and glinted; their rim now darkens edge-on, and painted `CoinSpin` frames replace the squash when they exist. ImpactSpark draws the painted `AllySpark` (our hits) / `HeroHurt` (hero struck) frames instead of a flat disc. | CoinSpin 6 frames |
+| A7 | UI cards static; journal page turn; merchant gestures | partly done | Shop inspect cards pop in (92% → overshoot → 100%) and fade up in 0.22 s. Merchant gestures wait: `ShopLayout.cs` is being edited by another session. | Merchant gesture poses (3) |
+| A8 | Death pop, boss rising from darkness, weapon cue moments | done earlier | — | — |
 
 ## 5. Art requests
 Machine-readable list: `Docs/Bizarre_Arsenal_Art_Worklist.json` (same format as `Art_Master_Worklist.json`; generated by `Tools/Art/bizarre_arsenal_art.py`).

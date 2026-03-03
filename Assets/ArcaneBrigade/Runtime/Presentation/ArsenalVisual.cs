@@ -12,7 +12,7 @@ namespace ArcaneBrigade
     {
         private readonly List<SpriteRenderer> pool = new List<SpriteRenderer>();
         private int used;
-        private sealed class Flash { public string Art; public Vector2 At; public float Born, Life, Size; }
+        private sealed class Flash { public string Art; public Vector2 At; public float Born, Life, Size, Angle; }
         private readonly List<Flash> flashes = new List<Flash>();
         private static readonly Color Shadow = new Color(0.05f, 0.03f, 0.08f, 0.35f);
         private static Sprite soft;
@@ -63,13 +63,31 @@ namespace ArcaneBrigade
         /// <summary>A detonation from an Arsenal weapon gets that weapon's own painted burst.</summary>
         public void Play(CombatEvent value, float time)
         {
-            if (value.Kind != CombatEventKind.Detonation || value.Weapon == null) return;
+            if (value.Weapon == null || value.Weapon.Arsenal == ArsenalWeapon.None || flashes.Count > 48) return;
+            float facing = Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg;
+            if (value.Kind == CombatEventKind.Fire)
+            {
+                // the weapon's own moment as it attacks: a cork pop, a leek swipe, a swat print
+                (string art, float ahead, float size) cue = value.Weapon.Arsenal switch
+                {
+                    ArsenalWeapon.CorkRifle => ("CorkPop", 0.7f, 0.6f), ArsenalWeapon.LeekBaton => ("LeekSwipe", 0.8f, 1.6f),
+                    ArsenalWeapon.FlySwatter => ("SwatPrint", 1.1f, 0.9f), _ => (null, 0, 0)
+                };
+                if (cue.art != null && ArsenalArtwork.Frames(cue.art) != null)
+                    flashes.Add(new Flash { Art = cue.art, At = value.Position + value.Direction.normalized * cue.ahead, Born = time, Life = 0.28f, Size = cue.size, Angle = cue.art == "SwatPrint" ? 0 : facing });
+                return;
+            }
+            if (value.Kind == CombatEventKind.Proc && value.Weapon.Arsenal == ArsenalWeapon.CatcherMitt && ArsenalArtwork.Frames("MittCatch") != null)
+            {
+                flashes.Add(new Flash { Art = "MittCatch", At = value.Position, Born = time, Life = 0.3f, Size = 0.55f }); return;
+            }
+            if (value.Kind != CombatEventKind.Detonation) return;
             string art = value.Weapon.Arsenal switch
             {
                 ArsenalWeapon.CherryFuseBomb => "CottonPop", ArsenalWeapon.PopperSticks => "PopperBurst", ArsenalWeapon.DetonatorBox => "CandyFlossCloud",
                 ArsenalWeapon.FirecrackerPinwheel => "PaperScraps", ArsenalWeapon.BalloonBuddy => "BalloonPop", ArsenalWeapon.ConfettiBlunderbuss => "ConfettiBurst", _ => null
             };
-            if (art == null || ArsenalArtwork.Frames(art) == null || flashes.Count > 48) return;
+            if (art == null || ArsenalArtwork.Frames(art) == null) return;
             flashes.Add(new Flash { Art = art, At = value.Position, Born = time, Life = 0.5f, Size = Mathf.Max(0.8f, value.Value * 2.1f) });
             if (value.Weapon.Arsenal == ArsenalWeapon.FirecrackerPinwheel && ArsenalArtwork.Frames("BangText") != null)
                 flashes.Add(new Flash { Art = "BangText", At = value.Position + Vector2.up * 0.5f, Born = time, Life = 0.6f, Size = 0.9f });
@@ -80,12 +98,23 @@ namespace ArcaneBrigade
             used = 0;
             bool still = PresentationSettings.ReducedMotion;
             if (sim != null)
+            {
                 foreach (ArsenalProp p in sim.ArsenalProps) DrawProp(sim, p, still);
+                // a saucer trails thin ring wakes behind it
+                Sprite ring = ArsenalArtwork.Frame("SaucerRing", 0);
+                if (ring != null)
+                    foreach (ProjectileState shot in sim.Projectiles)
+                    {
+                        if (shot.Arsenal != ArsenalWeapon.SaucerBlaster || shot.Velocity.sqrMagnitude < 0.01f) continue;
+                        Vector2 back = -shot.Velocity.normalized;
+                        for (int i = 1; i <= 3; i++) Draw(ring, shot.Position + back * (0.28f * i), 0.32f + 0.1f * i, 0, 2090, new Color(1, 1, 1, 0.7f - 0.2f * i), 0.5f);
+                    }
+            }
             for (int i = flashes.Count - 1; i >= 0; i--)
             {
                 Flash f = flashes[i]; float t = (time - f.Born) / f.Life;
                 if (t >= 1 || t < 0) { flashes.RemoveAt(i); continue; }
-                Draw(ArsenalArtwork.Frame(f.Art, t), f.At + Vector2.up * t * 0.2f, f.Size * (0.8f + 0.3f * t), 0, 2150, new Color(1, 1, 1, Mathf.Clamp01((1 - t) * 2.5f)));
+                Draw(ArsenalArtwork.Frame(f.Art, t), f.At + Vector2.up * t * 0.2f, f.Size * (0.8f + 0.3f * t), f.Angle, f.Art == "SwatPrint" ? 66 : 2150, new Color(1, 1, 1, Mathf.Clamp01((1 - t) * 2.5f)));
             }
             for (int i = used; i < pool.Count; i++) pool[i].enabled = false;
         }
@@ -200,6 +229,29 @@ namespace ArcaneBrigade
                 case ArsenalPropKind.Grab:
                     if (p.Source != null) Span(ArsenalArtwork.Frame("ClawSpring", 0), p.Source.Position, at, 0.12f, Order(at) + 1);
                     Draw(ArsenalArtwork.Frame("ClawHead", 1), at, 0.4f, 0, Order(at) + 2);
+                    break;
+                case ArsenalPropKind.Wound:
+                {
+                    // the wind-up key turns in the enemy's back, then it spins dizzy under a ring of stars
+                    Sprite key = ArsenalArtwork.Frame("WindupKey", now, 6);
+                    if (p.Stage == 0) Draw(key, at + new Vector2(-0.2f, 0.35f), 0.26f, still ? 0 : now * 220, Order(at) + 4);
+                    else Draw(ArsenalArtwork.Frame("DizzyStars", 0), at + Vector2.up * 0.6f, 0.5f, still ? 0 : now * 300, 2120);
+                    break;
+                }
+                case ArsenalPropKind.Fizz:
+                {
+                    if (now < p.LandAt)
+                    {
+                        float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
+                        Draw(ArsenalArtwork.Frame("SodaBottleShot", 0), Arc(p.Start, at, t, 0.8f), 0.36f, still ? 0 : t * 480, Order(at));
+                        break;
+                    }
+                    float life = Mathf.InverseLerp(p.LandAt, p.Until, now);
+                    Draw(ArsenalArtwork.Frame("FizzPuddle", still ? 0.5f : life), at, 1.7f, 0, 64, new Color(1, 1, 1, Mathf.Clamp01((1 - life) * 3)), 0.5f);
+                    break;
+                }
+                case ArsenalPropKind.Catch:
+                    if (p.Source != null) Draw(ArsenalArtwork.Frame("Fastball", 0), p.Source.Position + new Vector2(0.28f, 0.1f + 0.08f * (p.Born.GetHashCode() & 3)), 0.14f, 0, Order(p.Source.Position) + 5);
                     break;
                 case ArsenalPropKind.Plunge:
                     if (p.Source != null) Span(ArsenalArtwork.Frame("ElasticBand", 0), p.Source.Position, at, 0.07f, Order(at) + 1);

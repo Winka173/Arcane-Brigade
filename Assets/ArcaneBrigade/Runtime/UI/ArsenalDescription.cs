@@ -32,6 +32,14 @@ namespace ArcaneBrigade
                 ArsenalWeapon.GumballGatling => "Rapid gumballs. Each shot heats the barrel and fires sooner, up to 40% faster; it cools after 1.2 s without a target.",
                 ArsenalWeapon.BalloonBuddy => "Releases a balloon that floats into the biggest crowd and pops: 60%, pushes and slows.",
                 ArsenalWeapon.GlitchToybox => "Each attack borrows a random simple weapon and uses its attack at 90%. The next one is shown above the box.",
+                ArsenalWeapon.SaucerBlaster => "Fires a toy saucer (70%) that pierces up to 4 enemies, trailing rings.",
+                ArsenalWeapon.FanfareHorn => "Blows 3 golden sound fins forward in a fan (45% each); each enemy is struck once per blast.",
+                ArsenalWeapon.WindupWrench => "Swings a wrench. Every third hit winds the enemy up: a second later it spins dizzy, hitting its neighbours for 50%.",
+                ArsenalWeapon.CorkRifle => "Slow, long shot (170%) that passes through every enemy in the line.",
+                ArsenalWeapon.CatcherMitt => "Catches an enemy shot in front every 0.6 s (holds 3). Each throw is a fastball (130%), then every caught shot thrown back (80%).",
+                ArsenalWeapon.FizzBottle => "Throws a soda bottle; it bursts into a fizzing puddle for 2.5 s that hurts and slows.",
+                ArsenalWeapon.LeekBaton => "A wide, quick swing (80%) that pushes enemies back and slows them.",
+                ArsenalWeapon.FlySwatter => "Swats flat (110%) and dazes. Every third swat deals double damage to enemies below 30% health.",
                 _ => weapon.GameplaySummary
             };
             return (string.IsNullOrEmpty(weapon.GameplaySummary) ? "" : weapon.GameplaySummary + "\n") + rules + "\nNothing it does comes from the wielder's own body: every hit is thrown, fired, planted or swung in front.";

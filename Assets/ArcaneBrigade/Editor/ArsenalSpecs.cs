@@ -40,6 +40,15 @@ namespace ArcaneBrigade.Editor
             S("GumballGatling", ArsenalWeapon.GumballGatling, P, WeaponMotion.Recoil, DamageElement.Physical, 4, 5.0f, 0.32f, 0.08f, "Rapid gumballs; fires faster as the barrel heats.", "Gumball_f0", "Gumball_f1", "Gumball_f2", "Gumball_f3"),
             S("BalloonBuddy", ArsenalWeapon.BalloonBuddy, P, WeaponMotion.Cast, DamageElement.Arcane, 12, 5.0f, 1.4f, 0.24f, "A balloon floats into a crowd and pops.", "BalloonAnimal_f0", "BalloonAnimal_f1", "BalloonPop_f0", "BalloonPop_f1", "BalloonPop_f2"),
             S("GlitchToybox", ArsenalWeapon.GlitchToybox, P, WeaponMotion.Cast, DamageElement.Arcane, 12, 4.5f, 1.0f, 0.2f, "Each attack borrows a random weapon.", "JackBox_f0", "JackBox_f1", "JackBox_f2", "TvStatic"),
+            // research pass 3
+            S("SaucerBlaster", ArsenalWeapon.SaucerBlaster, P, WeaponMotion.Recoil, DamageElement.Arcane, 12, 5.5f, 1.05f, 0.18f, "Fires a toy saucer that pierces 4 enemies.", "SaucerShot_f0", "SaucerShot_f1", "SaucerRing"),
+            S("FanfareHorn", ArsenalWeapon.FanfareHorn, P, WeaponMotion.Cast, DamageElement.Arcane, 12, 3.5f, 1.15f, 0.22f, "Blows three golden sound fins forward.", "SoundFin_f0", "SoundFin_f1", "SoundFin_f2"),
+            S("WindupWrench", ArsenalWeapon.WindupWrench, M, WeaponMotion.Slash, DamageElement.Physical, 12, 1.5f, 0.95f, 0.2f, "Every third hit winds an enemy up; it spins dizzy.", "WindupKey_f0", "WindupKey_f1", "DizzyStars"),
+            S("CorkRifle", ArsenalWeapon.CorkRifle, P, WeaponMotion.Recoil, DamageElement.Physical, 12, 8.0f, 1.55f, 0.35f, "A long cork shot through the whole line.", "CorkBullet", "CorkPop"),
+            S("CatcherMitt", ArsenalWeapon.CatcherMitt, P, WeaponMotion.Recoil, DamageElement.Physical, 11, 5.0f, 1.1f, 0.22f, "Catches enemy shots in front and throws them back.", "Fastball", "MittCatch"),
+            S("FizzBottle", ArsenalWeapon.FizzBottle, P, WeaponMotion.Recoil, DamageElement.Frost, 11, 4.5f, 1.25f, 0.24f, "The bottle bursts into a fizzing, slowing puddle.", "SodaBottleShot", "FizzPuddle_f0", "FizzPuddle_f1", "FizzPuddle_f2"),
+            S("LeekBaton", ArsenalWeapon.LeekBaton, M, WeaponMotion.Slash, DamageElement.Physical, 11, 1.7f, 0.85f, 0.18f, "A wide, stinging swing that pushes and slows.", "LeekSwipe"),
+            S("FlySwatter", ArsenalWeapon.FlySwatter, M, WeaponMotion.Slam, DamageElement.Physical, 12, 1.4f, 0.9f, 0.2f, "Swats flat and dazes; every third swat crushes the weak.", "SwatPrint"),
         };
     }
 }
