@@ -127,6 +127,12 @@ namespace ArcaneBrigade
                 courier.sprite = frames[outsideHand ? reduced ? 0 : pose : reduced ? 0 : 2 + Mathf.FloorToInt(age * 7) % 4];
                 float width = outsideHand ? Kind == StageCarrier.KeyholeEye ? 4.2f : Kind == StageCarrier.CarpetTongue ? 5.8f : 7.2f : 3.8f;
                 courier.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, courier.sprite.bounds.size.x));
+                if (!reduced)
+                {
+                    // secondary motion: a squash as it grabs the passenger (0.4 s), then a slow breathing stretch while it carries
+                    float grab = Mathf.Exp(-Mathf.Pow((age - 0.42f) / 0.08f, 2)), carry = Mathf.Clamp01((age - 0.5f) / 0.3f) * Mathf.Sin(age * 9) * 0.03f;
+                    courier.transform.localScale = Vector3.Scale(courier.transform.localScale, new Vector3(1 + 0.08f * grab - carry, 1 - 0.1f * grab + carry, 1));
+                }
                 Vector2 passenger = PassengerPosition(origin, age, Kind);
                 Vector2 approach = Kind == StageCarrier.KeyholeEye ? Vector2.up * 6 : Kind == StageCarrier.CarpetTongue ? Vector2.down * 6 : Vector2.left * 8;
                 Vector2 position = age < 0.4f ? Vector2.Lerp(origin + approach, origin, Mathf.SmoothStep(0, 1, age / 0.4f)) : age < 1.3f ? passenger : Vector2.Lerp(PassengerPosition(origin, 1.3f, Kind), new Vector2(9, 4), Mathf.Clamp01((age - 1.3f) / 1.1f));

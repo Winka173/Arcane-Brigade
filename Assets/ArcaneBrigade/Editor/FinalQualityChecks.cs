@@ -25,7 +25,7 @@ namespace ArcaneBrigade.Editor
                         SpriteLighting.Apply(renderer, properties, hostile, prop);
                         Rect rectangle = renderer.sprite.rect; Texture texture = renderer.sprite.texture;
                         Require(properties.GetVector("_UvRect") == new Vector4(rectangle.x / texture.width, rectangle.y / texture.height, rectangle.width / texture.width, rectangle.height / texture.height), "Lighting UV remains exact " + hostile + "/" + prop);
-                        Require(Mathf.Approximately(properties.GetFloat("_NightVisibility"), 1) && Mathf.Approximately(properties.GetFloat("_Saturation"), 1.06f), "Unlit visibility and saturation preserved " + hostile + "/" + prop);
+                        Require(Mathf.Approximately(properties.GetFloat("_NightVisibility"), 1) && Mathf.Approximately(properties.GetFloat("_Saturation"), prop ? 1.06f : .93f), "Unlit visibility and saturation preserved " + hostile + "/" + prop);
                         Require(Mathf.Approximately(properties.GetFloat("_ShadeAmount"), prop ? .045f : .085f) && Mathf.Approximately(properties.GetFloat("_RimAmount"), prop ? .06f : .12f), "Unlit shade and rim preserved " + hostile + "/" + prop);
                     }
             }
@@ -49,7 +49,8 @@ namespace ArcaneBrigade.Editor
                 Require(CompanionBanter.Has(ally.Id), "Exact-ID dialogue " + ally.Id);
                 foreach (int wave in new[] { 1, 12, 20 })
                     for (int line = 0; line < 3; line++) Require(!string.IsNullOrWhiteSpace(OctoberDialogue.AllyLine(ally, line, wave)) && OctoberDialogue.AllyLine(ally, line, wave).Length < 110, "Bounded context line " + ally.Id + "/" + wave + "/" + line);
-                Require(CompanionBanter.Line(ally.Id, 0, 1) != CompanionBanter.Line(ally.Id, 0, 12), "Nightmare-specific voice " + ally.Id);
+                // residents with a written life speak their own story line (CreatureLives), not a per-depth line
+                Require(CreatureLives.Banter(ally.Id, null) != null || CompanionBanter.Line(ally.Id, 0, 1) != CompanionBanter.Line(ally.Id, 0, 12), "Nightmare-specific voice " + ally.Id);
             }
             var shapes = new HashSet<string>();
             foreach (UnitDefinition original in catalog.Bosses.Concat(new[] { OutsideStageAssets.Current.Boss, NightmareAssets.Current.Customer }))

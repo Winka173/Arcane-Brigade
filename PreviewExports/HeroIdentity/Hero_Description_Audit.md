@@ -336,7 +336,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detection for this run. Toy Knights deal 30% more damage.
+Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detection for this run. Crossing Knights deal 30% more damage.
 
 ## Night Maw / NightMaw
 

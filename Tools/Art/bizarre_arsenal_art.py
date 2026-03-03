@@ -11,12 +11,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 ART = "Assets/ArcaneBrigade/Art/Arsenal/"
 ACT = "Assets/ArcaneBrigade/Art/Acting/"
-REFS = ["Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png", "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
-        "Assets/ArcaneBrigade/Art/CombatVFX/Allied/AllySpark_v1.png"]
-STYLE = ("Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-toy roguelite. "
-         "The input sheets are STYLE REFERENCES ONLY, not edit targets. Match confident dark ink contours, rounded slightly "
-         "crooked asymmetric toy forms, rich painterly storybook shading, warm antique brass, burgundy velvet, deep teal and "
-         "midnight blue, cream highlights. Readable silhouette at gameplay size (about 40-60 px tall on a 1080p screen). "
+# style references are the CURRENT art generation (Docs/Theme_Consistency_Audit.md #01): the Act I painted props and
+# characters, not the older flat sticker-like weapon sheets
+REFS = ["Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png", "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png", "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"]
+STYLE = ("Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. "
+         "The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly "
+         "storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, "
+         "low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: "
+         "warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's "
+         "objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. "
+         "Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never "
+         "larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. "
          "Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. ")
 ISOLATED = (" ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. "
             "No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore.")
@@ -25,7 +31,7 @@ HELD = (" Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its
 SHOT = " Draw it travelling to the RIGHT (+X), motion implied by its shape only (no speed lines outside the object). 512x512 canvas."
 ROUND = " Round or spinning object seen from slightly above. 512x512 canvas."
 FLOOR = " Seen from the elevated three-quarter game view, lying on the floor (no floor drawn). 512x512 canvas."
-FX = " A short combat effect, friendly colours (brass, amber, cream, teal, candy colours; never hostile ember red-black). 768x768 canvas."
+FX = " A short combat effect in our side's colours (brass, amber, cream, teal, soft candy pastels; never hostile ember red or red-black). 768x768 canvas."
 TILE = " A seamless horizontal tile: the left and right edges must join perfectly. 1024x256 canvas."
 
 jobs = []
@@ -50,45 +56,48 @@ def add(name, subject, kind, frames=None):
 
 
 W = {
-    "CherryFuseBomb": "a glossy cherry-black toy bomb with two cherry leaves and a candy-stripe fuse, held by a little brass loop handle",
-    "PopperSticks": "a bundle of three red paper firecracker sticks with gold labels and short fuses, tied with string",
-    "DreamRacket": "a toy tennis racket with a cream-and-teal wrapped grip, brass frame and loose star-patterned strings",
+    "CherryFuseBomb": "a glossy cherry-black round bomb with two cherry leaves and a cream-and-wine striped fuse, held by a little brass loop handle",
+    "PopperSticks": "a bundle of three wine-red paper firecracker sticks with gold labels and short fuses, tied with string",
+    "DreamRacket": "a tennis racket with a cream-and-teal wrapped grip, brass frame and loose star-patterned strings",
     "BambooVase": "a clear glass vase holding three green bamboo stems with leaves, gripped at its neck",
-    "RoseBouquet": "a bouquet of red roses wrapped in white paper with a red bow",
-    "HomeRunBat": "a wooden toy baseball bat with brass bands, a cream grip and a little star painted on the barrel",
-    "CandyDrill": "a red-and-white striped candy drill / spiral lance with a brass grip",
-    "InkyOctopus": "a pink plush toy octopus with button eyes and curling stitched arms, held by one arm",
-    "GrabberClaw": "a toy spring grabber: a brass trigger handle, a coiled spring and a three-finger claw at the right end",
-    "StarforgeClaymore": "a huge golden claymore with engraved glowing runes, still wearing a chip of the toy stone it was pulled from at the crossguard",
+    "RoseBouquet": "a bouquet of deep wine roses wrapped in cream paper with a teal bow",
+    "HomeRunBat": "a wooden baseball bat with brass bands, a cream grip and a little star painted on the barrel",
+    "CandyDrill": "a wine-and-cream striped candy drill / spiral lance with a brass grip",
+    "InkyOctopus": "a pink plush octopus with button eyes and curling stitched arms, held by one arm",
+    "GrabberClaw": "a spring grabber: a brass trigger handle, a coiled spring and a three-finger claw at the right end",
+    "StarforgeClaymore": "a huge golden claymore with engraved glowing runes, still wearing a chip of the stone it was pulled from at the crossguard",
     "DragonLanternGlaive": "a long glaive whose head is a red-gold paper-lantern dragon biting a crescent blade, tassels on the shaft",
     "TwinMoonStaff": "a staff with a blade at each end: a sun-gold blade on the left end, a moon-silver blade on the right end, wrapped grip in the middle",
     "PlushShark": "a big stitched plush shark held by its tail, felt teeth, button eye",
-    "DrumstickClub": "a giant toy fried-chicken drumstick club with golden crispy batter and a cream plastic bone handle",
+    "DrumstickClub": "a giant fried-chicken drumstick club with golden crispy batter and a cream plastic bone handle",
     "PaperShuriken": "a fan of three multicoloured origami shuriken held between fingers-like paper clip",
-    "SquirtTrio": "a clear toy water pistol with three nozzles, water sloshing visibly inside, teal and brass trim",
-    "ConfettiBlunderbuss": "a toy bell-mouthed blunderbuss in brass and burgundy, candy stripes on the stock",
-    "PlungerPopper": "a toy plunger launcher: a red rubber suction cup on an elastic cord coiled round a brass handle",
-    "SignpostSlammer": "a round toy road sign 'Dreamland Crossing' (blue face with a cream arrow) on a striped pole",
+    "SquirtTrio": "a clear water pistol with three nozzles, water sloshing visibly inside, teal and brass trim",
+    "ConfettiBlunderbuss": "a bell-mouthed blunderbuss in brass and burgundy, candy stripes on the stock",
+    "PlungerPopper": "a plunger launcher: a wine-red rubber suction cup on an elastic cord coiled round a brass handle",
+    "SignpostSlammer": "a round road sign 'Dreamland Crossing' (blue face with a cream arrow) on a striped pole",
     "DetonatorBox": "a small wooden detonator box with a brass T-plunger on top and a coil of painted wire",
-    "FirecrackerPinwheel": "a red-and-gold paper pinwheel on a stick with tiny firecrackers on its vanes",
+    "FirecrackerPinwheel": "a wine-and-gold paper pinwheel on a stick with tiny firecrackers on its vanes",
     "GumballGatling": "a gumball machine turned into a hand-crank gatling: glass globe full of multicoloured gumballs, brass barrels and crank",
     "BalloonBuddy": "a twisted balloon animal (a poodle) on a string tied to a brass ring handle",
     "GlitchToybox": "a jack-in-the-box with a brass crank, lid shut, slightly glitching colour fringe on its edges",
-    "SaucerBlaster": "a blue toy ray gun shaped like a flying saucer, a cyan dome on top and a ring nozzle",
+    "SaucerBlaster": "a blue ray gun shaped like a flying saucer, a cyan dome on top and a ring nozzle",
     "FanfareHorn": "a golden flared fanfare horn with a brown wooden mouthpiece and a tassel",
-    "WindupWrench": "a big white toy wrench with a brass wind-up key on its handle",
-    "CorkRifle": "a brown wooden toy hunting rifle that fires corks, a cork on a string at the muzzle",
+    "WindupWrench": "a big white wrench with a brass wind-up key on its handle",
+    "CorkRifle": "a brown wooden hunting rifle that fires corks, a cork on a string at the muzzle",
     "CatcherMitt": "a brown leather baseball catcher's mitt worn on a little hand, a ball tucked in it",
     "FizzBottle": "a green glass soda bottle with a yellow-dotted label and a fizzing cap",
     "LeekBaton": "a long fresh spring onion / leek held like a baton, green leaves at the right end",
-    "FlySwatter": "a red toy fly swatter with a cream handle and a mesh of little stars",
+    "FlySwatter": "a wine-red fly swatter with a cream handle and a mesh of little stars",
+    "DowsingRod": "a forked wooden dowsing twig with a little glowing cyan bead at its tip",
+    "StarKnuckle": "a silver knuckle-duster glove with blunt star-shaped studs",
+    "BuzzerBlock": "a brass-yellow buzzer block with a big wine-red push button",
 }
 for wid, subject in W.items():
     add(wid + "_Held", subject, "held")
 
-add("CherryBomb", "the cherry-black toy bomb lying on the floor, its candy-stripe fuse lit and sparking", "floor",
+add("CherryBomb", "the cherry-black bomb lying on the floor, its candy-stripe fuse lit and sparking", "floor",
     ["fuse just lit, small spark", "fuse half burnt, bigger fizzing sparks, a red rim glows on the bomb", "fuse almost gone, sparks wild, red rim bright"])
-add("CottonPop", "a toy explosion: a white cotton-cloud puff with black-and-gold confetti and a hand-lettered POP", "fx",
+add("CottonPop", "a explosion: a white cotton-cloud puff with black-and-gold confetti and a hand-lettered POP", "fx",
     ["tight bright puff just bursting", "puff fully open, confetti flying", "puff thinning, confetti falling", "last wisps and a few confetti flakes"])
 add("PopperStick", "a red paper firecracker stick with a gold label lying on the floor, fuse fizzing", "floor", ["small spark", "bigger spark, stick shaking"])
 add("PopperBurst", "a yellow-orange firecracker pop with ribbon streamers", "fx", ["bursting", "open with streamers", "fading puff"])
@@ -105,7 +114,7 @@ add("SpiralCrack", "a spiral crack in the floor with candy shavings", "floor")
 add("PlushOctopus", "the pink plush octopus", "round",
     ["flying with arms trailing", "clinging, arms wrapped around (as if around an enemy, enemy not drawn)", "clinging, arms squeezing tighter", "hopping back, arms tucked"])
 add("InkPool", "a dark violet-black ink splotch on the floor with a glossy edge", "floor")
-add("ClawHead", "the three-finger toy grabber claw head on its spring", "shot", ["claw open", "claw snapped shut with a small spark"])
+add("ClawHead", "the three-finger grabber claw head on its spring", "shot", ["claw open", "claw snapped shut with a small spark"])
 add("ClawSpring", "a brass coiled spring", "tile")
 add("GoldLeafArc", "a wide crescent sweep made of folded gold leaf with tinsel stars, opening to the right", "fx")
 add("DragonRibbon", "a ribbon of red-gold dragon scales", "tile")
@@ -124,12 +133,12 @@ add("Puddle", "a small clear water puddle", "floor")
 add("CandyPellet", "a wrapped candy pellet", "shot")
 add("CartoonCloud", "a cartoon muzzle cloud", "fx", ["tight puff", "big round cloud", "thinning cloud"])
 add("ConfettiBurst", "a burst of confetti and candy wrappers", "fx")
-add("PlungerCup", "a red rubber suction cup", "shot")
+add("PlungerCup", "a wine-red rubber suction cup", "shot")
 add("ElasticBand", "a stretched red elastic cord", "tile")
 add("PopText", "the word POP! hand-lettered with soap bubbles", "fx")
 add("PlantedSign", "the round 'Dreamland Crossing' sign planted in the floor", "floor", ["standing still", "wobbling just after being planted"])
 add("RoadStripes", "glowing cream road stripes with a running arrow", "tile")
-add("ToyBomb", "a small round toy bomb with a wire plugged in, lying on the floor", "floor")
+add("ToyBomb", "a small round bomb with a wire plugged in, lying on the floor", "floor")
 add("DetonatorWire", "a painted black-and-red wire", "tile")
 add("CandyFlossCloud", "a candy-floss mushroom cloud raining tiny stars", "fx", ["rising", "full mushroom", "raining stars", "fading"])
 add("Pinwheel", "the red-and-gold paper pinwheel planted in the floor", "floor",
@@ -141,7 +150,7 @@ add("BalloonAnimal", "the twisted poodle balloon animal floating on its string",
 add("BalloonPop", "a balloon popping into a spinning deflating scrap, ribbons and an air ripple", "fx", ["the pop", "scrap spinning", "ribbons falling"])
 add("JackBox", "the jack-in-the-box", "round", ["lid shut", "lid popping, spring rising", "a jester head springing out"])
 add("TvStatic", "a small patch of colourful TV static", "fx")
-add("SaucerShot", "a cyan toy flying saucer with a glowing dome", "round", ["lights on the rim lit", "the other rim lights lit"])
+add("SaucerShot", "a cyan flying saucer with a glowing dome", "round", ["lights on the rim lit", "the other rim lights lit"])
 add("SaucerRing", "a thin cyan ring wake with tiny bubbles, seen from above", "round")
 add("SoundFin", "a golden sound fin: a curved fan-shaped wave of brass musical shimmer opening to the right", "shot", ["narrow, just blown", "wider", "widest and fading"])
 add("WindupKey", "a brass wind-up key", "round", ["upright", "turned 90 degrees"])
@@ -154,6 +163,12 @@ add("SodaBottleShot", "the green soda bottle tumbling", "shot")
 add("FizzPuddle", "a puddle of green soda fizzing with bubbles on the floor", "floor", ["just splashed, wide", "bubbling", "flattening, fewer bubbles"])
 add("LeekSwipe", "a crescent swipe trail of fresh green leek streaks opening to the right", "fx")
 add("SwatPrint", "a flat star-mesh swat print with a little dust puff", "floor")
+add("TwigDart", "a small forked wooden twig flying point first, a cyan glint at its tip", "shot")
+add("DowseMark", "a cyan dowsing ripple mark: a small glowing water-drop symbol", "fx")
+add("StarShard", "a small silver star shard", "shot")
+add("PunchStar", "a cartoon punch impact star, silver and cream", "fx")
+add("BuzzerFloor", "the yellow buzzer block lying on the floor, red button up", "floor", ["button up, still", "button pressed, the block jumping with little lightning sparks"])
+add("ZapChain", "a short zig-zag of friendly cyan-gold lightning, horizontal", "tile")
 
 # animation art (Docs/Bizarre_Arsenal.md §5.2)
 heroes = ["LanternKnight", "Postmaster", "DrowsySeer", "RootOracle", "LoneJelly", "GlassDice", "TideSinger", "CometRunner", "MirrorKeeper",
@@ -185,6 +200,52 @@ for i, step in enumerate(["coin face-on", "coin turned 30 degrees", "coin turned
     n = f"CoinSpin_f{i}"
     jobs.append(dict(name=n, path=ART + n + "_v1.png", transparent=True, refs=["Assets/ArcaneBrigade/Art/CombatVFX/Allied/AllySpark_v1.png"], depends=None if i == 0 else "CoinSpin_f0",
                      mode="single", prompt=STYLE + f"Subject: a brass dream coin with a moon stamp spinning: {step}." + ROUND + ISOLATED))
+
+
+# hand-painted rarity description frames (replace the procedural Tools/Art/rarity_frame_art.py output, same names)
+RF = "Assets/ArcaneBrigade/Art/RarityFramePainted/"  # moved over Resources/RarityFrame once all five parts of a rarity exist
+RF_REFS = ["Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png", "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png", "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"]
+rarities = {
+    "Uncommon": ("moon-vine", "a silver-blue moonlit vine with small curled leaves and glinting dew drops",
+                 "a crescent moon bud between pairs of opening silver-blue leaves, with three tiny stars above",
+                 "two drooping silver-blue leaves with a dew drop", "a curled silver-blue vine tendril with one leaf"),
+    "Rare": ("rune rail", "two carved violet stone rails with round rune medallions (glowing lavender glyphs) and small amethyst diamond studs between them",
+             "a carved violet stone medallion with a glowing lavender rune-eye, flanked by two carved bars set with amethyst studs",
+             "a violet rune medallion hanging on a cord with a lavender silk tassel", "a square amethyst stud set in carved violet stone"),
+    "Mythic": ("gilded wings", "golden feathers cascading down, overlapping like a wing, along a beaded gold cord; the cord runs vertically at 77% of the width and the feathers sweep out to the LEFT",
+               "a gilded sun crown with rays and a ruby, with a pair of golden wings spreading to both sides",
+               "a gold teardrop jewel hanging between two small golden feathers", "a gold fleur-de-lis with two small golden feathers"),
+    "Crimson": ("blood briar", "two black-red thorn stems wound around each other, with red roses and sharp thorns",
+                "two curving dark-red horns rising either side of a glowing ruby and a red rose, dark leaves below",
+                "a red rose bud hanging on a thorned stem", "a knot of thorned stem with a small red rose"),
+    "Rainbow": ("celestial prism", "a silver chain of prism crystal shards (each shard holding a rainbow) and little white four-point stars",
+                "a white crescent moon with a fan of rainbow prism crystals behind it and small stars hanging below",
+                "a rainbow eight-point star pendant on a silver thread", "a white four-point star with two small rainbow prism shards"),
+}
+FRAME_STYLE = ("Use case: style-transfer. Production raster UI ornament for Arcane Brigade's item description frames (dream-world storybook "
+               "roguelite). The input images are STYLE REFERENCES ONLY: match their newer layered painterly generation, patterning and "
+               "metallic sheen. Hand-painted, confident dark ink contours, rich painterly "
+               "shading with highlights, crafted like jewellery or carved trim, readable at small size. Never flat vector, never 3D render. "
+               "Genuinely transparent RGBA background, nothing else drawn, no text, no frame or panel, no shadow under it. ")
+for rarity, (theme, side, crest, foot, corner) in rarities.items():
+    stem = "at 77% of the width (feathers extending left of it)" if rarity == "Mythic" else "down the exact middle"
+    jobs.append(dict(name=rarity + "_Side", path=RF + rarity + "_Side.png", transparent=True, refs=RF_REFS, depends=None, mode="single",
+                     prompt=FRAME_STYLE + f"Subject ({theme}): a vertical ornamental trim strip: {side}. Its main line runs {stem}. "
+                     "It MUST tile seamlessly VERTICALLY: the top edge continues exactly into the bottom edge (repeat two motifs per tile). "
+                     "Portrait 512x1024 canvas, the trim fills the full height and about 70% of the width."))
+    jobs.append(dict(name=rarity + "_Glow", path=RF + rarity + "_Glow.png", transparent=True, refs=[RF + rarity + "_Side.png"], depends=rarity + "_Side", mode="single",
+                     prompt="Use case: precise-object-edit. EDIT THIS EXACT strip: keep ONLY its glowing parts (gems, glyphs, dew, beads, crystal "
+                            "cores, rose hearts) exactly where they are, brightened to a soft light, and make everything else fully transparent. "
+                            "Same canvas size and alignment; it must still tile vertically. Genuinely transparent RGBA."))
+    jobs.append(dict(name=rarity + "_Crest", path=RF + rarity + "_Crest.png", transparent=True, refs=RF_REFS, depends=None, mode="single",
+                     prompt=FRAME_STYLE + f"Subject ({theme}): a crest that sits on the TOP edge of a wide panel, centred: {crest}. "
+                     "Its seat (the line where it meets the panel's top edge) is at 62% of the canvas height. Landscape 1536x640 canvas."))
+    jobs.append(dict(name=rarity + "_Foot", path=RF + rarity + "_Foot.png", transparent=True, refs=RF_REFS, depends=None, mode="single",
+                     prompt=FRAME_STYLE + f"Subject ({theme}): a small pendant hanging DOWN from the bottom edge of a panel, centred: {foot}. "
+                     "It hangs from the top 18% of the canvas. 768x384 canvas."))
+    jobs.append(dict(name=rarity + "_Corner", path=RF + rarity + "_Corner.png", transparent=True, refs=RF_REFS, depends=None, mode="single",
+                     prompt=FRAME_STYLE + f"Subject ({theme}): a corner cap for the TOP-LEFT corner of a panel: {corner}. Its centre bead sits at "
+                     "16% across and 16% down; arms run along the top edge to the right and down the left edge. 512x512 canvas."))
 
 out = ROOT / "Docs" / "Bizarre_Arsenal_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")

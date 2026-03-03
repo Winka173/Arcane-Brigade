@@ -183,7 +183,7 @@ namespace ArcaneBrigade
                     if (HasOctober("\"Enduring Suffering\" Dorothy") && !octoberRecoveryUsed && ReferenceHero != "Card Queen") { octoberRecoveryUsed = true; Champion.Definition.Health = Mathf.Max(1, Champion.Definition.Health - 2); Heal(Champion.Definition.Health, e.Cause.Child("dorothy-recovery")); }
                     if (ReferenceHero == "The Big Pot") catalog.PassiveHeal = Mathf.Min(6, catalog.PassiveHeal + .15f);
                     if (ReferenceHero == "Porcelain Doll") Champion.Definition.CollisionDamage = Mathf.Min(80, Champion.Definition.CollisionDamage + 1);
-                    if (!HeroIdentityEnabled && (ReferenceHero == "Card Queen" || ReferenceHero == "Sassy Senior")) Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 3, Champion.Definition.Weapon.Damage * 2, .08f, .2f, e.Cause.Child("royal-retort"));
+                    if (!HeroIdentityEnabled && (ReferenceHero == "Card Queen" || ReferenceHero == "Sassy Senior")) Field(ExpandedFieldKind.Echo, Champion, ThreatPoint(3), Vector2.zero, 1.3f, Champion.Definition.Weapon.Damage * 2, .08f, .2f, e.Cause.Child("royal-retort"));
                 }
                 if (e.Kind == CombatEventKind.Dodge)
                 {
@@ -215,11 +215,12 @@ namespace ArcaneBrigade
                 octoberTickAt = Elapsed + 1;
                 if (ReferenceHero == "Omnom") ApplyDamage(Champion, 1, Faction.Enemy, "Night Maw hunger", cause: NewCause(Champion.Id).Child("hunger"), injectedDamage: true, healthCost: true);
                 if (ReferenceHero == "Frosty" && movement.sqrMagnitude < .001f) Heal(Champion.Definition.Health * .05f, NewCause(Champion.Id).Child("frost-rest"));
-                if (!HeroIdentityEnabled && ReferenceHero == "Steel Shell" && Mathf.FloorToInt(Elapsed) % 3 == 0) Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.2f, Champion.Definition.CollisionDamage, .25f, .3f, NewCause(Champion.Id).Child("steel-resonance"));
+                if (!HeroIdentityEnabled && ReferenceHero == "Steel Shell" && Mathf.FloorToInt(Elapsed) % 3 == 0) Field(ExpandedFieldKind.Echo, Champion, ThreatPoint(2.2f), Vector2.zero, 1.2f, Champion.Definition.CollisionDamage, .25f, .3f, NewCause(Champion.Id).Child("steel-resonance"));
                 if (!HeroIdentityEnabled && ReferenceHero == "Original:HourglassStag" && Mathf.FloorToInt(Elapsed) % 6 == 0)
                 {
-                    Field(ExpandedFieldKind.Echo, Champion, Champion.Position, Vector2.zero, 2.5f, Champion.Definition.Weapon.Damage * .65f, .1f, .35f, NewCause(Champion.Id).Child("hourglass-ring"));
-                    foreach (UnitState enemy in units) if (enemy.Faction == Faction.Enemy && !enemy.Definition.IsBoss && (enemy.Position - Champion.Position).sqrMagnitude < 9) enemy.ChillUntil = Elapsed + .7f;
+                    Vector2 sand = ThreatPoint(3);
+                    Field(ExpandedFieldKind.Echo, Champion, sand, Vector2.zero, 1.3f, Champion.Definition.Weapon.Damage * .65f, .1f, .35f, NewCause(Champion.Id).Child("hourglass-ring"));
+                    foreach (UnitState enemy in units) if (enemy.Faction == Faction.Enemy && !enemy.Definition.IsBoss && (enemy.Position - sand).sqrMagnitude < 1.69f) enemy.ChillUntil = Elapsed + .7f;
                 }
                 foreach (UnitState u in OctoberUnits("Domestic Spiked Ball")) u.Definition.CollisionDamage = (18 + Mathf.Min(20, octoberInjuries)) * 1.08f;
             }

@@ -14,9 +14,10 @@ namespace ArcaneBrigade
                     threat |= enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - Champion.Position).sqrMagnitude <= 6.25f;
                 if (!threat) return;
                 CombatCause pulse = NewCause(Champion.Id).Child(mechanic == HeroMechanic.RootedOracle ? "root-ward" : "solo-whirl");
+                Vector2 ward = ThreatPoint(2.5f);
                 foreach (UnitState enemy in units)
                 {
-                    if (!enemy.Alive || enemy.Faction != Faction.Enemy || (enemy.Position - Champion.Position).sqrMagnitude > 6.25f) continue;
+                    if (!enemy.Alive || enemy.Faction != Faction.Enemy || (enemy.Position - ward).sqrMagnitude > 1.69f) continue;
                     ApplyWeaponDamage(enemy, Champion.Definition.Weapon.Damage * (mechanic == HeroMechanic.RootedOracle ? 1 : 0.8f), Faction.Champion, mechanic == HeroMechanic.RootedOracle ? DamageElement.Frost : DamageElement.Physical, "Personal ward", cause: pulse);
                     if (mechanic == HeroMechanic.RootedOracle && enemy.Alive && !enemy.Definition.IsBoss)
                     {
@@ -26,7 +27,7 @@ namespace ArcaneBrigade
                     }
                 }
                 heroReadyAt = Elapsed + 2; HeroActivations++; Champion.LastSupport = Elapsed;
-                events.Add(new CombatEvent(CombatEventKind.SignaturePulse, Champion.Position, Faction.Champion, 2.5f, subject: Champion, element: mechanic == HeroMechanic.RootedOracle ? DamageElement.Frost : DamageElement.Physical, cause: pulse));
+                events.Add(new CombatEvent(CombatEventKind.SignaturePulse, ward, Faction.Champion, 1.3f, subject: Champion, element: mechanic == HeroMechanic.RootedOracle ? DamageElement.Frost : DamageElement.Physical, cause: pulse));
                 return;
             }
             float moved = Vector2.Distance(Champion.Position, Champion.PreviousPosition);
@@ -64,9 +65,10 @@ namespace ArcaneBrigade
             {
                 CombatCause cause = NewCause(Champion.Id).Child("hero-" + mechanic);
                 if (mechanic == HeroMechanic.TideCollector) Heal(3, cause);
+                Vector2 burst = ThreatPoint(3);
                 foreach (UnitState enemy in units)
                 {
-                    if (!enemy.Alive || enemy.Faction != Faction.Enemy || (enemy.Position - Champion.Position).sqrMagnitude > 9) continue;
+                    if (!enemy.Alive || enemy.Faction != Faction.Enemy || (enemy.Position - burst).sqrMagnitude > 1.96f) continue;
                     if (mechanic == HeroMechanic.GlassGambler)
                         ApplyWeaponDamage(enemy, Champion.Definition.Weapon.Damage * 0.7f, Faction.Champion, DamageElement.Arcane, "Lucky burst", cause: cause);
                     else if (mechanic == HeroMechanic.ClockRunner)
@@ -80,7 +82,7 @@ namespace ArcaneBrigade
                 }
             }
             heroCharge = 0; heroReadyAt = Elapsed + 4; HeroActivations++; Champion.LastSupport = Elapsed;
-            events.Add(new CombatEvent(CombatEventKind.SignaturePulse, Champion.Position, Faction.Champion, 3, subject: Champion, element: DamageElement.Arcane, cause: NewCause(Champion.Id)));
+            events.Add(new CombatEvent(CombatEventKind.SignaturePulse, ThreatPoint(3), Faction.Champion, 1.4f, subject: Champion, element: DamageElement.Arcane, cause: NewCause(Champion.Id)));
         }
     }
 }

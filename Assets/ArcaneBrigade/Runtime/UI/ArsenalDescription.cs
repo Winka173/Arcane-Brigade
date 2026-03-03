@@ -40,6 +40,9 @@ namespace ArcaneBrigade
                 ArsenalWeapon.FizzBottle => "Throws a soda bottle; it bursts into a fizzing puddle for 2.5 s that hurts and slows.",
                 ArsenalWeapon.LeekBaton => "A wide, quick swing (80%) that pushes enemies back and slows them.",
                 ArsenalWeapon.FlySwatter => "Swats flat (110%) and dazes. Every third swat deals double damage to enemies below 30% health.",
+                ArsenalWeapon.DowsingRod => "Throws a twig at the weakest enemy in reach (120%); it bends toward it and exposes it for 2 s.",
+                ArsenalWeapon.StarKnuckle => "Quick jabs (80%). Every fourth is a star uppercut (150%) that dazes and throws 3 star shards forward.",
+                ArsenalWeapon.BuzzerBlock => "Places a prank buzzer ahead (up to 2). The enemy who steps on it and 3 neighbours in a chain are shocked (60%) and stopped briefly.",
                 _ => weapon.GameplaySummary
             };
             return (string.IsNullOrEmpty(weapon.GameplaySummary) ? "" : weapon.GameplaySummary + "\n") + rules + "\nNothing it does comes from the wielder's own body: every hit is thrown, fired, planted or swung in front.";

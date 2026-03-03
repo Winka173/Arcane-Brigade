@@ -56,9 +56,10 @@ namespace ArcaneBrigade
             }
             else
             {
-                float radius = mechanic == HeroMechanic.LanternStride ? 2.4f : 3;
+                // lands on the nearest threat (radius 1.3 round it), not as a ring round the hero
+                float radius = 1.3f; Vector2 centre = ThreatPoint(mechanic == HeroMechanic.LanternStride ? 2.4f : 3);
                 foreach (UnitState enemy in units)
-                    if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - Champion.Position).sqrMagnitude <= radius * radius)
+                    if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - centre).sqrMagnitude <= (radius + enemy.Definition.Radius) * (radius + enemy.Definition.Radius))
                     {
                         if (mechanic == HeroMechanic.LanternStride) ApplyWeaponDamage(enemy, Champion.Definition.Weapon.Damage * 0.65f, Faction.Champion, DamageElement.Ember, Champion.Definition.DisplayName, (enemy.Position - Champion.Position).normalized, Champion.Definition.Weapon, cause: cause);
                         else enemy.ChillUntil = Mathf.Max(enemy.ChillUntil, Elapsed + (enemy.Definition.IsBoss ? 0.6f : 1.5f));
@@ -69,7 +70,7 @@ namespace ArcaneBrigade
                     for (int index = projectiles.Count - 1; index >= 0 && removed < 3; index--)
                         if (projectiles[index].Faction == Faction.Enemy && (projectiles[index].Position - Champion.Position).sqrMagnitude <= 9) { projectiles.RemoveAt(index); removed++; }
                 }
-                events.Add(new CombatEvent(CombatEventKind.SignaturePulse, Champion.Position, Faction.Champion, radius, subject: Champion, element: mechanic == HeroMechanic.LanternStride ? DamageElement.Ember : DamageElement.Frost, cause: cause));
+                events.Add(new CombatEvent(CombatEventKind.SignaturePulse, centre, Faction.Champion, radius, subject: Champion, element: mechanic == HeroMechanic.LanternStride ? DamageElement.Ember : DamageElement.Frost, cause: cause));
             }
             events.Add(new CombatEvent(CombatEventKind.Support, Champion.Position, Faction.Champion, subject: Champion, cause: cause));
         }

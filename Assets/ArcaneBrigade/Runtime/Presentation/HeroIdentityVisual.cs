@@ -244,16 +244,13 @@ namespace ArcaneBrigade
             if (id == "PatchworkHost" && sim.HeroIdentityLead != null && sim.HeroIdentityLead.Alive)
             {
                 var lead = sim.HeroIdentityLead; float ready = Mathf.Clamp01(sim.HeroIdentityCharge / 4);
-                ground.Stroke(InkCanvas.Arc(Feet(lead), .5f, .23f, 0, 360), Brush(.05f, .35f + .4f * ready, 6), true);
                 Token(InkToken.Star, Head(lead) + Vector2.up * Bob(3), .22f + .08f * ready, still ? 0 : t * 30, .9f, true, 0, GoldPalette);
             }
             if (id == "HourglassStag" && sim.HeroIdentityBankAge >= 0)
             {
                 float due = sim.HeroIdentityApproach == 0 ? 4 : sim.HeroIdentityApproach == 1 ? 3 : 5, k = Mathf.Clamp01(sim.HeroIdentityBankAge / due);
-                Vector2 feet = Feet(hero);
-                ground.Stroke(InkCanvas.Arc(feet, .86f, .4f, 90, 90 - 360 * k), Brush(.06f, .7f, 8));
-                Vector2 at = feet + new Vector2(Mathf.Cos((90 - 360 * k) * Mathf.Deg2Rad) * .86f, Mathf.Sin((90 - 360 * k) * Mathf.Deg2Rad) * .4f);
-                Token(InkToken.Sand, at, .2f, 0, .9f, false);
+                // the debt's hourglass hangs over the stag's head and turns as it comes due (no clock ring round its feet)
+                Token(InkToken.Sand, Head(hero) + Vector2.up * (.2f + Bob(1)), .22f + .06f * k, still ? 0 : 180 * k, .9f, false);
             }
         }
         private static readonly InkPalette StampPalette = new InkPalette(new Color(.22f, .05f, .06f), new Color(.72f, .16f, .2f), new Color(1, .9f, .8f), new Color(1, .6f, .5f), new Color(.72f, .16f, .2f));
@@ -324,9 +321,7 @@ namespace ArcaneBrigade
             if (sim.HeroIdentityLastCast > lastCast + .001f) { lastCast = sim.HeroIdentityLastCast; castShown = lastCast; }
             float k = (t - castShown) / .5f; if (k < 0 || k >= 1) return;
             Vector2 feet = Feet(sim.Champion); float e = OutCubic(k);
-            float rx = still ? .8f : Mathf.Lerp(.32f, .95f, e);
-            ground.Stroke(InkCanvas.Arc(feet, rx, rx * .46f, 0, 360), Brush(.1f * (1 - k * .7f), 1 - k, 5), true);
-            if (!calm) Glow(feet + Vector2.up * .3f, 1.2f, ink.Glow, .22f * (1 - k));
+            // the cast is the hero's own tokens springing up from it; no ring opening round its feet
             if (sparse) return;
             for (int i = 0; i < 3; i++)
             {

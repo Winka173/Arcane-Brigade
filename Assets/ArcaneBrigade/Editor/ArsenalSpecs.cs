@@ -48,6 +48,9 @@ namespace ArcaneBrigade.Editor
             S("CatcherMitt", ArsenalWeapon.CatcherMitt, P, WeaponMotion.Recoil, DamageElement.Physical, 11, 5.0f, 1.1f, 0.22f, "Catches enemy shots in front and throws them back.", "Fastball", "MittCatch"),
             S("FizzBottle", ArsenalWeapon.FizzBottle, P, WeaponMotion.Recoil, DamageElement.Frost, 11, 4.5f, 1.25f, 0.24f, "The bottle bursts into a fizzing, slowing puddle.", "SodaBottleShot", "FizzPuddle_f0", "FizzPuddle_f1", "FizzPuddle_f2"),
             S("LeekBaton", ArsenalWeapon.LeekBaton, M, WeaponMotion.Slash, DamageElement.Physical, 11, 1.7f, 0.85f, 0.18f, "A wide, stinging swing that pushes and slows.", "LeekSwipe"),
+            S("DowsingRod", ArsenalWeapon.DowsingRod, P, WeaponMotion.Cast, DamageElement.Arcane, 11, 5.5f, 1.05f, 0.2f, "Finds the weakest enemy in reach and exposes it.", "TwigDart", "DowseMark"),
+            S("StarKnuckle", ArsenalWeapon.StarKnuckle, M, WeaponMotion.Thrust, DamageElement.Physical, 9, 1.2f, 0.55f, 0.1f, "Quick jabs; every fourth is a star uppercut.", "StarShard", "PunchStar"),
+            S("BuzzerBlock", ArsenalWeapon.BuzzerBlock, P, WeaponMotion.Cast, DamageElement.Arcane, 12, 4.0f, 1.15f, 0.2f, "A prank buzzer on the floor shocks a chain of enemies.", "BuzzerFloor_f0", "BuzzerFloor_f1", "ZapChain"),
             S("FlySwatter", ArsenalWeapon.FlySwatter, M, WeaponMotion.Slam, DamageElement.Physical, 12, 1.4f, 0.9f, 0.2f, "Swats flat and dazes; every third swat crushes the weak.", "SwatPrint"),
         };
     }

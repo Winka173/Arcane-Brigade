@@ -39,7 +39,7 @@ PASS Approach save round trip LanternKnight / 2
 PASS Identity row does not overwrite stat summaries Postmaster / 0
 PASS Damage row keeps correct compiled value Postmaster / 0
 PASS Finite and immortal companion behavior Postmaster / 0
-PASS Actual signature activated Postmaster / 0 casts=11 injuries=True
+PASS Actual signature activated Postmaster / 0 casts=12 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) Postmaster / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s Postmaster / 0 blasts=0
@@ -51,7 +51,7 @@ PASS Approach save round trip Postmaster / 0
 PASS Identity row does not overwrite stat summaries Postmaster / 1
 PASS Damage row keeps correct compiled value Postmaster / 1
 PASS Finite and immortal companion behavior Postmaster / 1
-PASS Actual signature activated Postmaster / 1 casts=11 injuries=True
+PASS Actual signature activated Postmaster / 1 casts=12 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) Postmaster / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s Postmaster / 1 blasts=0
@@ -75,7 +75,7 @@ PASS Approach save round trip Postmaster / 2
 PASS Identity row does not overwrite stat summaries DrowsySeer / 0
 PASS Damage row keeps correct compiled value DrowsySeer / 0
 PASS Finite and immortal companion behavior DrowsySeer / 0
-PASS Actual signature activated DrowsySeer / 0 casts=6 injuries=True
+PASS Actual signature activated DrowsySeer / 0 casts=5 injuries=True
 PASS Bounded visual/projectile queues DrowsySeer / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) DrowsySeer / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s DrowsySeer / 0 blasts=0
@@ -87,7 +87,7 @@ PASS Approach save round trip DrowsySeer / 0
 PASS Identity row does not overwrite stat summaries DrowsySeer / 1
 PASS Damage row keeps correct compiled value DrowsySeer / 1
 PASS Finite and immortal companion behavior DrowsySeer / 1
-PASS Actual signature activated DrowsySeer / 1 casts=6 injuries=True
+PASS Actual signature activated DrowsySeer / 1 casts=5 injuries=True
 PASS Bounded visual/projectile queues DrowsySeer / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) DrowsySeer / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s DrowsySeer / 1 blasts=0
@@ -99,7 +99,7 @@ PASS Approach save round trip DrowsySeer / 1
 PASS Identity row does not overwrite stat summaries DrowsySeer / 2
 PASS Damage row keeps correct compiled value DrowsySeer / 2
 PASS Finite and immortal companion behavior DrowsySeer / 2
-PASS Actual signature activated DrowsySeer / 2 casts=6 injuries=True
+PASS Actual signature activated DrowsySeer / 2 casts=5 injuries=True
 PASS Bounded visual/projectile queues DrowsySeer / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) DrowsySeer / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s DrowsySeer / 2 blasts=0
@@ -147,7 +147,7 @@ PASS Approach save round trip RootOracle / 2
 PASS Identity row does not overwrite stat summaries LoneJelly / 0
 PASS Damage row keeps correct compiled value LoneJelly / 0
 PASS Finite and immortal companion behavior LoneJelly / 0
-PASS Actual signature activated LoneJelly / 0 casts=14 injuries=True
+PASS Actual signature activated LoneJelly / 0 casts=6 injuries=True
 PASS Bounded visual/projectile queues LoneJelly / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LoneJelly / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LoneJelly / 0 blasts=0
@@ -159,7 +159,7 @@ PASS Approach save round trip LoneJelly / 0
 PASS Identity row does not overwrite stat summaries LoneJelly / 1
 PASS Damage row keeps correct compiled value LoneJelly / 1
 PASS Finite and immortal companion behavior LoneJelly / 1
-PASS Actual signature activated LoneJelly / 1 casts=14 injuries=True
+PASS Actual signature activated LoneJelly / 1 casts=6 injuries=True
 PASS Bounded visual/projectile queues LoneJelly / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LoneJelly / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LoneJelly / 1 blasts=0
@@ -171,7 +171,7 @@ PASS Approach save round trip LoneJelly / 1
 PASS Identity row does not overwrite stat summaries LoneJelly / 2
 PASS Damage row keeps correct compiled value LoneJelly / 2
 PASS Finite and immortal companion behavior LoneJelly / 2
-PASS Actual signature activated LoneJelly / 2 casts=14 injuries=True
+PASS Actual signature activated LoneJelly / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues LoneJelly / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LoneJelly / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LoneJelly / 2 blasts=0
@@ -339,7 +339,7 @@ PASS Approach save round trip TreasureAcorn / 0
 PASS Identity row does not overwrite stat summaries TreasureAcorn / 1
 PASS Damage row keeps correct compiled value TreasureAcorn / 1
 PASS Finite and immortal companion behavior TreasureAcorn / 1
-PASS Actual signature activated TreasureAcorn / 1 casts=9 injuries=True
+PASS Actual signature activated TreasureAcorn / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues TreasureAcorn / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) TreasureAcorn / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s TreasureAcorn / 1 blasts=0
@@ -435,7 +435,7 @@ PASS Approach save round trip CopperCauldron / 2
 PASS Identity row does not overwrite stat summaries ChinaMarionette / 0
 PASS Damage row keeps correct compiled value ChinaMarionette / 0
 PASS Finite and immortal companion behavior ChinaMarionette / 0
-PASS Actual signature activated ChinaMarionette / 0 casts=20 injuries=True
+PASS Actual signature activated ChinaMarionette / 0 casts=32 injuries=True
 PASS Bounded visual/projectile queues ChinaMarionette / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ChinaMarionette / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ChinaMarionette / 0 blasts=0
@@ -447,7 +447,7 @@ PASS Approach save round trip ChinaMarionette / 0
 PASS Identity row does not overwrite stat summaries ChinaMarionette / 1
 PASS Damage row keeps correct compiled value ChinaMarionette / 1
 PASS Finite and immortal companion behavior ChinaMarionette / 1
-PASS Actual signature activated ChinaMarionette / 1 casts=20 injuries=True
+PASS Actual signature activated ChinaMarionette / 1 casts=32 injuries=True
 PASS Bounded visual/projectile queues ChinaMarionette / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ChinaMarionette / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ChinaMarionette / 1 blasts=0
@@ -459,7 +459,7 @@ PASS Approach save round trip ChinaMarionette / 1
 PASS Identity row does not overwrite stat summaries ChinaMarionette / 2
 PASS Damage row keeps correct compiled value ChinaMarionette / 2
 PASS Finite and immortal companion behavior ChinaMarionette / 2
-PASS Actual signature activated ChinaMarionette / 2 casts=20 injuries=True
+PASS Actual signature activated ChinaMarionette / 2 casts=32 injuries=True
 PASS Bounded visual/projectile queues ChinaMarionette / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ChinaMarionette / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ChinaMarionette / 2 blasts=0
@@ -543,7 +543,7 @@ PASS Approach save round trip VelvetRegent / 2
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 0
 PASS Damage row keeps correct compiled value ButtonCavalier / 0
 PASS Finite and immortal companion behavior ButtonCavalier / 0
-PASS Actual signature activated ButtonCavalier / 0 casts=11 injuries=True
+PASS Actual signature activated ButtonCavalier / 0 casts=10 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 0 blasts=0
@@ -555,7 +555,7 @@ PASS Approach save round trip ButtonCavalier / 0
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 1
 PASS Damage row keeps correct compiled value ButtonCavalier / 1
 PASS Finite and immortal companion behavior ButtonCavalier / 1
-PASS Actual signature activated ButtonCavalier / 1 casts=11 injuries=True
+PASS Actual signature activated ButtonCavalier / 1 casts=10 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 1 blasts=0
@@ -567,7 +567,7 @@ PASS Approach save round trip ButtonCavalier / 1
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 2
 PASS Damage row keeps correct compiled value ButtonCavalier / 2
 PASS Finite and immortal companion behavior ButtonCavalier / 2
-PASS Actual signature activated ButtonCavalier / 2 casts=12 injuries=True
+PASS Actual signature activated ButtonCavalier / 2 casts=10 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 2 blasts=0
@@ -615,7 +615,7 @@ PASS Approach save round trip NightMaw / 2
 PASS Identity row does not overwrite stat summaries ThornTreasurer / 0
 PASS Damage row keeps correct compiled value ThornTreasurer / 0
 PASS Finite and immortal companion behavior ThornTreasurer / 0
-PASS Actual signature activated ThornTreasurer / 0 casts=11 injuries=True
+PASS Actual signature activated ThornTreasurer / 0 casts=10 injuries=True
 PASS Bounded visual/projectile queues ThornTreasurer / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ThornTreasurer / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ThornTreasurer / 0 blasts=0
@@ -627,7 +627,7 @@ PASS Approach save round trip ThornTreasurer / 0
 PASS Identity row does not overwrite stat summaries ThornTreasurer / 1
 PASS Damage row keeps correct compiled value ThornTreasurer / 1
 PASS Finite and immortal companion behavior ThornTreasurer / 1
-PASS Actual signature activated ThornTreasurer / 1 casts=11 injuries=True
+PASS Actual signature activated ThornTreasurer / 1 casts=10 injuries=True
 PASS Bounded visual/projectile queues ThornTreasurer / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ThornTreasurer / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ThornTreasurer / 1 blasts=0
@@ -639,7 +639,7 @@ PASS Approach save round trip ThornTreasurer / 1
 PASS Identity row does not overwrite stat summaries ThornTreasurer / 2
 PASS Damage row keeps correct compiled value ThornTreasurer / 2
 PASS Finite and immortal companion behavior ThornTreasurer / 2
-PASS Actual signature activated ThornTreasurer / 2 casts=11 injuries=True
+PASS Actual signature activated ThornTreasurer / 2 casts=10 injuries=True
 PASS Bounded visual/projectile queues ThornTreasurer / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ThornTreasurer / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ThornTreasurer / 2 blasts=0
@@ -687,7 +687,7 @@ PASS Approach save round trip CitrusMarshal / 2
 PASS Identity row does not overwrite stat summaries IvorySovereign / 0
 PASS Damage row keeps correct compiled value IvorySovereign / 0
 PASS Finite and immortal companion behavior IvorySovereign / 0
-PASS Actual signature activated IvorySovereign / 0 casts=21 injuries=True
+PASS Actual signature activated IvorySovereign / 0 casts=20 injuries=True
 PASS Bounded visual/projectile queues IvorySovereign / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) IvorySovereign / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s IvorySovereign / 0 blasts=0
@@ -699,7 +699,7 @@ PASS Approach save round trip IvorySovereign / 0
 PASS Identity row does not overwrite stat summaries IvorySovereign / 1
 PASS Damage row keeps correct compiled value IvorySovereign / 1
 PASS Finite and immortal companion behavior IvorySovereign / 1
-PASS Actual signature activated IvorySovereign / 1 casts=22 injuries=True
+PASS Actual signature activated IvorySovereign / 1 casts=20 injuries=True
 PASS Bounded visual/projectile queues IvorySovereign / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) IvorySovereign / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s IvorySovereign / 1 blasts=0
@@ -711,7 +711,7 @@ PASS Approach save round trip IvorySovereign / 1
 PASS Identity row does not overwrite stat summaries IvorySovereign / 2
 PASS Damage row keeps correct compiled value IvorySovereign / 2
 PASS Finite and immortal companion behavior IvorySovereign / 2
-PASS Actual signature activated IvorySovereign / 2 casts=21 injuries=True
+PASS Actual signature activated IvorySovereign / 2 casts=20 injuries=True
 PASS Bounded visual/projectile queues IvorySovereign / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) IvorySovereign / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s IvorySovereign / 2 blasts=0
@@ -723,7 +723,7 @@ PASS Approach save round trip IvorySovereign / 2
 PASS Identity row does not overwrite stat summaries PetalCitadel / 0
 PASS Damage row keeps correct compiled value PetalCitadel / 0
 PASS Finite and immortal companion behavior PetalCitadel / 0
-PASS Actual signature activated PetalCitadel / 0 casts=8 injuries=True
+PASS Actual signature activated PetalCitadel / 0 casts=7 injuries=True
 PASS Bounded visual/projectile queues PetalCitadel / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) PetalCitadel / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s PetalCitadel / 0 blasts=0
@@ -735,7 +735,7 @@ PASS Approach save round trip PetalCitadel / 0
 PASS Identity row does not overwrite stat summaries PetalCitadel / 1
 PASS Damage row keeps correct compiled value PetalCitadel / 1
 PASS Finite and immortal companion behavior PetalCitadel / 1
-PASS Actual signature activated PetalCitadel / 1 casts=8 injuries=True
+PASS Actual signature activated PetalCitadel / 1 casts=7 injuries=True
 PASS Bounded visual/projectile queues PetalCitadel / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) PetalCitadel / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s PetalCitadel / 1 blasts=0
@@ -747,7 +747,7 @@ PASS Approach save round trip PetalCitadel / 1
 PASS Identity row does not overwrite stat summaries PetalCitadel / 2
 PASS Damage row keeps correct compiled value PetalCitadel / 2
 PASS Finite and immortal companion behavior PetalCitadel / 2
-PASS Actual signature activated PetalCitadel / 2 casts=8 injuries=True
+PASS Actual signature activated PetalCitadel / 2 casts=7 injuries=True
 PASS Bounded visual/projectile queues PetalCitadel / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) PetalCitadel / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s PetalCitadel / 2 blasts=0
@@ -903,7 +903,7 @@ PASS Approach save round trip StormFencer / 2
 PASS Identity row does not overwrite stat summaries TinVirtuoso / 0
 PASS Damage row keeps correct compiled value TinVirtuoso / 0
 PASS Finite and immortal companion behavior TinVirtuoso / 0
-PASS Actual signature activated TinVirtuoso / 0 casts=13 injuries=True
+PASS Actual signature activated TinVirtuoso / 0 casts=16 injuries=True
 PASS Bounded visual/projectile queues TinVirtuoso / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) TinVirtuoso / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s TinVirtuoso / 0 blasts=0
@@ -915,7 +915,7 @@ PASS Approach save round trip TinVirtuoso / 0
 PASS Identity row does not overwrite stat summaries TinVirtuoso / 1
 PASS Damage row keeps correct compiled value TinVirtuoso / 1
 PASS Finite and immortal companion behavior TinVirtuoso / 1
-PASS Actual signature activated TinVirtuoso / 1 casts=7 injuries=True
+PASS Actual signature activated TinVirtuoso / 1 casts=8 injuries=True
 PASS Bounded visual/projectile queues TinVirtuoso / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) TinVirtuoso / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s TinVirtuoso / 1 blasts=0
@@ -927,7 +927,7 @@ PASS Approach save round trip TinVirtuoso / 1
 PASS Identity row does not overwrite stat summaries TinVirtuoso / 2
 PASS Damage row keeps correct compiled value TinVirtuoso / 2
 PASS Finite and immortal companion behavior TinVirtuoso / 2
-PASS Actual signature activated TinVirtuoso / 2 casts=4 injuries=True
+PASS Actual signature activated TinVirtuoso / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues TinVirtuoso / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) TinVirtuoso / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s TinVirtuoso / 2 blasts=0
@@ -939,7 +939,7 @@ PASS Approach save round trip TinVirtuoso / 2
 PASS Identity row does not overwrite stat summaries MoonProwler / 0
 PASS Damage row keeps correct compiled value MoonProwler / 0
 PASS Finite and immortal companion behavior MoonProwler / 0
-PASS Actual signature activated MoonProwler / 0 casts=30 injuries=True
+PASS Actual signature activated MoonProwler / 0 casts=11 injuries=True
 PASS Bounded visual/projectile queues MoonProwler / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) MoonProwler / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s MoonProwler / 0 blasts=0
@@ -951,7 +951,7 @@ PASS Approach save round trip MoonProwler / 0
 PASS Identity row does not overwrite stat summaries MoonProwler / 1
 PASS Damage row keeps correct compiled value MoonProwler / 1
 PASS Finite and immortal companion behavior MoonProwler / 1
-PASS Actual signature activated MoonProwler / 1 casts=30 injuries=True
+PASS Actual signature activated MoonProwler / 1 casts=11 injuries=True
 PASS Bounded visual/projectile queues MoonProwler / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) MoonProwler / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s MoonProwler / 1 blasts=0
@@ -963,7 +963,7 @@ PASS Approach save round trip MoonProwler / 1
 PASS Identity row does not overwrite stat summaries MoonProwler / 2
 PASS Damage row keeps correct compiled value MoonProwler / 2
 PASS Finite and immortal companion behavior MoonProwler / 2
-PASS Actual signature activated MoonProwler / 2 casts=30 injuries=True
+PASS Actual signature activated MoonProwler / 2 casts=11 injuries=True
 PASS Bounded visual/projectile queues MoonProwler / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) MoonProwler / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s MoonProwler / 2 blasts=0
@@ -1011,7 +1011,7 @@ PASS Approach save round trip SupperMortar / 2
 PASS Identity row does not overwrite stat summaries LanternWeaver / 0
 PASS Damage row keeps correct compiled value LanternWeaver / 0
 PASS Finite and immortal companion behavior LanternWeaver / 0
-PASS Actual signature activated LanternWeaver / 0 casts=5 injuries=True
+PASS Actual signature activated LanternWeaver / 0 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternWeaver / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LanternWeaver / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LanternWeaver / 0 blasts=0
@@ -1023,7 +1023,7 @@ PASS Approach save round trip LanternWeaver / 0
 PASS Identity row does not overwrite stat summaries LanternWeaver / 1
 PASS Damage row keeps correct compiled value LanternWeaver / 1
 PASS Finite and immortal companion behavior LanternWeaver / 1
-PASS Actual signature activated LanternWeaver / 1 casts=5 injuries=True
+PASS Actual signature activated LanternWeaver / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternWeaver / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LanternWeaver / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LanternWeaver / 1 blasts=0
@@ -1035,7 +1035,7 @@ PASS Approach save round trip LanternWeaver / 1
 PASS Identity row does not overwrite stat summaries LanternWeaver / 2
 PASS Damage row keeps correct compiled value LanternWeaver / 2
 PASS Finite and immortal companion behavior LanternWeaver / 2
-PASS Actual signature activated LanternWeaver / 2 casts=5 injuries=True
+PASS Actual signature activated LanternWeaver / 2 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternWeaver / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LanternWeaver / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LanternWeaver / 2 blasts=0
@@ -1047,7 +1047,7 @@ PASS Approach save round trip LanternWeaver / 2
 PASS Identity row does not overwrite stat summaries HourglassStag / 0
 PASS Damage row keeps correct compiled value HourglassStag / 0
 PASS Finite and immortal companion behavior HourglassStag / 0
-PASS Actual signature activated HourglassStag / 0 casts=7 injuries=True
+PASS Actual signature activated HourglassStag / 0 casts=1 injuries=True
 PASS Bounded visual/projectile queues HourglassStag / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) HourglassStag / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s HourglassStag / 0 blasts=0
@@ -1059,10 +1059,10 @@ PASS Approach save round trip HourglassStag / 0
 PASS Identity row does not overwrite stat summaries HourglassStag / 1
 PASS Damage row keeps correct compiled value HourglassStag / 1
 PASS Finite and immortal companion behavior HourglassStag / 1
-PASS Actual signature activated HourglassStag / 1 casts=10 injuries=True
+PASS Actual signature activated HourglassStag / 1 casts=1 injuries=True
 PASS Bounded visual/projectile queues HourglassStag / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) HourglassStag / 1 
-PASS Identity detonations sized inside their disc and at most one per 0.3s HourglassStag / 1 blasts=10
+PASS Identity detonations sized inside their disc and at most one per 0.3s HourglassStag / 1 blasts=1
 PASS Pause cannot farm mechanic HourglassStag / 1
 PASS Combat glyphs cleared in rest HourglassStag / 1
 PASS Painted ink mechanic (strike, live state or painted bolt) drawn without primitive outlines HourglassStag / 1
@@ -1071,7 +1071,7 @@ PASS Approach save round trip HourglassStag / 1
 PASS Identity row does not overwrite stat summaries HourglassStag / 2
 PASS Damage row keeps correct compiled value HourglassStag / 2
 PASS Finite and immortal companion behavior HourglassStag / 2
-PASS Actual signature activated HourglassStag / 2 casts=5 injuries=True
+PASS Actual signature activated HourglassStag / 2 casts=1 injuries=True
 PASS Bounded visual/projectile queues HourglassStag / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) HourglassStag / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s HourglassStag / 2 blasts=0
@@ -1083,7 +1083,7 @@ PASS Approach save round trip HourglassStag / 2
 PASS Identity row does not overwrite stat summaries RainArchivist / 0
 PASS Damage row keeps correct compiled value RainArchivist / 0
 PASS Finite and immortal companion behavior RainArchivist / 0
-PASS Actual signature activated RainArchivist / 0 casts=7 injuries=True
+PASS Actual signature activated RainArchivist / 0 casts=6 injuries=True
 PASS Bounded visual/projectile queues RainArchivist / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) RainArchivist / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s RainArchivist / 0 blasts=0
@@ -1095,7 +1095,7 @@ PASS Approach save round trip RainArchivist / 0
 PASS Identity row does not overwrite stat summaries RainArchivist / 1
 PASS Damage row keeps correct compiled value RainArchivist / 1
 PASS Finite and immortal companion behavior RainArchivist / 1
-PASS Actual signature activated RainArchivist / 1 casts=7 injuries=True
+PASS Actual signature activated RainArchivist / 1 casts=6 injuries=True
 PASS Bounded visual/projectile queues RainArchivist / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) RainArchivist / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s RainArchivist / 1 blasts=0
@@ -1107,7 +1107,7 @@ PASS Approach save round trip RainArchivist / 1
 PASS Identity row does not overwrite stat summaries RainArchivist / 2
 PASS Damage row keeps correct compiled value RainArchivist / 2
 PASS Finite and immortal companion behavior RainArchivist / 2
-PASS Actual signature activated RainArchivist / 2 casts=7 injuries=True
+PASS Actual signature activated RainArchivist / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues RainArchivist / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) RainArchivist / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s RainArchivist / 2 blasts=0

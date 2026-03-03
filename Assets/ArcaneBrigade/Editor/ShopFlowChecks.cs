@@ -32,7 +32,7 @@ namespace ArcaneBrigade.Editor
                 s.Start("LanternKnight",161026);s.State.Wave=13;s.State.Endless=true;s.State.Phase=SessionPhase.Shop;s.State.OutsideTransfers=3;s.AcceptOutsideStage();
                 var arena=s.PrepareCombat();var source=OutsideStageAssets.Current.Boss;
                 Check(Mathf.Abs(arena.Boss.BodyHeight/source.BodyHeight-2.45f)<.001f,"Keeper body is 40 percent larger than previous 1.75 scale");
-                Check(Mathf.Abs(arena.Boss.Health/(source.Health*20*.8f)-1.8f)<.001f,"Keeper has 80 percent more HP than previous build at equal settings");
+                Check(Mathf.Abs(arena.Boss.Health/(source.Health*20*.8f)-1.8f*OctoberBalance.EnemyHealthRelief)<.001f,"Keeper has 80 percent more HP than previous build at equal settings, before the global enemy health relief");
                 var sim=new CombatSimulation(arena);sim.Start(161026);sim.Champion.NextAttack=float.PositiveInfinity;
                 bool summoned=false;int most=0;
                 for(int tick=0;tick<800;tick++)

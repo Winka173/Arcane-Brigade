@@ -167,7 +167,7 @@ namespace ArcaneBrigade
                     }
                     if (toy.Kind == ArenaToyKind.StageBell)
                     {
-                        DamageArenaToyArea(toy, toy.Position, toy.Position, toy.Radius);
+                        RingStageBell(toy);
                         CoolArenaToy(toy);
                     }
                     else
@@ -193,6 +193,26 @@ namespace ArcaneBrigade
             toy.Charge = 0;
         }
 
+        /// <summary>The stage bell rings out three chimes that fly at the nearest enemies (no ring round the bell).</summary>
+        private void RingStageBell(ArenaToyState toy)
+        {
+            targetCandidates.Clear();
+            foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy && (u.Position - toy.Position).sqrMagnitude <= 36f) targetCandidates.Add(u);
+            targetCandidates.Sort((a, b) => (a.Position - toy.Position).sqrMagnitude.CompareTo((b.Position - toy.Position).sqrMagnitude));
+            Sprite chime = CombatVfxArtwork.Frame("BellChime", 0);
+            var ring = new HashSet<int>(); // each enemy is struck once per ring
+            for (int i = 0; i < 3; i++)
+            {
+                Vector2 aim = targetCandidates.Count > 0 ? targetCandidates[i % targetCandidates.Count].Position - toy.Position : new Vector2(Mathf.Cos(i * 2.1f), Mathf.Sin(i * 2.1f));
+                aim = (aim.sqrMagnitude > 0.0001f ? aim.normalized : Vector2.right);
+                if (targetCandidates.Count <= i) aim = (Vector2)(Quaternion.Euler(0, 0, (i - 1) * 14) * aim);
+                projectiles.Add(new ProjectileState { Id = ++nextId, Faction = Faction.Companion, Position = toy.Position, PreviousPosition = toy.Position, Velocity = aim * 7f,
+                    LaunchVelocity = aim * 7f, Remaining = 0.9f, Damage = 14f, Color = new Color(1, 0.86f, 0.5f), Element = DamageElement.Physical, SourceName = "Stage bell",
+                    Sprite = chime, VisualWidth = 0.4f, Radius = 0.16f, IsFragment = true, Cause = toy.Cause, Volley = ring });
+            }
+            events.Add(new CombatEvent(CombatEventKind.Support, toy.Position + Vector2.up * 0.5f, Faction.Companion, cause: toy.Cause));
+        }
+
         private void ActivateExpandedToy(ArenaToyState toy)
         {
             if (toy.Kind == ArenaToyKind.InkBottle)
@@ -201,8 +221,9 @@ namespace ArcaneBrigade
             }
             else if (toy.Kind == ArenaToyKind.HangingHammer)
             {
+                // the hammer falls where it hangs: a painted slam, not a ring
                 DamageArenaToyArea(toy, toy.Position, toy.Position, 1.8f);
-                Field(ExpandedFieldKind.Echo, Champion, toy.Position, Vector2.zero, 1.8f, 0, 0, 0.4f, toy.Cause);
+                events.Add(new CombatEvent(CombatEventKind.Detonation, toy.Position, Faction.Companion, 1.8f / 1.4f, Vector2.down, cause: toy.Cause));
             }
             else if (toy.Kind == ArenaToyKind.SleepMirror)
             {
@@ -213,10 +234,13 @@ namespace ArcaneBrigade
             }
             else
             {
+                // the music box plays to each friend nearby: a note gathers on each of them (no ring round the box)
                 foreach (UnitState ally in units)
                     if (ally.Alive && ally.Faction != Faction.Enemy && (ally.Position - toy.Position).sqrMagnitude < 16f)
+                    {
                         ally.NextAttack = Mathf.Max(Elapsed, ally.NextAttack - 0.2f);
-                Field(ExpandedFieldKind.Echo, Champion, toy.Position, Vector2.zero, 4f, 0, 0, 0.8f, toy.Cause);
+                        events.Add(new CombatEvent(CombatEventKind.Support, ally.Position + Vector2.up * 0.25f, ally.Faction, subject: ally, cause: toy.Cause));
+                    }
             }
         }
 
@@ -272,6 +296,7 @@ namespace ArcaneBrigade
             if (Phase != RunPhase.Combat || !float.IsFinite(deltaTime) || deltaTime <= 0f || deltaTime > 0.1f) return;
             Elapsed += deltaTime;
             ProcessArenaToys(deltaTime);
+            spatial.Rebuild(units); MoveProjectiles(deltaTime); // the stage bell's chimes fly to their targets
         }
 #endif
     }

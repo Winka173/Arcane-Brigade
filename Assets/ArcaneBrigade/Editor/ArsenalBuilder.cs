@@ -72,6 +72,19 @@ namespace ArcaneBrigade.Editor
                 status.Add("LIVE " + spec.Id);
             }
             catalog.Weapons = weapons.ToArray(); EditorUtility.SetDirty(catalog);
+            // hand-painted rarity frames replace the procedural ones, a rarity at a time, once all five of its parts exist
+            foreach (string rarity in new[] { "Uncommon", "Rare", "Mythic", "Crimson", "Rainbow" })
+            {
+                string[] parts = { "Side", "Glow", "Crest", "Foot", "Corner" };
+                const string painted = "Assets/ArcaneBrigade/Art/RarityFramePainted/", live = "Assets/ArcaneBrigade/Resources/RarityFrame/";
+                if (!Array.TrueForAll(parts, part => File.Exists(painted + rarity + "_" + part + ".png"))) { status.Add("FRAME WAITING " + rarity); continue; }
+                foreach (string part in parts)
+                {
+                    File.Copy(painted + rarity + "_" + part + ".png", live + rarity + "_" + part + ".png", true);
+                    AssetDatabase.ImportAsset(live + rarity + "_" + part + ".png", ImportAssetOptions.ForceUpdate);
+                }
+                status.Add("FRAME PAINTED " + rarity);
+            }
             AssetDatabase.SaveAssets();
             Directory.CreateDirectory("PreviewExports/Arsenal");
             File.WriteAllLines("PreviewExports/Arsenal/Art_Status.txt", status);

@@ -29,6 +29,14 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>Where a hero's area mechanic lands: on the nearest enemy within reach (never round the hero's own body).</summary>
+        private Vector2 ThreatPoint(float reach)
+        {
+            UnitState nearest = null; float best = reach * reach;
+            foreach (UnitState u in units) { float d = (u.Position - Champion.Position).sqrMagnitude; if (u.Alive && u.Faction == Faction.Enemy && d <= best) { best = d; nearest = u; } }
+            return nearest != null ? nearest.Position : Champion.Position + Champion.Facing * Mathf.Min(reach, 1.5f);
+        }
+
         private void ClearArsenal()
         {
             arsenalProps.Clear(); ArsenalBursts = 0;
@@ -294,6 +302,36 @@ namespace ArcaneBrigade
                     ArsenalProp fizz = PlaceProp(ArsenalPropKind.Fizz, source, ClampPosition(point, 0.3f), damage * 0.15f, 0.8f, critical, cause);
                     fizz.LandAt = Elapsed + 0.45f; fizz.Until = fizz.LandAt + 2.5f; return true;
                 }
+                case ArsenalWeapon.DowsingRod:
+                {
+                    // the twig finds the weakest enemy in reach and flies to it
+                    UnitState weakest = null; float low = float.PositiveInfinity;
+                    foreach (UnitState u in units)
+                        if (CanHit(source.Faction, u) && (u.Position - source.Position).sqrMagnitude <= weapon.Range * weapon.Range && u.Health < low) { low = u.Health; weakest = u; }
+                    UnitState mark = weakest ?? target;
+                    if (mark == null) return true;
+                    ProjectileState twig = ArsenalShot(source, ArsenalMuzzle(source), mark.Position - ArsenalMuzzle(source), 7.5f, weapon.Range + 1.5f, damage * 1.2f, critical, cause, 0.12f);
+                    twig.OrbitTargetId = mark.Id;
+                    return true;
+                }
+                case ArsenalWeapon.StarKnuckle:
+                {
+                    bool upper = source.ArsenalBeat % 4 == 0;
+                    ArsenalSweep(source, weapon, aim, weapon.Range, 0.5f, damage * (upper ? 1.5f : 0.8f), critical, upper ? cause.Child("star-uppercut") : cause);
+                    if (upper)
+                    {
+                        if (target != null && target.Alive && !target.Definition.IsBoss && (target.Position - source.Position).magnitude <= weapon.Range + target.Definition.Radius) target.ChillUntil = Mathf.Max(target.ChillUntil, Elapsed + 0.5f);
+                        for (int i = -1; i <= 1; i++) ArsenalShot(source, ArsenalMuzzle(source), ArsenalTurn(aim, i * 15), 7f, 2.6f, damage * 0.35f, critical, cause.Child("star-shard"), 0.08f, 1).IsFragment = true;
+                    }
+                    return true;
+                }
+                case ArsenalWeapon.BuzzerBlock:
+                {
+                    ArsenalProp buzzer = PlaceProp(ArsenalPropKind.Buzzer, source, ClampPosition(source.Position + (point - source.Position).normalized * Mathf.Min(1.8f, (point - source.Position).magnitude), 0.3f), damage * 0.6f, 0.5f, critical, cause);
+                    buzzer.LandAt = Elapsed + 0.3f; buzzer.Until = Elapsed + 10f;
+                    DropOldest(source, ArsenalPropKind.Buzzer, 2);
+                    return true;
+                }
                 case ArsenalWeapon.LeekBaton:
                 case ArsenalWeapon.FlySwatter:
                 {
@@ -417,6 +455,13 @@ namespace ArcaneBrigade
                     }
                     return 0;
                 }
+                case ArsenalWeapon.DowsingRod:
+                {
+                    // the twig bends toward the enemy it found
+                    UnitState mark = UnitWithId(shot.OrbitTargetId);
+                    if (mark != null && mark.Alive) shot.Velocity = Vector2.Lerp(shot.Velocity, (mark.Position - shot.Position).normalized * 7.5f, Mathf.Clamp01(delta * 8));
+                    return 0;
+                }
                 case ArsenalWeapon.PlushShark:
                     if (shot.ArsenalStage == 0 && shot.Remaining - delta <= 0 && source != null) { shot.ArsenalStage = 1; shot.Remaining = 5; shot.Damage = 0; }
                     if (shot.ArsenalStage == 1 && source != null)
@@ -457,6 +502,9 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.CandyDrill:
                     if (shot.Victims.Count >= 4) { PlantDrill(source, shot); shot.Remaining = 0; }
+                    return;
+                case ArsenalWeapon.DowsingRod:
+                    if (target.Alive) { target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 2f); target.WeaknessSourceId = source.Id; }
                     return;
                 case ArsenalWeapon.SquirtTrio:
                     if (target.Alive) target.ChillUntil = Mathf.Max(target.ChillUntil, Elapsed + (target.Definition.IsBoss ? 0.3f : 1.5f));
@@ -688,6 +736,27 @@ namespace ArcaneBrigade
                         }
                         if (Elapsed > p.Until) arsenalProps.Remove(p);
                         break;
+                    case ArsenalPropKind.Buzzer:
+                    {
+                        if (Elapsed < p.LandAt) break;
+                        UnitState stepped = null;
+                        foreach (UnitState u in units) if (CanHit(source.Faction, u) && (u.Position - p.Position).sqrMagnitude <= Mathf.Pow(p.Radius + u.Definition.Radius, 2)) { stepped = u; break; }
+                        if (stepped == null) { if (Elapsed > p.Until) arsenalProps.Remove(p); break; }
+                        // BZZT: the one who stepped on it, then up to three neighbours in a chain
+                        UnitState from = stepped; p.Victims.Clear();
+                        for (int hop = 0; hop < 4 && from != null; hop++)
+                        {
+                            p.Victims.Add(from.Id);
+                            ApplyWeaponDamage(from, p.Damage, source.Faction, DamageElement.Arcane, weapon.Id, Vector2.zero, weapon, p.Critical, p.Cause);
+                            if (from.Alive && !from.Definition.IsBoss) from.ChillUntil = Mathf.Max(from.ChillUntil, Elapsed + 0.3f);
+                            UnitState next = null; float best = 2.2f * 2.2f;
+                            foreach (UnitState u in units) { float d = (u.Position - from.Position).sqrMagnitude; if (CanHit(source.Faction, u) && !p.Victims.Contains(u.Id) && d < best) { best = d; next = u; } }
+                            if (next != null) fields.Add(new ExpandedField { Kind = ExpandedFieldKind.Link, Start = from.Position, Position = next.Position, At = Elapsed, Until = Elapsed + 0.22f, Resolved = true });
+                            from = next;
+                        }
+                        events.Add(new CombatEvent(CombatEventKind.Proc, p.Position, source.Faction, 0.4f, Vector2.up, weapon, cause: p.Cause));
+                        arsenalProps.Remove(p); break;
+                    }
                     case ArsenalPropKind.Plunge:
                     {
                         UnitState stuck = UnitWithId(p.TargetId);

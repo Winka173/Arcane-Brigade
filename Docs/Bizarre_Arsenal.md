@@ -56,6 +56,13 @@ Pass 3 read the Naming Demon's complete 32-item cycle frame by frame in three vi
 
 Also clarified by pass 3 (already covered): the slingshot (AcornSling), the red round uchiwa fan (PaperFan), the black and gold tridents (ForkTrident/PlasmaTrident), the hunting rifle's shotgun cousin (ConfettiBlunderbuss), the cyan heart-gem staff (staffs), the curved white glaive (MoonScythe), the V boomerang (CrescentBoomerang), the thrown shark (PlushShark). Still unidentified at 40–60 px: a thin wooden stick, a silver spiked fist, a yellow block with a red button (likely the detonator).
 
+### Our own takes on the three unidentified items (3 more, 35 total)
+| # | Id | Item in the footage | Kind | Mechanic | Look |
+|---|---|---|---|---|---|
+| 33 | DowsingRod | the thin wooden stick | projectile | A twig thrown at the weakest enemy in reach (120% W); it bends toward it and exposes it 2 s. | Forked twig with a cyan bead; a dowsing ripple on the mark. |
+| 34 | StarKnuckle | the silver spiked fist | melee | Quick jabs (80%); every fourth is a star uppercut (150%) that dazes 0.5 s and throws 3 star shards forward. | Silver knuckle with star studs; punch-star impacts. |
+| 35 | BuzzerBlock | the yellow block with a red button | planted | Places a prank buzzer 1.8 ahead (up to 2). The enemy that steps on it and 3 neighbours in a chain are shocked (60%) and stopped 0.3 s. | Yellow buzzer jumping when pressed; a zig-zag toy lightning chain. |
+
 Rejected as duplicates of what we already have: boomerang (CrescentBoomerang), slingshot (AcornSling), thrown fish (TinFish), cleaver (ToastCleaver/KeyCleaver), flail/spiked club (TeabagFlail), fan (PaperFan), fire extinguisher, glow stick (AfterimageSabre), axe (KeyCleaver), machete (TwinSabres), trident, spear, bow, magic staffs, water-bubble wand.
 
 ## 2. One weapon per playable character (31, all different)

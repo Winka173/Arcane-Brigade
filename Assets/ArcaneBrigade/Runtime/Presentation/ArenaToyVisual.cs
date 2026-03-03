@@ -10,6 +10,7 @@ namespace ArcaneBrigade
             public Transform Root;
             public Transform Body;
             public LineRenderer Warning;
+            public SpriteRenderer Mark;   // the hammer's landing spot, painted
             public LineRenderer Destination;
             public LineRenderer Lane;
             public readonly List<GameObject> Charges = new List<GameObject>();
@@ -54,8 +55,20 @@ namespace ArcaneBrigade
                 view.Body.localRotation = Quaternion.Euler(0f, 0f, shake);
                 view.Body.localScale = Vector3.one * (warning && !PresentationSettings.ReducedMotion ? 1f + 0.035f * Mathf.Sin(now * 18f) : 1f);
                 Color cue = Color.Lerp(Brass, Cream, PresentationSettings.ReducedMotion ? 0.75f : 0.5f + 0.5f * Mathf.Sin(now * 8f));
-                view.Warning.enabled = warning && toy.Kind != ArenaToyKind.ToyCart;
-                Circle(view.Warning, toy.Position, toy.Radius, cue);
+                // no thin warning ring round a toy: the bell and box shake and swell; only the hammer's landing spot is marked
+                view.Warning.enabled = false;
+                Sprite mark = warning && toy.Kind == ArenaToyKind.HangingHammer ? CombatVfxArtwork.Frame("TelegraphCircle", 0) : null;
+                if (mark != null)
+                {
+                    if (view.Mark == null) { var go = new GameObject("HammerMark"); go.transform.SetParent(view.Root, false); view.Mark = go.AddComponent<SpriteRenderer>(); view.Mark.sortingOrder = 63; }
+                    float gather = Mathf.Clamp01((now - toy.Started) / Mathf.Max(0.05f, toy.Until - toy.Started));
+                    float wide = 1.8f * 2 * (PresentationSettings.ReducedMotion ? 1 : 0.8f + 0.2f * gather);
+                    Rect ink = SpriteInkMetrics.BoundsOf(mark);
+                    view.Mark.enabled = true; view.Mark.sprite = mark;
+                    view.Mark.transform.position = (Vector3)toy.Position; view.Mark.transform.localScale = new Vector3(wide / Mathf.Max(.01f, ink.width), wide * 0.5f / Mathf.Max(.01f, ink.height), 1);
+                    view.Mark.color = new Color(1f, 0.85f, 0.45f, 0.35f + 0.4f * gather);
+                }
+                else if (view.Mark != null) view.Mark.enabled = false;
                 view.Lane.enabled = (warning || toy.Mode == ArenaToyMode.Rolling) && toy.Kind == ArenaToyKind.ToyCart;
                 Lane(view.Lane, toy.LaneStart, toy.LaneEnd, toy.Radius, cue);
                 view.Destination.enabled = simulation.ArenaShiftWarning;

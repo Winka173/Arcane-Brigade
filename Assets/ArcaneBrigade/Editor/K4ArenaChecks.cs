@@ -52,9 +52,11 @@ namespace ArcaneBrigade.Editor
                 simulation.Pause(false);
                 fixture.Tick(11);
                 require(enemy.Health == 100f, "warning cannot fire before a second");
-                fixture.Tick(3);
-                require(enemy.Health == 86f && simulation.Champion.Health == championHealth && float.IsPositiveInfinity(fixture.Source.Health), "bell only damages enemies");
-                require(simulation.Events.Any(value => value.Kind == CombatEventKind.Hit && value.Cause.Depth == 1 && value.Cause.SourceUnitId == 0 && value.Cause.ItemId == "arena-stage-bell"), "payoff carries secondary arena ledger cause");
+                // the bell rings out chimes that fly to the enemy: watch each tick for the hit
+                bool chimed = false;
+                for (int tick = 0; tick < 6; tick++) { fixture.Tick(1); chimed |= simulation.Events.Any(value => value.Kind == CombatEventKind.Hit && value.Cause.Depth == 1 && value.Cause.SourceUnitId == 0 && value.Cause.ItemId == "arena-stage-bell"); }
+                require(enemy.Health == 86f && simulation.Champion.Health == championHealth && float.IsPositiveInfinity(fixture.Source.Health), "bell only damages enemies " + enemy.Health + " projectiles " + simulation.Projectiles.Count);
+                require(chimed, "payoff carries secondary arena ledger cause");
                 fixture.Impact(bell, 8);
                 require(bell.Charge == 0 && bell.Mode == ArenaToyMode.Cooldown, "cooldown rejects impact");
                 fixture.Tick(52);

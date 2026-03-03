@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         {
             results.Clear();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Require(ArsenalSpecs.All.Length == 32 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 32, "32 distinct weapons");
+            Require(ArsenalSpecs.All.Length == 35 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 35, "35 distinct weapons");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
             foreach (ArsenalSpecs.Spec spec in ArsenalSpecs.All)
@@ -304,6 +304,32 @@ namespace ArcaneBrigade.Editor
                     UnitState t = f.Enemy(new Vector2(1.2f, 0)), side = f.Enemy(new Vector2(0.5f, 1.2f));
                     sim.ArsenalAttackFixture(me, t);
                     Require(t.Health < f.Full && side.Health < f.Full && t.Position.x > 1.2f && t.ChillUntil > sim.Elapsed, id + " a wide stinging swing that pushes");
+                    break;
+                }
+                case ArsenalWeapon.DowsingRod:
+                {
+                    UnitState strong = f.Enemy(new Vector2(2, 0)), weak = f.Enemy(new Vector2(3.5f, 1.2f));
+                    weak.Health = f.Full * 0.3f; float before = weak.Health;
+                    sim.ArsenalAttackFixture(me, strong); f.Tick(0.9f);
+                    Require(weak.Health < before && strong.Health == f.Full && weak.ExposedUntil > sim.Elapsed, id + " finds and exposes the weakest enemy");
+                    break;
+                }
+                case ArsenalWeapon.StarKnuckle:
+                {
+                    UnitState t = f.Enemy(new Vector2(1, 0)), beyond = f.Enemy(new Vector2(2.6f, 0));
+                    for (int i = 0; i < 3; i++) sim.ArsenalAttackFixture(me, t);
+                    Require(t.Health < f.Full && beyond.Health == f.Full, id + " jabs reach only up close");
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.5f);
+                    Require(beyond.Health < f.Full && t.ChillUntil > sim.Elapsed - 0.2f, id + " the fourth is an uppercut throwing star shards");
+                    break;
+                }
+                case ArsenalWeapon.BuzzerBlock:
+                {
+                    UnitState t = f.Enemy(new Vector2(5, 0)), a = f.Enemy(new Vector2(5.2f, 1.5f)), b = f.Enemy(new Vector2(6, 2.6f));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.5f);
+                    Require(sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Buzzer) && t.Health == f.Full, id + " the buzzer waits on the floor");
+                    t.Position = new Vector2(1.8f, 0); a.Position = new Vector2(2.4f, 1.5f); b.Position = new Vector2(3.2f, 2.6f); f.Tick(0.2f);
+                    Require(t.Health < f.Full && a.Health < f.Full && b.Health < f.Full, id + " stepping on it shocks a chain");
                     break;
                 }
                 case ArsenalWeapon.FlySwatter:

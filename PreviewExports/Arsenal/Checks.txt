@@ -1,4 +1,4 @@
-PASS 32 distinct weapons
+PASS 35 distinct weapons
 PASS a weapon is only in the catalog with its art
 PASS every hero carries a different weapon now
 PASS every hero's own weapon is different
@@ -140,5 +140,13 @@ PASS FizzBottle the fizzing puddle hurts and slows
 PASS FizzBottle never strikes the enemy right behind the wielder
 PASS LeekBaton a wide stinging swing that pushes
 PASS LeekBaton never strikes the enemy right behind the wielder
+PASS DowsingRod finds and exposes the weakest enemy
+PASS DowsingRod never strikes the enemy right behind the wielder
+PASS StarKnuckle jabs reach only up close
+PASS StarKnuckle the fourth is an uppercut throwing star shards
+PASS StarKnuckle never strikes the enemy right behind the wielder
+PASS BuzzerBlock the buzzer waits on the floor
+PASS BuzzerBlock stepping on it shocks a chain
+PASS BuzzerBlock never strikes the enemy right behind the wielder
 PASS FlySwatter dazes, and the third swat crushes the weak
 PASS FlySwatter never strikes the enemy right behind the wielder
