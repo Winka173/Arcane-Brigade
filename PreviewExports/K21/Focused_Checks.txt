@@ -1,7 +1,7 @@
 PASS Detailed core drawing UndeliveredKing
 PASS Eight real ground-anchored core poses UndeliveredKing
-PASS Size at least 55 percent above previous runtime UndeliveredKing actual=4.62 source=2.2
-PASS Sixty percent extra health UndeliveredKing
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) UndeliveredKing actual=3.696 source=2.2
+PASS Sixty percent extra health UndeliveredKing actual=3402.858 needed=3578.21
 PASS No source stats or weapon mutation UndeliveredKing
 PASS Distinct signature UndeliveredKing/0
 PASS Signature creates non-projectile attacks UndeliveredKing/0
@@ -16,8 +16,8 @@ PASS Shop removes signature damage UndeliveredKing/1
 PASS Organs move on shared simulation pose clock UndeliveredKing
 PASS Detailed core drawing ScarletIndex
 PASS Eight real ground-anchored core poses ScarletIndex
-PASS Size at least 55 percent above previous runtime ScarletIndex actual=4.788 source=2.28
-PASS Sixty percent extra health ScarletIndex
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) ScarletIndex actual=3.8304 source=2.28
+PASS Sixty percent extra health ScarletIndex actual=4135.781 needed=4348.901
 PASS No source stats or weapon mutation ScarletIndex
 PASS Distinct signature ScarletIndex/0
 PASS Signature creates non-projectile attacks ScarletIndex/0
@@ -32,8 +32,8 @@ PASS Shop removes signature damage ScarletIndex/1
 PASS Organs move on shared simulation pose clock ScarletIndex
 PASS Detailed core drawing SleepCollector
 PASS Eight real ground-anchored core poses SleepCollector
-PASS Size at least 55 percent above previous runtime SleepCollector actual=4.956 source=2.36
-PASS Sixty percent extra health SleepCollector
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) SleepCollector actual=3.9648 source=2.36
+PASS Sixty percent extra health SleepCollector actual=4868.704 needed=5119.592
 PASS No source stats or weapon mutation SleepCollector
 PASS Distinct signature SleepCollector/0
 PASS Signature creates non-projectile attacks SleepCollector/0
@@ -52,8 +52,8 @@ PASS Shop removes signature damage SleepCollector/1
 PASS Organs move on shared simulation pose clock SleepCollector
 PASS Detailed core drawing WaxAdmiral
 PASS Eight real ground-anchored core poses WaxAdmiral
-PASS Size at least 55 percent above previous runtime WaxAdmiral actual=5.124 source=2.44
-PASS Sixty percent extra health WaxAdmiral
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) WaxAdmiral actual=4.0992 source=2.44
+PASS Sixty percent extra health WaxAdmiral actual=5601.627 needed=5890.284
 PASS No source stats or weapon mutation WaxAdmiral
 PASS Distinct signature WaxAdmiral/0
 PASS Signature creates non-projectile attacks WaxAdmiral/0
@@ -68,8 +68,8 @@ PASS Shop removes signature damage WaxAdmiral/1
 PASS Organs move on shared simulation pose clock WaxAdmiral
 PASS Detailed core drawing LastLantern
 PASS Eight real ground-anchored core poses LastLantern
-PASS Size at least 55 percent above previous runtime LastLantern actual=5.292 source=2.52
-PASS Sixty percent extra health LastLantern
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) LastLantern actual=4.2336 source=2.52
+PASS Sixty percent extra health LastLantern actual=6334.55 needed=6660.975
 PASS No source stats or weapon mutation LastLantern
 PASS Distinct signature LastLantern/0
 PASS Signature creates non-projectile attacks LastLantern/0
@@ -84,8 +84,8 @@ PASS Shop removes signature damage LastLantern/1
 PASS Organs move on shared simulation pose clock LastLantern
 PASS Detailed core drawing MarqueeMaw
 PASS Eight real ground-anchored core poses MarqueeMaw
-PASS Size at least 55 percent above previous runtime MarqueeMaw actual=5.67 source=2.7
-PASS Sixty percent extra health MarqueeMaw
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) MarqueeMaw actual=4.536 source=2.7
+PASS Sixty percent extra health MarqueeMaw actual=3141.099 needed=3302.963
 PASS No source stats or weapon mutation MarqueeMaw
 PASS Distinct signature MarqueeMaw/0
 PASS Signature creates non-projectile attacks MarqueeMaw/0
@@ -102,8 +102,8 @@ PASS Shop removes signature damage MarqueeMaw/1
 PASS Organs move on shared simulation pose clock MarqueeMaw
 PASS Detailed core drawing UmbraCradle
 PASS Eight real ground-anchored core poses UmbraCradle
-PASS Size at least 55 percent above previous runtime UmbraCradle actual=6.486 source=2.82
-PASS Sixty percent extra health UmbraCradle
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) UmbraCradle actual=5.1888 source=2.82
+PASS Sixty percent extra health UmbraCradle actual=3795.495 needed=3991.08
 PASS No source stats or weapon mutation UmbraCradle
 PASS Distinct signature UmbraCradle/0
 PASS Signature creates non-projectile attacks UmbraCradle/0
@@ -122,8 +122,8 @@ PASS Shop removes signature damage UmbraCradle/1
 PASS Organs move on shared simulation pose clock UmbraCradle
 PASS Detailed core drawing CoinWidow
 PASS Eight real ground-anchored core poses CoinWidow
-PASS Size at least 55 percent above previous runtime CoinWidow actual=6.174 source=2.94
-PASS Sixty percent extra health CoinWidow
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) CoinWidow actual=4.9392 source=2.94
+PASS Sixty percent extra health CoinWidow actual=4449.891 needed=4679.197
 PASS No source stats or weapon mutation CoinWidow
 PASS Distinct signature CoinWidow/0
 PASS Signature creates non-projectile attacks CoinWidow/0
@@ -138,8 +138,8 @@ PASS Shop removes signature damage CoinWidow/1
 PASS Organs move on shared simulation pose clock CoinWidow
 PASS Detailed core drawing ChoirEngine
 PASS Eight real ground-anchored core poses ChoirEngine
-PASS Size at least 55 percent above previous runtime ChoirEngine actual=6.426 source=3.06
-PASS Sixty percent extra health ChoirEngine
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) ChoirEngine actual=5.1408 source=3.06
+PASS Sixty percent extra health ChoirEngine actual=5104.287 needed=5367.315
 PASS No source stats or weapon mutation ChoirEngine
 PASS Distinct signature ChoirEngine/0
 PASS Signature creates non-projectile attacks ChoirEngine/0
@@ -154,8 +154,8 @@ PASS Shop removes signature damage ChoirEngine/1
 PASS Organs move on shared simulation pose clock ChoirEngine
 PASS Detailed core drawing SuitcaseLeviathan
 PASS Eight real ground-anchored core poses SuitcaseLeviathan
-PASS Size at least 55 percent above previous runtime SuitcaseLeviathan actual=7.314 source=3.18
-PASS Sixty percent extra health SuitcaseLeviathan
+PASS Size at least 55 percent above previous runtime (at the 80% boss scale) SuitcaseLeviathan actual=5.8512 source=3.18
+PASS Sixty percent extra health SuitcaseLeviathan actual=5758.682 needed=6055.432
 PASS No source stats or weapon mutation SuitcaseLeviathan
 PASS Distinct signature SuitcaseLeviathan/0
 PASS Signature creates non-projectile attacks SuitcaseLeviathan/0

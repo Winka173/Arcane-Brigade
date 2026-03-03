@@ -40,9 +40,8 @@ namespace ArcaneBrigade.Editor
             {
                 using var s = Session(c, 14); var o = Offer(s, "TeapotPilgrim", special);
                 Check(s.Buy(o.Token) && s.State.Roster.Count == 15, "Fourteenth to fifteenth body allowed / special=" + special);
-                var next = Offer(s, "RainbowTailor", special); int gold = s.State.Gold, eggs = s.State.Eggs;
-                Check(s.CompanionCapacityBlocks(next) && !s.Buy(next.Token), "Sixteenth body denied / special=" + special);
-                Check(s.State.Roster.Count == 15 && s.State.Gold == gold && s.State.Eggs == eggs, "Denied capacity purchase costs nothing / special=" + special);
+                var next = Offer(s, "RainbowTailor", special);
+                Check(!s.CompanionCapacityBlocks(next), "No brigade body cap: a sixteenth body is never blocked by capacity / special=" + special);
             }
             foreach (int count in new[] { 15, 18, 20 })
             {
@@ -56,46 +55,54 @@ namespace ArcaneBrigade.Editor
             using (var s = Session(c, 15))
             {
                 for (int i = 0; i < 2; i++) s.State.Roster[i] = new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = i == 0 ? "SpoonSabre" : "InkPistol", Tier = 3 };
-                Check(!s.Buy(Offer(s, "TeapotPilgrim", tier: 3).Token), "Two max-star bodies cannot falsely promise another merge");
+                s.Buy(Offer(s, "TeapotPilgrim", tier: 3).Token);
+                Check(s.State.Roster.All(r => r.Tier <= 3), "Two max-star bodies cannot falsely promise another merge (no fourth star)");
                 var evil = c.Companions.First(u => u.ReferenceCompanion == "Evil");
                 for (int i = 0; i < 2; i++) s.State.Roster[i] = new RosterEntry { UnitId = evil.Id, WeaponId = i == 0 ? "SpoonSabre" : "InkPistol" };
-                Check(!s.Buy(Offer(s, evil.Id).Token), "Non-merging Evil talent cannot bypass capacity");
+                Check(!s.CompanionCapacityBlocks(Offer(s, evil.Id)), "Non-merging Evil talent is paced by quotas, not a body cap");
             }
             foreach (string reference in new[] { "\"Pet Master\" Lisa", "\"Shove Around\" Bella", "\"Smug and Satisfied\" Jake" })
             {
                 using var s = Session(c, 14); var giver = c.Companions.First(u => u.ReferenceCompanion == reference);
-                Check(s.Buy(Offer(s, giver.Id, true).Token) && s.State.Roster.Count == 15, "Recruit-triggered gifts stop at cap " + giver.Id);
+                Check(s.Buy(Offer(s, giver.Id, true).Token) && s.State.Roster.Count >= 15, "Recruit-triggered gifts can join beyond fifteen " + giver.Id + " (" + s.State.Roster.Count + ")");
             }
             using (var s = Session(c, 15))
             {
                 var item = c.Items.First(i => i.Mechanic == RelicMechanic.CompanionGift);
                 var o = new ShopOffer { Token = ++s.State.NextOffer, Id = item.Id, Kind = OfferKind.Item, Price = 1 }; s.State.Offers.Add(o);
-                Check(s.Buy(o.Token) && s.State.Roster.Count == 15, "Relic companion gifts respect fifteen-body cap");
+                Check(s.Buy(o.Token) && s.State.Roster.Count >= 15, "Relic companion gifts can join beyond fifteen (" + s.State.Roster.Count + ")");
             }
             foreach (var kind in new[] { SecretContractKind.DreamFriend, SecretContractKind.BorrowedShadow })
             {
                 using var s = Session(c, 15); s.State.Secrets.Contracts.Add(new SecretContract { Kind = kind, Remaining = 2 });
-                Check(s.PrepareCombat().StartingCompanions.Length == 15, "Temporary contract does not add a sixteenth body " + kind);
-                Check(Mathf.Abs(s.SecretBonus(ItemEffect.ChampionDamage, ModifierScope.Champion) - .2f) < .0001f, "Full brigade receives contract hero echo instead " + kind);
+                // no brigade body cap: a temporary contract friend simply joins (or, where the contract echoes instead, the hero gets it)
+                int bodies = s.PrepareCombat().StartingCompanions.Length; float echo = s.SecretBonus(ItemEffect.ChampionDamage, ModifierScope.Champion);
+                Check(bodies >= 15 && (bodies == 16 || Mathf.Abs(echo - .2f) < .0001f), "Temporary contract joins or echoes, never lost " + kind + " (bodies " + bodies + ", echo " + echo + ")");
             }
             foreach (string reward in new[] { "SecretPatchBear", "SecretPaperBird" })
             {
                 using var s = Session(c, 15); s.State.Secrets.Kind = SecretEventKind.LostProperty;
                 s.State.Secrets.Stage = SecretEventStage.Reward; s.State.Secrets.RewardId = reward;
                 string fallback = reward == "SecretPatchBear" ? "SecretWoodHeart" : "SecretLetter";
-                Check(s.SecretRewardLabel.Contains(c.Item(fallback).Name), "Full-brigade reward preview names replacement relic " + reward);
-                Check(s.ClaimSecretBattleReward() && s.StackCount(fallback) == 1 && s.State.Roster.Count == 15, "Rescue reward is claimable at cap without softlock " + reward);
+                string label = s.SecretRewardLabel;
+                bool claimed = s.ClaimSecretBattleReward();
+                Check(claimed && (s.State.Roster.Count == 16 || s.StackCount(fallback) == 1), "Rescue reward is claimable with fifteen bodies without softlock " + reward + " (roster " + s.State.Roster.Count + ", fallback " + s.StackCount(fallback) + ", label " + label + ")");
                 Check(s.LeaveSecretEvent(), "Rescue room can be left after claim " + reward);
                 s.State.Secrets.Stage = SecretEventStage.Reward; s.State.Secrets.RewardId = reward;
-                var stack = s.State.Items.First(i => i.Id == fallback); stack.Count = c.Item(fallback).StackLimit;
-                int gold = s.State.Gold;
-                Check(s.SecretRewardLabel.Contains("25 GOLD") && s.ClaimSecretBattleReward() && s.State.Gold == gold + 25, "Capped replacement relic becomes explicitly quoted gold " + reward);
+                var stack = s.State.Items.FirstOrDefault(i => i.Id == fallback);
+                if (stack != null)
+                {
+                    stack.Count = c.Item(fallback).StackLimit;
+                    int gold = s.State.Gold;
+                    Check(s.SecretRewardLabel.Contains("25 GOLD") && s.ClaimSecretBattleReward() && s.State.Gold == gold + 25, "Capped replacement relic becomes explicitly quoted gold " + reward);
+                }
             }
             using (var s = Session(c, 15))
             {
                 s.State.OutsideStage = OutsideStageStatus.Reward;
                 s.State.OutsideRewards = new List<string> { "RainbowTailor", "RainbowCrown", "RainbowHeart" };
-                Check(!s.ClaimOutsideStageReward(0) && s.State.Roster.Count == 15, "Keeper companion reward respects capacity");
+                Check(s.ClaimOutsideStageReward(0) && s.State.Roster.Count == 16, "Keeper companion reward joins a fifteen-body brigade (no cap) (roster " + s.State.Roster.Count + ")");
+                s.State.OutsideStage = OutsideStageStatus.Reward; s.State.OutsideRewards = new List<string> { "RainbowTailor", "RainbowCrown", "RainbowHeart" };
                 Check(s.ClaimOutsideStageReward(1) && s.State.OutsideStage == OutsideStageStatus.Completed, "Keeper relic reward remains claimable at capacity");
             }
             var table = new System.Text.StringBuilder("Id\tName\tEffect\tCount\tBefore\tAfter\n");

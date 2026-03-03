@@ -18,10 +18,11 @@ namespace ArcaneBrigade.Editor
                 UnitDefinition definition = AssetDatabase.LoadAssetAtPath<UnitDefinition>("Assets/ArcaneBrigade/Data/Run/" + id + ".asset"); AuthoredMotionSet art = definition.AuthoredMotion;
                 require(art != null, "Authored motion " + id);
                 Sprite[] all = art.Idle.Concat(art.Walk).Concat(art.Windup).Concat(art.Release).Concat(art.Recovery).ToArray();
-                int expected = definition.IsBoss && AssetDatabase.GetAssetPath(definition.Body).Contains("/K21/") ? 8 : 12;
-                require(all.Distinct().Count() == expected, expected + " separate drawings " + id);
+                int expected = definition.IsBoss && AssetDatabase.GetAssetPath(definition.Body).Contains("/K21/") || !AssetDatabase.GetAssetPath(art.Idle[0]).Contains("/K16/") ? 8 : 12; // Act I repainted canon actors carry 8 poses
+                require(all.Distinct().Count() == expected, expected + " separate drawings " + id + " (has " + all.Distinct().Count() + ")");
                 require(all.All(frame => frame != null && frame.pivot.y == 0), "Ground-anchored pose pivots " + id);
                 require(art.ReferenceHeight > 0 && definition.Body == art.Idle[0], "Stable idle height and portrait " + id);
+                if (!AssetDatabase.GetAssetPath(art.Idle[0]).Contains("/K16/")) continue; // an Act I repainted canon actor keeps its own pose layout
                 var unit = new UnitState { Definition = definition, Id = 2, Position = Vector2.zero, PreviousPosition = Vector2.zero, AttackStarted = -100, LastHit = -100 };
                 require(art.Select(unit, 0.5f, true) == art.Idle[0], "Reduced motion steady portrait " + id);
                 unit.PendingAttack = true; unit.AttackStarted = 0; unit.AttackWindup = 0.4f;

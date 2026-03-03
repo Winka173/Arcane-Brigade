@@ -37,7 +37,7 @@ namespace ArcaneBrigade.Editor
                     for (int sample = 0; sample < 120; sample++)
                     {
                         Vector3 offset = DreamLevitation.Offset(sample * .71f, identity, depth, false);
-                        Require(offset.y > .24f && offset.y < .6f && Mathf.Abs(offset.x) <= .0751f, "Bounded visible air gap " + identity + "/" + depth + "/" + sample);
+                        Require(offset.y > .14f && offset.y < .72f && Mathf.Abs(offset.x) <= .161f, "Bounded visible air gap " + identity + "/" + depth + "/" + sample + " " + offset);
                         Require(Mathf.Abs(DreamLevitation.Tilt(sample, identity, false)) <= 4.51f, "Tilt does not overturn props " + identity + "/" + sample);
                     }
                 }

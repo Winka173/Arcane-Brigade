@@ -153,12 +153,14 @@ namespace ArcaneBrigade.Editor
                 CombatEvent[] hits = simulation.Events.Where(value => value.Kind == CombatEventKind.Hit && value.Cause.SourceUnitId == fixture.Source.Id).ToArray();
                 CombatEvent fire = simulation.Events.First(value => value.Kind == CombatEventKind.Fire && value.Cause.SourceUnitId == fixture.Source.Id);
                 require(hits.Length == 2 && hits.All(value => value.Cause.RootId == fire.Cause.RootId && value.Cause.Depth == 0) && bell.Charge == 1, "actual multi-target melee shares root and charges once");
+                string trace = "";
                 for (int attack = 0; attack < 2; attack++)
                 {
                     fixture.Source.NextAttack = simulation.Elapsed;
                     fixture.Step(2);
+                    trace += " [" + attack + ": charge " + bell.Charge + " need " + bell.RequiredCharge + " pending " + fixture.Source.PendingAttack + " next " + fixture.Source.NextAttack + " t " + simulation.Elapsed + " hits " + string.Join(",", simulation.Events.Where(v => v.Kind == CombatEventKind.Hit).Select(v => v.Cause.RootId + "/" + v.Cause.Depth + "/" + v.Cause.SourceUnitId + "@" + v.Position)) + " bell@" + bell.Position + " src " + fixture.Source.Id + "]";
                 }
-                require(bell.Mode == ArenaToyMode.Warning && first.Health == 97f && second.Health == 97f, "distinct actual melee attacks reach warned charge");
+                require(bell.Mode == ArenaToyMode.Warning && first.Health == 97f && second.Health == 97f, "distinct actual melee attacks reach warned charge " + bell.Mode + " " + first.Health + "/" + second.Health + " charge " + bell.Charge + trace);
                 float pausedAt = simulation.Elapsed;
                 simulation.Pause(true);
                 fixture.Step(20);
@@ -286,6 +288,7 @@ namespace ArcaneBrigade.Editor
                 weapon.ProjectileSpeed = 10f;
                 weapon.ProjectileLifetime = 10f;
                 weapon.MountDistance = weapon.MuzzleDistance = weapon.RecoilDistance = 0f;
+                weapon.PushDistance = 0f; // hits must not knock the enemies off the prop being charged
                 Source.Definition.Weapon = weapon;
                 Source.Definition.Id = "ArenaStepAlly";
                 Vector2 heading = toy.Position.x >= 0f ? Vector2.right : Vector2.left;

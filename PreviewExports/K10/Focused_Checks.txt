@@ -35,7 +35,7 @@ PASS Bullet collision size grows with visual size
 PASS Bullet visual width matches same factor
 PASS Bounce is a probability rather than a fixed count
 PASS Projectile speed modifier applied
-PASS Range increases flight distance without speed double-counting
+PASS Range increases flight distance without speed double-counting (within the 9-unit flight cap)
 PASS Dodge compiled into simulation catalog
 PASS Heart bonus compiled into simulation catalog
 PASS Body scale changes actual hitbox as well as render
@@ -53,7 +53,7 @@ PASS Details expose hidden projectile stat types
 PASS Reciprocal collision damages actual nearby enemy after its contact windup
 PASS Technical split/dodge caps apply without deleting owned stacks
 PASS Bullet size cap keeps collision bounded
-PASS All protagonists have authored new starting-stat identities
+PASS All ten original protagonists have authored new starting-stat identities
 PASS New stat sources include protagonist identity LanternKnight
 PASS New stat sources include protagonist identity Postmaster
 PASS New stat sources include protagonist identity DrowsySeer
@@ -128,14 +128,14 @@ PASS All stat labels have definitions: ChestReach
 PASS Click route opens contextual definition
 PASS Dismiss clears glossary without fake unknown explanation
 PASS 32 new species and 24 new weapon identities loaded
-PASS Bond has 4–6 species: hearth
-PASS Bond has 4–6 species: archive
-PASS Bond has 4–6 species: clock
-PASS Bond has 4–6 species: frost
-PASS Bond has 4–6 species: orchard
-PASS Bond has 4–6 species: astral
-PASS Bond has 4–6 species: tidal
-PASS Bond has 4–6 species: oddity
+PASS Bond has at least 4 species: hearth (10)
+PASS Bond has at least 4 species: archive (10)
+PASS Bond has at least 4 species: clock (9)
+PASS Bond has at least 4 species: frost (7)
+PASS Bond has at least 4 species: orchard (7)
+PASS Bond has at least 4 species: astral (9)
+PASS Bond has at least 4 species: tidal (9)
+PASS Bond has at least 4 species: oddity (6)
 PASS Distinct imported animation frames BrassAcorn
 PASS Distinct imported animation frames BreadCrab
 PASS Distinct imported animation frames KettleBat

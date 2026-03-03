@@ -473,4 +473,28 @@ PASS Altar retains one ingredient weapon IronLocomotive
 PASS Executable reference altar recipe VioletRemnant
 PASS Altar retains one ingredient weapon VioletRemnant
 PASS Full party can complete a tier-two merge without exceeding the saved body cap
-FAIL Full party rejects a new body that cannot immediately merge
+PASS A full party is not capped: a new body is paced by recruit quotas, not a body cap
+PASS Gift-only allies never enter ordinary theme pools
+PASS Achievement journal has distinct attainable conditions
+PASS Six distinct live projectile patterns UndeliveredKing
+PASS Telegraphed new boss movement UndeliveredKing
+PASS Six distinct live projectile patterns ScarletIndex
+PASS Telegraphed new boss movement ScarletIndex
+PASS Six distinct live projectile patterns SleepCollector
+PASS Telegraphed new boss movement SleepCollector
+PASS Six distinct live projectile patterns WaxAdmiral
+PASS Telegraphed new boss movement WaxAdmiral
+PASS Six distinct live projectile patterns LastLantern
+PASS Telegraphed new boss movement LastLantern
+PASS Six distinct live projectile patterns MarqueeMaw
+PASS Telegraphed new boss movement MarqueeMaw
+PASS Six distinct live projectile patterns UmbraCradle
+PASS Telegraphed new boss movement UmbraCradle
+PASS Six distinct live projectile patterns CoinWidow
+PASS Telegraphed new boss movement CoinWidow
+PASS Six distinct live projectile patterns ChoirEngine
+PASS Telegraphed new boss movement ChoirEngine
+PASS Six distinct live projectile patterns SuitcaseLeviathan
+PASS Telegraphed new boss movement SuitcaseLeviathan
+PASS Six distinct live projectile patterns OutsideStageKeeper
+PASS Six distinct live projectile patterns TheLastCustomer

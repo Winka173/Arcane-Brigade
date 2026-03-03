@@ -45,7 +45,7 @@ namespace ArcaneBrigade.Editor
                 }
                 foreach (int stage in new[] { 0, 1 })
                 {
-                    using var fixture = new Fixture(catalog, 20);
+                    using var fixture = new Fixture(catalog, 19);
                     UnitDefinition definition = UnityEngine.Object.Instantiate(source);
                     EnemyAffixLibrary.ApplyArt(definition, stage == 0 ? source.UnlockWave : 30);
                     UnitState enemy = fixture.Enemy(definition, Vector2.zero);
@@ -59,7 +59,7 @@ namespace ArcaneBrigade.Editor
                     float clock = fixture.Simulation.Elapsed; fixture.Simulation.Pause(true); fixture.Simulation.Step(0.05f, Vector2.zero);
                     Check(fixture.Simulation.Elapsed == clock && enemy.Variant.SpecialCasts == 0, "Pause freezes specialist " + source.Id + "/" + stage); fixture.Simulation.Pause(false);
                     for (int tick = 0; tick < 22; tick++) fixture.Simulation.Step(0.05f, Vector2.zero);
-                    Check(enemy.Variant.SpecialCasts == 1, "Actual specialist release " + source.Id + "/" + stage);
+                    Check(enemy.Variant.SpecialCasts == 1, "Actual specialist release " + source.Id + "/" + stage + " casts " + enemy.Variant.SpecialCasts + " releaseAt " + enemy.Variant.ReleaseAt + " now " + fixture.Simulation.Elapsed + " phase " + fixture.Simulation.Phase + " surge " + enemy.SurgeDirection + " role " + enemy.Role + " alive " + enemy.Alive);
                     bool actual = fixture.Simulation.Projectiles.Any(shot => shot.SourceUnitId == enemy.Id) || fixture.Simulation.ExpandedFields.Any(field => field.Source == enemy) || enemy.Variant.TravelEnd > fixture.Simulation.Elapsed;
                     Check(actual, "Special has real travel or attack " + source.Id + "/" + stage);
                     if (source.SpecialEnemy == SpecialEnemyKind.AshSwallower) Check(enemy.Variant.AshMeals == 3, "Swallower consumes bounded actual remains");
@@ -80,7 +80,7 @@ namespace ArcaneBrigade.Editor
             foreach (EnemyAffix affix in Enum.GetValues(typeof(EnemyAffix)))
             {
                 if (affix == EnemyAffix.None) continue;
-                using var fixture = new Fixture(catalog, 20);
+                using var fixture = new Fixture(catalog, 19);
                 UnitState enemy = fixture.Enemy(fixture.Arena.MeleeEnemy, Vector2.zero);
                 enemy.Variant.Affix = affix; enemy.Variant.NextAffix = 0; enemy.Variant.NextSpecial = float.PositiveInfinity;
                 float health = enemy.Definition.Health; Sprite body = enemy.Definition.Body;
@@ -99,7 +99,7 @@ namespace ArcaneBrigade.Editor
             string schedule = null;
             for (int replay = 0; replay < 2; replay++)
             {
-                using var fixture = new Fixture(catalog, 20);
+                using var fixture = new Fixture(catalog, 19);
                 for (int index = 0; index < 80; index++) Invoke(fixture.Simulation, "InitializeEnemyVariant", fixture.Enemy(fixture.Arena.MeleeEnemy, new Vector2(8, 3)));
                 UnitState[] assigned = fixture.Simulation.Units.Where(unit => unit.Variant != null && unit.Variant.Affix != EnemyAffix.None).ToArray();
                 Check(assigned.Length > 0 && assigned.Length <= 4, "Natural affix population capped at four");
@@ -112,14 +112,14 @@ namespace ArcaneBrigade.Editor
                 UnitState enemy = fixture.Enemy(fixture.Arena.MeleeEnemy, Vector2.zero); Invoke(fixture.Simulation, "InitializeEnemyVariant", enemy);
                 Check(enemy.Variant.Affix == EnemyAffix.None && fixture.Arena.EnemyPool.All(unit => unit.SpecialEnemy == SpecialEnemyKind.None), "Wave one has no specialists or affixes");
             }
-            using (var fixture = new Fixture(catalog, 20))
+            using (var fixture = new Fixture(catalog, 19))
             {
                 UnitState coffin = fixture.Enemy(catalog.Enemies.First(unit => unit.SpecialEnemy == SpecialEnemyKind.SmokingCoffin), Vector2.zero);
                 coffin.Health = coffin.Definition.Health * 0.4f; coffin.Variant.NextSpecial = 0;
                 for (int tick = 0; tick < 24; tick++) fixture.Simulation.Step(0.05f, Vector2.zero);
                 Check(coffin.Variant.CoffinBroken && coffin.Variant.TravelEnd > fixture.Simulation.Elapsed && !fixture.Simulation.Units.Any(unit => unit.Variant != null && unit.Variant.Summoned), "Damaged coffin changes to charge instead of more summons");
             }
-            using (var fixture = new Fixture(catalog, 20))
+            using (var fixture = new Fixture(catalog, 19))
             {
                 UnitState leader = fixture.Enemy(catalog.Enemies.First(unit => unit.SpecialEnemy == SpecialEnemyKind.EmberProcession), Vector2.zero);
                 leader.Variant.NextSpecial = 0;
@@ -136,7 +136,7 @@ namespace ArcaneBrigade.Editor
                 for (int tick = 0; tick < 250; tick++) fixture.Simulation.Step(0.05f, Vector2.zero);
                 Check(followers.All(unit => !unit.Alive) && fixture.Simulation.Pickups.Count <= pickupCount, "Summons expire without direct loot after twelve seconds");
             }
-            using (var fixture = new Fixture(catalog, 20))
+            using (var fixture = new Fixture(catalog, 19))
             {
                 UnitState twin = fixture.Enemy(fixture.Arena.MeleeEnemy, Vector2.zero);
                 twin.Variant.Affix = EnemyAffix.TwinFlame; twin.Variant.NextAffix = 0;
@@ -146,7 +146,7 @@ namespace ArcaneBrigade.Editor
                 for (int tick = 0; tick < 24; tick++) fixture.Simulation.Step(0.05f, Vector2.zero);
                 Check(twin.Variant.AffixCasts == 2 && twin.Variant.TravelEnd > fixture.Simulation.Elapsed, "Twin flame next state really charges");
             }
-            using (var fixture = new Fixture(catalog, 20))
+            using (var fixture = new Fixture(catalog, 19))
             {
                 for (int index = 0; index < 12; index++)
                 {
@@ -159,7 +159,7 @@ namespace ArcaneBrigade.Editor
                 for (int tick = 0; tick < 30; tick++) fixture.Simulation.Step(0.05f, Vector2.zero);
                 Check(fixture.Simulation.Projectiles.Count == 0 && fixture.Simulation.ExpandedFields.Count == 0, "Killing during windup cancels unreleased attacks");
             }
-            using (var fixture = new Fixture(catalog, 20))
+            using (var fixture = new Fixture(catalog, 19))
             {
                 UnitState enemy = fixture.Enemy(fixture.Arena.MeleeEnemy, Vector2.zero);
                 enemy.Variant.Affix = EnemyAffix.Blackfire; enemy.Variant.NextAffix = 0; enemy.Health = enemy.Definition.Health * 0.35f;
@@ -169,7 +169,7 @@ namespace ArcaneBrigade.Editor
                 float loss = health - fixture.Simulation.Champion.Health;
                 Check(loss > 0 && loss <= fixture.Simulation.Champion.Definition.Health * 0.08f + 0.01f, "Blackfire pulse deals actual bounded champion damage once");
             }
-            using (var fixture = new Fixture(catalog, 20))
+            using (var fixture = new Fixture(catalog, 19))
             {
                 UnitState coffin = fixture.Enemy(catalog.Enemies.First(unit => unit.SpecialEnemy == SpecialEnemyKind.SmokingCoffin), Vector2.zero);
                 Invoke(fixture.Simulation, "SummonVariantChildren", coffin, 100, false);
@@ -190,6 +190,7 @@ namespace ArcaneBrigade.Editor
             {
                 session = new RunSession(catalog); session.Start("LanternKnight", 251077); session.State.Wave = wave; session.State.Roster.Clear();
                 Arena = session.PrepareCombat(); Arena.Boss = null; Arena.EnemyBudget = 24;
+                Arena.StoryCompanions = new UnitDefinition[0]; // the Act I party would walk in and finish the specimen first
                 Arena.EnableArenaToys = Arena.EnableBossArenaPhase = Arena.EnableSpectacles = Arena.EnableHeroMechanics = false;
                 Simulation = new CombatSimulation(Arena); Simulation.Start(251077);
                 typeof(CombatSimulation).GetField("nextSpawn", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(Simulation, float.PositiveInfinity);

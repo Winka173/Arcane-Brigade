@@ -27,8 +27,9 @@ namespace ArcaneBrigade.Editor
                 using var session = new RunSession(catalog); session.Start("LanternKnight", 21077); session.State.Wave = 4; session.State.Roster.Clear();
                 float height = source.BodyHeight, health = source.Health;
                 UnitDefinition actual = (UnitDefinition)build.Invoke(session, new object[] { source, 1f });
-                Require(actual.BodyHeight >= height * 2.099f && actual.BodyHeight / (height * 1.35f) > 1.55f, "Size at least 55 percent above previous runtime " + source.Id + " actual=" + actual.BodyHeight + " source=" + height);
-                Require(actual.Health >= health * catalog.BossHealthMultiplier * CarnivalBalance.BossBulk(4) * CarnivalBalance.EnemyHealth(4) * 1.599f, "Sixty percent extra health " + source.Id);
+                // bosses are drawn at 80% of the K21 scale since the expanded-content feedback pass (8b849cfb)
+                Require(actual.BodyHeight >= height * 2.099f * .8f && actual.BodyHeight / (height * 1.35f * .8f) > 1.55f, "Size at least 55 percent above previous runtime (at the 80% boss scale) " + source.Id + " actual=" + actual.BodyHeight + " source=" + height);
+                Require(actual.Health >= health * catalog.BossHealthMultiplier * CarnivalBalance.BossBulk(4) * CarnivalBalance.EnemyHealth(4) * 1.1f * .8f * 1.599f, "Sixty percent extra health " + source.Id + " actual=" + actual.Health + " needed=" + health * catalog.BossHealthMultiplier * CarnivalBalance.BossBulk(4) * CarnivalBalance.EnemyHealth(4) * 1.599f);
                 Require(source.Health == health && source.BodyHeight == height && actual.Weapon != source.Weapon, "No source stats or weapon mutation " + source.Id);
                 for (int variation = 0; variation < 2; variation++)
                 {

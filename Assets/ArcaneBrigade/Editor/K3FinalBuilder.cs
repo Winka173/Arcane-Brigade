@@ -12,9 +12,10 @@ namespace ArcaneBrigade.Editor
         {
             K32AltarBuilder.Apply();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            catalog.EggSprite = K3LootArt.Create(LootKind.Egg);
-            catalog.HeartSprite = K3LootArt.Create(LootKind.Heart);
-            catalog.ChestSprite = K3LootArt.Create(LootKind.Chest);
+            // only fill missing loot art: later passes replaced some of it with painted sprites (e.g. the living chest)
+            if (catalog.EggSprite == null) catalog.EggSprite = K3LootArt.Create(LootKind.Egg);
+            if (catalog.HeartSprite == null) catalog.HeartSprite = K3LootArt.Create(LootKind.Heart);
+            if (catalog.ChestSprite == null) catalog.ChestSprite = K3LootArt.Create(LootKind.Chest);
             if (catalog.LootRevision > 0)
             {
                 foreach (ItemDefinition item in catalog.Items)

@@ -1,4 +1,4 @@
-PASS Three anatomy carriers rotate without changing the four-wave schedule
+PASS Three anatomy carriers rotate across the Act I zone changes
 PASS Carrier starts and lands at exact positions Hand
 PASS Continuous pickup and throw path Hand
 PASS Carrier starts and lands at exact positions CarpetTongue
@@ -28,13 +28,13 @@ PASS No reused body drawing SmokeWraith_14
 PASS No reused body drawing SmokeWraith_15
 PASS Body windup before special SmokeWraith/0
 PASS Pause freezes specialist SmokeWraith/0
-PASS Actual specialist release SmokeWraith/0
+PASS Actual specialist release SmokeWraith/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack SmokeWraith/0
 PASS Evolution art without extra stat cliff SmokeWraith/0
 PASS Rest clears specialist effects SmokeWraith
 PASS Body windup before special SmokeWraith/1
 PASS Pause freezes specialist SmokeWraith/1
-PASS Actual specialist release SmokeWraith/1
+PASS Actual specialist release SmokeWraith/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack SmokeWraith/1
 PASS Evolution art without extra stat cliff SmokeWraith/1
 PASS Rest clears specialist effects SmokeWraith
@@ -59,13 +59,13 @@ PASS No reused body drawing BlueFlameFiend_14
 PASS No reused body drawing BlueFlameFiend_15
 PASS Body windup before special BlueFlameFiend/0
 PASS Pause freezes specialist BlueFlameFiend/0
-PASS Actual specialist release BlueFlameFiend/0
+PASS Actual specialist release BlueFlameFiend/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack BlueFlameFiend/0
 PASS Evolution art without extra stat cliff BlueFlameFiend/0
 PASS Rest clears specialist effects BlueFlameFiend
 PASS Body windup before special BlueFlameFiend/1
 PASS Pause freezes specialist BlueFlameFiend/1
-PASS Actual specialist release BlueFlameFiend/1
+PASS Actual specialist release BlueFlameFiend/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack BlueFlameFiend/1
 PASS Evolution art without extra stat cliff BlueFlameFiend/1
 PASS Rest clears specialist effects BlueFlameFiend
@@ -90,13 +90,13 @@ PASS No reused body drawing RedFlameBerserker_14
 PASS No reused body drawing RedFlameBerserker_15
 PASS Body windup before special RedFlameBerserker/0
 PASS Pause freezes specialist RedFlameBerserker/0
-PASS Actual specialist release RedFlameBerserker/0
+PASS Actual specialist release RedFlameBerserker/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack RedFlameBerserker/0
 PASS Evolution art without extra stat cliff RedFlameBerserker/0
 PASS Rest clears specialist effects RedFlameBerserker
 PASS Body windup before special RedFlameBerserker/1
 PASS Pause freezes specialist RedFlameBerserker/1
-PASS Actual specialist release RedFlameBerserker/1
+PASS Actual specialist release RedFlameBerserker/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack RedFlameBerserker/1
 PASS Evolution art without extra stat cliff RedFlameBerserker/1
 PASS Rest clears specialist effects RedFlameBerserker
@@ -121,13 +121,13 @@ PASS No reused body drawing TwinFlameFurnace_14
 PASS No reused body drawing TwinFlameFurnace_15
 PASS Body windup before special TwinFlameFurnace/0
 PASS Pause freezes specialist TwinFlameFurnace/0
-PASS Actual specialist release TwinFlameFurnace/0
+PASS Actual specialist release TwinFlameFurnace/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack TwinFlameFurnace/0
 PASS Evolution art without extra stat cliff TwinFlameFurnace/0
 PASS Rest clears specialist effects TwinFlameFurnace
 PASS Body windup before special TwinFlameFurnace/1
 PASS Pause freezes specialist TwinFlameFurnace/1
-PASS Actual specialist release TwinFlameFurnace/1
+PASS Actual specialist release TwinFlameFurnace/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack TwinFlameFurnace/1
 PASS Evolution art without extra stat cliff TwinFlameFurnace/1
 PASS Rest clears specialist effects TwinFlameFurnace
@@ -152,14 +152,14 @@ PASS No reused body drawing AshSwallower_14
 PASS No reused body drawing AshSwallower_15
 PASS Body windup before special AshSwallower/0
 PASS Pause freezes specialist AshSwallower/0
-PASS Actual specialist release AshSwallower/0
+PASS Actual specialist release AshSwallower/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack AshSwallower/0
 PASS Swallower consumes bounded actual remains
 PASS Evolution art without extra stat cliff AshSwallower/0
 PASS Rest clears specialist effects AshSwallower
 PASS Body windup before special AshSwallower/1
 PASS Pause freezes specialist AshSwallower/1
-PASS Actual specialist release AshSwallower/1
+PASS Actual specialist release AshSwallower/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack AshSwallower/1
 PASS Swallower consumes bounded actual remains
 PASS Evolution art without extra stat cliff AshSwallower/1
@@ -185,13 +185,13 @@ PASS No reused body drawing LostLanternSoul_14
 PASS No reused body drawing LostLanternSoul_15
 PASS Body windup before special LostLanternSoul/0
 PASS Pause freezes specialist LostLanternSoul/0
-PASS Actual specialist release LostLanternSoul/0
+PASS Actual specialist release LostLanternSoul/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack LostLanternSoul/0
 PASS Evolution art without extra stat cliff LostLanternSoul/0
 PASS Rest clears specialist effects LostLanternSoul
 PASS Body windup before special LostLanternSoul/1
 PASS Pause freezes specialist LostLanternSoul/1
-PASS Actual specialist release LostLanternSoul/1
+PASS Actual specialist release LostLanternSoul/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack LostLanternSoul/1
 PASS Evolution art without extra stat cliff LostLanternSoul/1
 PASS Rest clears specialist effects LostLanternSoul
@@ -216,7 +216,7 @@ PASS No reused body drawing SmokingCoffin_14
 PASS No reused body drawing SmokingCoffin_15
 PASS Body windup before special SmokingCoffin/0
 PASS Pause freezes specialist SmokingCoffin/0
-PASS Actual specialist release SmokingCoffin/0
+PASS Actual specialist release SmokingCoffin/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack SmokingCoffin/0
 PASS Telegraphed bounded summons, no recursive affixes SmokingCoffin
 PASS Summons cannot farm gold SmokingCoffin
@@ -224,7 +224,7 @@ PASS Evolution art without extra stat cliff SmokingCoffin/0
 PASS Rest clears specialist effects SmokingCoffin
 PASS Body windup before special SmokingCoffin/1
 PASS Pause freezes specialist SmokingCoffin/1
-PASS Actual specialist release SmokingCoffin/1
+PASS Actual specialist release SmokingCoffin/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack SmokingCoffin/1
 PASS Telegraphed bounded summons, no recursive affixes SmokingCoffin
 PASS Summons cannot farm gold SmokingCoffin
@@ -251,7 +251,7 @@ PASS No reused body drawing EmberProcession_14
 PASS No reused body drawing EmberProcession_15
 PASS Body windup before special EmberProcession/0
 PASS Pause freezes specialist EmberProcession/0
-PASS Actual specialist release EmberProcession/0
+PASS Actual specialist release EmberProcession/0 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack EmberProcession/0
 PASS Telegraphed bounded summons, no recursive affixes EmberProcession
 PASS Summons cannot farm gold EmberProcession
@@ -259,7 +259,7 @@ PASS Evolution art without extra stat cliff EmberProcession/0
 PASS Rest clears specialist effects EmberProcession
 PASS Body windup before special EmberProcession/1
 PASS Pause freezes specialist EmberProcession/1
-PASS Actual specialist release EmberProcession/1
+PASS Actual specialist release EmberProcession/1 casts 1 releaseAt 0 now 1.15 phase Combat surge (0.00, 0.00) role None alive True
 PASS Special has real travel or attack EmberProcession/1
 PASS Telegraphed bounded summons, no recursive affixes EmberProcession
 PASS Summons cannot farm gold EmberProcession

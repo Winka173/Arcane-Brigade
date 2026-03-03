@@ -7,7 +7,8 @@ namespace ArcaneBrigade
         private SpriteRenderer part;
         private EnsembleClip clip;
         private string identity;
-        private readonly MaterialPropertyBlock properties = new MaterialPropertyBlock();
+        private MaterialPropertyBlock block;
+        private MaterialPropertyBlock properties => block ??= new MaterialPropertyBlock(); // created on first use: a block made in a field initializer is null when the component is cloned in the editor
         public bool Visible => part != null && part.enabled;
         public void Display(SpriteRenderer source, WeaponDefinition definition, float age, float windup, bool reduced)
         {

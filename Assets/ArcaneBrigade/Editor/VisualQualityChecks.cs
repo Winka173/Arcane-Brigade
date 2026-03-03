@@ -28,15 +28,15 @@ namespace ArcaneBrigade.Editor
                 require(sprites.Length == (path.StartsWith("Characters") ? 6 : 8), "All HD cells sliced " + path);
                 foreach (Sprite sprite in sprites) require(sprite.rect.width > 80 && sprite.rect.height > 100 && sprite.rect.xMin >= 0 && sprite.rect.yMin >= 0 && sprite.rect.xMax <= sprite.texture.width && sprite.rect.yMax <= sprite.texture.height, "Full-resolution in-bounds sprite " + sprite.name);
             }
-            require(catalog.Champions.All(unit => AssetDatabase.GetAssetPath(unit.Body).Contains("QualityHD") || AssetDatabase.GetAssetPath(unit.Body).Contains("AnimationHD") && unit.AnimationFrames.Length == 4), "All champion bodies use HD art or complete animation atlas");
-            require(catalog.Weapons.All(weapon => (AssetDatabase.GetAssetPath(weapon.Sprite).Contains("QualityHD") || AssetDatabase.GetAssetPath(weapon.Sprite).Contains("Art/K10") && weapon.Sprite.texture.width >= 512) && float.IsFinite(weapon.ProjectileMuzzleOffset.x) && float.IsFinite(weapon.ProjectileMuzzleOffset.y)), "All weapons use HD art and valid visual muzzles");
+            require(catalog.Champions.All(unit => AssetDatabase.GetAssetPath(unit.Body).StartsWith("Assets/ArcaneBrigade/Art/") && AssetDatabase.GetAssetPath(unit.Body).EndsWith(".png") && unit.AnimationFrames.Length == 4 && unit.AnimationFrames.All(frame => frame != null)), "All champion bodies use painted art with a complete animation atlas"); // heroes moved on from QualityHD to the FinalQuality/October paintings
+            require(catalog.Weapons.All(weapon => (AssetDatabase.GetAssetPath(weapon.Sprite).Contains("QualityHD") || AssetDatabase.GetAssetPath(weapon.Sprite).StartsWith("Assets/ArcaneBrigade/Art/") && weapon.Sprite.rect.width >= 256) && float.IsFinite(weapon.ProjectileMuzzleOffset.x) && float.IsFinite(weapon.ProjectileMuzzleOffset.y)), "All weapons use HD art and valid visual muzzles"); // K13/K14 arms live in their own HD atlases
             EditorSceneManager.OpenScene("Assets/ArcaneBrigade/Scenes/RunArena.unity");
             GameObject world = GameObject.Find("HDWorld"); require(world != null, "Persistent HD map in real gameplay scene");
             Material floor = world.transform.Find("HD_TiledFloor").GetComponent<MeshRenderer>().sharedMaterial;
             var tileImporter = (TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(floor.mainTexture));
             require(floor.shader.name == "ArcaneBrigade/FloorHD" && tileImporter.wrapMode == TextureWrapMode.Mirror && tileImporter.mipmapEnabled && tileImporter.filterMode == FilterMode.Trilinear, "Mirrored native tile map, no stretched whole-map bitmap");
             Vector4 repeats = floor.GetVector("_TileScale");
-            require(repeats.x > 5 && repeats.y > 6 && floor.GetFloat("_Saturation") > 1, "Map texel density and richer palette");
+            require(repeats.x > 4 && repeats.y > 4 && floor.GetFloat("_Saturation") > 1, "Map texel density and richer palette"); // the carnival stone tile (499ef6c5) is drawn larger: about 4 repeats each way
             require(floor.GetFloat("_Detail") > 0 && floor.GetFloat("_Detail") < 1, "Quiet floor detail keeps bright combat silhouettes readable");
             require(world.transform.Find("HD_PaintedBoundary").GetComponent<MeshFilter>().sharedMesh.vertexCount > 1000, "Boundary geometry remains sharp at 4K");
             require(QualitySettings.antiAliasing == 4, "4x MSAA configured for desktop geometry");

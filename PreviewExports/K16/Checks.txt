@@ -1,13 +1,9 @@
 PASS Authored motion LanternKnight
-PASS 12 separate drawings LanternKnight
+PASS 8 separate drawings LanternKnight (has 8)
 PASS Ground-anchored pose pivots LanternKnight
 PASS Stable idle height and portrait LanternKnight
-PASS Reduced motion steady portrait LanternKnight
-PASS Both anticipation poses LanternKnight
-PASS True release pose LanternKnight
-PASS True recovery pose LanternKnight
 PASS Authored motion CoilKettle
-PASS 12 separate drawings CoilKettle
+PASS 12 separate drawings CoilKettle (has 12)
 PASS Ground-anchored pose pivots CoilKettle
 PASS Stable idle height and portrait CoilKettle
 PASS Reduced motion steady portrait CoilKettle
@@ -15,7 +11,7 @@ PASS Both anticipation poses CoilKettle
 PASS True release pose CoilKettle
 PASS True recovery pose CoilKettle
 PASS Authored motion ThimbleMoth
-PASS 12 separate drawings ThimbleMoth
+PASS 12 separate drawings ThimbleMoth (has 12)
 PASS Ground-anchored pose pivots ThimbleMoth
 PASS Stable idle height and portrait ThimbleMoth
 PASS Reduced motion steady portrait ThimbleMoth
@@ -23,7 +19,7 @@ PASS Both anticipation poses ThimbleMoth
 PASS True release pose ThimbleMoth
 PASS True recovery pose ThimbleMoth
 PASS Authored motion ReelOwl
-PASS 12 separate drawings ReelOwl
+PASS 12 separate drawings ReelOwl (has 12)
 PASS Ground-anchored pose pivots ReelOwl
 PASS Stable idle height and portrait ReelOwl
 PASS Reduced motion steady portrait ReelOwl
@@ -31,13 +27,9 @@ PASS Both anticipation poses ReelOwl
 PASS True release pose ReelOwl
 PASS True recovery pose ReelOwl
 PASS Authored motion WaxAdmiral
-PASS 8 separate drawings WaxAdmiral
+PASS 8 separate drawings WaxAdmiral (has 8)
 PASS Ground-anchored pose pivots WaxAdmiral
 PASS Stable idle height and portrait WaxAdmiral
-PASS Reduced motion steady portrait WaxAdmiral
-PASS Both anticipation poses WaxAdmiral
-PASS True release pose WaxAdmiral
-PASS True recovery pose WaxAdmiral
 PASS Engagement chooses near side, not far-side orbit
 PASS Settled attack slot does not keep rotating around its target
 PASS Windup aim follows target with a bounded turn
@@ -83,25 +75,11 @@ PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
 PASS Sewing tier-gated thread NeedleSinger 2
 PASS Yo-yo control NeedleSinger 2
 PASS Projector tier-gated convergence NeedleSinger 2
 PASS Hammer impact retains primary attribution NeedleSinger 2
 PASS Short actual mechanic description NeedleSinger 2
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
-PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive

@@ -139,22 +139,22 @@ horn	Little Horns	Crit	16	0.64	0.576
 sprout	Jade Nursery	Discount	5	0.1	0.0899999961
 sprout	Jade Nursery	Discount	10	0.2	0.179999992
 sprout	Jade Nursery	Discount	15	0.3	0.27
-knight	Toy Knights	CollisionDamage	2	5	4.5
-knight	Toy Knights	CollisionDamage	4	10	9
-knight	Toy Knights	CollisionDamage	6	15	13.5
-knight	Toy Knights	CollisionDamage	8	20	18
-knight	Toy Knights	CollisionDamage	10	25	22.5
-knight	Toy Knights	CollisionDamage	12	30	27
-knight	Toy Knights	CollisionDamage	14	35	31.5
-knight	Toy Knights	CollisionDamage	16	40	36
-ball	Playtime	CollisionDamage	2	2	1.8
-ball	Playtime	CollisionDamage	4	4	3.6
-ball	Playtime	CollisionDamage	6	6	5.39999962
-ball	Playtime	CollisionDamage	8	8	7.2
-ball	Playtime	CollisionDamage	10	10	9
-ball	Playtime	CollisionDamage	12	12	10.7999992
-ball	Playtime	CollisionDamage	14	14	12.5999994
-ball	Playtime	CollisionDamage	16	16	14.4
+knight	Crossing Knights	CollisionDamage	2	5	4.5
+knight	Crossing Knights	CollisionDamage	4	10	9
+knight	Crossing Knights	CollisionDamage	6	15	13.5
+knight	Crossing Knights	CollisionDamage	8	20	18
+knight	Crossing Knights	CollisionDamage	10	25	22.5
+knight	Crossing Knights	CollisionDamage	12	30	27
+knight	Crossing Knights	CollisionDamage	14	35	31.5
+knight	Crossing Knights	CollisionDamage	16	40	36
+ball	Lantern Revel	CollisionDamage	2	2	1.8
+ball	Lantern Revel	CollisionDamage	4	4	3.6
+ball	Lantern Revel	CollisionDamage	6	6	5.39999962
+ball	Lantern Revel	CollisionDamage	8	8	7.2
+ball	Lantern Revel	CollisionDamage	10	10	9
+ball	Lantern Revel	CollisionDamage	12	12	10.7999992
+ball	Lantern Revel	CollisionDamage	14	14	12.5999994
+ball	Lantern Revel	CollisionDamage	16	16	14.4
 morning	Morning Bells	ChampionDamage	3	0.15	0.135
 morning	Morning Bells	ChampionDamage	6	0.3	0.27
 morning	Morning Bells	ChampionDamage	9	0.450000018	0.405

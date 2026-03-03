@@ -494,6 +494,210 @@ PASS RibbonHarp tier 3 uses independent unit/weapon data
 PASS RibbonHarp tier damage follows catalog multiplier with no build bonuses
 PASS RibbonHarp tier 3 auto attacks through actual simulation events
 PASS RibbonHarp preview cannot farm rewards or kills
+PASS DreamOrbStaff tier 1 uses independent unit/weapon data
+PASS DreamOrbStaff tier damage follows catalog multiplier with no build bonuses
+PASS DreamOrbStaff tier 1 auto attacks through actual simulation events
+PASS DreamOrbStaff preview cannot farm rewards or kills
+PASS DreamOrbStaff tier 2 uses independent unit/weapon data
+PASS DreamOrbStaff tier damage follows catalog multiplier with no build bonuses
+PASS DreamOrbStaff tier 2 auto attacks through actual simulation events
+PASS DreamOrbStaff preview cannot farm rewards or kills
+PASS DreamOrbStaff tier 3 uses independent unit/weapon data
+PASS DreamOrbStaff tier damage follows catalog multiplier with no build bonuses
+PASS DreamOrbStaff tier 3 auto attacks through actual simulation events
+PASS DreamOrbStaff preview cannot farm rewards or kills
+PASS FireExtinguisher tier 1 uses independent unit/weapon data
+PASS FireExtinguisher tier damage follows catalog multiplier with no build bonuses
+PASS FireExtinguisher tier 1 auto attacks through actual simulation events
+PASS FireExtinguisher preview cannot farm rewards or kills
+PASS FireExtinguisher tier 2 uses independent unit/weapon data
+PASS FireExtinguisher tier damage follows catalog multiplier with no build bonuses
+PASS FireExtinguisher tier 2 auto attacks through actual simulation events
+PASS FireExtinguisher preview cannot farm rewards or kills
+PASS FireExtinguisher tier 3 uses independent unit/weapon data
+PASS FireExtinguisher tier damage follows catalog multiplier with no build bonuses
+PASS FireExtinguisher tier 3 auto attacks through actual simulation events
+PASS FireExtinguisher preview cannot farm rewards or kills
+PASS PlasmaTrident tier 1 uses independent unit/weapon data
+PASS PlasmaTrident tier damage follows catalog multiplier with no build bonuses
+PASS PlasmaTrident tier 1 auto attacks through actual simulation events
+PASS PlasmaTrident preview cannot farm rewards or kills
+PASS PlasmaTrident tier 2 uses independent unit/weapon data
+PASS PlasmaTrident tier damage follows catalog multiplier with no build bonuses
+PASS PlasmaTrident tier 2 auto attacks through actual simulation events
+PASS PlasmaTrident preview cannot farm rewards or kills
+PASS PlasmaTrident tier 3 uses independent unit/weapon data
+PASS PlasmaTrident tier damage follows catalog multiplier with no build bonuses
+PASS PlasmaTrident tier 3 auto attacks through actual simulation events
+PASS PlasmaTrident preview cannot farm rewards or kills
+PASS MoonFeatherFan tier 1 uses independent unit/weapon data
+PASS MoonFeatherFan tier damage follows catalog multiplier with no build bonuses
+PASS MoonFeatherFan tier 1 auto attacks through actual simulation events
+PASS MoonFeatherFan preview cannot farm rewards or kills
+PASS MoonFeatherFan tier 2 uses independent unit/weapon data
+PASS MoonFeatherFan tier damage follows catalog multiplier with no build bonuses
+PASS MoonFeatherFan tier 2 auto attacks through actual simulation events
+PASS MoonFeatherFan preview cannot farm rewards or kills
+PASS MoonFeatherFan tier 3 uses independent unit/weapon data
+PASS MoonFeatherFan tier damage follows catalog multiplier with no build bonuses
+PASS MoonFeatherFan tier 3 auto attacks through actual simulation events
+PASS MoonFeatherFan preview cannot farm rewards or kills
+PASS TwinSabres tier 1 uses independent unit/weapon data
+PASS TwinSabres tier damage follows catalog multiplier with no build bonuses
+PASS TwinSabres tier 1 auto attacks through actual simulation events
+PASS TwinSabres preview cannot farm rewards or kills
+PASS TwinSabres tier 2 uses independent unit/weapon data
+PASS TwinSabres tier damage follows catalog multiplier with no build bonuses
+PASS TwinSabres tier 2 auto attacks through actual simulation events
+PASS TwinSabres preview cannot farm rewards or kills
+PASS TwinSabres tier 3 uses independent unit/weapon data
+PASS TwinSabres tier damage follows catalog multiplier with no build bonuses
+PASS TwinSabres tier 3 auto attacks through actual simulation events
+PASS TwinSabres preview cannot farm rewards or kills
+PASS ClockCrescent tier 1 uses independent unit/weapon data
+PASS ClockCrescent tier damage follows catalog multiplier with no build bonuses
+PASS ClockCrescent tier 1 auto attacks through actual simulation events
+PASS ClockCrescent preview cannot farm rewards or kills
+PASS ClockCrescent tier 2 uses independent unit/weapon data
+PASS ClockCrescent tier damage follows catalog multiplier with no build bonuses
+PASS ClockCrescent tier 2 auto attacks through actual simulation events
+PASS ClockCrescent preview cannot farm rewards or kills
+PASS ClockCrescent tier 3 uses independent unit/weapon data
+PASS ClockCrescent tier damage follows catalog multiplier with no build bonuses
+PASS ClockCrescent tier 3 auto attacks through actual simulation events
+PASS ClockCrescent preview cannot farm rewards or kills
+PASS ParasolNeedle tier 1 uses independent unit/weapon data
+PASS ParasolNeedle tier damage follows catalog multiplier with no build bonuses
+PASS ParasolNeedle tier 1 auto attacks through actual simulation events
+PASS ParasolNeedle preview cannot farm rewards or kills
+PASS ParasolNeedle tier 2 uses independent unit/weapon data
+PASS ParasolNeedle tier damage follows catalog multiplier with no build bonuses
+PASS ParasolNeedle tier 2 auto attacks through actual simulation events
+PASS ParasolNeedle preview cannot farm rewards or kills
+PASS ParasolNeedle tier 3 uses independent unit/weapon data
+PASS ParasolNeedle tier damage follows catalog multiplier with no build bonuses
+PASS ParasolNeedle tier 3 auto attacks through actual simulation events
+PASS ParasolNeedle preview cannot farm rewards or kills
+PASS StampHammer tier 1 uses independent unit/weapon data
+PASS StampHammer tier damage follows catalog multiplier with no build bonuses
+PASS StampHammer tier 1 auto attacks through actual simulation events
+PASS StampHammer preview cannot farm rewards or kills
+PASS StampHammer tier 2 uses independent unit/weapon data
+PASS StampHammer tier damage follows catalog multiplier with no build bonuses
+PASS StampHammer tier 2 auto attacks through actual simulation events
+PASS StampHammer preview cannot farm rewards or kills
+PASS StampHammer tier 3 uses independent unit/weapon data
+PASS StampHammer tier damage follows catalog multiplier with no build bonuses
+PASS StampHammer tier 3 auto attacks through actual simulation events
+PASS StampHammer preview cannot farm rewards or kills
+PASS ClockworkYoYo tier 1 uses independent unit/weapon data
+PASS ClockworkYoYo tier damage follows catalog multiplier with no build bonuses
+PASS ClockworkYoYo tier 1 auto attacks through actual simulation events
+PASS ClockworkYoYo preview cannot farm rewards or kills
+PASS ClockworkYoYo tier 2 uses independent unit/weapon data
+PASS ClockworkYoYo tier damage follows catalog multiplier with no build bonuses
+PASS ClockworkYoYo tier 2 auto attacks through actual simulation events
+PASS ClockworkYoYo preview cannot farm rewards or kills
+PASS ClockworkYoYo tier 3 uses independent unit/weapon data
+PASS ClockworkYoYo tier damage follows catalog multiplier with no build bonuses
+PASS ClockworkYoYo tier 3 auto attacks through actual simulation events
+PASS ClockworkYoYo preview cannot farm rewards or kills
+PASS ScrapMagnet tier 1 uses independent unit/weapon data
+PASS ScrapMagnet tier damage follows catalog multiplier with no build bonuses
+PASS ScrapMagnet tier 1 auto attacks through actual simulation events
+PASS ScrapMagnet preview cannot farm rewards or kills
+PASS ScrapMagnet tier 2 uses independent unit/weapon data
+PASS ScrapMagnet tier damage follows catalog multiplier with no build bonuses
+PASS ScrapMagnet tier 2 auto attacks through actual simulation events
+PASS ScrapMagnet preview cannot farm rewards or kills
+PASS ScrapMagnet tier 3 uses independent unit/weapon data
+PASS ScrapMagnet tier damage follows catalog multiplier with no build bonuses
+PASS ScrapMagnet tier 3 auto attacks through actual simulation events
+PASS ScrapMagnet preview cannot farm rewards or kills
+PASS NeedleSinger tier 1 uses independent unit/weapon data
+PASS NeedleSinger tier damage follows catalog multiplier with no build bonuses
+PASS NeedleSinger tier 1 auto attacks through actual simulation events
+PASS NeedleSinger preview cannot farm rewards or kills
+PASS NeedleSinger tier 2 uses independent unit/weapon data
+PASS NeedleSinger tier damage follows catalog multiplier with no build bonuses
+PASS NeedleSinger tier 2 auto attacks through actual simulation events
+PASS NeedleSinger preview cannot farm rewards or kills
+PASS NeedleSinger tier 3 uses independent unit/weapon data
+PASS NeedleSinger tier damage follows catalog multiplier with no build bonuses
+PASS NeedleSinger tier 3 auto attacks through actual simulation events
+PASS NeedleSinger preview cannot farm rewards or kills
+PASS SpringKnocker tier 1 uses independent unit/weapon data
+PASS SpringKnocker tier damage follows catalog multiplier with no build bonuses
+PASS SpringKnocker tier 1 auto attacks through actual simulation events
+PASS SpringKnocker preview cannot farm rewards or kills
+PASS SpringKnocker tier 2 uses independent unit/weapon data
+PASS SpringKnocker tier damage follows catalog multiplier with no build bonuses
+PASS SpringKnocker tier 2 auto attacks through actual simulation events
+PASS SpringKnocker preview cannot farm rewards or kills
+PASS SpringKnocker tier 3 uses independent unit/weapon data
+PASS SpringKnocker tier damage follows catalog multiplier with no build bonuses
+PASS SpringKnocker tier 3 auto attacks through actual simulation events
+PASS SpringKnocker preview cannot farm rewards or kills
+PASS DreamProjector tier 1 uses independent unit/weapon data
+PASS DreamProjector tier damage follows catalog multiplier with no build bonuses
+PASS DreamProjector tier 1 auto attacks through actual simulation events
+PASS DreamProjector preview cannot farm rewards or kills
+PASS DreamProjector tier 2 uses independent unit/weapon data
+PASS DreamProjector tier damage follows catalog multiplier with no build bonuses
+PASS DreamProjector tier 2 auto attacks through actual simulation events
+PASS DreamProjector preview cannot farm rewards or kills
+PASS DreamProjector tier 3 uses independent unit/weapon data
+PASS DreamProjector tier damage follows catalog multiplier with no build bonuses
+PASS DreamProjector tier 3 auto attacks through actual simulation events
+PASS DreamProjector preview cannot farm rewards or kills
+PASS RibbonWheel tier 1 uses independent unit/weapon data
+PASS RibbonWheel tier damage follows catalog multiplier with no build bonuses
+PASS RibbonWheel tier 1 auto attacks through actual simulation events
+PASS RibbonWheel preview cannot farm rewards or kills
+PASS RibbonWheel tier 2 uses independent unit/weapon data
+PASS RibbonWheel tier damage follows catalog multiplier with no build bonuses
+PASS RibbonWheel tier 2 auto attacks through actual simulation events
+PASS RibbonWheel preview cannot farm rewards or kills
+PASS RibbonWheel tier 3 uses independent unit/weapon data
+PASS RibbonWheel tier damage follows catalog multiplier with no build bonuses
+PASS RibbonWheel tier 3 auto attacks through actual simulation events
+PASS RibbonWheel preview cannot farm rewards or kills
+PASS MoonseedOrb tier 1 uses independent unit/weapon data
+PASS MoonseedOrb tier damage follows catalog multiplier with no build bonuses
+PASS MoonseedOrb tier 1 auto attacks through actual simulation events
+PASS MoonseedOrb preview cannot farm rewards or kills
+PASS MoonseedOrb tier 2 uses independent unit/weapon data
+PASS MoonseedOrb tier damage follows catalog multiplier with no build bonuses
+PASS MoonseedOrb tier 2 auto attacks through actual simulation events
+PASS MoonseedOrb preview cannot farm rewards or kills
+PASS MoonseedOrb tier 3 uses independent unit/weapon data
+PASS MoonseedOrb tier damage follows catalog multiplier with no build bonuses
+PASS MoonseedOrb tier 3 auto attacks through actual simulation events
+PASS MoonseedOrb preview cannot farm rewards or kills
+PASS AfterimageSabre tier 1 uses independent unit/weapon data
+PASS AfterimageSabre tier damage follows catalog multiplier with no build bonuses
+PASS AfterimageSabre tier 1 auto attacks through actual simulation events
+PASS AfterimageSabre preview cannot farm rewards or kills
+PASS AfterimageSabre tier 2 uses independent unit/weapon data
+PASS AfterimageSabre tier damage follows catalog multiplier with no build bonuses
+PASS AfterimageSabre tier 2 auto attacks through actual simulation events
+PASS AfterimageSabre preview cannot farm rewards or kills
+PASS AfterimageSabre tier 3 uses independent unit/weapon data
+PASS AfterimageSabre tier damage follows catalog multiplier with no build bonuses
+PASS AfterimageSabre tier 3 auto attacks through actual simulation events
+PASS AfterimageSabre preview cannot farm rewards or kills
+PASS SatelliteDisc tier 1 uses independent unit/weapon data
+PASS SatelliteDisc tier damage follows catalog multiplier with no build bonuses
+PASS SatelliteDisc tier 1 auto attacks through actual simulation events
+PASS SatelliteDisc preview cannot farm rewards or kills
+PASS SatelliteDisc tier 2 uses independent unit/weapon data
+PASS SatelliteDisc tier damage follows catalog multiplier with no build bonuses
+PASS SatelliteDisc tier 2 auto attacks through actual simulation events
+PASS SatelliteDisc preview cannot farm rewards or kills
+PASS SatelliteDisc tier 3 uses independent unit/weapon data
+PASS SatelliteDisc tier damage follows catalog multiplier with no build bonuses
+PASS SatelliteDisc tier 3 auto attacks through actual simulation events
+PASS SatelliteDisc preview cannot farm rewards or kills
 PASS Reset disposes old runtime weapon clone
 PASS Reset clears elapsed time, attacks and diagnostics
 PASS Local combat and roam RNG reproduce after reset despite reduced-motion change
@@ -523,7 +727,7 @@ PASS Shared pipeline/lifecycle wiring: view.Display(Simulation.VisualElapsed, 1)
 PASS Shared pipeline/lifecycle wiring: effects.Play(value)
 PASS Shared pipeline/lifecycle wiring: effects.Advance(delta)
 PASS Shared pipeline/lifecycle wiring: audioFeedback.ConfigurePresentation()
-PASS Shared pipeline/lifecycle wiring: audioFeedback.Play(value)
+PASS Shared pipeline/lifecycle wiring: audioFeedback.PlayBatch(Simulation.Events)
 PASS Shared pipeline/lifecycle wiring: AddComponent<ProjectileVisual>()
 PASS Shared pipeline/lifecycle wiring: previewCamera.scene = previewScene
 PASS Shared pipeline/lifecycle wiring: SceneManager.UnloadSceneAsync(previewScene)

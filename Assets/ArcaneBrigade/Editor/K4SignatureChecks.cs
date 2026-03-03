@@ -39,7 +39,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Roster.Clear(); session.State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[0].Id, WeaponId = "DreamStamp", Tier = 2 });
                 string state = JsonUtility.ToJson(session.State);
                 RunBuildReadModel read = RunBuildReadModel.Capture(session, catalog, session.State.Health);
-                require(state == JsonUtility.ToJson(session.State) && read.Companions[0].Explanation.Contains("một dấu"), "Details reads actual tier twist without rolling RNG");
+                require(state == JsonUtility.ToJson(session.State) && read.Companions[0].Explanation.Contains("one mark"), "Details reads actual tier twist without rolling RNG");
                 CheckpointCatalog combat = session.PrepareCombat();
                 require(combat.StartingCompanions[0].CombatTier == 2 && combat.StartingCompanions[0].Weapon.Signature == SignatureWeapon.Stamp, "Runtime clone retains signature and tier");
                 string root = Path.Combine(Application.temporaryCachePath, "ArcaneK4", Guid.NewGuid().ToString("N"));

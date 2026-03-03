@@ -20,6 +20,7 @@ namespace ArcaneBrigade.Editor
                 for (int index = 0; index < 2; index++) session.State.Roster.Add(new RosterEntry { UnitId = unitId, WeaponId = catalog.Weapons[index].Id });
                 session.State.Offers.Add(new ShopOffer { Token = 1, Id = unitId, Kind = OfferKind.Companion, Price = 1 });
                 session.State.NextOffer = 1;
+                session.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State))); // settle the fixture (clearing the starting friend lowers maximum HP) so rollback compares like with like
                 RunSnapshot before = MergeReveal.Capture(session.State);
                 string original = JsonUtility.ToJson(session.State);
                 bool saved = false;

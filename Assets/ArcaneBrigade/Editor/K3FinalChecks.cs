@@ -86,10 +86,10 @@ namespace ArcaneBrigade.Editor
                 session.State.SpecialOffers.Add(offer);
                 BeforeAltar(session, catalog, require);
                 string before = JsonUtility.ToJson(session.State); string preview = RunOfferPreview.Capture(session, catalog, offer);
-                require(before == JsonUtility.ToJson(session.State) && preview.Contains("→") && preview.Contains("Máu"), "HP stat preview reads real data without consuming live RNG");
+                require(before == JsonUtility.ToJson(session.State) && preview.Contains("→") && preview.Contains("Champion health"), "HP stat preview reads real data without consuming live RNG");
                 require(RunTransaction.TryCommit(session, catalog, "Exclusive", () => session.Buy(offer.Token), () => true, out _), "Altar-exclusive multi-modifier item commits");
                 combat = session.PrepareCombat(); RunBuildReadModel read = RunBuildReadModel.Capture(session, catalog, session.State.Health);
-                require(read.Stats[1].Summary == combat.Champion.Weapon.Damage.ToString("0.0") && read.Stats[3].Summary == combat.Champion.Speed.ToString("0.00"), "Committed UI matches prepared combat");
+                require(read.Stats.Find(row => row.Name == "Champion damage").Summary == combat.Champion.Weapon.Damage.ToString("0.0") && read.Stats.Find(row => row.Name == "Movement speed").Summary == combat.Champion.Speed.ToString("0.00"), "Committed UI matches prepared combat");
                 string root = Path.Combine(Application.temporaryCachePath, "ArcaneK3Final", Guid.NewGuid().ToString("N"));
                 var storage = new RunStorage(root); storage.SaveRun(session.State);
                 using (var loaded = new RunSession(catalog))

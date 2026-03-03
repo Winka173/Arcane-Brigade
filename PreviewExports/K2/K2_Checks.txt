@@ -3,52 +3,69 @@ PASS One death event and one real drop per unit
 PASS Scatter precedes collection
 PASS Pause freezes loot motion and credit
 PASS Attraction collects exactly once with value and stable ID
-PASS Distant coin requires entering pickup radius
+PASS Distant coin requires entering pickup radius (gold 0, pickups 1, radius 4.08)
 PASS Walking to distant coin collects through normal movement
 PASS Champion logical death immediately ends combat
 PASS Champion emits presentation death event
 PASS Death snapshot is independent of logical body
 PASS Death remnant survives logical cleanup
 PASS Death remnant and attached grip expire
-PASS Impact pose rotation continuity KeyCleaver
-PASS Impact pose rotation continuity TeapotPopgun
-PASS Impact pose rotation continuity UmbrellaLance
-PASS Impact pose rotation continuity MailboxLauncher
-PASS Impact pose rotation continuity BellFork
-PASS Impact pose rotation continuity BookPaddle
-PASS Impact pose rotation continuity CrescentBow
-PASS Impact pose rotation continuity RuneStaff
-PASS Impact pose rotation continuity DreamStamp
-PASS Impact pose rotation continuity CloudScissors
-PASS Impact pose rotation continuity SleepCamera
-PASS Impact pose rotation continuity TinFish
-PASS Impact pose rotation continuity DreamIron
-PASS Impact pose rotation continuity RubberHammer
-PASS Impact pose rotation continuity AlarmMortar
-PASS Impact pose rotation continuity MusicBox
-PASS Impact pose rotation continuity SpoonSabre
-PASS Impact pose rotation continuity ToastCleaver
-PASS Impact pose rotation continuity LollipopLance
-PASS Impact pose rotation continuity PaperFan
-PASS Impact pose rotation continuity CorkscrewRapier
-PASS Impact pose rotation continuity TeabagFlail
-PASS Impact pose rotation continuity UmbrellaHook
-PASS Impact pose rotation continuity PizzaWheel
-PASS Impact pose rotation continuity MoonScythe
-PASS Impact pose rotation continuity ForkTrident
-PASS Impact pose rotation continuity MaracaHammer
-PASS Impact pose rotation continuity TapeWhip
-PASS Impact pose rotation continuity ButtonBow
-PASS Impact pose rotation continuity LeafCrossbow
-PASS Impact pose rotation continuity InkPistol
-PASS Impact pose rotation continuity BubbleWand
-PASS Impact pose rotation continuity StarKazoo
-PASS Impact pose rotation continuity ShellCannon
-PASS Impact pose rotation continuity AcornSling
-PASS Impact pose rotation continuity CrescentBoomerang
-PASS Impact pose rotation continuity DartCompass
-PASS Impact pose rotation continuity LanternStaff
-PASS Impact pose rotation continuity SnowGlobeOrb
-PASS Impact pose rotation continuity RibbonHarp
+PASS Impact pose rotation continuity KeyCleaver (angle 0, move 8.166102E-05)
+PASS Impact pose rotation continuity TeapotPopgun (angle 0, move 2.37823E-05)
+PASS Impact pose rotation continuity UmbrellaLance (angle 0, move 1.351535E-05)
+PASS Impact pose rotation continuity MailboxLauncher (angle 0, move 4.073977E-05)
+PASS Impact pose rotation continuity BellFork (angle 0, move 2.378225E-05)
+PASS Impact pose rotation continuity BookPaddle (angle 0, move 1.806021E-05)
+PASS Impact pose rotation continuity CrescentBow (angle 0, move 1.814961E-05)
+PASS Impact pose rotation continuity RuneStaff (angle 0, move 1.949317E-05)
+PASS Impact pose rotation continuity DreamStamp (angle 0, move 6.559491E-05)
+PASS Impact pose rotation continuity CloudScissors (angle 0, move 1.546741E-05)
+PASS Impact pose rotation continuity SleepCamera (angle 0, move 1.940131E-05)
+PASS Impact pose rotation continuity TinFish (angle 0, move 2.864003E-05)
+PASS Impact pose rotation continuity DreamIron (angle 0, move 1.40667E-05)
+PASS Impact pose rotation continuity RubberHammer (angle 0, move 5.529066E-05)
+PASS Impact pose rotation continuity AlarmMortar (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity MusicBox (angle 0, move 1.949111E-05)
+PASS Impact pose rotation continuity SpoonSabre (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity ToastCleaver (angle 0, move 9.023032E-05)
+PASS Impact pose rotation continuity LollipopLance (angle 0, move 1.397729E-05)
+PASS Impact pose rotation continuity PaperFan (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity CorkscrewRapier (angle 0, move 1.397729E-05)
+PASS Impact pose rotation continuity TeabagFlail (angle 0, move 9.023032E-05)
+PASS Impact pose rotation continuity UmbrellaHook (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity PizzaWheel (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity MoonScythe (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity ForkTrident (angle 0, move 1.397729E-05)
+PASS Impact pose rotation continuity MaracaHammer (angle 0, move 9.023032E-05)
+PASS Impact pose rotation continuity TapeWhip (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity ButtonBow (angle 0, move 2.446771E-05)
+PASS Impact pose rotation continuity LeafCrossbow (angle 0, move 2.446771E-05)
+PASS Impact pose rotation continuity InkPistol (angle 0, move 4.562736E-05)
+PASS Impact pose rotation continuity BubbleWand (angle 0, move 2.679729E-05)
+PASS Impact pose rotation continuity StarKazoo (angle 0, move 2.679729E-05)
+PASS Impact pose rotation continuity ShellCannon (angle 0, move 4.562736E-05)
+PASS Impact pose rotation continuity AcornSling (angle 0, move 2.446771E-05)
+PASS Impact pose rotation continuity CrescentBoomerang (angle 0, move 3.677607E-05)
+PASS Impact pose rotation continuity DartCompass (angle 0, move 4.562736E-05)
+PASS Impact pose rotation continuity LanternStaff (angle 0, move 2.679729E-05)
+PASS Impact pose rotation continuity SnowGlobeOrb (angle 0, move 2.679729E-05)
+PASS Impact pose rotation continuity RibbonHarp (angle 0, move 2.679729E-05)
+PASS Impact pose rotation continuity DreamOrbStaff (angle 0, move 1.949262E-05)
+PASS Impact pose rotation continuity FireExtinguisher (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity PlasmaTrident (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity MoonFeatherFan (angle 0, move 1.949262E-05)
+PASS Impact pose rotation continuity TwinSabres (angle 0, move 1.549721E-05)
+PASS Impact pose rotation continuity ClockCrescent (angle 0, move 1.454353E-05)
+PASS Impact pose rotation continuity ParasolNeedle (angle 0, move 1.233816E-05)
+PASS Impact pose rotation continuity StampHammer (angle 0, move 6.841615E-05)
+PASS Impact pose rotation continuity ClockworkYoYo (angle 0, move 1.525879E-05)
+PASS Impact pose rotation continuity ScrapMagnet (angle 0, move 0.1800176)
+PASS Impact pose rotation continuity NeedleSinger (angle 0, move 0.0005507923)
+PASS Impact pose rotation continuity SpringKnocker (angle 0, move 0.1000007)
+PASS Impact pose rotation continuity DreamProjector (angle 0, move 1.684108E-05)
+PASS Impact pose rotation continuity RibbonWheel (angle 0, move 1.546741E-05)
+PASS Impact pose rotation continuity MoonseedOrb (angle 0, move 1.949262E-05)
+PASS Impact pose rotation continuity AfterimageSabre (angle 0, move 1.963973E-05)
+PASS Impact pose rotation continuity SatelliteDisc (angle 0, move 3.677607E-05)
 PASS Coin arc and positive spin scale
 PASS Coin shadow world size independent of spin

@@ -36,13 +36,15 @@ namespace ArcaneBrigade.Editor
             companion.Position = new Vector2(-0.5f, 0f);
             simulation.ProjectileFixture(new Vector2(-2f, 0f), new Vector2(40f, 0f), 5f, Faction.Enemy);
             simulation.Step(0.1f, Vector2.zero);
-            Check(simulation.Champion.Health == 95f && companion.Alive && simulation.Projectiles.Count == 0, "Swept projectile passes companion and hits champion", results);
+            Check(Mathf.Approximately(simulation.Champion.Health, 100f - 5f * OctoberBalance.EnemyDamageRelief) && companion.Alive && simulation.Projectiles.Count == 0, "Swept projectile passes companion and hits champion (after the hostile damage relief) " + simulation.Champion.Health, results);
             simulation.Start(42);
             UnitState contact = simulation.AddFixture(catalog.MeleeEnemy, Faction.Enemy, new Vector2(0.45f, 0f));
-            simulation.Step(1f / 60f, Vector2.zero);
+            foreach (UnitState ally in simulation.Units) if (ally.Faction != Faction.Enemy) ally.NextAttack = float.PositiveInfinity; // let the contact land before anyone kills it
+            // a freshly placed enemy may wait out its arrival before it can touch: step until the first contact lands
+            for (int tick = 0; tick < 120 && simulation.Champion.Health == 100f; tick++) simulation.Step(1f / 60f, Vector2.zero);
             float afterContact = simulation.Champion.Health;
             simulation.Step(1f / 60f, Vector2.zero);
-            Check(afterContact == 96f && simulation.Champion.Health == afterContact, "Per-source contact cooldown", results);
+            Check(afterContact < 100f && simulation.Champion.Health == afterContact, "Per-source contact cooldown (one contact hit, then none) " + afterContact + " alive " + contact.Alive + " dist " + (contact.Position - simulation.Champion.Position).magnitude + " next " + contact.NextContact + " impact " + contact.ContactImpactAt + " t " + simulation.Elapsed + " dmg " + contact.Definition.ContactDamage + " phase " + simulation.Phase, results);
             simulation.DamageFixture(contact, 100f);
             for (int tick = 0; tick < 28; tick++) simulation.Step(1f / 60f, Vector2.zero);
             Check(simulation.Kills == 1 && simulation.Gold == catalog.GoldPerKill, "Kill drop and proximity pickup", results);

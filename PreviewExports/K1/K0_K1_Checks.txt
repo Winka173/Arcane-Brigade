@@ -18,7 +18,7 @@ PASS Movement reaches corner (-1.00, -1.00)
 PASS Movement reaches corner (1.00, -1.00)
 PASS Movement reaches corner (-1.00, 1.00)
 PASS Movement reaches corner (1.00, 1.00)
-PASS Large roster Details has no UI slot cap
+PASS Large roster Details has no UI slot cap; the travelling story friend is listed too (3763 of 3762, 3762 pairs)
 PASS Font resource loads
 PASS Vietnamese glyph coverage BeVietnamPro-Medium
 PASS Font resource loads

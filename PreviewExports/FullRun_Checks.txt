@@ -9,6 +9,34 @@ PASS Content roster
 PASS Champion LanternKnight
 PASS Champion Postmaster
 PASS Champion DrowsySeer
+PASS Champion RootOracle
+PASS Champion LoneJelly
+PASS Champion GlassDice
+PASS Champion TideSinger
+PASS Champion CometRunner
+PASS Champion MirrorKeeper
+PASS Champion TreasureAcorn
+PASS Champion VerdantMatron
+PASS Champion CopperCauldron
+PASS Champion ChinaMarionette
+PASS Champion SoapSkater
+PASS Champion VelvetRegent
+PASS Champion ButtonCavalier
+PASS Champion NightMaw
+PASS Champion ThornTreasurer
+PASS Champion CitrusMarshal
+PASS Champion IvorySovereign
+PASS Champion PetalCitadel
+PASS Champion PatchworkHost
+PASS Champion ArchiveCurator
+PASS Champion PennyBroker
+PASS Champion StormFencer
+PASS Champion TinVirtuoso
+PASS Champion MoonProwler
+PASS Champion SupperMortar
+PASS Champion LanternWeaver
+PASS Champion HourglassStag
+PASS Champion RainArchivist
 PASS Companion TeapotPilgrim
 PASS Companion CandleSnail
 PASS Companion MailboxImp
@@ -48,6 +76,33 @@ PASS Companion MaskPepper
 PASS Companion CrayonGremlin
 PASS Companion MirrorNewt
 PASS Companion RibbonSpider
+PASS Companion CoilKettle
+PASS Companion ThimbleMoth
+PASS Companion ReelOwl
+PASS Companion RainbowTailor
+PASS Companion RainbowBell
+PASS Companion SecretPatchBear
+PASS Companion SecretPaperBird
+PASS Companion SecretDreamLamb
+PASS Companion SaffronMechanist
+PASS Companion ClockworkPiper
+PASS Companion VelvetChampion
+PASS Companion PaperInventor
+PASS Companion ReturnCaptain
+PASS Companion DoughForeman
+PASS Companion IronLocomotive
+PASS Companion VioletRemnant
+PASS Companion VelvetEnchantress
+PASS Companion GrandSprout
+PASS Companion BristleBall
+PASS Companion PaperDevil
+PASS Companion BalloonMallet
+PASS Companion LittleSprout
+PASS Companion MonsterMarble
+PASS Companion CarouselPony
+PASS Companion TeacupCricket
+PASS Companion RibbonOtter
+PASS Companion SpindleWren
 PASS Weapon KeyCleaver
 PASS Weapon TeapotPopgun
 PASS Weapon UmbrellaLance
@@ -88,6 +143,23 @@ PASS Weapon DartCompass
 PASS Weapon LanternStaff
 PASS Weapon SnowGlobeOrb
 PASS Weapon RibbonHarp
+PASS Weapon DreamOrbStaff
+PASS Weapon FireExtinguisher
+PASS Weapon PlasmaTrident
+PASS Weapon MoonFeatherFan
+PASS Weapon TwinSabres
+PASS Weapon ClockCrescent
+PASS Weapon ParasolNeedle
+PASS Weapon StampHammer
+PASS Weapon ClockworkYoYo
+PASS Weapon ScrapMagnet
+PASS Weapon NeedleSinger
+PASS Weapon SpringKnocker
+PASS Weapon DreamProjector
+PASS Weapon RibbonWheel
+PASS Weapon MoonseedOrb
+PASS Weapon AfterimageSabre
+PASS Weapon SatelliteDisc
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop
@@ -102,6 +174,7 @@ PASS Three recruits merge to tier two
 PASS Merged unit has meaningful damage growth without slot cap
 PASS Merge preserves three copies of healing potency
 PASS Bond counts bodies not stars: hearth
+PASS Bond counts bodies not stars: mask
 PASS Duplicate identity save rejected
 PASS Atomic save round trip
 PASS Corrupt primary recovers previous backup
@@ -123,13 +196,13 @@ PASS Interceptor absorbs enemy projectile without ally damage
 PASS Armor shares received damage pipeline
 PASS Feedback reports damage after armor
 PASS Champion only damage build leaves allies unchanged
-PASS HUD multiplier matches combat including rally passive
+PASS Damage items scale combat exactly as the multiplier says, including rally passive 1.88 vs 1.88
 PASS Stacked roam adds exactly its bonus above champion baseline and interception reaches simulation
-PASS Treasury wave modifier
+PASS Treasury wave modifier (gold 2, modifier Golden Rush)
 PASS Clockstorm wave modifier is selected by rule rather than localized name
 PASS Quiet stacks wave modifier
 PASS Boss telegraph precedes firing
-PASS Boss telegraph commits one pattern then cooldown
+PASS Boss telegraph commits one pattern then cooldown (0, next 6.599999, now 3.099999)
 PASS Ranged launch segment hits enemies inside muzzle distance
 PASS Authored schedule hall 1 (accelerated fixture)
 PASS Authored schedule hall 2 (accelerated fixture)
@@ -151,8 +224,8 @@ PASS Authored schedule hall 17 (accelerated fixture)
 PASS Authored schedule hall 18 (accelerated fixture)
 PASS Authored schedule hall 19 (accelerated fixture)
 PASS Authored schedule hall 20 (accelerated fixture)
-PASS All five scheduled boss rewards
-PASS Endless hall 21 prepares intact build
+PASS Every scheduled Act I boss reward (kills 4 of 20/4)
+PASS Endless hall 21 prepares intact build (wave 21, endless True, phase Combat)
 PASS Uncapped sustained army fixture 25
 PASS Uncapped sustained army fixture 50
 PASS Uncapped sustained army fixture 100

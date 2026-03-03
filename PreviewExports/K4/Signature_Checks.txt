@@ -12,18 +12,19 @@ PASS Stamp roster survives save restore without schema change
 PASS Bell waits for complete cadence
 PASS Bell schedules rather than instant damage
 PASS Pause freezes delayed wave
-PASS Bell wave hits both sides in radius only
+PASS Bell wave is thrown as a fan of five chimes, not a ring round the wielder
+PASS Bell chimes strike the foe ahead once per volley, never behind the wielder or past their reach
 PASS Bell secondary cause cannot activate root procs
 PASS No echo recursion at tier one
 PASS Tier bell schedules exactly wave plus weak echo
 PASS Tier echo resolves once with finite scale
 PASS Rest clears cadence and pending echo
-PASS Umbrella payoff is forward-only, not another full ring
+PASS Umbrella drops fly forward only, not another full ring
 PASS Umbrella pushes enemy within bounded distance
 PASS Boss resists umbrella push
 PASS Ally remains immortal, no signature ally damage
 PASS Umbrella does not silently grant bullet blocking
-PASS Tier umbrella widens only the opening payoff
+PASS Tier umbrella drops fly farther
 PASS Secondary signature kill cannot trigger kill-heal proc
 PASS Payoff kill produces normal loot once without multiplying it
 PASS Stamp marks accumulate without premature burst

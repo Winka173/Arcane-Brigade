@@ -1,7 +1,7 @@
 PASS Failed HP save restores health, item, offer, receipt and RNG
 PASS HP offer spends only current health
 PASS Receipt records exact health payment
-PASS HP payment never reduces maximum health
+PASS HP payment never reduces maximum health (129 -> 129)
 PASS HP offer cannot kill Champion or consume RNG
 PASS HP offer may leave exactly one current HP
 PASS Egg activation chance clamps safely without overflow

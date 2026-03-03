@@ -47,7 +47,7 @@ namespace ArcaneBrigade.Editor
                     Require((role & BossOrganRole.Volley) != 0 || simulation.ExpandedFields.Count > 0, "Non-volley organ creates real telegraphed attack " + entry.Organs[part].Id);
                     Vector2 direction = part == 0 ? Vector2.right : part == 1 ? Vector2.left : Vector2.up;
                     float hit = BossPartRules.Durability(boss, part);
-                    void Hit(float value, Faction faction) => damage.Invoke(simulation, new object[] { boss, value, faction, "K20 fixture", direction, null, false, DamageElement.Physical, default(CombatCause), false });
+                    void Hit(float value, Faction faction) => damage.Invoke(simulation, new object[] { boss, value, faction, "K20 fixture", direction, null, false, DamageElement.Physical, default(CombatCause), false, false });
                     Hit(hit * 0.49f, Faction.Companion);
                     Require(!BossPartRules.Broken(boss, part), "Partial damage cannot detach " + entry.Organs[part].Id);
                     Hit(hit * 0.52f, Faction.Companion);
@@ -77,7 +77,7 @@ namespace ArcaneBrigade.Editor
                 MethodInfo vacuum = typeof(CombatSimulation).GetMethod("ProcessBossVacuum", BindingFlags.Instance | BindingFlags.NonPublic);
                 vacuum.Invoke(simulation, new object[] { boss });
                 Require(boss.StolenCoins == 7, "Vault actually captures loose coins during its windup");
-                damage.Invoke(simulation, new object[] { boss, BossPartRules.Durability(boss, 2) * 1.01f, Faction.Companion, "Vault fixture", Vector2.up, null, false, DamageElement.Physical, default(CombatCause), false });
+                damage.Invoke(simulation, new object[] { boss, BossPartRules.Durability(boss, 2) * 1.01f, Faction.Companion, "Vault fixture", Vector2.up, null, false, DamageElement.Physical, default(CombatCause), false, false });
                 Require(boss.StolenCoins == 0 && simulation.Pickups.Where(pickup => pickup.Kind == LootKind.Coin).Sum(pickup => pickup.Value) == 7, "Breaking vault returns exactly stolen gold, without minting money");
                 vacuum.Invoke(simulation, new object[] { boss });
                 Require(boss.StolenCoins == 0, "Destroyed vault cannot recapture its returned coins");

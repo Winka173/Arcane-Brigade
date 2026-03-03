@@ -55,6 +55,7 @@ namespace ArcaneBrigade.Editor
                     float health = session.State.Health;
                     var offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 1 };
                     session.State.Offers.Add(offer);
+                    float plainDamage = session.PrepareCombat().Champion.Weapon.Damage, plainMultiplier = session.DamageMultiplier(catalog.Champions[0], 1, false); // compiled combat also applies melee balance and range relief
                     require(session.Buy(offer.Token) && session.State.Health == health + 10, "Multi-modifier purchase updates actual health once");
                     require(Mathf.Approximately(session.Bonus(ItemEffect.Damage, ModifierScope.Champion), 0.3f) && session.Bonus(ItemEffect.Damage, ModifierScope.Companions) == 0, "Champion scoped damage never leaks to allies");
                     require(session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion) == 0 && Mathf.Approximately(session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions), 0.2f), "Companion scoped attack speed never leaks to Champion");
@@ -62,10 +63,10 @@ namespace ArcaneBrigade.Editor
                     RunBuildReadModel model = RunBuildReadModel.Capture(session, catalog, session.State.Health);
                     UnitDefinition champion = catalog.Champions[0];
                     RosterEntry entry = session.State.Roster[0];
-                    require(Mathf.Approximately(combat.Champion.Weapon.Damage, champion.Weapon.Damage * session.DamageMultiplier(champion, 1, false)), "Combat uses scoped Champion damage");
+                    require(Mathf.Approximately(combat.Champion.Weapon.Damage, plainDamage * session.DamageMultiplier(champion, 1, false) / plainMultiplier), "Combat uses scoped Champion damage");
                     require(combat.StartingCompanions[0].Health == catalog.Unit(entry.UnitId).Health, "Champion health modifiers do not change immortal ally definitions");
-                    require(model.Stats[2].Summary == combat.Champion.Weapon.Cooldown.ToString("0.00") + " s" && model.Companions[0].CombatValues["Cycle"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s", "Details attack cycles equal combat for both scopes");
-                    require(model.Stats[3].Summary == combat.Champion.Speed.ToString("0.00") && model.Companions[0].CombatValues["Speed"] == combat.StartingCompanions[0].Speed.ToString("0.###"), "Negative movement tradeoff matches Details and combat");
+                    require(model.Stats.Find(row => row.Name == "Champion attack cycle").Summary == combat.Champion.Weapon.Cooldown.ToString("0.00") + " s" && model.Companions[0].CombatValues["Cycle"] == combat.StartingCompanions[0].Weapon.Cooldown.ToString("0.###") + " s", "Details attack cycles equal combat for both scopes");
+                    require(model.Stats.Find(row => row.Name == "Movement speed").Summary == combat.Champion.Speed.ToString("0.00") && model.Companions[0].CombatValues["Speed"] == combat.StartingCompanions[0].Speed.ToString("0.###"), "Negative movement tradeoff matches Details and combat");
                     require(model.Relics[0].Explanation.Contains("-5%") && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Champion)) && model.Relics[0].Explanation.Contains(RunModifierRules.ScopeName(ModifierScope.Companions)), "Relic explanation exposes all positive and negative localized scopes");
                     item.Stacking = StackPolicy.Unique;
                     offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 1 };
@@ -119,16 +120,28 @@ namespace ArcaneBrigade.Editor
                     weighted.State.Phase = SessionPhase.Victory;
                     weighted.EnterEndless();
                     require(weighted.State.RerollsThisShop == 0 && weighted.RerollCost == 2, "New rest boundary resets reroll escalation to two gold");
-                    require(weighted.State.SpecialOffers.Count == 3 && weighted.State.SpecialOffers.TrueForAll(offer => offer.Id == eggOnly.Id && offer.Currency == ShopCurrency.Eggs) && !weighted.State.Offers.Exists(offer => offer.Id == eggOnly.Id), "Egg-only weighted pool is separate from gold offers");
+                    var eggItems = weighted.State.SpecialOffers.FindAll(offer => offer.Kind == OfferKind.Item); // the egg altar also carries a special recruit slot
+                    require(eggItems.Count >= 2 && eggItems.TrueForAll(offer => offer.Id == eggOnly.Id && offer.Currency == ShopCurrency.Eggs) && weighted.State.SpecialOffers.TrueForAll(offer => offer.Currency == ShopCurrency.Eggs) && !weighted.State.Offers.Exists(offer => offer.Id == eggOnly.Id), "Egg-only weighted pool is separate from gold offers");
                     weighted.State.Items.Add(new ItemStack { Id = "key-oil", Count = 1 });
                     weighted.State.Items.Add(new ItemStack { Id = "clock-spring", Count = 1 });
                     string before = JsonUtility.ToJson(weighted.State);
                     RunBuildReadModel links = RunBuildReadModel.Capture(weighted, catalog, weighted.State.Health);
-                    require(links.Links[0].Summary.Contains("2/2") && links.Links[1].Summary.Contains("0/2") && before == JsonUtility.ToJson(weighted.State), "Build links derive progress from owned IDs without consuming RNG");
+                    require(links.Links.Find(row => row.Name == "Engine Clockwork").Summary.Contains("2/2") && links.Links.Find(row => row.Name == "Engine Economy").Summary.Contains("0/2") && before == JsonUtility.ToJson(weighted.State), "Build links derive progress from owned IDs without consuming RNG");
                     weighted.State.Items.Add(new ItemStack { Id = "coupon-book", Count = 50 });
                     weighted.State.Gold = 100000;
+                    // shop prices now carry rarity, star and stage factors, so compare against the same roll with the coupons switched off
+                    RunSnapshot couponSnapshot = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(weighted.State));
                     weighted.Reroll();
-                    require(weighted.State.Offers.TrueForAll(offer => offer.Kind == OfferKind.Item ? offer.Price == Mathf.Max(1, Mathf.CeilToInt(catalog.Item(offer.Id).Price * 0.5f)) : offer.Price == Mathf.Max(1, Mathf.CeilToInt(catalog.Unit(offer.Id).Price * 0.5f))), "Future offer discounts clamp at fifty percent");
+                    var discounted = weighted.State.Offers.ConvertAll(offer => (offer.Id, offer.Price));
+                    ItemDefinition coupon = catalog.Item("coupon-book");
+                    StatModifier[] couponModifiers = coupon.Modifiers;
+                    coupon.Modifiers = Array.ConvertAll(coupon.EffectiveModifiers, modifier => new StatModifier { Effect = modifier.Effect, Scope = modifier.Scope, Value = 0 });
+                    try { weighted.Restore(couponSnapshot); weighted.Reroll(); }
+                    finally { coupon.Modifiers = couponModifiers; }
+                    var full = weighted.State.Offers.ConvertAll(offer => (offer.Id, offer.Price));
+                    bool clamped = discounted.Count == full.Count;
+                    for (int index = 0; clamped && index < full.Count; index++) clamped = discounted[index].Id == full[index].Id && discounted[index].Price == Mathf.Max(1, Mathf.CeilToInt(full[index].Price * 0.5f));
+                    require(clamped, "Future offer discounts clamp at fifty percent");
                 }
                 catalog.Items[0].Modifiers = new[] { new StatModifier { Effect = ItemEffect.Armor, Scope = ModifierScope.Companions, Value = 1 } };
                 bool rejected = false;

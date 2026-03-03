@@ -129,13 +129,13 @@ namespace ArcaneBrigade
                 lift = preparing ? charge * 0.1f : -0.08f * release * settle;
             }
             else if (weapon.Mechanic == CarnivalWeapon.RibbonWheel)
-                angle = preparing ? -25 * charge : recovery * 300 * settle;
+                angle = preparing ? -25 * charge : Mathf.Lerp(-25, recovery * 300, release) * settle;
             else if (weapon.Mechanic == CarnivalWeapon.YoYo)
             { angle = preparing ? -38 * charge : Mathf.Lerp(-38, 65, release) * settle; recoil = -0.15f * release * settle; }
             else if (weapon.Mechanic == CarnivalWeapon.Sewing)
                 lift = preparing ? 0 : Mathf.Sin(recovery * Mathf.PI * 12) * 0.035f * settle;
             else if (weapon.Mechanic == CarnivalWeapon.Projector)
-            { angle = preparing ? -8 * charge : 5 * settle; recoil = -0.05f * release * settle; }
+            { angle = preparing ? -8 * charge : Mathf.Lerp(-8, 5, release) * settle; recoil = -0.05f * release * settle; }
             else if (weapon.Mechanic == CarnivalWeapon.Magnet)
                 recoil = preparing ? -0.04f * charge : 0.14f * settle;
             if (!preparing)

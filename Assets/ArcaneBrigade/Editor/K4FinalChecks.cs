@@ -55,8 +55,8 @@ namespace ArcaneBrigade.Editor
                 require(fixture.Simulation.StampBursts == 1, "Critical bonus cannot recursively stamp or burst");
                 string before = JsonUtility.ToJson(fixture.Session.State);
                 RunBuildReadModel model = RunBuildReadModel.Capture(fixture.Session, catalog, fixture.Simulation.Champion.Health, fixture.Simulation);
-                require(before == JsonUtility.ToJson(fixture.Session.State) && model.Links.Any(row => row.Name == "VĂN PHÒNG HOÀN TRẢ" && row.Explanation.Contains("HALL HIỆN TẠI")), "Live contribution graph is read-only and explicitly unsettled");
-                require(model.Companions[0].Explanation.Contains("Mỗi đòn 2 dấu") && model.Companions[0].Explanation.Contains((fixture.Source.Definition.Weapon.MarkLifetime * 0.65f).ToString("0.##") + " giây"), "Localized Details uses effective Ink mark count and expiry rather than base tooltip");
+                require(before == JsonUtility.ToJson(fixture.Session.State) && model.Links.Any(row => row.Name == "Signature Office" && row.Explanation.Contains("CURRENT HALL")), "Live contribution graph is read-only and explicitly unsettled");
+                require(model.Companions[0].Explanation.Contains("Each strike adds 2 marks") && model.Companions[0].Explanation.Contains((fixture.Source.Definition.Weapon.MarkLifetime * 0.65f).ToString("0.##") + " seconds"), "Localized Details uses effective Ink mark count and expiry rather than base tooltip");
             }
             using (var fixture = new Fixture(catalog, "DreamStamp", "office-lens"))
             {

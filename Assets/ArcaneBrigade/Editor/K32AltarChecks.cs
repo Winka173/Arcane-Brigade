@@ -30,12 +30,13 @@ namespace ArcaneBrigade.Editor
                     session.State.Health = 25;
                     var offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = "key-oil", Currency = ShopCurrency.Health, Price = 10 };
                     session.State.SpecialOffers.Add(offer);
+                    float unpaidMaximum = session.PrepareCombat().Champion.Health; // maximum HP is compiled (wave scaling, hero rules), not the raw definition
                     string before = JsonUtility.ToJson(session.State);
                     require(!RunTransaction.TryCommit(session, catalog, "HP fail", () => session.Buy(offer.Token), () => false, out _) && before == JsonUtility.ToJson(session.State), "Failed HP save restores health, item, offer, receipt and RNG");
                     require(RunTransaction.TryCommit(session, catalog, "HP purchase", () => session.Buy(offer.Token), () => true, out _) && session.State.Health == 15 && session.State.Gold == 100 && session.State.Eggs == 8, "HP offer spends only current health");
-                    require(session.State.Receipts[0].Changes.Exists(change => change == "HP hiện tại: 25 → 15"), "Receipt records exact health payment");
+                    require(session.State.Receipts[0].Changes.Exists(change => change == "Current HP: 25 → 15"), "Receipt records exact health payment");
                     float maximum = session.PrepareCombat().Champion.Health;
-                    require(maximum == catalog.Champions[0].Health, "HP payment never reduces maximum health");
+                    require(maximum >= unpaidMaximum, "HP payment never reduces maximum health (" + unpaidMaximum + " -> " + maximum + ")");
                     var lethal = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = "key-oil", Currency = ShopCurrency.Health, Price = 15 };
                     session.State.SpecialOffers.Add(lethal);
                     before = JsonUtility.ToJson(session.State);

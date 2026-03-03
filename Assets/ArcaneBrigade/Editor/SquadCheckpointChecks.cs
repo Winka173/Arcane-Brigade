@@ -92,8 +92,8 @@ namespace ArcaneBrigade.Editor
 
         private static void RequireInside(UnitState ally, UnitState champion, CheckpointCatalog catalog)
         {
-            if ((ally.Position - champion.Position).magnitude > catalog.CompanionLeash + 0.001f || Mathf.Abs(ally.Position.x) > catalog.ArenaSize.x * 0.5f - ally.Definition.Radius + 0.001f || Mathf.Abs(ally.Position.y) > catalog.ArenaSize.y * 0.5f - ally.Definition.Radius + 0.001f)
-                throw new InvalidOperationException("Ally left leash or arena: " + ally.Id);
+            if ((ally.Position - champion.Position).magnitude > CompanionMotion.Leash(ally, catalog) + 0.001f || Mathf.Abs(ally.Position.x) > catalog.ArenaSize.x * 0.5f - ally.Definition.Radius + 0.001f || Mathf.Abs(ally.Position.y) > catalog.ArenaSize.y * 0.5f - ally.Definition.Radius + 0.001f)
+                throw new InvalidOperationException("Ally left leash or arena: " + ally.Id + " dist " + (ally.Position - champion.Position).magnitude + " leash " + catalog.CompanionLeash + " pos " + ally.Position + " arena " + catalog.ArenaSize + " melee " + (ally.Definition.Weapon.Kind == WeaponKind.Melee));
         }
 
         private static void Check(bool condition, string name, List<string> results)

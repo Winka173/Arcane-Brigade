@@ -63,7 +63,7 @@ namespace ArcaneBrigade.Editor
                         sandbox.SetTier(tier);
                         require(sandbox.Attacker.Definition.CombatTier == tier && sandbox.Attacker.Definition.Weapon != weapon,
                             weapon.Id + " tier " + tier + " uses independent unit/weapon data");
-                        require(Mathf.Approximately(sandbox.Attacker.Definition.Weapon.Damage, weapon.Damage * Mathf.Pow(catalog.TierDamageMultiplier, tier - 1)),
+                        require(Mathf.Approximately(sandbox.Attacker.Definition.Weapon.Damage, weapon.Damage * (weapon.Kind == WeaponKind.Melee ? MeleeBalance.Damage : 1) * Mathf.Pow(catalog.TierDamageMultiplier, tier - 1)), // the sandbox shows melee arms at their combat balance
                             weapon.Id + " tier damage follows catalog multiplier with no build bonuses");
                         Tick(sandbox, 300);
                         if (weapon.Kind != WeaponKind.Contact)
@@ -151,7 +151,7 @@ namespace ArcaneBrigade.Editor
             require(desktop.width == desktop.height * 2 && mobile.width == mobile.height * 2
                 && desktop.colorFormat == RenderTextureFormat.ARGB32 && mobile.colorFormat == RenderTextureFormat.ARGB32, "Both preview targets preserve 2:1 aspect and alpha format");
             string source = File.ReadAllText("Assets/ArcaneBrigade/Runtime/UI/WeaponSandbox.cs");
-            foreach (string api in new[] { "new CombatSimulation(arena)", "Simulation.Step(delta, Vector2.zero)", "view.Bind(state, arena)", "view.Display(Simulation.VisualElapsed, 1)", "effects.Play(value)", "effects.Advance(delta)", "audioFeedback.ConfigurePresentation()", "audioFeedback.Play(value)", "AddComponent<ProjectileVisual>()", "previewCamera.scene = previewScene", "SceneManager.UnloadSceneAsync(previewScene)", "previewCamera.Render()", "PreviewTexture.Release()", "forceRenderingOff = true" })
+            foreach (string api in new[] { "new CombatSimulation(arena)", "Simulation.Step(delta, Vector2.zero)", "view.Bind(state, arena)", "view.Display(Simulation.VisualElapsed, 1)", "effects.Play(value)", "effects.Advance(delta)", "audioFeedback.ConfigurePresentation()", "audioFeedback.PlayBatch(Simulation.Events)", "AddComponent<ProjectileVisual>()", "previewCamera.scene = previewScene", "SceneManager.UnloadSceneAsync(previewScene)", "previewCamera.Render()", "PreviewTexture.Release()", "forceRenderingOff = true" })
                 require(source.Contains(api), "Shared pipeline/lifecycle wiring: " + api);
             foreach (string forbidden in new[] { "Run" + "Session", "Run" + "Storage", "SaveProfile(", "RunLaunch.", "Random.InitState", "SeenWeapons.Add", "SeenUnits.Add" })
                 require(!source.Contains(forbidden), "No persistent/global dependency: " + forbidden);

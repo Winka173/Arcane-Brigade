@@ -33,9 +33,10 @@ namespace ArcaneBrigade.Editor
                 require(!RunTransaction.TryCommit(session, catalog, "Save refused", session.Reroll, () => false, out _) && initial == JsonUtility.ToJson(session.State), "Rejected save leaves no receipt or gameplay changes");
                 require(!RunTransaction.TryCommit(session, catalog, "Save throws", session.Reroll, () => throw new IOException("write fixture"), out _) && initial == JsonUtility.ToJson(session.State), "Save exception restores both random streams");
                 RunSnapshot persisted = null;
+                int rerollCost = session.RerollCost; // the reroll price climbs per shop and follows hero/relic modifiers (RunSession.RerollCost)
                 require(RunTransaction.TryCommit(session, catalog, "Reroll", session.Reroll, () => { persisted = Copy(session.State); return true; }, out _), "Successful transaction commits");
-                require(persisted.NextReceipt == 1 && persisted.Receipts.Count == 1 && persisted.RerollsThisShop == 1 && persisted.Gold == 1000 - catalog.RerollPrice, "Receipt and reroll counter persist with the purchase boundary");
-                require(session.State.Receipts[0].Changes.Exists(change => change.StartsWith("Vàng:")) && session.State.Receipts[0].Changes.Exists(change => change.StartsWith("Reroll tại shop:")), "Receipt records actual wallet and reroll before/after");
+                require(persisted.NextReceipt == 1 && persisted.Receipts.Count == 1 && persisted.RerollsThisShop == 1 && persisted.Gold == 1000 - rerollCost, "Receipt and reroll counter persist with the purchase boundary");
+                require(session.State.Receipts[0].Changes.Exists(change => change.StartsWith("Gold:")) && session.State.Receipts[0].Changes.Exists(change => change.StartsWith("Shop reroll:")), "Receipt records actual wallet and reroll before/after");
                 ShopOffer recruit = session.State.Offers.Find(offer => offer.Kind == OfferKind.Companion);
                 require(RunTransaction.TryCommit(session, catalog, "Recruit", () => session.Buy(recruit.Token), () => true, out _), "Recruit purchase through atomic pipeline");
                 require(session.State.Receipts[1].Changes.Exists(change => change.StartsWith("+ ")), "Recruit receipt includes the rolled weapon and tier");
@@ -46,7 +47,7 @@ namespace ArcaneBrigade.Editor
                 session.State.SpecialOffers.Add(eggOffer);
                 int gold = session.State.Gold;
                 require(RunTransaction.TryCommit(session, catalog, "Egg purchase", () => session.Buy(eggOffer.Token), () => true, out _) && session.State.Gold == gold && session.State.Eggs == 98, "Egg transaction never spends gold");
-                require(session.State.Receipts[2].Changes.Exists(change => change.StartsWith("Trứng:")) && session.State.Receipts[2].Changes.Exists(change => change.StartsWith(item.Name + " ×:")), "Egg and item stack deltas use committed values");
+                require(session.State.Receipts[2].Changes.Exists(change => change.StartsWith("Eggs:")) && session.State.Receipts[2].Changes.Exists(change => change.StartsWith(item.Name + " ×:")), "Egg and item stack deltas use committed values");
                 ItemDefinition companionDamage = Array.Find(catalog.Items, candidate => candidate.Effect == ItemEffect.CompanionDamage);
                 var damageOffer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = companionDamage.Id, Price = 1, Currency = ShopCurrency.Eggs };
                 session.State.SpecialOffers.Add(damageOffer);
@@ -82,7 +83,7 @@ namespace ArcaneBrigade.Editor
                 session.State.Offers.Add(healthOffer);
                 require(RunTransaction.TryCommit(session, catalog, "Health", () => session.Buy(healthOffer.Token), () => true, out _), "Health upgrade commits");
                 CheckpointCatalog combat = session.PrepareCombat();
-                require(Mathf.Approximately(combat.Champion.Health, catalog.Champions[0].Health + session.Bonus(ItemEffect.Health)) && RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats[0].Summary.EndsWith(combat.Champion.Health.ToString("0.0")), "Committed Details maximum HP matches prepared combat");
+                require(Mathf.Approximately(combat.Champion.Health, catalog.Champions[0].Health + session.Bonus(ItemEffect.Health)) && RunBuildReadModel.Capture(session, catalog, session.State.Health).Stats.Find(row => row.Name == "Champion health").Summary.EndsWith(combat.Champion.Health.ToString("0.0")), "Committed Details maximum HP matches prepared combat");
                 AltarRecipe recipe = catalog.Recipes[0];
                 session.State.Roster.Clear();
                 session.State.Roster.Add(new RosterEntry { UnitId = recipe.FirstUnit, WeaponId = catalog.Weapons[0].Id });

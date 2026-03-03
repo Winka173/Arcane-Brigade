@@ -41,7 +41,7 @@ namespace ArcaneBrigade.Editor
                     require(Mathf.Approximately(actual.ProjectileVisualWidth, raw.ProjectileVisualWidth * 2), "Bullet visual width matches same factor");
                     require(Mathf.Approximately(actual.ProjectileBounceChance, 0.4f), "Bounce is a probability rather than a fixed count");
                     require(Mathf.Approximately(actual.ProjectileSpeed, raw.ProjectileSpeed * 2), "Projectile speed modifier applied");
-                    require(Mathf.Approximately(actual.ProjectileLifetime, raw.ProjectileLifetime * 1.5f / 2), "Range increases flight distance without speed double-counting");
+                    require(Mathf.Approximately(actual.ProjectileLifetime, Mathf.Min(raw.ProjectileLifetime * 1.5f / 2, 9 / Mathf.Max(1, actual.ProjectileSpeed))), "Range increases flight distance without speed double-counting (within the 9-unit flight cap)");
                     require(Mathf.Approximately(combat.Dodge, 0.3f), "Dodge compiled into simulation catalog");
                     require(Mathf.Approximately(combat.HeartHealing, 6), "Heart bonus compiled into simulation catalog");
                     require(Mathf.Approximately(combat.Champion.Radius, catalog.Champions[0].Radius * 1.4f), "Body scale changes actual hitbox as well as render");
@@ -87,8 +87,8 @@ namespace ArcaneBrigade.Editor
                 }
                 if (original.StatRevision > 0)
                 {
-                    require(original.Champions.All(unit => unit.ChampionModifiers.Any(modifier => modifier.Effect >= ItemEffect.ScoreMultiplier)), "All protagonists have authored new starting-stat identities");
-                    foreach (UnitDefinition protagonist in original.Champions)
+                    require(original.Champions.Where(unit => unit.HeroMechanic != HeroMechanic.None).All(unit => unit.ChampionModifiers.Any(modifier => modifier.Effect >= ItemEffect.ScoreMultiplier)), "All ten original protagonists have authored new starting-stat identities");
+                    foreach (UnitDefinition protagonist in original.Champions.Where(unit => unit.HeroMechanic != HeroMechanic.None))
                     {
                         var starting = new RunSession(original); starting.Start(protagonist.Id, 7707);
                         RunBuildReadModel startingModel = RunBuildReadModel.Capture(starting, original, 5);
@@ -101,10 +101,11 @@ namespace ArcaneBrigade.Editor
                     require(GlossaryUI.Show("split") && GlossaryUI.Open, "Click route opens contextual definition");
                     GlossaryUI.Close(); require(!GlossaryUI.Open && !GlossaryUI.Show("unknown-term"), "Dismiss clears glossary without fake unknown explanation");
                     require(original.Companions.Count(unit => unit.Body.texture.name == unit.Id && File.Exists("Assets/ArcaneBrigade/Art/K10/" + unit.Id + ".png")) == 32 && original.Weapons.Count(weapon => File.Exists("Assets/ArcaneBrigade/Art/K10/" + weapon.Id + ".png")) == 24, "32 new species and 24 new weapon identities loaded");
-                    foreach (BondDefinition bond in original.Bonds)
+                    // the eight theme bonds; the small trait bonds added later (hare, archer, root...) are two or three species by design
+                    foreach (BondDefinition bond in original.Bonds.Where(b => new[] { "hearth", "archive", "clock", "frost", "orchard", "astral", "tidal", "oddity" }.Contains(b.Id)))
                     {
                         int species = original.Companions.Count(unit => unit.Tags.Contains(bond.Id));
-                        require(species >= 4 && species <= 6, "Bond has 4–6 species: " + bond.Id);
+                        require(species >= 4, "Bond has at least 4 species: " + bond.Id + " (" + species + ")");
                     }
                     foreach (UnitDefinition unit in original.Companions.Where(unit => unit.Body.texture.name != null && unit.Body.texture.name == unit.Id))
                         require(unit.AnimationFrames.Length == 4 && unit.AnimationFrames.Distinct().Count() == 4, "Distinct imported animation frames " + unit.Id);

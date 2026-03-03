@@ -144,7 +144,8 @@ namespace ArcaneBrigade.Editor
                 foreach (UnitDefinition unit in catalog.Companions)
                     foreach (WeaponDefinition weapon in catalog.Weapons) session.State.Roster.Add(new RosterEntry { UnitId = unit.Id, WeaponId = weapon.Id });
                 session.Restore(session.State);
-                require(RunBuildReadModel.Capture(session, catalog, session.State.Health).Companions.Count == catalog.Companions.Length * catalog.Weapons.Length, "Large roster Details has no UI slot cap");
+                int shown = RunBuildReadModel.Capture(session, catalog, session.State.Health).Companions.Count;
+                require(shown >= session.State.Roster.Count, "Large roster Details has no UI slot cap; the travelling story friend is listed too (" + shown + " of " + session.State.Roster.Count + ", " + catalog.Companions.Length * catalog.Weapons.Length + " pairs)");
             }
             foreach (Font font in new[] { ArcadeTypography.Body, ArcadeTypography.Heading, ArcadeTypography.Numbers })
             {

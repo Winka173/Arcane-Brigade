@@ -51,10 +51,10 @@ namespace ArcaneBrigade.Editor
                 require(pickupEvents == 1 && simulation.Gold == catalog.GoldPerKill && simulation.Pickups.Count == 0, "Attraction collects exactly once with value and stable ID");
                 simulation.Start(131026);
                 foreach (UnitState unit in simulation.Units) unit.NextPassive = float.PositiveInfinity;
-                UnitState distant = simulation.AddFixture(catalog.MeleeEnemy, Faction.Enemy, new Vector2(4, 0));
+                UnitState distant = simulation.AddFixture(catalog.MeleeEnemy, Faction.Enemy, new Vector2(9, 0));
                 simulation.DamageFixture(distant, distant.Health + 1);
                 for (int tick = 0; tick < 60; tick++) simulation.Step(1f / 60, Vector2.zero);
-                require(simulation.Gold == 0 && simulation.Pickups.Count == 1, "Distant coin requires entering pickup radius");
+                require(simulation.Gold == 0 && simulation.Pickups.Count == 1, "Distant coin requires entering pickup radius (gold " + simulation.Gold + ", pickups " + simulation.Pickups.Count + ", radius " + catalog.PickupRadius + ")");
                 for (int tick = 0; tick < 180; tick++) simulation.Step(1f / 60, Vector2.right);
                 require(simulation.Gold == catalog.GoldPerKill && simulation.Pickups.Count == 0, "Walking to distant coin collects through normal movement");
                 simulation.DamageFixture(simulation.Champion, 10000);
@@ -86,7 +86,7 @@ namespace ArcaneBrigade.Editor
                     Quaternion before = grip.localRotation;
                     Vector3 beforePosition = grip.localPosition;
                     visual.Display(definition.Windup + 0.0001f, 1);
-                    require(Quaternion.Angle(before, grip.localRotation) < 1 && (beforePosition - grip.localPosition).magnitude < 0.2f, "Impact pose rotation continuity " + definition.Id);
+                    require(Quaternion.Angle(before, grip.localRotation) < 1 && (beforePosition - grip.localPosition).magnitude < 0.2f, "Impact pose rotation continuity " + definition.Id + " (angle " + Quaternion.Angle(before, grip.localRotation) + ", move " + (beforePosition - grip.localPosition).magnitude + ")");
                     UnityEngine.Object.DestroyImmediate(unit);
                 }
                 UnityEngine.Object.DestroyImmediate(visual.gameObject);

@@ -25,7 +25,7 @@ namespace ArcaneBrigade
             if (stage == null)
             {
                 stage = new GameObject("WorldGroundShadow").transform;
-                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(stage.gameObject, gameObject.scene);
+                if (gameObject.scene.IsValid() && gameObject.scene.isLoaded) UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(stage.gameObject, gameObject.scene); // a visual outside any loaded scene (editor fixtures) keeps the default scene
             }
             if (contact == null) contact = ShopFloorShadow.Create(stage, Vector2.zero, 1, 0.4f);
             if (penumbra == null) { penumbra = ShopFloorShadow.Create(stage, Vector2.zero, 1, 0.3f); penumbra.name = "SoftGroundPenumbra"; }

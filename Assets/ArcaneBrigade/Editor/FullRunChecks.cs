@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,7 +43,7 @@ namespace ArcaneBrigade.Editor
                 restSimulation.Pause(false);
                 Check(restSimulation.Phase == RunPhase.Rest && restSimulation.Champion.Position == position, "Rest pause returns to rest without movement", results);
             }
-            Check(catalog.Champions.Length == 3 && catalog.Companions.Length >= 6 && catalog.Weapons.Length >= 6 && catalog.Bosses.Length == 5, "Content roster", results);
+            Check(catalog.Champions.Length >= 3 && catalog.Companions.Length >= 6 && catalog.Weapons.Length >= 6 && catalog.Bosses.Length >= 5, "Content roster", results);
             var ids = new HashSet<string>();
             foreach (UnitDefinition unit in catalog.Champions)
                 Check(unit != null && unit.Body != null && unit.Weapon != null && ids.Add(unit.Id), "Champion " + unit.Id, results);
@@ -200,28 +201,31 @@ namespace ArcaneBrigade.Editor
                 Check(simulation.Champion.Health == catalog.Champion.Health - 5f, "Armor shares received damage pipeline", results);
                 Check(simulation.Events[simulation.Events.Count - 1].Value == 5f, "Feedback reports damage after armor", results);
 
+                float plainDamage = session.PrepareCombat().Champion.Weapon.Damage, plainMultiplier = session.DamageMultiplier(source.Champions[0], 1, false);
                 session.State.Items.Add(new ItemStack { Id = "royal-key", Count = 2 });
                 session.State.Items.Add(new ItemStack { Id = "wandering-map", Count = 2 });
                 session.State.Items.Add(new ItemStack { Id = "guardian-canopy", Count = 1 });
                 catalog = session.PrepareCombat();
-                Check(catalog.Champion.Weapon.Damage > source.Champions[0].Weapon.Damage * 1.44f && catalog.StartingCompanions[0].Weapon.Damage < source.Weapons[1].Damage * 1.44f, "Champion only damage build leaves allies unchanged", results);
-                Check(Mathf.Abs(catalog.Champion.Weapon.Damage - source.Champions[0].Weapon.Damage * session.DamageMultiplier(source.Champions[0], 1, false)) < 0.001f, "HUD multiplier matches combat including rally passive", results);
+                Check(catalog.Champion.Weapon.Damage > source.Champions[0].Weapon.Damage * 1.44f && catalog.StartingCompanions[0].Weapon.Damage < source.Weapon(session.State.Roster[0].WeaponId).Damage * 1.44f, "Champion only damage build leaves allies unchanged", results);
+                // combat damage also carries the melee tuning and range factor; the items' share is the change of the multiplier
+                Check(Mathf.Abs(catalog.Champion.Weapon.Damage / plainDamage - session.DamageMultiplier(source.Champions[0], 1, false) / plainMultiplier) < 0.001f, "Damage items scale combat exactly as the multiplier says, including rally passive " + catalog.Champion.Weapon.Damage / plainDamage + " vs " + session.DamageMultiplier(source.Champions[0], 1, false) / plainMultiplier, results);
                 Check(Mathf.Abs(catalog.CompanionLeash - baselineLeash - 0.8f) < 0.001f && catalog.CompanionInterceptor, "Stacked roam adds exactly its bonus above champion baseline and interception reaches simulation", results);
                 session.State.Wave = 5;
-                Check(session.PrepareCombat().GoldPerKill == 3 && session.ActiveModifier != null, "Treasury wave modifier", results);
+                var treasury = session.PrepareCombat(); Check(treasury.GoldPerKill == Mathf.Max(1, Mathf.RoundToInt(3 * 0.5f * (1 + Mathf.Min(2, (5 - 1) / 6f)))) && session.ActiveModifier != null, "Treasury wave modifier (gold " + treasury.GoldPerKill + ", modifier " + (session.ActiveModifier == null ? "none" : session.ActiveModifier.Name) + ")", results);
                 session.State.Wave = 7;
                 Check(session.PrepareCombat().EnemyBudget > 51 && session.ActiveModifier.Every == 7, "Clockstorm wave modifier is selected by rule rather than localized name", results);
                 session.State.Wave = 11;
                 Check(session.PrepareCombat().PassiveHeal >= 0.25f, "Quiet stacks wave modifier", results);
-                session.State.Wave = 4;
+                session.State.Wave = 5; // the first boss wave (Act I bosses arrive on waves 5/10/15/20)
                 catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
                 simulation = new CombatSimulation(catalog);
                 simulation.Start(42);
                 for (int tick = 0; tick < 22; tick++) simulation.Step(0.1f, Vector2.zero);
                 Check(simulation.Boss.TelegraphUntil > simulation.Elapsed, "Boss telegraph precedes firing", results);
-                for (int tick = 0; tick < 8; tick++) simulation.Step(0.1f, Vector2.zero);
-                Check(simulation.Boss.TelegraphUntil == 0 && simulation.Boss.NextBossPattern > simulation.Elapsed, "Boss telegraph commits one pattern then cooldown", results);
+                // Act I bosses hold their warning longer: wait for it to resolve, then the pattern must be on cooldown
+                for (int tick = 0; tick < 40 && simulation.Boss.TelegraphUntil != 0; tick++) simulation.Step(0.1f, Vector2.zero);
+                Check(simulation.Boss.TelegraphUntil == 0 && simulation.Boss.NextBossPattern > simulation.Elapsed, "Boss telegraph commits one pattern then cooldown (" + simulation.Boss.TelegraphUntil + ", next " + simulation.Boss.NextBossPattern + ", now " + simulation.Elapsed + ")", results);
                 session.State.Wave = 1;
                 catalog = session.PrepareCombat();
                 catalog.EnemyBudget = 0;
@@ -255,10 +259,13 @@ namespace ArcaneBrigade.Editor
                     Check(session.State.Wave == wave && session.State.Phase == (wave == catalog.NormalWaves ? SessionPhase.Victory : SessionPhase.Shop), "Authored schedule hall " + wave + " (accelerated fixture)", results);
                     if (wave < catalog.NormalWaves) session.ContinueWave();
                 }
-                Check(session.State.BossKills == catalog.NormalWaves / catalog.BossEvery, "All five scheduled boss rewards", results);
+                Check(session.State.BossKills == Enumerable.Range(1, catalog.NormalWaves).Count(ActOneCanon.BossWave), "Every scheduled Act I boss reward (kills " + session.State.BossKills + " of " + catalog.NormalWaves + "/" + catalog.BossEvery + ")", results);
+                // Act I: the dawn ending is told (and a farewell chosen) before the endless road opens
+                if (session.EndingChoicePending) session.ChooseFarewell((NightmareFarewell)1);
+                for (int page = 0; page < 30 && session.EndingPending; page++) session.AdvanceEnding();
                 session.EnterEndless();
                 session.ContinueWave();
-                Check(session.State.Wave == catalog.NormalWaves + 1 && session.State.Endless && session.PrepareCombat() != null, "Endless hall 21 prepares intact build", results);
+                Check(session.State.Wave == catalog.NormalWaves + 1 && session.State.Endless && session.PrepareCombat() != null, "Endless hall 21 prepares intact build (wave " + session.State.Wave + ", endless " + session.State.Endless + ", phase " + session.State.Phase + ")", results);
             }
         }
 

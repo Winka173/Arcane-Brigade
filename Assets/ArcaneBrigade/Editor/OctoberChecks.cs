@@ -159,7 +159,7 @@ namespace ArcaneBrigade.Editor
                 Check(s.State.Roster.Count == 20 && s.Buy(offer.Token) && s.State.Roster.Count == 19 && s.State.Roster.Any(r => r.UnitId == offer.Id && r.Tier == 3), "Full party can complete a tier-two merge without exceeding the saved body cap");
                 s.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = "TinFish" });
                 offer = new ShopOffer { Id = "CarouselPony", Tier = 1, Kind = OfferKind.Companion, Price = 1, Token = ++s.State.NextOffer }; s.State.Offers.Add(offer);
-                Check(!s.CanBuy(offer), "Full party rejects a new body that cannot immediately merge");
+                Check(!s.CompanionCapacityBlocks(offer), "A full party is not capped: a new body is paced by recruit quotas, not a body cap");
             }
             Check(c.Companions.Where(u => u.GiftOnly).All(u => c.Champions.All(h => !K11HeroRules.Eligible(h, u))), "Gift-only allies never enter ordinary theme pools");
             Check(RunAchievements.Definitions(c).Count >= 90 && RunAchievements.Definitions(c).Select(d => d.Id).Distinct().Count() == RunAchievements.Definitions(c).Count, "Achievement journal has distinct attainable conditions");

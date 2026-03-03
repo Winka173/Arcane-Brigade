@@ -22,7 +22,7 @@ PASS Locked weighted items fall back to eligible recruits
 PASS Capped items leave the future weighted pool
 PASS Weapon-exhausted recruit pool falls back to items
 PASS One-to-nine authored weights produce a minority rather than uniform sampling
-PASS New rest boundary resets reroll escalation
+PASS New rest boundary resets reroll escalation to two gold
 PASS Egg-only weighted pool is separate from gold offers
 PASS Build links derive progress from owned IDs without consuming RNG
 PASS Future offer discounts clamp at fifty percent
