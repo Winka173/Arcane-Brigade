@@ -12,7 +12,8 @@ namespace ArcaneBrigade
         private Vector2 hinge;
         private Vector4 region;
         private bool scissors;
-        private readonly MaterialPropertyBlock properties = new MaterialPropertyBlock();
+        private MaterialPropertyBlock block;
+        private MaterialPropertyBlock properties => block ??= new MaterialPropertyBlock(); // created on first use: a block made in a field initializer is null when the component is cloned in the editor
         public int VisibleParts => (upper != null && upper.enabled ? 1 : 0) + (lower != null && lower.enabled ? 1 : 0);
         public static bool Supports(WeaponDefinition definition) => definition.Motion == WeaponMotion.Scissors || definition.Id == "SleepCamera" || definition.Id == "MusicBox" || definition.Id == "MailboxLauncher";
         public void Display(SpriteRenderer reference, WeaponDefinition definition, float age, float windup, bool reduced)

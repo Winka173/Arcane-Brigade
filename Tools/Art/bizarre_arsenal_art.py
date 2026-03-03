@@ -35,17 +35,32 @@ FX = " A short combat effect in our side's colours (brass, amber, cream, teal, s
 TILE = " A seamless horizontal tile: the left and right edges must join perfectly. 1024x256 canvas."
 
 jobs = []
+# Only painted OBJECTS are requested (Assets/ArcaneBrigade/Editor/ArsenalSpecs.cs Pieces): every effect around them (bursts,
+# clouds, swipes, stamps, pools, cords, wakes, comic lettering) is painted ink in code (Runtime/Presentation/ArsenalInk.cs),
+# like the hero mechanics, and a thrown copy of the weapon itself reuses its held painting. The number is how many frames.
+OBJECTS = {"CherryBomb": 3, "PopperStick": 2, "FeltBall": 1, "BambooVaseShot": 1, "BambooShoot": 3, "BouquetShot": 1, "CandyDrillShot": 1,
+           "PlushOctopus": 4, "ClawHead": 2, "PlushSharkShot": 1, "ShurikenShot": 1, "WaterJet": 1, "CandyPellet": 1, "PlungerCup": 1,
+           "PlantedSign": 2, "ToyBomb": 1, "Pinwheel": 4, "Gumball": 1, "BalloonAnimal": 1, "SaucerShot": 1, "SoundFin": 1, "WindupKey": 2,
+           "CorkBullet": 1, "Fastball": 1, "TwigDart": 1, "StarShard": 1, "BuzzerFloor": 1, "KunaiShot": 1}
+
+
+# a thrown copy must match the held painting exactly (the first reference is that held weapon)
+LOOKS_LIKE = {"PlushOctopus": "InkyOctopus", "PlushSharkShot": "PlushShark"}
 
 
 def add(name, subject, kind, frames=None):
     """frames: list of per-frame subjects; the first is drawn new, the rest are edits of it"""
+    if not name.endswith("_Held"):
+        if name not in OBJECTS: return  # an effect: painted ink in code
+        if frames: frames = frames[:OBJECTS[name]]
+    refs = ([ART + LOOKS_LIKE[name] + "_Held_v1.png"] if name in LOOKS_LIKE else []) + REFS
     shape = {"held": HELD, "shot": SHOT, "round": ROUND, "floor": FLOOR, "fx": FX, "tile": TILE}[kind]
     if not frames:
-        jobs.append(dict(name=name, path=ART + name + "_v1.png", transparent=True, refs=REFS, depends=None, mode="single",
+        jobs.append(dict(name=name, path=ART + name + "_v1.png", transparent=True, refs=refs, depends=None, mode="single",
                          prompt=STYLE + "Subject: " + subject + shape + ISOLATED))
         return
     first = name + "_f0"
-    jobs.append(dict(name=first, path=ART + first + "_v1.png", transparent=True, refs=REFS, depends=None, mode="single",
+    jobs.append(dict(name=first, path=ART + first + "_v1.png", transparent=True, refs=refs, depends=None, mode="single",
                      prompt=STYLE + "Subject: " + subject + " " + frames[0] + shape + ISOLATED))
     for i, step in enumerate(frames[1:], 1):
         n = f"{name}_f{i}"
@@ -118,7 +133,7 @@ add("PaperPetal", "a single red paper-cut rose petal", "round", ["a curled petal
 add("HomeRunText", "the words HOME RUN! hand-lettered in cream with a dark ink outline and a star", "fx")
 add("CandyDrillShot", "the red-and-white striped candy drill spinning point first", "shot")
 add("SpiralCrack", "a spiral crack in the floor with candy shavings", "floor")
-add("PlushOctopus", "the pink plush octopus", "round",
+add("PlushOctopus", "the same pink PLUSH octopus as the held InkyOctopus weapon (Assets/ArcaneBrigade/Art/Arsenal/InkyOctopus_Held_v1.png): a stitched felt toy with cross-stitched button eyes, no hat, no bag, no clothes", "round",
     ["flying with arms trailing", "clinging, arms wrapped around (as if around an enemy, enemy not drawn)", "clinging, arms squeezing tighter", "hopping back, arms tucked"])
 add("InkPool", "a dark violet-black ink splotch on the floor with a glossy edge", "floor")
 add("ClawHead", "the three-finger grabber claw head on its spring", "shot", ["claw open", "claw snapped shut with a small spark"])
@@ -128,7 +143,7 @@ add("DragonRibbon", "a ribbon of red-gold dragon scales", "tile")
 add("LanternEmber", "a tiny red paper lantern ember glowing", "round")
 add("TwinMoonSpin", "the two-bladed sun-and-moon staff spinning, seen from above", "round",
     ["horizontal", "turned 45 degrees", "vertical", "turned 135 degrees"])
-add("PlushSharkShot", "the plush shark diving forward, mouth open", "shot", ["mouth open wide", "mouth snapping shut"])
+add("PlushSharkShot", "the same stitched navy PLUSH shark as the held PlushShark weapon (Assets/ArcaneBrigade/Art/Arsenal/PlushShark_Held_v1.png), felt teeth and a button eye, no hat or clothes, diving forward, mouth open", "shot", ["mouth open wide", "mouth snapping shut"])
 add("FloorRipple", "a water ripple V-wake on the floor", "floor")
 add("BatterCrumbs", "a spray of golden fried-batter crumbs", "fx")
 add("SteamPuff", "a soft warm steam puff", "fx", ["small", "full", "thinning"])
@@ -204,12 +219,13 @@ def hero_ref(hero):
     i = october.index(hero)
     return (f"Assets/ArcaneBrigade/Art/October/Heroes{i // 4 + 1}.png",
             f"figure number {i % 4 + 1} of the four in this sheet (reading order), the playable character {hero}")
+hero_jobs = []  # optional: written to their own list, not run with the arsenal (no importer reads them yet)
 for hero in heroes:
     ref, who = hero_ref(hero)
     for clip, poses in (("Idle", idle), ("Walk", walk)):
         for i, pose in enumerate(poses):
             n = f"{hero}_{clip}_f{i}"
-            jobs.append(dict(name=n, path=ACT + n + "_v1.png", transparent=True, refs=[ref], depends=None if i == 0 else f"{hero}_{clip}_f0", mode="single",
+            hero_jobs.append(dict(name=n, path=ACT + n + "_v1.png", transparent=True, refs=[ref], depends=None if i == 0 else f"{hero}_{clip}_f0", mode="single",
                              prompt="Use case: precise-object-edit. Using " + who + " as the exact design reference "
                                     f"(same character, outfit, colours, proportions, ink style), draw ONE {clip.lower()} animation frame: {pose}. "
                                     "Facing right, elevated front three-quarter game view, whole body, same scale in every frame, feet on the same "
@@ -268,3 +284,6 @@ for rarity, (theme, side, crest, foot, corner) in rarities.items():
 out = ROOT / "Docs" / "Bizarre_Arsenal_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)
+optional = ROOT / "Docs" / "Bizarre_Hero_Animation_Worklist.json"
+optional.write_text(json.dumps(hero_jobs, indent=1, ensure_ascii=False), encoding="utf-8")
+print(len(hero_jobs), "optional hero animation jobs ->", optional)

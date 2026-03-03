@@ -6,13 +6,14 @@ namespace ArcaneBrigade
     /// <summary>Draws what the Bizarre Arsenal leaves in the room (Docs/Bizarre_Arsenal.md): lobbed bombs and sticks on an arc with
     /// a floor shadow, fizzing fuses that blink faster, bamboo springing up and sinking, petals drifting, a clinging octopus over
     /// its ink, planted signs with road stripes, toy bombs joined by wire, spinning pinwheels, a drill boring a spiral, the claw
-    /// and plunger cords; and each weapon's own burst on its detonations. Every piece is painted art from ArsenalArtwork; a
-    /// piece whose art is missing is simply not drawn (the weapon itself only exists once its art does).</summary>
+    /// and plunger cords; and each weapon's own moment as it attacks and bursts. Objects (bombs, balls, signs, held weapons)
+    /// are painted art from ArsenalArtwork; every effect around them is painted ink (ArsenalInk), like the hero mechanics.</summary>
     public sealed class ArsenalVisual : MonoBehaviour
     {
         private readonly List<SpriteRenderer> pool = new List<SpriteRenderer>();
         private int used;
-        private sealed class Flash { public string Art; public Vector2 At; public float Born, Life, Size, Angle; }
+        private sealed class Flash { public ArsenalInk.Moment Moment; public Vector2 At, Dir; public float Born, Life, Size, Seed; public Sprite Held; }
+        private ArsenalInk ink;
         private readonly List<Flash> flashes = new List<Flash>();
         private static readonly Color Shadow = new Color(0.05f, 0.03f, 0.08f, 0.35f);
         private static Sprite soft;
@@ -35,15 +36,6 @@ namespace ArcaneBrigade
             view.transform.position = at; view.transform.rotation = Quaternion.Euler(0, 0, angle);
             view.transform.localScale = new Vector3(width / ink, width / ink * squash, 1);
         }
-        /// <summary>A tile stretched from a to b (wire, cord, spring, road stripes).</summary>
-        private void Span(Sprite sprite, Vector2 a, Vector2 b, float thickness, int order, Color? tint = null)
-        {
-            if (sprite == null || (b - a).sqrMagnitude < 0.0004f) return;
-            Rect ink = SpriteInkMetrics.BoundsOf(sprite);
-            SpriteRenderer view = Next(order); view.sprite = sprite; view.color = tint ?? Color.white;
-            view.transform.position = (a + b) * 0.5f; view.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg);
-            view.transform.localScale = new Vector3((b - a).magnitude / Mathf.Max(0.01f, ink.width), thickness / Mathf.Max(0.01f, ink.height), 1);
-        }
         private void ShadowAt(Vector2 at, float width)
         {
             soft ??= MakeSoft();
@@ -60,64 +52,86 @@ namespace ArcaneBrigade
         private static int Order(Vector2 at) => 1000 - Mathf.RoundToInt(at.y * 12);
         private static Vector2 Arc(Vector2 from, Vector2 to, float t, float height) => Vector2.Lerp(from, to, t) + Vector2.up * height * Mathf.Sin(Mathf.PI * Mathf.Clamp01(t));
 
-        /// <summary>A detonation from an Arsenal weapon gets that weapon's own painted burst.</summary>
+        /// <summary>Each Arsenal weapon's own painted-ink moment: as it attacks (a swipe, a muzzle puff), when it bursts (a cotton pop,
+        /// a gavel's verdict) and when it catches or shocks.</summary>
         public void Play(CombatEvent value, float time)
         {
-            if (value.Weapon == null || value.Weapon.Arsenal == ArsenalWeapon.None || flashes.Count > 48) return;
-            float facing = Mathf.Atan2(value.Direction.y, value.Direction.x) * Mathf.Rad2Deg;
+            if (value.Weapon == null || value.Weapon.Arsenal == ArsenalWeapon.None || flashes.Count > 64) return;
+            ArsenalWeapon w = value.Weapon.Arsenal;
+            Vector2 dir = value.Direction.sqrMagnitude > 0.0001f ? value.Direction.normalized : Vector2.right;
             if (value.Kind == CombatEventKind.Fire)
             {
-                // the weapon's own moment as it attacks: a cork pop, a leek swipe, a swat print
-                (string art, float ahead, float size) cue = value.Weapon.Arsenal switch
+                (ArsenalInk.Moment m, float ahead, float size, float life) cue = w switch
                 {
-                    ArsenalWeapon.CorkRifle => ("CorkPop", 0.7f, 0.6f), ArsenalWeapon.LeekBaton => ("LeekSwipe", 0.8f, 1.6f),
-                    ArsenalWeapon.FlySwatter => ("SwatPrint", 1.1f, 0.9f), ArsenalWeapon.PawMitten => ("PawSwipe", 0.5f, 0.75f),
-                    ArsenalWeapon.BareKnuckles => ("FistJab", 0.55f, 0.5f), _ => (null, 0, 0)
+                    ArsenalWeapon.CorkRifle => (ArsenalInk.Moment.CorkPop, 0.6f, 0.5f, 0.32f),
+                    ArsenalWeapon.ConfettiBlunderbuss => (ArsenalInk.Moment.MuzzleCloud, 0.55f, 0.8f, 0.4f),
+                    ArsenalWeapon.FanfareHorn => (ArsenalInk.Moment.MuzzleCloud, 0.6f, 0.5f, 0.32f),
+                    ArsenalWeapon.SquirtTrio => (ArsenalInk.Moment.Droplets, 0.55f, 0.7f, 0.4f),
+                    ArsenalWeapon.LeekBaton => (ArsenalInk.Moment.LeekSwipe, 0, 1.6f, 0.34f),
+                    ArsenalWeapon.PawMitten => (ArsenalInk.Moment.PawSwipe, 0, 0.95f, 0.26f),
+                    ArsenalWeapon.StarforgeClaymore => (ArsenalInk.Moment.GoldLeaf, 0, 2.3f, 0.45f),
+                    ArsenalWeapon.DragonLanternGlaive => (ArsenalInk.Moment.Dragon, 0, 2f, 0.36f),
+                    ArsenalWeapon.WindupWrench or ArsenalWeapon.SignpostSlammer or ArsenalWeapon.HomeRunBat => (ArsenalInk.Moment.MetalSwipe, 0, 1.55f, 0.3f),
+                    ArsenalWeapon.DrumstickClub => (ArsenalInk.Moment.Crumbs, 0, 1.4f, 0.45f),
+                    ArsenalWeapon.FlySwatter => (ArsenalInk.Moment.SwatPrint, 1.1f, 0.9f, 0.5f),
+                    ArsenalWeapon.BareKnuckles or ArsenalWeapon.StarKnuckle => (ArsenalInk.Moment.FistJab, 0, 0.75f, 0.22f),
+                    ArsenalWeapon.GlitchToybox => (ArsenalInk.Moment.Glitch, 0.5f, 0.5f, 0.3f),
+                    _ => ((ArsenalInk.Moment)(-1), 0, 0, 0)
                 };
-                if (cue.art != null && ArsenalArtwork.Frames(cue.art) != null)
-                    flashes.Add(new Flash { Art = cue.art, At = value.Position + value.Direction.normalized * cue.ahead, Born = time, Life = 0.28f, Size = cue.size, Angle = cue.art == "SwatPrint" ? 0 : facing });
+                if ((int)cue.m >= 0) Add(cue.m, value.Position + dir * cue.ahead, dir, time, cue.life, cue.size);
                 return;
             }
-            if (value.Kind == CombatEventKind.Proc && value.Weapon.Arsenal == ArsenalWeapon.CatcherMitt && ArsenalArtwork.Frames("MittCatch") != null)
+            if (value.Kind == CombatEventKind.Proc)
             {
-                flashes.Add(new Flash { Art = "MittCatch", At = value.Position, Born = time, Life = 0.3f, Size = 0.55f }); return;
+                if (w == ArsenalWeapon.CatcherMitt) Add(ArsenalInk.Moment.MittCatch, value.Position, dir, time, 0.3f, 0.5f);
+                else if (w == ArsenalWeapon.BuzzerBlock) Add(ArsenalInk.Moment.Zap, value.Position, dir, time, 0.4f, 0.9f);
+                else if (w == ArsenalWeapon.StarforgeClaymore) Add(ArsenalInk.Moment.Spark, value.Position, dir, time, 0.25f, 0.4f);
+                return;
             }
             if (value.Kind != CombatEventKind.Detonation) return;
-            string art = value.Weapon.Arsenal switch
+            ArsenalInk.Moment burst = w switch
             {
-                ArsenalWeapon.CherryFuseBomb => "CottonPop", ArsenalWeapon.PopperSticks => "PopperBurst", ArsenalWeapon.DetonatorBox => "CandyFlossCloud",
-                ArsenalWeapon.FirecrackerPinwheel => "PaperScraps", ArsenalWeapon.BalloonBuddy => "BalloonPop", ArsenalWeapon.ConfettiBlunderbuss => "ConfettiBurst",
-                ArsenalWeapon.HearthBrick => "BrickDust", ArsenalWeapon.VerdictGavel => "GavelStamp", ArsenalWeapon.TalismanIngot => "IngotBlast", ArsenalWeapon.BareKnuckles => "KnucklePop", _ => null
+                ArsenalWeapon.CherryFuseBomb => ArsenalInk.Moment.CottonPop, ArsenalWeapon.PopperSticks => ArsenalInk.Moment.PopperBurst,
+                ArsenalWeapon.DetonatorBox => ArsenalInk.Moment.CandyFloss, ArsenalWeapon.FirecrackerPinwheel => ArsenalInk.Moment.PaperScraps,
+                ArsenalWeapon.BalloonBuddy => ArsenalInk.Moment.BalloonPop, ArsenalWeapon.ConfettiBlunderbuss => ArsenalInk.Moment.Confetti,
+                ArsenalWeapon.HearthBrick => ArsenalInk.Moment.BrickDust, ArsenalWeapon.VerdictGavel => ArsenalInk.Moment.GavelStamp,
+                ArsenalWeapon.TalismanIngot => ArsenalInk.Moment.IngotBlast, ArsenalWeapon.BareKnuckles => ArsenalInk.Moment.KnucklePop,
+                _ => ArsenalInk.Moment.Burst
             };
-            if (art == null || ArsenalArtwork.Frames(art) == null) return;
-            flashes.Add(new Flash { Art = art, At = value.Position, Born = time, Life = 0.5f, Size = Mathf.Max(0.8f, value.Value * 2.1f) });
-            if (value.Weapon.Arsenal == ArsenalWeapon.FirecrackerPinwheel && ArsenalArtwork.Frames("BangText") != null)
-                flashes.Add(new Flash { Art = "BangText", At = value.Position + Vector2.up * 0.5f, Born = time, Life = 0.6f, Size = 0.9f });
+            Flash f = Add(burst, value.Position, dir, time, burst == ArsenalInk.Moment.GavelStamp ? 0.7f : 0.55f, Mathf.Max(0.6f, value.Value));
+            if (burst == ArsenalInk.Moment.GavelStamp) f.Held = Held(value.Weapon.Id);
         }
+        private Flash Add(ArsenalInk.Moment m, Vector2 at, Vector2 dir, float time, float life, float size)
+        {
+            var f = new Flash { Moment = m, At = at, Dir = dir, Born = time, Life = life, Size = size, Seed = (at.x * 37 + at.y * 91 + time * 13) % 360 };
+            flashes.Add(f); return f;
+        }
+        /// <summary>A thrown copy of the weapon itself uses its own held painting.</summary>
+        private static Sprite Held(string id) => ArsenalArtwork.Frame(id + "_Held", 0);
 
         public void Display(CombatSimulation sim, float time)
         {
             used = 0;
+            ink ??= new ArsenalInk(transform);
+            ink.Begin();
             bool still = PresentationSettings.ReducedMotion;
             if (sim != null)
             {
                 foreach (ArsenalProp p in sim.ArsenalProps) DrawProp(sim, p, still);
-                // a saucer trails thin ring wakes behind it
-                Sprite ring = ArsenalArtwork.Frame("SaucerRing", 0);
-                if (ring != null)
-                    foreach (ProjectileState shot in sim.Projectiles)
-                    {
-                        if (shot.Arsenal != ArsenalWeapon.SaucerBlaster || shot.Velocity.sqrMagnitude < 0.01f) continue;
-                        Vector2 back = -shot.Velocity.normalized;
-                        for (int i = 1; i <= 3; i++) Draw(ring, shot.Position + back * (0.28f * i), 0.32f + 0.1f * i, 0, 2090, new Color(1, 1, 1, 0.7f - 0.2f * i), 0.5f);
-                    }
+                foreach (ProjectileState shot in sim.Projectiles)
+                {
+                    // shots that leave a wake: the saucer's rings in the air, the shark's ripple on the floor
+                    if (shot.Arsenal == ArsenalWeapon.SaucerBlaster) ink.Wake(shot.Position, shot.Velocity, ArsenalInk.Cyan, sim.Elapsed, shot.Id, false);
+                    else if (shot.Arsenal == ArsenalWeapon.PlushShark) ink.Wake(shot.Position + Vector2.down * 0.15f, shot.Velocity, ArsenalInk.Water, sim.Elapsed, shot.Id, true);
+                }
             }
             for (int i = flashes.Count - 1; i >= 0; i--)
             {
                 Flash f = flashes[i]; float t = (time - f.Born) / f.Life;
                 if (t >= 1 || t < 0) { flashes.RemoveAt(i); continue; }
-                Draw(ArsenalArtwork.Frame(f.Art, t), f.At + Vector2.up * t * 0.2f, f.Size * (0.8f + 0.3f * t), f.Angle, f.Art == "SwatPrint" ? 66 : 2150, new Color(1, 1, 1, Mathf.Clamp01((1 - t) * 2.5f)));
+                ink.Draw(f.Moment, f.At, f.Dir, t, f.Size, f.Seed, f.Held);
             }
+            ink.End();
             for (int i = used; i < pool.Count; i++) pool[i].enabled = false;
         }
 
@@ -134,6 +148,7 @@ namespace ArcaneBrigade
                 {
                     float size = p.Kind == ArsenalPropKind.Bomblet ? 0.26f : p.Kind == ArsenalPropKind.Stick ? 0.38f : 0.42f;
                     string art = p.Kind == ArsenalPropKind.Stick ? "PopperStick" : p.Kind == ArsenalPropKind.Vase ? "BambooVaseShot" : "CherryBomb";
+                    if (p.Kind == ArsenalPropKind.Vase && ArsenalArtwork.Frame(art, 0) == null) art = "BambooVase_Held";
                     if (now < p.LandAt)
                     {
                         float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
@@ -156,13 +171,13 @@ namespace ArcaneBrigade
                     float t = (now - p.At) / Mathf.Max(0.05f, p.Until - p.At);
                     float rise = Mathf.Clamp01(t * 4), sink = Mathf.Clamp01((t - 0.75f) * 4);
                     Draw(ArsenalArtwork.Frame("BambooShoot", rise), at, 0.5f, 0, Order(at), new Color(1, 1, 1, 1 - sink), still ? 1 : 0.2f + 0.8f * rise - 0.5f * sink);
-                    if (t < 0.3f) Draw(ArsenalArtwork.Frame("GlassShards", 0), at, 0.45f * (1 + t), 0, Order(at) + 1, new Color(1, 1, 1, 1 - t / 0.3f));
+                    if (t < 0.3f) ink.Shards(at, t / 0.3f, p.At * 97);
                     break;
                 }
                 case ArsenalPropKind.Petals:
                 {
                     float t = Mathf.InverseLerp(p.Born, p.Until, now);
-                    Draw(ArsenalArtwork.Frame("PaperPetal", 0, 1, p.Born.GetHashCode() & 7), at + (still ? Vector2.zero : new Vector2(Mathf.Sin(now * 2 + p.Born * 7) * 0.08f, -t * 0.12f)), 0.24f, still ? 0 : now * 60 + p.Born * 100, 70, new Color(1, 1, 1, Mathf.Clamp01((1 - t) * 3)));
+                    ink.Token(InkToken.Petal, (p.Born.GetHashCode() & 1) == 0 ? ArsenalInk.Wine : ArsenalInk.Candy, at + (still ? Vector2.zero : new Vector2(Mathf.Sin(now * 2 + p.Born * 7) * 0.08f, -t * 0.12f)), 0.22f, now * 60 + p.Born * 100, Mathf.Clamp01((1 - t) * 3), false);
                     break;
                 }
                 case ArsenalPropKind.Octopus:
@@ -175,7 +190,7 @@ namespace ArcaneBrigade
                     }
                     else if (p.Stage == 1)
                     {
-                        Draw(ArsenalArtwork.Frame("InkPool", 0), at + Vector2.down * 0.15f, 1.4f, 0, 64, new Color(1, 1, 1, 0.85f), 0.45f);
+                        ink.Pool(at + Vector2.down * 0.15f, 0.7f, Mathf.Clamp01((p.FuseAt - now) * 3), ArsenalInk.Violet, p.Born * 50, 0.9f, 0.45f);
                         Sprite cling = ArsenalArtwork.Frames("PlushOctopus") is Sprite[] f && f.Length >= 3 ? f[still ? 1 : 1 + (Mathf.FloorToInt(now * 5) & 1)] : null;
                         Draw(cling, at + Vector2.up * 0.25f, 0.55f, 0, Order(at) + 3);
                     }
@@ -190,13 +205,13 @@ namespace ArcaneBrigade
                 case ArsenalPropKind.Sign:
                 {
                     Vector2 along = p.Direction.normalized;
-                    Span(ArsenalArtwork.Frame("RoadStripes", 0), at - along * 0.8f, at + along * 0.8f, 0.5f, 65, new Color(1, 1, 1, 0.8f));
+                    ink.Stripes(at - along * 0.8f, at + along * 0.8f, 0.25f, now, Mathf.Clamp01((p.Until - now) * 2));
                     Draw(ArsenalArtwork.Frame("PlantedSign", still ? 1 : age < 0.35f ? 1 : 0), at + Vector2.up * 0.35f, 0.6f, still ? 0 : Mathf.Sin(age * 30) * 8 * Mathf.Clamp01(1 - age * 3), Order(at));
                     break;
                 }
                 case ArsenalPropKind.ToyBomb:
                 {
-                    if (p.Source != null) Span(ArsenalArtwork.Frame("DetonatorWire", 0), p.Source.Position, at, 0.06f, 62, new Color(1, 1, 1, 0.75f));
+                    if (p.Source != null) ink.Cord(p.Source.Position + Vector2.down * 0.2f, at, ArsenalInk.Midnight, 0.04f, true, 0.85f);
                     float shake = p.Stage == 1 && !still ? Mathf.Sin(now * 60) * 0.03f : 0;
                     ShadowAt(at + Vector2.down * 0.1f, 0.4f);
                     Draw(ArsenalArtwork.Frame("ToyBomb", 0), at + Vector2.right * shake, 0.4f, 0, Order(at));
@@ -214,22 +229,25 @@ namespace ArcaneBrigade
                 case ArsenalPropKind.Drill:
                 {
                     float t = Mathf.InverseLerp(p.Born, p.Until, now);
-                    Draw(ArsenalArtwork.Frame("SpiralCrack", 0), at, 0.9f * Mathf.Clamp01(t * 3), still ? 0 : -now * 90, 63, new Color(1, 1, 1, 1 - t * 0.5f), 0.5f);
-                    Draw(ArsenalArtwork.Frame("CandyDrillShot", 0), at + Vector2.up * (0.25f - 0.2f * t), 0.5f, -90 + (still ? 0 : Mathf.Sin(now * 50) * 6), Order(at));
+                    ink.Spiral(at, 0.45f, t, now, p.Born * 40);
+                    Draw(ArsenalArtwork.Frame("CandyDrillShot", 0) ?? Held("CandyDrill"), at + Vector2.up * (0.25f - 0.2f * t), 0.5f, -90 + (still ? 0 : Mathf.Sin(now * 50) * 6), Order(at));
                     break;
                 }
                 case ArsenalPropKind.Bump:
                 {
                     if (now < p.At) break;
                     float t = (now - p.At) / Mathf.Max(0.05f, p.Until - p.At);
-                    Draw(ArsenalArtwork.Frame("SteamPuff", t), at + Vector2.up * t * 0.2f, 0.6f * (0.7f + 0.5f * t), 0, 2100, new Color(1, 1, 1, 1 - t));
+                    ink.Draw(ArsenalInk.Moment.Steam, at, Vector2.right, t, 0.7f, p.At * 31);
                     break;
                 }
                 case ArsenalPropKind.Batted:
-                    if (age < 0.4f) Draw(ArsenalArtwork.Frame("HomeRunText", 0), p.Start + Vector2.up * (0.7f + age * 0.6f), 1.1f, 0, 2200, new Color(1, 1, 1, 1 - age / 0.4f));
+                    if (age < 0.45f) ink.Draw(ArsenalInk.Moment.HomeRun, p.Start + Vector2.up * 0.3f, p.Direction, age / 0.45f, 0.9f, p.Born * 13);
+                    // the hand-lettered HOME RUN! rides over the ink burst when its painting exists
+                    if (age < 0.45f) Draw(ArsenalArtwork.Frame("HomeRunText", 0), p.Start + Vector2.up * (0.75f + age * 0.5f), 1.1f, 0, 2200, new Color(1, 1, 1, Mathf.Clamp01((0.45f - age) * 5)), still ? 1 : 0.85f + 0.15f * Mathf.Clamp01(age * 8));
+                    ink.Streaks(at, p.Direction, Mathf.Clamp01((p.Until - now) * 3));
                     break;
                 case ArsenalPropKind.Grab:
-                    if (p.Source != null) Span(ArsenalArtwork.Frame("ClawSpring", 0), p.Source.Position, at, 0.12f, Order(at) + 1);
+                    if (p.Source != null) ink.Coil(p.Source.Position, at);
                     Draw(ArsenalArtwork.Frame("ClawHead", 1), at, 0.4f, 0, Order(at) + 2);
                     break;
                 case ArsenalPropKind.Wound:
@@ -237,7 +255,7 @@ namespace ArcaneBrigade
                     // the wind-up key turns in the enemy's back, then it spins dizzy under a ring of stars
                     Sprite key = ArsenalArtwork.Frame("WindupKey", now, 6);
                     if (p.Stage == 0) Draw(key, at + new Vector2(-0.2f, 0.35f), 0.26f, still ? 0 : now * 220, Order(at) + 4);
-                    else Draw(ArsenalArtwork.Frame("DizzyStars", 0), at + Vector2.up * 0.6f, 0.5f, still ? 0 : now * 300, 2120);
+                    else ink.Orbit(at + Vector2.up * 0.6f, 0.26f, now, InkToken.Star, ArsenalInk.Gold, 3);
                     break;
                 }
                 case ArsenalPropKind.Fizz:
@@ -245,31 +263,40 @@ namespace ArcaneBrigade
                     if (now < p.LandAt)
                     {
                         float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
-                        Draw(ArsenalArtwork.Frame("SodaBottleShot", 0), Arc(p.Start, at, t, 0.8f), 0.36f, still ? 0 : t * 480, Order(at));
+                        Draw(ArsenalArtwork.Frame("SodaBottleShot", 0) ?? Held("FizzBottle"), Arc(p.Start, at, t, 0.8f), 0.36f, still ? 0 : t * 480, Order(at));
                         break;
                     }
                     float life = Mathf.InverseLerp(p.LandAt, p.Until, now);
-                    Draw(ArsenalArtwork.Frame("FizzPuddle", still ? 0.5f : life), at, 1.7f, 0, 64, new Color(1, 1, 1, Mathf.Clamp01((1 - life) * 3)), 0.5f);
-                    break;
-                }
-                case ArsenalPropKind.Brick:
-                {
-                    // a tumbling brick on a low arc over its floor shadow
-                    float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
-                    Vector2 air = Arc(p.Start, p.Position, t, 0.7f);
-                    ShadowAt(Vector2.Lerp(p.Start, p.Position, t) + Vector2.down * 0.1f, 0.36f * (0.6f + 0.4f * t));
-                    Draw(ArsenalArtwork.Frame("BrickShot", still ? 0 : now, still ? 0 : 8), air, 0.36f, still ? 0 : t * 400, Order(air));
+                    float spread = still ? 1 : 0.8f + 0.2f * Mathf.Clamp01(life * 6);
+                    ink.Pool(at, 0.8f * spread, Mathf.Clamp01((1 - life) * 3), ArsenalInk.Green, p.Born * 50, 0.85f);
+                    ink.Bubbles(at, 0.8f, now, ArsenalInk.Green, 5, p.Born, Mathf.Clamp01((1 - life) * 3));
                     break;
                 }
                 case ArsenalPropKind.Catch:
                     if (p.Source != null) Draw(ArsenalArtwork.Frame("Fastball", 0), p.Source.Position + new Vector2(0.28f, 0.1f + 0.08f * (p.Born.GetHashCode() & 3)), 0.14f, 0, Order(p.Source.Position) + 5);
                     break;
+                case ArsenalPropKind.Brick:
+                {
+                    // the wielder's own brick tumbling on a low arc over its floor shadow
+                    float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
+                    Vector2 air = Arc(p.Start, p.Position, t, 0.7f);
+                    ShadowAt(Vector2.Lerp(p.Start, p.Position, t) + Vector2.down * 0.1f, 0.36f * (0.6f + 0.4f * t));
+                    Draw(Held("HearthBrick"), air, 0.42f, still ? 0 : t * 400, Order(air));
+                    break;
+                }
+                case ArsenalPropKind.Buzzer:
+                {
+                    if (now < p.LandAt) { Draw(ArsenalArtwork.Frame("BuzzerFloor", 0), Arc(p.Start, at, Mathf.InverseLerp(p.Born, p.LandAt, now), 0.45f), 0.4f, 0, Order(at)); break; }
+                    ShadowAt(at + Vector2.down * 0.08f, 0.36f);
+                    Draw(ArsenalArtwork.Frame("BuzzerFloor", 0), at, 0.4f, 0, Order(at));
+                    break;
+                }
                 case ArsenalPropKind.Plunge:
-                    if (p.Source != null) Span(ArsenalArtwork.Frame("ElasticBand", 0), p.Source.Position, at, 0.07f, Order(at) + 1);
+                    if (p.Source != null) ink.Cord(p.Source.Position, at, ArsenalInk.Wine, 0.06f, false);
                     Draw(ArsenalArtwork.Frame("PlungerCup", 0), at, 0.32f, 0, Order(at) + 2);
                     break;
             }
         }
-        private void OnDestroy() { foreach (SpriteRenderer view in pool) if (view != null) Destroy(view.gameObject); }
+        private void OnDestroy() { foreach (SpriteRenderer view in pool) if (view != null) Destroy(view.gameObject); ink?.Destroy(); }
     }
 }

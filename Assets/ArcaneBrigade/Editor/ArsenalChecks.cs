@@ -22,6 +22,7 @@ namespace ArcaneBrigade.Editor
             Require(ArsenalSpecs.All.Length == 41 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 41, "41 distinct weapons");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
+            InkMoments();
             foreach (ArsenalSpecs.Spec spec in ArsenalSpecs.All)
                 using (var f = new Fixture(catalog, spec)) Weapon(f, spec);
             Directory.CreateDirectory("PreviewExports/Arsenal");
@@ -44,6 +45,35 @@ namespace ArcaneBrigade.Editor
                 Require(plan.FriendWeapon != HeroLoadout.Weapon(catalog, hero.Id), "friend's weapon differs from the hero's " + hero.Id);
             }
         }
+
+        /// <summary>Every effect is painted ink (ArsenalInk): each moment draws something layered all through its life and
+        /// nothing once it is over; the room pieces (pools, cords, spirals, stripes, wakes) draw too.</summary>
+        private static void InkMoments()
+        {
+            var host = new GameObject("ArsenalInkCheck");
+            try
+            {
+                var ink = new ArsenalInk(host.transform);
+                foreach (ArsenalInk.Moment m in Enum.GetValues(typeof(ArsenalInk.Moment)))
+                {
+                    int least = int.MaxValue;
+                    foreach (float p in new[] { 0.05f, 0.3f, 0.6f, 0.9f })
+                    {
+                        ink.Begin(); ink.Draw(m, Vector2.zero, Vector2.right, p, 1f, 17, Texture2DSprite()); least = Mathf.Min(least, ink.Primitives); ink.End();
+                    }
+                    Require(least >= 3, "ink moment " + m + " is layered all through its life (" + least + " pieces at least)");
+                }
+                ink.Begin();
+                ink.Pool(Vector2.zero, 0.8f, 1, ArsenalInk.Green, 3); int pool = ink.Primitives;
+                ink.Spiral(Vector2.zero, 0.45f, 0.5f, 1, 3); ink.Coil(Vector2.zero, Vector2.one); ink.Cord(Vector2.zero, Vector2.right, ArsenalInk.Wine, 0.06f, false);
+                ink.Stripes(Vector2.left, Vector2.right, 0.25f, 1); ink.Wake(Vector2.zero, Vector2.right, ArsenalInk.Cyan, 1, 1, false); ink.Orbit(Vector2.zero, 0.26f, 1, InkToken.Star, ArsenalInk.Gold, 3);
+                Require(pool >= 5 && ink.Primitives > pool + 10, "ink room pieces draw (pool " + pool + ", all " + ink.Primitives + ")");
+                ink.End(); ink.Destroy();
+            }
+            finally { UnityEngine.Object.DestroyImmediate(host); }
+        }
+        private static Sprite heldStandIn;
+        private static Sprite Texture2DSprite() => heldStandIn != null ? heldStandIn : heldStandIn = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 4);
 
         private static void Weapon(Fixture f, ArsenalSpecs.Spec spec)
         {

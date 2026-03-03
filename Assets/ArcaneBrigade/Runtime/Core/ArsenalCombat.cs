@@ -119,14 +119,18 @@ namespace ArcaneBrigade
                     }
                     return true;
                 case ArsenalWeapon.PopperSticks:
+                {
+                    // the sticks land in a small fan around the target (or as far as the throw reaches), not at a fixed distance
+                    float reach = Mathf.Clamp((point - source.Position).magnitude, 1.2f, weapon.Range);
                     for (int i = -1; i <= 1; i++)
                     {
-                        Vector2 at = ClampPosition(source.Position + ArsenalTurn(aim, i * 18) * (2.2f + 0.4f * (1 - Mathf.Abs(i)) + 0.4f), 0.3f);
+                        Vector2 at = ClampPosition(source.Position + ArsenalTurn(aim, i * 14) * (reach - 0.3f + 0.3f * (1 - Mathf.Abs(i))), 0.3f);
                         ArsenalProp stick = PlaceProp(ArsenalPropKind.Stick, source, at, damage * 0.7f, 0.75f, critical, cause);
                         stick.LandAt = Elapsed + 0.4f + 0.05f * (i + 1); stick.FuseAt = stick.LandAt + 2f; stick.Until = stick.FuseAt + 0.1f;
                     }
                     DropOldest(source, ArsenalPropKind.Stick, 9);
                     return true;
+                }
                 case ArsenalWeapon.DreamRacket:
                 {
                     ProjectileState ball = ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 8f, 6f, damage * 0.85f, critical, cause, 0.14f, 3);

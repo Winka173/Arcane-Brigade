@@ -66,6 +66,35 @@ PASS starting friend HourglassStag = TeacupCricket with ParasolNeedle
 PASS friend's weapon differs from the hero's HourglassStag
 PASS starting friend RainArchivist = RibbonOtter with TinFish
 PASS friend's weapon differs from the hero's RainArchivist
+PASS ink moment Burst is layered all through its life (14 pieces at least)
+PASS ink moment CottonPop is layered all through its life (33 pieces at least)
+PASS ink moment PopperBurst is layered all through its life (25 pieces at least)
+PASS ink moment CandyFloss is layered all through its life (36 pieces at least)
+PASS ink moment PaperScraps is layered all through its life (22 pieces at least)
+PASS ink moment BalloonPop is layered all through its life (11 pieces at least)
+PASS ink moment Confetti is layered all through its life (13 pieces at least)
+PASS ink moment MuzzleCloud is layered all through its life (17 pieces at least)
+PASS ink moment CorkPop is layered all through its life (19 pieces at least)
+PASS ink moment Droplets is layered all through its life (7 pieces at least)
+PASS ink moment Steam is layered all through its life (11 pieces at least)
+PASS ink moment LeekSwipe is layered all through its life (5 pieces at least)
+PASS ink moment PawSwipe is layered all through its life (4 pieces at least)
+PASS ink moment GoldLeaf is layered all through its life (5 pieces at least)
+PASS ink moment Dragon is layered all through its life (6 pieces at least)
+PASS ink moment MetalSwipe is layered all through its life (5 pieces at least)
+PASS ink moment FistJab is layered all through its life (8 pieces at least)
+PASS ink moment SwatPrint is layered all through its life (19 pieces at least)
+PASS ink moment Crumbs is layered all through its life (7 pieces at least)
+PASS ink moment BrickDust is layered all through its life (30 pieces at least)
+PASS ink moment GavelStamp is layered all through its life (3 pieces at least)
+PASS ink moment IngotBlast is layered all through its life (26 pieces at least)
+PASS ink moment KnucklePop is layered all through its life (9 pieces at least)
+PASS ink moment MittCatch is layered all through its life (18 pieces at least)
+PASS ink moment Zap is layered all through its life (10 pieces at least)
+PASS ink moment Spark is layered all through its life (6 pieces at least)
+PASS ink moment HomeRun is layered all through its life (14 pieces at least)
+PASS ink moment Glitch is layered all through its life (6 pieces at least)
+PASS ink room pieces draw (pool 27, all 50)
 PASS CherryFuseBomb the bomb is still in the air
 PASS CherryFuseBomb bursts where it landed and hits beside the target
 PASS CherryFuseBomb never strikes the enemy right behind the wielder

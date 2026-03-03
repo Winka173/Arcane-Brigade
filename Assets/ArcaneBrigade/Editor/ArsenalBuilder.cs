@@ -61,8 +61,9 @@ namespace ArcaneBrigade.Editor
                 weapon.Sprite = pieces[spec.Id + "_Held"][0];
                 string shot = spec.Pieces.Length > 0 ? spec.Pieces[0] : null;
                 if (shot != null) { int cut = shot.LastIndexOf("_f", StringComparison.Ordinal); string key = cut > 0 ? shot.Substring(0, cut) : shot; weapon.ProjectileSprite = pieces[key][new List<int>(pieces[key].Keys)[0]]; }
+                else weapon.ProjectileSprite = weapon.Sprite; // a thrown copy of the weapon itself (brick, ingot, bottle, twin-moon staff) flies as its own painting
                 weapon.ProjectileVisualWidth = 0.32f; weapon.ProjectileColor = Color.white; weapon.ProjectileSpeed = 8; weapon.ProjectileLifetime = 2.4f;
-                weapon.VisualWidth = spec.Kind == WeaponKind.Melee ? 1.1f : 0.95f; weapon.MountDistance = 0.34f; weapon.MuzzleDistance = 0.6f;
+                weapon.VisualWidth = (spec.Kind == WeaponKind.Melee ? 1.1f : 0.95f) * spec.Width; // fist-sized arms (paw, wraps, knuckle) are drawn smaller weapon.MountDistance = 0.34f; weapon.MuzzleDistance = 0.6f;
                 weapon.ConeDot = spec.Arsenal == ArsenalWeapon.DragonLanternGlaive ? 0.5f : 0.2f; weapon.SwingAngle = spec.Arsenal == ArsenalWeapon.StarforgeClaymore ? 120 : 70;
                 weapon.BodyAttackTilt = spec.Kind == WeaponKind.Melee ? 14 : 8; weapon.PushDistance = 0.15f;
                 weapon.Family = ExpandedWeapon.None; weapon.Mechanic = CarnivalWeapon.None; weapon.Signature = SignatureWeapon.None; weapon.SpecialOnly = false;

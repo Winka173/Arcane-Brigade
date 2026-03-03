@@ -160,6 +160,32 @@ PASS Weapon RibbonWheel
 PASS Weapon MoonseedOrb
 PASS Weapon AfterimageSabre
 PASS Weapon SatelliteDisc
+PASS Weapon CherryFuseBomb
+PASS Weapon PopperSticks
+PASS Weapon DreamRacket
+PASS Weapon BambooVase
+PASS Weapon RoseBouquet
+PASS Weapon HomeRunBat
+PASS Weapon CandyDrill
+PASS Weapon GrabberClaw
+PASS Weapon StarforgeClaymore
+PASS Weapon DragonLanternGlaive
+PASS Weapon TwinMoonStaff
+PASS Weapon DrumstickClub
+PASS Weapon PaperShuriken
+PASS Weapon SquirtTrio
+PASS Weapon ConfettiBlunderbuss
+PASS Weapon PlungerPopper
+PASS Weapon GlitchToybox
+PASS Weapon FizzBottle
+PASS Weapon LeekBaton
+PASS Weapon FlySwatter
+PASS Weapon PawMitten
+PASS Weapon HearthBrick
+PASS Weapon VerdictGavel
+PASS Weapon TalismanIngot
+PASS Weapon BareKnuckles
+PASS Weapon InkyOctopus
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop

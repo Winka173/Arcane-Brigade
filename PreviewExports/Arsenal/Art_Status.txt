@@ -1,24 +1,46 @@
-WAITING CherryFuseBomb: CherryFuseBomb_Held, CherryBomb_f0, CherryBomb_f1, CherryBomb_f2, CottonPop_f0, CottonPop_f1, CottonPop_f2, CottonPop_f3
-WAITING PopperSticks: PopperSticks_Held, PopperStick_f0, PopperStick_f1, PopperBurst_f0, PopperBurst_f1, PopperBurst_f2
-WAITING DreamRacket: DreamRacket_Held, FeltBall
-WAITING BambooVase: BambooVase_Held, BambooVaseShot, BambooShoot_f0, BambooShoot_f1, BambooShoot_f2, GlassShards
-WAITING RoseBouquet: RoseBouquet_Held, BouquetShot, PaperPetal_f0, PaperPetal_f1, PaperPetal_f2
-WAITING HomeRunBat: HomeRunBat_Held, HomeRunText
-WAITING CandyDrill: CandyDrill_Held, CandyDrillShot, SpiralCrack
-WAITING InkyOctopus: InkyOctopus_Held, PlushOctopus_f0, PlushOctopus_f1, PlushOctopus_f2, PlushOctopus_f3, InkPool
-WAITING GrabberClaw: GrabberClaw_Held, ClawHead_f0, ClawHead_f1, ClawSpring
-WAITING StarforgeClaymore: StarforgeClaymore_Held, GoldLeafArc
-WAITING DragonLanternGlaive: DragonLanternGlaive_Held, DragonRibbon, LanternEmber
-WAITING TwinMoonStaff: TwinMoonStaff_Held, TwinMoonSpin_f0, TwinMoonSpin_f1, TwinMoonSpin_f2, TwinMoonSpin_f3
-WAITING PlushShark: PlushShark_Held, PlushSharkShot_f0, PlushSharkShot_f1, FloorRipple
-WAITING DrumstickClub: DrumstickClub_Held, BatterCrumbs, SteamPuff_f0, SteamPuff_f1, SteamPuff_f2
-WAITING PaperShuriken: PaperShuriken_Held, ShurikenShot_f0, ShurikenShot_f1, PaperFlower
-WAITING SquirtTrio: SquirtTrio_Held, WaterJet, StarDroplets, Puddle
-WAITING ConfettiBlunderbuss: ConfettiBlunderbuss_Held, CandyPellet, CartoonCloud_f0, CartoonCloud_f1, CartoonCloud_f2, ConfettiBurst
-WAITING PlungerPopper: PlungerPopper_Held, PlungerCup, ElasticBand, PopText
-WAITING SignpostSlammer: SignpostSlammer_Held, PlantedSign_f0, PlantedSign_f1, RoadStripes
-WAITING DetonatorBox: DetonatorBox_Held, ToyBomb, DetonatorWire, CandyFlossCloud_f0, CandyFlossCloud_f1, CandyFlossCloud_f2, CandyFlossCloud_f3
-WAITING FirecrackerPinwheel: FirecrackerPinwheel_Held, Pinwheel_f0, Pinwheel_f1, Pinwheel_f2, Pinwheel_f3, PaperScraps, BangText
-WAITING GumballGatling: GumballGatling_Held, Gumball_f0, Gumball_f1, Gumball_f2, Gumball_f3
-WAITING BalloonBuddy: BalloonBuddy_Held, BalloonAnimal_f0, BalloonAnimal_f1, BalloonPop_f0, BalloonPop_f1, BalloonPop_f2
-WAITING GlitchToybox: GlitchToybox_Held, JackBox_f0, JackBox_f1, JackBox_f2, TvStatic
+LIVE CherryFuseBomb
+LIVE PopperSticks
+LIVE DreamRacket
+LIVE BambooVase
+LIVE RoseBouquet
+LIVE HomeRunBat
+LIVE CandyDrill
+LIVE InkyOctopus
+LIVE GrabberClaw
+LIVE StarforgeClaymore
+LIVE DragonLanternGlaive
+LIVE TwinMoonStaff
+WAITING PlushShark: PlushSharkShot_f0
+LIVE DrumstickClub
+LIVE PaperShuriken
+LIVE SquirtTrio
+LIVE ConfettiBlunderbuss
+LIVE PlungerPopper
+WAITING SignpostSlammer: PlantedSign_f1
+WAITING DetonatorBox: ToyBomb
+WAITING FirecrackerPinwheel: Pinwheel_f0, Pinwheel_f1, Pinwheel_f2, Pinwheel_f3
+WAITING GumballGatling: Gumball_f0
+WAITING BalloonBuddy: BalloonAnimal_f0
+LIVE GlitchToybox
+WAITING SaucerBlaster: SaucerShot_f0
+WAITING FanfareHorn: SoundFin_f0
+WAITING WindupWrench: WindupKey_f0, WindupKey_f1
+WAITING CorkRifle: CorkBullet
+WAITING CatcherMitt: Fastball
+LIVE FizzBottle
+LIVE LeekBaton
+WAITING DowsingRod: TwigDart
+WAITING StarKnuckle: StarShard
+WAITING BuzzerBlock: BuzzerFloor_f0
+LIVE FlySwatter
+LIVE PawMitten
+LIVE HearthBrick
+LIVE VerdictGavel
+LIVE TalismanIngot
+WAITING KunaiFan: KunaiShot
+LIVE BareKnuckles
+FRAME WAITING Uncommon
+FRAME WAITING Rare
+FRAME WAITING Mythic
+FRAME WAITING Crimson
+FRAME WAITING Rainbow

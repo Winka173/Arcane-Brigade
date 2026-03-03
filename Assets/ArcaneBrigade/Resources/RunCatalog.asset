@@ -175,6 +175,32 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c17055c95ef3e904e9cfab0028006e2a, type: 2}
   - {fileID: 11400000, guid: 867eff57580be1c47b003e9e32872a21, type: 2}
   - {fileID: 11400000, guid: 44cdd9e6dd840b04d853ffcb0b3675d2, type: 2}
+  - {fileID: 11400000, guid: 7fa473c8e1f221346a1f8bc89b745830, type: 2}
+  - {fileID: 11400000, guid: f7eabb91eff910449aa27bde95440abe, type: 2}
+  - {fileID: 11400000, guid: fed53ce8a61de6e45a3f809068f6c93e, type: 2}
+  - {fileID: 11400000, guid: 242ff161ed0ac2d4d9c99fb62c6589f0, type: 2}
+  - {fileID: 11400000, guid: 67cce8add7333c3489fe473fa4d73fac, type: 2}
+  - {fileID: 11400000, guid: c1af64bc1601f7d4bad030527d70de61, type: 2}
+  - {fileID: 11400000, guid: 9aea40f2065f1734eb1452bdbb61714d, type: 2}
+  - {fileID: 11400000, guid: cefba0cd756c4784a8f5a61842f913d4, type: 2}
+  - {fileID: 11400000, guid: 1aad1885b29b1774380d5bbc950cf02d, type: 2}
+  - {fileID: 11400000, guid: 62de65cf91cd0854999f05b3e490a49c, type: 2}
+  - {fileID: 11400000, guid: 69a9766751f89a1479e7dfa9dd65865b, type: 2}
+  - {fileID: 11400000, guid: 541aa0ae0656e134e9f975088cb63ec8, type: 2}
+  - {fileID: 11400000, guid: 0dd7d51a07a96624f9438c02e7ee4139, type: 2}
+  - {fileID: 11400000, guid: 219cd7bf8c403a44e95e6b526751f79d, type: 2}
+  - {fileID: 11400000, guid: ebd22f7dd2e4fdb458e7b7a3505b434c, type: 2}
+  - {fileID: 11400000, guid: 04ca42f50a34bb746996c8b4d810e164, type: 2}
+  - {fileID: 11400000, guid: af1d0502f5979e84d9cd3f26a9ddf0e1, type: 2}
+  - {fileID: 11400000, guid: fb01b09c0b50a09478c990d7ffddd538, type: 2}
+  - {fileID: 11400000, guid: c5cf6800381731348acf07a52deff9c4, type: 2}
+  - {fileID: 11400000, guid: eeb5af892dfd9ef4b90476ba8e40cf62, type: 2}
+  - {fileID: 11400000, guid: 9747390739a53b14fbbfba85a3d6a9bb, type: 2}
+  - {fileID: 11400000, guid: a747713cefa028a449f15263ea44f190, type: 2}
+  - {fileID: 11400000, guid: 4553f845d96a9b748b638809e3c52f3c, type: 2}
+  - {fileID: 11400000, guid: 1dd387a523b3aff47bd9ab546636f10c, type: 2}
+  - {fileID: 11400000, guid: ecb6c3a189a9d2042a37755d396541cc, type: 2}
+  - {fileID: 11400000, guid: 957aab8abe6c27d479bd65d13b675866, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}
@@ -588,8 +614,8 @@ MonoBehaviour:
       / Interest cap: +2
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 18
     Effect: 10
     Value: 2
@@ -773,8 +799,8 @@ MonoBehaviour:
       / Gold shop discount: +5%
 
 
-      Owned effective copies: 1. Values apply
-      before combat limits.'
+      Owned effective copies: 1. Values apply before
+      combat limits.'
     Price: 24
     Effect: 15
     Value: 0.05
@@ -1124,8 +1150,8 @@ MonoBehaviour:
       Team / Movement speed: -3%
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
+      Owned effective copies:
+      1. Values apply before combat limits.'
     Price: 36
     Effect: 12
     Value: 0.18
@@ -1171,8 +1197,8 @@ MonoBehaviour:
       shared 0.35s cooldown.
 
 
-      Owned effective copies: 1. Stack limit: 2.
-      Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit: 2. Values
+      apply before combat limits.'
     Price: 28
     Effect: 0
     Value: 0
@@ -1344,13 +1370,13 @@ MonoBehaviour:
 
       WEAPON SYNERGY
 
-      Tea projectile trails
-      have 40% more radius but deal 20% less trail damage. Presence effect; extra
-      copies do not multiply trail size again.
+      Tea projectile trails have
+      40% more radius but deal 20% less trail damage. Presence effect; extra copies
+      do not multiply trail size again.
 
 
-      Owned effective copies: 1.
-      Stack limit: 1. Values apply before combat limits.'
+      Owned effective copies: 1. Stack
+      limit: 1. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -1472,13 +1498,13 @@ MonoBehaviour:
 
       WEAPON SYNERGY
 
-      Every 3s, automatically
-      add one charge to each charging arena toy. Normal warning and cooldown rules
-      still apply. Presence effect; extra copies do not speed it up.
+      Every 3s, automatically add
+      one charge to each charging arena toy. Normal warning and cooldown rules still
+      apply. Presence effect; extra copies do not speed it up.
 
 
-      Owned
-      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -1515,8 +1541,8 @@ MonoBehaviour:
 
       WEAPON SYNERGY
 
-      A hot trail touching
-      a marked enemy adds a 40%-trail-damage strike, with a 0.9s cooldown per target.
+      A hot trail touching a
+      marked enemy adds a 40%-trail-damage strike, with a 0.9s cooldown per target.
 
 
       Owned
@@ -1557,13 +1583,13 @@ MonoBehaviour:
 
       WEAPON SYNERGY
 
-      An arena-toy credited
-      kill heals 1 HP per stack, shared 0.6s cooldown. Ordinary basic kills do not
-      activate this effect.
+      An arena-toy credited kill
+      heals 1 HP per stack, shared 0.6s cooldown. Ordinary basic kills do not activate
+      this effect.
 
 
-      Owned effective copies: 1. Stack limit: 3. Values
-      apply before combat limits.'
+      Owned effective copies: 1. Stack limit: 3. Values apply
+      before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -1851,8 +1877,8 @@ MonoBehaviour:
       Champion / Maximum health: -1
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
+      Owned effective copies:
+      1. Values apply before combat limits.'
     Price: 18
     Effect: 24
     Value: 4
@@ -2229,8 +2255,8 @@ MonoBehaviour:
       Champion / Maximum health: -1
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 21
     Effect: 33
     Value: 0.08
@@ -2270,12 +2296,11 @@ MonoBehaviour:
 
       Run / Score multiplier: +20%
 
-      Champion /
-      Maximum health: -1
+      Champion / Maximum
+      health: -1
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
+      Owned effective copies: 1. Values apply before combat limits.'
     Price: 24
     Effect: 34
     Value: 0.08
@@ -2318,12 +2343,12 @@ MonoBehaviour:
 
       Run / Score multiplier: +20%
 
-      Champion
-      / Maximum health: -1
+      Champion /
+      Maximum health: -1
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
+      Owned effective copies: 1. Values apply before combat
+      limits.'
     Price: 27
     Effect: 35
     Value: 0.08
@@ -2366,12 +2391,11 @@ MonoBehaviour:
 
       Run / Score multiplier: +20%
 
-      Champion /
-      Maximum health: -1
+      Champion / Maximum
+      health: -1
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
+      Owned effective copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 36
     Value: 0.08
@@ -2541,8 +2565,8 @@ MonoBehaviour:
       Champion / Maximum health: -1
 
 
-      Owned
-      effective copies: 1. Values apply before combat limits.'
+      Owned effective
+      copies: 1. Values apply before combat limits.'
     Price: 18
     Effect: 40
     Value: 0.08
@@ -2965,8 +2989,8 @@ MonoBehaviour:
       Champion / Movement speed: -2%
 
 
-      TRIGGER:
-      EnemyKilled / 100% chance / 2s cooldown. Damage pulse 3 per stack; radius 1.8.
+      TRIGGER: EnemyKilled
+      / 100% chance / 2s cooldown. Damage pulse 3 per stack; radius 1.8.
 
 
       Owned
@@ -3011,8 +3035,8 @@ MonoBehaviour:
       Team / Projectile count: +2
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -3310,8 +3334,8 @@ MonoBehaviour:
       Team / Movement speed: -4%
 
 
-      Owned effective
-      copies: 1. Stack limit: 4. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 4. Values apply before combat limits.'
     Price: 40
     Effect: 0
     Value: 0
@@ -3352,8 +3376,8 @@ MonoBehaviour:
       Team / Movement speed: +12%
 
 
-      Owned effective
-      copies: 1. Stack limit: 4. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 4. Values apply before combat limits.'
     Price: 45
     Effect: 0
     Value: 0
@@ -3525,8 +3549,8 @@ MonoBehaviour:
       Team / Movement speed: -8%
 
 
-      Owned effective
-      copies: 1. Stack limit: 4. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 4. Values apply before combat limits.'
     Price: 65
     Effect: 0
     Value: 0
@@ -3865,8 +3889,8 @@ MonoBehaviour:
       Team / Critical chance: +8%
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -3909,8 +3933,8 @@ MonoBehaviour:
       Run / Treasure detection: +0.1
 
 
-      Owned
-      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -4174,8 +4198,8 @@ MonoBehaviour:
       Champion / Movement speed: -5%
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -4359,12 +4383,11 @@ MonoBehaviour:
 
       Team / Bullet bounce chance: +25%
 
-      Team / Damage:
-      -5%
+      Team / Damage: -5%
 
 
-      Owned effective copies: 1. Stack limit: 8. Values apply before
-      combat limits.'
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -4407,14 +4430,14 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Team / Flat melee
-      damage: +5
+      Team / Flat melee damage:
+      +5
 
       Team / Critical chance: +6%
 
 
-      Owned effective copies:
-      1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -4456,14 +4479,14 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Armor:
-      +0.12
+      Champion / Armor: +0.12
 
-      Run / Treasure detection: +0.15
+      Run
+      / Treasure detection: +0.15
 
 
-      Owned effective copies:
-      1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -4545,14 +4568,14 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Dodge:
-      +8%
+      Champion / Dodge: +8%
 
-      Run / Luck: +0.06
+      Run
+      / Luck: +0.06
 
 
-      Owned effective copies: 1. Stack limit:
-      8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit: 8. Values apply
+      before combat limits.'
     Price: 32
     Effect: 0
     Value: 0
@@ -4595,8 +4618,8 @@ MonoBehaviour:
 
       SPECIAL EFFECT
 
-      Each coin pickup
-      has a 15% chance to heal 2 HP per active stack.
+      Each coin pickup has
+      a 15% chance to heal 2 HP per active stack.
 
 
       Owned effective copies:
@@ -4727,13 +4750,13 @@ MonoBehaviour:
 
       SPECIAL EFFECT
 
-      When
-      hit, 30% chance to fire 8 radial shots for 12 damage per stack each. Shots
-      move at 5 units/s and last 2s.
+      When hit,
+      30% chance to fire 8 radial shots for 12 damage per stack each. Shots move
+      at 5 units/s and last 2s.
 
 
-      Owned effective copies: 1. Stack limit:
-      8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit: 8.
+      Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -4774,8 +4797,8 @@ MonoBehaviour:
       Champion / Bullet split: +2
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -4918,8 +4941,8 @@ MonoBehaviour:
       Detection +1 per purchased copy.
 
 
-      Owned effective copies: 1. Stack
-      limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -4955,14 +4978,14 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Attack
-      speed: +24%
+      Champion / Attack speed:
+      +24%
 
       Champion / Collision damage: -1
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -5052,8 +5075,8 @@ MonoBehaviour:
       Run / Enemy count: +2%
 
 
-      Owned effective copies:
-      1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1.
+      Stack limit: 8. Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -5095,14 +5118,14 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Heart
-      healing: +4
+      Champion / Heart healing:
+      +4
 
       Champion / Movement speed: -5%
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1.
+      Stack limit: 8. Values apply before combat limits.'
     Price: 46
     Effect: 0
     Value: 0
@@ -5793,18 +5816,18 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Healing per
-      second: +3
+      Champion / Healing per second:
+      +3
 
 
       SPECIAL EFFECT
 
-      At each battle start, current hero
-      HP is reduced to at most 50% maximum HP; it does not reduce maximum HP.
+      At each battle start, current hero HP is reduced
+      to at most 50% maximum HP; it does not reduce maximum HP.
 
 
-      Owned
-      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective
+      copies: 1. Stack limit: 8. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -5849,8 +5872,8 @@ MonoBehaviour:
       -3
 
 
-      Owned effective copies: 1. Stack limit: 8. Values apply before
-      combat limits.'
+      Owned effective copies: 1. Stack limit: 8. Values apply before combat
+      limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -6025,15 +6048,15 @@ MonoBehaviour:
       Run / Pickup radius: +0.9
 
 
-      SPECIAL
-      EFFECT
+      SPECIAL EFFECT
 
-      Companion leash and outer patrol radius are multiplied by 0.65.
-      Presence effect; extra stacks do not tighten it again.
+      Companion
+      leash and outer patrol radius are multiplied by 0.65. Presence effect; extra
+      stacks do not tighten it again.
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -6165,12 +6188,12 @@ MonoBehaviour:
 
       Run / Treasure detection: +0.6
 
-      Run / Enemy
-      speed: +7%
+      Run / Enemy speed:
+      +7%
 
 
-      Owned effective copies: 1. Stack limit: 8. Values apply
-      before combat limits.'
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -6322,8 +6345,8 @@ MonoBehaviour:
       positive hero damage bonus, per stack.
 
 
-      Owned effective copies: 1.
-      Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack
+      limit: 8. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -6449,12 +6472,12 @@ MonoBehaviour:
 
       SPECIAL EFFECT
 
-      Every 3s, all eligible enemies
-      take damage equal to 20% of hero maximum HP per stack.
+      Every 3s, all eligible enemies take
+      damage equal to 20% of hero maximum HP per stack.
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -6640,12 +6663,12 @@ MonoBehaviour:
 
       Champion / Knockback: +30%
 
-      Champion / Critical
-      chance: -10%
+      Champion / Critical chance:
+      -10%
 
 
-      Owned effective copies: 1. Stack limit: 8. Values apply
-      before combat limits.'
+      Owned effective copies: 1. Stack limit: 8. Values apply before
+      combat limits.'
     Price: 60
     Effect: 0
     Value: 0
@@ -7123,8 +7146,8 @@ MonoBehaviour:
       Team / Damage: -20%
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -7168,8 +7191,8 @@ MonoBehaviour:
       / Flat ranged damage: -10
 
 
-      Owned effective copies: 1. Stack limit:
-      8. Values apply before combat limits.'
+      Owned effective copies: 1. Stack limit: 8.
+      Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -7211,19 +7234,18 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion / Armor:
-      -0.2
+      Champion / Armor: -0.2
 
 
-      SPECIAL EFFECT
+      SPECIAL
+      EFFECT
 
-      Every 3s make two independent rolls: 50%
-      to heal 20 HP per stack; 50% to take 8 injected damage per stack. Both or neither
-      can occur.
+      Every 3s make two independent rolls: 50% to heal 20 HP per stack;
+      50% to take 8 injected damage per stack. Both or neither can occur.
 
 
-      Owned effective copies: 1. Stack limit: 8. Values apply
-      before combat limits.'
+      Owned
+      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -7271,9 +7293,9 @@ MonoBehaviour:
 
       SPECIAL EFFECT
 
-      ON
-      EACH FOOD PURCHASE: permanently gain +10 max HP, +0.5 HP/s and +5% hero size
-      per active stack for this run.
+      ON EACH
+      FOOD PURCHASE: permanently gain +10 max HP, +0.5 HP/s and +5% hero size per
+      active stack for this run.
 
 
       Owned effective copies: 1. Stack limit:
@@ -7420,8 +7442,8 @@ MonoBehaviour:
 
       Team / Attack range: +40%
 
-      Champion
-      / Armor: +0.6
+      Champion /
+      Armor: +0.6
 
 
       Owned effective copies: 1. Stack limit: 8. Values apply
@@ -7525,8 +7547,8 @@ MonoBehaviour:
       time. Stopping later does not restore this bonus.
 
 
-      Owned effective
-      copies: 1. Stack limit: 8. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 8. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0

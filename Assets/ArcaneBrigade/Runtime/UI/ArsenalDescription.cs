@@ -9,7 +9,7 @@ namespace ArcaneBrigade
             string rules = weapon.Arsenal switch
             {
                 ArsenalWeapon.CherryFuseBomb => "Lobs a bomb at the target. It fizzes 0.8 s, then bursts for 160% damage in a small area." + (tier >= 2 ? " Tier 2+: two bombs." : "") + (tier >= 3 ? " Tier 3: the burst throws 3 bomblets." : ""),
-                ArsenalWeapon.PopperSticks => "Throws 3 firecracker sticks ahead. Each pops for 70% when an enemy touches it or after 2 s, setting off sticks nearby.",
+                ArsenalWeapon.PopperSticks => "Throws 3 firecracker sticks around the target. Each pops for 70% when an enemy touches it or after 2 s, setting off sticks nearby.",
                 ArsenalWeapon.DreamRacket => "Serves a ball that bounces to up to 4 enemies, 85% damage, 10% less each bounce.",
                 ArsenalWeapon.BambooVase => "Throws a vase. It shatters and 4 bamboo shoots spring up in a line beyond it, 55% each, briefly stopping enemies.",
                 ArsenalWeapon.RoseBouquet => "Throws a bouquet (60%). Its petals stay on the path for 2 s, hurting and slowing enemies in them.",

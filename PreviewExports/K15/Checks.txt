@@ -68,6 +68,32 @@ PASS Bounded weapon feel RibbonWheel
 PASS Bounded weapon feel MoonseedOrb
 PASS Bounded weapon feel AfterimageSabre
 PASS Bounded weapon feel SatelliteDisc
+PASS Bounded weapon feel CherryFuseBomb
+PASS Bounded weapon feel PopperSticks
+PASS Bounded weapon feel DreamRacket
+PASS Bounded weapon feel BambooVase
+PASS Bounded weapon feel RoseBouquet
+PASS Bounded weapon feel HomeRunBat
+PASS Bounded weapon feel CandyDrill
+PASS Bounded weapon feel GrabberClaw
+PASS Bounded weapon feel StarforgeClaymore
+PASS Bounded weapon feel DragonLanternGlaive
+PASS Bounded weapon feel TwinMoonStaff
+PASS Bounded weapon feel DrumstickClub
+PASS Bounded weapon feel PaperShuriken
+PASS Bounded weapon feel SquirtTrio
+PASS Bounded weapon feel ConfettiBlunderbuss
+PASS Bounded weapon feel PlungerPopper
+PASS Bounded weapon feel GlitchToybox
+PASS Bounded weapon feel FizzBottle
+PASS Bounded weapon feel LeekBaton
+PASS Bounded weapon feel FlySwatter
+PASS Bounded weapon feel PawMitten
+PASS Bounded weapon feel HearthBrick
+PASS Bounded weapon feel VerdictGavel
+PASS Bounded weapon feel TalismanIngot
+PASS Bounded weapon feel BareKnuckles
+PASS Bounded weapon feel InkyOctopus
 PASS Camera accent has a bounded displacement
 PASS An explosion holds the frame and shakes the camera
 PASS The hit hold is brief
