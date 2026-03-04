@@ -443,7 +443,8 @@ namespace ArcaneBrigade
             Add(CombatCatalog.MeleeEnemy); Add(CombatCatalog.RangedEnemy); Add(CombatCatalog.Boss); Add(CombatCatalog.SecretPartner);
             foreach (var unit in CombatCatalog.EnemyPool ?? Array.Empty<UnitDefinition>()) Add(unit);
             foreach (var unit in CombatCatalog.AffixedEnemies ?? Array.Empty<UnitDefinition>()) Add(unit);
-            foreach (var unit in enemies) unit.Health *= OctoberBalance.EnemyHealthRelief;
+            foreach (var unit in enemies)
+                unit.Health *= OctoberBalance.EnemyHealthRelief * (unit.IsBoss ? OctoberBalance.BossHealthRelief : 1f);
         }
 
         private UnitDefinition BuildUnit(UnitDefinition source, WeaponDefinition weapon, int tier, bool companion)

@@ -210,6 +210,7 @@ namespace ArcaneBrigade
         private readonly CheckpointCatalog catalog;
         private readonly List<UnitState> units = new List<UnitState>();
         private readonly Dictionary<int, UnitState> unitLookup = new Dictionary<int, UnitState>();
+        private readonly HashSet<int> bossDamageSources = new HashSet<int>();
         private readonly List<ProjectileState> projectiles = new List<ProjectileState>();
         private readonly List<PickupState> pickups = new List<PickupState>();
         private readonly List<CombatEvent> events = new List<CombatEvent>();
@@ -264,6 +265,7 @@ namespace ArcaneBrigade
             ResetHeroMechanic();
             units.Clear();
             unitLookup.Clear();
+            bossDamageSources.Clear();
             projectiles.Clear();
             pickups.Clear();
             events.Clear();
@@ -504,6 +506,7 @@ namespace ArcaneBrigade
             if (faction == Faction.Enemy && !definition.IsBoss) unit.Variant = NewEnemyVariant(unit);
             units.Add(unit);
             unitLookup.Add(unit.Id, unit);
+            if (faction == Faction.Enemy && definition.IsBoss) bossDamageSources.Add(unit.Id);
             maximumRadius = Mathf.Max(maximumRadius, definition.Radius);
             maximumSpeed = Mathf.Max(maximumSpeed, definition.Speed);
             if (faction == Faction.Companion) CompanionCount++;
@@ -961,7 +964,12 @@ namespace ArcaneBrigade
                 if (!injectedDamage) damage = OctoberIncoming(damage);
             }
             // All hostile contact, weapon and skill damage gets the same relief, including hits reaching the HP cap.
-            if (source == Faction.Enemy && !injectedDamage && !healthCost) damage *= OctoberBalance.EnemyDamageRelief;
+            if (source == Faction.Enemy && !injectedDamage && !healthCost)
+            {
+                damage *= OctoberBalance.EnemyDamageRelief;
+                // Keep boss contact, projectiles and lingering skills consistent, even when capped above.
+                if (bossDamageSources.Contains(cause.SourceUnitId)) damage *= OctoberBalance.BossDamageRelief;
+            }
             float baseDamage = damage;
             if (target.Faction == Faction.Enemy && weapon != null && weapon.Motion == WeaponMotion.Bow && treasureUntil > Elapsed && source != Faction.Enemy)
                 damage *= 1f + Mathf.Min(0.45f, catalog.TreasureStacks * 0.15f);

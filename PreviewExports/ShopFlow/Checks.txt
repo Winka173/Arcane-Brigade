@@ -12,6 +12,6 @@ PASS Larger roster survives save/load 40
 PASS Rainbow companion joins larger roster 40
 PASS Rainbow reward cannot be claimed twice 40
 PASS Keeper body is 40 percent larger than previous 1.75 scale
-PASS Keeper has 80 percent more HP than previous build at equal settings, before the global enemy health relief
+PASS Keeper health includes global enemy relief and the additional boss relief
 PASS Live Keeper summons bounded guards without ordinary arena spawns
 PASS Challenge landmark moved below the bond HUD

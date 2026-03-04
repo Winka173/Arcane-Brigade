@@ -7,6 +7,8 @@ namespace ArcaneBrigade
         public const float WaveSeconds = 45;
         public const float EnemyHealthRelief = .75f;
         public const float EnemyDamageRelief = .8f;
+        public const float BossHealthRelief = .6f;
+        public const float BossDamageRelief = .9f;
         public static float Crowd(int count) => Mathf.Clamp01((count - 10) / (float)(AllySoftLimit - 10));
         public static float NewAllyChance(int count, int wave = 4)
         {
