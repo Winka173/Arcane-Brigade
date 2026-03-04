@@ -298,6 +298,25 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Keyboard/controller focus: a small candle light to the left and a warm underline that breathes.</summary>
+        /// <summary>The hover cue for a thing in the room: four small inked gold corner brackets hugging it, breathing gently
+        /// (never a long rule under it: under a wide thing that read as a stray line across the floor).</summary>
+        public static void WorldFocus(Rect bounds)
+        {
+            float breathe = PresentationSettings.ReducedMotion ? 0.85f : 0.7f + 0.3f * Mathf.Sin(Time.unscaledTime * 3.2f);
+            float arm = Mathf.Clamp(Mathf.Min(bounds.width, bounds.height) * 0.22f, 10, 26), pad = PresentationSettings.ReducedMotion ? 4 : 4 + 2 * (1 - breathe);
+            Rect r = new Rect(bounds.x - pad, bounds.y - pad, bounds.width + pad * 2, bounds.height + pad * 2);
+            Color ink = new Color(Ink.r, Ink.g, Ink.b, 0.75f), gold = new Color(Gold.r, Gold.g, Gold.b, 0.65f + 0.35f * breathe);
+            for (int pass = 0; pass < 2; pass++)
+            {
+                float t = pass == 0 ? 4 : 2, o = pass == 0 ? 1 : 0; Color c = pass == 0 ? ink : gold;
+                foreach (var (x, y, sx, sy) in new[] { (r.xMin, r.yMin, 1, 1), (r.xMax, r.yMin, -1, 1), (r.xMin, r.yMax, 1, -1), (r.xMax, r.yMax, -1, -1) })
+                {
+                    Line(new Rect(sx > 0 ? x - o : x - arm - o, sy > 0 ? y - o : y - t + o, arm + o * 2, t), c);
+                    Line(new Rect(sx > 0 ? x - o : x - t + o, sy > 0 ? y - o : y - arm - o, t, arm + o * 2), c);
+                }
+            }
+        }
+
         public static void Focus(Rect bounds)
         {
             float breathe = PresentationSettings.ReducedMotion ? 0.8f : 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 3.2f) * Mathf.Sin(Time.unscaledTime * 7.1f + 1.3f);

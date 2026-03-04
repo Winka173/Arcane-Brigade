@@ -673,10 +673,12 @@ namespace ArcaneBrigade
                     projectileViews.Add(state.Id, view);
                 }
                 view.transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
-                float projectileSize = state.Faction == Faction.Enemy ? 0.2f : state.VisualWidth > 0 ? state.VisualWidth : 0.22f;
+                float projectileSize = state.Faction == Faction.Enemy ? 0.2f : ProjectileVisual.Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
                 Sprite missile = HeroIdentityVisual.Missile(state, catalog.Projectile, simulation.Elapsed, out float missileTurn, out float missileSize);
                 if (missile != null) { view.sprite = missile; projectileSize = missileSize; }
-                view.transform.localScale = Vector3.one * (projectileSize / view.sprite.bounds.size.x);
+                // our painted shots are sized by their painted ink, not their transparent canvas
+                float drawn = state.Faction == Faction.Enemy || missile != null ? view.sprite.bounds.size.x : Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(view.sprite).width);
+                view.transform.localScale = Vector3.one * (projectileSize / drawn);
                 view.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(state.Velocity.y, state.Velocity.x) * Mathf.Rad2Deg + missileTurn);
                 Color projectileColor = state.Color;
                 if (state.Faction != Faction.Enemy) projectileColor.a *= EffectDensity.AlliedAlpha;

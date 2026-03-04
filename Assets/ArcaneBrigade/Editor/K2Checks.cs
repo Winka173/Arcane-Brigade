@@ -98,7 +98,7 @@ namespace ArcaneBrigade.Editor
                 coin.Display(new PickupState { Id = 7, Position = Vector2.one, PreviousPosition = Vector2.zero }, renderer, content.ProjectileDisc, catalog.ImpactSprite, 0.13f, 0.5f);
                 require(renderer.transform.position.y > 0.5f && renderer.transform.localScale.x > 0, "Coin arc and positive spin scale");
                 SpriteRenderer shadow = coinObject.transform.Find("CoinShadow").GetComponent<SpriteRenderer>();
-                require(Mathf.Abs(shadow.bounds.size.x - 0.22f) < 0.01f, "Coin shadow world size independent of spin");
+                require(Mathf.Abs(shadow.bounds.size.x - 0.34f * 0.92f) < 0.01f, "Coin shadow world size independent of spin"); // coins are drawn 0.34 wide (shadow 92%)
                 UnityEngine.Object.DestroyImmediate(coinObject);
             }
             File.WriteAllLines("PreviewExports/K2/K2_Checks.txt", results);

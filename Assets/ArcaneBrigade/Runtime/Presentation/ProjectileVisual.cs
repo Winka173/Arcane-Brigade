@@ -47,6 +47,9 @@ namespace ArcaneBrigade
             return view;
         }
 
+        /// <summary>Our shots are drawn larger than their authored width (presentation only; hit radius unchanged) so a volley
+        /// reads as satisfying next to the enemy's 0.36 minimum; shots already drawn large stay as they are.</summary>
+        public static float Allied(float width) => width >= .6f ? width : Mathf.Min(.6f, Mathf.Max(.32f, width * 1.35f));
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
@@ -59,7 +62,7 @@ namespace ArcaneBrigade
             {
                 body.sprite = painted;
                 float inkWidth = Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(painted).width);
-                float paintedWidth = hostile ? Mathf.Max(.36f, state.VisualWidth) : state.VisualWidth > 0 ? state.VisualWidth : .22f;
+                float paintedWidth = hostile ? Mathf.Max(.36f, state.VisualWidth) : Allied(state.VisualWidth > 0 ? state.VisualWidth : .22f);
                 body.transform.localScale = Vector3.one * (paintedWidth / inkWidth);
                 body.color = new Color(1, 1, 1, body.color.a);
             }
@@ -92,7 +95,7 @@ namespace ArcaneBrigade
             bool authored = painted != null || bodyFragment || MechanicInk.IsInk(body.sprite) || state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
             halo.enabled = core.enabled = magic && !authored && (hostile || EffectDensity.CosmeticProjectile(state.Id));
             if (state.Weapon != null && (state.Weapon.Family == ExpandedWeapon.Fish || state.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)) halo.enabled = core.enabled = false;
-            float width = state.VisualWidth > 0 ? state.VisualWidth : hostile ? 0.23f : 0.22f;
+            float width = hostile ? (state.VisualWidth > 0 ? state.VisualWidth : 0.23f) : Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
             if (hostile && body.sprite != null && painted == null)
                 body.transform.localScale = Vector3.one * (width / Mathf.Max(0.01f, body.sprite.bounds.size.x));
             if (magic)

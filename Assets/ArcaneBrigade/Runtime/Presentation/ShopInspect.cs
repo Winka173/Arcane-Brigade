@@ -124,7 +124,9 @@ namespace ArcaneBrigade
             }
         }
         private static string Price(int price, ShopCurrency currency) => price + (currency == ShopCurrency.Eggs ? " eggs" : currency == ShopCurrency.Health ? " HP" : " gold");
-        private static bool Decorative(string name) => name.Contains("Contact") || name.Contains("Shadow") || name.Contains("Glow") || name.Contains("Halo") || name.Contains("Aura") || name.Contains("Floor");
+        // light and particles around a stall (rarity bloom, its light, drifting motes) are not the thing itself: left out of its box
+        private static bool Decorative(string name) => name.Contains("Contact") || name.Contains("Shadow") || name.Contains("Glow") || name.Contains("Halo") || name.Contains("Aura") || name.Contains("Floor")
+            || name.Contains("Bloom") || name.Contains("Mote") || name.Contains("RarityLight");
         private void Add(string key, string heading, string text, string use, Rect world, int order) => entries.Add(new Entry { Key = key, Title = heading, Body = text, Use = use, World = world, Order = order });
         private static Rect? Union(Rect? a, Rect b) => a == null ? b : Rect.MinMaxRect(Mathf.Min(a.Value.xMin, b.xMin), Mathf.Min(a.Value.yMin, b.yMin), Mathf.Max(a.Value.xMax, b.xMax), Mathf.Max(a.Value.yMax, b.yMax));
         /// <summary>The world box of the sprite's painted ink (not its transparent margins).</summary>
@@ -176,7 +178,7 @@ namespace ArcaneBrigade
             if (hovered != null && (open == null || open.Key != hovered.Key))
             {
                 Rect box = Screen(hovered.World, camera);
-                ArcadeSkin.Focus(box);
+                ArcadeSkin.WorldFocus(box);
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
                 ArcadeSkin.Panel(tag, ArcadeSkin.Card);
                 name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title + "  ·  click to read", name);

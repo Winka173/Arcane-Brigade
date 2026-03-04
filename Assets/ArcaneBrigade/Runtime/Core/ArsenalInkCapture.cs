@@ -45,6 +45,26 @@ namespace ArcaneBrigade
             if (!RunPaths.Root.Contains("ArcaneBrigadeDiagnostics")) { Application.Quit(1); yield break; }
             storage.SaveProfile(new PlayerProfile { BestWave = 40, TutorialSeen = true });
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed); yield return new WaitForSecondsRealtime(.6f);
+            if (Array.IndexOf(args, "-combat-look") >= 0)
+            {
+                // an ordinary wave-4 fight with a ranged brigade, to judge shots and dropped coins at play size
+                using (var session = new RunSession(catalog))
+                {
+                    session.Start(catalog.Champions[0].Id, 171020); session.State.Wave = 4; session.State.Roster.Clear();
+                    foreach (string w in new[] { "GumballGatling", "DreamRacket", "SquirtTrio", "CorkRifle", "SaucerBlaster" })
+                        if (catalog.Weapon(w) != null) session.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = w, Tier = 1 });
+                    storage.SaveRun(session.State);
+                }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+                float started = Time.realtimeSinceStartup;
+                for (int frame = 0; frame < 4; frame++)
+                {
+                    while (Time.realtimeSinceStartup - started < 7f + frame * 2.5f) yield return null;
+                    yield return Shot("combat-look-" + frame);
+                }
+                Application.Quit(0); yield break;
+            }
+            if (Array.IndexOf(args, "-shop-approach") >= 0) { yield return ShopApproach(catalog, storage); Application.Quit(0); yield break; }
             string filter = Arg(args, "-arsenal-weapons");
             if (Array.IndexOf(args, "-arsenal-live-only") < 0)
             {
@@ -96,6 +116,48 @@ namespace ArcaneBrigade
             ArenaController owner = null;
             for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
             found(owner != null && owner.Simulation != null ? owner : null);
+        }
+
+        /// <summary>-shop-approach: the hero walks up to each stall of a wave-1 shop in turn (as the player does); one frame each.</summary>
+        private IEnumerator ShopApproach(RunCatalog catalog, RunStorage storage)
+        {
+            using (var session = new RunSession(catalog)) { session.Start(catalog.Champions[0].Id, 171019); session.State.Wave = 2; session.State.Phase = SessionPhase.Shop; session.State.Gold = 200; session.Reroll(); session.State.Gold = 200; storage.SaveRun(session.State); }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+            yield return new WaitForSecondsRealtime(2.6f);
+            var owner = FindAnyObjectByType<ArenaController>();
+            if (owner == null || owner.Shop == null) { notes.Add("NO SHOP"); yield break; }
+            int i = 0;
+            foreach (var station in owner.Shop.Stations)
+            {
+                i++;
+                Vector2 at = station.Position + Vector2.down * .9f;
+                for (float t = 0; t < 1.2f; t += Time.unscaledDeltaTime)
+                {
+                    owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = at;
+                    yield return null;
+                }
+                // the hover cue exactly as ShopInspect draws it: the entry ShopInspect would pick under the item's centre
+                var inspect = owner.GetComponent<ShopInspect>();
+                Rect shown = default;
+                foreach (SpriteRenderer view in station.Marker.GetComponentsInChildren<SpriteRenderer>())
+                    if (view != null && view.enabled && view.sprite != null && view.color.a > 0.2f && view.name == "AnimatedShopActor")
+                    { Rect r = ShopInspect.Screen(ShopInspect.Ink(view), Camera.main); shown = shown.width == 0 ? r : Rect.MinMaxRect(Mathf.Min(shown.xMin, r.xMin), Mathf.Min(shown.yMin, r.yMin), Mathf.Max(shown.xMax, r.xMax), Mathf.Max(shown.yMax, r.yMax)); }
+                var pick = inspect != null ? inspect.At(shown.center, Camera.main) : null;
+                focusBox = pick != null ? ShopInspect.Screen(pick.World, Camera.main) : default;
+                notes.Add("   hover picks " + (pick != null ? pick.Key + " " + focusBox : "nothing"));
+                notes.Add("station " + i + " " + (station.Offer != null ? station.Offer.Kind + " " + station.Offer.Id : station.Description) + " nearby=" + (owner.Shop.Nearby == station));
+                yield return Shot("approach-" + i.ToString("00"));
+            }
+            File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
+        }
+
+        private Rect focusBox;
+        private void OnGUI()
+        {
+            if (focusBox.width <= 0 || Camera.main == null) return;
+            Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
+            ArcadeSkin.WorldFocus(focusBox);
+            GUI.matrix = previous;
         }
 
         private Camera ViewCamera()

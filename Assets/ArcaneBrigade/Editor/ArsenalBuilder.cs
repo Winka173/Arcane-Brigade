@@ -86,10 +86,41 @@ namespace ArcaneBrigade.Editor
                 }
                 status.Add("FRAME PAINTED " + rarity);
             }
+            MeasureInk(pieces);
             AssetDatabase.SaveAssets();
             Directory.CreateDirectory("PreviewExports/Arsenal");
             File.WriteAllLines("PreviewExports/Arsenal/Art_Status.txt", status);
             ApplyHeroes();
+        }
+
+        /// <summary>Records each Arsenal painting's ink box (its painted pixels, not the transparent canvas) in SpriteInkMetrics,
+        /// merged with the entries already there, so shots, coins and pieces are sized by what is actually drawn.</summary>
+        private static void MeasureInk(SortedDictionary<string, SortedDictionary<int, Sprite>> pieces)
+        {
+            const string path = "Assets/ArcaneBrigade/Resources/SpriteInkMetrics.asset";
+            var metrics = AssetDatabase.LoadAssetAtPath<SpriteInkMetrics>(path); if (metrics == null) return;
+            var entries = new Dictionary<Sprite, Rect>();
+            foreach (SpriteInkMetrics.Entry entry in metrics.Entries ?? new SpriteInkMetrics.Entry[0]) if (entry.Sprite != null) entries[entry.Sprite] = entry.Ink;
+            foreach (var frames in pieces.Values)
+                foreach (Sprite sprite in frames.Values)
+                {
+                    var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                    try
+                    {
+                        if (!texture.LoadImage(File.ReadAllBytes(AssetDatabase.GetAssetPath(sprite.texture)))) continue;
+                        Color32[] pixels = texture.GetPixels32();
+                        int left = texture.width, right = 0, bottom = texture.height, top = 0;
+                        for (int y = 0; y < texture.height; y++) for (int x = 0; x < texture.width; x++)
+                                if (pixels[y * texture.width + x].a >= 40) { left = Mathf.Min(left, x); right = Mathf.Max(right, x + 1); bottom = Mathf.Min(bottom, y); top = Mathf.Max(top, y + 1); }
+                        if (right <= left || top <= bottom) continue;
+                        float rx = sprite.rect.width / texture.width, ry = sprite.rect.height / texture.height, ppu = sprite.pixelsPerUnit;
+                        entries[sprite] = new Rect((left * rx - sprite.pivot.x) / ppu, (bottom * ry - sprite.pivot.y) / ppu, (right - left) * rx / ppu, (top - bottom) * ry / ppu);
+                    }
+                    finally { UnityEngine.Object.DestroyImmediate(texture); }
+                }
+            var list = new List<SpriteInkMetrics.Entry>();
+            foreach (var pair in entries) list.Add(new SpriteInkMetrics.Entry { Sprite = pair.Key, Ink = pair.Value });
+            metrics.Entries = list.ToArray(); EditorUtility.SetDirty(metrics); SpriteInkMetrics.Invalidate();
         }
 
         [MenuItem("Arcane Brigade/Arsenal/Apply hero weapons")]

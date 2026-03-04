@@ -25,12 +25,12 @@ namespace ArcaneBrigade
             Vector2 ground = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
             renderer.transform.position = ground + Vector2.up * height;
             float spin = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? 0.42f + Mathf.Abs(Mathf.Cos(age * (state.Attracting ? 25 : 8) + state.Id)) * 0.58f : 1;
-            float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.24f + Mathf.Min(0.12f, Mathf.Max(0, state.Value - 1) * 0.015f) : state.Kind >= LootKind.Flare ? 0.56f : 0.4f;
+            float width = state.Kind == LootKind.Chest ? 0.78f : state.Kind == LootKind.Coin ? 0.34f + Mathf.Min(0.16f, Mathf.Max(0, state.Value - 1) * 0.02f) : state.Kind >= LootKind.Flare ? 0.56f : 0.4f;
             float scale = width / renderer.sprite.bounds.size.x;
             renderer.transform.localScale = new Vector3(scale * spin, scale, 1);
             // painted spin frames when they exist (Art/Arsenal/CoinSpin); otherwise the squash turns, its rim darkening edge-on
             Sprite[] turn = state.Kind == LootKind.Coin && !PresentationSettings.ReducedMotion ? ArsenalArtwork.Frames("CoinSpin") : null;
-            if (turn != null) { renderer.sprite = turn[Mathf.Abs(Mathf.FloorToInt(age * (state.Attracting ? 24 : 10) + state.Id)) % turn.Length]; renderer.transform.localScale = new Vector3(width / renderer.sprite.bounds.size.x, width / renderer.sprite.bounds.size.x, 1); }
+            if (turn != null) { renderer.sprite = turn[Mathf.Abs(Mathf.FloorToInt(age * (state.Attracting ? 24 : 10) + state.Id)) % turn.Length]; float coin = width / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(renderer.sprite).height); renderer.transform.localScale = new Vector3(coin, coin, 1); }
             if (state.Kind == LootKind.Chest && !PresentationSettings.ReducedMotion)
             {
                 float anticipation = AnimationTiming.Pulse(Mathf.Repeat(age + state.Id * .31f, 4.8f), .45f);
