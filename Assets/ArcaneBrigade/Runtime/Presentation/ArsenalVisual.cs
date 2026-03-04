@@ -206,7 +206,10 @@ namespace ArcaneBrigade
                 {
                     Vector2 along = p.Direction.normalized;
                     ink.Stripes(at - along * 0.8f, at + along * 0.8f, 0.25f, now, Mathf.Clamp01((p.Until - now) * 2));
-                    Draw(ArsenalArtwork.Frame("PlantedSign", still ? 1 : age < 0.35f ? 1 : 0), at + Vector2.up * 0.35f, 0.6f, still ? 0 : Mathf.Sin(age * 30) * 8 * Mathf.Clamp01(1 - age * 3), Order(at));
+                    // the wielder's own road sign, stood upright in the floor (its painting points right: turned up, the face is on top)
+                    float wobble = still ? 0 : Mathf.Sin(age * 30) * 8 * Mathf.Clamp01(1 - age * 3);
+                    ShadowAt(at + Vector2.down * 0.05f, 0.3f);
+                    Draw(Held(p.Weapon != null ? p.Weapon.Id : "SignpostSlammer"), at + Vector2.up * 0.42f, 0.84f, 90 + wobble, Order(at));
                     break;
                 }
                 case ArsenalPropKind.ToyBomb:

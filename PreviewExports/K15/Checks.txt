@@ -94,6 +94,21 @@ PASS Bounded weapon feel VerdictGavel
 PASS Bounded weapon feel TalismanIngot
 PASS Bounded weapon feel BareKnuckles
 PASS Bounded weapon feel InkyOctopus
+PASS Bounded weapon feel PlushShark
+PASS Bounded weapon feel SignpostSlammer
+PASS Bounded weapon feel DetonatorBox
+PASS Bounded weapon feel FirecrackerPinwheel
+PASS Bounded weapon feel GumballGatling
+PASS Bounded weapon feel BalloonBuddy
+PASS Bounded weapon feel SaucerBlaster
+PASS Bounded weapon feel FanfareHorn
+PASS Bounded weapon feel WindupWrench
+PASS Bounded weapon feel CorkRifle
+PASS Bounded weapon feel CatcherMitt
+PASS Bounded weapon feel DowsingRod
+PASS Bounded weapon feel StarKnuckle
+PASS Bounded weapon feel BuzzerBlock
+PASS Bounded weapon feel KunaiFan
 PASS Camera accent has a bounded displacement
 PASS An explosion holds the frame and shakes the camera
 PASS The hit hold is brief

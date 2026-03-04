@@ -1010,6 +1010,186 @@ PASS InkyOctopus tier 3 uses independent unit/weapon data
 PASS InkyOctopus tier damage follows catalog multiplier with no build bonuses
 PASS InkyOctopus tier 3 auto attacks through actual simulation events
 PASS InkyOctopus preview cannot farm rewards or kills
+PASS PlushShark tier 1 uses independent unit/weapon data
+PASS PlushShark tier damage follows catalog multiplier with no build bonuses
+PASS PlushShark tier 1 auto attacks through actual simulation events
+PASS PlushShark preview cannot farm rewards or kills
+PASS PlushShark tier 2 uses independent unit/weapon data
+PASS PlushShark tier damage follows catalog multiplier with no build bonuses
+PASS PlushShark tier 2 auto attacks through actual simulation events
+PASS PlushShark preview cannot farm rewards or kills
+PASS PlushShark tier 3 uses independent unit/weapon data
+PASS PlushShark tier damage follows catalog multiplier with no build bonuses
+PASS PlushShark tier 3 auto attacks through actual simulation events
+PASS PlushShark preview cannot farm rewards or kills
+PASS SignpostSlammer tier 1 uses independent unit/weapon data
+PASS SignpostSlammer tier damage follows catalog multiplier with no build bonuses
+PASS SignpostSlammer tier 1 auto attacks through actual simulation events
+PASS SignpostSlammer preview cannot farm rewards or kills
+PASS SignpostSlammer tier 2 uses independent unit/weapon data
+PASS SignpostSlammer tier damage follows catalog multiplier with no build bonuses
+PASS SignpostSlammer tier 2 auto attacks through actual simulation events
+PASS SignpostSlammer preview cannot farm rewards or kills
+PASS SignpostSlammer tier 3 uses independent unit/weapon data
+PASS SignpostSlammer tier damage follows catalog multiplier with no build bonuses
+PASS SignpostSlammer tier 3 auto attacks through actual simulation events
+PASS SignpostSlammer preview cannot farm rewards or kills
+PASS DetonatorBox tier 1 uses independent unit/weapon data
+PASS DetonatorBox tier damage follows catalog multiplier with no build bonuses
+PASS DetonatorBox tier 1 auto attacks through actual simulation events
+PASS DetonatorBox preview cannot farm rewards or kills
+PASS DetonatorBox tier 2 uses independent unit/weapon data
+PASS DetonatorBox tier damage follows catalog multiplier with no build bonuses
+PASS DetonatorBox tier 2 auto attacks through actual simulation events
+PASS DetonatorBox preview cannot farm rewards or kills
+PASS DetonatorBox tier 3 uses independent unit/weapon data
+PASS DetonatorBox tier damage follows catalog multiplier with no build bonuses
+PASS DetonatorBox tier 3 auto attacks through actual simulation events
+PASS DetonatorBox preview cannot farm rewards or kills
+PASS FirecrackerPinwheel tier 1 uses independent unit/weapon data
+PASS FirecrackerPinwheel tier damage follows catalog multiplier with no build bonuses
+PASS FirecrackerPinwheel tier 1 auto attacks through actual simulation events
+PASS FirecrackerPinwheel preview cannot farm rewards or kills
+PASS FirecrackerPinwheel tier 2 uses independent unit/weapon data
+PASS FirecrackerPinwheel tier damage follows catalog multiplier with no build bonuses
+PASS FirecrackerPinwheel tier 2 auto attacks through actual simulation events
+PASS FirecrackerPinwheel preview cannot farm rewards or kills
+PASS FirecrackerPinwheel tier 3 uses independent unit/weapon data
+PASS FirecrackerPinwheel tier damage follows catalog multiplier with no build bonuses
+PASS FirecrackerPinwheel tier 3 auto attacks through actual simulation events
+PASS FirecrackerPinwheel preview cannot farm rewards or kills
+PASS GumballGatling tier 1 uses independent unit/weapon data
+PASS GumballGatling tier damage follows catalog multiplier with no build bonuses
+PASS GumballGatling tier 1 auto attacks through actual simulation events
+PASS GumballGatling preview cannot farm rewards or kills
+PASS GumballGatling tier 2 uses independent unit/weapon data
+PASS GumballGatling tier damage follows catalog multiplier with no build bonuses
+PASS GumballGatling tier 2 auto attacks through actual simulation events
+PASS GumballGatling preview cannot farm rewards or kills
+PASS GumballGatling tier 3 uses independent unit/weapon data
+PASS GumballGatling tier damage follows catalog multiplier with no build bonuses
+PASS GumballGatling tier 3 auto attacks through actual simulation events
+PASS GumballGatling preview cannot farm rewards or kills
+PASS BalloonBuddy tier 1 uses independent unit/weapon data
+PASS BalloonBuddy tier damage follows catalog multiplier with no build bonuses
+PASS BalloonBuddy tier 1 auto attacks through actual simulation events
+PASS BalloonBuddy preview cannot farm rewards or kills
+PASS BalloonBuddy tier 2 uses independent unit/weapon data
+PASS BalloonBuddy tier damage follows catalog multiplier with no build bonuses
+PASS BalloonBuddy tier 2 auto attacks through actual simulation events
+PASS BalloonBuddy preview cannot farm rewards or kills
+PASS BalloonBuddy tier 3 uses independent unit/weapon data
+PASS BalloonBuddy tier damage follows catalog multiplier with no build bonuses
+PASS BalloonBuddy tier 3 auto attacks through actual simulation events
+PASS BalloonBuddy preview cannot farm rewards or kills
+PASS SaucerBlaster tier 1 uses independent unit/weapon data
+PASS SaucerBlaster tier damage follows catalog multiplier with no build bonuses
+PASS SaucerBlaster tier 1 auto attacks through actual simulation events
+PASS SaucerBlaster preview cannot farm rewards or kills
+PASS SaucerBlaster tier 2 uses independent unit/weapon data
+PASS SaucerBlaster tier damage follows catalog multiplier with no build bonuses
+PASS SaucerBlaster tier 2 auto attacks through actual simulation events
+PASS SaucerBlaster preview cannot farm rewards or kills
+PASS SaucerBlaster tier 3 uses independent unit/weapon data
+PASS SaucerBlaster tier damage follows catalog multiplier with no build bonuses
+PASS SaucerBlaster tier 3 auto attacks through actual simulation events
+PASS SaucerBlaster preview cannot farm rewards or kills
+PASS FanfareHorn tier 1 uses independent unit/weapon data
+PASS FanfareHorn tier damage follows catalog multiplier with no build bonuses
+PASS FanfareHorn tier 1 auto attacks through actual simulation events
+PASS FanfareHorn preview cannot farm rewards or kills
+PASS FanfareHorn tier 2 uses independent unit/weapon data
+PASS FanfareHorn tier damage follows catalog multiplier with no build bonuses
+PASS FanfareHorn tier 2 auto attacks through actual simulation events
+PASS FanfareHorn preview cannot farm rewards or kills
+PASS FanfareHorn tier 3 uses independent unit/weapon data
+PASS FanfareHorn tier damage follows catalog multiplier with no build bonuses
+PASS FanfareHorn tier 3 auto attacks through actual simulation events
+PASS FanfareHorn preview cannot farm rewards or kills
+PASS WindupWrench tier 1 uses independent unit/weapon data
+PASS WindupWrench tier damage follows catalog multiplier with no build bonuses
+PASS WindupWrench tier 1 auto attacks through actual simulation events
+PASS WindupWrench preview cannot farm rewards or kills
+PASS WindupWrench tier 2 uses independent unit/weapon data
+PASS WindupWrench tier damage follows catalog multiplier with no build bonuses
+PASS WindupWrench tier 2 auto attacks through actual simulation events
+PASS WindupWrench preview cannot farm rewards or kills
+PASS WindupWrench tier 3 uses independent unit/weapon data
+PASS WindupWrench tier damage follows catalog multiplier with no build bonuses
+PASS WindupWrench tier 3 auto attacks through actual simulation events
+PASS WindupWrench preview cannot farm rewards or kills
+PASS CorkRifle tier 1 uses independent unit/weapon data
+PASS CorkRifle tier damage follows catalog multiplier with no build bonuses
+PASS CorkRifle tier 1 auto attacks through actual simulation events
+PASS CorkRifle preview cannot farm rewards or kills
+PASS CorkRifle tier 2 uses independent unit/weapon data
+PASS CorkRifle tier damage follows catalog multiplier with no build bonuses
+PASS CorkRifle tier 2 auto attacks through actual simulation events
+PASS CorkRifle preview cannot farm rewards or kills
+PASS CorkRifle tier 3 uses independent unit/weapon data
+PASS CorkRifle tier damage follows catalog multiplier with no build bonuses
+PASS CorkRifle tier 3 auto attacks through actual simulation events
+PASS CorkRifle preview cannot farm rewards or kills
+PASS CatcherMitt tier 1 uses independent unit/weapon data
+PASS CatcherMitt tier damage follows catalog multiplier with no build bonuses
+PASS CatcherMitt tier 1 auto attacks through actual simulation events
+PASS CatcherMitt preview cannot farm rewards or kills
+PASS CatcherMitt tier 2 uses independent unit/weapon data
+PASS CatcherMitt tier damage follows catalog multiplier with no build bonuses
+PASS CatcherMitt tier 2 auto attacks through actual simulation events
+PASS CatcherMitt preview cannot farm rewards or kills
+PASS CatcherMitt tier 3 uses independent unit/weapon data
+PASS CatcherMitt tier damage follows catalog multiplier with no build bonuses
+PASS CatcherMitt tier 3 auto attacks through actual simulation events
+PASS CatcherMitt preview cannot farm rewards or kills
+PASS DowsingRod tier 1 uses independent unit/weapon data
+PASS DowsingRod tier damage follows catalog multiplier with no build bonuses
+PASS DowsingRod tier 1 auto attacks through actual simulation events
+PASS DowsingRod preview cannot farm rewards or kills
+PASS DowsingRod tier 2 uses independent unit/weapon data
+PASS DowsingRod tier damage follows catalog multiplier with no build bonuses
+PASS DowsingRod tier 2 auto attacks through actual simulation events
+PASS DowsingRod preview cannot farm rewards or kills
+PASS DowsingRod tier 3 uses independent unit/weapon data
+PASS DowsingRod tier damage follows catalog multiplier with no build bonuses
+PASS DowsingRod tier 3 auto attacks through actual simulation events
+PASS DowsingRod preview cannot farm rewards or kills
+PASS StarKnuckle tier 1 uses independent unit/weapon data
+PASS StarKnuckle tier damage follows catalog multiplier with no build bonuses
+PASS StarKnuckle tier 1 auto attacks through actual simulation events
+PASS StarKnuckle preview cannot farm rewards or kills
+PASS StarKnuckle tier 2 uses independent unit/weapon data
+PASS StarKnuckle tier damage follows catalog multiplier with no build bonuses
+PASS StarKnuckle tier 2 auto attacks through actual simulation events
+PASS StarKnuckle preview cannot farm rewards or kills
+PASS StarKnuckle tier 3 uses independent unit/weapon data
+PASS StarKnuckle tier damage follows catalog multiplier with no build bonuses
+PASS StarKnuckle tier 3 auto attacks through actual simulation events
+PASS StarKnuckle preview cannot farm rewards or kills
+PASS BuzzerBlock tier 1 uses independent unit/weapon data
+PASS BuzzerBlock tier damage follows catalog multiplier with no build bonuses
+PASS BuzzerBlock tier 1 auto attacks through actual simulation events
+PASS BuzzerBlock preview cannot farm rewards or kills
+PASS BuzzerBlock tier 2 uses independent unit/weapon data
+PASS BuzzerBlock tier damage follows catalog multiplier with no build bonuses
+PASS BuzzerBlock tier 2 auto attacks through actual simulation events
+PASS BuzzerBlock preview cannot farm rewards or kills
+PASS BuzzerBlock tier 3 uses independent unit/weapon data
+PASS BuzzerBlock tier damage follows catalog multiplier with no build bonuses
+PASS BuzzerBlock tier 3 auto attacks through actual simulation events
+PASS BuzzerBlock preview cannot farm rewards or kills
+PASS KunaiFan tier 1 uses independent unit/weapon data
+PASS KunaiFan tier damage follows catalog multiplier with no build bonuses
+PASS KunaiFan tier 1 auto attacks through actual simulation events
+PASS KunaiFan preview cannot farm rewards or kills
+PASS KunaiFan tier 2 uses independent unit/weapon data
+PASS KunaiFan tier damage follows catalog multiplier with no build bonuses
+PASS KunaiFan tier 2 auto attacks through actual simulation events
+PASS KunaiFan preview cannot farm rewards or kills
+PASS KunaiFan tier 3 uses independent unit/weapon data
+PASS KunaiFan tier damage follows catalog multiplier with no build bonuses
+PASS KunaiFan tier 3 auto attacks through actual simulation events
+PASS KunaiFan preview cannot farm rewards or kills
 PASS Reset disposes old runtime weapon clone
 PASS Reset clears elapsed time, attacks and diagnostics
 PASS Local combat and roam RNG reproduce after reset despite reduced-motion change

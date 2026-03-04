@@ -871,31 +871,6 @@
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a wine-red rubber suction cup Draw it travelling to the RIGHT (+X), motion implied by its shape only (no speed lines outside the object). 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "PlantedSign_f0",
-  "path": "Assets/ArcaneBrigade/Art/Arsenal/PlantedSign_f0_v1.png",
-  "transparent": true,
-  "refs": [
-   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
-   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
-   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
-   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
-  ],
-  "depends": null,
-  "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the round 'Dreamland Crossing' sign planted in the floor standing still Seen from the elevated three-quarter game view, lying on the floor (no floor drawn). 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
- },
- {
-  "name": "PlantedSign_f1",
-  "path": "Assets/ArcaneBrigade/Art/Arsenal/PlantedSign_f1_v1.png",
-  "transparent": true,
-  "refs": [
-   "Assets/ArcaneBrigade/Art/Arsenal/PlantedSign_f0_v1.png"
-  ],
-  "depends": "PlantedSign_f0",
-  "mode": "single",
-  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT image (the approved frame 0) into the next animation frame. Keep the same object, design, colours, scale, canvas size and centre position; change ONLY: wobbling just after being planted Genuinely transparent RGBA, nothing else added."
- },
- {
   "name": "ToyBomb",
   "path": "Assets/ArcaneBrigade/Art/Arsenal/ToyBomb_v1.png",
   "transparent": true,

@@ -1,1 +1,3 @@
-LoneJelly: DreamProjector -> InkyOctopus
+ThornTreasurer: ParasolNeedle -> GumballGatling
+CitrusMarshal: RubberHammer -> SignpostSlammer
+PennyBroker: CrescentBoomerang -> DetonatorBox

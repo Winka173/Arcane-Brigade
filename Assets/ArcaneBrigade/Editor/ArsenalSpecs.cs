@@ -39,7 +39,7 @@ namespace ArcaneBrigade.Editor
             S("SquirtTrio", ArsenalWeapon.SquirtTrio, P, WeaponMotion.Recoil, DamageElement.Frost, 9, 6.0f, 0.85f, 0.14f, "3 water jets that bounce off walls and slow.", "WaterJet"),
             S("ConfettiBlunderbuss", ArsenalWeapon.ConfettiBlunderbuss, P, WeaponMotion.Recoil, DamageElement.Physical, 16, 3.2f, 1.25f, 0.2f, "7 candy pellets in a short cone.", "CandyPellet"),
             S("PlungerPopper", ArsenalWeapon.PlungerPopper, P, WeaponMotion.Thrust, DamageElement.Physical, 12, 4.2f, 1.3f, 0.22f, "Sticks, pulls the enemy in, then pops it away.", "PlungerCup"),
-            S("SignpostSlammer", ArsenalWeapon.SignpostSlammer, M, WeaponMotion.Slash, DamageElement.Physical, 12, 1.6f, 0.95f, 0.22f, "Every third swing plants a slowing road sign.", "PlantedSign_f0", "PlantedSign_f1"),
+            S("SignpostSlammer", ArsenalWeapon.SignpostSlammer, M, WeaponMotion.Slash, DamageElement.Physical, 12, 1.6f, 0.95f, 0.22f, "Every third swing plants a slowing road sign."),
             S("DetonatorBox", ArsenalWeapon.DetonatorBox, P, WeaponMotion.Cast, DamageElement.Ember, 11, 5.0f, 1.05f, 0.24f, "Plants 3 toy bombs, then sets them all off.", "ToyBomb"),
             S("FirecrackerPinwheel", ArsenalWeapon.FirecrackerPinwheel, P, WeaponMotion.Cast, DamageElement.Ember, 11, 4.0f, 1.2f, 0.22f, "Plants a pinwheel trap that sparks and bursts.", "Pinwheel_f0", "Pinwheel_f1", "Pinwheel_f2", "Pinwheel_f3"),
             S("GumballGatling", ArsenalWeapon.GumballGatling, P, WeaponMotion.Recoil, DamageElement.Physical, 4, 5.0f, 0.32f, 0.08f, "Rapid gumballs; fires faster as the barrel heats.", "Gumball_f0"),

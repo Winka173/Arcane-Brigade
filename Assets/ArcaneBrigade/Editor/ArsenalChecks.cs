@@ -251,11 +251,15 @@ namespace ArcaneBrigade.Editor
                 }
                 case ArsenalWeapon.FirecrackerPinwheel:
                 {
-                    UnitState t = f.Enemy(new Vector2(4, 0));
+                    UnitState t = f.Enemy(new Vector2(6.5f, 0));
                     sim.ArsenalAttackFixture(me, t); f.Tick(0.5f);
-                    Require(t.Health == f.Full && sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Pinwheel), id + " the pinwheel waits");
-                    t.Position = new Vector2(1.9f, 0); f.Tick(1f);
+                    ArsenalProp wheel = sim.ArsenalProps.FirstOrDefault(p => p.Kind == ArsenalPropKind.Pinwheel);
+                    Require(t.Health == f.Full && wheel != null && wheel.Position.x <= spec.Range + 0.01f, id + " the pinwheel lands within its throw and waits");
+                    t.Position = wheel.Position + new Vector2(0.4f, 0); f.Tick(1f);
                     Require(t.Health < f.Full, id + " an enemy close by sets it off");
+                    UnitState still = f.Enemy(new Vector2(3, 1));
+                    sim.ArsenalAttackFixture(me, still); f.Tick(1.5f);
+                    Require(still.Health < f.Full, id + " planted by a still target, it goes off");
                     break;
                 }
                 case ArsenalWeapon.GumballGatling:
@@ -358,7 +362,8 @@ namespace ArcaneBrigade.Editor
                     UnitState t = f.Enemy(new Vector2(5, 0)), a = f.Enemy(new Vector2(5.2f, 1.5f)), b = f.Enemy(new Vector2(6, 2.6f));
                     sim.ArsenalAttackFixture(me, t); f.Tick(0.5f);
                     Require(sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Buzzer) && t.Health == f.Full, id + " the buzzer waits on the floor");
-                    t.Position = new Vector2(1.8f, 0); a.Position = new Vector2(2.4f, 1.5f); b.Position = new Vector2(3.2f, 2.6f); f.Tick(0.2f);
+                    Vector2 at = sim.ArsenalProps.First(p => p.Kind == ArsenalPropKind.Buzzer).Position;
+                    t.Position = at; a.Position = at + new Vector2(0.6f, 1.4f); b.Position = at + new Vector2(1.4f, 2.4f); f.Tick(0.2f);
                     Require(t.Health < f.Full && a.Health < f.Full && b.Health < f.Full, id + " stepping on it shocks a chain");
                     break;
                 }

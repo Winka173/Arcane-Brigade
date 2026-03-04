@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbafebf9cab231d4ca006893cf516a93, type: 3}
+  m_Name: CorkRifle
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
+  Arsenal: 28
+  SecretRecall: 0
+  Id: CorkRifle
+  Kind: 2
+  Sprite: {fileID: 21300000, guid: fc5aff3e274f3e045b80cc06bdcb5cc3, type: 3}
+  Damage: 12
+  Range: 8
+  Cooldown: 1.55
+  Windup: 0.35
+  Recovery: 0.24
+  ProjectileSpeed: 8
+  ProjectileSpread: 0.14
+  HomingOutbound: 0
+  SpecialOnly: 0
+  ProjectileLifetime: 2.4
+  VisualWidth: 0.95
+  MountDistance: 0.34
+  MuzzleDistance: 0.5
+  ConeDot: 0.2
+  ProjectileColor: {r: 1, g: 1, b: 1, a: 1}
+  Element: 0
+  Motion: 3
+  ProjectileCount: 1
+  ProjectilePierce: 0
+  ProjectileSplit: 0
+  ProjectileBounceChance: 0
+  ProjectileRadius: 0.055
+  SwingAngle: 70
+  RecoilDistance: 0.09
+  BodyAttackTilt: 8
+  HasMuzzleOffset: 0
+  ProjectileMuzzleOffset: {x: 0, y: 0}
+  ProjectileSprite: {fileID: 21300000, guid: 8f663b7abecd61249ae9f390d7cbd317, type: 3}
+  ProjectileVisualWidth: 0.32
+  Signature: 0
+  SignatureBeats: 3
+  SignatureRadius: 2.2
+  SignatureScale: 0.65
+  SignatureDelay: 0.18
+  MarkLifetime: 2.4
+  PushDistance: 0.15
+  Family: 0
+  Mechanic: 0
+  GameplaySummary: A long cork shot through the whole line.

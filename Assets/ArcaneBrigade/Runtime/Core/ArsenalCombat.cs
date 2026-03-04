@@ -98,6 +98,12 @@ namespace ArcaneBrigade
             if (projectiles.Count < 4096) projectiles.Add(shot);
             return shot;
         }
+        /// <summary>Where a planted trap lands: just short of the target, within the weapon's throw (so a still target sets it off too).</summary>
+        private Vector2 PlantAt(UnitState source, Vector2 point, WeaponDefinition weapon)
+        {
+            Vector2 toward = point - source.Position; float distance = toward.magnitude;
+            return ClampPosition(source.Position + (distance > 0.001f ? toward / distance : ArsenalAim(source)) * Mathf.Clamp(distance - 0.25f, 0.6f, weapon.Range), 0.3f);
+        }
         private Vector2 ArsenalMuzzle(UnitState source) => source.Position + ArsenalAim(source) * Mathf.Max(0.3f, source.Definition.Weapon.MuzzleDistance);
 
         /// <summary>The wielder's attack lands: returns true when an Arsenal weapon handled it.</summary>
@@ -248,7 +254,7 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.FirecrackerPinwheel:
                 {
-                    ArsenalProp wheel = PlaceProp(ArsenalPropKind.Pinwheel, source, ClampPosition(source.Position + (point - source.Position).normalized * Mathf.Min(1.6f, (point - source.Position).magnitude), 0.3f), damage * 0.9f, 0.8f, critical, cause);
+                    ArsenalProp wheel = PlaceProp(ArsenalPropKind.Pinwheel, source, PlantAt(source, point, weapon), damage * 0.9f, 0.8f, critical, cause);
                     wheel.LandAt = Elapsed + 0.3f; wheel.Until = Elapsed + 12f;
                     DropOldest(source, ArsenalPropKind.Pinwheel, 2);
                     return true;
@@ -331,7 +337,7 @@ namespace ArcaneBrigade
                 }
                 case ArsenalWeapon.BuzzerBlock:
                 {
-                    ArsenalProp buzzer = PlaceProp(ArsenalPropKind.Buzzer, source, ClampPosition(source.Position + (point - source.Position).normalized * Mathf.Min(1.8f, (point - source.Position).magnitude), 0.3f), damage * 0.6f, 0.5f, critical, cause);
+                    ArsenalProp buzzer = PlaceProp(ArsenalPropKind.Buzzer, source, PlantAt(source, point, weapon), damage * 0.6f, 0.5f, critical, cause);
                     buzzer.LandAt = Elapsed + 0.3f; buzzer.Until = Elapsed + 10f;
                     DropOldest(source, ArsenalPropKind.Buzzer, 2);
                     return true;

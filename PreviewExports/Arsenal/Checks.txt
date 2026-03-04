@@ -144,8 +144,9 @@ PASS SignpostSlammer never strikes the enemy right behind the wielder
 PASS DetonatorBox bombs wait for the plunger
 PASS DetonatorBox the plunger sets every bomb off
 PASS DetonatorBox never strikes the enemy right behind the wielder
-PASS FirecrackerPinwheel the pinwheel waits
+PASS FirecrackerPinwheel the pinwheel lands within its throw and waits
 PASS FirecrackerPinwheel an enemy close by sets it off
+PASS FirecrackerPinwheel planted by a still target, it goes off
 PASS FirecrackerPinwheel never strikes the enemy right behind the wielder
 PASS GumballGatling a hot barrel fires sooner
 PASS GumballGatling never strikes the enemy right behind the wielder

@@ -10,37 +10,37 @@ LIVE GrabberClaw
 LIVE StarforgeClaymore
 LIVE DragonLanternGlaive
 LIVE TwinMoonStaff
-WAITING PlushShark: PlushSharkShot_f0
+LIVE PlushShark
 LIVE DrumstickClub
 LIVE PaperShuriken
 LIVE SquirtTrio
 LIVE ConfettiBlunderbuss
 LIVE PlungerPopper
-WAITING SignpostSlammer: PlantedSign_f1
-WAITING DetonatorBox: ToyBomb
-WAITING FirecrackerPinwheel: Pinwheel_f0, Pinwheel_f1, Pinwheel_f2, Pinwheel_f3
-WAITING GumballGatling: Gumball_f0
-WAITING BalloonBuddy: BalloonAnimal_f0
+LIVE SignpostSlammer
+LIVE DetonatorBox
+LIVE FirecrackerPinwheel
+LIVE GumballGatling
+LIVE BalloonBuddy
 LIVE GlitchToybox
-WAITING SaucerBlaster: SaucerShot_f0
-WAITING FanfareHorn: SoundFin_f0
-WAITING WindupWrench: WindupKey_f0, WindupKey_f1
-WAITING CorkRifle: CorkBullet
-WAITING CatcherMitt: Fastball
+LIVE SaucerBlaster
+LIVE FanfareHorn
+LIVE WindupWrench
+LIVE CorkRifle
+LIVE CatcherMitt
 LIVE FizzBottle
 LIVE LeekBaton
-WAITING DowsingRod: TwigDart
-WAITING StarKnuckle: StarShard
-WAITING BuzzerBlock: BuzzerFloor_f0
+LIVE DowsingRod
+LIVE StarKnuckle
+LIVE BuzzerBlock
 LIVE FlySwatter
 LIVE PawMitten
 LIVE HearthBrick
 LIVE VerdictGavel
 LIVE TalismanIngot
-WAITING KunaiFan: KunaiShot
+LIVE KunaiFan
 LIVE BareKnuckles
-FRAME WAITING Uncommon
-FRAME WAITING Rare
-FRAME WAITING Mythic
-FRAME WAITING Crimson
-FRAME WAITING Rainbow
+FRAME PAINTED Uncommon
+FRAME PAINTED Rare
+FRAME PAINTED Mythic
+FRAME PAINTED Crimson
+FRAME PAINTED Rainbow

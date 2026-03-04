@@ -186,6 +186,21 @@ PASS Weapon VerdictGavel
 PASS Weapon TalismanIngot
 PASS Weapon BareKnuckles
 PASS Weapon InkyOctopus
+PASS Weapon PlushShark
+PASS Weapon SignpostSlammer
+PASS Weapon DetonatorBox
+PASS Weapon FirecrackerPinwheel
+PASS Weapon GumballGatling
+PASS Weapon BalloonBuddy
+PASS Weapon SaucerBlaster
+PASS Weapon FanfareHorn
+PASS Weapon WindupWrench
+PASS Weapon CorkRifle
+PASS Weapon CatcherMitt
+PASS Weapon DowsingRod
+PASS Weapon StarKnuckle
+PASS Weapon BuzzerBlock
+PASS Weapon KunaiFan
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop

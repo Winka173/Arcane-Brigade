@@ -40,7 +40,7 @@ jobs = []
 # like the hero mechanics, and a thrown copy of the weapon itself reuses its held painting. The number is how many frames.
 OBJECTS = {"CherryBomb": 3, "PopperStick": 2, "FeltBall": 1, "BambooVaseShot": 1, "BambooShoot": 3, "BouquetShot": 1, "CandyDrillShot": 1,
            "PlushOctopus": 4, "ClawHead": 2, "PlushSharkShot": 1, "ShurikenShot": 1, "WaterJet": 1, "CandyPellet": 1, "PlungerCup": 1,
-           "PlantedSign": 2, "ToyBomb": 1, "Pinwheel": 4, "Gumball": 1, "BalloonAnimal": 1, "SaucerShot": 1, "SoundFin": 1, "WindupKey": 2,
+           "ToyBomb": 1, "Pinwheel": 4, "Gumball": 1, "BalloonAnimal": 1, "SaucerShot": 1, "SoundFin": 1, "WindupKey": 2,
            "CorkBullet": 1, "Fastball": 1, "TwigDart": 1, "StarShard": 1, "BuzzerFloor": 1, "KunaiShot": 1}
 
 

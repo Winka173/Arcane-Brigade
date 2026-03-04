@@ -201,6 +201,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1dd387a523b3aff47bd9ab546636f10c, type: 2}
   - {fileID: 11400000, guid: ecb6c3a189a9d2042a37755d396541cc, type: 2}
   - {fileID: 11400000, guid: 957aab8abe6c27d479bd65d13b675866, type: 2}
+  - {fileID: 11400000, guid: 406a468162eb38d4e95aaeb39d1365c2, type: 2}
+  - {fileID: 11400000, guid: 5260211271a30d44cbbe7d4d0ae85bb9, type: 2}
+  - {fileID: 11400000, guid: 59b8ac63981d1ad499637fe2e78ca340, type: 2}
+  - {fileID: 11400000, guid: 5592bd3e47de2b84ea264d05b0ee2997, type: 2}
+  - {fileID: 11400000, guid: b649907fd99ce334fb19d7150c56fe38, type: 2}
+  - {fileID: 11400000, guid: a5303b45ad126a540a5ebffbc5c90ff3, type: 2}
+  - {fileID: 11400000, guid: 8129ea8b110ee314ba2ab88b74d0d6d9, type: 2}
+  - {fileID: 11400000, guid: f687b9fdd351c7340868e823c4ee0169, type: 2}
+  - {fileID: 11400000, guid: 44e23b50769665f4cad5b5478d278116, type: 2}
+  - {fileID: 11400000, guid: e7379a1fb6cf83d42b03a082caef1783, type: 2}
+  - {fileID: 11400000, guid: 19ea11bd1b307b04d8d157c48190500d, type: 2}
+  - {fileID: 11400000, guid: ad77b091edb0a8143959dcbfaa2af897, type: 2}
+  - {fileID: 11400000, guid: 47d13be737948024186abbb9e0e1e303, type: 2}
+  - {fileID: 11400000, guid: 1231299f037eecd46842f9a39d777864, type: 2}
+  - {fileID: 11400000, guid: 252ee1ba2ef8f4f4e88dedfbe9233d03, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}
