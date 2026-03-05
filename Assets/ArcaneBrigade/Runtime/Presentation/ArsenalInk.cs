@@ -124,16 +124,6 @@ namespace ArcaneBrigade
             for (int i = 0; i < lobes; i++) layer.Sector(lobeAt[i] + Vector2.up * lobeR[i] * .17f, lobeR[i] * .8f, 0, 360, A(lit, a), A(pal.Body, a));
             for (int i = 0; i < lobes; i += 2) layer.Sector(lobeAt[i] + new Vector2(-.3f, .36f) * lobeR[i], lobeR[i] * .32f, 0, 360, A(pal.Light, .85f * a), A(pal.Light, 0));
         }
-        /// <summary>A broken inked rim: arcs with gaps between them, racing round as they open (never a closed plain ring).</summary>
-        private void BrokenRim(InkCanvas layer, Vector2 c, float r, float p, InkPalette pal, float seed, float width = .06f, int arcs = 3, float squash = 1)
-        {
-            float fade = 1 - Smooth(.35f, 1, p), head = still ? 1 : OutCubic(Mathf.Min(1, p / .3f));
-            for (int i = 0; i < arcs; i++)
-            {
-                float from = seed + i * 360f / arcs, span = 360f / arcs * .6f;
-                layer.Stroke(InkCanvas.Arc(c, r, r * .92f * squash, from, from + span), Brush(pal, width * 1.6f * (1 - .4f * p), fade, head, 0, 1.3f));
-            }
-        }
         /// <summary>Comic impact strokes: short tapered dashes thrown outward from an impact point.</summary>
         private void Rays(Vector2 c, float r, float p, InkPalette pal, int n, float seed, float width = .05f, float length = .32f, float spread = 360, float facing = 0)
         {
@@ -182,7 +172,6 @@ namespace ArcaneBrigade
                 case Moment.CottonPop:
                     Glow(at, size * 2.4f, Cotton.Glow, .32f * (1 - p));
                     Cloud(at, size * .5f, p, Cotton, seed, .3f, 6);
-                    BrokenRim(air, at, size * (.62f + .45f * OutCubic(p)), p, Gold, seed, .07f);
                     Scatter(at, size * 1.15f, p, InkToken.Shard, Gold, 8, .15f, seed, .55f, Midnight, InkToken.Star);
                     break;
                 case Moment.PopperBurst:
@@ -209,14 +198,12 @@ namespace ArcaneBrigade
                 }
                 case Moment.PaperScraps:
                     Glow(at, size * 1.8f, Gold.Glow, .26f * (1 - p));
-                    BrokenRim(air, at, size * (.5f + .45f * OutCubic(p)), p, Wine, seed, .06f, 4);
                     Rays(at, size * .55f, p, Cream, 7, seed, .05f, size * .35f);
                     Scatter(at, size * 1.25f, p, InkToken.Petal, Wine, 10, .16f, seed, .7f, Gold, InkToken.Page);
                     break;
                 case Moment.BalloonPop:
                 {
                     Glow(at, size * 1.6f, Candy.Glow, .24f * (1 - p));
-                    BrokenRim(air, at, size * (.35f + .7f * OutCubic(p)), p, Candy, seed, .05f, 3);
                     for (int i = 0; i < 2; i++)
                     {
                         // two ribbons twirling down from the pop
@@ -309,7 +296,6 @@ namespace ArcaneBrigade
                         ground.Stroke(InkCanvas.Line(at + new Vector2(-h, o), at + new Vector2(h, o)), Brush(Wine, .035f, .8f * life, 1, 0, .4f, true));
                         ground.Stroke(InkCanvas.Line(at + new Vector2(o, -h), at + new Vector2(o, h)), Brush(Wine, .035f, .8f * life, 1, 0, .4f, true));
                     }
-                    BrokenRim(ground, at, h * 1.15f, Mathf.Min(p, .3f), Wine, seed, .06f, 4, .9f);
                     Scatter(at, size * .7f, p, InkToken.Puff, Cream, 4, .12f, seed, -.1f);
                     break;
                 }
@@ -343,7 +329,6 @@ namespace ArcaneBrigade
                     float ring = still ? 1 : OutCubic(after);
                     Glow(at, size * 2.4f, Gold.Glow, .32f * (1 - after));
                     ground.Sector(at, size * (.75f + .35f * ring), 0, 360, A(Gold.Glow, .12f * (1 - after)), A(Gold.Body, .42f * (1 - after)));
-                    BrokenRim(ground, at, size * (.8f + .4f * ring), after, Gold, seed, .08f, 4, .55f);
                     Rays(at, size * .7f, after, Cream, 8, seed, .05f, size * .35f);
                     Scatter(at, size * 1.1f, after, InkToken.Coin, Gold, 4, .16f, seed, 1.1f);
                     break;
@@ -351,17 +336,13 @@ namespace ArcaneBrigade
                 case Moment.IngotBlast:
                     Glow(at, size * 2.2f, Gold.Glow, .3f * (1 - p));
                     Cloud(at, size * .45f, p, Gold, seed, .18f, 4, .65f);
-                    BrokenRim(air, at, size * (.55f + .4f * OutCubic(p)), p, Water, seed, .05f, 3);
                     Scatter(at, size * 1.2f, p, InkToken.Coin, Gold, 8, .14f, seed, .6f, Cream, InkToken.Page);
                     break;
                 case Moment.KnucklePop:
                     Glow(at, size * 1.8f, Water.Glow, .26f * (1 - p));
-                    BrokenRim(air, at, size * (.4f + .6f * OutCubic(p)), p, Water, seed, .07f, 3);
-                    BrokenRim(air, at, size * (.25f + .45f * OutCubic(Mathf.Max(0, p - .1f))), Mathf.Max(0, p - .1f), Cream, seed + 60, .05f, 3);
                     Scatter(at, size * .95f, p, InkToken.Star, Silver, 5, .13f, seed, .3f);
                     break;
                 case Moment.MittCatch:
-                    BrokenRim(air, at, .2f + .3f * OutCubic(p), p, Leather, seed, .06f, 3);
                     Rays(at, .22f, p, Leather, 4, seed, .045f, .2f);
                     Cloud(at + Vector2.down * .1f, .25f, p, Cream, seed, .05f, 3, .45f, true);
                     break;
@@ -400,7 +381,6 @@ namespace ArcaneBrigade
                 default:
                     // the ordinary burst many weapons share stays light: an opening inked rim, impact dashes and sparks, no cloud
                     Glow(at, size * 1.6f, Cream.Glow, .22f * (1 - p));
-                    BrokenRim(air, at, size * (.5f + .4f * OutCubic(p)), p, Gold, seed, .05f);
                     Rays(at, size * .45f, p, Cream, 5, seed, .04f, size * .25f);
                     Scatter(at, size, p, InkToken.Spark, Gold, 5, .11f, seed, .4f);
                     break;

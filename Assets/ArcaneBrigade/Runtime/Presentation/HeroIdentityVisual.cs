@@ -264,7 +264,6 @@ namespace ArcaneBrigade
             Vector2 at = sim.HeroIdentityDreamPosition; float left = Mathf.Clamp01((sim.HeroIdentityDreamUntil - t) / 4f);
             float fadeIn = Mathf.Clamp01((4 - (sim.HeroIdentityDreamUntil - t)) / .35f), fade = Mathf.Min(fadeIn, Mathf.Clamp01((sim.HeroIdentityDreamUntil - t) / .3f));
             Vector2 floor = at - Vector2.up * sim.Champion.Definition.BodyHeight * .5f;
-            ground.Stroke(InkCanvas.Arc(floor, .66f, .3f, 90, 90 + 360 * left), Brush(.08f, .9f * fade, 3));
             Glow(floor, 1.2f, ink.Glow, .2f * fade);
             var body = sim.Champion.Definition.Body;
             if (body != null)
@@ -272,7 +271,10 @@ namespace ArcaneBrigade
                 Rect inkBox = SpriteInkMetrics.BoundsOf(body); float scale = sim.Champion.Definition.BodyHeight / Mathf.Max(.01f, inkBox.height);
                 ghost.enabled = true; ghost.sprite = body; ghost.transform.localScale = Vector3.one * scale;
                 ghost.transform.position = (Vector3)(at + Vector2.up * (.12f + Bob(0) * 2)) - (Vector3)(inkBox.center * scale);
-                ghost.color = new Color(ink.Glow.r, ink.Glow.g, ink.Glow.b, .42f * fade * EffectDensity.AlliedAlpha / .72f);
+                // the dream copy shows only once the hero has walked away from it: overlapping the hero it read as a doubled, smeared body
+                float apart = Mathf.Clamp01((Vector2.Distance(at, sim.Champion.Position) - .35f) / .5f);
+                ghost.color = new Color(ink.Glow.r, ink.Glow.g, ink.Glow.b, .42f * fade * apart * EffectDensity.AlliedAlpha / .72f);
+                ghost.enabled = apart > .01f;
             }
             if (!sparse && !still)
                 for (int i = 0; i < 3; i++)
@@ -365,9 +367,8 @@ namespace ArcaneBrigade
             Vector2 c = g.Position; float r = Fit(Mathf.Max(.2f, g.Radius)), s = Seed(g);
             if (pre)
             {
-                ground.Sector(c, r, 0, 360, A(ink.Glow, .015f), A(ink.Body, (.06f + .12f * q) * strength));
-                float reveal = still ? 1 : OutCubic(q);
-                ground.Stroke(InkCanvas.Arc(c, r - .03f, r - .03f, s, s + 360 * reveal), new InkStroke { Width = .06f, Head = 1, Alpha = (.45f + .3f * q) * strength, Ink = ink.Ink, Body = ink.Body, Light = ink.Light, NoLight = true, Taper = .6f }, reveal >= 1);
+                // the spot warms from its middle out to nothing at the edge: no ring, no hard rim (17/10/2026)
+                ground.Sector(c, r, 0, 360, A(ink.Body, (.08f + .14f * q) * strength), A(ink.Body, 0));
                 if (!sparse)
                     for (int i = 0; i < 4; i++)
                     {
@@ -377,12 +378,8 @@ namespace ArcaneBrigade
                 return;
             }
             float flash = calm ? 0 : .14f * (1 - Smooth(0, .2f, p));
-            ground.Sector(c, r, 0, 360, A(ink.Glow, (.12f + flash) * fade * strength), A(ink.Body, (.42f + flash) * fade * strength));
+            ground.Sector(c, r, 0, 360, A(ink.Glow, (.32f + flash) * fade * strength), A(ink.Body, 0));
             if (!calm) Glow(c, r * 2, ink.Glow, .22f * (1 - p));
-            float w = Mathf.Lerp(.16f, .07f, OutCubic(p));
-            ground.Stroke(InkCanvas.Arc(c, r - w * .5f, r - w * .5f, s, s + 360), Brush(w, fade, s), true);
-            if (!sparse && r >= .55f) ground.Ticks(c, r - w, r >= 1.4f ? 16 : 8, Mathf.Min(.2f, r * .14f), .035f, s + (still ? 0 : OutCubic(p) * 12), A(ink.Ink, .75f * fade * strength));
-            if (!still && !sparse) air.Stroke(InkCanvas.Arc(c, r * OutCubic(Mathf.Min(1, p / .5f)) * .97f, r * OutCubic(Mathf.Min(1, p / .5f)) * .97f, 0, 360), new InkStroke { Width = .05f, Head = 1, Alpha = .65f * (1 - p) * strength, Ink = ink.Light, Body = ink.Light, InkOnly = true, Taper = 1 }, true);
             int n = sparse ? 3 : 6;
             for (int i = 0; i < n; i++)
             {

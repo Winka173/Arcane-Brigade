@@ -50,17 +50,23 @@ namespace ArcaneBrigade
                 // an ordinary wave-4 fight with a ranged brigade, to judge shots and dropped coins at play size
                 using (var session = new RunSession(catalog))
                 {
-                    session.Start(catalog.Champions[0].Id, 171020); session.State.Wave = 4; session.State.Roster.Clear();
-                    foreach (string w in new[] { "GumballGatling", "DreamRacket", "SquirtTrio", "CorkRifle", "SaucerBlaster" })
-                        if (catalog.Weapon(w) != null) session.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = w, Tier = 1 });
+                    string hero = Arg(args, "-look-hero") ?? catalog.Champions[0].Id;
+                    session.Start(hero, 171020); session.State.Wave = 4;
+                    if (Array.IndexOf(args, "-look-own-brigade") < 0)
+                    {
+                        session.State.Roster.Clear();
+                        foreach (string w in new[] { "GumballGatling", "DreamRacket", "SquirtTrio", "CorkRifle", "SaucerBlaster" })
+                            if (catalog.Weapon(w) != null) session.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = w, Tier = 1 });
+                    }
                     storage.SaveRun(session.State);
                 }
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
                 float started = Time.realtimeSinceStartup;
-                for (int frame = 0; frame < 4; frame++)
+                int frames = int.TryParse(Arg(args, "-look-frames"), out int n) ? n : 4; float gap = float.TryParse(Arg(args, "-look-gap"), out float g) ? g : 2.5f;
+                for (int frame = 0; frame < frames; frame++)
                 {
-                    while (Time.realtimeSinceStartup - started < 7f + frame * 2.5f) yield return null;
-                    yield return Shot("combat-look-" + frame);
+                    while (Time.realtimeSinceStartup - started < 7f + frame * gap) yield return null;
+                    yield return Shot("combat-look-" + frame.ToString("00"));
                 }
                 Application.Quit(0); yield break;
             }

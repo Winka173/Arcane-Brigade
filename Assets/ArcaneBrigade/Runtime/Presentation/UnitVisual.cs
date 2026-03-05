@@ -19,10 +19,12 @@ namespace ArcaneBrigade
         private Sprite shownFrame;
         private float ghostAge = 1;
         private const float GhostFade = 0.085f;
+        /// <summary>Off (17/10/2026): cross-fading the previous pose read as a doubled, smeared body while the heroes walk.</summary>
+        public static bool FrameBlending = false;
         private void BlendFrames(float delta, UnitState state)
         {
             if (body == null) return;
-            if (ReducedMotion || state.Definition.IsBoss && state.EntranceUntil > lastDisplayTime)
+            if (!FrameBlending || ReducedMotion || state.Definition.IsBoss && state.EntranceUntil > lastDisplayTime)
             {
                 if (frameGhost != null) frameGhost.enabled = false;
                 shownFrame = body.sprite; return;
