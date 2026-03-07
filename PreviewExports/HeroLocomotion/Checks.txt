@@ -4,7 +4,7 @@ PASS LanternKnight has distinct painted walk poses
 PASS LanternKnight walking uses separate drawings from idle
 PASS LanternKnight does not borrow another hero's locomotion sprites
 PASS LanternKnight actual UnitVisual cycles every idle pose
-PASS LanternKnight actual UnitVisual cycles every walk pose
+PASS LanternKnight actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS LanternKnight does not advance frames while simulation time is paused
 PASS LanternKnight returns to idle after movement stops
 PASS LanternKnight Reduced Motion deliberately keeps a stable complete pose
@@ -13,7 +13,7 @@ PASS Postmaster has distinct painted walk poses
 PASS Postmaster walking uses separate drawings from idle
 PASS Postmaster does not borrow another hero's locomotion sprites
 PASS Postmaster actual UnitVisual cycles every idle pose
-PASS Postmaster actual UnitVisual cycles every walk pose
+PASS Postmaster actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS Postmaster does not advance frames while simulation time is paused
 PASS Postmaster returns to idle after movement stops
 PASS Postmaster Reduced Motion deliberately keeps a stable complete pose
@@ -22,7 +22,7 @@ PASS DrowsySeer has distinct painted walk poses
 PASS DrowsySeer walking uses separate drawings from idle
 PASS DrowsySeer does not borrow another hero's locomotion sprites
 PASS DrowsySeer actual UnitVisual cycles every idle pose
-PASS DrowsySeer actual UnitVisual cycles every walk pose
+PASS DrowsySeer actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS DrowsySeer does not advance frames while simulation time is paused
 PASS DrowsySeer returns to idle after movement stops
 PASS DrowsySeer Reduced Motion deliberately keeps a stable complete pose
@@ -31,7 +31,7 @@ PASS RootOracle has distinct painted walk poses
 PASS RootOracle walking uses separate drawings from idle
 PASS RootOracle does not borrow another hero's locomotion sprites
 PASS RootOracle actual UnitVisual cycles every idle pose
-PASS RootOracle actual UnitVisual cycles every walk pose
+PASS RootOracle actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS RootOracle does not advance frames while simulation time is paused
 PASS RootOracle returns to idle after movement stops
 PASS RootOracle Reduced Motion deliberately keeps a stable complete pose
@@ -40,7 +40,7 @@ PASS LoneJelly has distinct painted walk poses
 PASS LoneJelly walking uses separate drawings from idle
 PASS LoneJelly does not borrow another hero's locomotion sprites
 PASS LoneJelly actual UnitVisual cycles every idle pose
-PASS LoneJelly actual UnitVisual cycles every walk pose
+PASS LoneJelly actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS LoneJelly does not advance frames while simulation time is paused
 PASS LoneJelly returns to idle after movement stops
 PASS LoneJelly Reduced Motion deliberately keeps a stable complete pose
@@ -49,7 +49,7 @@ PASS GlassDice has distinct painted walk poses
 PASS GlassDice walking uses separate drawings from idle
 PASS GlassDice does not borrow another hero's locomotion sprites
 PASS GlassDice actual UnitVisual cycles every idle pose
-PASS GlassDice actual UnitVisual cycles every walk pose
+PASS GlassDice actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS GlassDice does not advance frames while simulation time is paused
 PASS GlassDice returns to idle after movement stops
 PASS GlassDice Reduced Motion deliberately keeps a stable complete pose
@@ -58,7 +58,7 @@ PASS TideSinger has distinct painted walk poses
 PASS TideSinger walking uses separate drawings from idle
 PASS TideSinger does not borrow another hero's locomotion sprites
 PASS TideSinger actual UnitVisual cycles every idle pose
-PASS TideSinger actual UnitVisual cycles every walk pose
+PASS TideSinger actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS TideSinger does not advance frames while simulation time is paused
 PASS TideSinger returns to idle after movement stops
 PASS TideSinger Reduced Motion deliberately keeps a stable complete pose
@@ -67,7 +67,7 @@ PASS CometRunner has distinct painted walk poses
 PASS CometRunner walking uses separate drawings from idle
 PASS CometRunner does not borrow another hero's locomotion sprites
 PASS CometRunner actual UnitVisual cycles every idle pose
-PASS CometRunner actual UnitVisual cycles every walk pose
+PASS CometRunner actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS CometRunner does not advance frames while simulation time is paused
 PASS CometRunner returns to idle after movement stops
 PASS CometRunner Reduced Motion deliberately keeps a stable complete pose
@@ -76,7 +76,7 @@ PASS MirrorKeeper has distinct painted walk poses
 PASS MirrorKeeper walking uses separate drawings from idle
 PASS MirrorKeeper does not borrow another hero's locomotion sprites
 PASS MirrorKeeper actual UnitVisual cycles every idle pose
-PASS MirrorKeeper actual UnitVisual cycles every walk pose
+PASS MirrorKeeper actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS MirrorKeeper does not advance frames while simulation time is paused
 PASS MirrorKeeper returns to idle after movement stops
 PASS MirrorKeeper Reduced Motion deliberately keeps a stable complete pose
@@ -85,7 +85,7 @@ PASS TreasureAcorn has distinct painted walk poses
 PASS TreasureAcorn walking uses separate drawings from idle
 PASS TreasureAcorn does not borrow another hero's locomotion sprites
 PASS TreasureAcorn actual UnitVisual cycles every idle pose
-PASS TreasureAcorn actual UnitVisual cycles every walk pose
+PASS TreasureAcorn actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS TreasureAcorn does not advance frames while simulation time is paused
 PASS TreasureAcorn returns to idle after movement stops
 PASS TreasureAcorn Reduced Motion deliberately keeps a stable complete pose
@@ -94,7 +94,7 @@ PASS VerdantMatron has distinct painted walk poses
 PASS VerdantMatron walking uses separate drawings from idle
 PASS VerdantMatron does not borrow another hero's locomotion sprites
 PASS VerdantMatron actual UnitVisual cycles every idle pose
-PASS VerdantMatron actual UnitVisual cycles every walk pose
+PASS VerdantMatron actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS VerdantMatron does not advance frames while simulation time is paused
 PASS VerdantMatron returns to idle after movement stops
 PASS VerdantMatron Reduced Motion deliberately keeps a stable complete pose
@@ -103,7 +103,7 @@ PASS CopperCauldron has distinct painted walk poses
 PASS CopperCauldron walking uses separate drawings from idle
 PASS CopperCauldron does not borrow another hero's locomotion sprites
 PASS CopperCauldron actual UnitVisual cycles every idle pose
-PASS CopperCauldron actual UnitVisual cycles every walk pose
+PASS CopperCauldron actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS CopperCauldron does not advance frames while simulation time is paused
 PASS CopperCauldron returns to idle after movement stops
 PASS CopperCauldron Reduced Motion deliberately keeps a stable complete pose
@@ -112,7 +112,7 @@ PASS ChinaMarionette has distinct painted walk poses
 PASS ChinaMarionette walking uses separate drawings from idle
 PASS ChinaMarionette does not borrow another hero's locomotion sprites
 PASS ChinaMarionette actual UnitVisual cycles every idle pose
-PASS ChinaMarionette actual UnitVisual cycles every walk pose
+PASS ChinaMarionette actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS ChinaMarionette does not advance frames while simulation time is paused
 PASS ChinaMarionette returns to idle after movement stops
 PASS ChinaMarionette Reduced Motion deliberately keeps a stable complete pose
@@ -121,7 +121,7 @@ PASS SoapSkater has distinct painted walk poses
 PASS SoapSkater walking uses separate drawings from idle
 PASS SoapSkater does not borrow another hero's locomotion sprites
 PASS SoapSkater actual UnitVisual cycles every idle pose
-PASS SoapSkater actual UnitVisual cycles every walk pose
+PASS SoapSkater actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS SoapSkater does not advance frames while simulation time is paused
 PASS SoapSkater returns to idle after movement stops
 PASS SoapSkater Reduced Motion deliberately keeps a stable complete pose
@@ -130,7 +130,7 @@ PASS VelvetRegent has distinct painted walk poses
 PASS VelvetRegent walking uses separate drawings from idle
 PASS VelvetRegent does not borrow another hero's locomotion sprites
 PASS VelvetRegent actual UnitVisual cycles every idle pose
-PASS VelvetRegent actual UnitVisual cycles every walk pose
+PASS VelvetRegent actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS VelvetRegent does not advance frames while simulation time is paused
 PASS VelvetRegent returns to idle after movement stops
 PASS VelvetRegent Reduced Motion deliberately keeps a stable complete pose
@@ -139,7 +139,7 @@ PASS ButtonCavalier has distinct painted walk poses
 PASS ButtonCavalier walking uses separate drawings from idle
 PASS ButtonCavalier does not borrow another hero's locomotion sprites
 PASS ButtonCavalier actual UnitVisual cycles every idle pose
-PASS ButtonCavalier actual UnitVisual cycles every walk pose
+PASS ButtonCavalier actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS ButtonCavalier does not advance frames while simulation time is paused
 PASS ButtonCavalier returns to idle after movement stops
 PASS ButtonCavalier Reduced Motion deliberately keeps a stable complete pose
@@ -148,7 +148,7 @@ PASS NightMaw has distinct painted walk poses
 PASS NightMaw walking uses separate drawings from idle
 PASS NightMaw does not borrow another hero's locomotion sprites
 PASS NightMaw actual UnitVisual cycles every idle pose
-PASS NightMaw actual UnitVisual cycles every walk pose
+PASS NightMaw actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS NightMaw does not advance frames while simulation time is paused
 PASS NightMaw returns to idle after movement stops
 PASS NightMaw Reduced Motion deliberately keeps a stable complete pose
@@ -157,7 +157,7 @@ PASS ThornTreasurer has distinct painted walk poses
 PASS ThornTreasurer walking uses separate drawings from idle
 PASS ThornTreasurer does not borrow another hero's locomotion sprites
 PASS ThornTreasurer actual UnitVisual cycles every idle pose
-PASS ThornTreasurer actual UnitVisual cycles every walk pose
+PASS ThornTreasurer actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS ThornTreasurer does not advance frames while simulation time is paused
 PASS ThornTreasurer returns to idle after movement stops
 PASS ThornTreasurer Reduced Motion deliberately keeps a stable complete pose
@@ -166,7 +166,7 @@ PASS CitrusMarshal has distinct painted walk poses
 PASS CitrusMarshal walking uses separate drawings from idle
 PASS CitrusMarshal does not borrow another hero's locomotion sprites
 PASS CitrusMarshal actual UnitVisual cycles every idle pose
-PASS CitrusMarshal actual UnitVisual cycles every walk pose
+PASS CitrusMarshal actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS CitrusMarshal does not advance frames while simulation time is paused
 PASS CitrusMarshal returns to idle after movement stops
 PASS CitrusMarshal Reduced Motion deliberately keeps a stable complete pose
@@ -175,7 +175,7 @@ PASS IvorySovereign has distinct painted walk poses
 PASS IvorySovereign walking uses separate drawings from idle
 PASS IvorySovereign does not borrow another hero's locomotion sprites
 PASS IvorySovereign actual UnitVisual cycles every idle pose
-PASS IvorySovereign actual UnitVisual cycles every walk pose
+PASS IvorySovereign actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS IvorySovereign does not advance frames while simulation time is paused
 PASS IvorySovereign returns to idle after movement stops
 PASS IvorySovereign Reduced Motion deliberately keeps a stable complete pose
@@ -184,7 +184,7 @@ PASS PetalCitadel has distinct painted walk poses
 PASS PetalCitadel walking uses separate drawings from idle
 PASS PetalCitadel does not borrow another hero's locomotion sprites
 PASS PetalCitadel actual UnitVisual cycles every idle pose
-PASS PetalCitadel actual UnitVisual cycles every walk pose
+PASS PetalCitadel actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS PetalCitadel does not advance frames while simulation time is paused
 PASS PetalCitadel returns to idle after movement stops
 PASS PetalCitadel Reduced Motion deliberately keeps a stable complete pose
@@ -193,7 +193,7 @@ PASS PatchworkHost has distinct painted walk poses
 PASS PatchworkHost walking uses separate drawings from idle
 PASS PatchworkHost does not borrow another hero's locomotion sprites
 PASS PatchworkHost actual UnitVisual cycles every idle pose
-PASS PatchworkHost actual UnitVisual cycles every walk pose
+PASS PatchworkHost actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS PatchworkHost does not advance frames while simulation time is paused
 PASS PatchworkHost returns to idle after movement stops
 PASS PatchworkHost Reduced Motion deliberately keeps a stable complete pose
@@ -202,7 +202,7 @@ PASS ArchiveCurator has distinct painted walk poses
 PASS ArchiveCurator walking uses separate drawings from idle
 PASS ArchiveCurator does not borrow another hero's locomotion sprites
 PASS ArchiveCurator actual UnitVisual cycles every idle pose
-PASS ArchiveCurator actual UnitVisual cycles every walk pose
+PASS ArchiveCurator actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS ArchiveCurator does not advance frames while simulation time is paused
 PASS ArchiveCurator returns to idle after movement stops
 PASS ArchiveCurator Reduced Motion deliberately keeps a stable complete pose
@@ -211,7 +211,7 @@ PASS PennyBroker has distinct painted walk poses
 PASS PennyBroker walking uses separate drawings from idle
 PASS PennyBroker does not borrow another hero's locomotion sprites
 PASS PennyBroker actual UnitVisual cycles every idle pose
-PASS PennyBroker actual UnitVisual cycles every walk pose
+PASS PennyBroker actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS PennyBroker does not advance frames while simulation time is paused
 PASS PennyBroker returns to idle after movement stops
 PASS PennyBroker Reduced Motion deliberately keeps a stable complete pose
@@ -220,7 +220,7 @@ PASS StormFencer has distinct painted walk poses
 PASS StormFencer walking uses separate drawings from idle
 PASS StormFencer does not borrow another hero's locomotion sprites
 PASS StormFencer actual UnitVisual cycles every idle pose
-PASS StormFencer actual UnitVisual cycles every walk pose
+PASS StormFencer actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS StormFencer does not advance frames while simulation time is paused
 PASS StormFencer returns to idle after movement stops
 PASS StormFencer Reduced Motion deliberately keeps a stable complete pose
@@ -229,7 +229,7 @@ PASS TinVirtuoso has distinct painted walk poses
 PASS TinVirtuoso walking uses separate drawings from idle
 PASS TinVirtuoso does not borrow another hero's locomotion sprites
 PASS TinVirtuoso actual UnitVisual cycles every idle pose
-PASS TinVirtuoso actual UnitVisual cycles every walk pose
+PASS TinVirtuoso actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS TinVirtuoso does not advance frames while simulation time is paused
 PASS TinVirtuoso returns to idle after movement stops
 PASS TinVirtuoso Reduced Motion deliberately keeps a stable complete pose
@@ -238,7 +238,7 @@ PASS MoonProwler has distinct painted walk poses
 PASS MoonProwler walking uses separate drawings from idle
 PASS MoonProwler does not borrow another hero's locomotion sprites
 PASS MoonProwler actual UnitVisual cycles every idle pose
-PASS MoonProwler actual UnitVisual cycles every walk pose
+PASS MoonProwler actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS MoonProwler does not advance frames while simulation time is paused
 PASS MoonProwler returns to idle after movement stops
 PASS MoonProwler Reduced Motion deliberately keeps a stable complete pose
@@ -247,7 +247,7 @@ PASS SupperMortar has distinct painted walk poses
 PASS SupperMortar walking uses separate drawings from idle
 PASS SupperMortar does not borrow another hero's locomotion sprites
 PASS SupperMortar actual UnitVisual cycles every idle pose
-PASS SupperMortar actual UnitVisual cycles every walk pose
+PASS SupperMortar actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS SupperMortar does not advance frames while simulation time is paused
 PASS SupperMortar returns to idle after movement stops
 PASS SupperMortar Reduced Motion deliberately keeps a stable complete pose
@@ -256,7 +256,7 @@ PASS LanternWeaver has distinct painted walk poses
 PASS LanternWeaver walking uses separate drawings from idle
 PASS LanternWeaver does not borrow another hero's locomotion sprites
 PASS LanternWeaver actual UnitVisual cycles every idle pose
-PASS LanternWeaver actual UnitVisual cycles every walk pose
+PASS LanternWeaver actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS LanternWeaver does not advance frames while simulation time is paused
 PASS LanternWeaver returns to idle after movement stops
 PASS LanternWeaver Reduced Motion deliberately keeps a stable complete pose
@@ -265,7 +265,7 @@ PASS HourglassStag has distinct painted walk poses
 PASS HourglassStag walking uses separate drawings from idle
 PASS HourglassStag does not borrow another hero's locomotion sprites
 PASS HourglassStag actual UnitVisual cycles every idle pose
-PASS HourglassStag actual UnitVisual cycles every walk pose
+PASS HourglassStag actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS HourglassStag does not advance frames while simulation time is paused
 PASS HourglassStag returns to idle after movement stops
 PASS HourglassStag Reduced Motion deliberately keeps a stable complete pose
@@ -274,7 +274,7 @@ PASS RainArchivist has distinct painted walk poses
 PASS RainArchivist walking uses separate drawings from idle
 PASS RainArchivist does not borrow another hero's locomotion sprites
 PASS RainArchivist actual UnitVisual cycles every idle pose
-PASS RainArchivist actual UnitVisual cycles every walk pose
+PASS RainArchivist actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)
 PASS RainArchivist does not advance frames while simulation time is paused
 PASS RainArchivist returns to idle after movement stops
 PASS RainArchivist Reduced Motion deliberately keeps a stable complete pose

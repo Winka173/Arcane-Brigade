@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b988da8c66af3274bab669434bea9282, type: 3}
+  m_Name: HeroPoseRepairs
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.HeroPoseRepairs
+  From:
+  - {fileID: 1767097622, guid: fb1d60dfa7f74014fb5b7ae315bfccba, type: 3}
+  - {fileID: -865752908, guid: 77f8e0521a74fec41b18a6efbbd8433d, type: 3}
+  To:
+  - {fileID: 1795979298, guid: fb1d60dfa7f74014fb5b7ae315bfccba, type: 3}
+  - {fileID: 154557820, guid: 77f8e0521a74fec41b18a6efbbd8433d, type: 3}

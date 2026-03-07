@@ -3,7 +3,7 @@ PASS 31 distinct mechanic names and 93 approaches
 PASS Identity row does not overwrite stat summaries LanternKnight / 0
 PASS Damage row keeps correct compiled value LanternKnight / 0
 PASS Finite and immortal companion behavior LanternKnight / 0
-PASS Actual signature activated LanternKnight / 0 casts=8 injuries=True
+PASS Actual signature activated LanternKnight / 0 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternKnight / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LanternKnight / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LanternKnight / 0 blasts=0
@@ -15,7 +15,7 @@ PASS Approach save round trip LanternKnight / 0
 PASS Identity row does not overwrite stat summaries LanternKnight / 1
 PASS Damage row keeps correct compiled value LanternKnight / 1
 PASS Finite and immortal companion behavior LanternKnight / 1
-PASS Actual signature activated LanternKnight / 1 casts=8 injuries=True
+PASS Actual signature activated LanternKnight / 1 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternKnight / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LanternKnight / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LanternKnight / 1 blasts=0
@@ -27,7 +27,7 @@ PASS Approach save round trip LanternKnight / 1
 PASS Identity row does not overwrite stat summaries LanternKnight / 2
 PASS Damage row keeps correct compiled value LanternKnight / 2
 PASS Finite and immortal companion behavior LanternKnight / 2
-PASS Actual signature activated LanternKnight / 2 casts=8 injuries=True
+PASS Actual signature activated LanternKnight / 2 casts=9 injuries=True
 PASS Bounded visual/projectile queues LanternKnight / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) LanternKnight / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s LanternKnight / 2 blasts=0
@@ -543,7 +543,7 @@ PASS Approach save round trip VelvetRegent / 2
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 0
 PASS Damage row keeps correct compiled value ButtonCavalier / 0
 PASS Finite and immortal companion behavior ButtonCavalier / 0
-PASS Actual signature activated ButtonCavalier / 0 casts=10 injuries=True
+PASS Actual signature activated ButtonCavalier / 0 casts=11 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 0 blasts=0
@@ -555,7 +555,7 @@ PASS Approach save round trip ButtonCavalier / 0
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 1
 PASS Damage row keeps correct compiled value ButtonCavalier / 1
 PASS Finite and immortal companion behavior ButtonCavalier / 1
-PASS Actual signature activated ButtonCavalier / 1 casts=10 injuries=True
+PASS Actual signature activated ButtonCavalier / 1 casts=11 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 1 blasts=0
@@ -567,7 +567,7 @@ PASS Approach save round trip ButtonCavalier / 1
 PASS Identity row does not overwrite stat summaries ButtonCavalier / 2
 PASS Damage row keeps correct compiled value ButtonCavalier / 2
 PASS Finite and immortal companion behavior ButtonCavalier / 2
-PASS Actual signature activated ButtonCavalier / 2 casts=10 injuries=True
+PASS Actual signature activated ButtonCavalier / 2 casts=11 injuries=True
 PASS Bounded visual/projectile queues ButtonCavalier / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) ButtonCavalier / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s ButtonCavalier / 2 blasts=0
@@ -579,7 +579,7 @@ PASS Approach save round trip ButtonCavalier / 2
 PASS Identity row does not overwrite stat summaries NightMaw / 0
 PASS Damage row keeps correct compiled value NightMaw / 0
 PASS Finite and immortal companion behavior NightMaw / 0
-PASS Actual signature activated NightMaw / 0 casts=11 injuries=True
+PASS Actual signature activated NightMaw / 0 casts=12 injuries=True
 PASS Bounded visual/projectile queues NightMaw / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) NightMaw / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s NightMaw / 0 blasts=0
@@ -591,7 +591,7 @@ PASS Approach save round trip NightMaw / 0
 PASS Identity row does not overwrite stat summaries NightMaw / 1
 PASS Damage row keeps correct compiled value NightMaw / 1
 PASS Finite and immortal companion behavior NightMaw / 1
-PASS Actual signature activated NightMaw / 1 casts=11 injuries=True
+PASS Actual signature activated NightMaw / 1 casts=12 injuries=True
 PASS Bounded visual/projectile queues NightMaw / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) NightMaw / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s NightMaw / 1 blasts=0

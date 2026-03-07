@@ -11,13 +11,19 @@ namespace ArcaneBrigade.Editor
             public string[] Pieces = new string[0];   // painted objects besides <Id>_Held_v1.png (Docs/Bizarre_Arsenal.md §5.1); effects are painted ink (ArsenalInk)
         }
         private static Spec S(string id, ArsenalWeapon a, WeaponKind k, WeaponMotion m, DamageElement e, float dmg, float range, float cd, float windup, string summary, params string[] pieces)
-            => new Spec { Id = id, Arsenal = a, Kind = k, Motion = m, Element = e, Damage = dmg, Range = range, Cooldown = cd, Windup = windup, Summary = summary, Pieces = pieces, Width = WidthOf(id) };
+            => new Spec { Id = id, Arsenal = a, Kind = k, Motion = m, Element = e, Damage = dmg * TuningOf(id), Range = range, Cooldown = cd, Windup = windup, Summary = summary, Pieces = pieces, Width = WidthOf(id) };
         private const WeaponKind P = WeaponKind.Projectile, M = WeaponKind.Melee;
 
         /// <summary>Held size relative to the usual (fist-sized arms are drawn smaller so they never dwarf their bearer).</summary>
         private static readonly System.Collections.Generic.Dictionary<string, float> Widths = new System.Collections.Generic.Dictionary<string, float>
             { { "PawMitten", 0.62f }, { "BareKnuckles", 0.6f }, { "StarKnuckle", 0.65f }, { "VerdictGavel", 0.85f }, { "CatcherMitt", 0.75f } };
         public static float WidthOf(string id) => Widths.TryGetValue(id, out float w) ? w : 1f;
+
+        /// <summary>Damage tuning from the build-balance weapon fixture (ArsenalBalanceProbe, 18/10/2026): each Arsenal weapon
+        /// scaled toward the median of the older weapons of its kind (tier 1 wave 5 and tier 3 wave 15 averaged).</summary>
+        private static readonly System.Collections.Generic.Dictionary<string, float> Tuning = new System.Collections.Generic.Dictionary<string, float>
+            { { "BalloonBuddy", 0.98f }, { "BambooVase", 3.39f }, { "BareKnuckles", 2.84f }, { "BuzzerBlock", 1.9f }, { "CandyDrill", 1.23f }, { "CatcherMitt", 2.84f }, { "CherryFuseBomb", 1.35f }, { "ConfettiBlunderbuss", 2.01f }, { "CorkRifle", 0.71f }, { "DetonatorBox", 1.6f }, { "DowsingRod", 1.7f }, { "DragonLanternGlaive", 1.66f }, { "DreamRacket", 2.13f }, { "DrumstickClub", 1.54f }, { "FanfareHorn", 0.79f }, { "FirecrackerPinwheel", 2.16f }, { "FizzBottle", 2.6f }, { "FlySwatter", 1.33f }, { "GlitchToybox", 3.25f }, { "GrabberClaw", 2.14f }, { "GumballGatling", 2.11f }, { "HearthBrick", 1.9f }, { "HomeRunBat", 2.2f }, { "InkyOctopus", 3.5f }, { "KunaiFan", 1.65f }, { "LeekBaton", 1.39f }, { "PaperShuriken", 1.61f }, { "PawMitten", 2.66f }, { "PlungerPopper", 3.5f }, { "PlushShark", 2.27f }, { "RoseBouquet", 1.22f }, { "SaucerBlaster", 1.42f }, { "SignpostSlammer", 1.04f }, { "SquirtTrio", 1.8f }, { "StarKnuckle", 2.02f }, { "StarforgeClaymore", 0.67f }, { "TalismanIngot", 0.66f }, { "VerdictGavel", 3.5f }, { "WindupWrench", 1.51f } };
+        public static float TuningOf(string id) => Tuning.TryGetValue(id, out float t) ? t : 1f;
 
         public static readonly Spec[] All =
         {
@@ -63,6 +69,9 @@ namespace ArcaneBrigade.Editor
             S("VerdictGavel", ArsenalWeapon.VerdictGavel, M, WeaponMotion.Slam, DamageElement.Physical, 9, 1.3f, 1.05f, 0.26f, "Bangs a verdict down in front; luck and gathered coins make it heavier."),
             S("TalismanIngot", ArsenalWeapon.TalismanIngot, P, WeaponMotion.Recoil, DamageElement.Arcane, 6, 4.5f, 0.5f, 0.1f, "Throws charm-sealed gold ingots in fours; each pops in a small blast."),
             S("KunaiFan", ArsenalWeapon.KunaiFan, P, WeaponMotion.Recoil, DamageElement.Physical, 8, 6.0f, 1.1f, 0.16f, "Throws its three kunai one after another down one line.", "KunaiShot"),
+            // our own takes on pass 4's two unconfirmed items
+            S("FortuneGlobe", ArsenalWeapon.FortuneGlobe, P, WeaponMotion.Cast, DamageElement.Arcane, 10, 5.0f, 1.2f, 0.22f, "Three crystal motes wander out, growing larger and harder as they fly.", "GlobeMote"),
+            S("TopiaryShears", ArsenalWeapon.TopiaryShears, M, WeaponMotion.Scissors, DamageElement.Physical, 10, 1.4f, 0.9f, 0.16f, "Two quick snips down a line ahead; every third trims the toughest enemy."),
             S("BareKnuckles", ArsenalWeapon.BareKnuckles, M, WeaponMotion.Thrust, DamageElement.Physical, 5, 0.95f, 0.38f, 0.06f, "No weapon at all: very fast punches; a critical punch pops the air ahead."),
         };
     }

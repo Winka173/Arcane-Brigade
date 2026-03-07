@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: LeekBaton
   Kind: 1
   Sprite: {fileID: 21300000, guid: e4fc69c54959c0849a7bfb5cb1b5353f, type: 3}
-  Damage: 11
+  Damage: 15.29
   Range: 1.7
   Cooldown: 0.85
   Windup: 0.18

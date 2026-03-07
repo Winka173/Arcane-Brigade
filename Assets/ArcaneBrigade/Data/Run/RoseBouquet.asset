@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: RoseBouquet
   Kind: 2
   Sprite: {fileID: 21300000, guid: 6a7675b130c455d48b7d3689fecba6b0, type: 3}
-  Damage: 12
+  Damage: 14.64
   Range: 4.5
   Cooldown: 1.15
   Windup: 0.2

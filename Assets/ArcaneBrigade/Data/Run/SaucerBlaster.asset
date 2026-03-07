@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: SaucerBlaster
   Kind: 2
   Sprite: {fileID: 21300000, guid: d3aa3a36d648498498e3fec3ccb67205, type: 3}
-  Damage: 12
+  Damage: 17.039999
   Range: 5.5
   Cooldown: 1.05
   Windup: 0.18

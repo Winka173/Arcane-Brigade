@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: InkyOctopus
   Kind: 2
   Sprite: {fileID: 21300000, guid: 6e26eda9027b42849bb4e18458234ab2, type: 3}
-  Damage: 10
+  Damage: 35
   Range: 4.5
   Cooldown: 0.9
   Windup: 0.2

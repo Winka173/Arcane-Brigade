@@ -79,7 +79,9 @@ namespace ArcaneBrigade.Editor
                             view.Display(16 + tick * .025f, 1);
                             walkSeen.Add(view.BodyRenderer.sprite);
                         }
-                        Check(row.Walk.All(walkSeen.Contains) && walkSeen.All(row.Walk.Contains), hero.Id + " actual UnitVisual cycles every walk pose");
+                        // a walk pose that disagrees with its cycle is deliberately drawn as the steady one (HeroPoseRepairs)
+                        var walkShown = row.Walk.Select(HeroPoseRepairs.Repair).ToList();
+                        Check(walkShown.All(walkSeen.Contains) && walkSeen.All(walkShown.Contains), hero.Id + " actual UnitVisual cycles every walk pose (repaired poses drawn as their steady one)");
                         view.Display(18, 1); var paused = view.BodyRenderer.sprite;
                         for (int i = 0; i < 5; i++) view.Display(18, 1);
                         Check(view.BodyRenderer.sprite == paused, hero.Id + " does not advance frames while simulation time is paused");

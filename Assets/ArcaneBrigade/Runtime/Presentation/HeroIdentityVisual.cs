@@ -484,28 +484,28 @@ namespace ArcaneBrigade
 
         private void RingStrike(HeroIdentityGlyph g)
         {
+            // the true hit band is shown by a procession of the hero's tokens racing round it, not by a drawn ring (17/10/2026)
             Phases(g, out bool pre, out float q, out float p, out float fade);
-            Vector2 c = g.Position; float r = Fit(Mathf.Max(.3f, g.Radius)), half = Mathf.Max(.1f, g.Width), s = Seed(g);
+            Vector2 c = g.Position; float r = Fit(Mathf.Max(.3f, g.Radius)), s = Seed(g);
+            int n = sparse ? 6 : 12;
             if (pre)
             {
-                ground.Annulus(c, Mathf.Max(0, r - half), r + half, A(ink.Body, (.04f + .08f * q) * strength), A(ink.Body, .02f * strength));
-                float reveal = still ? 1 : OutCubic(q);
-                ground.Stroke(InkCanvas.Arc(c, r, r, s, s + 360 * reveal), new InkStroke { Width = .05f, Head = 1, Alpha = (.4f + .3f * q) * strength, Ink = ink.Ink, NoLight = true, InkOnly = true, Taper = .5f }, reveal >= 1);
+                for (int i = 0; i < n; i++)
+                {
+                    float f = i / (float)n; if (!still && f > OutCubic(q)) continue;
+                    DimToken(style.Token, c + Dir(s + 360 * f) * r, .12f, .55f * q);
+                }
                 return;
             }
-            ground.Annulus(c, Mathf.Max(0, r - half), r + half, A(ink.Body, .42f * fade * strength), A(ink.Glow, .16f * fade * strength));
-            float head = still ? 1 : OutCubic(Mathf.Min(1, p / .4f)), tail = still ? 0 : InQuad(Mathf.Max(0, (p - .35f) / .65f));
-            var ring = InkCanvas.Arc(c, r, r, s, s + 360);
-            var main = Brush(half * 1.2f, fade, s); main.Head = head; main.Tail = tail; main.Taper = .8f;
-            air.GlowRibbon(ring, head, tail, half * 2, A(ink.Glow, Bloom * fade));
-            air.Stroke(ring, main, true);
-            if (!sparse)
-                for (int i = 0; i < 4; i++)
-                {
-                    float f = Mathf.Repeat(head - i * .08f, 1); if (head < i * .08f) continue;
-                    Vector2 pos = c + Dir(s + 360 * f) * r;
-                    Token(style.Token, pos, .2f * (1 - i * .15f), s + f * 360, fade * (1 - i * .2f));
-                }
+            float head = still ? 1 : OutCubic(Mathf.Min(1, p / .4f));
+            for (int i = 0; i < n; i++)
+            {
+                float f = i / (float)n; if (f > head) continue;
+                float age = Mathf.Clamp01((head - f) * 3);
+                Vector2 pos = c + Dir(s + 360 * f) * r;
+                Token(style.Token, pos, .22f * (1 - .35f * age), s + f * 360 + p * 120, fade * (1 - .5f * age));
+                if (!sparse && i % 3 == 0) Glow(pos, .5f, ink.Glow, .2f * fade * (1 - age));
+            }
         }
 
         private void Link(HeroIdentityGlyph g)
@@ -552,7 +552,8 @@ namespace ArcaneBrigade
         {
             float p = Mathf.Clamp01((t - g.Created) / Mathf.Max(.05f, g.Until - g.Created)); Vector2 c = g.Position; float r = Mathf.Max(.2f, g.Radius);
             float close = still ? .6f : 1.25f - .8f * OutCubic(p);
-            air.Stroke(InkCanvas.Arc(c, r * close, r * close, 0, 360), Brush(.07f, 1 - p, 1), true);
+            // the catch: four glints closing in on the spot instead of a shrinking ring (17/10/2026)
+            for (int i = 0; i < 4; i++) Token(InkToken.Glint, c + Dir(i * 90 + 45 + (still ? 0 : p * 60)) * r * close, .16f, p * 90, (1 - p) * .9f, true, 0, GlintPalette(ink));
             Token(InkToken.Glint, c, .34f * (1 - p) + .1f, p * 90, 1 - InQuad(p), true, 0, GlintPalette(ink));
             if ((g.End - g.Position).sqrMagnitude > .05f)
             {

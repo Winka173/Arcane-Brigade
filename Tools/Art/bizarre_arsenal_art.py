@@ -38,7 +38,7 @@ jobs = []
 # Only painted OBJECTS are requested (Assets/ArcaneBrigade/Editor/ArsenalSpecs.cs Pieces): every effect around them (bursts,
 # clouds, swipes, stamps, pools, cords, wakes, comic lettering) is painted ink in code (Runtime/Presentation/ArsenalInk.cs),
 # like the hero mechanics, and a thrown copy of the weapon itself reuses its held painting. The number is how many frames.
-OBJECTS = {"CherryBomb": 3, "PopperStick": 2, "FeltBall": 1, "BambooVaseShot": 1, "BambooShoot": 3, "BouquetShot": 1, "CandyDrillShot": 1,
+OBJECTS = {"GlobeMote": 1, "CherryBomb": 3, "PopperStick": 2, "FeltBall": 1, "BambooVaseShot": 1, "BambooShoot": 3, "BouquetShot": 1, "CandyDrillShot": 1,
            "PlushOctopus": 4, "ClawHead": 2, "PlushSharkShot": 1, "ShurikenShot": 1, "WaterJet": 1, "CandyPellet": 1, "PlungerCup": 1,
            "ToyBomb": 1, "Pinwheel": 4, "Gumball": 1, "BalloonAnimal": 1, "SaucerShot": 1, "SoundFin": 1, "WindupKey": 2,
            "CorkBullet": 1, "Fastball": 1, "TwigDart": 1, "StarShard": 1, "BuzzerFloor": 1, "KunaiShot": 1}
@@ -113,6 +113,9 @@ W = {
     "TalismanIngot": "a small gold boat-shaped ingot with a cream paper charm strip pasted across it, the charm inked with a teal swirl (no readable text)",
     "KunaiFan": "three black kunai fanned out together, their grips wrapped in wine cloth with little tassels",
     "BareKnuckles": "a pair of rolled cream cloth hand-wraps with wine stitching, loosely tied, the kind wound round bare fists",
+    # our own takes on pass 4's two unconfirmed items
+    "FortuneGlobe": "a small fortune-teller's crystal globe on a brass claw stand with a wine velvet tassel, a violet-and-gold swirl of stars inside it, held by the stand's short handle",
+    "TopiaryShears": "a pair of long-bladed topiary shears with dark iron blades, wine-red wrapped handles and a brass pivot shaped like a little flower",
 }
 for wid, subject in W.items():
     add(wid + "_Held", subject, "held")
@@ -201,6 +204,7 @@ add("IngotShot", "the charm-sealed gold ingot spinning, the paper charm flutteri
 add("IngotBlast", "a small burst of gold leaf and torn cream charm paper with teal ink flecks", "fx", ["tight bright burst", "open, paper scraps flying", "fading, a few flakes falling"])
 add("KunaiShot", "a single black kunai flying point first, a wine tassel trailing", "shot")
 add("KnucklePop", "a small pop of air ahead of a punch: a cream-and-teal ring burst with little star flecks", "fx", ["the pop, tight", "the ring opening", "the ring fading"])
+add("GlobeMote", "a small violet crystal sphere with a swirl of gold stars inside it, a soft lilac sheen", "round")
 add("FistJab", "a cartoon jab impact: a short cream star-burst with three speed ticks, opening to the right", "fx")
 
 # animation art (Docs/Bizarre_Arsenal.md §5.2)

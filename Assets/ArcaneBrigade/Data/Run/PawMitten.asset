@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: PawMitten
   Kind: 1
   Sprite: {fileID: 21300000, guid: 1582d8be3fe0e58439d51893b6eec0d3, type: 3}
-  Damage: 6
+  Damage: 15.960001
   Range: 1
   Cooldown: 0.42
   Windup: 0.08

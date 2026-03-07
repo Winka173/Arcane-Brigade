@@ -75,6 +75,7 @@ namespace ArcaneBrigade
                     ArsenalWeapon.DrumstickClub => (ArsenalInk.Moment.Crumbs, 0, 1.4f, 0.45f),
                     ArsenalWeapon.FlySwatter => (ArsenalInk.Moment.SwatPrint, 1.1f, 0.9f, 0.5f),
                     ArsenalWeapon.BareKnuckles or ArsenalWeapon.StarKnuckle => (ArsenalInk.Moment.FistJab, 0, 0.75f, 0.22f),
+                    ArsenalWeapon.TopiaryShears => (ArsenalInk.Moment.Snip, 0, 1.5f, 0.24f),
                     ArsenalWeapon.GlitchToybox => (ArsenalInk.Moment.Glitch, 0.5f, 0.5f, 0.3f),
                     _ => ((ArsenalInk.Moment)(-1), 0, 0, 0)
                 };
@@ -123,6 +124,8 @@ namespace ArcaneBrigade
                     // shots that leave a wake: the saucer's rings in the air, the shark's ripple on the floor
                     if (shot.Arsenal == ArsenalWeapon.SaucerBlaster) ink.Wake(shot.Position, shot.Velocity, ArsenalInk.Cyan, sim.Elapsed, shot.Id, false);
                     else if (shot.Arsenal == ArsenalWeapon.PlushShark) ink.Wake(shot.Position + Vector2.down * 0.15f, shot.Velocity, ArsenalInk.Water, sim.Elapsed, shot.Id, true);
+                    else if (shot.Arsenal == ArsenalWeapon.FortuneGlobe && shot.Velocity.sqrMagnitude > 0.01f)
+                        for (int i = 1; i <= 2; i++) ink.Token(InkToken.Star, i == 1 ? ArsenalInk.Violet : ArsenalInk.Gold, shot.Position - shot.Velocity.normalized * (0.22f * i) + Vector2.up * (still ? 0 : Mathf.Sin(sim.Elapsed * 9 + shot.Id + i) * 0.05f), 0.14f - 0.03f * i, sim.Elapsed * 200 + i * 40, 0.85f - 0.25f * i);
                 }
             }
             for (int i = flashes.Count - 1; i >= 0; i--)

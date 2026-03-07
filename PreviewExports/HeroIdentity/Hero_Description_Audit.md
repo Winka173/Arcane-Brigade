@@ -462,7 +462,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
 
 INNATE TRAITS
-All ordinary companion themes may appear. Enemy health +35%, enemy count +20%. Rerolls cost 1 less gold.
+All ordinary companion themes may appear. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.
 
 ## Archive Curator / ArchiveCurator
 

@@ -344,11 +344,11 @@ namespace ArcaneBrigade
             lastDisplayTime = simulationTime;
             if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
             if (state.Definition.AuthoredMotion != null)
-                body.sprite = state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion);
+                body.sprite = HeroPoseRepairs.Repair(state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion));
             else if (state.Definition.AnimationFrames.Length >= 4)
                 body.sprite = state.Definition.AnimationFrames[K8Motion.BodyFrame(state, simulationTime, ReducedMotion)];
             Sprite expandedFrame = expandedGait?.Select(state, simulationTime, ReducedMotion);
-            if (expandedFrame != null) body.sprite = expandedFrame;
+            if (expandedFrame != null) body.sprite = HeroPoseRepairs.Repair(expandedFrame); // a walk pose that disagrees with its cycle is drawn as the steady one
             weapon.color = hand.color = Color.white;
             shadow.color = state.Faction == Faction.Enemy ? new Color(0.02f, 0.02f, 0.04f, 0.3f) : shadowColor;
             if (tierBell != null) tierBell.color = Color.white;

@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         {
             Burst, CottonPop, PopperBurst, CandyFloss, PaperScraps, BalloonPop, Confetti, MuzzleCloud, CorkPop, Droplets, Steam,
             LeekSwipe, PawSwipe, GoldLeaf, Dragon, MetalSwipe, FistJab, SwatPrint, Crumbs, BrickDust, GavelStamp, IngotBlast,
-            KnucklePop, MittCatch, Zap, Spark, HomeRun, Glitch
+            KnucklePop, MittCatch, Zap, Spark, HomeRun, Glitch, Snip
         }
 
         private static InkPalette P(Color ink, Color body, Color light, Color glow, Color accent) => new InkPalette(ink, body, light, glow, accent);
@@ -273,6 +273,20 @@ namespace ArcaneBrigade
                     Sweep(at, dir, size * .95f, p, Gold, .07f, 50, 6, .9f, .1f);
                     Scatter(at + dir * size * .7f, size * .55f, p, InkToken.Ember, Amber, 4, .14f, seed, -.2f, Gold, null, 100, face);
                     break;
+                case Moment.Snip:
+                {
+                    // two blades closing on a line ahead: their strokes swing in to cross, a glint where they meet
+                    float close = still ? 1 : OutCubic(Mathf.Min(1, p / .35f)), spread = Mathf.Lerp(24, 3, close);
+                    Vector2 tip = at + dir * size;
+                    for (int k = -1; k <= 1; k += 2)
+                    {
+                        Vector2 blade = (Vector2)(Quaternion.Euler(0, 0, k * spread) * dir);
+                        air.Stroke(InkCanvas.Line(at + dir * .15f, at + dir * .15f + blade * size), Brush(Silver, .09f, fade, 1, still ? 0 : InQuad(Mathf.Clamp01((p - .4f) / .6f)), 1.4f));
+                    }
+                    Token(InkToken.Glint, Cream, tip, .26f * (still ? 1 : OutBack(Mathf.Min(1, p / .35f))) * (1 - .4f * p), p * 90, fade);
+                    Scatter(tip, size * .45f, p, InkToken.Leaf, Green, 3, .12f, seed, .3f, null, null, 120, face);
+                    break;
+                }
                 case Moment.MetalSwipe:
                     Sweep(at, dir, size * .78f, p, Silver, .15f, 58);
                     Rays(at + dir * size * .78f, .1f, p, Cream, 3, 0, .04f, .2f, 70, face);

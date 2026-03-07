@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: StarKnuckle
   Kind: 1
   Sprite: {fileID: 21300000, guid: aec52b2cab0287a4ba38b4da3ca4c11f, type: 3}
-  Damage: 9
+  Damage: 18.18
   Range: 1.2
   Cooldown: 0.55
   Windup: 0.1

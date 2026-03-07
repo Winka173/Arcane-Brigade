@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: FirecrackerPinwheel
   Kind: 2
   Sprite: {fileID: 21300000, guid: 9aba33283244add4e9f9d4b443bbb8af, type: 3}
-  Damage: 11
+  Damage: 23.76
   Range: 4
   Cooldown: 1.2
   Windup: 0.22

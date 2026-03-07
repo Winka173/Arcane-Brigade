@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: HomeRunBat
   Kind: 1
   Sprite: {fileID: 21300000, guid: 96503333055df934da13f650fab1b9a7, type: 3}
-  Damage: 14
+  Damage: 30.800001
   Range: 1.5
   Cooldown: 1.2
   Windup: 0.28

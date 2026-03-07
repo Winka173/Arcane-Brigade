@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: CorkRifle
   Kind: 2
   Sprite: {fileID: 21300000, guid: fc5aff3e274f3e045b80cc06bdcb5cc3, type: 3}
-  Damage: 12
+  Damage: 8.5199995
   Range: 8
   Cooldown: 1.55
   Windup: 0.35

@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         {
             results.Clear();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Require(ArsenalSpecs.All.Length == 41 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 41, "41 distinct weapons");
+            Require(ArsenalSpecs.All.Length == 43 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 43, "43 distinct weapons");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
             InkMoments();
@@ -128,7 +128,10 @@ namespace ArcaneBrigade.Editor
                 case ArsenalWeapon.HomeRunBat:
                 {
                     UnitState t = f.Enemy(new Vector2(1.2f, 0)), pin = f.Enemy(new Vector2(3.2f, 0));
-                    sim.ArsenalAttackFixture(me, t); f.Tick(0.6f);
+                    UnitState clipped = f.Enemy(new Vector2(0.9f, 0.7f));
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(clipped.Health < f.Full, id + " the swing clips everything in its arc");
+                    f.Tick(0.6f);
                     Require(t.Position.x > 2.2f && pin.Health < f.Full, id + " the batted enemy flies into another");
                     break;
                 }
@@ -245,6 +248,8 @@ namespace ArcaneBrigade.Editor
                     sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
                     f.Tick(0.6f);
                     Require(t.Health == f.Full, id + " bombs wait for the plunger");
+                    t.Position = new Vector2(4.2f, 1.2f); f.Tick(0.1f);
+                    Require(sim.ArsenalProps.Where(p => p.Kind == ArsenalPropKind.ToyBomb).All(p => (p.Position - t.Position).sqrMagnitude < 0.01f), id + " the bombs stick to the enemy as it moves");
                     sim.ArsenalAttackFixture(me, t); f.Tick(0.8f);
                     Require(f.Full - t.Health >= w * 1.2f * 2.5f, id + " the plunger sets every bomb off");
                     break;
@@ -422,6 +427,29 @@ namespace ArcaneBrigade.Editor
                     Require(sim.Projectiles.Count(p => p.Arsenal == ArsenalWeapon.KunaiFan) == 1, id + " the kunai leave one at a time");
                     f.Tick(0.8f);
                     Require(f.Full - t.Health >= w * 0.6f * 3 * 0.99f && next.Health < f.Full, id + " all three fly down the line, each through one enemy");
+                    break;
+                }
+                case ArsenalWeapon.FortuneGlobe:
+                {
+                    UnitState t = f.Enemy(new Vector2(4, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.05f);
+                    var motes = sim.Projectiles.Where(p => p.Arsenal == ArsenalWeapon.FortuneGlobe).ToList();
+                    float start = motes.Count == 3 ? motes[0].Radius : 0, damage0 = motes.Count == 3 ? motes[0].Damage : 0;
+                    Require(motes.Count == 3, id + " three crystal motes wander out");
+                    f.Tick(0.6f);
+                    Require(motes.Any(m => sim.Projectiles.Contains(m) && m.Radius > start + 0.05f && m.Damage > damage0 * 1.2f) || t.Health < f.Full, id + " the motes grow as they fly");
+                    f.Tick(1f);
+                    Require(t.Health < f.Full, id + " the motes reach the target");
+                    break;
+                }
+                case ArsenalWeapon.TopiaryShears:
+                {
+                    UnitState t = f.Enemy(new Vector2(1.2f, 0)), tough = f.Enemy(new Vector2(1.3f, 0.6f));
+                    sim.ArsenalAttackFixture(me, t); float first = f.Full - t.Health; f.Tick(0.2f);
+                    Require(first > 0 && f.Full - t.Health > first * 1.9f, id + " two snips down the line");
+                    float before = tough.Health;
+                    sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
+                    Require(before - tough.Health >= w * 1.5f * 0.99f, id + " the third snip trims the toughest enemy");
                     break;
                 }
                 case ArsenalWeapon.BareKnuckles:

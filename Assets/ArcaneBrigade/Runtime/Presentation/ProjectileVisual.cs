@@ -94,6 +94,7 @@ namespace ArcaneBrigade
             bool magic = hostile || !arrow && (state.Element == DamageElement.Arcane || state.Element == DamageElement.Ember);
             bool authored = painted != null || bodyFragment || MechanicInk.IsInk(body.sprite) || state.Sprite != null && (state.Sprite.texture.name == "DreamProjectiles_v1" || state.Sprite.texture.name == "CarnivalProjectiles_v1");
             halo.enabled = core.enabled = magic && !authored && (hostile || EffectDensity.CosmeticProjectile(state.Id));
+            if (!hostile) halo.enabled = false; // no round glow disc behind our shots (17/10/2026); enemy shots keep theirs for reading
             if (state.Weapon != null && (state.Weapon.Family == ExpandedWeapon.Fish || state.Weapon.Mechanic == CarnivalWeapon.SatelliteDisc)) halo.enabled = core.enabled = false;
             float width = hostile ? (state.VisualWidth > 0 ? state.VisualWidth : 0.23f) : Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
             if (hostile && body.sprite != null && painted == null)

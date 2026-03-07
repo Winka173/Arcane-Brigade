@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: TalismanIngot
   Kind: 2
   Sprite: {fileID: 21300000, guid: 509aee2c01a374c4a9c65078c3378e66, type: 3}
-  Damage: 6
+  Damage: 3.96
   Range: 4.5
   Cooldown: 0.5
   Windup: 0.1

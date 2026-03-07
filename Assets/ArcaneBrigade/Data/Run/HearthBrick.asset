@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: HearthBrick
   Kind: 2
   Sprite: {fileID: 21300000, guid: f6fb6405b2674744784e2ee78bea6c0b, type: 3}
-  Damage: 14
+  Damage: 26.6
   Range: 4.2
   Cooldown: 1.35
   Windup: 0.3

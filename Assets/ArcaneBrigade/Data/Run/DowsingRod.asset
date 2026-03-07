@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: DowsingRod
   Kind: 2
   Sprite: {fileID: 21300000, guid: 7db317087577b5140a5e8efef14752a9, type: 3}
-  Damage: 11
+  Damage: 18.7
   Range: 5.5
   Cooldown: 1.05
   Windup: 0.2

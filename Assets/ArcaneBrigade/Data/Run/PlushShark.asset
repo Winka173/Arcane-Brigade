@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: PlushShark
   Kind: 2
   Sprite: {fileID: 21300000, guid: 6d24b3fa6e5f6014189021da1796e053, type: 3}
-  Damage: 13
+  Damage: 29.51
   Range: 5.5
   Cooldown: 1.45
   Windup: 0.3

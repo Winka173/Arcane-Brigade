@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: SquirtTrio
   Kind: 2
   Sprite: {fileID: 21300000, guid: bb5eb52c9468f9840bb93e5841c94f0d, type: 3}
-  Damage: 9
+  Damage: 16.199999
   Range: 6
   Cooldown: 0.85
   Windup: 0.14

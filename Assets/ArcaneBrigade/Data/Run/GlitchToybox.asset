@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: GlitchToybox
   Kind: 2
   Sprite: {fileID: 21300000, guid: d5f97ec0ff91d1143b1efd135601c692, type: 3}
-  Damage: 12
+  Damage: 39
   Range: 4.5
   Cooldown: 1
   Windup: 0.2

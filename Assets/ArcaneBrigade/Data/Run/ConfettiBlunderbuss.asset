@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: ConfettiBlunderbuss
   Kind: 2
   Sprite: {fileID: 21300000, guid: a153044c8b7768c4499d0f543139d586, type: 3}
-  Damage: 16
+  Damage: 32.16
   Range: 3.2
   Cooldown: 1.25
   Windup: 0.2

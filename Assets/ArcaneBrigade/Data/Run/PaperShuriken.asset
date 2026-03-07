@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: PaperShuriken
   Kind: 2
   Sprite: {fileID: 21300000, guid: 5954c9d71bd07694d96cd65effa5c559, type: 3}
-  Damage: 9
+  Damage: 14.49
   Range: 5
   Cooldown: 0.95
   Windup: 0.16

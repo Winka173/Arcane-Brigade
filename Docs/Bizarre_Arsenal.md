@@ -9,7 +9,7 @@ Sources: research notes in the session scratchpad (`bb/`, `bb2/`): Fandom wikite
 
 ---
 
-## 1. New weapons (24 + 8 from pass 3 + 3 own takes + 6 from pass 4 = 41)
+## 1. New weapons (24 + 8 from pass 3 + 3 own takes + 6 from pass 4 + 2 own takes = 43)
 
 Numbers are tier-1 values; tier 2/3 follow the usual `CompanionTierScaling`. W = weapon damage. "Hero" = the playable character who carries it (§2). All are `ArsenalWeapon` mechanics resolved in `Runtime/Core/ArsenalCombat.cs`.
 
@@ -77,7 +77,14 @@ Pass 4 scanned 40 new videos (30 YouTube, 10 Bilibili; English, Japanese, Korean
 | 40 | KunaiFan | three fanned black kunai with red-wrapped grips (Orange Hood, orange robot) | projectile | The three kunai leave one after another (0.12 s apart) down the same line, 60% W each, each through one enemy. | Black kunai with wine cloth and tassels. |
 | 41 | BareKnuckles | no weapon, just fists (猛?王): fast, very low damage, crits explode nearby | melee | Very fast short punches (0.38 s). A critical punch also pops the air just ahead (r 0.8, 120% W). | Cream cloth hand-wraps; a cream-and-teal air-pop ring and jab star. |
 
-Possible but not added: the Little Witch's crystal ball (it may only be the existing purple orb staff's shots), and the Camo Shroom's black-and-red "pruning shears" (most likely the kunai fan). Also clarified by pass 4 (already covered): the air hammer, plunger, signpost (360° sweep), the cyan double-ended spear, Guan Dao, golden trident, thrown shark, claymore, pirate hook, the white and black staffs, bamboo vase, sound-ring gun, hunting rifle, pink octopus, bomb, cannon (splits 1 into 4), detonator, rose bouquet, horn, triple water pistol, striped drill.
+### Our own takes on pass 4's two unconfirmed items (2 more, 43 total)
+| # | Id | Item in the footage | Kind | Mechanic | Look |
+|---|---|---|---|---|---|
+| 42 | FortuneGlobe | the Little Witch's crystal ball | projectile | Three crystal motes wander out in a loose fan (45% W each, through two enemies); they sway as they fly and grow wider, then harder (+30% at 0.5 s and again at 1 s). | A fortune-teller's globe on a brass claw stand; violet motes trailing little stars. |
+| 43 | TopiaryShears | the Camo Shroom's black-and-red "pruning shears" | melee | Two quick snips down a short line ahead (60% each, 0.12 s apart); every third snip also trims the toughest enemy in reach (150%). | Long iron topiary shears with wine handles; two inked blades closing to a glint, a few leaves. |
+
+### Balance (18/10/2026)
+Measured with the build-balance weapon fixture (one companion carrying the weapon, no hero damage, no story party, 25 s of a real wave) over three seeds, tiers 1-3 and waves 5/15 (`Editor/ArsenalBalanceProbe.cs`; `PreviewExports/BuildBalance/Arsenal*`). Each Arsenal weapon's damage is compared per seed/tier/wave with the median of the older weapons of its kind and summarised by the geometric mean. Damage multipliers live in `ArsenalSpecs.Tuning` (capped at 3.5x). Mechanic fixes from the measurements: the HomeRunBat swing clips everything in its arc (it only hit one enemy), DetonatorBox bombs stick to the enemy they were planted on, CherryFuseBomb's fuse is 0.45 s, PopperSticks land around the target, FirecrackerPinwheel and BuzzerBlock plant just short of the target. Also clarified by pass 4 (already covered): the air hammer, plunger, signpost (360° sweep), the cyan double-ended spear, Guan Dao, golden trident, thrown shark, claymore, pirate hook, the white and black staffs, bamboo vase, sound-ring gun, hunting rifle, pink octopus, bomb, cannon (splits 1 into 4), detonator, rose bouquet, horn, triple water pistol, striped drill.
 
 ## 2. One weapon per playable character (31, all different)
 

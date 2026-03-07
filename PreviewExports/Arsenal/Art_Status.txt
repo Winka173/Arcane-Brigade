@@ -38,6 +38,8 @@ LIVE HearthBrick
 LIVE VerdictGavel
 LIVE TalismanIngot
 LIVE KunaiFan
+WAITING FortuneGlobe: FortuneGlobe_Held, GlobeMote
+WAITING TopiaryShears: TopiaryShears_Held
 LIVE BareKnuckles
 FRAME PAINTED Uncommon
 FRAME PAINTED Rare

@@ -83,10 +83,6 @@ MonoBehaviour:
   - Name: CorkRifle_Held
     Frames:
     - {fileID: 21300000, guid: fc5aff3e274f3e045b80cc06bdcb5cc3, type: 3}
-  - Name: CottonPop
-    Frames:
-    - {fileID: 21300000, guid: 8b79c8059c431f74683a5f26894f494a, type: 3}
-    - {fileID: 21300000, guid: 73bd705fadbe7e745a6195663153c517, type: 3}
   - Name: DetonatorBox_Held
     Frames:
     - {fileID: 21300000, guid: 5910148b8dcba634496d1381a4de3386, type: 3}
@@ -120,15 +116,9 @@ MonoBehaviour:
   - Name: FlySwatter_Held
     Frames:
     - {fileID: 21300000, guid: faeafbd2f8cee1347a901f1557e757bb, type: 3}
-  - Name: GlassShards
-    Frames:
-    - {fileID: 21300000, guid: e1f8ab5cb4ef01846ae483aedbfe89e4, type: 3}
   - Name: GlitchToybox_Held
     Frames:
     - {fileID: 21300000, guid: d5f97ec0ff91d1143b1efd135601c692, type: 3}
-  - Name: GoldLeafArc
-    Frames:
-    - {fileID: 21300000, guid: c1339d6acd567cc468e88e0bbb5083a5, type: 3}
   - Name: GrabberClaw_Held
     Frames:
     - {fileID: 21300000, guid: 1a7818de97563fd49ac0923542ae07a8, type: 3}
@@ -147,9 +137,6 @@ MonoBehaviour:
   - Name: HomeRunText
     Frames:
     - {fileID: 21300000, guid: f1bf0598458fe714b9da39edfb181506, type: 3}
-  - Name: InkPool
-    Frames:
-    - {fileID: 21300000, guid: cd13a92d6bb3b374ab4736298488c35e, type: 3}
   - Name: InkyOctopus_Held
     Frames:
     - {fileID: 21300000, guid: 6e26eda9027b42849bb4e18458234ab2, type: 3}
@@ -159,17 +146,9 @@ MonoBehaviour:
   - Name: KunaiShot
     Frames:
     - {fileID: 21300000, guid: 8d4fe271275fd07489dc6a3b36a518c5, type: 3}
-  - Name: LanternEmber
-    Frames:
-    - {fileID: 21300000, guid: cc929e7fbbe993c43829facca5813b4e, type: 3}
   - Name: LeekBaton_Held
     Frames:
     - {fileID: 21300000, guid: e4fc69c54959c0849a7bfb5cb1b5353f, type: 3}
-  - Name: PaperPetal
-    Frames:
-    - {fileID: 21300000, guid: 8307477e292d7d542aec60da49cdd1bc, type: 3}
-    - {fileID: 21300000, guid: 5550e41751c9582428404cd9bf99bd66, type: 3}
-    - {fileID: 21300000, guid: 4198fb855fa2a4342b251d184187c714, type: 3}
   - Name: PaperShuriken_Held
     Frames:
     - {fileID: 21300000, guid: 5954c9d71bd07694d96cd65effa5c559, type: 3}
@@ -204,11 +183,6 @@ MonoBehaviour:
   - Name: PlushShark_Held
     Frames:
     - {fileID: 21300000, guid: 6d24b3fa6e5f6014189021da1796e053, type: 3}
-  - Name: PopperBurst
-    Frames:
-    - {fileID: 21300000, guid: f73fa17f3e7beda4eadd99cb06b98c6d, type: 3}
-    - {fileID: 21300000, guid: 5e70d6005545660408a04a6b58a861e0, type: 3}
-    - {fileID: 21300000, guid: c612b3549eba9f140b482d6f36bca87d, type: 3}
   - Name: PopperStick
     Frames:
     - {fileID: 21300000, guid: 14da05ff9268860429a7ce450e99eccc, type: 3}
@@ -234,9 +208,6 @@ MonoBehaviour:
   - Name: SoundFin
     Frames:
     - {fileID: 21300000, guid: f6781c8f484b7394eaa34976478b8912, type: 3}
-  - Name: SpiralCrack
-    Frames:
-    - {fileID: 21300000, guid: cc360b70f1c2a5f4e9c047f91e8bf980, type: 3}
   - Name: SquirtTrio_Held
     Frames:
     - {fileID: 21300000, guid: bb5eb52c9468f9840bb93e5841c94f0d, type: 3}

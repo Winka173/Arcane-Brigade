@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: CatcherMitt
   Kind: 2
   Sprite: {fileID: 21300000, guid: bda1bda9e02d59f429f149319fc3b33e, type: 3}
-  Damage: 11
+  Damage: 31.24
   Range: 5
   Cooldown: 1.1
   Windup: 0.22

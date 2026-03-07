@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: FlySwatter
   Kind: 1
   Sprite: {fileID: 21300000, guid: faeafbd2f8cee1347a901f1557e757bb, type: 3}
-  Damage: 12
+  Damage: 15.960001
   Range: 1.4
   Cooldown: 0.9
   Windup: 0.2

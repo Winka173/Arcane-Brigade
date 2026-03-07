@@ -1,4 +1,4 @@
-PASS 41 distinct weapons
+PASS 43 distinct weapons
 PASS a weapon is only in the catalog with its art
 PASS every hero carries a different weapon now
 PASS every hero's own weapon is different
@@ -94,6 +94,7 @@ PASS ink moment Zap is layered all through its life (10 pieces at least)
 PASS ink moment Spark is layered all through its life (6 pieces at least)
 PASS ink moment HomeRun is layered all through its life (14 pieces at least)
 PASS ink moment Glitch is layered all through its life (6 pieces at least)
+PASS ink moment Snip is layered all through its life (6 pieces at least)
 PASS ink room pieces draw (pool 27, all 50)
 PASS CherryFuseBomb the bomb is still in the air
 PASS CherryFuseBomb bursts where it landed and hits beside the target
@@ -109,6 +110,7 @@ PASS BambooVase never strikes the enemy right behind the wielder
 PASS RoseBouquet petals left along the path
 PASS RoseBouquet the petal ribbon hurts what stands in it
 PASS RoseBouquet never strikes the enemy right behind the wielder
+PASS HomeRunBat the swing clips everything in its arc
 PASS HomeRunBat the batted enemy flies into another
 PASS HomeRunBat never strikes the enemy right behind the wielder
 PASS CandyDrill pierces four, then drills in
@@ -142,6 +144,7 @@ PASS PlungerPopper never strikes the enemy right behind the wielder
 PASS SignpostSlammer the third swing plants a slowing sign
 PASS SignpostSlammer never strikes the enemy right behind the wielder
 PASS DetonatorBox bombs wait for the plunger
+PASS DetonatorBox the bombs stick to the enemy as it moves
 PASS DetonatorBox the plunger sets every bomb off
 PASS DetonatorBox never strikes the enemy right behind the wielder
 PASS FirecrackerPinwheel the pinwheel lands within its throw and waits
@@ -195,6 +198,13 @@ PASS TalismanIngot never strikes the enemy right behind the wielder
 PASS KunaiFan the kunai leave one at a time
 PASS KunaiFan all three fly down the line, each through one enemy
 PASS KunaiFan never strikes the enemy right behind the wielder
+PASS FortuneGlobe three crystal motes wander out
+PASS FortuneGlobe the motes grow as they fly
+PASS FortuneGlobe the motes reach the target
+PASS FortuneGlobe never strikes the enemy right behind the wielder
+PASS TopiaryShears two snips down the line
+PASS TopiaryShears the third snip trims the toughest enemy
+PASS TopiaryShears never strikes the enemy right behind the wielder
 PASS BareKnuckles punches reach only up close
 PASS BareKnuckles a critical punch pops the air ahead
 PASS BareKnuckles never strikes the enemy right behind the wielder

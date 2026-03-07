@@ -255,7 +255,7 @@ namespace ArcaneBrigade
                     if (!boss && value.Faction == Faction.Enemy && (value.Critical || value.Value > 0.6f)) gainScale = 1.25f; // a killing blow with room to spare lands louder
                     break;
                 case CombatEventKind.Detonation:
-                    id = "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1.15f);
+                    id = ArsenalBurst(value.Weapon) ?? "sig.alarm.boom"; gainScale = Mathf.Clamp(value.Value * 0.45f, 0.6f, 1.15f);
                     break;
                 case CombatEventKind.Pickup:
                     id = value.Loot == LootKind.Egg ? "loot.egg" : value.Loot == LootKind.Heart ? "loot.heart" : value.Loot == LootKind.Flare ? "ui.cutin.showstopper" : value.Loot == LootKind.Prism ? "up.rarity.gold" : value.Loot == LootKind.Bell ? "sig.bell" : "loot.coin.pickup";
@@ -273,7 +273,8 @@ namespace ArcaneBrigade
                         id = value.Weapon.Signature == SignatureWeapon.Bell ? "sig.bell" : value.Weapon.Signature == SignatureWeapon.Stamp ? "sig.stamp" : value.Weapon.Signature == SignatureWeapon.Umbrella ? "sig.umbrella" : null;
                     break;
                 case CombatEventKind.Proc:
-                    id = "up.chain";
+                    // an Arsenal catch or shock has its own sound: the mitt's thwap, the buzzer's zap
+                    id = value.Weapon != null && value.Weapon.Arsenal == ArsenalWeapon.CatcherMitt ? "cmb.hit.fabric" : value.Weapon != null && value.Weapon.Arsenal == ArsenalWeapon.BuzzerBlock ? "fx.field.zipper" : "up.chain";
                     break;
                 case CombatEventKind.ProjectileReturn: id = value.Weapon != null && value.Weapon.Mechanic == CarnivalWeapon.YoYo ? "wpn.yoyo.return" : "wpn.boomerang.return"; break;
                 case CombatEventKind.ProjectilePierce: id = "wpn.pierce"; break;
@@ -318,6 +319,43 @@ namespace ArcaneBrigade
             return Get(id) == null ? null : id;
         }
 
+        /// <summary>Each Bizarre Arsenal weapon's own attack sound from the library (null: the motion's usual cue).</summary>
+        private static string ArsenalFire(ArsenalWeapon weapon) => weapon switch
+        {
+            ArsenalWeapon.CherryFuseBomb or ArsenalWeapon.PopperSticks or ArsenalWeapon.BambooVase or ArsenalWeapon.FizzBottle or ArsenalWeapon.HearthBrick => "wpn.launcher",
+            ArsenalWeapon.DreamRacket or ArsenalWeapon.BalloonBuddy => "wpn.bounce",
+            ArsenalWeapon.RoseBouquet or ArsenalWeapon.LeekBaton or ArsenalWeapon.CatcherMitt => "cmb.swing.whip",
+            ArsenalWeapon.HomeRunBat or ArsenalWeapon.DrumstickClub or ArsenalWeapon.SignpostSlammer or ArsenalWeapon.WindupWrench => "cmb.swing.hammer",
+            ArsenalWeapon.CandyDrill or ArsenalWeapon.SaucerBlaster => "wpn.pierce",
+            ArsenalWeapon.InkyOctopus => "cmb.hit.fabric",
+            ArsenalWeapon.GrabberClaw => "wpn.magnet.pull",
+            ArsenalWeapon.DragonLanternGlaive => "cmb.swing.spear",
+            ArsenalWeapon.TwinMoonStaff => "wpn.boomerang.fly",
+            ArsenalWeapon.PlushShark or ArsenalWeapon.PlungerPopper => "wpn.yoyo.throw",
+            ArsenalWeapon.PaperShuriken or ArsenalWeapon.KunaiFan => "wpn.needle.volley",
+            ArsenalWeapon.SquirtTrio => "wpn.split",
+            ArsenalWeapon.GlitchToybox => "wpn.projector.cast",
+            ArsenalWeapon.FanfareHorn => "sig.musicbox",
+            ArsenalWeapon.CorkRifle or ArsenalWeapon.GumballGatling => "wpn.gun.pop",
+            ArsenalWeapon.FlySwatter => "sig.stamp",
+            ArsenalWeapon.PawMitten => "cmb.swing.scissors",
+            ArsenalWeapon.VerdictGavel => "cmb.windup",
+            ArsenalWeapon.TalismanIngot => "loot.coin.drop",
+            ArsenalWeapon.FortuneGlobe => "wpn.cast.arcane",
+            _ => null
+        };
+        /// <summary>The sound of an Arsenal weapon's own burst (null: the usual boom).</summary>
+        private static string ArsenalBurst(WeaponDefinition weapon) => weapon == null ? null : weapon.Arsenal switch
+        {
+            ArsenalWeapon.BalloonBuddy => "shop.item.pop",
+            ArsenalWeapon.HearthBrick => "enemy.big.step",
+            ArsenalWeapon.VerdictGavel => "sig.hammer",
+            ArsenalWeapon.TalismanIngot => "fx.reaction.arcane",
+            ArsenalWeapon.BareKnuckles => "cmb.crit",
+            ArsenalWeapon.FizzBottle => "fx.reaction.steam",
+            _ => null
+        };
+
         private static string FireId(CombatEvent value, bool enemy)
         {
             WeaponDefinition weapon = value.Weapon;
@@ -330,6 +368,8 @@ namespace ArcaneBrigade
                 if (value.Subject != null && value.Subject.Definition != null && value.Subject.Definition.Shot == HostileShot.Weave) return "enemy.shot.spiral";
                 return "enemy.spit.fire";
             }
+            string arsenal = ArsenalFire(weapon.Arsenal);
+            if (arsenal != null) return arsenal;
             switch (weapon.Mechanic)
             {
                 case CarnivalWeapon.YoYo: return "wpn.yoyo.throw";

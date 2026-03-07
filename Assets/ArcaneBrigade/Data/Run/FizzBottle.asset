@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: FizzBottle
   Kind: 2
   Sprite: {fileID: 21300000, guid: fcc22e8455d310c498bbdb7215b95c24, type: 3}
-  Damage: 11
+  Damage: 28.599998
   Range: 4.5
   Cooldown: 1.25
   Windup: 0.24

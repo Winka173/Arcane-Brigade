@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: GumballGatling
   Kind: 2
   Sprite: {fileID: 21300000, guid: bb953a1d762aad94cbea3d0b09caf0b5, type: 3}
-  Damage: 4
+  Damage: 8.44
   Range: 5
   Cooldown: 0.32
   Windup: 0.08

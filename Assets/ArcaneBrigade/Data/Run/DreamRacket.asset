@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: DreamRacket
   Kind: 2
   Sprite: {fileID: 21300000, guid: 8a5418d23d56da8449a1d333aeee4ac6, type: 3}
-  Damage: 12
+  Damage: 25.560001
   Range: 5
   Cooldown: 1
   Windup: 0.2

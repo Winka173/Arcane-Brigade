@@ -17,7 +17,7 @@ MonoBehaviour:
   Id: DragonLanternGlaive
   Kind: 1
   Sprite: {fileID: 21300000, guid: 05149b9b94739a146b6516990d4ee69f, type: 3}
-  Damage: 11
+  Damage: 18.26
   Range: 2
   Cooldown: 0.95
   Windup: 0.22
