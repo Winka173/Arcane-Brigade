@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             "Clementie" => "Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; contact damage scales with your movement speed. Team attack speed -25%.",
             "Card Queen" => "Start each wave with 12 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.",
             "Bloom Shell" => "Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 HP, +5% speed and +0.15 armor.",
-            "Belle" => "All ordinary companion themes may appear. Enemy health +35%, enemy count +20%. Rerolls cost 1 less gold.",
+            "Belle" => "All ordinary companion themes may appear. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.",
             "Wise" => "Shops offer memory companions. Buying one absorbs its support trait instead of adding a body. Each memory makes enemies 4% tougher. Your positive personal modifiers are 25% stronger.",
             "Nicole" => "Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh adds 1 income and 1% luck for this run.",
             "Anby" => "You use your equipped weapon normally. Your contact damage is doubled. Dodging triggers a short forward lightning barrage. Start with +20% dodge.",

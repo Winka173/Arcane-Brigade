@@ -1,0 +1,7 @@
+id,hero,approach,build,difficulty,seed,outcome,last_wave,kills,seconds,allies,items,gold_spent,recruit_spent,item_spent,reroll_spent,hero_damage,ally_damage,boss_kills
+LoneJelly/0/Buff/0/77138,LoneJelly,0,Buff,0,77138,DEFEAT,10,5456,387.647,0,36,4378,0,4360,18,204314.8,138978.2,1
+LoneJelly/0/Buff/5/77138,LoneJelly,0,Buff,5,77138,DEFEAT,5,445,148.649,0,10,441,0,436,5,20806.68,10217.92,0
+LoneJelly/0/Recruit/0/77138,LoneJelly,0,Recruit,0,77138,DEFEAT,8,2145,274.648,0,20,2180,569,1600,11,53671.12,46074.61,1
+LoneJelly/0/Recruit/5/77138,LoneJelly,0,Recruit,5,77138,DEFEAT,5,447,152.499,0,8,509,175,328,6,20888.31,10303.61,0
+LoneJelly/0/Hybrid/0/77138,LoneJelly,0,Hybrid,0,77138,DEFEAT,8,2145,274.648,0,20,2180,569,1600,11,53671.12,46074.61,1
+LoneJelly/0/Hybrid/5/77138,LoneJelly,0,Hybrid,5,77138,DEFEAT,5,447,152.499,0,8,509,175,328,6,20888.31,10303.61,0

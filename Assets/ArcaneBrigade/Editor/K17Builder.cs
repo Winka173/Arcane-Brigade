@@ -106,7 +106,7 @@ namespace ArcaneBrigade.Editor
                 UnitDefinition unit = Asset(ids[index], source);
                 unit.Id = ids[index]; unit.DisplayName = names[index]; unit.HeroMechanic = (HeroMechanic)((int)HeroMechanic.RootedOracle + index);
                 unit.Description = K11HeroRules.Describe(unit.HeroMechanic); unit.Weapon = catalog.Weapon(weapons[index]);
-                unit.Health = index == 2 ? 60 : index == 0 ? 180 : index == 1 ? 145 : 120; unit.Speed = speeds[index];
+                unit.Health = index == 2 ? 60 : index == 0 ? 180 : index == 1 ? 225 : 120; unit.Speed = speeds[index];
                 unit.BodyHeight = 1.08f; unit.Radius = 0.25f; unit.IsBoss = false; unit.SpecialRecruit = false;
                 unit.Rarity = ItemRarity.Common; unit.Passive = PassiveKind.None; unit.UnlockWave = 0;
                 unit.RecruitThemes = index == 2 ? catalog.Bonds.Select(bond => bond.Id).ToArray() : source.Tags;
@@ -115,7 +115,12 @@ namespace ArcaneBrigade.Editor
                 float[] strengths = { 0.15f, 4, 0.15f, 4, -0.05f, 0.1f, 5 };
                 unit.ChampionModifiers = index == 2 ? new[] { new StatModifier { Effect = ItemEffect.Luck, Scope = ModifierScope.Run, Value = 0.6f }, new StatModifier { Effect = ItemEffect.Crit, Scope = ModifierScope.Champion, Value = 0.2f }, new StatModifier { Effect = ItemEffect.ShopRarity, Scope = ModifierScope.Run, Value = 0.15f } } : new[] { new StatModifier { Effect = traits[index], Scope = RunModifierRules.DefaultScope(traits[index]), Value = strengths[index] } };
                 if (index == 0 || index == 1)
-                    unit.ChampionModifiers = unit.ChampionModifiers.Concat(new[] { new StatModifier { Effect = ItemEffect.Armor, Scope = ModifierScope.Champion, Value = index == 0 ? 1.5f : 0.3f } }).ToArray();
+                    unit.ChampionModifiers = unit.ChampionModifiers.Concat(new[] { new StatModifier { Effect = ItemEffect.Armor, Scope = ModifierScope.Champion, Value = index == 0 ? 1.5f : 0.6f } }).ToArray();
+                if (index == 1)
+                    unit.ChampionModifiers = unit.ChampionModifiers.Concat(new[] {
+                        new StatModifier { Effect = ItemEffect.RangedDamage, Scope = ModifierScope.Team, Value = 4 },
+                        new StatModifier { Effect = ItemEffect.Heal, Scope = ModifierScope.Champion, Value = 3 }
+                    }).ToArray();
                 EditorUtility.SetDirty(unit); heroes.Add(unit);
             }
             catalog.Champions = heroes.ToArray(); EditorUtility.SetDirty(catalog);

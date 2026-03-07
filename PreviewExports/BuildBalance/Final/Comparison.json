@@ -1,0 +1,89 @@
+{
+  "matched_cases": 36,
+  "builds": {
+    "Buff": {
+      "before": {
+        "n": 12,
+        "wins": 2,
+        "deaths": 10,
+        "unresolved": 0,
+        "median_last_wave": 5.0,
+        "median_kills": 565.0,
+        "median_allies": 1.0,
+        "median_items": 15.5,
+        "median_recruit_spent": 0.0,
+        "median_item_spent": 584.0,
+        "median_reroll_spent": 18.0
+      },
+      "after": {
+        "n": 12,
+        "wins": 4,
+        "deaths": 8,
+        "unresolved": 0,
+        "median_last_wave": 10.0,
+        "median_kills": 5105.5,
+        "median_allies": 1.0,
+        "median_items": 59.0,
+        "median_recruit_spent": 0.0,
+        "median_item_spent": 4820.5,
+        "median_reroll_spent": 96.5
+      }
+    },
+    "Recruit": {
+      "before": {
+        "n": 12,
+        "wins": 4,
+        "deaths": 7,
+        "unresolved": 1,
+        "median_last_wave": 17.0,
+        "median_kills": 34188.0,
+        "median_allies": 15.0,
+        "median_items": 99.0,
+        "median_recruit_spent": 6535.5,
+        "median_item_spent": 26704.0,
+        "median_reroll_spent": 88.0
+      },
+      "after": {
+        "n": 12,
+        "wins": 9,
+        "deaths": 3,
+        "unresolved": 0,
+        "median_last_wave": 20.0,
+        "median_kills": 44429.0,
+        "median_allies": 14.0,
+        "median_items": 128.5,
+        "median_recruit_spent": 11775.5,
+        "median_item_spent": 35950.5,
+        "median_reroll_spent": 138.0
+      }
+    },
+    "Hybrid": {
+      "before": {
+        "n": 12,
+        "wins": 5,
+        "deaths": 6,
+        "unresolved": 1,
+        "median_last_wave": 18.5,
+        "median_kills": 37046.0,
+        "median_allies": 13.0,
+        "median_items": 100.0,
+        "median_recruit_spent": 9486.0,
+        "median_item_spent": 27885.5,
+        "median_reroll_spent": 84.5
+      },
+      "after": {
+        "n": 12,
+        "wins": 8,
+        "deaths": 4,
+        "unresolved": 0,
+        "median_last_wave": 20.0,
+        "median_kills": 43350.5,
+        "median_allies": 15.0,
+        "median_items": 118.0,
+        "median_recruit_spent": 12061.5,
+        "median_item_spent": 34828.0,
+        "median_reroll_spent": 140.5
+      }
+    }
+  }
+}

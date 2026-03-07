@@ -63,7 +63,11 @@ namespace ArcaneBrigade
                 case "Sir Purrcival": if (hero && effect == ItemEffect.Dodge) value += .35f; if (hero && effect == ItemEffect.HealthCorrection) value -= .35f; break;
                 case "Clementie": if (hero && effect == ItemEffect.HealthCorrection) value += .5f; if (hero && effect == ItemEffect.MoveSpeed) value += .2f; if ((hero || ally) && effect == ItemEffect.AttackSpeed) value -= .25f; break;
                 case "Bloom Shell": if (hero && effect == ItemEffect.Health) value += 10; if ((hero || ally) && (effect == ItemEffect.RangedDamage || effect == ItemEffect.MeleeDamage)) value += 2; if (hero && effect == ItemEffect.Armor) value += .15f; if ((hero || ally) && effect == ItemEffect.MoveSpeed) value += .05f; break;
-                case "Belle": if (effect == ItemEffect.EnemyHealth) value += .35f; if (effect == ItemEffect.EnemyCount) value += .2f; break;
+                case "Belle":
+                    // The broad pool needs time to form a build under the recruitment quotas.
+                    if (effect == ItemEffect.EnemyHealth) value += Mathf.Lerp(.12f, .35f, OctoberBalance.Late(State.Wave));
+                    if (effect == ItemEffect.EnemyCount) value += Mathf.Lerp(.06f, .2f, OctoberBalance.Late(State.Wave));
+                    break;
                 case "Wise": if (effect == ItemEffect.EnemyHealth) value += .04f * (State.AbsorbedSkills?.Count ?? 0); break;
                 case "Nicole": if (effect == ItemEffect.Discount) value += .2f; if (effect == ItemEffect.Income) value += State.OctoberRefreshes; if (effect == ItemEffect.Luck) value += Mathf.Min(1, State.OctoberRefreshes * .01f); break;
                 case "Anby": if (hero && effect == ItemEffect.Dodge) value += .2f; if (hero && effect == ItemEffect.CollisionDamage) value += 12; break;

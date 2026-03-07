@@ -1,0 +1,233 @@
+{
+  "matched_cases": 98,
+  "focused": {
+    "n": 98,
+    "wins": 41,
+    "deaths": 54,
+    "unresolved": 3,
+    "median_last_wave": 17.5,
+    "median_kills": 29384.5,
+    "median_allies": 4.0,
+    "median_items": 114.0,
+    "median_recruit_spent": 252.0,
+    "median_item_spent": 31478.0,
+    "median_reroll_spent": 230.5
+  },
+  "recruit": {
+    "n": 98,
+    "wins": 55,
+    "deaths": 41,
+    "unresolved": 2,
+    "median_last_wave": 20.0,
+    "median_kills": 41715.5,
+    "median_allies": 17.0,
+    "median_items": 101.5,
+    "median_recruit_spent": 11415.5,
+    "median_item_spent": 33553.0,
+    "median_reroll_spent": 88.0
+  },
+  "median_paired_final_wave_delta": 0.0,
+  "hero_mean_win_delta": {
+    "LanternKnight": -0.25,
+    "Postmaster": -0.125,
+    "DrowsySeer": 0.5,
+    "RootOracle": -0.375,
+    "LoneJelly": -0.125,
+    "GlassDice": -0.25,
+    "TideSinger": 0,
+    "CometRunner": -0.5,
+    "MirrorKeeper": 0,
+    "TreasureAcorn": 0,
+    "VerdantMatron": 0.5,
+    "CopperCauldron": 0.5,
+    "ChinaMarionette": 0,
+    "SoapSkater": 0.5,
+    "VelvetRegent": 0,
+    "ButtonCavalier": -0.5,
+    "NightMaw": 0,
+    "ThornTreasurer": 0,
+    "CitrusMarshal": 0,
+    "IvorySovereign": -0.5,
+    "PetalCitadel": 0,
+    "PatchworkHost": -1,
+    "ArchiveCurator": 0,
+    "PennyBroker": 0,
+    "StormFencer": 0,
+    "TinVirtuoso": -0.5,
+    "MoonProwler": 0,
+    "SupperMortar": -0.5,
+    "LanternWeaver": -0.5,
+    "HourglassStag": -0.5,
+    "RainArchivist": 0
+  },
+  "difficulties": {
+    "0": {
+      "focused": {
+        "n": 37,
+        "wins": 22,
+        "deaths": 12,
+        "unresolved": 3,
+        "median_last_wave": 20,
+        "median_kills": 41522,
+        "median_allies": 4,
+        "median_items": 135,
+        "median_recruit_spent": 315,
+        "median_item_spent": 45773,
+        "median_reroll_spent": 257
+      },
+      "recruit": {
+        "n": 37,
+        "wins": 27,
+        "deaths": 10,
+        "unresolved": 0,
+        "median_last_wave": 20,
+        "median_kills": 41887,
+        "median_allies": 21,
+        "median_items": 104,
+        "median_recruit_spent": 11921,
+        "median_item_spent": 34649,
+        "median_reroll_spent": 123
+      }
+    },
+    "1": {
+      "focused": {
+        "n": 6,
+        "wins": 1,
+        "deaths": 5,
+        "unresolved": 0,
+        "median_last_wave": 14.5,
+        "median_kills": 18813.5,
+        "median_allies": 4.0,
+        "median_items": 91.5,
+        "median_recruit_spent": 324.5,
+        "median_item_spent": 17340.0,
+        "median_reroll_spent": 182.5
+      },
+      "recruit": {
+        "n": 6,
+        "wins": 4,
+        "deaths": 1,
+        "unresolved": 1,
+        "median_last_wave": 20.0,
+        "median_kills": 42697.5,
+        "median_allies": 16.0,
+        "median_items": 116.0,
+        "median_recruit_spent": 12128.0,
+        "median_item_spent": 34626.0,
+        "median_reroll_spent": 137.5
+      }
+    },
+    "2": {
+      "focused": {
+        "n": 6,
+        "wins": 3,
+        "deaths": 3,
+        "unresolved": 0,
+        "median_last_wave": 15.0,
+        "median_kills": 24438.5,
+        "median_allies": 4.0,
+        "median_items": 109.5,
+        "median_recruit_spent": 185.0,
+        "median_item_spent": 27154.0,
+        "median_reroll_spent": 212.0
+      },
+      "recruit": {
+        "n": 6,
+        "wins": 3,
+        "deaths": 3,
+        "unresolved": 0,
+        "median_last_wave": 19.0,
+        "median_kills": 38549.0,
+        "median_allies": 16.5,
+        "median_items": 113.5,
+        "median_recruit_spent": 11046.5,
+        "median_item_spent": 32582.5,
+        "median_reroll_spent": 181.5
+      }
+    },
+    "3": {
+      "focused": {
+        "n": 6,
+        "wins": 3,
+        "deaths": 3,
+        "unresolved": 0,
+        "median_last_wave": 16.5,
+        "median_kills": 28102.0,
+        "median_allies": 4.0,
+        "median_items": 124.0,
+        "median_recruit_spent": 179.0,
+        "median_item_spent": 30114.5,
+        "median_reroll_spent": 332.0
+      },
+      "recruit": {
+        "n": 6,
+        "wins": 4,
+        "deaths": 2,
+        "unresolved": 0,
+        "median_last_wave": 20.0,
+        "median_kills": 46120.0,
+        "median_allies": 18.5,
+        "median_items": 145.0,
+        "median_recruit_spent": 11134.0,
+        "median_item_spent": 39839.0,
+        "median_reroll_spent": 149.5
+      }
+    },
+    "4": {
+      "focused": {
+        "n": 6,
+        "wins": 2,
+        "deaths": 4,
+        "unresolved": 0,
+        "median_last_wave": 13.5,
+        "median_kills": 13885.5,
+        "median_allies": 4.0,
+        "median_items": 96.5,
+        "median_recruit_spent": 235.0,
+        "median_item_spent": 15107.0,
+        "median_reroll_spent": 283.0
+      },
+      "recruit": {
+        "n": 6,
+        "wins": 4,
+        "deaths": 2,
+        "unresolved": 0,
+        "median_last_wave": 20.0,
+        "median_kills": 43969.5,
+        "median_allies": 17.0,
+        "median_items": 132.5,
+        "median_recruit_spent": 12865.0,
+        "median_item_spent": 37341.0,
+        "median_reroll_spent": 53.5
+      }
+    },
+    "5": {
+      "focused": {
+        "n": 37,
+        "wins": 10,
+        "deaths": 27,
+        "unresolved": 0,
+        "median_last_wave": 10,
+        "median_kills": 4735,
+        "median_allies": 4,
+        "median_items": 39,
+        "median_recruit_spent": 170,
+        "median_item_spent": 4341,
+        "median_reroll_spent": 44
+      },
+      "recruit": {
+        "n": 37,
+        "wins": 13,
+        "deaths": 23,
+        "unresolved": 1,
+        "median_last_wave": 10,
+        "median_kills": 5193,
+        "median_allies": 12,
+        "median_items": 37,
+        "median_recruit_spent": 1073,
+        "median_item_spent": 4187,
+        "median_reroll_spent": 32
+      }
+    }
+  }
+}

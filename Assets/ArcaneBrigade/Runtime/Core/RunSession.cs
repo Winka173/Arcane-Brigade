@@ -458,7 +458,7 @@ namespace ArcaneBrigade
             if (!companion) unit.CollisionDamage = Mathf.Max(3, source.CollisionDamage);
             unit.PassiveStrength = (source.Passive == PassiveKind.Scavenge ? Mathf.Round(source.PassiveStrength) : source.PassiveStrength) * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1);
             unit.Weapon.Damage *= DamageMultiplier(source, tier, companion);
-            unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, .12f), .25f, 2.2f);
+            unit.Weapon.Cooldown /= Mathf.Clamp(1f + OctoberBalance.Soften(Bonus(ItemEffect.AttackSpeed, target) + (companion ? Bonus(ItemEffect.CompanionAttackSpeed) : 0f), .6f, PlayerBuildBalance.AttackSpeedSlope(companion)), .25f, PlayerBuildBalance.AttackSpeedCap(companion));
             unit.Weapon.Windup = Mathf.Min(unit.Weapon.Windup, unit.Weapon.Cooldown * 0.35f);
             unit.Weapon.Recovery = Mathf.Min(unit.Weapon.Recovery, unit.Weapon.Cooldown * 0.4f);
             unit.Weapon.ProjectileCount += Mathf.FloorToInt(Bonus(ItemEffect.Projectiles, target));
@@ -483,9 +483,9 @@ namespace ArcaneBrigade
 
         public float DamageMultiplier(UnitDefinition unit, int tier, bool companion)
         {
-            float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), tier - 1) * Mathf.Max(0.1f, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, .3f));
+            float value = Mathf.Pow(Mathf.Min(2.7f, catalog.TierDamageMultiplier), tier - 1) * Mathf.Max(0.1f, 1f + OctoberBalance.Soften(Bonus(ItemEffect.Damage, companion ? ModifierScope.Companions : ModifierScope.Champion) + Bonus(companion ? ItemEffect.CompanionDamage : ItemEffect.ChampionDamage), 1.2f, PlayerBuildBalance.DamageSlope(companion)));
             if (unit.Passive == PassiveKind.Rally) value *= 1f + unit.PassiveStrength * Mathf.Pow(catalog.TierSupportMultiplier, tier - 1) * 0.01f * State.Roster.Count;
-            return value * (companion ? CarnivalBalance.RecruitDamage(unit.Rarity) : 1);
+            return value * (companion ? CarnivalBalance.RecruitDamage(unit.Rarity) : PlayerBuildBalance.HeroPower(unit.Id));
         }
 
         /// <summary>The Keeper guards the gate at wave 5 with the strength of an ordinary wave-5 boss; the Chair Porter and the
@@ -835,6 +835,7 @@ namespace ArcaneBrigade
             var items = new List<ItemDefinition>();
             foreach (ItemDefinition item in catalog.Items) if (Eligible(item, ShopPool.Gold)) items.Add(item);
             if (items.Count == 0 && units.Count == 0) throw new InvalidOperationException("No eligible shop offers");
+            var foundation = State.Wave <= 5 ? items.FindAll(item => ShopFoundationRules.Useful(catalog.Unit(State.ChampionId), item)) : new List<ItemDefinition>();
             for (int index = 0; index < catalog.ShopSlots; index++)
             {
                 bool newRecruit = Next(ref State.ShopRandom, 1000000) < NewRecruitChance * 1000000;
@@ -843,11 +844,12 @@ namespace ArcaneBrigade
                 int drought = 0; foreach (UnitDefinition unit in mergeReady) drought = Mathf.Max(drought, MergeMisses(unit.Id));
                 if (mergeReady.Count > 0 && (drought >= 4 || Next(ref State.ShopRandom, 100) < 85 + drought * 3)) available = drought >= 4 ? mergeReady.FindAll(unit => MergeMisses(unit.Id) == drought) : mergeReady;
                 bool recruit = available.Count > 0 && (items.Count == 0 || index == 0 && Next(ref State.ShopRandom, 1000000) < CompanionOfferChance * 1000000);
-                int choice = recruit ? RecruitChoice(available) : WeightedItem(items);
+                var itemChoices = index == 1 && foundation.Count > 0 ? foundation : items;
+                int choice = recruit ? RecruitChoice(available) : WeightedItem(itemChoices);
                 int offerTier = recruit ? OctoberOfferTier(available[choice].Id) : 1;
-                int basePrice = Mathf.CeilToInt((recruit ? available[choice].Price * VeteranPrice(available[choice].Id) * (offerTier == 3 ? 3.5f : offerTier == 2 ? 1.8f : 1) : items[choice].Price * 0.85f * (1 + (int)items[choice].Rarity * 0.4f)) * StagePriceFactor);
+                int basePrice = Mathf.CeilToInt((recruit ? available[choice].Price * VeteranPrice(available[choice].Id) * (offerTier == 3 ? 3.5f : offerTier == 2 ? 1.8f : 1) : itemChoices[choice].Price * 0.85f * (1 + (int)itemChoices[choice].Rarity * 0.4f)) * StagePriceFactor);
                 float discount = Bonus(ItemEffect.Discount) + Bonus(recruit ? ItemEffect.RecruitDiscount : ItemEffect.RelicDiscount);
-                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : items[choice].Id, Tier = offerTier, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
+                State.Offers.Add(new ShopOffer { Token = ++State.NextOffer, Kind = recruit ? OfferKind.Companion : OfferKind.Item, Id = recruit ? available[choice].Id : itemChoices[choice].Id, Tier = offerTier, Price = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1f - Mathf.Clamp(discount, -1, 0.5f)))) });
             }
             ApplyHeroOrder();
             if (!rollSpecial) return;

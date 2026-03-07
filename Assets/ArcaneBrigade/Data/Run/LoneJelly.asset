@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 809412258, guid: d2bf904819493104784b37772b392153, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 4e25723c2b5303e48882fe5226ce76f7, type: 2}
   Weapon: {fileID: 11400000, guid: 957aab8abe6c27d479bd65d13b675866, type: 2}
-  Health: 145
+  Health: 225
   Speed: 3.4
   Radius: 0.25
   BodyHeight: 1.08
@@ -41,8 +41,8 @@ MonoBehaviour:
   - oddity
   Passive: 0
   PassiveStrength: 1
-  Description: No companions. Growing attacks and an automatic whirl. Shops sell
-    relics only.
+  Description: Travels without roster companions; absorbs purchased companions' traits.
+    Strong attacks and natural recovery support relic-focused builds.
   ReferenceHero: Capped Gallant
   ReferenceCompanion: 
   ExclusiveHero: 
@@ -53,7 +53,13 @@ MonoBehaviour:
     Value: 4
   - Effect: 11
     Scope: 1
-    Value: 0.3
+    Value: 0.6
+  - Effect: 21
+    Scope: 0
+    Value: 4
+  - Effect: 7
+    Scope: 1
+    Value: 3
   RecruitThemes:
   - oddity
   HeroMechanic: 5

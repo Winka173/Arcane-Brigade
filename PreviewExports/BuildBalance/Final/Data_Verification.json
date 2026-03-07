@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": [
+    "All supplied runner passes reached their successful completion marker",
+    "Natural: 294 unique completed samples; timeouts retained separately",
+    "Archetypes: 108 unique completed samples; timeouts retained separately",
+    "Focused: 98 unique completed samples; timeouts retained separately",
+    "FocusedSix: 98 unique completed samples; timeouts retained separately",
+    "Companions: 66 identities across three tiers and two waves",
+    "Weapons: 98 identities across three tiers and two waves",
+    "Bosses: 504 fixtures; withdrawal is not counted as a kill",
+    "Focused comparison: 98 matched hero/approach/difficulty/seed pairs",
+    "Focused-six comparison: 98 independently sampled matched pairs; four-body observations retained",
+    "Hero identities: 93 approaches, 558 on rows with 186 cached off counterfactual fights"
+  ]
+}

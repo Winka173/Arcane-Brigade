@@ -47,7 +47,7 @@ namespace ArcaneBrigade
                 HeroMechanic.ParcelExpress => "PARCEL EXPRESS: collect 6 gold to charge an automatic parcel volley; deals 70% weapon damage, minimum 4-second cooldown. Passive gold and income do not count.",
                 HeroMechanic.DreamBreath => "DREAM BREATH: stand still for 2 seconds to chill enemies within 3 units and remove up to 3 nearby hostile bullets; 7-second cooldown. Waits for nearby danger. Moving interrupts charge; grants no invulnerability.",
                 HeroMechanic.RootedOracle => "Stationary in combat. Whole-arena pickup and a slowing ward. Walks in shops.",
-                HeroMechanic.SoloMaw => "No companions. Growing attacks and an automatic whirl. Shops sell relics only.",
+                HeroMechanic.SoloMaw => "Travels without roster companions; absorbs purchased companions' traits. Strong attacks and natural recovery support relic-focused builds.",
                 HeroMechanic.GlassGambler => "Collect 6 gold to burst nearby enemies. High luck and critical chance; low health.",
                 HeroMechanic.TideCollector => "Collect 8 gold to heal 3 health and push nearby enemies back.",
                 HeroMechanic.ClockRunner => "Travel 10 units to release a slowing pulse. Moving charges it; shops do not.",

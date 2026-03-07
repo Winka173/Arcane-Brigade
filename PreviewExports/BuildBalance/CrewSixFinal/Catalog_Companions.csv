@@ -1,0 +1,67 @@
+companion,reference,rarity,price,weapon,damage,cooldown,passive
+TeapotPilgrim,Alien,Common,23,TeapotPopgun,10,0.85,HealChampion
+CandleSnail,Applehead,Uncommon,26,CrescentBow,14,0.95,ChillAura
+MailboxImp,Athlete,Common,29,MailboxLauncher,10,0.85,Scavenge
+PillowOracle,Bullhorn Warrior,Mythic,32,BellFork,11,1.15,Rally
+MushroomLibrarian,Camo Shroom,Common,35,BookPaddle,10,0.5,HealChampion
+HoodWisp,Cheer Bunny,Common,20,RuneStaff,11,1.05,None
+JellySwordsman,Chieftain,Common,20,KeyCleaver,15,0.85,None
+BrassAcorn,Clown,Common,18,SpoonSabre,12,0.65,None
+BreadCrab,Fierce Fighter,Common,21,ToastCleaver,14,0.77,HealChampion
+KettleBat,Floofy,Common,24,LollipopLance,16,0.89,Scavenge
+BookmarkGolem,Grey Mage,Rare,27,PaperFan,18,1.01,Rally
+TinTick,Hopping Zombie,Common,30,CorkscrewRapier,12,1.13,ChillAura
+SpringDuck,Intelligent Construct,Rare,18,TeabagFlail,14,0.65,None
+ButtonBeetle,Iron Swordsman,Common,21,UmbrellaHook,16,0.77,HealChampion
+StapleMole,Judge,Common,24,PizzaWheel,18,0.89,Scavenge
+SnowSpoon,Jungle Folk,Common,27,MoonScythe,12,1.01,Rally
+IceCreamOwl,Little Witch,Uncommon,30,ForkTrident,14,1.13,ChillAura
+FridgeWisp,Masked Wrestler,Common,18,MaracaHammer,16,0.65,None
+PearMoth,Matchstick Head,Uncommon,21,TapeWhip,18,0.77,HealChampion
+CitrusToad,Monkey King,Uncommon,24,ButtonBow,9,0.89,Scavenge
+RadishJester,Mummy,Common,27,LeafCrossbow,11,1.01,Rally
+SeedHedgehog,Peach,Common,30,InkPistol,13,1.13,ChillAura
+MoonJelly,Phantom,Rare,18,BubbleWand,9,0.65,None
+StarSock,Pirate,Uncommon,21,StarKazoo,11,0.77,HealChampion
+CometKite,Pointy Hat Witch,Common,24,ShellCannon,13,0.89,Scavenge
+EclipseEgg,Prince,Crimson,80,AcornSling,9,1.01,Rally
+OrbitMoth,Princess,Common,30,CrescentBoomerang,11,1.13,ChillAura
+DreamCompass,Smiley Fox,Common,18,DartCompass,13,0.65,None
+ShellPostman,Student,Common,21,LanternStaff,9,0.77,HealChampion
+CoralTeacup,TV Head,Uncommon,24,SnowGlobeOrb,11,0.89,Scavenge
+BubbleKoi,Young Lady,Common,27,RibbonHarp,13,1.01,Rally
+AnchorSnail,"Art of Food" Roshi,Uncommon,30,SpoonSabre,12,0.65,ChillAura
+SailSquid,"Bullied" Sophia,Uncommon,18,ToastCleaver,14,0.77,None
+SockCyclops,"Cars ARE My Kids" Chris,Common,21,LollipopLance,16,0.89,HealChampion
+DiceCrab,"Colorful Fantasy" Pinky,Common,24,PaperFan,18,1.01,Scavenge
+MaskPepper,"Enduring Suffering" Dorothy,Common,27,CorkscrewRapier,12,1.13,Rally
+CrayonGremlin,"Expert Nurturer" Daisy,Common,30,TeabagFlail,14,0.65,ChillAura
+MirrorNewt,"Formatting Pixie" Quentin,Rare,18,UmbrellaHook,16,0.77,None
+RibbonSpider,"GLHF" Nia,Common,21,PizzaWheel,18,0.89,HealChampion
+CoilKettle,"Leisurely Walk" Mary,Rare,26,SpringKnocker,24,1.45,HealChampion
+ThimbleMoth,"Misfortune" Emily,Rare,26,NeedleSinger,5,0.95,None
+ReelOwl,"Naming Demon" Yan,Mythic,4,DreamProjector,13,1.65,None
+RainbowTailor,"Overtime King" Philip,Rainbow,23,MoonseedOrb,20.4,1.56,None
+RainbowBell,"Pet Master" Lisa,Rainbow,23,SpringKnocker,24,1.45,None
+SecretPatchBear,,Rare,80,NeedleSinger,5,0.95,None
+SecretPaperBird,,Rare,80,TeapotPopgun,10,0.85,HealChampion
+SecretDreamLamb,,Rare,80,DreamProjector,13,1.65,None
+SaffronMechanist,"Shove Around" Bella,Rare,24,KeyCleaver,15,0.85,None
+ClockworkPiper,"Smug and Satisfied" Jake,Rare,32,KeyCleaver,15,0.85,None
+VelvetChampion,"The All-Knowing" Walter,Rare,40,KeyCleaver,15,0.85,None
+PaperInventor,"The Creator" Roger,Rare,48,KeyCleaver,15,0.85,None
+ReturnCaptain,"Triumphant Return" Daniel,Rare,24,KeyCleaver,15,0.85,None
+DoughForeman,"Quick Production" Tao,Rare,32,KeyCleaver,15,0.85,None
+IronLocomotive,"Unstoppable" Paul,Rare,40,KeyCleaver,15,0.85,None
+VioletRemnant,Vengeful Spirit,Uncommon,48,KeyCleaver,15,0.85,None
+VelvetEnchantress,Attractive Witch,Uncommon,24,KeyCleaver,15,0.85,None
+GrandSprout,Big Cabbage,Uncommon,32,KeyCleaver,15,0.85,None
+BristleBall,Domestic Spiked Ball,Uncommon,40,KeyCleaver,15,0.85,None
+PaperDevil,Evil,Uncommon,48,KeyCleaver,15,0.85,None
+BalloonMallet,Inflatable Hammer,Uncommon,24,KeyCleaver,15,0.85,None
+LittleSprout,Little Cabbage,Uncommon,32,KeyCleaver,15,0.85,None
+MonsterMarble,Monster Friend,Uncommon,40,KeyCleaver,15,0.85,None
+CarouselPony,Pony,Uncommon,48,InkPistol,13,1.13,None
+TeacupCricket,Original:TeacupCricket,Uncommon,24,KeyCleaver,15,0.85,None
+RibbonOtter,Original:RibbonOtter,Uncommon,32,KeyCleaver,15,0.85,None
+SpindleWren,Original:SpindleWren,Uncommon,40,KeyCleaver,15,0.85,None

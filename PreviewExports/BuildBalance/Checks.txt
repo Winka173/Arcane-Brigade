@@ -1,0 +1,2636 @@
+PASS Broad-pool hero gets setup time while retaining full late drawback
+PASS Useful purchasable early stock LanternKnight/77138/1/0
+PASS Paid refresh remains available LanternKnight/1/0
+PASS Useful purchasable early stock LanternKnight/77138/1/1
+PASS Paid refresh remains available LanternKnight/1/1
+PASS Useful purchasable early stock LanternKnight/77138/1/2
+PASS Paid refresh remains available LanternKnight/1/2
+PASS Useful purchasable early stock LanternKnight/77138/1/3
+PASS Useful purchasable early stock LanternKnight/77138/2/0
+PASS Paid refresh remains available LanternKnight/2/0
+PASS Useful purchasable early stock LanternKnight/77138/2/1
+PASS Paid refresh remains available LanternKnight/2/1
+PASS Useful purchasable early stock LanternKnight/77138/2/2
+PASS Paid refresh remains available LanternKnight/2/2
+PASS Useful purchasable early stock LanternKnight/77138/2/3
+PASS Useful purchasable early stock LanternKnight/77138/3/0
+PASS Paid refresh remains available LanternKnight/3/0
+PASS Useful purchasable early stock LanternKnight/77138/3/1
+PASS Paid refresh remains available LanternKnight/3/1
+PASS Useful purchasable early stock LanternKnight/77138/3/2
+PASS Paid refresh remains available LanternKnight/3/2
+PASS Useful purchasable early stock LanternKnight/77138/3/3
+PASS Useful purchasable early stock LanternKnight/77138/4/0
+PASS Paid refresh remains available LanternKnight/4/0
+PASS Useful purchasable early stock LanternKnight/77138/4/1
+PASS Paid refresh remains available LanternKnight/4/1
+PASS Useful purchasable early stock LanternKnight/77138/4/2
+PASS Paid refresh remains available LanternKnight/4/2
+PASS Useful purchasable early stock LanternKnight/77138/4/3
+PASS Useful purchasable early stock LanternKnight/77138/5/0
+PASS Paid refresh remains available LanternKnight/5/0
+PASS Useful purchasable early stock LanternKnight/77138/5/1
+PASS Paid refresh remains available LanternKnight/5/1
+PASS Useful purchasable early stock LanternKnight/77138/5/2
+PASS Paid refresh remains available LanternKnight/5/2
+PASS Useful purchasable early stock LanternKnight/77138/5/3
+PASS Useful purchasable early stock LanternKnight/161026/1/0
+PASS Paid refresh remains available LanternKnight/1/0
+PASS Useful purchasable early stock LanternKnight/161026/1/1
+PASS Paid refresh remains available LanternKnight/1/1
+PASS Useful purchasable early stock LanternKnight/161026/1/2
+PASS Paid refresh remains available LanternKnight/1/2
+PASS Useful purchasable early stock LanternKnight/161026/1/3
+PASS Useful purchasable early stock LanternKnight/161026/2/0
+PASS Paid refresh remains available LanternKnight/2/0
+PASS Useful purchasable early stock LanternKnight/161026/2/1
+PASS Paid refresh remains available LanternKnight/2/1
+PASS Useful purchasable early stock LanternKnight/161026/2/2
+PASS Paid refresh remains available LanternKnight/2/2
+PASS Useful purchasable early stock LanternKnight/161026/2/3
+PASS Useful purchasable early stock LanternKnight/161026/3/0
+PASS Paid refresh remains available LanternKnight/3/0
+PASS Useful purchasable early stock LanternKnight/161026/3/1
+PASS Paid refresh remains available LanternKnight/3/1
+PASS Useful purchasable early stock LanternKnight/161026/3/2
+PASS Paid refresh remains available LanternKnight/3/2
+PASS Useful purchasable early stock LanternKnight/161026/3/3
+PASS Useful purchasable early stock LanternKnight/161026/4/0
+PASS Paid refresh remains available LanternKnight/4/0
+PASS Useful purchasable early stock LanternKnight/161026/4/1
+PASS Paid refresh remains available LanternKnight/4/1
+PASS Useful purchasable early stock LanternKnight/161026/4/2
+PASS Paid refresh remains available LanternKnight/4/2
+PASS Useful purchasable early stock LanternKnight/161026/4/3
+PASS Useful purchasable early stock LanternKnight/161026/5/0
+PASS Paid refresh remains available LanternKnight/5/0
+PASS Useful purchasable early stock LanternKnight/161026/5/1
+PASS Paid refresh remains available LanternKnight/5/1
+PASS Useful purchasable early stock LanternKnight/161026/5/2
+PASS Paid refresh remains available LanternKnight/5/2
+PASS Useful purchasable early stock LanternKnight/161026/5/3
+PASS Useful purchasable early stock Postmaster/77138/1/0
+PASS Paid refresh remains available Postmaster/1/0
+PASS Useful purchasable early stock Postmaster/77138/1/1
+PASS Paid refresh remains available Postmaster/1/1
+PASS Useful purchasable early stock Postmaster/77138/1/2
+PASS Paid refresh remains available Postmaster/1/2
+PASS Useful purchasable early stock Postmaster/77138/1/3
+PASS Useful purchasable early stock Postmaster/77138/2/0
+PASS Paid refresh remains available Postmaster/2/0
+PASS Useful purchasable early stock Postmaster/77138/2/1
+PASS Paid refresh remains available Postmaster/2/1
+PASS Useful purchasable early stock Postmaster/77138/2/2
+PASS Paid refresh remains available Postmaster/2/2
+PASS Useful purchasable early stock Postmaster/77138/2/3
+PASS Useful purchasable early stock Postmaster/77138/3/0
+PASS Paid refresh remains available Postmaster/3/0
+PASS Useful purchasable early stock Postmaster/77138/3/1
+PASS Paid refresh remains available Postmaster/3/1
+PASS Useful purchasable early stock Postmaster/77138/3/2
+PASS Paid refresh remains available Postmaster/3/2
+PASS Useful purchasable early stock Postmaster/77138/3/3
+PASS Useful purchasable early stock Postmaster/77138/4/0
+PASS Paid refresh remains available Postmaster/4/0
+PASS Useful purchasable early stock Postmaster/77138/4/1
+PASS Paid refresh remains available Postmaster/4/1
+PASS Useful purchasable early stock Postmaster/77138/4/2
+PASS Paid refresh remains available Postmaster/4/2
+PASS Useful purchasable early stock Postmaster/77138/4/3
+PASS Useful purchasable early stock Postmaster/77138/5/0
+PASS Paid refresh remains available Postmaster/5/0
+PASS Useful purchasable early stock Postmaster/77138/5/1
+PASS Paid refresh remains available Postmaster/5/1
+PASS Useful purchasable early stock Postmaster/77138/5/2
+PASS Paid refresh remains available Postmaster/5/2
+PASS Useful purchasable early stock Postmaster/77138/5/3
+PASS Useful purchasable early stock Postmaster/161026/1/0
+PASS Paid refresh remains available Postmaster/1/0
+PASS Useful purchasable early stock Postmaster/161026/1/1
+PASS Paid refresh remains available Postmaster/1/1
+PASS Useful purchasable early stock Postmaster/161026/1/2
+PASS Paid refresh remains available Postmaster/1/2
+PASS Useful purchasable early stock Postmaster/161026/1/3
+PASS Useful purchasable early stock Postmaster/161026/2/0
+PASS Paid refresh remains available Postmaster/2/0
+PASS Useful purchasable early stock Postmaster/161026/2/1
+PASS Paid refresh remains available Postmaster/2/1
+PASS Useful purchasable early stock Postmaster/161026/2/2
+PASS Paid refresh remains available Postmaster/2/2
+PASS Useful purchasable early stock Postmaster/161026/2/3
+PASS Useful purchasable early stock Postmaster/161026/3/0
+PASS Paid refresh remains available Postmaster/3/0
+PASS Useful purchasable early stock Postmaster/161026/3/1
+PASS Paid refresh remains available Postmaster/3/1
+PASS Useful purchasable early stock Postmaster/161026/3/2
+PASS Paid refresh remains available Postmaster/3/2
+PASS Useful purchasable early stock Postmaster/161026/3/3
+PASS Useful purchasable early stock Postmaster/161026/4/0
+PASS Paid refresh remains available Postmaster/4/0
+PASS Useful purchasable early stock Postmaster/161026/4/1
+PASS Paid refresh remains available Postmaster/4/1
+PASS Useful purchasable early stock Postmaster/161026/4/2
+PASS Paid refresh remains available Postmaster/4/2
+PASS Useful purchasable early stock Postmaster/161026/4/3
+PASS Useful purchasable early stock Postmaster/161026/5/0
+PASS Paid refresh remains available Postmaster/5/0
+PASS Useful purchasable early stock Postmaster/161026/5/1
+PASS Paid refresh remains available Postmaster/5/1
+PASS Useful purchasable early stock Postmaster/161026/5/2
+PASS Paid refresh remains available Postmaster/5/2
+PASS Useful purchasable early stock Postmaster/161026/5/3
+PASS Useful purchasable early stock DrowsySeer/77138/1/0
+PASS Paid refresh remains available DrowsySeer/1/0
+PASS Useful purchasable early stock DrowsySeer/77138/1/1
+PASS Paid refresh remains available DrowsySeer/1/1
+PASS Useful purchasable early stock DrowsySeer/77138/1/2
+PASS Paid refresh remains available DrowsySeer/1/2
+PASS Useful purchasable early stock DrowsySeer/77138/1/3
+PASS Useful purchasable early stock DrowsySeer/77138/2/0
+PASS Paid refresh remains available DrowsySeer/2/0
+PASS Useful purchasable early stock DrowsySeer/77138/2/1
+PASS Paid refresh remains available DrowsySeer/2/1
+PASS Useful purchasable early stock DrowsySeer/77138/2/2
+PASS Paid refresh remains available DrowsySeer/2/2
+PASS Useful purchasable early stock DrowsySeer/77138/2/3
+PASS Useful purchasable early stock DrowsySeer/77138/3/0
+PASS Paid refresh remains available DrowsySeer/3/0
+PASS Useful purchasable early stock DrowsySeer/77138/3/1
+PASS Paid refresh remains available DrowsySeer/3/1
+PASS Useful purchasable early stock DrowsySeer/77138/3/2
+PASS Paid refresh remains available DrowsySeer/3/2
+PASS Useful purchasable early stock DrowsySeer/77138/3/3
+PASS Useful purchasable early stock DrowsySeer/77138/4/0
+PASS Paid refresh remains available DrowsySeer/4/0
+PASS Useful purchasable early stock DrowsySeer/77138/4/1
+PASS Paid refresh remains available DrowsySeer/4/1
+PASS Useful purchasable early stock DrowsySeer/77138/4/2
+PASS Paid refresh remains available DrowsySeer/4/2
+PASS Useful purchasable early stock DrowsySeer/77138/4/3
+PASS Useful purchasable early stock DrowsySeer/77138/5/0
+PASS Paid refresh remains available DrowsySeer/5/0
+PASS Useful purchasable early stock DrowsySeer/77138/5/1
+PASS Paid refresh remains available DrowsySeer/5/1
+PASS Useful purchasable early stock DrowsySeer/77138/5/2
+PASS Paid refresh remains available DrowsySeer/5/2
+PASS Useful purchasable early stock DrowsySeer/77138/5/3
+PASS Useful purchasable early stock DrowsySeer/161026/1/0
+PASS Paid refresh remains available DrowsySeer/1/0
+PASS Useful purchasable early stock DrowsySeer/161026/1/1
+PASS Paid refresh remains available DrowsySeer/1/1
+PASS Useful purchasable early stock DrowsySeer/161026/1/2
+PASS Paid refresh remains available DrowsySeer/1/2
+PASS Useful purchasable early stock DrowsySeer/161026/1/3
+PASS Useful purchasable early stock DrowsySeer/161026/2/0
+PASS Paid refresh remains available DrowsySeer/2/0
+PASS Useful purchasable early stock DrowsySeer/161026/2/1
+PASS Paid refresh remains available DrowsySeer/2/1
+PASS Useful purchasable early stock DrowsySeer/161026/2/2
+PASS Paid refresh remains available DrowsySeer/2/2
+PASS Useful purchasable early stock DrowsySeer/161026/2/3
+PASS Useful purchasable early stock DrowsySeer/161026/3/0
+PASS Paid refresh remains available DrowsySeer/3/0
+PASS Useful purchasable early stock DrowsySeer/161026/3/1
+PASS Paid refresh remains available DrowsySeer/3/1
+PASS Useful purchasable early stock DrowsySeer/161026/3/2
+PASS Paid refresh remains available DrowsySeer/3/2
+PASS Useful purchasable early stock DrowsySeer/161026/3/3
+PASS Useful purchasable early stock DrowsySeer/161026/4/0
+PASS Paid refresh remains available DrowsySeer/4/0
+PASS Useful purchasable early stock DrowsySeer/161026/4/1
+PASS Paid refresh remains available DrowsySeer/4/1
+PASS Useful purchasable early stock DrowsySeer/161026/4/2
+PASS Paid refresh remains available DrowsySeer/4/2
+PASS Useful purchasable early stock DrowsySeer/161026/4/3
+PASS Useful purchasable early stock DrowsySeer/161026/5/0
+PASS Paid refresh remains available DrowsySeer/5/0
+PASS Useful purchasable early stock DrowsySeer/161026/5/1
+PASS Paid refresh remains available DrowsySeer/5/1
+PASS Useful purchasable early stock DrowsySeer/161026/5/2
+PASS Paid refresh remains available DrowsySeer/5/2
+PASS Useful purchasable early stock DrowsySeer/161026/5/3
+PASS Useful purchasable early stock RootOracle/77138/1/0
+PASS Paid refresh remains available RootOracle/1/0
+PASS Useful purchasable early stock RootOracle/77138/1/1
+PASS Paid refresh remains available RootOracle/1/1
+PASS Useful purchasable early stock RootOracle/77138/1/2
+PASS Paid refresh remains available RootOracle/1/2
+PASS Useful purchasable early stock RootOracle/77138/1/3
+PASS Useful purchasable early stock RootOracle/77138/2/0
+PASS Paid refresh remains available RootOracle/2/0
+PASS Useful purchasable early stock RootOracle/77138/2/1
+PASS Paid refresh remains available RootOracle/2/1
+PASS Useful purchasable early stock RootOracle/77138/2/2
+PASS Paid refresh remains available RootOracle/2/2
+PASS Useful purchasable early stock RootOracle/77138/2/3
+PASS Useful purchasable early stock RootOracle/77138/3/0
+PASS Paid refresh remains available RootOracle/3/0
+PASS Useful purchasable early stock RootOracle/77138/3/1
+PASS Paid refresh remains available RootOracle/3/1
+PASS Useful purchasable early stock RootOracle/77138/3/2
+PASS Paid refresh remains available RootOracle/3/2
+PASS Useful purchasable early stock RootOracle/77138/3/3
+PASS Useful purchasable early stock RootOracle/77138/4/0
+PASS Paid refresh remains available RootOracle/4/0
+PASS Useful purchasable early stock RootOracle/77138/4/1
+PASS Paid refresh remains available RootOracle/4/1
+PASS Useful purchasable early stock RootOracle/77138/4/2
+PASS Paid refresh remains available RootOracle/4/2
+PASS Useful purchasable early stock RootOracle/77138/4/3
+PASS Useful purchasable early stock RootOracle/77138/5/0
+PASS Paid refresh remains available RootOracle/5/0
+PASS Useful purchasable early stock RootOracle/77138/5/1
+PASS Paid refresh remains available RootOracle/5/1
+PASS Useful purchasable early stock RootOracle/77138/5/2
+PASS Paid refresh remains available RootOracle/5/2
+PASS Useful purchasable early stock RootOracle/77138/5/3
+PASS Useful purchasable early stock RootOracle/161026/1/0
+PASS Paid refresh remains available RootOracle/1/0
+PASS Useful purchasable early stock RootOracle/161026/1/1
+PASS Paid refresh remains available RootOracle/1/1
+PASS Useful purchasable early stock RootOracle/161026/1/2
+PASS Paid refresh remains available RootOracle/1/2
+PASS Useful purchasable early stock RootOracle/161026/1/3
+PASS Useful purchasable early stock RootOracle/161026/2/0
+PASS Paid refresh remains available RootOracle/2/0
+PASS Useful purchasable early stock RootOracle/161026/2/1
+PASS Paid refresh remains available RootOracle/2/1
+PASS Useful purchasable early stock RootOracle/161026/2/2
+PASS Paid refresh remains available RootOracle/2/2
+PASS Useful purchasable early stock RootOracle/161026/2/3
+PASS Useful purchasable early stock RootOracle/161026/3/0
+PASS Paid refresh remains available RootOracle/3/0
+PASS Useful purchasable early stock RootOracle/161026/3/1
+PASS Paid refresh remains available RootOracle/3/1
+PASS Useful purchasable early stock RootOracle/161026/3/2
+PASS Paid refresh remains available RootOracle/3/2
+PASS Useful purchasable early stock RootOracle/161026/3/3
+PASS Useful purchasable early stock RootOracle/161026/4/0
+PASS Paid refresh remains available RootOracle/4/0
+PASS Useful purchasable early stock RootOracle/161026/4/1
+PASS Paid refresh remains available RootOracle/4/1
+PASS Useful purchasable early stock RootOracle/161026/4/2
+PASS Paid refresh remains available RootOracle/4/2
+PASS Useful purchasable early stock RootOracle/161026/4/3
+PASS Useful purchasable early stock RootOracle/161026/5/0
+PASS Paid refresh remains available RootOracle/5/0
+PASS Useful purchasable early stock RootOracle/161026/5/1
+PASS Paid refresh remains available RootOracle/5/1
+PASS Useful purchasable early stock RootOracle/161026/5/2
+PASS Paid refresh remains available RootOracle/5/2
+PASS Useful purchasable early stock RootOracle/161026/5/3
+PASS Useful purchasable early stock LoneJelly/77138/1/0
+PASS Paid refresh remains available LoneJelly/1/0
+PASS Useful purchasable early stock LoneJelly/77138/1/1
+PASS Paid refresh remains available LoneJelly/1/1
+PASS Useful purchasable early stock LoneJelly/77138/1/2
+PASS Paid refresh remains available LoneJelly/1/2
+PASS Useful purchasable early stock LoneJelly/77138/1/3
+PASS Useful purchasable early stock LoneJelly/77138/2/0
+PASS Paid refresh remains available LoneJelly/2/0
+PASS Useful purchasable early stock LoneJelly/77138/2/1
+PASS Paid refresh remains available LoneJelly/2/1
+PASS Useful purchasable early stock LoneJelly/77138/2/2
+PASS Paid refresh remains available LoneJelly/2/2
+PASS Useful purchasable early stock LoneJelly/77138/2/3
+PASS Useful purchasable early stock LoneJelly/77138/3/0
+PASS Paid refresh remains available LoneJelly/3/0
+PASS Useful purchasable early stock LoneJelly/77138/3/1
+PASS Paid refresh remains available LoneJelly/3/1
+PASS Useful purchasable early stock LoneJelly/77138/3/2
+PASS Paid refresh remains available LoneJelly/3/2
+PASS Useful purchasable early stock LoneJelly/77138/3/3
+PASS Useful purchasable early stock LoneJelly/77138/4/0
+PASS Paid refresh remains available LoneJelly/4/0
+PASS Useful purchasable early stock LoneJelly/77138/4/1
+PASS Paid refresh remains available LoneJelly/4/1
+PASS Useful purchasable early stock LoneJelly/77138/4/2
+PASS Paid refresh remains available LoneJelly/4/2
+PASS Useful purchasable early stock LoneJelly/77138/4/3
+PASS Useful purchasable early stock LoneJelly/77138/5/0
+PASS Paid refresh remains available LoneJelly/5/0
+PASS Useful purchasable early stock LoneJelly/77138/5/1
+PASS Paid refresh remains available LoneJelly/5/1
+PASS Useful purchasable early stock LoneJelly/77138/5/2
+PASS Paid refresh remains available LoneJelly/5/2
+PASS Useful purchasable early stock LoneJelly/77138/5/3
+PASS Useful purchasable early stock LoneJelly/161026/1/0
+PASS Paid refresh remains available LoneJelly/1/0
+PASS Useful purchasable early stock LoneJelly/161026/1/1
+PASS Paid refresh remains available LoneJelly/1/1
+PASS Useful purchasable early stock LoneJelly/161026/1/2
+PASS Paid refresh remains available LoneJelly/1/2
+PASS Useful purchasable early stock LoneJelly/161026/1/3
+PASS Useful purchasable early stock LoneJelly/161026/2/0
+PASS Paid refresh remains available LoneJelly/2/0
+PASS Useful purchasable early stock LoneJelly/161026/2/1
+PASS Paid refresh remains available LoneJelly/2/1
+PASS Useful purchasable early stock LoneJelly/161026/2/2
+PASS Paid refresh remains available LoneJelly/2/2
+PASS Useful purchasable early stock LoneJelly/161026/2/3
+PASS Useful purchasable early stock LoneJelly/161026/3/0
+PASS Paid refresh remains available LoneJelly/3/0
+PASS Useful purchasable early stock LoneJelly/161026/3/1
+PASS Paid refresh remains available LoneJelly/3/1
+PASS Useful purchasable early stock LoneJelly/161026/3/2
+PASS Paid refresh remains available LoneJelly/3/2
+PASS Useful purchasable early stock LoneJelly/161026/3/3
+PASS Useful purchasable early stock LoneJelly/161026/4/0
+PASS Paid refresh remains available LoneJelly/4/0
+PASS Useful purchasable early stock LoneJelly/161026/4/1
+PASS Paid refresh remains available LoneJelly/4/1
+PASS Useful purchasable early stock LoneJelly/161026/4/2
+PASS Paid refresh remains available LoneJelly/4/2
+PASS Useful purchasable early stock LoneJelly/161026/4/3
+PASS Useful purchasable early stock LoneJelly/161026/5/0
+PASS Paid refresh remains available LoneJelly/5/0
+PASS Useful purchasable early stock LoneJelly/161026/5/1
+PASS Paid refresh remains available LoneJelly/5/1
+PASS Useful purchasable early stock LoneJelly/161026/5/2
+PASS Paid refresh remains available LoneJelly/5/2
+PASS Useful purchasable early stock LoneJelly/161026/5/3
+PASS Useful purchasable early stock GlassDice/77138/1/0
+PASS Paid refresh remains available GlassDice/1/0
+PASS Useful purchasable early stock GlassDice/77138/1/1
+PASS Paid refresh remains available GlassDice/1/1
+PASS Useful purchasable early stock GlassDice/77138/1/2
+PASS Paid refresh remains available GlassDice/1/2
+PASS Useful purchasable early stock GlassDice/77138/1/3
+PASS Useful purchasable early stock GlassDice/77138/2/0
+PASS Paid refresh remains available GlassDice/2/0
+PASS Useful purchasable early stock GlassDice/77138/2/1
+PASS Paid refresh remains available GlassDice/2/1
+PASS Useful purchasable early stock GlassDice/77138/2/2
+PASS Paid refresh remains available GlassDice/2/2
+PASS Useful purchasable early stock GlassDice/77138/2/3
+PASS Useful purchasable early stock GlassDice/77138/3/0
+PASS Paid refresh remains available GlassDice/3/0
+PASS Useful purchasable early stock GlassDice/77138/3/1
+PASS Paid refresh remains available GlassDice/3/1
+PASS Useful purchasable early stock GlassDice/77138/3/2
+PASS Paid refresh remains available GlassDice/3/2
+PASS Useful purchasable early stock GlassDice/77138/3/3
+PASS Useful purchasable early stock GlassDice/77138/4/0
+PASS Paid refresh remains available GlassDice/4/0
+PASS Useful purchasable early stock GlassDice/77138/4/1
+PASS Paid refresh remains available GlassDice/4/1
+PASS Useful purchasable early stock GlassDice/77138/4/2
+PASS Paid refresh remains available GlassDice/4/2
+PASS Useful purchasable early stock GlassDice/77138/4/3
+PASS Useful purchasable early stock GlassDice/77138/5/0
+PASS Paid refresh remains available GlassDice/5/0
+PASS Useful purchasable early stock GlassDice/77138/5/1
+PASS Paid refresh remains available GlassDice/5/1
+PASS Useful purchasable early stock GlassDice/77138/5/2
+PASS Paid refresh remains available GlassDice/5/2
+PASS Useful purchasable early stock GlassDice/77138/5/3
+PASS Useful purchasable early stock GlassDice/161026/1/0
+PASS Paid refresh remains available GlassDice/1/0
+PASS Useful purchasable early stock GlassDice/161026/1/1
+PASS Paid refresh remains available GlassDice/1/1
+PASS Useful purchasable early stock GlassDice/161026/1/2
+PASS Paid refresh remains available GlassDice/1/2
+PASS Useful purchasable early stock GlassDice/161026/1/3
+PASS Useful purchasable early stock GlassDice/161026/2/0
+PASS Paid refresh remains available GlassDice/2/0
+PASS Useful purchasable early stock GlassDice/161026/2/1
+PASS Paid refresh remains available GlassDice/2/1
+PASS Useful purchasable early stock GlassDice/161026/2/2
+PASS Paid refresh remains available GlassDice/2/2
+PASS Useful purchasable early stock GlassDice/161026/2/3
+PASS Useful purchasable early stock GlassDice/161026/3/0
+PASS Paid refresh remains available GlassDice/3/0
+PASS Useful purchasable early stock GlassDice/161026/3/1
+PASS Paid refresh remains available GlassDice/3/1
+PASS Useful purchasable early stock GlassDice/161026/3/2
+PASS Paid refresh remains available GlassDice/3/2
+PASS Useful purchasable early stock GlassDice/161026/3/3
+PASS Useful purchasable early stock GlassDice/161026/4/0
+PASS Paid refresh remains available GlassDice/4/0
+PASS Useful purchasable early stock GlassDice/161026/4/1
+PASS Paid refresh remains available GlassDice/4/1
+PASS Useful purchasable early stock GlassDice/161026/4/2
+PASS Paid refresh remains available GlassDice/4/2
+PASS Useful purchasable early stock GlassDice/161026/4/3
+PASS Useful purchasable early stock GlassDice/161026/5/0
+PASS Paid refresh remains available GlassDice/5/0
+PASS Useful purchasable early stock GlassDice/161026/5/1
+PASS Paid refresh remains available GlassDice/5/1
+PASS Useful purchasable early stock GlassDice/161026/5/2
+PASS Paid refresh remains available GlassDice/5/2
+PASS Useful purchasable early stock GlassDice/161026/5/3
+PASS Useful purchasable early stock TideSinger/77138/1/0
+PASS Paid refresh remains available TideSinger/1/0
+PASS Useful purchasable early stock TideSinger/77138/1/1
+PASS Paid refresh remains available TideSinger/1/1
+PASS Useful purchasable early stock TideSinger/77138/1/2
+PASS Paid refresh remains available TideSinger/1/2
+PASS Useful purchasable early stock TideSinger/77138/1/3
+PASS Useful purchasable early stock TideSinger/77138/2/0
+PASS Paid refresh remains available TideSinger/2/0
+PASS Useful purchasable early stock TideSinger/77138/2/1
+PASS Paid refresh remains available TideSinger/2/1
+PASS Useful purchasable early stock TideSinger/77138/2/2
+PASS Paid refresh remains available TideSinger/2/2
+PASS Useful purchasable early stock TideSinger/77138/2/3
+PASS Useful purchasable early stock TideSinger/77138/3/0
+PASS Paid refresh remains available TideSinger/3/0
+PASS Useful purchasable early stock TideSinger/77138/3/1
+PASS Paid refresh remains available TideSinger/3/1
+PASS Useful purchasable early stock TideSinger/77138/3/2
+PASS Paid refresh remains available TideSinger/3/2
+PASS Useful purchasable early stock TideSinger/77138/3/3
+PASS Useful purchasable early stock TideSinger/77138/4/0
+PASS Paid refresh remains available TideSinger/4/0
+PASS Useful purchasable early stock TideSinger/77138/4/1
+PASS Paid refresh remains available TideSinger/4/1
+PASS Useful purchasable early stock TideSinger/77138/4/2
+PASS Paid refresh remains available TideSinger/4/2
+PASS Useful purchasable early stock TideSinger/77138/4/3
+PASS Useful purchasable early stock TideSinger/77138/5/0
+PASS Paid refresh remains available TideSinger/5/0
+PASS Useful purchasable early stock TideSinger/77138/5/1
+PASS Paid refresh remains available TideSinger/5/1
+PASS Useful purchasable early stock TideSinger/77138/5/2
+PASS Paid refresh remains available TideSinger/5/2
+PASS Useful purchasable early stock TideSinger/77138/5/3
+PASS Useful purchasable early stock TideSinger/161026/1/0
+PASS Paid refresh remains available TideSinger/1/0
+PASS Useful purchasable early stock TideSinger/161026/1/1
+PASS Paid refresh remains available TideSinger/1/1
+PASS Useful purchasable early stock TideSinger/161026/1/2
+PASS Paid refresh remains available TideSinger/1/2
+PASS Useful purchasable early stock TideSinger/161026/1/3
+PASS Useful purchasable early stock TideSinger/161026/2/0
+PASS Paid refresh remains available TideSinger/2/0
+PASS Useful purchasable early stock TideSinger/161026/2/1
+PASS Paid refresh remains available TideSinger/2/1
+PASS Useful purchasable early stock TideSinger/161026/2/2
+PASS Paid refresh remains available TideSinger/2/2
+PASS Useful purchasable early stock TideSinger/161026/2/3
+PASS Useful purchasable early stock TideSinger/161026/3/0
+PASS Paid refresh remains available TideSinger/3/0
+PASS Useful purchasable early stock TideSinger/161026/3/1
+PASS Paid refresh remains available TideSinger/3/1
+PASS Useful purchasable early stock TideSinger/161026/3/2
+PASS Paid refresh remains available TideSinger/3/2
+PASS Useful purchasable early stock TideSinger/161026/3/3
+PASS Useful purchasable early stock TideSinger/161026/4/0
+PASS Paid refresh remains available TideSinger/4/0
+PASS Useful purchasable early stock TideSinger/161026/4/1
+PASS Paid refresh remains available TideSinger/4/1
+PASS Useful purchasable early stock TideSinger/161026/4/2
+PASS Paid refresh remains available TideSinger/4/2
+PASS Useful purchasable early stock TideSinger/161026/4/3
+PASS Useful purchasable early stock TideSinger/161026/5/0
+PASS Paid refresh remains available TideSinger/5/0
+PASS Useful purchasable early stock TideSinger/161026/5/1
+PASS Paid refresh remains available TideSinger/5/1
+PASS Useful purchasable early stock TideSinger/161026/5/2
+PASS Paid refresh remains available TideSinger/5/2
+PASS Useful purchasable early stock TideSinger/161026/5/3
+PASS Useful purchasable early stock CometRunner/77138/1/0
+PASS Paid refresh remains available CometRunner/1/0
+PASS Useful purchasable early stock CometRunner/77138/1/1
+PASS Paid refresh remains available CometRunner/1/1
+PASS Useful purchasable early stock CometRunner/77138/1/2
+PASS Paid refresh remains available CometRunner/1/2
+PASS Useful purchasable early stock CometRunner/77138/1/3
+PASS Useful purchasable early stock CometRunner/77138/2/0
+PASS Paid refresh remains available CometRunner/2/0
+PASS Useful purchasable early stock CometRunner/77138/2/1
+PASS Paid refresh remains available CometRunner/2/1
+PASS Useful purchasable early stock CometRunner/77138/2/2
+PASS Paid refresh remains available CometRunner/2/2
+PASS Useful purchasable early stock CometRunner/77138/2/3
+PASS Useful purchasable early stock CometRunner/77138/3/0
+PASS Paid refresh remains available CometRunner/3/0
+PASS Useful purchasable early stock CometRunner/77138/3/1
+PASS Paid refresh remains available CometRunner/3/1
+PASS Useful purchasable early stock CometRunner/77138/3/2
+PASS Paid refresh remains available CometRunner/3/2
+PASS Useful purchasable early stock CometRunner/77138/3/3
+PASS Useful purchasable early stock CometRunner/77138/4/0
+PASS Paid refresh remains available CometRunner/4/0
+PASS Useful purchasable early stock CometRunner/77138/4/1
+PASS Paid refresh remains available CometRunner/4/1
+PASS Useful purchasable early stock CometRunner/77138/4/2
+PASS Paid refresh remains available CometRunner/4/2
+PASS Useful purchasable early stock CometRunner/77138/4/3
+PASS Useful purchasable early stock CometRunner/77138/5/0
+PASS Paid refresh remains available CometRunner/5/0
+PASS Useful purchasable early stock CometRunner/77138/5/1
+PASS Paid refresh remains available CometRunner/5/1
+PASS Useful purchasable early stock CometRunner/77138/5/2
+PASS Paid refresh remains available CometRunner/5/2
+PASS Useful purchasable early stock CometRunner/77138/5/3
+PASS Useful purchasable early stock CometRunner/161026/1/0
+PASS Paid refresh remains available CometRunner/1/0
+PASS Useful purchasable early stock CometRunner/161026/1/1
+PASS Paid refresh remains available CometRunner/1/1
+PASS Useful purchasable early stock CometRunner/161026/1/2
+PASS Paid refresh remains available CometRunner/1/2
+PASS Useful purchasable early stock CometRunner/161026/1/3
+PASS Useful purchasable early stock CometRunner/161026/2/0
+PASS Paid refresh remains available CometRunner/2/0
+PASS Useful purchasable early stock CometRunner/161026/2/1
+PASS Paid refresh remains available CometRunner/2/1
+PASS Useful purchasable early stock CometRunner/161026/2/2
+PASS Paid refresh remains available CometRunner/2/2
+PASS Useful purchasable early stock CometRunner/161026/2/3
+PASS Useful purchasable early stock CometRunner/161026/3/0
+PASS Paid refresh remains available CometRunner/3/0
+PASS Useful purchasable early stock CometRunner/161026/3/1
+PASS Paid refresh remains available CometRunner/3/1
+PASS Useful purchasable early stock CometRunner/161026/3/2
+PASS Paid refresh remains available CometRunner/3/2
+PASS Useful purchasable early stock CometRunner/161026/3/3
+PASS Useful purchasable early stock CometRunner/161026/4/0
+PASS Paid refresh remains available CometRunner/4/0
+PASS Useful purchasable early stock CometRunner/161026/4/1
+PASS Paid refresh remains available CometRunner/4/1
+PASS Useful purchasable early stock CometRunner/161026/4/2
+PASS Paid refresh remains available CometRunner/4/2
+PASS Useful purchasable early stock CometRunner/161026/4/3
+PASS Useful purchasable early stock CometRunner/161026/5/0
+PASS Paid refresh remains available CometRunner/5/0
+PASS Useful purchasable early stock CometRunner/161026/5/1
+PASS Paid refresh remains available CometRunner/5/1
+PASS Useful purchasable early stock CometRunner/161026/5/2
+PASS Paid refresh remains available CometRunner/5/2
+PASS Useful purchasable early stock CometRunner/161026/5/3
+PASS Useful purchasable early stock MirrorKeeper/77138/1/0
+PASS Paid refresh remains available MirrorKeeper/1/0
+PASS Useful purchasable early stock MirrorKeeper/77138/1/1
+PASS Paid refresh remains available MirrorKeeper/1/1
+PASS Useful purchasable early stock MirrorKeeper/77138/1/2
+PASS Paid refresh remains available MirrorKeeper/1/2
+PASS Useful purchasable early stock MirrorKeeper/77138/1/3
+PASS Useful purchasable early stock MirrorKeeper/77138/2/0
+PASS Paid refresh remains available MirrorKeeper/2/0
+PASS Useful purchasable early stock MirrorKeeper/77138/2/1
+PASS Paid refresh remains available MirrorKeeper/2/1
+PASS Useful purchasable early stock MirrorKeeper/77138/2/2
+PASS Paid refresh remains available MirrorKeeper/2/2
+PASS Useful purchasable early stock MirrorKeeper/77138/2/3
+PASS Useful purchasable early stock MirrorKeeper/77138/3/0
+PASS Paid refresh remains available MirrorKeeper/3/0
+PASS Useful purchasable early stock MirrorKeeper/77138/3/1
+PASS Paid refresh remains available MirrorKeeper/3/1
+PASS Useful purchasable early stock MirrorKeeper/77138/3/2
+PASS Paid refresh remains available MirrorKeeper/3/2
+PASS Useful purchasable early stock MirrorKeeper/77138/3/3
+PASS Useful purchasable early stock MirrorKeeper/77138/4/0
+PASS Paid refresh remains available MirrorKeeper/4/0
+PASS Useful purchasable early stock MirrorKeeper/77138/4/1
+PASS Paid refresh remains available MirrorKeeper/4/1
+PASS Useful purchasable early stock MirrorKeeper/77138/4/2
+PASS Paid refresh remains available MirrorKeeper/4/2
+PASS Useful purchasable early stock MirrorKeeper/77138/4/3
+PASS Useful purchasable early stock MirrorKeeper/77138/5/0
+PASS Paid refresh remains available MirrorKeeper/5/0
+PASS Useful purchasable early stock MirrorKeeper/77138/5/1
+PASS Paid refresh remains available MirrorKeeper/5/1
+PASS Useful purchasable early stock MirrorKeeper/77138/5/2
+PASS Paid refresh remains available MirrorKeeper/5/2
+PASS Useful purchasable early stock MirrorKeeper/77138/5/3
+PASS Useful purchasable early stock MirrorKeeper/161026/1/0
+PASS Paid refresh remains available MirrorKeeper/1/0
+PASS Useful purchasable early stock MirrorKeeper/161026/1/1
+PASS Paid refresh remains available MirrorKeeper/1/1
+PASS Useful purchasable early stock MirrorKeeper/161026/1/2
+PASS Paid refresh remains available MirrorKeeper/1/2
+PASS Useful purchasable early stock MirrorKeeper/161026/1/3
+PASS Useful purchasable early stock MirrorKeeper/161026/2/0
+PASS Paid refresh remains available MirrorKeeper/2/0
+PASS Useful purchasable early stock MirrorKeeper/161026/2/1
+PASS Paid refresh remains available MirrorKeeper/2/1
+PASS Useful purchasable early stock MirrorKeeper/161026/2/2
+PASS Paid refresh remains available MirrorKeeper/2/2
+PASS Useful purchasable early stock MirrorKeeper/161026/2/3
+PASS Useful purchasable early stock MirrorKeeper/161026/3/0
+PASS Paid refresh remains available MirrorKeeper/3/0
+PASS Useful purchasable early stock MirrorKeeper/161026/3/1
+PASS Paid refresh remains available MirrorKeeper/3/1
+PASS Useful purchasable early stock MirrorKeeper/161026/3/2
+PASS Paid refresh remains available MirrorKeeper/3/2
+PASS Useful purchasable early stock MirrorKeeper/161026/3/3
+PASS Useful purchasable early stock MirrorKeeper/161026/4/0
+PASS Paid refresh remains available MirrorKeeper/4/0
+PASS Useful purchasable early stock MirrorKeeper/161026/4/1
+PASS Paid refresh remains available MirrorKeeper/4/1
+PASS Useful purchasable early stock MirrorKeeper/161026/4/2
+PASS Paid refresh remains available MirrorKeeper/4/2
+PASS Useful purchasable early stock MirrorKeeper/161026/4/3
+PASS Useful purchasable early stock MirrorKeeper/161026/5/0
+PASS Paid refresh remains available MirrorKeeper/5/0
+PASS Useful purchasable early stock MirrorKeeper/161026/5/1
+PASS Paid refresh remains available MirrorKeeper/5/1
+PASS Useful purchasable early stock MirrorKeeper/161026/5/2
+PASS Paid refresh remains available MirrorKeeper/5/2
+PASS Useful purchasable early stock MirrorKeeper/161026/5/3
+PASS Useful purchasable early stock TreasureAcorn/77138/1/0
+PASS Paid refresh remains available TreasureAcorn/1/0
+PASS Useful purchasable early stock TreasureAcorn/77138/1/1
+PASS Paid refresh remains available TreasureAcorn/1/1
+PASS Useful purchasable early stock TreasureAcorn/77138/1/2
+PASS Paid refresh remains available TreasureAcorn/1/2
+PASS Useful purchasable early stock TreasureAcorn/77138/1/3
+PASS Useful purchasable early stock TreasureAcorn/77138/2/0
+PASS Paid refresh remains available TreasureAcorn/2/0
+PASS Useful purchasable early stock TreasureAcorn/77138/2/1
+PASS Paid refresh remains available TreasureAcorn/2/1
+PASS Useful purchasable early stock TreasureAcorn/77138/2/2
+PASS Paid refresh remains available TreasureAcorn/2/2
+PASS Useful purchasable early stock TreasureAcorn/77138/2/3
+PASS Useful purchasable early stock TreasureAcorn/77138/3/0
+PASS Paid refresh remains available TreasureAcorn/3/0
+PASS Useful purchasable early stock TreasureAcorn/77138/3/1
+PASS Paid refresh remains available TreasureAcorn/3/1
+PASS Useful purchasable early stock TreasureAcorn/77138/3/2
+PASS Paid refresh remains available TreasureAcorn/3/2
+PASS Useful purchasable early stock TreasureAcorn/77138/3/3
+PASS Useful purchasable early stock TreasureAcorn/77138/4/0
+PASS Paid refresh remains available TreasureAcorn/4/0
+PASS Useful purchasable early stock TreasureAcorn/77138/4/1
+PASS Paid refresh remains available TreasureAcorn/4/1
+PASS Useful purchasable early stock TreasureAcorn/77138/4/2
+PASS Paid refresh remains available TreasureAcorn/4/2
+PASS Useful purchasable early stock TreasureAcorn/77138/4/3
+PASS Useful purchasable early stock TreasureAcorn/77138/5/0
+PASS Paid refresh remains available TreasureAcorn/5/0
+PASS Useful purchasable early stock TreasureAcorn/77138/5/1
+PASS Paid refresh remains available TreasureAcorn/5/1
+PASS Useful purchasable early stock TreasureAcorn/77138/5/2
+PASS Paid refresh remains available TreasureAcorn/5/2
+PASS Useful purchasable early stock TreasureAcorn/77138/5/3
+PASS Useful purchasable early stock TreasureAcorn/161026/1/0
+PASS Paid refresh remains available TreasureAcorn/1/0
+PASS Useful purchasable early stock TreasureAcorn/161026/1/1
+PASS Paid refresh remains available TreasureAcorn/1/1
+PASS Useful purchasable early stock TreasureAcorn/161026/1/2
+PASS Paid refresh remains available TreasureAcorn/1/2
+PASS Useful purchasable early stock TreasureAcorn/161026/1/3
+PASS Useful purchasable early stock TreasureAcorn/161026/2/0
+PASS Paid refresh remains available TreasureAcorn/2/0
+PASS Useful purchasable early stock TreasureAcorn/161026/2/1
+PASS Paid refresh remains available TreasureAcorn/2/1
+PASS Useful purchasable early stock TreasureAcorn/161026/2/2
+PASS Paid refresh remains available TreasureAcorn/2/2
+PASS Useful purchasable early stock TreasureAcorn/161026/2/3
+PASS Useful purchasable early stock TreasureAcorn/161026/3/0
+PASS Paid refresh remains available TreasureAcorn/3/0
+PASS Useful purchasable early stock TreasureAcorn/161026/3/1
+PASS Paid refresh remains available TreasureAcorn/3/1
+PASS Useful purchasable early stock TreasureAcorn/161026/3/2
+PASS Paid refresh remains available TreasureAcorn/3/2
+PASS Useful purchasable early stock TreasureAcorn/161026/3/3
+PASS Useful purchasable early stock TreasureAcorn/161026/4/0
+PASS Paid refresh remains available TreasureAcorn/4/0
+PASS Useful purchasable early stock TreasureAcorn/161026/4/1
+PASS Paid refresh remains available TreasureAcorn/4/1
+PASS Useful purchasable early stock TreasureAcorn/161026/4/2
+PASS Paid refresh remains available TreasureAcorn/4/2
+PASS Useful purchasable early stock TreasureAcorn/161026/4/3
+PASS Useful purchasable early stock TreasureAcorn/161026/5/0
+PASS Paid refresh remains available TreasureAcorn/5/0
+PASS Useful purchasable early stock TreasureAcorn/161026/5/1
+PASS Paid refresh remains available TreasureAcorn/5/1
+PASS Useful purchasable early stock TreasureAcorn/161026/5/2
+PASS Paid refresh remains available TreasureAcorn/5/2
+PASS Useful purchasable early stock TreasureAcorn/161026/5/3
+PASS Useful purchasable early stock VerdantMatron/77138/1/0
+PASS Paid refresh remains available VerdantMatron/1/0
+PASS Useful purchasable early stock VerdantMatron/77138/1/1
+PASS Paid refresh remains available VerdantMatron/1/1
+PASS Useful purchasable early stock VerdantMatron/77138/1/2
+PASS Paid refresh remains available VerdantMatron/1/2
+PASS Useful purchasable early stock VerdantMatron/77138/1/3
+PASS Useful purchasable early stock VerdantMatron/77138/2/0
+PASS Paid refresh remains available VerdantMatron/2/0
+PASS Useful purchasable early stock VerdantMatron/77138/2/1
+PASS Paid refresh remains available VerdantMatron/2/1
+PASS Useful purchasable early stock VerdantMatron/77138/2/2
+PASS Paid refresh remains available VerdantMatron/2/2
+PASS Useful purchasable early stock VerdantMatron/77138/2/3
+PASS Useful purchasable early stock VerdantMatron/77138/3/0
+PASS Paid refresh remains available VerdantMatron/3/0
+PASS Useful purchasable early stock VerdantMatron/77138/3/1
+PASS Paid refresh remains available VerdantMatron/3/1
+PASS Useful purchasable early stock VerdantMatron/77138/3/2
+PASS Paid refresh remains available VerdantMatron/3/2
+PASS Useful purchasable early stock VerdantMatron/77138/3/3
+PASS Useful purchasable early stock VerdantMatron/77138/4/0
+PASS Paid refresh remains available VerdantMatron/4/0
+PASS Useful purchasable early stock VerdantMatron/77138/4/1
+PASS Paid refresh remains available VerdantMatron/4/1
+PASS Useful purchasable early stock VerdantMatron/77138/4/2
+PASS Paid refresh remains available VerdantMatron/4/2
+PASS Useful purchasable early stock VerdantMatron/77138/4/3
+PASS Useful purchasable early stock VerdantMatron/77138/5/0
+PASS Paid refresh remains available VerdantMatron/5/0
+PASS Useful purchasable early stock VerdantMatron/77138/5/1
+PASS Paid refresh remains available VerdantMatron/5/1
+PASS Useful purchasable early stock VerdantMatron/77138/5/2
+PASS Paid refresh remains available VerdantMatron/5/2
+PASS Useful purchasable early stock VerdantMatron/77138/5/3
+PASS Useful purchasable early stock VerdantMatron/161026/1/0
+PASS Paid refresh remains available VerdantMatron/1/0
+PASS Useful purchasable early stock VerdantMatron/161026/1/1
+PASS Paid refresh remains available VerdantMatron/1/1
+PASS Useful purchasable early stock VerdantMatron/161026/1/2
+PASS Paid refresh remains available VerdantMatron/1/2
+PASS Useful purchasable early stock VerdantMatron/161026/1/3
+PASS Useful purchasable early stock VerdantMatron/161026/2/0
+PASS Paid refresh remains available VerdantMatron/2/0
+PASS Useful purchasable early stock VerdantMatron/161026/2/1
+PASS Paid refresh remains available VerdantMatron/2/1
+PASS Useful purchasable early stock VerdantMatron/161026/2/2
+PASS Paid refresh remains available VerdantMatron/2/2
+PASS Useful purchasable early stock VerdantMatron/161026/2/3
+PASS Useful purchasable early stock VerdantMatron/161026/3/0
+PASS Paid refresh remains available VerdantMatron/3/0
+PASS Useful purchasable early stock VerdantMatron/161026/3/1
+PASS Paid refresh remains available VerdantMatron/3/1
+PASS Useful purchasable early stock VerdantMatron/161026/3/2
+PASS Paid refresh remains available VerdantMatron/3/2
+PASS Useful purchasable early stock VerdantMatron/161026/3/3
+PASS Useful purchasable early stock VerdantMatron/161026/4/0
+PASS Paid refresh remains available VerdantMatron/4/0
+PASS Useful purchasable early stock VerdantMatron/161026/4/1
+PASS Paid refresh remains available VerdantMatron/4/1
+PASS Useful purchasable early stock VerdantMatron/161026/4/2
+PASS Paid refresh remains available VerdantMatron/4/2
+PASS Useful purchasable early stock VerdantMatron/161026/4/3
+PASS Useful purchasable early stock VerdantMatron/161026/5/0
+PASS Paid refresh remains available VerdantMatron/5/0
+PASS Useful purchasable early stock VerdantMatron/161026/5/1
+PASS Paid refresh remains available VerdantMatron/5/1
+PASS Useful purchasable early stock VerdantMatron/161026/5/2
+PASS Paid refresh remains available VerdantMatron/5/2
+PASS Useful purchasable early stock VerdantMatron/161026/5/3
+PASS Useful purchasable early stock CopperCauldron/77138/1/0
+PASS Paid refresh remains available CopperCauldron/1/0
+PASS Useful purchasable early stock CopperCauldron/77138/1/1
+PASS Paid refresh remains available CopperCauldron/1/1
+PASS Useful purchasable early stock CopperCauldron/77138/1/2
+PASS Paid refresh remains available CopperCauldron/1/2
+PASS Useful purchasable early stock CopperCauldron/77138/1/3
+PASS Useful purchasable early stock CopperCauldron/77138/2/0
+PASS Paid refresh remains available CopperCauldron/2/0
+PASS Useful purchasable early stock CopperCauldron/77138/2/1
+PASS Paid refresh remains available CopperCauldron/2/1
+PASS Useful purchasable early stock CopperCauldron/77138/2/2
+PASS Paid refresh remains available CopperCauldron/2/2
+PASS Useful purchasable early stock CopperCauldron/77138/2/3
+PASS Useful purchasable early stock CopperCauldron/77138/3/0
+PASS Paid refresh remains available CopperCauldron/3/0
+PASS Useful purchasable early stock CopperCauldron/77138/3/1
+PASS Paid refresh remains available CopperCauldron/3/1
+PASS Useful purchasable early stock CopperCauldron/77138/3/2
+PASS Paid refresh remains available CopperCauldron/3/2
+PASS Useful purchasable early stock CopperCauldron/77138/3/3
+PASS Useful purchasable early stock CopperCauldron/77138/4/0
+PASS Paid refresh remains available CopperCauldron/4/0
+PASS Useful purchasable early stock CopperCauldron/77138/4/1
+PASS Paid refresh remains available CopperCauldron/4/1
+PASS Useful purchasable early stock CopperCauldron/77138/4/2
+PASS Paid refresh remains available CopperCauldron/4/2
+PASS Useful purchasable early stock CopperCauldron/77138/4/3
+PASS Useful purchasable early stock CopperCauldron/77138/5/0
+PASS Paid refresh remains available CopperCauldron/5/0
+PASS Useful purchasable early stock CopperCauldron/77138/5/1
+PASS Paid refresh remains available CopperCauldron/5/1
+PASS Useful purchasable early stock CopperCauldron/77138/5/2
+PASS Paid refresh remains available CopperCauldron/5/2
+PASS Useful purchasable early stock CopperCauldron/77138/5/3
+PASS Useful purchasable early stock CopperCauldron/161026/1/0
+PASS Paid refresh remains available CopperCauldron/1/0
+PASS Useful purchasable early stock CopperCauldron/161026/1/1
+PASS Paid refresh remains available CopperCauldron/1/1
+PASS Useful purchasable early stock CopperCauldron/161026/1/2
+PASS Paid refresh remains available CopperCauldron/1/2
+PASS Useful purchasable early stock CopperCauldron/161026/1/3
+PASS Useful purchasable early stock CopperCauldron/161026/2/0
+PASS Paid refresh remains available CopperCauldron/2/0
+PASS Useful purchasable early stock CopperCauldron/161026/2/1
+PASS Paid refresh remains available CopperCauldron/2/1
+PASS Useful purchasable early stock CopperCauldron/161026/2/2
+PASS Paid refresh remains available CopperCauldron/2/2
+PASS Useful purchasable early stock CopperCauldron/161026/2/3
+PASS Useful purchasable early stock CopperCauldron/161026/3/0
+PASS Paid refresh remains available CopperCauldron/3/0
+PASS Useful purchasable early stock CopperCauldron/161026/3/1
+PASS Paid refresh remains available CopperCauldron/3/1
+PASS Useful purchasable early stock CopperCauldron/161026/3/2
+PASS Paid refresh remains available CopperCauldron/3/2
+PASS Useful purchasable early stock CopperCauldron/161026/3/3
+PASS Useful purchasable early stock CopperCauldron/161026/4/0
+PASS Paid refresh remains available CopperCauldron/4/0
+PASS Useful purchasable early stock CopperCauldron/161026/4/1
+PASS Paid refresh remains available CopperCauldron/4/1
+PASS Useful purchasable early stock CopperCauldron/161026/4/2
+PASS Paid refresh remains available CopperCauldron/4/2
+PASS Useful purchasable early stock CopperCauldron/161026/4/3
+PASS Useful purchasable early stock CopperCauldron/161026/5/0
+PASS Paid refresh remains available CopperCauldron/5/0
+PASS Useful purchasable early stock CopperCauldron/161026/5/1
+PASS Paid refresh remains available CopperCauldron/5/1
+PASS Useful purchasable early stock CopperCauldron/161026/5/2
+PASS Paid refresh remains available CopperCauldron/5/2
+PASS Useful purchasable early stock CopperCauldron/161026/5/3
+PASS Useful purchasable early stock ChinaMarionette/77138/1/0
+PASS Paid refresh remains available ChinaMarionette/1/0
+PASS Useful purchasable early stock ChinaMarionette/77138/1/1
+PASS Paid refresh remains available ChinaMarionette/1/1
+PASS Useful purchasable early stock ChinaMarionette/77138/1/2
+PASS Paid refresh remains available ChinaMarionette/1/2
+PASS Useful purchasable early stock ChinaMarionette/77138/1/3
+PASS Useful purchasable early stock ChinaMarionette/77138/2/0
+PASS Paid refresh remains available ChinaMarionette/2/0
+PASS Useful purchasable early stock ChinaMarionette/77138/2/1
+PASS Paid refresh remains available ChinaMarionette/2/1
+PASS Useful purchasable early stock ChinaMarionette/77138/2/2
+PASS Paid refresh remains available ChinaMarionette/2/2
+PASS Useful purchasable early stock ChinaMarionette/77138/2/3
+PASS Useful purchasable early stock ChinaMarionette/77138/3/0
+PASS Paid refresh remains available ChinaMarionette/3/0
+PASS Useful purchasable early stock ChinaMarionette/77138/3/1
+PASS Paid refresh remains available ChinaMarionette/3/1
+PASS Useful purchasable early stock ChinaMarionette/77138/3/2
+PASS Paid refresh remains available ChinaMarionette/3/2
+PASS Useful purchasable early stock ChinaMarionette/77138/3/3
+PASS Useful purchasable early stock ChinaMarionette/77138/4/0
+PASS Paid refresh remains available ChinaMarionette/4/0
+PASS Useful purchasable early stock ChinaMarionette/77138/4/1
+PASS Paid refresh remains available ChinaMarionette/4/1
+PASS Useful purchasable early stock ChinaMarionette/77138/4/2
+PASS Paid refresh remains available ChinaMarionette/4/2
+PASS Useful purchasable early stock ChinaMarionette/77138/4/3
+PASS Useful purchasable early stock ChinaMarionette/77138/5/0
+PASS Paid refresh remains available ChinaMarionette/5/0
+PASS Useful purchasable early stock ChinaMarionette/77138/5/1
+PASS Paid refresh remains available ChinaMarionette/5/1
+PASS Useful purchasable early stock ChinaMarionette/77138/5/2
+PASS Paid refresh remains available ChinaMarionette/5/2
+PASS Useful purchasable early stock ChinaMarionette/77138/5/3
+PASS Useful purchasable early stock ChinaMarionette/161026/1/0
+PASS Paid refresh remains available ChinaMarionette/1/0
+PASS Useful purchasable early stock ChinaMarionette/161026/1/1
+PASS Paid refresh remains available ChinaMarionette/1/1
+PASS Useful purchasable early stock ChinaMarionette/161026/1/2
+PASS Paid refresh remains available ChinaMarionette/1/2
+PASS Useful purchasable early stock ChinaMarionette/161026/1/3
+PASS Useful purchasable early stock ChinaMarionette/161026/2/0
+PASS Paid refresh remains available ChinaMarionette/2/0
+PASS Useful purchasable early stock ChinaMarionette/161026/2/1
+PASS Paid refresh remains available ChinaMarionette/2/1
+PASS Useful purchasable early stock ChinaMarionette/161026/2/2
+PASS Paid refresh remains available ChinaMarionette/2/2
+PASS Useful purchasable early stock ChinaMarionette/161026/2/3
+PASS Useful purchasable early stock ChinaMarionette/161026/3/0
+PASS Paid refresh remains available ChinaMarionette/3/0
+PASS Useful purchasable early stock ChinaMarionette/161026/3/1
+PASS Paid refresh remains available ChinaMarionette/3/1
+PASS Useful purchasable early stock ChinaMarionette/161026/3/2
+PASS Paid refresh remains available ChinaMarionette/3/2
+PASS Useful purchasable early stock ChinaMarionette/161026/3/3
+PASS Useful purchasable early stock ChinaMarionette/161026/4/0
+PASS Paid refresh remains available ChinaMarionette/4/0
+PASS Useful purchasable early stock ChinaMarionette/161026/4/1
+PASS Paid refresh remains available ChinaMarionette/4/1
+PASS Useful purchasable early stock ChinaMarionette/161026/4/2
+PASS Paid refresh remains available ChinaMarionette/4/2
+PASS Useful purchasable early stock ChinaMarionette/161026/4/3
+PASS Useful purchasable early stock ChinaMarionette/161026/5/0
+PASS Paid refresh remains available ChinaMarionette/5/0
+PASS Useful purchasable early stock ChinaMarionette/161026/5/1
+PASS Paid refresh remains available ChinaMarionette/5/1
+PASS Useful purchasable early stock ChinaMarionette/161026/5/2
+PASS Paid refresh remains available ChinaMarionette/5/2
+PASS Useful purchasable early stock ChinaMarionette/161026/5/3
+PASS Useful purchasable early stock SoapSkater/77138/1/0
+PASS Paid refresh remains available SoapSkater/1/0
+PASS Useful purchasable early stock SoapSkater/77138/1/1
+PASS Paid refresh remains available SoapSkater/1/1
+PASS Useful purchasable early stock SoapSkater/77138/1/2
+PASS Paid refresh remains available SoapSkater/1/2
+PASS Useful purchasable early stock SoapSkater/77138/1/3
+PASS Useful purchasable early stock SoapSkater/77138/2/0
+PASS Paid refresh remains available SoapSkater/2/0
+PASS Useful purchasable early stock SoapSkater/77138/2/1
+PASS Paid refresh remains available SoapSkater/2/1
+PASS Useful purchasable early stock SoapSkater/77138/2/2
+PASS Paid refresh remains available SoapSkater/2/2
+PASS Useful purchasable early stock SoapSkater/77138/2/3
+PASS Useful purchasable early stock SoapSkater/77138/3/0
+PASS Paid refresh remains available SoapSkater/3/0
+PASS Useful purchasable early stock SoapSkater/77138/3/1
+PASS Paid refresh remains available SoapSkater/3/1
+PASS Useful purchasable early stock SoapSkater/77138/3/2
+PASS Paid refresh remains available SoapSkater/3/2
+PASS Useful purchasable early stock SoapSkater/77138/3/3
+PASS Useful purchasable early stock SoapSkater/77138/4/0
+PASS Paid refresh remains available SoapSkater/4/0
+PASS Useful purchasable early stock SoapSkater/77138/4/1
+PASS Paid refresh remains available SoapSkater/4/1
+PASS Useful purchasable early stock SoapSkater/77138/4/2
+PASS Paid refresh remains available SoapSkater/4/2
+PASS Useful purchasable early stock SoapSkater/77138/4/3
+PASS Useful purchasable early stock SoapSkater/77138/5/0
+PASS Paid refresh remains available SoapSkater/5/0
+PASS Useful purchasable early stock SoapSkater/77138/5/1
+PASS Paid refresh remains available SoapSkater/5/1
+PASS Useful purchasable early stock SoapSkater/77138/5/2
+PASS Paid refresh remains available SoapSkater/5/2
+PASS Useful purchasable early stock SoapSkater/77138/5/3
+PASS Useful purchasable early stock SoapSkater/161026/1/0
+PASS Paid refresh remains available SoapSkater/1/0
+PASS Useful purchasable early stock SoapSkater/161026/1/1
+PASS Paid refresh remains available SoapSkater/1/1
+PASS Useful purchasable early stock SoapSkater/161026/1/2
+PASS Paid refresh remains available SoapSkater/1/2
+PASS Useful purchasable early stock SoapSkater/161026/1/3
+PASS Useful purchasable early stock SoapSkater/161026/2/0
+PASS Paid refresh remains available SoapSkater/2/0
+PASS Useful purchasable early stock SoapSkater/161026/2/1
+PASS Paid refresh remains available SoapSkater/2/1
+PASS Useful purchasable early stock SoapSkater/161026/2/2
+PASS Paid refresh remains available SoapSkater/2/2
+PASS Useful purchasable early stock SoapSkater/161026/2/3
+PASS Useful purchasable early stock SoapSkater/161026/3/0
+PASS Paid refresh remains available SoapSkater/3/0
+PASS Useful purchasable early stock SoapSkater/161026/3/1
+PASS Paid refresh remains available SoapSkater/3/1
+PASS Useful purchasable early stock SoapSkater/161026/3/2
+PASS Paid refresh remains available SoapSkater/3/2
+PASS Useful purchasable early stock SoapSkater/161026/3/3
+PASS Useful purchasable early stock SoapSkater/161026/4/0
+PASS Paid refresh remains available SoapSkater/4/0
+PASS Useful purchasable early stock SoapSkater/161026/4/1
+PASS Paid refresh remains available SoapSkater/4/1
+PASS Useful purchasable early stock SoapSkater/161026/4/2
+PASS Paid refresh remains available SoapSkater/4/2
+PASS Useful purchasable early stock SoapSkater/161026/4/3
+PASS Useful purchasable early stock SoapSkater/161026/5/0
+PASS Paid refresh remains available SoapSkater/5/0
+PASS Useful purchasable early stock SoapSkater/161026/5/1
+PASS Paid refresh remains available SoapSkater/5/1
+PASS Useful purchasable early stock SoapSkater/161026/5/2
+PASS Paid refresh remains available SoapSkater/5/2
+PASS Useful purchasable early stock SoapSkater/161026/5/3
+PASS Useful purchasable early stock VelvetRegent/77138/1/0
+PASS Paid refresh remains available VelvetRegent/1/0
+PASS Useful purchasable early stock VelvetRegent/77138/1/1
+PASS Paid refresh remains available VelvetRegent/1/1
+PASS Useful purchasable early stock VelvetRegent/77138/1/2
+PASS Paid refresh remains available VelvetRegent/1/2
+PASS Useful purchasable early stock VelvetRegent/77138/1/3
+PASS Useful purchasable early stock VelvetRegent/77138/2/0
+PASS Paid refresh remains available VelvetRegent/2/0
+PASS Useful purchasable early stock VelvetRegent/77138/2/1
+PASS Paid refresh remains available VelvetRegent/2/1
+PASS Useful purchasable early stock VelvetRegent/77138/2/2
+PASS Paid refresh remains available VelvetRegent/2/2
+PASS Useful purchasable early stock VelvetRegent/77138/2/3
+PASS Useful purchasable early stock VelvetRegent/77138/3/0
+PASS Paid refresh remains available VelvetRegent/3/0
+PASS Useful purchasable early stock VelvetRegent/77138/3/1
+PASS Paid refresh remains available VelvetRegent/3/1
+PASS Useful purchasable early stock VelvetRegent/77138/3/2
+PASS Paid refresh remains available VelvetRegent/3/2
+PASS Useful purchasable early stock VelvetRegent/77138/3/3
+PASS Useful purchasable early stock VelvetRegent/77138/4/0
+PASS Paid refresh remains available VelvetRegent/4/0
+PASS Useful purchasable early stock VelvetRegent/77138/4/1
+PASS Paid refresh remains available VelvetRegent/4/1
+PASS Useful purchasable early stock VelvetRegent/77138/4/2
+PASS Paid refresh remains available VelvetRegent/4/2
+PASS Useful purchasable early stock VelvetRegent/77138/4/3
+PASS Useful purchasable early stock VelvetRegent/77138/5/0
+PASS Paid refresh remains available VelvetRegent/5/0
+PASS Useful purchasable early stock VelvetRegent/77138/5/1
+PASS Paid refresh remains available VelvetRegent/5/1
+PASS Useful purchasable early stock VelvetRegent/77138/5/2
+PASS Paid refresh remains available VelvetRegent/5/2
+PASS Useful purchasable early stock VelvetRegent/77138/5/3
+PASS Useful purchasable early stock VelvetRegent/161026/1/0
+PASS Paid refresh remains available VelvetRegent/1/0
+PASS Useful purchasable early stock VelvetRegent/161026/1/1
+PASS Paid refresh remains available VelvetRegent/1/1
+PASS Useful purchasable early stock VelvetRegent/161026/1/2
+PASS Paid refresh remains available VelvetRegent/1/2
+PASS Useful purchasable early stock VelvetRegent/161026/1/3
+PASS Useful purchasable early stock VelvetRegent/161026/2/0
+PASS Paid refresh remains available VelvetRegent/2/0
+PASS Useful purchasable early stock VelvetRegent/161026/2/1
+PASS Paid refresh remains available VelvetRegent/2/1
+PASS Useful purchasable early stock VelvetRegent/161026/2/2
+PASS Paid refresh remains available VelvetRegent/2/2
+PASS Useful purchasable early stock VelvetRegent/161026/2/3
+PASS Useful purchasable early stock VelvetRegent/161026/3/0
+PASS Paid refresh remains available VelvetRegent/3/0
+PASS Useful purchasable early stock VelvetRegent/161026/3/1
+PASS Paid refresh remains available VelvetRegent/3/1
+PASS Useful purchasable early stock VelvetRegent/161026/3/2
+PASS Paid refresh remains available VelvetRegent/3/2
+PASS Useful purchasable early stock VelvetRegent/161026/3/3
+PASS Useful purchasable early stock VelvetRegent/161026/4/0
+PASS Paid refresh remains available VelvetRegent/4/0
+PASS Useful purchasable early stock VelvetRegent/161026/4/1
+PASS Paid refresh remains available VelvetRegent/4/1
+PASS Useful purchasable early stock VelvetRegent/161026/4/2
+PASS Paid refresh remains available VelvetRegent/4/2
+PASS Useful purchasable early stock VelvetRegent/161026/4/3
+PASS Useful purchasable early stock VelvetRegent/161026/5/0
+PASS Paid refresh remains available VelvetRegent/5/0
+PASS Useful purchasable early stock VelvetRegent/161026/5/1
+PASS Paid refresh remains available VelvetRegent/5/1
+PASS Useful purchasable early stock VelvetRegent/161026/5/2
+PASS Paid refresh remains available VelvetRegent/5/2
+PASS Useful purchasable early stock VelvetRegent/161026/5/3
+PASS Useful purchasable early stock ButtonCavalier/77138/1/0
+PASS Paid refresh remains available ButtonCavalier/1/0
+PASS Useful purchasable early stock ButtonCavalier/77138/1/1
+PASS Paid refresh remains available ButtonCavalier/1/1
+PASS Useful purchasable early stock ButtonCavalier/77138/1/2
+PASS Paid refresh remains available ButtonCavalier/1/2
+PASS Useful purchasable early stock ButtonCavalier/77138/1/3
+PASS Useful purchasable early stock ButtonCavalier/77138/2/0
+PASS Paid refresh remains available ButtonCavalier/2/0
+PASS Useful purchasable early stock ButtonCavalier/77138/2/1
+PASS Paid refresh remains available ButtonCavalier/2/1
+PASS Useful purchasable early stock ButtonCavalier/77138/2/2
+PASS Paid refresh remains available ButtonCavalier/2/2
+PASS Useful purchasable early stock ButtonCavalier/77138/2/3
+PASS Useful purchasable early stock ButtonCavalier/77138/3/0
+PASS Paid refresh remains available ButtonCavalier/3/0
+PASS Useful purchasable early stock ButtonCavalier/77138/3/1
+PASS Paid refresh remains available ButtonCavalier/3/1
+PASS Useful purchasable early stock ButtonCavalier/77138/3/2
+PASS Paid refresh remains available ButtonCavalier/3/2
+PASS Useful purchasable early stock ButtonCavalier/77138/3/3
+PASS Useful purchasable early stock ButtonCavalier/77138/4/0
+PASS Paid refresh remains available ButtonCavalier/4/0
+PASS Useful purchasable early stock ButtonCavalier/77138/4/1
+PASS Paid refresh remains available ButtonCavalier/4/1
+PASS Useful purchasable early stock ButtonCavalier/77138/4/2
+PASS Paid refresh remains available ButtonCavalier/4/2
+PASS Useful purchasable early stock ButtonCavalier/77138/4/3
+PASS Useful purchasable early stock ButtonCavalier/77138/5/0
+PASS Paid refresh remains available ButtonCavalier/5/0
+PASS Useful purchasable early stock ButtonCavalier/77138/5/1
+PASS Paid refresh remains available ButtonCavalier/5/1
+PASS Useful purchasable early stock ButtonCavalier/77138/5/2
+PASS Paid refresh remains available ButtonCavalier/5/2
+PASS Useful purchasable early stock ButtonCavalier/77138/5/3
+PASS Useful purchasable early stock ButtonCavalier/161026/1/0
+PASS Paid refresh remains available ButtonCavalier/1/0
+PASS Useful purchasable early stock ButtonCavalier/161026/1/1
+PASS Paid refresh remains available ButtonCavalier/1/1
+PASS Useful purchasable early stock ButtonCavalier/161026/1/2
+PASS Paid refresh remains available ButtonCavalier/1/2
+PASS Useful purchasable early stock ButtonCavalier/161026/1/3
+PASS Useful purchasable early stock ButtonCavalier/161026/2/0
+PASS Paid refresh remains available ButtonCavalier/2/0
+PASS Useful purchasable early stock ButtonCavalier/161026/2/1
+PASS Paid refresh remains available ButtonCavalier/2/1
+PASS Useful purchasable early stock ButtonCavalier/161026/2/2
+PASS Paid refresh remains available ButtonCavalier/2/2
+PASS Useful purchasable early stock ButtonCavalier/161026/2/3
+PASS Useful purchasable early stock ButtonCavalier/161026/3/0
+PASS Paid refresh remains available ButtonCavalier/3/0
+PASS Useful purchasable early stock ButtonCavalier/161026/3/1
+PASS Paid refresh remains available ButtonCavalier/3/1
+PASS Useful purchasable early stock ButtonCavalier/161026/3/2
+PASS Paid refresh remains available ButtonCavalier/3/2
+PASS Useful purchasable early stock ButtonCavalier/161026/3/3
+PASS Useful purchasable early stock ButtonCavalier/161026/4/0
+PASS Paid refresh remains available ButtonCavalier/4/0
+PASS Useful purchasable early stock ButtonCavalier/161026/4/1
+PASS Paid refresh remains available ButtonCavalier/4/1
+PASS Useful purchasable early stock ButtonCavalier/161026/4/2
+PASS Paid refresh remains available ButtonCavalier/4/2
+PASS Useful purchasable early stock ButtonCavalier/161026/4/3
+PASS Useful purchasable early stock ButtonCavalier/161026/5/0
+PASS Paid refresh remains available ButtonCavalier/5/0
+PASS Useful purchasable early stock ButtonCavalier/161026/5/1
+PASS Paid refresh remains available ButtonCavalier/5/1
+PASS Useful purchasable early stock ButtonCavalier/161026/5/2
+PASS Paid refresh remains available ButtonCavalier/5/2
+PASS Useful purchasable early stock ButtonCavalier/161026/5/3
+PASS Useful purchasable early stock NightMaw/77138/1/0
+PASS Paid refresh remains available NightMaw/1/0
+PASS Useful purchasable early stock NightMaw/77138/1/1
+PASS Paid refresh remains available NightMaw/1/1
+PASS Useful purchasable early stock NightMaw/77138/1/2
+PASS Paid refresh remains available NightMaw/1/2
+PASS Useful purchasable early stock NightMaw/77138/1/3
+PASS Useful purchasable early stock NightMaw/77138/2/0
+PASS Paid refresh remains available NightMaw/2/0
+PASS Useful purchasable early stock NightMaw/77138/2/1
+PASS Paid refresh remains available NightMaw/2/1
+PASS Useful purchasable early stock NightMaw/77138/2/2
+PASS Paid refresh remains available NightMaw/2/2
+PASS Useful purchasable early stock NightMaw/77138/2/3
+PASS Useful purchasable early stock NightMaw/77138/3/0
+PASS Paid refresh remains available NightMaw/3/0
+PASS Useful purchasable early stock NightMaw/77138/3/1
+PASS Paid refresh remains available NightMaw/3/1
+PASS Useful purchasable early stock NightMaw/77138/3/2
+PASS Paid refresh remains available NightMaw/3/2
+PASS Useful purchasable early stock NightMaw/77138/3/3
+PASS Useful purchasable early stock NightMaw/77138/4/0
+PASS Paid refresh remains available NightMaw/4/0
+PASS Useful purchasable early stock NightMaw/77138/4/1
+PASS Paid refresh remains available NightMaw/4/1
+PASS Useful purchasable early stock NightMaw/77138/4/2
+PASS Paid refresh remains available NightMaw/4/2
+PASS Useful purchasable early stock NightMaw/77138/4/3
+PASS Useful purchasable early stock NightMaw/77138/5/0
+PASS Paid refresh remains available NightMaw/5/0
+PASS Useful purchasable early stock NightMaw/77138/5/1
+PASS Paid refresh remains available NightMaw/5/1
+PASS Useful purchasable early stock NightMaw/77138/5/2
+PASS Paid refresh remains available NightMaw/5/2
+PASS Useful purchasable early stock NightMaw/77138/5/3
+PASS Useful purchasable early stock NightMaw/161026/1/0
+PASS Paid refresh remains available NightMaw/1/0
+PASS Useful purchasable early stock NightMaw/161026/1/1
+PASS Paid refresh remains available NightMaw/1/1
+PASS Useful purchasable early stock NightMaw/161026/1/2
+PASS Paid refresh remains available NightMaw/1/2
+PASS Useful purchasable early stock NightMaw/161026/1/3
+PASS Useful purchasable early stock NightMaw/161026/2/0
+PASS Paid refresh remains available NightMaw/2/0
+PASS Useful purchasable early stock NightMaw/161026/2/1
+PASS Paid refresh remains available NightMaw/2/1
+PASS Useful purchasable early stock NightMaw/161026/2/2
+PASS Paid refresh remains available NightMaw/2/2
+PASS Useful purchasable early stock NightMaw/161026/2/3
+PASS Useful purchasable early stock NightMaw/161026/3/0
+PASS Paid refresh remains available NightMaw/3/0
+PASS Useful purchasable early stock NightMaw/161026/3/1
+PASS Paid refresh remains available NightMaw/3/1
+PASS Useful purchasable early stock NightMaw/161026/3/2
+PASS Paid refresh remains available NightMaw/3/2
+PASS Useful purchasable early stock NightMaw/161026/3/3
+PASS Useful purchasable early stock NightMaw/161026/4/0
+PASS Paid refresh remains available NightMaw/4/0
+PASS Useful purchasable early stock NightMaw/161026/4/1
+PASS Paid refresh remains available NightMaw/4/1
+PASS Useful purchasable early stock NightMaw/161026/4/2
+PASS Paid refresh remains available NightMaw/4/2
+PASS Useful purchasable early stock NightMaw/161026/4/3
+PASS Useful purchasable early stock NightMaw/161026/5/0
+PASS Paid refresh remains available NightMaw/5/0
+PASS Useful purchasable early stock NightMaw/161026/5/1
+PASS Paid refresh remains available NightMaw/5/1
+PASS Useful purchasable early stock NightMaw/161026/5/2
+PASS Paid refresh remains available NightMaw/5/2
+PASS Useful purchasable early stock NightMaw/161026/5/3
+PASS Useful purchasable early stock ThornTreasurer/77138/1/0
+PASS Paid refresh remains available ThornTreasurer/1/0
+PASS Useful purchasable early stock ThornTreasurer/77138/1/1
+PASS Paid refresh remains available ThornTreasurer/1/1
+PASS Useful purchasable early stock ThornTreasurer/77138/1/2
+PASS Paid refresh remains available ThornTreasurer/1/2
+PASS Useful purchasable early stock ThornTreasurer/77138/1/3
+PASS Useful purchasable early stock ThornTreasurer/77138/2/0
+PASS Paid refresh remains available ThornTreasurer/2/0
+PASS Useful purchasable early stock ThornTreasurer/77138/2/1
+PASS Paid refresh remains available ThornTreasurer/2/1
+PASS Useful purchasable early stock ThornTreasurer/77138/2/2
+PASS Paid refresh remains available ThornTreasurer/2/2
+PASS Useful purchasable early stock ThornTreasurer/77138/2/3
+PASS Useful purchasable early stock ThornTreasurer/77138/3/0
+PASS Paid refresh remains available ThornTreasurer/3/0
+PASS Useful purchasable early stock ThornTreasurer/77138/3/1
+PASS Paid refresh remains available ThornTreasurer/3/1
+PASS Useful purchasable early stock ThornTreasurer/77138/3/2
+PASS Paid refresh remains available ThornTreasurer/3/2
+PASS Useful purchasable early stock ThornTreasurer/77138/3/3
+PASS Useful purchasable early stock ThornTreasurer/77138/4/0
+PASS Paid refresh remains available ThornTreasurer/4/0
+PASS Useful purchasable early stock ThornTreasurer/77138/4/1
+PASS Paid refresh remains available ThornTreasurer/4/1
+PASS Useful purchasable early stock ThornTreasurer/77138/4/2
+PASS Paid refresh remains available ThornTreasurer/4/2
+PASS Useful purchasable early stock ThornTreasurer/77138/4/3
+PASS Useful purchasable early stock ThornTreasurer/77138/5/0
+PASS Paid refresh remains available ThornTreasurer/5/0
+PASS Useful purchasable early stock ThornTreasurer/77138/5/1
+PASS Paid refresh remains available ThornTreasurer/5/1
+PASS Useful purchasable early stock ThornTreasurer/77138/5/2
+PASS Paid refresh remains available ThornTreasurer/5/2
+PASS Useful purchasable early stock ThornTreasurer/77138/5/3
+PASS Useful purchasable early stock ThornTreasurer/161026/1/0
+PASS Paid refresh remains available ThornTreasurer/1/0
+PASS Useful purchasable early stock ThornTreasurer/161026/1/1
+PASS Paid refresh remains available ThornTreasurer/1/1
+PASS Useful purchasable early stock ThornTreasurer/161026/1/2
+PASS Paid refresh remains available ThornTreasurer/1/2
+PASS Useful purchasable early stock ThornTreasurer/161026/1/3
+PASS Useful purchasable early stock ThornTreasurer/161026/2/0
+PASS Paid refresh remains available ThornTreasurer/2/0
+PASS Useful purchasable early stock ThornTreasurer/161026/2/1
+PASS Paid refresh remains available ThornTreasurer/2/1
+PASS Useful purchasable early stock ThornTreasurer/161026/2/2
+PASS Paid refresh remains available ThornTreasurer/2/2
+PASS Useful purchasable early stock ThornTreasurer/161026/2/3
+PASS Useful purchasable early stock ThornTreasurer/161026/3/0
+PASS Paid refresh remains available ThornTreasurer/3/0
+PASS Useful purchasable early stock ThornTreasurer/161026/3/1
+PASS Paid refresh remains available ThornTreasurer/3/1
+PASS Useful purchasable early stock ThornTreasurer/161026/3/2
+PASS Paid refresh remains available ThornTreasurer/3/2
+PASS Useful purchasable early stock ThornTreasurer/161026/3/3
+PASS Useful purchasable early stock ThornTreasurer/161026/4/0
+PASS Paid refresh remains available ThornTreasurer/4/0
+PASS Useful purchasable early stock ThornTreasurer/161026/4/1
+PASS Paid refresh remains available ThornTreasurer/4/1
+PASS Useful purchasable early stock ThornTreasurer/161026/4/2
+PASS Paid refresh remains available ThornTreasurer/4/2
+PASS Useful purchasable early stock ThornTreasurer/161026/4/3
+PASS Useful purchasable early stock ThornTreasurer/161026/5/0
+PASS Paid refresh remains available ThornTreasurer/5/0
+PASS Useful purchasable early stock ThornTreasurer/161026/5/1
+PASS Paid refresh remains available ThornTreasurer/5/1
+PASS Useful purchasable early stock ThornTreasurer/161026/5/2
+PASS Paid refresh remains available ThornTreasurer/5/2
+PASS Useful purchasable early stock ThornTreasurer/161026/5/3
+PASS Useful purchasable early stock CitrusMarshal/77138/1/0
+PASS Paid refresh remains available CitrusMarshal/1/0
+PASS Useful purchasable early stock CitrusMarshal/77138/1/1
+PASS Paid refresh remains available CitrusMarshal/1/1
+PASS Useful purchasable early stock CitrusMarshal/77138/1/2
+PASS Paid refresh remains available CitrusMarshal/1/2
+PASS Useful purchasable early stock CitrusMarshal/77138/1/3
+PASS Useful purchasable early stock CitrusMarshal/77138/2/0
+PASS Paid refresh remains available CitrusMarshal/2/0
+PASS Useful purchasable early stock CitrusMarshal/77138/2/1
+PASS Paid refresh remains available CitrusMarshal/2/1
+PASS Useful purchasable early stock CitrusMarshal/77138/2/2
+PASS Paid refresh remains available CitrusMarshal/2/2
+PASS Useful purchasable early stock CitrusMarshal/77138/2/3
+PASS Useful purchasable early stock CitrusMarshal/77138/3/0
+PASS Paid refresh remains available CitrusMarshal/3/0
+PASS Useful purchasable early stock CitrusMarshal/77138/3/1
+PASS Paid refresh remains available CitrusMarshal/3/1
+PASS Useful purchasable early stock CitrusMarshal/77138/3/2
+PASS Paid refresh remains available CitrusMarshal/3/2
+PASS Useful purchasable early stock CitrusMarshal/77138/3/3
+PASS Useful purchasable early stock CitrusMarshal/77138/4/0
+PASS Paid refresh remains available CitrusMarshal/4/0
+PASS Useful purchasable early stock CitrusMarshal/77138/4/1
+PASS Paid refresh remains available CitrusMarshal/4/1
+PASS Useful purchasable early stock CitrusMarshal/77138/4/2
+PASS Paid refresh remains available CitrusMarshal/4/2
+PASS Useful purchasable early stock CitrusMarshal/77138/4/3
+PASS Useful purchasable early stock CitrusMarshal/77138/5/0
+PASS Paid refresh remains available CitrusMarshal/5/0
+PASS Useful purchasable early stock CitrusMarshal/77138/5/1
+PASS Paid refresh remains available CitrusMarshal/5/1
+PASS Useful purchasable early stock CitrusMarshal/77138/5/2
+PASS Paid refresh remains available CitrusMarshal/5/2
+PASS Useful purchasable early stock CitrusMarshal/77138/5/3
+PASS Useful purchasable early stock CitrusMarshal/161026/1/0
+PASS Paid refresh remains available CitrusMarshal/1/0
+PASS Useful purchasable early stock CitrusMarshal/161026/1/1
+PASS Paid refresh remains available CitrusMarshal/1/1
+PASS Useful purchasable early stock CitrusMarshal/161026/1/2
+PASS Paid refresh remains available CitrusMarshal/1/2
+PASS Useful purchasable early stock CitrusMarshal/161026/1/3
+PASS Useful purchasable early stock CitrusMarshal/161026/2/0
+PASS Paid refresh remains available CitrusMarshal/2/0
+PASS Useful purchasable early stock CitrusMarshal/161026/2/1
+PASS Paid refresh remains available CitrusMarshal/2/1
+PASS Useful purchasable early stock CitrusMarshal/161026/2/2
+PASS Paid refresh remains available CitrusMarshal/2/2
+PASS Useful purchasable early stock CitrusMarshal/161026/2/3
+PASS Useful purchasable early stock CitrusMarshal/161026/3/0
+PASS Paid refresh remains available CitrusMarshal/3/0
+PASS Useful purchasable early stock CitrusMarshal/161026/3/1
+PASS Paid refresh remains available CitrusMarshal/3/1
+PASS Useful purchasable early stock CitrusMarshal/161026/3/2
+PASS Paid refresh remains available CitrusMarshal/3/2
+PASS Useful purchasable early stock CitrusMarshal/161026/3/3
+PASS Useful purchasable early stock CitrusMarshal/161026/4/0
+PASS Paid refresh remains available CitrusMarshal/4/0
+PASS Useful purchasable early stock CitrusMarshal/161026/4/1
+PASS Paid refresh remains available CitrusMarshal/4/1
+PASS Useful purchasable early stock CitrusMarshal/161026/4/2
+PASS Paid refresh remains available CitrusMarshal/4/2
+PASS Useful purchasable early stock CitrusMarshal/161026/4/3
+PASS Useful purchasable early stock CitrusMarshal/161026/5/0
+PASS Paid refresh remains available CitrusMarshal/5/0
+PASS Useful purchasable early stock CitrusMarshal/161026/5/1
+PASS Paid refresh remains available CitrusMarshal/5/1
+PASS Useful purchasable early stock CitrusMarshal/161026/5/2
+PASS Paid refresh remains available CitrusMarshal/5/2
+PASS Useful purchasable early stock CitrusMarshal/161026/5/3
+PASS Useful purchasable early stock IvorySovereign/77138/1/0
+PASS Paid refresh remains available IvorySovereign/1/0
+PASS Useful purchasable early stock IvorySovereign/77138/1/1
+PASS Paid refresh remains available IvorySovereign/1/1
+PASS Useful purchasable early stock IvorySovereign/77138/1/2
+PASS Paid refresh remains available IvorySovereign/1/2
+PASS Useful purchasable early stock IvorySovereign/77138/1/3
+PASS Useful purchasable early stock IvorySovereign/77138/2/0
+PASS Paid refresh remains available IvorySovereign/2/0
+PASS Useful purchasable early stock IvorySovereign/77138/2/1
+PASS Paid refresh remains available IvorySovereign/2/1
+PASS Useful purchasable early stock IvorySovereign/77138/2/2
+PASS Paid refresh remains available IvorySovereign/2/2
+PASS Useful purchasable early stock IvorySovereign/77138/2/3
+PASS Useful purchasable early stock IvorySovereign/77138/3/0
+PASS Paid refresh remains available IvorySovereign/3/0
+PASS Useful purchasable early stock IvorySovereign/77138/3/1
+PASS Paid refresh remains available IvorySovereign/3/1
+PASS Useful purchasable early stock IvorySovereign/77138/3/2
+PASS Paid refresh remains available IvorySovereign/3/2
+PASS Useful purchasable early stock IvorySovereign/77138/3/3
+PASS Useful purchasable early stock IvorySovereign/77138/4/0
+PASS Paid refresh remains available IvorySovereign/4/0
+PASS Useful purchasable early stock IvorySovereign/77138/4/1
+PASS Paid refresh remains available IvorySovereign/4/1
+PASS Useful purchasable early stock IvorySovereign/77138/4/2
+PASS Paid refresh remains available IvorySovereign/4/2
+PASS Useful purchasable early stock IvorySovereign/77138/4/3
+PASS Useful purchasable early stock IvorySovereign/77138/5/0
+PASS Paid refresh remains available IvorySovereign/5/0
+PASS Useful purchasable early stock IvorySovereign/77138/5/1
+PASS Paid refresh remains available IvorySovereign/5/1
+PASS Useful purchasable early stock IvorySovereign/77138/5/2
+PASS Paid refresh remains available IvorySovereign/5/2
+PASS Useful purchasable early stock IvorySovereign/77138/5/3
+PASS Useful purchasable early stock IvorySovereign/161026/1/0
+PASS Paid refresh remains available IvorySovereign/1/0
+PASS Useful purchasable early stock IvorySovereign/161026/1/1
+PASS Paid refresh remains available IvorySovereign/1/1
+PASS Useful purchasable early stock IvorySovereign/161026/1/2
+PASS Paid refresh remains available IvorySovereign/1/2
+PASS Useful purchasable early stock IvorySovereign/161026/1/3
+PASS Useful purchasable early stock IvorySovereign/161026/2/0
+PASS Paid refresh remains available IvorySovereign/2/0
+PASS Useful purchasable early stock IvorySovereign/161026/2/1
+PASS Paid refresh remains available IvorySovereign/2/1
+PASS Useful purchasable early stock IvorySovereign/161026/2/2
+PASS Paid refresh remains available IvorySovereign/2/2
+PASS Useful purchasable early stock IvorySovereign/161026/2/3
+PASS Useful purchasable early stock IvorySovereign/161026/3/0
+PASS Paid refresh remains available IvorySovereign/3/0
+PASS Useful purchasable early stock IvorySovereign/161026/3/1
+PASS Paid refresh remains available IvorySovereign/3/1
+PASS Useful purchasable early stock IvorySovereign/161026/3/2
+PASS Paid refresh remains available IvorySovereign/3/2
+PASS Useful purchasable early stock IvorySovereign/161026/3/3
+PASS Useful purchasable early stock IvorySovereign/161026/4/0
+PASS Paid refresh remains available IvorySovereign/4/0
+PASS Useful purchasable early stock IvorySovereign/161026/4/1
+PASS Paid refresh remains available IvorySovereign/4/1
+PASS Useful purchasable early stock IvorySovereign/161026/4/2
+PASS Paid refresh remains available IvorySovereign/4/2
+PASS Useful purchasable early stock IvorySovereign/161026/4/3
+PASS Useful purchasable early stock IvorySovereign/161026/5/0
+PASS Paid refresh remains available IvorySovereign/5/0
+PASS Useful purchasable early stock IvorySovereign/161026/5/1
+PASS Paid refresh remains available IvorySovereign/5/1
+PASS Useful purchasable early stock IvorySovereign/161026/5/2
+PASS Paid refresh remains available IvorySovereign/5/2
+PASS Useful purchasable early stock IvorySovereign/161026/5/3
+PASS Useful purchasable early stock PetalCitadel/77138/1/0
+PASS Paid refresh remains available PetalCitadel/1/0
+PASS Useful purchasable early stock PetalCitadel/77138/1/1
+PASS Paid refresh remains available PetalCitadel/1/1
+PASS Useful purchasable early stock PetalCitadel/77138/1/2
+PASS Paid refresh remains available PetalCitadel/1/2
+PASS Useful purchasable early stock PetalCitadel/77138/1/3
+PASS Useful purchasable early stock PetalCitadel/77138/2/0
+PASS Paid refresh remains available PetalCitadel/2/0
+PASS Useful purchasable early stock PetalCitadel/77138/2/1
+PASS Paid refresh remains available PetalCitadel/2/1
+PASS Useful purchasable early stock PetalCitadel/77138/2/2
+PASS Paid refresh remains available PetalCitadel/2/2
+PASS Useful purchasable early stock PetalCitadel/77138/2/3
+PASS Useful purchasable early stock PetalCitadel/77138/3/0
+PASS Paid refresh remains available PetalCitadel/3/0
+PASS Useful purchasable early stock PetalCitadel/77138/3/1
+PASS Paid refresh remains available PetalCitadel/3/1
+PASS Useful purchasable early stock PetalCitadel/77138/3/2
+PASS Paid refresh remains available PetalCitadel/3/2
+PASS Useful purchasable early stock PetalCitadel/77138/3/3
+PASS Useful purchasable early stock PetalCitadel/77138/4/0
+PASS Paid refresh remains available PetalCitadel/4/0
+PASS Useful purchasable early stock PetalCitadel/77138/4/1
+PASS Paid refresh remains available PetalCitadel/4/1
+PASS Useful purchasable early stock PetalCitadel/77138/4/2
+PASS Paid refresh remains available PetalCitadel/4/2
+PASS Useful purchasable early stock PetalCitadel/77138/4/3
+PASS Useful purchasable early stock PetalCitadel/77138/5/0
+PASS Paid refresh remains available PetalCitadel/5/0
+PASS Useful purchasable early stock PetalCitadel/77138/5/1
+PASS Paid refresh remains available PetalCitadel/5/1
+PASS Useful purchasable early stock PetalCitadel/77138/5/2
+PASS Paid refresh remains available PetalCitadel/5/2
+PASS Useful purchasable early stock PetalCitadel/77138/5/3
+PASS Useful purchasable early stock PetalCitadel/161026/1/0
+PASS Paid refresh remains available PetalCitadel/1/0
+PASS Useful purchasable early stock PetalCitadel/161026/1/1
+PASS Paid refresh remains available PetalCitadel/1/1
+PASS Useful purchasable early stock PetalCitadel/161026/1/2
+PASS Paid refresh remains available PetalCitadel/1/2
+PASS Useful purchasable early stock PetalCitadel/161026/1/3
+PASS Useful purchasable early stock PetalCitadel/161026/2/0
+PASS Paid refresh remains available PetalCitadel/2/0
+PASS Useful purchasable early stock PetalCitadel/161026/2/1
+PASS Paid refresh remains available PetalCitadel/2/1
+PASS Useful purchasable early stock PetalCitadel/161026/2/2
+PASS Paid refresh remains available PetalCitadel/2/2
+PASS Useful purchasable early stock PetalCitadel/161026/2/3
+PASS Useful purchasable early stock PetalCitadel/161026/3/0
+PASS Paid refresh remains available PetalCitadel/3/0
+PASS Useful purchasable early stock PetalCitadel/161026/3/1
+PASS Paid refresh remains available PetalCitadel/3/1
+PASS Useful purchasable early stock PetalCitadel/161026/3/2
+PASS Paid refresh remains available PetalCitadel/3/2
+PASS Useful purchasable early stock PetalCitadel/161026/3/3
+PASS Useful purchasable early stock PetalCitadel/161026/4/0
+PASS Paid refresh remains available PetalCitadel/4/0
+PASS Useful purchasable early stock PetalCitadel/161026/4/1
+PASS Paid refresh remains available PetalCitadel/4/1
+PASS Useful purchasable early stock PetalCitadel/161026/4/2
+PASS Paid refresh remains available PetalCitadel/4/2
+PASS Useful purchasable early stock PetalCitadel/161026/4/3
+PASS Useful purchasable early stock PetalCitadel/161026/5/0
+PASS Paid refresh remains available PetalCitadel/5/0
+PASS Useful purchasable early stock PetalCitadel/161026/5/1
+PASS Paid refresh remains available PetalCitadel/5/1
+PASS Useful purchasable early stock PetalCitadel/161026/5/2
+PASS Paid refresh remains available PetalCitadel/5/2
+PASS Useful purchasable early stock PetalCitadel/161026/5/3
+PASS Useful purchasable early stock PatchworkHost/77138/1/0
+PASS Paid refresh remains available PatchworkHost/1/0
+PASS Useful purchasable early stock PatchworkHost/77138/1/1
+PASS Paid refresh remains available PatchworkHost/1/1
+PASS Useful purchasable early stock PatchworkHost/77138/1/2
+PASS Paid refresh remains available PatchworkHost/1/2
+PASS Useful purchasable early stock PatchworkHost/77138/1/3
+PASS Useful purchasable early stock PatchworkHost/77138/2/0
+PASS Paid refresh remains available PatchworkHost/2/0
+PASS Useful purchasable early stock PatchworkHost/77138/2/1
+PASS Paid refresh remains available PatchworkHost/2/1
+PASS Useful purchasable early stock PatchworkHost/77138/2/2
+PASS Paid refresh remains available PatchworkHost/2/2
+PASS Useful purchasable early stock PatchworkHost/77138/2/3
+PASS Useful purchasable early stock PatchworkHost/77138/3/0
+PASS Paid refresh remains available PatchworkHost/3/0
+PASS Useful purchasable early stock PatchworkHost/77138/3/1
+PASS Paid refresh remains available PatchworkHost/3/1
+PASS Useful purchasable early stock PatchworkHost/77138/3/2
+PASS Paid refresh remains available PatchworkHost/3/2
+PASS Useful purchasable early stock PatchworkHost/77138/3/3
+PASS Useful purchasable early stock PatchworkHost/77138/4/0
+PASS Paid refresh remains available PatchworkHost/4/0
+PASS Useful purchasable early stock PatchworkHost/77138/4/1
+PASS Paid refresh remains available PatchworkHost/4/1
+PASS Useful purchasable early stock PatchworkHost/77138/4/2
+PASS Paid refresh remains available PatchworkHost/4/2
+PASS Useful purchasable early stock PatchworkHost/77138/4/3
+PASS Useful purchasable early stock PatchworkHost/77138/5/0
+PASS Paid refresh remains available PatchworkHost/5/0
+PASS Useful purchasable early stock PatchworkHost/77138/5/1
+PASS Paid refresh remains available PatchworkHost/5/1
+PASS Useful purchasable early stock PatchworkHost/77138/5/2
+PASS Paid refresh remains available PatchworkHost/5/2
+PASS Useful purchasable early stock PatchworkHost/77138/5/3
+PASS Useful purchasable early stock PatchworkHost/161026/1/0
+PASS Paid refresh remains available PatchworkHost/1/0
+PASS Useful purchasable early stock PatchworkHost/161026/1/1
+PASS Paid refresh remains available PatchworkHost/1/1
+PASS Useful purchasable early stock PatchworkHost/161026/1/2
+PASS Paid refresh remains available PatchworkHost/1/2
+PASS Useful purchasable early stock PatchworkHost/161026/1/3
+PASS Useful purchasable early stock PatchworkHost/161026/2/0
+PASS Paid refresh remains available PatchworkHost/2/0
+PASS Useful purchasable early stock PatchworkHost/161026/2/1
+PASS Paid refresh remains available PatchworkHost/2/1
+PASS Useful purchasable early stock PatchworkHost/161026/2/2
+PASS Paid refresh remains available PatchworkHost/2/2
+PASS Useful purchasable early stock PatchworkHost/161026/2/3
+PASS Useful purchasable early stock PatchworkHost/161026/3/0
+PASS Paid refresh remains available PatchworkHost/3/0
+PASS Useful purchasable early stock PatchworkHost/161026/3/1
+PASS Paid refresh remains available PatchworkHost/3/1
+PASS Useful purchasable early stock PatchworkHost/161026/3/2
+PASS Paid refresh remains available PatchworkHost/3/2
+PASS Useful purchasable early stock PatchworkHost/161026/3/3
+PASS Useful purchasable early stock PatchworkHost/161026/4/0
+PASS Paid refresh remains available PatchworkHost/4/0
+PASS Useful purchasable early stock PatchworkHost/161026/4/1
+PASS Paid refresh remains available PatchworkHost/4/1
+PASS Useful purchasable early stock PatchworkHost/161026/4/2
+PASS Paid refresh remains available PatchworkHost/4/2
+PASS Useful purchasable early stock PatchworkHost/161026/4/3
+PASS Useful purchasable early stock PatchworkHost/161026/5/0
+PASS Paid refresh remains available PatchworkHost/5/0
+PASS Useful purchasable early stock PatchworkHost/161026/5/1
+PASS Paid refresh remains available PatchworkHost/5/1
+PASS Useful purchasable early stock PatchworkHost/161026/5/2
+PASS Paid refresh remains available PatchworkHost/5/2
+PASS Useful purchasable early stock PatchworkHost/161026/5/3
+PASS Useful purchasable early stock ArchiveCurator/77138/1/0
+PASS Paid refresh remains available ArchiveCurator/1/0
+PASS Useful purchasable early stock ArchiveCurator/77138/1/1
+PASS Paid refresh remains available ArchiveCurator/1/1
+PASS Useful purchasable early stock ArchiveCurator/77138/1/2
+PASS Paid refresh remains available ArchiveCurator/1/2
+PASS Useful purchasable early stock ArchiveCurator/77138/1/3
+PASS Useful purchasable early stock ArchiveCurator/77138/2/0
+PASS Paid refresh remains available ArchiveCurator/2/0
+PASS Useful purchasable early stock ArchiveCurator/77138/2/1
+PASS Paid refresh remains available ArchiveCurator/2/1
+PASS Useful purchasable early stock ArchiveCurator/77138/2/2
+PASS Paid refresh remains available ArchiveCurator/2/2
+PASS Useful purchasable early stock ArchiveCurator/77138/2/3
+PASS Useful purchasable early stock ArchiveCurator/77138/3/0
+PASS Paid refresh remains available ArchiveCurator/3/0
+PASS Useful purchasable early stock ArchiveCurator/77138/3/1
+PASS Paid refresh remains available ArchiveCurator/3/1
+PASS Useful purchasable early stock ArchiveCurator/77138/3/2
+PASS Paid refresh remains available ArchiveCurator/3/2
+PASS Useful purchasable early stock ArchiveCurator/77138/3/3
+PASS Useful purchasable early stock ArchiveCurator/77138/4/0
+PASS Paid refresh remains available ArchiveCurator/4/0
+PASS Useful purchasable early stock ArchiveCurator/77138/4/1
+PASS Paid refresh remains available ArchiveCurator/4/1
+PASS Useful purchasable early stock ArchiveCurator/77138/4/2
+PASS Paid refresh remains available ArchiveCurator/4/2
+PASS Useful purchasable early stock ArchiveCurator/77138/4/3
+PASS Useful purchasable early stock ArchiveCurator/77138/5/0
+PASS Paid refresh remains available ArchiveCurator/5/0
+PASS Useful purchasable early stock ArchiveCurator/77138/5/1
+PASS Paid refresh remains available ArchiveCurator/5/1
+PASS Useful purchasable early stock ArchiveCurator/77138/5/2
+PASS Paid refresh remains available ArchiveCurator/5/2
+PASS Useful purchasable early stock ArchiveCurator/77138/5/3
+PASS Useful purchasable early stock ArchiveCurator/161026/1/0
+PASS Paid refresh remains available ArchiveCurator/1/0
+PASS Useful purchasable early stock ArchiveCurator/161026/1/1
+PASS Paid refresh remains available ArchiveCurator/1/1
+PASS Useful purchasable early stock ArchiveCurator/161026/1/2
+PASS Paid refresh remains available ArchiveCurator/1/2
+PASS Useful purchasable early stock ArchiveCurator/161026/1/3
+PASS Useful purchasable early stock ArchiveCurator/161026/2/0
+PASS Paid refresh remains available ArchiveCurator/2/0
+PASS Useful purchasable early stock ArchiveCurator/161026/2/1
+PASS Paid refresh remains available ArchiveCurator/2/1
+PASS Useful purchasable early stock ArchiveCurator/161026/2/2
+PASS Paid refresh remains available ArchiveCurator/2/2
+PASS Useful purchasable early stock ArchiveCurator/161026/2/3
+PASS Useful purchasable early stock ArchiveCurator/161026/3/0
+PASS Paid refresh remains available ArchiveCurator/3/0
+PASS Useful purchasable early stock ArchiveCurator/161026/3/1
+PASS Paid refresh remains available ArchiveCurator/3/1
+PASS Useful purchasable early stock ArchiveCurator/161026/3/2
+PASS Paid refresh remains available ArchiveCurator/3/2
+PASS Useful purchasable early stock ArchiveCurator/161026/3/3
+PASS Useful purchasable early stock ArchiveCurator/161026/4/0
+PASS Paid refresh remains available ArchiveCurator/4/0
+PASS Useful purchasable early stock ArchiveCurator/161026/4/1
+PASS Paid refresh remains available ArchiveCurator/4/1
+PASS Useful purchasable early stock ArchiveCurator/161026/4/2
+PASS Paid refresh remains available ArchiveCurator/4/2
+PASS Useful purchasable early stock ArchiveCurator/161026/4/3
+PASS Useful purchasable early stock ArchiveCurator/161026/5/0
+PASS Paid refresh remains available ArchiveCurator/5/0
+PASS Useful purchasable early stock ArchiveCurator/161026/5/1
+PASS Paid refresh remains available ArchiveCurator/5/1
+PASS Useful purchasable early stock ArchiveCurator/161026/5/2
+PASS Paid refresh remains available ArchiveCurator/5/2
+PASS Useful purchasable early stock ArchiveCurator/161026/5/3
+PASS Useful purchasable early stock PennyBroker/77138/1/0
+PASS Paid refresh remains available PennyBroker/1/0
+PASS Useful purchasable early stock PennyBroker/77138/1/1
+PASS Paid refresh remains available PennyBroker/1/1
+PASS Useful purchasable early stock PennyBroker/77138/1/2
+PASS Paid refresh remains available PennyBroker/1/2
+PASS Useful purchasable early stock PennyBroker/77138/1/3
+PASS Useful purchasable early stock PennyBroker/77138/2/0
+PASS Paid refresh remains available PennyBroker/2/0
+PASS Useful purchasable early stock PennyBroker/77138/2/1
+PASS Paid refresh remains available PennyBroker/2/1
+PASS Useful purchasable early stock PennyBroker/77138/2/2
+PASS Paid refresh remains available PennyBroker/2/2
+PASS Useful purchasable early stock PennyBroker/77138/2/3
+PASS Useful purchasable early stock PennyBroker/77138/3/0
+PASS Paid refresh remains available PennyBroker/3/0
+PASS Useful purchasable early stock PennyBroker/77138/3/1
+PASS Paid refresh remains available PennyBroker/3/1
+PASS Useful purchasable early stock PennyBroker/77138/3/2
+PASS Paid refresh remains available PennyBroker/3/2
+PASS Useful purchasable early stock PennyBroker/77138/3/3
+PASS Useful purchasable early stock PennyBroker/77138/4/0
+PASS Paid refresh remains available PennyBroker/4/0
+PASS Useful purchasable early stock PennyBroker/77138/4/1
+PASS Paid refresh remains available PennyBroker/4/1
+PASS Useful purchasable early stock PennyBroker/77138/4/2
+PASS Paid refresh remains available PennyBroker/4/2
+PASS Useful purchasable early stock PennyBroker/77138/4/3
+PASS Useful purchasable early stock PennyBroker/77138/5/0
+PASS Paid refresh remains available PennyBroker/5/0
+PASS Useful purchasable early stock PennyBroker/77138/5/1
+PASS Paid refresh remains available PennyBroker/5/1
+PASS Useful purchasable early stock PennyBroker/77138/5/2
+PASS Paid refresh remains available PennyBroker/5/2
+PASS Useful purchasable early stock PennyBroker/77138/5/3
+PASS Useful purchasable early stock PennyBroker/161026/1/0
+PASS Paid refresh remains available PennyBroker/1/0
+PASS Useful purchasable early stock PennyBroker/161026/1/1
+PASS Paid refresh remains available PennyBroker/1/1
+PASS Useful purchasable early stock PennyBroker/161026/1/2
+PASS Paid refresh remains available PennyBroker/1/2
+PASS Useful purchasable early stock PennyBroker/161026/1/3
+PASS Useful purchasable early stock PennyBroker/161026/2/0
+PASS Paid refresh remains available PennyBroker/2/0
+PASS Useful purchasable early stock PennyBroker/161026/2/1
+PASS Paid refresh remains available PennyBroker/2/1
+PASS Useful purchasable early stock PennyBroker/161026/2/2
+PASS Paid refresh remains available PennyBroker/2/2
+PASS Useful purchasable early stock PennyBroker/161026/2/3
+PASS Useful purchasable early stock PennyBroker/161026/3/0
+PASS Paid refresh remains available PennyBroker/3/0
+PASS Useful purchasable early stock PennyBroker/161026/3/1
+PASS Paid refresh remains available PennyBroker/3/1
+PASS Useful purchasable early stock PennyBroker/161026/3/2
+PASS Paid refresh remains available PennyBroker/3/2
+PASS Useful purchasable early stock PennyBroker/161026/3/3
+PASS Useful purchasable early stock PennyBroker/161026/4/0
+PASS Paid refresh remains available PennyBroker/4/0
+PASS Useful purchasable early stock PennyBroker/161026/4/1
+PASS Paid refresh remains available PennyBroker/4/1
+PASS Useful purchasable early stock PennyBroker/161026/4/2
+PASS Paid refresh remains available PennyBroker/4/2
+PASS Useful purchasable early stock PennyBroker/161026/4/3
+PASS Useful purchasable early stock PennyBroker/161026/5/0
+PASS Paid refresh remains available PennyBroker/5/0
+PASS Useful purchasable early stock PennyBroker/161026/5/1
+PASS Paid refresh remains available PennyBroker/5/1
+PASS Useful purchasable early stock PennyBroker/161026/5/2
+PASS Paid refresh remains available PennyBroker/5/2
+PASS Useful purchasable early stock PennyBroker/161026/5/3
+PASS Useful purchasable early stock StormFencer/77138/1/0
+PASS Paid refresh remains available StormFencer/1/0
+PASS Useful purchasable early stock StormFencer/77138/1/1
+PASS Paid refresh remains available StormFencer/1/1
+PASS Useful purchasable early stock StormFencer/77138/1/2
+PASS Paid refresh remains available StormFencer/1/2
+PASS Useful purchasable early stock StormFencer/77138/1/3
+PASS Useful purchasable early stock StormFencer/77138/2/0
+PASS Paid refresh remains available StormFencer/2/0
+PASS Useful purchasable early stock StormFencer/77138/2/1
+PASS Paid refresh remains available StormFencer/2/1
+PASS Useful purchasable early stock StormFencer/77138/2/2
+PASS Paid refresh remains available StormFencer/2/2
+PASS Useful purchasable early stock StormFencer/77138/2/3
+PASS Useful purchasable early stock StormFencer/77138/3/0
+PASS Paid refresh remains available StormFencer/3/0
+PASS Useful purchasable early stock StormFencer/77138/3/1
+PASS Paid refresh remains available StormFencer/3/1
+PASS Useful purchasable early stock StormFencer/77138/3/2
+PASS Paid refresh remains available StormFencer/3/2
+PASS Useful purchasable early stock StormFencer/77138/3/3
+PASS Useful purchasable early stock StormFencer/77138/4/0
+PASS Paid refresh remains available StormFencer/4/0
+PASS Useful purchasable early stock StormFencer/77138/4/1
+PASS Paid refresh remains available StormFencer/4/1
+PASS Useful purchasable early stock StormFencer/77138/4/2
+PASS Paid refresh remains available StormFencer/4/2
+PASS Useful purchasable early stock StormFencer/77138/4/3
+PASS Useful purchasable early stock StormFencer/77138/5/0
+PASS Paid refresh remains available StormFencer/5/0
+PASS Useful purchasable early stock StormFencer/77138/5/1
+PASS Paid refresh remains available StormFencer/5/1
+PASS Useful purchasable early stock StormFencer/77138/5/2
+PASS Paid refresh remains available StormFencer/5/2
+PASS Useful purchasable early stock StormFencer/77138/5/3
+PASS Useful purchasable early stock StormFencer/161026/1/0
+PASS Paid refresh remains available StormFencer/1/0
+PASS Useful purchasable early stock StormFencer/161026/1/1
+PASS Paid refresh remains available StormFencer/1/1
+PASS Useful purchasable early stock StormFencer/161026/1/2
+PASS Paid refresh remains available StormFencer/1/2
+PASS Useful purchasable early stock StormFencer/161026/1/3
+PASS Useful purchasable early stock StormFencer/161026/2/0
+PASS Paid refresh remains available StormFencer/2/0
+PASS Useful purchasable early stock StormFencer/161026/2/1
+PASS Paid refresh remains available StormFencer/2/1
+PASS Useful purchasable early stock StormFencer/161026/2/2
+PASS Paid refresh remains available StormFencer/2/2
+PASS Useful purchasable early stock StormFencer/161026/2/3
+PASS Useful purchasable early stock StormFencer/161026/3/0
+PASS Paid refresh remains available StormFencer/3/0
+PASS Useful purchasable early stock StormFencer/161026/3/1
+PASS Paid refresh remains available StormFencer/3/1
+PASS Useful purchasable early stock StormFencer/161026/3/2
+PASS Paid refresh remains available StormFencer/3/2
+PASS Useful purchasable early stock StormFencer/161026/3/3
+PASS Useful purchasable early stock StormFencer/161026/4/0
+PASS Paid refresh remains available StormFencer/4/0
+PASS Useful purchasable early stock StormFencer/161026/4/1
+PASS Paid refresh remains available StormFencer/4/1
+PASS Useful purchasable early stock StormFencer/161026/4/2
+PASS Paid refresh remains available StormFencer/4/2
+PASS Useful purchasable early stock StormFencer/161026/4/3
+PASS Useful purchasable early stock StormFencer/161026/5/0
+PASS Paid refresh remains available StormFencer/5/0
+PASS Useful purchasable early stock StormFencer/161026/5/1
+PASS Paid refresh remains available StormFencer/5/1
+PASS Useful purchasable early stock StormFencer/161026/5/2
+PASS Paid refresh remains available StormFencer/5/2
+PASS Useful purchasable early stock StormFencer/161026/5/3
+PASS Useful purchasable early stock TinVirtuoso/77138/1/0
+PASS Paid refresh remains available TinVirtuoso/1/0
+PASS Useful purchasable early stock TinVirtuoso/77138/1/1
+PASS Paid refresh remains available TinVirtuoso/1/1
+PASS Useful purchasable early stock TinVirtuoso/77138/1/2
+PASS Paid refresh remains available TinVirtuoso/1/2
+PASS Useful purchasable early stock TinVirtuoso/77138/1/3
+PASS Useful purchasable early stock TinVirtuoso/77138/2/0
+PASS Paid refresh remains available TinVirtuoso/2/0
+PASS Useful purchasable early stock TinVirtuoso/77138/2/1
+PASS Paid refresh remains available TinVirtuoso/2/1
+PASS Useful purchasable early stock TinVirtuoso/77138/2/2
+PASS Paid refresh remains available TinVirtuoso/2/2
+PASS Useful purchasable early stock TinVirtuoso/77138/2/3
+PASS Useful purchasable early stock TinVirtuoso/77138/3/0
+PASS Paid refresh remains available TinVirtuoso/3/0
+PASS Useful purchasable early stock TinVirtuoso/77138/3/1
+PASS Paid refresh remains available TinVirtuoso/3/1
+PASS Useful purchasable early stock TinVirtuoso/77138/3/2
+PASS Paid refresh remains available TinVirtuoso/3/2
+PASS Useful purchasable early stock TinVirtuoso/77138/3/3
+PASS Useful purchasable early stock TinVirtuoso/77138/4/0
+PASS Paid refresh remains available TinVirtuoso/4/0
+PASS Useful purchasable early stock TinVirtuoso/77138/4/1
+PASS Paid refresh remains available TinVirtuoso/4/1
+PASS Useful purchasable early stock TinVirtuoso/77138/4/2
+PASS Paid refresh remains available TinVirtuoso/4/2
+PASS Useful purchasable early stock TinVirtuoso/77138/4/3
+PASS Useful purchasable early stock TinVirtuoso/77138/5/0
+PASS Paid refresh remains available TinVirtuoso/5/0
+PASS Useful purchasable early stock TinVirtuoso/77138/5/1
+PASS Paid refresh remains available TinVirtuoso/5/1
+PASS Useful purchasable early stock TinVirtuoso/77138/5/2
+PASS Paid refresh remains available TinVirtuoso/5/2
+PASS Useful purchasable early stock TinVirtuoso/77138/5/3
+PASS Useful purchasable early stock TinVirtuoso/161026/1/0
+PASS Paid refresh remains available TinVirtuoso/1/0
+PASS Useful purchasable early stock TinVirtuoso/161026/1/1
+PASS Paid refresh remains available TinVirtuoso/1/1
+PASS Useful purchasable early stock TinVirtuoso/161026/1/2
+PASS Paid refresh remains available TinVirtuoso/1/2
+PASS Useful purchasable early stock TinVirtuoso/161026/1/3
+PASS Useful purchasable early stock TinVirtuoso/161026/2/0
+PASS Paid refresh remains available TinVirtuoso/2/0
+PASS Useful purchasable early stock TinVirtuoso/161026/2/1
+PASS Paid refresh remains available TinVirtuoso/2/1
+PASS Useful purchasable early stock TinVirtuoso/161026/2/2
+PASS Paid refresh remains available TinVirtuoso/2/2
+PASS Useful purchasable early stock TinVirtuoso/161026/2/3
+PASS Useful purchasable early stock TinVirtuoso/161026/3/0
+PASS Paid refresh remains available TinVirtuoso/3/0
+PASS Useful purchasable early stock TinVirtuoso/161026/3/1
+PASS Paid refresh remains available TinVirtuoso/3/1
+PASS Useful purchasable early stock TinVirtuoso/161026/3/2
+PASS Paid refresh remains available TinVirtuoso/3/2
+PASS Useful purchasable early stock TinVirtuoso/161026/3/3
+PASS Useful purchasable early stock TinVirtuoso/161026/4/0
+PASS Paid refresh remains available TinVirtuoso/4/0
+PASS Useful purchasable early stock TinVirtuoso/161026/4/1
+PASS Paid refresh remains available TinVirtuoso/4/1
+PASS Useful purchasable early stock TinVirtuoso/161026/4/2
+PASS Paid refresh remains available TinVirtuoso/4/2
+PASS Useful purchasable early stock TinVirtuoso/161026/4/3
+PASS Useful purchasable early stock TinVirtuoso/161026/5/0
+PASS Paid refresh remains available TinVirtuoso/5/0
+PASS Useful purchasable early stock TinVirtuoso/161026/5/1
+PASS Paid refresh remains available TinVirtuoso/5/1
+PASS Useful purchasable early stock TinVirtuoso/161026/5/2
+PASS Paid refresh remains available TinVirtuoso/5/2
+PASS Useful purchasable early stock TinVirtuoso/161026/5/3
+PASS Useful purchasable early stock MoonProwler/77138/1/0
+PASS Paid refresh remains available MoonProwler/1/0
+PASS Useful purchasable early stock MoonProwler/77138/1/1
+PASS Paid refresh remains available MoonProwler/1/1
+PASS Useful purchasable early stock MoonProwler/77138/1/2
+PASS Paid refresh remains available MoonProwler/1/2
+PASS Useful purchasable early stock MoonProwler/77138/1/3
+PASS Useful purchasable early stock MoonProwler/77138/2/0
+PASS Paid refresh remains available MoonProwler/2/0
+PASS Useful purchasable early stock MoonProwler/77138/2/1
+PASS Paid refresh remains available MoonProwler/2/1
+PASS Useful purchasable early stock MoonProwler/77138/2/2
+PASS Paid refresh remains available MoonProwler/2/2
+PASS Useful purchasable early stock MoonProwler/77138/2/3
+PASS Useful purchasable early stock MoonProwler/77138/3/0
+PASS Paid refresh remains available MoonProwler/3/0
+PASS Useful purchasable early stock MoonProwler/77138/3/1
+PASS Paid refresh remains available MoonProwler/3/1
+PASS Useful purchasable early stock MoonProwler/77138/3/2
+PASS Paid refresh remains available MoonProwler/3/2
+PASS Useful purchasable early stock MoonProwler/77138/3/3
+PASS Useful purchasable early stock MoonProwler/77138/4/0
+PASS Paid refresh remains available MoonProwler/4/0
+PASS Useful purchasable early stock MoonProwler/77138/4/1
+PASS Paid refresh remains available MoonProwler/4/1
+PASS Useful purchasable early stock MoonProwler/77138/4/2
+PASS Paid refresh remains available MoonProwler/4/2
+PASS Useful purchasable early stock MoonProwler/77138/4/3
+PASS Useful purchasable early stock MoonProwler/77138/5/0
+PASS Paid refresh remains available MoonProwler/5/0
+PASS Useful purchasable early stock MoonProwler/77138/5/1
+PASS Paid refresh remains available MoonProwler/5/1
+PASS Useful purchasable early stock MoonProwler/77138/5/2
+PASS Paid refresh remains available MoonProwler/5/2
+PASS Useful purchasable early stock MoonProwler/77138/5/3
+PASS Useful purchasable early stock MoonProwler/161026/1/0
+PASS Paid refresh remains available MoonProwler/1/0
+PASS Useful purchasable early stock MoonProwler/161026/1/1
+PASS Paid refresh remains available MoonProwler/1/1
+PASS Useful purchasable early stock MoonProwler/161026/1/2
+PASS Paid refresh remains available MoonProwler/1/2
+PASS Useful purchasable early stock MoonProwler/161026/1/3
+PASS Useful purchasable early stock MoonProwler/161026/2/0
+PASS Paid refresh remains available MoonProwler/2/0
+PASS Useful purchasable early stock MoonProwler/161026/2/1
+PASS Paid refresh remains available MoonProwler/2/1
+PASS Useful purchasable early stock MoonProwler/161026/2/2
+PASS Paid refresh remains available MoonProwler/2/2
+PASS Useful purchasable early stock MoonProwler/161026/2/3
+PASS Useful purchasable early stock MoonProwler/161026/3/0
+PASS Paid refresh remains available MoonProwler/3/0
+PASS Useful purchasable early stock MoonProwler/161026/3/1
+PASS Paid refresh remains available MoonProwler/3/1
+PASS Useful purchasable early stock MoonProwler/161026/3/2
+PASS Paid refresh remains available MoonProwler/3/2
+PASS Useful purchasable early stock MoonProwler/161026/3/3
+PASS Useful purchasable early stock MoonProwler/161026/4/0
+PASS Paid refresh remains available MoonProwler/4/0
+PASS Useful purchasable early stock MoonProwler/161026/4/1
+PASS Paid refresh remains available MoonProwler/4/1
+PASS Useful purchasable early stock MoonProwler/161026/4/2
+PASS Paid refresh remains available MoonProwler/4/2
+PASS Useful purchasable early stock MoonProwler/161026/4/3
+PASS Useful purchasable early stock MoonProwler/161026/5/0
+PASS Paid refresh remains available MoonProwler/5/0
+PASS Useful purchasable early stock MoonProwler/161026/5/1
+PASS Paid refresh remains available MoonProwler/5/1
+PASS Useful purchasable early stock MoonProwler/161026/5/2
+PASS Paid refresh remains available MoonProwler/5/2
+PASS Useful purchasable early stock MoonProwler/161026/5/3
+PASS Useful purchasable early stock SupperMortar/77138/1/0
+PASS Paid refresh remains available SupperMortar/1/0
+PASS Useful purchasable early stock SupperMortar/77138/1/1
+PASS Paid refresh remains available SupperMortar/1/1
+PASS Useful purchasable early stock SupperMortar/77138/1/2
+PASS Paid refresh remains available SupperMortar/1/2
+PASS Useful purchasable early stock SupperMortar/77138/1/3
+PASS Useful purchasable early stock SupperMortar/77138/2/0
+PASS Paid refresh remains available SupperMortar/2/0
+PASS Useful purchasable early stock SupperMortar/77138/2/1
+PASS Paid refresh remains available SupperMortar/2/1
+PASS Useful purchasable early stock SupperMortar/77138/2/2
+PASS Paid refresh remains available SupperMortar/2/2
+PASS Useful purchasable early stock SupperMortar/77138/2/3
+PASS Useful purchasable early stock SupperMortar/77138/3/0
+PASS Paid refresh remains available SupperMortar/3/0
+PASS Useful purchasable early stock SupperMortar/77138/3/1
+PASS Paid refresh remains available SupperMortar/3/1
+PASS Useful purchasable early stock SupperMortar/77138/3/2
+PASS Paid refresh remains available SupperMortar/3/2
+PASS Useful purchasable early stock SupperMortar/77138/3/3
+PASS Useful purchasable early stock SupperMortar/77138/4/0
+PASS Paid refresh remains available SupperMortar/4/0
+PASS Useful purchasable early stock SupperMortar/77138/4/1
+PASS Paid refresh remains available SupperMortar/4/1
+PASS Useful purchasable early stock SupperMortar/77138/4/2
+PASS Paid refresh remains available SupperMortar/4/2
+PASS Useful purchasable early stock SupperMortar/77138/4/3
+PASS Useful purchasable early stock SupperMortar/77138/5/0
+PASS Paid refresh remains available SupperMortar/5/0
+PASS Useful purchasable early stock SupperMortar/77138/5/1
+PASS Paid refresh remains available SupperMortar/5/1
+PASS Useful purchasable early stock SupperMortar/77138/5/2
+PASS Paid refresh remains available SupperMortar/5/2
+PASS Useful purchasable early stock SupperMortar/77138/5/3
+PASS Useful purchasable early stock SupperMortar/161026/1/0
+PASS Paid refresh remains available SupperMortar/1/0
+PASS Useful purchasable early stock SupperMortar/161026/1/1
+PASS Paid refresh remains available SupperMortar/1/1
+PASS Useful purchasable early stock SupperMortar/161026/1/2
+PASS Paid refresh remains available SupperMortar/1/2
+PASS Useful purchasable early stock SupperMortar/161026/1/3
+PASS Useful purchasable early stock SupperMortar/161026/2/0
+PASS Paid refresh remains available SupperMortar/2/0
+PASS Useful purchasable early stock SupperMortar/161026/2/1
+PASS Paid refresh remains available SupperMortar/2/1
+PASS Useful purchasable early stock SupperMortar/161026/2/2
+PASS Paid refresh remains available SupperMortar/2/2
+PASS Useful purchasable early stock SupperMortar/161026/2/3
+PASS Useful purchasable early stock SupperMortar/161026/3/0
+PASS Paid refresh remains available SupperMortar/3/0
+PASS Useful purchasable early stock SupperMortar/161026/3/1
+PASS Paid refresh remains available SupperMortar/3/1
+PASS Useful purchasable early stock SupperMortar/161026/3/2
+PASS Paid refresh remains available SupperMortar/3/2
+PASS Useful purchasable early stock SupperMortar/161026/3/3
+PASS Useful purchasable early stock SupperMortar/161026/4/0
+PASS Paid refresh remains available SupperMortar/4/0
+PASS Useful purchasable early stock SupperMortar/161026/4/1
+PASS Paid refresh remains available SupperMortar/4/1
+PASS Useful purchasable early stock SupperMortar/161026/4/2
+PASS Paid refresh remains available SupperMortar/4/2
+PASS Useful purchasable early stock SupperMortar/161026/4/3
+PASS Useful purchasable early stock SupperMortar/161026/5/0
+PASS Paid refresh remains available SupperMortar/5/0
+PASS Useful purchasable early stock SupperMortar/161026/5/1
+PASS Paid refresh remains available SupperMortar/5/1
+PASS Useful purchasable early stock SupperMortar/161026/5/2
+PASS Paid refresh remains available SupperMortar/5/2
+PASS Useful purchasable early stock SupperMortar/161026/5/3
+PASS Useful purchasable early stock LanternWeaver/77138/1/0
+PASS Paid refresh remains available LanternWeaver/1/0
+PASS Useful purchasable early stock LanternWeaver/77138/1/1
+PASS Paid refresh remains available LanternWeaver/1/1
+PASS Useful purchasable early stock LanternWeaver/77138/1/2
+PASS Paid refresh remains available LanternWeaver/1/2
+PASS Useful purchasable early stock LanternWeaver/77138/1/3
+PASS Useful purchasable early stock LanternWeaver/77138/2/0
+PASS Paid refresh remains available LanternWeaver/2/0
+PASS Useful purchasable early stock LanternWeaver/77138/2/1
+PASS Paid refresh remains available LanternWeaver/2/1
+PASS Useful purchasable early stock LanternWeaver/77138/2/2
+PASS Paid refresh remains available LanternWeaver/2/2
+PASS Useful purchasable early stock LanternWeaver/77138/2/3
+PASS Useful purchasable early stock LanternWeaver/77138/3/0
+PASS Paid refresh remains available LanternWeaver/3/0
+PASS Useful purchasable early stock LanternWeaver/77138/3/1
+PASS Paid refresh remains available LanternWeaver/3/1
+PASS Useful purchasable early stock LanternWeaver/77138/3/2
+PASS Paid refresh remains available LanternWeaver/3/2
+PASS Useful purchasable early stock LanternWeaver/77138/3/3
+PASS Useful purchasable early stock LanternWeaver/77138/4/0
+PASS Paid refresh remains available LanternWeaver/4/0
+PASS Useful purchasable early stock LanternWeaver/77138/4/1
+PASS Paid refresh remains available LanternWeaver/4/1
+PASS Useful purchasable early stock LanternWeaver/77138/4/2
+PASS Paid refresh remains available LanternWeaver/4/2
+PASS Useful purchasable early stock LanternWeaver/77138/4/3
+PASS Useful purchasable early stock LanternWeaver/77138/5/0
+PASS Paid refresh remains available LanternWeaver/5/0
+PASS Useful purchasable early stock LanternWeaver/77138/5/1
+PASS Paid refresh remains available LanternWeaver/5/1
+PASS Useful purchasable early stock LanternWeaver/77138/5/2
+PASS Paid refresh remains available LanternWeaver/5/2
+PASS Useful purchasable early stock LanternWeaver/77138/5/3
+PASS Useful purchasable early stock LanternWeaver/161026/1/0
+PASS Paid refresh remains available LanternWeaver/1/0
+PASS Useful purchasable early stock LanternWeaver/161026/1/1
+PASS Paid refresh remains available LanternWeaver/1/1
+PASS Useful purchasable early stock LanternWeaver/161026/1/2
+PASS Paid refresh remains available LanternWeaver/1/2
+PASS Useful purchasable early stock LanternWeaver/161026/1/3
+PASS Useful purchasable early stock LanternWeaver/161026/2/0
+PASS Paid refresh remains available LanternWeaver/2/0
+PASS Useful purchasable early stock LanternWeaver/161026/2/1
+PASS Paid refresh remains available LanternWeaver/2/1
+PASS Useful purchasable early stock LanternWeaver/161026/2/2
+PASS Paid refresh remains available LanternWeaver/2/2
+PASS Useful purchasable early stock LanternWeaver/161026/2/3
+PASS Useful purchasable early stock LanternWeaver/161026/3/0
+PASS Paid refresh remains available LanternWeaver/3/0
+PASS Useful purchasable early stock LanternWeaver/161026/3/1
+PASS Paid refresh remains available LanternWeaver/3/1
+PASS Useful purchasable early stock LanternWeaver/161026/3/2
+PASS Paid refresh remains available LanternWeaver/3/2
+PASS Useful purchasable early stock LanternWeaver/161026/3/3
+PASS Useful purchasable early stock LanternWeaver/161026/4/0
+PASS Paid refresh remains available LanternWeaver/4/0
+PASS Useful purchasable early stock LanternWeaver/161026/4/1
+PASS Paid refresh remains available LanternWeaver/4/1
+PASS Useful purchasable early stock LanternWeaver/161026/4/2
+PASS Paid refresh remains available LanternWeaver/4/2
+PASS Useful purchasable early stock LanternWeaver/161026/4/3
+PASS Useful purchasable early stock LanternWeaver/161026/5/0
+PASS Paid refresh remains available LanternWeaver/5/0
+PASS Useful purchasable early stock LanternWeaver/161026/5/1
+PASS Paid refresh remains available LanternWeaver/5/1
+PASS Useful purchasable early stock LanternWeaver/161026/5/2
+PASS Paid refresh remains available LanternWeaver/5/2
+PASS Useful purchasable early stock LanternWeaver/161026/5/3
+PASS Useful purchasable early stock HourglassStag/77138/1/0
+PASS Paid refresh remains available HourglassStag/1/0
+PASS Useful purchasable early stock HourglassStag/77138/1/1
+PASS Paid refresh remains available HourglassStag/1/1
+PASS Useful purchasable early stock HourglassStag/77138/1/2
+PASS Paid refresh remains available HourglassStag/1/2
+PASS Useful purchasable early stock HourglassStag/77138/1/3
+PASS Useful purchasable early stock HourglassStag/77138/2/0
+PASS Paid refresh remains available HourglassStag/2/0
+PASS Useful purchasable early stock HourglassStag/77138/2/1
+PASS Paid refresh remains available HourglassStag/2/1
+PASS Useful purchasable early stock HourglassStag/77138/2/2
+PASS Paid refresh remains available HourglassStag/2/2
+PASS Useful purchasable early stock HourglassStag/77138/2/3
+PASS Useful purchasable early stock HourglassStag/77138/3/0
+PASS Paid refresh remains available HourglassStag/3/0
+PASS Useful purchasable early stock HourglassStag/77138/3/1
+PASS Paid refresh remains available HourglassStag/3/1
+PASS Useful purchasable early stock HourglassStag/77138/3/2
+PASS Paid refresh remains available HourglassStag/3/2
+PASS Useful purchasable early stock HourglassStag/77138/3/3
+PASS Useful purchasable early stock HourglassStag/77138/4/0
+PASS Paid refresh remains available HourglassStag/4/0
+PASS Useful purchasable early stock HourglassStag/77138/4/1
+PASS Paid refresh remains available HourglassStag/4/1
+PASS Useful purchasable early stock HourglassStag/77138/4/2
+PASS Paid refresh remains available HourglassStag/4/2
+PASS Useful purchasable early stock HourglassStag/77138/4/3
+PASS Useful purchasable early stock HourglassStag/77138/5/0
+PASS Paid refresh remains available HourglassStag/5/0
+PASS Useful purchasable early stock HourglassStag/77138/5/1
+PASS Paid refresh remains available HourglassStag/5/1
+PASS Useful purchasable early stock HourglassStag/77138/5/2
+PASS Paid refresh remains available HourglassStag/5/2
+PASS Useful purchasable early stock HourglassStag/77138/5/3
+PASS Useful purchasable early stock HourglassStag/161026/1/0
+PASS Paid refresh remains available HourglassStag/1/0
+PASS Useful purchasable early stock HourglassStag/161026/1/1
+PASS Paid refresh remains available HourglassStag/1/1
+PASS Useful purchasable early stock HourglassStag/161026/1/2
+PASS Paid refresh remains available HourglassStag/1/2
+PASS Useful purchasable early stock HourglassStag/161026/1/3
+PASS Useful purchasable early stock HourglassStag/161026/2/0
+PASS Paid refresh remains available HourglassStag/2/0
+PASS Useful purchasable early stock HourglassStag/161026/2/1
+PASS Paid refresh remains available HourglassStag/2/1
+PASS Useful purchasable early stock HourglassStag/161026/2/2
+PASS Paid refresh remains available HourglassStag/2/2
+PASS Useful purchasable early stock HourglassStag/161026/2/3
+PASS Useful purchasable early stock HourglassStag/161026/3/0
+PASS Paid refresh remains available HourglassStag/3/0
+PASS Useful purchasable early stock HourglassStag/161026/3/1
+PASS Paid refresh remains available HourglassStag/3/1
+PASS Useful purchasable early stock HourglassStag/161026/3/2
+PASS Paid refresh remains available HourglassStag/3/2
+PASS Useful purchasable early stock HourglassStag/161026/3/3
+PASS Useful purchasable early stock HourglassStag/161026/4/0
+PASS Paid refresh remains available HourglassStag/4/0
+PASS Useful purchasable early stock HourglassStag/161026/4/1
+PASS Paid refresh remains available HourglassStag/4/1
+PASS Useful purchasable early stock HourglassStag/161026/4/2
+PASS Paid refresh remains available HourglassStag/4/2
+PASS Useful purchasable early stock HourglassStag/161026/4/3
+PASS Useful purchasable early stock HourglassStag/161026/5/0
+PASS Paid refresh remains available HourglassStag/5/0
+PASS Useful purchasable early stock HourglassStag/161026/5/1
+PASS Paid refresh remains available HourglassStag/5/1
+PASS Useful purchasable early stock HourglassStag/161026/5/2
+PASS Paid refresh remains available HourglassStag/5/2
+PASS Useful purchasable early stock HourglassStag/161026/5/3
+PASS Useful purchasable early stock RainArchivist/77138/1/0
+PASS Paid refresh remains available RainArchivist/1/0
+PASS Useful purchasable early stock RainArchivist/77138/1/1
+PASS Paid refresh remains available RainArchivist/1/1
+PASS Useful purchasable early stock RainArchivist/77138/1/2
+PASS Paid refresh remains available RainArchivist/1/2
+PASS Useful purchasable early stock RainArchivist/77138/1/3
+PASS Useful purchasable early stock RainArchivist/77138/2/0
+PASS Paid refresh remains available RainArchivist/2/0
+PASS Useful purchasable early stock RainArchivist/77138/2/1
+PASS Paid refresh remains available RainArchivist/2/1
+PASS Useful purchasable early stock RainArchivist/77138/2/2
+PASS Paid refresh remains available RainArchivist/2/2
+PASS Useful purchasable early stock RainArchivist/77138/2/3
+PASS Useful purchasable early stock RainArchivist/77138/3/0
+PASS Paid refresh remains available RainArchivist/3/0
+PASS Useful purchasable early stock RainArchivist/77138/3/1
+PASS Paid refresh remains available RainArchivist/3/1
+PASS Useful purchasable early stock RainArchivist/77138/3/2
+PASS Paid refresh remains available RainArchivist/3/2
+PASS Useful purchasable early stock RainArchivist/77138/3/3
+PASS Useful purchasable early stock RainArchivist/77138/4/0
+PASS Paid refresh remains available RainArchivist/4/0
+PASS Useful purchasable early stock RainArchivist/77138/4/1
+PASS Paid refresh remains available RainArchivist/4/1
+PASS Useful purchasable early stock RainArchivist/77138/4/2
+PASS Paid refresh remains available RainArchivist/4/2
+PASS Useful purchasable early stock RainArchivist/77138/4/3
+PASS Useful purchasable early stock RainArchivist/77138/5/0
+PASS Paid refresh remains available RainArchivist/5/0
+PASS Useful purchasable early stock RainArchivist/77138/5/1
+PASS Paid refresh remains available RainArchivist/5/1
+PASS Useful purchasable early stock RainArchivist/77138/5/2
+PASS Paid refresh remains available RainArchivist/5/2
+PASS Useful purchasable early stock RainArchivist/77138/5/3
+PASS Useful purchasable early stock RainArchivist/161026/1/0
+PASS Paid refresh remains available RainArchivist/1/0
+PASS Useful purchasable early stock RainArchivist/161026/1/1
+PASS Paid refresh remains available RainArchivist/1/1
+PASS Useful purchasable early stock RainArchivist/161026/1/2
+PASS Paid refresh remains available RainArchivist/1/2
+PASS Useful purchasable early stock RainArchivist/161026/1/3
+PASS Useful purchasable early stock RainArchivist/161026/2/0
+PASS Paid refresh remains available RainArchivist/2/0
+PASS Useful purchasable early stock RainArchivist/161026/2/1
+PASS Paid refresh remains available RainArchivist/2/1
+PASS Useful purchasable early stock RainArchivist/161026/2/2
+PASS Paid refresh remains available RainArchivist/2/2
+PASS Useful purchasable early stock RainArchivist/161026/2/3
+PASS Useful purchasable early stock RainArchivist/161026/3/0
+PASS Paid refresh remains available RainArchivist/3/0
+PASS Useful purchasable early stock RainArchivist/161026/3/1
+PASS Paid refresh remains available RainArchivist/3/1
+PASS Useful purchasable early stock RainArchivist/161026/3/2
+PASS Paid refresh remains available RainArchivist/3/2
+PASS Useful purchasable early stock RainArchivist/161026/3/3
+PASS Useful purchasable early stock RainArchivist/161026/4/0
+PASS Paid refresh remains available RainArchivist/4/0
+PASS Useful purchasable early stock RainArchivist/161026/4/1
+PASS Paid refresh remains available RainArchivist/4/1
+PASS Useful purchasable early stock RainArchivist/161026/4/2
+PASS Paid refresh remains available RainArchivist/4/2
+PASS Useful purchasable early stock RainArchivist/161026/4/3
+PASS Useful purchasable early stock RainArchivist/161026/5/0
+PASS Paid refresh remains available RainArchivist/5/0
+PASS Useful purchasable early stock RainArchivist/161026/5/1
+PASS Paid refresh remains available RainArchivist/5/1
+PASS Useful purchasable early stock RainArchivist/161026/5/2
+PASS Paid refresh remains available RainArchivist/5/2
+PASS Useful purchasable early stock RainArchivist/161026/5/3
+PASS Damage item improves hero attack LanternKnight/0
+PASS Speed investment respects cooldown floor LanternKnight/0
+PASS Rebuilding does not stack hero power LanternKnight/0
+PASS Authored weapon unchanged LanternKnight/0
+PASS Save/load retains compiled investment LanternKnight/0
+PASS Damage item improves hero attack LanternKnight/1
+PASS Speed investment respects cooldown floor LanternKnight/1
+PASS Rebuilding does not stack hero power LanternKnight/1
+PASS Authored weapon unchanged LanternKnight/1
+PASS Save/load retains compiled investment LanternKnight/1
+PASS Damage item improves hero attack LanternKnight/2
+PASS Speed investment respects cooldown floor LanternKnight/2
+PASS Rebuilding does not stack hero power LanternKnight/2
+PASS Authored weapon unchanged LanternKnight/2
+PASS Save/load retains compiled investment LanternKnight/2
+PASS Damage item improves hero attack Postmaster/0
+PASS Speed investment respects cooldown floor Postmaster/0
+PASS Rebuilding does not stack hero power Postmaster/0
+PASS Authored weapon unchanged Postmaster/0
+PASS Save/load retains compiled investment Postmaster/0
+PASS Damage item improves hero attack Postmaster/1
+PASS Speed investment respects cooldown floor Postmaster/1
+PASS Rebuilding does not stack hero power Postmaster/1
+PASS Authored weapon unchanged Postmaster/1
+PASS Save/load retains compiled investment Postmaster/1
+PASS Damage item improves hero attack Postmaster/2
+PASS Speed investment respects cooldown floor Postmaster/2
+PASS Rebuilding does not stack hero power Postmaster/2
+PASS Authored weapon unchanged Postmaster/2
+PASS Save/load retains compiled investment Postmaster/2
+PASS Damage item improves hero attack DrowsySeer/0
+PASS Speed investment respects cooldown floor DrowsySeer/0
+PASS Rebuilding does not stack hero power DrowsySeer/0
+PASS Authored weapon unchanged DrowsySeer/0
+PASS Save/load retains compiled investment DrowsySeer/0
+PASS Damage item improves hero attack DrowsySeer/1
+PASS Speed investment respects cooldown floor DrowsySeer/1
+PASS Rebuilding does not stack hero power DrowsySeer/1
+PASS Authored weapon unchanged DrowsySeer/1
+PASS Save/load retains compiled investment DrowsySeer/1
+PASS Damage item improves hero attack DrowsySeer/2
+PASS Speed investment respects cooldown floor DrowsySeer/2
+PASS Rebuilding does not stack hero power DrowsySeer/2
+PASS Authored weapon unchanged DrowsySeer/2
+PASS Save/load retains compiled investment DrowsySeer/2
+PASS Damage item improves hero attack RootOracle/0
+PASS Speed investment respects cooldown floor RootOracle/0
+PASS Rebuilding does not stack hero power RootOracle/0
+PASS Authored weapon unchanged RootOracle/0
+PASS Save/load retains compiled investment RootOracle/0
+PASS Damage item improves hero attack RootOracle/1
+PASS Speed investment respects cooldown floor RootOracle/1
+PASS Rebuilding does not stack hero power RootOracle/1
+PASS Authored weapon unchanged RootOracle/1
+PASS Save/load retains compiled investment RootOracle/1
+PASS Damage item improves hero attack RootOracle/2
+PASS Speed investment respects cooldown floor RootOracle/2
+PASS Rebuilding does not stack hero power RootOracle/2
+PASS Authored weapon unchanged RootOracle/2
+PASS Save/load retains compiled investment RootOracle/2
+PASS Damage item improves hero attack LoneJelly/0
+PASS Speed investment respects cooldown floor LoneJelly/0
+PASS Rebuilding does not stack hero power LoneJelly/0
+PASS Authored weapon unchanged LoneJelly/0
+PASS Save/load retains compiled investment LoneJelly/0
+PASS Damage item improves hero attack LoneJelly/1
+PASS Speed investment respects cooldown floor LoneJelly/1
+PASS Rebuilding does not stack hero power LoneJelly/1
+PASS Authored weapon unchanged LoneJelly/1
+PASS Save/load retains compiled investment LoneJelly/1
+PASS Damage item improves hero attack LoneJelly/2
+PASS Speed investment respects cooldown floor LoneJelly/2
+PASS Rebuilding does not stack hero power LoneJelly/2
+PASS Authored weapon unchanged LoneJelly/2
+PASS Save/load retains compiled investment LoneJelly/2
+PASS Damage item improves hero attack GlassDice/0
+PASS Speed investment respects cooldown floor GlassDice/0
+PASS Rebuilding does not stack hero power GlassDice/0
+PASS Authored weapon unchanged GlassDice/0
+PASS Save/load retains compiled investment GlassDice/0
+PASS Damage item improves hero attack GlassDice/1
+PASS Speed investment respects cooldown floor GlassDice/1
+PASS Rebuilding does not stack hero power GlassDice/1
+PASS Authored weapon unchanged GlassDice/1
+PASS Save/load retains compiled investment GlassDice/1
+PASS Damage item improves hero attack GlassDice/2
+PASS Speed investment respects cooldown floor GlassDice/2
+PASS Rebuilding does not stack hero power GlassDice/2
+PASS Authored weapon unchanged GlassDice/2
+PASS Save/load retains compiled investment GlassDice/2
+PASS Damage item improves hero attack TideSinger/0
+PASS Speed investment respects cooldown floor TideSinger/0
+PASS Rebuilding does not stack hero power TideSinger/0
+PASS Authored weapon unchanged TideSinger/0
+PASS Save/load retains compiled investment TideSinger/0
+PASS Damage item improves hero attack TideSinger/1
+PASS Speed investment respects cooldown floor TideSinger/1
+PASS Rebuilding does not stack hero power TideSinger/1
+PASS Authored weapon unchanged TideSinger/1
+PASS Save/load retains compiled investment TideSinger/1
+PASS Damage item improves hero attack TideSinger/2
+PASS Speed investment respects cooldown floor TideSinger/2
+PASS Rebuilding does not stack hero power TideSinger/2
+PASS Authored weapon unchanged TideSinger/2
+PASS Save/load retains compiled investment TideSinger/2
+PASS Damage item improves hero attack CometRunner/0
+PASS Speed investment respects cooldown floor CometRunner/0
+PASS Rebuilding does not stack hero power CometRunner/0
+PASS Authored weapon unchanged CometRunner/0
+PASS Save/load retains compiled investment CometRunner/0
+PASS Damage item improves hero attack CometRunner/1
+PASS Speed investment respects cooldown floor CometRunner/1
+PASS Rebuilding does not stack hero power CometRunner/1
+PASS Authored weapon unchanged CometRunner/1
+PASS Save/load retains compiled investment CometRunner/1
+PASS Damage item improves hero attack CometRunner/2
+PASS Speed investment respects cooldown floor CometRunner/2
+PASS Rebuilding does not stack hero power CometRunner/2
+PASS Authored weapon unchanged CometRunner/2
+PASS Save/load retains compiled investment CometRunner/2
+PASS Damage item improves hero attack MirrorKeeper/0
+PASS Speed investment respects cooldown floor MirrorKeeper/0
+PASS Rebuilding does not stack hero power MirrorKeeper/0
+PASS Authored weapon unchanged MirrorKeeper/0
+PASS Save/load retains compiled investment MirrorKeeper/0
+PASS Damage item improves hero attack MirrorKeeper/1
+PASS Speed investment respects cooldown floor MirrorKeeper/1
+PASS Rebuilding does not stack hero power MirrorKeeper/1
+PASS Authored weapon unchanged MirrorKeeper/1
+PASS Save/load retains compiled investment MirrorKeeper/1
+PASS Damage item improves hero attack MirrorKeeper/2
+PASS Speed investment respects cooldown floor MirrorKeeper/2
+PASS Rebuilding does not stack hero power MirrorKeeper/2
+PASS Authored weapon unchanged MirrorKeeper/2
+PASS Save/load retains compiled investment MirrorKeeper/2
+PASS Damage item improves hero attack TreasureAcorn/0
+PASS Speed investment respects cooldown floor TreasureAcorn/0
+PASS Rebuilding does not stack hero power TreasureAcorn/0
+PASS Authored weapon unchanged TreasureAcorn/0
+PASS Save/load retains compiled investment TreasureAcorn/0
+PASS Damage item improves hero attack TreasureAcorn/1
+PASS Speed investment respects cooldown floor TreasureAcorn/1
+PASS Rebuilding does not stack hero power TreasureAcorn/1
+PASS Authored weapon unchanged TreasureAcorn/1
+PASS Save/load retains compiled investment TreasureAcorn/1
+PASS Damage item improves hero attack TreasureAcorn/2
+PASS Speed investment respects cooldown floor TreasureAcorn/2
+PASS Rebuilding does not stack hero power TreasureAcorn/2
+PASS Authored weapon unchanged TreasureAcorn/2
+PASS Save/load retains compiled investment TreasureAcorn/2
+PASS Damage item improves hero attack VerdantMatron/0
+PASS Speed investment respects cooldown floor VerdantMatron/0
+PASS Rebuilding does not stack hero power VerdantMatron/0
+PASS Authored weapon unchanged VerdantMatron/0
+PASS Save/load retains compiled investment VerdantMatron/0
+PASS Damage item improves hero attack VerdantMatron/1
+PASS Speed investment respects cooldown floor VerdantMatron/1
+PASS Rebuilding does not stack hero power VerdantMatron/1
+PASS Authored weapon unchanged VerdantMatron/1
+PASS Save/load retains compiled investment VerdantMatron/1
+PASS Damage item improves hero attack VerdantMatron/2
+PASS Speed investment respects cooldown floor VerdantMatron/2
+PASS Rebuilding does not stack hero power VerdantMatron/2
+PASS Authored weapon unchanged VerdantMatron/2
+PASS Save/load retains compiled investment VerdantMatron/2
+PASS Damage item improves hero attack CopperCauldron/0
+PASS Speed investment respects cooldown floor CopperCauldron/0
+PASS Rebuilding does not stack hero power CopperCauldron/0
+PASS Authored weapon unchanged CopperCauldron/0
+PASS Save/load retains compiled investment CopperCauldron/0
+PASS Damage item improves hero attack CopperCauldron/1
+PASS Speed investment respects cooldown floor CopperCauldron/1
+PASS Rebuilding does not stack hero power CopperCauldron/1
+PASS Authored weapon unchanged CopperCauldron/1
+PASS Save/load retains compiled investment CopperCauldron/1
+PASS Damage item improves hero attack CopperCauldron/2
+PASS Speed investment respects cooldown floor CopperCauldron/2
+PASS Rebuilding does not stack hero power CopperCauldron/2
+PASS Authored weapon unchanged CopperCauldron/2
+PASS Save/load retains compiled investment CopperCauldron/2
+PASS Damage item improves hero attack ChinaMarionette/0
+PASS Speed investment respects cooldown floor ChinaMarionette/0
+PASS Rebuilding does not stack hero power ChinaMarionette/0
+PASS Authored weapon unchanged ChinaMarionette/0
+PASS Save/load retains compiled investment ChinaMarionette/0
+PASS Damage item improves hero attack ChinaMarionette/1
+PASS Speed investment respects cooldown floor ChinaMarionette/1
+PASS Rebuilding does not stack hero power ChinaMarionette/1
+PASS Authored weapon unchanged ChinaMarionette/1
+PASS Save/load retains compiled investment ChinaMarionette/1
+PASS Damage item improves hero attack ChinaMarionette/2
+PASS Speed investment respects cooldown floor ChinaMarionette/2
+PASS Rebuilding does not stack hero power ChinaMarionette/2
+PASS Authored weapon unchanged ChinaMarionette/2
+PASS Save/load retains compiled investment ChinaMarionette/2
+PASS Damage item improves hero attack SoapSkater/0
+PASS Speed investment respects cooldown floor SoapSkater/0
+PASS Rebuilding does not stack hero power SoapSkater/0
+PASS Authored weapon unchanged SoapSkater/0
+PASS Save/load retains compiled investment SoapSkater/0
+PASS Damage item improves hero attack SoapSkater/1
+PASS Speed investment respects cooldown floor SoapSkater/1
+PASS Rebuilding does not stack hero power SoapSkater/1
+PASS Authored weapon unchanged SoapSkater/1
+PASS Save/load retains compiled investment SoapSkater/1
+PASS Damage item improves hero attack SoapSkater/2
+PASS Speed investment respects cooldown floor SoapSkater/2
+PASS Rebuilding does not stack hero power SoapSkater/2
+PASS Authored weapon unchanged SoapSkater/2
+PASS Save/load retains compiled investment SoapSkater/2
+PASS Damage item improves hero attack VelvetRegent/0
+PASS Speed investment respects cooldown floor VelvetRegent/0
+PASS Rebuilding does not stack hero power VelvetRegent/0
+PASS Authored weapon unchanged VelvetRegent/0
+PASS Save/load retains compiled investment VelvetRegent/0
+PASS Damage item improves hero attack VelvetRegent/1
+PASS Speed investment respects cooldown floor VelvetRegent/1
+PASS Rebuilding does not stack hero power VelvetRegent/1
+PASS Authored weapon unchanged VelvetRegent/1
+PASS Save/load retains compiled investment VelvetRegent/1
+PASS Damage item improves hero attack VelvetRegent/2
+PASS Speed investment respects cooldown floor VelvetRegent/2
+PASS Rebuilding does not stack hero power VelvetRegent/2
+PASS Authored weapon unchanged VelvetRegent/2
+PASS Save/load retains compiled investment VelvetRegent/2
+PASS Damage item improves hero attack ButtonCavalier/0
+PASS Speed investment respects cooldown floor ButtonCavalier/0
+PASS Rebuilding does not stack hero power ButtonCavalier/0
+PASS Authored weapon unchanged ButtonCavalier/0
+PASS Save/load retains compiled investment ButtonCavalier/0
+PASS Damage item improves hero attack ButtonCavalier/1
+PASS Speed investment respects cooldown floor ButtonCavalier/1
+PASS Rebuilding does not stack hero power ButtonCavalier/1
+PASS Authored weapon unchanged ButtonCavalier/1
+PASS Save/load retains compiled investment ButtonCavalier/1
+PASS Damage item improves hero attack ButtonCavalier/2
+PASS Speed investment respects cooldown floor ButtonCavalier/2
+PASS Rebuilding does not stack hero power ButtonCavalier/2
+PASS Authored weapon unchanged ButtonCavalier/2
+PASS Save/load retains compiled investment ButtonCavalier/2
+PASS Damage item improves hero attack NightMaw/0
+PASS Speed investment respects cooldown floor NightMaw/0
+PASS Rebuilding does not stack hero power NightMaw/0
+PASS Authored weapon unchanged NightMaw/0
+PASS Save/load retains compiled investment NightMaw/0
+PASS Damage item improves hero attack NightMaw/1
+PASS Speed investment respects cooldown floor NightMaw/1
+PASS Rebuilding does not stack hero power NightMaw/1
+PASS Authored weapon unchanged NightMaw/1
+PASS Save/load retains compiled investment NightMaw/1
+PASS Damage item improves hero attack NightMaw/2
+PASS Speed investment respects cooldown floor NightMaw/2
+PASS Rebuilding does not stack hero power NightMaw/2
+PASS Authored weapon unchanged NightMaw/2
+PASS Save/load retains compiled investment NightMaw/2
+PASS Damage item improves hero attack ThornTreasurer/0
+PASS Speed investment respects cooldown floor ThornTreasurer/0
+PASS Rebuilding does not stack hero power ThornTreasurer/0
+PASS Authored weapon unchanged ThornTreasurer/0
+PASS Save/load retains compiled investment ThornTreasurer/0
+PASS Damage item improves hero attack ThornTreasurer/1
+PASS Speed investment respects cooldown floor ThornTreasurer/1
+PASS Rebuilding does not stack hero power ThornTreasurer/1
+PASS Authored weapon unchanged ThornTreasurer/1
+PASS Save/load retains compiled investment ThornTreasurer/1
+PASS Damage item improves hero attack ThornTreasurer/2
+PASS Speed investment respects cooldown floor ThornTreasurer/2
+PASS Rebuilding does not stack hero power ThornTreasurer/2
+PASS Authored weapon unchanged ThornTreasurer/2
+PASS Save/load retains compiled investment ThornTreasurer/2
+PASS Damage item improves hero attack CitrusMarshal/0
+PASS Speed investment respects cooldown floor CitrusMarshal/0
+PASS Rebuilding does not stack hero power CitrusMarshal/0
+PASS Authored weapon unchanged CitrusMarshal/0
+PASS Save/load retains compiled investment CitrusMarshal/0
+PASS Damage item improves hero attack CitrusMarshal/1
+PASS Speed investment respects cooldown floor CitrusMarshal/1
+PASS Rebuilding does not stack hero power CitrusMarshal/1
+PASS Authored weapon unchanged CitrusMarshal/1
+PASS Save/load retains compiled investment CitrusMarshal/1
+PASS Damage item improves hero attack CitrusMarshal/2
+PASS Speed investment respects cooldown floor CitrusMarshal/2
+PASS Rebuilding does not stack hero power CitrusMarshal/2
+PASS Authored weapon unchanged CitrusMarshal/2
+PASS Save/load retains compiled investment CitrusMarshal/2
+PASS Damage item improves hero attack IvorySovereign/0
+PASS Speed investment respects cooldown floor IvorySovereign/0
+PASS Rebuilding does not stack hero power IvorySovereign/0
+PASS Authored weapon unchanged IvorySovereign/0
+PASS Save/load retains compiled investment IvorySovereign/0
+PASS Damage item improves hero attack IvorySovereign/1
+PASS Speed investment respects cooldown floor IvorySovereign/1
+PASS Rebuilding does not stack hero power IvorySovereign/1
+PASS Authored weapon unchanged IvorySovereign/1
+PASS Save/load retains compiled investment IvorySovereign/1
+PASS Damage item improves hero attack IvorySovereign/2
+PASS Speed investment respects cooldown floor IvorySovereign/2
+PASS Rebuilding does not stack hero power IvorySovereign/2
+PASS Authored weapon unchanged IvorySovereign/2
+PASS Save/load retains compiled investment IvorySovereign/2
+PASS Damage item improves hero attack PetalCitadel/0
+PASS Speed investment respects cooldown floor PetalCitadel/0
+PASS Rebuilding does not stack hero power PetalCitadel/0
+PASS Authored weapon unchanged PetalCitadel/0
+PASS Save/load retains compiled investment PetalCitadel/0
+PASS Damage item improves hero attack PetalCitadel/1
+PASS Speed investment respects cooldown floor PetalCitadel/1
+PASS Rebuilding does not stack hero power PetalCitadel/1
+PASS Authored weapon unchanged PetalCitadel/1
+PASS Save/load retains compiled investment PetalCitadel/1
+PASS Damage item improves hero attack PetalCitadel/2
+PASS Speed investment respects cooldown floor PetalCitadel/2
+PASS Rebuilding does not stack hero power PetalCitadel/2
+PASS Authored weapon unchanged PetalCitadel/2
+PASS Save/load retains compiled investment PetalCitadel/2
+PASS Damage item improves hero attack PatchworkHost/0
+PASS Speed investment respects cooldown floor PatchworkHost/0
+PASS Rebuilding does not stack hero power PatchworkHost/0
+PASS Authored weapon unchanged PatchworkHost/0
+PASS Save/load retains compiled investment PatchworkHost/0
+PASS Damage item improves hero attack PatchworkHost/1
+PASS Speed investment respects cooldown floor PatchworkHost/1
+PASS Rebuilding does not stack hero power PatchworkHost/1
+PASS Authored weapon unchanged PatchworkHost/1
+PASS Save/load retains compiled investment PatchworkHost/1
+PASS Damage item improves hero attack PatchworkHost/2
+PASS Speed investment respects cooldown floor PatchworkHost/2
+PASS Rebuilding does not stack hero power PatchworkHost/2
+PASS Authored weapon unchanged PatchworkHost/2
+PASS Save/load retains compiled investment PatchworkHost/2
+PASS Damage item improves hero attack ArchiveCurator/0
+PASS Speed investment respects cooldown floor ArchiveCurator/0
+PASS Rebuilding does not stack hero power ArchiveCurator/0
+PASS Authored weapon unchanged ArchiveCurator/0
+PASS Save/load retains compiled investment ArchiveCurator/0
+PASS Damage item improves hero attack ArchiveCurator/1
+PASS Speed investment respects cooldown floor ArchiveCurator/1
+PASS Rebuilding does not stack hero power ArchiveCurator/1
+PASS Authored weapon unchanged ArchiveCurator/1
+PASS Save/load retains compiled investment ArchiveCurator/1
+PASS Damage item improves hero attack ArchiveCurator/2
+PASS Speed investment respects cooldown floor ArchiveCurator/2
+PASS Rebuilding does not stack hero power ArchiveCurator/2
+PASS Authored weapon unchanged ArchiveCurator/2
+PASS Save/load retains compiled investment ArchiveCurator/2
+PASS Damage item improves hero attack PennyBroker/0
+PASS Speed investment respects cooldown floor PennyBroker/0
+PASS Rebuilding does not stack hero power PennyBroker/0
+PASS Authored weapon unchanged PennyBroker/0
+PASS Save/load retains compiled investment PennyBroker/0
+PASS Damage item improves hero attack PennyBroker/1
+PASS Speed investment respects cooldown floor PennyBroker/1
+PASS Rebuilding does not stack hero power PennyBroker/1
+PASS Authored weapon unchanged PennyBroker/1
+PASS Save/load retains compiled investment PennyBroker/1
+PASS Damage item improves hero attack PennyBroker/2
+PASS Speed investment respects cooldown floor PennyBroker/2
+PASS Rebuilding does not stack hero power PennyBroker/2
+PASS Authored weapon unchanged PennyBroker/2
+PASS Save/load retains compiled investment PennyBroker/2
+PASS Damage item improves hero attack StormFencer/0
+PASS Speed investment respects cooldown floor StormFencer/0
+PASS Rebuilding does not stack hero power StormFencer/0
+PASS Authored weapon unchanged StormFencer/0
+PASS Save/load retains compiled investment StormFencer/0
+PASS Damage item improves hero attack StormFencer/1
+PASS Speed investment respects cooldown floor StormFencer/1
+PASS Rebuilding does not stack hero power StormFencer/1
+PASS Authored weapon unchanged StormFencer/1
+PASS Save/load retains compiled investment StormFencer/1
+PASS Damage item improves hero attack StormFencer/2
+PASS Speed investment respects cooldown floor StormFencer/2
+PASS Rebuilding does not stack hero power StormFencer/2
+PASS Authored weapon unchanged StormFencer/2
+PASS Save/load retains compiled investment StormFencer/2
+PASS Damage item improves hero attack TinVirtuoso/0
+PASS Speed investment respects cooldown floor TinVirtuoso/0
+PASS Rebuilding does not stack hero power TinVirtuoso/0
+PASS Authored weapon unchanged TinVirtuoso/0
+PASS Save/load retains compiled investment TinVirtuoso/0
+PASS Damage item improves hero attack TinVirtuoso/1
+PASS Speed investment respects cooldown floor TinVirtuoso/1
+PASS Rebuilding does not stack hero power TinVirtuoso/1
+PASS Authored weapon unchanged TinVirtuoso/1
+PASS Save/load retains compiled investment TinVirtuoso/1
+PASS Damage item improves hero attack TinVirtuoso/2
+PASS Speed investment respects cooldown floor TinVirtuoso/2
+PASS Rebuilding does not stack hero power TinVirtuoso/2
+PASS Authored weapon unchanged TinVirtuoso/2
+PASS Save/load retains compiled investment TinVirtuoso/2
+PASS Damage item improves hero attack MoonProwler/0
+PASS Speed investment respects cooldown floor MoonProwler/0
+PASS Rebuilding does not stack hero power MoonProwler/0
+PASS Authored weapon unchanged MoonProwler/0
+PASS Save/load retains compiled investment MoonProwler/0
+PASS Damage item improves hero attack MoonProwler/1
+PASS Speed investment respects cooldown floor MoonProwler/1
+PASS Rebuilding does not stack hero power MoonProwler/1
+PASS Authored weapon unchanged MoonProwler/1
+PASS Save/load retains compiled investment MoonProwler/1
+PASS Damage item improves hero attack MoonProwler/2
+PASS Speed investment respects cooldown floor MoonProwler/2
+PASS Rebuilding does not stack hero power MoonProwler/2
+PASS Authored weapon unchanged MoonProwler/2
+PASS Save/load retains compiled investment MoonProwler/2
+PASS Damage item improves hero attack SupperMortar/0
+PASS Speed investment respects cooldown floor SupperMortar/0
+PASS Rebuilding does not stack hero power SupperMortar/0
+PASS Authored weapon unchanged SupperMortar/0
+PASS Save/load retains compiled investment SupperMortar/0
+PASS Damage item improves hero attack SupperMortar/1
+PASS Speed investment respects cooldown floor SupperMortar/1
+PASS Rebuilding does not stack hero power SupperMortar/1
+PASS Authored weapon unchanged SupperMortar/1
+PASS Save/load retains compiled investment SupperMortar/1
+PASS Damage item improves hero attack SupperMortar/2
+PASS Speed investment respects cooldown floor SupperMortar/2
+PASS Rebuilding does not stack hero power SupperMortar/2
+PASS Authored weapon unchanged SupperMortar/2
+PASS Save/load retains compiled investment SupperMortar/2
+PASS Damage item improves hero attack LanternWeaver/0
+PASS Speed investment respects cooldown floor LanternWeaver/0
+PASS Rebuilding does not stack hero power LanternWeaver/0
+PASS Authored weapon unchanged LanternWeaver/0
+PASS Save/load retains compiled investment LanternWeaver/0
+PASS Damage item improves hero attack LanternWeaver/1
+PASS Speed investment respects cooldown floor LanternWeaver/1
+PASS Rebuilding does not stack hero power LanternWeaver/1
+PASS Authored weapon unchanged LanternWeaver/1
+PASS Save/load retains compiled investment LanternWeaver/1
+PASS Damage item improves hero attack LanternWeaver/2
+PASS Speed investment respects cooldown floor LanternWeaver/2
+PASS Rebuilding does not stack hero power LanternWeaver/2
+PASS Authored weapon unchanged LanternWeaver/2
+PASS Save/load retains compiled investment LanternWeaver/2
+PASS Damage item improves hero attack HourglassStag/0
+PASS Speed investment respects cooldown floor HourglassStag/0
+PASS Rebuilding does not stack hero power HourglassStag/0
+PASS Authored weapon unchanged HourglassStag/0
+PASS Save/load retains compiled investment HourglassStag/0
+PASS Damage item improves hero attack HourglassStag/1
+PASS Speed investment respects cooldown floor HourglassStag/1
+PASS Rebuilding does not stack hero power HourglassStag/1
+PASS Authored weapon unchanged HourglassStag/1
+PASS Save/load retains compiled investment HourglassStag/1
+PASS Damage item improves hero attack HourglassStag/2
+PASS Speed investment respects cooldown floor HourglassStag/2
+PASS Rebuilding does not stack hero power HourglassStag/2
+PASS Authored weapon unchanged HourglassStag/2
+PASS Save/load retains compiled investment HourglassStag/2
+PASS Damage item improves hero attack RainArchivist/0
+PASS Speed investment respects cooldown floor RainArchivist/0
+PASS Rebuilding does not stack hero power RainArchivist/0
+PASS Authored weapon unchanged RainArchivist/0
+PASS Save/load retains compiled investment RainArchivist/0
+PASS Damage item improves hero attack RainArchivist/1
+PASS Speed investment respects cooldown floor RainArchivist/1
+PASS Rebuilding does not stack hero power RainArchivist/1
+PASS Authored weapon unchanged RainArchivist/1
+PASS Save/load retains compiled investment RainArchivist/1
+PASS Damage item improves hero attack RainArchivist/2
+PASS Speed investment respects cooldown floor RainArchivist/2
+PASS Rebuilding does not stack hero power RainArchivist/2
+PASS Authored weapon unchanged RainArchivist/2
+PASS Save/load retains compiled investment RainArchivist/2
