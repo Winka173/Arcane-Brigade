@@ -19,7 +19,7 @@ namespace ArcaneBrigade
         private FloatingStoryProp[] floatingRecords;
         private FloatingStoryProp floatingChair;
         private Vector2 chairFloor=new Vector2(-4,2.6f);
-        private TextMesh[] labels;
+        private InkedText[] labels;
         private Material floorMaterial;
         private readonly Vector4[] roomLights=new Vector4[16];
         private readonly float[] roomLightRadius=new float[15];
@@ -86,15 +86,15 @@ namespace ArcaneBrigade
             int count=bodies.Count;friends=new SpriteRenderer[count];
             friendDefinitions=definitions.ToArray();friendPositions=new Vector2[count];
             for(int i=0;i<count;i++){friendPositions[i]=position+Vector2.left;friends[i]=Make(names[i],bodies[i],friendPositions[i], .9f,49);}
-            markers=new SpriteRenderer[3];labels=new TextMesh[3];floatingRecords=new FloatingStoryProp[3];
+            markers=new SpriteRenderer[3];labels=new InkedText[3];floatingRecords=new FloatingStoryProp[3];
             for(int i=0;i<3;i++)
             {
                 string[][] evidence={new[]{"Prop_Ledger","Prop_DepartureBoard","Prop_InsideRelease"},new[]{"Prop_OrdinaryStool","Prop_InwardWindow","Prop_InsideRelease"},new[]{"Prop_HeightMarks","Prop_ExtraFootprints","Prop_WaitingNote"},new[]{"WarmChair","Prop_SewnReply","Prop_InsideRelease"}};
                 markers[i]=Make("A physical record",ActOneArtwork.Picture(evidence[Mathf.Clamp(room-1,0,3)][i]),points[i],.75f,15);
                 floatingRecords[i]=markers[i].gameObject.AddComponent<FloatingStoryProp>();floatingRecords[i].Configure(markers[i],251+i);
-                var go=new GameObject("A Verifiable Address");go.transform.position=(Vector3)points[i]+Vector3.up*.8f;
-                labels[i]=go.AddComponent<TextMesh>();labels[i].text=WaitingRooms.Label(room,i);labels[i].characterSize=.09f;labels[i].fontSize=30;labels[i].anchor=TextAnchor.MiddleCenter;labels[i].color=new Color(.9f,.83f,.65f);
-                go.GetComponent<MeshRenderer>().sortingOrder=100;
+                // signs in thick inked lettering (they were the engine's default thin font)
+                labels[i]=InkedText.Create(null,"A Verifiable Address",ArcadeTypography.Punch,30,.09f,100,.022f);labels[i].transform.position=(Vector3)points[i]+Vector3.up*.8f;
+                labels[i].Text=WaitingRooms.Label(room,i);labels[i].Color=new Color(.95f,.88f,.68f);
             }
             chair=Make("The Chair Can Be Moved",ActOneArtwork.Picture("Prop_OrdinaryStool"),new Vector2(-4,2.6f),1.2f,10);
             floatingChair=chair.gameObject.AddComponent<FloatingStoryProp>();floatingChair.Configure(chair,254);
@@ -249,11 +249,11 @@ namespace ArcaneBrigade
         private void ApplyChoices()
         {
             var c=session.State.WaitingCampaign;
-            for(int i=0;i<3;i++){bool done=c.RoomChoices[(room-1)*3+i]>0;markers[i].color=done?new Color(.35f,.95f,.8f):new Color(.95f,.55f,.28f);labels[i].text=WaitingRooms.Label(room,i)+(done?" / RECORDED":" / E");}
+            for(int i=0;i<3;i++){bool done=c.RoomChoices[(room-1)*3+i]>0;markers[i].color=done?new Color(.35f,.95f,.8f):new Color(.95f,.55f,.28f);labels[i].Text=WaitingRooms.Label(room,i)+(done?" / RECORDED":" / E");}
             chair.enabled=room==2 && !rescue;
             if(room==2){chairFloor=c.RoomChoices[3]==1?new Vector2(-3,-1):c.RoomChoices[3]==2?new Vector2(2,0):new Vector2(-4,2.6f);}
             window.color=c.RoomChoices[4]>0?new Color(.1f,.7f,1,.7f):new Color(1,.45f,.1f,.35f);
-            if(room==1){labels[1].text=c.RoomChoices[1]==1?"COAST / VERIFIED ROUTE":c.RoomChoices[1]==2?"REED SETTLEMENT / VERIFIED ROUTE":"WHEN YOU ARE GOOD ENOUGH";}
+            if(room==1){labels[1].Text=c.RoomChoices[1]==1?"COAST / VERIFIED ROUTE":c.RoomChoices[1]==2?"REED SETTLEMENT / VERIFIED ROUTE":"WHEN YOU ARE GOOD ENOUGH";}
             DisplayProps();
         }
         private void DisplayProps()

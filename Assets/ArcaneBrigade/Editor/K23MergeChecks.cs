@@ -48,8 +48,9 @@ namespace ArcaneBrigade.Editor
             {
                 Set("stage", stage);
                 Set("cues", 7);
-                var caption = new GameObject("Caption"); caption.transform.SetParent(stage.transform);
-                Set("tierCaption", caption.AddComponent<TextMesh>());
+                InkedText inked = InkedText.Create(stage.transform, "Caption", null, 64, 0.04f, 10);
+                GameObject caption = inked.gameObject;
+                Set("tierCaption", inked);
                 // two stars
                 Set("active", new MergeReveal.Beat { Result = new RosterEntry { Tier = 2 }, Materials = new List<RosterEntry>() });
                 Present(0.5f);

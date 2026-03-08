@@ -37,7 +37,7 @@ namespace ArcaneBrigade
         private float age;
         private string runId;
         private int lastReceipt;
-        private TextMesh tierCaption;
+        private InkedText tierCaption;
         // two stars and fusions
         private const float RevealAt = 0.70f;
         private const float LandAt = 0.95f;
@@ -332,7 +332,7 @@ namespace ArcaneBrigade
                 tierCaption.gameObject.SetActive(shown > 0);
                 tierCaption.transform.localPosition = new Vector3(0, -0.8f + (1 - shown) * -0.12f, 0);
                 Color tint = grand ? new Color(1, 0.8f, 0.34f) : active.Altar ? new Color(0.6f, 1, 0.92f) : new Color(0.86f, 0.93f, 1);
-                tint.a = shown * fade; tierCaption.color = tint;
+                tint.a = shown * fade; tierCaption.Color = tint;
             }
 
             if (!still) Cues(t, grand, revealAt, starFirst, crownAt);
@@ -567,14 +567,12 @@ namespace ArcaneBrigade
 
         private void CreateCaption()
         {
-            var label = new GameObject("CommittedTierLabel");
-            label.transform.SetParent(stage.transform, false); label.transform.localPosition = Vector3.down * 0.8f;
-            TextMesh text = label.AddComponent<TextMesh>();
-            text.font = ArcadeTypography.Body; text.fontSize = 64; text.characterSize = Grand ? 0.042f : 0.035f; text.anchor = TextAnchor.MiddleCenter;
-            text.text = active.Altar ? "FUSION COMPLETE" : Grand ? "MASTERED" : "STAR UP";
-            text.color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
-            text.GetComponent<MeshRenderer>().sharedMaterial = text.font.material; text.GetComponent<MeshRenderer>().sortingOrder = 2310;
-            label.SetActive(false);
+            // thick inked lettering (Lilita One with an ink outline), larger for three stars
+            InkedText text = InkedText.Create(stage.transform, "CommittedTierLabel", ArcadeTypography.Punch, 64, Grand ? 0.05f : 0.042f, 2310, Grand ? 0.034f : 0.028f);
+            text.transform.localPosition = Vector3.down * 0.8f;
+            text.Text = active.Altar ? "FUSION COMPLETE" : Grand ? "MASTERED" : "STAR UP";
+            text.Color = new Color(1, 0.79f, 0.32f, 0); tierCaption = text;
+            text.gameObject.SetActive(false);
         }
 
         private UnitVisual CreateGhost(RosterEntry entry)
