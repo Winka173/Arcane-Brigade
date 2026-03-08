@@ -250,6 +250,12 @@ namespace ArcaneBrigade
         public static Sprite Token(InkToken kind, InkPalette palette, int face = 0)
         {
             Sprite authored = Painted(kind); if (authored != null) return authored;
+            return Drawn(kind, palette, face);
+        }
+        /// <summary>The token drawn in this palette's ink even when a painted replacement exists (where the colour itself
+        /// carries meaning, such as silver against gold rank stars).</summary>
+        public static Sprite Drawn(InkToken kind, InkPalette palette, int face = 0)
+        {
             long key = ((long)palette.Key << 12) | ((long)kind << 4) | (long)(face & 15);
             if (tokens.TryGetValue(key, out Sprite cached) && cached != null) return cached;
             const int n = TokenSize; var texture = new Texture2D(n, n, TextureFormat.RGBA32, true) { name = "MechanicInk token " + kind, wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Trilinear };

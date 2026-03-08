@@ -539,6 +539,13 @@ namespace ArcaneBrigade
                 flashProperties.SetColor("_RimColor", new Color(0.45f, 1, 0.85f));
                 flashProperties.SetFloat("_RimAmount", 0.4f);
             }
+            else if (state.Faction == Faction.Companion && state.Definition.CombatTier >= 2)
+            {
+                // a starred companion keeps an edge of its rank: a cool silver line at two stars, a warm gold one at three
+                bool gold = state.Definition.CombatTier >= 3;
+                flashProperties.SetColor("_RimColor", gold ? new Color(1, 0.8f, 0.36f) : new Color(0.82f, 0.9f, 1));
+                flashProperties.SetFloat("_RimAmount", gold ? 0.42f : 0.24f);
+            }
             body.SetPropertyBlock(flashProperties);
             if (state.TelegraphUntil > simulationTime) body.color = Color.Lerp(state.Definition.Tint, new Color(1f, 0.4f, 0.3f), ReducedMotion || PresentationSettings.ReducedFlashes ? 0.65f : 0.5f + Mathf.Sin(simulationTime * 12f) * 0.25f);
             // a boss rising from below comes up out of an ink pool: a silhouette whose colour arrives as it clears the surface

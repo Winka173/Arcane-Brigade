@@ -14,22 +14,21 @@ namespace ArcaneBrigade.Editor
         {
             K4MergeChecks.Run();
             const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Static;
-            float reveal = (float)typeof(MergeReveal).GetField("RevealAt", flags).GetRawConstantValue();
-            float landing = (float)typeof(MergeReveal).GetField("LandAt", flags).GetRawConstantValue();
-            float finish = (float)typeof(MergeReveal).GetField("FinishAt", flags).GetRawConstantValue();
-            Require(reveal > 0.46f && landing > reveal && finish - landing >= 0.7f, "Distinct compression, reveal, landing and readable hold");
+            float Constant(string name) => (float)typeof(MergeReveal).GetField(name, flags).GetRawConstantValue();
+            float reveal = Constant("RevealAt"), landing = Constant("LandAt"), finish = Constant("FinishAt");
+            Require(reveal > 0.46f && landing > reveal && finish - landing >= 0.7f, "Two stars: distinct gather, reveal, landing and readable hold");
+            float knot = Constant("GrandKnotAt"), hold = Constant("GrandHold"), grandLanding = Constant("GrandLandAt"), grandFinish = Constant("GrandFinishAt");
+            Require(knot > reveal && hold >= 0.08f && grandLanding > knot && grandFinish - grandLanding >= 1.2f && grandFinish > finish + 1, "Three stars: a longer ceremony with a held beat before its reveal");
             string source = File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/MergeReveal.cs");
-            Require(!source.Contains("MergeConfirmationRing") && !source.Contains("ring.loop"), "No target-ring fallback");
-            Require(source.Contains("MergePresentationStar") && source.Contains("CommittedTierStar") && source.Contains("starMesh.RecalculateBounds()"), "Code-native stars work without painted magic frames or font glyphs");
-            Require(source.Contains("library.Magic.Length > 0") && source.Contains("confirmationFrames.Length - 1"), "Optional painted payoff tolerates absent or short animation arrays");
-            Require(source.Contains("!ReducedMotion && age >= RevealAt") && source.Contains("ReducedMotion ? 0 : (1 - arrival)") && source.Contains("ReducedMotion ? 1.35f"), "Reduced motion removes burst travel and result scaling");
+            Require(!source.Contains("MergeConfirmationRing") && !source.Contains("ring.loop") && !source.Contains("LineRenderer") && !source.Contains("RevealRay"), "No target ring and no rays radiating from the unit");
+            Require(!source.Contains("starMesh") && source.Contains("MechanicInk.Drawn(InkToken.Star") && source.Contains("StarUp_GoldStar") && source.Contains("StarUp_Crown"), "Stars are inked tokens (painted art replaces them when it exists), never a plain mesh");
             Require(source.Contains("RunPhase.Paused || owner.Details.Open || owner.MenuConfirmation) { Skip(); return; }") && source.Contains("private void OnDisable() { Skip(); }"), "Pause, modal and disable still discard the presentation");
-            Require(source.Contains("stage.SetActive(false); Destroy(stage)") && source.Contains("stars.Clear(); rays.Clear(); compression = null") && source.Contains("Destroy(starMesh)"), "Skip deactivates the entire stage and releases owned effect resources");
-            Require(!source.Contains(".material.color") && source.Contains("SetPropertyBlock(starTint)"), "Star fades do not instantiate leaking renderer materials");
+            Require(source.Contains("stage.SetActive(false); Destroy(stage)") && source.Contains("back?.Destroy(); front?.Destroy();"), "Skip deactivates the entire stage and releases owned resources");
+            Require(!source.Contains(".material.color") && source.Contains("SetPropertyBlock(flashBlock)"), "Silhouettes do not instantiate leaking renderer materials");
             string presentation = source.Substring(source.IndexOf("private void PresentStage()", StringComparison.Ordinal));
             Require(!presentation.Contains("owner.Simulation") && !presentation.Contains("owner.Session") && !presentation.Contains("PendingAttack =") && !presentation.Contains("Damage ="), "Payoff has no simulation writes or empowered attack");
             CheckAnimation();
-            Debug.Log("K23 merge presentation checks PASS (animation fixtures, source contracts and K4 receipt checks; visual play-mode review still required)");
+            Debug.Log("K23 merge presentation checks PASS (two- and three-star fixtures, source contracts and K4 receipt checks; visual play-mode review still required)");
         }
 
         private static void CheckAnimation()
@@ -39,6 +38,7 @@ namespace ArcaneBrigade.Editor
             MergeReveal reveal = host.AddComponent<MergeReveal>();
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
             void Set(string field, object value) { typeof(MergeReveal).GetField(field, flags).SetValue(reveal, value); }
+            T Get<T>(string field) => (T)typeof(MergeReveal).GetField(field, flags).GetValue(reveal);
             void Present(float time)
             {
                 Set("age", time);
@@ -47,34 +47,29 @@ namespace ArcaneBrigade.Editor
             try
             {
                 Set("stage", stage);
-                Set("active", new MergeReveal.Beat { Result = new RosterEntry { Tier = 3 } });
-                Set("sounded", true);
-                var compression = new GameObject("Compression"); compression.transform.SetParent(stage.transform);
-                Set("compression", compression.transform);
+                Set("cues", 7);
                 var caption = new GameObject("Caption"); caption.transform.SetParent(stage.transform);
                 Set("tierCaption", caption.AddComponent<TextMesh>());
-                var stars = (List<Transform>)typeof(MergeReveal).GetField("stars", flags).GetValue(reveal);
-                for (int index = 0; index < 3; index++)
-                {
-                    var star = new GameObject("Star"); star.transform.SetParent(stage.transform);
-                    star.AddComponent<MeshRenderer>(); stars.Add(star.transform);
-                }
-                var rays = (List<LineRenderer>)typeof(MergeReveal).GetField("rays", flags).GetValue(reveal);
-                var rayObject = new GameObject("Ray"); rayObject.transform.SetParent(stage.transform);
-                LineRenderer ray = rayObject.AddComponent<LineRenderer>(); ray.positionCount = 2; rays.Add(ray);
-                Present(0.55f);
-                Require(compression.activeSelf && !stars[0].gameObject.activeSelf && !ray.enabled, "Compression precedes result stars and burst");
-                Present(0.7f);
-                Require(!compression.activeSelf && stars[0].gameObject.activeSelf && !stars[1].gameObject.activeSelf && ray.enabled, "Reveal starts staggered stars and open rays");
-                Present(1.3f);
-                Require(stars.TrueForAll(star => star.gameObject.activeSelf) && caption.activeSelf && !ray.enabled, "Landing retains all stars and caption after burst ends");
+                // two stars
+                Set("active", new MergeReveal.Beat { Result = new RosterEntry { Tier = 2 }, Materials = new List<RosterEntry>() });
+                Present(0.5f);
+                Require(Get<int>("starsShown") == 0 && !caption.activeSelf, "Two stars: nothing stamps before the reveal");
+                Present(0.8f);
+                Require(Get<int>("starsShown") == 1, "Two stars: the stars stamp on one after the other");
+                Present(1.2f);
+                Require(Get<int>("starsShown") == 2 && caption.activeSelf && !Get<bool>("crownShown") && Get<float>("dimmed") == 0, "Two stars: two stars and the caption, no crown and no dimmed stage");
+                // three stars
+                Set("active", new MergeReveal.Beat { Result = new RosterEntry { Tier = 3 }, Materials = new List<RosterEntry>() });
+                Present(0.6f);
+                Require(Get<float>("dimmed") > 0.5f && Get<int>("starsShown") == 0, "Three stars: the stage dims while the braid rises");
+                float knot = (float)typeof(MergeReveal).GetField("GrandKnotAt", BindingFlags.NonPublic | BindingFlags.Static).GetRawConstantValue();
+                Set("age", knot + 0.05f);
+                Require(Mathf.Approximately((float)typeof(MergeReveal).GetProperty("VisualTime", flags).GetValue(reveal), knot), "Three stars: the frame holds when the braid knots");
+                Present(2.4f);
+                Require(Get<int>("starsShown") == 3 && Get<bool>("crownShown") && caption.activeSelf, "Three stars: three stars, a crown and the caption");
                 reveal.ReducedMotion = true;
                 Present(0.1f);
-                Vector3 position = stars[0].localPosition;
-                Vector3 scale = stars[0].localScale;
-                Present(1.3f);
-                Require(!compression.activeSelf && !ray.enabled && stars.TrueForAll(star => star.gameObject.activeSelf) && caption.activeSelf, "Reduced motion shows stable complete tier without glint or rays");
-                Require(stars[0].localPosition == position && stars[0].localScale == scale && stars[0].localRotation == Quaternion.identity, "Reduced-motion stars do not travel, rotate or pop");
+                Require(Get<int>("starsShown") == 3 && Get<bool>("crownShown") && caption.activeSelf, "Reduced motion shows the finished three-star at once");
                 Require(reveal.CompletedCount == 0, "Sampling visual frames cannot complete or commit a beat");
             }
             finally

@@ -307,6 +307,17 @@ for rarity, (theme, side, crest, foot, corner) in rarities.items():
                      prompt=FRAME_STYLE + f"Subject ({theme}): a corner cap for the TOP-LEFT corner of a panel: {corner}. Its centre bead sits at "
                      "16% across and 16% down; arms run along the top edge to the right and down the left edge. 512x512 canvas."))
 
+# the star-up ceremony's rank emblems (18/10/2026): MergeReveal draws inked stars and a brush crown until these exist
+STAR_REFS = ["Assets/ArcaneBrigade/Art/MechanicEffects/Tokens/Star_v1.png"] + REFS
+for name, subject in (("StarUp_SilverStar", "a five-point rank star of polished silver with a cream enamel centre and a thin midnight ink contour, "
+                                            "slightly rounded points, one small highlight; no face"),
+                      ("StarUp_GoldStar", "a five-point rank star of burnished gold with an amber enamel centre and a thin dark-brown ink contour, "
+                                          "slightly rounded points, a fine engraved border and one bright highlight; grander than a silver star; no face"),
+                      ("StarUp_Crown", "a small storybook crown of burnished gold: three rounded points, the middle one tallest, a wine-red jewel on "
+                                       "the middle point and teal jewels on the side points, an amber velvet band; seen from the front")):
+    jobs.append(dict(name=name, path=ART + name + "_v1.png", transparent=True, refs=STAR_REFS, depends=None, mode="single",
+                     prompt=STYLE + "Subject: " + subject + ROUND + ISOLATED))
+
 out = ROOT / "Docs" / "Bizarre_Arsenal_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)

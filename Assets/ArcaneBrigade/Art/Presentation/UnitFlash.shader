@@ -5,6 +5,8 @@ Shader "ArcaneBrigade/UnitFlash"
         [PerRendererData] _MainTex ("Sprite", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
         _Flash ("White flash", Range(0,1)) = 0
+        _FlashColor ("Flash colour", Color) = (1,1,1,1)
+        _FlashLine ("Flash reveal line (sprite height)", Float) = 2
         _WeaponFlex ("Weapon secondary motion", Vector) = (0,0,0,0)
         _WeaponMask ("Articulated weapon source", Float) = 0
         _WeaponCut ("Articulated region", Vector) = (0,0,1,1)
@@ -36,6 +38,8 @@ Shader "ArcaneBrigade/UnitFlash"
             #pragma multi_compile_instancing
             #include "UnitySprites.cginc"
             float _Flash;
+            fixed4 _FlashColor;
+            float _FlashLine;
             float4 _UvRect;
             float4 _MainTex_TexelSize;
             fixed4 _ShadeColor;
@@ -92,7 +96,9 @@ Shader "ArcaneBrigade/UnitFlash"
                 color.rgb = lerp(color.rgb, _RimColor.rgb, edge * _RimAmount);
                 float luminance = dot(color.rgb, fixed3(0.2126,0.7152,0.0722));
                 color.rgb = saturate(lerp(luminance.xxx, color.rgb, _Saturation));
-                color.rgb = lerp(color.rgb, fixed3(1,1,1), _Flash);
+                // the flash covers the sprite below _FlashLine only (a wet-brush edge), so a reveal can wipe it away top-down
+                float covered = saturate((_FlashLine + sin(local.x * 17 + _FlashLine * 5) * .035 - local.y) * 16);
+                color.rgb = lerp(color.rgb, _FlashColor.rgb, _Flash * covered);
                 color.rgb *= _NightVisibility;
                 return color;
             }

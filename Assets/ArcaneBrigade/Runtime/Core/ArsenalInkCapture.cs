@@ -71,6 +71,7 @@ namespace ArcaneBrigade
                 Application.Quit(0); yield break;
             }
             if (Array.IndexOf(args, "-shop-approach") >= 0) { yield return ShopApproach(catalog, storage); Application.Quit(0); yield break; }
+            if (Array.IndexOf(args, "-star-up") >= 0) { yield return StarUp(catalog, storage, args); Application.Quit(0); yield break; }
             string filter = Arg(args, "-arsenal-weapons");
             if (Array.IndexOf(args, "-arsenal-live-only") < 0)
             {
@@ -122,6 +123,41 @@ namespace ArcaneBrigade
             ArenaController owner = null;
             for (float t = 0; t < 8 && (owner == null || owner.Simulation == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
             found(owner != null && owner.Simulation != null ? owner : null);
+        }
+
+        /// <summary>-star-up [-star-unit Id -star-weapon Id]: the two-star and the three-star ceremonies in a shop, scrubbed to
+        /// fixed moments (star2-SS / star3-SS, SS = hundredths of a second into the ceremony).</summary>
+        private IEnumerator StarUp(RunCatalog catalog, RunStorage storage, string[] args)
+        {
+            string unit = Arg(args, "-star-unit") ?? "TeapotPilgrim", weapon = Arg(args, "-star-weapon") ?? "KeyCleaver";
+            using (var session = new RunSession(catalog))
+            {
+                session.Start(catalog.Champions[0].Id, 171021); session.State.Wave = 3; session.State.Phase = SessionPhase.Shop;
+                session.State.Roster.Clear(); session.State.Roster.Add(new RosterEntry { UnitId = unit, WeaponId = weapon, Tier = 3 });
+                storage.SaveRun(session.State);
+            }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+            yield return new WaitForSecondsRealtime(2.6f);
+            var owner = FindAnyObjectByType<ArenaController>();
+            if (owner == null || owner.Shop == null || owner.Shop.Reveal == null) { notes.Add("NO SHOP"); File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes); yield break; }
+            MergeReveal reveal = owner.Shop.Reveal;
+            Vector2 at = Camera.main != null ? (Vector2)Camera.main.transform.position + Vector2.down * 1.4f : Vector2.zero;
+            foreach (int tier in new[] { 2, 3 })
+            {
+                var materials = new List<RosterEntry>();
+                for (int i = 0; i < 3; i++) materials.Add(new RosterEntry { UnitId = unit, WeaponId = weapon, Tier = tier - 1 });
+                reveal.Stage(new RosterEntry { UnitId = unit, WeaponId = weapon, Tier = tier }, materials, at);
+                float[] moments = tier == 2 ? new[] { .15f, .32f, .5f, .66f, .74f, .8f, .88f, 1f, 1.25f, 1.55f } : new[] { .15f, .4f, .7f, .95f, 1.08f, 1.22f, 1.32f, 1.45f, 1.6f, 1.8f, 2.05f, 2.4f, 2.8f };
+                foreach (float moment in moments)
+                {
+                    reveal.Scrub = moment;
+                    yield return null; yield return null;
+                    yield return Shot("star" + tier + "-" + Mathf.RoundToInt(moment * 100).ToString("000"));
+                }
+                reveal.Scrub = -1; reveal.Skip(); yield return null;
+                notes.Add("OK star " + tier);
+            }
+            File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
         }
 
         /// <summary>-shop-approach: the hero walks up to each stall of a wave-1 shop in turn (as the player does); one frame each.</summary>

@@ -36,7 +36,7 @@ namespace ArcaneBrigade
             Glass = P(new Color(.1f, .2f, .26f), new Color(.82f, .95f, .98f), new Color(1, 1, 1), new Color(.85f, 1, 1), new Color(.6f, .9f, .7f));
         private static readonly InkPalette[] Party = { Gold, Wine, Water, Candy, Green, Midnight };
 
-        private const int GroundOrder = 66, AirOrder = 2140, GroundToken = 69, AirToken = 2146, GlowOrder = 2138;
+        private readonly int GroundToken, AirToken, GlowOrder;
         private readonly Transform root;
         private readonly InkCanvas ground, air;
         private readonly List<SpriteRenderer> tokens = new List<SpriteRenderer>();
@@ -44,11 +44,14 @@ namespace ArcaneBrigade
         private bool still, sparse, calm;
         public int Primitives => ground.Primitives + air.Primitives + used;
 
-        public ArsenalInk(Transform parent)
+        /// <summary>groundOrder / airOrder: sorting orders of the floor and air layers (tokens sit just above each, glows just
+        /// below the air layer). The defaults paint over the battlefield; a staged moment can paint behind or in front of a unit.</summary>
+        public ArsenalInk(Transform parent, int groundOrder = 66, int airOrder = 2140)
         {
             root = parent;
-            ground = new InkCanvas(parent, "Arsenal ground ink", GroundOrder);
-            air = new InkCanvas(parent, "Arsenal air ink", AirOrder);
+            GroundToken = groundOrder + 3; AirToken = airOrder + 6; GlowOrder = airOrder - 2;
+            ground = new InkCanvas(parent, "Arsenal ground ink", groundOrder);
+            air = new InkCanvas(parent, "Arsenal air ink", airOrder);
         }
         public void Begin()
         {
@@ -654,6 +657,30 @@ namespace ArcaneBrigade
                 air.Stroke(InkCanvas.Line(from, from + back * (.45f - .1f * Mathf.Abs(i))), Brush(Cream, .05f, alpha, 1, 0, 1.6f, true));
             }
         }
+        // ------------------------------------------------------------------ open brushes (star-up ceremony and other staged moments)
+        /// <summary>A painted ribbon along a path: the [tail, head] part of it, with a soft glow under it.</summary>
+        public void Ribbon(List<Vector2> path, InkPalette pal, float width, float head, float tail, float alpha, bool glow = true)
+        {
+            if (path == null || path.Count < 2 || head <= tail || alpha <= .01f) return;
+            if (glow) air.GlowRibbon(path, head, tail, width * 2.4f, A(pal.Glow, (calm ? .12f : .24f) * alpha));
+            air.Stroke(path, Brush(pal, width, alpha, head, tail, 1.2f));
+        }
+        /// <summary>A soft wash that fades out to nothing at its edge (no rim): behind a figure, or darkening a corner.</summary>
+        public void Wash(Vector2 c, float r, Color colour, float alpha, bool airborne = false)
+            => (airborne ? air : ground).Sector(c, r, 0, 360, A(colour, alpha), A(colour, 0));
+        /// <summary>A dimming wash over the floor layer, lightest at c and darkening outward (r reaches past the screen).</summary>
+        public void Vignette(Vector2 c, float r, Color colour, float inner, float outer) => ground.Sector(c, r, 0, 360, A(colour, inner), A(colour, outer));
+        /// <summary>A painted token placed exactly (size, angle, alpha), on the air layer.</summary>
+        public void TokenAt(InkToken kind, InkPalette pal, Vector2 at, float size, float angle, float alpha) => Token(kind, pal, at, size, angle, alpha);
+        /// <summary>A soft light behind something.</summary>
+        public void Light(Vector2 at, float diameter, Color colour, float alpha) => Glow(at, diameter, colour, alpha);
+        /// <summary>A short straight brush stroke (a swash, a drip, a laurel stem).</summary>
+        public void Stroke(Vector2 a, Vector2 b, InkPalette pal, float width, float head, float tail, float alpha, float wave = 0, float seed = 0)
+        {
+            if (head <= tail || alpha <= .01f) return;
+            air.Stroke(InkCanvas.Line(a, b, wave, wave > 0 ? 2.5f : 0, false, seed), Brush(pal, width, alpha, head, tail, 1.3f));
+        }
+
         /// <summary>Glass shards scattering where the vase broke.</summary>
         public void Shards(Vector2 c, float p, float seed) => Scatter(c, .5f, p, InkToken.Shard, Glass, 6, .11f, seed, .3f);
     }
