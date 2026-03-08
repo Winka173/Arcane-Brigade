@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         {
             Burst, CottonPop, PopperBurst, CandyFloss, PaperScraps, BalloonPop, Confetti, MuzzleCloud, CorkPop, Droplets, Steam,
             LeekSwipe, PawSwipe, GoldLeaf, Dragon, MetalSwipe, FistJab, SwatPrint, Crumbs, BrickDust, GavelStamp, IngotBlast,
-            KnucklePop, MittCatch, Zap, Spark, HomeRun, Glitch, Snip
+            KnucklePop, MittCatch, Zap, Spark, HomeRun, Glitch, Snip, FirecrackerBlast, LanternBurst, SnowBurst, AcornPop
         }
 
         private static InkPalette P(Color ink, Color body, Color light, Color glow, Color accent) => new InkPalette(ink, body, light, glow, accent);
@@ -273,6 +273,32 @@ namespace ArcaneBrigade
                     Sweep(at, dir, size * .95f, p, Gold, .07f, 50, 6, .9f, .1f);
                     Scatter(at + dir * size * .7f, size * .55f, p, InkToken.Ember, Amber, 4, .14f, seed, -.2f, Gold, null, 100, face);
                     break;
+                case Moment.FirecrackerBlast:
+                    // a big firecracker bang: an amber cloud, paper casing torn into streamers, sparks flying wide
+                    Glow(at, size * 2.4f, Amber.Glow, .34f * (1 - p));
+                    Cloud(at, size * .5f, p, Amber, seed, .22f, 6);
+                    Rays(at, size * .55f, p, Cream, 8, seed, .05f, size * .4f);
+                    Scatter(at, size * 1.2f, p, InkToken.Page, Wine, 8, .15f, seed, .7f, Gold, InkToken.Spark);
+                    break;
+                case Moment.LanternBurst:
+                    // the paper lantern bursts: a warm gold bloom, lantern paper and embers raining down
+                    Glow(at, size * 2.8f, Gold.Glow, .38f * (1 - p));
+                    Cloud(at + Vector2.up * size * .1f, size * .55f, p, Gold, seed, .3f, 6);
+                    Scatter(at, size * 1.3f, p, InkToken.Ember, Amber, 9, .15f, seed, .9f, Wine, InkToken.Page);
+                    break;
+                case Moment.SnowBurst:
+                    // the snow globe shatters: glass shards, a frosty puff and snowflake stars
+                    Glow(at, size * 2f, Water.Glow, .3f * (1 - p));
+                    Cloud(at, size * .45f, p, Glass, seed, .12f, 5, 1, true);
+                    Scatter(at, size * 1.1f, p, InkToken.Shard, Glass, 7, .14f, seed, .35f, Water, InkToken.Star);
+                    Rays(at, size * .45f, p, Glass, 6, seed, .04f, size * .3f);
+                    break;
+                case Moment.AcornPop:
+                    // an acorn pops: a little cloud of husk dust, its cap and chips flying
+                    Cloud(at, size * .4f, p, Dust, seed, .1f, 4, 1, true);
+                    Scatter(at, size * .9f, p, InkToken.Sand, Leather, 5, .12f, seed, .5f, Green, InkToken.Leaf);
+                    Rays(at, size * .35f, p, Leather, 4, seed, .04f, size * .25f);
+                    break;
                 case Moment.Snip:
                 {
                     // two blades closing on a line ahead: their strokes swing in to cross, a glint where they meet
@@ -399,6 +425,116 @@ namespace ArcaneBrigade
                     Scatter(at, size, p, InkToken.Spark, Gold, 5, .11f, seed, .4f);
                     break;
             }
+        }
+
+        // ------------------------------------------------------------------ every weapon's own swing, hit and muzzle (WeaponInkStyle)
+        /// <summary>A melee weapon's own swing, in its form, palette and token.</summary>
+        public void Strike(WeaponInkStyle.Strike s, Vector2 at, Vector2 dir, float p, float size, float seed)
+        {
+            dir = dir.sqrMagnitude > .0001f ? dir.normalized : Vector2.right;
+            Vector2 side = new Vector2(-dir.y, dir.x); float face = Angle(dir), fade = 1 - Smooth(.55f, 1, p);
+            InkPalette pal = s.Main; Vector2 tip = at + dir * size * .85f;
+            float head = still ? 1 : OutCubic(Mathf.Min(1, p / .3f)), tail = still ? 0 : InQuad(Mathf.Clamp01((p - .3f) / .7f));
+            switch (s.Form)
+            {
+                case WeaponInkStyle.StrikeForm.Crescent:
+                    for (int k = 0; k < Mathf.Max(1, s.Strokes); k++) Sweep(at, dir, size * (.85f - .14f * k), p, pal, k == 0 ? .2f : .1f, 70 - 8 * k, k * 6, 1, k * .06f);
+                    Scatter(tip, size * .5f, p, s.Token, pal, 3, .15f, seed, .2f, null, null, 100, face);
+                    break;
+                case WeaponInkStyle.StrikeForm.Chop:
+                {
+                    // a heavy downward chop just ahead: the stroke falls, a short floor mark and chips
+                    Vector2 from = tip + Vector2.up * size * .55f + side * .1f, to = tip + Vector2.down * size * .25f;
+                    air.Stroke(InkCanvas.Line(from, to), Brush(pal, .2f, fade, head, tail, 1.4f));
+                    if (p > .25f) ground.Sector(to, size * .3f, 0, 360, A(pal.Body, .35f * fade), A(pal.Body, 0));
+                    Rays(to, .1f, Mathf.Clamp01((p - .25f) / .75f), Cream, 4, seed, .045f, .22f, 160, 90);
+                    Scatter(to, size * .45f, Mathf.Clamp01((p - .25f) / .75f), s.Token, pal, 3, .14f, seed, .4f, null, null, 160, 90);
+                    break;
+                }
+                case WeaponInkStyle.StrikeForm.Thrust:
+                {
+                    int n = Mathf.Max(1, s.Strokes);
+                    for (int k = 0; k < n; k++)
+                    {
+                        Vector2 o = side * ((k - (n - 1) * .5f) * .14f);
+                        air.Stroke(InkCanvas.Line(at + dir * .2f + o, at + dir * size * 1.05f + o), Brush(pal, n > 1 ? .08f : .12f, fade, head, tail, 2));
+                    }
+                    Token(s.Token, pal, at + dir * size * 1.05f, .2f * (still ? 1 : OutBack(Mathf.Min(1, p / .3f))) * (1 - .4f * p), face, fade);
+                    break;
+                }
+                case WeaponInkStyle.StrikeForm.Drill:
+                    air.Stroke(InkCanvas.Line(at + dir * .2f, at + dir * size * 1.05f, .07f, 5, false, seed), Brush(pal, .09f, fade, head, tail, 1.6f));
+                    Token(s.Token, pal, at + dir * size * 1.05f, .18f, face + p * 300, fade);
+                    break;
+                case WeaponInkStyle.StrikeForm.Whip:
+                    air.Stroke(InkCanvas.Line(at + dir * .15f, at + dir * size * 1.1f, .16f, 2.2f, false, seed + p * 3), Brush(pal, .09f, fade, head, tail, 1.2f));
+                    Scatter(at + dir * size * 1.1f, size * .35f, p, s.Token, pal, 2, .15f, seed, .3f, null, null, 60, face);
+                    break;
+                case WeaponInkStyle.StrikeForm.Pound:
+                {
+                    // a slam into the floor ahead: a soft print fading out to nothing (no ring), a low puff, the token bouncing up
+                    Vector2 spot = at + dir * size * .7f;
+                    float press = still ? 1 : OutBack(Mathf.Min(1, p / .2f));
+                    ground.Sector(spot, size * .4f * press, 0, 360, A(pal.Body, .42f * fade), A(pal.Body, 0));
+                    Cloud(spot, size * .26f, p, Dust, seed, .1f, 3, 1, true);
+                    Scatter(spot, size * .5f, p, s.Token, pal, 4, .15f, seed, -.25f, Cream, InkToken.Spark, 140, 90);
+                    break;
+                }
+                case WeaponInkStyle.StrikeForm.Snip:
+                    Draw(Moment.Snip, at, dir, p, size, seed);
+                    Token(s.Token, pal, at + dir * size, .16f, seed, fade);
+                    break;
+                case WeaponInkStyle.StrikeForm.Twin:
+                    Sweep(at, dir, size * .85f, p, pal, .14f, 55, 18);
+                    Sweep(at, dir, size * .8f, p, Silver, .1f, 55, -18, 1, .08f);
+                    Token(s.Token, pal, tip, .17f, face, fade);
+                    break;
+                case WeaponInkStyle.StrikeForm.Spin:
+                {
+                    // a wide whirl in front of the wielder (never round it): a long arc with its token riding the edge
+                    Sweep(at, dir, size * .8f, p, pal, .16f, 105);
+                    float a = face + 105 - 210 * head;
+                    Token(s.Token, pal, at + Dir(a) * size * .8f, .2f, a * 3, fade);
+                    break;
+                }
+                case WeaponInkStyle.StrikeForm.Rake:
+                    for (int k = -1; k <= 1; k++)
+                    {
+                        float delay = (k + 1) * .06f; float q = Mathf.Clamp01((p - delay) / (1 - delay)); if (p < delay) continue;
+                        var path = InkCanvas.Arc(at - dir * size * .15f + side * (k * .17f), size * .72f, size * .72f, face + 48, face - 40);
+                        air.Stroke(path, Brush(pal, .11f, 1 - Smooth(.65f, 1, q), still ? 1 : OutCubic(Mathf.Min(1, q / .3f)), still ? 0 : InQuad(Mathf.Clamp01((q - .35f) / .65f)), 1.8f));
+                    }
+                    Token(s.Token, pal, tip, .15f, face, fade);
+                    break;
+                case WeaponInkStyle.StrikeForm.Jab:
+                    Glow(at + dir * size, .8f, pal.Glow, .22f * (1 - p));
+                    Rays(at + dir * size, .13f, p, pal, 6, seed, .05f, .22f);
+                    Token(s.Token, pal, at + dir * size, .28f * (still ? 1 : OutBack(Mathf.Min(1, p / .3f))) * (1 - .4f * p), seed, fade);
+                    break;
+                case WeaponInkStyle.StrikeForm.Glaive:
+                    Sweep(at, dir, size * .75f, p, pal, .18f, 60);
+                    air.Stroke(InkCanvas.Line(at + dir * .2f, at + dir * size * 1.4f), Brush(Gold, .08f, fade, still ? 1 : OutCubic(Mathf.Clamp01((p - .15f) / .3f)), tail, 2));
+                    Scatter(at + dir * size * 1.3f, size * .4f, p, s.Token, pal, 3, .14f, seed, -.1f, null, null, 80, face);
+                    break;
+                case WeaponInkStyle.StrikeForm.Print:
+                    Draw(Moment.SwatPrint, at + dir * size * .9f, dir, p, size * .9f, seed);
+                    Token(s.Token, pal, at + dir * size * .9f + Vector2.up * .2f, .16f, seed, fade);
+                    break;
+            }
+        }
+        /// <summary>A hit: a small flash in the weapon's own palette and two or three of its tokens knocked off.</summary>
+        public void Hit(InkPalette pal, InkToken token, Vector2 at, Vector2 dir, float p, bool critical, float seed)
+        {
+            Glow(at, critical ? .9f : .6f, pal.Glow, (critical ? .3f : .2f) * (1 - p));
+            Rays(at, .08f, p, pal, critical ? 6 : 4, seed, .04f, critical ? .26f : .18f);
+            Scatter(at, critical ? .55f : .38f, p, token, pal, critical ? 3 : 2, critical ? .15f : .12f, seed, .25f);
+        }
+        /// <summary>A shot leaving the muzzle: a little puff in the weapon's palette and its token flicked forward.</summary>
+        public void Muzzle(InkPalette pal, InkToken token, Vector2 at, Vector2 dir, float p, float seed)
+        {
+            dir = dir.sqrMagnitude > .0001f ? dir.normalized : Vector2.right;
+            Cloud(at + dir * .08f * p, .14f, p, pal, seed, .06f, 3, 1);
+            Token(token, pal, at + dir * (.12f + .3f * OutCubic(p)), .14f * (1 - .5f * p), seed, 1 - Smooth(.5f, 1, p));
         }
 
         // ------------------------------------------------------------------ what the props leave in the room

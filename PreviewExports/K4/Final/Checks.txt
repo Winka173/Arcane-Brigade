@@ -8,8 +8,8 @@ PASS Connector and harvester have visible real trade-offs
 PASS HD relic imports preserve alpha and full readable icon bounds without CPU copy
 PASS Two components activate harvest before completing set
 PASS Coin credits once; same-tick collector bursts share finite cooldown
-PASS Receipt charges actual bell cadence, not cosmetic counter
-PASS Harvest charge feeds delayed real wave
+PASS Receipt rings a real bell volley (every beat is a volley now), not a cosmetic counter
+PASS Every bell beat throws its own delayed real wave
 PASS Harvest wave cannot farm coin or recurse pickup
 PASS Credit and collector activations are measured once
 PASS Office graph reads actual weapon and owned relic roles

@@ -28,7 +28,7 @@ namespace ArcaneBrigade.Editor
         public static readonly Spec[] All =
         {
             S("CherryFuseBomb", ArsenalWeapon.CherryFuseBomb, P, WeaponMotion.Recoil, DamageElement.Ember, 11, 5.0f, 1.35f, 0.3f, "Lobs a fuse bomb: it lands, fizzes, then bursts.", "CherryBomb_f0", "CherryBomb_f1", "CherryBomb_f2"),
-            S("PopperSticks", ArsenalWeapon.PopperSticks, P, WeaponMotion.Recoil, DamageElement.Ember, 9, 3.2f, 1.25f, 0.24f, "Throws 3 firecracker sticks that wait, then pop in a chain.", "PopperStick_f0", "PopperStick_f1"),
+            S("PopperSticks", ArsenalWeapon.PopperSticks, P, WeaponMotion.Recoil, DamageElement.Ember, 9, 3.2f, 1.25f, 0.24f, "Lobs a bundle of firecrackers slowly; it lands and bursts wide.", "PopperStick_f0", "PopperStick_f1"),
             S("DreamRacket", ArsenalWeapon.DreamRacket, P, WeaponMotion.Slash, DamageElement.Physical, 12, 5.0f, 1.0f, 0.2f, "Serves a ball that bounces to 4 enemies.", "FeltBall"),
             S("BambooVase", ArsenalWeapon.BambooVase, P, WeaponMotion.Recoil, DamageElement.Physical, 13, 4.6f, 1.3f, 0.26f, "The vase shatters; a line of bamboo springs up.", "BambooVaseShot", "BambooShoot_f0", "BambooShoot_f1", "BambooShoot_f2"),
             S("RoseBouquet", ArsenalWeapon.RoseBouquet, P, WeaponMotion.Recoil, DamageElement.Arcane, 12, 4.5f, 1.15f, 0.2f, "Thrown bouquet leaves a slowing ribbon of petals.", "BouquetShot"),
@@ -69,6 +69,11 @@ namespace ArcaneBrigade.Editor
             S("VerdictGavel", ArsenalWeapon.VerdictGavel, M, WeaponMotion.Slam, DamageElement.Physical, 9, 1.3f, 1.05f, 0.26f, "Bangs a verdict down in front; luck and gathered coins make it heavier."),
             S("TalismanIngot", ArsenalWeapon.TalismanIngot, P, WeaponMotion.Recoil, DamageElement.Arcane, 6, 4.5f, 0.5f, 0.1f, "Throws charm-sealed gold ingots in fours; each pops in a small blast."),
             S("KunaiFan", ArsenalWeapon.KunaiFan, P, WeaponMotion.Recoil, DamageElement.Physical, 8, 6.0f, 1.1f, 0.16f, "Throws its three kunai one after another down one line.", "KunaiShot"),
+            // bombs (18/10/2026)
+            S("PaperLanternBomb", ArsenalWeapon.PaperLanternBomb, P, WeaponMotion.Recoil, DamageElement.Ember, 16, 4.8f, 1.6f, 0.35f, "A paper lantern bomb floats slowly over and bursts wide.", "LanternBombShot"),
+            S("SnowGlobeGrenade", ArsenalWeapon.SnowGlobeGrenade, P, WeaponMotion.Recoil, DamageElement.Frost, 12, 4.4f, 1.3f, 0.3f, "A snow globe shatters where it lands, slowing a small area.", "SnowGlobeShot"),
+            S("PinataBomb", ArsenalWeapon.PinataBomb, P, WeaponMotion.Recoil, DamageElement.Physical, 11, 4.5f, 1.5f, 0.3f, "A pinata bursts and scatters candy bomblets around it.", "PinataShot", "CandyBomblet"),
+            S("AcornCluster", ArsenalWeapon.AcornCluster, P, WeaponMotion.Recoil, DamageElement.Physical, 10, 4.6f, 1.25f, 0.28f, "Three tied acorns split in the air and pop around the target.", "AcornBomb"),
             // our own takes on pass 4's two unconfirmed items
             S("FortuneGlobe", ArsenalWeapon.FortuneGlobe, P, WeaponMotion.Cast, DamageElement.Arcane, 10, 5.0f, 1.2f, 0.22f, "Three crystal motes wander out, growing larger and harder as they fly.", "GlobeMote"),
             S("TopiaryShears", ArsenalWeapon.TopiaryShears, M, WeaponMotion.Scissors, DamageElement.Physical, 10, 1.4f, 0.9f, 0.16f, "Two quick snips down a line ahead; every third trims the toughest enemy."),

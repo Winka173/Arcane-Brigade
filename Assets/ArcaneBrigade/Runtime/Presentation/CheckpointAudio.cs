@@ -93,7 +93,7 @@ namespace ArcaneBrigade
                     ArcaneCueDef def = ArcaneCueLibrary.Get(id);
                     if (!def.danger && !OnScreen(value.Position)) { DroppedCosmeticCues++; return; }
                     if (value.Kind == CombatEventKind.Hit && !def.danger && IsDuplicateHit(value)) { DroppedCosmeticCues++; return; }
-                    if (PlayLibrary(def, scale, Pan(value.Position), value.Critical)) return;
+                    if (PlayLibrary(def, scale, Pan(value.Position), value.Critical, ArcaneCueLibrary.WeaponPitch(value))) return;
                 }
             }
             bool danger = value.Faction == Faction.Champion && value.Kind == CombatEventKind.Hit;
@@ -269,7 +269,7 @@ namespace ArcaneBrigade
         public void PlayId(string id) { PlayLibrary(ArcaneCueLibrary.Get(id)); }
 
         // Returns true when the cue was handled (played or deliberately dropped); false asks the caller to use the legacy path.
-        private bool PlayLibrary(ArcaneCueDef def, float gainScale = 1f, float pan = 0f, bool critical = false)
+        private bool PlayLibrary(ArcaneCueDef def, float gainScale = 1f, float pan = 0f, bool critical = false, float voicePitch = 1f)
         {
             if (!ArcaneCueLibrary.Enabled) return false;
             if (def == null || def.clips == null || def.clips.Length == 0) return false;
@@ -320,7 +320,9 @@ namespace ArcaneBrigade
             voice.volume = PlaybackGain(voiceIndex);
             voice.priority = Mathf.Clamp(def.priority, 0, 255);
             float jitter = impact || def.id.StartsWith("cmb.swing") || def.id.StartsWith("wpn.") ? Mathf.Max(def.pitchJitter, 0.07f) : def.pitchJitter;
-            float pitch = 1f + (jitter > 0f ? UnityEngine.Random.Range(-jitter, jitter) : 0f);
+            // a weapon's own voice keeps only a little jitter, so it stays recognisably its own pitch
+            if (!Mathf.Approximately(voicePitch, 1f)) jitter = Mathf.Min(jitter, 0.02f);
+            float pitch = voicePitch + (jitter > 0f ? UnityEngine.Random.Range(-jitter, jitter) : 0f);
             if (critical && impact) pitch += 0.06f;
             if (def.id == "loot.coin.pickup")
             {

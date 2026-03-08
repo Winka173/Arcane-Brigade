@@ -16,14 +16,16 @@ namespace ArcaneBrigade
         // research pass 4 (forty more videos and a ranking of every companion weapon)
         PawMitten, HearthBrick, VerdictGavel, TalismanIngot, KunaiFan, BareKnuckles,
         // our own takes on pass 4's two unconfirmed items (the Little Witch's crystal ball, the Camo Shroom's shears)
-        FortuneGlobe, TopiaryShears
+        FortuneGlobe, TopiaryShears,
+        // bombs (18/10/2026): lobbed slowly, they burst in an area
+        PaperLanternBomb, SnowGlobeGrenade, PinataBomb, AcornCluster
     }
 
     public sealed partial class WeaponDefinition { public ArsenalWeapon Arsenal; }
 
     /// <summary>Something an Arsenal weapon leaves in the room: a lobbed bomb, a firecracker mine, a bamboo shoot, a petal
     /// ribbon, a clinging octopus, a planted sign, a pinwheel trap, a grinding drill, a batted or grabbed enemy in flight.</summary>
-    public enum ArsenalPropKind { Bomb, Bomblet, Stick, Vase, Shoot, Petals, Octopus, Sign, ToyBomb, Pinwheel, Drill, Bump, Batted, Grab, Plunge, Wound, Fizz, Catch, Buzzer, Brick, Kunai, Snip }
+    public enum ArsenalPropKind { Bomb, Bomblet, Stick, Vase, Shoot, Petals, Octopus, Sign, ToyBomb, Pinwheel, Drill, Bump, Batted, Grab, Plunge, Wound, Fizz, Catch, Buzzer, Brick, Kunai, Snip, Lob }
 
     public sealed class ArsenalProp
     {

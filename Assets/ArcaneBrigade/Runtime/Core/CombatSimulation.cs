@@ -190,6 +190,9 @@ namespace ArcaneBrigade
         public int ArsenalHops;
         public Vector2 ArsenalHome;
         public float ArsenalTick;
+        public ShotPattern Pattern;       // how it flies (ShotPatterns): wave, curve, helix, orbit...
+        public float PatternAge, PatternSpeed; public Vector2 PatternAxis; public int PatternSide;
+        public Vector2 PatternOffset;     // where a swaying pattern draws the shot, off its true (hit-tested) line
     }
 
     public sealed class PickupState
@@ -814,9 +817,9 @@ namespace ArcaneBrigade
             unit.AttackTargetId = nearest.Id;
             unit.Facing = unit.AttackDirection;
             unit.AttackStarted = Elapsed;
-            unit.AttackWindup = weapon.Windup * (weapon.Family == ExpandedWeapon.Hammer && unit.ExpandedBeat % 3 == 2 ? 1.5f : 1);
+            unit.AttackWindup = weapon.Windup * (weapon.Family == ExpandedWeapon.Hammer ? 1.17f : 1); // every slam alike (was: every third heavier)
             unit.ImpactTime = Elapsed + unit.AttackWindup;
-            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer && unit.ExpandedBeat % 3 == 2 ? 1.35f : 1);
+            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
             unit.PendingAttack = true;
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
@@ -858,8 +861,9 @@ namespace ArcaneBrigade
                     Weapon = weapon,
                     RicochetsRemaining = weapon.Family == ExpandedWeapon.TetherBow ? unit.Definition.CombatTier >= 2 ? 3 : 2 : weapon.Family == ExpandedWeapon.Fish ? 1 : 0,
                     SplitOnImpact = weapon.Family == ExpandedWeapon.Tea || weapon.ProjectileSplit > 0,
-                    FinalNote = weapon.Family == ExpandedWeapon.MusicBox && unit.ExpandedBeat % 3 == 0,
+                    FinalNote = weapon.Family == ExpandedWeapon.MusicBox, // every note rings the last (lighter) note
                     HostileMotion = unit.Faction == Faction.Enemy ? unit.Definition.Shot : HostileShot.Straight,
+                    Pattern = unit.Faction == Faction.Enemy ? ShotPattern.None : ShotPatterns.For(weapon),
                     LaunchVelocity = direction * Mathf.Min(2.4f, weapon.ProjectileSpeed)
                 });
             }
@@ -916,6 +920,7 @@ namespace ArcaneBrigade
                     if (address != null) projectile.Velocity = Vector2.Lerp(projectile.Velocity, (address.Position - projectile.Position).normalized * 5.5f, Mathf.Clamp01(deltaTime * 9));
                 }
                 if (projectile.Faction == Faction.Enemy) HostileBallistics.Advance(projectile, deltaTime);
+                if (projectile.Pattern != ShotPattern.None && projectile.Faction != Faction.Enemy) ShotPatterns.Steer(projectile, deltaTime);
                 int arsenalMotion = MoveArsenalProjectile(projectile, deltaTime);
                 if (arsenalMotion != 0) { if (arsenalMotion < 0) projectiles.RemoveAt(index); continue; }
                 int expandedMotion = MoveExpandedProjectile(projectile, deltaTime);

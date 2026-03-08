@@ -47,7 +47,7 @@ namespace ArcaneBrigade.Editor
                     definition.BodyHeight = 1; definition.CombatTier = 3;
                     UnitState companion = simulation.AddFixture(definition, Faction.Companion, Vector2.zero);
                     Require(K8Motion.BodyHeight(companion) <= 0.88f * CompanionTierScaling.Body(3) && K8Motion.BodyHeight(companion) >= Mathf.Min(companion.Definition.BodyHeight * 0.95f, 0.88f) && K8Motion.BodyHeight(simulation.Champion) == simulation.Champion.Definition.BodyHeight, "Allies readable with star-scaled cap without scaling Champion");
-                    Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * (companion.Definition.Weapon.Kind == WeaponKind.Melee ? 1.9f : 1.05f) + 0.0001f, "Companion weapons bounded by class-specific readable body size");
+                    Require(K8Motion.WeaponWidth(companion) <= K8Motion.BodyHeight(companion) * (companion.Definition.Weapon.Kind == WeaponKind.Melee ? 1.05f : 0.9f) + 0.0001f, "Companion weapons never much larger than their bearer");
                     int before = simulation.CompanionCount;
                     for (int index = 0; index < 128; index++) simulation.AddCompanion(definition);
                     Require(simulation.CompanionCount == before + 128, "No companion population cap");

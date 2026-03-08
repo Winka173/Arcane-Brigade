@@ -44,10 +44,11 @@ namespace ArcaneBrigade
         {
             WeaponDefinition weapon = unit.Definition.Weapon;
             if (unit.Faction == Faction.Enemy || weapon.Signature == SignatureWeapon.None || weapon.Signature == SignatureWeapon.Stamp) return;
+            // every attack carries a lighter volley (was: every Nth attack a full one); same damage over time
             int beats = Mathf.Max(2, weapon.SignatureBeats);
-            int total = unit.AttackBeat + Mathf.Clamp(charge, 1, beats);
-            unit.AttackBeat = total % beats;
-            if (total < beats) return;
+            float share = Mathf.Clamp(charge, 1, beats) / (float)beats;
+            unit.AttackBeat = 0;
+            damage *= share;
             float radius = Mathf.Max(0.1f, weapon.SignatureRadius);
             if (weapon.Signature == SignatureWeapon.Umbrella && unit.Definition.CombatTier >= 2) radius *= 1.25f;
             signaturePulses.Add(new SignaturePulse { Source = unit, Position = unit.Position, Direction = unit.AttackDirection, Damage = damage * Mathf.Max(0, weapon.SignatureScale), Radius = radius, At = Elapsed + Mathf.Max(0.05f, weapon.SignatureDelay), Cause = new CombatCause(cause.RootId, unit.Id, weapon.Signature == SignatureWeapon.Bell ? "bell-wave" : "umbrella-open", cause.Depth + 1) });

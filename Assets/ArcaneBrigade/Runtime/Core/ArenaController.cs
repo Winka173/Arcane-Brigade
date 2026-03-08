@@ -672,7 +672,7 @@ namespace ArcaneBrigade
                     visual.Configure(disc);
                     projectileViews.Add(state.Id, view);
                 }
-                view.transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+                view.transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation) + state.PatternOffset; // a swaying shot is drawn off its true line
                 float projectileSize = state.Faction == Faction.Enemy ? 0.2f : ProjectileVisual.Allied(state.VisualWidth > 0 ? state.VisualWidth : 0.22f);
                 Sprite missile = HeroIdentityVisual.Missile(state, catalog.Projectile, simulation.Elapsed, out float missileTurn, out float missileSize);
                 if (missile != null) { view.sprite = missile; projectileSize = missileSize; }

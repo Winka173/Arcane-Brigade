@@ -12,7 +12,12 @@ namespace ArcaneBrigade
     {
         private readonly List<SpriteRenderer> pool = new List<SpriteRenderer>();
         private int used;
-        private sealed class Flash { public ArsenalInk.Moment Moment; public Vector2 At, Dir; public float Born, Life, Size, Seed; public Sprite Held; }
+        private enum FlashKind { Moment, Strike, Hit, Muzzle }
+        private sealed class Flash
+        {
+            public FlashKind Kind; public ArsenalInk.Moment Moment; public Vector2 At, Dir; public float Born, Life, Size, Seed; public Sprite Held;
+            public WeaponInkStyle.Strike Strike; public InkPalette Palette; public InkToken Token; public bool Critical;
+        }
         private ArsenalInk ink;
         private readonly List<Flash> flashes = new List<Flash>();
         private static readonly Color Shadow = new Color(0.05f, 0.03f, 0.08f, 0.35f);
@@ -56,7 +61,9 @@ namespace ArcaneBrigade
         /// a gavel's verdict) and when it catches or shocks.</summary>
         public void Play(CombatEvent value, float time)
         {
-            if (value.Weapon == null || value.Weapon.Arsenal == ArsenalWeapon.None || flashes.Count > 64) return;
+            if (value.Weapon == null || flashes.Count > 64) return;
+            if (PlayOwnLook(value, time)) return;
+            if (value.Weapon.Arsenal == ArsenalWeapon.None) return;
             ArsenalWeapon w = value.Weapon.Arsenal;
             Vector2 dir = value.Direction.sqrMagnitude > 0.0001f ? value.Direction.normalized : Vector2.right;
             if (value.Kind == CombatEventKind.Fire)
@@ -92,7 +99,9 @@ namespace ArcaneBrigade
             if (value.Kind != CombatEventKind.Detonation) return;
             ArsenalInk.Moment burst = w switch
             {
-                ArsenalWeapon.CherryFuseBomb => ArsenalInk.Moment.CottonPop, ArsenalWeapon.PopperSticks => ArsenalInk.Moment.PopperBurst,
+                ArsenalWeapon.CherryFuseBomb => ArsenalInk.Moment.CottonPop, ArsenalWeapon.PopperSticks => ArsenalInk.Moment.FirecrackerBlast,
+                ArsenalWeapon.PaperLanternBomb => ArsenalInk.Moment.LanternBurst, ArsenalWeapon.SnowGlobeGrenade => ArsenalInk.Moment.SnowBurst,
+                ArsenalWeapon.PinataBomb => ArsenalInk.Moment.Confetti, ArsenalWeapon.AcornCluster => ArsenalInk.Moment.AcornPop,
                 ArsenalWeapon.DetonatorBox => ArsenalInk.Moment.CandyFloss, ArsenalWeapon.FirecrackerPinwheel => ArsenalInk.Moment.PaperScraps,
                 ArsenalWeapon.BalloonBuddy => ArsenalInk.Moment.BalloonPop, ArsenalWeapon.ConfettiBlunderbuss => ArsenalInk.Moment.Confetti,
                 ArsenalWeapon.HearthBrick => ArsenalInk.Moment.BrickDust, ArsenalWeapon.VerdictGavel => ArsenalInk.Moment.GavelStamp,
@@ -101,6 +110,33 @@ namespace ArcaneBrigade
             };
             Flash f = Add(burst, value.Position, dir, time, burst == ArsenalInk.Moment.GavelStamp ? 0.7f : 0.55f, Mathf.Max(0.6f, value.Value));
             if (burst == ArsenalInk.Moment.GavelStamp) f.Held = Held(value.Weapon.Id);
+        }
+        /// <summary>Every allied weapon's own look (WeaponInkStyle): a melee swing in its form, each hit's flash and each shot's
+        /// muzzle puff in its own palette and token. Returns true when it handled the event.</summary>
+        private bool PlayOwnLook(CombatEvent value, float time)
+        {
+            WeaponDefinition w = value.Weapon;
+            Vector2 dir = value.Direction.sqrMagnitude > 0.0001f ? value.Direction.normalized : Vector2.right;
+            if (value.Kind == CombatEventKind.Fire && value.Faction != Faction.Enemy && w.Kind == WeaponKind.Melee && WeaponInkStyle.Strikes.TryGetValue(w.Id, out WeaponInkStyle.Strike strike))
+            {
+                float reach = Mathf.Clamp(w.Range, 0.9f, 2.4f);
+                var f = Add(ArsenalInk.Moment.Burst, value.Position, dir, time, 0.28f, reach); f.Kind = FlashKind.Strike; f.Strike = strike;
+                return true;
+            }
+            if (value.Kind == CombatEventKind.Fire && value.Faction != Faction.Enemy && w.Kind == WeaponKind.Projectile)
+            {
+                var look = WeaponInkStyle.Look(w);
+                Vector2 muzzle = value.Position + dir * Mathf.Max(0.3f, w.MountDistance + w.MuzzleDistance * 0.6f);
+                var f = Add(ArsenalInk.Moment.Burst, muzzle, dir, time, 0.2f, 0.3f); f.Kind = FlashKind.Muzzle; f.Palette = look.palette; f.Token = look.token;
+                return w.Arsenal == ArsenalWeapon.None; // Arsenal weapons still add their own attack moment below
+            }
+            if (value.Kind == CombatEventKind.Hit && value.Faction == Faction.Enemy) // a Hit carries the target's faction: an enemy struck by one of ours
+            {
+                var look = WeaponInkStyle.Look(w);
+                var f = Add(ArsenalInk.Moment.Burst, value.Position, dir, time, value.Critical ? 0.3f : 0.22f, 0.4f); f.Kind = FlashKind.Hit; f.Palette = look.palette; f.Token = look.token; f.Critical = value.Critical;
+                return true;
+            }
+            return false;
         }
         private Flash Add(ArsenalInk.Moment m, Vector2 at, Vector2 dir, float time, float life, float size)
         {
@@ -132,7 +168,13 @@ namespace ArcaneBrigade
             {
                 Flash f = flashes[i]; float t = (time - f.Born) / f.Life;
                 if (t >= 1 || t < 0) { flashes.RemoveAt(i); continue; }
-                ink.Draw(f.Moment, f.At, f.Dir, t, f.Size, f.Seed, f.Held);
+                switch (f.Kind)
+                {
+                    case FlashKind.Strike: ink.Strike(f.Strike, f.At, f.Dir, t, f.Size, f.Seed); break;
+                    case FlashKind.Hit: ink.Hit(f.Palette, f.Token, f.At, f.Dir, t, f.Critical, f.Seed); break;
+                    case FlashKind.Muzzle: ink.Muzzle(f.Palette, f.Token, f.At, f.Dir, t, f.Seed); break;
+                    default: ink.Draw(f.Moment, f.At, f.Dir, t, f.Size, f.Seed, f.Held); break;
+                }
             }
             ink.End();
             for (int i = used; i < pool.Count; i++) pool[i].enabled = false;
@@ -281,6 +323,32 @@ namespace ArcaneBrigade
                 case ArsenalPropKind.Catch:
                     if (p.Source != null) Draw(ArsenalArtwork.Frame("Fastball", 0), p.Source.Position + new Vector2(0.28f, 0.1f + 0.08f * (p.Born.GetHashCode() & 3)), 0.14f, 0, Order(p.Source.Position) + 5);
                     break;
+                case ArsenalPropKind.Lob:
+                {
+                    // a thrown bomb on a high arc over its floor shadow; landed, it sits and its fuse fizzes
+                    ArsenalWeapon w = p.Weapon != null ? p.Weapon.Arsenal : ArsenalWeapon.None;
+                    string art = w switch
+                    {
+                        ArsenalWeapon.PopperSticks => "PopperStick", ArsenalWeapon.PaperLanternBomb => "LanternBombShot", ArsenalWeapon.SnowGlobeGrenade => "SnowGlobeShot",
+                        ArsenalWeapon.PinataBomb => p.Stage == 1 ? "CandyBomblet" : "PinataShot", ArsenalWeapon.AcornCluster => "AcornBomb", _ => null
+                    };
+                    Sprite look = art != null ? ArsenalArtwork.Frame(art, 0) : null;
+                    if (look == null && p.Weapon != null) look = ArsenalArtwork.Frame("Shot_" + p.Weapon.Id, 0) ?? Held(p.Weapon.Id);
+                    float size = p.Stage == 1 ? 0.24f : w == ArsenalWeapon.PaperLanternBomb ? 0.5f : 0.42f;
+                    if (now < p.LandAt)
+                    {
+                        float t = Mathf.InverseLerp(p.Born, p.LandAt, now), height = w == ArsenalWeapon.PaperLanternBomb ? 1.6f : p.Stage == 1 ? 0.4f : 1.2f;
+                        Vector2 air = Arc(p.Start, p.Position, t, height);
+                        ShadowAt(Vector2.Lerp(p.Start, p.Position, t) + Vector2.down * 0.1f, size * (0.5f + 0.5f * t));
+                        Draw(look, air, size, still || w == ArsenalWeapon.PaperLanternBomb ? Mathf.Sin(t * 6) * 8 : t * 520, Order(air));
+                        break;
+                    }
+                    float fuse = Mathf.InverseLerp(p.LandAt, p.FuseAt, now), blink = still ? 1 : 1 + 0.1f * Mathf.Max(0, Mathf.Sin(now * (10 + 30 * fuse)));
+                    ShadowAt(at + Vector2.down * 0.1f, size);
+                    Draw(look, at, size * blink, 0, Order(at));
+                    if (!still && p.FuseAt > p.LandAt) ink.Token(InkToken.Spark, ArsenalInk.Gold, at + new Vector2(size * 0.3f, size * 0.45f), 0.14f * blink, now * 400, 1);
+                    break;
+                }
                 case ArsenalPropKind.Brick:
                 {
                     // the wielder's own brick tumbling on a low arc over its floor shadow

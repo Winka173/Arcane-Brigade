@@ -104,8 +104,9 @@ namespace ArcaneBrigade
             {
                 // the muzzle bloom of a thrown volley (bell chimes, umbrella drops): a small flourish at the wielder's front
                 bool umbrella = weapon != null && weapon.Signature == SignatureWeapon.Umbrella;
-                Spawn(umbrella ? Shape.Slash : Shape.Ring, value.Position, angle, weapon != null ? Mathf.Min(0.6f, value.Value) : value.Value, 0.26f, umbrella ? new Color(0.35f, 0.95f, 0.88f) : new Color(1, 0.82f, 0.35f));
+                Spawn(umbrella ? Shape.Slash : Shape.Star, value.Position, angle, weapon != null ? Mathf.Min(0.6f, value.Value) : value.Value, 0.26f, umbrella ? new Color(0.35f, 0.95f, 0.88f) : new Color(1, 0.82f, 0.35f));
             }
+            else if (value.Kind == CombatEventKind.Fire && weapon != null && value.Faction != Faction.Enemy) { /* our weapons' swings and muzzles are drawn in their own ink (ArsenalVisual, WeaponInkStyle) */ }
             else if (value.Kind == CombatEventKind.Fire && weapon != null)
             {
                 if (weapon.Family == ExpandedWeapon.Camera)
@@ -145,6 +146,7 @@ namespace ArcaneBrigade
             }
             else if (value.Kind == CombatEventKind.Windup && weapon != null && (weapon.Motion == WeaponMotion.Cast || weapon.Motion == WeaponMotion.Bell))
                 Spawn(Shape.Glyph, value.Position + value.Direction * 0.7f, angle, 0.26f, weapon.Windup, color);
+            else if (value.Kind == CombatEventKind.Hit && weapon != null && value.Faction == Faction.Enemy) { /* an enemy struck by our weapon flashes in that weapon's own palette and token */ }
             else if (value.Kind == CombatEventKind.Hit)
             {
                 Spawn(Shape.Star, value.Position, angle + 15f, value.Critical ? 0.58f : 0.32f, 0.12f, new Color(1f, 1f, 0.9f));

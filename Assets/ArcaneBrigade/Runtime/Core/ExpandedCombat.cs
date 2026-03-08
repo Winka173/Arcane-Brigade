@@ -88,13 +88,13 @@ namespace ArcaneBrigade
                 if (!CanHit(source.Faction, target) || delta.magnitude > MeleeTactics.Reach(source,target) || Vector2.Dot(delta.normalized, source.AttackDirection) < weapon.ConeDot) continue;
                 bool burning = target.BurnUntil > Elapsed;
                 ApplyWeaponDamage(target, damage, source.Faction, weapon.Element, weapon.Id, source.AttackDirection, weapon, critical, cause);
-                if (weapon.Family == ExpandedWeapon.Hammer && source.ExpandedBeat % 3 == 0 && burning)
-                    Field(ExpandedFieldKind.Echo, source, target.Position, source.AttackDirection, 1.1f, damage * 0.3f, 0.1f, 0.12f, cause);
+                if (weapon.Family == ExpandedWeapon.Hammer && burning)
+                    Field(ExpandedFieldKind.Echo, source, target.Position, source.AttackDirection, 1.1f, damage * 0.1f, 0.1f, 0.12f, cause);
             }
             if (weapon.Family == ExpandedWeapon.Iron)
                 Field(ExpandedFieldKind.Iron, source, source.Position + source.AttackDirection, source.AttackDirection, source.Definition.CombatTier >= 2 ? 0.55f : 0.4f, damage * 0.3f, 0, 1.4f, cause);
-            else if (weapon.Family == ExpandedWeapon.Hammer && source.ExpandedBeat % 3 == 0)
-                Field(ExpandedFieldKind.Echo, source, source.Position + source.AttackDirection * 1.5f, source.AttackDirection, 1.2f, damage * 0.55f, 0.1f, 0.16f, cause); // the slam lands ahead, not round the wielder
+            else if (weapon.Family == ExpandedWeapon.Hammer)
+                Field(ExpandedFieldKind.Echo, source, source.Position + source.AttackDirection * 1.5f, source.AttackDirection, 1.2f, damage * 0.2f, 0.1f, 0.16f, cause); // the slam lands ahead, not round the wielder
             return true;
         }
 
@@ -191,7 +191,7 @@ namespace ArcaneBrigade
                 foreach (StampState mark in stamps.Values) if (mark.Target == target && mark.Expires > Elapsed) { ownedMark = mark; break; }
                 if (ownedMark != null) ownedMark.Expires = Mathf.Max(ownedMark.Expires, Elapsed + 0.6f);
                 if (catalog.ChorusStacks > 0)
-                    Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.3f, projectile.Damage * Mathf.Min(0.7f, 0.35f * catalog.ChorusStacks), 0.3f, 0.18f, projectile.Cause);
+                    Field(ExpandedFieldKind.Echo, source, target.Position, Vector2.zero, 1.3f, projectile.Damage * Mathf.Min(0.24f, 0.12f * catalog.ChorusStacks), 0.3f, 0.18f, projectile.Cause);
             }
         }
 

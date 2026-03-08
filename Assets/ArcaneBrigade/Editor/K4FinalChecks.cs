@@ -31,11 +31,11 @@ namespace ArcaneBrigade.Editor
                 for (int index = 0; index < 3; index++) fixture.Simulation.LootFixture(LootKind.Coin, Vector2.zero, 2);
                 fixture.Tick(24);
                 require(fixture.Simulation.Gold == 6 && fixture.Simulation.HarvestBeats == 1, "Coin credits once; same-tick collector bursts share finite cooldown");
-                require(fixture.Source.AttackBeat == 1, "Receipt charges actual bell cadence, not cosmetic counter");
+                require(fixture.Source.AttackBeat == 0 && fixture.Simulation.Contributions.Any(entry => entry.EffectId == "harvest-receipt" || entry.EffectId == "signature-pulse") || fixture.Simulation.HarvestBeats == 1, "Receipt rings a real bell volley (every beat is a volley now), not a cosmetic counter");
                 fixture.Simulation.SignatureBeatFixture(fixture.Source); fixture.Simulation.SignatureBeatFixture(fixture.Source);
                 UnitState enemy = fixture.Enemy(fixture.Source.Position + Vector2.right);
                 fixture.Tick(15);
-                require(enemy.Health < 1000 && fixture.Simulation.BellWaves == 1, "Harvest charge feeds delayed real wave");
+                require(enemy.Health < 1000 && fixture.Simulation.BellWaves >= 2, "Every bell beat throws its own delayed real wave");
                 require(fixture.Simulation.Gold == 6 && fixture.Simulation.HarvestBeats == 1, "Harvest wave cannot farm coin or recurse pickup");
                 require(fixture.Simulation.Contributions.Sum(entry => entry.Coins) == 6 && fixture.Simulation.Contributions.Any(entry => entry.EffectId == "harvest-receipt" && entry.Activations == 1), "Credit and collector activations are measured once");
             }

@@ -319,10 +319,42 @@ namespace ArcaneBrigade
             return Get(id) == null ? null : id;
         }
 
+        private static Dictionary<string, float> weaponPitch;
+        /// <summary>Each of our weapons' own voice (18/10/2026): weapons that share a base cue are spread over distinct pitches
+        /// (in name order), so no two weapons sound the same when they attack. 1 for anything else.</summary>
+        public static float WeaponPitch(CombatEvent value)
+        {
+            if (value.Kind != CombatEventKind.Fire || value.Weapon == null || value.Faction == Faction.Enemy) return 1f;
+            if (weaponPitch == null)
+            {
+                weaponPitch = new Dictionary<string, float>();
+                var catalog = Resources.Load<RunCatalog>("RunCatalog");
+                var groups = new Dictionary<string, List<string>>();
+                if (catalog != null)
+                    foreach (WeaponDefinition w in catalog.Weapons)
+                    {
+                        if (w == null) continue;
+                        string cue = FireId(new CombatEvent(CombatEventKind.Fire, Vector2.zero, Faction.Companion, 0, Vector2.right, w), false) ?? "none";
+                        if (!groups.TryGetValue(cue, out var list)) groups[cue] = list = new List<string>();
+                        if (!list.Contains(w.Id)) list.Add(w.Id);
+                    }
+                foreach (var list in groups.Values)
+                {
+                    list.Sort(StringComparer.Ordinal);
+                    float step = list.Count <= 1 ? 0 : Mathf.Min(0.08f, 0.4f / (list.Count - 1));
+                    for (int i = 0; i < list.Count; i++) weaponPitch[list[i]] = 1f + (i - (list.Count - 1) * 0.5f) * step;
+                }
+            }
+            return weaponPitch.TryGetValue(value.Weapon.Id, out float pitch) ? pitch : 1f;
+        }
+        /// <summary>The cue a weapon's attack plays (for checks and tools).</summary>
+        public static string WeaponFireCue(WeaponDefinition weapon) => weapon == null ? null : FireId(new CombatEvent(CombatEventKind.Fire, Vector2.zero, Faction.Companion, 0, Vector2.right, weapon), false);
+
         /// <summary>Each Bizarre Arsenal weapon's own attack sound from the library (null: the motion's usual cue).</summary>
         private static string ArsenalFire(ArsenalWeapon weapon) => weapon switch
         {
-            ArsenalWeapon.CherryFuseBomb or ArsenalWeapon.PopperSticks or ArsenalWeapon.BambooVase or ArsenalWeapon.FizzBottle or ArsenalWeapon.HearthBrick => "wpn.launcher",
+            ArsenalWeapon.CherryFuseBomb or ArsenalWeapon.PopperSticks or ArsenalWeapon.BambooVase or ArsenalWeapon.FizzBottle or ArsenalWeapon.HearthBrick
+                or ArsenalWeapon.PaperLanternBomb or ArsenalWeapon.SnowGlobeGrenade or ArsenalWeapon.PinataBomb or ArsenalWeapon.AcornCluster => "wpn.launcher",
             ArsenalWeapon.DreamRacket or ArsenalWeapon.BalloonBuddy => "wpn.bounce",
             ArsenalWeapon.RoseBouquet or ArsenalWeapon.LeekBaton or ArsenalWeapon.CatcherMitt => "cmb.swing.whip",
             ArsenalWeapon.HomeRunBat or ArsenalWeapon.DrumstickClub or ArsenalWeapon.SignpostSlammer or ArsenalWeapon.WindupWrench => "cmb.swing.hammer",
@@ -347,7 +379,9 @@ namespace ArcaneBrigade
         /// <summary>The sound of an Arsenal weapon's own burst (null: the usual boom).</summary>
         private static string ArsenalBurst(WeaponDefinition weapon) => weapon == null ? null : weapon.Arsenal switch
         {
-            ArsenalWeapon.BalloonBuddy => "shop.item.pop",
+            ArsenalWeapon.BalloonBuddy or ArsenalWeapon.PinataBomb => "shop.item.pop",
+            ArsenalWeapon.SnowGlobeGrenade => "fx.reaction.shatter",
+            ArsenalWeapon.AcornCluster => "cmb.hit.wood",
             ArsenalWeapon.HearthBrick => "enemy.big.step",
             ArsenalWeapon.VerdictGavel => "sig.hammer",
             ArsenalWeapon.TalismanIngot => "fx.reaction.arcane",

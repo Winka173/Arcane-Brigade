@@ -48,8 +48,8 @@ namespace ArcaneBrigade
         }
 
         /// <summary>Our shots are drawn larger than their authored width (presentation only; hit radius unchanged) so a volley
-        /// reads as satisfying next to the enemy's 0.36 minimum; shots already drawn large stay as they are.</summary>
-        public static float Allied(float width) => width >= .6f ? width : Mathf.Min(.6f, Mathf.Max(.32f, width * 1.35f));
+        /// reads as satisfying next to the enemy's 0.36 minimum, but never past 0.62.</summary>
+        public static float Allied(float width) => Mathf.Clamp(width * 1.35f, .32f, .62f); // no shot of ours larger than 0.62 (thrown boomerangs and yo-yos were drawn ~1 unit)
         public void Display(ProjectileState state, SpriteRenderer body, Vector2 position, float time)
         {
             bool hostile = state.Faction == Faction.Enemy;
@@ -58,6 +58,9 @@ namespace ArcaneBrigade
             // Classify once: a bullet keeps its appearance after its shooter dies, without a unit search every frame.
             if (newShot) paintedKey = CombatVfxArtwork.ProjectileKey(state, owner?.Simulation);
             Sprite painted = CombatVfxArtwork.Frame(paintedKey, time, state.Id);
+            // a weapon's own painted shot (Art/Arsenal/Shot_<WeaponId>) wins over any shared one: no two weapons fire the same thing
+            Sprite own = !hostile && state.Weapon != null && !state.IsFragment ? ArsenalArtwork.Frame("Shot_" + state.Weapon.Id, 0) : null;
+            if (own != null) painted = own;
             if (painted != null)
             {
                 body.sprite = painted;

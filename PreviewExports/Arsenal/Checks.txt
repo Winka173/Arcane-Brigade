@@ -1,4 +1,4 @@
-PASS 43 distinct weapons
+PASS 47 distinct weapons
 PASS a weapon is only in the catalog with its art
 PASS every hero carries a different weapon now
 PASS every hero's own weapon is different
@@ -95,13 +95,117 @@ PASS ink moment Spark is layered all through its life (6 pieces at least)
 PASS ink moment HomeRun is layered all through its life (14 pieces at least)
 PASS ink moment Glitch is layered all through its life (6 pieces at least)
 PASS ink moment Snip is layered all through its life (6 pieces at least)
+PASS ink moment FirecrackerBlast is layered all through its life (38 pieces at least)
+PASS ink moment LanternBurst is layered all through its life (31 pieces at least)
+PASS ink moment SnowBurst is layered all through its life (32 pieces at least)
+PASS ink moment AcornPop is layered all through its life (23 pieces at least)
 PASS ink room pieces draw (pool 27, all 50)
+PASS melee weapon has its own strike KeyCleaver
+PASS melee weapon has its own strike UmbrellaLance
+PASS melee weapon has its own strike BookPaddle
+PASS melee weapon has its own strike DreamStamp
+PASS melee weapon has its own strike CloudScissors
+PASS melee weapon has its own strike DreamIron
+PASS melee weapon has its own strike RubberHammer
+PASS melee weapon has its own strike SpoonSabre
+PASS melee weapon has its own strike ToastCleaver
+PASS melee weapon has its own strike LollipopLance
+PASS melee weapon has its own strike PaperFan
+PASS melee weapon has its own strike CorkscrewRapier
+PASS melee weapon has its own strike TeabagFlail
+PASS melee weapon has its own strike UmbrellaHook
+PASS melee weapon has its own strike PizzaWheel
+PASS melee weapon has its own strike MoonScythe
+PASS melee weapon has its own strike ForkTrident
+PASS melee weapon has its own strike MaracaHammer
+PASS melee weapon has its own strike TapeWhip
+PASS melee weapon has its own strike TwinSabres
+PASS melee weapon has its own strike ClockCrescent
+PASS melee weapon has its own strike ParasolNeedle
+PASS melee weapon has its own strike StampHammer
+PASS melee weapon has its own strike ClockworkYoYo
+PASS melee weapon has its own strike SpringKnocker
+PASS melee weapon has its own strike RibbonWheel
+PASS melee weapon has its own strike AfterimageSabre
+PASS melee weapon has its own strike HomeRunBat
+PASS melee weapon has its own strike StarforgeClaymore
+PASS melee weapon has its own strike DragonLanternGlaive
+PASS melee weapon has its own strike DrumstickClub
+PASS melee weapon has its own strike LeekBaton
+PASS melee weapon has its own strike FlySwatter
+PASS melee weapon has its own strike PawMitten
+PASS melee weapon has its own strike VerdictGavel
+PASS melee weapon has its own strike BareKnuckles
+PASS melee weapon has its own strike SignpostSlammer
+PASS melee weapon has its own strike WindupWrench
+PASS melee weapon has its own strike StarKnuckle
+PASS no two melee weapons share a strike (40)
+PASS no two weapons share a hit look (98)
+PASS no two weapons share a voice (98 weapons, 33 cues)
+PASS ranged weapon has its own shot painting requested TeapotPopgun
+PASS ranged weapon has its own shot painting requested MailboxLauncher
+PASS ranged weapon has its own shot painting requested BellFork
+PASS ranged weapon has its own shot painting requested CrescentBow
+PASS ranged weapon has its own shot painting requested RuneStaff
+PASS ranged weapon has its own shot painting requested SleepCamera
+PASS ranged weapon has its own shot painting requested TinFish
+PASS ranged weapon has its own shot painting requested AlarmMortar
+PASS ranged weapon has its own shot painting requested MusicBox
+PASS ranged weapon has its own shot painting requested ButtonBow
+PASS ranged weapon has its own shot painting requested LeafCrossbow
+PASS ranged weapon has its own shot painting requested InkPistol
+PASS ranged weapon has its own shot painting requested BubbleWand
+PASS ranged weapon has its own shot painting requested StarKazoo
+PASS ranged weapon has its own shot painting requested ShellCannon
+PASS ranged weapon has its own shot painting requested AcornSling
+PASS ranged weapon has its own shot painting requested CrescentBoomerang
+PASS ranged weapon has its own shot painting requested DartCompass
+PASS ranged weapon has its own shot painting requested LanternStaff
+PASS ranged weapon has its own shot painting requested SnowGlobeOrb
+PASS ranged weapon has its own shot painting requested RibbonHarp
+PASS ranged weapon has its own shot painting requested DreamOrbStaff
+PASS ranged weapon has its own shot painting requested FireExtinguisher
+PASS ranged weapon has its own shot painting requested PlasmaTrident
+PASS ranged weapon has its own shot painting requested MoonFeatherFan
+PASS ranged weapon has its own shot painting requested ScrapMagnet
+PASS ranged weapon has its own shot painting requested NeedleSinger
+PASS ranged weapon has its own shot painting requested DreamProjector
+PASS ranged weapon has its own shot painting requested MoonseedOrb
+PASS ranged weapon has its own shot painting requested SatelliteDisc
+PASS ranged weapon has its own shot painting requested CherryFuseBomb
+PASS ranged weapon has its own shot painting requested PopperSticks
+PASS ranged weapon has its own shot painting requested DreamRacket
+PASS ranged weapon has its own shot painting requested BambooVase
+PASS ranged weapon has its own shot painting requested RoseBouquet
+PASS ranged weapon has its own shot painting requested CandyDrill
+PASS ranged weapon has its own shot painting requested GrabberClaw
+PASS ranged weapon has its own shot painting requested TwinMoonStaff
+PASS ranged weapon has its own shot painting requested PaperShuriken
+PASS ranged weapon has its own shot painting requested SquirtTrio
+PASS ranged weapon has its own shot painting requested ConfettiBlunderbuss
+PASS ranged weapon has its own shot painting requested PlungerPopper
+PASS ranged weapon has its own shot painting requested GlitchToybox
+PASS ranged weapon has its own shot painting requested FizzBottle
+PASS ranged weapon has its own shot painting requested HearthBrick
+PASS ranged weapon has its own shot painting requested TalismanIngot
+PASS ranged weapon has its own shot painting requested InkyOctopus
+PASS ranged weapon has its own shot painting requested PlushShark
+PASS ranged weapon has its own shot painting requested DetonatorBox
+PASS ranged weapon has its own shot painting requested FirecrackerPinwheel
+PASS ranged weapon has its own shot painting requested GumballGatling
+PASS ranged weapon has its own shot painting requested BalloonBuddy
+PASS ranged weapon has its own shot painting requested SaucerBlaster
+PASS ranged weapon has its own shot painting requested FanfareHorn
+PASS ranged weapon has its own shot painting requested CorkRifle
+PASS ranged weapon has its own shot painting requested CatcherMitt
+PASS ranged weapon has its own shot painting requested DowsingRod
+PASS ranged weapon has its own shot painting requested BuzzerBlock
+PASS ranged weapon has its own shot painting requested KunaiFan
 PASS CherryFuseBomb the bomb is still in the air
 PASS CherryFuseBomb bursts where it landed and hits beside the target
 PASS CherryFuseBomb never strikes the enemy right behind the wielder
-PASS PopperSticks three sticks thrown
-PASS PopperSticks every stick pops by itself
-PASS PopperSticks an enemy on a stick sets it off
+PASS PopperSticks is still in the air
+PASS PopperSticks lands and bursts in an area
 PASS PopperSticks never strikes the enemy right behind the wielder
 PASS DreamRacket the ball bounces through the group
 PASS DreamRacket never strikes the enemy right behind the wielder
@@ -123,8 +227,7 @@ PASS GrabberClaw never strikes the enemy right behind the wielder
 PASS StarforgeClaymore the blade blocks a shot during its wind-up
 PASS StarforgeClaymore sweeps 200 degrees in front
 PASS StarforgeClaymore never strikes the enemy right behind the wielder
-PASS DragonLanternGlaive sweeps do not reach far
-PASS DragonLanternGlaive the third beat is a long thrust
+PASS DragonLanternGlaive every attack sweeps and thrusts through the line
 PASS DragonLanternGlaive never strikes the enemy right behind the wielder
 PASS TwinMoonStaff grinds at the end and comes back
 PASS TwinMoonStaff never strikes the enemy right behind the wielder
@@ -141,11 +244,12 @@ PASS ConfettiBlunderbuss several pellets land up close
 PASS ConfettiBlunderbuss never strikes the enemy right behind the wielder
 PASS PlungerPopper pulls in, then pops
 PASS PlungerPopper never strikes the enemy right behind the wielder
-PASS SignpostSlammer the third swing plants a slowing sign
+PASS SignpostSlammer each swing plants a slowing sign
+PASS SignpostSlammer only the newest sign stands
 PASS SignpostSlammer never strikes the enemy right behind the wielder
-PASS DetonatorBox bombs wait for the plunger
-PASS DetonatorBox the bombs stick to the enemy as it moves
-PASS DetonatorBox the plunger sets every bomb off
+PASS DetonatorBox the bomb is stuck on and ticking
+PASS DetonatorBox the bomb sticks to the enemy as it moves
+PASS DetonatorBox a second later it goes off
 PASS DetonatorBox never strikes the enemy right behind the wielder
 PASS FirecrackerPinwheel the pinwheel lands within its throw and waits
 PASS FirecrackerPinwheel an enemy close by sets it off
@@ -161,6 +265,8 @@ PASS SaucerBlaster the saucer pierces the line
 PASS SaucerBlaster never strikes the enemy right behind the wielder
 PASS FanfareHorn the fan of fins strikes each foe once
 PASS FanfareHorn never strikes the enemy right behind the wielder
+PASS WindupWrench a hit winds the enemy up
+PASS WindupWrench one key per enemy
 PASS WindupWrench the wound-up enemy spins into its neighbour
 PASS WindupWrench never strikes the enemy right behind the wielder
 PASS CorkRifle a long shot through the whole line
@@ -175,16 +281,14 @@ PASS LeekBaton a wide stinging swing that pushes
 PASS LeekBaton never strikes the enemy right behind the wielder
 PASS DowsingRod finds and exposes the weakest enemy
 PASS DowsingRod never strikes the enemy right behind the wielder
-PASS StarKnuckle jabs reach only up close
-PASS StarKnuckle the fourth is an uppercut throwing star shards
+PASS StarKnuckle every jab flicks a star shard forward
 PASS StarKnuckle never strikes the enemy right behind the wielder
 PASS BuzzerBlock the buzzer waits on the floor
 PASS BuzzerBlock stepping on it shocks a chain
 PASS BuzzerBlock never strikes the enemy right behind the wielder
-PASS FlySwatter dazes, and the third swat crushes the weak
+PASS FlySwatter dazes, and every swat is harder on the weak
 PASS FlySwatter never strikes the enemy right behind the wielder
-PASS PawMitten swipes reach only up close
-PASS PawMitten the fifth swipe rakes claw lines further
+PASS PawMitten every swipe drags claw lines a little further, no further
 PASS PawMitten never strikes the enemy right behind the wielder
 PASS HearthBrick the brick is still in the air
 PASS HearthBrick it thuds down, dazing and shoving
@@ -193,17 +297,29 @@ PASS VerdictGavel the verdict lands on the enemy in front only
 PASS VerdictGavel luck makes the verdict heavier
 PASS VerdictGavel never strikes the enemy right behind the wielder
 PASS TalismanIngot the ingot pops in a small blast
-PASS TalismanIngot a pause after every fourth throw
 PASS TalismanIngot never strikes the enemy right behind the wielder
 PASS KunaiFan the kunai leave one at a time
 PASS KunaiFan all three fly down the line, each through one enemy
 PASS KunaiFan never strikes the enemy right behind the wielder
+PASS PaperLanternBomb is still in the air
+PASS PaperLanternBomb lands and bursts in an area
+PASS PaperLanternBomb never strikes the enemy right behind the wielder
+PASS SnowGlobeGrenade is still in the air
+PASS SnowGlobeGrenade lands and bursts in an area
+PASS SnowGlobeGrenade the burst slows
+PASS SnowGlobeGrenade never strikes the enemy right behind the wielder
+PASS PinataBomb is still in the air
+PASS PinataBomb lands and bursts in an area
+PASS PinataBomb candy bomblets pop round it
+PASS PinataBomb never strikes the enemy right behind the wielder
+PASS AcornCluster is still in the air
+PASS AcornCluster lands and bursts in an area
+PASS AcornCluster never strikes the enemy right behind the wielder
 PASS FortuneGlobe three crystal motes wander out
 PASS FortuneGlobe the motes grow as they fly
 PASS FortuneGlobe the motes reach the target
 PASS FortuneGlobe never strikes the enemy right behind the wielder
-PASS TopiaryShears two snips down the line
-PASS TopiaryShears the third snip trims the toughest enemy
+PASS TopiaryShears one snip down the line, the next at the toughest enemy
 PASS TopiaryShears never strikes the enemy right behind the wielder
 PASS BareKnuckles punches reach only up close
 PASS BareKnuckles a critical punch pops the air ahead

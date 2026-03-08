@@ -149,9 +149,13 @@ namespace ArcaneBrigade
                                 beam = new Mesh { name = "CarnivalProjectorBeam", vertices = new[] { Vector3.zero, new Vector3(1, 1, 0), new Vector3(1, -1, 0) }, triangles = new[] { 0, 1, 2 }, colors = new[] { new Color(1, 1, 1, 0.65f), new Color(1, 1, 1, 0), new Color(1, 1, 1, 0) } };
                                 beam.RecalculateBounds();
                             }
-                            Vector2 direction = field.Position - field.Source.Position;
+                            // the beam leaves the projector's lens, not the middle of the one holding it
+                            Vector2 aim = (field.Position - field.Source.Position).sqrMagnitude > 0.0001f ? (field.Position - field.Source.Position).normalized : Vector2.right;
+                            WeaponDefinition held = field.Source.Definition.Weapon;
+                            Vector2 lens = field.Source.Position + aim * Mathf.Max(0.3f, held != null ? held.MountDistance + held.MuzzleDistance : 0.5f);
+                            Vector2 direction = field.Position - lens;
                             fill.GetComponent<MeshFilter>().sharedMesh = beam;
-                            fill.transform.position = field.Source.Position;
+                            fill.transform.position = lens;
                             fill.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                             fill.transform.localScale = new Vector3(direction.magnitude + field.Radius, field.Radius, 1);
                         }

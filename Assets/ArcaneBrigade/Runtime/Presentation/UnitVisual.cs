@@ -274,7 +274,7 @@ namespace ArcaneBrigade
             grip.gameObject.SetActive(armed);
             if (armed)
             {
-                float weaponScale = K8Motion.WeaponWidth(unit) / Mathf.Max(0.01f, weapon.sprite.bounds.size.x);
+                float weaponScale = K8Motion.WeaponWidth(unit) / Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(weapon.sprite).width); // sized by its painted ink, not its canvas
                 Vector2 shape = Vector2.one;
                 if (unit.Faction == Faction.Companion) weaponScale /= Mathf.Max(1, Mathf.Max(shape.x, shape.y) / 1.18f);
                 weapon.transform.localScale = new Vector3(weaponScale * shape.x, weaponScale * shape.y, 1);

@@ -26,8 +26,10 @@ namespace ArcaneBrigade
         public static float WeaponWidth(UnitState unit)
         {
             float width = unit.Definition.Weapon.VisualWidth * (unit.Faction != Faction.Enemy && unit.Definition.Weapon.Kind == WeaponKind.Projectile ? 1.45f : 1);
-            float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 2.7f : 1.5f;
-            return unit.Faction == Faction.Companion ? Mathf.Min(width * 0.95f, BodyHeight(unit) * limit) : width;
+            // a held item stays modest, never much larger than its bearer (theme rule; 18/10/2026: melee was allowed 2.7x and heroes had no cap)
+            float limit = unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.05f : 0.9f;
+            if (unit.Faction == Faction.Enemy) return width;
+            return Mathf.Min(width * (unit.Faction == Faction.Companion ? 0.95f : 1f), BodyHeight(unit) * limit);
         }
 
         public static bool Attacking(UnitState unit, float time)

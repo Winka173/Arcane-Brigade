@@ -59,7 +59,7 @@ namespace ArcaneBrigade.Editor
                 UnitState ally = simulation.Units.First(unit => unit.Faction == Faction.Companion);
                 require(Mathf.Approximately(ally.Definition.Speed, species.Speed * K10StatRules.Factor(session.Bonus(ItemEffect.SpeedCorrection, ModifierScope.Companions)) * 1.3f), "Melee movement speed rises30 percent");
                 require(CompanionMotion.Leash(ally, combat) == combat.CompanionLeash + 2, "Melee leash adds2 units beyond ranged leash");
-                require(K8Motion.WeaponWidth(ally) > species.BodyHeight, "Melee display can exceed body width");
+                require(K8Motion.WeaponWidth(ally) <= K8Motion.BodyHeight(ally) * 1.05f + 0.0001f && K8Motion.WeaponWidth(ally) >= K8Motion.BodyHeight(ally) * 0.6f, "Melee weapons read clearly but never dwarf their bearer");
                 ally.Position = ally.PreviousPosition = Vector2.zero;
                 UnitState enemy = simulation.AddFixture(combat.MeleeEnemy, Faction.Enemy, new Vector2(6, 0));
                 enemy.Definition.Speed = 0; enemy.NextAttack = enemy.NextContact = 100; enemy.Health = 20;

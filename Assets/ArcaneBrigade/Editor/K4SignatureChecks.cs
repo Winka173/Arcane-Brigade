@@ -69,10 +69,10 @@ namespace ArcaneBrigade.Editor
             using (var fixture = new Fixture(catalog, "BellFork"))
             {
                 UnitState front = fixture.Enemy(new Vector2(1, 0)); UnitState back = fixture.Enemy(new Vector2(-1, 0)); UnitState far = fixture.Enemy(new Vector2(8, 0));
-                fixture.Simulation.SignatureBeatFixture(fixture.Source); fixture.Simulation.SignatureBeatFixture(fixture.Source);
-                require(fixture.Simulation.PendingSignaturePulses == 0, "Bell waits for complete cadence");
+                // every attack carries a lighter volley (18/10/2026; was: every third attack a full one)
+                float share = 1f / Mathf.Max(2, fixture.Weapon.SignatureBeats);
                 fixture.Simulation.SignatureBeatFixture(fixture.Source);
-                require(fixture.Simulation.PendingSignaturePulses == 1 && front.Health == 1000, "Bell schedules rather than instant damage");
+                require(fixture.Simulation.PendingSignaturePulses == 1 && front.Health == 1000, "Bell schedules a volley on every attack rather than instant damage");
                 fixture.Simulation.Pause(true); fixture.Tick(20);
                 require(fixture.Simulation.Elapsed == 0 && front.Health == 1000, "Pause freezes delayed wave");
                 fixture.Simulation.Pause(false);
@@ -80,23 +80,23 @@ namespace ArcaneBrigade.Editor
                 for (int tick = 0; tick < 5; tick++) { fixture.Tick(1); secondary |= fixture.Simulation.Events.Any(value => value.Kind == CombatEventKind.SignaturePulse && value.Cause.Depth == 1); }
                 require(fixture.Simulation.Projectiles.Count(shot => shot.SignatureShot) == 5, "Bell wave is thrown as a fan of five chimes, not a ring round the wielder");
                 fixture.Tick(6);
-                float expected = 1000 - fixture.Weapon.Damage * fixture.Weapon.SignatureScale;
+                float expected = 1000 - fixture.Weapon.Damage * fixture.Weapon.SignatureScale * share;
                 require(Mathf.Approximately(front.Health, expected) && back.Health == 1000 && far.Health == 1000, "Bell chimes strike the foe ahead once per volley, never behind the wielder or past their reach");
                 require(secondary, "Bell secondary cause cannot activate root procs");
                 fixture.Tick(30); require(Mathf.Approximately(front.Health, expected), "No echo recursion at tier one");
                 fixture.Source.Definition.CombatTier = 2;
-                for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
+                fixture.Simulation.SignatureBeatFixture(fixture.Source);
                 require(fixture.Simulation.PendingSignaturePulses == 2, "Tier bell schedules exactly wave plus weak echo");
                 fixture.Tick(14);
-                require(fixture.Simulation.PendingSignaturePulses == 0 && Mathf.Approximately(front.Health, expected - fixture.Weapon.Damage * fixture.Weapon.SignatureScale * 1.35f), "Tier echo resolves once with finite scale");
+                require(fixture.Simulation.PendingSignaturePulses == 0 && Mathf.Approximately(front.Health, expected - fixture.Weapon.Damage * fixture.Weapon.SignatureScale * share * 1.35f), "Tier echo resolves once with finite scale");
                 for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
                 fixture.Simulation.EnterRest(); fixture.Tick(20);
-                require(fixture.Simulation.PendingSignaturePulses == 0 && fixture.Source.AttackBeat == 0, "Rest clears cadence and pending echo");
+                require(fixture.Simulation.PendingSignaturePulses == 0 && fixture.Source.AttackBeat == 0, "Rest clears pending volleys and echoes");
             }
             using (var fixture = new Fixture(catalog, "UmbrellaLance"))
             {
                 UnitState front = fixture.Enemy(new Vector2(1, 0)); UnitState back = fixture.Enemy(new Vector2(-1, 0)); UnitState boss = fixture.Enemy(new Vector2(1, 0.4f), true);
-                for (int index = 0; index < 3; index++) fixture.Simulation.SignatureBeatFixture(fixture.Source);
+                fixture.Simulation.SignatureBeatFixture(fixture.Source); // one attack, one volley of drops
                 fixture.Tick(9);
                 require(front.Health < 1000 && back.Health == 1000, "Umbrella drops fly forward only, not another full ring");
                 require(front.Position.x > 1 && front.Position.x <= 1.8f, "Umbrella pushes enemy within bounded distance");

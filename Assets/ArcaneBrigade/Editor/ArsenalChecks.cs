@@ -19,10 +19,11 @@ namespace ArcaneBrigade.Editor
         {
             results.Clear();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Require(ArsenalSpecs.All.Length == 43 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 43, "43 distinct weapons");
+            Require(ArsenalSpecs.All.Length == 47 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 47, "47 distinct weapons");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
             InkMoments();
+            OwnLooks(catalog);
             foreach (ArsenalSpecs.Spec spec in ArsenalSpecs.All)
                 using (var f = new Fixture(catalog, spec)) Weapon(f, spec);
             Directory.CreateDirectory("PreviewExports/Arsenal");
@@ -72,6 +73,23 @@ namespace ArcaneBrigade.Editor
             }
             finally { UnityEngine.Object.DestroyImmediate(host); }
         }
+        /// <summary>No weapon borrows another's look or sound (18/10/2026): every melee weapon has its own strike, every weapon
+        /// its own hit palette/token, its own (cue, pitch) voice and, if ranged, its own requested shot painting.</summary>
+        private static void OwnLooks(RunCatalog catalog)
+        {
+            var weapons = catalog.Weapons.Where(w => w != null).GroupBy(w => w.Id).Select(g => g.First()).ToList();
+            foreach (WeaponDefinition w in weapons.Where(w => w.Kind == WeaponKind.Melee))
+                Require(WeaponInkStyle.Strikes.ContainsKey(w.Id), "melee weapon has its own strike " + w.Id);
+            var strikes = WeaponInkStyle.Strikes.Values.Select(v => v.Form + "/" + v.Palette + "/" + v.Token).ToList();
+            Require(strikes.Distinct().Count() == strikes.Count, "no two melee weapons share a strike (" + strikes.Count + ")");
+            var looks = weapons.Select(w => { var l = WeaponInkStyle.Look(w); return (w.Kind == WeaponKind.Melee ? WeaponInkStyle.Strikes[w.Id].Form.ToString() : "shot") + "/" + l.paletteName + "/" + l.token; }).ToList();
+            Require(looks.Distinct().Count() == looks.Count, "no two weapons share a hit look (" + looks.Count + ")");
+            var voices = weapons.Select(w => ArcaneCueLibrary.WeaponFireCue(w) + "@" + ArcaneCueLibrary.WeaponPitch(new CombatEvent(CombatEventKind.Fire, Vector2.zero, Faction.Companion, 0, Vector2.right, w)).ToString("0.000")).ToList();
+            Require(voices.Distinct().Count() == voices.Count, "no two weapons share a voice (" + voices.Count + " weapons, " + voices.Select(v => v.Split('@')[0]).Distinct().Count() + " cues)");
+            string worklist = File.ReadAllText("Docs/Bizarre_Arsenal_Art_Worklist.json");
+            foreach (WeaponDefinition w in weapons.Where(w => w.Kind == WeaponKind.Projectile))
+                Require(worklist.Contains("\"Shot_" + w.Id + "\""), "ranged weapon has its own shot painting requested " + w.Id);
+        }
         private static Sprite heldStandIn;
         private static Sprite Texture2DSprite() => heldStandIn != null ? heldStandIn : heldStandIn = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 4);
 
@@ -92,14 +110,19 @@ namespace ArcaneBrigade.Editor
                     break;
                 }
                 case ArsenalWeapon.PopperSticks:
+                case ArsenalWeapon.PaperLanternBomb:
+                case ArsenalWeapon.SnowGlobeGrenade:
+                case ArsenalWeapon.PinataBomb:
+                case ArsenalWeapon.AcornCluster:
                 {
-                    sim.ArsenalAttackFixture(me, f.Enemy(new Vector2(6, 3)));
-                    Require(sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Stick) == 3, id + " three sticks thrown");
-                    f.Tick(2.8f);
-                    Require(sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Stick) == 0 && sim.ArsenalBursts >= 3, id + " every stick pops by itself");
-                    UnitState walker = f.Enemy(new Vector2(2.6f, 0));
-                    sim.ArsenalAttackFixture(me, walker); f.Tick(0.6f);
-                    Require(walker.Health < f.Full, id + " an enemy on a stick sets it off");
+                    // a slow lob that lands by the target and bursts in an area
+                    UnitState t = f.Enemy(new Vector2(3, 0)), side = f.Enemy(new Vector2(3.2f, 0.6f));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.3f);
+                    Require(t.Health == f.Full && sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Lob), id + " is still in the air");
+                    f.Tick(2f);
+                    Require(t.Health < f.Full && side.Health < f.Full, id + " lands and bursts in an area");
+                    if (spec.Arsenal == ArsenalWeapon.SnowGlobeGrenade) Require(t.ChillUntil > sim.Elapsed - 1.6f, id + " the burst slows");
+                    if (spec.Arsenal == ArsenalWeapon.PinataBomb) Require(sim.Contributions.Any(c => c.EffectId == "candy-bomblet") || f.Full - t.Health > w * 1.2f, id + " candy bomblets pop round it");
                     break;
                 }
                 case ArsenalWeapon.DreamRacket:
@@ -175,10 +198,8 @@ namespace ArcaneBrigade.Editor
                 case ArsenalWeapon.DragonLanternGlaive:
                 {
                     UnitState t = f.Enemy(new Vector2(1.4f, 0)), far = f.Enemy(new Vector2(2.9f, 0.1f));
-                    sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
-                    Require(far.Health == f.Full, id + " sweeps do not reach far");
                     sim.ArsenalAttackFixture(me, t);
-                    Require(far.Health < f.Full, id + " the third beat is a long thrust");
+                    Require(t.Health < f.Full && far.Health < f.Full, id + " every attack sweeps and thrusts through the line");
                     break;
                 }
                 case ArsenalWeapon.TwinMoonStaff:
@@ -237,21 +258,21 @@ namespace ArcaneBrigade.Editor
                 case ArsenalWeapon.SignpostSlammer:
                 {
                     UnitState t = f.Enemy(new Vector2(1.3f, 0));
-                    for (int i = 0; i < 3; i++) sim.ArsenalAttackFixture(me, t);
-                    f.Tick(0.4f);
-                    Require(sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Sign) && t.ChillUntil > sim.Elapsed, id + " the third swing plants a slowing sign");
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.4f);
+                    Require(sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Sign) == 1 && t.ChillUntil > sim.Elapsed, id + " each swing plants a slowing sign");
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Sign) == 1, id + " only the newest sign stands");
                     break;
                 }
                 case ArsenalWeapon.DetonatorBox:
                 {
                     UnitState t = f.Enemy(new Vector2(3, 0));
-                    sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
-                    f.Tick(0.6f);
-                    Require(t.Health == f.Full, id + " bombs wait for the plunger");
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.4f);
+                    Require(t.Health == f.Full && sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.ToyBomb), id + " the bomb is stuck on and ticking");
                     t.Position = new Vector2(4.2f, 1.2f); f.Tick(0.1f);
-                    Require(sim.ArsenalProps.Where(p => p.Kind == ArsenalPropKind.ToyBomb).All(p => (p.Position - t.Position).sqrMagnitude < 0.01f), id + " the bombs stick to the enemy as it moves");
-                    sim.ArsenalAttackFixture(me, t); f.Tick(0.8f);
-                    Require(f.Full - t.Health >= w * 1.2f * 2.5f, id + " the plunger sets every bomb off");
+                    Require(sim.ArsenalProps.Where(p => p.Kind == ArsenalPropKind.ToyBomb).All(p => (p.Position - t.Position).sqrMagnitude < 0.01f), id + " the bomb sticks to the enemy as it moves");
+                    f.Tick(0.7f);
+                    Require(f.Full - t.Health >= w * 1.2f * 0.99f, id + " a second later it goes off");
                     break;
                 }
                 case ArsenalWeapon.FirecrackerPinwheel:
@@ -307,7 +328,10 @@ namespace ArcaneBrigade.Editor
                 case ArsenalWeapon.WindupWrench:
                 {
                     UnitState t = f.Enemy(new Vector2(1.2f, 0)), next = f.Enemy(new Vector2(1.6f, 0.8f));
-                    for (int i = 0; i < 3; i++) sim.ArsenalAttackFixture(me, t);
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Wound) == 1, id + " a hit winds the enemy up");
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(sim.ArsenalProps.Count(p => p.Kind == ArsenalPropKind.Wound) == 1, id + " one key per enemy");
                     float before = next.Health; f.Tick(1.2f);
                     Require(next.Health < before && t.ChillUntil > sim.Elapsed - 0.5f, id + " the wound-up enemy spins into its neighbour");
                     break;
@@ -356,10 +380,8 @@ namespace ArcaneBrigade.Editor
                 case ArsenalWeapon.StarKnuckle:
                 {
                     UnitState t = f.Enemy(new Vector2(1, 0)), beyond = f.Enemy(new Vector2(2.6f, 0));
-                    for (int i = 0; i < 3; i++) sim.ArsenalAttackFixture(me, t);
-                    Require(t.Health < f.Full && beyond.Health == f.Full, id + " jabs reach only up close");
-                    sim.ArsenalAttackFixture(me, t); f.Tick(0.5f);
-                    Require(beyond.Health < f.Full && t.ChillUntil > sim.Elapsed - 0.2f, id + " the fourth is an uppercut throwing star shards");
+                    sim.ArsenalAttackFixture(me, t); float jab = f.Full - t.Health; f.Tick(0.5f);
+                    Require(jab > 0 && beyond.Health < f.Full, id + " every jab flicks a star shard forward");
                     break;
                 }
                 case ArsenalWeapon.BuzzerBlock:
@@ -377,17 +399,15 @@ namespace ArcaneBrigade.Editor
                     UnitState t = f.Enemy(new Vector2(1.1f, 0));
                     sim.ArsenalAttackFixture(me, t); float one = f.Full - t.Health;
                     t.Health = f.Full * 0.2f; float low = t.Health;
-                    sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
-                    Require(one > 0 && t.ChillUntil > sim.Elapsed && low - t.Health >= one * 2.9f, id + " dazes, and the third swat crushes the weak");
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(one > 0 && t.ChillUntil > sim.Elapsed && low - t.Health >= one * 1.55f, id + " dazes, and every swat is harder on the weak");
                     break;
                 }
                 case ArsenalWeapon.PawMitten:
                 {
-                    UnitState t = f.Enemy(new Vector2(0.8f, 0)), reach = f.Enemy(new Vector2(1.4f, 0.1f));
-                    for (int i = 0; i < 4; i++) sim.ArsenalAttackFixture(me, t);
-                    Require(t.Health < f.Full && reach.Health == f.Full, id + " swipes reach only up close");
+                    UnitState t = f.Enemy(new Vector2(0.8f, 0)), reach = f.Enemy(new Vector2(1.4f, 0.1f)), beyond = f.Enemy(new Vector2(2.4f, 0));
                     sim.ArsenalAttackFixture(me, t);
-                    Require(reach.Health < f.Full, id + " the fifth swipe rakes claw lines further");
+                    Require(t.Health < f.Full && reach.Health < f.Full && beyond.Health == f.Full, id + " every swipe drags claw lines a little further, no further");
                     break;
                 }
                 case ArsenalWeapon.HearthBrick:
@@ -415,9 +435,6 @@ namespace ArcaneBrigade.Editor
                     UnitState t = f.Enemy(new Vector2(3, 0)), side = f.Enemy(new Vector2(3, 0.5f));
                     sim.ArsenalAttackFixture(me, t); f.Tick(0.6f);
                     Require(t.Health < f.Full && side.Health < f.Full, id + " the ingot pops in a small blast");
-                    for (int i = 0; i < 3; i++) { me.AttackStarted = sim.Elapsed; me.NextAttack = sim.Elapsed + spec.Cooldown; sim.ArsenalAttackFixture(me, t); }
-                    Require(me.NextAttack >= me.AttackStarted + spec.Cooldown + 1.19f, id + " a pause after every fourth throw");
-                    me.NextAttack = float.PositiveInfinity;
                     break;
                 }
                 case ArsenalWeapon.KunaiFan:
@@ -444,12 +461,10 @@ namespace ArcaneBrigade.Editor
                 }
                 case ArsenalWeapon.TopiaryShears:
                 {
-                    UnitState t = f.Enemy(new Vector2(1.2f, 0)), tough = f.Enemy(new Vector2(1.3f, 0.6f));
-                    sim.ArsenalAttackFixture(me, t); float first = f.Full - t.Health; f.Tick(0.2f);
-                    Require(first > 0 && f.Full - t.Health > first * 1.9f, id + " two snips down the line");
-                    float before = tough.Health;
-                    sim.ArsenalAttackFixture(me, t); sim.ArsenalAttackFixture(me, t);
-                    Require(before - tough.Health >= w * 1.5f * 0.99f, id + " the third snip trims the toughest enemy");
+                    UnitState t = f.Enemy(new Vector2(1.2f, 0)), tough = f.Enemy(new Vector2(1.3f, 0.9f));
+                    tough.Health = f.Full; t.Health = f.Full * 0.5f;
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.2f);
+                    Require(t.Health < f.Full * 0.5f && tough.Health < f.Full, id + " one snip down the line, the next at the toughest enemy");
                     break;
                 }
                 case ArsenalWeapon.BareKnuckles:

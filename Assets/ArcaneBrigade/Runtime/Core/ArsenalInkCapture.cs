@@ -55,7 +55,7 @@ namespace ArcaneBrigade
                     if (Array.IndexOf(args, "-look-own-brigade") < 0)
                     {
                         session.State.Roster.Clear();
-                        foreach (string w in new[] { "GumballGatling", "DreamRacket", "SquirtTrio", "CorkRifle", "SaucerBlaster" })
+                        foreach (string w in (Arg(args, "-look-weapons") ?? "GumballGatling,DreamRacket,SquirtTrio,CorkRifle,SaucerBlaster").Split(','))
                             if (catalog.Weapon(w) != null) session.State.Roster.Add(new RosterEntry { UnitId = "TeapotPilgrim", WeaponId = w, Tier = 1 });
                     }
                     storage.SaveRun(session.State);
