@@ -13,5 +13,6 @@ PASS K14
 PASS K4Signature
 PASS K4Final
 PASS K15Feel
+PASS FeelTelegraph
 PASS K8Audio
 PASS K7
