@@ -670,6 +670,15 @@ namespace ArcaneBrigade
             => (airborne ? air : ground).Sector(c, r, 0, 360, A(colour, alpha), A(colour, 0));
         /// <summary>A dimming wash over the floor layer, lightest at c and darkening outward (r reaches past the screen).</summary>
         public void Vignette(Vector2 c, float r, Color colour, float inner, float outer) => ground.Sector(c, r, 0, 360, A(colour, inner), A(colour, outer));
+        /// <summary>A wash over a wedge of floor (an aimed danger zone): soft at the apex, pooling toward its far edge.</summary>
+        public void Cone(Vector2 apex, float reach, float fromDegrees, float toDegrees, Color colour, float alpha, float apexAlpha)
+            => ground.Sector(apex, reach, fromDegrees, toDegrees, A(colour, apexAlpha), A(colour, alpha));
+        /// <summary>A brush stroke laid on the floor layer (under the units).</summary>
+        public void FloorStroke(Vector2 a, Vector2 b, InkPalette pal, float width, float head, float tail, float alpha, float wave = 0, float seed = 0)
+        {
+            if (head <= tail || alpha <= .01f) return;
+            ground.Stroke(InkCanvas.Line(a, b, wave, wave > 0 ? 2.5f : 0, false, seed), Brush(pal, width, alpha, head, tail, 1.3f));
+        }
         /// <summary>A painted token placed exactly (size, angle, alpha), on the air layer.</summary>
         public void TokenAt(InkToken kind, InkPalette pal, Vector2 at, float size, float angle, float alpha) => Token(kind, pal, at, size, angle, alpha);
         /// <summary>A soft light behind something.</summary>

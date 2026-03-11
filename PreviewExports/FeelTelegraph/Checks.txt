@@ -1,0 +1,17 @@
+PASS The hero's critical hit holds the screen
+PASS The critical hold is a blink
+PASS A second crit inside the gap does not hold again (no stutter)
+PASS After the gap a crit holds again
+PASS A friend's small crit on a sturdy enemy does not hold
+PASS A friend's crit that takes a real bite holds
+PASS An ordinary kill does not hold the screen
+PASS A big enemy's fall holds the screen and shakes it
+PASS The big-kill hold stays brief
+PASS Reduced motion never holds the screen
+PASS Wave 5 has a boss to telegraph
+PASS No ink while the boss is not winding up
+PASS An aimed volley: a pool and a tongue of ink along the aim
+PASS A ring volley: the pool alone, no lanes radiating from the boss
+PASS A signature move: a blot where it lands
+PASS The ink clears when the wind-up ends
+PASS No straight danger lanes from the boss

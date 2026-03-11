@@ -26,7 +26,9 @@ namespace ArcaneBrigade
     {
         public const float MaxShake = 0.3f;          // world units at full trauma (about 40 px at 1080p)
         private const float RoutineTraumaCap = 0.42f; // kills, crits and heavy hits alone never shake harder than this
-        private float trauma, clock, freeze, freezeCooldown, slow, flash;
+        private float trauma, clock, freeze, freezeCooldown, slow, flash, punctuation;
+        /// <summary>How long a critical hit or a big kill holds the whole screen (18/10/2026), and how soon another may.</summary>
+        public const float CriticalHold = 0.035f, BigKillHold = 0.055f, PunctuationGap = 0.9f;
         /// <summary>0..1 full-screen flash when a boss falls (drawn by the HUD; Reduced Flashes softens it).</summary>
         public float ScreenFlash => PresentationSettings.ReducedFlashes ? flash * 0.25f : flash;
         private Vector2 bias = Vector2.up;
@@ -46,11 +48,11 @@ namespace ArcaneBrigade
                 return Vector2.ClampMagnitude(shake, 1f) * MaxShake * Mathf.Pow(trauma, 1.5f);
             }
         }
-        public void Clear() { trauma = freeze = freezeCooldown = slow = flash = 0; }
+        public void Clear() { trauma = freeze = freezeCooldown = slow = flash = punctuation = 0; }
         public void Advance(float delta)
         {
             clock += delta; trauma = Mathf.Max(0, trauma - delta * 1.8f);
-            freeze = Mathf.Max(0, freeze - delta); freezeCooldown = Mathf.Max(0, freezeCooldown - delta); slow = Mathf.Max(0, slow - delta); flash = Mathf.Max(0, flash - delta * 3.2f);
+            freeze = Mathf.Max(0, freeze - delta); freezeCooldown = Mathf.Max(0, freezeCooldown - delta); punctuation = Mathf.Max(0, punctuation - delta); slow = Mathf.Max(0, slow - delta); flash = Mathf.Max(0, flash - delta * 3.2f);
         }
         private void AddTrauma(float amount, bool routine) { trauma = routine ? Mathf.Max(trauma, Mathf.Min(RoutineTraumaCap, trauma + amount)) : Mathf.Min(1f, trauma + amount); }
         private void Hold(float seconds)
@@ -58,9 +60,15 @@ namespace ArcaneBrigade
             if (PresentationSettings.ReducedMotion || freezeCooldown > 0 || seconds <= 0) return;
             freeze = Mathf.Min(0.12f, Mathf.Max(freeze, seconds)); freezeCooldown = freeze + 0.5f;
         }
-        public void Play(IReadOnlyList<CombatEvent> events, Dictionary<int, UnitVisual> views, float time)
+        /// <summary>A big enemy: the kind whose fall deserves a held beat (large bodies such as the crab, the toad, the coffin).</summary>
+        public static bool BigEnemy(UnitState unit) => unit != null && unit.Definition != null && !unit.Definition.IsBoss && unit.Faction == Faction.Enemy && unit.Definition.Radius >= 0.4f;
+        /// <summary>A critical hit that earns a held beat: the hero's own, or one that takes a real bite (6% or more) out of its target.</summary>
+        public static bool HeavyCritical(CombatEvent value, int championId) => value.Kind == CombatEventKind.Hit && value.Critical && value.Value > 0 && value.Faction == Faction.Enemy
+            && (championId != 0 && value.Cause.SourceUnitId == championId || value.Subject != null && value.Subject.Definition != null && value.Value >= value.Subject.Definition.Health * 0.06f);
+
+        public void Play(IReadOnlyList<CombatEvent> events, Dictionary<int, UnitVisual> views, float time, int championId = 0)
         {
-            float hold = 0; int kills = 0;
+            float hold = 0, punctuate = 0; int kills = 0;
             foreach (CombatEvent value in events)
             {
                 ImpactAccent accent = ImpactAccent.For(value);
@@ -71,7 +79,10 @@ namespace ArcaneBrigade
                 switch (value.Kind)
                 {
                     case CombatEventKind.Kill when boss: AddTrauma(0.9f, false); hold = Mathf.Max(hold, 0.12f); if (!PresentationSettings.ReducedMotion) slow = 0.9f; flash = 1f; bias = direction; break;
-                    case CombatEventKind.Kill when value.Faction == Faction.Enemy: kills++; AddTrauma(value.Critical || value.Value > 0.6f ? 0.09f : 0.03f, true); break;
+                    case CombatEventKind.Kill when value.Faction == Faction.Enemy:
+                        kills++; AddTrauma(value.Critical || value.Value > 0.6f ? 0.09f : 0.03f, true);
+                        if (BigEnemy(value.Subject)) { punctuate = Mathf.Max(punctuate, BigKillHold); AddTrauma(0.14f, true); bias = direction; }
+                        break;
                     case CombatEventKind.BossLanded: AddTrauma(0.55f, false); hold = Mathf.Max(hold, 0.06f); bias = Vector2.down; break;
                     case CombatEventKind.Detonation when value.Cause.ItemId == "ink-bloater": AddTrauma(0.08f, true); break; // chains rattle, they do not freeze
                     case CombatEventKind.Flare: AddTrauma(0.45f, false); hold = Mathf.Max(hold, 0.08f); flash = Mathf.Max(flash, 0.35f); break;
@@ -86,8 +97,12 @@ namespace ArcaneBrigade
                     case CombatEventKind.Hit when value.Value > 0 && value.Weapon != null && (value.Weapon.Motion == WeaponMotion.Hammer || value.Weapon.Motion == WeaponMotion.Slam): AddTrauma(0.1f, true); break;
                     case CombatEventKind.Hit when value.Value > 0 && value.Critical: AddTrauma(0.05f, true); break;
                 }
+                if (HeavyCritical(value, championId)) punctuate = Mathf.Max(punctuate, CriticalHold);
             }
             if (kills >= 6) { AddTrauma(0.12f, true); hold = Mathf.Max(hold, 0.05f); }  // a big multi-kill lands as one beat
+            // crits and big kills hold the whole screen for a blink, but never more often than once every PunctuationGap
+            // seconds, so a brigade full of crits punctuates the fight instead of stuttering it
+            if (punctuate > 0 && punctuation <= 0 && !PresentationSettings.ReducedMotion) { hold = Mathf.Max(hold, punctuate); punctuation = PunctuationGap; }
             Hold(hold);
         }
     }

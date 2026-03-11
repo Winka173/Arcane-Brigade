@@ -333,7 +333,7 @@ namespace ArcaneBrigade
             // a boss's fall plays in slow motion: the same simulation, smaller steps
             simulation.Step(Time.fixedDeltaTime * (combatFeel.SlowMotion ? 0.35f : 1f), moveIntent);
             if (AnimationStressMeasurement.Recording) AnimationStressMeasurement.SimulationMilliseconds += (System.Diagnostics.Stopwatch.GetTimestamp() - simulationStarted) * 1000d / System.Diagnostics.Stopwatch.Frequency;
-            combatFeel.Play(simulation.Events, units, simulation.VisualElapsed);
+            combatFeel.Play(simulation.Events, units, simulation.VisualElapsed, simulation.Champion != null ? simulation.Champion.Id : 0);
             if (pacing != null) pacing.Observe(simulation.Events, simulation.VisualElapsed);
             foreach (CombatEvent value in simulation.Events)
             {

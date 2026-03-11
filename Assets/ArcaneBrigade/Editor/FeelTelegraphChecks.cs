@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+namespace ArcaneBrigade.Editor
+{
+    /// <summary>Crits and big kills hold the screen for a blink (rarely enough not to stutter); bosses paint their wind-up in
+    /// ink on the floor: a spreading pool, a tongue along an aimed fan, a blot where a signature move lands (18/10/2026).</summary>
+    public static class FeelTelegraphChecks
+    {
+        [MenuItem("Arcane Brigade/Checks/Hit-stop and boss ink telegraphs")]
+        public static void Run()
+        {
+            var notes = new List<string>();
+            void Require(bool condition, string caption) { if (!condition) throw new InvalidOperationException("FeelTelegraph " + caption); notes.Add("PASS " + caption); }
+            PresentationSettings.Apply(new PlayerProfile());
+            var views = new Dictionary<int, UnitVisual>();
+            var bigDefinition = ScriptableObject.CreateInstance<UnitDefinition>(); bigDefinition.Radius = 0.55f; bigDefinition.Health = 240;
+            var smallDefinition = ScriptableObject.CreateInstance<UnitDefinition>(); smallDefinition.Radius = 0.25f; smallDefinition.Health = 400;
+            try
+            {
+                var big = new UnitState { Id = 40, Definition = bigDefinition, Faction = Faction.Enemy };
+                var small = new UnitState { Id = 41, Definition = smallDefinition, Faction = Faction.Enemy };
+                CombatEvent HeroCrit() => new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 5, Vector2.right, critical: true, subjectId: small.Id, subject: small, cause: new CombatCause(1, 7));
+                var feel = new CombatFeel();
+                feel.Play(new[] { HeroCrit() }, views, 1, 7);
+                Require(feel.Frozen, "The hero's critical hit holds the screen");
+                feel.Advance(CombatFeel.CriticalHold + 0.01f); Require(!feel.Frozen, "The critical hold is a blink");
+                feel.Advance(0.6f); feel.Play(new[] { HeroCrit() }, views, 2, 7);
+                Require(!feel.Frozen, "A second crit inside the gap does not hold again (no stutter)");
+                feel.Advance(CombatFeel.PunctuationGap); feel.Play(new[] { HeroCrit() }, views, 3, 7);
+                Require(feel.Frozen, "After the gap a crit holds again");
+
+                var companion = new CombatFeel();
+                companion.Play(new[] { new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 5, Vector2.right, critical: true, subjectId: small.Id, subject: small, cause: new CombatCause(1, 9)) }, views, 1, 7);
+                Require(!companion.Frozen, "A friend's small crit on a sturdy enemy does not hold");
+                companion.Play(new[] { new CombatEvent(CombatEventKind.Hit, Vector2.zero, Faction.Enemy, 40, Vector2.right, critical: true, subjectId: small.Id, subject: small, cause: new CombatCause(1, 9)) }, views, 1, 7);
+                Require(companion.Frozen, "A friend's crit that takes a real bite holds");
+
+                var kill = new CombatFeel();
+                kill.Play(new[] { new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: small.Id, subject: small) }, views, 1, 7);
+                Require(!kill.Frozen, "An ordinary kill does not hold the screen");
+                kill.Play(new[] { new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: big.Id, subject: big) }, views, 1, 7);
+                Require(kill.Frozen && kill.Trauma > 0.1f, "A big enemy's fall holds the screen and shakes it");
+                kill.Advance(0.2f); Require(!kill.Frozen, "The big-kill hold stays brief");
+
+                PresentationSettings.Apply(new PlayerProfile { ReducedMotion = true });
+                var reduced = new CombatFeel();
+                reduced.Play(new[] { HeroCrit(), new CombatEvent(CombatEventKind.Kill, Vector2.zero, Faction.Enemy, 0, Vector2.right, subjectId: big.Id, subject: big) }, views, 1, 7);
+                Require(!reduced.Frozen, "Reduced motion never holds the screen");
+            }
+            finally
+            {
+                PresentationSettings.Apply(new PlayerProfile());
+                UnityEngine.Object.DestroyImmediate(bigDefinition); UnityEngine.Object.DestroyImmediate(smallDefinition);
+            }
+
+            RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
+            var host = new GameObject("FeelTelegraphFixture");
+            UnitDefinition copy = null;
+            try
+            {
+                using (var run = new RunSession(catalog))
+                {
+                    run.Start("LanternKnight", 18018); run.State.Wave = 5;
+                    var sim = new CombatSimulation(run.PrepareCombat()); sim.Start(18018);
+                    UnitState boss = sim.Boss;
+                    Require(boss != null, "Wave 5 has a boss to telegraph");
+                    copy = UnityEngine.Object.Instantiate(boss.Definition); boss.Definition = copy;
+                    BossTelegraph telegraph = host.AddComponent<BossTelegraph>();
+                    telegraph.Display(sim);
+                    Require(telegraph.Pools == 0, "No ink while the boss is not winding up");
+                    copy.BossPattern = 5; boss.ActiveBossSignature = -1; boss.TelegraphDirection = Vector2.down; boss.TelegraphUntil = sim.Elapsed + 0.4f;
+                    telegraph.Display(sim);
+                    Require(telegraph.Pools == 1 && telegraph.Tongues == 1 && telegraph.Blots == 0, "An aimed volley: a pool and a tongue of ink along the aim");
+                    copy.BossPattern = 4; telegraph.Display(sim);
+                    Require(telegraph.Pools == 1 && telegraph.Tongues == 0, "A ring volley: the pool alone, no lanes radiating from the boss");
+                    boss.ActiveBossSignature = 0; boss.AbilityTarget = sim.Champion.Position; telegraph.Display(sim);
+                    Require(telegraph.Blots == 1 && telegraph.Tongues == 0, "A signature move: a blot where it lands");
+                    boss.TelegraphUntil = 0; telegraph.Display(sim);
+                    Require(telegraph.Pools == 0 && telegraph.Blots == 0, "The ink clears when the wind-up ends");
+                }
+                string source = System.IO.File.ReadAllText("Assets/ArcaneBrigade/Runtime/Presentation/BossTelegraph.cs");
+                Require(!source.Contains("LineRenderer") && !source.Contains("DangerLane"), "No straight danger lanes from the boss");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(host);
+                if (copy != null) UnityEngine.Object.DestroyImmediate(copy);
+            }
+            System.IO.Directory.CreateDirectory("PreviewExports/FeelTelegraph");
+            System.IO.File.WriteAllLines("PreviewExports/FeelTelegraph/Checks.txt", notes);
+            Debug.Log("FEEL_TELEGRAPH_CHECKS_PASSED " + notes.Count);
+        }
+    }
+}

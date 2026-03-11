@@ -72,6 +72,7 @@ namespace ArcaneBrigade
             }
             if (Array.IndexOf(args, "-shop-approach") >= 0) { yield return ShopApproach(catalog, storage); Application.Quit(0); yield break; }
             if (Array.IndexOf(args, "-star-up") >= 0) { yield return StarUp(catalog, storage, args); Application.Quit(0); yield break; }
+            if (Array.IndexOf(args, "-boss-telegraph") >= 0) { yield return BossWindups(catalog, storage, args); Application.Quit(0); yield break; }
             string filter = Arg(args, "-arsenal-weapons");
             if (Array.IndexOf(args, "-arsenal-live-only") < 0)
             {
@@ -156,6 +157,36 @@ namespace ArcaneBrigade
                 }
                 reveal.Scrub = -1; reveal.Skip(); yield return null;
                 notes.Add("OK star " + tier);
+            }
+            File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
+        }
+
+        /// <summary>-boss-telegraph [-boss-wave N]: a boss fight; each of the boss's first wind-ups is shot three times as its ink
+        /// spreads (windup-V-a/b/c). The hero is kept alive so the fight runs long enough.</summary>
+        private IEnumerator BossWindups(RunCatalog catalog, RunStorage storage, string[] args)
+        {
+            int wave = int.TryParse(Arg(args, "-boss-wave"), out int w) ? w : 5;
+            using (var session = new RunSession(catalog)) { session.Start(catalog.Champions[0].Id, 171022); session.State.Wave = wave; storage.SaveRun(session.State); }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+            ArenaController owner = null;
+            for (float t = 0; t < 10 && (owner == null || owner.Simulation == null || owner.Simulation.Boss == null || owner.Simulation.Phase != RunPhase.Combat); t += .1f) { yield return new WaitForSecondsRealtime(.1f); owner = FindAnyObjectByType<ArenaController>(); }
+            if (owner == null || owner.Simulation == null || owner.Simulation.Boss == null) { notes.Add("NO BOSS"); File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes); yield break; }
+            CombatSimulation sim = owner.Simulation; UnitState boss = sim.Boss;
+            notes.Add("boss " + boss.Definition.Id + " pattern " + boss.Definition.BossPattern);
+            float deadline = Time.realtimeSinceStartup + 60;
+            for (int volley = 0; volley < 5 && Time.realtimeSinceStartup < deadline && boss.Alive; volley++)
+            {
+                while (boss.TelegraphUntil <= sim.Elapsed && Time.realtimeSinceStartup < deadline && boss.Alive) { sim.Champion.Health = sim.Champion.Definition.Health; yield return null; }
+                float until = boss.TelegraphUntil, windup = BossEncounterRules.Windup(boss);
+                notes.Add("windup " + volley + " signature " + boss.ActiveBossSignature + " windup " + windup);
+                foreach (var (label, at) in new[] { ("a", .3f), ("b", .7f), ("c", .93f) })
+                {
+                    while (sim.Elapsed < until - windup * (1 - at) && boss.TelegraphUntil > 0 && boss.Alive) { sim.Champion.Health = sim.Champion.Definition.Health; yield return null; }
+                    Time.timeScale = 0; yield return null;
+                    yield return Shot("windup-" + volley + "-" + label);
+                    Time.timeScale = 1;
+                }
+                while (boss.TelegraphUntil == until && Time.realtimeSinceStartup < deadline && boss.Alive) { sim.Champion.Health = sim.Champion.Definition.Health; yield return null; }
             }
             File.WriteAllLines(Path.Combine(root, "Notes.txt"), notes);
         }
