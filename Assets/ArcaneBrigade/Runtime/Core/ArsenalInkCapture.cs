@@ -198,7 +198,10 @@ namespace ArcaneBrigade
         {
             if (focusBox.width <= 0 || Camera.main == null) return;
             Matrix4x4 previous = ArcadeTypography.BeginViewport(Camera.main.pixelRect, 1920, 1080);
-            ArcadeSkin.WorldFocus(focusBox);
+            // the same rule as ShopInspect: the marks stop above the shop card
+            Rect box = focusBox, card = RunHud.ShownShopCard;
+            if (card.height > 0 && box.Overlaps(card) && box.yMin < card.yMin) box.yMax = card.yMin - 4;
+            if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
             GUI.matrix = previous;
         }
 

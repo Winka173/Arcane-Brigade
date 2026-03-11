@@ -8,7 +8,8 @@ namespace ArcaneBrigade
         private static Font heading;
         private static Font numbers;
         private static Font display;
-        public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/BeVietnamPro-Medium");
+        // body copy is Be Vietnam Pro SemiBold (18/10/2026): Medium read thin at HUD sizes on the dark panels; SemiBold is ~1% wider
+        public static Font Body => body != null ? body : body = Resources.Load<Font>("Fonts/BeVietnamPro-SemiBold") ?? Resources.Load<Font>("Fonts/BeVietnamPro-Medium");
         public static Font Heading => heading != null ? heading : heading = Resources.Load<Font>("Fonts/BeVietnamPro-Black");
         public static Font Numbers => numbers != null ? numbers : numbers = Resources.Load<Font>("Fonts/NotoSansMono-Bold");
         // Miền Chờ: titles, chapter names and the logo use Young Serif (SIL OFL 1.1) — a warm storybook / letter-writing serif.
@@ -22,6 +23,16 @@ namespace ArcaneBrigade
         /// <summary>Handwriting (Caveat, SIL OFL 1.1, static weight 520): notes, companions' own words, the hero's coaching. Use sparingly.</summary>
         public static Font Hand => hand != null ? hand : hand = Resources.Load<Font>("Fonts/Caveat-Hand") ?? Body;
         public static string DisplayText(string value) => string.IsNullOrEmpty(value) || value.IsNormalized(System.Text.NormalizationForm.FormC) ? value : value.Normalize(System.Text.NormalizationForm.FormC);
+
+        /// <summary>A label with a soft dark drop shadow, for text drawn straight over the scene with no panel behind it.</summary>
+        public static void ShadowLabel(Rect rectangle, string text, GUIStyle style, float offset = 2)
+        {
+            Color colour = style.normal.textColor;
+            style.normal.textColor = new Color(0.04f, 0.03f, 0.07f, colour.a * 0.85f);
+            GUI.Label(new Rect(rectangle.x + offset, rectangle.y + offset, rectangle.width, rectangle.height), text, style);
+            style.normal.textColor = colour;
+            GUI.Label(rectangle, text, style);
+        }
 
         public static GUIStyle Style(int size, bool title = false, bool numeric = false)
         {

@@ -98,7 +98,7 @@ namespace ArcaneBrigade
             if (copy != null) return;
             copy = ArcadeTypography.Style(31); copy.font = ArcadeTypography.Hand; copy.richText = true; copy.wordWrap = true; copy.normal.textColor = ArcadeSkin.Ink;
             plainCopy = ArcadeTypography.Style(21); plainCopy.richText = true; plainCopy.wordWrap = true; plainCopy.normal.textColor = ArcadeSkin.Ink;
-            nameStyle = ArcadeTypography.Style(13, true); nameStyle.wordWrap = false; nameStyle.clipping = TextClipping.Clip;
+            nameStyle = ArcadeTypography.Style(15, true); nameStyle.font = ArcadeTypography.Punch; nameStyle.wordWrap = false; nameStyle.clipping = TextClipping.Clip;
             whisperStyle = ArcadeTypography.Style(29); whisperStyle.font = ArcadeTypography.Hand; whisperStyle.richText = true; whisperStyle.wordWrap = true;
             tail = new Texture2D(32, 32, TextureFormat.RGBA32, false) { name = "SpeechTail", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave };
             var pixels = new Color[32 * 32];

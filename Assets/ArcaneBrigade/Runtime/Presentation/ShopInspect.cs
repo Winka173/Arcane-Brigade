@@ -178,7 +178,10 @@ namespace ArcaneBrigade
             if (hovered != null && (open == null || open.Key != hovered.Key))
             {
                 Rect box = Screen(hovered.World, camera);
-                ArcadeSkin.WorldFocus(box);
+                // the hover marks stop above the shop's description card instead of being drawn over its BUY button
+                Rect card = RunHud.ShownShopCard;
+                if (card.height > 0 && box.Overlaps(card) && box.yMin < card.yMin) box.yMax = card.yMin - 4;
+                if (card.height <= 0 || box.yMin < card.yMin) ArcadeSkin.WorldFocus(box);
                 Rect tag = new Rect(Mathf.Clamp(box.center.x - 160, 12, 1588), Mathf.Clamp(box.yMin - 46, 186, 1000), 320, 40);
                 ArcadeSkin.Panel(tag, ArcadeSkin.Card);
                 name.normal.textColor = ArcadeSkin.Cream; GUI.Label(tag, hovered.Title + "  ·  click to read", name);

@@ -560,7 +560,7 @@ namespace ArcaneBrigade
             if (priceStyle == null)
             {
                 priceStyle = ArcadeTypography.Style(25, true); priceStyle.normal.textColor = ArcadeSkin.Ink; priceStyle.alignment = TextAnchor.MiddleLeft; priceStyle.wordWrap = false;
-                categoryStyle = ArcadeTypography.Style(16, true); categoryStyle.normal.textColor = ArcadeSkin.Ink; categoryStyle.alignment = TextAnchor.MiddleCenter; categoryStyle.wordWrap = false;
+                categoryStyle = ArcadeTypography.Style(17, true); categoryStyle.font = ArcadeTypography.Punch; categoryStyle.normal.textColor = ArcadeSkin.Ink; categoryStyle.alignment = TextAnchor.MiddleCenter; categoryStyle.wordWrap = false;
                 denialStyle = ArcadeTypography.Style(20, true); denialStyle.alignment = TextAnchor.MiddleCenter; denialStyle.normal.textColor = new Color(1, 0.45f, 0.35f);
             }
             int order = 0;
