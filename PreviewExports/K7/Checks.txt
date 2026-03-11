@@ -8,11 +8,11 @@ PASS Safe-area design canvas fits (3840.00, 2160.00)
 PASS Safe-area design canvas fits (2560.00, 1080.00)
 PASS Safe-area design canvas fits (1600.00, 1000.00)
 PASS Safe-area design canvas fits (1334.00, 750.00)
-PASS Vietnamese readability glyphs BeVietnamPro-Medium
-PASS Glyph has actual ink at size 16 BeVietnamPro-Medium
-PASS Glyph has actual ink at size 22 BeVietnamPro-Medium
-PASS Glyph has actual ink at size 32 BeVietnamPro-Medium
-PASS Glyph has actual ink at size 48 BeVietnamPro-Medium
+PASS Vietnamese readability glyphs BeVietnamPro-SemiBold
+PASS Glyph has actual ink at size 16 BeVietnamPro-SemiBold
+PASS Glyph has actual ink at size 22 BeVietnamPro-SemiBold
+PASS Glyph has actual ink at size 32 BeVietnamPro-SemiBold
+PASS Glyph has actual ink at size 48 BeVietnamPro-SemiBold
 PASS Vietnamese readability glyphs BeVietnamPro-Black
 PASS Glyph has actual ink at size 16 BeVietnamPro-Black
 PASS Glyph has actual ink at size 22 BeVietnamPro-Black
