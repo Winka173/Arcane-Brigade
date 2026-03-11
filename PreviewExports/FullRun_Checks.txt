@@ -201,6 +201,12 @@ PASS Weapon DowsingRod
 PASS Weapon StarKnuckle
 PASS Weapon BuzzerBlock
 PASS Weapon KunaiFan
+PASS Weapon PaperLanternBomb
+PASS Weapon SnowGlobeGrenade
+PASS Weapon PinataBomb
+PASS Weapon AcornCluster
+PASS Weapon FortuneGlobe
+PASS Weapon TopiaryShears
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop

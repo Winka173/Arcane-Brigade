@@ -139,68 +139,75 @@ PASS melee weapon has its own strike BareKnuckles
 PASS melee weapon has its own strike SignpostSlammer
 PASS melee weapon has its own strike WindupWrench
 PASS melee weapon has its own strike StarKnuckle
+PASS melee weapon has its own strike TopiaryShears
 PASS no two melee weapons share a strike (40)
-PASS no two weapons share a hit look (98)
-PASS no two weapons share a voice (98 weapons, 33 cues)
-PASS ranged weapon has its own shot painting requested TeapotPopgun
-PASS ranged weapon has its own shot painting requested MailboxLauncher
-PASS ranged weapon has its own shot painting requested BellFork
-PASS ranged weapon has its own shot painting requested CrescentBow
-PASS ranged weapon has its own shot painting requested RuneStaff
-PASS ranged weapon has its own shot painting requested SleepCamera
-PASS ranged weapon has its own shot painting requested TinFish
-PASS ranged weapon has its own shot painting requested AlarmMortar
-PASS ranged weapon has its own shot painting requested MusicBox
-PASS ranged weapon has its own shot painting requested ButtonBow
-PASS ranged weapon has its own shot painting requested LeafCrossbow
-PASS ranged weapon has its own shot painting requested InkPistol
-PASS ranged weapon has its own shot painting requested BubbleWand
-PASS ranged weapon has its own shot painting requested StarKazoo
-PASS ranged weapon has its own shot painting requested ShellCannon
-PASS ranged weapon has its own shot painting requested AcornSling
-PASS ranged weapon has its own shot painting requested CrescentBoomerang
-PASS ranged weapon has its own shot painting requested DartCompass
-PASS ranged weapon has its own shot painting requested LanternStaff
-PASS ranged weapon has its own shot painting requested SnowGlobeOrb
-PASS ranged weapon has its own shot painting requested RibbonHarp
-PASS ranged weapon has its own shot painting requested DreamOrbStaff
-PASS ranged weapon has its own shot painting requested FireExtinguisher
-PASS ranged weapon has its own shot painting requested PlasmaTrident
-PASS ranged weapon has its own shot painting requested MoonFeatherFan
-PASS ranged weapon has its own shot painting requested ScrapMagnet
-PASS ranged weapon has its own shot painting requested NeedleSinger
-PASS ranged weapon has its own shot painting requested DreamProjector
-PASS ranged weapon has its own shot painting requested MoonseedOrb
-PASS ranged weapon has its own shot painting requested SatelliteDisc
-PASS ranged weapon has its own shot painting requested CherryFuseBomb
-PASS ranged weapon has its own shot painting requested PopperSticks
-PASS ranged weapon has its own shot painting requested DreamRacket
-PASS ranged weapon has its own shot painting requested BambooVase
-PASS ranged weapon has its own shot painting requested RoseBouquet
-PASS ranged weapon has its own shot painting requested CandyDrill
-PASS ranged weapon has its own shot painting requested GrabberClaw
-PASS ranged weapon has its own shot painting requested TwinMoonStaff
-PASS ranged weapon has its own shot painting requested PaperShuriken
-PASS ranged weapon has its own shot painting requested SquirtTrio
-PASS ranged weapon has its own shot painting requested ConfettiBlunderbuss
-PASS ranged weapon has its own shot painting requested PlungerPopper
-PASS ranged weapon has its own shot painting requested GlitchToybox
-PASS ranged weapon has its own shot painting requested FizzBottle
-PASS ranged weapon has its own shot painting requested HearthBrick
-PASS ranged weapon has its own shot painting requested TalismanIngot
-PASS ranged weapon has its own shot painting requested InkyOctopus
-PASS ranged weapon has its own shot painting requested PlushShark
-PASS ranged weapon has its own shot painting requested DetonatorBox
-PASS ranged weapon has its own shot painting requested FirecrackerPinwheel
-PASS ranged weapon has its own shot painting requested GumballGatling
-PASS ranged weapon has its own shot painting requested BalloonBuddy
-PASS ranged weapon has its own shot painting requested SaucerBlaster
-PASS ranged weapon has its own shot painting requested FanfareHorn
-PASS ranged weapon has its own shot painting requested CorkRifle
-PASS ranged weapon has its own shot painting requested CatcherMitt
-PASS ranged weapon has its own shot painting requested DowsingRod
-PASS ranged weapon has its own shot painting requested BuzzerBlock
-PASS ranged weapon has its own shot painting requested KunaiFan
+PASS no two weapons share a hit look (104)
+PASS no two weapons share a voice (104 weapons, 33 cues)
+PASS ranged weapon has its own shot painting TeapotPopgun
+PASS ranged weapon has its own shot painting MailboxLauncher
+PASS ranged weapon has its own shot painting BellFork
+PASS ranged weapon has its own shot painting CrescentBow
+PASS ranged weapon has its own shot painting RuneStaff
+PASS ranged weapon has its own shot painting SleepCamera
+PASS ranged weapon has its own shot painting TinFish
+PASS ranged weapon has its own shot painting AlarmMortar
+PASS ranged weapon has its own shot painting MusicBox
+PASS ranged weapon has its own shot painting ButtonBow
+PASS ranged weapon has its own shot painting LeafCrossbow
+PASS ranged weapon has its own shot painting InkPistol
+PASS ranged weapon has its own shot painting BubbleWand
+PASS ranged weapon has its own shot painting StarKazoo
+PASS ranged weapon has its own shot painting ShellCannon
+PASS ranged weapon has its own shot painting AcornSling
+PASS ranged weapon has its own shot painting CrescentBoomerang
+PASS ranged weapon has its own shot painting DartCompass
+PASS ranged weapon has its own shot painting LanternStaff
+PASS ranged weapon has its own shot painting SnowGlobeOrb
+PASS ranged weapon has its own shot painting RibbonHarp
+PASS ranged weapon has its own shot painting DreamOrbStaff
+PASS ranged weapon has its own shot painting FireExtinguisher
+PASS ranged weapon has its own shot painting PlasmaTrident
+PASS ranged weapon has its own shot painting MoonFeatherFan
+PASS ranged weapon has its own shot painting ScrapMagnet
+PASS ranged weapon has its own shot painting NeedleSinger
+PASS ranged weapon has its own shot painting DreamProjector
+PASS ranged weapon has its own shot painting MoonseedOrb
+PASS ranged weapon has its own shot painting SatelliteDisc
+PASS ranged weapon has its own shot painting CherryFuseBomb
+PASS ranged weapon has its own shot painting PopperSticks
+PASS ranged weapon has its own shot painting DreamRacket
+PASS ranged weapon has its own shot painting BambooVase
+PASS ranged weapon has its own shot painting RoseBouquet
+PASS ranged weapon has its own shot painting CandyDrill
+PASS ranged weapon has its own shot painting GrabberClaw
+PASS ranged weapon has its own shot painting TwinMoonStaff
+PASS ranged weapon has its own shot painting PaperShuriken
+PASS ranged weapon has its own shot painting SquirtTrio
+PASS ranged weapon has its own shot painting ConfettiBlunderbuss
+PASS ranged weapon has its own shot painting PlungerPopper
+PASS ranged weapon has its own shot painting GlitchToybox
+PASS ranged weapon has its own shot painting FizzBottle
+PASS ranged weapon has its own shot painting HearthBrick
+PASS ranged weapon has its own shot painting TalismanIngot
+PASS ranged weapon has its own shot painting InkyOctopus
+PASS ranged weapon has its own shot painting PlushShark
+PASS ranged weapon has its own shot painting DetonatorBox
+PASS ranged weapon has its own shot painting FirecrackerPinwheel
+PASS ranged weapon has its own shot painting GumballGatling
+PASS ranged weapon has its own shot painting BalloonBuddy
+PASS ranged weapon has its own shot painting SaucerBlaster
+PASS ranged weapon has its own shot painting FanfareHorn
+PASS ranged weapon has its own shot painting CorkRifle
+PASS ranged weapon has its own shot painting CatcherMitt
+PASS ranged weapon has its own shot painting DowsingRod
+PASS ranged weapon has its own shot painting BuzzerBlock
+PASS ranged weapon has its own shot painting KunaiFan
+PASS ranged weapon has its own shot painting PaperLanternBomb
+PASS ranged weapon has its own shot painting SnowGlobeGrenade
+PASS ranged weapon has its own shot painting PinataBomb
+PASS ranged weapon has its own shot painting AcornCluster
+PASS ranged weapon has its own shot painting FortuneGlobe
+PASS every thrown weapon flies its own object
 PASS CherryFuseBomb the bomb is still in the air
 PASS CherryFuseBomb bursts where it landed and hits beside the target
 PASS CherryFuseBomb never strikes the enemy right behind the wielder

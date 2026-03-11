@@ -109,6 +109,12 @@ PASS Bounded weapon feel DowsingRod
 PASS Bounded weapon feel StarKnuckle
 PASS Bounded weapon feel BuzzerBlock
 PASS Bounded weapon feel KunaiFan
+PASS Bounded weapon feel PaperLanternBomb
+PASS Bounded weapon feel SnowGlobeGrenade
+PASS Bounded weapon feel PinataBomb
+PASS Bounded weapon feel AcornCluster
+PASS Bounded weapon feel FortuneGlobe
+PASS Bounded weapon feel TopiaryShears
 PASS Camera accent has a bounded displacement
 PASS An explosion holds the frame and shakes the camera
 PASS The hit hold is brief

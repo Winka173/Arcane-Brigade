@@ -38,8 +38,12 @@ LIVE HearthBrick
 LIVE VerdictGavel
 LIVE TalismanIngot
 LIVE KunaiFan
-WAITING FortuneGlobe: FortuneGlobe_Held, GlobeMote
-WAITING TopiaryShears: TopiaryShears_Held
+LIVE PaperLanternBomb
+LIVE SnowGlobeGrenade
+LIVE PinataBomb
+LIVE AcornCluster
+LIVE FortuneGlobe
+LIVE TopiaryShears
 LIVE BareKnuckles
 FRAME PAINTED Uncommon
 FRAME PAINTED Rare

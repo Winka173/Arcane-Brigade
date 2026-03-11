@@ -1190,6 +1190,78 @@ PASS KunaiFan tier 3 uses independent unit/weapon data
 PASS KunaiFan tier damage follows catalog multiplier with no build bonuses
 PASS KunaiFan tier 3 auto attacks through actual simulation events
 PASS KunaiFan preview cannot farm rewards or kills
+PASS PaperLanternBomb tier 1 uses independent unit/weapon data
+PASS PaperLanternBomb tier damage follows catalog multiplier with no build bonuses
+PASS PaperLanternBomb tier 1 auto attacks through actual simulation events
+PASS PaperLanternBomb preview cannot farm rewards or kills
+PASS PaperLanternBomb tier 2 uses independent unit/weapon data
+PASS PaperLanternBomb tier damage follows catalog multiplier with no build bonuses
+PASS PaperLanternBomb tier 2 auto attacks through actual simulation events
+PASS PaperLanternBomb preview cannot farm rewards or kills
+PASS PaperLanternBomb tier 3 uses independent unit/weapon data
+PASS PaperLanternBomb tier damage follows catalog multiplier with no build bonuses
+PASS PaperLanternBomb tier 3 auto attacks through actual simulation events
+PASS PaperLanternBomb preview cannot farm rewards or kills
+PASS SnowGlobeGrenade tier 1 uses independent unit/weapon data
+PASS SnowGlobeGrenade tier damage follows catalog multiplier with no build bonuses
+PASS SnowGlobeGrenade tier 1 auto attacks through actual simulation events
+PASS SnowGlobeGrenade preview cannot farm rewards or kills
+PASS SnowGlobeGrenade tier 2 uses independent unit/weapon data
+PASS SnowGlobeGrenade tier damage follows catalog multiplier with no build bonuses
+PASS SnowGlobeGrenade tier 2 auto attacks through actual simulation events
+PASS SnowGlobeGrenade preview cannot farm rewards or kills
+PASS SnowGlobeGrenade tier 3 uses independent unit/weapon data
+PASS SnowGlobeGrenade tier damage follows catalog multiplier with no build bonuses
+PASS SnowGlobeGrenade tier 3 auto attacks through actual simulation events
+PASS SnowGlobeGrenade preview cannot farm rewards or kills
+PASS PinataBomb tier 1 uses independent unit/weapon data
+PASS PinataBomb tier damage follows catalog multiplier with no build bonuses
+PASS PinataBomb tier 1 auto attacks through actual simulation events
+PASS PinataBomb preview cannot farm rewards or kills
+PASS PinataBomb tier 2 uses independent unit/weapon data
+PASS PinataBomb tier damage follows catalog multiplier with no build bonuses
+PASS PinataBomb tier 2 auto attacks through actual simulation events
+PASS PinataBomb preview cannot farm rewards or kills
+PASS PinataBomb tier 3 uses independent unit/weapon data
+PASS PinataBomb tier damage follows catalog multiplier with no build bonuses
+PASS PinataBomb tier 3 auto attacks through actual simulation events
+PASS PinataBomb preview cannot farm rewards or kills
+PASS AcornCluster tier 1 uses independent unit/weapon data
+PASS AcornCluster tier damage follows catalog multiplier with no build bonuses
+PASS AcornCluster tier 1 auto attacks through actual simulation events
+PASS AcornCluster preview cannot farm rewards or kills
+PASS AcornCluster tier 2 uses independent unit/weapon data
+PASS AcornCluster tier damage follows catalog multiplier with no build bonuses
+PASS AcornCluster tier 2 auto attacks through actual simulation events
+PASS AcornCluster preview cannot farm rewards or kills
+PASS AcornCluster tier 3 uses independent unit/weapon data
+PASS AcornCluster tier damage follows catalog multiplier with no build bonuses
+PASS AcornCluster tier 3 auto attacks through actual simulation events
+PASS AcornCluster preview cannot farm rewards or kills
+PASS FortuneGlobe tier 1 uses independent unit/weapon data
+PASS FortuneGlobe tier damage follows catalog multiplier with no build bonuses
+PASS FortuneGlobe tier 1 auto attacks through actual simulation events
+PASS FortuneGlobe preview cannot farm rewards or kills
+PASS FortuneGlobe tier 2 uses independent unit/weapon data
+PASS FortuneGlobe tier damage follows catalog multiplier with no build bonuses
+PASS FortuneGlobe tier 2 auto attacks through actual simulation events
+PASS FortuneGlobe preview cannot farm rewards or kills
+PASS FortuneGlobe tier 3 uses independent unit/weapon data
+PASS FortuneGlobe tier damage follows catalog multiplier with no build bonuses
+PASS FortuneGlobe tier 3 auto attacks through actual simulation events
+PASS FortuneGlobe preview cannot farm rewards or kills
+PASS TopiaryShears tier 1 uses independent unit/weapon data
+PASS TopiaryShears tier damage follows catalog multiplier with no build bonuses
+PASS TopiaryShears tier 1 auto attacks through actual simulation events
+PASS TopiaryShears preview cannot farm rewards or kills
+PASS TopiaryShears tier 2 uses independent unit/weapon data
+PASS TopiaryShears tier damage follows catalog multiplier with no build bonuses
+PASS TopiaryShears tier 2 auto attacks through actual simulation events
+PASS TopiaryShears preview cannot farm rewards or kills
+PASS TopiaryShears tier 3 uses independent unit/weapon data
+PASS TopiaryShears tier damage follows catalog multiplier with no build bonuses
+PASS TopiaryShears tier 3 auto attacks through actual simulation events
+PASS TopiaryShears preview cannot farm rewards or kills
 PASS Reset disposes old runtime weapon clone
 PASS Reset clears elapsed time, attacks and diagnostics
 PASS Local combat and roam RNG reproduce after reset despite reduced-motion change

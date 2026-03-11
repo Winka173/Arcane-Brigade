@@ -55,4 +55,4 @@ MonoBehaviour:
   PushDistance: 0.15
   Family: 0
   Mechanic: 0
-  GameplaySummary: Throws 3 firecracker sticks that wait, then pop in a chain.
+  GameplaySummary: Lobs a bundle of firecrackers slowly; it lands and bursts wide.

@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: ArsenalArtwork
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.ArsenalArtwork
   Entries:
+  - Name: AcornBomb
+    Frames:
+    - {fileID: 21300000, guid: da82513857492fb42963787cf07c3466, type: 3}
+  - Name: AcornCluster_Held
+    Frames:
+    - {fileID: 21300000, guid: c7878a4ce0731c840923d87c17af1562, type: 3}
   - Name: BalloonAnimal
     Frames:
     - {fileID: 21300000, guid: e5725504acd4bd04f8fc1def17ca302b, type: 3}
@@ -42,6 +48,9 @@ MonoBehaviour:
   - Name: BuzzerFloor
     Frames:
     - {fileID: 21300000, guid: cb572bdfb33c4d3468dfa10990d6a55f, type: 3}
+  - Name: CandyBomblet
+    Frames:
+    - {fileID: 21300000, guid: daf42d231aed0ae41975dba004b929c8, type: 3}
   - Name: CandyDrillShot
     Frames:
     - {fileID: 21300000, guid: 61597c69499f37442966eddbe22d3691, type: 3}
@@ -116,9 +125,15 @@ MonoBehaviour:
   - Name: FlySwatter_Held
     Frames:
     - {fileID: 21300000, guid: faeafbd2f8cee1347a901f1557e757bb, type: 3}
+  - Name: FortuneGlobe_Held
+    Frames:
+    - {fileID: 21300000, guid: 2aeb4da6b6bc11c4cb601b87a4d3ed99, type: 3}
   - Name: GlitchToybox_Held
     Frames:
     - {fileID: 21300000, guid: d5f97ec0ff91d1143b1efd135601c692, type: 3}
+  - Name: GlobeMote
+    Frames:
+    - {fileID: 21300000, guid: 8b4c464af045b284a8d4717d0f26d08c, type: 3}
   - Name: GrabberClaw_Held
     Frames:
     - {fileID: 21300000, guid: 1a7818de97563fd49ac0923542ae07a8, type: 3}
@@ -146,15 +161,27 @@ MonoBehaviour:
   - Name: KunaiShot
     Frames:
     - {fileID: 21300000, guid: 8d4fe271275fd07489dc6a3b36a518c5, type: 3}
+  - Name: LanternBombShot
+    Frames:
+    - {fileID: 21300000, guid: 5bf8040d55647354284db9aec3f37087, type: 3}
   - Name: LeekBaton_Held
     Frames:
     - {fileID: 21300000, guid: e4fc69c54959c0849a7bfb5cb1b5353f, type: 3}
+  - Name: PaperLanternBomb_Held
+    Frames:
+    - {fileID: 21300000, guid: d64dd02785ca69a488f13d40231c1926, type: 3}
   - Name: PaperShuriken_Held
     Frames:
     - {fileID: 21300000, guid: 5954c9d71bd07694d96cd65effa5c559, type: 3}
   - Name: PawMitten_Held
     Frames:
     - {fileID: 21300000, guid: 1582d8be3fe0e58439d51893b6eec0d3, type: 3}
+  - Name: PinataBomb_Held
+    Frames:
+    - {fileID: 21300000, guid: abeda76d7e8ac0145903eb0e35dcce0b, type: 3}
+  - Name: PinataShot
+    Frames:
+    - {fileID: 21300000, guid: e0aeb98bb03507a4dbb794835d8f0a3c, type: 3}
   - Name: Pinwheel
     Frames:
     - {fileID: 21300000, guid: bad4aa7e269faf34393ff5c7410b4f93, type: 3}
@@ -199,12 +226,195 @@ MonoBehaviour:
   - Name: SaucerShot
     Frames:
     - {fileID: 21300000, guid: ef7d68f6db883c040b3efd7052988498, type: 3}
+  - Name: Shot_AcornSling
+    Frames:
+    - {fileID: 21300000, guid: 988fca57c1bdc294ba33c379baa18ea7, type: 3}
+  - Name: Shot_AlarmMortar
+    Frames:
+    - {fileID: 21300000, guid: ecb917491ff58a44fa67ec13d53b1c3e, type: 3}
+  - Name: Shot_BalloonBuddy
+    Frames:
+    - {fileID: 21300000, guid: cde3923f7c395e04f9dd159f23332200, type: 3}
+  - Name: Shot_BambooVase
+    Frames:
+    - {fileID: 21300000, guid: dc1b4f84c1844014fbdfd50fc67fbbcb, type: 3}
+  - Name: Shot_BellFork
+    Frames:
+    - {fileID: 21300000, guid: 4595b467ff9396045833d7655fc4ac83, type: 3}
+  - Name: Shot_BubbleWand
+    Frames:
+    - {fileID: 21300000, guid: d11153c31cab4f04689e93bb70b4ff15, type: 3}
+  - Name: Shot_ButtonBow
+    Frames:
+    - {fileID: 21300000, guid: f5a8ac9cfaa64b845b767ff605b917fb, type: 3}
+  - Name: Shot_BuzzerBlock
+    Frames:
+    - {fileID: 21300000, guid: cdd9f11ca33757a46a288f2b9fdb7619, type: 3}
+  - Name: Shot_CandyDrill
+    Frames:
+    - {fileID: 21300000, guid: 53a90a402cf253846b5921edebf8b5de, type: 3}
+  - Name: Shot_CatcherMitt
+    Frames:
+    - {fileID: 21300000, guid: 0938ff21345f99040923db8d5fd5a67a, type: 3}
+  - Name: Shot_CherryFuseBomb
+    Frames:
+    - {fileID: 21300000, guid: 129e85c362402344d9d75090a673b0d8, type: 3}
+  - Name: Shot_ConfettiBlunderbuss
+    Frames:
+    - {fileID: 21300000, guid: ea6feab52a4770749a8b4da4a7c2399d, type: 3}
+  - Name: Shot_CorkRifle
+    Frames:
+    - {fileID: 21300000, guid: 77828d10e59d6a64ca2ae8d8d8cf4846, type: 3}
+  - Name: Shot_CrescentBoomerang
+    Frames:
+    - {fileID: 21300000, guid: d365de3bd23bcca48a91a8d3e613c4cb, type: 3}
+  - Name: Shot_CrescentBow
+    Frames:
+    - {fileID: 21300000, guid: 816599c9ac3fae843b7ee473ca6b8340, type: 3}
+  - Name: Shot_DartCompass
+    Frames:
+    - {fileID: 21300000, guid: d6e9970d34e51f84381bff2eca148ddb, type: 3}
+  - Name: Shot_DetonatorBox
+    Frames:
+    - {fileID: 21300000, guid: 4830d804ecc4319488802dbd383a92d1, type: 3}
+  - Name: Shot_DowsingRod
+    Frames:
+    - {fileID: 21300000, guid: 5496181e46e93af4fb45544a90a5bac2, type: 3}
+  - Name: Shot_DreamOrbStaff
+    Frames:
+    - {fileID: 21300000, guid: e32188057db63c3479ae55744d1703e1, type: 3}
+  - Name: Shot_DreamProjector
+    Frames:
+    - {fileID: 21300000, guid: 0c5ddc7ed107d3a45b33595608c89a62, type: 3}
+  - Name: Shot_DreamRacket
+    Frames:
+    - {fileID: 21300000, guid: 4c6a3eafb11eb9c44a4477c3a2ef9b89, type: 3}
+  - Name: Shot_FanfareHorn
+    Frames:
+    - {fileID: 21300000, guid: 16a210c88ee97a94e82960f9c8d5b58b, type: 3}
+  - Name: Shot_FireExtinguisher
+    Frames:
+    - {fileID: 21300000, guid: 1294899d076ca734eac0584b7e0c0d8f, type: 3}
+  - Name: Shot_FirecrackerPinwheel
+    Frames:
+    - {fileID: 21300000, guid: b4e734e560bcd724589c1da336bdb1e4, type: 3}
+  - Name: Shot_FizzBottle
+    Frames:
+    - {fileID: 21300000, guid: bd477ebe0330b84428101aad00c8b82b, type: 3}
+  - Name: Shot_GlitchToybox
+    Frames:
+    - {fileID: 21300000, guid: 30e32a6230f9a614883a8eb2f90fd2b6, type: 3}
+  - Name: Shot_GrabberClaw
+    Frames:
+    - {fileID: 21300000, guid: 47c7a78aea442f84295c52c1ffc7a24c, type: 3}
+  - Name: Shot_GumballGatling
+    Frames:
+    - {fileID: 21300000, guid: 35fd25204040720478cfd1a870918b7c, type: 3}
+  - Name: Shot_HearthBrick
+    Frames:
+    - {fileID: 21300000, guid: 0666ae1d8e2522942bbcb3c6760db728, type: 3}
+  - Name: Shot_InkPistol
+    Frames:
+    - {fileID: 21300000, guid: cb18f4f3430e5404a8e1af9230ed4a7c, type: 3}
+  - Name: Shot_InkyOctopus
+    Frames:
+    - {fileID: 21300000, guid: e1fc3e26b4f69d8408b35a25afe1efd5, type: 3}
+  - Name: Shot_KunaiFan
+    Frames:
+    - {fileID: 21300000, guid: f2fa9a27f867bad4dae263b6f40e2f8f, type: 3}
+  - Name: Shot_LanternStaff
+    Frames:
+    - {fileID: 21300000, guid: 40bcd39d65fb0224293dd0470857e616, type: 3}
+  - Name: Shot_LeafCrossbow
+    Frames:
+    - {fileID: 21300000, guid: 84ce87d99688a594a8b8a1fe1d8e0f47, type: 3}
+  - Name: Shot_MailboxLauncher
+    Frames:
+    - {fileID: 21300000, guid: 992e710d81ea5e045ab67fb999521511, type: 3}
+  - Name: Shot_MoonFeatherFan
+    Frames:
+    - {fileID: 21300000, guid: 40aad26a693d18b4f9c63ee53aeee836, type: 3}
+  - Name: Shot_MoonseedOrb
+    Frames:
+    - {fileID: 21300000, guid: b92c202839c43ae448e49b9b6b1cda4f, type: 3}
+  - Name: Shot_MusicBox
+    Frames:
+    - {fileID: 21300000, guid: 9b9192f509679144db65f6ecae4f387a, type: 3}
+  - Name: Shot_NeedleSinger
+    Frames:
+    - {fileID: 21300000, guid: c34017b4f437daf40abb2b3d2159a6ad, type: 3}
+  - Name: Shot_PaperShuriken
+    Frames:
+    - {fileID: 21300000, guid: d18348814fe117440bf5e86b8b224407, type: 3}
+  - Name: Shot_PlasmaTrident
+    Frames:
+    - {fileID: 21300000, guid: ddb086bcf0b1e5146b0735ee0d9de244, type: 3}
+  - Name: Shot_PlungerPopper
+    Frames:
+    - {fileID: 21300000, guid: d9db9903553abaf4e919fd4ad6593cea, type: 3}
+  - Name: Shot_PlushShark
+    Frames:
+    - {fileID: 21300000, guid: 83ce6321b2bca3b4ba03e5313bb5249c, type: 3}
+  - Name: Shot_PopperSticks
+    Frames:
+    - {fileID: 21300000, guid: 3eed107fd7de76245b1c556efc31b5b2, type: 3}
+  - Name: Shot_RibbonHarp
+    Frames:
+    - {fileID: 21300000, guid: 4a04206b2461c3740a409e0476263c59, type: 3}
+  - Name: Shot_RoseBouquet
+    Frames:
+    - {fileID: 21300000, guid: c0bc43663a9742e40bd370c09b22a785, type: 3}
+  - Name: Shot_RuneStaff
+    Frames:
+    - {fileID: 21300000, guid: b5d1883f1d8644141bf7633185a85212, type: 3}
+  - Name: Shot_SatelliteDisc
+    Frames:
+    - {fileID: 21300000, guid: 0039d4b604324834b857eb2ef765eaa0, type: 3}
+  - Name: Shot_SaucerBlaster
+    Frames:
+    - {fileID: 21300000, guid: 9db9c428112990f42a65c5efe4b60915, type: 3}
+  - Name: Shot_ScrapMagnet
+    Frames:
+    - {fileID: 21300000, guid: e9c290782434b8146a8b6481f3b309db, type: 3}
+  - Name: Shot_ShellCannon
+    Frames:
+    - {fileID: 21300000, guid: 933608f250ed8ce46a31e906a8aca28a, type: 3}
+  - Name: Shot_SleepCamera
+    Frames:
+    - {fileID: 21300000, guid: 35925fb4cd5e2b84eb53c647be85332e, type: 3}
+  - Name: Shot_SnowGlobeOrb
+    Frames:
+    - {fileID: 21300000, guid: 6944c7b717374e846a28e786031ef2cf, type: 3}
+  - Name: Shot_SquirtTrio
+    Frames:
+    - {fileID: 21300000, guid: deff44a7c9ee813489509dc204cab700, type: 3}
+  - Name: Shot_StarKazoo
+    Frames:
+    - {fileID: 21300000, guid: 76641307b5c14474fa40fa1b0091824d, type: 3}
+  - Name: Shot_TalismanIngot
+    Frames:
+    - {fileID: 21300000, guid: 3ee8d4064c93cbf4482c4871e23eeeec, type: 3}
+  - Name: Shot_TeapotPopgun
+    Frames:
+    - {fileID: 21300000, guid: 4ef2a66d5732c484f8d1f678f0933bbf, type: 3}
+  - Name: Shot_TinFish
+    Frames:
+    - {fileID: 21300000, guid: 5284d2b4d9b0ae14ebcd5d0ca2c3b207, type: 3}
+  - Name: Shot_TwinMoonStaff
+    Frames:
+    - {fileID: 21300000, guid: 80de1492c76afe84a89f9e0318d7f138, type: 3}
   - Name: ShurikenShot
     Frames:
     - {fileID: 21300000, guid: ca91c3a4804645a4f9171fbb7cde5bd8, type: 3}
   - Name: SignpostSlammer_Held
     Frames:
     - {fileID: 21300000, guid: 77521fc06640f084ba883248f10a81ea, type: 3}
+  - Name: SnowGlobeGrenade_Held
+    Frames:
+    - {fileID: 21300000, guid: 1fb38b8afff9ec34f85f5f47045b7daa, type: 3}
+  - Name: SnowGlobeShot
+    Frames:
+    - {fileID: 21300000, guid: ba30ca269776eb740b893a36866992b3, type: 3}
   - Name: SoundFin
     Frames:
     - {fileID: 21300000, guid: f6781c8f484b7394eaa34976478b8912, type: 3}
@@ -217,12 +427,24 @@ MonoBehaviour:
   - Name: StarShard
     Frames:
     - {fileID: 21300000, guid: 3b286ef85d252024980077088f72f379, type: 3}
+  - Name: StarUp_Crown
+    Frames:
+    - {fileID: 21300000, guid: c7329a769bd3999468b6caa94cacb2a6, type: 3}
+  - Name: StarUp_GoldStar
+    Frames:
+    - {fileID: 21300000, guid: c167b6151e862884bb21d1d297e240c4, type: 3}
+  - Name: StarUp_SilverStar
+    Frames:
+    - {fileID: 21300000, guid: 2aaf8f88f8cab4e498abbc0bbd69aec6, type: 3}
   - Name: StarforgeClaymore_Held
     Frames:
     - {fileID: 21300000, guid: 167e77872c0da2946b953239a1c685bc, type: 3}
   - Name: TalismanIngot_Held
     Frames:
     - {fileID: 21300000, guid: 509aee2c01a374c4a9c65078c3378e66, type: 3}
+  - Name: TopiaryShears_Held
+    Frames:
+    - {fileID: 21300000, guid: 17a378b436ff6eb4398450e51f4fafde, type: 3}
   - Name: ToyBomb
     Frames:
     - {fileID: 21300000, guid: 363441954244adf46acec58edcf1ea08, type: 3}

@@ -87,8 +87,11 @@ namespace ArcaneBrigade.Editor
             var voices = weapons.Select(w => ArcaneCueLibrary.WeaponFireCue(w) + "@" + ArcaneCueLibrary.WeaponPitch(new CombatEvent(CombatEventKind.Fire, Vector2.zero, Faction.Companion, 0, Vector2.right, w)).ToString("0.000")).ToList();
             Require(voices.Distinct().Count() == voices.Count, "no two weapons share a voice (" + voices.Count + " weapons, " + voices.Select(v => v.Split('@')[0]).Distinct().Count() + " cues)");
             string worklist = File.ReadAllText("Docs/Bizarre_Arsenal_Art_Worklist.json");
+            // thrown weapons fly their own painted object instead of a Shot_ painting (each one is unique to its weapon)
+            var thrown = new Dictionary<string, string> { ["PaperLanternBomb"] = "LanternBombShot", ["SnowGlobeGrenade"] = "SnowGlobeShot", ["PinataBomb"] = "PinataShot", ["AcornCluster"] = "AcornBomb", ["FortuneGlobe"] = "GlobeMote" };
             foreach (WeaponDefinition w in weapons.Where(w => w.Kind == WeaponKind.Projectile))
-                Require(worklist.Contains("\"Shot_" + w.Id + "\""), "ranged weapon has its own shot painting requested " + w.Id);
+                Require(thrown.TryGetValue(w.Id, out string own) ? ArsenalArtwork.Frames(own) != null : worklist.Contains("\"Shot_" + w.Id + "\""), "ranged weapon has its own shot painting " + w.Id);
+            Require(thrown.Values.Distinct().Count() == thrown.Count, "every thrown weapon flies its own object");
         }
         private static Sprite heldStandIn;
         private static Sprite Texture2DSprite() => heldStandIn != null ? heldStandIn : heldStandIn = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 4);

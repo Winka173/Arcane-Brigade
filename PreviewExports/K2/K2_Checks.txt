@@ -108,5 +108,11 @@ PASS Impact pose rotation continuity DowsingRod (angle 0, move 1.949289E-05)
 PASS Impact pose rotation continuity StarKnuckle (angle 0, move 1.251698E-05)
 PASS Impact pose rotation continuity BuzzerBlock (angle 0, move 1.949289E-05)
 PASS Impact pose rotation continuity KunaiFan (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity PaperLanternBomb (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity SnowGlobeGrenade (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity PinataBomb (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity AcornCluster (angle 0, move 3.361702E-05)
+PASS Impact pose rotation continuity FortuneGlobe (angle 0, move 1.9493E-05)
+PASS Impact pose rotation continuity TopiaryShears (angle 0, move 1.549721E-05)
 PASS Coin arc and positive spin scale
 PASS Coin shadow world size independent of spin
