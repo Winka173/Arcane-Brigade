@@ -39,7 +39,7 @@ PASS Approach save round trip LanternKnight / 2
 PASS Identity row does not overwrite stat summaries Postmaster / 0
 PASS Damage row keeps correct compiled value Postmaster / 0
 PASS Finite and immortal companion behavior Postmaster / 0
-PASS Actual signature activated Postmaster / 0 casts=12 injuries=True
+PASS Actual signature activated Postmaster / 0 casts=10 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) Postmaster / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s Postmaster / 0 blasts=0
@@ -51,7 +51,7 @@ PASS Approach save round trip Postmaster / 0
 PASS Identity row does not overwrite stat summaries Postmaster / 1
 PASS Damage row keeps correct compiled value Postmaster / 1
 PASS Finite and immortal companion behavior Postmaster / 1
-PASS Actual signature activated Postmaster / 1 casts=12 injuries=True
+PASS Actual signature activated Postmaster / 1 casts=10 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) Postmaster / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s Postmaster / 1 blasts=0
@@ -63,7 +63,7 @@ PASS Approach save round trip Postmaster / 1
 PASS Identity row does not overwrite stat summaries Postmaster / 2
 PASS Damage row keeps correct compiled value Postmaster / 2
 PASS Finite and immortal companion behavior Postmaster / 2
-PASS Actual signature activated Postmaster / 2 casts=11 injuries=True
+PASS Actual signature activated Postmaster / 2 casts=10 injuries=True
 PASS Bounded visual/projectile queues Postmaster / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) Postmaster / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s Postmaster / 2 blasts=0
@@ -399,7 +399,7 @@ PASS Approach save round trip VerdantMatron / 2
 PASS Identity row does not overwrite stat summaries CopperCauldron / 0
 PASS Damage row keeps correct compiled value CopperCauldron / 0
 PASS Finite and immortal companion behavior CopperCauldron / 0
-PASS Actual signature activated CopperCauldron / 0 casts=7 injuries=True
+PASS Actual signature activated CopperCauldron / 0 casts=6 injuries=True
 PASS Bounded visual/projectile queues CopperCauldron / 0
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) CopperCauldron / 0 
 PASS Identity detonations sized inside their disc and at most one per 0.3s CopperCauldron / 0 blasts=0
@@ -411,7 +411,7 @@ PASS Approach save round trip CopperCauldron / 0
 PASS Identity row does not overwrite stat summaries CopperCauldron / 1
 PASS Damage row keeps correct compiled value CopperCauldron / 1
 PASS Finite and immortal companion behavior CopperCauldron / 1
-PASS Actual signature activated CopperCauldron / 1 casts=7 injuries=True
+PASS Actual signature activated CopperCauldron / 1 casts=6 injuries=True
 PASS Bounded visual/projectile queues CopperCauldron / 1
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) CopperCauldron / 1 
 PASS Identity detonations sized inside their disc and at most one per 0.3s CopperCauldron / 1 blasts=0
@@ -423,7 +423,7 @@ PASS Approach save round trip CopperCauldron / 1
 PASS Identity row does not overwrite stat summaries CopperCauldron / 2
 PASS Damage row keeps correct compiled value CopperCauldron / 2
 PASS Finite and immortal companion behavior CopperCauldron / 2
-PASS Actual signature activated CopperCauldron / 2 casts=7 injuries=True
+PASS Actual signature activated CopperCauldron / 2 casts=6 injuries=True
 PASS Bounded visual/projectile queues CopperCauldron / 2
 PASS Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) CopperCauldron / 2 
 PASS Identity detonations sized inside their disc and at most one per 0.3s CopperCauldron / 2 blasts=0

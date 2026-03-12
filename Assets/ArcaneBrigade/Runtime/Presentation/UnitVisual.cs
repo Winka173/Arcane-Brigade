@@ -342,6 +342,7 @@ namespace ArcaneBrigade
             }
             float motionDelta = Mathf.Clamp(simulationTime - lastDisplayTime, 0, 0.05f);
             lastDisplayTime = simulationTime;
+            if (state.AwakenArt != awakenShown) SwapAwakenWeapon();
             if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
             if (state.Definition.AuthoredMotion != null)
                 body.sprite = HeroPoseRepairs.Repair(state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion));
@@ -721,6 +722,21 @@ namespace ArcaneBrigade
             if (entranceMaterial != null) Destroy(entranceMaterial);
             if (bowMaterial != null) Destroy(bowMaterial);
             if (exposedMaterial != null) Destroy(exposedMaterial);
+        }
+
+        private string awakenShown;
+        private Sprite restWeapon;
+        private Vector3 restWeaponScale;
+        /// <summary>A transformed hero holds its transformed weapon (painted art when it exists), drawn the same width as
+        /// the weapon it replaces and a touch heavier; back to the usual weapon when the transformation ends.</summary>
+        private void SwapAwakenWeapon()
+        {
+            if (awakenShown == null) { restWeapon = weapon.sprite; restWeaponScale = weapon.transform.localScale; }
+            awakenShown = state.AwakenArt;
+            Sprite art = string.IsNullOrEmpty(awakenShown) ? null : ArsenalArtwork.Frame(awakenShown + "_Held", 0);
+            if (art == null || restWeapon == null) { weapon.sprite = restWeapon; weapon.transform.localScale = restWeaponScale; if (art == null && string.IsNullOrEmpty(awakenShown)) awakenShown = null; return; }
+            float ratio = SpriteInkMetrics.BoundsOf(restWeapon).width / Mathf.Max(.01f, SpriteInkMetrics.BoundsOf(art).width);
+            weapon.sprite = art; weapon.transform.localScale = restWeaponScale * ratio * 1.12f;
         }
 
         public void SetTerminalFade(float alpha)

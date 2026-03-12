@@ -1,0 +1,10 @@
+hero	approach	value_Wps	ratio_to_median	vs_basic	share_of_team	casts_per_min	hp_on	hp_off	deaths_on	deaths_off	kills_on	kills_off	flag
+Postmaster	0	0.483	1.212	0.312	0.023	15.977	0.626	0.655	2	2	831.167	762.5	ok
+Postmaster	1	0.497	1.249	0.311	0.025	15.977	0.579	0.655	2	2	830	762.5	ok
+Postmaster	2	0.398	1	0.247	0.023	16.673	0.614	0.655	2	2	772.167	762.5	ok
+DrowsySeer	0	0.397	0.996	0.241	0.04	6.712	0.667	0.652	2	2	725.833	721.167	ok
+DrowsySeer	1	0.287	0.72	0.152	0.024	7.103	0.78	0.652	1	2	1208.167	721.167	ok
+DrowsySeer	2	0.392	0.985	0.237	0.039	7.066	0.661	0.652	2	2	787.167	721.167	ok
+CopperCauldron	0	0.717	1.802	0.158	0.004	11.936	0.543	0.488	2	2	775.167	737	HIGH
+CopperCauldron	1	0.375	0.941	0.081	0.006	12.126	0.501	0.488	2	2	754.5	737	ok
+CopperCauldron	2	0.429	1.078	0.093	0.005	11.487	0.572	0.488	2	2	790.167	737	ok

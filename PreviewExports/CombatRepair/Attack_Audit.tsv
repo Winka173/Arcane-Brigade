@@ -1,7 +1,7 @@
 Group	Id	Weapon	Fires	EffectiveDamage	Result
 Hero	LanternKnight	KeyCleaver	21	1762.87	PASS
-Hero	Postmaster	MailboxLauncher	21	2074.80	PASS
-Hero	DrowsySeer	MoonseedOrb	12	3220.59	PASS
+Hero	Postmaster	MailboxLauncher	21	2198.66	PASS
+Hero	DrowsySeer	MoonseedOrb	12	3361.35	PASS
 Hero	RootOracle	BambooVase	14	6054.16	PASS
 Hero	LoneJelly	InkyOctopus	20	13219.31	PASS
 Hero	GlassDice	GlitchToybox	18	3131.09	PASS
@@ -10,7 +10,7 @@ Hero	CometRunner	ClockCrescent	16	1178.10	PASS
 Hero	MirrorKeeper	SnowGlobeOrb	20	990.00	PASS
 Hero	TreasureAcorn	AcornSling	18	1001.70	PASS
 Hero	VerdantMatron	LeafCrossbow	18	795.60	PASS
-Hero	CopperCauldron	FireExtinguisher	24	1567.68	PASS
+Hero	CopperCauldron	FireExtinguisher	24	1572.79	PASS
 Hero	ChinaMarionette	NeedleSinger	19	855.00	PASS
 Hero	SoapSkater	BubbleWand	28	491.40	PASS
 Hero	VelvetRegent	StarforgeClaymore	11	833.50	PASS

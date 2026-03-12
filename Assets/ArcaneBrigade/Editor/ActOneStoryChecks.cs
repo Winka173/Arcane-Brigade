@@ -29,6 +29,7 @@ namespace ArcaneBrigade.Editor
             ("K4Final", K4FinalChecks.Run),
             ("K15Feel", K15Checks.Run),
             ("FeelTelegraph", FeelTelegraphChecks.Run),
+            ("HeroAwakening", HeroAwakeningChecks.Run),
             ("K8Audio", K8AudioChecks.Run),
             ("K7", K7Checks.Run),
         });

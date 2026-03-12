@@ -1,0 +1,27 @@
+PASS Postmaster has an awakening, starting empty
+PASS Postmaster: a cast climbs one tier
+PASS Postmaster: three casts fill the gauge
+PASS Postmaster: a full gauge transforms by itself once an enemy is near
+PASS Postmaster holds the sorting gatling
+PASS The sorting gatling fires parcels and stamps addresses
+PASS Postmaster: the transformation ends and cools
+PASS Postmaster: casts do not climb while cooling
+PASS Postmaster: after cooling the gauge climbs again
+PASS CopperCauldron has an awakening, starting empty
+PASS CopperCauldron: a cast climbs one tier
+PASS CopperCauldron: three casts fill the gauge
+PASS CopperCauldron: a full gauge transforms by itself once an enemy is near
+PASS The steam engine runs faster than the kettle walks
+PASS Boiler pressure rises while the engine runs
+PASS CopperCauldron: the transformation ends and cools
+PASS CopperCauldron: casts do not climb while cooling
+PASS CopperCauldron: after cooling the gauge climbs again
+PASS DrowsySeer has an awakening, starting empty
+PASS DrowsySeer: a cast climbs one tier
+PASS DrowsySeer: three casts fill the gauge
+PASS DrowsySeer: a full gauge transforms by itself once an enemy is near
+PASS Three dreams walk the seer's route, the oldest furthest behind
+PASS DrowsySeer: the transformation ends and cools
+PASS DrowsySeer: casts do not climb while cooling
+PASS DrowsySeer: after cooling the gauge climbs again
+PASS Heroes without an awakening yet keep their usual gauge

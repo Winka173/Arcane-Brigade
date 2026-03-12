@@ -318,6 +318,51 @@ for name, subject in (("StarUp_SilverStar", "a five-point rank star of polished 
     jobs.append(dict(name=name, path=ART + name + "_v1.png", transparent=True, refs=STAR_REFS, depends=None, mode="single",
                      prompt=STYLE + "Subject: " + subject + ROUND + ISOLATED))
 
+# hero awakenings (18/10/2026, pilot: Postmaster, CopperCauldron, DrowsySeer): each hero's transformed piece and its own
+# gauge vessel. The Full gauge is an exact edit of the Empty one (same framing), because the game reveals the Full one
+# from the bottom up over the Empty one as the gauge fills.
+GAUGE = (" A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, "
+         "filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one "
+         "third and two thirds of its height. 384x1024 canvas.")
+AWAKE = {
+    "Postmaster": dict(
+        refs=["Assets/ArcaneBrigade/Art/FinalQuality/Postmaster_v1.png", "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png"],
+        piece=("Postmaster_Awake_Held", "SORTING GATLING, the Postmaster's mailbox launcher (in the second reference) rebuilt as a "
+               "six-barrel parcel sorter: six brass mail-chute barrels bundled in a rotating cylinder at the front, a red mailbox body "
+               "with a wax-seal badge, a small hand crank on the side, the corners of letters peeking out of the barrels", HELD),
+        empty="a stitched leather mail sack standing upright, brass buckles and a strap, a tall postage-stamp-edged window down its "
+              "front; the window is EMPTY, showing only the dark inside of the sack",
+        full="the window is now stuffed to the top with envelopes and small parcels, glowing a warm lamplight amber"),
+    "CopperCauldron": dict(
+        refs=["Assets/ArcaneBrigade/Art/October/Heroes1.png", "Assets/ArcaneBrigade/Art/K13/DreamArms_v2.png"],
+        piece=("CopperCauldron_Engine", "STEAM ENGINE: a small storybook locomotive front that the copper kettle hero (in the first "
+               "reference sheet) wears as it charges: a brass cowcatcher grille, a stubby copper smokestack, a round headlamp, "
+               "rivets and a little whistle; side view facing RIGHT, no wheels, no ground", " Side view facing RIGHT. 768x512 canvas."),
+        empty="a brass boiler pressure tube with a long glass window, copper rivets, a red line painted across the glass near the "
+              "top, a little steam valve on its cap; the glass is EMPTY and dark",
+        full="the glass is now filled to the top with glowing ember-orange steam and swirling heat"),
+    "DrowsySeer": dict(
+        refs=["Assets/ArcaneBrigade/Art/FinalQuality/DrowsySeer_v1.png", "Assets/ArcaneBrigade/Art/K13/DreamArms_v2.png"],
+        piece=("DrowsySeer_Awake_Held", "FULL MOON, the Drowsy Seer's moonseed orb staff (in the second reference sheet) in its "
+               "full-moon form: a slender silver-blue staff topped by a full moon orb cradled in a crescent, sleepy star charms "
+               "dangling from it, a soft lilac light painted inside the orb (no external halo)", HELD),
+        empty="a slender lilac glass column framed in silver, three small crescent-moon charms at its tier notches and a star "
+              "finial on top; the glass is EMPTY, a dark night blue",
+        full="the glass is now filled to the top with luminous lilac moonlight and tiny drifting stars"),
+}
+for hero, a in AWAKE.items():
+    name, subject, shape = a["piece"]
+    jobs.append(dict(name=name, path=ART + name + "_v1.png", transparent=True, refs=a["refs"] + REFS, depends=None, mode="single",
+                     prompt=STYLE + "Subject: " + subject + "." + shape + ISOLATED))
+    empty = "Gauge_" + hero + "_Empty"
+    jobs.append(dict(name=empty, path=ART + empty + "_v1.png", transparent=True, refs=a["refs"][:1] + REFS, depends=None, mode="single",
+                     prompt=STYLE + "Subject: the gauge of the hero in the first reference, " + a["empty"] + "." + GAUGE + ISOLATED))
+    full = "Gauge_" + hero + "_Full"
+    jobs.append(dict(name=full, path=ART + full + "_v1.png", transparent=True, refs=[ART + empty + "_v1.png"], depends=empty, mode="single",
+                     prompt="Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position "
+                            "and canvas identical (it is laid over the empty one in the game), and change only what is inside: "
+                            + a["full"] + ". Genuinely transparent RGBA background, same 384x1024 canvas."))
+
 out = ROOT / "Docs" / "Bizarre_Arsenal_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)

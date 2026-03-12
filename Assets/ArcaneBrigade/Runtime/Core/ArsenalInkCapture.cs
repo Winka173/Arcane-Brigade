@@ -63,9 +63,17 @@ namespace ArcaneBrigade
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
                 float started = Time.realtimeSinceStartup;
                 int frames = int.TryParse(Arg(args, "-look-frames"), out int n) ? n : 4; float gap = float.TryParse(Arg(args, "-look-gap"), out float g) ? g : 2.5f;
+                bool awaken = Array.IndexOf(args, "-look-awaken") >= 0, primed = false;
                 for (int frame = 0; frame < frames; frame++)
                 {
-                    while (Time.realtimeSinceStartup - started < 7f + frame * gap) yield return null;
+                    while (Time.realtimeSinceStartup - started < 7f + frame * gap)
+                    {
+                        // -look-awaken: fill the hero's awakening gauge a second before the first frame
+                        if (awaken && !primed && Time.realtimeSinceStartup - started > 5.5f)
+                        { var arena = FindAnyObjectByType<ArenaController>(); if (arena != null && arena.Simulation != null) { arena.Simulation.PrimeAwakeningForCapture(); primed = true; } }
+                        if (awaken) { var arena = FindAnyObjectByType<ArenaController>(); if (arena != null && arena.Simulation != null && arena.Simulation.Champion != null) arena.Simulation.Champion.Health = arena.Simulation.Champion.Definition.Health; }
+                        yield return null;
+                    }
                     yield return Shot("combat-look-" + frame.ToString("00"));
                 }
                 Application.Quit(0); yield break;

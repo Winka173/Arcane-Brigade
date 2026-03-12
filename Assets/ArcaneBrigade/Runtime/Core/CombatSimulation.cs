@@ -42,6 +42,8 @@ namespace ArcaneBrigade
     public sealed class UnitState
     {
         public int Id;
+        /// <summary>While a hero is transformed: the painted art key of its transformed weapon (presentation only).</summary>
+        public string AwakenArt;
         public UnitDefinition Definition;
         public float LastSupport = -100;
         public float NextCollision;
@@ -401,7 +403,7 @@ namespace ArcaneBrigade
             foreach (UnitState unit in units) unit.PreviousPosition = unit.Position;
             movement = Vector2.ClampMagnitude(movement, 1);
             if (Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle && !HeroIdentityEnabled) movement = Vector2.zero; // with identities on, Root Oracle walks (its identity roots it)
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * deltaTime, Champion.Definition.Radius);
+            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * ChampionSpeedScale * deltaTime, Champion.Definition.Radius);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
             foreach (UnitState unit in units)
                 if (unit.Alive && unit.Faction == Faction.Companion)
@@ -432,7 +434,7 @@ namespace ArcaneBrigade
             StepRelics(deltaTime, movement);
             if (Phase != RunPhase.Combat) return;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * deltaTime, Champion.Definition.Radius);
+            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * ChampionSpeedScale * deltaTime, Champion.Definition.Radius);
             float beforeRegeneration = Champion.Health;
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * deltaTime);
             if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);

@@ -6,7 +6,7 @@ namespace ArcaneBrigade
     /// rims that show the exact area the simulation tests (never larger or smaller), and an air layer of brush strokes and
     /// signature tokens that animate anticipation, action and follow-through inside that area. Live mechanic state (marks,
     /// roots, dreams, stored reflections, routes) and the resource gauge are drawn from read-only simulation views.</summary>
-    public sealed class HeroIdentityVisual : MonoBehaviour
+    public sealed partial class HeroIdentityVisual : MonoBehaviour
     {
         private const int GroundOrder = 74, AirOrder = 2060, GroundTokenOrder = 77, AirTokenOrder = 2064;
         private const float CrescentHalf = 84.26f; // the simulation accepts dot(direction) >= .1
@@ -73,6 +73,8 @@ namespace ArcaneBrigade
         {
             Ensure();
             ground.Clear(); air.Clear(); used = 0; VisibleCount = 0; ghost.enabled = false;
+            if (dreamEchoes != null) foreach (var e in dreamEchoes) if (e != null) e.enabled = false;
+            if (awakenBanner != null) awakenBanner.gameObject.SetActive(false);
             bool live = simulation != null && simulation.HeroIdentityEnabled && simulation.Champion != null && (simulation.Phase == RunPhase.Combat || simulation.Phase == RunPhase.Paused);
             if (live)
             {
@@ -86,7 +88,8 @@ namespace ArcaneBrigade
                 if (simulation.Champion.Alive)
                 {
                     DrawState();
-                    DrawGauge();
+                    if (simulation.HeroAwakenEnabled) { DrawAwakenGauge(); DrawAwakening(); }
+                    else DrawGauge();
                     DrawCastCue();
                 }
                 foreach (var glyph in simulation.HeroIdentityGlyphs)
@@ -106,10 +109,16 @@ namespace ArcaneBrigade
             int n = Mathf.RoundToInt(sim.HeroIdentityRequired);
             return n >= 1 && n <= 8 ? n : 0;
         }
-        /// <summary>A small inked gauge at the hero's feet in the hero's own tokens: unlit silhouettes fill one by one.</summary>
+        /// <summary>Where the gauge stands this frame (read by checks): the bottom and top of its column, beside the hero.</summary>
+        public Vector2 GaugeBottom { get; private set; }
+        public Vector2 GaugeTop { get; private set; }
+        /// <summary>The hero's gauge (18/10/2026): an upright inked vial standing just left of the hero and following them,
+        /// never taller than the hero (85% of the body). Pip resources stack the hero's own tokens bottom-up inside it, unlit
+        /// ones as dim silhouettes; continuous resources (distance, steam, debt) fill it with the hero's ink, the hero's token
+        /// riding the surface. Full, it glows and its contents bob. Tier notches can be added on the same column later.</summary>
         private void DrawGauge()
         {
-            Vector2 feet = Feet(sim.Champion) + Vector2.down * .04f;
+            UnitState hero = sim.Champion;
             float charge = sim.HeroIdentityCharge, required = Mathf.Max(.01f, sim.HeroIdentityRequired), fraction = Mathf.Clamp01(charge / required);
             string id = style.Id;
             if (id == "PatchworkHost" && sim.HeroIdentityLead == null) return;
@@ -117,42 +126,49 @@ namespace ArcaneBrigade
             if (lit > lastCharge) pipLitAt = t; lastCharge = lit;
             if (fraction >= 1 && gaugeFull < 0) gaugeFull = t; else if (fraction < 1) gaugeFull = -1;
             float ready = fraction >= 1 && !still ? .5f + .5f * Mathf.Sin((t - gaugeFull) * 6) : 0;
-            float rx = plain ? .76f : .68f, ry = rx * .44f, from = 204, to = 336;
+
+            float body = hero.Definition.BodyHeight, height = Mathf.Clamp(body * .85f, .45f, 1.1f), half = plain ? .12f : .105f;
+            Vector2 bottom = Feet(hero) + new Vector2(-(body * .38f + .26f), .08f), top = bottom + Vector2.up * height;
+            GaugeBottom = bottom; GaugeTop = top;
+            Color shade = Color.Lerp(ink.Ink, new Color(.05f, .05f, .09f), .5f);
+            // the vial: a dark glass wash, then its inked outline (rounded at both ends)
+            air.Band(bottom, top, half, A(shade, .55f * strength), A(shade, .35f * strength));
             int count = GaugeCount();
-            // a pip gauge is its row of tokens alone (no thin ring under the hero); a continuous one keeps a faint track to fill
-            if (count == 0) ground.Stroke(InkCanvas.Arc(feet, rx, ry, from - 4, to + 4), new InkStroke { Width = .03f, Head = 1, Alpha = .2f * strength, Ink = ink.Ink, Body = ink.Ink, Light = ink.Light, InkOnly = true, Taper = 1 });
             if (count > 0)
             {
                 InkToken pip = id == "GlassDice" ? InkToken.Coin : style.Token;
                 InkPalette? pal = id == "GlassDice" ? GoldPalette : (InkPalette?)null;
-                float size = (plain ? .23f : .2f) * (count > 6 ? .86f : 1);
+                float step = height / count, size = Mathf.Min(plain ? .34f : .3f, step * 1.35f);
                 for (int i = 0; i < count; i++)
                 {
-                    float a = count == 1 ? 270 : Mathf.Lerp(from + 10, to - 10, i / (float)(count - 1));
-                    Vector2 at = feet + new Vector2(Mathf.Cos(a * Mathf.Deg2Rad) * rx, Mathf.Sin(a * Mathf.Deg2Rad) * ry);
+                    Vector2 at = bottom + Vector2.up * (step * (i + .5f)) + Vector2.up * ready * .02f;
                     if (id == "PetalCitadel") { PetalPip(i, at, size, i < lit); continue; }
                     if (i < lit)
                     {
                         float pop = i == lit - 1 && !still ? 1 + .45f * (1 - OutCubic((t - pipLitAt) / .25f)) : 1;
-                        Token(pip, at + Vector2.up * ready * .03f, size * pop, (i - count * .5f) * 6, .95f, false, 0, pal);
+                        Token(pip, at, size * pop, (i % 2 == 0 ? -1 : 1) * 6, .95f, true, 0, pal);
                     }
-                    else DimToken(pip, at, size * .82f, .62f);
+                    else Place(MechanicInk.Token(pip, pal ?? ink), at, Vector2.one * size * .8f, 0, new Color(.55f, .55f, .64f, .7f * strength), true);
                 }
             }
             else
             {
-                // continuous resources (distance, time, steam, debt): an inked arc that fills toward a token at its head
-                float head = Mathf.Lerp(from, to, fraction);
-                if (fraction > .01f) ground.Stroke(InkCanvas.Arc(feet, rx, ry, from, head), Brush(.085f, .9f, 2.3f));
-                Vector2 at = feet + new Vector2(Mathf.Cos(head * Mathf.Deg2Rad) * rx, Mathf.Sin(head * Mathf.Deg2Rad) * ry);
-                Token(style.Token, at + Vector2.up * ready * .03f, (fraction >= 1 ? .22f : .16f) * (1 + ready * .12f), 0, fraction > .01f ? .95f : .5f, false);
+                // continuous: the hero's ink rises in the vial, its token riding the surface
+                Vector2 surface = Vector2.Lerp(bottom, top, fraction);
+                if (fraction > .01f)
+                {
+                    air.Band(bottom, surface, half * .78f, A(ink.Body, .95f * strength), A(Color.Lerp(ink.Body, ink.Ink, .3f), .95f * strength));
+                    air.Stroke(InkCanvas.Line(bottom + new Vector2(-half * .35f, .03f), surface + new Vector2(-half * .35f, -.02f)), new InkStroke { Width = half * .3f, Head = 1, Tail = 0, Taper = 1.2f, Alpha = .55f * strength, Ink = ink.Light, Body = ink.Light, Light = ink.Light, NoLight = true });
+                }
+                Token(style.Token, surface + Vector2.up * (.02f + ready * .03f), (fraction >= 1 ? .34f : .28f) * (1 + ready * .12f), still ? 0 : Mathf.Sin(t * 2.4f) * 8, fraction > .01f ? .95f : .55f);
             }
+            var outline = new List<Vector2>(40);
+            for (int i = 0; i <= 8; i++) outline.Add(bottom + Dir(180 + i * 22.5f) * half);
+            for (int i = 0; i <= 8; i++) outline.Add(top + Dir(i * 22.5f) * half);
+            air.Stroke(outline, new InkStroke { Width = .035f, Head = 1, Tail = 0, Taper = 1, Alpha = .95f * strength, Ink = ink.Ink, Body = ink.Ink, Light = ink.Ink, InkOnly = true }, true);
             if (id == "GlassDice")
-            {
-                Vector2 die = feet + new Vector2(rx + .16f, -.02f);
-                Token(InkToken.Die, die, .26f * (1 + ready * .1f), still ? 0 : Mathf.Sin(t * 2) * 6, 1, false, sim.HeroIdentityNextFace);
-            }
-            if (fraction >= 1 && !calm) Glow(feet, rx * 1.1f, ink.Glow, .05f + ready * .04f);
+                Token(InkToken.Die, top + Vector2.up * .16f, .24f * (1 + ready * .1f), still ? 0 : Mathf.Sin(t * 2) * 6, 1, true, sim.HeroIdentityNextFace);
+            if (fraction >= 1 && !calm) Glow((bottom + top) * .5f, height * 1.25f, ink.Glow, .1f + ready * .08f, true);
         }
         private static readonly InkPalette GoldPalette = new InkPalette(new Color(.24f, .13f, .03f), new Color(.96f, .74f, .28f), new Color(1, .95f, .74f), new Color(1, .8f, .4f), new Color(.6f, .38f, .16f));
         private static readonly Color[] PetalColours = { new Color(.96f, .48f, .56f), new Color(.34f, .7f, .78f), new Color(.5f, .86f, .5f), new Color(.5f, .66f, 1f) };
@@ -161,8 +177,8 @@ namespace ArcaneBrigade
             int growth = sim.HeroIdentityPetal(petal);
             var p = ink; p.Body = PetalColours[petal % 4];
             float grown = growth <= 0 ? .7f : 1 + growth * .12f;
-            if (lit && growth > 0) Token(InkToken.Petal, at, size * grown, (petal - 1.5f) * 18, .95f, false, 0, p);
-            else Place(MechanicInk.Token(InkToken.Petal, p), at, Vector2.one * size * grown * .85f, (petal - 1.5f) * 18, new Color(.45f, .45f, .52f, (growth > 0 ? .6f : .3f) * strength), false);
+            if (lit && growth > 0) Token(InkToken.Petal, at, size * grown, (petal - 1.5f) * 18, .95f, true, 0, p);
+            else Place(MechanicInk.Token(InkToken.Petal, p), at, Vector2.one * size * grown * .85f, (petal - 1.5f) * 18, new Color(.45f, .45f, .52f, (growth > 0 ? .6f : .3f) * strength), true);
         }
 
         // ------------------------------------------------------------------ live state

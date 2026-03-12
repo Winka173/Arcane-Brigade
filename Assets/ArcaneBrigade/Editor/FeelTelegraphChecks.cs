@@ -89,6 +89,26 @@ namespace ArcaneBrigade.Editor
                 UnityEngine.Object.DestroyImmediate(host);
                 if (copy != null) UnityEngine.Object.DestroyImmediate(copy);
             }
+            // the hero's gauge: an upright vial left of the hero, no taller than the hero, following them
+            var gaugeHost = new GameObject("HeroGaugeFixture");
+            try
+            {
+                using (var run = new RunSession(catalog))
+                {
+                    run.Start("DrowsySeer", 18019); run.State.Wave = 3;
+                    var sim = new CombatSimulation(run.PrepareCombat()); sim.Start(18019);
+                    Require(sim.HeroIdentityEnabled, "Hero identities run in a normal fight");
+                    HeroIdentityVisual visual = gaugeHost.AddComponent<HeroIdentityVisual>();
+                    visual.Display(sim);
+                    UnitState hero = sim.Champion;
+                    Vector2 bottom = visual.GaugeBottom, top = visual.GaugeTop;
+                    Require(top.y > bottom.y && top.y - bottom.y <= hero.Definition.BodyHeight + 0.001f, "The gauge stands upright and is no taller than the hero");
+                    Require(Mathf.Abs(top.x - bottom.x) < 0.001f && top.x < hero.Position.x - hero.Definition.BodyHeight * 0.3f, "The gauge stands to the hero's left");
+                    hero.Position += new Vector2(2, 1); visual.Display(sim);
+                    Require(Vector2.Distance(visual.GaugeBottom - bottom, new Vector2(2, 1)) < 0.001f, "The gauge follows the hero");
+                }
+            }
+            finally { UnityEngine.Object.DestroyImmediate(gaugeHost); }
             System.IO.Directory.CreateDirectory("PreviewExports/FeelTelegraph");
             System.IO.File.WriteAllLines("PreviewExports/FeelTelegraph/Checks.txt", notes);
             Debug.Log("FEEL_TELEGRAPH_CHECKS_PASSED " + notes.Count);

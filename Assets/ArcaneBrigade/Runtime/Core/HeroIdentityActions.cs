@@ -68,6 +68,7 @@ namespace ArcaneBrigade
                 if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Champion && e.Cause.ItemId != "hunger" && e.Cause.ItemId != "overtime-cost" && e.Cause.ItemId != "curio-cost")
                 {
                     if (IdentityId == "CopperCauldron") identityCharge = Mathf.Min(6, identityCharge + 2);
+                    AwakenOnInjury();
                     if (IdentityId == "ThornTreasurer" && identityCharge >= 1)
                     { var target = IdentityTarget(Champion.Position,6); if (target != null) { identityCharge--; IdentityPattern(target, IdentityPower * 1.3f); IdentityCast(); } }
                     if (IdentityId == "IvorySovereign") identityCharge = 3;
@@ -109,6 +110,7 @@ namespace ArcaneBrigade
                 if (identityBounty != null && identityBounty.Alive && IdentityId == "TreasureAcorn") IdentityGlyph(MorphGeometry.Seal,identityBounty.Position,identityBounty.Position,.32f,.4f,role:HeroGlyphRole.Mark);
             }
             UnitState target = IdentityTarget(Champion.Position, 8, IdentityId == "VelvetRegent" || IdentityId == "TreasureAcorn" ? IdentityApproach : 0);
+            if (ProcessAwakening(delta, walking, target)) return; // transformed: the awakening acts instead of the mechanic
             switch (IdentityId)
             {
                 case "LanternKnight":
@@ -231,7 +233,7 @@ namespace ArcaneBrigade
                 case "CopperCauldron":
                     if(IdentityTarget(Champion.Position,3)!=null)identityCharge=Mathf.Min(6,identityCharge+delta);
                     if(identityCharge>=6 && target!=null && Elapsed>=identityAt)
-                    { if(IdentityApproach==0)CatchIdentityBullet(Champion.Position,3); IdentityPattern(target,IdentityPower*(IdentityApproach==0?1.8f:2.5f),IdentityApproach==1?1:0,element:DamageElement.Ember);identityCharge=0;identityAt=Elapsed+3;IdentityCast(); }
+                    { if(IdentityApproach==0)CatchIdentityBullet(Champion.Position,3); IdentityPattern(target,IdentityPower*(IdentityApproach==0?1.2f:2.5f),IdentityApproach==1?1:0,element:DamageElement.Ember);identityCharge=0;identityAt=Elapsed+3;IdentityCast(); }
                     break;
                 case "ChinaMarionette":
                     while(identityRecovered>=6){identityRecovered-=6;identityCharge=Mathf.Min(3,identityCharge+1);}break;

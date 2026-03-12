@@ -54,7 +54,7 @@ namespace ArcaneBrigade
         public bool HeroIdentityEnabled => catalog.EnableHeroIdentities && Champion != null && HeroIdentities.For(Champion.Definition.Id) != null;
         private string IdentityId => Champion.Definition.Id;
         private int IdentityApproach => catalog.HeroApproach;
-        private float IdentityPower => Mathf.Max(1, Champion.Definition.Weapon.Damage);
+        private float IdentityPower => Mathf.Max(1, Champion.Definition.Weapon.Damage) * AwakenScale;
         public IReadOnlyList<HeroIdentityGlyph> HeroIdentityGlyphs => identityGlyphs;
         // Read-only views of the mechanic's live state for the presentation layer.
         public int HeroIdentityMarkCount => identityMarks.Count;
@@ -116,6 +116,7 @@ namespace ArcaneBrigade
             HeroIdentityActivations = 0; HeroIdentityLastCast = -100;
             HeroIdentityBonusDamage = HeroIdentityDeferredDamage = HeroIdentityReplacedDamage = HeroIdentityPrevented = 0; HeroIdentityGold = 0;
             identityTrail.Add(Champion.Position);
+            ResetAwakening();
             if (!HeroIdentityEnabled) return;
             foreach (UnitState u in units)
             {
@@ -137,6 +138,7 @@ namespace ArcaneBrigade
             HeroIdentityActivations++; HeroIdentityLastCast = Elapsed; Champion.LastSupport = Elapsed;
             var cause = IdentityCause(); RecordActivation(cause);
             events.Add(new CombatEvent(CombatEventKind.HeroIdentityCast, Champion.Position, Faction.Champion, subject: Champion, cause: cause));
+            AwakenOnCast();
         }
         private int identityGlyphSeed;
         private HeroIdentityGlyph IdentityGlyph(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float duration = .6f, float delay = 0, HeroGlyphRole role = HeroGlyphRole.Emblem)
