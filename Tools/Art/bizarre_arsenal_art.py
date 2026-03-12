@@ -110,7 +110,7 @@ W = {
     "BuzzerBlock": "a brass-yellow buzzer block with a big wine-red push button",
     # research pass 4
     "PawMitten": "a soft blue-grey mitten shaped like an animal paw, pink felt pads and blunt cream claws, a wine velvet cuff",
-    "HearthBrick": "a single old hearth brick, warm terracotta with soot at one end and a chalk star scribbled on it",
+    "HearthBrick": "a single old hearth brick, warm terracotta with soot at one end and a small teapot pressed into its face as a maker mark (no stars, no geometric or occult symbols)",
     "VerdictGavel": "a small judge's gavel in dark polished wood with brass bands",
     "TalismanIngot": "a small gold boat-shaped ingot with a cream paper charm strip pasted across it, the charm inked with a teal swirl (no readable text)",
     "KunaiFan": "three black kunai fanned out together, their grips wrapped in wine cloth with little tassels",

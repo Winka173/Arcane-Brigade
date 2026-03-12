@@ -223,3 +223,5 @@ Shot_KunaiFan Assets/ArcaneBrigade/Art/Arsenal/Shot_KunaiFan_v1.png done
 StarUp_SilverStar Assets/ArcaneBrigade/Art/Arsenal/StarUp_SilverStar_v1.png done
 StarUp_GoldStar Assets/ArcaneBrigade/Art/Arsenal/StarUp_GoldStar_v1.png done
 StarUp_Crown Assets/ArcaneBrigade/Art/Arsenal/StarUp_Crown_v1.png done
+Shot_HearthBrick Assets/ArcaneBrigade/Art/Arsenal/Shot_HearthBrick_v1.png redone
+Shot_GumballGatling Assets/ArcaneBrigade/Art/Arsenal/Shot_GumballGatling_v1.png redone

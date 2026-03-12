@@ -6862,17 +6862,17 @@ MonoBehaviour:
   - Sprite: {fileID: 21300000, guid: 35fd25204040720478cfd1a870918b7c, type: 3}
     Ink:
       serializedVersion: 2
-      x: -1.203125
-      y: -1.2265625
-      width: 2.5039062
-      height: 2.4335938
+      x: -0.84765625
+      y: -0.4921875
+      width: 1.7226562
+      height: 0.9375
   - Sprite: {fileID: 21300000, guid: 0666ae1d8e2522942bbcb3c6760db728, type: 3}
     Ink:
       serializedVersion: 2
-      x: -2.3242188
-      y: -1.0039062
-      width: 4.6835938
-      height: 2.015625
+      x: -0.875
+      y: -0.484375
+      width: 1.7695312
+      height: 0.9140625
   - Sprite: {fileID: 21300000, guid: cb18f4f3430e5404a8e1af9230ed4a7c, type: 3}
     Ink:
       serializedVersion: 2
