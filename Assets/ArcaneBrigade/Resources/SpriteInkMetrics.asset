@@ -6295,10 +6295,10 @@ MonoBehaviour:
   - Sprite: {fileID: 21300000, guid: f6fb6405b2674744784e2ee78bea6c0b, type: 3}
     Ink:
       serializedVersion: 2
-      x: -0.9875
-      y: -1.1972656
-      width: 6.1328125
-      height: 1.9414062
+      x: -0.56953126
+      y: -0.69140625
+      width: 3.5390625
+      height: 1.1210938
   - Sprite: {fileID: 21300000, guid: 96503333055df934da13f650fab1b9a7, type: 3}
     Ink:
       serializedVersion: 2
