@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -356,6 +357,7 @@ namespace ArcaneBrigade
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+            drawnAt[state.Id] = (transform.position, Time.frameCount);
             if (state.Faction == Faction.Enemy && !ReducedMotion)
             {
                 if (state.LastHit != slideHit)
@@ -576,12 +578,22 @@ namespace ArcaneBrigade
                     paintedWeaponIdentity = definition.Id;
                     paintedWeaponAvailable = EnsembleArtwork.Current?.Weapon(definition.Id) != null;
                 }
-                if (paintedAction == null && paintedWeaponAvailable) paintedAction = weapon.gameObject.AddComponent<WeaponPaintedAction>();
-                if (paintedAction != null) paintedAction.Display(weapon, definition, age, poseWindup, ReducedMotion);
-                if (weaponMechanism != null)
+                if (awakenShown != null && weapon.sprite != restWeapon)
                 {
-                    if (paintedAction != null && paintedAction.Visible) weaponMechanism.Hide();
-                    else weaponMechanism.Display(weapon, definition, age, poseWindup, ReducedMotion);
+                    // a transformed weapon is drawn as itself: the usual weapon's painted action and moving parts stay hidden
+                    if (paintedAction != null) paintedAction.Clear();
+                    if (weaponMechanism != null) weaponMechanism.Hide();
+                    weapon.GetPropertyBlock(flashProperties); flashProperties.SetFloat("_WeaponMask", 0); weapon.SetPropertyBlock(flashProperties);
+                }
+                else
+                {
+                    if (paintedAction == null && paintedWeaponAvailable) paintedAction = weapon.gameObject.AddComponent<WeaponPaintedAction>();
+                    if (paintedAction != null) paintedAction.Display(weapon, definition, age, poseWindup, ReducedMotion);
+                    if (weaponMechanism != null)
+                    {
+                        if (paintedAction != null && paintedAction.Visible) weaponMechanism.Hide();
+                        else weaponMechanism.Display(weapon, definition, age, poseWindup, ReducedMotion);
+                    }
                 }
             }
             DisplayWeakspot(simulationTime, order);
@@ -650,6 +662,11 @@ namespace ArcaneBrigade
             float targetAngle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
             facingAngle = ReducedMotion ? targetAngle : attacking ? Mathf.LerpAngle(facingAngle, targetAngle, 1 - Mathf.Exp(-motionDelta * 35)) : Mathf.MoveTowardsAngle(facingAngle, targetAngle, motionDelta * 240f);
             grip.localRotation = Quaternion.Euler(0f, 0f, facingAngle + angleOffset + performance.GripTurn);
+            if (weapon.sprite != null && weapon.enabled)
+            {
+                Rect ink = SpriteInkMetrics.BoundsOf(weapon.sprite);
+                drawnMuzzle[state.Id] = (weapon.transform.TransformPoint(new Vector3(ink.xMax, ink.center.y, 0)), Time.frameCount);
+            }
         }
 
         private void DisplayTier(int order, float height)
@@ -716,6 +733,26 @@ namespace ArcaneBrigade
                 renderer.startColor = renderer.endColor = new Color(0.55f, 1f, 0.82f, 0.65f);
             }
         }
+
+        // where units and their weapons' muzzles were last drawn (effects anchor to these, not to the simulation's positions)
+        private static readonly Dictionary<int, (Vector2 at, int frame)> drawnMuzzle = new Dictionary<int, (Vector2, int)>();
+        private static readonly Dictionary<int, (Vector2 at, int frame)> drawnAt = new Dictionary<int, (Vector2, int)>();
+        /// <summary>The tip of a unit's weapon as drawn this frame or the last (false when it is not on screen).</summary>
+        public static bool TryMuzzle(int unitId, out Vector2 tip)
+        {
+            tip = default;
+            if (!drawnMuzzle.TryGetValue(unitId, out var m) || Time.frameCount - m.frame > 1) return false;
+            tip = m.at; return true;
+        }
+        /// <summary>Where a unit is drawn this frame or the last (its interpolated position).</summary>
+        public static bool TryDrawn(int unitId, out Vector2 at)
+        {
+            at = default;
+            if (!drawnAt.TryGetValue(unitId, out var m) || Time.frameCount - m.frame > 1) return false;
+            at = m.at; return true;
+        }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetDrawn() { drawnMuzzle.Clear(); drawnAt.Clear(); }
 
         private void OnDestroy()
         {

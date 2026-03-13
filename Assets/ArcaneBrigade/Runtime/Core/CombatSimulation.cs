@@ -813,6 +813,7 @@ namespace ArcaneBrigade
                 events.Add(new CombatEvent(CombatEventKind.Fire, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, critical, subject: unit, cause: attackCause));
             }
             if (Elapsed < unit.NextAttack || unit.PendingAttack || Phase != RunPhase.Combat) return;
+            if (unit == Champion && HeroAwakenReplacesAttacks) return; // a transformed weapon fires instead of the usual one
             UnitState nearest = unit.Faction == Faction.Companion ? SelectCompanionTarget(unit, weapon.Range + (weapon.Kind == WeaponKind.Melee ? maximumRadius : 0), true) : FindTarget(unit, weapon.Range,true);
             if (nearest == null) return;
             unit.AttackDirection = (nearest.Position - unit.Position).normalized;

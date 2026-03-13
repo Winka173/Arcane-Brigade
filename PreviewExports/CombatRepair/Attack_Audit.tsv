@@ -1,6 +1,6 @@
 Group	Id	Weapon	Fires	EffectiveDamage	Result
 Hero	LanternKnight	KeyCleaver	21	1762.87	PASS
-Hero	Postmaster	MailboxLauncher	21	2198.66	PASS
+Hero	Postmaster	MailboxLauncher	46	1746.26	PASS
 Hero	DrowsySeer	MoonseedOrb	12	3361.35	PASS
 Hero	RootOracle	BambooVase	14	6054.16	PASS
 Hero	LoneJelly	InkyOctopus	20	13219.31	PASS

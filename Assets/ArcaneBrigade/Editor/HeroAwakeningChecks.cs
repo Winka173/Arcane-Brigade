@@ -46,6 +46,14 @@ namespace ArcaneBrigade.Editor
                         Require(champion.AwakenArt == "Postmaster_Awake", "Postmaster holds the sorting gatling");
                         int before = sim.Projectiles.Count; Step(.5f);
                         Require(sim.Projectiles.Count > before || sim.HeroIdentityMarkCount > 0, "The sorting gatling fires parcels and stamps addresses");
+                        int basics = 0, muzzles = 0;
+                        for (float s = 0; s < 1.5f; s += 1 / 60f)
+                        {
+                            champion.Health = champion.Definition.Health; sim.Step(1 / 60f, walk);
+                            foreach (var e in sim.Events) if (e.Kind == CombatEventKind.Fire && e.Subject == champion) { if (e.Cause.ItemId == null || !e.Cause.ItemId.StartsWith("hero-identity-")) basics++; else muzzles++; }
+                        }
+                        Require(basics == 0 && sim.HeroAwakenAim.sqrMagnitude > .5f, "While the gatling runs it is the only gun: no basic attacks, and it aims each parcel");
+                        Require(muzzles >= 5, "Every gatling parcel is a shot the barrel flashes and sounds for (" + muzzles + " in 1.5 s)");
                     }
                     if (hero == "CopperCauldron")
                     {

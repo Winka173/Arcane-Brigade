@@ -38,6 +38,11 @@ namespace ArcaneBrigade
         public float HeroAwakenPressure => awakenPressure;
         /// <summary>Where the full-moon dreams walk (valid while awakening as DrowsySeer).</summary>
         public IReadOnlyList<Vector2> HeroAwakenEchoes => awakenEchoes;
+        /// <summary>The Postmaster's sorting gatling replaces the hero's own attacks while it runs.</summary>
+        private bool HeroAwakenReplacesAttacks => HeroAwakening && IdentityId == "Postmaster";
+        private Vector2 awakenAim;
+        /// <summary>Where the transformed weapon last aimed.</summary>
+        public Vector2 HeroAwakenAim => HeroAwakening ? awakenAim : Vector2.zero;
         /// <summary>How fast the hero runs (the steam engine is quicker).</summary>
         private float ChampionSpeedScale => HeroAwakening && IdentityId == "CopperCauldron" ? 1.6f : 1f;
         /// <summary>The mechanic's strength: tiers I and II add 12% each while not transformed.</summary>
@@ -107,6 +112,11 @@ namespace ArcaneBrigade
             if (aim == null) aim = IdentityTarget(Champion.Position, 8);
             if (aim == null) return;
             IdentityMarkTarget(aim);
+            // the hero turns the gatling on the parcel's address and it kicks back a little: one shot of a held burst
+            awakenAim = (aim.Position - Champion.Position).sqrMagnitude > .0001f ? (aim.Position - Champion.Position).normalized : Champion.Facing;
+            Champion.AttackDirection = awakenAim; Champion.AttackTargetId = aim.Id; Champion.AttackWindup = .04f; Champion.AttackStarted = Elapsed - .04f;
+            // a shot like any gun's, so the barrel flashes and the gun sounds (an identity cause: it charges nothing)
+            events.Add(new CombatEvent(CombatEventKind.Fire, Champion.Position, Champion.Faction, 0f, awakenAim, Champion.Definition.Weapon, subject: Champion, cause: IdentityCause()));
             IdentityShot(Champion.Position, aim.Position - Champion.Position, IdentityPower * .14f, element: IdentityApproach == 1 ? DamageElement.Ember : DamageElement.Physical, homingTarget: aim.Id);
         }
 

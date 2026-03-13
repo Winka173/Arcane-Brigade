@@ -128,7 +128,7 @@ namespace ArcaneBrigade
             float ready = fraction >= 1 && !still ? .5f + .5f * Mathf.Sin((t - gaugeFull) * 6) : 0;
 
             float body = hero.Definition.BodyHeight, height = Mathf.Clamp(body * .85f, .45f, 1.1f), half = plain ? .12f : .105f;
-            Vector2 bottom = Feet(hero) + new Vector2(-(body * .38f + .26f), .08f), top = bottom + Vector2.up * height;
+            Vector2 bottom = DrawnFeet(hero) + new Vector2(-(body * .38f + .26f), .08f), top = bottom + Vector2.up * height;
             GaugeBottom = bottom; GaugeTop = top;
             Color shade = Color.Lerp(ink.Ink, new Color(.05f, .05f, .09f), .5f);
             // the vial: a dark glass wash, then its inked outline (rounded at both ends)

@@ -127,6 +127,8 @@ namespace ArcaneBrigade
             {
                 var look = WeaponInkStyle.Look(w);
                 Vector2 muzzle = value.Position + dir * Mathf.Max(0.3f, w.MountDistance + w.MuzzleDistance * 0.6f);
+                int shooter = value.Subject != null ? value.Subject.Id : value.Cause.SourceUnitId;
+                if (UnitVisual.TryMuzzle(shooter, out Vector2 drawnTip)) muzzle = drawnTip; // where the barrel actually is on screen
                 var f = Add(ArsenalInk.Moment.Burst, muzzle, dir, time, 0.2f, 0.3f); f.Kind = FlashKind.Muzzle; f.Palette = look.palette; f.Token = look.token;
                 return w.Arsenal == ArsenalWeapon.None; // Arsenal weapons still add their own attack moment below
             }

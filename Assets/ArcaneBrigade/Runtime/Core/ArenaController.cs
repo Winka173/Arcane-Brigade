@@ -625,8 +625,6 @@ namespace ArcaneBrigade
             EffectDensity.SetSceneLoad(simulation.Projectiles.Count, simulation.Units.Count);
             if (spectacleVisual != null) spectacleVisual.Display(simulation);
             if (arenaToyVisual != null) arenaToyVisual.Display(simulation, interpolation);
-            if (expandedVisual != null) { expandedVisual.ReducedMotion = profile != null && profile.ReducedMotion; expandedVisual.Display(simulation); }
-            if (arsenalVisual != null) arsenalVisual.Display(simulation, Time.time);
             liveIds.Clear();
             for (int index = 0; index < simulation.Units.Count; index++)
             {
@@ -648,6 +646,9 @@ namespace ArcaneBrigade
                 view.Display(poseTime, interpolation);
                 if (terminalVisualAge > 0 && state.Faction == Faction.Enemy) view.SetTerminalFade(Mathf.Clamp01(1 - terminalVisualAge / 0.35f));
             }
+            // painted mechanics and weapon moments follow the units as drawn this frame (gauges, muzzles), so they come after them
+            if (expandedVisual != null) { expandedVisual.ReducedMotion = profile != null && profile.ReducedMotion; expandedVisual.Display(simulation); }
+            if (arsenalVisual != null) arsenalVisual.Display(simulation, Time.time);
             retiredIds.Clear();
             foreach (int identifier in units.Keys) if (!liveIds.Contains(identifier)) retiredIds.Add(identifier);
             for (int index = 0; index < retiredIds.Count; index++)

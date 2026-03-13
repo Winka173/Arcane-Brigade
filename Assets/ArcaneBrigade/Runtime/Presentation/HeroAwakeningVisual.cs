@@ -19,12 +19,14 @@ namespace ArcaneBrigade
         private InkedText awakenBanner;
         private float bannerFor = -100;
 
+        /// <summary>The hero's feet where the hero is drawn this frame (the simulation position lags between steps).</summary>
+        private static Vector2 DrawnFeet(UnitState u) => (UnitVisual.TryDrawn(u.Id, out Vector2 at) ? at : u.Position) - Vector2.up * u.Definition.BodyHeight * .5f;
         /// <summary>The column the gauge stands in, just left of the hero, no taller than the hero.</summary>
         private void GaugeColumn(out Vector2 bottom, out Vector2 top, out float half)
         {
             UnitState hero = sim.Champion; float body = hero.Definition.BodyHeight;
             float height = Mathf.Clamp(body * .95f, .5f, 1.15f); half = plain ? .12f : .105f;
-            bottom = Feet(hero) + new Vector2(-(body * .38f + .26f), .08f); top = bottom + Vector2.up * height;
+            bottom = DrawnFeet(hero) + new Vector2(-(body * .38f + .26f), .08f); top = bottom + Vector2.up * height;
             GaugeBottom = bottom; GaugeTop = top;
         }
 
@@ -150,7 +152,8 @@ namespace ArcaneBrigade
             if (id == "Postmaster")
             {
                 // letters stream out of the sorter's barrels toward the aim
-                Vector2 muzzle = Chest(hero) + facing * .55f;
+                Vector2 muzzle = UnitVisual.TryMuzzle(hero.Id, out Vector2 tip) ? tip : Chest(hero) + facing * .55f;
+                if (sim.HeroAwakenAim.sqrMagnitude > .01f) facing = sim.HeroAwakenAim;
                 for (int i = 0; i < (sparse ? 2 : 4); i++)
                 {
                     float r = Mathf.Repeat(t * 5 + i * .25f, 1);

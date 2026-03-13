@@ -4,6 +4,8 @@ PASS Postmaster: three casts fill the gauge
 PASS Postmaster: a full gauge transforms by itself once an enemy is near
 PASS Postmaster holds the sorting gatling
 PASS The sorting gatling fires parcels and stamps addresses
+PASS While the gatling runs it is the only gun: no basic attacks, and it aims each parcel
+PASS Every gatling parcel is a shot the barrel flashes and sounds for (7 in 1.5 s)
 PASS Postmaster: the transformation ends and cools
 PASS Postmaster: casts do not climb while cooling
 PASS Postmaster: after cooling the gauge climbs again
