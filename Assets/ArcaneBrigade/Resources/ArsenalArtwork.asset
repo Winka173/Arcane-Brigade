@@ -86,6 +86,9 @@ MonoBehaviour:
   - Name: ConfettiBlunderbuss_Held
     Frames:
     - {fileID: 21300000, guid: a153044c8b7768c4499d0f543139d586, type: 3}
+  - Name: CopperCauldron_Engine
+    Frames:
+    - {fileID: 21300000, guid: 89c64afdcc7cc9b40808cb819921a567, type: 3}
   - Name: CorkBullet
     Frames:
     - {fileID: 21300000, guid: 8f663b7abecd61249ae9f390d7cbd317, type: 3}
@@ -104,6 +107,9 @@ MonoBehaviour:
   - Name: DreamRacket_Held
     Frames:
     - {fileID: 21300000, guid: 8a5418d23d56da8449a1d333aeee4ac6, type: 3}
+  - Name: DrowsySeer_Awake_Held
+    Frames:
+    - {fileID: 21300000, guid: c7f5dcda8fccd2f44b53530d524eb185, type: 3}
   - Name: DrumstickClub_Held
     Frames:
     - {fileID: 21300000, guid: 683605b7ea0aa3342815c95122e44e4b, type: 3}
@@ -128,6 +134,24 @@ MonoBehaviour:
   - Name: FortuneGlobe_Held
     Frames:
     - {fileID: 21300000, guid: 2aeb4da6b6bc11c4cb601b87a4d3ed99, type: 3}
+  - Name: Gauge_CopperCauldron_Empty
+    Frames:
+    - {fileID: 21300000, guid: 54429c8c0bac97c4e898e9de2753b967, type: 3}
+  - Name: Gauge_CopperCauldron_Full
+    Frames:
+    - {fileID: 21300000, guid: f3aebedd740449f44986a00ff4ef3fd4, type: 3}
+  - Name: Gauge_DrowsySeer_Empty
+    Frames:
+    - {fileID: 21300000, guid: 08ad377e3bc415541b97f4bf906864fa, type: 3}
+  - Name: Gauge_DrowsySeer_Full
+    Frames:
+    - {fileID: 21300000, guid: ddb63a5d74c7d41458a79a0fa48d1f81, type: 3}
+  - Name: Gauge_Postmaster_Empty
+    Frames:
+    - {fileID: 21300000, guid: 93f67d39390fcac428f8378e2bcc3df6, type: 3}
+  - Name: Gauge_Postmaster_Full
+    Frames:
+    - {fileID: 21300000, guid: d132212e77007be49bec1af6e5259e46, type: 3}
   - Name: GlitchToybox_Held
     Frames:
     - {fileID: 21300000, guid: d5f97ec0ff91d1143b1efd135601c692, type: 3}
@@ -217,6 +241,9 @@ MonoBehaviour:
   - Name: PopperSticks_Held
     Frames:
     - {fileID: 21300000, guid: 50f282c5e31a90441b885550b5b66103, type: 3}
+  - Name: Postmaster_Awake_Held
+    Frames:
+    - {fileID: 21300000, guid: fec5cc991521e7947be032c9dc3de332, type: 3}
   - Name: RoseBouquet_Held
     Frames:
     - {fileID: 21300000, guid: 6a7675b130c455d48b7d3689fecba6b0, type: 3}

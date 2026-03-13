@@ -226,3 +226,12 @@ StarUp_Crown Assets/ArcaneBrigade/Art/Arsenal/StarUp_Crown_v1.png done
 Shot_HearthBrick Assets/ArcaneBrigade/Art/Arsenal/Shot_HearthBrick_v1.png redone
 Shot_GumballGatling Assets/ArcaneBrigade/Art/Arsenal/Shot_GumballGatling_v1.png redone
 HearthBrick_Held Assets/ArcaneBrigade/Art/Arsenal/HearthBrick_Held_v1.png redone
+Postmaster_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/Postmaster_Awake_Held_v1.png done
+Gauge_Postmaster_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_Postmaster_Empty_v1.png done
+Gauge_Postmaster_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_Postmaster_Full_v1.png done
+CopperCauldron_Engine Assets/ArcaneBrigade/Art/Arsenal/CopperCauldron_Engine_v1.png done
+Gauge_CopperCauldron_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_CopperCauldron_Empty_v1.png done
+Gauge_CopperCauldron_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_CopperCauldron_Full_v1.png done
+DrowsySeer_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/DrowsySeer_Awake_Held_v1.png done
+Gauge_DrowsySeer_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_DrowsySeer_Empty_v1.png done
+Gauge_DrowsySeer_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_DrowsySeer_Full_v1.png done

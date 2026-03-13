@@ -23,7 +23,7 @@ namespace ArcaneBrigade
         private void GaugeColumn(out Vector2 bottom, out Vector2 top, out float half)
         {
             UnitState hero = sim.Champion; float body = hero.Definition.BodyHeight;
-            float height = Mathf.Clamp(body * .85f, .45f, 1.1f); half = plain ? .12f : .105f;
+            float height = Mathf.Clamp(body * .95f, .5f, 1.15f); half = plain ? .12f : .105f;
             bottom = Feet(hero) + new Vector2(-(body * .38f + .26f), .08f); top = bottom + Vector2.up * height;
             GaugeBottom = bottom; GaugeTop = top;
         }
@@ -46,7 +46,7 @@ namespace ArcaneBrigade
             float pulse = still ? 0 : (awake ? .5f + .5f * Mathf.Sin(t * 9) : sim.HeroAwakenMeter >= 1 ? .5f + .5f * Mathf.Sin(t * 6) : 0);
             float dim = cooling ? .55f : 1;
             Sprite empty = ArsenalArtwork.Frame("Gauge_" + id + "_Empty", 0), full = ArsenalArtwork.Frame("Gauge_" + id + "_Full", 0);
-            if (empty != null && full != null) { PaintedGauge(empty, full, bottom, top, fill, dim); }
+            if (empty != null && full != null) { PaintedGauge(empty, full, bottom, top, fill, dim, GaugeWindow(id)); }
             else
             {
                 InkPalette pal = id == "Postmaster" ? Leather : id == "CopperCauldron" ? Brass : Night;
@@ -104,15 +104,19 @@ namespace ArcaneBrigade
         private static readonly InkPalette ArsenalInkWine = ArsenalInk.Wine;
 
         /// <summary>Painted gauge: the empty vessel, and over it the full one revealed from the bottom up to the fill line.</summary>
-        private void PaintedGauge(Sprite empty, Sprite full, Vector2 bottom, Vector2 top, float fill, float dim)
+        /// <summary>Where each painted vessel's window runs (fractions of its painted height from the bottom), measured from
+        /// where the empty and full paintings differ: the fill line travels this window, not the whole vessel.</summary>
+        private static Vector2 GaugeWindow(string id) => id == "Postmaster" ? new Vector2(.136f, .693f) : id == "CopperCauldron" ? new Vector2(.177f, .759f) : new Vector2(.141f, .771f);
+        private void PaintedGauge(Sprite empty, Sprite full, Vector2 bottom, Vector2 top, float fill, float dim, Vector2 window)
         {
             Rect ink = SpriteInkMetrics.BoundsOf(empty);
             float scale = (top.y - bottom.y) / Mathf.Max(.01f, ink.height);
             Vector2 at = (bottom + top) * .5f - ink.center * scale;
             PlaceRaw(empty, at, scale, new Color(1, 1, 1, dim * strength));
             if (fill <= .01f) return;
+            if (fill >= .995f) { PlaceRaw(full, at, scale, new Color(1, 1, 1, dim * strength), 1); return; }
             Rect fullInk = SpriteInkMetrics.BoundsOf(full);
-            float cutLocal = fullInk.yMin + fullInk.height * Mathf.Clamp01(fill);
+            float cutLocal = fullInk.yMin + fullInk.height * Mathf.Lerp(window.x, window.y, Mathf.Clamp01(fill));
             float ppu = full.pixelsPerUnit; Rect r = full.rect;
             float cutPixels = Mathf.Clamp((cutLocal - full.bounds.min.y) * ppu, 1, r.height);
             int step = Mathf.Clamp(Mathf.RoundToInt(cutPixels), 1, (int)r.height);
@@ -124,12 +128,13 @@ namespace ArcaneBrigade
                 part = Sprite.Create(full.texture, rect, pivot, ppu, 0, SpriteMeshType.FullRect);
                 fillCache[key] = part;
             }
-            PlaceRaw(part, at, scale, new Color(1, 1, 1, dim * strength));
+            PlaceRaw(part, at, scale, new Color(1, 1, 1, dim * strength), 1);
         }
-        private void PlaceRaw(Sprite sprite, Vector2 at, float scale, Color color)
+        /// <summary>A sprite at its own scale; above lifts it over the vessel drawn underneath (same layer otherwise).</summary>
+        private void PlaceRaw(Sprite sprite, Vector2 at, float scale, Color color, int above = 0)
         {
             var r = Place(sprite, at, Vector2.one, 0, color, true);
-            if (r != null) r.transform.localScale = new Vector3(scale, scale, 1);
+            if (r != null) { r.transform.localScale = new Vector3(scale, scale, 1); r.sortingOrder += above; }
         }
 
         /// <summary>The transformations' own painted-ink moments around the hero.</summary>
@@ -157,11 +162,13 @@ namespace ArcaneBrigade
             {
                 Vector2 heading = facing;
                 Sprite engine = ArsenalArtwork.Frame("CopperCauldron_Engine", 0);
-                Vector2 front = Chest(hero) + heading * (hero.Definition.Radius + .2f) + Vector2.down * .12f;
+                // the locomotive front sits low across the kettle's body on the side it faces (left or right), like a cowcatcher
+                float side = heading.x < -.05f ? -1 : 1;
+                Vector2 front = Feet(hero) + new Vector2(side * (hero.Definition.Radius + .18f), hero.Definition.BodyHeight * .3f);
                 if (engine != null)
                 {
-                    var r = Place(engine, front, Vector2.one * .75f, 0, new Color(1, 1, 1, strength), true);
-                    if (r != null) r.flipX = heading.x < 0;
+                    var r = Place(engine, front, Vector2.one * Mathf.Max(.8f, hero.Definition.BodyHeight * 1.05f), 0, new Color(1, 1, 1, strength), true);
+                    if (r != null) r.flipX = side < 0;
                 }
                 // a smokestack plume rising over the hero and steam rolling off behind the engine
                 if (!still)
