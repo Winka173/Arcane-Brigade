@@ -1,0 +1,282 @@
+{
+ "LanternKnight": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/LanternKnight_v1.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png"
+  ],
+  "kind": "held",
+  "piece": "LIGHTHOUSE, the knight's lantern rebuilt as a small brass lighthouse lamp on a staff: a striped lighthouse tower head with a great lens and a sweeping lamp, brass rivets, a cream pennant",
+  "empty": "an upright brass lantern cage with a tall glass chimney window and a little roof cap; the glass is EMPTY and dark",
+  "full": "the glass is now full of warm golden lamplight and a small flame"
+ },
+ "RootOracle": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/RootOracle_v1.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/BambooVase_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "LIVING TREE, a pair of gnarled walking roots with mossy bark and small thorn shoots, the legs the oracle walks on while transformed, seen from the front",
+  "empty": "a hollow upright tree trunk with a carved window in its bark, leaves at the top; the window is EMPTY, dark wood inside",
+  "full": "the window is now full of glowing green sap with tiny leaves floating"
+ },
+ "LoneJelly": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/LoneJelly_v1.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/InkyOctopus_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "MITOSIS, a cluster of three small translucent teal jellies budding from one, each carrying a different organ (a biting mouth, a frost gland, a stitched limb)",
+  "empty": "a tall jelly vial bound with a stitched leather band and a cork; the jelly is EMPTY, clear and dark",
+  "full": "the vial is now full of glowing teal jelly with three little organs floating inside"
+ },
+ "GlassDice": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/GlassDice_v1.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/GlitchToybox_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "CASINO TABLE, a small green-felt dice tray with a brass rim holding three glowing crystal dice mid-roll",
+  "empty": "a tall stack of glass dice cups with a felt lining and brass bands; the cups are EMPTY",
+  "full": "the cups are now heaped with gold coins and tumbling crystal dice"
+ },
+ "TideSinger": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/TideSinger_v1.png",
+   "Assets/ArcaneBrigade/Art/K10/RibbonHarp.png"
+  ],
+  "kind": "prop",
+  "piece": "HIGH TIDE, a curling wave of teal sea water with a foam crest and a few shells, shaped like a surfboard the singer rides, side view facing right",
+  "empty": "a tall three-layer cocktail-glass column with a silver stem; the glass is EMPTY",
+  "full": "the glass is now filled in three coloured layers of sea water (teal, foam cream, deep blue) with a tiny wave on top"
+ },
+ "CometRunner": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/CometRunner_v1.png",
+   "Assets/ArcaneBrigade/Art/K13/ToyBlades_v2.png"
+  ],
+  "kind": "prop",
+  "piece": "METEOR SHOWER, a blazing comet head with a long trailing tail of amber and cream fire and little stars, flying right",
+  "empty": "a tall brass star-chart tube with a long glass window and constellation engravings; the window is EMPTY, dark blue",
+  "full": "the window is now full of blazing comet fire and streaking stars"
+ },
+ "MirrorKeeper": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/MirrorKeeper_v1.png",
+   "Assets/ArcaneBrigade/Art/K10/SnowGlobeOrb.png"
+  ],
+  "kind": "prop",
+  "piece": "HALL OF MIRRORS, one ornate standing mirror pane in a gilded silver frame with a cool shimmering glass face (four of them orbit the keeper)",
+  "empty": "a tall silver mirror frame standing upright with a narrow glass window; the glass is EMPTY, a dull grey",
+  "full": "the glass is now full of bright shimmering reflections of light"
+ },
+ "TreasureAcorn": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/TreasureAcorn_v1.png",
+   "Assets/ArcaneBrigade/Art/K10/AcornSling.png"
+  ],
+  "kind": "held",
+  "piece": "ACORN MACHINE GUN, the acorn sling rebuilt as a crank-driven machine gun with a rotating drum of acorns and a brass barrel",
+  "empty": "an upright acorn-shaped piggy-bank column with a carved window and a cap lid; the window is EMPTY",
+  "full": "the window is now stuffed with acorns and gold coins"
+ },
+ "VerdantMatron": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/K10/LeafCrossbow.png"
+  ],
+  "kind": "held",
+  "piece": "SPRING FESTIVAL, a blossoming watering-can staff: a copper watering can on a garden staff pouring a spray of petals and seeds",
+  "empty": "a slender greenhouse glass column with a white wooden frame and a little roof; the glass is EMPTY",
+  "full": "the glass is now full of blooming flowers and young green shoots"
+ },
+ "ChinaMarionette": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png"
+  ],
+  "kind": "held",
+  "piece": "KINTSUGI, the marionette's needle rebuilt as a slender porcelain sword whose cracks are mended with glowing gold seams",
+  "empty": "a tall cracked porcelain vase column with a narrow window; the window is EMPTY, dark",
+  "full": "the window is now full of molten gold flowing through the cracks"
+ },
+ "SoapSkater": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/K10/BubbleWand.png"
+  ],
+  "kind": "prop",
+  "piece": "ICE RINK, a pair of crystal ice skates with silver blades trailing rainbow soap bubbles",
+  "empty": "a tall bubble-wand tube of glass with a ring cap; the tube is EMPTY",
+  "full": "the tube is now full of rainbow soap bubbles and foam"
+ },
+ "VelvetRegent": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/StarforgeClaymore_Held_v1.png"
+  ],
+  "kind": "held",
+  "piece": "ROYAL PARADE, a grand gold scepter carrying a velvet parade banner with a crown emblem",
+  "empty": "a royal velvet banner column with gold trim and a narrow window; the window is EMPTY",
+  "full": "the window is now full of royal purple light and small gold crowns"
+ },
+ "ButtonCavalier": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/K10/CorkscrewRapier.png"
+  ],
+  "kind": "held",
+  "piece": "THE DUEL, a dueling rapier made from a long silver sewing needle with a big button for a guard and a thread tassel",
+  "empty": "an upright wooden thread spool column with a window cut into the thread; the window is EMPTY",
+  "full": "the window is now wound full of glowing gold thread and little buttons"
+ },
+ "NightMaw": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/DrumstickClub_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "THE FEAST, a huge cartoon mouth of night, deep violet lips with starry teeth, opening wide (seen from the front)",
+  "empty": "a tall dark glass jar shaped like a hungry belly with a lid; the jar is EMPTY",
+  "full": "the jar is now full of a swirling night-blue feast with tiny stars"
+ },
+ "ThornTreasurer": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/GumballGatling_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "THORN THRONE, a small throne of gilded thorns and gold coins with a velvet seat",
+  "empty": "a tall gold column wrapped in thorny vines with a narrow window; the window is EMPTY",
+  "full": "the window is now heaped with gold coins pierced by small thorns"
+ },
+ "CitrusMarshal": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/SignpostSlammer_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "CITRUS TRAIN, a little orange-painted toy locomotive car with orange-slice wheels and a lemon smokestack, side view facing right",
+  "empty": "a tall glass juice-press column with a citrus-squeezer cap; the glass is EMPTY",
+  "full": "the glass is now full of bright orange juice with floating citrus slices"
+ },
+ "IvorySovereign": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/DreamStamp_v1.png"
+  ],
+  "kind": "held",
+  "piece": "CORONATION, an ivory royal decree scepter: an ivory rod topped by an unrolled decree scroll and a wax-seal crown",
+  "empty": "an upright ivory scroll case with gold caps and a narrow window; the window is EMPTY",
+  "full": "the window is now full of glowing golden decree ink and a wax seal"
+ },
+ "PetalCitadel": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/RoseBouquet_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "PETAL CITADEL, a small castle gate of grey stone and four-coloured flower petals with a little drawbridge, seen from the front",
+  "empty": "a tall stone watchtower column with a narrow arrow-slit window; the window is EMPTY",
+  "full": "the window is now full of four-coloured petals (red, teal, green, blue)"
+ },
+ "PatchworkHost": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/ConfettiBlunderbuss_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "SHOWTIME, a little patchwork stage curtain on a gilded proscenium frame with a spotlight lamp",
+  "empty": "a tall patchwork theatre-curtain column with a narrow window; the window is EMPTY",
+  "full": "the window is now full of spotlight glow and confetti"
+ },
+ "ArchiveCurator": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png"
+  ],
+  "kind": "held",
+  "piece": "LIVING EXHIBIT, a giant open archive tome on a brass handle, pages fluttering and small paper puppets climbing out",
+  "empty": "an upright column of stacked book spines with a narrow window; the window is EMPTY",
+  "full": "the window is now full of glowing pages and paper specimens"
+ },
+ "PennyBroker": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/DetonatorBox_Held_v1.png"
+  ],
+  "kind": "prop",
+  "piece": "BULL MARKET, a brass stock ticker machine with a rising green-gold paper chart ribbon and a little bull ornament",
+  "empty": "a tall brass ticker tube with a glass window and gauge dials; the window is EMPTY",
+  "full": "the window is now full of a rising green-gold chart and gold coins"
+ },
+ "StormFencer": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/K13/DreamArms_v2.png"
+  ],
+  "kind": "held",
+  "piece": "THUNDER GOD, a fencing rapier forged from crackling blue-white lightning with a brass storm-cloud guard",
+  "empty": "a tall glass lightning-rod tube with brass caps; the glass is EMPTY",
+  "full": "the glass is now full of crackling blue-white lightning"
+ },
+ "TinVirtuoso": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png"
+  ],
+  "kind": "held",
+  "piece": "SYMPHONY, a golden conductor's baton with a tin music-box crank and little music notes on its tip",
+  "empty": "a tall tin organ pipe with a narrow window; the window is EMPTY",
+  "full": "the window is now full of glowing golden music notes"
+ },
+ "MoonProwler": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/K10/MoonScythe.png"
+  ],
+  "kind": "prop",
+  "piece": "ECLIPSE, a shadow cloak of night with a silver eclipse ring clasp and starry lining, billowing",
+  "empty": "a tall dark silver tube engraved with moon phases; the window is EMPTY",
+  "full": "the window is now full of an eclipse glow, silver-black with tiny stars"
+ },
+ "SupperMortar": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png"
+  ],
+  "kind": "held",
+  "piece": "SIX-BARREL KITCHEN, the teapot popgun rebuilt as a six-barrel supper mortar: six little cooking-pot muzzles in a rotating cylinder, a ladle crank",
+  "empty": "an upright copper soup-pot column with a narrow glass window and a lid; the window is EMPTY",
+  "full": "the window is now full of bubbling golden stew"
+ },
+ "LanternWeaver": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/K10/LanternStaff.png"
+  ],
+  "kind": "held",
+  "piece": "GRAND TAPESTRY, a great loom shuttle of polished wood trailing glowing woven threads",
+  "empty": "an upright loom spindle column with a narrow window; the window is EMPTY",
+  "full": "the window is now full of glowing woven threads"
+ },
+ "HourglassStag": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png"
+  ],
+  "kind": "prop",
+  "piece": "FORECLOSURE, a large brass hourglass with stag-antler supports, its glowing sand frozen mid-fall",
+  "empty": "a tall slender hourglass column in brass and antler; the glass is EMPTY",
+  "full": "the glass is now full of glowing amber sand"
+ },
+ "RainArchivist": {
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/SquirtTrio_Held_v1.png"
+  ],
+  "kind": "held",
+  "piece": "MONSOON CHAPTER, a storm almanac umbrella: a book-bound umbrella with page canopy and rain falling from its rim",
+  "empty": "a tall rain-gauge glass column with measuring marks; the glass is EMPTY",
+  "full": "the glass is now full of rain water with a tiny bolt of lightning"
+ }
+}

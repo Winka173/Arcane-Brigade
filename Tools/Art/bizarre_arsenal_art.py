@@ -363,6 +363,24 @@ for hero, a in AWAKE.items():
                             "and canvas identical (it is laid over the empty one in the game), and change only what is inside: "
                             + a["full"] + ". Genuinely transparent RGBA background, same 384x1024 canvas."))
 
+# the other 28 heroes' awakenings (18/10/2026): Tools/Art/hero_awakenings.json lists each hero's references, its
+# transformed piece (a held weapon, or a worn/summoned prop) and its own gauge vessel
+PROP = " Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas."
+for hero, a in json.loads((ROOT / "Tools" / "Art" / "hero_awakenings.json").read_text(encoding="utf-8")).items():
+    name = hero + ("_Awake_Held" if a["kind"] == "held" else "_Awake")
+    jobs.append(dict(name=name, path=ART + name + "_v1.png", transparent=True, refs=a["refs"] + REFS, depends=None, mode="single",
+                     prompt=STYLE + "Subject: " + a["piece"] + ". The first reference shows the hero (in a sheet, the hero named " + hero
+                            + "), the second its usual weapon." + (HELD if a["kind"] == "held" else PROP) + ISOLATED))
+    empty = "Gauge_" + hero + "_Empty"
+    jobs.append(dict(name=empty, path=ART + empty + "_v1.png", transparent=True, refs=a["refs"][:1] + REFS, depends=None, mode="single",
+                     prompt=STYLE + "Subject: the gauge of the hero in the first reference (in a sheet, the hero named " + hero + "), "
+                            + a["empty"] + "." + GAUGE + ISOLATED))
+    full = "Gauge_" + hero + "_Full"
+    jobs.append(dict(name=full, path=ART + full + "_v1.png", transparent=True, refs=[ART + empty + "_v1.png"], depends=empty, mode="single",
+                     prompt="Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position "
+                            "and canvas identical (it is laid over the empty one in the game), and change only what is inside: "
+                            + a["full"] + ". Genuinely transparent RGBA background, same 384x1024 canvas."))
+
 out = ROOT / "Docs" / "Bizarre_Arsenal_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)

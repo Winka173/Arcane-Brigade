@@ -2700,5 +2700,1181 @@
   "depends": "Gauge_DrowsySeer_Empty",
   "mode": "single",
   "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now filled to the top with luminous lilac moonlight and tiny drifting stars. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "LanternKnight_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/LanternKnight_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/LanternKnight_v1.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/Weapons_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: LIGHTHOUSE, the knight's lantern rebuilt as a small brass lighthouse lamp on a staff: a striped lighthouse tower head with a great lens and a sweeping lamp, brass rivets, a cream pennant. The first reference shows the hero (in a sheet, the hero named LanternKnight), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_LanternKnight_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternKnight_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/LanternKnight_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named LanternKnight), an upright brass lantern cage with a tall glass chimney window and a little roof cap; the glass is EMPTY and dark. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_LanternKnight_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternKnight_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternKnight_Empty_v1.png"
+  ],
+  "depends": "Gauge_LanternKnight_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of warm golden lamplight and a small flame. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "RootOracle_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/RootOracle_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/RootOracle_v1.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/BambooVase_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: LIVING TREE, a pair of gnarled walking roots with mossy bark and small thorn shoots, the legs the oracle walks on while transformed, seen from the front. The first reference shows the hero (in a sheet, the hero named RootOracle), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_RootOracle_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_RootOracle_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/RootOracle_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named RootOracle), a hollow upright tree trunk with a carved window in its bark, leaves at the top; the window is EMPTY, dark wood inside. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_RootOracle_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_RootOracle_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_RootOracle_Empty_v1.png"
+  ],
+  "depends": "Gauge_RootOracle_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of glowing green sap with tiny leaves floating. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "LoneJelly_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/LoneJelly_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/LoneJelly_v1.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/InkyOctopus_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: MITOSIS, a cluster of three small translucent teal jellies budding from one, each carrying a different organ (a biting mouth, a frost gland, a stitched limb). The first reference shows the hero (in a sheet, the hero named LoneJelly), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_LoneJelly_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LoneJelly_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/LoneJelly_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named LoneJelly), a tall jelly vial bound with a stitched leather band and a cork; the jelly is EMPTY, clear and dark. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_LoneJelly_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LoneJelly_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LoneJelly_Empty_v1.png"
+  ],
+  "depends": "Gauge_LoneJelly_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the vial is now full of glowing teal jelly with three little organs floating inside. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "GlassDice_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/GlassDice_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/GlassDice_v1.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/GlitchToybox_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: CASINO TABLE, a small green-felt dice tray with a brass rim holding three glowing crystal dice mid-roll. The first reference shows the hero (in a sheet, the hero named GlassDice), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_GlassDice_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_GlassDice_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/GlassDice_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named GlassDice), a tall stack of glass dice cups with a felt lining and brass bands; the cups are EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_GlassDice_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_GlassDice_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_GlassDice_Empty_v1.png"
+  ],
+  "depends": "Gauge_GlassDice_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the cups are now heaped with gold coins and tumbling crystal dice. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "TideSinger_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/TideSinger_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/TideSinger_v1.png",
+   "Assets/ArcaneBrigade/Art/K10/RibbonHarp.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: HIGH TIDE, a curling wave of teal sea water with a foam crest and a few shells, shaped like a surfboard the singer rides, side view facing right. The first reference shows the hero (in a sheet, the hero named TideSinger), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_TideSinger_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TideSinger_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/TideSinger_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named TideSinger), a tall three-layer cocktail-glass column with a silver stem; the glass is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_TideSinger_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TideSinger_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TideSinger_Empty_v1.png"
+  ],
+  "depends": "Gauge_TideSinger_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now filled in three coloured layers of sea water (teal, foam cream, deep blue) with a tiny wave on top. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "CometRunner_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/CometRunner_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/CometRunner_v1.png",
+   "Assets/ArcaneBrigade/Art/K13/ToyBlades_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: METEOR SHOWER, a blazing comet head with a long trailing tail of amber and cream fire and little stars, flying right. The first reference shows the hero (in a sheet, the hero named CometRunner), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_CometRunner_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_CometRunner_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/CometRunner_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named CometRunner), a tall brass star-chart tube with a long glass window and constellation engravings; the window is EMPTY, dark blue. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_CometRunner_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_CometRunner_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_CometRunner_Empty_v1.png"
+  ],
+  "depends": "Gauge_CometRunner_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of blazing comet fire and streaking stars. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "MirrorKeeper_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/MirrorKeeper_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/MirrorKeeper_v1.png",
+   "Assets/ArcaneBrigade/Art/K10/SnowGlobeOrb.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: HALL OF MIRRORS, one ornate standing mirror pane in a gilded silver frame with a cool shimmering glass face (four of them orbit the keeper). The first reference shows the hero (in a sheet, the hero named MirrorKeeper), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_MirrorKeeper_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_MirrorKeeper_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/MirrorKeeper_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named MirrorKeeper), a tall silver mirror frame standing upright with a narrow glass window; the glass is EMPTY, a dull grey. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_MirrorKeeper_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_MirrorKeeper_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_MirrorKeeper_Empty_v1.png"
+  ],
+  "depends": "Gauge_MirrorKeeper_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of bright shimmering reflections of light. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "TreasureAcorn_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/TreasureAcorn_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/TreasureAcorn_v1.png",
+   "Assets/ArcaneBrigade/Art/K10/AcornSling.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: ACORN MACHINE GUN, the acorn sling rebuilt as a crank-driven machine gun with a rotating drum of acorns and a brass barrel. The first reference shows the hero (in a sheet, the hero named TreasureAcorn), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_TreasureAcorn_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TreasureAcorn_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/TreasureAcorn_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named TreasureAcorn), an upright acorn-shaped piggy-bank column with a carved window and a cap lid; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_TreasureAcorn_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TreasureAcorn_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TreasureAcorn_Empty_v1.png"
+  ],
+  "depends": "Gauge_TreasureAcorn_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now stuffed with acorns and gold coins. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "VerdantMatron_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/VerdantMatron_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/K10/LeafCrossbow.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: SPRING FESTIVAL, a blossoming watering-can staff: a copper watering can on a garden staff pouring a spray of petals and seeds. The first reference shows the hero (in a sheet, the hero named VerdantMatron), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_VerdantMatron_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_VerdantMatron_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named VerdantMatron), a slender greenhouse glass column with a white wooden frame and a little roof; the glass is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_VerdantMatron_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_VerdantMatron_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_VerdantMatron_Empty_v1.png"
+  ],
+  "depends": "Gauge_VerdantMatron_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of blooming flowers and young green shoots. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "ChinaMarionette_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/ChinaMarionette_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/K14/ClockworkArsenal_v3.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: KINTSUGI, the marionette's needle rebuilt as a slender porcelain sword whose cracks are mended with glowing gold seams. The first reference shows the hero (in a sheet, the hero named ChinaMarionette), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ChinaMarionette_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ChinaMarionette_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named ChinaMarionette), a tall cracked porcelain vase column with a narrow window; the window is EMPTY, dark. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ChinaMarionette_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ChinaMarionette_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ChinaMarionette_Empty_v1.png"
+  ],
+  "depends": "Gauge_ChinaMarionette_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of molten gold flowing through the cracks. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "SoapSkater_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/SoapSkater_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/K10/BubbleWand.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: ICE RINK, a pair of crystal ice skates with silver blades trailing rainbow soap bubbles. The first reference shows the hero (in a sheet, the hero named SoapSkater), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_SoapSkater_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_SoapSkater_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named SoapSkater), a tall bubble-wand tube of glass with a ring cap; the tube is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_SoapSkater_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_SoapSkater_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_SoapSkater_Empty_v1.png"
+  ],
+  "depends": "Gauge_SoapSkater_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the tube is now full of rainbow soap bubbles and foam. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "VelvetRegent_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/VelvetRegent_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/StarforgeClaymore_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: ROYAL PARADE, a grand gold scepter carrying a velvet parade banner with a crown emblem. The first reference shows the hero (in a sheet, the hero named VelvetRegent), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_VelvetRegent_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_VelvetRegent_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named VelvetRegent), a royal velvet banner column with gold trim and a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_VelvetRegent_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_VelvetRegent_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_VelvetRegent_Empty_v1.png"
+  ],
+  "depends": "Gauge_VelvetRegent_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of royal purple light and small gold crowns. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "ButtonCavalier_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/ButtonCavalier_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/K10/CorkscrewRapier.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: THE DUEL, a dueling rapier made from a long silver sewing needle with a big button for a guard and a thread tassel. The first reference shows the hero (in a sheet, the hero named ButtonCavalier), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ButtonCavalier_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ButtonCavalier_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named ButtonCavalier), an upright wooden thread spool column with a window cut into the thread; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ButtonCavalier_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ButtonCavalier_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ButtonCavalier_Empty_v1.png"
+  ],
+  "depends": "Gauge_ButtonCavalier_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now wound full of glowing gold thread and little buttons. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "NightMaw_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/NightMaw_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/DrumstickClub_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: THE FEAST, a huge cartoon mouth of night, deep violet lips with starry teeth, opening wide (seen from the front). The first reference shows the hero (in a sheet, the hero named NightMaw), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_NightMaw_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_NightMaw_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named NightMaw), a tall dark glass jar shaped like a hungry belly with a lid; the jar is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_NightMaw_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_NightMaw_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_NightMaw_Empty_v1.png"
+  ],
+  "depends": "Gauge_NightMaw_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the jar is now full of a swirling night-blue feast with tiny stars. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "ThornTreasurer_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/ThornTreasurer_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/GumballGatling_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: THORN THRONE, a small throne of gilded thorns and gold coins with a velvet seat. The first reference shows the hero (in a sheet, the hero named ThornTreasurer), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ThornTreasurer_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ThornTreasurer_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named ThornTreasurer), a tall gold column wrapped in thorny vines with a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ThornTreasurer_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ThornTreasurer_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ThornTreasurer_Empty_v1.png"
+  ],
+  "depends": "Gauge_ThornTreasurer_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now heaped with gold coins pierced by small thorns. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "CitrusMarshal_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/CitrusMarshal_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/SignpostSlammer_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: CITRUS TRAIN, a little orange-painted toy locomotive car with orange-slice wheels and a lemon smokestack, side view facing right. The first reference shows the hero (in a sheet, the hero named CitrusMarshal), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_CitrusMarshal_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_CitrusMarshal_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named CitrusMarshal), a tall glass juice-press column with a citrus-squeezer cap; the glass is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_CitrusMarshal_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_CitrusMarshal_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_CitrusMarshal_Empty_v1.png"
+  ],
+  "depends": "Gauge_CitrusMarshal_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of bright orange juice with floating citrus slices. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "IvorySovereign_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/IvorySovereign_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/DreamStamp_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: CORONATION, an ivory royal decree scepter: an ivory rod topped by an unrolled decree scroll and a wax-seal crown. The first reference shows the hero (in a sheet, the hero named IvorySovereign), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_IvorySovereign_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_IvorySovereign_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named IvorySovereign), an upright ivory scroll case with gold caps and a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_IvorySovereign_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_IvorySovereign_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_IvorySovereign_Empty_v1.png"
+  ],
+  "depends": "Gauge_IvorySovereign_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of glowing golden decree ink and a wax seal. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "PetalCitadel_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/PetalCitadel_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/RoseBouquet_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: PETAL CITADEL, a small castle gate of grey stone and four-coloured flower petals with a little drawbridge, seen from the front. The first reference shows the hero (in a sheet, the hero named PetalCitadel), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_PetalCitadel_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PetalCitadel_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named PetalCitadel), a tall stone watchtower column with a narrow arrow-slit window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_PetalCitadel_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PetalCitadel_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PetalCitadel_Empty_v1.png"
+  ],
+  "depends": "Gauge_PetalCitadel_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of four-coloured petals (red, teal, green, blue). Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "PatchworkHost_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/PatchworkHost_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/ConfettiBlunderbuss_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: SHOWTIME, a little patchwork stage curtain on a gilded proscenium frame with a spotlight lamp. The first reference shows the hero (in a sheet, the hero named PatchworkHost), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_PatchworkHost_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PatchworkHost_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named PatchworkHost), a tall patchwork theatre-curtain column with a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_PatchworkHost_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PatchworkHost_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PatchworkHost_Empty_v1.png"
+  ],
+  "depends": "Gauge_PatchworkHost_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of spotlight glow and confetti. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "ArchiveCurator_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/ArchiveCurator_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: LIVING EXHIBIT, a giant open archive tome on a brass handle, pages fluttering and small paper puppets climbing out. The first reference shows the hero (in a sheet, the hero named ArchiveCurator), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ArchiveCurator_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ArchiveCurator_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named ArchiveCurator), an upright column of stacked book spines with a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_ArchiveCurator_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ArchiveCurator_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_ArchiveCurator_Empty_v1.png"
+  ],
+  "depends": "Gauge_ArchiveCurator_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of glowing pages and paper specimens. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "PennyBroker_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/PennyBroker_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/DetonatorBox_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: BULL MARKET, a brass stock ticker machine with a rising green-gold paper chart ribbon and a little bull ornament. The first reference shows the hero (in a sheet, the hero named PennyBroker), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_PennyBroker_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PennyBroker_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named PennyBroker), a tall brass ticker tube with a glass window and gauge dials; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_PennyBroker_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PennyBroker_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_PennyBroker_Empty_v1.png"
+  ],
+  "depends": "Gauge_PennyBroker_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of a rising green-gold chart and gold coins. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "StormFencer_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/StormFencer_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/K13/DreamArms_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: THUNDER GOD, a fencing rapier forged from crackling blue-white lightning with a brass storm-cloud guard. The first reference shows the hero (in a sheet, the hero named StormFencer), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_StormFencer_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_StormFencer_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named StormFencer), a tall glass lightning-rod tube with brass caps; the glass is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_StormFencer_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_StormFencer_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_StormFencer_Empty_v1.png"
+  ],
+  "depends": "Gauge_StormFencer_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of crackling blue-white lightning. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "TinVirtuoso_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/TinVirtuoso_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: SYMPHONY, a golden conductor's baton with a tin music-box crank and little music notes on its tip. The first reference shows the hero (in a sheet, the hero named TinVirtuoso), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_TinVirtuoso_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TinVirtuoso_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named TinVirtuoso), a tall tin organ pipe with a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_TinVirtuoso_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TinVirtuoso_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_TinVirtuoso_Empty_v1.png"
+  ],
+  "depends": "Gauge_TinVirtuoso_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of glowing golden music notes. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "MoonProwler_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/MoonProwler_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/K10/MoonScythe.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: ECLIPSE, a shadow cloak of night with a silver eclipse ring clasp and starry lining, billowing. The first reference shows the hero (in a sheet, the hero named MoonProwler), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_MoonProwler_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_MoonProwler_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named MoonProwler), a tall dark silver tube engraved with moon phases; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_MoonProwler_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_MoonProwler_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_MoonProwler_Empty_v1.png"
+  ],
+  "depends": "Gauge_MoonProwler_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of an eclipse glow, silver-black with tiny stars. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "SupperMortar_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/SupperMortar_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: SIX-BARREL KITCHEN, the teapot popgun rebuilt as a six-barrel supper mortar: six little cooking-pot muzzles in a rotating cylinder, a ladle crank. The first reference shows the hero (in a sheet, the hero named SupperMortar), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_SupperMortar_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_SupperMortar_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named SupperMortar), an upright copper soup-pot column with a narrow glass window and a lid; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_SupperMortar_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_SupperMortar_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_SupperMortar_Empty_v1.png"
+  ],
+  "depends": "Gauge_SupperMortar_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of bubbling golden stew. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "LanternWeaver_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/LanternWeaver_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/K10/LanternStaff.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: GRAND TAPESTRY, a great loom shuttle of polished wood trailing glowing woven threads. The first reference shows the hero (in a sheet, the hero named LanternWeaver), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_LanternWeaver_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternWeaver_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named LanternWeaver), an upright loom spindle column with a narrow window; the window is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_LanternWeaver_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternWeaver_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternWeaver_Empty_v1.png"
+  ],
+  "depends": "Gauge_LanternWeaver_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the window is now full of glowing woven threads. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "HourglassStag_Awake",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/HourglassStag_Awake_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/QualityHD/ExpandedWeapons_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: FORECLOSURE, a large brass hourglass with stag-antler supports, its glowing sand frozen mid-fall. The first reference shows the hero (in a sheet, the hero named HourglassStag), the second its usual weapon. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_HourglassStag_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_HourglassStag_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named HourglassStag), a tall slender hourglass column in brass and antler; the glass is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_HourglassStag_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_HourglassStag_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_HourglassStag_Empty_v1.png"
+  ],
+  "depends": "Gauge_HourglassStag_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of glowing amber sand. Genuinely transparent RGBA background, same 384x1024 canvas."
+ },
+ {
+  "name": "RainArchivist_Awake_Held",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/RainArchivist_Awake_Held_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+   "Assets/ArcaneBrigade/Art/Arsenal/SquirtTrio_Held_v1.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: MONSOON CHAPTER, a storm almanac umbrella: a book-bound umbrella with page canopy and rain falling from its rim. The first reference shows the hero (in a sheet, the hero named RainArchivist), the second its usual weapon. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_RainArchivist_Empty",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_RainArchivist_Empty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen of the newer Act I art (never the older flat, thick-outlined, low-shading sticker look). Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects and effects NEVER glow ember-red or danger-red (that is reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size (about 40-60 px on a 1080p screen); a held item stays modest in size, never larger than its bearer. The dream's residents are living creatures, not toys; objects may be hand-made curios. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the gauge of the hero in the first reference (in a sheet, the hero named RainArchivist), a tall rain-gauge glass column with measuring marks; the glass is EMPTY. A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, filling the canvas height except a 6% empty margin at top and bottom. Two small tier notches on its LEFT side at one third and two thirds of its height. 384x1024 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering (unless the subject IS lettering), labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Gauge_RainArchivist_Full",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/Gauge_RainArchivist_Full_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Arsenal/Gauge_RainArchivist_Empty_v1.png"
+  ],
+  "depends": "Gauge_RainArchivist_Empty",
+  "mode": "single",
+  "prompt": "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas identical (it is laid over the empty one in the game), and change only what is inside: the glass is now full of rain water with a tiny bolt of lightning. Genuinely transparent RGBA background, same 384x1024 canvas."
  }
 ]
