@@ -5,8 +5,8 @@ namespace ArcaneBrigade
     {
         public const int AllySoftLimit = 15;
         public const float WaveSeconds = 45;
-        public const float EnemyHealthRelief = .75f;
-        public const float EnemyDamageRelief = .8f;
+        public const float EnemyHealthRelief = .95f; // 18/10/2026: was .75; hero kits made the brigade stronger
+        public const float EnemyDamageRelief = .96f; // 18/10/2026: was .8
         public const float BossHealthRelief = .6f;
         public const float BossDamageRelief = .9f;
         public static float Crowd(int count) => Mathf.Clamp01((count - 10) / (float)(AllySoftLimit - 10));

@@ -1,29 +1,288 @@
-PASS Postmaster has an awakening, starting empty
-PASS Postmaster: a cast climbs one tier
-PASS Postmaster: three casts fill the gauge
-PASS Postmaster: a full gauge transforms by itself once an enemy is near
-PASS Postmaster holds the sorting gatling
-PASS The sorting gatling fires parcels and stamps addresses
-PASS While the gatling runs it is the only gun: no basic attacks, and it aims each parcel
-PASS Every gatling parcel is a shot the barrel flashes and sounds for (7 in 1.5 s)
-PASS Postmaster: the transformation ends and cools
-PASS Postmaster: casts do not climb while cooling
-PASS Postmaster: after cooling the gauge climbs again
-PASS CopperCauldron has an awakening, starting empty
-PASS CopperCauldron: a cast climbs one tier
-PASS CopperCauldron: three casts fill the gauge
-PASS CopperCauldron: a full gauge transforms by itself once an enemy is near
+PASS Every hero has a kit (31)
+PASS Postmaster has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS Postmaster describes its transformation
+PASS CopperCauldron has 1-2 hero passives and 2-4 team or run passives (2/4)
+PASS CopperCauldron describes its transformation
+PASS DrowsySeer has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS DrowsySeer describes its transformation
+PASS LanternKnight has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS LanternKnight describes its transformation
+PASS RootOracle has 1-2 hero passives and 2-4 team or run passives (2/4)
+PASS RootOracle describes its transformation
+PASS LoneJelly has 1-2 hero passives and 2-4 team or run passives (2/3)
+PASS LoneJelly describes its transformation
+PASS GlassDice has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS GlassDice describes its transformation
+PASS TideSinger has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS TideSinger describes its transformation
+PASS CometRunner has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS CometRunner describes its transformation
+PASS MirrorKeeper has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS MirrorKeeper describes its transformation
+PASS TreasureAcorn has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS TreasureAcorn describes its transformation
+PASS VerdantMatron has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS VerdantMatron describes its transformation
+PASS ChinaMarionette has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS ChinaMarionette describes its transformation
+PASS SoapSkater has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS SoapSkater describes its transformation
+PASS VelvetRegent has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS VelvetRegent describes its transformation
+PASS ButtonCavalier has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS ButtonCavalier describes its transformation
+PASS NightMaw has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS NightMaw describes its transformation
+PASS ThornTreasurer has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS ThornTreasurer describes its transformation
+PASS CitrusMarshal has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS CitrusMarshal describes its transformation
+PASS IvorySovereign has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS IvorySovereign describes its transformation
+PASS PetalCitadel has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS PetalCitadel describes its transformation
+PASS PatchworkHost has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS PatchworkHost describes its transformation
+PASS ArchiveCurator has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS ArchiveCurator describes its transformation
+PASS PennyBroker has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS PennyBroker describes its transformation
+PASS StormFencer has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS StormFencer describes its transformation
+PASS TinVirtuoso has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS TinVirtuoso describes its transformation
+PASS MoonProwler has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS MoonProwler describes its transformation
+PASS SupperMortar has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS SupperMortar describes its transformation
+PASS LanternWeaver has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS LanternWeaver describes its transformation
+PASS HourglassStag has 1-2 hero passives and 2-4 team or run passives (1/3)
+PASS HourglassStag describes its transformation
+PASS RainArchivist has 1-2 hero passives and 2-4 team or run passives (1/4)
+PASS RainArchivist describes its transformation
+PASS Every transformation and its art is the hero's own
+PASS LanternKnight expects the kind of art that was requested (held weapon or object)
+PASS RootOracle expects the kind of art that was requested (held weapon or object)
+PASS LoneJelly expects the kind of art that was requested (held weapon or object)
+PASS GlassDice expects the kind of art that was requested (held weapon or object)
+PASS TideSinger expects the kind of art that was requested (held weapon or object)
+PASS CometRunner expects the kind of art that was requested (held weapon or object)
+PASS MirrorKeeper expects the kind of art that was requested (held weapon or object)
+PASS TreasureAcorn expects the kind of art that was requested (held weapon or object)
+PASS VerdantMatron expects the kind of art that was requested (held weapon or object)
+PASS ChinaMarionette expects the kind of art that was requested (held weapon or object)
+PASS SoapSkater expects the kind of art that was requested (held weapon or object)
+PASS VelvetRegent expects the kind of art that was requested (held weapon or object)
+PASS ButtonCavalier expects the kind of art that was requested (held weapon or object)
+PASS NightMaw expects the kind of art that was requested (held weapon or object)
+PASS ThornTreasurer expects the kind of art that was requested (held weapon or object)
+PASS CitrusMarshal expects the kind of art that was requested (held weapon or object)
+PASS IvorySovereign expects the kind of art that was requested (held weapon or object)
+PASS PetalCitadel expects the kind of art that was requested (held weapon or object)
+PASS PatchworkHost expects the kind of art that was requested (held weapon or object)
+PASS ArchiveCurator expects the kind of art that was requested (held weapon or object)
+PASS PennyBroker expects the kind of art that was requested (held weapon or object)
+PASS StormFencer expects the kind of art that was requested (held weapon or object)
+PASS TinVirtuoso expects the kind of art that was requested (held weapon or object)
+PASS MoonProwler expects the kind of art that was requested (held weapon or object)
+PASS SupperMortar expects the kind of art that was requested (held weapon or object)
+PASS LanternWeaver expects the kind of art that was requested (held weapon or object)
+PASS HourglassStag expects the kind of art that was requested (held weapon or object)
+PASS RainArchivist expects the kind of art that was requested (held weapon or object)
+PASS LanternKnight starts with an empty gauge
+PASS LanternKnight: a full charge climbs a tier
+PASS LanternKnight: a full gauge transforms by itself (LIGHTHOUSE)
+PASS LanternKnight holds its transformed weapon only when it has one
+PASS LanternKnight: the transformation ends and rests
+PASS LanternKnight: everything stays finite
+PASS Postmaster starts with an empty gauge
+PASS Postmaster: a full charge climbs a tier
+PASS Postmaster: a full gauge transforms by itself (SORTING GATLING)
+PASS Postmaster holds its transformed weapon only when it has one
+PASS While the sorting gatling runs it is the only gun, each shot a muzzle flash (7 shots, 0 basics, aim (-0.91, -0.42), awake True)
+PASS Postmaster: the transformation ends and rests
+PASS Postmaster: everything stays finite
+PASS DrowsySeer starts with an empty gauge
+PASS DrowsySeer: a full charge climbs a tier
+PASS DrowsySeer: a full gauge transforms by itself (FULL MOON)
+PASS DrowsySeer holds its transformed weapon only when it has one
+PASS Three dreams walk the seer's route, the oldest furthest behind
+PASS DrowsySeer: the transformation ends and rests
+PASS DrowsySeer: everything stays finite
+PASS RootOracle starts with an empty gauge
+PASS RootOracle: a full charge climbs a tier
+PASS RootOracle: a full gauge transforms by itself (LIVING TREE)
+PASS RootOracle holds its transformed weapon only when it has one
+PASS RootOracle: the transformation ends and rests
+PASS RootOracle: everything stays finite
+PASS LoneJelly starts with an empty gauge
+PASS LoneJelly: a full charge climbs a tier
+PASS LoneJelly: a full gauge transforms by itself (MITOSIS)
+PASS LoneJelly holds its transformed weapon only when it has one
+PASS LoneJelly: the transformation ends and rests
+PASS LoneJelly: everything stays finite
+PASS GlassDice starts with an empty gauge
+PASS GlassDice: a full charge climbs a tier
+PASS GlassDice: a full gauge transforms by itself (CASINO TABLE)
+PASS GlassDice holds its transformed weapon only when it has one
+PASS GlassDice: the transformation ends and rests
+PASS GlassDice: everything stays finite
+PASS TideSinger starts with an empty gauge
+PASS TideSinger: a full charge climbs a tier
+PASS TideSinger: a full gauge transforms by itself (HIGH TIDE)
+PASS TideSinger holds its transformed weapon only when it has one
+PASS TideSinger: the transformation ends and rests
+PASS TideSinger: everything stays finite
+PASS CometRunner starts with an empty gauge
+PASS CometRunner: a full charge climbs a tier
+PASS CometRunner: a full gauge transforms by itself (METEOR SHOWER)
+PASS CometRunner holds its transformed weapon only when it has one
+PASS CometRunner: the transformation ends and rests
+PASS CometRunner: everything stays finite
+PASS MirrorKeeper starts with an empty gauge
+PASS MirrorKeeper: a full charge climbs a tier
+PASS MirrorKeeper: a full gauge transforms by itself (HALL OF MIRRORS)
+PASS MirrorKeeper holds its transformed weapon only when it has one
+PASS MirrorKeeper: the transformation ends and rests
+PASS MirrorKeeper: everything stays finite
+PASS TreasureAcorn starts with an empty gauge
+PASS TreasureAcorn: a full charge climbs a tier
+PASS TreasureAcorn: a full gauge transforms by itself (ACORN MACHINE GUN)
+PASS TreasureAcorn holds its transformed weapon only when it has one
+PASS TreasureAcorn: the transformation ends and rests
+PASS TreasureAcorn: everything stays finite
+PASS VerdantMatron starts with an empty gauge
+PASS VerdantMatron: a full charge climbs a tier
+PASS VerdantMatron: a full gauge transforms by itself (SPRING FESTIVAL)
+PASS VerdantMatron holds its transformed weapon only when it has one
+PASS VerdantMatron: the transformation ends and rests
+PASS VerdantMatron: everything stays finite
+PASS CopperCauldron starts with an empty gauge
+PASS CopperCauldron: a full charge climbs a tier
+PASS CopperCauldron: a full gauge transforms by itself (STEAM ENGINE)
+PASS CopperCauldron holds its transformed weapon only when it has one
 PASS The steam engine runs faster than the kettle walks
 PASS Boiler pressure rises while the engine runs
-PASS CopperCauldron: the transformation ends and cools
-PASS CopperCauldron: casts do not climb while cooling
-PASS CopperCauldron: after cooling the gauge climbs again
-PASS DrowsySeer has an awakening, starting empty
-PASS DrowsySeer: a cast climbs one tier
-PASS DrowsySeer: three casts fill the gauge
-PASS DrowsySeer: a full gauge transforms by itself once an enemy is near
-PASS Three dreams walk the seer's route, the oldest furthest behind
-PASS DrowsySeer: the transformation ends and cools
-PASS DrowsySeer: casts do not climb while cooling
-PASS DrowsySeer: after cooling the gauge climbs again
-PASS Heroes without an awakening yet keep their usual gauge
+PASS CopperCauldron: the transformation ends and rests
+PASS CopperCauldron: everything stays finite
+PASS ChinaMarionette starts with an empty gauge
+PASS ChinaMarionette: a full charge climbs a tier
+PASS ChinaMarionette: a full gauge transforms by itself (KINTSUGI)
+PASS ChinaMarionette holds its transformed weapon only when it has one
+PASS ChinaMarionette: the transformation ends and rests
+PASS ChinaMarionette: everything stays finite
+PASS SoapSkater starts with an empty gauge
+PASS SoapSkater: a full charge climbs a tier
+PASS SoapSkater: a full gauge transforms by itself (ICE RINK)
+PASS SoapSkater holds its transformed weapon only when it has one
+PASS SoapSkater: the transformation ends and rests
+PASS SoapSkater: everything stays finite
+PASS VelvetRegent starts with an empty gauge
+PASS VelvetRegent: a full charge climbs a tier
+PASS VelvetRegent: a full gauge transforms by itself (ROYAL PARADE)
+PASS VelvetRegent holds its transformed weapon only when it has one
+PASS VelvetRegent: the transformation ends and rests
+PASS VelvetRegent: everything stays finite
+PASS ButtonCavalier starts with an empty gauge
+PASS ButtonCavalier: a full charge climbs a tier
+PASS ButtonCavalier: a full gauge transforms by itself (THE DUEL)
+PASS ButtonCavalier holds its transformed weapon only when it has one
+PASS ButtonCavalier: the transformation ends and rests
+PASS ButtonCavalier: everything stays finite
+PASS NightMaw starts with an empty gauge
+PASS NightMaw: a full charge climbs a tier
+PASS NightMaw: a full gauge transforms by itself (THE FEAST)
+PASS NightMaw holds its transformed weapon only when it has one
+PASS NightMaw: the transformation ends and rests
+PASS NightMaw: everything stays finite
+PASS ThornTreasurer starts with an empty gauge
+PASS ThornTreasurer: a full charge climbs a tier
+PASS ThornTreasurer: a full gauge transforms by itself (THORN THRONE)
+PASS ThornTreasurer holds its transformed weapon only when it has one
+PASS ThornTreasurer: the transformation ends and rests
+PASS ThornTreasurer: everything stays finite
+PASS CitrusMarshal starts with an empty gauge
+PASS CitrusMarshal: a full charge climbs a tier
+PASS CitrusMarshal: a full gauge transforms by itself (CITRUS TRAIN)
+PASS CitrusMarshal holds its transformed weapon only when it has one
+PASS CitrusMarshal: the transformation ends and rests
+PASS CitrusMarshal: everything stays finite
+PASS IvorySovereign starts with an empty gauge
+PASS IvorySovereign: a full charge climbs a tier
+PASS IvorySovereign: a full gauge transforms by itself (CORONATION)
+PASS IvorySovereign holds its transformed weapon only when it has one
+PASS IvorySovereign: the transformation ends and rests
+PASS IvorySovereign: everything stays finite
+PASS PetalCitadel starts with an empty gauge
+PASS PetalCitadel: a full charge climbs a tier
+PASS PetalCitadel: a full gauge transforms by itself (PETAL CITADEL)
+PASS PetalCitadel holds its transformed weapon only when it has one
+PASS PetalCitadel: the transformation ends and rests
+PASS PetalCitadel: everything stays finite
+PASS PatchworkHost starts with an empty gauge
+PASS PatchworkHost: a full charge climbs a tier
+PASS PatchworkHost: a full gauge transforms by itself (SHOWTIME)
+PASS PatchworkHost holds its transformed weapon only when it has one
+PASS PatchworkHost: the transformation ends and rests
+PASS PatchworkHost: everything stays finite
+PASS ArchiveCurator starts with an empty gauge
+PASS ArchiveCurator: a full charge climbs a tier
+PASS ArchiveCurator: a full gauge transforms by itself (LIVING EXHIBIT)
+PASS ArchiveCurator holds its transformed weapon only when it has one
+PASS ArchiveCurator: the transformation ends and rests
+PASS ArchiveCurator: everything stays finite
+PASS PennyBroker starts with an empty gauge
+PASS PennyBroker: a full charge climbs a tier
+PASS PennyBroker: a full gauge transforms by itself (BULL MARKET)
+PASS PennyBroker holds its transformed weapon only when it has one
+PASS PennyBroker: the transformation ends and rests
+PASS PennyBroker: everything stays finite
+PASS StormFencer starts with an empty gauge
+PASS StormFencer: a full charge climbs a tier
+PASS StormFencer: a full gauge transforms by itself (THUNDER GOD)
+PASS StormFencer holds its transformed weapon only when it has one
+PASS StormFencer: the transformation ends and rests
+PASS StormFencer: everything stays finite
+PASS TinVirtuoso starts with an empty gauge
+PASS TinVirtuoso: a full charge climbs a tier
+PASS TinVirtuoso: a full gauge transforms by itself (SYMPHONY)
+PASS TinVirtuoso holds its transformed weapon only when it has one
+PASS TinVirtuoso: the transformation ends and rests
+PASS TinVirtuoso: everything stays finite
+PASS MoonProwler starts with an empty gauge
+PASS MoonProwler: a full charge climbs a tier
+PASS MoonProwler: a full gauge transforms by itself (ECLIPSE)
+PASS MoonProwler holds its transformed weapon only when it has one
+PASS MoonProwler: the transformation ends and rests
+PASS MoonProwler: everything stays finite
+PASS SupperMortar starts with an empty gauge
+PASS SupperMortar: a full charge climbs a tier
+PASS SupperMortar: a full gauge transforms by itself (SIX-BARREL KITCHEN)
+PASS SupperMortar holds its transformed weapon only when it has one
+PASS SupperMortar: the transformation ends and rests
+PASS SupperMortar: everything stays finite
+PASS LanternWeaver starts with an empty gauge
+PASS LanternWeaver: a full charge climbs a tier
+PASS LanternWeaver: a full gauge transforms by itself (GRAND TAPESTRY)
+PASS LanternWeaver holds its transformed weapon only when it has one
+PASS LanternWeaver: the transformation ends and rests
+PASS LanternWeaver: everything stays finite
+PASS HourglassStag starts with an empty gauge
+PASS HourglassStag: a full charge climbs a tier
+PASS HourglassStag: a full gauge transforms by itself (FORECLOSURE)
+PASS HourglassStag holds its transformed weapon only when it has one
+PASS HourglassStag: the transformation ends and rests
+PASS HourglassStag: everything stays finite
+PASS RainArchivist starts with an empty gauge
+PASS RainArchivist: a full charge climbs a tier
+PASS RainArchivist: a full gauge transforms by itself (MONSOON CHAPTER)
+PASS RainArchivist holds its transformed weapon only when it has one
+PASS RainArchivist: the transformation ends and rests
+PASS RainArchivist: everything stays finite
+PASS CopperCauldron: the first reroll in a shop is free
+PASS CopperCauldron: later rerolls cost again
+PASS Postmaster: the first purchase of a shop is 20% cheaper (35 -> 28)
+PASS DrowsySeer: every shop shows one more offer
+PASS VelvetRegent: one more new species a wave
+PASS LanternKnight: the largest bond counts one extra member

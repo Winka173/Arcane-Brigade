@@ -53,9 +53,10 @@ namespace ArcaneBrigade
         public static string Describe(string id)
         {
             var d = For(id); if (d == null) return "";
-            string copy = d.Name + "\n" + d.Description;
+            HeroKit kit = HeroKits.For(id);
+            string copy = d.Name + "\n" + (kit != null ? HeroKits.Describe(kit) : d.Description);
             for (int i = 0; i < d.Approaches.Length; i++) copy += "\n\n" + (i + 1) + ". " + d.Approaches[i] + "\n" + d.ApproachDescriptions[i];
-            return copy + "\n\n" + HeroApproachCopy.DamageRules + "\n\nChoose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.";
+            return copy + "\n\n" + HeroApproachCopy.DamageRules + "\n\nChoose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.";
         }
         public static int Petal(ItemEffect e) => e == ItemEffect.Health || e == ItemEffect.Armor || e == ItemEffect.Dodge ? 1 : e == ItemEffect.Heal || e == ItemEffect.HeartHealing || e == ItemEffect.HealCorrection ? 2 : e == ItemEffect.Projectiles || e == ItemEffect.BulletPierce || e == ItemEffect.BulletSize || e == ItemEffect.AttackRange ? 3 : e == ItemEffect.Damage || e == ItemEffect.AttackSpeed || e == ItemEffect.MeleeDamage || e == ItemEffect.RangedDamage || e == ItemEffect.ChampionDamage ? 0 : -1;
     }
@@ -74,6 +75,8 @@ namespace ArcaneBrigade
         public bool EnableHeroIdentities;
         public int HeroApproach, HeroDiceFace = 1, HeroDrinks, HeroFood, HeroWallet;
         public string HeroLeadUnit = "", HeroLeadWeapon = "";
+        /// <summary>Active bond levels at the start of the battle (hero kits that grow with bonds).</summary>
+        public int HeroBondLevels;
         public UnitDefinition[] HeroOrgans = new UnitDefinition[0];
         public int[] HeroPetals = new int[4];
     }

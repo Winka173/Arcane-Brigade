@@ -220,8 +220,8 @@ PASS Items stack
 PASS Three recruits merge to tier two
 PASS Merged unit has meaningful damage growth without slot cap
 PASS Merge preserves three copies of healing potency
-PASS Bond counts bodies not stars: hearth
-PASS Bond counts bodies not stars: mask
+PASS Bond counts bodies not stars (besides the hero kit's extra members): hearth
+PASS Bond counts bodies not stars (besides the hero kit's extra members): mask
 PASS Duplicate identity save rejected
 PASS Atomic save round trip
 PASS Corrupt primary recovers previous backup

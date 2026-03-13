@@ -109,7 +109,7 @@ namespace ArcaneBrigade.Editor
                 string id = s.State.Secrets.TargetItem; Check(s.ChooseSecretEvent(2), "Ward stitch commits");
                 Check(s.SecretItemSuspended(id) && s.PrepareCombat().SecretWard, "Stitch replaces base modifiers and compiles damage ward");
                 Check(s.SecretTargets.All(t => t != id), "Relic cannot be stitched twice");
-                CheckpointCatalog ward = s.PrepareCombat(); ward.Armor=ward.Dodge=0; ward.EnemyBudget=0;
+                CheckpointCatalog ward = s.PrepareCombat(); ward.Armor=ward.Dodge=0; ward.EnemyBudget=0; ward.EnableHeroIdentities=false;
                 var sim = new CombatSimulation(ward); sim.Start(9); float hp=sim.Champion.Health;
                 sim.WeaponDamageFixture(sim.Champion,100000,DamageElement.Physical);
                 Check(Mathf.Abs(hp-sim.Champion.Health-hp*.22f*.85f)<.01f,"Shelter reduces capped incoming hits by a real 15 percent");

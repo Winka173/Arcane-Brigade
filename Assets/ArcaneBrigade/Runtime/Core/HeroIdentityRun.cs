@@ -60,7 +60,7 @@ namespace ArcaneBrigade
             if (candidates.Count == 0) { Notice = "No eligible forward order in this category."; return false; }
             ItemDefinition item = candidates[Next(ref State.ShopRandom, candidates.Count)];
             int basePrice = Mathf.CeilToInt(item.Price * .85f * (1 + (int)item.Rarity * .4f) * CarnivalBalance.ShopPrice(State.Wave + 1));
-            h.OrderPrice = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1 - Mathf.Clamp(Bonus(ItemEffect.Discount) + Bonus(ItemEffect.RelicDiscount), -1, .5f))));
+            h.OrderPrice = Mathf.Max(1, Mathf.CeilToInt(basePrice * (1 - Mathf.Clamp(Bonus(ItemEffect.Discount) + Bonus(ItemEffect.RelicDiscount), -1, .5f)) * (1 - KitValue(KitPassive.ForwardOrderDiscount))));
             h.OrderDeposit = HeroOrderDeposit; State.Gold -= h.OrderDeposit; h.OrderItem = item.Id;
             h.OrderPlacedWave = State.Wave; h.OrderWave = State.Wave + 1;
             Notice = "Ordered " + item.Name + ": " + h.OrderPrice + " gold on delivery. Investment " + h.OrderDeposit + " gold."; return true;
@@ -101,6 +101,7 @@ namespace ArcaneBrigade
             CombatCatalog.HeroApproach = h.Approach; CombatCatalog.HeroDiceFace = h.DiceFace;
             CombatCatalog.HeroFood = State.OctoberFood; CombatCatalog.HeroDrinks = State.OctoberDrinks; CombatCatalog.HeroWallet = State.Gold;
             CombatCatalog.HeroLeadUnit = h.LeadUnit; CombatCatalog.HeroLeadWeapon = h.LeadWeapon;
+            CombatCatalog.HeroBondLevels = KitBondLevels();
             var organs = new List<UnitDefinition>();
             foreach (string id in h.Organs) if (!string.IsNullOrEmpty(id) && State.AbsorbedSkills.Contains(id)) organs.Add(catalog.Unit(id));
             for (int i = State.AbsorbedSkills.Count - 1; organs.Count < 3 && i >= 0; i--) { var u = catalog.Unit(State.AbsorbedSkills[i]); if (!organs.Contains(u)) organs.Add(u); }

@@ -5,20 +5,30 @@ Generated from the current runtime: 31 heroes, 93 approaches.
 ## Lantern Knight / LanternKnight
 
 THE GUIDING LAMP
-Nearby allies' basic attacks kindle the lamp (one spark per 0.25s). At 8 sparks, up to four friends join a finite-budget lantern advance under its light. Stay within 4 units to gather sparks. Alone, your own attacks light it. Approach: a focused line, a wide fan, or a protective circle that also snuffs one hostile shot.
+TRANSFORMATION: LIGHTHOUSE
+The gauge beside you fills from friends' attacks near you and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Your lamp becomes a lighthouse: a beam sweeps the field striking what it crosses; friends in the light get +50% attack speed; you gain 20% damage reduction.
+
+HERO PASSIVES
+- With at least 2 friends near you, you take 10% less damage.
+
+TEAM AND RUN PASSIVES
+- Guiding light: your largest bond counts one extra member.
+- Friends within 4 units of you get +8% attack speed.
+- Friends' attack range +5%.
+- Enemies in your lamplight (within 4 units) take +5% damage.
 
 1. Advance
-At 8 sparks, up to 3 friends share 180% W in weapon-shaped responses, followed by a 60% W line toward the target. 4s cooldown.
+LIGHTHOUSE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Fan out
-At 8 sparks, up to 4 friends share 180% W in weapon-shaped responses, followed by a 60% W forward crescent. 4s cooldown.
+LIGHTHOUSE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Hold ground
-At 8 sparks, up to 3 friends share 180% W in responses. Throw 3 lantern embers at the target sharing 35% W and remove one hostile shot within 2 units. 4s cooldown.
+LIGHTHOUSE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Start with +5 HP, +5% movement speed and 0.2 HP/s. Rally strengthens personal attacks with your brigade.
@@ -26,20 +36,30 @@ Start with +5 HP, +5% movement speed and 0.2 HP/s. Rally strengthens personal at
 ## Postmaster / Postmaster
 
 SIGNED DELIVERY
-Basic hits stamp up to three different enemies for 6s. Every third personal attack delivers parcels to the stamped addresses; homing parcels share 90% weapon damage. Choose express parcels, fragile ember packages, or a linking relay. Without a stamp, the next target receives the delivery.
+TRANSFORMATION: SORTING GATLING
+The gauge beside you fills from your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A six-barrel sorter replaces your mailbox: a homing parcel every 0.2s, round the stamped addresses first; attack speed +40%.
+
+HERO PASSIVES
+- Basic hits stamp up to 3 enemies for 6s; stamped enemies take +10% damage from you.
+
+TEAM AND RUN PASSIVES
+- Registered post: the first thing you buy in each shop costs 20% less.
+- Friends deal +8% damage to stamped enemies.
+- Friends' shots fly 10% faster.
+- A stamped enemy's fall has a 15% chance to drop an extra coin.
 
 1. Express
-Every third personal attack sends one homing parcel per address. Parcels share 160% W total physical damage. Up to 3 addresses; 2.5s cooldown.
+SORTING GATLING focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Fragile
-The same delivery uses ember parcels instead of physical parcels, sharing 160% W across all addresses. 2.5s cooldown.
+SORTING GATLING spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Relay
-Replace parcels with delayed line segments from you through the marked targets. Segments share 160% W total. 2.5s cooldown.
+SORTING GATLING lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Team flat ranged damage +3 and melee damage -2. After 25s, team melee attacks deal 40% more and ranged attacks 25% less.
@@ -47,20 +67,30 @@ Team flat ranged damage +3 and melee damage -2. After 25s, team melee attacks de
 ## Drowsy Seer / DrowsySeer
 
 THE DREAM THAT WAITS
-Attacking and walking fill 4 dream sparks. When they are full, pause for half a second (or keep going for 3s) and a dream of you stays behind, waiting where you were; it attacks from there for 4s while you move on. Rest healing remains. Choose a focused dream, a spreading dream, or a chilling dream. One dream at a time; no extra body in the roster.
+TRANSFORMATION: FULL MOON
+The gauge beside you fills from walking and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Three dreams of you walk your route a second, two and three seconds behind, casting at enemies near them; +30% move speed and +40% attack speed.
+
+HERO PASSIVES
+- Stand still for 0.5s and your next attack deals +20%.
+
+TEAM AND RUN PASSIVES
+- Dream eggs: every third wave you get an extra egg.
+- Waking up: friends get +15% attack speed for the first 5s of each wave.
+- Foresight: every shop shows one more offer.
+- Your hits leave enemies drowsy: slowed 10% for 1s.
 
 1. Lucid
-When 4 dream sparks are full, the dream stays where you pause for 0.5s (or by itself after 3s) and aims an arcane line at a target within 6 units every 0.7s for 4s. Each strike has an 80% W budget.
+FULL MOON focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Wandering
-Your waiting dream uses a forward arcane crescent instead of a line. It lasts 4s, striking every 0.7s for an 80% W budget.
+FULL MOON spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Winter
-Your waiting dream uses two crossing frost lines at its target. They share 80% W per strike, every 0.7s for 4s. Frost interactions remain separate.
+FULL MOON lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Basic attacks work while moving or resting; rest to recover 5% max HP each second. Companions strengthen your personal shots and body while their own damage is reduced slightly.
@@ -68,20 +98,31 @@ Basic attacks work while moving or resting; rest to recover 5% max HP each secon
 ## The Root Oracle / RootOracle
 
 THE LIVING GARDEN
-Rooted in battle, with three planted roots around you. Every 3s an occupied root attacks or shelters you. Roots can catch a hostile shot in Shelter, rake a line in Thorns, or trade some attack power for recovery in Harvest. You still walk normally in shops.
+TRANSFORMATION: LIVING TREE
+The gauge beside you fills from time spent among enemies and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You uproot and walk on your roots: every step raises thorns, your roots strike twice as often, and you gain 50% more maximum health while it lasts.
+
+HERO PASSIVES
+- Your roots catch one hostile shot near you every 4s.
+- Standing among your roots heals 1 HP every 3s.
+
+TEAM AND RUN PASSIVES
+- Deep roots: interest cap +2.
+- Enemies near your roots are slowed 15%.
+- Friends deal +8% damage to enemies near your roots.
+- Every shop shows one more offer.
 
 1. Shelter
-Every 3s, the next root catches one hostile shot within 2 units and makes a radius-1.3 disc with an 80% W budget. Ordinary enemies hit are slowed for 0.7s.
+LIVING TREE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Thorns
-Every 3s, the next root draws a line toward a threat within 4 units, with a 150% W budget and 0.7s slow on ordinary enemies. No shot catch.
+LIVING TREE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Harvest
-Every 3s, the next root attempts to heal you for 2 HP and makes a radius-1.3 disc with a 130% W budget and 0.7s ordinary-enemy slow.
+LIVING TREE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Stationary in battle; walks in shops. Whole-arena pickup, 30% shop discount, no dodge and -100% treasure detection.
@@ -89,20 +130,30 @@ Stationary in battle; walks in shops. Whole-arena pickup, 30% shop discount, no 
 ## The Lone Jelly / LoneJelly
 
 THE MEMORY BODY
-Equipped memories become three rotating organs. Every third attack expresses the next organ: a bite, a frost gland, or a stitched limb based on the memory's traits. Select memories in the shop; all previously absorbed passive traits remain. With no memory, the mouth supplies a short bite.
+TRANSFORMATION: MITOSIS
+The gauge beside you fills from your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You split into three: two jellies carrying your remembered organs fight beside you; +30% attack speed.
+
+HERO PASSIVES
+- Remembered organs: every 8 hits heal 1 HP; your hits slow enemies 10%.
+- Remembered shells: you take 5% less damage.
+
+TEAM AND RUN PASSIVES
+- Each merge in this run gives you +1% damage for good (max 15%).
+- Absorbing a memory refunds 2 gold.
+- Your hits slow enemies 10% for 1s.
 
 1. Bite
-Every third attack uses the next memory's element. A projectile memory fires 3 shots; other memories make a forward crescent. Total budget 150% W; 2.4s cooldown.
+MITOSIS focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Glands
-Every third attack expresses the next memory as 3 shots, whatever its original weapon kind. They share 150% W and keep the memory's element. 2.4s cooldown.
+MITOSIS spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Threadwork
-Every third attack uses a line for a non-projectile memory, or 3 shots for a projectile memory. Total budget 150% W; memory element retained; 2.4s cooldown.
+MITOSIS lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Fight without companion bodies. Buying companions absorbs their talents. Solo weapon damage grows with wave, within its cap.
@@ -110,20 +161,29 @@ Fight without companion bodies. Buying companions absorbs their talents. Solo we
 ## Lady Loaded Dice / GlassDice
 
 THE LOADED HAND
-Collect 6 gold to play the visible next die face, with a 4s cooldown. Faces cast darts, a cross, frost, a coin, healing, or a jackpot. The next face follows a visible six-face sequence. In shops, pay 6 gold to reroll the starting face once per wave. Approach changes the geometry of damage faces.
+TRANSFORMATION: CASINO TABLE
+The gauge beside you fills from gold you collect and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Three dice roll every second: a pair pays a strike, three of a kind a jackpot; +25% crit chance.
+
+HERO PASSIVES
+- The next die face is a small buff: damage, attack speed, crit, speed, gold or healing.
+
+TEAM AND RUN PASSIVES
+- Each reroll has a 1 in 6 chance to be free and a 1 in 6 chance to roll rarer goods.
+- Friends +5% crit chance.
+- At the end of each wave a die is cast: a six pays 6 gold.
 
 1. Straight bet
-Face 1: 3 darts share 200% W. Face 2: crossed lines share 240% W. Face 3: radius-1.5 frost disc, 200% W and 1s ordinary slow. Face 4: +1 gold and a 120% W line. Face 5: heal 2 HP and a 120% W line. Face 6: 320% W line. Six collected gold per cast; 4s cooldown.
+CASINO TABLE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Split bet
-Faces 1-3 keep their dart/cross/frost effects. Face 4 grants 1 gold and a 120% W crescent; face 5 heals 2 HP and a 120% W crescent; face 6 makes a 320% W crescent. Six collected gold; 4s cooldown.
+CASINO TABLE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Around the table
-Faces 1-3 keep their dart/cross/frost effects. Face 4 grants 1 gold plus crossing lines sharing 120% W; face 5 heals 2 HP plus the same lines; face 6 crosses for 320% W total. Six collected gold; 4s cooldown.
+CASINO TABLE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Uses the equipped weapon normally. Half of positive Luck also grants team damage, up to 50%. Collected hearts add run Luck.
@@ -131,20 +191,29 @@ Uses the equipped weapon normally. Half of positive Luck also grants team damage
 ## The Tide Singer / TideSinger
 
 THE THREE-INGREDIENT TIDE
-Every 3 coin pickups mix a tide, at most once per 4s. Every two drinks bought add an extra note, up to three. Choose an aimed current, a restorative shore, or a breaking wave. The restorative shore heals 3 HP; ordinary enemies may be pushed, bosses stay anchored.
+TRANSFORMATION: HIGH TIDE
+The gauge beside you fills from coins you collect and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You ride a wave: +40% move speed, the wave shoves enemies it meets and you heal 1 HP every second.
+
+HERO PASSIVES
+- Every 2 drinks bought add 1s to the tide (max +3s).
+
+TEAM AND RUN PASSIVES
+- Drinks cost 25% less.
+- Coins come to you from further away.
+- Friends +5% damage.
 
 1. Current
-Three coin pickups release 2 frost notes, plus one per 2 drinks bought, up to 5 notes. Notes share 220% W. 4s cooldown; buying drinks does not count as collecting coins.
+HIGH TIDE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Shore
-Three coin pickups attempt to heal 3 HP and roll a 3-unit tide line toward the target with a 160% W budget. Ordinary enemies are slowed 0.6s and gently pushed. 4s cooldown.
+HIGH TIDE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Breaker
-Three coin pickups create a radius-2.2 forward crescent with a 220% W budget, 0.5s ordinary slow and capped push. 4s cooldown.
+HIGH TIDE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Each drink bought grants 1 gold plus 1 per 10 maximum HP (up to 16). Each drink adds 2 maximum HP, but lowers armor by 0.02 and adds 2% more enemies (caps: 0.4 armor, 40% enemies).
@@ -152,20 +221,29 @@ Each drink bought grants 1 gold plus 1 per 10 maximum HP (up to 16). Each drink 
 ## The Comet Courier / CometRunner
 
 THE COMET'S WAKE
-Travel 10 world units to ignite the last three points of your route as a delayed wake. Your path determines its shape. Choose a narrow trail, parallel crescents, or a closed loop. Damage is shared across the whole wake; shops and pauses cannot charge it.
+TRANSFORMATION: METEOR SHOWER
+The gauge beside you fills from distance travelled and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Meteors rain down along the route you run; +50% move speed and +25% attack speed.
+
+HERO PASSIVES
+- Run for 2s without stopping and you gain +15% move speed.
+
+TEAM AND RUN PASSIVES
+- Coins fly to you from 30% further.
+- Friends +8% move speed.
+- Enemies you rush past are slowed 10%.
 
 1. Trail
-Travel 10 units to ignite recent path segments as ember lines. All segments share 230% W, with staggered short warnings. 3s cooldown.
+METEOR SHOWER focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Twin tails
-Travel 10 units to draw two parallel ember tracks, offset 0.4 units on each side. Both tracks together share 230% W. 3s cooldown.
+METEOR SHOWER spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Closed orbit
-Travel 10 units to leave radius-1.1 physical rings at recent path points. All rings share 160% W; unlike Trail, these rings are not ember attacks. 3s cooldown.
+METEOR SHOWER lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Team movement speed +20%; start with +10% dodge and crit, but armor -0.15.
@@ -173,20 +251,30 @@ Team movement speed +20%; start with +10% dodge and crit, but armor -0.15.
 ## The Mirror Keeper / MirrorKeeper
 
 THE BORROWED VOLLEY
-Nothing is taken, only borrowed: the mirror catches a hostile shot that comes within 1 unit of you (2 units after you stand still for half a second), one every 2s, up to three. Your next basic attack returns them, or they return after 2s. Each returned shot carries 60% W. Choose an aimed fan, reverse trajectories, or a ring.
+TRANSFORMATION: HALL OF MIRRORS
+The gauge beside you fills from hostile shots that pass close and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Four mirrors circle you and turn every hostile shot that reaches them back at the dream; +25% attack speed.
+
+HERO PASSIVES
+- The mirror catches one hostile shot every 3s and returns it with your next attack.
+
+TEAM AND RUN PASSIVES
+- Reflection: buying a friend you already have has a 10% chance to bring a second copy.
+- Friends' shots pierce one more enemy.
+- A friend's first hit on each enemy deals +15%.
+- Hostile shots fly 10% slower.
 
 1. Aimed glass
-The mirror catches a hostile shot that comes within 1 unit (2 units after you stand still for 0.5s), one every 2s, up to 3. Your next basic attack, or 2s of waiting, returns them toward the target in a 15-degree fan, 60% W each, keeping the caught element.
+HALL OF MIRRORS focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Return to sender
-Caught shots are returned opposite their original travel direction, 60% W each, keeping the caught element. Same 1-unit (2 when still) catch and 2s catch cooldown.
+HALL OF MIRRORS spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Prism ring
-Caught shots are returned toward the target in a wide fan (up to 24 degrees apart), 60% W each, keeping the caught element. Same catch rules; 1s release cooldown.
+HALL OF MIRRORS lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Each Prizefighter bond level adds 3 hero collision damage. Standing still prepares the borrowed volley.
@@ -194,20 +282,30 @@ Each Prizefighter bond level adds 3 hero collision damage. Standing still prepar
 ## The Treasure Clerk / TreasureAcorn
 
 THE BOUNTY LEDGER
-A visible bounty marks one enemy. Basic hits put stamps on it; three stamps settle the claim even against a boss. A kill also settles it. Claims pay 1 gold (maximum 8 per wave) and send a bounded archive strike. Choose the closest threat, a ranged threat, or the richest-health target.
+TRANSFORMATION: ACORN MACHINE GUN
+The gauge beside you fills from hits on the bounty and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A crank-driven acorn gun replaces your sling: a stream of acorns; enemies it fells drop a purse of gold.
+
+HERO PASSIVES
+- A bounty is always posted; felling it pays 1 gold (max 8 per wave).
+
+TEAM AND RUN PASSIVES
+- The first chest of each wave holds 3 extra gold.
+- Friends deal +10% damage to the bounty.
+- Holding at least 20 gold, the cheapest offer costs 1 less.
+- Gold income +1 each wave.
 
 1. Local accounts
-Prefer the nearest bounty. Settling 3 stamps or its kill pays 1 gold, at most 8 payouts per wave, and makes an 85% W line. 3s cooldown.
+ACORN MACHINE GUN focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Collectors
-Prefer a ranged enemy as the next bounty. Settlement pays the same capped gold and makes an 85% W forward crescent. 3s cooldown.
+ACORN MACHINE GUN spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Large accounts
-Favor a high-health bounty in the target score. Settlement pays the same capped gold and makes crossing lines sharing 85% W. 3s cooldown.
+ACORN MACHINE GUN lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Your hits and archive allies add a delayed poison strike at 25% weapon damage. Everyone moves 15% faster. Each chest grants 1 maximum HP and heals 4 HP.
@@ -215,20 +313,30 @@ Your hits and archive allies add a delayed poison strike at 25% weapon damage. E
 ## Verdant Matron / VerdantMatron
 
 THE NURSERY PLAN
-Choose how your nursery grows. Three Sprouts still inherit ingredient weapons and also create Grand Sprout; the random evolved friend's pool now favors the selected role. Every 6s, a nursery bloom (radius 1.6) from a sprout shelters, strikes, or nourishes the brigade. No new companion species or permanent extra bodies are created.
+TRANSFORMATION: SPRING FESTIVAL
+The gauge beside you fills from time in battle and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Every sprout blooms at once: thorns burst from around your sprouts and you, and you heal while it lasts.
+
+HERO PASSIVES
+- The nursery: sprouts still grow into a chosen kind of friend.
+
+TEAM AND RUN PASSIVES
+- Greenhouse: a one-star friend you buy has a 15% chance to arrive at two stars.
+- Sprouts deal +10% damage.
+- Friends +5% attack speed.
+- Jade Nursery counts one extra member.
 
 1. Guard nursery
-Nursery evolution favors healers or HP/armor support. Every 6s, bloom at a sprout, or at you if none: catch one hostile shot within 2 units and strike a radius-1.6 disc for a 140% W budget with 0.6s ordinary slow.
+SPRING FESTIVAL focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Striker nursery
-Nursery evolution favors melee-weapon friends. Every 6s, bloom at a sprout, or you if none, with a 300% W radius-1.6 disc and 0.6s ordinary slow.
+SPRING FESTIVAL spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Guide nursery
-Nursery evolution favors passive/support friends. Every 6s, bloom with a 220% W radius-1.6 disc and 0.6s ordinary slow; attempt to heal 3 HP with a sprout, otherwise 2 HP.
+SPRING FESTIVAL lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Nursery shops sell Little Sprouts. Buying a Sprout adds 1 projectile (max 6) and costs 2 maximum HP. Three Sprouts grow into a random evolved friend plus a Grand Sprout.
@@ -236,20 +344,31 @@ Nursery shops sell Little Sprouts. Buying a Sprout adds 1 projectile (max 6) and
 ## Copper Cauldron / CopperCauldron
 
 PRESSURE COOKER
-Nearby enemies build steam; taking an ordinary hit adds two steam. At 6 steam, vent a directional jet. Lid catches a nearby bullet, Boil makes a wide cone, and Whistle draws a long steam line. Hunger and other health costs do not fuel the kettle.
+TRANSFORMATION: STEAM ENGINE
+The gauge beside you fills from enemies near you and blows you take and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You run as a locomotive: +60% move speed, +30% attack speed, 25% less damage taken; you ram and shove what is in front; pressure builds and you finish with one long steam jet.
+
+HERO PASSIVES
+- Lid: stand still for 0.5s and the lid catches one hostile shot (every 4s).
+- A blow you take gives you +10% attack speed for 2s.
+
+TEAM AND RUN PASSIVES
+- Steam clears the shelves: the first reroll in each shop is free.
+- Each food you have bought gives friends +2% damage (max 10%).
+- When you are hit, friends near you get +15% attack speed for 2s.
+- Enemies right beside the kettle are slowed 15%.
 
 1. Lid
-At 6 steam, catch one hostile shot within 3 units and vent an ember line for a 180% W budget. 3s cooldown.
+STEAM ENGINE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Boil
-At 6 steam, vent a forward ember crescent for a 250% W budget. Wider coverage instead of the shot catch. 3s cooldown.
+STEAM ENGINE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Whistle
-At 6 steam, vent an ember line for a 250% W budget. It uses the same line reach as Lid and does not catch a shot. 3s cooldown.
+STEAM ENGINE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Start with +8 contact damage. Each Morning Bells activation gives +0.15 armor. Taking damage adds 0.15 regeneration for this run. Enemies move 10% faster.
@@ -257,20 +376,30 @@ Start with +8 contact damage. Each Morning Bells activation gives +0.15 armor. T
 ## China Marionette / ChinaMarionette
 
 THE REPAIRED DOLL
-Every crack becomes a piece: each ordinary injury, and every 6 HP actually recovered, grows a porcelain shard (up to three). An attack spends one shard on a delayed counterpiece. Choose a needle, a broken mirror, or a sheltering stitch. Sheltering stitches heal 1 HP but cannot grow another shard from their own healing.
+TRANSFORMATION: KINTSUGI
+The gauge beside you fills from injuries and healing and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Your cracks fill with gold: you take no damage for 3s, +40% attack speed, and your strikes leave gold seams that burst.
+
+HERO PASSIVES
+- Each crack (up to 3, from injuries) gives you +5% damage.
+
+TEAM AND RUN PASSIVES
+- Mending money: each injury pays 1 gold (max 5 per wave).
+- When you are hurt, friends near you deal +10% damage for 3s.
+- Every merge pays 2 gold.
+- An enemy that strikes you cracks: it takes +5% damage for 4s.
 
 1. Needlework
-A personal attack spends one porcelain shard on a delayed line for a 110% W budget. 1s cooldown; each ordinary injury or each 6 actual HP recovered creates one shard, up to 3.
+KINTSUGI focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Broken mirror
-Spend a shard on a delayed forward crescent for a 110% W budget. 1s cooldown; shards grow from injuries and from actual recovery, not attempted overhealing.
+KINTSUGI spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Sheltering stitch
-Spend a shard on two crossing lines sharing 110% W and attempt to heal 1 HP. This healing cannot grow another shard. 1s cooldown.
+KINTSUGI lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Healing is 2.5 times as effective, but armor starts 0.25 lower. Each Wild Stitch activation adds 0.4 regeneration. Taking damage adds 1 contact damage.
@@ -278,20 +407,29 @@ Healing is 2.5 times as effective, but armor starts 0.25 lower. Each Wild Stitch
 ## Soap Skater / SoapSkater
 
 BUBBLE CALLIGRAPHY
-Changing travel direction by at least 55 degrees while moving leaves a bubble, at most once per 1.2s. Bubbles pop after a short warning, slowing or gently pushing ordinary enemies. Three recent turns form a larger pattern. Choose a ribbon, a fountain, or a round bubble.
+TRANSFORMATION: ICE RINK
+The gauge beside you fills from sharp turns and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The floor turns to ice: enemies slide and slow, you drift; +40% move speed and +25% attack speed.
+
+HERO PASSIVES
+- Sharp turns leave bubbles that slow and gently push enemies.
+
+TEAM AND RUN PASSIVES
+- Friends deal +8% damage to slowed enemies.
+- Friends +8% move speed.
+- Bubble-wrapped coins: enemies that fall near you have a 10% chance to drop an extra coin.
 
 1. Ribbon
-A qualifying turn leaves a line bubble that pops after 0.65s. Budget 70% W, or 180% W on every third turn; 0.7s ordinary slow and gentle push. At most one turn counted per 1.2s.
+ICE RINK focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Fountain
-A qualifying turn leaves a forward crescent bubble, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push.
+ICE RINK spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Bubble
-A qualifying turn splashes a disc bubble ahead of you, radius 0.9 or 1.4 on every third turn. Budget 70%/180% W after 0.65s, with 0.7s ordinary slow and gentle push.
+ICE RINK lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Ordinary attacks deal 35% less damage. Push ordinary enemies harder, within the push cap. Each Clockwork Union activation adds 4 wave income. Treasure +20%.
@@ -299,20 +437,29 @@ Ordinary attacks deal 35% less damage. Push ordinary enemies harder, within the 
 ## Velvet Regent / VelvetRegent
 
 THE THREE COMMANDS
-You fight with your equipped weapon. Six allied basic attacks prepare a command, at most once per 4s. Spear selects the closest enemy, Volley favors ranged enemies, and Court favors the toughest enemy. Up to three allies perform their own weapon-shaped responses, sharing one budget. Your choice also changes companion target priorities.
+TRANSFORMATION: ROYAL PARADE
+The gauge beside you fills from friends' attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The whole brigade parades: friends fire together in formation with +40% attack speed.
+
+HERO PASSIVES
+- With at least 3 friends, you deal +10% damage.
+
+TEAM AND RUN PASSIVES
+- The court grows: you may recruit one more new kind of friend each wave.
+- Friends +6% damage.
+- Velvet Court counts one extra member.
 
 1. Spear
-After 6 allied basic attacks, up to 3 friends answer with their own weapon shapes. Favor nearby targets. 4s cooldown; each performer adds 50% of its weapon damage, capped at 75% W.
+ROYAL PARADE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Volley
-The same 6-attack command favors ranged enemies and shifts companion targeting toward ranged threats. Up to 3 performers, 50% own weapon each capped at 75% W; 4s cooldown.
+ROYAL PARADE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Court
-The same command favors high-health enemies and shifts companion target priority toward them. Up to 3 performers; 4s cooldown. Each performer's budget contribution is 50% of its weapon damage, capped at 75% W.
+ROYAL PARADE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Your equipped weapon attacks automatically. Your personal damage, attack speed, critical chance and projectile bonuses also help allies. Shops may sell evolved companions. More enemies appear.
@@ -320,20 +467,29 @@ Your equipped weapon attacks automatically. Your personal damage, attack speed, 
 ## Button Cavalier / ButtonCavalier
 
 THE COURTEOUS RIPOSTE
-Answer every discourtesy with a bow: a near miss gives 1 poise, a dodge 2, and an ordinary blow that lands on you 1. Each bullet can grant poise once; near misses have a 0.8s shared cooldown. At 3 poise, your next attack makes a precise riposte. Choose a thrust, a sweeping guard, or a crossed salute.
+TRANSFORMATION: THE DUEL
+The gauge beside you fills from near misses, dodges and blows and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Time slows around one foe: you thrust six times in a flurry; +50% attack speed.
+
+HERO PASSIVES
+- Each poise (up to 3) gives +4% dodge.
+
+TEAM AND RUN PASSIVES
+- Courtesy: from the second purchase on, each shop's goods cost 10% less.
+- When you dodge, friends get +10% crit chance for 2s.
+- Melee friends +6% attack speed.
 
 1. Thrust
-Poise: +1 for a near miss, +2 for a dodge, +1 when an ordinary blow lands on you. At 3 poise, your next attack triggers a delayed line for a 260% W budget against a threat within 5 units. 2s cooldown.
+THE DUEL focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Guard sweep
-At 3 poise, your next attack triggers a forward crescent for a 260% W budget. Guard sweep does not grant an additional projectile block. 2s cooldown.
+THE DUEL spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Salute
-At 3 poise, your next attack triggers crossed lines sharing a 260% W budget. 2s cooldown; each near-miss bullet grants poise only once.
+THE DUEL lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detection for this run. Crossing Knights deal 30% more damage.
@@ -341,20 +497,30 @@ Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detect
 ## Night Maw / NightMaw
 
 THE HUNGRY MOUTH
-Kills feed the mouth. Three meals prepare a bite against nearby enemies, with a 2.5s cooldown. Choose a focused bite, a sweeping jaw, or a rear maw. Hunger and kill healing remain; bosses cannot be swallowed or instantly executed.
+TRANSFORMATION: THE FEAST
+The gauge beside you fills from kills and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A huge mouth of night swallows ordinary enemies in front of you (never bosses); every swallow heals you.
+
+HERO PASSIVES
+- Hunger: kills heal you.
+
+TEAM AND RUN PASSIVES
+- Food you buy works 50% better on you.
+- Friends deal +8% damage to enemies below 30% health.
+- Enemies that fall near you have a 15% chance to drop an extra coin.
+- Each kill gives friends +1% attack speed for the wave (max 10%).
 
 1. Bite
-Three non-summoned kills release a line bite for a 120% W budget if the nearest threat is within 3.5 units. 2.5s cooldown.
+THE FEAST focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Wide jaw
-The same meal count releases a forward crescent instead of a line, sharing 120% W. Requires a threat within 3.5 units; 2.5s cooldown.
+THE FEAST spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Second mouth
-The crescent originates one unit behind your facing position and aims at the threat. Budget 120% W; 2.5s cooldown. No instant boss execution.
+THE FEAST lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Lose 1 HP each second in battle. Each enemy defeated heals 1 HP. Regeneration and hearts do not heal. Every fourth wave raises everyone's movement speed.
@@ -362,20 +528,30 @@ Lose 1 HP each second in battle. Each enemy defeated heals 1 HP. Regeneration an
 ## Thorn Treasurer / ThornTreasurer
 
 THE COLLATERAL CROWN
-Saved gold gives up to four collateral thorns at wave start (one per 30 gold). Each ordinary injury spends one thorn to answer with a directed thorn pattern; no gold is secretly spent. Basic attacks regrow one thorn every four attacks, and a full crown spends one by itself on an enemy that comes within 2.5 units. Choose lances, a crown, or a crossed receipt. Your gold-based HP and dream-shop rule remain.
+TRANSFORMATION: THORN THRONE
+The gauge beside you fills from your attacks and blows you take and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. You sit on a throne of thorns: every blow against you is answered with thorns; 30% damage reduction.
+
+HERO PASSIVES
+- Thorns answer the blows you take (once per second).
+
+TEAM AND RUN PASSIVES
+- Compound interest: interest is reckoned on 150% of the gold you hold.
+- Friends +5% damage for every 50 gold you hold (max 10%).
+- Holding at least 50 gold, rerolls cost 1 less.
+- Enemies that touch you are slowed 10%.
 
 1. Lances
-An ordinary injury spends one collateral thorn to draw a line with a 130% W budget toward a threat within 6 units. Every 4 basic attacks regrows one thorn, up to 4; a full crown spends one by itself on an enemy within 2.5 units (3s).
+THORN THRONE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Crown
-Spend a thorn on a forward crescent with a 130% W budget. Crown is a forward attack, not a persistent shield. Every 4 basic attacks regrows one thorn.
+THORN THRONE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Crossed receipt
-Spend a thorn on two crossing lines sharing a 130% W budget. Gold is not spent on retaliation; gold only sets starting thorns.
+THORN THRONE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Dream shops always open. At wave start, maximum HP follows saved gold (20–400). Buying a spiked relic recruits a Bristle Ball. Team damage -20%.
@@ -383,20 +559,30 @@ Dream shops always open. At wave start, maximum HP follows saved gold (20–400)
 ## Citrus Marshal / CitrusMarshal
 
 THE CITRUS CONVOY
-You fight alongside the moving convoy you lead. Allies follow alternating lanes behind your heading, with their existing speed limits. Travel 8 units to peel a short path of contact bursts. Choose a narrow escort, a wide procession, or a close circle. Static-follower relics and pony mounts keep their own rules.
+TRANSFORMATION: CITRUS TRAIN
+The gauge beside you fills from distance leading the convoy and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Your convoy couples up into a train that runs over enemies; the whole brigade +30% move speed.
+
+HERO PASSIVES
+- The convoy: friends follow in lanes behind you.
+
+TEAM AND RUN PASSIVES
+- Supplies: +2 gold at the end of each wave.
+- Friends behind you deal +5% damage.
+- Friends +8% move speed.
+- The convoy sweeps up coins along the way.
 
 1. Escort
-Friends follow two close lanes behind your heading. Travel 8 units to leave physical path lines sharing 270% W with 0.5s ordinary slow. 3s cooldown.
+CITRUS TRAIN focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Procession
-Friends follow wider lanes, 1.5 units to either side. Travel 8 units to leave parallel physical paths sharing 270% W with 0.5s ordinary slow. 3s cooldown.
+CITRUS TRAIN spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Close circle
-Friends arrange in a close circle. Travel 8 units to leave radius-1.1 rings at path points, sharing 220% W. These rings do not apply the other approaches' slow. 3s cooldown.
+CITRUS TRAIN lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; contact damage scales with your movement speed. Team attack speed -25%.
@@ -404,20 +590,30 @@ Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; co
 ## Ivory Sovereign / IvorySovereign
 
 THE LAST DECREE
-Your 12 royal HP and one-HP injuries remain. Every injury writes a decree toward a threat; every third personal basic attack writes another. Decrees take the shape of a verdict line, a court seal, or a crossed sentence. Retaliation is delayed and has a 1s shared cooldown; health costs do not write decrees.
+TRANSFORMATION: CORONATION
+The gauge beside you fills from injuries and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A last decree crosses the field as a verdict line, and for 3s you lose no health.
+
+HERO PASSIVES
+- Royal health: 12 HP and each blow costs only 1.
+
+TEAM AND RUN PASSIVES
+- Royal pick: each shop's rarest item costs 30% less.
+- While you hold at least 6 HP, friends deal +6% damage.
+- Your largest bond counts one extra member.
+- Each boss defeated pays 5 gold.
 
 1. Verdict
-An ordinary injury or every third personal basic attack prepares a delayed verdict line with a 100% W budget. Shared 1s cooldown.
+CORONATION focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Court seal
-The decree is a radius-1.5 filled seal at the target, sharing a 100% W budget. Shared 1s cooldown; deliberate health costs do not write decrees.
+CORONATION spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Sentence
-The decree is two crossing lines at the target sharing 100% W. The second line is delayed longer. Shared 1s cooldown.
+CORONATION lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Start each wave with 12 royal health. Each injury consumes exactly 1 royal health and releases a short retaliation. Ordinary healing cannot refill it. Velvet Court allies gain a projectile.
@@ -425,20 +621,30 @@ Start each wave with 12 royal health. Each injury consumes exactly 1 royal healt
 ## Petal Citadel / PetalCitadel
 
 THE FOUR-PETAL CITADEL
-Different owned relics nourish four petals: attack, guard, healing, and projectile. Duplicate copies do not add petal levels. Every fourth attack blooms the garden. Its geometry and recovery depend on which petals have grown; a complete garden opens an extra outer bloom. Choose a directed bloom, a thorn lattice, or shelter petals.
+TRANSFORMATION: PETAL CITADEL
+The gauge beside you fills from your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A citadel of petals rises around you: you shoot from its walls with 20% damage reduction.
+
+HERO PASSIVES
+- Four petals grow from the relics you own.
+
+TEAM AND RUN PASSIVES
+- A second copy of a relic gives 50% more of its effect.
+- Each grown petal gives friends +3% damage.
+- Every shop shows one more offer.
+- With all four petals grown, friends +10% attack speed.
 
 1. Bloom
-Every fourth attack places 4 staggered petal discs around the target. Total budget is W times (1.5 + min(0.9, 0.08 times total petal levels)). Each petal's radius grows from 0.65 by 0.1 per level (3 levels at most). 3s cooldown.
+PETAL CITADEL focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Thorn lattice
-The same bloom becomes 4 lines from you toward the petal points. Total damage budget is unchanged; each petal level still contributes to growth. 3s cooldown.
+PETAL CITADEL spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Shelter
-Keep the petal discs; if a guard petal exists, also catch one hostile shot within 2.5 units. Every approach heals 1-3 HP when a healing petal exists and adds a 50% W outer ring of radius 1.5 when all 4 petal groups exist.
+PETAL CITADEL lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 HP, +5% speed and +0.15 armor.
@@ -446,20 +652,29 @@ Start each wave with a balanced blessing: +2 flat melee and ranged damage, +10 H
 ## Patchwork Host / PatchworkHost
 
 THE FEATURED FRIEND
-Choose one permanent companion as the featured performer in the shop. Four of its basic attacks or contact hits let you perform a weapon-shaped imitation, at most once per 3s. Supportive friends add a small healing encore. Choose an exact act, a duet, or a wide stage. A missing lead is replaced automatically; no companion is consumed.
+TRANSFORMATION: SHOWTIME
+The gauge beside you fills from your lead friend's hits and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The curtain rises: your featured friend splits into three and performs together.
+
+HERO PASSIVES
+- Each time your lead friend performs, you heal 1 HP (every 4s at most).
+
+TEAM AND RUN PASSIVES
+- Your lead friend counts twice in its bond.
+- Your lead friend +10% damage.
+- With your lead at two stars or more, friends +5% attack speed.
 
 1. Featured act
-After 4 lead attacks/contact hits, imitate its weapon shape from your position. Budget is 110% of the lead's weapon damage, capped at 220% W. A healing lead also attempts 2 HP recovery. 3s cooldown.
+SHOWTIME focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Duet
-Split the same imitation budget equally: one response from the lead and one from you. Weapon element and shape are inherited. Healing-lead recovery remains 2 HP total. 3s cooldown.
+SHOWTIME spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Wide stage
-Replace the imitation with a radius-2.2 physical crescent from you, with the same lead-based capped budget. Healing-lead recovery remains 2 HP. 3s cooldown.
+SHOWTIME lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 All ordinary companion themes may appear. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.
@@ -467,20 +682,29 @@ All ordinary companion themes may appear. Enemy health +12% and count +6% throug
 ## Archive Curator / ArchiveCurator
 
 THE FORBIDDEN INDEX
-Basic hits record up to three enemy species and their attack styles. Every 6s, replay their shapes against the dream: charging lines, ranged volleys, or close strikes. Choose to update the newest page, preserve your first specimens, or favor new species. Absorbed companion passives remain a separate collection.
+TRANSFORMATION: LIVING EXHIBIT
+The gauge beside you fills from new species recorded and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The recorded species step out of your book as paper puppets and fight for you.
+
+HERO PASSIVES
+- You deal +5% damage to species you have recorded.
+
+TEAM AND RUN PASSIVES
+- Every 5 new species recorded pay 2 gold.
+- Friends deal +5% damage to recorded species.
+- Friends +5% crit chance against recorded species.
 
 1. Current edition
-Keep up to 3 species. A newly hit species replaces the next old specimen when full. Every 6s replay the shelf, sharing 300% W across its specimens: ranged volleys, charge lines or close crescents.
+LIVING EXHIBIT focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Preserve
-Keep the first 3 distinct species encountered; later species do not replace them. Replay every 6s with the same 300% W total budget.
+LIVING EXHIBIT spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. New specimens
-Allow replacements and clear the shelf after each replay, so you must hit species again. Replay budget remains 300% W, with a 6s cooldown.
+LIVING EXHIBIT lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Shops offer memory companions. Buying one absorbs its support trait instead of adding a body. Each memory makes enemies 4% tougher. Your positive personal modifiers are 25% stronger.
@@ -488,20 +712,30 @@ Shops offer memory companions. Buying one absorbs its support trait instead of a
 ## Penny Broker / PennyBroker
 
 THE FORWARD ORDER
-In a shop, invest 8 + wave gold (maximum 40) to reserve a named relic for the next shop at a quoted price. Choose curio, drink, or food. One order per wave; the delivery remains through rerolls until bought, then clears. If it becomes ineligible, the investment is returned. Every 10 collected gold signs a small receipt strike in battle.
+TRANSFORMATION: BULL MARKET
+The gauge beside you fills from gold you collect and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Coins you pick up count double and each pickup fires a receipt bolt.
+
+HERO PASSIVES
+- Forward orders: reserve a relic for the next shop.
+
+TEAM AND RUN PASSIVES
+- Dividends: +1 gold per relic you own at the end of each wave (max 5).
+- Friends +5% attack speed for every 50 gold you hold (max 10%).
+- Forward orders cost 10% less.
+- Interest cap +1.
 
 1. Curios
-Invest in an eligible CURIO for the next shop. The deposit is a separate cost, not deducted from its quoted purchase price. The order survives rerolls. Combat receipt: every 10 collected gold makes a 145% W radius-0.8 seal, 3s cooldown.
+BULL MARKET focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Drinks
-Reserve an eligible DRINK with the same deposit and quoted-price rules. No drink is counted until you actually buy the delivered item. Combat receipt is unchanged.
+BULL MARKET spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Food
-Reserve an eligible FOOD with the same deposit and quoted-price rules. No food is counted until you buy it. If stack limits make delivery unavailable, refund the deposit; normal purchase gives no deposit refund.
+BULL MARKET lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh adds 1 income and 1% luck for this run.
@@ -509,20 +743,30 @@ Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh adds 1 income 
 ## Storm Fencer / StormFencer
 
 THE THUNDER SHEATH
-Danger nearby slowly charges the sheath; near misses add one static and dodges add two. At 3 static, automatically draw a telegraphed lightning strike, at most once per 3s. Choose a piercing draw, a split barrage, or a cross. No basic attack is required to charge; bosses are never stunned by the draw.
+TRANSFORMATION: THUNDER GOD
+The gauge beside you fills from danger, near misses and dodges and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Your blade becomes lightning: every strike chains to four enemies; +40% attack speed.
+
+HERO PASSIVES
+- Your basic attacks have a 10% chance to chain to another enemy.
+
+TEAM AND RUN PASSIVES
+- Large enemies and leaders drop an egg.
+- Friends deal +8% damage to enemies shocked in the last 3s.
+- Friends +5% attack speed.
+- Friends' hits have a 5% chance to chain.
 
 1. Quickdraw
-At 3 static, make a delayed arcane line with a 280% W budget. 3s cooldown. A threat within 6 units builds 0.4 static/s; near misses add 1 and dodges add 2.
+THUNDER GOD focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Forked lightning
-At 3 static, make a forward arcane crescent with a 280% W budget. This is a close sweep, not an extra normal basic attack. 3s cooldown.
+THUNDER GOD spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Crosscut
-At 3 static, make crossing arcane lines sharing 280% W. 3s cooldown; bosses are not stunned.
+THUNDER GOD lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Equipped weapon attacks normally. Hero collision damage doubles. Start with +20% dodge.
@@ -530,20 +774,29 @@ Equipped weapon attacks normally. Hero collision damage doubles. Start with +20%
 ## Tin Virtuoso / TinVirtuoso
 
 THE BRIGADE SCORE
-Your basic attacks conduct the score; critical attacks count twice. Allies use their equipped weapons normally; a completed phrase also guarantees a response instead of relying on another random roll. Solo needs 2 beats and one performer; Duet needs 4 and two; Tutti needs 6 and up to four. All responses share one damage budget.
+TRANSFORMATION: SYMPHONY
+The gauge beside you fills from your attacks (crits count twice) and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The brigade plays together: on every beat all friends strike at once.
+
+HERO PASSIVES
+- Your crits count as two beats.
+
+TEAM AND RUN PASSIVES
+- Harmony: each active bond level gives friends +3% attack speed (max 15%).
+- Friends +3% crit chance.
+- Friends +5% attack speed.
 
 1. Solo
-A 2-beat phrase guarantees one friend's response; crits count as 2 beats. Response uses the friend's weapon shape, with a 70% own-weapon budget capped at twice W. 1.5s cooldown.
+SYMPHONY focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Duet
-A 4-beat phrase calls up to 2 friends. Each contributes 70% own-weapon damage, capped at twice W; total is shared by weapon-damage weights. 1.5s cooldown.
+SYMPHONY spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Tutti
-A 6-beat phrase calls up to 4 friends using the same weighted, capped damage-budget rule. Fewer friends means fewer performers, not duplicate phantom bodies. 1.5s cooldown.
+SYMPHONY lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions use their weapons and also answer conducted phrases.
@@ -551,20 +804,30 @@ Start with +10% crit and 2 projectiles. Hero shots cannot split. Companions use 
 ## Moon Prowler / MoonProwler
 
 THE SHADOW THAT FOLLOWS
-Travel 5 units and your shadow slips behind the nearest enemy. Your next basic attack sends it out of that enemy's far side for a delayed 80% W cut; strike from truly behind the enemy (against its facing) and the basic itself also gains +45%. Flank kills pay 1 gold, maximum 6 per wave. Choose a straight rear cut, a side crescent, or a crossing shadow. Your movement income remains.
+TRANSFORMATION: ECLIPSE
+The gauge beside you fills from distance travelled and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The field darkens: you slip behind enemy after enemy, and every attack counts as from behind.
+
+HERO PASSIVES
+- Attacks from behind an enemy deal +45%.
+
+TEAM AND RUN PASSIVES
+- Pickpocket: a hit from behind has a 10% chance to shake loose a coin.
+- Friends deal +8% damage to enemies turned away from them.
+- Enemies struck from behind are slowed 10%.
+- Friends +5% move speed.
 
 1. Rear cut
-Travel 5 units: your shadow waits behind the nearest enemy. Your next basic attack sends it out of that target's far side as a delayed 80% W line back through it. If you are truly behind the target (against its facing), the basic also gains +45%. Flank-kill gold is capped at 6 per wave.
+ECLIPSE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Side crescent
-The same shadow step; the 80% W budget becomes a crescent swung from the far side. A real rear attack still adds +45% to the basic.
+ECLIPSE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Crossing shadow
-The same shadow step; the 80% W budget splits between two crossing lines at the target. A real rear attack still adds +45% to the basic.
+ECLIPSE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Move 20% faster. Every 3 seconds spent moving in combat grants 2 gold. Each ally reduces wave income by 1.
@@ -572,20 +835,30 @@ Move 20% faster. Every 3 seconds spent moving in combat grants 2 gold. Each ally
 ## Supper Mortar / SupperMortar
 
 SUPPER IS SERVED
-Your basic attack is served as two quick courses that land where the diner is heading, each carrying 85% of the attack (110% for the narrow Pepper lines). Dumplings burst, Pepper lays an ember line, and Sorbet chills an area. Bought food widens the bursts up to a small cap. Courses cannot pierce; each burst shares its budget across at most three targets.
+TRANSFORMATION: SIX-BARREL KITCHEN
+The gauge beside you fills from your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A six-barrel supper mortar replaces your teapot and serves the whole menu.
+
+HERO PASSIVES
+- Two courses: each basic attack is served as two quick courses.
+
+TEAM AND RUN PASSIVES
+- The menu: every shop shows one more offer.
+- Each food bought gives friends +3% damage (max 15%).
+- Food works 20% better on you.
+- Food costs 20% less.
 
 1. Dumplings
-Each basic is served as 2 physical dumpling bursts landing 0.4s and 0.5s later where the target is heading (up to 1.2 units ahead), each carrying 85% of its damage. Radius 1.05 plus 0.025 per food bought, capped at +0.35. Each burst shares damage across at most 3 enemies.
+SIX-BARREL KITCHEN focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Pepper
-Replace both bursts with vertical ember pepper lines, each carrying 110% of the basic damage (lines are narrow) at the same delays. This line recipe does not use the food-based radius bonus.
+SIX-BARREL KITCHEN spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Sorbet
-Use the food-scaled bursts with frost sorbet damage and 1s ordinary slow, at the same delays and 85% shares. No projectile piercing.
+SIX-BARREL KITCHEN lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Base weapon and all listed run modifiers still apply.
@@ -593,20 +866,29 @@ Base weapon and all listed run modifiers still apply.
 ## Lantern Weaver / LanternWeaver
 
 THE LIVING NETWORK
-Basic hits pin up to three living targets. Every fourth attack closes the network, sharing damage over its links. Choose a closed triangle, a stitch toward your position, or a broad seam. Knots last 6s and broken targets are removed; no infinite linked-hit chain.
+TRANSFORMATION: GRAND TAPESTRY
+The gauge beside you fills from new targets pinned and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Every knot joins into one net that tightens: enemies in it are slowed 40% and the net cuts them.
+
+HERO PASSIVES
+- Your hits pin up to 3 enemies; pinned enemies are slowed 10%.
+
+TEAM AND RUN PASSIVES
+- Threads: a friend in two bonds adds one extra member to each (once per bond).
+- Friends deal +8% damage to pinned enemies.
+- Friends' shots pierce one more enemy.
 
 1. Closed weave
-Every fourth attack closes lines between up to 3 live knots. All links share 380% W and apply 0.3s slow. 2.4s cooldown; knots are consumed.
+GRAND TAPESTRY focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Pull stitch
-Start the stitch at your position and connect through the knots. Links share 340% W, slow for 0.3s and gently pull ordinary targets toward each segment's origin. 2.4s cooldown.
+GRAND TAPESTRY spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Broad seam
-Replace links with radius-1.4 crescents from each knot toward you. Crescents share 360% W and slow for 0.3s; no pull. 2.4s cooldown.
+GRAND TAPESTRY lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Base weapon and all listed run modifiers still apply.
@@ -614,20 +896,29 @@ Base weapon and all listed run modifiers still apply.
 ## Hourglass Stag / HourglassStag
 
 THE TIME DEBT
-Every blow is a loan: 35% of a personal basic that does not finish its target is deferred, up to three times your weapon damage. The debt is collected from that same enemy after 4s, 2.5s, or 5s depending on your approach, with interest: 320%, 260% or 320% of the bank. Choose a focused payment, early settlement, or frost instalments. Bosses keep moving; debt cannot recursively bank itself.
+TRANSFORMATION: FORECLOSURE
+The gauge beside you fills from the debt you bank and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Time stops for 1.5s and every debt is collected at once, with interest.
+
+HERO PASSIVES
+- Time debt: part of your damage is deferred and collected later with interest.
+
+TEAM AND RUN PASSIVES
+- A debt that finishes its debtor pays 1 gold.
+- While a debt is outstanding, friends +5% attack speed.
+- Debtors are slowed 10%.
 
 1. Full payment
-35% of a personal basic that does not finish its target is deferred, up to 3 W. 4s after the first entry the debt is collected from that enemy (or the nearest) as a radius-0.6 strike worth 320% of the bank.
+FORECLOSURE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Early settlement
-Settle after 2.5s through a radius-1.4 disc at the debtor worth 260% of the bank, shared across at most 3 targets.
+FORECLOSURE spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Winter instalments
-Settle after 5s through 3 homing frost shots at the debtor sharing 320% of the bank. Frost interactions remain separate; the payout cannot refill its own bank.
+FORECLOSURE lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Base weapon and all listed run modifiers still apply.
@@ -635,20 +926,30 @@ Base weapon and all listed run modifiers still apply.
 ## Rain Archivist / RainArchivist
 
 THE WEATHER BOOK
-Write pages by opening chests, recovering HP, dodging, or making three personal attacks. Three pages release a frost rain; healing and chest pages alter its recovery and spread. Its own recovery cannot write another page. Choose rain, storm, or mist. Chest healing remains; the book works before the first chest too.
+TRANSFORMATION: MONSOON CHAPTER
+The gauge beside you fills from pages written (chests, healing, dodges, attacks) and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A storm sweeps the field: lightning strikes enemies and the rain heals you.
+
+HERO PASSIVES
+- Chests heal you.
+
+TEAM AND RUN PASSIVES
+- Wet chests: the first chest of each wave holds 2 extra gold.
+- Your hits soak enemies: slowed 10% for 1s.
+- Friends deal +5% damage to soaked enemies.
+- Friends +5% attack speed.
 
 1. Rain
-Three pages release 3 frost shots plus one per chest page, up to 6, spaced 14 degrees apart. Total budget 450% W; recovery pages allow healing min(4, recovery pages + 1) HP. Every third personal attack writes a page. 3s cooldown.
+MONSOON CHAPTER focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
 
 2. Storm
-Add one frost shot to the same page formula, still at most 6. Keep the 450% W total and 14-degree spacing. Healing requires a recovery page. 3s cooldown.
+MONSOON CHAPTER spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.
 
 3. Mist
-Spread frost shots 24 degrees apart. Always attempt at least 1 HP recovery, or more with recovery pages up to 4. Total budget 450% W; its own recovery cannot write pages. 3s cooldown.
+MONSOON CHAPTER lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on.
 
 DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.
 
-Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required.
+Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
 Base weapon and all listed run modifiers still apply.

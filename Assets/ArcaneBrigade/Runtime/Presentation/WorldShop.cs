@@ -360,7 +360,9 @@ namespace ArcaneBrigade
                 Sprite icon = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).Body : catalog.Item(offer.Id).Icon;
                 Sprite[] frames = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id).AnimationFrames : null;
                 float stockRow = Mathf.Clamp(MerchantCenter.y - MerchantHeight * 0.5f - 2.05f, -2.85f, -1.1f); // never so low that a stall sits on the exit door (and 1.65 clear of its threshold)
-                Station station = AddStation(new Vector2((index - 1) * 3.2f, stockRow), name, offer.Sold ? null : icon, frames, true);
+                // a fourth stall (hero kits) closes the row up instead of running off it; three or fewer keep their places
+                float stallX = offers.Count > 3 ? (index - (offers.Count - 1) * .5f) * 2.6f : (index - 1) * 3.2f;
+                Station station = AddStation(new Vector2(stallX, stockRow), name, offer.Sold ? null : icon, frames, true);
                 station.Offer = offer; station.Price = offer.Price; station.Currency = offer.Currency;
                 if (station.Actor != null) station.Actor.SetCompanionDisplay(offer.Kind == OfferKind.Companion);
                 station.Description = offer.Kind == OfferKind.Companion ? CompanionDescriptions.Describe(catalog.Unit(offer.Id), offer.Tier, catalog.TierSupportMultiplier) : RelicDescriptions.Describe(catalog.Item(offer.Id), owner.Session.StackCount(offer.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(owner.Session, catalog, catalog.Item(offer.Id));

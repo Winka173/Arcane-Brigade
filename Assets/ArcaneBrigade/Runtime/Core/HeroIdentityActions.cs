@@ -4,92 +4,167 @@ namespace ArcaneBrigade
 {
     public sealed partial class CombatSimulation
     {
-        // Budgets are in W (the hero's prepared weapon damage), tuned by Editor/HeroMechanicBalance so every hero's
-        // mechanic adds roughly a third to half of a weapon hit per second in production waves (see Docs/Hero_Mechanics_Review.md).
+        // Hero kits (18/10/2026): each hero has ONE mechanic. Its own actions fill a charge (identityCharge); every full charge
+        // (HeroIdentityRequired) climbs the gauge a tier, and at the third tier the hero transforms by itself (HeroAwakening).
+        // There are no small casts any more. Around that, the kit's passives act all the time: the hero's own (stamps, the lid,
+        // the mirror, roots, thorns, debt...) and the team's (HeroKitCombat). Budgets are in W (the hero's weapon damage).
         private void IdentityRecordHealing(float recovered, CombatCause cause)
         {
             if (HeroIdentityEnabled && !IdentityOwn(cause) && (IdentityId == "ChinaMarionette" || IdentityId == "RainArchivist")) identityRecovered += Mathf.Max(0, recovered);
         }
+        private void Charge(float amount) { if (amount > 0) identityCharge += amount; }
+
         private void ObserveHeroIdentityEvents()
         {
+            HeroKit k = Kit;
             int count = events.Count;
             for (int i = 0; i < count; i++)
             {
                 CombatEvent e = events[i];
-                if (IdentityOwn(e.Cause)) continue;
+                if (IdentityOwn(e.Cause)) { ObserveOwnEvent(e); continue; }
                 bool personal = e.Cause.SourceUnitId == Champion.Id;
                 bool basic = e.Cause.Depth == 0;
                 if (e.Kind == CombatEventKind.Fire && e.Faction != Faction.Enemy && basic)
                 {
                     UnitState performer = e.Subject ?? UnitWithId(e.Cause.SourceUnitId);
                     if (IdentityId == "LanternKnight" && Elapsed >= identitySecondAt && performer != null && (CompanionCount == 0 ? personal : performer.Faction == Faction.Companion) && (performer.Position - Champion.Position).sqrMagnitude <= 16)
-                    { identityCharge = Mathf.Min(8, identityCharge + 1); identitySecondAt = Elapsed + .25f; }
-                    if (IdentityId == "VelvetRegent" && e.Faction == Faction.Companion) identityCharge = Mathf.Min(6, identityCharge + 1);
-                    if (IdentityId == "PatchworkHost" && performer == identityLead) identityCharge = Mathf.Min(4, identityCharge + 1);
+                    { Charge(1); identitySecondAt = Elapsed + .25f; }
+                    if (IdentityId == "VelvetRegent" && performer != null && performer.Faction == Faction.Companion) Charge(1);
+                    if (IdentityId == "PatchworkHost" && performer != null && IsLead(performer))
+                    {
+                        Charge(1);
+                        if (k != null && k.Has(KitPassive.HealOnLeadAct) && Elapsed >= kitLeadHealAt) { kitLeadHealAt = Elapsed + k.Value(KitPassive.HealOnLeadAct); Heal(1, IdentityCause()); }
+                    }
                     if (personal)
                     {
                         identityAttacks++;
-                        if (IdentityId == "Postmaster" || IdentityId == "LoneJelly" || IdentityId == "PetalCitadel") identityCharge++;
-                        if (IdentityId == "DrowsySeer") identityCharge = Mathf.Min(4, identityCharge + 1);
-                        if (IdentityId == "MirrorKeeper" && identityReflections.Count > 0) ReleaseIdentityReflections();
-                        if (IdentityId == "ChinaMarionette" && identityCharge >= 1 && Elapsed >= identityAt)
+                        switch (IdentityId)
                         {
-                            var target = IdentityTarget(Champion.Position); if (target != null)
-                            { identityCharge--; identityAt = Elapsed + 1; IdentityPattern(target, IdentityPower * 1.1f); if (IdentityApproach == 2) Heal(1, IdentityCause()); IdentityCast(); }
+                            case "Postmaster": case "LoneJelly": case "PetalCitadel": case "SupperMortar": case "DrowsySeer": Charge(1); break;
+                            case "HourglassStag": Charge(1); break; // each swing winds the hourglass; deferred blows add the rest
+                            case "TinVirtuoso": Charge(e.Critical ? 2 : 1); break;
+                            case "ThornTreasurer": Charge(.5f); break;
+                            case "IvorySovereign": Charge(.34f); break;
+                            case "RainArchivist": if (identityAttacks % 3 == 0) IdentityAddPage(0); break;
+                            case "MirrorKeeper": Charge(.34f); if (identityReflections.Count > 0) ReleaseIdentityReflections(); break;
                         }
-                        if (IdentityId == "ButtonCavalier" && identityCharge >= 3 && Elapsed >= identityAt)
-                        { var target = IdentityTarget(Champion.Position,5); if (target != null) { IdentityPattern(target,IdentityPower * 2.6f); identityCharge = 0; identityAt = Elapsed + 2; IdentityCast(); } }
-                        if (IdentityId == "ThornTreasurer" && identityAttacks % 4 == 0) identityCharge = Mathf.Min(4, identityCharge + 1);
-                        if (IdentityId == "IvorySovereign" && identityAttacks % 3 == 0) identityCharge = 3;
-                        if (IdentityId == "TinVirtuoso") identityCharge = Mathf.Min(HeroIdentityRequired, identityCharge + (e.Critical ? 2 : 1));
-                        if (IdentityId == "LanternWeaver" && identityAttacks % 4 == 0) identityCounter = 1;
-                        if (IdentityId == "RainArchivist" && identityAttacks % 3 == 0) IdentityAddPage(0);
                     }
                 }
-                if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && personal && basic && e.Subject != null)
+                if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null)
                 {
-                    if (IdentityId == "Postmaster" || IdentityId == "LanternWeaver") IdentityMarkTarget(e.Subject);
-                    if (IdentityId == "TreasureAcorn" && e.Subject == identityBounty && Elapsed >= identitySecondAt) { identityCharge = Mathf.Min(3, identityCharge + 1); identitySecondAt = Elapsed + .2f; }
-                    if (IdentityId == "ArchiveCurator" && !identitySpecimens.Exists(d => d.Id == e.Subject.Definition.Id))
-                    {
-                        if (identitySpecimens.Count < 3) identitySpecimens.Add(e.Subject.Definition);
-                        else if (IdentityApproach != 1) { identitySpecimens[identityCounter++ % 3] = e.Subject.Definition; }
-                        identityCharge = identitySpecimens.Count;
-                    }
+                    UnitState target = e.Subject;
+                    if (personal && basic) ObservePersonalHit(target, e);
+                    if (!personal && k != null && Elapsed >= identityTickAt && k.Has(KitPassive.TeamChainChance) && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion
+                        && combatRandom.NextDouble() < k.Value(KitPassive.TeamChainChance)) KitChain(target, IdentityPower * .2f);
+                    if (IdentityId == "PatchworkHost" && identityLead != null && e.Cause.SourceUnitId == identityLead.Id && identityLead.Definition.Weapon.Kind == WeaponKind.Contact && Elapsed >= identitySecondAt)
+                    { Charge(1); identitySecondAt = Elapsed + .4f; }
                 }
-                if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && IdentityId == "PatchworkHost" && identityLead != null && e.Cause.SourceUnitId == identityLead.Id && (identityLead.Definition.Weapon.Kind == WeaponKind.Contact || identityLead.Definition.ReferenceCompanion == "Big Cabbage" || identityLead.Definition.ReferenceCompanion == "Little Cabbage" || identityLead.Definition.ReferenceCompanion == "Domestic Spiked Ball") && Elapsed >= identitySecondAt)
-                { identityCharge = Mathf.Min(4, identityCharge + 1); identitySecondAt = Elapsed + .4f; }
-                if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy)
-                {
-                    if (IdentityId == "NightMaw" && !(e.Subject?.Variant?.Summoned ?? false)) identityCharge = Mathf.Min(3, identityCharge + 1);
-                    if (IdentityId == "TreasureAcorn" && e.Subject == identityBounty) identityCharge = 3;
-                    if (IdentityId == "MoonProwler" && personal && identityRearSpent && e.Subject == identityBounty && identityPayouts < 6) { Gold = RunSession.BoundedCounter((long)Gold + 1); identityPayouts++; identityRearSpent = false; HeroIdentityGold++; }
-                }
-                if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Champion && e.Cause.ItemId != "hunger" && e.Cause.ItemId != "overtime-cost" && e.Cause.ItemId != "curio-cost")
-                {
-                    if (IdentityId == "CopperCauldron") identityCharge = Mathf.Min(6, identityCharge + 2);
-                    AwakenOnInjury();
-                    if (IdentityId == "ThornTreasurer" && identityCharge >= 1)
-                    { var target = IdentityTarget(Champion.Position,6); if (target != null) { identityCharge--; IdentityPattern(target, IdentityPower * 1.3f); IdentityCast(); } }
-                    if (IdentityId == "IvorySovereign") identityCharge = 3;
-                    // a porcelain crack becomes a shard; a cavalier answers a blow with a bow
-                    if (IdentityId == "ChinaMarionette") identityCharge = Mathf.Min(3, identityCharge + 1);
-                    if (IdentityId == "ButtonCavalier") identityCharge = Mathf.Min(3, identityCharge + 1);
-                }
+                if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy) ObserveKill(e, personal);
+                if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Champion && e.Cause.ItemId != "hunger" && e.Cause.ItemId != "overtime-cost" && e.Cause.ItemId != "curio-cost") ObserveInjury(e);
                 if (e.Kind == CombatEventKind.Dodge)
                 {
-                    if (IdentityId == "ButtonCavalier" || IdentityId == "StormFencer") identityCharge = Mathf.Min(3,identityCharge + 2);
+                    if (IdentityId == "ButtonCavalier" || IdentityId == "StormFencer") Charge(2);
                     if (IdentityId == "RainArchivist") IdentityAddPage(1);
+                    kitDodgeUntil = Elapsed + 2;
                 }
                 if (e.Kind == CombatEventKind.Pickup && e.Loot == LootKind.Coin)
                 {
-                    if (IdentityId == "GlassDice") identityCharge = Mathf.Min(6,identityCharge + e.Value);
-                    if (IdentityId == "TideSinger") identityCharge = Mathf.Min(3,identityCharge + 1);
-                    if (IdentityId == "PennyBroker") identityCharge = Mathf.Min(10,identityCharge + e.Value);
+                    if (IdentityId == "GlassDice" || IdentityId == "PennyBroker") Charge(e.Value);
+                    if (IdentityId == "TideSinger") Charge(1);
+                    if (HeroAwakening && k != null && k.Action == KitAction.BullMarket && Elapsed >= awakenReceiptAt) { awakenReceiptAt = Elapsed + .4f; /* at most one receipt every 0.4s */ var t = IdentityTarget(Champion.Position, 7); if (t != null) IdentityShot(Champion.Position, t.Position - Champion.Position, IdentityPower * .45f * ApproachScale, homingTarget: t.Id); }
                 }
                 if (e.Kind == CombatEventKind.ChestOpened && IdentityId == "RainArchivist") IdentityAddPage(3);
             }
         }
+        /// <summary>Our own identity strikes still feed a few things (the thunder god marks what it shocks).</summary>
+        private void ObserveOwnEvent(CombatEvent e)
+        {
+            if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null && IdentityId == "StormFencer") e.Subject.KitShockedUntil = Elapsed + 3;
+            if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy) ObserveKill(e, true);
+        }
+        private void ObservePersonalHit(UnitState target, CombatEvent e)
+        {
+            HeroKit k = Kit; if (k == null) return;
+            if (IdentityId == "Postmaster") IdentityMarkTarget(target);
+            if (IdentityId == "LanternWeaver")
+            {
+                bool fresh = !Marked(target);
+                IdentityMarkTarget(target);
+                Charge(fresh ? 1 : .25f); // a new knot, or tightening one already tied
+            }
+            if (IdentityId == "TreasureAcorn" && target == identityBounty && Elapsed >= identitySecondAt) { Charge(1); identitySecondAt = Elapsed + .2f; }
+            if (IdentityId == "ArchiveCurator" && !identitySpecimens.Exists(d => d.Id == target.Definition.Id))
+            {
+                if (identitySpecimens.Count < 3) identitySpecimens.Add(target.Definition);
+                else if (IdentityApproach != 1) identitySpecimens[identityCounter++ % 3] = target.Definition;
+                if (kitSpecies.Add(target.Definition.Id))
+                {
+                    Charge(1); kitRecorded++;
+                    int every = 5; if (k.Has(KitPassive.SpeciesGold) && kitRecorded % every == 0) { KitDropCoin(Champion.Position, Mathf.RoundToInt(k.Value(KitPassive.SpeciesGold))); }
+                }
+            }
+            else if (IdentityId == "ArchiveCurator" && Recorded(target)) Charge(.25f); // studying a recorded species fills the index too
+            if (k.Has(KitPassive.EnemySlowOnHeroHit)) KitSlowEnemy(target, k.Value(KitPassive.EnemySlowOnHeroHit), 1);
+            if (k.Has(KitPassive.TeamDamageVsWet)) target.KitWetUntil = Elapsed + 3;
+            if (k.Has(KitPassive.ChainOnHit) && combatRandom.NextDouble() < k.Value(KitPassive.ChainOnHit)) KitChain(target, IdentityPower * .5f);
+            if (Behind(Champion, target))
+            {
+                if (k.Has(KitPassive.EnemySlowOnRear)) KitSlowEnemy(target, k.Value(KitPassive.EnemySlowOnRear), 1.5f);
+                if (k.Has(KitPassive.CoinOnRearHit) && lootRandom.NextDouble() < k.Value(KitPassive.CoinOnRearHit)) KitDropCoin(target.Position);
+            }
+            if (k.Has(KitPassive.HeroHealPerHits) && ++kitHitsForHeal >= k.Value(KitPassive.HeroHealPerHits)) { kitHitsForHeal = 0; Heal(1, IdentityCause()); }
+        }
+        /// <summary>A chain of lightning from one enemy to the next nearest.</summary>
+        private void KitChain(UnitState from, float budget)
+        {
+            UnitState next = null; float best = 9;
+            foreach (var u in units) { if (u == from || !CanHit(Faction.Champion, u)) continue; float d = (u.Position - from.Position).sqrMagnitude; if (d < best) { best = d; next = u; } }
+            if (next == null) return;
+            identityTickAt = Elapsed + .15f;
+            IdentityHit(MorphGeometry.Line, from.Position, next.Position, 0, budget, .05f, 1, DamageElement.Arcane);
+            next.KitShockedUntil = from.KitShockedUntil = Elapsed + 3;
+        }
+        private void ObserveKill(CombatEvent e, bool personal)
+        {
+            HeroKit k = Kit; if (k == null) return;
+            UnitState dead = e.Subject;
+            kitKills++;
+            if (IdentityId == "NightMaw" && !(dead?.Variant?.Summoned ?? false)) Charge(1);
+            if (dead == null) return;
+            if (dead == identityBounty && IdentityId == "TreasureAcorn")
+            {
+                Charge(HeroIdentityRequired);
+                if (identityPayouts < k.Value(KitPassive.BountyGold)) { Gold = RunSession.BoundedCounter((long)Gold + 1); identityPayouts++; HeroIdentityGold++; }
+                identityBounty = null;
+            }
+            if (HeroAwakening && k.Action == KitAction.AcornGun) KitDropCoin(dead.Position);
+            if (Marked(dead) && k.Has(KitPassive.CoinOnMarkedKill) && lootRandom.NextDouble() < k.Value(KitPassive.CoinOnMarkedKill)) KitDropCoin(dead.Position);
+            if (k.Has(KitPassive.KillCoinsNearHero) && (dead.Position - Champion.Position).sqrMagnitude <= 2.5f * 2.5f && lootRandom.NextDouble() < k.Value(KitPassive.KillCoinsNearHero)) KitDropCoin(dead.Position);
+            if (dead == identityDebtor && k.Has(KitPassive.DebtKillGold)) KitDropCoin(dead.Position, Mathf.RoundToInt(k.Value(KitPassive.DebtKillGold)));
+            if (k.Has(KitPassive.EliteEgg) && !dead.Definition.IsBoss && (dead.Definition.Radius >= .4f || dead.Variant != null && dead.Variant.ProcessionLeader)) DropLoot(LootKind.Egg, dead.Position, 1);
+        }
+        private void ObserveInjury(CombatEvent e)
+        {
+            HeroKit k = Kit; if (k == null) return;
+            kitHurtUntil = Elapsed + (k.Has(KitPassive.TeamDamageOnHeroHurt) ? 3 : 2);
+            switch (IdentityId)
+            {
+                case "CopperCauldron": Charge(2); break;
+                case "ChinaMarionette": case "IvorySovereign": case "ButtonCavalier": case "ThornTreasurer": Charge(1); break;
+            }
+            if (k.Has(KitPassive.CrackDamage)) kitCracks = Mathf.Min(3, kitCracks + 1);
+            if (k.Has(KitPassive.GoldOnHeroHurt) && kitInjuryGold < k.Value(KitPassive.GoldOnHeroHurt)) { kitInjuryGold++; Gold = RunSession.BoundedCounter((long)Gold + 1); HeroIdentityGold++; }
+            UnitState attacker = UnitWithId(e.Cause.SourceUnitId);
+            if (attacker != null && attacker.Faction == Faction.Enemy && attacker.Alive)
+            {
+                if (k.Has(KitPassive.EnemyCrackOnHit)) attacker.KitCrackedUntil = Elapsed + 4;
+                bool throne = HeroAwakening && k.Action == KitAction.Throne;
+                if (k.Has(KitPassive.Thorns) && (throne || Elapsed >= kitThornAt))
+                { kitThornAt = Elapsed + 1; IdentityHit(MorphGeometry.Line, Champion.Position, attacker.Position, 0, IdentityPower * (throne ? .9f : .7f) * ApproachScale, .05f, 1); }
+            }
+            AwakenOnInjury();
+        }
+
         private void ProcessHeroIdentity(float delta, Vector2 movement)
         {
             if (!HeroIdentityEnabled || !Champion.Alive || Phase != RunPhase.Combat) return;
@@ -98,298 +173,120 @@ namespace ArcaneBrigade
             ResolveIdentityStrikes();
             if (!Champion.Alive || Phase != RunPhase.Combat) return;
             ObserveHeroIdentityEvents();
-            float moved = Mathf.Min(2, Vector2.Distance(Champion.Position,Champion.PreviousPosition));
+            HeroKit k = Kit;
+            float moved = Mathf.Min(2, Vector2.Distance(Champion.Position, Champion.PreviousPosition));
             bool walking = moved > .001f;
             identityStill = walking ? 0 : identityStill + delta;
+            identityRun = walking ? identityRun + delta : 0;
             if (walking) identityHeading = (Champion.Position - Champion.PreviousPosition).normalized;
             if (Elapsed >= identityStepAt)
             {
                 identityStepAt = Elapsed + .35f;
                 if (identityTrail.Count >= 4) identityTrail.RemoveAt(0); identityTrail.Add(Champion.Position);
-                foreach (var m in identityMarks) IdentityGlyph(MorphGeometry.Seal, m.Target.Position, m.Target.Position, .23f,.4f, role: HeroGlyphRole.Mark);
-                if (identityBounty != null && identityBounty.Alive && IdentityId == "TreasureAcorn") IdentityGlyph(MorphGeometry.Seal,identityBounty.Position,identityBounty.Position,.32f,.4f,role:HeroGlyphRole.Mark);
+                foreach (var m in identityMarks) IdentityGlyph(MorphGeometry.Seal, m.Target.Position, m.Target.Position, .23f, .4f, role: HeroGlyphRole.Mark);
+                if (identityBounty != null && identityBounty.Alive && IdentityId == "TreasureAcorn") IdentityGlyph(MorphGeometry.Seal, identityBounty.Position, identityBounty.Position, .32f, .4f, role: HeroGlyphRole.Mark);
             }
             UnitState target = IdentityTarget(Champion.Position, 8, IdentityId == "VelvetRegent" || IdentityId == "TreasureAcorn" ? IdentityApproach : 0);
-            if (ProcessAwakening(delta, walking, target)) return; // transformed: the awakening acts instead of the mechanic
+            ProcessKitPassives(delta, movement, walking, moved, target);
+            bool transformed = ProcessAwakening(delta, walking, target);
+            if (!transformed) ProcessKitFill(delta, movement, walking, moved, target);
+            // full charges climb the gauge (one tier each); while transformed or cooling the charge waits
+            float required = Mathf.Max(.01f, HeroIdentityRequired);
+            while (identityCharge >= required && !HeroAwakening && !HeroAwakenCooling && awakenMeter < 1) { identityCharge -= required; AwakenClimb(); }
+            identityCharge = Mathf.Clamp(identityCharge, 0, required);
+        }
+
+        /// <summary>What fills each hero's gauge, besides the events above.</summary>
+        private void ProcessKitFill(float delta, Vector2 movement, bool walking, float moved, UnitState target)
+        {
+            bool near = IdentityTarget(Champion.Position, 6) != null;
             switch (IdentityId)
             {
-                case "LanternKnight":
-                    if (identityCharge >= 8 && target != null && Elapsed >= identityAt) { IdentityPerform(IdentityPower * 1.8f, IdentityApproach == 1 ? 4 : 3); if(IdentityApproach==2){IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower*.35f,3,14,DamageElement.Ember);CatchIdentityBullet(Champion.Position,2);}else IdentityPattern(target,IdentityPower * .6f); identityCharge = 0; identityAt = Elapsed + 4; IdentityCast(); }
-                    break;
-                case "Postmaster":
-                    identityCharge = Mathf.Min(3,identityCharge);
-                    if (identityCharge >= 3 && target != null && Elapsed >= identityAt)
-                    {
-                        if (identityMarks.Count == 0) IdentityMarkTarget(target);
-                        int n = identityMarks.Count;
-                        Vector2 from = Champion.Position;
-                        foreach (var m in identityMarks)
-                        {
-                            if (IdentityApproach == 2) { IdentityHit(MorphGeometry.Line,from,m.Target.Position,0,IdentityPower * 1.6f/n,.25f); from = m.Target.Position; }
-                            else IdentityShot(from,m.Target.Position - from,IdentityPower * 1.6f/n,element:IdentityApproach == 1 ? DamageElement.Ember : DamageElement.Physical,homingTarget:m.Target.Id);
-                        }
-                        identityMarks.Clear(); identityCharge = 0; identityAt = Elapsed + 2.5f; IdentityCast();
-                    }
-                    break;
-                case "DrowsySeer":
-                    // The dream that waits: a full sleep gauge leaves a dream wherever you pause (0.5s), or by itself after 3s.
-                    if (walking) identityCharge = Mathf.Min(4,identityCharge + delta * .4f);
-                    if (identityCharge >= 4 && identityFullAt < 0) identityFullAt = Elapsed;
-                    if (identityCharge >= 4 && identityGhostUntil <= Elapsed && target != null && (identityStill >= .5f || Elapsed - identityFullAt >= 3))
-                    { identityGhost = Champion.Position; identityGhostUntil = Elapsed + 4; identityGhostAt = Elapsed; identityCharge = 0; identityFullAt = -1; IdentityCast(); }
-                    if (identityGhostUntil > Elapsed)
-                    {
-                        if (Elapsed >= identityGhostAt)
-                        {
-                            var dreamTarget = IdentityTarget(identityGhost,6);
-                            if (dreamTarget != null) { IdentityPattern(dreamTarget,IdentityPower * .8f,origin:identityGhost,element:IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); identityGhostAt = Elapsed + .7f; }
-                        }
-                        if (Elapsed >= identityTickAt) { identityTickAt = Elapsed + .3f; var g = IdentityGlyph(MorphGeometry.Ring,identityGhost,identityGhost,.4f,.4f,role:HeroGlyphRole.Ambient); g.Portrait = Champion.Definition.Body; }
-                    }
-                    break;
-                case "RootOracle": ProcessIdentityRoots(target); break;
-                case "LoneJelly":
-                    identityCharge = Mathf.Min(3,identityCharge);
-                    if (identityCharge >= 3 && target != null && Elapsed >= identityAt)
-                    {
-                        UnitDefinition organ = catalog.HeroOrgans.Length > 0 ? catalog.HeroOrgans[identityCycle++ % catalog.HeroOrgans.Length] : Champion.Definition;
-                        if (IdentityApproach == 1 || organ.Weapon.Kind == WeaponKind.Projectile) IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower * 1.5f,3,element:organ.Weapon.Element);
-                        else IdentityPattern(target,IdentityPower * 1.5f,IdentityApproach == 2 ? 0 : 1,element:organ.Weapon.Element);
-                        identityCharge = 0; identityAt = Elapsed + 2.4f; IdentityCast();
-                    }
-                    break;
-                case "GlassDice":
-                    if (identityCharge >= 6 && target != null && Elapsed >= identityAt)
-                    {
-                        switch(identityFace)
-                        {
-                            case 1: IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower * 2f,3); break;
-                            case 2: IdentityPattern(target,IdentityPower * 2.4f,2); break;
-                            case 3: IdentityHit(MorphGeometry.Disc,target.Position,target.Position,1.5f,IdentityPower * 2f,.25f,element:DamageElement.Frost,slow:1); break;
-                            case 4: Gold = RunSession.BoundedCounter((long)Gold+1); HeroIdentityGold++; IdentityPattern(target,IdentityPower * 1.2f); break;
-                            case 5: Heal(2,IdentityCause()); IdentityPattern(target,IdentityPower * 1.2f); break;
-                            case 6: IdentityPattern(target,IdentityPower * 3.2f); IdentityGlyph(MorphGeometry.Seal,target.Position,target.Position,.6f); break;
-                        }
-                        identityFace = identityFace % 6 + 1; identityCharge = 0; identityAt = Elapsed + 4; IdentityCast();
-                    }
-                    break;
-                case "TideSinger":
-                    if (identityCharge >= 3 && target != null && Elapsed >= identityAt)
-                    {
-                        int notes = 2 + Mathf.Min(3,catalog.HeroDrinks/2);
-                        if (IdentityApproach == 1) { Heal(3,IdentityCause()); Vector2 tide=(target.Position-Champion.Position).normalized; IdentityHit(MorphGeometry.Line,Champion.Position+tide*.4f,Champion.Position+tide*3.4f,0,IdentityPower * 1.6f,slow:.6f,push:.25f); }
-                        else if (IdentityApproach == 0) IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower * 2.2f,notes,12,DamageElement.Frost);
-                        else IdentityHit(MorphGeometry.Crescent,Champion.Position,target.Position,2.2f,IdentityPower * 2.2f,slow:.5f,push:.4f);
-                        identityCharge = 0; identityAt = Elapsed + 4; IdentityCast();
-                    }
-                    break;
-                case "CometRunner": case "CitrusMarshal":
-                    identityCharge = Mathf.Min(HeroIdentityRequired,identityCharge + moved);
-                    if (identityCharge >= HeroIdentityRequired && target != null && Elapsed >= identityAt)
-                    {
-                        int segments = Mathf.Max(1,identityTrail.Count-1);
-                        float total = IdentityPower * (IdentityId == "CometRunner" ? (IdentityApproach == 2 ? 1.6f : 2.3f) : IdentityApproach == 2 ? 2.2f : 2.7f);
-                        for (int i=0;i<segments;i++)
-                        {
-                            Vector2 a=identityTrail[i], b=identityTrail[Mathf.Min(identityTrail.Count-1,i+1)];
-                            if (IdentityApproach == 2) IdentityHit(MorphGeometry.Ring,b,b,1.1f,total/segments,.12f+i*.1f);
-                            else if(IdentityApproach==1){for(int sign=-1;sign<=1;sign+=2)IdentityHit(MorphGeometry.Line,a+Vector2.right*.4f*sign,b+Vector2.right*.4f*sign,0,total*.5f/segments,.12f+i*.1f,element:IdentityId=="CometRunner"?DamageElement.Ember:DamageElement.Physical,slow:IdentityId=="CitrusMarshal"?.5f:0);}
-                            else IdentityHit(MorphGeometry.Line,a,b,0,total/segments,.12f+i*.1f,element:IdentityId=="CometRunner"?DamageElement.Ember:DamageElement.Physical,slow:IdentityId=="CitrusMarshal"?.5f:0);
-                        }
-                        identityCharge=0; identityAt=Elapsed+3; IdentityCast();
-                    }
-                    break;
-                case "MirrorKeeper":
-                    // The mirror catches a hostile shot that comes close (1 unit; 2 once you have stood still 0.5s), one per 2 seconds.
-                    if (identityReflections.Count<3 && Elapsed>=identitySecondAt)
-                    {
-                        float reach = identityStill >= .5f ? 2f : 1f;
-                        for(int i=projectiles.Count-1;i>=0;i--)
-                        {
-                            var p=projectiles[i]; if(p.Faction!=Faction.Enemy || (p.Position-Champion.Position).sqrMagnitude>reach*reach)continue;
-                            identityReflections.Add(new IdentityReflection { Direction=-p.Velocity.normalized,Element=p.Element }); HeroIdentityPrevented+=p.Damage; IdentityGlyph(MorphGeometry.Ring,p.Position,Champion.Position,.35f,.35f,role:HeroGlyphRole.Catch); projectiles.RemoveAt(i); identitySecondAt=Elapsed+2; identityBankAt=Elapsed; break;
-                        }
-                    }
-                    identityCharge=identityReflections.Count;
-                    if(identityReflections.Count>0 && Elapsed-identityBankAt>=2 && target!=null)ReleaseIdentityReflections();
-                    break;
-                case "TreasureAcorn":
-                    if((identityBounty==null || !identityBounty.Alive) && identityCharge<3)identityBounty=target;
-                    if(identityCharge>=3 && target!=null && Elapsed>=identityAt)
-                    { if(identityPayouts<8){Gold=RunSession.BoundedCounter((long)Gold+1);identityPayouts++;HeroIdentityGold++;} IdentityPattern(target,IdentityPower*.85f);identityCharge=0;identityBounty=null;identityAt=Elapsed+3;IdentityCast(); }
-                    break;
-                case "VerdantMatron":
-                    identityCharge=Mathf.Min(6,Mathf.Max(0,Elapsed-identityAt));
-                    if(identityCharge>=6 && target!=null)
-                    {
-                        UnitState sprout=units.Find(u=>u.Faction==Faction.Companion && (u.Definition.Id=="GrandSprout" || u.Definition.Id=="LittleSprout"));
-                        Vector2 from=sprout==null?Champion.Position:sprout.Position;
-                        if(IdentityApproach==0)CatchIdentityBullet(from,2);
-                        if(IdentityApproach==2)Heal(sprout==null?2:3,IdentityCause());
-                        IdentityHit(MorphGeometry.Disc,from,from,1.6f,IdentityPower*(IdentityApproach==1?3f:IdentityApproach==2?2.2f:1.4f),slow:.6f);
-                        identityAt=Elapsed;identityCharge=0;IdentityCast();
-                    }
-                    break;
-                case "CopperCauldron":
-                    if(IdentityTarget(Champion.Position,3)!=null)identityCharge=Mathf.Min(6,identityCharge+delta);
-                    if(identityCharge>=6 && target!=null && Elapsed>=identityAt)
-                    { if(IdentityApproach==0)CatchIdentityBullet(Champion.Position,3); IdentityPattern(target,IdentityPower*(IdentityApproach==0?1.2f:2.5f),IdentityApproach==1?1:0,element:DamageElement.Ember);identityCharge=0;identityAt=Elapsed+3;IdentityCast(); }
-                    break;
-                case "ChinaMarionette":
-                    while(identityRecovered>=6){identityRecovered-=6;identityCharge=Mathf.Min(3,identityCharge+1);}break;
+                case "DrowsySeer": if (walking) Charge(delta * .4f); break;
+                case "RootOracle": case "VerdantMatron": if (near) Charge(delta); break;
+                case "CopperCauldron": if (IdentityTarget(Champion.Position, 3) != null) Charge(delta); break;
+                case "CometRunner": case "CitrusMarshal": case "MoonProwler": Charge(moved); break;
+                case "StormFencer": IdentityNearMiss(); if (near) Charge(delta * .4f); break;
+                case "ButtonCavalier": case "MirrorKeeper": IdentityNearMiss(); break;
+                case "ChinaMarionette": while (identityRecovered >= 6) { identityRecovered -= 6; Charge(1); } break;
+                case "RainArchivist": if (identityRecovered >= 4) { identityRecovered = 0; IdentityAddPage(2); } break;
                 case "SoapSkater":
-                    if(walking && movement.sqrMagnitude>.01f && Elapsed>=identitySecondAt)
+                    if (walking && movement.sqrMagnitude > .01f && Elapsed >= identitySecondAt)
                     {
-                        Vector2 before=identityGhost; Vector2 heading=movement.normalized;
-                        if(before.sqrMagnitude>.1f && Vector2.Dot(before,heading)<.574f)
+                        Vector2 heading = movement.normalized;
+                        if (identityGhost.sqrMagnitude > .1f && Vector2.Dot(identityGhost, heading) < .574f)
                         {
-                            identityCharge++;identitySecondAt=Elapsed+1.2f;
-                            float power=IdentityPower*(identityCharge>=3?1.8f:.7f);float size=identityCharge>=3?1.4f:.9f;
-                            if(IdentityApproach==0)IdentityHit(MorphGeometry.Line,Champion.PreviousPosition-heading,Champion.Position+heading,0,power,.65f,slow:.7f,push:.2f);
-                            else if(IdentityApproach==1)IdentityHit(MorphGeometry.Crescent,Champion.Position,Champion.Position+heading,size,power,.65f,slow:.7f,push:.25f);
-                            else IdentityHit(MorphGeometry.Disc,Champion.Position+heading*(size+.6f),Champion.Position+heading*(size+1.2f),size,power,.65f,slow:.7f,push:.25f); // the splash lands ahead of the skater
-                            if(identityCharge>=3)identityCharge=0;IdentityCast();
+                            Charge(1); identitySecondAt = Elapsed + 1.2f;
+                            // the bubble left on the turn slows and gently pushes (a passive: it barely hurts)
+                            IdentityHit(MorphGeometry.Disc, Champion.Position, Champion.Position + heading, .9f, IdentityPower * .15f, .65f, 3, slow: .7f, push: .2f);
                         }
-                        identityGhost=heading;
-                    }
-                    break;
-                case "VelvetRegent": case "TinVirtuoso":
-                    if(identityCharge>=HeroIdentityRequired && target!=null && Elapsed>=identityAt)
-                    { IdentityPerform(IdentityPower*1.3f,IdentityId=="VelvetRegent"?3:IdentityApproach==0?1:IdentityApproach==1?2:4);identityCharge=0;identityAt=Elapsed+ (IdentityId=="VelvetRegent"?4:1.5f);IdentityCast(); }
-                    break;
-                case "ButtonCavalier": IdentityNearMiss(); break;
-                case "NightMaw":
-                    if(identityCharge>=3 && target!=null && Vector2.Distance(target.Position,Champion.Position)<=3.5f && Elapsed>=identityAt)
-                    { IdentityPattern(target,IdentityPower*1.2f,IdentityApproach==0?0:1,origin:IdentityApproach==2?Champion.Position-Champion.Facing:Champion.Position);identityCharge=0;identityAt=Elapsed+2.5f;IdentityCast(); }
-                    break;
-                case "ThornTreasurer":
-                    // a full crown overflows: with 4 thorns and an enemy within 2.5 units, one thorn answers by itself (3s)
-                    if(identityCharge>=4 && Elapsed>=identityAt)
-                    { var near=IdentityTarget(Champion.Position,2.5f); if(near!=null){identityCharge--;identityAt=Elapsed+3;IdentityPattern(near,IdentityPower*1.3f);IdentityCast();} }
-                    break;
-                case "IvorySovereign":
-                    if(identityCharge>=3 && target!=null && Elapsed>=identityAt)
-                    { if(IdentityApproach==1)IdentityHit(MorphGeometry.Seal,target.Position,target.Position,1.5f,IdentityPower);else IdentityPattern(target,IdentityPower,IdentityApproach==0?0:2);identityCharge=0;identityAt=Elapsed+1;IdentityCast(); }
-                    break;
-                case "PetalCitadel":
-                    identityCharge=Mathf.Min(4,identityCharge);
-                    if(identityCharge>=4 && target!=null && Elapsed>=identityAt){ReleaseIdentityPetals(target);identityCharge=0;identityAt=Elapsed+3;IdentityCast();}break;
-                case "PatchworkHost":
-                    if(identityLead==null || !identityLead.Alive)identityLead=units.Find(u=>u.Faction==Faction.Companion && u.Alive);
-                    if(identityCharge>=4 && target!=null && identityLead!=null && Elapsed>=identityAt)
-                    {
-                        float budget=Mathf.Min(IdentityPower*2.2f,identityLead.Definition.Weapon.Damage*1.1f);
-                        if(IdentityApproach==1){IdentityEcho(identityLead,target,budget*.5f);IdentityEcho(identityLead,target,budget*.5f,true);}
-                        else if(IdentityApproach==2)IdentityHit(MorphGeometry.Crescent,Champion.Position,target.Position,2.2f,budget);
-                        else IdentityEcho(identityLead,target,budget,true);
-                        if(identityLead.Definition.Passive==PassiveKind.HealChampion)Heal(2,IdentityCause());
-                        IdentityGlyph(MorphGeometry.Line,identityLead.Position,Champion.Position,0,.6f,role:HeroGlyphRole.Link);identityCharge=0;identityAt=Elapsed+3;IdentityCast();
-                    }
-                    break;
-                case "ArchiveCurator":
-                    if(identitySpecimens.Count>0 && target!=null && Elapsed>=identityAt)
-                    {
-                        float budget=IdentityPower*3f/identitySpecimens.Count;
-                        foreach(var specimen in identitySpecimens)
-                        {
-                            if(specimen.Weapon.Kind==WeaponKind.Projectile)IdentityShot(Champion.Position,target.Position-Champion.Position,budget,3,element:specimen.Weapon.Element);
-                            else IdentityPattern(target,budget,specimen.Behavior==EnemyBehavior.Charger || specimen.Behavior==EnemyBehavior.Door?0:1);
-                        }
-                        if(IdentityApproach==2){identitySpecimens.Clear();identityCharge=0;}
-                        identityAt=Elapsed+6;IdentityCast();
-                    }
-                    break;
-                case "PennyBroker":
-                    if(identityCharge>=10 && target!=null && Elapsed>=identityAt){IdentityHit(MorphGeometry.Seal,target.Position,target.Position,.8f,IdentityPower*1.45f);identityCharge=0;identityAt=Elapsed+3;IdentityCast();}break;
-                case "StormFencer":
-                    IdentityNearMiss();if(target!=null && Vector2.Distance(target.Position,Champion.Position)<6)identityCharge=Mathf.Min(3,identityCharge+delta*.4f);
-                    if(identityCharge>=3 && target!=null && Elapsed>=identityAt){IdentityPattern(target,IdentityPower*2.8f,element:DamageElement.Arcane);identityCharge=0;identityAt=Elapsed+3;IdentityCast();}break;
-                case "MoonProwler":
-                    // ready: the shadow waits behind the nearest enemy; the next basic attack (IdentityAttackDamage) releases it
-                    identityCharge=Mathf.Min(5,identityCharge+moved);
-                    if(identityCharge>=5 && target!=null){identityBounty=target;Vector2 toHero=Champion.Position-target.Position;if(toHero.sqrMagnitude>.0001f)identityGhost=toHero.normalized;identityRearSpent=false;}
-                    if(identityCharge>=5 && identityBounty!=null && Elapsed>=identityTickAt){IdentityGlyph(MorphGeometry.Line,identityBounty.Position,identityBounty.Position-identityGhost*1.1f,0,.4f,role:HeroGlyphRole.Mark);identityTickAt=Elapsed+.35f;}
-                    break;
-                case "LanternWeaver":
-                    identityCharge=identityMarks.Count;
-                    if(identityCounter>0 && identityMarks.Count>0 && Elapsed>=identityAt)
-                    {
-                        Vector2 previous=IdentityApproach==1?Champion.Position:identityMarks[identityMarks.Count-1].Target.Position;
-                        float total=IdentityPower*(IdentityApproach==2?3.6f:IdentityApproach==1?3.4f:3.8f);
-                        foreach(var m in identityMarks){if(IdentityApproach==2)IdentityHit(MorphGeometry.Crescent,m.Target.Position,Champion.Position,1.4f,total/identityMarks.Count,.35f,slow:.3f);else IdentityHit(MorphGeometry.Line,previous,m.Target.Position,0,total/identityMarks.Count,.25f,slow:.3f,push:IdentityApproach==1?-.15f:0);previous=m.Target.Position;}
-                        identityMarks.Clear();identityCounter=0;identityAt=Elapsed+2.4f;IdentityCast();
-                    }
-                    break;
-                case "HourglassStag":
-                    if(identityBank>0 && identityBankAt>=0 && Elapsed-identityBankAt>=(IdentityApproach==0?4:IdentityApproach==1?2.5f:5) && target!=null)
-                    {
-                        // the debt is collected from the enemy it was borrowed against, with interest
-                        UnitState debtor=identityDebtor!=null && identityDebtor.Alive && CanHit(Faction.Champion,identityDebtor)?identityDebtor:target;
-                        if(IdentityApproach==1)IdentityHit(MorphGeometry.Disc,debtor.Position,debtor.Position,1.4f,identityBank*2.6f,.2f);
-                        else if(IdentityApproach==2)IdentityShot(Champion.Position,debtor.Position-Champion.Position,identityBank*3.2f,3,element:DamageElement.Frost,homingTarget:debtor.Id);
-                        else IdentityHit(MorphGeometry.Disc,debtor.Position,debtor.Position,.6f,identityBank*3.2f,.2f);
-                        identityBank=identityCharge=0;identityBankAt=-1;identityDebtor=null;IdentityCast();
-                    }
-                    break;
-                case "RainArchivist":
-                    if(identityRecovered>=4){identityRecovered=0;IdentityAddPage(2);}
-                    if(identityPages.Count>=3 && target!=null && Elapsed>=identityAt)
-                    {
-                        int healing=0,chests=0;foreach(int p in identityPages){if(p==2)healing++;if(p==3)chests++;}
-                        int shots=Mathf.Min(6,3+chests+(IdentityApproach==1?1:0));
-                        IdentityShot(Champion.Position,target.Position-Champion.Position,IdentityPower*4.5f,shots,IdentityApproach==2?24:14,DamageElement.Frost);
-                        if(healing>0 || IdentityApproach==2)Heal(Mathf.Min(4,healing+1),IdentityCause());
-                        identityPages.Clear();identityCharge=0;identityAt=Elapsed+3;IdentityCast();
+                        identityGhost = heading;
                     }
                     break;
             }
-            identityCharge=Mathf.Clamp(identityCharge,0,HeroIdentityRequired);
         }
-        private void ProcessIdentityRoots(UnitState target)
+
+        /// <summary>The hero passives that act by themselves.</summary>
+        private void ProcessKitPassives(float delta, Vector2 movement, bool walking, float moved, UnitState target)
         {
-            identityCharge=Mathf.Min(3,Mathf.Max(0,Elapsed-identityAt));
-            if(Elapsed>=identityTickAt)
+            HeroKit k = Kit; if (k == null) return;
+            if (k.Has(KitPassive.StillNextAttack)) { if (identityStill >= .5f) kitStillArmed = 1; }
+            if (k.Has(KitPassive.LidCatch) && identityStill >= .5f && Elapsed >= kitLidAt && CatchIdentityBullet(Champion.Position, 1.6f)) kitLidAt = Elapsed + k.Value(KitPassive.LidCatch);
+            if (k.Has(KitPassive.RootCatch))
             {
-                identityTickAt=Elapsed+.4f;
-                for(int i=0;i<3;i++){Vector2 p=Champion.Position+(Vector2)(Quaternion.Euler(0,0,90+i*120)*Vector2.right)*1.8f;IdentityGlyph(MorphGeometry.Line,Champion.Position,p,0,.45f,role:HeroGlyphRole.Ambient);IdentityGlyph(MorphGeometry.Seal,p,p,.2f,.45f,role:HeroGlyphRole.Ambient);}
+                if (Elapsed >= kitRootAt && CatchIdentityBullet(Champion.Position, 2f)) kitRootAt = Elapsed + k.Value(KitPassive.RootCatch);
+                if (Elapsed >= identityTickAt)
+                {
+                    identityTickAt = Elapsed + .4f;
+                    for (int i = 0; i < 3; i++) { Vector2 p = Champion.Position + (Vector2)(Quaternion.Euler(0, 0, 90 + i * 120) * Vector2.right) * 1.8f; IdentityGlyph(MorphGeometry.Seal, p, p, .2f, .45f, role: HeroGlyphRole.Ambient); }
+                }
             }
-            if(identityCharge<3 || target==null)return;
-            Vector2 root=Champion.Position+(Vector2)(Quaternion.Euler(0,0,90+(identityCycle++%3)*120)*Vector2.right)*1.8f;
-            var threat=IdentityTarget(root,4);if(threat==null)return;
-            if(IdentityApproach==0)CatchIdentityBullet(root,2);
-            if(IdentityApproach==2)Heal(2,IdentityCause());
-            IdentityHit(IdentityApproach==1?MorphGeometry.Line:MorphGeometry.Disc,root,threat.Position,1.3f,IdentityPower*(IdentityApproach==1?1.5f:IdentityApproach==0?.8f:1.3f),slow:.7f);
-            identityAt=Elapsed;identityCharge=0;IdentityCast();
+            if (k.Has(KitPassive.HealWhileStill) && identityStill >= .5f && Elapsed >= kitHealAt) { kitHealAt = Elapsed + k.Value(KitPassive.HealWhileStill); Heal(1, IdentityCause()); }
+            if (k.Has(KitPassive.MirrorCatch) && identityReflections.Count < 1 && Elapsed >= identitySecondAt)
+            {
+                for (int i = projectiles.Count - 1; i >= 0; i--)
+                {
+                    var p = projectiles[i]; if (p.Faction != Faction.Enemy || (p.Position - Champion.Position).sqrMagnitude > 1.4f * 1.4f) continue;
+                    identityReflections.Add(new IdentityReflection { Direction = -p.Velocity.normalized, Element = p.Element }); HeroIdentityPrevented += p.Damage;
+                    IdentityGlyph(MorphGeometry.Ring, p.Position, Champion.Position, .35f, .35f, role: HeroGlyphRole.Catch); projectiles.RemoveAt(i);
+                    identitySecondAt = Elapsed + k.Value(KitPassive.MirrorCatch); identityBankAt = Elapsed; Charge(1); break;
+                }
+                if (identityReflections.Count > 0 && Elapsed - identityBankAt >= 2 && target != null) ReleaseIdentityReflections();
+            }
+            if (k.Has(KitPassive.BountyGold) && (identityBounty == null || !identityBounty.Alive)) identityBounty = target;
+            if (k.Has(KitPassive.TimeDebt)) CollectDebt(target);
         }
-        private void CatchIdentityBullet(Vector2 position,float radius)
+
+        /// <summary>HourglassStag's time debt: the deferred damage is collected from its debtor with interest.</summary>
+        private void CollectDebt(UnitState target)
         {
-            for(int i=projectiles.Count-1;i>=0;i--)if(projectiles[i].Faction==Faction.Enemy && (projectiles[i].Position-position).sqrMagnitude<=radius*radius){HeroIdentityPrevented+=projectiles[i].Damage;projectiles.RemoveAt(i);IdentityGlyph(MorphGeometry.Ring,position,position,.6f,.3f,role:HeroGlyphRole.Catch);return;}
+            if (identityBank <= 0 || identityBankAt < 0 || target == null) return;
+            float wait = IdentityApproach == 1 ? 2.5f : IdentityApproach == 2 ? 5 : 4;
+            if (Elapsed - identityBankAt < wait) return;
+            UnitState debtor = identityDebtor != null && identityDebtor.Alive && CanHit(Faction.Champion, identityDebtor) ? identityDebtor : target;
+            float interest = IdentityApproach == 1 ? 2.2f : 2.6f;
+            if (IdentityApproach == 2) IdentityShot(Champion.Position, debtor.Position - Champion.Position, identityBank * interest, 3, element: DamageElement.Frost, homingTarget: debtor.Id);
+            else IdentityHit(MorphGeometry.Disc, debtor.Position, debtor.Position, IdentityApproach == 1 ? 1.4f : .6f, identityBank * interest, .2f);
+            identityBank = 0; identityBankAt = -1;
+        }
+
+        private bool CatchIdentityBullet(Vector2 position, float radius)
+        {
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+                if (projectiles[i].Faction == Faction.Enemy && (projectiles[i].Position - position).sqrMagnitude <= radius * radius)
+                { HeroIdentityPrevented += projectiles[i].Damage; projectiles.RemoveAt(i); IdentityGlyph(MorphGeometry.Ring, position, position, .6f, .3f, role: HeroGlyphRole.Catch); return true; }
+            return false;
         }
         private void ReleaseIdentityReflections()
         {
-            var target=IdentityTarget(Champion.Position);if(target==null || identityReflections.Count==0 || Elapsed<identityAt)return;
-            int count=identityReflections.Count;
-            for(int i=0;i<count;i++)
+            var target = IdentityTarget(Champion.Position); if (target == null || identityReflections.Count == 0 || Elapsed < identityAt) return;
+            int count = identityReflections.Count;
+            for (int i = 0; i < count; i++)
             {
-                Vector2 dir=IdentityApproach==1?identityReflections[i].Direction:IdentityApproach==2?(Vector2)(Quaternion.Euler(0,0,(i-(count-1)*.5f)*Mathf.Min(24,120f/count))*(target.Position-Champion.Position).normalized):(Vector2)(Quaternion.Euler(0,0,(i-(count-1)*.5f)*15)*(target.Position-Champion.Position).normalized);
-                // each borrowed shot is returned with 60% W of its own
-                IdentityShot(Champion.Position,dir,IdentityPower*.6f,element:identityReflections[i].Element);
+                Vector2 dir = IdentityApproach == 1 ? identityReflections[i].Direction : (Vector2)(Quaternion.Euler(0, 0, (i - (count - 1) * .5f) * 15) * (target.Position - Champion.Position).normalized);
+                IdentityShot(Champion.Position, dir, IdentityPower * .4f, element: identityReflections[i].Element);
             }
-            identityReflections.Clear();identityCharge=0;identityAt=Elapsed+1;identityBankAt=-1;IdentityCast();
-        }
-        private void ReleaseIdentityPetals(UnitState target)
-        {
-            int grown=0,total=0;for(int i=0;i<4;i++){if(catalog.HeroPetals[i]>0)grown++;total+=catalog.HeroPetals[i];}
-            float budget=IdentityPower*(1.5f+Mathf.Min(.9f,total*.08f));
-            Vector2 dir=(target.Position-Champion.Position).normalized,side=new Vector2(-dir.y,dir.x);
-            for(int i=0;i<4;i++)
-            {
-                Vector2 at=target.Position+(i%2==0?side:dir)*(i<2?-.8f:.8f);
-                IdentityHit(IdentityApproach==1?MorphGeometry.Line:MorphGeometry.Disc,IdentityApproach==1?Champion.Position:at,at,.65f+Mathf.Min(3,catalog.HeroPetals[i])*.1f,budget/4,.18f+i*.12f,element:i==3?DamageElement.Frost:DamageElement.Physical);
-            }
-            if(grown==4)IdentityHit(MorphGeometry.Ring,target.Position,target.Position,1.5f,IdentityPower*.5f,.8f);
-            if(catalog.HeroPetals[2]>0)Heal(Mathf.Min(3,catalog.HeroPetals[2]),IdentityCause());
-            if(IdentityApproach==2 && catalog.HeroPetals[1]>0)CatchIdentityBullet(Champion.Position,2.5f);
+            identityReflections.Clear(); identityAt = Elapsed + 1; identityBankAt = -1;
         }
     }
 }

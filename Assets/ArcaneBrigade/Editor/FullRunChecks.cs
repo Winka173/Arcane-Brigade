@@ -95,7 +95,7 @@ namespace ArcaneBrigade.Editor
                 UnitDefinition ranked = session.PrepareCombat().StartingCompanions[0];
                 Check(ranked.Weapon.Damage >= catalog.Weapon(session.State.Roster[0].WeaponId).Damage * 3f, "Merged unit has meaningful damage growth without slot cap", results);
                 Check(Mathf.Abs(ranked.PassiveStrength - catalog.Companions[0].PassiveStrength * 3f) < 0.001f, "Merge preserves three copies of healing potency", results);
-                foreach (string tag in catalog.Companions[0].Tags) Check(session.BondCounts[tag] == 1, "Bond counts bodies not stars: " + tag, results);
+                foreach (string tag in catalog.Companions[0].Tags) Check(session.BondCounts[tag] - session.KitBondExtra(tag) == 1, "Bond counts bodies not stars (besides the hero kit's extra members): " + tag, results);
                 session.Validate(session.State);
                 var invalid = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(session.State));
                 invalid.Roster.Add(invalid.Roster[0]);

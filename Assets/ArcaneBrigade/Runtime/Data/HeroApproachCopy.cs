@@ -6,7 +6,19 @@ namespace ArcaneBrigade
     public static class HeroApproachCopy
     {
         public const string DamageRules = "DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this mechanic. Extra area attacks share their stated total among at most 3 targets per shape; they do not deal that total to every target. Areas are capped (circles 1.6, rings 1.8, sweeps 2.4, lines 4.5 units) and the painted area is exactly the area that hits. Basic attacks and normal damage modifiers remain separate. Extra hits cannot recursively trigger this mechanic. Bosses ignore push/pull and this mechanic's explicit slow lasts at most 0.3s. Healing follows your hero's normal restrictions.";
-        public static string[] For(string id) => id switch
+        /// <summary>The three approaches of a hero's transformation (18/10/2026): focused, spread wide, or lasting.</summary>
+        public static string[] For(string id)
+        {
+            HeroKit kit = HeroKits.For(id);
+            if (kit == null) return Legacy(id);
+            string name = kit.Transformation;
+            return new[] {
+                name + " focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.",
+                name + " spreads: the same strikes reach up to 5 targets each at their usual strength. Best against crowds and swarms.",
+                name + " lasts 1.5s longer and heals you 1 HP every 2s while it runs; its strikes deal 15% less. Best when you need to hold on." };
+        }
+        /// <summary>The approaches as they read before hero kits (kept for heroes without a kit).</summary>
+        private static string[] Legacy(string id) => id switch
         {
             "LanternKnight" => new[] {
                 "At 8 sparks, up to 3 friends share 180% W in weapon-shaped responses, followed by a 60% W line toward the target. 4s cooldown.",

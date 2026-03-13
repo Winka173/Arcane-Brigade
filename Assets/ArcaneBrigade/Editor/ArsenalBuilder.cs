@@ -87,10 +87,51 @@ namespace ArcaneBrigade.Editor
                 status.Add("FRAME PAINTED " + rarity);
             }
             MeasureInk(pieces);
+            MeasureGaugeWindows();
             AssetDatabase.SaveAssets();
             Directory.CreateDirectory("PreviewExports/Arsenal");
             File.WriteAllLines("PreviewExports/Arsenal/Art_Status.txt", status);
             ApplyHeroes();
+        }
+
+        /// <summary>For every painted hero gauge pair (Gauge_&lt;Hero&gt;_Empty / _Full), measures the rows where the two paintings
+        /// differ (the window the fill rises in) as fractions of the empty vessel's painted height, into HeroGaugeArtwork.</summary>
+        private static void MeasureGaugeWindows()
+        {
+            const string path = "Assets/ArcaneBrigade/Resources/HeroGaugeArtwork.asset";
+            var asset = AssetDatabase.LoadAssetAtPath<HeroGaugeArtwork>(path);
+            if (asset == null) { asset = ScriptableObject.CreateInstance<HeroGaugeArtwork>(); AssetDatabase.CreateAsset(asset, path); }
+            var windows = new List<HeroGaugeArtwork.Window>();
+            foreach (string empty in Directory.GetFiles("Assets/ArcaneBrigade/Art/Arsenal", "Gauge_*_Empty_v1.png"))
+            {
+                string hero = Path.GetFileName(empty).Substring("Gauge_".Length).Replace("_Empty_v1.png", "");
+                string full = empty.Replace("_Empty_v1.png", "_Full_v1.png");
+                if (!File.Exists(full)) continue;
+                var a = new Texture2D(2, 2, TextureFormat.RGBA32, false); var b = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                try
+                {
+                    if (!a.LoadImage(File.ReadAllBytes(empty)) || !b.LoadImage(File.ReadAllBytes(full)) || a.width != b.width || a.height != b.height) continue;
+                    Color32[] pa = a.GetPixels32(), pb = b.GetPixels32(); int w = a.width, h = a.height;
+                    int inkLow = h, inkHigh = -1, low = h, high = -1;
+                    for (int y = 0; y < h; y++)
+                    {
+                        int differing = 0; bool ink = false;
+                        for (int x = 0; x < w; x += 2)
+                        {
+                            Color32 ca = pa[y * w + x], cb = pb[y * w + x];
+                            if (ca.a > 16) ink = true;
+                            if (Mathf.Abs(ca.r - cb.r) + Mathf.Abs(ca.g - cb.g) + Mathf.Abs(ca.b - cb.b) > 120) differing++;
+                        }
+                        if (ink) { inkLow = Mathf.Min(inkLow, y); inkHigh = Mathf.Max(inkHigh, y); }
+                        if (differing > 6) { low = Mathf.Min(low, y); high = Mathf.Max(high, y); }
+                    }
+                    if (inkHigh <= inkLow || high <= low) continue;
+                    float span = inkHigh - inkLow;
+                    windows.Add(new HeroGaugeArtwork.Window { Hero = hero, Low = (low - inkLow) / span, High = (high - inkLow) / span });
+                }
+                finally { UnityEngine.Object.DestroyImmediate(a); UnityEngine.Object.DestroyImmediate(b); }
+            }
+            asset.Windows = windows.ToArray(); EditorUtility.SetDirty(asset);
         }
 
         /// <summary>Records each Arsenal painting's ink box (its painted pixels, not the transparent canvas) in SpriteInkMetrics,

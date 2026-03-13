@@ -24,7 +24,7 @@ namespace ArcaneBrigade.Editor
 
         private sealed class Sample
         {
-            public string Hero; public int Approach, Wave, Seed; public float W, MaxHp, Elapsed, Hp, HpOff, Value, Share, Damage, Net, Heal, Prevented, Gold, Basic, Casts, Kills, KillsOff, Total, TotalOff; public bool Dead, DeadOff;
+            public string Hero; public int Approach, Wave, Seed; public float W, MaxHp, Elapsed, Hp, HpOff, Value, Share, Damage, Net, Heal, Prevented, Gold, Basic, Casts, Kills, KillsOff, Total, TotalOff, Awake, TeamBonus; public bool Dead, DeadOff;
         }
 
         public static void Run()
@@ -59,17 +59,17 @@ namespace ArcaneBrigade.Editor
             {
                 Key = g.Key, Wps = g.Average(s => s.Value / Mathf.Max(1, s.Elapsed)), Share = g.Average(s => s.Share),
                 Casts = g.Average(s => s.Casts / Mathf.Max(1, s.Elapsed) * 60), Basic = g.Average(s => s.Basic / s.W / Mathf.Max(1, s.Elapsed)), Hp = g.Average(s => s.Hp), HpOff = g.Average(s => s.HpOff),
-                Dead = g.Count(s => s.Dead), DeadOff = g.Count(s => s.DeadOff), Kills = g.Average(s => s.Kills), KillsOff = g.Average(s => s.KillsOff), N = g.Count()
+                Awake = g.Average(s => s.Awake), TeamBonus = g.Average(s => s.TeamBonus), Dead = g.Count(s => s.Dead), DeadOff = g.Count(s => s.DeadOff), Kills = g.Average(s => s.Kills), KillsOff = g.Average(s => s.KillsOff), N = g.Count()
             }).ToList();
             float median = Median(groups.Select(g => g.Wps).ToList());
-            var summary = new List<string> { "hero\tapproach\tvalue_Wps\tratio_to_median\tvs_basic\tshare_of_team\tcasts_per_min\thp_on\thp_off\tdeaths_on\tdeaths_off\tkills_on\tkills_off\tflag" };
+            var summary = new List<string> { "hero\tapproach\tvalue_Wps\tratio_to_median\tvs_basic\tshare_of_team\tcasts_per_min\thp_on\thp_off\tdeaths_on\tdeaths_off\tkills_on\tkills_off\tawake_share\tpassive_bonus_share\tflag" };
             var md = new List<string> { "# Hero mechanic balance — " + label, "", "Median mechanic value: **" + F(median) + " W/s** (W = hero weapon damage). Target band 0.6x–1.6x median.", "", "| Hero | Approach | W/s | x median | vs own basics | team share | casts/min | HP on/off | deaths on/off | flag |", "|---|---|---|---|---|---|---|---|---|---|" };
             int outside = 0;
             foreach (var g in groups)
             {
                 float ratio = median <= 0 ? 0 : g.Wps / median;
                 string flag = ratio > 1.6f ? "HIGH" : ratio < .6f ? "LOW" : "ok"; if (flag != "ok") outside++;
-                summary.Add(string.Join("\t", g.Key, F(g.Wps), F(ratio), F(g.Basic > 0 ? g.Wps / g.Basic : 0), F(g.Share), F(g.Casts), F(g.Hp), F(g.HpOff), g.Dead, g.DeadOff, F(g.Kills), F(g.KillsOff), flag));
+                summary.Add(string.Join("\t", g.Key, F(g.Wps), F(ratio), F(g.Basic > 0 ? g.Wps / g.Basic : 0), F(g.Share), F(g.Casts), F(g.Hp), F(g.HpOff), g.Dead, g.DeadOff, F(g.Kills), F(g.KillsOff), F(g.Awake), F(g.TeamBonus), flag));
                 string[] k = g.Key.Split('\t');
                 md.Add("| " + k[0] + " | " + k[1] + " | " + F(g.Wps) + " | " + F(ratio) + " | " + (g.Basic > 0 ? (g.Wps / g.Basic * 100).ToString("0", CultureInfo.InvariantCulture) + "%" : "-") + " | " + (g.Share * 100).ToString("0.0", CultureInfo.InvariantCulture) + "% | " + F(g.Casts) + " | " + F(g.Hp) + " / " + F(g.HpOff) + " | " + g.Dead + " / " + g.DeadOff + " | " + flag + " |");
             }
@@ -102,7 +102,16 @@ namespace ArcaneBrigade.Editor
             if (!identity) { combat.EnableHeroIdentities = false; combat.EnableHeroMechanics = false; }
             var sim = new CombatSimulation(combat); sim.Start(unchecked(seed + wave * 397));
             float w = Mathf.Max(1, combat.Champion.Weapon.Damage);
-            for (int tick = 0; tick < 1200 && sim.Phase == RunPhase.Combat; tick++) sim.Step(.05f, Steer(sim));
+            float awake = 0, seen = 0;
+            for (int tick = 0; tick < 1200 && sim.Phase == RunPhase.Combat; tick++)
+            {
+                bool transformed = identity && sim.HeroAwakening;
+                sim.Step(.05f, Steer(sim));
+                if (!identity) continue;
+                // mechanic damage dealt in a step that began transformed belongs to the transformation; the rest to the passives
+                float now = 0; foreach (var entry in sim.Contributions) if (entry.EffectId != null && entry.EffectId.StartsWith("hero-identity-", StringComparison.Ordinal)) now += entry.Damage;
+                if (transformed) awake += now - seen; seen = now;
+            }
             var sample = new Sample { Hero = hero.Id, Approach = approach, Wave = wave, Seed = seed, W = w, MaxHp = Mathf.Max(1, sim.Champion.Definition.Health), Elapsed = Mathf.Max(1, sim.Elapsed) };
             sample.Hp = Mathf.Clamp01(sim.Champion.Health / Mathf.Max(1, sim.Champion.Definition.Health));
             sample.Dead = !sim.Champion.Alive || sim.Phase == RunPhase.Defeat; sample.Kills = sim.Kills;
@@ -114,11 +123,13 @@ namespace ArcaneBrigade.Editor
             }
             if (identity)
             {
-                float net = sample.Damage - sim.HeroIdentityReplacedDamage - sim.HeroIdentityDeferredDamage + sim.HeroIdentityBonusDamage;
+                // conditional % passives (the hero's and the team's) are reported apart as shares of all damage, not as mechanic value
+                float net = sample.Damage - sim.HeroIdentityReplacedDamage - sim.HeroIdentityDeferredDamage;
                 sample.Net = net; sample.Prevented = sim.HeroIdentityPrevented; sample.Gold = sim.HeroIdentityGold;
                 sample.Value = net / w + HpWorth * (sample.Heal + PreventHit * sample.Prevented) / sample.MaxHp + GoldValue * sample.Gold;
                 sample.Share = sample.Total > 0 ? Mathf.Max(0, net) / sample.Total : 0;
-                sample.Casts = sim.HeroIdentityActivations;
+                sample.Casts = sim.HeroIdentityActivations; sample.Awake = sample.Damage > 0 ? awake / sample.Damage : 0;
+                sample.TeamBonus = sample.Total > 0 ? (sim.HeroKitTeamBonusDamage + sim.HeroIdentityBonusDamage) / sample.Total : 0;
             }
             return sample;
         }

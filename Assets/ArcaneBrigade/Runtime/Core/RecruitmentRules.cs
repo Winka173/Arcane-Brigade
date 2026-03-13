@@ -4,7 +4,7 @@ namespace ArcaneBrigade
 {
     public sealed partial class RunSession
     {
-        public int NewRecruitLimit => 1;
+        public int NewRecruitLimit => 1 + KitNewRecruits;
         public int CompanionLimit => int.MaxValue;
         public const int CompanionPurchaseLimit = 3;
         public int CompanionPurchasesRemaining => Math.Max(0, CompanionPurchaseLimit - State.NewRecruitsThisWave);

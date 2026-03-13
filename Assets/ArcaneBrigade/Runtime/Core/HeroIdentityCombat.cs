@@ -46,6 +46,8 @@ namespace ArcaneBrigade
         public int HeroIdentityActivations { get; private set; }
         /// <summary>Measurement only (diagnostics read these): value the mechanic adds outside its own damage ledger.</summary>
         public float HeroIdentityBonusDamage { get; private set; }
+        /// <summary>Damage the kit's team passives added to friends' hits.</summary>
+        public float HeroKitTeamBonusDamage { get; private set; }
         public float HeroIdentityDeferredDamage { get; private set; }
         public float HeroIdentityReplacedDamage { get; private set; }
         public float HeroIdentityPrevented { get; private set; }
@@ -77,21 +79,25 @@ namespace ArcaneBrigade
         public int HeroIdentityApproach => IdentityApproach;
         public int HeroIdentitySpecimens => identitySpecimens.Count;
         public float HeroIdentityCharge => identityCharge;
+        /// <summary>How much of the hero's own resource one gauge tier takes (three tiers transform).</summary>
         public float HeroIdentityRequired => IdentityId switch {
-            "LanternKnight" => 8, "Postmaster" => 3, "DrowsySeer" => 4, "RootOracle" => 3,
-            "LoneJelly" => 3, "GlassDice" => 6, "TideSinger" => 3, "CometRunner" => 10,
-            "MirrorKeeper" => 3, "TreasureAcorn" => 3, "VerdantMatron" => 6, "CopperCauldron" => 6,
-            "ChinaMarionette" => 3, "SoapSkater" => 3, "VelvetRegent" => 6, "ButtonCavalier" => 3,
-            "NightMaw" => 3, "ThornTreasurer" => 4, "CitrusMarshal" => 8, "IvorySovereign" => 3,
-            "PetalCitadel" => 4, "PatchworkHost" => 4, "ArchiveCurator" => 3, "PennyBroker" => 10,
-            "StormFencer" => 3, "TinVirtuoso" => 2 + IdentityApproach * 2, "MoonProwler" => 5,
-            "SupperMortar" => 2, "LanternWeaver" => 3, "HourglassStag" => IdentityPower * 3,
+            "LanternKnight" => 8, "Postmaster" => 4, "DrowsySeer" => 4, "RootOracle" => 4,
+            "LoneJelly" => 4, "GlassDice" => 8, "TideSinger" => 4, "CometRunner" => 10,
+            "MirrorKeeper" => 3, "TreasureAcorn" => 3, "VerdantMatron" => 5, "CopperCauldron" => 6,
+            "ChinaMarionette" => 2, "SoapSkater" => 3, "VelvetRegent" => 8, "ButtonCavalier" => 3,
+            "NightMaw" => 4, "ThornTreasurer" => 4, "CitrusMarshal" => 10, "IvorySovereign" => 3,
+            "PetalCitadel" => 5, "PatchworkHost" => 4, "ArchiveCurator" => 3, "PennyBroker" => 10,
+            "StormFencer" => 3, "TinVirtuoso" => 6, "MoonProwler" => 8,
+            "SupperMortar" => 5, "LanternWeaver" => 3, "HourglassStag" => 4,
             "RainArchivist" => 3, _ => 1 };
         public string HeroIdentityStatus
         {
             get
             {
                 if (!HeroIdentityEnabled) return "";
+                if (HeroAwakening && Kit != null) return Kit.Transformation + " " + (awakenUntil - Elapsed).ToString("0.0") + "s";
+                if (HeroAwakenCooling) return "RESTING";
+                if (Kit != null) return "TIER " + HeroAwakenTier + "/3  " + Mathf.FloorToInt(identityCharge) + "/" + HeroIdentityRequired.ToString("0") + " " + HeroIdentities.For(IdentityId).Resource.ToUpperInvariant();
                 if (IdentityId == "GlassDice") return "NEXT FACE " + identityFace + " / " + Mathf.FloorToInt(identityCharge) + "/6 GOLD";
                 if (IdentityId == "MirrorKeeper") return identityReflections.Count + "/3 REFLECTIONS";
                 if (IdentityId == "DrowsySeer" && identityGhostUntil > Elapsed) return "DREAM " + (identityGhostUntil - Elapsed).ToString("0.0") + "s";
@@ -114,9 +120,9 @@ namespace ArcaneBrigade
             identityFace = Mathf.Clamp(catalog.HeroDiceFace, 1, 6); identityThorns = Mathf.Clamp(catalog.HeroWallet / 30, 0, 4);
             identityBounty = identityLead = identityDebtor = null; identityRearSpent = false;
             HeroIdentityActivations = 0; HeroIdentityLastCast = -100;
-            HeroIdentityBonusDamage = HeroIdentityDeferredDamage = HeroIdentityReplacedDamage = HeroIdentityPrevented = 0; HeroIdentityGold = 0;
+            HeroIdentityBonusDamage = HeroKitTeamBonusDamage = HeroIdentityDeferredDamage = HeroIdentityReplacedDamage = HeroIdentityPrevented = 0; HeroIdentityGold = 0;
             identityTrail.Add(Champion.Position);
-            ResetAwakening();
+            ResetAwakening(); ResetKit();
             if (!HeroIdentityEnabled) return;
             foreach (UnitState u in units)
             {
@@ -138,7 +144,6 @@ namespace ArcaneBrigade
             HeroIdentityActivations++; HeroIdentityLastCast = Elapsed; Champion.LastSupport = Elapsed;
             var cause = IdentityCause(); RecordActivation(cause);
             events.Add(new CombatEvent(CombatEventKind.HeroIdentityCast, Champion.Position, Faction.Champion, subject: Champion, cause: cause));
-            AwakenOnCast();
         }
         private int identityGlyphSeed;
         private HeroIdentityGlyph IdentityGlyph(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float duration = .6f, float delay = 0, HeroGlyphRole role = HeroGlyphRole.Emblem)
@@ -262,8 +267,7 @@ namespace ArcaneBrigade
         }
         private void IdentityAddPage(int kind)
         {
-            if (Elapsed < identityAt || identityPages.Count >= 3) return;
-            identityPages.Add(kind); identityCharge = identityPages.Count;
+            Charge(1); // a page written
         }
         private void IdentityNearMiss()
         {
@@ -279,29 +283,21 @@ namespace ArcaneBrigade
             if (identityNearMisses.Count > 64) identityNearMisses.RemoveWhere(id => !projectiles.Exists(p => p.Id == id));
         }
         private float IdentityDamage(UnitState target, float damage, Faction source, CombatCause cause)
+            => DebtDamage(target, KitDamageDealt(target, damage, source, cause), source, cause);
+        private float DebtDamage(UnitState target, float damage, Faction source, CombatCause cause)
         {
             if (!HeroIdentityEnabled || target.Faction != Faction.Enemy || source != Faction.Champion || cause.SourceUnitId != Champion.Id || cause.Depth != 0 || IdentityId != "HourglassStag") return damage;
             // a finishing blow is never deferred: the debt is only written against an enemy that survives the hit
             if (damage >= target.Health) return damage;
-            float banked = Mathf.Min(damage * .35f, Mathf.Max(0, IdentityPower * 3 - identityBank));
+            float banked = Mathf.Min(damage * .35f * (HeroAwakening ? 2 : 1), Mathf.Max(0, IdentityPower * 3 - identityBank));
             if (banked <= 0) return damage;
-            identityBank += banked; identityCharge = identityBank; HeroIdentityDeferredDamage += banked; identityDebtor = target;
+            identityBank += banked; HeroIdentityDeferredDamage += banked; identityDebtor = target;
+            Charge(.5f); // every deferred blow fills the gauge
             if (identityBankAt < 0) identityBankAt = Elapsed;
             return damage - banked;
         }
-        private float IdentityAttackDamage(UnitState source, float damage)
-        {
-            if (!HeroIdentityEnabled || source != Champion || IdentityId != "MoonProwler" || identityCharge < 5) return damage;
-            var target = units.Find(u => u.Id == source.AttackTargetId && CanHit(Faction.Champion, u));
-            if (target == null) return damage;
-            Vector2 toHero = Champion.Position - target.Position; toHero = toHero.sqrMagnitude > .0001f ? toHero.normalized : -Champion.Facing;
-            identityCharge = 0; identityRearSpent = true; identityBounty = target; identityGhost = toHero; IdentityCast();
-            // the shadow steps out of the target's far side and cuts back through it
-            IdentityPattern(target, IdentityPower * .8f, origin: ClampPosition(target.Position - toHero * 1.1f, .1f));
-            bool rear = Vector2.Dot(toHero, target.Facing.sqrMagnitude > .0001f ? target.Facing.normalized : Vector2.right) <= -.25f;
-            if (!rear) return damage;
-            HeroIdentityBonusDamage += damage * .45f; return damage * 1.45f;
-        }
+        /// <summary>Rear strikes are a kit passive now (KitDamageDealt); basics are no longer changed here.</summary>
+        private float IdentityAttackDamage(UnitState source, float damage) => damage;
         private bool IdentityMortar(UnitState source, float damage)
         {
             if (!HeroIdentityEnabled || source != Champion || IdentityId != "SupperMortar") return false;
@@ -318,7 +314,7 @@ namespace ArcaneBrigade
                 else IdentityHit(MorphGeometry.Disc, at, at, 1.05f + food, damage * .85f, flight, element: IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Physical, slow: IdentityApproach == 2 ? 1 : 0);
                 IdentityGlyph(MorphGeometry.Line, source.Position, at, 0, flight, role: HeroGlyphRole.Lob);
             }
-            identityCharge = 2; IdentityCast(); return true;
+            return true;
         }
         private float IdentityTargetScore(UnitState enemy)
         {

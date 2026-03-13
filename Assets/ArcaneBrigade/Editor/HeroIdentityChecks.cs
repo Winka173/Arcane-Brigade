@@ -84,7 +84,7 @@ namespace ArcaneBrigade.Editor
             }
             string id=hero.Id+" / "+approach;
             Check(finite && sim.Champion.Alive && sim.Units.Where(u=>u.Faction==Faction.Companion).All(u=>u.Alive&&float.IsPositiveInfinity(u.Health)),"Finite and immortal companion behavior "+id);
-            Check(sim.HeroIdentityActivations>0,"Actual signature activated "+id+" casts="+sim.HeroIdentityActivations+" injuries="+injurySeen);
+            Check(sim.HeroIdentityActivations>0,"Actual signature activated "+id+" casts="+sim.HeroIdentityActivations+" injuries="+injurySeen+" meter="+sim.HeroAwakenMeter.ToString("0.00")+" charge="+sim.HeroIdentityCharge.ToString("0.0")+"/"+sim.HeroIdentityRequired+" hits="+sim.Events.Count);
             Check(maxGlyphs<=40 && sim.Projectiles.Count<1100,"Bounded visual/projectile queues "+id);
             Check(capped,"Identity strike areas within caps (disc 1.6, ring 1.8, crescent 2.4, line 4.5) "+id+" "+oversize);
             Check(blastsFit && blastSpaced,"Identity detonations sized inside their disc and at most one per 0.3s "+id+" blasts="+blasts);

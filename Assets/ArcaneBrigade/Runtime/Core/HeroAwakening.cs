@@ -3,163 +3,353 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    /// <summary>A hero's awakening (18/10/2026, pilot for Postmaster, CopperCauldron and DrowsySeer): a three-tier meter
-    /// above the hero's own mechanic. Every time the mechanic casts it climbs a tier; tiers I and II strengthen the
-    /// mechanic by 12% each; at III the hero transforms by itself for six seconds (no button), then cools for three.
-    /// <list type="bullet">
-    /// <item>Postmaster, SORTING GATLING: a six-barrel parcel sorter fires a homing parcel every 0.2 s, round-robin over
-    /// the stamped addresses (or the nearest enemy), and every parcel stamps what it hits.</item>
-    /// <item>CopperCauldron, STEAM ENGINE: the kettle runs as a locomotive (60% faster), ramming and shoving what is in
-    /// front of it; pressure rises with time and with every blow taken; at the red line, or when the run ends, it blows
-    /// its whistle as one long steam jet ahead (never a burst round itself).</item>
-    /// <item>DrowsySeer, FULL MOON: three dreams of the seer walk the route it took one, two and three seconds ago,
-    /// each casting at enemies near it.</item>
-    /// </list></summary>
+    /// <summary>Every hero's transformation (18/10/2026; see HeroKits): the hero's one mechanic. Its gauge climbs a tier for every
+    /// full charge of the hero's own resource; at the third tier the hero transforms by itself (no button) for about six seconds,
+    /// then rests for three. While transformed the kit's stats apply (attack speed, move speed, guard, crit, the team's attack
+    /// speed) and the transformation acts every step. The approach shapes it: the first focuses its damage, the second spreads
+    /// it over more targets, the third lasts longer and heals the hero. Strikes use the identity strike shapes, so the painted
+    /// area is the area that hits; nothing bursts in a ring from the hero.</summary>
     public sealed partial class CombatSimulation
     {
         public const float AwakenSeconds = 6f, AwakenCooldown = 3f, AwakenTierBonus = .12f;
-        private float awakenMeter, awakenUntil = -1, awakenStarted = -100, awakenCoolUntil = -1, awakenShotAt, awakenRamAt, awakenPressure, awakenEchoAt;
-        private int awakenRound;
+        private float awakenReceiptAt, awakenMeter, awakenUntil = -1, awakenStarted = -100, awakenCoolUntil = -1, awakenShotAt, awakenRamAt, awakenPressure, awakenEchoAt, awakenHealAt;
+        private int awakenRound, awakenFlurry;
+        private UnitState awakenFoe;
         private readonly List<Vector2> awakenPath = new List<Vector2>();
         private readonly Vector2[] awakenEchoes = new Vector2[3];
+        private Vector2 awakenAim;
 
-        /// <summary>The heroes with an awakening so far.</summary>
-        public static bool HasAwakening(string heroId) => heroId == "Postmaster" || heroId == "CopperCauldron" || heroId == "DrowsySeer";
-        public bool HeroAwakenEnabled => HeroIdentityEnabled && HasAwakening(IdentityId);
-        /// <summary>0..1: one third per mechanic cast; full transforms.</summary>
+        /// <summary>Every hero with a kit has an awakening.</summary>
+        public static bool HasAwakening(string heroId) => HeroKits.For(heroId) != null;
+        public bool HeroAwakenEnabled => HeroIdentityEnabled && Kit != null;
+        public HeroKit HeroKitInfo => Kit;
+        /// <summary>0..1: one third per full charge; full transforms.</summary>
         public float HeroAwakenMeter => awakenMeter;
         public int HeroAwakenTier => Mathf.Clamp(Mathf.FloorToInt(awakenMeter * 3 + .001f), 0, 3);
         public bool HeroAwakening => HeroAwakenEnabled && awakenUntil > Elapsed;
+        private float AwakenLength => (Kit?.Seconds ?? AwakenSeconds) + (IdentityApproach == 2 ? 1.5f : 0) + (Kit != null && Kit.Has(KitPassive.DrinkExtendsAwaken) ? Mathf.Min(3, Mathf.Floor(catalog.HeroDrinks / 2f)) : 0);
         /// <summary>1 at the start of a transformation, 0 at its end.</summary>
-        public float HeroAwakenRemaining => HeroAwakening ? Mathf.Clamp01((awakenUntil - Elapsed) / AwakenSeconds) : 0;
+        public float HeroAwakenRemaining => HeroAwakening ? Mathf.Clamp01((awakenUntil - Elapsed) / Mathf.Max(.1f, AwakenLength)) : 0;
         public float HeroAwakenStarted => awakenStarted;
         public bool HeroAwakenCooling => HeroAwakenEnabled && !HeroAwakening && awakenCoolUntil > Elapsed;
         /// <summary>The steam engine's boiler pressure, 0..1 (1 is the red line).</summary>
         public float HeroAwakenPressure => awakenPressure;
-        /// <summary>Where the full-moon dreams walk (valid while awakening as DrowsySeer).</summary>
+        /// <summary>Where the full-moon dreams (or the split jellies, the showtime copies) stand while transformed.</summary>
         public IReadOnlyList<Vector2> HeroAwakenEchoes => awakenEchoes;
-        /// <summary>The Postmaster's sorting gatling replaces the hero's own attacks while it runs.</summary>
-        private bool HeroAwakenReplacesAttacks => HeroAwakening && IdentityId == "Postmaster";
-        private Vector2 awakenAim;
-        /// <summary>Where the transformed weapon last aimed.</summary>
+        /// <summary>Where a transformed gun last aimed.</summary>
         public Vector2 HeroAwakenAim => HeroAwakening ? awakenAim : Vector2.zero;
-        /// <summary>How fast the hero runs (the steam engine is quicker).</summary>
-        private float ChampionSpeedScale => HeroAwakening && IdentityId == "CopperCauldron" ? 1.6f : 1f;
-        /// <summary>The mechanic's strength: tiers I and II add 12% each while not transformed.</summary>
+        /// <summary>The transformation's chosen foe (the duel).</summary>
+        public UnitState HeroAwakenFoe => HeroAwakening ? awakenFoe : null;
+        /// <summary>Transformed weapons that replace the hero's own attacks.</summary>
+        private bool HeroAwakenReplacesAttacks => HeroAwakening && Kit.ReplacesAttacks;
+        /// <summary>The mechanic's strength before transforming: tiers I and II add 12% each.</summary>
         private float AwakenScale => HeroAwakenEnabled && !HeroAwakening ? 1 + AwakenTierBonus * Mathf.Min(2, HeroAwakenTier) : 1;
+        /// <summary>The approach's damage weight: focused, wide or lasting.</summary>
+        private float ApproachScale => IdentityApproach == 0 ? 1.15f : IdentityApproach == 2 ? .85f : 1f;
+        private int ApproachTargets => IdentityApproach == 1 ? 5 : 3;
 
         /// <summary>Captures only: fill the gauge so the next moment with an enemy near transforms.</summary>
         public void PrimeAwakeningForCapture() { if (HeroAwakenEnabled) { awakenMeter = 1; awakenCoolUntil = -1; } }
         private void ResetAwakening()
         {
-            awakenMeter = awakenPressure = 0; awakenUntil = awakenCoolUntil = -1; awakenStarted = -100; awakenShotAt = awakenRamAt = awakenEchoAt = 0; awakenRound = 0;
+            awakenMeter = awakenPressure = 0; awakenUntil = awakenCoolUntil = -1; awakenStarted = -100; awakenShotAt = awakenRamAt = awakenEchoAt = awakenHealAt = 0; awakenRound = awakenFlurry = 0; awakenFoe = null;
             awakenPath.Clear(); for (int i = 0; i < awakenEchoes.Length; i++) awakenEchoes[i] = Champion != null ? Champion.Position : Vector2.zero;
             if (Champion != null) Champion.AwakenArt = null;
         }
-        /// <summary>Called on every mechanic cast: climb a tier.</summary>
-        private void AwakenOnCast()
-        {
-            if (!HeroAwakenEnabled || HeroAwakening || awakenCoolUntil > Elapsed) return;
-            awakenMeter = Mathf.Min(1, awakenMeter + 1f / 3f);
-        }
-        /// <summary>Runs before the hero's own mechanic; true while transformed (the mechanic itself rests meanwhile).</summary>
+        /// <summary>A full charge: climb a tier.</summary>
+        private void AwakenClimb() { if (HeroAwakenEnabled && !HeroAwakening && awakenCoolUntil <= Elapsed) awakenMeter = Mathf.Min(1, awakenMeter + 1f / 3f); }
+
+        /// <summary>Runs every step; true while transformed.</summary>
         private bool ProcessAwakening(float delta, bool walking, UnitState target)
         {
             if (!HeroAwakenEnabled) return false;
-            if (awakenPath.Count == 0 || (Champion.Position - awakenPath[awakenPath.Count - 1]).sqrMagnitude > .0004f || awakenPath.Count < 2)
-            {
-                awakenPath.Add(Champion.Position); if (awakenPath.Count > 120) awakenPath.RemoveAt(0);
-            }
+            if (awakenPath.Count == 0 || (Champion.Position - awakenPath[awakenPath.Count - 1]).sqrMagnitude > .0004f)
+            { awakenPath.Add(Champion.Position); if (awakenPath.Count > 160) awakenPath.RemoveAt(0); }
             if (!HeroAwakening)
             {
                 if (awakenUntil > 0 && Elapsed >= awakenUntil) EndAwakening();
-                if (awakenMeter >= 1 && target != null) BeginAwakening();
+                if (awakenMeter >= 1 && target != null) BeginAwakening(target);
                 if (!HeroAwakening) return false;
             }
-            switch (IdentityId)
+            HeroKit k = Kit;
+            if (IdentityApproach == 2 && Elapsed >= awakenHealAt) { awakenHealAt = Elapsed + 2; Heal(1, IdentityCause()); }
+            target ??= IdentityTarget(Champion.Position, 8);
+            switch (k.Action)
             {
-                case "Postmaster": SortingGatling(); break;
-                case "CopperCauldron": SteamEngine(delta); break;
-                case "DrowsySeer": FullMoon(); break;
+                case KitAction.Gatling: GunBurst(target, .2f, .22f, true); break;
+                case KitAction.AcornGun: GunBurst(target, .22f, .1f, false); break;
+                case KitAction.Kitchen: Kitchen(target); break;
+                case KitAction.Engine: SteamEngine(delta); break;
+                case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .3f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); break;
+                case KitAction.Mitosis: { Vector2 side = Perpendicular() * 1.1f; Echoes(Champion.Position + side, Champion.Position - side, Champion.Position, .45f, .7f, DamageElement.Physical); break; }
+                case KitAction.Showtime: Showtime(target); break;
+                case KitAction.Lighthouse: Lighthouse(); break;
+                case KitAction.Treant: Every(.35f, () => { if (walking) Hit(MorphGeometry.Disc, Champion.Position + Forward() * .4f, Champion.Position + Forward(), .9f, .42f, .1f); }); break;
+                case KitAction.Casino: Every(1f, () => Casino(target)); break;
+                case KitAction.HighTide: Every(.3f, () => { Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + Forward(), 1.3f, .34f, .05f, push: .45f); }); HealEvery(1); break;
+                case KitAction.Meteors: Every(.3f, () => Meteor()); break;
+                case KitAction.Mirrors: Mirrors(); break;
+                case KitAction.Spring: Every(.8f, () => Spring(target)); HealEvery(1); break;
+                case KitAction.Kintsugi: Every(.4f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position - Forward() * .8f, target.Position + Forward() * .8f, 0, .42f, .3f, element: DamageElement.Ember); }); break;
+                case KitAction.Rink: Every(.5f, () => { Vector2 way = target != null ? (target.Position - Champion.Position).normalized : Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + way * 3.2f, 0, .5f, .1f, slow: .6f); }); break;
+                case KitAction.Parade: Every(1.2f, () => IdentityPerform(IdentityPower * .75f * ApproachScale, 4)); break;
+                case KitAction.Symphony: Every(1f, () => IdentityPerform(IdentityPower * .9f * ApproachScale, 5)); break;
+                case KitAction.Duel: Duel(); break;
+                case KitAction.Feast: Every(.4f, () => Feast()); break;
+                case KitAction.Throne: Every(.7f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position + Perpendicular() * .9f, target.Position - Perpendicular() * .9f, 0, .4f, .2f); }); break; // a bramble lash; thorns also answer every blow (ObserveInjury), the throne guards (KitDamageTaken)
+                case KitAction.Train: Every(.3f, () => { Vector2 back = -Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + back * 3f, 0, .4f, .05f, push: .35f); }); break;
+                case KitAction.Coronation: Every(1f, () => { if (target != null) Hit(MorphGeometry.Line, Champion.Position, Champion.Position + (target.Position - Champion.Position).normalized * MaxLineLength, 0, .8f, .25f); }); break;
+                case KitAction.Citadel: Every(.5f, () => { if (target != null) IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .55f * ApproachScale, 2, 10); }); break;
+                case KitAction.Exhibit: Every(.7f, () => Exhibit(target)); break;
+                case KitAction.BullMarket: break; // coins count double and every pickup fires a receipt (ObserveHeroIdentityEvents)
+                case KitAction.Thunder: Every(.8f, () => Thunder(target)); break;
+                case KitAction.Eclipse: Every(.7f, () => Eclipse(target)); break;
+                case KitAction.Tapestry: Every(.5f, () => Tapestry()); break;
+                case KitAction.Foreclosure: Foreclosure(target); break;
+                case KitAction.Monsoon: Every(.5f, () => Monsoon()); HealEvery(1.5f); break;
             }
             if (HeroAwakening && Elapsed >= awakenUntil - .0001f) EndAwakening();
             return true;
         }
-        private void BeginAwakening()
+
+        private void BeginAwakening(UnitState target)
         {
-            awakenStarted = Elapsed; awakenUntil = Elapsed + AwakenSeconds; awakenMeter = 1; awakenPressure = 0;
-            awakenShotAt = awakenRamAt = awakenEchoAt = Elapsed; awakenRound = 0;
-            Champion.AwakenArt = IdentityId == "Postmaster" ? "Postmaster_Awake" : IdentityId == "DrowsySeer" ? "DrowsySeer_Awake" : null;
+            HeroKit k = Kit;
+            awakenStarted = Elapsed; awakenUntil = Elapsed + AwakenLength; awakenMeter = 1; awakenPressure = 0;
+            awakenShotAt = awakenRamAt = awakenEchoAt = awakenHealAt = Elapsed; awakenRound = awakenFlurry = 0; awakenFoe = target;
+            Champion.AwakenArt = k.Held ? k.ArtKey : null;
+            if (k.ReplacesAttacks) Champion.PendingAttack = false; // a blow already raised with the usual weapon is not thrown
             identityCharge = 0;
-            var cause = IdentityCause();
+            HeroIdentityActivations++; HeroIdentityLastCast = Elapsed; Champion.LastSupport = Elapsed;
+            var cause = IdentityCause(); RecordActivation(cause);
             events.Add(new CombatEvent(CombatEventKind.HeroIdentityCast, Champion.Position, Faction.Champion, 1, subject: Champion, cause: cause));
             IdentityGlyph(MorphGeometry.Seal, Champion.Position, Champion.Position, .5f, .9f, role: HeroGlyphRole.Emblem);
+            if (k.Action == KitAction.Coronation && target != null)
+            {
+                Vector2 dir = (target.Position - Champion.Position).normalized;
+                Hit(MorphGeometry.Line, Champion.Position - dir * 1f, Champion.Position + dir * MaxLineLength, 0, 2.6f, .35f);
+            }
         }
         private void EndAwakening()
         {
-            if (IdentityId == "CopperCauldron" && awakenUntil > 0) Whistle();
-            awakenUntil = -1; awakenMeter = 0; awakenCoolUntil = Elapsed + AwakenCooldown; Champion.AwakenArt = null;
+            if (Kit != null && Kit.Action == KitAction.Engine && awakenUntil > 0) Whistle();
+            awakenUntil = -1; awakenMeter = 0; awakenCoolUntil = Elapsed + AwakenCooldown; Champion.AwakenArt = null; awakenFoe = null;
         }
 
-        private void SortingGatling()
+        // ------------------------------------------------------------------ helpers
+        private Vector2 Forward() => identityHeading.sqrMagnitude > .01f ? identityHeading.normalized : Champion.Facing.sqrMagnitude > .01f ? Champion.Facing.normalized : Vector2.right;
+        private Vector2 Perpendicular() { Vector2 f = Forward(); return new Vector2(-f.y, f.x); }
+        private void Every(float period, System.Action act) { if (Elapsed < awakenShotAt) return; awakenShotAt = Elapsed + period; act(); }
+        private void HealEvery(float period) { if (Elapsed < awakenRamAt) return; awakenRamAt = Elapsed + period; Heal(1, IdentityCause()); }
+        /// <summary>A transformation strike: budget in W, scaled by the approach (and shared by more targets on the wide one).</summary>
+        private void Hit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .15f, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
+            => IdentityHit(shape, at, end, radius, IdentityPower * budget * ApproachScale, delay, ApproachTargets, element, slow, push);
+        /// <summary>A transformed gun: one aimed shot per period that flashes at the barrel and sounds like a gun.</summary>
+        private void GunBurst(UnitState target, float period, float budget, bool stamps)
         {
             if (Elapsed < awakenShotAt) return;
-            awakenShotAt = Elapsed + .2f;
+            awakenShotAt = Elapsed + period;
             UnitState aim = null;
-            int marks = identityMarks.Count;
-            for (int k = 0; k < marks && aim == null; k++) { var m = identityMarks[(awakenRound + k) % marks]; if (m.Target.Alive) aim = m.Target; }
+            if (stamps) { int marks = identityMarks.Count; for (int k = 0; k < marks && aim == null; k++) { var m = identityMarks[(awakenRound + k) % marks]; if (m.Target.Alive) aim = m.Target; } }
             awakenRound++;
-            if (aim == null) aim = IdentityTarget(Champion.Position, 8);
+            aim ??= target ?? IdentityTarget(Champion.Position, 8);
             if (aim == null) return;
-            IdentityMarkTarget(aim);
-            // the hero turns the gatling on the parcel's address and it kicks back a little: one shot of a held burst
+            if (stamps) IdentityMarkTarget(aim);
+            AimGun(aim);
+            IdentityShot(Champion.Position, aim.Position - Champion.Position, IdentityPower * budget * ApproachScale, element: IdentityApproach == 1 ? DamageElement.Ember : DamageElement.Physical, homingTarget: aim.Id);
+        }
+        private void AimGun(UnitState aim)
+        {
             awakenAim = (aim.Position - Champion.Position).sqrMagnitude > .0001f ? (aim.Position - Champion.Position).normalized : Champion.Facing;
             Champion.AttackDirection = awakenAim; Champion.AttackTargetId = aim.Id; Champion.AttackWindup = .04f; Champion.AttackStarted = Elapsed - .04f;
-            // a shot like any gun's, so the barrel flashes and the gun sounds (an identity cause: it charges nothing)
+            // a shot like any gun's: the barrel flashes and the gun sounds (an identity cause: it charges nothing)
             events.Add(new CombatEvent(CombatEventKind.Fire, Champion.Position, Champion.Faction, 0f, awakenAim, Champion.Definition.Weapon, subject: Champion, cause: IdentityCause()));
-            IdentityShot(Champion.Position, aim.Position - Champion.Position, IdentityPower * .14f, element: IdentityApproach == 1 ? DamageElement.Ember : DamageElement.Physical, homingTarget: aim.Id);
+        }
+        private void Kitchen(UnitState target)
+        {
+            if (Elapsed < awakenShotAt || target == null) return;
+            awakenShotAt = Elapsed + .3f; AimGun(target);
+            // six barrels serve the menu: each shot a course lobbed where the diner will be
+            float flight = .35f; Vector2 at = ClampPosition(target.Position + Vector2.ClampMagnitude(target.Velocity * flight, 1f), .1f);
+            Hit(MorphGeometry.Disc, at, at, .9f, .34f, flight, (awakenRound++ % 3) switch { 0 => DamageElement.Ember, 1 => DamageElement.Frost, _ => DamageElement.Physical });
+            IdentityGlyph(MorphGeometry.Line, Champion.Position, at, 0, flight, role: HeroGlyphRole.Lob);
+        }
+        private void Echoes(Vector2 a, Vector2 b, Vector2 c, float period, float budget, DamageElement element)
+        {
+            awakenEchoes[0] = a; awakenEchoes[1] = b; awakenEchoes[2] = c;
+            if (Elapsed < awakenEchoAt) return;
+            awakenEchoAt = Elapsed + period;
+            Vector2 from = awakenEchoes[awakenRound++ % 3];
+            UnitState near = IdentityTarget(from, 5);
+            if (near != null) IdentityPattern(near, IdentityPower * budget * ApproachScale, origin: from, element: element);
+        }
+        private void Showtime(UnitState target)
+        {
+            UnitState lead = identityLead != null && identityLead.Alive ? identityLead : units.Find(u => u.Alive && u.Faction == Faction.Companion);
+            Vector2 at = lead != null ? lead.Position : Champion.Position;
+            awakenEchoes[0] = at + Vector2.left * .9f; awakenEchoes[1] = at + Vector2.right * .9f; awakenEchoes[2] = at + Vector2.up * .7f;
+            if (Elapsed < awakenEchoAt || target == null) return;
+            awakenEchoAt = Elapsed + .5f;
+            if (lead != null) IdentityEcho(lead, target, IdentityPower * .7f * ApproachScale);
+            else IdentityPattern(target, IdentityPower * .7f * ApproachScale);
+        }
+        private void Lighthouse()
+        {
+            if (Elapsed < awakenShotAt) return;
+            awakenShotAt = Elapsed + .25f;
+            // the beam sweeps once round every 3s, striking what it crosses
+            float angle = (Elapsed - awakenStarted) * 120f;
+            Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
+            Hit(MorphGeometry.Line, Champion.Position + dir * .5f, Champion.Position + dir * MaxLineLength, 0, .7f, .05f);
+        }
+        private void Casino(UnitState target)
+        {
+            if (target == null) return;
+            int a = combatRandom.Next(1, 7), b = combatRandom.Next(1, 7), c = combatRandom.Next(1, 7);
+            identityFace = a;
+            if (a == b && b == c) { Hit(MorphGeometry.Disc, target.Position, target.Position, 1.4f, 2.2f, .3f); Gold = RunSession.BoundedCounter((long)Gold + 1); HeroIdentityGold++; IdentityGlyph(MorphGeometry.Seal, target.Position, target.Position, .6f); }
+            else if (a == b || b == c || a == c) IdentityPattern(target, IdentityPower * 1.0f * ApproachScale);
+            else IdentityShot(Champion.Position, target.Position - Champion.Position, IdentityPower * .45f * ApproachScale, 3);
+        }
+        private void Meteor()
+        {
+            if (awakenPath.Count == 0) return;
+            Vector2 at = awakenPath[Mathf.Max(0, awakenPath.Count - 1 - (awakenRound++ * 7) % Mathf.Min(awakenPath.Count, 60))];
+            Hit(MorphGeometry.Disc, at, at, .9f, .55f, .5f, DamageElement.Ember);
+        }
+        private void Mirrors()
+        {
+            // every hostile shot that reaches the circling mirrors goes back at the dream
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                var p = projectiles[i]; if (p.Faction != Faction.Enemy || (p.Position - Champion.Position).sqrMagnitude > 1.7f * 1.7f) continue;
+                HeroIdentityPrevented += p.Damage; projectiles.RemoveAt(i);
+                var t = IdentityTarget(p.Position, 8);
+                IdentityShot(p.Position, t != null ? t.Position - p.Position : -p.Velocity, IdentityPower * .3f * ApproachScale, element: p.Element);
+                IdentityGlyph(MorphGeometry.Ring, p.Position, Champion.Position, .35f, .3f, role: HeroGlyphRole.Catch);
+            }
+            Every(.6f, () => { var t = IdentityTarget(Champion.Position, 7); if (t != null) IdentityShot(Champion.Position, t.Position - Champion.Position, IdentityPower * .2f * ApproachScale, 2, 20); });
+        }
+        private void Spring(UnitState target)
+        {
+            int bloomed = 0;
+            foreach (var u in units)
+            {
+                if (!u.Alive || u.Faction != Faction.Companion || u.Definition.Id != "GrandSprout" && u.Definition.Id != "LittleSprout") continue;
+                var near = IdentityTarget(u.Position, 3); if (near == null) continue;
+                Hit(MorphGeometry.Disc, near.Position, near.Position, 1.1f, .8f, .25f); if (++bloomed >= 3) break;
+            }
+            if (bloomed == 0 && target != null) Hit(MorphGeometry.Disc, target.Position, target.Position, 1.1f, .9f, .25f);
+        }
+        private void Duel()
+        {
+            if (awakenFoe == null || !awakenFoe.Alive || (awakenFoe.Position - Champion.Position).sqrMagnitude > 25) { awakenFoe = IdentityTarget(Champion.Position, 5, 2); awakenFlurry = 0; }
+            if (awakenFoe == null || Elapsed < awakenShotAt) return;
+            // six thrusts in a flurry, then a breath
+            awakenShotAt = Elapsed + (++awakenFlurry % 6 == 0 ? .7f : .16f);
+            Vector2 dir = (awakenFoe.Position - Champion.Position).normalized;
+            Hit(MorphGeometry.Line, Champion.Position, awakenFoe.Position + dir * .5f, 0, .32f, .04f);
+        }
+        private void Feast()
+        {
+            Vector2 f = Forward();
+            UnitState meal = null; float best = 2.4f * 2.4f;
+            foreach (var u in units)
+            {
+                if (!CanHit(Faction.Champion, u) || u.Definition.IsBoss || u.Definition.Radius >= .4f) continue;
+                Vector2 d = u.Position - Champion.Position; if (d.sqrMagnitude > best || Vector2.Dot(d.normalized, f) < .2f) continue;
+                if (u.Health > IdentityPower * 4) continue;
+                best = d.sqrMagnitude; meal = u;
+            }
+            if (meal != null) { ApplyDamage(meal, meal.Health + 1, Faction.Champion, "THE FEAST", f, cause: IdentityCause(), injectedDamage: true); Heal(1, IdentityCause()); IdentityGlyph(MorphGeometry.Crescent, Champion.Position, meal.Position, 1.2f, .3f, role: HeroGlyphRole.Strike); }
+            else Hit(MorphGeometry.Crescent, Champion.Position, Champion.Position + f, 1.4f, .3f, .1f);
+        }
+        private void Exhibit(UnitState target)
+        {
+            if (target == null) return;
+            int puppets = Mathf.Max(1, identitySpecimens.Count);
+            for (int i = 0; i < puppets; i++)
+            {
+                Vector2 from = Champion.Position + (Vector2)(Quaternion.Euler(0, 0, 60 + i * 120) * Vector2.right) * 1.2f;
+                var specimen = i < identitySpecimens.Count ? identitySpecimens[i] : null;
+                if (specimen != null && specimen.Weapon.Kind == WeaponKind.Projectile) IdentityShot(from, target.Position - from, IdentityPower * .34f * ApproachScale, 1, element: specimen.Weapon.Element);
+                else IdentityPattern(target, IdentityPower * .34f * ApproachScale, origin: from);
+            }
+        }
+        private void Thunder(UnitState target)
+        {
+            if (target == null) return;
+            UnitState from = target; Vector2 a = Champion.Position;
+            Hit(MorphGeometry.Line, a, target.Position, 0, .2f, .05f, DamageElement.Arcane); target.KitShockedUntil = Elapsed + 3;
+            for (int i = 0; i < 3; i++)
+            {
+                UnitState next = null; float best = 9;
+                foreach (var u in units) { if (!CanHit(Faction.Champion, u) || u == from || u.KitShockedUntil > Elapsed + 2.9f) continue; float d = (u.Position - from.Position).sqrMagnitude; if (d < best) { best = d; next = u; } }
+                if (next == null) break;
+                Hit(MorphGeometry.Line, from.Position, next.Position, 0, .14f, .08f + i * .05f, DamageElement.Arcane); next.KitShockedUntil = Elapsed + 3; from = next;
+            }
+        }
+        private void Eclipse(UnitState target)
+        {
+            if (target == null) return;
+            // slip behind the foe (against the way it faces) and cut through it
+            Vector2 facing = target.Facing.sqrMagnitude > .01f ? target.Facing.normalized : (target.Position - Champion.Position).normalized;
+            Vector2 behind = ClampPosition(target.Position - facing * (target.Definition.Radius + Champion.Definition.Radius + .3f), Champion.Definition.Radius);
+            Champion.PreviousPosition = Champion.Position = behind;
+            Hit(MorphGeometry.Line, behind, target.Position + facing * .8f, 0, .45f, .08f);
+        }
+        private void Tapestry()
+        {
+            foreach (var u in units) if (CanHit(Faction.Champion, u) && (u.Position - Champion.Position).sqrMagnitude <= 16 && identityMarks.Count < 3) IdentityMarkTarget(u);
+            Vector2 previous = Champion.Position;
+            foreach (var m in identityMarks) { Hit(MorphGeometry.Line, previous, m.Target.Position, 0, .18f, .1f, slow: .6f); previous = m.Target.Position; }
+        }
+        private void Foreclosure(UnitState target)
+        {
+            // time stops for 1.5s (enemies frozen: KitEnemySpeed) and every debt is called in at once
+            if (Elapsed - awakenStarted < .05f && target != null)
+            {
+                float owed = Mathf.Max(identityBank, IdentityPower * .6f);
+                UnitState debtor = identityDebtor != null && identityDebtor.Alive && CanHit(Faction.Champion, identityDebtor) ? identityDebtor : target;
+                IdentityHit(MorphGeometry.Disc, debtor.Position, debtor.Position, 1.2f, owed * 4f * ApproachScale, .6f, ApproachTargets);
+                identityBank = 0; identityBankAt = -1;
+                foreach (var u in units) if (u.Faction == Faction.Enemy && u.Alive) { u.NextAttack = Mathf.Max(u.NextAttack, Elapsed + 1.5f); u.NextContact = Mathf.Max(u.NextContact, Elapsed + 1.5f); }
+            }
+            Every(.6f, () => { if (target != null) Hit(MorphGeometry.Disc, target.Position, target.Position, .7f, .6f, .2f, DamageElement.Frost); });
+        }
+        private void Monsoon()
+        {
+            UnitState pick = null; int seen = 0;
+            foreach (var u in units) { if (!CanHit(Faction.Champion, u) || (u.Position - Champion.Position).sqrMagnitude > 49) continue; if (combatRandom.Next(++seen) == 0) pick = u; }
+            if (pick == null) return;
+            pick.KitWetUntil = Elapsed + 3;
+            Hit(MorphGeometry.Disc, pick.Position, pick.Position, .7f, .9f, .35f, DamageElement.Frost, slow: .3f);
         }
 
         private void SteamEngine(float delta)
         {
-            awakenPressure = Mathf.Min(1, awakenPressure + delta / (AwakenSeconds * 1.15f));
-            Vector2 heading = identityHeading.sqrMagnitude > .01f ? identityHeading.normalized : Champion.Facing;
-            if (Elapsed >= awakenRamAt)
+            awakenPressure = Mathf.Min(1, awakenPressure + delta / (AwakenLength * 1.15f));
+            if (Elapsed >= awakenShotAt)
             {
-                awakenRamAt = Elapsed + .3f;
-                Vector2 front = Champion.Position + heading * (Champion.Definition.Radius + .45f);
-                IdentityHit(MorphGeometry.Disc, front, front + heading * .4f, .75f, IdentityPower * .24f, .05f, 4, DamageElement.Ember, push: .45f);
+                awakenShotAt = Elapsed + .3f;
+                Vector2 heading = Forward(), front = Champion.Position + heading * (Champion.Definition.Radius + .45f);
+                Hit(MorphGeometry.Disc, front, front + heading * .4f, .75f, .32f, .05f, DamageElement.Ember, push: .45f);
             }
-            if (awakenPressure >= 1) { awakenUntil = Elapsed; }
+            if (awakenPressure >= 1) EndAwakening(); // the red line: the whistle blows now
         }
         /// <summary>A blow taken while the engine runs builds pressure faster.</summary>
-        private void AwakenOnInjury()
-        {
-            if (HeroAwakening && IdentityId == "CopperCauldron") awakenPressure = Mathf.Min(1, awakenPressure + .15f);
-        }
+        private void AwakenOnInjury() { if (HeroAwakening && Kit.Action == KitAction.Engine) awakenPressure = Mathf.Min(1, awakenPressure + .15f); }
         /// <summary>The engine's whistle: one long steam jet ahead, stronger the higher the pressure.</summary>
         private void Whistle()
         {
-            Vector2 heading = identityHeading.sqrMagnitude > .01f ? identityHeading.normalized : Champion.Facing;
-            Vector2 from = Champion.Position + heading * (Champion.Definition.Radius + .2f);
-            IdentityHit(MorphGeometry.Line, from, from + heading * MaxLineLength, 0, IdentityPower * (1f + 1f * awakenPressure), .25f, 6, DamageElement.Ember, push: .4f);
+            Vector2 heading = Forward(), from = Champion.Position + heading * (Champion.Definition.Radius + .2f);
+            IdentityHit(MorphGeometry.Line, from, from + heading * MaxLineLength, 0, IdentityPower * (1f + 1f * awakenPressure) * ApproachScale, .25f, 6, DamageElement.Ember, push: .4f);
             awakenPressure = 0;
         }
-
-        private void FullMoon()
-        {
-            for (int k = 0; k < awakenEchoes.Length; k++) awakenEchoes[k] = PathAgo(k + 1);
-            if (Elapsed < awakenEchoAt) return;
-            awakenEchoAt = Elapsed + .3f;
-            int k2 = awakenRound++ % awakenEchoes.Length;
-            UnitState near = IdentityTarget(awakenEchoes[k2], 5);
-            if (near != null) IdentityPattern(near, IdentityPower * .38f, origin: awakenEchoes[k2], element: IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane);
-        }
-        /// <summary>Where the hero stood about `seconds` ago (the path is sampled each step the hero moves).</summary>
+        /// <summary>Where the hero stood about `seconds` ago, walked back along its path.</summary>
         private Vector2 PathAgo(int seconds)
         {
             if (awakenPath.Count == 0) return Champion.Position;
-            // sampled every simulation step the hero moved; walk back a distance worth of `seconds` at the hero's speed
             float want = seconds * Champion.Definition.Speed * .55f, walked = 0;
             for (int i = awakenPath.Count - 1; i > 0; i--)
             {

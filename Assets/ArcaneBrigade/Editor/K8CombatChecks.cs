@@ -176,6 +176,7 @@ namespace ArcaneBrigade.Editor
                 Catalog.EnableArenaToys = Catalog.EnableBossArenaPhase = false;
                 Catalog.ExtendedLoot = false;
                 Catalog.PassiveHeal = 0;
+                Catalog.EnableHeroIdentities = false; // engine fixtures are measured without the hero's kit passives
                 Catalog.Procs = new ActiveProc[0];
                 Catalog.Champion.Passive = PassiveKind.None;
                 Catalog.Champion.Weapon.Family = family;

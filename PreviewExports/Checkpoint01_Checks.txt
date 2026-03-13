@@ -5,8 +5,8 @@ PASS Arena bounds
 PASS Pause freezes simulation
 PASS Immortal companion without finite HP
 PASS Concurrent damage without global invulnerability
-PASS Swept projectile passes companion and hits champion (after the hostile damage relief) 96
-PASS Per-source contact cooldown (one contact hit, then none) 96.8 alive True dist 0.45 next 1.05 impact 0 t 0.2666667 dmg 4 phase Combat
+PASS Swept projectile passes companion and hits champion (after the hostile damage relief) 95.2
+PASS Per-source contact cooldown (one contact hit, then none) 96.16 alive True dist 0.45 next 1.05 impact 0 t 0.2666667 dmg 4 phase Combat
 PASS Kill drop and proximity pickup
 PASS One melee impact per attack windup
 PASS Companion stays within leash

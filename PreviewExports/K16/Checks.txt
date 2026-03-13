@@ -75,11 +75,19 @@ PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
 PASS Sewing tier-gated thread NeedleSinger 2
 PASS Yo-yo control NeedleSinger 2
 PASS Projector tier-gated convergence NeedleSinger 2
 PASS Hammer impact retains primary attribution NeedleSinger 2
 PASS Short actual mechanic description NeedleSinger 2
+PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
+PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive
 PASS Stitch is secondary/nonrecursive

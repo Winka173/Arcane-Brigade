@@ -72,6 +72,7 @@ namespace ArcaneBrigade.Editor
                 CheckpointCatalog combat = session.PrepareCombat(); combat.EnemyBudget = 0; combat.WaveDuration = 1000; combat.StoryCompanions = new UnitDefinition[0];
                 combat.Champion.Health = 10000; combat.Boss.Speed = 0;
                 combat.EnableArenaToys = combat.EnableBossArenaPhase = false;
+                combat.EnableHeroIdentities = false; // the boss's recovery is measured without the hero's kit
                 var simulation = new CombatSimulation(combat); simulation.Start(14000);
                 simulation.Champion.NextAttack = float.PositiveInfinity;
                 for (int tick = 0; tick < 270; tick++) simulation.Step(0.05f, Vector2.zero);
