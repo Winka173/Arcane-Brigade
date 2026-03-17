@@ -1,0 +1,250 @@
+{
+ "Postmaster": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/Postmaster_v1.png",
+  "mechanic": "ammo",
+  "shape": "pips",
+  "slots": 4,
+  "empty": "a brass mail-sorting rack standing upright, a red post-horn badge on its cap, FOUR identical envelope slots stacked one above the other with even gaps; every slot is EMPTY and dark",
+  "full": "each of the four slots now holds a sealed cream envelope with a red wax seal, glowing softly"
+ },
+ "SupperMortar": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "mechanic": "ammo",
+  "shape": "pips",
+  "slots": 6,
+  "empty": "a wooden kitchen dumbwaiter cabinet standing upright, a little copper bell on top, SIX identical round dish sockets stacked one above the other with even gaps; every socket is EMPTY and dark",
+  "full": "each of the six sockets now holds a small steaming covered dish, glowing warm amber"
+ },
+ "TreasureAcorn": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/TreasureAcorn_v1.png",
+  "mechanic": "extracts",
+  "shape": "pips",
+  "slots": 3,
+  "empty": "a carved acorn-wood totem with a brass cap, THREE identical round glass vials set into it one above the other with even gaps; every vial is EMPTY and clear",
+  "full": "each of the three vials now glows with warm golden essence (the game tints each vial)"
+ },
+ "CopperCauldron": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "mechanic": "heat",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a brass boiler pressure tube with a tall glass window, copper rivets and a steam valve cap; the UPPER HALF of the window is marked as a danger zone by deep wine enamel bands on the frame, with a wine line at the very top; the glass is EMPTY and dark",
+  "full": "the glass is now filled to the top with glowing ember-orange steam, hotter and whiter in the upper danger half"
+ },
+ "CitrusMarshal": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "mechanic": "heat",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a citrus-press thermometer: a tall glass tube in a brass frame shaped like orange peel, a little juicer cap on top; the UPPER HALF of the frame is marked as a danger zone by zest-orange bands; the glass is EMPTY",
+  "full": "the glass is now filled to the top with fizzing, boiling orange juice, bubbling hardest in the upper danger half"
+ },
+ "StormFencer": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "mechanic": "combo",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a lightning rod: a tall glass tube wrapped in a copper coil with a pointed rod tip on top and five small notch marks along the frame; the glass is EMPTY and dark",
+  "full": "the glass is now filled to the top with crackling electric-blue lightning"
+ },
+ "SoapSkater": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "mechanic": "combo",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall soap bottle with a bubble-wand cap and a ribbon, a long clear window down its front; the window is EMPTY",
+  "full": "the window is now filled to the top with iridescent soap foam and floating bubbles"
+ },
+ "ButtonCavalier": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "mechanic": "posture",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a duelling banner on a fencing-foil pole: a sewn cloth window edged with buttons, a large round button guard at the top; the window is EMPTY, plain dark cloth",
+  "full": "the window is now filled with bright crimson stitched thread, and the large top button is cracked in two"
+ },
+ "GlassDice": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/GlassDice_v1.png",
+  "mechanic": "dice",
+  "shape": "pips",
+  "slots": 3,
+  "empty": "a felt-lined wooden dice tower standing upright, gold trim, THREE identical square dice sockets stacked one above the other with even gaps; every socket is EMPTY",
+  "full": "each socket now holds a glowing ivory die seen face-on showing a BLANK face with NO pips (the game paints the numbers)"
+ },
+ "RainArchivist": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+  "mechanic": "pages",
+  "shape": "pips",
+  "slots": 5,
+  "empty": "a rain-soaked book spine standing upright with a little umbrella finial, FIVE identical page slots stacked one above the other with even gaps; every slot is EMPTY and dark",
+  "full": "each slot now holds a glowing pale-blue page with rain-drop script"
+ },
+ "ArchiveCurator": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "mechanic": "specimens",
+  "shape": "pips",
+  "slots": 3,
+  "empty": "a museum specimen cabinet standing upright with a brass label plate, THREE identical glass-fronted drawers stacked one above the other with even gaps; every drawer is EMPTY",
+  "full": "each drawer now holds a glowing paper puppet specimen pinned on card"
+ },
+ "TinVirtuoso": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "mechanic": "rhythm",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall brass metronome: a narrow pyramid case with a long window and a pendulum rod at rest; the window is EMPTY and dark",
+  "full": "the window is now filled to the top with glowing golden music notes and staff lines"
+ },
+ "MoonProwler": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "mechanic": "phases",
+  "shape": "pips",
+  "slots": 4,
+  "empty": "a night-sky banner on a silver pole, FOUR identical round moon sockets stacked one above the other with even gaps, each faintly outlined; every socket is EMPTY and dark",
+  "full": "the sockets now glow as moon phases: bottom a thin crescent, then a half moon, then a gibbous moon, top a full moon"
+ },
+ "DrowsySeer": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/DrowsySeer_v1.png",
+  "mechanic": "stances",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall soft pillow-shaped dream column in silver trim with a CLOSED sleeping eye emblem at the top and an OPEN wide-awake eye emblem at the bottom, a long glass window between them; the window is EMPTY, night blue, and both eye emblems are unlit",
+  "full": "the window is now filled to the top with luminous lilac dream mist and tiny stars, and both eye emblems glow"
+ },
+ "HourglassStag": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "mechanic": "debt",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall brass hourglass-shaped ledger column with a parchment window ruled with tally lines and a small overflow spout at the top; the window is EMPTY",
+  "full": "the window is now filled to the brim with glowing violet debt-ink sand, a trickle spilling from the overflow spout"
+ },
+ "PennyBroker": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "mechanic": "bank",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall glass coin tube in a brass bank frame with a coin slot cap and engraved ledger marks; the tube is EMPTY",
+  "full": "the tube is now stacked to the top with shining gold coins"
+ },
+ "LanternKnight": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/LanternKnight_v1.png",
+  "mechanic": "level",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a brass lantern pole with one tall glass chimney window and a little sun emblem on its cap; the glass is EMPTY and dark",
+  "full": "the glass is now filled to the top with warm golden lamplight and a small flame"
+ },
+ "RootOracle": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/RootOracle_v1.png",
+  "mechanic": "growth",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a clay pot at the bottom with a tall glass cloche above it; inside only dark soil at the very bottom, the cloche is EMPTY",
+  "full": "a gnarled little oracle tree now grows from the soil all the way up to the top of the cloche, glowing green rune-leaves"
+ },
+ "VerdantMatron": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "mechanic": "growth",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a garden trellis column with a watering-can finial and a tall glass window; the window is EMPTY",
+  "full": "a flowering spring vine now climbs the whole window to the top, pink and white blossoms"
+ },
+ "PetalCitadel": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "mechanic": "growth",
+  "shape": "pips",
+  "slots": 4,
+  "empty": "a stone castle turret column with a pennant on top, FOUR identical petal-shaped windows stacked one above the other with even gaps; every window is EMPTY and dark",
+  "full": "each window now holds a glowing pink petal"
+ },
+ "ChinaMarionette": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "mechanic": "cracks",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall white porcelain vase-shaped column with blue floral painting, smooth and completely uncracked",
+  "full": "the SAME vase now covered all over with cracks that are filled with glowing gold (kintsugi)"
+ },
+ "TideSinger": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/TideSinger_v1.png",
+  "mechanic": "tide",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a seashell-framed glass tube with engraved low-tide and high-tide marks and a conch cap; the glass is EMPTY",
+  "full": "the glass is now filled to the top with sea water, curling waves and white foam"
+ },
+ "NightMaw": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "mechanic": "hunger",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a dark velvet stomach-shaped pouch with a toothy rim at the top and a long window down its front; the window is EMPTY",
+  "full": "the window is now stuffed to the top with glowing purple morsels and tiny stars"
+ },
+ "LoneJelly": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/LoneJelly_v1.png",
+  "mechanic": "mass",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall jelly mould column with a dotted SPLIT line engraved across its exact middle; the mould is EMPTY",
+  "full": "the mould is now filled to the top with wobbling translucent mint jelly, a little face either side of the split line"
+ },
+ "PatchworkHost": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "mechanic": "hype",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a theatre proscenium column: red curtains either side and rows of EMPTY audience seats in the window",
+  "full": "the seat rows are now full of cheering audience silhouettes with confetti falling"
+ },
+ "VelvetRegent": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "mechanic": "prestige",
+  "shape": "pips",
+  "slots": 5,
+  "empty": "a royal sceptre column in gold and crimson velvet with a crown on top, FIVE identical empty jewel settings stacked one above the other with even gaps",
+  "full": "each setting now holds a glowing violet jewel"
+ },
+ "IvorySovereign": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "mechanic": "stillness",
+  "shape": "level",
+  "slots": 0,
+  "empty": "an ivory decree scroll on a tall gold spindle, rolled shut, with a royal seal at the top; the window is a blank closed scroll",
+  "full": "the scroll is now unrolled down its whole length, covered in glowing gold decree script"
+ },
+ "ThornTreasurer": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "mechanic": "thorns",
+  "shape": "pips",
+  "slots": 6,
+  "empty": "a dark carved wooden column with a little crown on top and SIX identical empty thorn sockets stacked one above the other with even gaps",
+  "full": "each socket now holds a sharp glowing rose-gold thorn"
+ },
+ "CometRunner": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/CometRunner_v1.png",
+  "mechanic": "momentum",
+  "shape": "level",
+  "slots": 0,
+  "empty": "a tall frame shaped like a comet tail pointing DOWN with a star head at the top; the tail window is EMPTY and dark",
+  "full": "the tail window is now filled with blazing golden comet fire"
+ },
+ "MirrorKeeper": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/MirrorKeeper_v1.png",
+  "mechanic": "shards",
+  "shape": "pips",
+  "slots": 5,
+  "empty": "a tall ornate mirror frame divided into FIVE identical empty pane slots stacked one above the other with even gaps",
+  "full": "each slot now holds a glinting silver mirror shard"
+ },
+ "LanternWeaver": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "mechanic": "threads",
+  "shape": "pips",
+  "slots": 5,
+  "empty": "an embroidery-hoop column with a thread spool on top and FIVE identical needle holes stacked one above the other with even gaps; nothing is pinned",
+  "full": "a glowing gold needle now stands in each hole with golden thread zigzagging between them"
+ }
+}

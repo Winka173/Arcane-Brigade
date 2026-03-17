@@ -1,0 +1,208 @@
+"""Writes Docs/Expansion_Art_Worklist.json: the image requests for the content expansion (Docs/Content_Expansion_Proposal.md,
+version 3): 5 new heroes and 19 new companions (character sheets), the new heroes' transformed pieces and gauges, the
+simplified gauges of the 31 existing heroes, 13 new weapons, 30 item icons and 3 bond icons.
+
+Same job format as Docs/Bizarre_Arsenal_Art_Worklist.json (name, path, transparent, refs, depends, mode, prompt). Images are
+made by the painting pass, never procedurally. A Full gauge is an exact edit of its Empty gauge.
+Usage: python Tools/Art/expansion_art.py
+"""
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+ART = "Assets/ArcaneBrigade/Art/Arsenal/"
+EXP = "Assets/ArcaneBrigade/Art/Expansion/"
+REFS = ["Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png", "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+        "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png", "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"]
+CHAR_REFS = ["Assets/ArcaneBrigade/Art/October/Heroes4.png", "Assets/ArcaneBrigade/Art/October/Allies3.png",
+             "Assets/ArcaneBrigade/Art/October/Allies5.png"]
+ICON_REFS = ["Assets/ArcaneBrigade/Art/October/Relics5.png", "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"]
+BOND_REFS = ["Assets/ArcaneBrigade/Art/October/Bonds1.png", "Assets/ArcaneBrigade/Art/October/Bonds2.png"]
+STYLE = ("Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. "
+         "The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly "
+         "storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked "
+         "asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine "
+         "velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine "
+         "material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. ")
+ISOLATED = (" ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. "
+            "No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore.")
+HELD = (" Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, "
+        "as a companion would hold it out in front. 1024x512 canvas.")
+SHOT = " Draw it travelling to the RIGHT (+X), motion implied by its shape only (no speed lines outside the object). 512x512 canvas."
+ROUND = " Round or spinning object seen from slightly above. 512x512 canvas."
+FLOOR = " Seen from the elevated three-quarter game view, standing on the floor (no floor drawn). 512x512 canvas."
+PROP = " Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas."
+ICON = (" An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, "
+        "no logos, no text.")
+GAUGE = (" A tall narrow upright gauge vessel seen from the front, about one third as wide as it is tall, standing straight, "
+         "filling the canvas height except a 6% empty margin at top and bottom. 384x1024 canvas.")
+SHEET = ("A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their "
+         "characters' rendering, proportions and ink line exactly). Exactly 4 columns by {rows} rows of completely isolated full-body "
+         "sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the "
+         "SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack "
+         "anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. "
+         "NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no "
+         "grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. "
+         "Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of "
+         "the cell height, with large transparent margins; never overlap. 1536x{h} canvas. Row designs in order: ")
+jobs = []
+
+
+def single(path, name, refs, prompt, depends=None):
+    jobs.append(dict(name=name, path=path, transparent=True, refs=refs, depends=depends, mode="single", prompt=prompt))
+
+
+def edit_full(path_empty, name, inside):
+    single(path_empty.replace("_Empty_v1.png", "_Full_v1.png"), name.replace("_Empty", "_Full"), [path_empty],
+           "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas "
+           "identical (it is laid over the empty one in the game), and change only what is inside: " + inside +
+           ". Genuinely transparent RGBA background, same 384x1024 canvas.", depends=name)
+
+
+# ---------------------------------------------------------------- 1. characters (5 heroes, 19 companions, 4 extra forms)
+CHARACTERS = [
+    # heroes
+    ("KiteAdmiral", "a small grey mouse admiral in a midnight-blue captain's coat with brass buttons and a tricorn hat, a folded paper box kite strapped to its back"),
+    ("SundaeDuchess", "a porcelain doll duchess with a swirled vanilla-and-strawberry ice-cream hairdo, a wafer tiara and a pastel cream gown"),
+    ("BonsaiClocksmith", "an old tortoise clocksmith whose shell is a tiny bonsai garden with a brass clock face set into it, round spectacles and a leather tool apron"),
+    ("JugglingJester", "a lanky jester sewn from patchwork felt, a two-pointed bell hat, diamond-pattern tights and a painted grin"),
+    ("BellDiver", "a frog in an old brass diving helmet with a round glass port, a canvas diving suit and heavy lead boots"),
+    # companions
+    ("PaperPlanePigeon", "a plump pigeon partly folded from cream paper, with a little postman scarf"),
+    ("BobaTadpole", "a round tadpole sitting in a lidded milk-tea cup with dark tapioca pearls, a striped straw like an antenna"),
+    ("BakerMouse", "a mouse baker with a flour-dusted apron, a tall chef hat and rolled sleeves"),
+    ("WateringSnail", "a snail whose shell is a little teal watering can with a rose spout"),
+    ("RaincoatFrog", "a frog in a mustard-yellow raincoat and a sou'wester hat, rain-spotted boots"),
+    ("LampGoat", "a small goat with curled ivory horns, a paper lantern hanging from one horn"),
+    ("YoyoSquirrel", "a nimble chestnut squirrel with a striped bushy tail and a little sporty headband"),
+    ("ShovelPenguin", "a sturdy penguin with a knitted teal scarf and work mittens"),
+    ("TopBeetle", "a round beetle whose shell is painted like a spinning top, a brass tip on its back"),
+    ("LensOwl", "an owl scholar with a brass magnifier over one eye and a square scholar's cap"),
+    ("RainHeron", "a tall slate-blue heron with ink-stained feathers and a scroll satchel"),
+    ("TeaDragon", "a small dragon shaped like a celadon teapot, a spout snout, a lid crest and curling steam whiskers (Mythic: rich detail)"),
+    ("LighthouseWhale", "a small floating whale with a tiny striped lighthouse on its back, a lamp in its top, barnacle freckles (Mythic)"),
+    ("JackInTheBox", "a jack-in-the-box ringmaster: a striped wooden box base with a springy ringmaster popping out, top hat and moustache (Mythic)"),
+    ("KiteDragon", "a long floating paper kite dragon with bamboo ribs, painted scales and a ribbon tail, iridescent rainbow sheen on its edges (Prismatic: the rarest)"),
+    ("SundaeGolem", "a big friendly golem built of ice-cream scoops in a waffle-cone body with a wine-cherry on top, iridescent rainbow sprinkles (Prismatic)"),
+    ("LostCarousel", "a walking gilded carousel horse with a brass pole through its back and a fragment of striped carousel canopy as a hat, iridescent rainbow trim (Prismatic)"),
+    ("EndlessIndex", "a floating moth whose wings are open book pages tabbed with index cards, iridescent rainbow page edges (Prismatic)"),
+    ("FirstSeed", "an ancient glowing seed sprite: an acorn-like seed with a single sprout on top and tiny root legs, bark carvings, iridescent rainbow veins (Prismatic)"),
+    # extra forms
+    ("EclipseEgg_Ranged", "Eclipse Egg (the reference egg ally) hatched into a ranged form: a little starlit bird with an eggshell cap"),
+    ("EclipseEgg_Melee", "Eclipse Egg hatched into a melee form: a small armoured night lizard with an eggshell helmet"),
+    ("EclipseEgg_Support", "Eclipse Egg hatched into a support form: a soft moon moth with eggshell wings"),
+    ("FirstSeed_Sapling", "a small fighting sapling grown by The First Seed: a twig sprite with leaf hands and root feet"),
+]
+for sheet in range(0, len(CHARACTERS), 4):
+    rows = CHARACTERS[sheet:sheet + 4]
+    n = sheet // 4 + 1
+    path = EXP + f"Characters{n}_v1.png"
+    h = 1536 if len(rows) == 4 else 1152
+    single(path, f"Characters{n}", CHAR_REFS, SHEET.format(rows=len(rows), h=h) +
+           "; ".join(f"ROW {i + 1} ({cid}): {desc}" for i, (cid, desc) in enumerate(rows)) + ".")
+
+# ---------------------------------------------------------------- 2. new heroes: transformed piece + gauge
+NEW_HEROES = {
+    "KiteAdmiral": ("KiteAdmiral_Awake", "BOX KITE: a big paper box kite with bamboo frame, sailcloth panels in teal and cream and a ribbon tail, that the mouse admiral rides; side view facing right", PROP,
+                    "a paper kite standing on its tail with a long window down its body and a small brass wind arrow on top; the window is EMPTY", "the window is now filled with swirling teal wind and paper-scrap gusts"),
+    "SundaeDuchess": ("SundaeDuchess_Awake", "GIANT SCOOP: one huge ice-cream scoop (vanilla with strawberry ripple) on a wafer, as it falls from the sky; front view", PROP,
+                      "a tall sundae glass with a long clear window; the glass is FULL of ice cream to the brim (this is the starting state: it melts down in the game)", "the same glass now EMPTY except a little melted puddle at the bottom"),
+    "BonsaiClocksmith": ("BonsaiClocksmith_Awake", "TIME GARDEN: a small bonsai tree in a shallow brass tray whose canopy holds a clock face with hands, planted in front of the hero; front view", PROP,
+                         "a tall brass clock case with a long window showing a clock dial at the top and a pendulum track below; the window is EMPTY and dark", "the window is now filled with glowing amber clockwork light and little bonsai leaves"),
+    "JugglingJester": ("JugglingJester_Awake_Held", "GRAND CIRCUS CLUBS: two crossed golden juggling clubs with wine-and-cream stripes and little bells", HELD,
+                       "a tall striped circus pole with FIVE identical empty ball cups stacked one above the other with even gaps", "each of the five cups now holds a glowing juggling ball, each a different pastel colour"),
+    "BellDiver": ("BellDiver_Awake", "DIVING BELL: a round brass diving bell with riveted plates, three round glass ports and a hose on top, seen from the side facing right", PROP,
+                  "a brass depth gauge column with a long glass tube marked with fathom lines and a little bell on top; the tube is EMPTY", "the tube is now filled to the top with deep teal sea water and rising bubbles"),
+}
+for hero, (piece, subject, shape, empty, full) in NEW_HEROES.items():
+    ref = EXP + "Characters1_v1.png" if hero in ("KiteAdmiral", "SundaeDuchess", "BonsaiClocksmith", "JugglingJester") else EXP + "Characters2_v1.png"
+    single(ART + piece + "_v1.png", piece, [ref] + REFS, STYLE + "Subject: " + subject + ". The first reference shows the hero (row " + hero + ")." + shape + ISOLATED,
+           depends="Characters1" if "Characters1" in ref else "Characters2")
+    e = ART + "Gauge_" + hero + "_Empty_v1.png"
+    single(e, "Gauge_" + hero + "_Empty", [ref] + REFS, STYLE + "Subject: the gauge of the hero " + hero + " in the first reference, " + empty + "." + GAUGE + ISOLATED,
+           depends="Characters1" if "Characters1" in ref else "Characters2")
+    edit_full(e, "Gauge_" + hero + "_Empty", full)
+
+# ---------------------------------------------------------------- 3. simplified gauges for the 31 existing heroes (Gauge2_*)
+g2 = json.loads((ROOT / "Tools" / "Art" / "hero_gauges_v2.json").read_text(encoding="utf-8"))
+for hero, g in g2.items():
+    e = ART + "Gauge2_" + hero + "_Empty_v1.png"
+    single(e, "Gauge2_" + hero + "_Empty", [g["ref"]] + REFS,
+           STYLE + "Subject: the gauge of the hero in the first reference (in a sheet, the hero named " + hero + "), " + g["empty"] + "." + GAUGE + ISOLATED)
+    edit_full(e, "Gauge2_" + hero + "_Empty", g["full"])
+
+# ---------------------------------------------------------------- 4. thirteen new weapons (held + painted pieces; effects are ink in code)
+WEAPONS = {
+    "KiteSpool": ("a wooden kite-string spool with a brass crank, a coil of cream string and a small folded paper kite clipped to it",
+                  [("KiteShot", "a paper box kite flying, teal and cream panels, bamboo frame, short ribbon tail", SHOT)]),
+    "ScoopLauncher": ("a big brass ice-cream scoop with a spring lever and a wine-velvet grip", [("Scoop", None, ROUND)]),
+    "CuckooCannon": ("a carved walnut cuckoo-clock shaped into a short cannon, a clock face on its side and a brass barrel",
+                     [("PendulumShot", "a brass clock pendulum bob flying", SHOT), ("CuckooBird", "a little carved wooden cuckoo bird diving, wings back", SHOT)]),
+    "JugglingPins": ("one painted juggling club with wine-and-cream stripes and a small bell", []),
+    "SonarHarpoon": ("a brass harpoon gun with a small sonar bell on top and a coiled rope", [("HarpoonShot", "a brass-tipped harpoon with a short trailing rope", SHOT)]),
+    "YoYo": ("a wooden yo-yo with a teal string looped round a finger ring", [("YoyoSpin", "the same wooden yo-yo spinning, seen face-on", ROUND)]),
+    "RollingPin": ("a long wooden rolling pin with turned handles, dusted with flour", []),
+    "BobaStraw": ("a lidded milk-tea cup with a fat striped straw sticking out, held like a blowgun", [("BobaPearl", "a single glossy dark tapioca pearl", ROUND)]),
+    "PaperPlaneSquadron": ("a brass launcher clip holding three folded paper planes side by side", [("PaperPlane", "one folded cream paper plane with a teal stripe", SHOT)]),
+    "WateringCan": ("a teal tin watering can with a brass rose spout", [("Sprout", "a small green sprout with two round leaves popping out of a soil tuft", FLOOR)]),
+    "SnowShovel": ("a short snow shovel with a wooden handle and a dented teal blade", [("SnowClump", "a thrown clump of packed snow with a few ice crystals", SHOT)]),
+    "SunLens": ("a brass magnifying glass with a carved wooden handle", []),
+    "SpinningTop": ("a wooden spinning-top launcher with a pull cord and a brass trigger ring", [("SpinTop", "a painted wooden spinning top with a brass tip, seen spinning from slightly above", ROUND)]),
+}
+SCOOPS = ["a vanilla ice-cream scoop", "a strawberry ice-cream scoop (wine-pink, not red)", "a chocolate ice-cream scoop"]
+for wid, (held, pieces) in WEAPONS.items():
+    single(ART + wid + "_Held_v1.png", wid + "_Held", REFS, STYLE + "Subject: " + held + "." + HELD + ISOLATED)
+    for name, subject, shape in pieces:
+        if name == "Scoop":
+            first = name + "_f0"
+            single(ART + first + "_v1.png", first, REFS, STYLE + "Subject: " + SCOOPS[0] + "." + shape + ISOLATED)
+            for i, s in enumerate(SCOOPS[1:], 1):
+                single(ART + f"{name}_f{i}_v1.png", f"{name}_f{i}", [ART + first + "_v1.png"],
+                       "Use case: precise-object-edit. EDIT THIS EXACT image: keep the same scoop shape, size, canvas and position; change ONLY its flavour into " + s + ". Genuinely transparent RGBA.", depends=first)
+            continue
+        single(ART + name + "_v1.png", name, [ART + wid + "_Held_v1.png"] + REFS,
+               STYLE + "Subject: " + subject + " (it must match the held weapon in the first reference)." + shape + ISOLATED, depends=wid + "_Held")
+
+# rarity pieces: the companions' own skills that paint an object
+for name, subject, shape in [("PaperInventor_Tower", "a little folded-paper turret on three paper legs with a cardboard barrel", FLOOR),
+                             ("LostCarousel_Horse", "a gilded carousel horse on a brass pole, mid-gallop", PROP)]:
+    single(EXP + name + "_v1.png", name, REFS, STYLE + "Subject: " + subject + "." + shape + ISOLATED)
+
+# ---------------------------------------------------------------- 5. thirty item icons
+ITEMS = {
+    # Common
+    "SugarCube": "a sugar cube with a tiny brass clock key stuck in it", "WoolScarf": "a knitted teal-and-cream wool scarf, loosely coiled",
+    "KiteString": "a small reel of kite string with a paper tag", "PencilShavings": "a curl of pencil shavings beside a short sharpened pencil",
+    "ButtonMagnet": "a horseshoe magnet with three buttons stuck to it", "SpareSpoon": "a dented silver spoon tied with a ribbon",
+    "LanternWick": "a coiled candle wick in a little brass holder", "BiscuitTin": "a round painted biscuit tin with a coin slot in the lid",
+    "PuddleBoots": "a pair of small mustard rain boots", "PocketChalk": "a stick of chalk in a folded paper wrapper",
+    # Rare
+    "SnowGlobeShard": "a curved shard of a snow globe with snow still swirling inside", "StickyNote": "a pad of mustard sticky notes with a doodled arrow",
+    "WindChime": "a brass wind chime with three tubes and a paper wind tail", "TeaBagSatchel": "a little cloth satchel full of tea bags with tags",
+    # Mythic (each has its own mechanic: richer detail, a faint gold rim)
+    "KiteTailRibbon": "a long kite-tail ribbon with paper bows", "MeltingSundae": "a sundae glass melting over its rim, a frost crystal on the spoon",
+    "CuckooPendulum": "a brass pendulum with a tiny carved cuckoo on its bob", "JugglersSpareBall": "a single patchwork juggling ball with a bell",
+    "DivingBellLantern": "a small brass diving-bell lantern with a round glass port", "TwinTicket": "two joined circus tickets with a perforated line",
+    "BondLocket": "an open gold locket holding two tiny portraits", "LuckyRerun": "a brass token with a clover and a circular arrow",
+    "BrassCompassRose": "a brass compass rose medallion with a crown at north", "GildedCage": "a small gilded birdcage with an open door and three stars inside",
+    # Prismatic (the rarest: iridescent rainbow sheen on the object itself)
+    "TheEndlessEncore": "a theatre curtain tassel that loops into an infinity knot", "MoonClockKey": "a large clock key whose bow is a crescent moon",
+    "LastWishCoin": "a worn gold wishing coin with a star cut through its centre", "MirrorOfTwins": "a hand mirror whose glass shows a second, smaller reflection",
+    "StorybookEnding": "a closed storybook with a gold ribbon bookmark and a happy-ending seal", "DreamLoom": "a tiny wooden loom weaving a rainbow thread",
+}
+for i, (iid, desc) in enumerate(ITEMS.items()):
+    tier = "Common" if i < 10 else "Rare" if i < 14 else "Mythic" if i < 24 else "Prismatic"
+    single(EXP + "Item_" + iid + "_v1.png", "Item_" + iid, ICON_REFS,
+           STYLE + "Subject: " + desc + " (" + tier + " item)." + ICON + ISOLATED)
+
+# ---------------------------------------------------------------- 6. three bond icons
+for bid, desc in {"PaperWings": "a pair of folded paper wings pinned together with a brass pin",
+                  "SweetTooth": "a wrapped candy and a small ice-cream cone crossed",
+                  "BigTop": "a little striped circus tent with a pennant"}.items():
+    single(EXP + "Bond_" + bid + "_v1.png", "Bond_" + bid, BOND_REFS,
+           STYLE + "Subject: a bond emblem: " + desc + ". Same visual size and treatment as the emblems in the references, readable at 32 px."
+           " 512x512 canvas." + ISOLATED)
+
+out = ROOT / "Docs" / "Expansion_Art_Worklist.json"
+out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
+print(len(jobs), "jobs ->", out)
