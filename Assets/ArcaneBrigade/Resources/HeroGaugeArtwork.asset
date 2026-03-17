@@ -37,42 +37,66 @@ MonoBehaviour:
   - Hero: GlassDice
     Low: 0.20132013
     High: 0.89658964
+  - Hero: HourglassStag
+    Low: 0.17531121
+    High: 0.7572614
   - Hero: IvorySovereign
     Low: 0.25484198
     High: 0.73598367
   - Hero: LanternKnight
     Low: 0.21186441
     High: 0.73940676
+  - Hero: LanternWeaver
+    Low: 0.3125
+    High: 0.6592742
   - Hero: LoneJelly
     Low: 0.17547569
     High: 0.7632135
   - Hero: MirrorKeeper
     Low: 0.15243903
     High: 0.83943087
+  - Hero: MoonProwler
+    Low: 0.18447581
+    High: 0.76209676
   - Hero: NightMaw
     Low: 0.16190477
     High: 0.73862433
   - Hero: PatchworkHost
     Low: 0.14042553
     High: 0.78404254
+  - Hero: PennyBroker
+    Low: 0.19214876
+    High: 0.75
   - Hero: PetalCitadel
     Low: 0.18410462
     High: 0.69617707
   - Hero: Postmaster
     Low: 0.1352459
     High: 0.69262296
+  - Hero: RainArchivist
+    Low: 0.15842584
+    High: 0.81331986
   - Hero: RootOracle
     Low: 0.2065678
     High: 0.7129237
   - Hero: SoapSkater
     Low: 0.15415822
     High: 0.70892495
+  - Hero: StormFencer
+    Low: 0.18027571
+    High: 0.7242842
+  - Hero: SupperMortar
+    Low: 0.16459627
+    High: 0.78571427
   - Hero: ThornTreasurer
     Low: 0.16753381
     High: 0.76899064
   - Hero: TideSinger
     Low: 0.22334003
     High: 0.8863179
+  - Hero: TinVirtuoso
+    Low: 0.28526646
+    High: 0.6248694
   - Hero: TreasureAcorn
     Low: 0.19002123
     High: 0.72292995

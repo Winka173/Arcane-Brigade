@@ -299,3 +299,27 @@ Gauge_ArchiveCurator_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_ArchiveCurator
 Gauge_ArchiveCurator_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_ArchiveCurator_Full_v1.png done
 PennyBroker_Awake Assets/ArcaneBrigade/Art/Arsenal/PennyBroker_Awake_v1.png done
 Gauge_PennyBroker_Empty FAILED painted HTTP 429 usage_limit_reached; 1440-minute usage limit; tool resets_in_seconds=62222
+Gauge_PennyBroker_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_PennyBroker_Empty_v1.png done
+Gauge_PennyBroker_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_PennyBroker_Full_v1.png done
+StormFencer_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/StormFencer_Awake_Held_v1.png done
+Gauge_StormFencer_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_StormFencer_Empty_v1.png done
+Gauge_StormFencer_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_StormFencer_Full_v1.png done
+TinVirtuoso_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/TinVirtuoso_Awake_Held_v1.png done
+Gauge_TinVirtuoso_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_TinVirtuoso_Empty_v1.png done
+Gauge_TinVirtuoso_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_TinVirtuoso_Full_v1.png done
+MoonProwler_Awake Assets/ArcaneBrigade/Art/Arsenal/MoonProwler_Awake_v1.png done
+Gauge_MoonProwler_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_MoonProwler_Empty_v1.png done
+Gauge_MoonProwler_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_MoonProwler_Full_v1.png done
+SupperMortar_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/SupperMortar_Awake_Held_v1.png done
+Gauge_SupperMortar_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_SupperMortar_Empty_v1.png done
+Gauge_SupperMortar_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_SupperMortar_Full_v1.png done
+LanternWeaver_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/LanternWeaver_Awake_Held_v1.png done
+Gauge_LanternWeaver_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternWeaver_Empty_v1.png done
+Gauge_LanternWeaver_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_LanternWeaver_Full_v1.png done
+HourglassStag_Awake Assets/ArcaneBrigade/Art/Arsenal/HourglassStag_Awake_v1.png done
+Gauge_HourglassStag_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_HourglassStag_Empty_v1.png done
+Gauge_HourglassStag_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_HourglassStag_Full_v1.png done
+RainArchivist_Awake_Held Assets/ArcaneBrigade/Art/Arsenal/RainArchivist_Awake_Held_v1.png done
+Gauge_RainArchivist_Empty Assets/ArcaneBrigade/Art/Arsenal/Gauge_RainArchivist_Empty_v1.png done
+Gauge_RainArchivist_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_RainArchivist_Full_v1.png done
+Gauge_RainArchivist_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge_RainArchivist_Full_v1.png done
