@@ -80,7 +80,7 @@ namespace ArcaneBrigade
         private float celebrateAt = -100;
         private Material paintedMaterial;
         private NightmarePresence nightmarePresence;
-        private SpriteRenderer championBeacon;
+        private HeroCrestVisual heroCrest;
         private float gaitBlend;
         public float GaitWeight => gaitBlend;
         private float previousGait;
@@ -602,18 +602,9 @@ namespace ArcaneBrigade
             if (variantVisual != null) variantVisual.Display(state, body, simulationTime, ReducedMotion);
             if (nightmarePresence == null) nightmarePresence = gameObject.AddComponent<NightmarePresence>();
             nightmarePresence.Display(state, body, simulationTime, nightVisibility);
-            if (state.Faction == Faction.Champion && championBeacon == null)
-            {
-                championBeacon = CreateSprite("ChampionBeacon", transform); championBeacon.sprite = K8Motion.TierStar();
-            }
-            if (championBeacon != null)
-            {
-                championBeacon.enabled = state.Alive && state.Faction == Faction.Champion;
-                championBeacon.sortingOrder = order - 1;
-                championBeacon.transform.localPosition = new Vector3(0, -height * 0.5f - 0.06f, 0);
-                championBeacon.transform.localScale = new Vector3(0.8f, 0.26f, 1) * (height / Mathf.Max(0.01f, championBeacon.sprite.bounds.size.x));
-                championBeacon.color = new Color(0.5f, 1, 0.86f, 0.95f);
-            }
+            // the hero's painted foot crest (HeroCrestVisual) replaces the squashed teal star
+            if (state.Faction == Faction.Champion && heroCrest == null) heroCrest = gameObject.AddComponent<HeroCrestVisual>();
+            if (heroCrest != null) heroCrest.Display(state, new Vector2(0, -height * 0.5f - 0.02f), height, order, simulationTime, ReducedMotion);
 
             float angleOffset = !ReducedMotion && definition.Kind == WeaponKind.Melee ? Mathf.Sin(simulationTime * 1.8f + state.Id * 0.4f) * 9f : 0f;
             float recoil = 0f;

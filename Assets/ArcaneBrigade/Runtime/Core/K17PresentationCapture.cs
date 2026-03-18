@@ -87,8 +87,8 @@ namespace ArcaneBrigade
             }
             Transform rug = GameObject.Find("PaintedMarketRug").transform;
             Check(Mathf.Abs(rug.localScale.x - rug.localScale.y) < 0.001f, "Carpet preserves illustrated aspect ratio without stretching");
-            SpriteRenderer beacon = FindObjectsByType<SpriteRenderer>().First(renderer => renderer.name == "ChampionBeacon");
-            Check(beacon.transform.localPosition.y < -K8Motion.BodyHeight(owner.Simulation.Champion) * 0.5f && beacon.transform.localScale.x > beacon.transform.localScale.y, "Player identification rests below feet, not above head");
+            Transform beacon = GameObject.Find("Hero crest").transform;
+            Check(beacon.localPosition.y < -K8Motion.BodyHeight(owner.Simulation.Champion) * 0.5f && beacon.localScale.x > beacon.localScale.y, "Player identification rests below feet, not above head");
             ShopRarityGlow livingGlow = FindObjectsByType<ShopRarityGlow>().First();
             Transform mote = livingGlow.transform.Find("RarityMote0"); Vector3 previousMote = mote.localPosition;
             yield return new WaitForSecondsRealtime(0.2f);
