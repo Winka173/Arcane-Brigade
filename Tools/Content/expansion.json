@@ -1,0 +1,680 @@
+{
+ "companions": {
+  "TeapotPilgrim": {
+   "theme": "hearth",
+   "minor": "lantern-guild",
+   "rarity": "Common",
+   "new": false
+  },
+  "CandleSnail": {
+   "theme": "hearth",
+   "minor": "lantern-guild",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "TeacupCricket": {
+   "theme": "hearth",
+   "minor": "lantern-guild",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "BreadCrab": {
+   "theme": "hearth",
+   "minor": "gauntlet",
+   "rarity": "Common",
+   "new": false
+  },
+  "KettleBat": {
+   "theme": "hearth",
+   "minor": "gauntlet",
+   "rarity": "Common",
+   "new": false
+  },
+  "CoilKettle": {
+   "theme": "hearth",
+   "minor": "gear",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "SaffronMechanist": {
+   "theme": "hearth",
+   "minor": "gear",
+   "rarity": "Rare",
+   "new": false
+  },
+  "VelvetEnchantress": {
+   "theme": "hearth",
+   "minor": "regal",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "BakerMouse": {
+   "theme": "hearth",
+   "minor": "sweet-tooth",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "TeaDragon": {
+   "theme": "hearth",
+   "minor": "morning",
+   "rarity": "Mythic",
+   "new": true
+  },
+  "SundaeGolem": {
+   "theme": "hearth",
+   "minor": "sweet-tooth",
+   "rarity": "Rainbow",
+   "new": true
+  },
+  "MailboxImp": {
+   "theme": "archive",
+   "minor": "hat",
+   "rarity": "Common",
+   "new": false
+  },
+  "BrassAcorn": {
+   "theme": "archive",
+   "minor": "regal",
+   "rarity": "Common",
+   "new": false
+  },
+  "BookmarkGolem": {
+   "theme": "archive",
+   "minor": "rune",
+   "rarity": "Rare",
+   "new": false
+  },
+  "ThimbleMoth": {
+   "theme": "archive",
+   "minor": "hide",
+   "rarity": "Rare",
+   "new": false
+  },
+  "SecretPatchBear": {
+   "theme": "archive",
+   "minor": "hide",
+   "rarity": "Rare",
+   "new": false
+  },
+  "VelvetChampion": {
+   "theme": "archive",
+   "minor": "regal",
+   "rarity": "Rare",
+   "new": false
+  },
+  "SpindleWren": {
+   "theme": "archive",
+   "minor": "paper-wings",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "ReelOwl": {
+   "theme": "archive",
+   "minor": "rune",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "SecretPaperBird": {
+   "theme": "archive",
+   "minor": "paper-wings",
+   "rarity": "Rare",
+   "new": false
+  },
+  "LensOwl": {
+   "theme": "archive",
+   "minor": "rune",
+   "rarity": "Rare",
+   "new": true
+  },
+  "EndlessIndex": {
+   "theme": "archive",
+   "minor": "rune",
+   "rarity": "Rainbow",
+   "new": true
+  },
+  "TinTick": {
+   "theme": "clock",
+   "minor": "gear",
+   "rarity": "Common",
+   "new": false
+  },
+  "SpringDuck": {
+   "theme": "clock",
+   "minor": "hare",
+   "rarity": "Rare",
+   "new": false
+  },
+  "ButtonBeetle": {
+   "theme": "clock",
+   "minor": "regal",
+   "rarity": "Common",
+   "new": false
+  },
+  "StapleMole": {
+   "theme": "clock",
+   "minor": "gear",
+   "rarity": "Common",
+   "new": false
+  },
+  "RainbowBell": {
+   "theme": "clock",
+   "minor": "morning",
+   "rarity": "Rainbow",
+   "new": false
+  },
+  "ClockworkPiper": {
+   "theme": "clock",
+   "minor": "morning",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "GrandSprout": {
+   "theme": "clock",
+   "minor": "sprout",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "DreamCompass": {
+   "theme": "clock",
+   "minor": "archer",
+   "rarity": "Common",
+   "new": false
+  },
+  "LampGoat": {
+   "theme": "clock",
+   "minor": "horn",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "TopBeetle": {
+   "theme": "clock",
+   "minor": "gear",
+   "rarity": "Rare",
+   "new": true
+  },
+  "HoodWisp": {
+   "theme": "frost",
+   "minor": "root",
+   "rarity": "Common",
+   "new": false
+  },
+  "SnowSpoon": {
+   "theme": "frost",
+   "minor": "sweet-tooth",
+   "rarity": "Common",
+   "new": false
+  },
+  "IceCreamOwl": {
+   "theme": "frost",
+   "minor": "sweet-tooth",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "FridgeWisp": {
+   "theme": "frost",
+   "minor": "shoe",
+   "rarity": "Common",
+   "new": false
+  },
+  "RainbowTailor": {
+   "theme": "frost",
+   "minor": "hide",
+   "rarity": "Rainbow",
+   "new": false
+  },
+  "IronLocomotive": {
+   "theme": "frost",
+   "minor": "resolve",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "MonsterMarble": {
+   "theme": "frost",
+   "minor": "mask",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "ShovelPenguin": {
+   "theme": "frost",
+   "minor": "gauntlet",
+   "rarity": "Rare",
+   "new": true
+  },
+  "BobaTadpole": {
+   "theme": "frost",
+   "minor": "sweet-tooth",
+   "rarity": "Common",
+   "new": true
+  },
+  "RainHeron": {
+   "theme": "frost",
+   "minor": "rain-script",
+   "rarity": "Rare",
+   "new": true
+  },
+  "MushroomLibrarian": {
+   "theme": "orchard",
+   "minor": "clover",
+   "rarity": "Common",
+   "new": false
+  },
+  "PearMoth": {
+   "theme": "orchard",
+   "minor": "morning",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "CitrusToad": {
+   "theme": "orchard",
+   "minor": "hare",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "RadishJester": {
+   "theme": "orchard",
+   "minor": "mask",
+   "rarity": "Common",
+   "new": false
+  },
+  "SeedHedgehog": {
+   "theme": "orchard",
+   "minor": "root",
+   "rarity": "Common",
+   "new": false
+  },
+  "PaperInventor": {
+   "theme": "orchard",
+   "minor": "gear",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "PaperDevil": {
+   "theme": "orchard",
+   "minor": "horn",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "BristleBall": {
+   "theme": "orchard",
+   "minor": "horn",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "WateringSnail": {
+   "theme": "orchard",
+   "minor": "sprout",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "YoyoSquirrel": {
+   "theme": "orchard",
+   "minor": "hare",
+   "rarity": "Rare",
+   "new": true
+  },
+  "FirstSeed": {
+   "theme": "orchard",
+   "minor": "root",
+   "rarity": "Rainbow",
+   "new": true
+  },
+  "PillowOracle": {
+   "theme": "astral",
+   "minor": "hat",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "MoonJelly": {
+   "theme": "astral",
+   "minor": "archer",
+   "rarity": "Rare",
+   "new": false
+  },
+  "StarSock": {
+   "theme": "astral",
+   "minor": "shoe",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "CometKite": {
+   "theme": "astral",
+   "minor": "archer",
+   "rarity": "Common",
+   "new": false
+  },
+  "OrbitMoth": {
+   "theme": "astral",
+   "minor": "hare",
+   "rarity": "Common",
+   "new": false
+  },
+  "SecretDreamLamb": {
+   "theme": "astral",
+   "minor": "hide",
+   "rarity": "Rare",
+   "new": false
+  },
+  "DoughForeman": {
+   "theme": "astral",
+   "minor": "hat",
+   "rarity": "Rare",
+   "new": false
+  },
+  "LittleSprout": {
+   "theme": "astral",
+   "minor": "sprout",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "EclipseEgg": {
+   "theme": "astral",
+   "minor": "morning",
+   "rarity": "Rainbow",
+   "new": false
+  },
+  "PaperPlanePigeon": {
+   "theme": "astral",
+   "minor": "paper-wings",
+   "rarity": "Common",
+   "new": true
+  },
+  "ShellPostman": {
+   "theme": "tidal",
+   "minor": "lantern-guild",
+   "rarity": "Common",
+   "new": false
+  },
+  "CoralTeacup": {
+   "theme": "tidal",
+   "minor": "clover",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "BubbleKoi": {
+   "theme": "tidal",
+   "minor": "clover",
+   "rarity": "Common",
+   "new": false
+  },
+  "AnchorSnail": {
+   "theme": "tidal",
+   "minor": "knight",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "SailSquid": {
+   "theme": "tidal",
+   "minor": "resolve",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "ReturnCaptain": {
+   "theme": "tidal",
+   "minor": "knight",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "BalloonMallet": {
+   "theme": "tidal",
+   "minor": "big-top",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "RibbonOtter": {
+   "theme": "tidal",
+   "minor": "rain-script",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "RaincoatFrog": {
+   "theme": "tidal",
+   "minor": "rain-script",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "LighthouseWhale": {
+   "theme": "tidal",
+   "minor": "lantern-guild",
+   "rarity": "Mythic",
+   "new": true
+  },
+  "KiteDragon": {
+   "theme": "tidal",
+   "minor": "paper-wings",
+   "rarity": "Rainbow",
+   "new": true
+  },
+  "JellySwordsman": {
+   "theme": "oddity",
+   "minor": "knight",
+   "rarity": "Common",
+   "new": false
+  },
+  "DiceCrab": {
+   "theme": "oddity",
+   "minor": "clover",
+   "rarity": "Common",
+   "new": false
+  },
+  "MaskPepper": {
+   "theme": "oddity",
+   "minor": "mask",
+   "rarity": "Common",
+   "new": false
+  },
+  "MirrorNewt": {
+   "theme": "oddity",
+   "minor": "resolve",
+   "rarity": "Mythic",
+   "new": false
+  },
+  "RibbonSpider": {
+   "theme": "oddity",
+   "minor": "hide",
+   "rarity": "Common",
+   "new": false
+  },
+  "VioletRemnant": {
+   "theme": "oddity",
+   "minor": "resolve",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "SockCyclops": {
+   "theme": "oddity",
+   "minor": "shoe",
+   "rarity": "Common",
+   "new": false
+  },
+  "CrayonGremlin": {
+   "theme": "oddity",
+   "minor": "mask",
+   "rarity": "Common",
+   "new": false
+  },
+  "CarouselPony": {
+   "theme": "oddity",
+   "minor": "big-top",
+   "rarity": "Uncommon",
+   "new": false
+  },
+  "JackInTheBox": {
+   "theme": "oddity",
+   "minor": "big-top",
+   "rarity": "Mythic",
+   "new": true
+  },
+  "LostCarousel": {
+   "theme": "oddity",
+   "minor": "big-top",
+   "rarity": "Rainbow",
+   "new": true
+  }
+ },
+ "heroes": {
+  "LanternKnight": [
+   "hearth",
+   "clock"
+  ],
+  "Postmaster": [
+   "archive",
+   "tidal"
+  ],
+  "DrowsySeer": [
+   "astral",
+   "frost"
+  ],
+  "RootOracle": [
+   "orchard",
+   "astral"
+  ],
+  "LoneJelly": [
+   "oddity",
+   "tidal"
+  ],
+  "GlassDice": [
+   "oddity",
+   "hearth"
+  ],
+  "TideSinger": [
+   "tidal",
+   "astral"
+  ],
+  "CometRunner": [
+   "astral",
+   "clock"
+  ],
+  "MirrorKeeper": [
+   "frost",
+   "oddity"
+  ],
+  "TreasureAcorn": [
+   "orchard",
+   "archive"
+  ],
+  "VerdantMatron": [
+   "orchard",
+   "hearth"
+  ],
+  "CopperCauldron": [
+   "hearth",
+   "oddity"
+  ],
+  "ChinaMarionette": [
+   "frost",
+   "oddity"
+  ],
+  "SoapSkater": [
+   "tidal",
+   "frost"
+  ],
+  "VelvetRegent": [
+   "archive",
+   "clock"
+  ],
+  "ButtonCavalier": [
+   "clock",
+   "oddity"
+  ],
+  "NightMaw": [
+   "oddity",
+   "astral"
+  ],
+  "ThornTreasurer": [
+   "orchard",
+   "archive"
+  ],
+  "CitrusMarshal": [
+   "orchard",
+   "hearth"
+  ],
+  "IvorySovereign": [
+   "archive",
+   "frost"
+  ],
+  "PetalCitadel": [
+   "orchard",
+   "astral"
+  ],
+  "PatchworkHost": [
+   "hearth",
+   "oddity",
+   "orchard"
+  ],
+  "ArchiveCurator": [
+   "archive",
+   "clock"
+  ],
+  "PennyBroker": [
+   "archive",
+   "hearth"
+  ],
+  "StormFencer": [
+   "clock",
+   "astral"
+  ],
+  "TinVirtuoso": [
+   "clock",
+   "oddity"
+  ],
+  "MoonProwler": [
+   "astral",
+   "frost"
+  ],
+  "SupperMortar": [
+   "hearth",
+   "tidal"
+  ],
+  "LanternWeaver": [
+   "astral",
+   "archive"
+  ],
+  "HourglassStag": [
+   "clock",
+   "tidal"
+  ],
+  "RainArchivist": [
+   "tidal",
+   "archive"
+  ],
+  "KiteAdmiral": [
+   "astral",
+   "tidal"
+  ],
+  "SundaeDuchess": [
+   "frost",
+   "hearth"
+  ],
+  "BonsaiClocksmith": [
+   "orchard",
+   "clock"
+  ],
+  "JugglingJester": [
+   "oddity",
+   "orchard"
+  ],
+  "BellDiver": [
+   "tidal",
+   "frost"
+  ]
+ },
+ "newHeroes": [
+  "BellDiver",
+  "BonsaiClocksmith",
+  "JugglingJester",
+  "KiteAdmiral",
+  "SundaeDuchess"
+ ],
+ "minorThreshold": {
+  "sprout": 3
+ },
+ "removedBonds": [
+  "fruit",
+  "ball"
+ ],
+ "newBonds": {
+  "paper-wings": "Paper Wings",
+  "sweet-tooth": "Sweet Tooth",
+  "big-top": "Big Top"
+ }
+}
