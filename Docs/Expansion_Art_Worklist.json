@@ -62,7 +62,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 4 rows of completely isolated full-body sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, with large transparent margins; never overlap. 1536x1536 canvas. Row designs in order: ROW 1 (TeaDragon): a small dragon shaped like a celadon teapot, a spout snout, a lid crest and curling steam whiskers (Mythic: rich detail); ROW 2 (LighthouseWhale): a small floating whale with a tiny striped lighthouse on its back, a lamp in its top, barnacle freckles (Mythic); ROW 3 (JackInTheBox): a jack-in-the-box ringmaster: a striped wooden box base with a springy ringmaster popping out, top hat and moustache (Mythic); ROW 4 (KiteDragon): a long floating paper kite dragon with bamboo ribs, painted scales and a ribbon tail, iridescent rainbow sheen on its edges (Prismatic: the rarest)."
+  "prompt": "A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 4 rows of completely isolated full-body sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, with large transparent margins; never overlap. 1536x1536 canvas. Row designs in order: ROW 1 (TeaDragon): a small dragon shaped like a celadon teapot, a spout snout, a lid crest and curling steam whiskers (Mythic: rich detail); ROW 2 (LighthouseWhale): HARBOR WHALE: a small floating whale with a tiny striped lighthouse on its back, a lamp in its top, barnacle freckles (Mythic); ROW 3 (JackInTheBox): RINGMASTER JACK: a jack-in-the-box ringmaster: a striped wooden box base with a springy ringmaster popping out, top hat and moustache (Mythic); ROW 4 (KiteDragon): a long floating paper kite dragon with bamboo ribs, painted scales and a ribbon tail, iridescent rainbow sheen on its edges (Prismatic: the rarest)."
  },
  {
   "name": "Characters6",
@@ -91,6 +91,45 @@
   "prompt": "A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 4 rows of completely isolated full-body sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, with large transparent margins; never overlap. 1536x1536 canvas. Row designs in order: ROW 1 (EclipseEgg_Ranged): Eclipse Egg (the reference egg ally) hatched into a ranged form: a little starlit bird with an eggshell cap; ROW 2 (EclipseEgg_Melee): Eclipse Egg hatched into a melee form: a small armoured night lizard with an eggshell helmet; ROW 3 (EclipseEgg_Support): Eclipse Egg hatched into a support form: a soft moon moth with eggshell wings; ROW 4 (FirstSeed_Sapling): a small fighting sapling grown by The First Seed: a twig sprite with leaf hands and root feet."
  },
  {
+  "name": "Characters8",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Characters8_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 4 rows of completely isolated full-body sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, with large transparent margins; never overlap. 1536x1536 canvas. Row designs in order: ROW 1 (StaticFerret): a sleek ferret whose fur stands on end with static, little copper earrings crackling; ROW 2 (StormKitten): a small kitten whose fluffy fur is a little grey storm cloud, tiny sparks on its whiskers; ROW 3 (VoltEel): a coiled teal eel with glowing yellow stripes, a tiny conductor's cap (Rare); ROW 4 (ShantySeaLion): a young sea lion singing a sea shanty, a sailor's neckerchief and a small squeezebox."
+ },
+ {
+  "name": "Characters9",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Characters9_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 4 rows of completely isolated full-body sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, with large transparent margins; never overlap. 1536x1536 canvas. Row designs in order: ROW 1 (BottleGull): a seagull carrying a corked message bottle under one wing, a striped scarf; ROW 2 (PinnedBeetle): a living museum beetle with a brass specimen pin through its little label tag, glass-case shine on its shell; ROW 3 (FossilArmadillo): a small armadillo whose banded shell is fossil stone with an ammonite, a museum tag on a string; ROW 4 (SpecimenSlime): a slime kept in a corked specimen jar it carries around, a museum label on the jar (Rare)."
+ },
+ {
+  "name": "Characters10",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Characters10_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER ANIMATION SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 1 rows of completely isolated full-body sprites on a truly transparent background. Each ROW is one distinct character. Every COLUMN is an animation pose of the SAME character: column 1 idle relaxed, column 2 walking with left leg forward and a slight lean, column 3 attack anticipation braced back with a determined face, column 4 attack release reaching forward with an expressive face. NO held weapons (weapons are separate game objects). No ground, no shadows, no glow outside the silhouette, no text, no grid. SAME scale and identity across all four poses in a row. Living storybook creatures with hand-made curio details. Front three-quarter view facing right, full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, with large transparent margins; never overlap. 1536x1152 canvas. Row designs in order: ROW 1 (CourtHerald): a small herald rabbit in a velvet tabard with a long brass trumpet slung on its back."
+ },
+ {
   "name": "KiteAdmiral_Awake",
   "path": "Assets/ArcaneBrigade/Art/Arsenal/KiteAdmiral_Awake_v1.png",
   "transparent": true,
@@ -103,7 +142,7 @@
   ],
   "depends": "Characters1",
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: BOX KITE: a big paper box kite with bamboo frame, sailcloth panels in teal and cream and a ribbon tail, that the mouse admiral rides; side view facing right. The first reference shows the hero (row KiteAdmiral). Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: FLEET KITE: one small paper box kite with a bamboo frame, sailcloth panels in teal and cream and a ribbon tail, flying on its own (the game shows four of them above the admiral's ranged friends); side view facing right. The first reference shows the hero (row KiteAdmiral). Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Gauge_KiteAdmiral_Empty",
@@ -1383,21 +1422,6 @@
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a teal tin watering can with a brass rose spout. Draw the weapon alone, lying horizontally and POINTING RIGHT (+X), its grip or handle at the LEFT about 20% across, as a companion would hold it out in front. 1024x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Sprout",
-  "path": "Assets/ArcaneBrigade/Art/Arsenal/Sprout_v1.png",
-  "transparent": true,
-  "refs": [
-   "Assets/ArcaneBrigade/Art/Arsenal/WateringCan_Held_v1.png",
-   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
-   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
-   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
-   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
-  ],
-  "depends": "WateringCan_Held",
-  "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small green sprout with two round leaves popping out of a soil tuft (it must match the held weapon in the first reference). Seen from the elevated three-quarter game view, standing on the floor (no floor drawn). 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
- },
- {
   "name": "SnowShovel_Held",
   "path": "Assets/ArcaneBrigade/Art/Arsenal/SnowShovel_Held_v1.png",
   "transparent": true,
@@ -1498,32 +1522,36 @@
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a gilded carousel horse on a brass pole, mid-gallop. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_SugarCube",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_SugarCube_v1.png",
+  "name": "TeaDragon_Teapot",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/TeaDragon_Teapot_v1.png",
   "transparent": true,
   "refs": [
-   "Assets/ArcaneBrigade/Art/October/Relics5.png",
-   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a sugar cube with a tiny brass clock key stuck in it (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a celadon teapot set down on the floor, its lid rattling with steam. Seen from the elevated three-quarter game view, standing on the floor (no floor drawn). 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_WoolScarf",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_WoolScarf_v1.png",
+  "name": "FirstSeed_Hedge",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/FirstSeed_Hedge_v1.png",
   "transparent": true,
   "refs": [
-   "Assets/ArcaneBrigade/Art/October/Relics5.png",
-   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a knitted teal-and-cream wool scarf, loosely coiled (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a short hedge wall of thorny brambles with small white flowers, seen from the side. Draw the object alone, seen from the side or front as described, no hands, no character. 768x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_KiteString",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_KiteString_v1.png",
+  "name": "Item_TallyChalk",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_TallyChalk_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1531,11 +1559,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small reel of kite string with a paper tag (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a stick of chalk beside five tally marks scratched on a slate (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_PencilShavings",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_PencilShavings_v1.png",
+  "name": "Item_CoinSash",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_CoinSash_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1543,11 +1571,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a curl of pencil shavings beside a short sharpened pencil (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a runner's sash with little coin pockets (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_ButtonMagnet",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_ButtonMagnet_v1.png",
+  "name": "Item_FishCracker",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_FishCracker_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1555,11 +1583,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a horseshoe magnet with three buttons stuck to it (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a fish-shaped cracker biscuit (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_SpareSpoon",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_SpareSpoon_v1.png",
+  "name": "Item_PostageStamp",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_PostageStamp_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1567,11 +1595,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a dented silver spoon tied with a ribbon (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a single postage stamp with a wax seal stamped on it (Uncommon item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_LanternWick",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_LanternWick_v1.png",
+  "name": "Item_FrostSalt",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_FrostSalt_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1579,11 +1607,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a coiled candle wick in a little brass holder (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small glass shaker of glittering frost salt (Uncommon item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_BiscuitTin",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_BiscuitTin_v1.png",
+  "name": "Item_RefundSlip",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_RefundSlip_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1591,11 +1619,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a round painted biscuit tin with a coin slot in the lid (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a paper refund slip with a stamped coin seal and a torn perforated edge, no readable text (Uncommon item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_PuddleBoots",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_PuddleBoots_v1.png",
+  "name": "Item_WhetstoneWafer",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_WhetstoneWafer_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1603,11 +1631,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a pair of small mustard rain boots (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a wafer biscuit shaped like a whetstone with a sugar-sharpened edge (Uncommon item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_PocketChalk",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_PocketChalk_v1.png",
+  "name": "Item_LateFee",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_LateFee_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1615,11 +1643,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a stick of chalk in a folded paper wrapper (Common item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: an overdue library card with a wine-coloured late stamp, no readable text (Uncommon item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_SnowGlobeShard",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_SnowGlobeShard_v1.png",
+  "name": "Item_HagglersAbacus",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_HagglersAbacus_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1627,11 +1655,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a curved shard of a snow globe with snow still swirling inside (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small brass abacus with coin-shaped beads (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_StickyNote",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_StickyNote_v1.png",
+  "name": "Item_SlipstreamScarf",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_SlipstreamScarf_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1639,7 +1667,19 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a pad of mustard sticky notes with a doodled arrow (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a long streaming silk scarf with a brass pin (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Item_BrainFreeze",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_BrainFreeze_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Relics5.png",
+   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: an ice-cream cone frozen solid with frost cracks (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_WindChime",
@@ -1654,8 +1694,8 @@
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a brass wind chime with three tubes and a paper wind tail (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_TeaBagSatchel",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_TeaBagSatchel_v1.png",
+  "name": "Item_SpecimenPin",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_SpecimenPin_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1663,7 +1703,19 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a little cloth satchel full of tea bags with tags (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a long brass specimen pin with a jewelled head stuck through a little paper label (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Item_StarPolish",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_StarPolish_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Relics5.png",
+   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small tin of star polish with a cloth and a shining star on the lid (Rare item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_KiteTailRibbon",
@@ -1675,7 +1727,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a long kite-tail ribbon with paper bows (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a long kite-tail ribbon with paper bows (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_MeltingSundae",
@@ -1687,7 +1739,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a sundae glass melting over its rim, a frost crystal on the spoon (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a sundae glass melting over its rim, a frost crystal on the spoon (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_CuckooPendulum",
@@ -1699,19 +1751,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a brass pendulum with a tiny carved cuckoo on its bob (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
- },
- {
-  "name": "Item_JugglersSpareBall",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_JugglersSpareBall_v1.png",
-  "transparent": true,
-  "refs": [
-   "Assets/ArcaneBrigade/Art/October/Relics5.png",
-   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
-  ],
-  "depends": null,
-  "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a single patchwork juggling ball with a bell (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a brass pendulum with a tiny carved cuckoo on its bob (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_DivingBellLantern",
@@ -1723,7 +1763,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small brass diving-bell lantern with a round glass port (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small brass diving-bell lantern with a round glass port (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_TwinTicket",
@@ -1735,11 +1775,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: two joined circus tickets with a perforated line (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: two joined circus tickets with a perforated line (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_BondLocket",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_BondLocket_v1.png",
+  "name": "Item_TreasureMimic",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_TreasureMimic_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1747,11 +1787,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: an open gold locket holding two tiny portraits (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a little treasure chest with teeth and a curious eye peeking from under the lid (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_LuckyRerun",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_LuckyRerun_v1.png",
+  "name": "Item_DuelistsRibbon",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_DuelistsRibbon_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1759,11 +1799,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a brass token with a clover and a circular arrow (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a duelling sword knot ribbon in wine and gold (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_BrassCompassRose",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_BrassCompassRose_v1.png",
+  "name": "Item_FrostLedger",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_FrostLedger_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1771,11 +1811,11 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a brass compass rose medallion with a crown at north (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a ledger book bound in ice with frosted pages (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
-  "name": "Item_GildedCage",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_GildedCage_v1.png",
+  "name": "Item_UndertowAnchor",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_UndertowAnchor_v1.png",
   "transparent": true,
   "refs": [
    "Assets/ArcaneBrigade/Art/October/Relics5.png",
@@ -1783,7 +1823,31 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small gilded birdcage with an open door and three stars inside (Mythic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a small brass anchor wrapped in a curling wave of sea water (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Item_FunhouseMirror",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_FunhouseMirror_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Relics5.png",
+   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a wavy funhouse mirror in a striped carnival frame (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Item_SpliceKit",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_SpliceKit_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Relics5.png",
+   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a sewing splice kit: three coloured threads twisted into one star-shaped knot, needles in a felt case (Mythic item) (Mythic: richer detail, a faint gold rim). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_TheEndlessEncore",
@@ -1795,7 +1859,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a theatre curtain tassel that loops into an infinity knot (Prismatic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a theatre curtain tassel that loops into an infinity knot (Prismatic item) (Prismatic, the rarest: iridescent rainbow sheen on the object itself). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_MoonClockKey",
@@ -1807,19 +1871,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a large clock key whose bow is a crescent moon (Prismatic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
- },
- {
-  "name": "Item_LastWishCoin",
-  "path": "Assets/ArcaneBrigade/Art/Expansion/Item_LastWishCoin_v1.png",
-  "transparent": true,
-  "refs": [
-   "Assets/ArcaneBrigade/Art/October/Relics5.png",
-   "Assets/ArcaneBrigade/Art/K26/Relics1_v1.png"
-  ],
-  "depends": null,
-  "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a worn gold wishing coin with a star cut through its centre (Prismatic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a large clock key whose bow is a crescent moon (Prismatic item) (Prismatic, the rarest: iridescent rainbow sheen on the object itself). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_MirrorOfTwins",
@@ -1831,7 +1883,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a hand mirror whose glass shows a second, smaller reflection (Prismatic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a hand mirror whose glass shows a second, smaller reflection (Prismatic item) (Prismatic, the rarest: iridescent rainbow sheen on the object itself). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_StorybookEnding",
@@ -1843,7 +1895,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a closed storybook with a gold ribbon bookmark and a happy-ending seal (Prismatic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a closed storybook with a gold ribbon bookmark and a happy-ending seal (Prismatic item) (Prismatic, the rarest: iridescent rainbow sheen on the object itself). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Item_DreamLoom",
@@ -1855,7 +1907,7 @@
   ],
   "depends": null,
   "mode": "single",
-  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a tiny wooden loom weaving a rainbow thread (Prismatic item). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a tiny wooden loom weaving a rainbow thread (Prismatic item) (Prismatic, the rarest: iridescent rainbow sheen on the object itself). An inventory icon: ONE object, front view, filling about 70% of a 512x512 canvas, readable at 48 px. Original design, no logos, no text. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  },
  {
   "name": "Bond_PaperWings",
@@ -1892,5 +1944,41 @@
   "depends": null,
   "mode": "single",
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a bond emblem: a little striped circus tent with a pennant. Same visual size and treatment as the emblems in the references, readable at 32 px. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Bond_StaticClub",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Bond_StaticClub_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Bonds1.png",
+   "Assets/ArcaneBrigade/Art/October/Bonds2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a bond emblem: a small lightning bolt badge crackling between two copper studs. Same visual size and treatment as the emblems in the references, readable at 32 px. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Bond_SeaShanty",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Bond_SeaShanty_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Bonds1.png",
+   "Assets/ArcaneBrigade/Art/October/Bonds2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a bond emblem: a squeezebox accordion with a rope knot and a seashell. Same visual size and treatment as the emblems in the references, readable at 32 px. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Bond_ExhibitHall",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Bond_ExhibitHall_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Bonds1.png",
+   "Assets/ArcaneBrigade/Art/October/Bonds2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a bond emblem: a museum display bell jar with a pinned paper specimen inside. Same visual size and treatment as the emblems in the references, readable at 32 px. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  }
 ]

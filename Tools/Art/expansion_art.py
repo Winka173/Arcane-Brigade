@@ -1,5 +1,5 @@
 """Writes Docs/Expansion_Art_Worklist.json: the image requests for the content expansion (Docs/Content_Expansion_Proposal.md,
-version 3): 5 new heroes and 19 new companions (character sheets), the new heroes' transformed pieces and gauges, the
+version 5, Docs/Content_Expansion_v5.md): 5 new heroes and 28 new companions (character sheets), the new heroes' transformed pieces and gauges, the
 simplified gauges of the 31 existing heroes, 13 new weapons, 30 item icons and 3 bond icons.
 
 Same job format as Docs/Bizarre_Arsenal_Art_Worklist.json (name, path, transparent, refs, depends, mode, prompt). Images are
@@ -80,8 +80,8 @@ CHARACTERS = [
     ("LensOwl", "an owl scholar with a brass magnifier over one eye and a square scholar's cap"),
     ("RainHeron", "a tall slate-blue heron with ink-stained feathers and a scroll satchel"),
     ("TeaDragon", "a small dragon shaped like a celadon teapot, a spout snout, a lid crest and curling steam whiskers (Mythic: rich detail)"),
-    ("LighthouseWhale", "a small floating whale with a tiny striped lighthouse on its back, a lamp in its top, barnacle freckles (Mythic)"),
-    ("JackInTheBox", "a jack-in-the-box ringmaster: a striped wooden box base with a springy ringmaster popping out, top hat and moustache (Mythic)"),
+    ("LighthouseWhale", "HARBOR WHALE: a small floating whale with a tiny striped lighthouse on its back, a lamp in its top, barnacle freckles (Mythic)"),
+    ("JackInTheBox", "RINGMASTER JACK: a jack-in-the-box ringmaster: a striped wooden box base with a springy ringmaster popping out, top hat and moustache (Mythic)"),
     ("KiteDragon", "a long floating paper kite dragon with bamboo ribs, painted scales and a ribbon tail, iridescent rainbow sheen on its edges (Prismatic: the rarest)"),
     ("SundaeGolem", "a big friendly golem built of ice-cream scoops in a waffle-cone body with a wine-cherry on top, iridescent rainbow sprinkles (Prismatic)"),
     ("LostCarousel", "a walking gilded carousel horse with a brass pole through its back and a fragment of striped carousel canopy as a hat, iridescent rainbow trim (Prismatic)"),
@@ -92,6 +92,16 @@ CHARACTERS = [
     ("EclipseEgg_Melee", "Eclipse Egg hatched into a melee form: a small armoured night lizard with an eggshell helmet"),
     ("EclipseEgg_Support", "Eclipse Egg hatched into a support form: a soft moon moth with eggshell wings"),
     ("FirstSeed_Sapling", "a small fighting sapling grown by The First Seed: a twig sprite with leaf hands and root feet"),
+    # version 5 additions (Docs/Content_Expansion_v5.md §6)
+    ("StaticFerret", "a sleek ferret whose fur stands on end with static, little copper earrings crackling"),
+    ("StormKitten", "a small kitten whose fluffy fur is a little grey storm cloud, tiny sparks on its whiskers"),
+    ("VoltEel", "a coiled teal eel with glowing yellow stripes, a tiny conductor's cap (Rare)"),
+    ("ShantySeaLion", "a young sea lion singing a sea shanty, a sailor's neckerchief and a small squeezebox"),
+    ("BottleGull", "a seagull carrying a corked message bottle under one wing, a striped scarf"),
+    ("PinnedBeetle", "a living museum beetle with a brass specimen pin through its little label tag, glass-case shine on its shell"),
+    ("FossilArmadillo", "a small armadillo whose banded shell is fossil stone with an ammonite, a museum tag on a string"),
+    ("SpecimenSlime", "a slime kept in a corked specimen jar it carries around, a museum label on the jar (Rare)"),
+    ("CourtHerald", "a small herald rabbit in a velvet tabard with a long brass trumpet slung on its back"),
 ]
 for sheet in range(0, len(CHARACTERS), 4):
     rows = CHARACTERS[sheet:sheet + 4]
@@ -103,7 +113,7 @@ for sheet in range(0, len(CHARACTERS), 4):
 
 # ---------------------------------------------------------------- 2. new heroes: transformed piece + gauge
 NEW_HEROES = {
-    "KiteAdmiral": ("KiteAdmiral_Awake", "BOX KITE: a big paper box kite with bamboo frame, sailcloth panels in teal and cream and a ribbon tail, that the mouse admiral rides; side view facing right", PROP,
+    "KiteAdmiral": ("KiteAdmiral_Awake", "FLEET KITE: one small paper box kite with a bamboo frame, sailcloth panels in teal and cream and a ribbon tail, flying on its own (the game shows four of them above the admiral's ranged friends); side view facing right", PROP,
                     "a paper kite standing on its tail with a long window down its body and a small brass wind arrow on top; the window is EMPTY", "the window is now filled with swirling teal wind and paper-scrap gusts"),
     "SundaeDuchess": ("SundaeDuchess_Awake", "GIANT SCOOP: one huge ice-cream scoop (vanilla with strawberry ripple) on a wafer, as it falls from the sky; front view", PROP,
                       "a tall sundae glass with a long clear window; the glass is FULL of ice cream to the brim (this is the starting state: it melts down in the game)", "the same glass now EMPTY except a little melted puddle at the bottom"),
@@ -144,7 +154,7 @@ WEAPONS = {
     "RollingPin": ("a long wooden rolling pin with turned handles, dusted with flour", []),
     "BobaStraw": ("a lidded milk-tea cup with a fat striped straw sticking out, held like a blowgun", [("BobaPearl", "a single glossy dark tapioca pearl", ROUND)]),
     "PaperPlaneSquadron": ("a brass launcher clip holding three folded paper planes side by side", [("PaperPlane", "one folded cream paper plane with a teal stripe", SHOT)]),
-    "WateringCan": ("a teal tin watering can with a brass rose spout", [("Sprout", "a small green sprout with two round leaves popping out of a soil tuft", FLOOR)]),
+    "WateringCan": ("a teal tin watering can with a brass rose spout", []),
     "SnowShovel": ("a short snow shovel with a wooden handle and a dented teal blade", [("SnowClump", "a thrown clump of packed snow with a few ice crystals", SHOT)]),
     "SunLens": ("a brass magnifying glass with a carved wooden handle", []),
     "SpinningTop": ("a wooden spinning-top launcher with a pull cord and a brass trigger ring", [("SpinTop", "a painted wooden spinning top with a brass tip, seen spinning from slightly above", ROUND)]),
@@ -165,40 +175,42 @@ for wid, (held, pieces) in WEAPONS.items():
 
 # rarity pieces: the companions' own skills that paint an object
 for name, subject, shape in [("PaperInventor_Tower", "a little folded-paper turret on three paper legs with a cardboard barrel", FLOOR),
-                             ("LostCarousel_Horse", "a gilded carousel horse on a brass pole, mid-gallop", PROP)]:
+                             ("LostCarousel_Horse", "a gilded carousel horse on a brass pole, mid-gallop", PROP),
+                             ("TeaDragon_Teapot", "a celadon teapot set down on the floor, its lid rattling with steam", FLOOR),
+                             ("FirstSeed_Hedge", "a short hedge wall of thorny brambles with small white flowers, seen from the side", PROP)]:
     single(EXP + name + "_v1.png", name, REFS, STYLE + "Subject: " + subject + "." + shape + ISOLATED)
 
 # ---------------------------------------------------------------- 5. thirty item icons
-ITEMS = {
-    # Common
-    "SugarCube": "a sugar cube with a tiny brass clock key stuck in it", "WoolScarf": "a knitted teal-and-cream wool scarf, loosely coiled",
-    "KiteString": "a small reel of kite string with a paper tag", "PencilShavings": "a curl of pencil shavings beside a short sharpened pencil",
-    "ButtonMagnet": "a horseshoe magnet with three buttons stuck to it", "SpareSpoon": "a dented silver spoon tied with a ribbon",
-    "LanternWick": "a coiled candle wick in a little brass holder", "BiscuitTin": "a round painted biscuit tin with a coin slot in the lid",
-    "PuddleBoots": "a pair of small mustard rain boots", "PocketChalk": "a stick of chalk in a folded paper wrapper",
-    # Rare
-    "SnowGlobeShard": "a curved shard of a snow globe with snow still swirling inside", "StickyNote": "a pad of mustard sticky notes with a doodled arrow",
-    "WindChime": "a brass wind chime with three tubes and a paper wind tail", "TeaBagSatchel": "a little cloth satchel full of tea bags with tags",
-    # Mythic (each has its own mechanic: richer detail, a faint gold rim)
-    "KiteTailRibbon": "a long kite-tail ribbon with paper bows", "MeltingSundae": "a sundae glass melting over its rim, a frost crystal on the spoon",
-    "CuckooPendulum": "a brass pendulum with a tiny carved cuckoo on its bob", "JugglersSpareBall": "a single patchwork juggling ball with a bell",
-    "DivingBellLantern": "a small brass diving-bell lantern with a round glass port", "TwinTicket": "two joined circus tickets with a perforated line",
-    "BondLocket": "an open gold locket holding two tiny portraits", "LuckyRerun": "a brass token with a clover and a circular arrow",
-    "BrassCompassRose": "a brass compass rose medallion with a crown at north", "GildedCage": "a small gilded birdcage with an open door and three stars inside",
-    # Prismatic (the rarest: iridescent rainbow sheen on the object itself)
-    "TheEndlessEncore": "a theatre curtain tassel that loops into an infinity knot", "MoonClockKey": "a large clock key whose bow is a crescent moon",
-    "LastWishCoin": "a worn gold wishing coin with a star cut through its centre", "MirrorOfTwins": "a hand mirror whose glass shows a second, smaller reflection",
-    "StorybookEnding": "a closed storybook with a gold ribbon bookmark and a happy-ending seal", "DreamLoom": "a tiny wooden loom weaving a rainbow thread",
+ITEMS = {  # version 5 final (Docs/Content_Expansion_v5.md §6b): id -> (tier, look)
+    "TallyChalk": ("Common", "a stick of chalk beside five tally marks scratched on a slate"),
+    "CoinSash": ("Common", "a runner's sash with little coin pockets"), "FishCracker": ("Common", "a fish-shaped cracker biscuit"),
+    "PostageStamp": ("Uncommon", "a single postage stamp with a wax seal stamped on it"), "FrostSalt": ("Uncommon", "a small glass shaker of glittering frost salt"),
+    "RefundSlip": ("Uncommon", "a paper refund slip with a stamped coin seal and a torn perforated edge, no readable text"),
+    "WhetstoneWafer": ("Uncommon", "a wafer biscuit shaped like a whetstone with a sugar-sharpened edge"), "LateFee": ("Uncommon", "an overdue library card with a wine-coloured late stamp, no readable text"),
+    "HagglersAbacus": ("Rare", "a small brass abacus with coin-shaped beads"), "SlipstreamScarf": ("Rare", "a long streaming silk scarf with a brass pin"),
+    "BrainFreeze": ("Rare", "an ice-cream cone frozen solid with frost cracks"), "WindChime": ("Rare", "a brass wind chime with three tubes and a paper wind tail"),
+    "SpecimenPin": ("Rare", "a long brass specimen pin with a jewelled head stuck through a little paper label"), "StarPolish": ("Rare", "a small tin of star polish with a cloth and a shining star on the lid"),
+    "KiteTailRibbon": ("Mythic", "a long kite-tail ribbon with paper bows"), "MeltingSundae": ("Mythic", "a sundae glass melting over its rim, a frost crystal on the spoon"),
+    "CuckooPendulum": ("Mythic", "a brass pendulum with a tiny carved cuckoo on its bob"), "DivingBellLantern": ("Mythic", "a small brass diving-bell lantern with a round glass port"),
+    "TwinTicket": ("Mythic", "two joined circus tickets with a perforated line"), "TreasureMimic": ("Mythic", "a little treasure chest with teeth and a curious eye peeking from under the lid"),
+    "DuelistsRibbon": ("Mythic", "a duelling sword knot ribbon in wine and gold"), "FrostLedger": ("Mythic", "a ledger book bound in ice with frosted pages"),
+    "UndertowAnchor": ("Mythic", "a small brass anchor wrapped in a curling wave of sea water"), "FunhouseMirror": ("Mythic", "a wavy funhouse mirror in a striped carnival frame"),
+    "SpliceKit": ("Mythic", "a sewing splice kit: three coloured threads twisted into one star-shaped knot, needles in a felt case"),
+    "TheEndlessEncore": ("Prismatic", "a theatre curtain tassel that loops into an infinity knot"), "MoonClockKey": ("Prismatic", "a large clock key whose bow is a crescent moon"),
+    "MirrorOfTwins": ("Prismatic", "a hand mirror whose glass shows a second, smaller reflection"),
+    "StorybookEnding": ("Prismatic", "a closed storybook with a gold ribbon bookmark and a happy-ending seal"), "DreamLoom": ("Prismatic", "a tiny wooden loom weaving a rainbow thread"),
 }
-for i, (iid, desc) in enumerate(ITEMS.items()):
-    tier = "Common" if i < 10 else "Rare" if i < 14 else "Mythic" if i < 24 else "Prismatic"
-    single(EXP + "Item_" + iid + "_v1.png", "Item_" + iid, ICON_REFS,
-           STYLE + "Subject: " + desc + " (" + tier + " item)." + ICON + ISOLATED)
+for iid, (tier, desc) in ITEMS.items():
+    note = " (Mythic: richer detail, a faint gold rim)" if tier == "Mythic" else " (Prismatic, the rarest: iridescent rainbow sheen on the object itself)" if tier == "Prismatic" else ""
+    single(EXP + "Item_" + iid + "_v1.png", "Item_" + iid, ICON_REFS, STYLE + "Subject: " + desc + " (" + tier + " item)" + note + "." + ICON + ISOLATED)
 
-# ---------------------------------------------------------------- 6. three bond icons
+# ---------------------------------------------------------------- 6. six bond icons
 for bid, desc in {"PaperWings": "a pair of folded paper wings pinned together with a brass pin",
                   "SweetTooth": "a wrapped candy and a small ice-cream cone crossed",
-                  "BigTop": "a little striped circus tent with a pennant"}.items():
+                  "BigTop": "a little striped circus tent with a pennant",
+                  "StaticClub": "a small lightning bolt badge crackling between two copper studs",
+                  "SeaShanty": "a squeezebox accordion with a rope knot and a seashell",
+                  "ExhibitHall": "a museum display bell jar with a pinned paper specimen inside"}.items():
     single(EXP + "Bond_" + bid + "_v1.png", "Bond_" + bid, BOND_REFS,
            STYLE + "Subject: a bond emblem: " + desc + ". Same visual size and treatment as the emblems in the references, readable at 32 px."
            " 512x512 canvas." + ISOLATED)
