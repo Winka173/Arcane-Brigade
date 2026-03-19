@@ -57,7 +57,7 @@ namespace ArcaneBrigade
                     else if (e.Critical && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion) Fill(GaugeSource.FriendCrit);
                     if (!personal && k != null && k.Has(KitPassive.SlowToFreeze) && target.Alive && (target.ChillUntil > Elapsed || target.KitSlowUntil > Elapsed) && target.FreezeReadyAt <= Elapsed
                         && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion)
-                    { target.FreezeReadyAt = Elapsed + k.Value(KitPassive.SlowToFreeze); Sleep(target, .3f); }
+                    { target.FreezeReadyAt = Elapsed + k.Value(KitPassive.SlowToFreeze); Freeze(target, .3f); }
                     if (!personal && k != null && Elapsed >= identityTickAt && k.Has(KitPassive.TeamChainChance) && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion
                         && combatRandom.NextDouble() < k.Value(KitPassive.TeamChainChance)) KitChain(target, IdentityPower * .2f);
                 }

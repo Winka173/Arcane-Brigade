@@ -23,6 +23,7 @@ namespace ArcaneBrigade.Editor
             Check(definitions.All(item => item.Description.Length < 145 && !item.Description.Contains("<")),"Short plain English descriptions");
             Check(definitions.All(item => item.Modifiers.All(modifier => float.IsFinite(modifier.Value))),"Finite authored modifiers");
             foreach (RelicMechanic mechanic in Enum.GetValues(typeof(RelicMechanic)))
+                if (mechanic <= RelicMechanic.SixWeapons) // later mechanics belong to catalog items (content expansion step 3)
                 Check(definitions.Any(item => item.Mechanic == mechanic),"Reference definition for mechanic " + mechanic);
             RunCatalog catalog = UnityEngine.Object.Instantiate(source);
             catalog.Items = source.Items.Where(item => string.IsNullOrEmpty(item.ReferenceName)).Concat(definitions).ToArray();

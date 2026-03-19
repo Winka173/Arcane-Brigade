@@ -45,6 +45,90 @@ namespace ArcaneBrigade.Editor
             ["exhibit-hall"] = ("Bond_ExhibitHall", "OctoberBonds2_10", ItemEffect.RecordedDamage, .1f),
         };
 
+        private static (ItemEffect effect, float value, ModifierScope? scope) M(ItemEffect effect, float value, ModifierScope? scope = null) => (effect, value, scope);
+        public static readonly Dictionary<string, (RelicMechanic mechanic, (ItemEffect effect, float value, ModifierScope? scope)[] mods, bool unique)> ItemChanges =
+            new Dictionary<string, (RelicMechanic, (ItemEffect, float, ModifierScope?)[], bool)>
+        {
+            ["key-oil"] = (RelicMechanic.None, new[] { M(ItemEffect.Damage, .12f) }, false),
+            ["CurioTruceBottle"] = (RelicMechanic.None, new[] { M(ItemEffect.Damage, .4f), M(ItemEffect.Crit, .2f), M(ItemEffect.AttackRange, .4f), M(ItemEffect.Armor, .6f), M(ItemEffect.MoveSpeed, -.3f, ModifierScope.Champion) }, true),
+            ["tarnished-crown"] = (RelicMechanic.RoyalBlow, null, false),
+            ["starlight-quilt"] = (RelicMechanic.QuiltGuard, null, false),
+            ["K26Defense6"] = (RelicMechanic.ApronShove, null, false),
+            ["K26Defense7"] = (RelicMechanic.QuietMending, null, false),
+            ["echo-postage"] = (RelicMechanic.EchoForward, null, false),
+            ["CurioShieldBlower"] = (RelicMechanic.BlowerReturn, null, false),
+            ["CurioEmeraldInvoice"] = (RelicMechanic.InvoiceSettles, null, false),
+            ["CrimsonSeal"] = (RelicMechanic.SealBurst, new[] { M(ItemEffect.ChampionDamage, .5f), M(ItemEffect.CollisionDamage, 16) }, false),
+            ["CrimsonSpring"] = (RelicMechanic.SpringDouble, new[] { M(ItemEffect.AttackSpeed, .25f), M(ItemEffect.AttackRange, .25f) }, false),
+            ["RainbowCrown"] = (RelicMechanic.BorrowedCrown, new[] { M(ItemEffect.Damage, .15f) }, false),
+            ["RainbowHeart"] = (RelicMechanic.ClockworkHeart, new[] { M(ItemEffect.AttackSpeed, .1f) }, false),
+            ["RainbowPrism"] = (RelicMechanic.ImpossiblePrism, new[] { M(ItemEffect.BulletSplit, 3) }, false),
+            ["RainbowThread"] = (RelicMechanic.LivingThread, new[] { M(ItemEffect.MeleeDamage, 4), M(ItemEffect.Knockback, .3f) }, false),
+        };
+
+        /// <summary>The thirty new items (Docs/Content_Expansion_v5.md §10): name, mechanic, food. Fish Cracker is the one plain stat.</summary>
+        public static readonly Dictionary<string, (string name, RelicMechanic mechanic, bool food)> NewItems = new Dictionary<string, (string, RelicMechanic, bool)>
+        {
+            ["TallyChalk"] = ("Tally Chalk", RelicMechanic.TallyChalk, false),
+            ["CoinSash"] = ("Coin Sash", RelicMechanic.CoinSash, false),
+            ["FishCracker"] = ("Fish Cracker", RelicMechanic.None, true),
+            ["PostageStamp"] = ("Postage Stamp", RelicMechanic.PostageStamp, false),
+            ["FrostSalt"] = ("Frost Salt", RelicMechanic.FrostSalt, false),
+            ["RefundSlip"] = ("Refund Slip", RelicMechanic.RefundSlip, false),
+            ["WhetstoneWafer"] = ("Whetstone Wafer", RelicMechanic.WhetstoneWafer, true),
+            ["LateFee"] = ("Late Fee", RelicMechanic.LateFee, false),
+            ["HagglersAbacus"] = ("Haggler's Abacus", RelicMechanic.HagglersAbacus, false),
+            ["SlipstreamScarf"] = ("Slipstream Scarf", RelicMechanic.SlipstreamScarf, false),
+            ["BrainFreeze"] = ("Brain Freeze", RelicMechanic.BrainFreeze, false),
+            ["WindChime"] = ("Wind Chime", RelicMechanic.WindChime, false),
+            ["SpecimenPin"] = ("Specimen Pin", RelicMechanic.SpecimenPin, false),
+            ["StarPolish"] = ("Star Polish", RelicMechanic.StarPolish, false),
+            ["KiteTailRibbon"] = ("Kite Tail Ribbon", RelicMechanic.KiteTailRibbon, false),
+            ["MeltingSundae"] = ("Melting Sundae", RelicMechanic.MeltingSundae, false),
+            ["CuckooPendulum"] = ("Cuckoo Pendulum", RelicMechanic.CuckooPendulum, false),
+            ["DivingBellLantern"] = ("Diving Bell Lantern", RelicMechanic.DivingBellLantern, false),
+            ["TwinTicket"] = ("Twin Ticket", RelicMechanic.TwinTicket, false),
+            ["TreasureMimic"] = ("Treasure Mimic", RelicMechanic.TreasureMimic, false),
+            ["DuelistsRibbon"] = ("Duelist's Ribbon", RelicMechanic.DuelistsRibbon, false),
+            ["FrostLedger"] = ("Frost Ledger", RelicMechanic.FrostLedger, false),
+            ["UndertowAnchor"] = ("Undertow Anchor", RelicMechanic.UndertowAnchor, false),
+            ["FunhouseMirror"] = ("Funhouse Mirror", RelicMechanic.FunhouseMirror, false),
+            ["SpliceKit"] = ("Splice Kit", RelicMechanic.SpliceKit, false),
+            ["TheEndlessEncore"] = ("The Endless Encore", RelicMechanic.EndlessEncore, false),
+            ["MoonClockKey"] = ("Moon Clock Key", RelicMechanic.MoonClockKey, false),
+            ["MirrorOfTwins"] = ("Mirror of Twins", RelicMechanic.MirrorOfTwins, false),
+            ["StorybookEnding"] = ("Storybook Ending", RelicMechanic.StorybookEnding, false),
+            ["DreamLoom"] = ("Dream Loom", RelicMechanic.DreamLoom, false),
+        };
+        public static string NewItemIconPath(string id) => "Assets/ArcaneBrigade/Art/Expansion/Item_" + id + "_v1.png";
+        private static Sprite NewItemIcon(string id)
+        {
+            string path = NewItemIconPath(id);
+            if (!File.Exists(path)) return null;
+            if (AssetImporter.GetAtPath(path) == null) AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport); // painted after the last refresh
+            if (AssetImporter.GetAtPath(path) is TextureImporter importer && (importer.textureType != TextureImporterType.Sprite || importer.spriteImportMode != SpriteImportMode.Single || importer.maxTextureSize != 512))
+            {
+                importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single; importer.alphaIsTransparency = true;
+                importer.mipmapEnabled = false; importer.maxTextureSize = 512; importer.SaveAndReimport();
+            }
+            return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        }
+        /// <summary>Fills a new item from its plan row (price and unlock by rarity; Prismatics are gifts only, like the old ones).</summary>
+        public static void FillNewItem(ItemDefinition item, ItemRow row, Sprite icon, RunCatalog catalog)
+        {
+            var spec = NewItems[row.id];
+            item.Id = row.id; item.Name = spec.name; item.ReferenceName = ""; item.Icon = icon; item.Rarity = Rarity(row.rarity);
+            item.Price = item.Rarity == ItemRarity.Common ? 24 : item.Rarity == ItemRarity.Uncommon ? 45 : item.Rarity == ItemRarity.Rare ? 60 : item.Rarity == ItemRarity.Mythic ? 74 : 200;
+            item.UnlockWave = item.Rarity == ItemRarity.Common ? 0 : item.Rarity == ItemRarity.Uncommon ? 2 : item.Rarity == ItemRarity.Rare ? 4 : item.Rarity == ItemRarity.Mythic ? 6 : int.MaxValue;
+            item.ShopWeight = row.weight; item.ShopThemes = row.themes.ToArray(); item.Pools = ShopPool.Gold;
+            item.Mechanic = spec.mechanic; item.Category = spec.food ? RelicCategory.Food : RelicCategory.Curio;
+            item.Effect = ItemEffect.Damage; item.Value = 0;
+            item.Modifiers = row.id == "FishCracker" ? new[] { new StatModifier { Effect = ItemEffect.Crit, Scope = ModifierScope.Champion, Value = .06f } } : new StatModifier[0];
+            item.Stacking = item.Rarity >= ItemRarity.Mythic ? StackPolicy.Unique : StackPolicy.Additive;
+            item.MaximumStacks = item.Rarity == ItemRarity.Rare ? 4 : 100000;
+            item.Description = RelicDescriptions.Describe(item, 1, catalog).Replace("\r\n", "\n");
+        }
+
         [MenuItem("Arcane Brigade/Content/Apply expansion step 1 (bonds, pools, rarities)")]
         public static void Apply()
         {
@@ -116,6 +200,30 @@ namespace ArcaneBrigade.Editor
                 ItemDefinition item = catalog.Item(row.id);
                 if (item == null) { if (!row.isNew) throw new InvalidOperationException("Item missing: " + row.id); continue; } // new items wait for their icons
                 item.Rarity = Rarity(row.rarity); item.Price = row.price; item.ShopWeight = row.weight; item.ShopThemes = row.themes.ToArray();
+            }
+            // the thirty new items enter once their icon is painted
+            var allItems = catalog.Items.ToList();
+            foreach (ItemRow row in plan.itemList.Where(r => r.isNew))
+            {
+                Sprite icon = NewItemIcon(row.id);
+                if (icon == null) continue;
+                ItemDefinition item = allItems.Find(i => i.Id == row.id);
+                if (item == null) { item = new ItemDefinition(); allItems.Add(item); }
+                FillNewItem(item, row, icon, catalog);
+            }
+            catalog.Items = allItems.ToArray();
+            // step 3: stat-only Mythics get a small mechanic, the four old Prismatics are rebuilt around one, Key Oil and Truce
+            // Bottle are rebalanced (Docs/Content_Expansion_v5.md §5 and §8)
+            foreach (var change in ItemChanges)
+            {
+                ItemDefinition item = catalog.Item(change.Key) ?? throw new InvalidOperationException("Item missing: " + change.Key);
+                var (mechanic, mods, unique) = change.Value;
+                if (mechanic != RelicMechanic.None) item.Mechanic = mechanic;
+                if (mods != null)
+                    item.Modifiers = mods.Select(m => new StatModifier { Effect = m.effect, Value = m.value,
+                        Scope = m.scope ?? item.EffectiveModifiers.FirstOrDefault(o => o.Effect == m.effect)?.Scope ?? RunModifierRules.DefaultScope(m.effect) }).ToArray();
+                if (unique) item.Stacking = StackPolicy.Unique;
+                item.Description = RelicDescriptions.Describe(item, 1, catalog).Replace("\r\n", "\n");
             }
             if (catalog.Companions.Any(u => u.Rarity == ItemRarity.Crimson) || catalog.Items.Any(i => i.Rarity == ItemRarity.Crimson))
                 throw new InvalidOperationException("Crimson is retired: Prismatic is the highest rarity");

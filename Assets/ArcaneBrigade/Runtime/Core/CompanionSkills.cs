@@ -129,7 +129,7 @@ namespace ArcaneBrigade
                             Vector2 dir = (ahead.Position - u.Position).normalized, from = u.Position, to = ClampPosition(from + dir * 4, u.Definition.Radius);
                             foreach (UnitState t in units)
                                 if (CanHit(Faction.Champion, t) && SegmentCircle(from, to, t.Position, t.Definition.Radius + .35f) >= 0)
-                                { ApplyWeaponDamage(t, u.Definition.Weapon.Damage * 1.2f, Faction.Companion, DamageElement.Frost, "Iron Locomotive", dir, cause: NewCause(u.Id).Child("iron-locomotive")); if (t.Alive) Sleep(t, 1); }
+                                { ApplyWeaponDamage(t, u.Definition.Weapon.Damage * 1.2f, Faction.Companion, DamageElement.Frost, "Iron Locomotive", dir, cause: NewCause(u.Id).Child("iron-locomotive")); if (t.Alive) Freeze(t, 1); }
                             u.PreviousPosition = u.Position = to; spatial.Move(u);
                             Skill(u, MorphGeometry.Line, from, to, 0);
                         }

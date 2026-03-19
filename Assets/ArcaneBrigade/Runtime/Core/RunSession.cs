@@ -262,11 +262,13 @@ namespace ArcaneBrigade
             foreach (RosterEntry entry in State.Roster)
                 foreach (StatModifier modifier in catalog.Unit(entry.UnitId).CompanionModifiers ?? new StatModifier[0])
                     if (modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * UnitDefinition.ModifierScale(entry.Tier);
+            bool loom = MechanicStacks(RelicMechanic.DreamLoom) > 0; // Dream Loom: Common items give double
             foreach (ItemStack stack in State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);
+                float woven = loom && item.Rarity == ItemRarity.Common ? 2 : 1;
                 foreach (StatModifier modifier in item.EffectiveModifiers)
-                    if (!SecretItemSuspended(stack.Id) && modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * item.EffectiveStacks(stack.Count) * (modifier.Value > 0 && SecretItemImproved(stack.Id) ? 1.25f : 1) * (modifier.Value > 0 ? KitItemScale(item, stack.Count, target) : 1);
+                    if (!SecretItemSuspended(stack.Id) && modifier.Effect == effect && RunModifierRules.Applies(modifier.Scope, target)) value += modifier.Value * woven * item.EffectiveStacks(stack.Count) * (modifier.Value > 0 && SecretItemImproved(stack.Id) ? 1.25f : 1) * (modifier.Value > 0 ? KitItemScale(item, stack.Count, target) : 1);
             }
             foreach (BondDefinition bond in catalog.Bonds)
                 if (bond.Effect == effect && RunModifierRules.Applies(RunModifierRules.DefaultScope(bond.Effect), target) && BondCounts.TryGetValue(bond.Id, out int count)) value += bond.Reward(count);
@@ -297,6 +299,10 @@ namespace ArcaneBrigade
                     BondDefinition bond = Array.Find(catalog.Bonds, b => b.Id == unit.Tags[1]);
                     if (bond != null && BondCounts.TryGetValue(bond.Id, out int members) && members >= bond.Threshold) BondCounts[bond.Id] = members + 1;
                 }
+            // Moon Clock Key: every active bond counts one more member
+            if (MechanicStacks(RelicMechanic.MoonClockKey) > 0)
+                foreach (BondDefinition bond in catalog.Bonds)
+                    if (BondCounts.TryGetValue(bond.Id, out int active) && active >= bond.Threshold) BondCounts[bond.Id] = active + 1;
             if (Talent("\"The All-Knowing\" Walter") > 0)
                 foreach (BondDefinition bond in catalog.Bonds) BondCounts[bond.Id] = BondCounts.TryGetValue(bond.Id, out int count) ? count + 1 : 1;
             KitBonds();
@@ -563,6 +569,7 @@ namespace ArcaneBrigade
             State.LastDamageKind = simulation.LastDamageKind;
             simulation.SweepRemaining();
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
+            SettleNewRelics(simulation);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
@@ -674,6 +681,7 @@ namespace ArcaneBrigade
                 BuyRelic(item, offer.Token);
                 if (item.Category == RelicCategory.Drink) State.OctoberDrinks++;
                 if (item.Category == RelicCategory.Food) State.OctoberFood++;
+                RememberRelicPurchase(offer);
                 OctoberBoughtRelic(item);
             }
             if (offer.Currency == ShopCurrency.Eggs) State.Eggs -= offer.Price;
@@ -729,7 +737,7 @@ namespace ArcaneBrigade
                     if (State.Roster.Exists(r => r.UnitId == resultId && r.WeaponId == inherited)) resultId = id;
                     State.Roster.Add(new RosterEntry { UnitId = resultId, Tier = tier + 1, WeaponId = inherited });
                     RememberVariant(State.Roster[State.Roster.Count - 1]);
-                    KitMerged();
+                    KitMerged(); RelicMerged(resultId, tier + 1);
                     if (catalog.Unit(id).ReferenceCompanion == "Little Cabbage")
                     {
                         var nurseryWeapons = choices.FindAll(w => !State.Roster.Exists(r => r.UnitId == "GrandSprout" && r.WeaponId == w.Id));
@@ -754,6 +762,7 @@ namespace ArcaneBrigade
             KitRerollLuck(price);
             RollShop();
             State.RerollsThisShop++;
+            if (MechanicStacks(RelicMechanic.HagglersAbacus) > 0) ApplyKitPrices();
             OctoberRefreshed();
             Notice = "Shop refreshed.";
             return true;
@@ -847,7 +856,7 @@ namespace ArcaneBrigade
         private void RollShop(bool rollSpecial = false)
         {
             TrackMergeDrought(!rollSpecial);
-            if (rollSpecial) State.KitPurchasesThisShop = 0;
+            if (rollSpecial) { State.KitPurchasesThisShop = 0; NewShopForRelics(); }
             State.Offers.Clear();
             if (State.NextOffer > int.MaxValue - catalog.ShopSlots - KitExtraSlots - 3) throw new InvalidOperationException("Shop token counter exhausted");
             var units = new List<UnitDefinition>();

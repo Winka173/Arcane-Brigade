@@ -285,7 +285,7 @@ namespace ArcaneBrigade
             if (damage >= target.Health) return damage;
             float banked = Mathf.Min(damage * .35f * (HeroAwakening ? 2 : 1), Mathf.Max(0, IdentityPower * 3 - identityBank));
             if (banked <= 0) return damage;
-            identityBank += banked; HeroIdentityDeferredDamage += banked; identityDebtor = target;
+            identityBank += banked * RelicLateFee; HeroIdentityDeferredDamage += banked; identityDebtor = target;
             Fill(GaugeSource.Debt); // every deferred blow fills the gauge faster
             if (identityBankAt < 0) identityBankAt = Elapsed;
             return damage - banked;

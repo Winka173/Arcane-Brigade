@@ -58,7 +58,7 @@ namespace ArcaneBrigade
                     if (projectile.SignatureShot) OnSignatureShotHit(projectile, hit);
                     if (projectile.Arsenal != ArsenalWeapon.None) OnArsenalHit(projectile, hit);
                     if (Phase != RunPhase.Combat) return false;
-                    if (hit.Faction == Faction.Companion) return false;
+                    if (hit.Faction == Faction.Companion) return RelicBlowBack(projectile, hit);
                     if (projectile.SplitOnImpact) SplitCombatProjectile(projectile);
                     if (KitPinnedPierce(projectile, hit)) projectile.ExtraPierce++;
                     if (projectile.Weapon != null && (projectile.Weapon.Family == ExpandedWeapon.Fish || projectile.Weapon.SecretRecall) && projectile.Faction != Faction.Enemy)
@@ -71,6 +71,7 @@ namespace ArcaneBrigade
                     bool randomBounce = projectile.Weapon != null && projectile.RandomBounces > 0 && projectile.Weapon.ProjectileBounceChance > 0 && combatRandom.NextDouble() < projectile.Weapon.ProjectileBounceChance;
                     if (randomBounce && projectile.RicochetsRemaining <= 0) projectile.RicochetsRemaining = 1;
                     bool ricochet = (guaranteed || randomBounce) && TryCombatRicochet(projectile);
+                    if (!ricochet && projectile.RelicBounces > 0) { projectile.RelicBounces--; if (projectile.RicochetsRemaining <= 0) projectile.RicochetsRemaining = 1; ricochet = TryCombatRicochet(projectile); }
                     if (ricochet && randomBounce) projectile.RandomBounces--;
                     if (!ricochet && (projectile.Weapon == null || previousVictims >= projectile.Weapon.ProjectilePierce + projectile.ExtraPierce)) return false;
                     if (!ricochet) ProjectileAudioEvent(CombatEventKind.ProjectilePierce, projectile);
@@ -124,6 +125,7 @@ namespace ArcaneBrigade
                     Weapon = projectile.Weapon, IsFragment = true, Radius = projectile.Radius * (projectile.SplitCount > 0 ? 0.7f : 1), SplitCount = 0, RandomBounces = 0
                 };
                 fragment.Victims.UnionWith(projectile.Victims);
+                RelicPrismFragment(fragment, branch);
                 projectiles.Add(fragment);
             }
         }

@@ -48,6 +48,11 @@ namespace ArcaneBrigade
         public float KitSlowUntil, KitShockedUntil, KitWetUntil, KitCrackedUntil;
         /// <summary>Mythic companion skills (CompanionSkills): asleep or frozen, hastened, anchored until; sprung by Coil Kettle yet.</summary>
         public float SleepUntil, HasteUntil, AnchorUntil, FreezeReadyAt;
+        /// <summary>Relic item state: Crimson Seal's burst, Crimson Spring's next double attack, Living Thread's pull.</summary>
+        public float SealAt = -1, SealDamage, SpringAt, ThreadAt;
+        /// <summary>New items: frozen (Freeze), Cuckoo Pendulum's called crit, Wind Chime's piercing shots, Duelist's Ribbon count,
+        /// Funhouse Mirror's warp.</summary>
+        public float FrozenUntil, FunhouseUntil; public bool CuckooReady; public int ChimeShots, DuelHits;
         public bool CoilStruck;
         public float KitSlow;
         public bool KitStruck;
@@ -162,6 +167,8 @@ namespace ArcaneBrigade
         public bool MirrorChecked;
         /// <summary>Lantern Weaver's pinned-enemy pierce has been granted to this shot.</summary>
         public bool PinnedPierced;
+        /// <summary>Kite Tail Ribbon: extra bounces of a critical friendly shot.</summary>
+        public int RelicBounces;
         public Faction Faction;
         public Vector2 Position;
         public Vector2 PreviousPosition;
@@ -255,6 +262,8 @@ namespace ArcaneBrigade
         public IReadOnlyList<ProjectileState> Projectiles => projectiles;
         public IReadOnlyList<PickupState> Pickups => pickups;
         public IReadOnlyList<CombatEvent> Events => events;
+        /// <summary>Enemy species defeated in this fight (Specimen Pin keeps them for the run).</summary>
+        public readonly HashSet<string> KilledSpecies = new HashSet<string>();
         public RunPhase Phase { get; private set; } = RunPhase.Preparing;
         public UnitState Champion { get; private set; }
         public float Elapsed { get; private set; }
@@ -447,7 +456,7 @@ namespace ArcaneBrigade
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
             Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * deltaTime, Champion.Definition.Radius);
             float beforeRegeneration = Champion.Health;
-            Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * deltaTime);
+            Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * RelicMendingScale * deltaTime);
             if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
             SpawnWaveEnemies();
@@ -657,7 +666,7 @@ namespace ArcaneBrigade
             if (unit.BurnUntil > Elapsed && Elapsed >= unit.NextBurn)
             {
                 unit.NextBurn = Elapsed + 0.5f;
-                ApplyDamage(unit, unit.Definition.IsBoss ? 3f : 5f, Faction.Companion, cause: unit.BurnCause);
+                ApplyDamage(unit, (unit.Definition.IsBoss ? 3f : 5f) * RelicLateFee, Faction.Companion, cause: unit.BurnCause);
             }
             if (unit.Faction == Faction.Enemy || Elapsed < unit.NextPassive) return;
             unit.NextPassive = Elapsed + 4f;
@@ -793,7 +802,7 @@ namespace ArcaneBrigade
                 float damage = IdentityAttackDamage(unit, OctoberAttackDamage(unit, RelicAttackDamage(unit, weapon.Damage)));
                 CombatCause attackCause = NewCause(unit.Id);
                 UnitState locked = UnitWithId(unit.AttackTargetId);
-                bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0) + KitCrit(unit, locked));
+                bool critical = combatRandom.NextDouble() < Mathf.Clamp01(unit.Definition.CriticalChance + (locked != null && locked.CameraWeakUntil > Elapsed && unit.Faction != Faction.Enemy ? 0.15f : 0) + KitCrit(unit, locked) + RelicCrit(unit));
                 if (critical) damage *= 1.5f;
                 damage = ReleaseBuildMorph(unit, damage, attackCause);
                 if (ResolveOctoberAttack(unit, damage, attackCause)) { }
@@ -834,7 +843,7 @@ namespace ArcaneBrigade
             unit.AttackStarted = Elapsed;
             unit.AttackWindup = weapon.Windup * (weapon.Family == ExpandedWeapon.Hammer ? 1.17f : 1); // every slam alike (was: every third heavier)
             unit.ImpactTime = Elapsed + unit.AttackWindup;
-            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit) * KitCycle(unit) * CompanionHaste(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
+            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit) * KitCycle(unit) * CompanionHaste(unit) * RelicCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
             unit.PendingAttack = true;
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
@@ -847,6 +856,7 @@ namespace ArcaneBrigade
             Vector2 rotatedMuzzle = Quaternion.Euler(0f, 0f, Mathf.Atan2(unit.AttackDirection.y, unit.AttackDirection.x) * Mathf.Rad2Deg) * muzzleOffset;
             Vector2 position = unit.Position + unit.AttackDirection * (weapon.MountDistance - weapon.RecoilDistance) + rotatedMuzzle;
             if (unit.Faction == Faction.Enemy) position = unit.Position + unit.AttackDirection * unit.Definition.Radius * 0.9f;
+            int relicFirst = projectiles.Count;
             for (int index = 0; index < Mathf.Clamp(weapon.ProjectileCount, 1, 96) && projectiles.Count < 4096; index++)
             {
                 float angle = (index - (weapon.ProjectileCount - 1) * 0.5f) * weapon.ProjectileSpread;
@@ -882,6 +892,7 @@ namespace ArcaneBrigade
                     LaunchVelocity = direction * Mathf.Min(2.4f, weapon.ProjectileSpeed)
                 });
             }
+            RelicEmitted(unit, relicFirst);
         }
 
         private void ProcessContact(UnitState enemy)
@@ -971,8 +982,10 @@ namespace ArcaneBrigade
             if (cause.RootId == 0) cause = NewCause(0);
             damage = IdentityDamage(target, damage, source, cause);
             damage = CompanionSkillDamage(target, damage, source, cause);
+            damage = RelicItemDamage(target, damage, source, cause);
             if (target.Faction == Faction.Champion && !healthCost)
             {
+                if (relicQuiltUntil > Elapsed) return;
                 if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .75f : .6f))
                 {
                     events.Add(new CombatEvent(CombatEventKind.Dodge, target.Position, target.Faction, subject: target));
@@ -1008,6 +1021,7 @@ namespace ArcaneBrigade
             }
             if (target.Faction == Faction.Champion) { LastDamageSource = string.IsNullOrEmpty(sourceName) ? "Enemy damage" : sourceName; LastDamageAmount = damage; LastDamageKind = element + " / " + (weapon == null ? "Contact / arena" : weapon.Kind.ToString()); }
             DamageBossPart(target, damage, source, direction, cause);
+            if (target == Champion && !healthCost) damage = RelicQuilt(damage);
             float overkill = damage - target.Health;
             if (catalog.WholeKeeper && target.Definition.Id == "OutsideStageKeeper") damage *= KeeperGuard(target);
             target.Health = Mathf.Max(0f, target.Health - damage);
@@ -1095,7 +1109,7 @@ namespace ArcaneBrigade
                     pickups.RemoveAt(index);
                     continue;
                 }
-                if (!pickup.Attracting && difference.sqrMagnitude <= catalog.PickupRadius * catalog.PickupRadius)
+                if (!pickup.Attracting && difference.sqrMagnitude <= RelicPickupRadius * RelicPickupRadius)
                 {
                     pickup.Attracting = true;
                     if (pickup.Kind == LootKind.Coin) events.Add(new CombatEvent(CombatEventKind.LootAttract, pickup.Position, Faction.Champion, subjectId: pickup.Id, loot: pickup.Kind));

@@ -72,3 +72,16 @@ Item_SlipstreamScarf Assets/ArcaneBrigade/Art/Expansion/Item_SlipstreamScarf_v1.
 Item_BrainFreeze Assets/ArcaneBrigade/Art/Expansion/Item_BrainFreeze_v1.png done
 Item_WindChime Assets/ArcaneBrigade/Art/Expansion/Item_WindChime_v1.png done
 Item_SpecimenPin Assets/ArcaneBrigade/Art/Expansion/Item_SpecimenPin_v1.png done
+Item_StarPolish Assets/ArcaneBrigade/Art/Expansion/Item_StarPolish_v1.png done
+Item_KiteTailRibbon Assets/ArcaneBrigade/Art/Expansion/Item_KiteTailRibbon_v1.png done
+Item_MeltingSundae Assets/ArcaneBrigade/Art/Expansion/Item_MeltingSundae_v1.png done
+Item_CuckooPendulum Assets/ArcaneBrigade/Art/Expansion/Item_CuckooPendulum_v1.png done
+Item_DivingBellLantern Assets/ArcaneBrigade/Art/Expansion/Item_DivingBellLantern_v1.png done
+Item_TwinTicket Assets/ArcaneBrigade/Art/Expansion/Item_TwinTicket_v1.png done
+Item_TreasureMimic Assets/ArcaneBrigade/Art/Expansion/Item_TreasureMimic_v1.png done
+Item_DuelistsRibbon Assets/ArcaneBrigade/Art/Expansion/Item_DuelistsRibbon_v1.png done
+Item_FrostLedger Assets/ArcaneBrigade/Art/Expansion/Item_FrostLedger_v1.png done
+Item_UndertowAnchor Assets/ArcaneBrigade/Art/Expansion/Item_UndertowAnchor_v1.png done
+Item_FunhouseMirror Assets/ArcaneBrigade/Art/Expansion/Item_FunhouseMirror_v1.png done
+Item_SpliceKit Assets/ArcaneBrigade/Art/Expansion/Item_SpliceKit_v1.png done
+Item_TheEndlessEncore Assets/ArcaneBrigade/Art/Expansion/Item_TheEndlessEncore_v1.png done

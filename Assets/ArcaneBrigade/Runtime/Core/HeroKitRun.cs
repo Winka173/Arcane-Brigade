@@ -9,6 +9,8 @@ namespace ArcaneBrigade
         /// <summary>Hero kit bookkeeping (18/10/2026): purchases in the current shop (for first/second purchase discounts) and
         /// merges made in this run (for kits that grow with merging).</summary>
         public int KitPurchasesThisShop, KitMerges, KitRareBuys;
+        /// <summary>Merges made while Clockwork Heart is owned (each winds the team's attack speed).</summary>
+        public int HeartWinds;
     }
 
     public sealed partial class ShopOffer
@@ -115,6 +117,7 @@ namespace ArcaneBrigade
                 if (offer == rarest) off += kit.Value(KitPassive.RoyalPick);
                 int price = Mathf.Max(1, Mathf.CeilToInt(offer.BasePrice * (1 - Mathf.Clamp(off, 0, .6f))));
                 if (offer == cheapest && kit.Has(KitPassive.CheapestDiscountWithGold) && State.Gold >= 20) price = Mathf.Max(1, price - 1);
+                if (State.RerollsThisShop > 0 && MechanicStacks(RelicMechanic.HagglersAbacus) > 0) price = Mathf.Max(Mathf.CeilToInt(offer.BasePrice * .7f), price - State.RerollsThisShop);
                 offer.Price = price;
             }
         }
@@ -144,6 +147,7 @@ namespace ArcaneBrigade
         private void KitMerged()
         {
             State.KitMerges++;
+            if (MechanicStacks(RelicMechanic.ClockworkHeart) > 0) State.HeartWinds++;
             int gold = Mathf.RoundToInt(KitValue(KitPassive.MergeGold));
             if (gold > 0) State.Gold = BoundedCounter((long)State.Gold + gold);
         }

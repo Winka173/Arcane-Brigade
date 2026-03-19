@@ -20,6 +20,8 @@ namespace ArcaneBrigade
 
         private void ResetRelics()
         {
+            relicQuiltUsed = false; relicQuiltUntil = -1; relicCrownHits = 0; relicApronAt = relicForwardAt = relicCrownAt = 0;
+            ResetNewRelics();
             relicPulseAt = 3; relicSecondAt = 1; relicEchoAt = 0; relicMoved = false;
             relicLastKills = relicProcessedEvents = 0; relicDamageLoss = 0; phantomWeapons.Clear();
             lotusActive = RelicCount(RelicMechanic.FreshLotus) > 0;
@@ -60,6 +62,7 @@ namespace ArcaneBrigade
             float purse = 1 + hoard * ((catalog.RelicWallet + (long)Gold) / 5) * .01f;
             float initial = 1 + hoard * (catalog.RelicWallet / 5) * .01f;
             float result = Mathf.Max(0,damage + flat) * Mathf.Max(.05f,1 - relicDamageLoss) * purse / initial;
+            result *= RelicAttackScale(unit);
             return RelicCount(RelicMechanic.StatFloor) > 0 ? Mathf.Max(damage,result) : result;
         }
 
@@ -81,6 +84,7 @@ namespace ArcaneBrigade
         {
             if (target == Champion)
             {
+                RelicApron(cause); RelicSundae();
                 if (lotusActive) { AdjustLotus(-1); lotusActive = false; }
                 relicDamageLoss += .05f * RelicCount(RelicMechanic.FragilePower);
                 if (RelicCount(RelicMechanic.FragilePower) > 0) catalog.RelicGain?.Invoke(new StatModifier { Effect = ItemEffect.Damage, Scope = ModifierScope.Team, Value = -.05f * RelicCount(RelicMechanic.FragilePower) });
@@ -149,7 +153,7 @@ namespace ArcaneBrigade
             relicLastKills = Kills / 10;
             foreach (UnitState enemy in units)
                 if (enemy.Alive && enemy.Faction == Faction.Enemy && enemy.RelicPoisonUntil > Elapsed && enemy.RelicPoisonAt <= Elapsed)
-                { enemy.RelicPoisonAt = Elapsed + 1; ApplyDamage(enemy,Mathf.Max(1,catalog.RelicIncome),Faction.Champion,"curio-poison",cause:NewCause(Champion.Id).Child("curio-poison")); }
+                { enemy.RelicPoisonAt = Elapsed + 1; ApplyDamage(enemy,Mathf.Max(1,catalog.RelicIncome) * RelicLateFee,Faction.Champion,"curio-poison",cause:NewCause(Champion.Id).Child("curio-poison")); }
             if (Elapsed >= relicSecondAt)
             {
                 relicSecondAt = Elapsed + 1;
@@ -168,6 +172,7 @@ namespace ArcaneBrigade
                         if (damage > 0) ApplyDamage(enemy,damage,Faction.Champion,"Curio pulse",cause:NewCause(Champion.Id).Child("curio-pulse"));
                     }
             }
+            RelicSeals(); RelicBorrowedCrown(); StepNewRelics();
             foreach (UnitState phantom in phantomWeapons)
             {
                 if (Elapsed < phantom.NextAttack) continue;
@@ -191,6 +196,7 @@ namespace ArcaneBrigade
             for (int index = relicProcessedEvents; index < end; index++)
             {
                 CombatEvent action = events[index];
+                RelicItemEvent(action); RelicNewItemEvent(action);
                 if (action.Kind != CombatEventKind.Fire || action.Faction != Faction.Champion || action.Cause.Depth != 0 || Elapsed < relicEchoAt || RelicCount(RelicMechanic.PrismEcho) == 0) continue;
                 relicEchoAt = Elapsed + .15f;
                 RelicStrike(Mathf.Max(2,catalog.RelicRanged * 2) * RelicCount(RelicMechanic.PrismEcho),1,"curio-prism");

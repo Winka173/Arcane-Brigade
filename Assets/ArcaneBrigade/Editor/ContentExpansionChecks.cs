@@ -20,9 +20,12 @@ namespace ArcaneBrigade.Editor
             var notes = new List<string>();
             void Require(bool condition, string caption) { if (!condition) throw new InvalidOperationException("ContentExpansion " + caption); notes.Add("PASS " + caption); }
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
+            ContentExpansionBuilder.Apply(); // takes in whatever art arrived since the last run
             string before = JsonUtility.ToJson(catalog);
             ContentExpansionBuilder.Apply();
-            Require(before == JsonUtility.ToJson(catalog) && catalog.PoolRevision == 1, "The expansion is applied and applying it again changes nothing");
+            string after = JsonUtility.ToJson(catalog); int diff = 0; while (diff < Mathf.Min(before.Length, after.Length) && before[diff] == after[diff]) diff++;
+            Require(before == after && catalog.PoolRevision == 1, "The expansion is applied and applying it again changes nothing"
+                + (before == after ? "" : " (first change: " + before.Substring(Mathf.Max(0, diff - 120), Mathf.Min(240, before.Length - Mathf.Max(0, diff - 120))) + " -> " + after.Substring(Mathf.Max(0, diff - 120), Mathf.Min(240, after.Length - Mathf.Max(0, diff - 120))) + ")"));
 
             // bonds and companions
             Require(catalog.Bonds.Length == 33 && !catalog.Bonds.Any(b => b.Id == "fruit" || b.Id == "ball") && new[] { "paper-wings", "sweet-tooth", "big-top", "static-club", "sea-shanty", "exhibit-hall" }.All(id => catalog.Bonds.Any(b => b.Id == id && b.Icon != null)),
@@ -37,10 +40,11 @@ namespace ArcaneBrigade.Editor
             Require(catalog.Companions.Where(u => u.Rarity == ItemRarity.Mythic).All(u => u.SpecialRecruit && CombatSimulation.CompanionSkillIds.Contains(u.Id)), "Every Mythic companion has its own skill and comes from the dream shop");
             Require(RunModifierRules.RarityName(ItemRarity.Rainbow) == "PRISMATIC", "The top rarity reads PRISMATIC");
             // item rarity spread (before the 30 new items)
-            var rar = catalog.Items.GroupBy(i => i.Rarity).ToDictionary(g => g.Key, g => g.Count());
+            var oldItems = catalog.Items.Where(i => !ContentExpansionBuilder.NewItems.ContainsKey(i.Id)).ToList();
+            var rar = oldItems.GroupBy(i => i.Rarity).ToDictionary(g => g.Key, g => g.Count());
             Require(rar[ItemRarity.Common] == 40 && rar[ItemRarity.Uncommon] == 61 && rar[ItemRarity.Rare] == 38 && rar[ItemRarity.Mythic] == 27 && rar[ItemRarity.Rainbow] == 4,
                 "Item rarities moved: Common 40, Uncommon 61, Rare 38, Mythic 27, Prismatic 4");
-            Require(catalog.Items.Where(i => i.Rarity == ItemRarity.Common).All(i => i.ShopThemes.Length == 0) && catalog.Items.Where(i => i.Rarity != ItemRarity.Common).All(i => i.ShopThemes.Count(t => Array.IndexOf(Themes, t) >= 0) == (i.Rarity == ItemRarity.Rainbow ? 2 : 1) && i.ShopThemes.Count(t => t.StartsWith("fam-")) >= 1),
+            Require(oldItems.Where(i => i.Rarity == ItemRarity.Common).All(i => i.ShopThemes.Length == 0) && oldItems.Where(i => i.Rarity != ItemRarity.Common).All(i => i.ShopThemes.Count(t => Array.IndexOf(Themes, t) >= 0) == (i.Rarity == ItemRarity.Rainbow ? 2 : 1) && i.ShopThemes.Count(t => t.StartsWith("fam-")) >= 1),
                 "Common items are shared; every other item belongs to one theme (Prismatic two) and its item families");
 
             // locked weapons: every Mythic and Prismatic friend has its own, and no one else can roll it
@@ -114,6 +118,119 @@ namespace ArcaneBrigade.Editor
                     }
                     Require(sim.CompanionSkillCasts > 0, id + " uses its own skill in a fight");
                 }
+
+            // step 3: items (Docs/Content_Expansion_v5.md §5)
+            foreach (var change in ContentExpansionBuilder.ItemChanges)
+            {
+                ItemDefinition item = catalog.Item(change.Key);
+                Require(item != null && (change.Value.mechanic == RelicMechanic.None || item.Mechanic == change.Value.mechanic) && !string.IsNullOrEmpty(RelicDescriptions.Describe(item, 1, catalog)),
+                    change.Key + " carries its step 3 mechanic and copy");
+            }
+            Require(Mathf.Approximately(catalog.Item("key-oil").EffectiveModifiers[0].Value, .12f), "Key Oil gives +12% damage");
+            Require(catalog.Item("CurioTruceBottle").StackLimit == 1 && catalog.Item("CurioTruceBottle").Modifiers.Any(m => m.Effect == ItemEffect.MoveSpeed && m.Value < 0), "Truce Bottle is unique and slows the hero");
+            foreach (var (itemId, causeId) in new[] { ("tarnished-crown", "curio-royal"), ("starlight-quilt", "curio-quilt"), ("K26Defense6", "curio-apron"), ("echo-postage", "curio-echo"),
+                ("CurioShieldBlower", "curio-blower"), ("CrimsonSeal", "curio-seal"), ("RainbowCrown", "curio-crown"), ("RainbowThread", "curio-thread") })
+                using (var run = new RunSession(catalog))
+                {
+                    run.Start("LanternKnight", 18102); run.State.Wave = 6; run.State.Roster.Clear();
+                    WeaponDefinition blade = catalog.Weapons.First(w => w.Kind == WeaponKind.Melee);
+                    foreach (string friend in new[] { "TeapotPilgrim", "ButtonBeetle" })
+                        run.State.Roster.Add(new RosterEntry { UnitId = friend, WeaponId = itemId == "RainbowThread" ? blade.Id : catalog.Unit(friend).Weapon.Id, Tier = 1 });
+                    run.State.Items.Add(new ItemStack { Id = itemId, Count = 1 });
+                    var arena = run.PrepareCombat(); arena.Boss = null;
+                    var sim = new CombatSimulation(arena); sim.Start(18102);
+                    bool seen = false;
+                    for (int t = 0; t < 1200 && sim.Phase == RunPhase.Combat && !seen; t++)
+                    {
+                        sim.Champion.Health = itemId == "starlight-quilt" ? 1 : sim.Champion.Definition.Health;
+                        if (itemId == "CurioShieldBlower" && t % 10 == 0)
+                        {
+                            var friend = sim.Units.First(u => u.Faction == Faction.Companion);
+                            var list = (List<ProjectileState>)typeof(CombatSimulation).GetField("projectiles", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(sim);
+                            list.Add(new ProjectileState { Id = 991000 + t, Faction = Faction.Enemy, Position = friend.Position + Vector2.left * .3f, Velocity = Vector2.right * .1f, Remaining = 1, Radius = .05f, Damage = 4 });
+                        }
+                        sim.Step(1 / 20f, itemId == "CrimsonSeal" || itemId == "K26Defense6" ? Vector2.right * (t / 40 % 2 == 0 ? 1 : -1) : Vector2.zero);
+                        seen = sim.Events.Any(e => e.Cause.ItemId == causeId);
+                    }
+                    Require(seen, itemId + " shows its mechanic in a fight (" + causeId + ")");
+                }
+            using (var run = new RunSession(catalog))
+            {
+                run.Start("LanternKnight", 18103);
+                float speed = run.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions);
+                run.State.Items.Add(new ItemStack { Id = "RainbowHeart", Count = 1 }); run.State.HeartWinds = 4;
+                Require(run.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions) >= speed + .1f + .12f - .001f, "Clockwork Heart: each merge winds +3% team attack speed");
+                run.State.Items.Clear(); run.State.Items.Add(new ItemStack { Id = "CurioEmeraldInvoice", Count = 1 });
+                float one = run.Bonus(ItemEffect.Damage, ModifierScope.Companions);
+                run.State.Items.Add(new ItemStack { Id = "honey-pot", Count = 9 });
+                Require(run.Bonus(ItemEffect.Damage, ModifierScope.Companions) > one + .15f, "Emerald Invoice: owned relics settle the damage penalty");
+            }
+
+            // the thirty new items: in the game exactly when their icon exists, each with its own mechanic and copy
+            var expansionPlan = ContentExpansionBuilder.Load();
+            foreach (var row in expansionPlan.itemList.Where(r => r.isNew))
+            {
+                ItemDefinition live = catalog.Item(row.id);
+                Require((live != null) == File.Exists(ContentExpansionBuilder.NewItemIconPath(row.id)) && (live == null || live.Icon != null && (live.Mechanic != RelicMechanic.None || row.id == "FishCracker")),
+                    row.id + (live != null ? " is in the shop with its icon and mechanic" : " waits for its icon"));
+            }
+            RunCatalog trial = UnityEngine.Object.Instantiate(catalog);
+            var trialItems = trial.Items.ToList();
+            foreach (var row in expansionPlan.itemList.Where(r => r.isNew))
+                if (trial.Item(row.id) == null) { var item = new ItemDefinition(); ContentExpansionBuilder.FillNewItem(item, row, null, trial); trialItems.Add(item); }
+            trial.Items = trialItems.ToArray();
+            Require(trial.Items.Length == 200 && trial.Items.Select(i => i.Id).Distinct().Count() == 200, "With every icon painted the shop holds 200 items");
+            foreach (var row in expansionPlan.itemList.Where(r => r.isNew))
+                Require(!string.IsNullOrEmpty(RelicDescriptions.Describe(trial.Item(row.id), 1, trial)), row.id + " has its copy");
+            foreach (var (items, causeId, melee, crit) in new[] { (new[] { "WhetstoneWafer" }, "curio-whetstone", true, false), (new[] { "DuelistsRibbon" }, "curio-duel", true, false),
+                (new[] { "UndertowAnchor" }, "curio-undertow", false, false), (new[] { "FunhouseMirror" }, "curio-funhouse", false, false), (new[] { "CuckooPendulum" }, "curio-cuckoo", false, false),
+                (new[] { "TreasureMimic" }, "curio-mimic", false, false), (new[] { "MeltingSundae" }, "curio-sundae", false, false), (new[] { "WindChime" }, "curio-chime", false, true),
+                (new[] { "MeltingSundae", "BrainFreeze" }, "curio-shard", false, true) })
+                using (var run = new RunSession(trial))
+                {
+                    run.Start("LanternKnight", 18104); run.State.Wave = 8; run.State.Roster.Clear();
+                    WeaponDefinition blade = trial.Weapons.First(w => w.Kind == WeaponKind.Melee);
+                    foreach (string friend in new[] { "TeapotPilgrim", "ButtonBeetle" })
+                        run.State.Roster.Add(new RosterEntry { UnitId = friend, WeaponId = melee ? blade.Id : trial.Unit(friend).Weapon.Id, Tier = 1 });
+                    foreach (string id in items) run.State.Items.Add(new ItemStack { Id = id, Count = 1 });
+                    var arena = run.PrepareCombat(); arena.Boss = null;
+                    var sim = new CombatSimulation(arena); sim.Start(18104);
+                    if (crit) foreach (UnitState u in sim.Units) if (u.Faction != Faction.Enemy) u.Definition.CriticalChance = 1;
+                    if (causeId == "curio-mimic") sim.LootFixture(LootKind.Chest, sim.Champion.Position, 2);
+                    bool seen = false;
+                    for (int t = 0; t < 1600 && sim.Phase == RunPhase.Combat && !seen; t++)
+                    {
+                        sim.Champion.Health = sim.Champion.Definition.Health;
+                        sim.Step(1 / 20f, Vector2.zero);
+                        seen = sim.Events.Any(e => e.Cause.ItemId == causeId);
+                    }
+                    Require(seen, string.Join("+", items) + " shows its mechanic in a fight (" + causeId + ")");
+                }
+            using (var run = new RunSession(trial))
+            {
+                run.Start("LanternKnight", 18105);
+                run.State.Items.Add(new ItemStack { Id = "key-oil", Count = 1 }); float oil = run.Bonus(ItemEffect.Damage, ModifierScope.Companions);
+                run.State.Items.Add(new ItemStack { Id = "DreamLoom", Count = 1 });
+                Require(run.Bonus(ItemEffect.Damage, ModifierScope.Companions) >= oil + .12f - .001f, "Dream Loom doubles Common items");
+                run.State.Items.Clear(); run.State.KilledSpecies = Enumerable.Range(0, 7).Select(i => "species" + i).ToList();
+                float crit = run.Bonus(ItemEffect.Crit, ModifierScope.Companions); run.State.Items.Add(new ItemStack { Id = "SpecimenPin", Count = 1 });
+                Require(run.Bonus(ItemEffect.Crit, ModifierScope.Companions) >= crit + .07f - .001f, "Specimen Pin: +1% crit per species defeated");
+                run.State.Items.Clear(); run.State.Gold = 500; run.State.Phase = SessionPhase.Shop; run.State.Items.Add(new ItemStack { Id = "RefundSlip", Count = 1 });
+                var offer = new ShopOffer { Token = ++run.State.NextOffer, Kind = OfferKind.Item, Id = "key-oil", Price = 20, Currency = ShopCurrency.Gold };
+                run.State.Offers.Clear(); run.State.Offers.Add(offer);
+                Require(run.Buy(offer.Token), "Buy a relic to refund");
+                int gold = run.State.Gold;
+                Require(run.RefundAvailable && run.RefundLastRelic() && run.State.Gold == gold + offer.Price && run.StackCount("key-oil") == 0 && !run.RefundAvailable, "Refund Slip returns the last relic for its price, once per shop");
+            }
+            using (var run = new RunSession(trial))
+            {
+                run.Start("LanternKnight", 18106); run.State.Roster.Clear();
+                var picks = trial.Companions.Where(u => !u.SpecialRecruit && u.Rarity < ItemRarity.Mythic && K11HeroRules.Eligible(trial.Unit("LanternKnight"), u) && !new[] { "TeapotPilgrim", "HoodWisp", "ShellPostman", "PaperDevil" }.Contains(u.Id)).Take(3).ToList();
+                foreach (var u in picks) run.State.Roster.Add(new RosterEntry { UnitId = u.Id, WeaponId = u.Weapon.Id, Tier = 1 });
+                run.State.Items.Add(new ItemStack { Id = "SpliceKit", Count = 1 }); run.State.Wave = 9; run.State.Phase = SessionPhase.Combat;
+                run.PrepareCombat();
+                Require(run.State.Roster.Count == 1 && run.State.Roster[0].Tier == 2, "Splice Kit turns three different one-star friends into one two-star friend");
+            }
 
             Directory.CreateDirectory("PreviewExports/ContentExpansion");
             File.WriteAllLines("PreviewExports/ContentExpansion/Checks.txt", notes);

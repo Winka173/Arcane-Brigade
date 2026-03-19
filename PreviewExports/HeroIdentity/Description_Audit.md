@@ -26,7 +26,7 @@ Bonds: hearth, lantern-guild. Immortal. Weapon rolls on recruitment; three equal
 
 COMPANION / UNCOMMON / 1 STAR
 TALENT
-Fruit Basket companions gain 8% attack speed per Applehead talent, up to 24%. Does not affect the hero. Stacks by talent bodies/memories, not star level.
+Orchard companions gain 8% attack speed per Applehead talent, up to 24%. Does not affect the hero. Stacks by talent bodies/memories, not star level.
 
 SUPPORT WHILE OWNED
 Champion / Armor: +0.025
@@ -1306,7 +1306,7 @@ Bonds: archive, paper-wings. Immortal. Weapon rolls on recruitment; three equal-
 CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
-Team / Damage: +24%
+Team / Damage: +12%
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1462,6 +1462,9 @@ CURIO / MYTHIC / STACKABLE
 WHILE OWNED / per copy
 Champion / Maximum health: +90
 
+SPECIAL EFFECT
+Once per wave, a blow that would defeat the hero leaves 1 HP and 1.5s of safety instead.
+
 Owned effective copies: 1. Values apply before combat limits.
 
 ## Echo Postage / echo-postage
@@ -1472,6 +1475,9 @@ WHILE OWNED / per copy
 Team / Projectile count: +3
 Team / Attack speed: -8%
 
+SPECIAL EFFECT
+A friend's basic attack that defeats an enemy echoes onward: the nearest enemy takes half that weapon's damage (0.2s cooldown).
+
 Owned effective copies: 1. Values apply before combat limits.
 
 ## Tarnished Crown / tarnished-crown
@@ -1480,6 +1486,9 @@ CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
 Champion / Damage: +80%
+
+SPECIAL EFFECT
+Every 8th hit of the hero is a royal blow: triple damage.
 
 Owned effective copies: 1. Values apply before combat limits.
 
@@ -1996,8 +2005,10 @@ Owned effective copies: 1. Values apply before combat limits.
 CURIO / PRISMATIC / UNIQUE
 
 WHILE OWNED / per copy
-Team / Damage: +70%
-Team / Projectile count: +2
+Team / Damage: +15%
+
+SPECIAL EFFECT
+Your highest-star companion also fires your hero's weapon.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2006,8 +2017,10 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / PRISMATIC / UNIQUE
 
 WHILE OWNED / per copy
-Champion / Maximum health: +120
-Champion / Healing per second: +1.8
+Team / Attack speed: +10%
+
+SPECIAL EFFECT
+Every merge winds the heart: the team gains +3% attack speed for the run (max +30%).
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2017,7 +2030,10 @@ CURIO / PRISMATIC / UNIQUE
 
 WHILE OWNED / per copy
 Team / Flat melee damage: +4
-Team / Knockback: +63%
+Team / Knockback: +30%
+
+SPECIAL EFFECT
+Melee friends are stitched together: a melee friend's blow pulls a strike (50%) from the nearest other melee friend.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2027,7 +2043,9 @@ CURIO / PRISMATIC / UNIQUE
 
 WHILE OWNED / per copy
 Team / Bullet split: +3
-Team / Flat ranged damage: +4
+
+SPECIAL EFFECT
+Split shots of friends break into three colours: ember, frost and arcane.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2036,8 +2054,11 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / MYTHIC / UNIQUE
 
 WHILE OWNED / per copy
-Champion / Damage: +90%
-Team / Collision damage: +24
+Champion / Damage: +50%
+Team / Collision damage: +16
+
+SPECIAL EFFECT
+A collision stamps a crimson seal; 1s later it bursts for triple the collision damage around the enemy.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2046,8 +2067,11 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 CURIO / MYTHIC / UNIQUE
 
 WHILE OWNED / per copy
-Team / Attack speed: +50%
-Team / Attack range: +45%
+Team / Attack speed: +25%
+Team / Attack range: +25%
+
+SPECIAL EFFECT
+Every 4s each friend's next attack springs twice.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
@@ -2119,6 +2143,9 @@ WHILE OWNED / per copy
 Champion / Armor: +0.65
 Team / Movement speed: -8%
 
+SPECIAL EFFECT
+Enemies that strike the hero up close are shoved back 1.5 units (once per second).
+
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
 ## Mending Moth / K26Defense7
@@ -2128,6 +2155,9 @@ CURIO / MYTHIC / STACKABLE
 WHILE OWNED / per copy
 Champion / Healing per second: +2.5
 Champion / Armor: +0.12
+
+SPECIAL EFFECT
+After 3s without being hit, the hero's healing per second is tripled.
 
 Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
@@ -2963,6 +2993,9 @@ WHILE OWNED / per copy
 Team / Collision damage: +25
 Run / Companion bullet interception: +1
 
+SPECIAL EFFECT
+A hostile shot a companion intercepts is blown back as a friendly shot with double damage.
+
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
 ## Liar Mask / CurioLiarMask
@@ -3024,6 +3057,9 @@ CURIO / MYTHIC / STACKABLE
 WHILE OWNED / per copy
 Run / Relic discount: +25%
 Team / Damage: -20%
+
+SPECIAL EFFECT
+Every relic you own settles part of the invoice: the damage penalty shrinks by 2% each, to nothing at 10 relics.
 
 Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
@@ -3094,7 +3130,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
 ## Truce Bottle / CurioTruceBottle
 
-DRINK / MYTHIC / STACKABLE
+DRINK / MYTHIC / UNIQUE
 ON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.
 
 WHILE OWNED / per copy
@@ -3102,8 +3138,9 @@ Team / Damage: +40%
 Team / Critical chance: +20%
 Team / Attack range: +40%
 Champion / Armor: +0.6
+Champion / Movement speed: -30%
 
-Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Thorn Perfume / CurioThornPerfume
 
@@ -3163,6 +3200,281 @@ No direct stat modifier; effects are described below.
 
 SPECIAL EFFECT
 ON FIRST PURCHASE: remember 6 random weapon IDs. Replace ordinary team basic attacks with six phantom weapons fired from the hero. Each uses compiled weapon stats and its own cooldown, minimum 0.2s.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Tally Chalk / TallyChalk
+
+CURIO / COMMON / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every 25 enemies defeated this wave: the team deals +1% damage (max +8%).
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Coin Sash / CoinSash
+
+CURIO / COMMON / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+While the hero runs, pickup reach +0.5.
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Fish Cracker / FishCracker
+
+FOOD / COMMON / STACKABLE
+ON PURCHASE: counts as 1 food for food-reactive heroes, companions and relics. No separate use action; the item stays owned.
+
+WHILE OWNED / per copy
+Champion / Critical chance: +6%
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Postage Stamp / PostageStamp
+
+CURIO / UNCOMMON / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Marked enemies (stamped, pinned, exposed or anchored) take +10% damage.
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Frost Salt / FrostSalt
+
+CURIO / UNCOMMON / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Freezes last 0.3s longer.
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Refund Slip / RefundSlip
+
+CURIO / UNCOMMON / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Once per shop, the last relic you bought can be returned at the refund counter for the full price paid.
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Whetstone Wafer / WhetstoneWafer
+
+FOOD / UNCOMMON / STACKABLE
+ON PURCHASE: counts as 1 food for food-reactive heroes, companions and relics. No separate use action; the item stays owned.
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Melee hits cleave one more enemy beside the target for 40% of the hit.
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Late Fee / LateFee
+
+CURIO / UNCOMMON / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Burning, poison and deferred damage hit 25% harder.
+
+Owned effective copies: 1. Values apply before combat limits.
+
+## Haggler's Abacus / HagglersAbacus
+
+CURIO / RARE / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Each refresh in this shop takes 1 gold off every gold offer (at most 30% off).
+
+Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
+
+## Slipstream Scarf / SlipstreamScarf
+
+CURIO / RARE / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Friends gain +1% attack speed for every 5% movement speed bonus of the hero (max +15%).
+
+Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
+
+## Brain Freeze / BrainFreeze
+
+CURIO / RARE / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+A critical hit on a frozen enemy breaks off 3 ice shards (30% of the hit each).
+
+Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
+
+## Wind Chime / WindChime
+
+CURIO / RARE / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every 10 critical hits of the team ring the chime: the next 3 shots of every friend pierce one more enemy.
+
+Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
+
+## Specimen Pin / SpecimenPin
+
+CURIO / RARE / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every enemy species defeated in this run gives +1% critical chance (max +20%).
+
+Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
+
+## Star Polish / StarPolish
+
+CURIO / RARE / STACKABLE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Three-star friends with shooting weapons fire one more projectile.
+
+Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
+
+## Kite Tail Ribbon / KiteTailRibbon
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Critical shots of ranged friends bounce on to one more enemy.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Melting Sundae / MeltingSundae
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+When the hero is hit, enemies within 2 units freeze for 0.5s (4s cooldown).
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Cuckoo Pendulum / CuckooPendulum
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every 12s the cuckoo calls: the next attack of every friend is a critical hit.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Diving Bell Lantern / DivingBellLantern
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Marked enemies (stamped, pinned, exposed or anchored) take +15% damage.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Twin Ticket / TwinTicket
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+A merge into a three-star friend brings a free one-star copy of it.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Treasure Mimic / TreasureMimic
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+The first chest opened each wave wakes up and bites the nearest enemy every 0.5s for 10s.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Duelist's Ribbon / DuelistsRibbon
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every 4th hit of each melee friend strikes twice.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Frost Ledger / FrostLedger
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every frozen enemy defeated this wave gives the team +2% damage for the wave (max +20%).
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Undertow Anchor / UndertowAnchor
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every 8s an undertow from the front line pushes the 5 enemies nearest the hero back 2 units and soaks them.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 

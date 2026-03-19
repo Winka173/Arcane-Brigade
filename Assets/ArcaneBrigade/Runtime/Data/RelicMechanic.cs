@@ -10,6 +10,13 @@ namespace ArcaneBrigade
         SlowToArmor, DodgeMending, DamageToIncome, ChestOnlyRecovery, SorrowPulse,
         BleedingAlarm, CollisionOnly, SoloOverdrive, FreshLotus, EggGift, CompanionGift,
         FragilePower, StatFloor, LuckToHealth, GambleRecovery, FoodGrowth, FreeFollowers,
-        IncomePoison, HurtGrowth, StillPower, StaticFollowers, VoidPulse, SixWeapons
+        IncomePoison, HurtGrowth, StillPower, StaticFollowers, VoidPulse, SixWeapons,
+        /// <summary>Content expansion step 3 (Docs/Content_Expansion_v5.md §5): Mythics that only added stats get a small mechanic of
+        /// their own, and the four old Prismatics are redesigned around one.</summary>
+        RoyalBlow, QuiltGuard, ApronShove, QuietMending, EchoForward, BlowerReturn, InvoiceSettles, SealBurst, SpringDouble,
+        BorrowedCrown, ClockworkHeart, ImpossiblePrism, LivingThread,
+        /// <summary>The thirty new items of the content expansion (Docs/Content_Expansion_v5.md §10; Fish Cracker is stats only).</summary>
+        TallyChalk, CoinSash, PostageStamp, FrostSalt, RefundSlip, WhetstoneWafer, LateFee, HagglersAbacus, SlipstreamScarf, BrainFreeze, WindChime, SpecimenPin, StarPolish, KiteTailRibbon, MeltingSundae,
+        CuckooPendulum, DivingBellLantern, TwinTicket, TreasureMimic, DuelistsRibbon, FrostLedger, UndertowAnchor, FunhouseMirror, SpliceKit, EndlessEncore, MoonClockKey, MirrorOfTwins, StorybookEnding, DreamLoom
     }
 }

@@ -150,6 +150,7 @@ namespace ArcaneBrigade
             int current = Special ? 7919 : 17;
             foreach (ShopOffer offer in Special ? state.SpecialOffers : state.Offers) current = unchecked(current * 31 + offer.Token * 2 + (offer.Sold ? 1 : 0));
             current = unchecked(current * 31 + state.Wave);
+            current = unchecked(current * 31 + (owner.Session.RefundAvailable ? 1 : 0));
             if (current != signature) { Build(); signature = current; }
             scenery.SetActive(true); Nearby = null;
             if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
@@ -251,6 +252,11 @@ namespace ArcaneBrigade
                             ShopStockRetirement.Play(owner, old.Actor.View, old.Offer.Kind == OfferKind.Item ? owner.Content.Item(old.Offer.Id).Rarity : owner.Content.Unit(old.Offer.Id).Rarity);
                     arrivingStock = true;
                 }
+            }
+            else if (station.Action == "REFUND")
+            {
+                completed = owner.RefundRelic();
+                if (completed) CheckpointAudio.PlayInterfaceId("shop.buy.gold");
             }
             else if (station.Recipe != null)
             {
@@ -389,6 +395,12 @@ namespace ArcaneBrigade
             }
             Station reroll = AddStation(new Vector2(-5.0f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.\n" + owner.Session.RecruitmentSummary;
+            if (!Special && owner.Session.RefundAvailable)
+            {
+                ItemDefinition returned = owner.Content.Item(owner.Session.State.RefundRelicId);
+                Station refund = AddStation(new Vector2(-5.0f, 0.4f), "REFUND", returned.Icon, null, false);
+                refund.Description = "Refund Slip: return " + returned.Name + " for " + owner.Session.State.RefundRelicPrice + " gold (once per shop).";
+            }
             Station exit = AddStation(ExitPosition, "NEXT HALL", art.HallDoor[0], art.HallDoor, false);
             exit.Reach = ExitInteractionRadius; exit.Description = "The way onward is at the bottom centre. Its broad entrance includes the floating threshold.";
             if (merchantEntrance)
@@ -458,6 +470,7 @@ namespace ArcaneBrigade
         public string DisplayName(Station station)
         {
             if (station.Action == "REROLL") return "REROLL";
+            if (station.Action == "REFUND") return "REFUND";
             if (station.Action == "NEXT HALL" && owner.Session.HobRescueNeeded) return "HOB IS STILL SITTING";
             if (station.Action == "NEXT HALL") return Special ? "HEAD DOWN · GOLD SHOP" : "HEAD DOWN · NEXT WAVE";
             if (station.Action == "GOLD SHOP") return "GOLD SHOP";

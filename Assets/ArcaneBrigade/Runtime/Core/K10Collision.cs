@@ -14,6 +14,7 @@ namespace ArcaneBrigade
                 float reach = source.Definition.Radius + enemy.Definition.Radius;
                 if ((source.Position - enemy.Position).sqrMagnitude > reach * reach) continue;
                 ApplyDamage(enemy, source.Definition.CollisionDamage + KitHurtCollision(source), source.Faction, "Collision", (enemy.Position - source.Position).normalized, cause: NewCause(source.Id));
+                RelicSeal(enemy, source.Definition.CollisionDamage);
                 struck = true;
             }
             if (struck) source.NextCollision = Elapsed + source.Definition.CollisionFrequency;

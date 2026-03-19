@@ -271,7 +271,7 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Damage: +24%
+      / Damage: +12%
 
 
       Owned effective copies: 1. Values apply before combat
@@ -284,7 +284,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.24
+      Value: 0.12
     Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
@@ -869,8 +869,14 @@ MonoBehaviour:
       / Maximum health: +90
 
 
-      Owned effective copies: 1. Values apply before
-      combat limits.'
+      SPECIAL EFFECT
+
+      Once per wave, a blow that
+      would defeat the hero leaves 1 HP and 1.5s of safety instead.
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
     Price: 48
     Effect: 2
     Value: 45
@@ -888,7 +894,7 @@ MonoBehaviour:
     AltarCurrency: 2
     AltarPrice: 13
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 47
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -907,8 +913,15 @@ MonoBehaviour:
       Team / Attack speed: -8%
 
 
-      Owned effective
-      copies: 1. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      A
+      friend''s basic attack that defeats an enemy echoes onward: the nearest enemy
+      takes half that weapon''s damage (0.2s cooldown).
+
+
+      Owned effective copies:
+      1. Values apply before combat limits.'
     Price: 60
     Effect: 9
     Value: 2
@@ -929,7 +942,7 @@ MonoBehaviour:
     AltarCurrency: 2
     AltarPrice: 18
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 50
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -946,8 +959,14 @@ MonoBehaviour:
       / Damage: +80%
 
 
-      Owned effective copies: 1. Values apply before combat
-      limits.'
+      SPECIAL EFFECT
+
+      Every 8th hit of the hero is a
+      royal blow: triple damage.
+
+
+      Owned effective copies: 1. Values apply
+      before combat limits.'
     Price: 48
     Effect: 12
     Value: 0.4
@@ -965,7 +984,7 @@ MonoBehaviour:
     AltarCurrency: 2
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 46
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -2955,13 +2974,17 @@ MonoBehaviour:
       WHILE OWNED / per copy
 
       Team
-      / Damage: +70%
-
-      Team / Projectile count: +2
+      / Damage: +15%
 
 
-      Owned effective copies:
-      1. Stack limit: 1. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      Your highest-star companion also
+      fires your hero''s weapon.
+
+
+      Owned effective copies: 1. Stack limit:
+      1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -2970,10 +2993,7 @@ MonoBehaviour:
     Modifiers:
     - Effect: 0
       Scope: 0
-      Value: 0.7
-    - Effect: 9
-      Scope: 0
-      Value: 2
+      Value: 0.15
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
@@ -2982,7 +3002,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 55
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -2997,26 +3017,27 @@ MonoBehaviour:
 
       WHILE OWNED / per copy
 
-      Champion
-      / Maximum health: +120
-
-      Champion / Healing per second: +1.8
+      Team
+      / Attack speed: +10%
 
 
-      Owned
-      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      Every merge winds the heart:
+      the team gains +3% attack speed for the run (max +30%).
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
     Icon: {fileID: -843331076, guid: bf4715b4c390b974093b63772728032a, type: 3}
     UnlockWave: 2147483647
     Modifiers:
-    - Effect: 2
-      Scope: 1
-      Value: 120
-    - Effect: 7
-      Scope: 1
-      Value: 1.8
+    - Effect: 1
+      Scope: 0
+      Value: 0.1
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
@@ -3025,7 +3046,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 56
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -3042,11 +3063,18 @@ MonoBehaviour:
       Team
       / Flat melee damage: +4
 
-      Team / Knockback: +63%
+      Team / Knockback: +30%
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      Melee
+      friends are stitched together: a melee friend''s blow pulls a strike (50%)
+      from the nearest other melee friend.
+
+
+      Owned effective copies: 1. Stack
+      limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -3058,7 +3086,7 @@ MonoBehaviour:
       Value: 4
     - Effect: 31
       Scope: 0
-      Value: 0.63
+      Value: 0.3
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
@@ -3067,7 +3095,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 58
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -3084,11 +3112,15 @@ MonoBehaviour:
       Team
       / Bullet split: +3
 
-      Team / Flat ranged damage: +4
+
+      SPECIAL EFFECT
+
+      Split shots of friends break
+      into three colours: ember, frost and arcane.
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
     Price: 200
     Effect: 0
     Value: 0
@@ -3098,9 +3130,6 @@ MonoBehaviour:
     - Effect: 26
       Scope: 0
       Value: 3
-    - Effect: 21
-      Scope: 0
-      Value: 4
     Rarity: 5
     Stacking: 1
     MaximumStacks: 1
@@ -3109,7 +3138,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 57
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -3118,19 +3147,26 @@ MonoBehaviour:
     - fam-ranged
   - Id: CrimsonSeal
     Name: Crimson Seal
-    Description: 'CURIO / CRIMSON / UNIQUE
+    Description: 'CURIO / MYTHIC / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Champion
-      / Damage: +90%
+      / Damage: +50%
 
-      Team / Collision damage: +24
+      Team / Collision damage: +16
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      A
+      collision stamps a crimson seal; 1s later it bursts for triple the collision
+      damage around the enemy.
+
+
+      Owned effective copies: 1. Stack limit: 1.
+      Values apply before combat limits.'
     Price: 75
     Effect: 0
     Value: 0
@@ -3139,10 +3175,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 12
       Scope: 1
-      Value: 0.9
+      Value: 0.5
     - Effect: 19
       Scope: 0
-      Value: 24
+      Value: 16
     Rarity: 3
     Stacking: 1
     MaximumStacks: 1
@@ -3151,7 +3187,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 53
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -3160,19 +3196,25 @@ MonoBehaviour:
     - fam-collision
   - Id: CrimsonSpring
     Name: Crimson Spring
-    Description: 'CURIO / CRIMSON / UNIQUE
+    Description: 'CURIO / MYTHIC / UNIQUE
 
 
       WHILE OWNED / per copy
 
       Team
-      / Attack speed: +50%
+      / Attack speed: +25%
 
-      Team / Attack range: +45%
+      Team / Attack range: +25%
 
 
-      Owned effective
-      copies: 1. Stack limit: 1. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      Every
+      4s each friend''s next attack springs twice.
+
+
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
     Price: 75
     Effect: 0
     Value: 0
@@ -3181,10 +3223,10 @@ MonoBehaviour:
     Modifiers:
     - Effect: 1
       Scope: 0
-      Value: 0.5
+      Value: 0.25
     - Effect: 22
       Scope: 0
-      Value: 0.45
+      Value: 0.25
     Rarity: 3
     Stacking: 1
     MaximumStacks: 1
@@ -3193,7 +3235,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 15
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 54
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -3455,8 +3497,14 @@ MonoBehaviour:
       Team / Movement speed: -8%
 
 
-      Owned effective copies:
-      1. Stack limit: 4. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      Enemies
+      that strike the hero up close are shoved back 1.5 units (once per second).
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
     Price: 65
     Effect: 0
     Value: 0
@@ -3477,7 +3525,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 48
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -3496,8 +3544,14 @@ MonoBehaviour:
       Champion / Armor: +0.12
 
 
-      Owned effective
-      copies: 1. Stack limit: 4. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      After
+      3s without being hit, the hero''s healing per second is tripled.
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
     Price: 70
     Effect: 0
     Value: 0
@@ -3518,7 +3572,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 49
     Category: 0
     ReferenceName: 
     ShopThemes:
@@ -6713,8 +6767,15 @@ MonoBehaviour:
       Run / Companion bullet interception: +1
 
 
-      Owned
-      effective copies: 1. Stack limit: 8. Values apply before combat limits.'
+      SPECIAL
+      EFFECT
+
+      A hostile shot a companion intercepts is blown back as a friendly
+      shot with double damage.
+
+
+      Owned effective copies: 1. Stack limit: 8.
+      Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -6735,7 +6796,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 51
     Category: 0
     ReferenceName: Cooling Fan
     ShopThemes:
@@ -6954,8 +7015,15 @@ MonoBehaviour:
       Team / Damage: -20%
 
 
-      Owned effective copies:
-      1. Stack limit: 8. Values apply before combat limits.'
+      SPECIAL EFFECT
+
+      Every
+      relic you own settles part of the invoice: the damage penalty shrinks by 2%
+      each, to nothing at 10 relics.
+
+
+      Owned effective copies: 1. Stack limit:
+      8. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -6976,7 +7044,7 @@ MonoBehaviour:
     AltarCurrency: 1
     AltarPrice: 4
     SignatureRole: 0
-    Mechanic: 0
+    Mechanic: 52
     Category: 0
     ReferenceName: Green Form
     ShopThemes:
@@ -7231,11 +7299,11 @@ MonoBehaviour:
     - fam-delay
   - Id: CurioTruceBottle
     Name: Truce Bottle
-    Description: 'DRINK / MYTHIC / STACKABLE
+    Description: 'DRINK / MYTHIC / UNIQUE
 
-      ON PURCHASE: counts as 1 drink
-      for drink-reactive heroes, companions and relics. No separate use action; the
-      item stays owned.
+      ON PURCHASE: counts as 1 drink for
+      drink-reactive heroes, companions and relics. No separate use action; the item
+      stays owned.
 
 
       WHILE OWNED / per copy
@@ -7250,9 +7318,11 @@ MonoBehaviour:
       Champion /
       Armor: +0.6
 
+      Champion / Movement speed: -30%
 
-      Owned effective copies: 1. Stack limit: 8. Values apply
-      before combat limits.'
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
     Price: 74
     Effect: 0
     Value: 0
@@ -7271,8 +7341,11 @@ MonoBehaviour:
     - Effect: 11
       Scope: 1
       Value: 0.6
+    - Effect: 3
+      Scope: 1
+      Value: -0.3
     Rarity: 3
-    Stacking: 0
+    Stacking: 1
     MaximumStacks: 8
     ShopWeight: 28
     Pools: 1
@@ -7498,6 +7571,1008 @@ MonoBehaviour:
     - hearth
     - fam-food
     - fam-melee
+  - Id: TallyChalk
+    Name: Tally Chalk
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      25 enemies defeated this wave: the team deals +1% damage (max +8%).
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
+    Price: 24
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: bb75d477293caa54c8e78eb3612c68b0, type: 3}
+    UnlockWave: 0
+    Modifiers: []
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 59
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: CoinSash
+    Name: Coin Sash
+    Description: 'CURIO / COMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      While
+      the hero runs, pickup reach +0.5.
+
+
+      Owned effective copies: 1. Values
+      apply before combat limits.'
+    Price: 24
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: b882fca9e61e1c443b2755b995863b53, type: 3}
+    UnlockWave: 0
+    Modifiers: []
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 60
+    Category: 0
+    ReferenceName: 
+    ShopThemes: []
+  - Id: FishCracker
+    Name: Fish Cracker
+    Description: 'FOOD / COMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      Champion / Critical
+      chance: +6%
+
+
+      Owned effective copies: 1. Values apply before combat limits.'
+    Price: 24
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: e3e5a98c2b34ec346bef3c4077733900, type: 3}
+    UnlockWave: 0
+    Modifiers:
+    - Effect: 8
+      Scope: 1
+      Value: 0.06
+    Rarity: 0
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 100
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 0
+    Category: 2
+    ReferenceName: 
+    ShopThemes: []
+  - Id: PostageStamp
+    Name: Postage Stamp
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Marked
+      enemies (stamped, pinned, exposed or anchored) take +10% damage.
+
+
+      Owned
+      effective copies: 1. Values apply before combat limits.'
+    Price: 45
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: afbcac6416a6c0442b34ba43b46d7951, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 61
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-marks
+  - Id: FrostSalt
+    Name: Frost Salt
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Freezes
+      last 0.3s longer.
+
+
+      Owned effective copies: 1. Values apply before combat
+      limits.'
+    Price: 45
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: e5fc528309ae745459f96120138ff1e5, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 62
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+  - Id: RefundSlip
+    Name: Refund Slip
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Once
+      per shop, the last relic you bought can be returned at the refund counter for
+      the full price paid.
+
+
+      Owned effective copies: 1. Values apply before
+      combat limits.'
+    Price: 45
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: c411a895d15420141be35e984d47550e, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 63
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-shop
+  - Id: WhetstoneWafer
+    Name: Whetstone Wafer
+    Description: 'FOOD / UNCOMMON / STACKABLE
+
+      ON PURCHASE: counts as 1 food
+      for food-reactive heroes, companions and relics. No separate use action; the
+      item stays owned.
+
+
+      WHILE OWNED / per copy
+
+      No direct stat modifier;
+      effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Melee hits cleave
+      one more enemy beside the target for 40% of the hit.
+
+
+      Owned effective
+      copies: 1. Values apply before combat limits.'
+    Price: 45
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 7e17f08bf9d2e0e479c26ad63fb64bd3, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 64
+    Category: 2
+    ReferenceName: 
+    ShopThemes:
+    - fam-food
+    - fam-melee
+  - Id: LateFee
+    Name: Late Fee
+    Description: 'CURIO / UNCOMMON / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Burning,
+      poison and deferred damage hit 25% harder.
+
+
+      Owned effective copies:
+      1. Values apply before combat limits.'
+    Price: 45
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 7bd2fe264b8c39244a142aad2a98dbdb, type: 3}
+    UnlockWave: 2
+    Modifiers: []
+    Rarity: 1
+    Stacking: 0
+    MaximumStacks: 100000
+    ShopWeight: 60
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 65
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-delay
+  - Id: HagglersAbacus
+    Name: Haggler's Abacus
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Each
+      refresh in this shop takes 1 gold off every gold offer (at most 30% off).
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 5737526ca6f850246bf5da874440e83a, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 25
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 66
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-shop
+  - Id: SlipstreamScarf
+    Name: Slipstream Scarf
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Friends
+      gain +1% attack speed for every 5% movement speed bonus of the hero (max +15%).
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: c9e5810a54da3244493f50b7f5ea0414, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 25
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 67
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-speed
+  - Id: BrainFreeze
+    Name: Brain Freeze
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      A
+      critical hit on a frozen enemy breaks off 3 ice shards (30% of the hit each).
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 3ee6aaa3becdab64daa73be5f657b58d, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 25
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 68
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+  - Id: WindChime
+    Name: Wind Chime
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      10 critical hits of the team ring the chime: the next 3 shots of every friend
+      pierce one more enemy.
+
+
+      Owned effective copies: 1. Stack limit: 4. Values
+      apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: ba9a28b83ecf2c049a1356e8a1a075aa, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 25
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 69
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-crit
+  - Id: SpecimenPin
+    Name: Specimen Pin
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      enemy species defeated in this run gives +1% critical chance (max +20%).
+
+
+      Owned
+      effective copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: ac5a94212d41b924fb01c5cb00bea692, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 25
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 70
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-kills
+  - Id: StarPolish
+    Name: Star Polish
+    Description: 'CURIO / RARE / STACKABLE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Three-star
+      friends with shooting weapons fire one more projectile.
+
+
+      Owned effective
+      copies: 1. Stack limit: 4. Values apply before combat limits.'
+    Price: 60
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 5d7bdc9dfc19e1a4aa4319d24dc66213, type: 3}
+    UnlockWave: 4
+    Modifiers: []
+    Rarity: 2
+    Stacking: 0
+    MaximumStacks: 4
+    ShopWeight: 25
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 71
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-merge
+  - Id: KiteTailRibbon
+    Name: Kite Tail Ribbon
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Critical
+      shots of ranged friends bounce on to one more enemy.
+
+
+      Owned effective
+      copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 761e5a97b39c2e24999a27d9dab40d11, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 72
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-ranged
+  - Id: MeltingSundae
+    Name: Melting Sundae
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      When
+      the hero is hit, enemies within 2 units freeze for 0.5s (4s cooldown).
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 890c242605b69004ebc6ef8d05e1310d, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 73
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+  - Id: CuckooPendulum
+    Name: Cuckoo Pendulum
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      12s the cuckoo calls: the next attack of every friend is a critical hit.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: ebea8408dd23f4c46bc7428253ddeb54, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 74
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-crit
+  - Id: DivingBellLantern
+    Name: Diving Bell Lantern
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Marked
+      enemies (stamped, pinned, exposed or anchored) take +15% damage.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 7cc84144f39585e43b523bcd8500178d, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 75
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-marks
+  - Id: TwinTicket
+    Name: Twin Ticket
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      A
+      merge into a three-star friend brings a free one-star copy of it.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: bbc9077e0b939ad459e79fbb3918967b, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 76
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-merge
+  - Id: TreasureMimic
+    Name: Treasure Mimic
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      The
+      first chest opened each wave wakes up and bites the nearest enemy every 0.5s
+      for 10s.
+
+
+      Owned effective copies: 1. Stack limit: 1. Values apply before
+      combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: f05377c87f720eb428f527f712882411, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 77
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-chest
+  - Id: DuelistsRibbon
+    Name: Duelist's Ribbon
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      4th hit of each melee friend strikes twice.
+
+
+      Owned effective copies:
+      1. Stack limit: 1. Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: c7afcd84560ab0d428036a6a89c5b926, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 78
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-melee
+  - Id: FrostLedger
+    Name: Frost Ledger
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      frozen enemy defeated this wave gives the team +2% damage for the wave (max
+      +20%).
+
+
+      Owned effective copies: 1. Stack limit: 1. Values apply before
+      combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 5046679c851b5624eb4cb8f451cd238f, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 79
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-freeze
+    - fam-kills
+  - Id: UndertowAnchor
+    Name: Undertow Anchor
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      8s an undertow from the front line pushes the 5 enemies nearest the hero back
+      2 units and soaks them.
+
+
+      Owned effective copies: 1. Stack limit: 1.
+      Values apply before combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 01c49b20ce3e9654ba0c3216b7af0e3f, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 80
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - tidal
+    - fam-team
+  - Id: FunhouseMirror
+    Name: Funhouse Mirror
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      10s one friend''s weapon is warped for 3s: double size and damage, half the
+      speed.
+
+
+      Owned effective copies: 1. Stack limit: 1. Values apply before
+      combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: a31c442304cc45948843d2d7d12e1b53, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 81
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - oddity
+    - fam-team
+  - Id: SpliceKit
+    Name: Splice Kit
+    Description: 'CURIO / MYTHIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Once
+      per wave, three different one-star friends are spliced into one random two-star
+      friend.
+
+
+      Owned effective copies: 1. Stack limit: 1. Values apply before
+      combat limits.'
+    Price: 74
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: bf798f1bd51e821479c8e706890d648d, type: 3}
+    UnlockWave: 6
+    Modifiers: []
+    Rarity: 3
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 8
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 82
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - fam-merge
+  - Id: TheEndlessEncore
+    Name: The Endless Encore
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      No
+      3s rest after a transformation: the gauge starts filling again at once.
+
+
+      Owned
+      effective copies: 1. Stack limit: 1. Values apply before combat limits.'
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: ee0ff582a14849242997243f2aaa2393, type: 3}
+    UnlockWave: 2147483647
+    Modifiers: []
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 0
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 83
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - oddity
+    - tidal
+    - fam-team
   Bonds:
   - Id: hearth
     Name: Hearth

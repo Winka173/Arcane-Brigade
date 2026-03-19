@@ -37,6 +37,16 @@ namespace ArcaneBrigade
             if (effect == ItemEffect.Armor) value += MechanicStacks(RelicMechanic.SlowToArmor) * Mathf.Max(0, -Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion));
             if (effect == ItemEffect.Income) value += MechanicStacks(RelicMechanic.DamageToIncome) * Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.Damage, ModifierScope.Champion)) / .04f);
             if (effect == ItemEffect.Discount && State.RelicDiscountWave == State.Wave) value += .3f;
+            if (effect == ItemEffect.AttackSpeed && target != ModifierScope.Run && MechanicStacks(RelicMechanic.ClockworkHeart) > 0) value += Mathf.Min(.3f, State.HeartWinds * .03f);
+            if (effect == ItemEffect.AttackSpeed && target == ModifierScope.Companions && MechanicStacks(RelicMechanic.SlipstreamScarf) > 0)
+                value += MechanicStacks(RelicMechanic.SlipstreamScarf) * Mathf.Min(.15f, Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) / .05f + .001f) * .01f);
+            if (effect == ItemEffect.Crit && target != ModifierScope.Run && MechanicStacks(RelicMechanic.SpecimenPin) > 0)
+                value += MechanicStacks(RelicMechanic.SpecimenPin) * Mathf.Min(.2f, (State.KilledSpecies?.Count ?? 0) * .01f);
+            if (effect == ItemEffect.Damage && target != ModifierScope.Run && MechanicStacks(RelicMechanic.InvoiceSettles) > 0)
+            {
+                int relics = 0; foreach (ItemStack s in State.Items) relics += s.Count;
+                value += MechanicStacks(RelicMechanic.InvoiceSettles) * Mathf.Min(.2f, relics * .02f);
+            }
             foreach (RelicLease lease in State.RelicLeases ?? new List<RelicLease>())
             {
                 if (lease.Wave != State.Wave) continue;
@@ -63,6 +73,7 @@ namespace ArcaneBrigade
             if (State.Phase != SessionPhase.Combat || State.RelicWave == State.Wave) return;
             State.RelicWave = State.Wave;
             State.RelicLeases.RemoveAll(lease => lease.Wave < State.Wave);
+            SpliceFriends();
             int growth = MechanicStacks(RelicMechanic.WaveGrowth);
             if (growth > 0) { GainRelic(ItemEffect.MeleeDamage,4 * growth); GainRelic(ItemEffect.RangedDamage,4 * growth); GainRelic(ItemEffect.Damage,.1f * growth); }
             int interest = MechanicStacks(RelicMechanic.CompoundInterest);

@@ -145,7 +145,7 @@ namespace ArcaneBrigade
         private void EndAwakening()
         {
             if (Kit != null && Kit.Action == KitAction.Engine && awakenUntil > 0) Whistle();
-            awakenUntil = -1; awakenMeter = 0; awakenCoolUntil = Elapsed + AwakenCooldown; Champion.AwakenArt = null; awakenFoe = null;
+            awakenUntil = -1; awakenMeter = 0; awakenCoolUntil = Elapsed + (RelicCount(RelicMechanic.EndlessEncore) > 0 ? 0 : AwakenCooldown); Champion.AwakenArt = null; awakenFoe = null;
         }
 
         // ------------------------------------------------------------------ helpers
