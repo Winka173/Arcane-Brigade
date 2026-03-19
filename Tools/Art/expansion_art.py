@@ -52,11 +52,11 @@ def single(path, name, refs, prompt, depends=None):
     jobs.append(dict(name=name, path=path, transparent=True, refs=refs, depends=depends, mode="single", prompt=prompt))
 
 
-def edit_full(path_empty, name, inside):
+def edit_full(path_empty, name, inside, canvas="384x1024"):
     single(path_empty.replace("_Empty_v1.png", "_Full_v1.png"), name.replace("_Empty", "_Full"), [path_empty],
            "Use case: precise-object-edit. EDIT THIS EXACT gauge: keep the vessel's outline, frame, size, position and canvas "
            "identical (it is laid over the empty one in the game), and change only what is inside: " + inside +
-           ". Genuinely transparent RGBA background, same 384x1024 canvas.", depends=name)
+           ". Genuinely transparent RGBA background, same " + canvas + " canvas.", depends=name)
 
 
 # ---------------------------------------------------------------- 1. characters (5 heroes, 19 companions, 4 extra forms)
@@ -133,13 +133,22 @@ for hero, (piece, subject, shape, empty, full) in NEW_HEROES.items():
            depends="Characters1" if "Characters1" in ref else "Characters2")
     edit_full(e, "Gauge_" + hero + "_Empty", full)
 
-# ---------------------------------------------------------------- 3. simplified gauges for the 31 existing heroes (Gauge2_*)
-g2 = json.loads((ROOT / "Tools" / "Art" / "hero_gauges_v2.json").read_text(encoding="utf-8"))
-for hero, g in g2.items():
+# ---------------------------------------------------------------- 3. shaped gauges for all 36 heroes (Gauge2_*, approved 18/10/2026)
+# Each hero's gauge has its own shape (a moon, a dial, a stamp sheet, an hourglass...). The game reveals the Full painting over
+# the Empty one in the hero's own order (sweeping, blooming, piece by piece...), computed from the difference between the two
+# paintings, so the pair must match exactly outside the fill area (Tools/Art/hero_gauges_v3.json; mode is for the code).
+GAUGE3 = (" A simple, readable HUD gauge: one clear silhouette, a modest frame with at most two or three small ornaments, readable "
+          "at 120 px. The FILL AREA is one clearly bounded region (a glass, a recess, a page, a set of compartments); everything "
+          "outside it is frame. When the gauge has separate compartments, leave a clear gap between them (at least 4% of the canvas) "
+          "so each reads as its own piece. No numbers, no letters, no text. Seen from the front, centred, ")
+g3 = json.loads((ROOT / "Tools" / "Art" / "hero_gauges_v3.json").read_text(encoding="utf-8"))
+for hero, g in g3.items():
+    canvas = g["frame"].split(". ")[-1].replace(" canvas", "")
     e = ART + "Gauge2_" + hero + "_Empty_v1.png"
     single(e, "Gauge2_" + hero + "_Empty", [g["ref"]] + REFS,
-           STYLE + "Subject: the gauge of the hero in the first reference (in a sheet, the hero named " + hero + "), " + g["empty"] + "." + GAUGE + ISOLATED)
-    edit_full(e, "Gauge2_" + hero + "_Empty", g["full"])
+           STYLE + "Subject: the gauge of the hero in the first reference (in a sheet, the hero named " + hero + "): " + g["empty"] + "."
+           + GAUGE3 + g["frame"] + "." + ISOLATED)
+    edit_full(e, "Gauge2_" + hero + "_Empty", g["full"], canvas)
 
 # ---------------------------------------------------------------- 4. thirteen new weapons (held + painted pieces; effects are ink in code)
 WEAPONS = {

@@ -1,0 +1,290 @@
+{
+ "LanternKnight": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/LanternKnight_v1.png",
+  "canvas": "tall",
+  "mode": "bloom:0.5,0.62",
+  "empty": "a small lighthouse lantern room on a short brass tower: a round glass lamp chamber with a wick in the middle; the glass chamber is EMPTY, dark and cold",
+  "full": "the glass chamber now glows completely with warm golden lamplight radiating from the wick",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "Postmaster": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/Postmaster_v1.png",
+  "canvas": "square",
+  "mode": "pieces:9:rows",
+  "empty": "a sheet of NINE postage stamps in a 3 by 3 grid with perforated edges and clear gaps between them, in a brass frame; every stamp is a BLANK pale outline",
+  "full": "every one of the nine stamps is now printed in full colour with a tiny different picture (a lantern, a letter, a key...)",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "DrowsySeer": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/DrowsySeer_v1.png",
+  "canvas": "square",
+  "mode": "sweep:0",
+  "empty": "a round moon disc in a thin silver crescent-shaped frame with a little sleeping cap hung on its tip; the disc is DARK, a new moon",
+  "full": "the whole disc is now a glowing full moon, pale cream with soft grey craters",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "RootOracle": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/RootOracle_v1.png",
+  "canvas": "tall",
+  "mode": "bloom:0.5,0.92",
+  "empty": "a seed resting at the top of a tall cut-away block of earth in a wooden frame; below it the earth is plain and EMPTY",
+  "full": "pale glowing roots now branch from the seed down through the whole block of earth",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "LoneJelly": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/LoneJelly_v1.png",
+  "canvas": "square",
+  "mode": "bloom:0.5,0.5",
+  "empty": "a round petri-dish window in a brass ring holding the outline of a cell about to divide in two; the cell is EMPTY and clear",
+  "full": "the cell is now filled with glowing teal jelly, two nuclei shining inside",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "GlassDice": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/GlassDice_v1.png",
+  "canvas": "square",
+  "mode": "pieces:6:dice",
+  "empty": "one big glass die seen face-on in a brass frame, its face showing SIX empty round pip sockets (two columns of three) with gaps between them",
+  "full": "all six pips now glow as polished gold coins set into the sockets",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "TideSinger": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/TideSinger_v1.png",
+  "canvas": "tall",
+  "mode": "wave",
+  "empty": "a tall conch shell standing upright with a long window along its body; the window is EMPTY and dry",
+  "full": "the window is now full of deep blue sea water to the top, its surface curling into little waves",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "CometRunner": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/CometRunner_v1.png",
+  "canvas": "wide",
+  "mode": "diagonal:0.1,0.15,0.9,0.85",
+  "empty": "a long diagonal comet trail rising from lower left to upper right inside a brass star-chart frame, its head at upper right; the trail is EMPTY, a faint outline",
+  "full": "the whole trail now blazes with golden star fire from tail to head",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "MirrorKeeper": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/MirrorKeeper_v1.png",
+  "canvas": "wide",
+  "mode": "pieces:3:x",
+  "empty": "a three-panel folding mirror (a triptych) in a carved frame with clear gaps between the panels; each panel is DULL dark grey glass",
+  "full": "each of the three panels is now silvered and shining with soft reflections",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "TreasureAcorn": {
+  "ref": "Assets/ArcaneBrigade/Art/FinalQuality/TreasureAcorn_v1.png",
+  "canvas": "tall",
+  "mode": "pieces:6:y",
+  "empty": "a tall glass jar with a cork lid, SIX acorn-shaped hollows stacked one above another inside it with gaps between them; every hollow is EMPTY",
+  "full": "every hollow now holds a polished brown acorn with a little gold cap",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "VerdantMatron": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "canvas": "square",
+  "mode": "pieces:6:angle",
+  "empty": "a flower seen from the front in a ring of leaves: a round centre with SIX separate petal outlines around it, gaps between the petals; the petals are EMPTY pale outlines",
+  "full": "all six petals are now painted in full spring colours, pink fading to cream",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "CopperCauldron": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "canvas": "wide",
+  "mode": "clock:180,0",
+  "empty": "a copper pressure dial shaped as a half circle (a semicircle, flat side down) with rivets and a little whistle on top; the half-disc face is EMPTY and dark",
+  "full": "the whole half-disc face now glows with hot steam-orange pressure",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "ChinaMarionette": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "canvas": "square",
+  "mode": "bloom:0.18,0.8",
+  "empty": "a round porcelain plate in a wooden stand, painted with blue patterns and broken by a few thin cracks running across it; the cracks are EMPTY dark lines",
+  "full": "every crack is now filled with shining gold, the kintsugi repair complete",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "SoapSkater": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes1.png",
+  "canvas": "square",
+  "mode": "spiral",
+  "empty": "a figure-eight ice track seen from above in a round soap-bubble frame; the track is EMPTY, a faint pale groove",
+  "full": "the whole track now gleams with fresh blue-white ice and little bubbles",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "VelvetRegent": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "canvas": "wide",
+  "mode": "pieces:3:x",
+  "empty": "THREE separate flag poles in a row on a velvet-and-brass stand, gaps between them; each pole has only an EMPTY flag outline at its top",
+  "full": "each pole now flies a royal wine-velvet banner with a gold crest",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "ButtonCavalier": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "canvas": "wide",
+  "mode": "diagonal:0.08,0.5,0.95,0.5",
+  "empty": "a long rapier blade lying horizontally with a button-decorated guard on the left, the blade pointing right; the blade is DULL dark steel",
+  "full": "the whole blade now shines bright silver from hilt to tip",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "NightMaw": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "canvas": "square",
+  "mode": "iris",
+  "empty": "a round dinner plate seen from above in a fork-and-knife frame; the plate is EMPTY",
+  "full": "the plate is now heaped with a hearty dark-blue night feast from rim to centre",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "ThornTreasurer": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes2.png",
+  "canvas": "square",
+  "mode": "clock:90,1",
+  "empty": "a round crown made of a ring of thorny briar seen from the front; the ring holds SIXTEEN small thorn sockets all the way round; every socket is EMPTY",
+  "full": "every socket now holds a gilded thorn with a tiny gold coin at its base",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "CitrusMarshal": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "canvas": "wide",
+  "mode": "pieces:3:x",
+  "empty": "a little toy train seen from the side: an engine on the right pulling THREE open wagons with gaps between them; every wagon is EMPTY",
+  "full": "every wagon is now heaped with bright oranges and lemons",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "IvorySovereign": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "canvas": "tall",
+  "mode": "fall",
+  "empty": "a royal ivory scroll hanging from a gold rod with a wax seal at its foot; the scroll is BLANK pale parchment",
+  "full": "the whole scroll is now written top to bottom in gold royal script with a decorated border",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "PetalCitadel": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "canvas": "square",
+  "mode": "pieces:4:angle",
+  "empty": "a four-petal flower seen from the front: a round centre and FOUR separate large petals (up, right, down, left) with gaps between them; the petals are EMPTY outlines",
+  "full": "all four petals are now in full bloom, each a different soft colour",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "PatchworkHost": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes3.png",
+  "canvas": "wide",
+  "mode": "curtain",
+  "empty": "a small toy theatre stage seen from the front; the stage opening is EMPTY and dark with the curtains drawn aside",
+  "full": "the stage opening is now filled by patchwork curtains glowing in spotlight, closed in the middle",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "ArchiveCurator": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "canvas": "square",
+  "mode": "pieces:6:rows",
+  "empty": "a specimen cabinet with SIX small glass-fronted drawers in two columns of three, gaps between them; every drawer is EMPTY and dark",
+  "full": "every drawer now holds a glowing specimen: a moth, a shell, a leaf, a beetle, a key, a feather",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "PennyBroker": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "canvas": "wide",
+  "mode": "sweep:0",
+  "empty": "a brass-framed market chalkboard with a grid; the grid is EMPTY",
+  "full": "a bold green rising price line now zigzags up across the whole grid with gold coin dots at its turns",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "StormFencer": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "canvas": "tall",
+  "mode": "fall",
+  "empty": "a tall zigzag lightning-bolt-shaped glass tube in a brass fencing-guard frame; the tube is EMPTY and dark",
+  "full": "the whole bolt tube now crackles with bright blue-white lightning",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "TinVirtuoso": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+  "canvas": "wide",
+  "mode": "pieces:6:x",
+  "empty": "a music staff of five lines on a tin plaque with SIX separate note outlines spaced along it, gaps between them; every note is EMPTY",
+  "full": "all six notes are now solid shining tin-and-gold notes",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "MoonProwler": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "canvas": "square",
+  "mode": "crescent:0.15,0.5",
+  "empty": "a round sun disc in a dark ring frame; the disc is BRIGHT pale gold",
+  "full": "a dark velvet moon now covers the whole sun disc, a thin glowing corona round its edge",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "SupperMortar": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "canvas": "square",
+  "mode": "pieces:6:angle",
+  "empty": "SIX little cooking pots arranged in a ring on a round stove top, gaps between them; every pot is EMPTY and cold",
+  "full": "every pot now bubbles with a glowing warm stew and a wisp of steam",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "LanternWeaver": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "canvas": "square",
+  "mode": "spiral",
+  "empty": "a round spider web in a lantern-ring frame, only its spokes drawn; the spiral threads are EMPTY",
+  "full": "the spiral threads are now woven all the way round with glowing silk",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "HourglassStag": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes5.png",
+  "canvas": "tall",
+  "mode": "hourglass",
+  "empty": "an hourglass with antler-shaped brass stands; BOTH glass chambers are EMPTY",
+  "full": "BOTH chambers are now full of golden sand (the game drains the upper one as the lower one fills)",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "RainArchivist": {
+  "ref": "Assets/ArcaneBrigade/Art/October/Heroes6.png",
+  "canvas": "tall",
+  "mode": "rain",
+  "empty": "an open book standing upright with a tall blank page; the page is EMPTY",
+  "full": "the whole page is now covered in streaks of blue rain-ink writing running down it",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "KiteAdmiral": {
+  "ref": "Assets/ArcaneBrigade/Art/Expansion/Characters1_v1.png",
+  "canvas": "tall",
+  "mode": "bloom:0.5,0.7",
+  "empty": "a paper box kite standing on its long ribbon tail, kite body above, tail hanging below; the kite panels and the tail are EMPTY pale outlines",
+  "full": "the kite panels and the whole tail are now painted in teal and cream with golden stripes",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "SundaeDuchess": {
+  "ref": "Assets/ArcaneBrigade/Art/Expansion/Characters1_v1.png",
+  "canvas": "tall",
+  "mode": "melt",
+  "empty": "a tall sundae glass with a wafer on its rim; the glass is EMPTY and there is no scoop on top",
+  "full": "a big round ice-cream scoop now sits on top AND the glass below is full of melted cream (the game melts the scoop down as the glass fills)",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ },
+ "BonsaiClocksmith": {
+  "ref": "Assets/ArcaneBrigade/Art/Expansion/Characters1_v1.png",
+  "canvas": "square",
+  "mode": "clock:90,1",
+  "empty": "a round clock face with a little bonsai tree growing from its centre, in a brass ring; the face is EMPTY and dark",
+  "full": "the whole clock face now glows warm amber with gold hour ticks and no numerals",
+  "frame": "a round or square gauge seen from the front. 768x768 canvas"
+ },
+ "JugglingJester": {
+  "ref": "Assets/ArcaneBrigade/Art/Expansion/Characters1_v1.png",
+  "canvas": "wide",
+  "mode": "pieces:5:angle",
+  "empty": "FIVE empty ball rings arranged along an arc like a rainbow, held up by two jester-hat poles, gaps between them; every ring is EMPTY",
+  "full": "each of the five rings now holds a glowing juggling ball, each a different pastel colour",
+  "frame": "a wide gauge seen from the front, about one and a half times as wide as it is tall. 1024x640 canvas"
+ },
+ "BellDiver": {
+  "ref": "Assets/ArcaneBrigade/Art/Expansion/Characters2_v1.png",
+  "canvas": "tall",
+  "mode": "fall",
+  "empty": "a brass depth gauge column with a long glass tube marked with fathom lines and a little diving bell on top; the tube is EMPTY",
+  "full": "the whole tube is now filled with deep teal sea water and bubbles",
+  "frame": "a tall gauge about half as wide as it is tall, standing straight. 512x1024 canvas"
+ }
+}
