@@ -101,28 +101,34 @@ namespace ArcaneBrigade
             State.OutsideRewards = RainbowChoices(0) ?? new List<string> { "RainbowCrown", "RainbowHeart", "RainbowThread" };
             return true;
         }
-        /// <summary>Three rainbow gifts not already owned (an ally among them for a hero who keeps a brigade), or null when fewer
-        /// than three are left. Deterministic per run and per gift.</summary>
+        /// <summary>Three Prismatic gifts not already owned, from the hero's own fixed pool (its themes: Prismatic items and
+        /// Prismatic companions; an ally among them for a hero who keeps a brigade), topped up from the other Prismatic items when
+        /// the pool runs dry; null when fewer than three are left anywhere. Deterministic per run and per gift.</summary>
         private List<string> RainbowChoices(int salt)
         {
-            bool brigade = catalog.Unit(State.ChampionId).HeroMechanic != HeroMechanic.SoloMaw;
-            var choices = new List<string> { "RainbowCrown", "RainbowHeart", "RainbowThread", "RainbowPrism" };
-            if (brigade) { choices.Insert(0, "RainbowTailor"); choices.Insert(1, "RainbowBell"); }
-            choices.RemoveAll(id => State.Items.Exists(stack => stack.Id == id) || State.Roster.Exists(entry => entry.UnitId == id) || catalog.Item(id) == null && catalog.Unit(id) == null);
-            if (choices.Count < 3) return null;
+            UnitDefinition hero = catalog.Unit(State.ChampionId);
+            bool brigade = hero.HeroMechanic != HeroMechanic.SoloMaw;
+            bool Owned(string id) => State.Items.Exists(stack => stack.Id == id) || State.Roster.Exists(entry => entry.UnitId == id);
+            var items = new List<string>(); var allies = new List<string>(); var others = new List<string>();
+            foreach (ItemDefinition item in catalog.Items)
+                if (item.Rarity == ItemRarity.Rainbow && !Owned(item.Id)) (OctoberItemEligible(item) ? items : others).Add(item.Id);
+            if (brigade)
+                foreach (UnitDefinition ally in catalog.Companions)
+                    if (ally.Rarity == ItemRarity.Rainbow && !ally.GiftOnly && ally.Body != null && !Owned(ally.Id) && K11HeroRules.Eligible(hero, ally)) allies.Add(ally.Id);
+            var choices = new List<string>(items); choices.AddRange(allies);
+            if (choices.Count + others.Count < 3) return null;
             var picked = new List<string>();
             uint seed = unchecked((uint)State.Seed ^ 0x728a53b1 ^ (uint)salt * 0x9e3779b9u);
-            while (picked.Count < 3)
-            {
-                seed = unchecked(seed * 1664525 + 1013904223);
-                int index = (int)(seed % (uint)choices.Count);
-                picked.Add(choices[index]); choices.RemoveAt(index);
-            }
-            if (brigade && !picked.Exists(id => id == "RainbowTailor" || id == "RainbowBell"))
-            {
-                string ally = State.Roster.Exists(entry => entry.UnitId == "RainbowTailor") ? "RainbowBell" : "RainbowTailor";
-                if (!State.Roster.Exists(entry => entry.UnitId == ally)) picked[2] = ally;
-            }
+            uint Next() { seed = unchecked(seed * 1664525 + 1013904223); return seed; }
+            // the hero's own Prismatics first; the others only top up a thin pool
+            foreach (var source in new[] { choices, others })
+                while (picked.Count < 3 && source.Count > 0)
+                {
+                    int index = (int)(Next() % (uint)source.Count);
+                    picked.Add(source[index]); source.RemoveAt(index);
+                }
+            if (allies.Count > 0 && !picked.Exists(allies.Contains))
+                picked[2] = allies[(int)(Next() % (uint)allies.Count)];
             return picked;
         }
         /// <summary>Three prism shards become a rainbow gift: the shop opens on three choices (the same table as the Keeper's).

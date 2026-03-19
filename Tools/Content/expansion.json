@@ -1,4 +1,1758 @@
 {
+ "items": {
+  "CurioAnchorTack": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "archive",
+    "fam-team"
+   ]
+  },
+  "CurioAngryReliquary": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-chest"
+   ]
+  },
+  "CurioClearSip": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "tidal",
+    "fam-drink"
+   ]
+  },
+  "CurioGambleSandwich": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "hearth",
+    "fam-food",
+    "fam-luck"
+   ]
+  },
+  "CurioGlassLotus": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-crit"
+   ]
+  },
+  "CurioHoardersLocket": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-gold"
+   ]
+  },
+  "CurioHungryLedger": {
+   "rarity": "Mythic",
+   "price": 60,
+   "weight": 8,
+   "themes": [
+    "oddity",
+    "fam-kills"
+   ]
+  },
+  "CurioInkFeather": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "archive",
+    "fam-shop"
+   ]
+  },
+  "CurioLastHopeMotor": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "archive",
+    "fam-crit"
+   ]
+  },
+  "CurioNestDumpling": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "orchard",
+    "fam-food",
+    "fam-shop"
+   ]
+  },
+  "CurioOathParcel": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "orchard",
+    "fam-food",
+    "fam-team"
+   ]
+  },
+  "CurioOddElixir": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "oddity",
+    "fam-drink"
+   ]
+  },
+  "CurioPanicBell": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-luck"
+   ]
+  },
+  "CurioPrismRecord": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "oddity",
+    "fam-ranged"
+   ]
+  },
+  "CurioProfitSlide": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-gold"
+   ]
+  },
+  "CurioSixfoldRoot": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "hearth",
+    "fam-food",
+    "fam-melee"
+   ]
+  },
+  "CurioSorrowLantern": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-delay"
+   ]
+  },
+  "CurioSourMandarin": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "hearth",
+    "fam-food",
+    "fam-melee"
+   ]
+  },
+  "CurioStillwaterUrn": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-survival"
+   ]
+  },
+  "CurioStoneCrust": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "orchard",
+    "fam-food",
+    "fam-melee"
+   ]
+  },
+  "CurioTornAlmanac": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-luck"
+   ]
+  },
+  "CurioVenomPass": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "oddity",
+    "fam-delay"
+   ]
+  },
+  "CurioVoidDoubloon": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "clock",
+    "fam-delay"
+   ]
+  },
+  "CurioWishWick": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "frost",
+    "fam-merge"
+   ]
+  },
+  "carbon-ribbon": {
+   "rarity": "Rare",
+   "price": 40,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-marks"
+   ]
+  },
+  "chest-thunder": {
+   "rarity": "Rare",
+   "price": 42,
+   "weight": 25,
+   "themes": [
+    "oddity",
+    "fam-chest"
+   ]
+  },
+  "coin-salve": {
+   "rarity": "Rare",
+   "price": 30,
+   "weight": 25,
+   "themes": [
+    "archive",
+    "fam-team"
+   ]
+  },
+  "harvest-receipt": {
+   "rarity": "Uncommon",
+   "price": 28,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-team"
+   ]
+  },
+  "k10-meleedamage": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "clock",
+    "fam-melee"
+   ]
+  },
+  "patch-spring": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-team"
+   ]
+  },
+  "reflective-ink": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-marks"
+   ]
+  },
+  "repair-coupon": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-team"
+   ]
+  },
+  "scratch-record": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-team"
+   ]
+  },
+  "tea-coaster": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-team"
+   ]
+  },
+  "thermal-ink": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "archive",
+    "fam-marks"
+   ]
+  },
+  "treasure-ribbon": {
+   "rarity": "Uncommon",
+   "price": 32,
+   "weight": 55,
+   "themes": [
+    "oddity",
+    "fam-team"
+   ]
+  },
+  "CurioBatteringHelm": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "clock",
+    "fam-collision"
+   ]
+  },
+  "CurioBurdenCollar": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "clock",
+    "fam-collision"
+   ]
+  },
+  "CurioDaylightBonnet": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "frost",
+    "fam-gold",
+    "fam-survival"
+   ]
+  },
+  "CurioDreamBlindfold": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "orchard",
+    "fam-chest",
+    "fam-luck"
+   ]
+  },
+  "CurioEmeraldInvoice": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "tidal",
+    "fam-shop"
+   ]
+  },
+  "CurioFangPin": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioGiltOrbit": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "astral",
+    "fam-chest",
+    "fam-ranged"
+   ]
+  },
+  "CurioLiarMask": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "astral",
+    "fam-crit",
+    "fam-team"
+   ]
+  },
+  "CurioManyDoorKey": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "tidal",
+    "fam-luck",
+    "fam-chest"
+   ]
+  },
+  "CurioMulberryRiot": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "orchard",
+    "fam-drink",
+    "fam-gold",
+    "fam-chest"
+   ]
+  },
+  "CurioNeedleTarget": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "frost",
+    "fam-ranged",
+    "fam-crit"
+   ]
+  },
+  "CurioOilyLozenge": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "frost",
+    "fam-food",
+    "fam-shop",
+    "fam-survival"
+   ]
+  },
+  "CurioPocketSun": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "tidal",
+    "fam-drink",
+    "fam-luck"
+   ]
+  },
+  "CurioRetortCup": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "hearth",
+    "fam-ranged",
+    "fam-survival"
+   ]
+  },
+  "CurioSplitKernel": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "hearth",
+    "fam-food",
+    "fam-survival"
+   ]
+  },
+  "CurioStormDryer": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "astral",
+    "fam-team",
+    "fam-melee"
+   ]
+  },
+  "CurioThornPerfume": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "astral",
+    "fam-survival"
+   ]
+  },
+  "CurioWanderLetter": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "frost",
+    "fam-crit"
+   ]
+  },
+  "CurioWatchfulTea": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "hearth",
+    "fam-survival"
+   ]
+  },
+  "K26Defense0": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "K26Defense1": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "K26Defense2": {
+   "rarity": "Uncommon",
+   "price": 45,
+   "weight": 100,
+   "themes": [
+    "clock",
+    "fam-speed"
+   ]
+  },
+  "K26Defense5": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 100,
+   "themes": [
+    "frost",
+    "fam-survival"
+   ]
+  },
+  "K26Defense6": {
+   "rarity": "Mythic",
+   "price": 65,
+   "weight": 100,
+   "themes": [
+    "clock",
+    "fam-survival"
+   ]
+  },
+  "OctoberRelic0": {
+   "rarity": "Common",
+   "price": 26,
+   "weight": 100,
+   "themes": []
+  },
+  "OctoberRelic1": {
+   "rarity": "Rare",
+   "price": 30,
+   "weight": 65,
+   "themes": [
+    "orchard",
+    "fam-survival"
+   ]
+  },
+  "OctoberRelic2": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "OctoberRelic3": {
+   "rarity": "Rare",
+   "price": 38,
+   "weight": 65,
+   "themes": [
+    "hearth",
+    "fam-survival"
+   ]
+  },
+  "RainbowHeart": {
+   "rarity": "Rainbow",
+   "price": 200,
+   "weight": 0,
+   "themes": [
+    "frost",
+    "orchard",
+    "fam-merge"
+   ]
+  },
+  "RainbowPrism": {
+   "rarity": "Rainbow",
+   "price": 200,
+   "weight": 0,
+   "themes": [
+    "astral",
+    "archive",
+    "fam-ranged"
+   ]
+  },
+  "RainbowThread": {
+   "rarity": "Rainbow",
+   "price": 200,
+   "weight": 0,
+   "themes": [
+    "clock",
+    "hearth",
+    "fam-melee"
+   ]
+  },
+  "SecretDream": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 0,
+   "themes": [
+    "frost",
+    "fam-survival"
+   ]
+  },
+  "SecretHour": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 0,
+   "themes": [
+    "astral",
+    "fam-team"
+   ]
+  },
+  "SecretMirror": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 0,
+   "themes": [
+    "astral",
+    "fam-crit",
+    "fam-ranged"
+   ]
+  },
+  "SecretTicket": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 0,
+   "themes": [
+    "tidal",
+    "fam-shop",
+    "fam-luck"
+   ]
+  },
+  "SecretWoodHeart": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 0,
+   "themes": [
+    "orchard",
+    "fam-survival"
+   ]
+  },
+  "altar-ember": {
+   "rarity": "Rare",
+   "price": 36,
+   "weight": 25,
+   "themes": [
+    "astral",
+    "fam-crit"
+   ]
+  },
+  "brass-avalanche": {
+   "rarity": "Rare",
+   "price": 30,
+   "weight": 25,
+   "themes": [
+    "clock",
+    "fam-kills"
+   ]
+  },
+  "brigade-banner": {
+   "rarity": "Uncommon",
+   "price": 30,
+   "weight": 60,
+   "themes": [
+    "hearth",
+    "fam-team"
+   ]
+  },
+  "coin-compass": {
+   "rarity": "Common",
+   "price": 15,
+   "weight": 100,
+   "themes": []
+  },
+  "coupon-book": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "echo-postage": {
+   "rarity": "Mythic",
+   "price": 60,
+   "weight": 8,
+   "themes": [
+    "frost",
+    "fam-ranged"
+   ]
+  },
+  "felt-boots": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "fortune-egg": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "guardian-canopy": {
+   "rarity": "Rare",
+   "price": 45,
+   "weight": 25,
+   "themes": [
+    "astral",
+    "fam-survival"
+   ]
+  },
+  "k10-armorcorrection": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 50,
+   "themes": [
+    "clock",
+    "fam-survival"
+   ]
+  },
+  "k10-attackrange": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-bodysize": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "hearth",
+    "fam-collision"
+   ]
+  },
+  "k10-bulletbounce": {
+   "rarity": "Uncommon",
+   "price": 27,
+   "weight": 50,
+   "themes": [
+    "frost",
+    "fam-ranged"
+   ]
+  },
+  "k10-bulletdistance": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 50,
+   "themes": [
+    "astral",
+    "fam-ranged"
+   ]
+  },
+  "k10-bulletpierce": {
+   "rarity": "Common",
+   "price": 21,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-bulletsize": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-bulletspeed": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "frost",
+    "fam-ranged"
+   ]
+  },
+  "k10-bulletsplit": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "astral",
+    "fam-ranged"
+   ]
+  },
+  "k10-chestquality": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "tidal",
+    "fam-chest"
+   ]
+  },
+  "k10-collisiondamage": {
+   "rarity": "Common",
+   "price": 27,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-collisionfrequency": {
+   "rarity": "Uncommon",
+   "price": 27,
+   "weight": 60,
+   "themes": [
+    "clock",
+    "fam-collision"
+   ]
+  },
+  "k10-companionsize": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 50,
+   "themes": [
+    "hearth",
+    "fam-collision"
+   ]
+  },
+  "k10-damagecorrection": {
+   "rarity": "Common",
+   "price": 27,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-dodge": {
+   "rarity": "Uncommon",
+   "price": 27,
+   "weight": 60,
+   "themes": [
+    "tidal",
+    "fam-survival"
+   ]
+  },
+  "k10-enemycount": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-enemyhealth": {
+   "rarity": "Uncommon",
+   "price": 27,
+   "weight": 60,
+   "themes": [
+    "clock",
+    "fam-team"
+   ]
+  },
+  "k10-enemyspeed": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-healcorrection": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-healthcorrection": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 50,
+   "themes": [
+    "hearth",
+    "fam-survival"
+   ]
+  },
+  "k10-hearthealing": {
+   "rarity": "Common",
+   "price": 21,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-income": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-knockback": {
+   "rarity": "Common",
+   "price": 27,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-rangeddamage": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 50,
+   "themes": [
+    "frost",
+    "fam-ranged"
+   ]
+  },
+  "k10-recruitdiscount": {
+   "rarity": "Uncommon",
+   "price": 27,
+   "weight": 50,
+   "themes": [
+    "orchard",
+    "fam-shop"
+   ]
+  },
+  "k10-relicdiscount": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "k10-scoremultiplier": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 50,
+   "themes": [
+    "clock",
+    "fam-team"
+   ]
+  },
+  "k10-shoprarity": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "astral",
+    "fam-shop"
+   ]
+  },
+  "k10-speedcorrection": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 60,
+   "themes": [
+    "tidal",
+    "fam-speed"
+   ]
+  },
+  "long-atlas": {
+   "rarity": "Rare",
+   "price": 36,
+   "weight": 25,
+   "themes": [
+    "clock",
+    "fam-team"
+   ]
+  },
+  "long-pocket": {
+   "rarity": "Uncommon",
+   "price": 24,
+   "weight": 45,
+   "themes": [
+    "hearth",
+    "fam-chest"
+   ]
+  },
+  "marching-bell": {
+   "rarity": "Uncommon",
+   "price": 26,
+   "weight": 60,
+   "themes": [
+    "clock",
+    "fam-team"
+   ]
+  },
+  "office-lens": {
+   "rarity": "Rare",
+   "price": 38,
+   "weight": 55,
+   "themes": [
+    "frost",
+    "fam-marks",
+    "fam-crit"
+   ]
+  },
+  "oracle-lens": {
+   "rarity": "Common",
+   "price": 22,
+   "weight": 100,
+   "themes": []
+  },
+  "piggy-mail": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "pillow-mail": {
+   "rarity": "Common",
+   "price": 20,
+   "weight": 100,
+   "themes": []
+  },
+  "royal-key": {
+   "rarity": "Uncommon",
+   "price": 28,
+   "weight": 60,
+   "themes": [
+    "astral",
+    "fam-crit"
+   ]
+  },
+  "starlight-quilt": {
+   "rarity": "Mythic",
+   "price": 48,
+   "weight": 8,
+   "themes": [
+    "orchard",
+    "fam-survival"
+   ]
+  },
+  "tarnished-crown": {
+   "rarity": "Mythic",
+   "price": 48,
+   "weight": 8,
+   "themes": [
+    "hearth",
+    "fam-crit"
+   ]
+  },
+  "treasure-whisper": {
+   "rarity": "Rare",
+   "price": 30,
+   "weight": 25,
+   "themes": [
+    "tidal",
+    "fam-chest"
+   ]
+  },
+  "twin-seal": {
+   "rarity": "Rare",
+   "price": 35,
+   "weight": 25,
+   "themes": [
+    "astral",
+    "fam-ranged"
+   ]
+  },
+  "velvet-first-aid": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "wandering-map": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "warm-tea": {
+   "rarity": "Common",
+   "price": 24,
+   "weight": 100,
+   "themes": []
+  },
+  "CrimsonSeal": {
+   "rarity": "Mythic",
+   "price": 75,
+   "weight": 8,
+   "themes": [
+    "oddity",
+    "fam-crit",
+    "fam-collision"
+   ]
+  },
+  "CurioFortunePear": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "tidal",
+    "fam-food",
+    "fam-luck"
+   ]
+  },
+  "CurioInterestTin": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "orchard",
+    "fam-food",
+    "fam-gold"
+   ]
+  },
+  "CurioRicochetSeltzer": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioShieldBlower": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "astral",
+    "fam-collision",
+    "fam-survival"
+   ]
+  },
+  "CurioSunfireFlask": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "archive",
+    "fam-drink",
+    "fam-ranged"
+   ]
+  },
+  "CurioUrchinBall": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "tidal",
+    "fam-collision",
+    "fam-survival",
+    "fam-speed"
+   ]
+  },
+  "CurioVictorDraught": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "tidal",
+    "fam-drink",
+    "fam-crit",
+    "fam-ranged"
+   ]
+  },
+  "CrimsonSpring": {
+   "rarity": "Mythic",
+   "price": 75,
+   "weight": 8,
+   "themes": [
+    "archive",
+    "fam-team",
+    "fam-ranged"
+   ]
+  },
+  "CurioBreathJar": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioCoralBroth": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioCourageJuice": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "tidal",
+    "fam-drink",
+    "fam-speed",
+    "fam-melee"
+   ]
+  },
+  "CurioCrookedEight": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "orchard",
+    "fam-luck"
+   ]
+  },
+  "CurioEmberEspresso": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "archive",
+    "fam-drink",
+    "fam-team"
+   ]
+  },
+  "CurioFeastBucket": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "orchard",
+    "fam-food",
+    "fam-survival",
+    "fam-collision"
+   ]
+  },
+  "CurioGraveChime": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioLodestoneLabel": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "frost",
+    "fam-team",
+    "fam-ranged",
+    "fam-gold"
+   ]
+  },
+  "CurioMeadowTonic": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioMoonMilk": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "orchard",
+    "fam-drink",
+    "fam-survival"
+   ]
+  },
+  "CurioMuteClock": {
+   "rarity": "Mythic",
+   "price": 60,
+   "weight": 8,
+   "themes": [
+    "tidal",
+    "fam-speed"
+   ]
+  },
+  "CurioOrchardFizz": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioPetalTonic": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "hearth",
+    "fam-drink",
+    "fam-survival"
+   ]
+  },
+  "CurioShatteredPager": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "frost",
+    "fam-gold",
+    "fam-ranged"
+   ]
+  },
+  "CurioSleepyMist": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "clock",
+    "fam-drink",
+    "fam-freeze"
+   ]
+  },
+  "CurioWildPigment": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "clock",
+    "fam-drink",
+    "fam-speed",
+    "fam-melee"
+   ]
+  },
+  "K26Defense4": {
+   "rarity": "Rare",
+   "price": 55,
+   "weight": 100,
+   "themes": [
+    "orchard",
+    "fam-survival"
+   ]
+  },
+  "K26Defense7": {
+   "rarity": "Mythic",
+   "price": 70,
+   "weight": 100,
+   "themes": [
+    "oddity",
+    "fam-survival"
+   ]
+  },
+  "RainbowCrown": {
+   "rarity": "Rainbow",
+   "price": 200,
+   "weight": 0,
+   "themes": [
+    "hearth",
+    "frost",
+    "fam-team",
+    "fam-ranged"
+   ]
+  },
+  "SecretCrown": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 0,
+   "themes": [
+    "hearth",
+    "fam-team",
+    "fam-crit"
+   ]
+  },
+  "SecretThread": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 0,
+   "themes": [
+    "astral",
+    "fam-ranged",
+    "fam-melee"
+   ]
+  },
+  "CurioCitrusStorm": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "tidal",
+    "fam-drink",
+    "fam-ranged"
+   ]
+  },
+  "CurioHushEarmuffs": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "tidal",
+    "fam-survival",
+    "fam-crit"
+   ]
+  },
+  "CurioNoonSpark": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioOrbitPastry": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "orchard",
+    "fam-food",
+    "fam-collision",
+    "fam-ranged"
+   ]
+  },
+  "CurioQuietHour": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioWakefulCordial": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "clock",
+    "fam-drink",
+    "fam-collision",
+    "fam-melee"
+   ]
+  },
+  "K26Defense3": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 100,
+   "themes": [
+    "oddity",
+    "fam-speed"
+   ]
+  },
+  "SecretLetter": {
+   "rarity": "Uncommon",
+   "price": 46,
+   "weight": 0,
+   "themes": [
+    "orchard",
+    "fam-gold",
+    "fam-chest"
+   ]
+  },
+  "CurioBitterHoney": {
+   "rarity": "Rare",
+   "price": 60,
+   "weight": 55,
+   "themes": [
+    "frost",
+    "fam-drink",
+    "fam-survival",
+    "fam-chest"
+   ]
+  },
+  "CurioTruceBottle": {
+   "rarity": "Mythic",
+   "price": 74,
+   "weight": 28,
+   "themes": [
+    "astral",
+    "fam-drink",
+    "fam-team",
+    "fam-crit"
+   ]
+  },
+  "CurioBentTape": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "CurioKindlingGloves": {
+   "rarity": "Common",
+   "price": 32,
+   "weight": 100,
+   "themes": []
+  },
+  "clock-spring": {
+   "rarity": "Common",
+   "price": 20,
+   "weight": 100,
+   "themes": []
+  },
+  "honey-pot": {
+   "rarity": "Common",
+   "price": 22,
+   "weight": 100,
+   "themes": []
+  },
+  "key-oil": {
+   "rarity": "Common",
+   "price": 18,
+   "weight": 100,
+   "themes": []
+  },
+  "TallyChalk": {
+   "rarity": "Common",
+   "price": 0,
+   "weight": 100,
+   "themes": [],
+   "new": true
+  },
+  "CoinSash": {
+   "rarity": "Common",
+   "price": 0,
+   "weight": 100,
+   "themes": [],
+   "new": true
+  },
+  "FishCracker": {
+   "rarity": "Common",
+   "price": 0,
+   "weight": 100,
+   "themes": [],
+   "new": true
+  },
+  "PostageStamp": {
+   "rarity": "Uncommon",
+   "price": 0,
+   "weight": 60,
+   "themes": [
+    "fam-marks"
+   ],
+   "new": true
+  },
+  "FrostSalt": {
+   "rarity": "Uncommon",
+   "price": 0,
+   "weight": 60,
+   "themes": [
+    "fam-freeze"
+   ],
+   "new": true
+  },
+  "RefundSlip": {
+   "rarity": "Uncommon",
+   "price": 0,
+   "weight": 60,
+   "themes": [
+    "fam-shop"
+   ],
+   "new": true
+  },
+  "WhetstoneWafer": {
+   "rarity": "Uncommon",
+   "price": 0,
+   "weight": 60,
+   "themes": [
+    "fam-food",
+    "fam-melee"
+   ],
+   "new": true
+  },
+  "LateFee": {
+   "rarity": "Uncommon",
+   "price": 0,
+   "weight": 60,
+   "themes": [
+    "fam-delay"
+   ],
+   "new": true
+  },
+  "HagglersAbacus": {
+   "rarity": "Rare",
+   "price": 0,
+   "weight": 25,
+   "themes": [
+    "fam-shop"
+   ],
+   "new": true
+  },
+  "SlipstreamScarf": {
+   "rarity": "Rare",
+   "price": 0,
+   "weight": 25,
+   "themes": [
+    "fam-speed"
+   ],
+   "new": true
+  },
+  "BrainFreeze": {
+   "rarity": "Rare",
+   "price": 0,
+   "weight": 25,
+   "themes": [
+    "fam-freeze"
+   ],
+   "new": true
+  },
+  "WindChime": {
+   "rarity": "Rare",
+   "price": 0,
+   "weight": 25,
+   "themes": [
+    "fam-crit"
+   ],
+   "new": true
+  },
+  "SpecimenPin": {
+   "rarity": "Rare",
+   "price": 0,
+   "weight": 25,
+   "themes": [
+    "fam-kills"
+   ],
+   "new": true
+  },
+  "StarPolish": {
+   "rarity": "Rare",
+   "price": 0,
+   "weight": 25,
+   "themes": [
+    "fam-merge"
+   ],
+   "new": true
+  },
+  "KiteTailRibbon": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-ranged"
+   ],
+   "new": true
+  },
+  "MeltingSundae": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-freeze"
+   ],
+   "new": true
+  },
+  "CuckooPendulum": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-crit"
+   ],
+   "new": true
+  },
+  "DivingBellLantern": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-marks"
+   ],
+   "new": true
+  },
+  "TwinTicket": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-merge"
+   ],
+   "new": true
+  },
+  "TreasureMimic": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-chest"
+   ],
+   "new": true
+  },
+  "DuelistsRibbon": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-melee"
+   ],
+   "new": true
+  },
+  "FrostLedger": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-freeze",
+    "fam-kills"
+   ],
+   "new": true
+  },
+  "UndertowAnchor": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "tidal",
+    "fam-team"
+   ],
+   "new": true
+  },
+  "FunhouseMirror": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "oddity",
+    "fam-team"
+   ],
+   "new": true
+  },
+  "SpliceKit": {
+   "rarity": "Mythic",
+   "price": 0,
+   "weight": 8,
+   "themes": [
+    "fam-merge"
+   ],
+   "new": true
+  },
+  "TheEndlessEncore": {
+   "rarity": "Rainbow",
+   "price": 0,
+   "weight": 0,
+   "themes": [
+    "oddity",
+    "tidal",
+    "fam-team"
+   ],
+   "new": true
+  },
+  "MoonClockKey": {
+   "rarity": "Rainbow",
+   "price": 0,
+   "weight": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "fam-team"
+   ],
+   "new": true
+  },
+  "MirrorOfTwins": {
+   "rarity": "Rainbow",
+   "price": 0,
+   "weight": 0,
+   "themes": [
+    "hearth",
+    "oddity",
+    "fam-team"
+   ],
+   "new": true
+  },
+  "StorybookEnding": {
+   "rarity": "Rainbow",
+   "price": 0,
+   "weight": 0,
+   "themes": [
+    "orchard",
+    "tidal",
+    "fam-team"
+   ],
+   "new": true
+  },
+  "DreamLoom": {
+   "rarity": "Rainbow",
+   "price": 0,
+   "weight": 0,
+   "themes": [
+    "frost",
+    "archive",
+    "fam-team"
+   ],
+   "new": true
+  }
+ },
  "companions": {
   "TeapotPilgrim": {
    "theme": "hearth",
@@ -134,7 +1888,7 @@
   },
   "TinTick": {
    "theme": "clock",
-   "minor": "gear",
+   "minor": "static-club",
    "rarity": "Common",
    "new": false
   },
@@ -344,7 +2098,7 @@
   },
   "OrbitMoth": {
    "theme": "astral",
-   "minor": "hare",
+   "minor": "shoe",
    "rarity": "Common",
    "new": false
   },
@@ -380,7 +2134,7 @@
   },
   "ShellPostman": {
    "theme": "tidal",
-   "minor": "lantern-guild",
+   "minor": "sea-shanty",
    "rarity": "Common",
    "new": false
   },
@@ -509,6 +2263,60 @@
    "minor": "big-top",
    "rarity": "Rainbow",
    "new": true
+  },
+  "StaticFerret": {
+   "theme": "clock",
+   "minor": "static-club",
+   "rarity": "Common",
+   "new": true
+  },
+  "StormKitten": {
+   "theme": "astral",
+   "minor": "static-club",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "VoltEel": {
+   "theme": "tidal",
+   "minor": "static-club",
+   "rarity": "Rare",
+   "new": true
+  },
+  "ShantySeaLion": {
+   "theme": "tidal",
+   "minor": "sea-shanty",
+   "rarity": "Common",
+   "new": true
+  },
+  "BottleGull": {
+   "theme": "hearth",
+   "minor": "sea-shanty",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "PinnedBeetle": {
+   "theme": "archive",
+   "minor": "exhibit-hall",
+   "rarity": "Common",
+   "new": true
+  },
+  "FossilArmadillo": {
+   "theme": "frost",
+   "minor": "exhibit-hall",
+   "rarity": "Uncommon",
+   "new": true
+  },
+  "SpecimenSlime": {
+   "theme": "clock",
+   "minor": "exhibit-hall",
+   "rarity": "Rare",
+   "new": true
+  },
+  "CourtHerald": {
+   "theme": "archive",
+   "minor": "hat",
+   "rarity": "Common",
+   "new": true
   }
  },
  "heroes": {
@@ -522,11 +2330,11 @@
   ],
   "DrowsySeer": [
    "astral",
-   "frost"
+   "hearth"
   ],
   "RootOracle": [
    "orchard",
-   "astral"
+   "frost"
   ],
   "LoneJelly": [
    "oddity",
@@ -534,7 +2342,7 @@
   ],
   "GlassDice": [
    "oddity",
-   "hearth"
+   "orchard"
   ],
   "TideSinger": [
    "tidal",
@@ -602,8 +2410,8 @@
    "orchard"
   ],
   "ArchiveCurator": [
-   "archive",
-   "clock"
+   "clock",
+   "frost"
   ],
   "PennyBroker": [
    "archive",
@@ -635,7 +2443,7 @@
   ],
   "RainArchivist": [
    "tidal",
-   "archive"
+   "orchard"
   ],
   "KiteAdmiral": [
    "astral",
@@ -651,7 +2459,7 @@
   ],
   "JugglingJester": [
    "oddity",
-   "orchard"
+   "archive"
   ],
   "BellDiver": [
    "tidal",
@@ -666,7 +2474,8 @@
   "SundaeDuchess"
  ],
  "minorThreshold": {
-  "sprout": 3
+  "sprout": 3,
+  "exhibit-hall": 2
  },
  "removedBonds": [
   "fruit",
@@ -675,6 +2484,9 @@
  "newBonds": {
   "paper-wings": "Paper Wings",
   "sweet-tooth": "Sweet Tooth",
-  "big-top": "Big Top"
+  "big-top": "Big Top",
+  "static-club": "Static Club",
+  "sea-shanty": "Sea Shanty",
+  "exhibit-hall": "Exhibit Hall"
  }
 }

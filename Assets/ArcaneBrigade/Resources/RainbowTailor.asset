@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -90910530, guid: bf4715b4c390b974093b63772728032a, type: 3}
   - {fileID: 1448591703, guid: bf4715b4c390b974093b63772728032a, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: cecf47d4fc82ee54baa98c19738cc437, type: 2}
-  Weapon: {fileID: 11400000, guid: c17055c95ef3e904e9cfab0028006e2a, type: 2}
+  Weapon: {fileID: 11400000, guid: b9fca70dd177fa744ba88bb804228a8a, type: 2}
   Health: 120
   Speed: 5.1
   Radius: 0.25
@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - frost
-  - resolve
+  - hide
   Passive: 0
   PassiveStrength: 0
   Description: "COMPANION / PRISMATIC / 1 STAR\r\nTALENT\nWave income +15 per talent.

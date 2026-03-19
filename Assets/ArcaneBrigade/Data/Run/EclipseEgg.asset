@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -251453773, guid: beee7655b8f75854f8e1326a2a654b28, type: 3}
   - {fileID: -209421990, guid: beee7655b8f75854f8e1326a2a654b28, type: 3}
   AuthoredMotion: {fileID: 0}
-  Weapon: {fileID: 11400000, guid: a9a2d9fefdfdf754ba93cd3c99a14df1, type: 2}
+  Weapon: {fileID: 11400000, guid: 8129ea8b110ee314ba2ab88b74d0d6d9, type: 2}
   Health: 100
   Speed: 4.2
   Radius: 0.22
@@ -29,7 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 1
-  Rarity: 4
+  Rarity: 5
   RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8
@@ -38,8 +38,7 @@ MonoBehaviour:
   CriticalChance: 0.05
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - clock
-  - regal
+  - astral
   - morning
   Passive: 3
   PassiveStrength: 0.5

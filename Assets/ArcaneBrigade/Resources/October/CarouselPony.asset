@@ -38,9 +38,8 @@ MonoBehaviour:
   CriticalChance: 0.05
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - clock
-  - tidal
-  - knight
+  - oddity
+  - big-top
   Passive: 0
   PassiveStrength: 0.5
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nCarries one nearby ally

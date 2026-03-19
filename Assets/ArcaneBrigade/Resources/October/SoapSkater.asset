@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - tidal
-  - oddity
+  - frost
   Passive: 0
   PassiveStrength: 0.8
   Description: Ordinary attacks deal 35% less damage. Push ordinary enemies harder,
@@ -52,7 +52,10 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - tidal
-  - oddity
+  - frost
+  - shoe
+  - fam-freeze
+  - rival-rain-script
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

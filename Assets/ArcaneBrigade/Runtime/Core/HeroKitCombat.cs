@@ -33,6 +33,7 @@ namespace ArcaneBrigade
             Vector2 facing = target.Facing.sqrMagnitude > .0001f ? target.Facing.normalized : Vector2.right;
             return Vector2.Dot(toAttacker.normalized, facing) <= -.25f;
         }
+        private float kitRootGripAt; private int kitInjuries;
         private int CompanionsNear(Vector2 at, float radius) { int n = 0; foreach (var u in units) if (u.Alive && u.Faction == Faction.Companion && (u.Position - at).sqrMagnitude <= radius * radius) n++; return n; }
         private int PetalsGrown() { int g = 0; for (int i = 0; i < 4 && i < catalog.HeroPetals.Length; i++) if (catalog.HeroPetals[i] > 0) g++; return g; }
 
@@ -75,6 +76,7 @@ namespace ArcaneBrigade
                 if (Vector2.Dot(attacker.Position - Champion.Position, heading) < 0) scale += k.Value(KitPassive.TeamDamageBehindHero);
                 if (IsLead(attacker)) scale += k.Value(KitPassive.TeamLeadDamage);
                 if (!target.KitStruck) { target.KitStruck = true; scale += k.Value(KitPassive.TeamFirstHitBonus); }
+                if (HeroAwakening && k.Action == KitAction.Parade) scale += .5f; // Knighting: every friend fights one star higher
             }
             if (scale > 1)
             {
@@ -98,7 +100,7 @@ namespace ArcaneBrigade
             if (HeroAwakening)
             {
                 scale *= k.HeroDamageTaken;
-                if ((k.Action == KitAction.Kintsugi || k.Action == KitAction.Coronation) && Elapsed - awakenStarted < 3) scale = 0;
+                if (k.Action == KitAction.Kintsugi && Elapsed - awakenStarted < 3) scale = 0;
             }
             return scale;
         }
@@ -124,12 +126,25 @@ namespace ArcaneBrigade
                 if (identityBank > 0) bonus += k.Value(KitPassive.TeamAttackSpeedWhileDebt);
                 if (Elapsed < kitHurtUntil && near) bonus += k.Value(KitPassive.TeamAttackSpeedOnHeroHurt);
                 bonus += Mathf.Min(.1f, Mathf.Floor(catalog.HeroWallet / 50f) * k.Value(KitPassive.TeamAttackSpeedPerGold));
+                bonus += Mathf.Min(.2f, catalog.HeroRelics * k.Value(KitPassive.TeamAttackSpeedPerRelic));
                 if (PetalsGrown() == 4) bonus += k.Value(KitPassive.TeamAttackSpeedFullGarden);
                 if (k.Has(KitPassive.LeadStarAttackSpeed) && identityLead != null && identityLead.Definition.CombatTier >= 2) bonus += k.Value(KitPassive.LeadStarAttackSpeed);
                 bonus += Mathf.Min(.15f, catalog.HeroBondLevels * k.Value(KitPassive.BondLevelAttackSpeed));
             }
             return 1f / (1f + Mathf.Max(0, bonus));
         }
+
+        /// <summary>Lantern Weaver: a friend's shot passing through a pinned enemy pierces one more (once per shot).</summary>
+        private bool KitPinnedPierce(ProjectileState projectile, UnitState hit)
+        {
+            HeroKit k = Kit;
+            if (k == null || !k.Has(KitPassive.PinnedPierce) || projectile.PinnedPierced || projectile.Faction == Faction.Enemy || !Marked(hit)) return false;
+            if (UnitWithId(projectile.SourceUnitId)?.Faction != Faction.Companion) return false;
+            projectile.PinnedPierced = true; return true;
+        }
+        /// <summary>Copper Cauldron: friends' collision damage grows with the blows the hero took this wave.</summary>
+        private float KitHurtCollision(UnitState source)
+            => source.Faction == Faction.Companion && Kit != null ? Mathf.Min(10, kitInjuries * Kit.Value(KitPassive.HurtCollision)) : 0;
 
         /// <summary>Extra crit chance for the hero or a friend against a target.</summary>
         private float KitCrit(UnitState unit, UnitState target)
@@ -139,6 +154,7 @@ namespace ArcaneBrigade
             float c = 0;
             if (Elapsed < kitDodgeUntil) c += k.Value(KitPassive.TeamCritOnHeroDodge);
             if (Recorded(target)) c += k.Value(KitPassive.TeamCritVsRecorded);
+            if (k.Has(KitPassive.TeamRearCrit) && unit.Definition.Weapon.Kind == WeaponKind.Melee && Behind(unit, target)) c += 1;
             return c;
         }
 

@@ -1,3 +1,5 @@
+> **Đã thay thế** bởi [Content_Expansion_v5.md](Content_Expansion_v5.md) và `Tools/Content/expansion_design.py` (bảng dưới là bản 3).
+
 # Phân bond và bộ cố định theo hero — bản duyệt cuối (18/10/2026)
 
 Nguồn: `Tools/Content/expansion_design.py` (sinh `Tools/Content/expansion.json` cho builder). Đi kèm [Content_Expansion_Proposal.md](Content_Expansion_Proposal.md) bản 3.

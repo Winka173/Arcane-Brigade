@@ -287,6 +287,16 @@ namespace ArcaneBrigade
                 if (!Stranger(entry.UnitId))
                 foreach (string tag in catalog.Unit(entry.UnitId).Tags)
                     BondCounts[tag] = BondCounts.TryGetValue(tag, out int count) ? count + 1 : 1;
+            // a Rare friend counts twice in its minor bond once that bond is already active (content expansion v5): it adds a
+            // level but cannot start one on its own
+            if (catalog.PoolRevision > 0)
+                foreach (RosterEntry entry in State.Roster)
+                {
+                    UnitDefinition unit = catalog.Unit(entry.UnitId);
+                    if (Stranger(entry.UnitId) || unit.Rarity != ItemRarity.Rare || unit.Tags.Length < 2) continue;
+                    BondDefinition bond = Array.Find(catalog.Bonds, b => b.Id == unit.Tags[1]);
+                    if (bond != null && BondCounts.TryGetValue(bond.Id, out int members) && members >= bond.Threshold) BondCounts[bond.Id] = members + 1;
+                }
             if (Talent("\"The All-Knowing\" Walter") > 0)
                 foreach (BondDefinition bond in catalog.Bonds) BondCounts[bond.Id] = BondCounts.TryGetValue(bond.Id, out int count) ? count + 1 : 1;
             KitBonds();
@@ -640,7 +650,7 @@ namespace ArcaneBrigade
             {
                 var choices = new List<WeaponDefinition>();
                 foreach (WeaponDefinition weapon in catalog.Weapons)
-                    if (RecruitWeaponEligible(offer.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id)) choices.Add(weapon);
+                    if (RecruitWeaponEligible(offer.Id, weapon) && VariantFree(offer.Id, weapon)) choices.Add(weapon);
                 if (choices.Count == 0) { Notice = "No unique weapon variant available."; return false; }
                 WeaponDefinition chosen = BalancedWeapon(choices, catalog.Unit(offer.Id).SpecialRecruit);
                 var recruited = new RosterEntry { UnitId = offer.Id, WeaponId = chosen.Id, Tier = Mathf.Clamp(offer.Tier, 1, 3) };
@@ -690,7 +700,7 @@ namespace ArcaneBrigade
             if (offer.Kind == OfferKind.Companion && catalog.Unit(State.ChampionId).HeroMechanic == HeroMechanic.SoloMaw && !OctoberAbsorbs) return false;
             if (offer.Currency == ShopCurrency.Health ? State.Health - offer.Price < 1f : (offer.Currency == ShopCurrency.Eggs ? State.Eggs : State.Gold) < offer.Price) return false;
             if (offer.Kind == OfferKind.Item) return StackCount(offer.Id) < catalog.Item(offer.Id).StackLimit;
-            return Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(offer.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == offer.Id && entry.WeaponId == weapon.Id));
+            return Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(offer.Id, weapon) && VariantFree(offer.Id, weapon));
         }
 
         private void MergeTriples(string id)
@@ -829,7 +839,7 @@ namespace ArcaneBrigade
             foreach (MergeDroughtEntry drought in State.MergeDrought)
             {
                 UnitDefinition unit = catalog.Unit(drought.UnitId);
-                if (unit.SpecialRecruit != (offers == State.SpecialOffers) || unit.UnlockWave > State.Wave || !Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && !State.Roster.Exists(entry => entry.UnitId == unit.Id && entry.WeaponId == weapon.Id))) continue;
+                if (unit.SpecialRecruit != (offers == State.SpecialOffers) || unit.UnlockWave > State.Wave || !Array.Exists(catalog.Weapons, weapon => RecruitWeaponEligible(unit.Id, weapon) && VariantFree(unit.Id, weapon))) continue;
                 drought.Misses = (offers ?? State.Offers).Exists(offer => !offer.Sold && offer.Kind == OfferKind.Companion && offer.Id == drought.UnitId) ? 0 : Mathf.Min(6, drought.Misses + 1);
             }
         }
@@ -911,7 +921,8 @@ namespace ArcaneBrigade
             List<RosterEntry> materials = AltarMaterials(recipe);
             if (materials == null) return false;
             var choices = new List<WeaponDefinition>();
-            foreach (RosterEntry r in materials)
+            if (LockedWeapon(catalog.Unit(recipe.ResultUnit))) choices.Add(catalog.Unit(recipe.ResultUnit).Weapon); // a Mythic result carries its own weapon
+            else foreach (RosterEntry r in materials)
                 if (RecruitWeaponEligible(recipe.ResultUnit, catalog.Weapon(r.WeaponId)) && !State.Roster.Exists(other => !materials.Contains(other) && other.UnitId == recipe.ResultUnit && other.WeaponId == r.WeaponId)) choices.Add(catalog.Weapon(r.WeaponId));
             if (choices.Count == 0) return false;
             float previousMaximum = MaximumHealth();
@@ -926,7 +937,28 @@ namespace ArcaneBrigade
             return true;
         }
 
-        public bool RecruitWeaponEligible(string unitId, WeaponDefinition weapon) => !weapon.SpecialOnly || catalog.Unit(unitId).SpecialRecruit;
+        public bool RecruitWeaponEligible(string unitId, WeaponDefinition weapon)
+        {
+            UnitDefinition unit = catalog.Unit(unitId);
+            // content expansion v5: a Mythic or Prismatic friend always carries its own weapon, and nobody else rolls it
+            if (LockedWeapon(unit)) return unit.Weapon == weapon;
+            if (catalog.PoolRevision > 0 && LockedWeaponIds.Contains(weapon.Id)) return false;
+            return !weapon.SpecialOnly || unit.SpecialRecruit;
+        }
+        /// <summary>A second friend of a species needs a weapon variant it does not hold yet; a locked-weapon friend is exempt.</summary>
+        public bool VariantFree(string unitId, WeaponDefinition weapon) => LockedWeapon(catalog.Unit(unitId)) || !State.Roster.Exists(entry => entry.UnitId == unitId && entry.WeaponId == weapon.Id);
+        private bool LockedWeapon(UnitDefinition unit) => catalog.PoolRevision > 0 && unit != null && unit.Rarity >= ItemRarity.Mythic && unit.Weapon != null;
+        private HashSet<string> lockedWeaponIds;
+        private HashSet<string> LockedWeaponIds
+        {
+            get
+            {
+                if (lockedWeaponIds != null) return lockedWeaponIds;
+                lockedWeaponIds = new HashSet<string>();
+                foreach (UnitDefinition unit in catalog.Companions) if (LockedWeapon(unit)) lockedWeaponIds.Add(unit.Weapon.Id);
+                return lockedWeaponIds;
+            }
+        }
 
         private WeaponDefinition BalancedWeapon(List<WeaponDefinition> choices, bool preferSpecial = false)
         {
@@ -959,7 +991,7 @@ namespace ArcaneBrigade
             AltarRecipe recipe = Array.Find(catalog.Recipes, candidate => candidate.Id == recipeId);
             if (recipe == null || State.Phase != SessionPhase.Shop || State.Eggs < recipe.EggCost) return false;
             List<RosterEntry> materials = AltarMaterials(recipe);
-            return materials != null && materials.Exists(r => RecruitWeaponEligible(recipe.ResultUnit, catalog.Weapon(r.WeaponId)) && !State.Roster.Exists(other => !materials.Contains(other) && other.UnitId == recipe.ResultUnit && other.WeaponId == r.WeaponId));
+            return materials != null && (LockedWeapon(catalog.Unit(recipe.ResultUnit)) || materials.Exists(r => RecruitWeaponEligible(recipe.ResultUnit, catalog.Weapon(r.WeaponId)) && !State.Roster.Exists(other => !materials.Contains(other) && other.UnitId == recipe.ResultUnit && other.WeaponId == r.WeaponId)));
         }
 
         public string RecipePreview(string recipeId)

@@ -37,7 +37,9 @@ MonoBehaviour:
   CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
-  Tags: []
+  Tags:
+  - archive
+  - tidal
   Passive: 2
   PassiveStrength: 2
   Description: A wandering parcel launcher. Collected gold charges automatic express
@@ -67,8 +69,9 @@ MonoBehaviour:
     Value: 0.08
   RecruitThemes:
   - archive
-  - clock
   - tidal
+  - paper-wings
+  - fam-marks
   HeroMechanic: 2
   CompanionModifiers: []
   Price: 20

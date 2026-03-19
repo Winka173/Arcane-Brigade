@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -534657800, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
   - {fileID: -2085563191, guid: a3fb33c5ed85cae41bf1ba92c63e00ae, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: ca131ebdff88aa243bc43012f67f2cff, type: 2}
-  Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
+  Weapon: {fileID: 11400000, guid: cefba0cd756c4784a8f5a61842f913d4, type: 2}
   Health: 100
   Speed: 4
   Radius: 0.22
@@ -29,7 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 1
-  Rarity: 2
+  Rarity: 3
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8
@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - orchard
-  - resolve
+  - gear
   Passive: 0
   PassiveStrength: 0.8
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nON RECRUIT / ALTAR CREATION:

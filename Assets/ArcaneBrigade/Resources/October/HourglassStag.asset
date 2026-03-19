@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - clock
-  - oddity
+  - tidal
   Passive: 0
   PassiveStrength: 0.8
   Description: Every 6 seconds, briefly slow nearby ordinary enemies and release
@@ -51,8 +51,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - clock
-  - oddity
-  - lantern-guild
+  - tidal
+  - morning
+  - fam-delay
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

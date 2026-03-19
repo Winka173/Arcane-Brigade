@@ -52,6 +52,9 @@ MonoBehaviour:
   RecruitThemes:
   - clock
   - oddity
+  - knight
+  - fam-melee
+  - rival-morning
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

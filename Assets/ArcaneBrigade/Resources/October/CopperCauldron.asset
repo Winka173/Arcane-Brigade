@@ -53,6 +53,8 @@ MonoBehaviour:
   RecruitThemes:
   - hearth
   - oddity
+  - resolve
+  - fam-collision
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

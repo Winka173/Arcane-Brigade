@@ -20,7 +20,7 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: hearth, mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: hearth, lantern-guild. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Candle Snail / CandleSnail
 
@@ -40,7 +40,7 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.5 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: hearth, fruit. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: hearth, lantern-guild. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Mailbox Imp / MailboxImp
 
@@ -60,7 +60,7 @@ PERSONAL PASSIVE
 Every 4s in combat, gain 1 gold directly. This is not kill loot and does not count as collecting a coin.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, gauntlet, ball. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, hat. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Pillow Oracle / PillowOracle
 
@@ -81,7 +81,7 @@ Own weapon damage gains 0.8% per companion body in the roster, before later bala
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: astral, gear, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: astral, hat. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Mushroom Librarian / MushroomLibrarian
 
@@ -121,7 +121,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: frost, hare, root. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: frost, root. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Jelly Swordsman / JellySwordsman
 
@@ -141,7 +141,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: oddity, gauntlet, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Brass Acorn / BrassAcorn
 
@@ -161,7 +161,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, regal, mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, regal. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Bread Crab / BreadCrab
 
@@ -201,7 +201,7 @@ PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: hearth, archer, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: hearth, gauntlet. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Bookmark Golem / BookmarkGolem
 
@@ -221,7 +221,7 @@ PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, hat, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Tin Tick / TinTick
 
@@ -241,7 +241,7 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: clock, rune, mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, static-club. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Spring Duck / SpringDuck
 
@@ -261,7 +261,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: clock, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, hare. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Button Beetle / ButtonBeetle
 
@@ -281,7 +281,7 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: clock, root, regal. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, regal. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Staple Mole / StapleMole
 
@@ -301,7 +301,7 @@ PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: clock, clover. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Snow Spoon / SnowSpoon
 
@@ -321,7 +321,7 @@ PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: frost, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: frost, sweet-tooth. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Ice Cream Owl / IceCreamOwl
 
@@ -341,7 +341,7 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: frost, hat, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: frost, sweet-tooth. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Fridge Wisp / FridgeWisp
 
@@ -361,7 +361,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: frost, gauntlet, shoe. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: frost, shoe. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Pear Moth / PearMoth
 
@@ -381,7 +381,7 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: orchard, morning, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: orchard, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Citrus Toad / CitrusToad
 
@@ -401,7 +401,7 @@ PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: orchard, shoe. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: orchard, hare. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Radish Jester / RadishJester
 
@@ -441,7 +441,7 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: orchard, fruit. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: orchard, root. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Moon Jelly / MoonJelly
 
@@ -461,7 +461,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: astral, hare. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: astral, archer. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Star Sock / StarSock
 
@@ -507,7 +507,7 @@ Bonds: astral, archer. Immortal. Weapon rolls on recruitment; three equal-specie
 
 ## Eclipse Egg / EclipseEgg
 
-COMPANION / CRIMSON / 1 STAR
+COMPANION / PRISMATIC / 1 STAR
 TALENT
 Each Princess talent grants this ally +1 projectile, up to +3. Projectile count helps projectile weapons; this does not turn a melee weapon into a ranged weapon.
 
@@ -525,7 +525,7 @@ Own weapon damage gains 0.5% per companion body in the roster, before later bala
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: clock, regal, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: astral, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Orbit Moth / OrbitMoth
 
@@ -545,7 +545,7 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: astral, regal, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: astral, shoe. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Dream Compass / DreamCompass
 
@@ -565,7 +565,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, hare, archer. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, archer. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Shell Postman / ShellPostman
 
@@ -585,7 +585,7 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: tidal, ball. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: tidal, sea-shanty. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Coral Teacup / CoralTeacup
 
@@ -605,7 +605,7 @@ PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: tidal, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: tidal, clover. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Bubble Koi / BubbleKoi
 
@@ -625,7 +625,7 @@ PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: tidal, clover, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: tidal, clover. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Anchor Snail / AnchorSnail
 
@@ -645,7 +645,7 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: tidal, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: tidal, knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Sail Squid / SailSquid
 
@@ -685,7 +685,7 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: hearth, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, shoe. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Dice Crab / DiceCrab
 
@@ -705,7 +705,7 @@ PERSONAL PASSIVE
 Every 4s in combat, gain 0 gold directly. This is not kill loot and does not count as collecting a coin.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: oddity, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, clover. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Mask Pepper / MaskPepper
 
@@ -725,7 +725,7 @@ PERSONAL PASSIVE
 Own weapon damage gains 0.5% per companion body in the roster, before later balance modifiers.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: oddity, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Crayon Gremlin / CrayonGremlin
 
@@ -745,11 +745,11 @@ PERSONAL PASSIVE
 Every 4s, chill enemies within 2.313 units: 1.5s normally, 0.6s on bosses.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Mirror Newt / MirrorNewt
 
-COMPANION / RARE / 1 STAR
+COMPANION / MYTHIC / 1 STAR
 TALENT
 All companion bodies and hitboxes are 12% smaller. Presence effect: multiple copies do not shrink them repeatedly.
 
@@ -765,6 +765,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
 Bonds: oddity, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Ribbon Spider / RibbonSpider
@@ -785,11 +786,11 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: oddity, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Coil Kettle / CoilKettle
 
-COMPANION / RARE / 1 STAR
+COMPANION / MYTHIC / 1 STAR
 TALENT
 Paid refreshes cost 2 less gold per talent, minimum 1 gold. Applies to both normal and dream-stock refreshes.
 
@@ -805,7 +806,8 @@ PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.35 HP before healing modifiers. Healing restrictions apply.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: hearth, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: hearth, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Thimble Moth / ThimbleMoth
 
@@ -825,7 +827,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Reel Owl / ReelOwl
 
@@ -846,7 +848,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: astral, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## The Impossible Tailor / RainbowTailor
 
@@ -867,7 +869,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: frost, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: frost, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## The Last Bell / RainbowBell
 
@@ -888,7 +890,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: clock, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## The Forgotten Patchwork / SecretPatchBear
 
@@ -906,7 +908,7 @@ Hidden in the lost-property vault after refusing an ownership mark, their seams 
 PERSONAL PASSIVE
 No additional periodic personal passive.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: archive. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## The Folded Courier / SecretPaperBird
 
@@ -924,7 +926,7 @@ A courier from the folded-paper estuary, detained for taking a letter past the g
 PERSONAL PASSIVE
 Every 4s in combat, attempt to heal the hero for 1.5 HP before healing modifiers. Healing restrictions apply.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: hearth. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, paper-wings. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## The Sleeping Friend / SecretDreamLamb
 
@@ -942,7 +944,7 @@ A garden resident visiting under a two-victory travel agreement, with a flock to
 PERSONAL PASSIVE
 No additional periodic personal passive.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: astral. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: astral, hide. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Saffron Mechanist / SaffronMechanist
 
@@ -961,11 +963,11 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: hearth, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: hearth, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Clockwork Piper / ClockworkPiper
 
-COMPANION / RARE / 1 STAR
+COMPANION / MYTHIC / 1 STAR
 TALENT
 On purchase, recruit two junior helpers.
 
@@ -980,7 +982,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: clock, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: clock, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Velvet Champion / VelvetChampion
 
@@ -999,11 +1001,11 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: archive, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, regal. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Paper Inventor / PaperInventor
 
-COMPANION / RARE / 1 STAR
+COMPANION / MYTHIC / 1 STAR
 TALENT
 ON RECRUIT / ALTAR CREATION: gain 100 gold immediately once. No recurring payment just for keeping this ally.
 
@@ -1018,11 +1020,11 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: orchard, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: orchard, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Return Captain / ReturnCaptain
 
-COMPANION / RARE / 1 STAR
+COMPANION / MYTHIC / 1 STAR
 TALENT
 Attacks from the beginning. After 30 seconds, deal triple weapon damage for the rest of the wave.
 
@@ -1037,7 +1039,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: tidal, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: tidal, knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Dough Foreman / DoughForeman
 
@@ -1056,11 +1058,11 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: astral, resolve. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: astral, hat. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Iron Locomotive / IronLocomotive
 
-COMPANION / RARE / 1 STAR
+COMPANION / MYTHIC / 1 STAR
 TALENT
 Contact damage +40. Briefly distract nearby ordinary enemies for 2 seconds every 6 seconds. Bosses ignore the decoy.
 
@@ -1111,7 +1113,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: hearth, knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: hearth, regal. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Grand Sprout / GrandSprout
 
@@ -1149,7 +1151,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: gift / nursery / special reward; not ordinary shop stock.
-Bonds: archive, horn. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: orchard, horn. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Paper Devil / PaperDevil
 
@@ -1186,7 +1188,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: gift / nursery / special reward; not ordinary shop stock.
-Bonds: tidal, mask. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: tidal, big-top. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Little Sprout / LittleSprout
 
@@ -1243,7 +1245,7 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Source: dream shop or special reward, subject to hero theme and unlock wave.
-Bonds: clock, tidal, knight. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: oddity, big-top. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Teacup Cricket / TeacupCricket
 
@@ -1297,7 +1299,7 @@ PERSONAL PASSIVE
 No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
-Bonds: archive, lantern-guild. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+Bonds: archive, paper-wings. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Key Oil / key-oil
 
@@ -1445,7 +1447,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Long Atlas / long-atlas
 
-CURIO / MYTHIC / STACKABLE
+CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
 Run / Patrol radius: +1
@@ -1483,7 +1485,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Fortune Egg / fortune-egg
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Luck: +0.2
@@ -1664,7 +1666,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Collision damage / k10-collisiondamage
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Collision damage: +10
@@ -1674,7 +1676,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Flat melee damage / k10-meleedamage
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Flat melee damage: +4
@@ -1694,7 +1696,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Attack range / k10-attackrange
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Attack range: +25%
@@ -1704,7 +1706,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Dodge / k10-dodge
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Champion / Dodge: +12%
@@ -1714,7 +1716,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Income / k10-income
 
-CURIO / UNCOMMON / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Income: +4
@@ -1724,7 +1726,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Bullet pierce / k10-bulletpierce
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet pierce: +2
@@ -1734,7 +1736,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Bullet split / k10-bulletsplit
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet split: +2
@@ -1754,7 +1756,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Bullet size / k10-bulletsize
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet size: +25%
@@ -1764,7 +1766,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Bullet speed / k10-bulletspeed
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Bullet speed: +8%
@@ -1784,7 +1786,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Knockback / k10-knockback
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Knockback: +25%
@@ -1794,7 +1796,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Champion size / k10-bodysize
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Champion / Champion size: +8%
@@ -1814,7 +1816,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Enemy count / k10-enemycount
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Enemy count: +10%
@@ -1825,7 +1827,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Enemy health / k10-enemyhealth
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Enemy health: +10%
@@ -1836,7 +1838,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Enemy speed / k10-enemyspeed
 
-CURIO / UNCOMMON / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Enemy speed: +10%
@@ -1847,7 +1849,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Heart healing / k10-hearthealing
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Champion / Heart healing: +2
@@ -1857,7 +1859,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Chest quality / k10-chestquality
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Chest quality: +8%
@@ -1877,7 +1879,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Relic discount / k10-relicdiscount
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Relic discount: +8%
@@ -1887,7 +1889,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Shop rarity / k10-shoprarity
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Shop rarity: +8%
@@ -1907,7 +1909,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Damage correction / k10-damagecorrection
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Damage correction: +20%
@@ -1917,7 +1919,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Speed correction / k10-speedcorrection
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Speed correction: +8%
@@ -1937,7 +1939,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Healing correction / k10-healcorrection
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Champion / Healing correction: +8%
@@ -1947,7 +1949,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Contract · Collision frequency / k10-collisionfrequency
 
-CURIO / MYTHIC / STACKABLE
+CURIO / UNCOMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Collision frequency: +8%
@@ -1967,7 +1969,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Velvet First Aid / velvet-first-aid
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Run / Treasure detection: +0.1
@@ -1979,7 +1981,7 @@ Owned effective copies: 1. Values apply before combat limits.
 
 ## Brass Avalanche / brass-avalanche
 
-CURIO / MYTHIC / STACKABLE
+CURIO / RARE / STACKABLE
 
 WHILE OWNED / per copy
 Team / Knockback: +25%
@@ -2031,7 +2033,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Crimson Seal / CrimsonSeal
 
-CURIO / CRIMSON / UNIQUE
+CURIO / MYTHIC / UNIQUE
 
 WHILE OWNED / per copy
 Champion / Damage: +90%
@@ -2041,7 +2043,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Crimson Spring / CrimsonSpring
 
-CURIO / CRIMSON / UNIQUE
+CURIO / MYTHIC / UNIQUE
 
 WHILE OWNED / per copy
 Team / Attack speed: +50%
@@ -2131,7 +2133,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
 ## The Abandoned Wooden Heart / SecretWoodHeart
 
-CURIO / RARE / UNIQUE
+CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
 Champion / Maximum health: +18
@@ -2141,7 +2143,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## The Glass Understudy / SecretMirror
 
-CURIO / RARE / UNIQUE
+CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
 Team / Critical chance: +5%
@@ -2171,7 +2173,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Hourglass Advance / SecretHour
 
-CURIO / RARE / UNIQUE
+CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
 Team / Attack speed: +18%
@@ -2181,7 +2183,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Sleeping-Lamb Brooch / SecretDream
 
-CURIO / RARE / UNIQUE
+CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
 Champion / Maximum health: +12
@@ -2191,7 +2193,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Crown of the Empty Theatre / SecretCrown
 
-CURIO / RARE / UNIQUE
+CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
 Team / Damage: +15%
@@ -2201,7 +2203,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Dead-Letter Key / SecretLetter
 
-CURIO / RARE / UNIQUE
+CURIO / UNCOMMON / UNIQUE
 
 WHILE OWNED / per copy
 Run / Pickup radius: +0.8
@@ -2211,7 +2213,7 @@ Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 
 ## Lantern Stitch / OctoberRelic0
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Attack range: +10%
@@ -2231,7 +2233,7 @@ Owned effective copies: 1. Stack limit: 4. Values apply before combat limits.
 
 ## Clockseed Brooch / OctoberRelic2
 
-CURIO / RARE / STACKABLE
+CURIO / COMMON / STACKABLE
 
 WHILE OWNED / per copy
 Team / Collision damage: +5
@@ -2744,7 +2746,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
 ## Hungry Ledger / CurioHungryLedger
 
-CURIO / RARE / STACKABLE
+CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
 No direct stat modifier; effects are described below.
@@ -2854,7 +2856,7 @@ Owned effective copies: 1. Stack limit: 8. Values apply before combat limits.
 
 ## Mute Clock / CurioMuteClock
 
-CURIO / RARE / STACKABLE
+CURIO / MYTHIC / STACKABLE
 
 WHILE OWNED / per copy
 Team / Attack speed: +45%

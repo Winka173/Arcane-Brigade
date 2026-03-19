@@ -40,6 +40,7 @@ MonoBehaviour:
   Tags:
   - hearth
   - oddity
+  - orchard
   Passive: 0
   PassiveStrength: 0.8
   Description: All ordinary companion themes may appear. Enemy health +12% and count
@@ -52,6 +53,9 @@ MonoBehaviour:
   RecruitThemes:
   - hearth
   - oddity
+  - orchard
+  - big-top
+  - fam-team
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

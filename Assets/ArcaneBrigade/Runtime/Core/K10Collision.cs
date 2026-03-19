@@ -13,7 +13,7 @@ namespace ArcaneBrigade
                 if (!enemy.Alive || enemy.Faction != Faction.Enemy || enemy.EntranceUntil > Elapsed || enemy.BodyLift > 0.4f) continue;
                 float reach = source.Definition.Radius + enemy.Definition.Radius;
                 if ((source.Position - enemy.Position).sqrMagnitude > reach * reach) continue;
-                ApplyDamage(enemy, source.Definition.CollisionDamage, source.Faction, "Collision", (enemy.Position - source.Position).normalized, cause: NewCause(source.Id));
+                ApplyDamage(enemy, source.Definition.CollisionDamage + KitHurtCollision(source), source.Faction, "Collision", (enemy.Position - source.Position).normalized, cause: NewCause(source.Id));
                 struck = true;
             }
             if (struck) source.NextCollision = Elapsed + source.Definition.CollisionFrequency;

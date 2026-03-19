@@ -38,7 +38,8 @@ MonoBehaviour:
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - astral
+  - orchard
+  - frost
   Passive: 0
   PassiveStrength: 0.8
   Description: Stationary in combat. Whole-arena pickup and a slowing ward. Walks
@@ -55,7 +56,10 @@ MonoBehaviour:
     Scope: 1
     Value: 1.5
   RecruitThemes:
-  - astral
+  - orchard
+  - frost
+  - root
+  - fam-survival
   HeroMechanic: 4
   CompanionModifiers: []
   Price: 32

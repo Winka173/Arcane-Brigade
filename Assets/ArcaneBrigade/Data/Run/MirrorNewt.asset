@@ -21,15 +21,15 @@ MonoBehaviour:
   - {fileID: -272148943, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
   - {fileID: 991690232, guid: a2fcb0ab7aecb3c449b391253d9336c9, type: 3}
   AuthoredMotion: {fileID: 0}
-  Weapon: {fileID: 11400000, guid: a90f7c5f27b31c746a18531a28f165f1, type: 2}
+  Weapon: {fileID: 11400000, guid: 252ee1ba2ef8f4f4e88dedfbe9233d03, type: 2}
   Health: 100
   Speed: 4.2
   Radius: 0.22
   BodyHeight: 0.77
   BodyScale: 1
   KnockbackResistance: 0
-  SpecialRecruit: 0
-  Rarity: 2
+  SpecialRecruit: 1
+  Rarity: 3
   RecruitThemeLocked: 0
   ContactDamage: 4
   ContactInterval: 0.8

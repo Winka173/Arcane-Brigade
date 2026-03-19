@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -1039847168, guid: bf4715b4c390b974093b63772728032a, type: 3}
   - {fileID: 1106310253, guid: bf4715b4c390b974093b63772728032a, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 62770e5db9b9e99419db858e307ee89d, type: 2}
-  Weapon: {fileID: 11400000, guid: 62d61a913b26ec545bdc8bce3ad47e6b, type: 2}
+  Weapon: {fileID: 11400000, guid: 1231299f037eecd46842f9a39d777864, type: 2}
   Health: 120
   Speed: 5.1
   Radius: 0.25
@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - clock
-  - resolve
+  - morning
   Passive: 0
   PassiveStrength: 0
   Description: "COMPANION / PRISMATIC / 1 STAR\r\nTALENT\nOn purchase, recruit up

@@ -148,6 +148,8 @@ namespace ArcaneBrigade
             ItemEffect.HealCorrection => "Multiplies continuous regeneration when compiling combat. Does not automatically multiply hearts, all procs or recorded healing.",
             ItemEffect.CollisionFrequency => "Divides outgoing collision-damage cooldown by 1+bonus, bounded to 0.15–4 seconds. Does not shorten enemy contact cooldown.",
             ItemEffect.ChestReach => "Scales the distance needed to open a chest, from 0.5 to 4 times its base radius. Separate from Treasure Detection (frequency), chest quality and loose-loot attraction. Chests stay on the ground rather than flying into you.",
+            ItemEffect.ChainChance => "Chance that a friend's hit chains to one more enemy nearby (Static Club).",
+            ItemEffect.RecordedDamage => "Friends deal more damage to species already recorded this run (Exhibit Hall).",
             _ => "Inspect the modifier's scope and source in the ledger; explanatory text grants no hidden bonuses."
         };
 

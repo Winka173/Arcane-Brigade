@@ -15,5 +15,6 @@ PASS K4Final
 PASS K15Feel
 PASS FeelTelegraph
 PASS HeroAwakening
+PASS ContentExpansion
 PASS K8Audio
 PASS K7

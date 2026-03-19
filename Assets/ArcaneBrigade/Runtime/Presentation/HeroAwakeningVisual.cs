@@ -51,10 +51,15 @@ namespace ArcaneBrigade
             if (id == "CopperCauldron" && awake) fill = sim.HeroAwakenPressure; // while the engine runs the tube shows its pressure
             float pulse = still ? 0 : (awake ? .5f + .5f * Mathf.Sin(t * 9) : sim.HeroAwakenMeter >= 1 ? .5f + .5f * Mathf.Sin(t * 6) : 0);
             float dim = cooling ? .55f : 1;
-            Sprite empty = ArsenalArtwork.Frame("Gauge_" + id + "_Empty", 0), full = ArsenalArtwork.Frame("Gauge_" + id + "_Full", 0);
-            if (empty != null && full != null) PaintedGauge(empty, full, bottom, top, fill, dim, HeroGaugeArtwork.For(id));
+            // the simplified gauges (Gauge2_*, content expansion) replace the first paintings once they arrive
+            Sprite empty = ArsenalArtwork.Frame("Gauge2_" + id + "_Empty", 0), full = ArsenalArtwork.Frame("Gauge2_" + id + "_Full", 0);
+            string key = "Gauge2_" + id;
+            if (empty == null || full == null) { empty = ArsenalArtwork.Frame("Gauge_" + id + "_Empty", 0); full = ArsenalArtwork.Frame("Gauge_" + id + "_Full", 0); key = id; }
+            if (empty != null && full != null) PaintedGauge(empty, full, bottom, top, fill, dim, HeroGaugeArtwork.For(key));
             else InkGauge(id, bottom, top, half, fill, pulse, dim, awake);
             if ((awake || sim.HeroAwakenMeter >= 1) && !calm) Glow((bottom + top) * .5f, height * 1.3f, ink.Glow, .1f + pulse * .1f, true);
+            // primed: the full gauge flashes for the second before the transformation, readable at a glance in a crowd
+            if (sim.HeroAwakenPrimed) Glow((bottom + top) * .5f, height * 1.6f, ink.Glow, still ? .35f : .22f + .28f * Mathf.Abs(Mathf.Sin(t * 14)), true);
         }
 
         /// <summary>An inked vessel until the painted one arrives: the three pilot heroes' own, otherwise the hero's colours.</summary>

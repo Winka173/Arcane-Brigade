@@ -11,7 +11,7 @@ namespace ArcaneBrigade
             string name=u.ReferenceCompanion??"";
             return name switch {
                 "Alien" => "Each DRINK purchased during this run adds 4% to this ally's weapon damage, up to +40%. Applies when the next battle is prepared; not a team-wide damage buff.",
-                "Applehead" => "Fruit Basket companions gain 8% attack speed per Applehead talent, up to 24%. Does not affect the hero. Stacks by talent bodies/memories, not star level.",
+                "Applehead" => "Orchard companions gain 8% attack speed per Applehead talent, up to 24%. Does not affect the hero. Stacks by talent bodies/memories, not star level.",
                 "Bullhorn Warrior" => "Clockwork Union companions gain 8% movement and attack speed per talent. Combined with Intelligent Construct, this buff is capped at 25%.",
                 "Intelligent Construct" => "Clockwork Union companions gain 4% movement AND attack speed per talent. Combined with Bullhorn Warrior, this buff is capped at 25%.",
                 "Fierce Fighter" => "Each basic attack adds 1% attack speed to this ally, up to 20% this wave. A hit from every third basic attack can make a 0.8-radius blast at 15% weapon damage; 1s cooldown, no recursive blast.",

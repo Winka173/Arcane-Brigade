@@ -53,12 +53,14 @@ namespace ArcaneBrigade.Editor
                         new StatModifier { Effect = ItemEffect.Health, Scope = ModifierScope.Champion, Value = 10 }
                     };
                     float health = session.State.Health;
+                    // the starting brigade's own bonds (a team-scoped bond reaches the hero too) are the baseline
+                    float baseHeroSpeed = session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion), baseAllySpeed = session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions);
                     var offer = new ShopOffer { Token = ++session.State.NextOffer, Kind = OfferKind.Item, Id = item.Id, Price = 1 };
                     session.State.Offers.Add(offer);
                     float plainDamage = session.PrepareCombat().Champion.Weapon.Damage, plainMultiplier = session.DamageMultiplier(catalog.Champions[0], 1, false); // compiled combat also applies melee balance and range relief
                     require(session.Buy(offer.Token) && session.State.Health == health + 10, "Multi-modifier purchase updates actual health once");
                     require(Mathf.Approximately(session.Bonus(ItemEffect.Damage, ModifierScope.Champion), 0.3f) && session.Bonus(ItemEffect.Damage, ModifierScope.Companions) == 0, "Champion scoped damage never leaks to allies");
-                    require(session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion) == 0 && Mathf.Approximately(session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions), 0.2f), "Companion scoped attack speed never leaks to Champion");
+                    require(Mathf.Approximately(session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Champion), baseHeroSpeed) && Mathf.Approximately(session.Bonus(ItemEffect.AttackSpeed, ModifierScope.Companions) - baseAllySpeed, 0.2f), "Companion scoped attack speed never leaks to Champion");
                     CheckpointCatalog combat = session.PrepareCombat();
                     RunBuildReadModel model = RunBuildReadModel.Capture(session, catalog, session.State.Health);
                     UnitDefinition champion = catalog.Champions[0];

@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - archive
-  - clock
+  - hearth
   Passive: 0
   PassiveStrength: 0.8
   Description: Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh
@@ -51,7 +51,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - archive
-  - clock
+  - hearth
+  - gear
+  - fam-gold
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - orchard
-  - fruit
+  - root
   Passive: 4
   PassiveStrength: 0.5
   Description: "COMPANION / COMMON / 1 STAR\r\nTALENT\nBasic kills have a 30% chance

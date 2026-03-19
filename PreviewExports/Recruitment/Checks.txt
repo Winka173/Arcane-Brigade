@@ -13,7 +13,7 @@ PASS Special purchase leaves regular quotas unchanged 1/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 1/1
 PASS Special purchase leaves regular quotas unchanged 1/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 1/2
-PASS Special purchase leaves regular quotas unchanged 1/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 1/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 1
 PASS Save/load cannot refresh quota 1
 PASS Paid refresh allowed at quota 1/0
@@ -120,7 +120,7 @@ PASS Special purchase leaves regular quotas unchanged 2/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 2/1
 PASS Special purchase leaves regular quotas unchanged 2/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 2/2
-PASS Special purchase leaves regular quotas unchanged 2/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 2/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 2
 PASS Save/load cannot refresh quota 2
 PASS Paid refresh allowed at quota 2/0
@@ -227,7 +227,7 @@ PASS Special purchase leaves regular quotas unchanged 3/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 3/1
 PASS Special purchase leaves regular quotas unchanged 3/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 3/2
-PASS Special purchase leaves regular quotas unchanged 3/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 3/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 3
 PASS Save/load cannot refresh quota 3
 PASS Paid refresh allowed at quota 3/0
@@ -334,7 +334,7 @@ PASS Special purchase leaves regular quotas unchanged 4/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 4/1
 PASS Special purchase leaves regular quotas unchanged 4/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 4/2
-PASS Special purchase leaves regular quotas unchanged 4/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 4/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 4
 PASS Save/load cannot refresh quota 4
 PASS Paid refresh allowed at quota 4/0
@@ -441,7 +441,7 @@ PASS Special purchase leaves regular quotas unchanged 8/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 8/1
 PASS Special purchase leaves regular quotas unchanged 8/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 8/2
-PASS Special purchase leaves regular quotas unchanged 8/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 8/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 8
 PASS Save/load cannot refresh quota 8
 PASS Paid refresh allowed at quota 8/0
@@ -548,7 +548,7 @@ PASS Special purchase leaves regular quotas unchanged 20/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 20/1
 PASS Special purchase leaves regular quotas unchanged 20/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 20/2
-PASS Special purchase leaves regular quotas unchanged 20/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 20/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 20
 PASS Save/load cannot refresh quota 20
 PASS Paid refresh allowed at quota 20/0
@@ -655,7 +655,7 @@ PASS Special purchase leaves regular quotas unchanged 30/PillowOracle
 PASS Special new species respects per-wave and shared cooldown 30/1
 PASS Special purchase leaves regular quotas unchanged 30/EclipseEgg
 PASS Special new species respects per-wave and shared cooldown 30/2
-PASS Special purchase leaves regular quotas unchanged 30/ReelOwl
+PASS Special purchase leaves regular quotas unchanged 30/MirrorNewt
 PASS Special upgrade copy ignores regular and new-species quotas 30
 PASS Save/load cannot refresh quota 30
 PASS Paid refresh allowed at quota 30/0
@@ -817,4 +817,4 @@ PASS Reduction starts at six companions
 PASS Crowd never suppresses owned-species offer slot 5
 PASS Crowd never suppresses owned-species offer slot 6
 PASS Crowd never suppresses owned-species offer slot 12
-PASS Seeded shop rolls reduce new species at 5/6/12 bodies: 324/199/32
+PASS Seeded shop rolls reduce new species at 5/6/12 bodies: 267/166/12

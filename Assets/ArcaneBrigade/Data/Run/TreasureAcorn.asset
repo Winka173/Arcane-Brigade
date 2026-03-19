@@ -38,6 +38,7 @@ MonoBehaviour:
   CriticalChance: 0.05
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
+  - orchard
   - archive
   Passive: 0
   PassiveStrength: 0.5
@@ -51,7 +52,11 @@ MonoBehaviour:
     Scope: 3
     Value: 5
   RecruitThemes:
+  - orchard
   - archive
+  - clover
+  - fam-chest
+  - rival-horn
   HeroMechanic: 10
   CompanionModifiers: []
   Price: 18

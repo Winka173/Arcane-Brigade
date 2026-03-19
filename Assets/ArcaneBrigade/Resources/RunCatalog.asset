@@ -398,10 +398,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - clock
-    - oddity
-    - tidal
+    ShopThemes: []
   - Id: coin-compass
     Name: Coin Compass
     Description: 'CURIO / COMMON / STACKABLE
@@ -435,10 +432,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: wandering-map
     Name: Wandering Map
     Description: 'CURIO / COMMON / STACKABLE
@@ -472,10 +466,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: guardian-canopy
     Name: Guardian Canopy
     Description: 'CURIO / RARE / STACKABLE
@@ -511,8 +502,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-survival
   - Id: warm-tea
     Name: Warm Tea
     Description: 'CURIO / COMMON / STACKABLE
@@ -546,10 +536,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - frost
-    - hearth
-    - orchard
+    ShopThemes: []
   - Id: oracle-lens
     Name: Oracle Lens
     Description: 'CURIO / COMMON / STACKABLE
@@ -583,10 +570,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - astral
-    - frost
+    ShopThemes: []
   - Id: twin-seal
     Name: Twin Seal
     Description: 'CURIO / RARE / STACKABLE
@@ -621,9 +605,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - astral
-    - frost
+    - fam-ranged
   - Id: piggy-mail
     Name: Piggy Mail
     Description: 'CURIO / COMMON / STACKABLE
@@ -657,10 +640,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: pillow-mail
     Name: Pillow Mail
     Description: 'CURIO / COMMON / STACKABLE
@@ -694,10 +674,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - clock
-    - hearth
-    - oddity
+    ShopThemes: []
   - Id: royal-key
     Name: Royal Key
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -733,8 +710,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-crit
   - Id: brigade-banner
     Name: Brigade Banner
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -769,9 +745,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
     - hearth
+    - fam-team
   - Id: marching-bell
     Name: Marching Bell
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -806,9 +781,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
-    - hearth
+    - fam-team
   - Id: coupon-book
     Name: Coupon Book
     Description: 'CURIO / COMMON / STACKABLE
@@ -842,10 +816,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: long-atlas
     Name: Long Atlas
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -873,10 +844,10 @@ MonoBehaviour:
     - Effect: 3
       Scope: 0
       Value: -0.04
-    Rarity: 3
+    Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 8
+    ShopWeight: 25
     Pools: 2
     AltarCurrency: 2
     AltarPrice: 11
@@ -885,9 +856,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
-    - hearth
+    - fam-team
   - Id: starlight-quilt
     Name: Starlight Quilt
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -901,7 +871,7 @@ MonoBehaviour:
 
       Owned effective copies: 1. Values apply before
       combat limits.'
-    Price: 42
+    Price: 48
     Effect: 2
     Value: 45
     Icon: {fileID: 1956717586, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -922,9 +892,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - frost
-    - hearth
     - orchard
+    - fam-survival
   - Id: echo-postage
     Name: Echo Postage
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -964,9 +933,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-ranged
   - Id: tarnished-crown
     Name: Tarnished Crown
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -1001,9 +969,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
     - hearth
+    - fam-crit
   - Id: fortune-egg
     Name: Fortune Egg
     Description: 'CURIO / RARE / STACKABLE
@@ -1026,10 +993,10 @@ MonoBehaviour:
     - Effect: 16
       Scope: 3
       Value: 0.2
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 25
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 2
@@ -1037,10 +1004,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: treasure-whisper
     Name: Treasure Whisper
     Description: 'CURIO / RARE / STACKABLE
@@ -1075,9 +1039,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - orchard
     - tidal
+    - fam-chest
   - Id: coin-salve
     Name: Coin Salve
     Description: 'CURIO / RARE / STACKABLE
@@ -1095,7 +1058,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 28
+    Price: 30
     Effect: 7
     Value: 0
     Icon: {fileID: 862952736, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1117,7 +1080,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - oddity
+    - fam-team
   - Id: chest-thunder
     Name: Chest Thunder
     Description: 'CURIO / RARE / STACKABLE
@@ -1156,8 +1119,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - oddity
+    - fam-chest
   - Id: altar-ember
     Name: Altar Ember
     Description: 'CURIO / RARE / STACKABLE
@@ -1198,8 +1161,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-crit
   - Id: harvest-receipt
     Name: Harvest Receipt
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1242,7 +1204,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - oddity
+    - fam-team
   - Id: reflective-ink
     Name: Reflective Ink
     Description: 'CURIO / UNCOMMON / UNIQUE
@@ -1285,7 +1247,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - oddity
+    - fam-marks
   - Id: carbon-ribbon
     Name: Carbon Ribbon
     Description: 'CURIO / RARE / UNIQUE
@@ -1328,7 +1290,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - oddity
+    - fam-marks
   - Id: office-lens
     Name: Office Lens
     Description: 'CURIO / RARE / STACKABLE
@@ -1375,9 +1337,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-marks
+    - fam-crit
   - Id: tea-coaster
     Name: Tea Coaster
     Description: 'CURIO / UNCOMMON / UNIQUE
@@ -1419,8 +1381,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - oddity
+    - fam-team
   - Id: scratch-record
     Name: Scratch Record
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1463,7 +1425,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - oddity
+    - fam-team
   - Id: treasure-ribbon
     Name: Treasure Ribbon
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1504,8 +1466,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - oddity
+    - fam-team
   - Id: patch-spring
     Name: Patch Spring
     Description: 'CURIO / UNCOMMON / UNIQUE
@@ -1547,8 +1509,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - oddity
+    - fam-team
   - Id: thermal-ink
     Name: Thermal Ink
     Description: 'CURIO / UNCOMMON / UNIQUE
@@ -1590,7 +1552,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - oddity
+    - fam-marks
   - Id: repair-coupon
     Name: Repair Coupon
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1632,8 +1594,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - oddity
+    - fam-team
   - Id: k10-scoremultiplier
     Name: "Contract \xB7 Score multiplier"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1673,9 +1635,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
-    - hearth
+    - fam-team
   - Id: k10-collisiondamage
     Name: "Contract \xB7 Collision damage"
     Description: 'CURIO / RARE / STACKABLE
@@ -1703,10 +1664,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -1714,10 +1675,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - clock
-    - hearth
-    - oddity
+    ShopThemes: []
   - Id: k10-meleedamage
     Name: "Contract \xB7 Flat melee damage"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -1733,7 +1691,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 18
+    Price: 24
     Effect: 20
     Value: 2
     Icon: {fileID: -1549568920, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1745,10 +1703,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -1758,7 +1716,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - clock
-    - hearth
+    - fam-melee
   - Id: k10-rangeddamage
     Name: "Contract \xB7 Flat ranged damage"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1774,7 +1732,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 24
     Effect: 21
     Value: 2
     Icon: {fileID: 139346718, guid: 7228591c2e56f2a48a019da5d22fe30f, type: 3}
@@ -1798,9 +1756,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-ranged
   - Id: k10-attackrange
     Name: "Contract \xB7 Attack range"
     Description: 'CURIO / RARE / STACKABLE
@@ -1828,10 +1785,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -1839,10 +1796,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - astral
-    - frost
+    ShopThemes: []
   - Id: k10-dodge
     Name: "Contract \xB7 Dodge"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -1870,10 +1824,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -1882,9 +1836,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - clock
-    - oddity
     - tidal
+    - fam-survival
   - Id: k10-income
     Name: "Contract \xB7 Income"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -1912,10 +1865,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 1
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
@@ -1923,10 +1876,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: k10-bulletpierce
     Name: "Contract \xB7 Bullet pierce"
     Description: 'CURIO / RARE / STACKABLE
@@ -1954,10 +1904,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -1965,10 +1915,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - astral
-    - frost
+    ShopThemes: []
   - Id: k10-bulletsplit
     Name: "Contract \xB7 Bullet split"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -1996,10 +1943,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2008,9 +1955,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - astral
-    - frost
+    - fam-ranged
   - Id: k10-bulletbounce
     Name: "Contract \xB7 Bullet bounce chance"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2050,9 +1996,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-ranged
   - Id: k10-bulletsize
     Name: "Contract \xB7 Bullet size"
     Description: 'CURIO / RARE / STACKABLE
@@ -2080,10 +2025,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2091,10 +2036,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - astral
-    - frost
+    ShopThemes: []
   - Id: k10-bulletspeed
     Name: "Contract \xB7 Bullet speed"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2110,7 +2052,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 24
     Effect: 29
     Value: 0.08
     Icon: {fileID: -302247242, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2122,10 +2064,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2134,9 +2076,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-ranged
   - Id: k10-bulletdistance
     Name: "Contract \xB7 Bullet travel distance"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2176,9 +2117,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - astral
-    - frost
+    - fam-ranged
   - Id: k10-knockback
     Name: "Contract \xB7 Knockback"
     Description: 'CURIO / RARE / STACKABLE
@@ -2206,10 +2146,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2217,10 +2157,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: k10-bodysize
     Name: "Contract \xB7 Champion size"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2236,7 +2173,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 18
+    Price: 24
     Effect: 32
     Value: 0.08
     Icon: {fileID: 1381510932, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2248,10 +2185,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2260,9 +2197,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
     - hearth
+    - fam-collision
   - Id: k10-companionsize
     Name: "Contract \xB7 Companion size"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2278,7 +2214,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 24
     Effect: 33
     Value: 0.08
     Icon: {fileID: -2036193071, guid: c35da47f0b1c6d448b498af28903f4bc, type: 3}
@@ -2302,9 +2238,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
     - hearth
+    - fam-collision
   - Id: k10-enemycount
     Name: "Contract \xB7 Enemy count"
     Description: 'CURIO / RARE / STACKABLE
@@ -2337,10 +2272,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2348,10 +2283,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: k10-enemyhealth
     Name: "Contract \xB7 Enemy health"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2385,10 +2317,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2397,9 +2329,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
-    - hearth
+    - fam-team
   - Id: k10-enemyspeed
     Name: "Contract \xB7 Enemy speed"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2432,10 +2363,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 1
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 2
     AltarCurrency: 2
     AltarPrice: 3
@@ -2443,10 +2374,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: k10-hearthealing
     Name: "Contract \xB7 Heart healing"
     Description: 'CURIO / RARE / STACKABLE
@@ -2474,10 +2402,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2485,10 +2413,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - frost
-    - hearth
-    - orchard
+    ShopThemes: []
   - Id: k10-chestquality
     Name: "Contract \xB7 Chest quality"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2516,10 +2441,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2528,9 +2453,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - orchard
     - tidal
+    - fam-chest
   - Id: k10-recruitdiscount
     Name: "Contract \xB7 Recruit discount"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2570,9 +2494,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - orchard
-    - tidal
+    - fam-shop
   - Id: k10-relicdiscount
     Name: "Contract \xB7 Relic discount"
     Description: 'CURIO / RARE / STACKABLE
@@ -2600,10 +2523,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2611,10 +2534,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: k10-shoprarity
     Name: "Contract \xB7 Shop rarity"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2630,7 +2550,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 24
     Effect: 41
     Value: 0.08
     Icon: {fileID: -847111922, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2642,10 +2562,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2655,8 +2575,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-shop
   - Id: k10-healthcorrection
     Name: "Contract \xB7 Health correction"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2696,9 +2615,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
     - hearth
+    - fam-survival
   - Id: k10-damagecorrection
     Name: "Contract \xB7 Damage correction"
     Description: 'CURIO / RARE / STACKABLE
@@ -2726,10 +2644,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2737,10 +2655,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: k10-speedcorrection
     Name: "Contract \xB7 Speed correction"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2756,7 +2671,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 18
+    Price: 24
     Effect: 44
     Value: 0.08
     Icon: {fileID: -935606369, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2768,10 +2683,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2780,9 +2695,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - clock
-    - oddity
     - tidal
+    - fam-speed
   - Id: k10-armorcorrection
     Name: "Contract \xB7 Armor correction"
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2798,7 +2712,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 21
+    Price: 24
     Effect: 45
     Value: 0.08
     Icon: {fileID: -184220574, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -2822,9 +2736,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
-    - hearth
+    - fam-survival
   - Id: k10-healcorrection
     Name: "Contract \xB7 Healing correction"
     Description: 'CURIO / RARE / STACKABLE
@@ -2852,10 +2765,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 4
@@ -2863,10 +2776,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - frost
-    - hearth
-    - orchard
+    ShopThemes: []
   - Id: k10-collisionfrequency
     Name: "Contract \xB7 Collision frequency"
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -2894,10 +2804,10 @@ MonoBehaviour:
     - Effect: 2
       Scope: 1
       Value: -1
-    Rarity: 3
+    Rarity: 1
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 50
+    ShopWeight: 60
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 5
@@ -2907,8 +2817,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - clock
-    - hearth
-    - oddity
+    - fam-collision
   - Id: long-pocket
     Name: Long Pocket
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -2948,9 +2857,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
     - hearth
+    - fam-chest
   - Id: velvet-first-aid
     Name: Velvet First Aid
     Description: 'CURIO / RARE / STACKABLE
@@ -2982,10 +2890,10 @@ MonoBehaviour:
     - Effect: 3
       Scope: 1
       Value: -0.02
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 45
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
@@ -2993,10 +2901,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: brass-avalanche
     Name: Brass Avalanche
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -3016,7 +2921,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Values apply before combat limits.'
-    Price: 24
+    Price: 30
     Effect: 31
     Value: 0.1
     Icon: {fileID: 1632464898, guid: 873f3d179f2f7f74e902dc49936cc4bc, type: 3}
@@ -3028,10 +2933,10 @@ MonoBehaviour:
     - Effect: 3
       Scope: 1
       Value: -0.02
-    Rarity: 3
+    Rarity: 2
     Stacking: 0
     MaximumStacks: 100000
-    ShopWeight: 45
+    ShopWeight: 25
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
@@ -3040,9 +2945,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
-    - hearth
+    - fam-kills
   - Id: RainbowCrown
     Name: Borrowed Crown
     Description: 'CURIO / PRISMATIC / UNIQUE
@@ -3082,11 +2986,10 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
-    - clock
-    - frost
     - hearth
+    - frost
+    - fam-team
+    - fam-ranged
   - Id: RainbowHeart
     Name: Clockwork Heart
     Description: 'CURIO / PRISMATIC / UNIQUE
@@ -3127,8 +3030,8 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - frost
-    - hearth
     - orchard
+    - fam-merge
   - Id: RainbowThread
     Name: Living Thread
     Description: 'CURIO / PRISMATIC / UNIQUE
@@ -3168,9 +3071,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
     - clock
     - hearth
+    - fam-melee
   - Id: RainbowPrism
     Name: Impossible Prism
     Description: 'CURIO / PRISMATIC / UNIQUE
@@ -3210,9 +3113,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - astral
-    - frost
+    - archive
+    - fam-ranged
   - Id: CrimsonSeal
     Name: Crimson Seal
     Description: 'CURIO / CRIMSON / UNIQUE
@@ -3240,10 +3143,10 @@ MonoBehaviour:
     - Effect: 19
       Scope: 0
       Value: 24
-    Rarity: 4
+    Rarity: 3
     Stacking: 1
     MaximumStacks: 1
-    ShopWeight: 1
+    ShopWeight: 8
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
@@ -3252,10 +3155,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
-    - hearth
     - oddity
+    - fam-crit
+    - fam-collision
   - Id: CrimsonSpring
     Name: Crimson Spring
     Description: 'CURIO / CRIMSON / UNIQUE
@@ -3283,10 +3185,10 @@ MonoBehaviour:
     - Effect: 22
       Scope: 0
       Value: 0.45
-    Rarity: 4
+    Rarity: 3
     Stacking: 1
     MaximumStacks: 1
-    ShopWeight: 1
+    ShopWeight: 8
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 15
@@ -3296,10 +3198,8 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - archive
-    - astral
-    - clock
-    - frost
-    - hearth
+    - fam-team
+    - fam-ranged
   - Id: K26Defense0
     Name: Marrow Tea
     Description: 'CURIO / COMMON / STACKABLE
@@ -3315,7 +3215,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 35
+    Price: 32
     Effect: 0
     Value: 0
     Icon: {fileID: -2112130088, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3338,10 +3238,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - frost
-    - hearth
-    - orchard
+    ShopThemes: []
   - Id: K26Defense1
     Name: Porcelain Splint
     Description: 'CURIO / COMMON / STACKABLE
@@ -3357,7 +3254,7 @@ MonoBehaviour:
 
       Owned effective copies:
       1. Stack limit: 4. Values apply before combat limits.'
-    Price: 40
+    Price: 32
     Effect: 0
     Value: 0
     Icon: {fileID: -1823242546, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3380,10 +3277,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - clock
-    - hearth
-    - oddity
+    ShopThemes: []
   - Id: K26Defense2
     Name: Escape Thimble
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -3424,8 +3318,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - clock
-    - oddity
-    - tidal
+    - fam-speed
   - Id: K26Defense3
     Name: Quicksole
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -3441,7 +3334,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 50
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: -1048081793, guid: 01354f6bd3841654b8818402f43c0dab, type: 3}
@@ -3465,12 +3358,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - clock
-    - frost
-    - hearth
     - oddity
-    - orchard
-    - tidal
+    - fam-speed
   - Id: K26Defense4
     Name: Pulse Bell
     Description: 'CURIO / RARE / STACKABLE
@@ -3510,11 +3399,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - astral
-    - clock
-    - frost
-    - hearth
     - orchard
+    - fam-survival
   - Id: K26Defense5
     Name: Mercy Spindle
     Description: 'CURIO / RARE / STACKABLE
@@ -3555,8 +3441,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - frost
-    - hearth
-    - orchard
+    - fam-survival
   - Id: K26Defense6
     Name: Iron Apron
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -3597,8 +3482,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - clock
-    - hearth
-    - oddity
+    - fam-survival
   - Id: K26Defense7
     Name: Mending Moth
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -3638,11 +3522,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - clock
-    - frost
-    - hearth
     - oddity
-    - orchard
+    - fam-survival
   - Id: SecretWoodHeart
     Name: The Abandoned Wooden Heart
     Description: 'CURIO / RARE / UNIQUE
@@ -3658,7 +3539,7 @@ MonoBehaviour:
 
       Owned
       effective copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: -564166699, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3670,7 +3551,7 @@ MonoBehaviour:
     - Effect: 7
       Scope: 1
       Value: 0.3
-    Rarity: 2
+    Rarity: 1
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
@@ -3682,9 +3563,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - frost
-    - hearth
     - orchard
+    - fam-survival
   - Id: SecretMirror
     Name: The Glass Understudy
     Description: 'CURIO / RARE / UNIQUE
@@ -3700,7 +3580,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: 321956525, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3712,7 +3592,7 @@ MonoBehaviour:
     - Effect: 22
       Scope: 0
       Value: 0.08
-    Rarity: 2
+    Rarity: 1
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
@@ -3724,9 +3604,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - astral
-    - frost
+    - fam-crit
+    - fam-ranged
   - Id: SecretThread
     Name: Living Contraband Thread
     Description: 'CURIO / RARE / UNIQUE
@@ -3766,11 +3646,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
     - astral
-    - clock
-    - frost
-    - hearth
+    - fam-ranged
+    - fam-melee
   - Id: SecretTicket
     Name: Smuggler's Ticket
     Description: 'CURIO / RARE / UNIQUE
@@ -3810,9 +3688,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - orchard
     - tidal
+    - fam-shop
+    - fam-luck
   - Id: SecretHour
     Name: Hourglass Advance
     Description: 'CURIO / RARE / UNIQUE
@@ -3828,7 +3706,7 @@ MonoBehaviour:
 
       Owned effective copies:
       1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: -1896486556, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3840,7 +3718,7 @@ MonoBehaviour:
     - Effect: 0
       Scope: 0
       Value: 0.1
-    Rarity: 2
+    Rarity: 1
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
@@ -3853,8 +3731,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-team
   - Id: SecretDream
     Name: Sleeping-Lamb Brooch
     Description: 'CURIO / RARE / UNIQUE
@@ -3870,7 +3747,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: 5481929, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3882,7 +3759,7 @@ MonoBehaviour:
     - Effect: 37
       Scope: 1
       Value: 3
-    Rarity: 2
+    Rarity: 1
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
@@ -3895,8 +3772,7 @@ MonoBehaviour:
     ReferenceName: 
     ShopThemes:
     - frost
-    - hearth
-    - orchard
+    - fam-survival
   - Id: SecretCrown
     Name: Crown of the Empty Theatre
     Description: 'CURIO / RARE / UNIQUE
@@ -3912,7 +3788,7 @@ MonoBehaviour:
 
       Owned effective copies:
       1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: 732980563, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3924,7 +3800,7 @@ MonoBehaviour:
     - Effect: 8
       Scope: 0
       Value: 0.08
-    Rarity: 2
+    Rarity: 1
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
@@ -3936,11 +3812,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
-    - clock
-    - frost
     - hearth
+    - fam-team
+    - fam-crit
   - Id: SecretLetter
     Name: Dead-Letter Key
     Description: 'CURIO / RARE / UNIQUE
@@ -3956,7 +3830,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Stack limit: 1. Values apply before combat limits.'
-    Price: 60
+    Price: 46
     Effect: 0
     Value: 0
     Icon: {fileID: 363176316, guid: 913d244dcb7f83d409006fe20a95648d, type: 3}
@@ -3968,7 +3842,7 @@ MonoBehaviour:
     - Effect: 17
       Scope: 3
       Value: 0.1
-    Rarity: 2
+    Rarity: 1
     Stacking: 1
     MaximumStacks: 1
     ShopWeight: 0
@@ -3980,12 +3854,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - archive
-    - astral
-    - clock
-    - hearth
     - orchard
-    - tidal
+    - fam-gold
+    - fam-chest
   - Id: OctoberRelic0
     Name: Lantern Stitch
     Description: 'CURIO / RARE / STACKABLE
@@ -4013,10 +3884,10 @@ MonoBehaviour:
     - Effect: 1
       Scope: 0
       Value: -0.05
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 4
-    ShopWeight: 65
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
@@ -4024,10 +3895,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - archive
-    - astral
-    - frost
+    ShopThemes: []
   - Id: OctoberRelic1
     Name: Rain Receipt
     Description: 'CURIO / RARE / STACKABLE
@@ -4067,9 +3935,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - frost
-    - hearth
     - orchard
+    - fam-survival
   - Id: OctoberRelic2
     Name: Clockseed Brooch
     Description: 'CURIO / RARE / STACKABLE
@@ -4085,7 +3952,7 @@ MonoBehaviour:
 
       Owned effective
       copies: 1. Stack limit: 4. Values apply before combat limits.'
-    Price: 34
+    Price: 32
     Effect: 0
     Value: 0
     Icon: {fileID: -1491177789, guid: a80140271257d5b44954fd332bfd42e6, type: 3}
@@ -4097,10 +3964,10 @@ MonoBehaviour:
     - Effect: 3
       Scope: 0
       Value: -0.04
-    Rarity: 2
+    Rarity: 0
     Stacking: 0
     MaximumStacks: 4
-    ShopWeight: 65
+    ShopWeight: 100
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
@@ -4108,10 +3975,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: 
-    ShopThemes:
-    - clock
-    - hearth
-    - oddity
+    ShopThemes: []
   - Id: OctoberRelic3
     Name: Porcelain Promise
     Description: 'CURIO / RARE / STACKABLE
@@ -4151,9 +4015,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: 
     ShopThemes:
-    - frost
     - hearth
-    - orchard
+    - fam-survival
   - Id: CurioOrchardFizz
     Name: Orchard Fizz
     Description: 'DRINK / COMMON / STACKABLE
@@ -4196,12 +4059,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Fruit Crush
-    ShopThemes:
-    - archive
-    - frost
-    - hearth
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: CurioGraveChime
     Name: Grave Chime
     Description: 'DRINK / COMMON / STACKABLE
@@ -4244,12 +4102,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Midnight Ballad
-    ShopThemes:
-    - archive
-    - clock
-    - hearth
-    - oddity
-    - tidal
+    ShopThemes: []
   - Id: CurioBreathJar
     Name: Breath Jar
     Description: 'DRINK / COMMON / STACKABLE
@@ -4292,12 +4145,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Oxygen Bubble
-    ShopThemes:
-    - archive
-    - astral
-    - clock
-    - hearth
-    - tidal
+    ShopThemes: []
   - Id: CurioCoralBroth
     Name: Coral Broth
     Description: 'DRINK / COMMON / STACKABLE
@@ -4340,12 +4188,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Peach Sea
-    ShopThemes:
-    - archive
-    - frost
-    - hearth
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: CurioFangPin
     Name: Fang Pin
     Description: 'CURIO / COMMON / STACKABLE
@@ -4384,10 +4227,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 0
     ReferenceName: Shark Button
-    ShopThemes:
-    - astral
-    - clock
-    - hearth
+    ShopThemes: []
   - Id: CurioRicochetSeltzer
     Name: Ricochet Seltzer
     Description: 'DRINK / COMMON / STACKABLE
@@ -4435,11 +4275,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Soda Tea
-    ShopThemes:
-    - archive
-    - astral
-    - frost
-    - tidal
+    ShopThemes: []
   - Id: CurioNoonSpark
     Name: Noon Spark
     Description: 'DRINK / COMMON / STACKABLE
@@ -4482,13 +4318,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Startled Awake by Afternoon
-    ShopThemes:
-    - archive
-    - astral
-    - clock
-    - frost
-    - hearth
-    - tidal
+    ShopThemes: []
   - Id: CurioQuietHour
     Name: Quiet Hour
     Description: 'DRINK / COMMON / STACKABLE
@@ -4531,13 +4361,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Time of Leisure
-    ShopThemes:
-    - archive
-    - clock
-    - hearth
-    - oddity
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: CurioBentTape
     Name: Bent Tape
     Description: 'CURIO / COMMON / STACKABLE
@@ -4620,12 +4444,7 @@ MonoBehaviour:
     Mechanic: 0
     Category: 1
     ReferenceName: Weird Grassland
-    ShopThemes:
-    - archive
-    - clock
-    - oddity
-    - orchard
-    - tidal
+    ShopThemes: []
   - Id: CurioKindlingGloves
     Name: Kindling Gloves
     Description: 'CURIO / COMMON / STACKABLE
@@ -4710,10 +4529,9 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Bento Box
     ShopThemes:
-    - astral
-    - clock
-    - hearth
     - orchard
+    - fam-food
+    - fam-gold
   - Id: CurioStormDryer
     Name: Storm Dryer
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -4754,8 +4572,8 @@ MonoBehaviour:
     ReferenceName: Cheap Hair Dryer
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-team
+    - fam-melee
   - Id: CurioRetortCup
     Name: Retort Cup
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -4802,9 +4620,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Commemorative Mug
     ShopThemes:
-    - clock
     - hearth
-    - oddity
+    - fam-ranged
+    - fam-survival
   - Id: CurioShatteredPager
     Name: Shattered Pager
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -4844,11 +4662,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Cracked Phone
     ShopThemes:
-    - archive
-    - astral
     - frost
-    - orchard
-    - tidal
+    - fam-gold
+    - fam-ranged
   - Id: CurioWatchfulTea
     Name: Watchful Tea
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -4889,9 +4705,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Gaze
     ShopThemes:
-    - frost
     - hearth
-    - orchard
+    - fam-survival
   - Id: CurioSunfireFlask
     Name: Sunfire Flask
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -4942,9 +4757,8 @@ MonoBehaviour:
     ReferenceName: Golden Fuel
     ShopThemes:
     - archive
-    - astral
-    - frost
-    - tidal
+    - fam-drink
+    - fam-ranged
   - Id: CurioGiltOrbit
     Name: Gilt Orbit
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -4985,9 +4799,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Gold-Plated Ring
     ShopThemes:
-    - archive
     - astral
-    - frost
+    - fam-chest
+    - fam-ranged
   - Id: CurioEmberEspresso
     Name: Ember Espresso
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5032,10 +4846,8 @@ MonoBehaviour:
     ReferenceName: Hot Coffee
     ShopThemes:
     - archive
-    - astral
-    - clock
-    - hearth
-    - tidal
+    - fam-drink
+    - fam-team
   - Id: CurioPrismRecord
     Name: Prism Record
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5077,8 +4889,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Iridescent Disc
     ShopThemes:
-    - archive
     - oddity
+    - fam-ranged
   - Id: CurioCitrusStorm
     Name: Citrus Storm
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5122,12 +4934,9 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Lemon Spring Water
     ShopThemes:
-    - archive
-    - astral
-    - clock
-    - frost
-    - hearth
     - tidal
+    - fam-drink
+    - fam-ranged
   - Id: CurioMoonMilk
     Name: Moon Milk
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5171,11 +4980,9 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Midnight
     ShopThemes:
-    - archive
-    - frost
-    - hearth
     - orchard
-    - tidal
+    - fam-drink
+    - fam-survival
   - Id: CurioPocketSun
     Name: Pocket Sun
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5219,9 +5026,9 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Orange Joy
     ShopThemes:
-    - archive
-    - orchard
     - tidal
+    - fam-drink
+    - fam-luck
   - Id: CurioInkFeather
     Name: Ink Feather
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5260,7 +5067,7 @@ MonoBehaviour:
     ReferenceName: Quill
     ShopThemes:
     - archive
-    - oddity
+    - fam-shop
   - Id: CurioMulberryRiot
     Name: Mulberry Riot
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5309,9 +5116,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Rock 'n' Roll Mulberry
     ShopThemes:
-    - archive
     - orchard
-    - tidal
+    - fam-drink
+    - fam-gold
+    - fam-chest
   - Id: CurioDreamBlindfold
     Name: Dream Blindfold
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5358,9 +5166,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Sleep Mask
     ShopThemes:
-    - archive
     - orchard
-    - tidal
+    - fam-chest
+    - fam-luck
   - Id: CurioSleepyMist
     Name: Sleepy Mist
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5409,11 +5217,9 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Sleep Well
     ShopThemes:
-    - archive
-    - astral
     - clock
-    - hearth
-    - tidal
+    - fam-drink
+    - fam-freeze
   - Id: CurioClearSip
     Name: Clear Sip
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5459,8 +5265,8 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Spring Water
     ShopThemes:
-    - archive
     - tidal
+    - fam-drink
   - Id: CurioOddElixir
     Name: Odd Elixir
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5499,8 +5305,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Strangely Favored Drink
     ShopThemes:
-    - archive
     - oddity
+    - fam-drink
   - Id: CurioDaylightBonnet
     Name: Daylight Bonnet
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5542,8 +5348,8 @@ MonoBehaviour:
     ReferenceName: Sun Hat
     ShopThemes:
     - frost
-    - hearth
-    - orchard
+    - fam-gold
+    - fam-survival
   - Id: CurioNeedleTarget
     Name: Needle Target
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5589,9 +5395,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Target Board
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-ranged
+    - fam-crit
   - Id: CurioManyDoorKey
     Name: Many Door Key
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5637,9 +5443,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Universal Key
     ShopThemes:
-    - archive
-    - orchard
     - tidal
+    - fam-luck
+    - fam-chest
   - Id: CurioCourageJuice
     Name: Courage Juice
     Description: 'DRINK / UNCOMMON / STACKABLE
@@ -5689,11 +5495,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Vitamin C Rage
     ShopThemes:
-    - archive
-    - clock
-    - hearth
-    - oddity
     - tidal
+    - fam-drink
+    - fam-speed
+    - fam-melee
   - Id: CurioCrookedEight
     Name: Crooked Eight
     Description: 'CURIO / UNCOMMON / STACKABLE
@@ -5739,11 +5544,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Weird Pool Ball
     ShopThemes:
-    - archive
-    - astral
-    - frost
     - orchard
-    - tidal
+    - fam-luck
   - Id: CurioTornAlmanac
     Name: Torn Almanac
     Description: 'CURIO / RARE / STACKABLE
@@ -5784,8 +5586,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Chaos Calendar
     ShopThemes:
-    - archive
     - oddity
+    - fam-luck
   - Id: CurioHoardersLocket
     Name: Hoarders Locket
     Description: 'CURIO / RARE / STACKABLE
@@ -5824,8 +5626,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Cowardice
     ShopThemes:
-    - archive
     - oddity
+    - fam-gold
   - Id: CurioSplitKernel
     Name: Split Kernel
     Description: 'FOOD / RARE / STACKABLE
@@ -5870,9 +5672,9 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Cracked Seed
     ShopThemes:
-    - frost
     - hearth
-    - orchard
+    - fam-food
+    - fam-survival
   - Id: CurioWildPigment
     Name: Wild Pigment
     Description: 'DRINK / RARE / STACKABLE
@@ -5922,11 +5724,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Crazy Paint
     ShopThemes:
-    - archive
     - clock
-    - hearth
-    - oddity
-    - tidal
+    - fam-drink
+    - fam-speed
+    - fam-melee
   - Id: CurioStillwaterUrn
     Name: Stillwater Urn
     Description: 'CURIO / RARE / STACKABLE
@@ -5968,7 +5769,7 @@ MonoBehaviour:
     ReferenceName: Despair
     ShopThemes:
     - archive
-    - oddity
+    - fam-survival
   - Id: CurioPanicBell
     Name: Panic Bell
     Description: 'CURIO / RARE / STACKABLE
@@ -6007,7 +5808,7 @@ MonoBehaviour:
     ReferenceName: Fear
     ShopThemes:
     - archive
-    - oddity
+    - fam-luck
   - Id: CurioOilyLozenge
     Name: Oily Lozenge
     Description: 'FOOD / RARE / STACKABLE
@@ -6054,8 +5855,9 @@ MonoBehaviour:
     ReferenceName: Fish Oil in a Box
     ShopThemes:
     - frost
-    - hearth
-    - orchard
+    - fam-food
+    - fam-shop
+    - fam-survival
   - Id: CurioLodestoneLabel
     Name: Lodestone Label
     Description: 'CURIO / RARE / STACKABLE
@@ -6102,11 +5904,10 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Fridge Sticker
     ShopThemes:
-    - archive
-    - astral
-    - clock
     - frost
-    - hearth
+    - fam-team
+    - fam-ranged
+    - fam-gold
   - Id: CurioHungryLedger
     Name: Hungry Ledger
     Description: 'CURIO / RARE / STACKABLE
@@ -6133,10 +5934,10 @@ MonoBehaviour:
     Icon: {fileID: -1528355404, guid: 92cebe1ea2252224bbf0d5ad0c999b3e, type: 3}
     UnlockWave: 3
     Modifiers: []
-    Rarity: 2
+    Rarity: 3
     Stacking: 0
     MaximumStacks: 8
-    ShopWeight: 55
+    ShopWeight: 8
     Pools: 2
     AltarCurrency: 1
     AltarPrice: 3
@@ -6145,8 +5946,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Greed
     ShopThemes:
-    - archive
     - oddity
+    - fam-kills
   - Id: CurioStoneCrust
     Name: Stone Crust
     Description: 'FOOD / RARE / STACKABLE
@@ -6191,8 +5992,9 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Hard Bread
     ShopThemes:
-    - hearth
     - orchard
+    - fam-food
+    - fam-melee
   - Id: CurioBitterHoney
     Name: Bitter Honey
     Description: 'DRINK / RARE / STACKABLE
@@ -6242,13 +6044,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Matcha Honey
     ShopThemes:
-    - archive
-    - astral
-    - clock
     - frost
-    - hearth
-    - orchard
-    - tidal
+    - fam-drink
+    - fam-survival
+    - fam-chest
   - Id: CurioBurdenCollar
     Name: Burden Collar
     Description: 'CURIO / RARE / STACKABLE
@@ -6296,8 +6095,7 @@ MonoBehaviour:
     ReferenceName: Neck Brace
     ShopThemes:
     - clock
-    - hearth
-    - oddity
+    - fam-collision
   - Id: CurioHushEarmuffs
     Name: Hush Earmuffs
     Description: 'CURIO / RARE / STACKABLE
@@ -6343,12 +6141,9 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Noise-Cancelling Headphones
     ShopThemes:
-    - archive
-    - astral
-    - clock
-    - frost
-    - oddity
     - tidal
+    - fam-survival
+    - fam-crit
   - Id: CurioProfitSlide
     Name: Profit Slide
     Description: 'CURIO / RARE / STACKABLE
@@ -6390,7 +6185,7 @@ MonoBehaviour:
     ReferenceName: Projector Slide
     ShopThemes:
     - archive
-    - oddity
+    - fam-gold
   - Id: CurioAngryReliquary
     Name: Angry Reliquary
     Description: 'CURIO / RARE / STACKABLE
@@ -6430,8 +6225,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Rage
     ShopThemes:
-    - archive
     - oddity
+    - fam-chest
   - Id: CurioPetalTonic
     Name: Petal Tonic
     Description: 'DRINK / RARE / STACKABLE
@@ -6475,11 +6270,9 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Rose Water
     ShopThemes:
-    - archive
-    - frost
     - hearth
-    - orchard
-    - tidal
+    - fam-drink
+    - fam-survival
   - Id: CurioSorrowLantern
     Name: Sorrow Lantern
     Description: 'CURIO / RARE / STACKABLE
@@ -6520,8 +6313,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Sadness
     ShopThemes:
-    - archive
     - oddity
+    - fam-delay
   - Id: CurioMuteClock
     Name: Mute Clock
     Description: 'CURIO / RARE / STACKABLE
@@ -6556,10 +6349,10 @@ MonoBehaviour:
     - Effect: 3
       Scope: 0
       Value: 0.4
-    Rarity: 2
+    Rarity: 3
     Stacking: 0
     MaximumStacks: 8
-    ShopWeight: 55
+    ShopWeight: 8
     Pools: 1
     AltarCurrency: 1
     AltarPrice: 3
@@ -6568,11 +6361,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Silent Alarm
     ShopThemes:
-    - astral
-    - clock
-    - hearth
-    - oddity
     - tidal
+    - fam-speed
   - Id: CurioUrchinBall
     Name: Urchin Ball
     Description: 'CURIO / RARE / STACKABLE
@@ -6619,10 +6409,10 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Spiky Yoga Ball
     ShopThemes:
-    - clock
-    - hearth
-    - oddity
     - tidal
+    - fam-collision
+    - fam-survival
+    - fam-speed
   - Id: CurioSourMandarin
     Name: Sour Mandarin
     Description: 'FOOD / RARE / STACKABLE
@@ -6667,7 +6457,8 @@ MonoBehaviour:
     ReferenceName: Tangy Tangerine
     ShopThemes:
     - hearth
-    - orchard
+    - fam-food
+    - fam-melee
   - Id: CurioWakefulCordial
     Name: Wakeful Cordial
     Description: 'DRINK / RARE / STACKABLE
@@ -6717,12 +6508,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Wake Up!
     ShopThemes:
-    - archive
-    - astral
     - clock
-    - hearth
-    - oddity
-    - tidal
+    - fam-drink
+    - fam-collision
+    - fam-melee
   - Id: CurioGlassLotus
     Name: Glass Lotus
     Description: 'CURIO / RARE / STACKABLE
@@ -6762,7 +6551,7 @@ MonoBehaviour:
     ReferenceName: Water Lily
     ShopThemes:
     - archive
-    - oddity
+    - fam-crit
   - Id: CurioNestDumpling
     Name: Nest Dumpling
     Description: 'FOOD / RARE / STACKABLE
@@ -6806,8 +6595,9 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Weird Rice Ball
     ShopThemes:
-    - hearth
     - orchard
+    - fam-food
+    - fam-shop
   - Id: CurioVictorDraught
     Name: Victor Draught
     Description: 'DRINK / RARE / STACKABLE
@@ -6856,10 +6646,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Winningway
     ShopThemes:
-    - archive
-    - astral
-    - frost
     - tidal
+    - fam-drink
+    - fam-crit
+    - fam-ranged
   - Id: CurioWishWick
     Name: Wish Wick
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -6908,8 +6698,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Birthday Candle
     ShopThemes:
-    - archive
-    - oddity
+    - frost
+    - fam-merge
   - Id: CurioShieldBlower
     Name: Shield Blower
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -6950,9 +6740,8 @@ MonoBehaviour:
     ReferenceName: Cooling Fan
     ShopThemes:
     - astral
-    - clock
-    - hearth
-    - oddity
+    - fam-collision
+    - fam-survival
   - Id: CurioLiarMask
     Name: Liar Mask
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -6995,8 +6784,8 @@ MonoBehaviour:
     ReferenceName: Deception
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-crit
+    - fam-team
   - Id: CurioOrbitPastry
     Name: Orbit Pastry
     Description: 'FOOD / MYTHIC / STACKABLE
@@ -7051,12 +6840,10 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Donut
     ShopThemes:
-    - archive
-    - astral
-    - clock
-    - frost
-    - hearth
     - orchard
+    - fam-food
+    - fam-collision
+    - fam-ranged
   - Id: CurioOathParcel
     Name: Oath Parcel
     Description: 'FOOD / MYTHIC / STACKABLE
@@ -7099,8 +6886,9 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Dumplings
     ShopThemes:
-    - hearth
     - orchard
+    - fam-food
+    - fam-team
   - Id: CurioFortunePear
     Name: Fortune Pear
     Description: 'FOOD / MYTHIC / STACKABLE
@@ -7150,10 +6938,9 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Expensive Fruit
     ShopThemes:
-    - archive
-    - hearth
-    - orchard
     - tidal
+    - fam-food
+    - fam-luck
   - Id: CurioEmeraldInvoice
     Name: Emerald Invoice
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7193,9 +6980,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Green Form
     ShopThemes:
-    - archive
-    - orchard
     - tidal
+    - fam-shop
   - Id: CurioBatteringHelm
     Name: Battering Helm
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7242,8 +7028,7 @@ MonoBehaviour:
     ReferenceName: Hard Hat
     ShopThemes:
     - clock
-    - hearth
-    - oddity
+    - fam-collision
   - Id: CurioGambleSandwich
     Name: Gamble Sandwich
     Description: 'FOOD / MYTHIC / STACKABLE
@@ -7289,7 +7074,8 @@ MonoBehaviour:
     ReferenceName: Healthy Sandwich
     ShopThemes:
     - hearth
-    - orchard
+    - fam-food
+    - fam-luck
   - Id: CurioFeastBucket
     Name: Feast Bucket
     Description: 'FOOD / MYTHIC / STACKABLE
@@ -7351,11 +7137,10 @@ MonoBehaviour:
     Category: 2
     ReferenceName: Juicy Fried Chicken
     ShopThemes:
-    - astral
-    - clock
-    - frost
-    - hearth
     - orchard
+    - fam-food
+    - fam-survival
+    - fam-collision
   - Id: CurioWanderLetter
     Name: Wander Letter
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7402,9 +7187,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Message From A Friend
     ShopThemes:
-    - archive
-    - astral
     - frost
+    - fam-crit
   - Id: CurioVenomPass
     Name: Venom Pass
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7443,8 +7227,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Mysterious ID
     ShopThemes:
-    - archive
     - oddity
+    - fam-delay
   - Id: CurioTruceBottle
     Name: Truce Bottle
     Description: 'DRINK / MYTHIC / STACKABLE
@@ -7499,13 +7283,10 @@ MonoBehaviour:
     Category: 1
     ReferenceName: Peace Water
     ShopThemes:
-    - archive
     - astral
-    - clock
-    - frost
-    - hearth
-    - oddity
-    - tidal
+    - fam-drink
+    - fam-team
+    - fam-crit
   - Id: CurioThornPerfume
     Name: Thorn Perfume
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7548,8 +7329,7 @@ MonoBehaviour:
     ReferenceName: Perfume
     ShopThemes:
     - astral
-    - clock
-    - hearth
+    - fam-survival
   - Id: CurioLastHopeMotor
     Name: Last Hope Motor
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7589,7 +7369,7 @@ MonoBehaviour:
     ReferenceName: Self-Driving Force
     ShopThemes:
     - archive
-    - oddity
+    - fam-crit
   - Id: CurioAnchorTack
     Name: Anchor Tack
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7629,7 +7409,7 @@ MonoBehaviour:
     ReferenceName: Thumbtack
     ShopThemes:
     - archive
-    - oddity
+    - fam-team
   - Id: CurioVoidDoubloon
     Name: Void Doubloon
     Description: 'CURIO / MYTHIC / STACKABLE
@@ -7670,8 +7450,8 @@ MonoBehaviour:
     Category: 0
     ReferenceName: Universe Coin
     ShopThemes:
-    - archive
-    - oddity
+    - clock
+    - fam-delay
   - Id: CurioSixfoldRoot
     Name: Sixfold Root
     Description: 'FOOD / MYTHIC / STACKABLE
@@ -7716,7 +7496,8 @@ MonoBehaviour:
     ReferenceName: Potato
     ShopThemes:
     - hearth
-    - orchard
+    - fam-food
+    - fam-melee
   Bonds:
   - Id: hearth
     Name: Hearth
@@ -7755,13 +7536,13 @@ MonoBehaviour:
     Name: Frost
     Threshold: 2
     Icon: {fileID: -30878964, guid: a7f3022276cabc145be1d073413a243a, type: 3}
-    Effect: 5
-    Value: 0.15
+    Effect: 36
+    Value: -0.05
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.15
+      Value: -0.05
     - Threshold: 6
-      Value: 0.3
+      Value: -0.1
   - Id: orchard
     Name: Orchard
     Threshold: 2
@@ -7778,47 +7559,47 @@ MonoBehaviour:
     Threshold: 2
     Icon: {fileID: 608553034, guid: 9e6358b84def80646bc9d3ec24bc7470, type: 3}
     Effect: 28
-    Value: 0.04
+    Value: 0.08
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.04
-    - Threshold: 6
       Value: 0.08
+    - Threshold: 6
+      Value: 0.16
   - Id: tidal
     Name: Tidal
     Threshold: 2
     Icon: {fileID: 1326636829, guid: 2de0098cfeb2c084d9925f3154964afa, type: 3}
     Effect: 27
-    Value: 0.04
+    Value: 0.08
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.04
-    - Threshold: 6
       Value: 0.08
+    - Threshold: 6
+      Value: 0.16
   - Id: oddity
     Name: Oddity
     Threshold: 2
     Icon: {fileID: 1554392765, guid: 5e1b2e412571c9b479c388262e2b6fd7, type: 3}
-    Effect: 23
-    Value: 0.04
+    Effect: 8
+    Value: 0.05
     ExtraBonuses:
     - Threshold: 4
-      Value: 0.04
+      Value: 0.05
     - Threshold: 6
-      Value: 0.08
+      Value: 0.1
   - Id: hare
     Name: Springstep
     Threshold: 2
     Icon: {fileID: -128994627, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 23
-    Value: 0.08
+    Effect: 31
+    Value: 0.15
     ExtraBonuses: []
   - Id: archer
     Name: Longbow
     Threshold: 2
     Icon: {fileID: 1105854806, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 22
-    Value: 0.12
+    Effect: 21
+    Value: 3
     ExtraBonuses: []
   - Id: root
     Name: Rootkin
@@ -7829,31 +7610,24 @@ MonoBehaviour:
     ExtraBonuses: []
   - Id: gauntlet
     Name: Prizefighters
-    Threshold: 3
+    Threshold: 2
     Icon: {fileID: -1159395267, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 1
-    Value: 0.08
+    Effect: 20
+    Value: 4
     ExtraBonuses: []
   - Id: regal
     Name: Velvet Court
-    Threshold: 4
+    Threshold: 2
     Icon: {fileID: -701735268, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 0
-    Value: 0.15
+    Effect: 13
+    Value: 0.08
     ExtraBonuses: []
   - Id: clover
     Name: Lucky Leaves
     Threshold: 2
     Icon: {fileID: 1591840258, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 16
-    Value: 0.1
-    ExtraBonuses: []
-  - Id: fruit
-    Name: Fruit Basket
-    Threshold: 2
-    Icon: {fileID: 716288510, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 7
-    Value: 0.3
+    Effect: 41
+    Value: 0.08
     ExtraBonuses: []
   - Id: gear
     Name: Clockwork Union
@@ -7866,22 +7640,22 @@ MonoBehaviour:
     Name: Hat Society
     Threshold: 2
     Icon: {fileID: -1721100714, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 8
-    Value: 0.06
+    Effect: 10
+    Value: 2
     ExtraBonuses: []
   - Id: horn
     Name: Little Horns
     Threshold: 2
     Icon: {fileID: 1887997586, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 8
-    Value: 0.08
+    Effect: 25
+    Value: 1
     ExtraBonuses: []
   - Id: sprout
     Name: Jade Nursery
-    Threshold: 5
+    Threshold: 3
     Icon: {fileID: 1493219369, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 15
-    Value: 0.1
+    Value: 0.06
     ExtraBonuses: []
   - Id: knight
     Name: Crossing Knights
@@ -7890,30 +7664,23 @@ MonoBehaviour:
     Effect: 19
     Value: 5
     ExtraBonuses: []
-  - Id: ball
-    Name: Lantern Revel
-    Threshold: 2
-    Icon: {fileID: -883730457, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 19
-    Value: 2
-    ExtraBonuses: []
   - Id: morning
     Name: Morning Bells
-    Threshold: 3
+    Threshold: 2
     Icon: {fileID: -2036373524, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 12
-    Value: 0.15
+    Value: 0.1
     ExtraBonuses: []
   - Id: rune
     Name: Runic School
-    Threshold: 3
+    Threshold: 2
     Icon: {fileID: 1481698924, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
-    Effect: 34
-    Value: 0.06
+    Effect: 26
+    Value: 1
     ExtraBonuses: []
   - Id: mask
     Name: Masked Carnival
-    Threshold: 3
+    Threshold: 2
     Icon: {fileID: 2054111496, guid: 242a373528102a3458398e1bd03e76d4, type: 3}
     Effect: 38
     Value: 0.1
@@ -7922,15 +7689,15 @@ MonoBehaviour:
     Name: Wild Stitch
     Threshold: 2
     Icon: {fileID: -1110965468, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
-    Effect: 11
-    Value: 0.12
+    Effect: 4
+    Value: 0.4
     ExtraBonuses: []
   - Id: resolve
     Name: Unbroken
     Threshold: 2
     Icon: {fileID: 1993844940, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
-    Effect: 18
-    Value: 0.2
+    Effect: 43
+    Value: 0.06
     ExtraBonuses: []
   - Id: shoe
     Name: Quicksoles
@@ -7950,8 +7717,50 @@ MonoBehaviour:
     Name: Rain Script
     Threshold: 2
     Icon: {fileID: 1113165655, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
-    Effect: 7
-    Value: 0.35
+    Effect: 29
+    Value: 0.1
+    ExtraBonuses: []
+  - Id: paper-wings
+    Name: Paper Wings
+    Threshold: 2
+    Icon: {fileID: -973585194, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 30
+    Value: 0.12
+    ExtraBonuses: []
+  - Id: sweet-tooth
+    Name: Sweet Tooth
+    Threshold: 2
+    Icon: {fileID: 1743565340, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 14
+    Value: 0.07
+    ExtraBonuses: []
+  - Id: big-top
+    Name: Big Top
+    Threshold: 2
+    Icon: {fileID: 805768637, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 39
+    Value: 0.08
+    ExtraBonuses: []
+  - Id: static-club
+    Name: Static Club
+    Threshold: 2
+    Icon: {fileID: 661514282, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 49
+    Value: 0.04
+    ExtraBonuses: []
+  - Id: sea-shanty
+    Name: Sea Shanty
+    Threshold: 2
+    Icon: {fileID: 1050507585, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 40
+    Value: 0.06
+    ExtraBonuses: []
+  - Id: exhibit-hall
+    Name: Exhibit Hall
+    Threshold: 2
+    Icon: {fileID: 612245033, guid: 19fa8ea2d10941442bd49c8f089c7065, type: 3}
+    Effect: 50
+    Value: 0.1
     ExtraBonuses: []
   Recipes:
   - Id: dream-pillow
@@ -8249,6 +8058,7 @@ MonoBehaviour:
   LootRevision: 1
   SignatureRevision: 1
   ExpansionRevision: 1
+  PoolRevision: 1
   ContentRevision: 1
   ReviewRevision: 1
   StatRevision: 1

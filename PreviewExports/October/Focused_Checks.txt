@@ -95,7 +95,7 @@ PASS Ally counterpart Original / RibbonOtter
 PASS Ally counterpart Original / SpindleWren
 PASS All 76 reference relics installed once with artwork
 PASS 76 distinct relic icon slices
-PASS All 19 reference bond counterparts installed
+PASS All reference bond counterparts installed (Fruit Basket and Lantern Revel retired 18/10/2026)
 PASS Two original bond families
 PASS Separate painted movement and attack poses VerdantMatron
 PASS Separate painted movement and attack poses CopperCauldron
@@ -431,47 +431,47 @@ PASS Original hero signature executes in live combat RainArchivist
 PASS Real mount and rider pairing follows simulation
 PASS Boss knockback immune and ordinary displacement capped
 PASS Executable reference altar recipe AnchorSnail
-PASS Altar retains one ingredient weapon AnchorSnail
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon AnchorSnail
 PASS Executable reference altar recipe SailSquid
-PASS Altar retains one ingredient weapon SailSquid
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon SailSquid
 PASS Executable reference altar recipe SockCyclops
-PASS Altar retains one ingredient weapon SockCyclops
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon SockCyclops
 PASS Executable reference altar recipe DiceCrab
-PASS Altar retains one ingredient weapon DiceCrab
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon DiceCrab
 PASS Executable reference altar recipe MaskPepper
-PASS Altar retains one ingredient weapon MaskPepper
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon MaskPepper
 PASS Executable reference altar recipe CrayonGremlin
-PASS Altar retains one ingredient weapon CrayonGremlin
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon CrayonGremlin
 PASS Executable reference altar recipe MirrorNewt
-PASS Altar retains one ingredient weapon MirrorNewt
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon MirrorNewt
 PASS Executable reference altar recipe RibbonSpider
-PASS Altar retains one ingredient weapon RibbonSpider
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon RibbonSpider
 PASS Executable reference altar recipe CoilKettle
-PASS Altar retains one ingredient weapon CoilKettle
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon CoilKettle
 PASS Executable reference altar recipe ThimbleMoth
-PASS Altar retains one ingredient weapon ThimbleMoth
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon ThimbleMoth
 PASS Executable reference altar recipe ReelOwl
-PASS Altar retains one ingredient weapon ReelOwl
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon ReelOwl
 PASS Executable reference altar recipe RainbowTailor
-PASS Altar retains one ingredient weapon RainbowTailor
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon RainbowTailor
 PASS Executable reference altar recipe RainbowBell
-PASS Altar retains one ingredient weapon RainbowBell
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon RainbowBell
 PASS Executable reference altar recipe SaffronMechanist
-PASS Altar retains one ingredient weapon SaffronMechanist
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon SaffronMechanist
 PASS Executable reference altar recipe ClockworkPiper
-PASS Altar retains one ingredient weapon ClockworkPiper
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon ClockworkPiper
 PASS Executable reference altar recipe VelvetChampion
-PASS Altar retains one ingredient weapon VelvetChampion
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon VelvetChampion
 PASS Executable reference altar recipe PaperInventor
-PASS Altar retains one ingredient weapon PaperInventor
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon PaperInventor
 PASS Executable reference altar recipe ReturnCaptain
-PASS Altar retains one ingredient weapon ReturnCaptain
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon ReturnCaptain
 PASS Executable reference altar recipe DoughForeman
-PASS Altar retains one ingredient weapon DoughForeman
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon DoughForeman
 PASS Executable reference altar recipe IronLocomotive
-PASS Altar retains one ingredient weapon IronLocomotive
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon IronLocomotive
 PASS Executable reference altar recipe VioletRemnant
-PASS Altar retains one ingredient weapon VioletRemnant
+PASS Altar keeps an ingredient weapon, or the result's own locked weapon VioletRemnant
 PASS Full party can complete a tier-two merge without exceeding the saved body cap
 PASS A full party is not capped: a new body is paced by recruit quotas, not a body cap
 PASS Gift-only allies never enter ordinary theme pools

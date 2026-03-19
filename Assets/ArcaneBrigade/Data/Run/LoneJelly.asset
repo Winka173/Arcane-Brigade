@@ -39,6 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - oddity
+  - tidal
   Passive: 0
   PassiveStrength: 1
   Description: Travels without roster companions; absorbs purchased companions' traits.
@@ -62,6 +63,9 @@ MonoBehaviour:
     Value: 3
   RecruitThemes:
   - oddity
+  - tidal
+  - knight
+  - fam-merge
   HeroMechanic: 5
   CompanionModifiers: []
   Price: 20

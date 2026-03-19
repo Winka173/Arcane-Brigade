@@ -79,7 +79,7 @@ namespace ArcaneBrigade
         }
         public bool OctoberItemEligible(ItemDefinition item)
         {
-            if (OctoberHero == "Belle" || item.ShopThemes == null || item.ShopThemes.Length == 0) return true;
+            if (item.ShopThemes == null || item.ShopThemes.Length == 0) return true; // shared (every Common item)
             foreach (string theme in catalog.Unit(State.ChampionId).RecruitThemes) if (Array.IndexOf(item.ShopThemes, theme) >= 0) return true;
             return false;
         }
@@ -184,7 +184,7 @@ namespace ArcaneBrigade
                 if (t == "Inflatable Hammer") { w.Damage *= .3f; w.PushDistance = .45f; }
                 if (t == "Little Cabbage" || t == "Big Cabbage" || t == "Domestic Spiked Ball") unit.CollisionDamage = t == "Little Cabbage" ? 12 : t == "Big Cabbage" ? 24 : 18;
                 bool Tagged(string tag) => Array.IndexOf(unit.Tags, tag) >= 0;
-                if (Tagged("fruit")) w.Cooldown /= 1 + Mathf.Min(.24f, Talent("Applehead") * .08f);
+                if (Tagged("orchard")) w.Cooldown /= 1 + Mathf.Min(.24f, Talent("Applehead") * .08f);
                 if (Tagged("gear")) { float bonus = Mathf.Min(.25f, Talent("Bullhorn Warrior") * .08f + Talent("Intelligent Construct") * .04f); w.Cooldown /= 1 + bonus; unit.Speed *= 1 + bonus; }
                 if (Tagged("rune") && Talent("Little Witch") > 0) { w.Cooldown *= 1.15f; w.ProjectileVisualWidth *= 1.3f; w.ProjectilePierce += 2; }
                 if (Tagged("shoe") && Talent("Monkey King") > 0) { w.Cooldown /= 1.1f; unit.Speed *= 1.1f; }

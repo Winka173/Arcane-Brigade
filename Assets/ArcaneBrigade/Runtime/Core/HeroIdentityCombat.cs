@@ -80,16 +80,8 @@ namespace ArcaneBrigade
         public int HeroIdentitySpecimens => identitySpecimens.Count;
         public float HeroIdentityCharge => identityCharge;
         /// <summary>How much of the hero's own resource one gauge tier takes (three tiers transform).</summary>
-        public float HeroIdentityRequired => IdentityId switch {
-            "LanternKnight" => 8, "Postmaster" => 4, "DrowsySeer" => 4, "RootOracle" => 4,
-            "LoneJelly" => 4, "GlassDice" => 8, "TideSinger" => 4, "CometRunner" => 10,
-            "MirrorKeeper" => 3, "TreasureAcorn" => 3, "VerdantMatron" => 5, "CopperCauldron" => 6,
-            "ChinaMarionette" => 2, "SoapSkater" => 3, "VelvetRegent" => 8, "ButtonCavalier" => 3,
-            "NightMaw" => 4, "ThornTreasurer" => 4, "CitrusMarshal" => 10, "IvorySovereign" => 3,
-            "PetalCitadel" => 5, "PatchworkHost" => 4, "ArchiveCurator" => 3, "PennyBroker" => 10,
-            "StormFencer" => 3, "TinVirtuoso" => 6, "MoonProwler" => 8,
-            "SupperMortar" => 5, "LanternWeaver" => 3, "HourglassStag" => 4,
-            "RainArchivist" => 3, _ => 1 };
+        /// <summary>Comfortable gauges (18/10/2026): every hero's tier needs the same points; the recipe (HeroGauge) sets the pace.</summary>
+        public float HeroIdentityRequired => GaugeTier;
         public string HeroIdentityStatus
         {
             get
@@ -148,6 +140,8 @@ namespace ArcaneBrigade
         private int identityGlyphSeed;
         private HeroIdentityGlyph IdentityGlyph(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float duration = .6f, float delay = 0, HeroGlyphRole role = HeroGlyphRole.Emblem)
         {
+            // late game: with more than 80 enemies the secondary ink is left out (the glyph still exists for its caller)
+            if (Crowded && (role == HeroGlyphRole.Ambient || role == HeroGlyphRole.Link)) return new HeroIdentityGlyph { Role = role, Shape = shape, Position = at, End = end };
             if (identityGlyphs.Count >= 40) identityGlyphs.RemoveAt(0);
             var g = new HeroIdentityGlyph { Role = role, Seed = ++identityGlyphSeed, Shape = shape, Position = at, End = end, Radius = radius, Width = .2f,
                 Direction = (end - at).sqrMagnitude > .001f ? (end - at).normalized : Champion.Facing,
@@ -277,7 +271,7 @@ namespace ArcaneBrigade
                 if (p.Faction != Faction.Enemy || identityNearMisses.Contains(p.Id)) continue;
                 float d = Vector2.Distance(p.Position, Champion.Position), collision = Champion.Definition.Radius + p.Radius;
                 if (d <= collision + .12f || d > collision + .65f || Vector2.Dot(p.Velocity, p.Position - Champion.Position) <= 0) continue;
-                identityNearMisses.Add(p.Id); identityCharge = Mathf.Min(3, identityCharge + 1); identityNearAt = Elapsed + .8f;
+                identityNearMisses.Add(p.Id); Fill(GaugeSource.NearMiss); identityNearAt = Elapsed + .8f;
                 IdentityGlyph(MorphGeometry.Ring, Champion.Position, Champion.Position, .5f, .25f, role: HeroGlyphRole.Poise); break;
             }
             if (identityNearMisses.Count > 64) identityNearMisses.RemoveWhere(id => !projectiles.Exists(p => p.Id == id));
@@ -292,7 +286,7 @@ namespace ArcaneBrigade
             float banked = Mathf.Min(damage * .35f * (HeroAwakening ? 2 : 1), Mathf.Max(0, IdentityPower * 3 - identityBank));
             if (banked <= 0) return damage;
             identityBank += banked; HeroIdentityDeferredDamage += banked; identityDebtor = target;
-            Charge(.5f); // every deferred blow fills the gauge
+            Fill(GaugeSource.Debt); // every deferred blow fills the gauge faster
             if (identityBankAt < 0) identityBankAt = Elapsed;
             return damage - banked;
         }
@@ -304,6 +298,7 @@ namespace ArcaneBrigade
             UnitState target = units.Find(u => u.Id == source.AttackTargetId && CanHit(Faction.Champion,u));
             if (target == null) return true;
             float food = Mathf.Min(.35f, catalog.HeroFood * .025f); HeroIdentityReplacedDamage += damage;
+            Fill(GaugeSource.Hit); // the mortar replaces the basic attack, so each serving counts as the hero's hit
             // served where the diner will be: aimed at the target's position after the flight, within 1.2 units
             for (int i = 0; i < 2; i++)
             {

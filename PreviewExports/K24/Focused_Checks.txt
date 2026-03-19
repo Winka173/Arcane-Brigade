@@ -2,7 +2,7 @@ PASS Full original boss and reward atlases
 PASS Optional boss never enters ordinary rotation
 PASS The transfer hand belongs to the boss anatomy
 PASS Rarity ordinals remain compatible
-PASS Four relics and two original prismatic allies
+PASS Four relics and the prismatic allies (two originals and Eclipse Egg, 18/10/2026)
 PASS Prismatic gifts cannot reroll into normal shops
 PASS No challenge before three transfers LanternKnight
 PASS Transfer count is idempotent LanternKnight

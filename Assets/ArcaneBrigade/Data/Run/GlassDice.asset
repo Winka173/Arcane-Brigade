@@ -39,6 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - oddity
+  - orchard
   Passive: 0
   PassiveStrength: 0.5
   Description: Collect 6 gold to burst nearby enemies. High luck and critical chance;
@@ -58,14 +59,10 @@ MonoBehaviour:
     Scope: 3
     Value: 0.15
   RecruitThemes:
-  - hearth
-  - archive
-  - clock
-  - frost
-  - orchard
-  - astral
-  - tidal
   - oddity
+  - orchard
+  - clover
+  - fam-luck
   HeroMechanic: 6
   CompanionModifiers: []
   Price: 24

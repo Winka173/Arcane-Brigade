@@ -13,6 +13,7 @@ namespace ArcaneBrigade
             if (HeroIdentityEnabled && !IdentityOwn(cause) && (IdentityId == "ChinaMarionette" || IdentityId == "RainArchivist")) identityRecovered += Mathf.Max(0, recovered);
         }
         private void Charge(float amount) { if (amount > 0) identityCharge += amount; }
+        private string gaugeLastPerformer; private float kitBountyCoinAt;
 
         private void ObserveHeroIdentityEvents()
         {
@@ -27,59 +28,60 @@ namespace ArcaneBrigade
                 if (e.Kind == CombatEventKind.Fire && e.Faction != Faction.Enemy && basic)
                 {
                     UnitState performer = e.Subject ?? UnitWithId(e.Cause.SourceUnitId);
-                    if (IdentityId == "LanternKnight" && Elapsed >= identitySecondAt && performer != null && (CompanionCount == 0 ? personal : performer.Faction == Faction.Companion) && (performer.Position - Champion.Position).sqrMagnitude <= 16)
-                    { Charge(1); identitySecondAt = Elapsed + .25f; }
-                    if (IdentityId == "VelvetRegent" && performer != null && performer.Faction == Faction.Companion) Charge(1);
-                    if (IdentityId == "PatchworkHost" && performer != null && IsLead(performer))
+                    if (performer != null && performer.Faction == Faction.Companion)
                     {
-                        Charge(1);
-                        if (k != null && k.Has(KitPassive.HealOnLeadAct) && Elapsed >= kitLeadHealAt) { kitLeadHealAt = Elapsed + k.Value(KitPassive.HealOnLeadAct); Heal(1, IdentityCause()); }
+                        // friends' attacks (the gauge recipe decides what they are worth to this hero)
+                        Fill(GaugeSource.FriendHit);
+                        if ((performer.Position - Champion.Position).sqrMagnitude <= 16) Fill(GaugeSource.FriendNear);
+                        if (performer.Definition.Id != gaugeLastPerformer) { gaugeLastPerformer = performer.Definition.Id; Fill(GaugeSource.FriendDistinct); }
+                        if (catalog.HeroBondLevels > 0) Fill(GaugeSource.FriendBond);
                     }
+                    if (IdentityId == "PatchworkHost" && performer != null && IsLead(performer) && k != null && k.Has(KitPassive.HealOnLeadAct) && Elapsed >= kitLeadHealAt)
+                    { kitLeadHealAt = Elapsed + k.Value(KitPassive.HealOnLeadAct); Heal(1, IdentityCause()); }
                     if (personal)
                     {
                         identityAttacks++;
-                        switch (IdentityId)
-                        {
-                            case "Postmaster": case "LoneJelly": case "PetalCitadel": case "SupperMortar": case "DrowsySeer": Charge(1); break;
-                            case "HourglassStag": Charge(1); break; // each swing winds the hourglass; deferred blows add the rest
-                            case "TinVirtuoso": Charge(e.Critical ? 2 : 1); break;
-                            case "ThornTreasurer": Charge(.5f); break;
-                            case "IvorySovereign": Charge(.34f); break;
-                            case "RainArchivist": if (identityAttacks % 3 == 0) IdentityAddPage(0); break;
-                            case "MirrorKeeper": Charge(.34f); if (identityReflections.Count > 0) ReleaseIdentityReflections(); break;
-                        }
+                        if (IdentityId == "MirrorKeeper" && identityReflections.Count > 0) ReleaseIdentityReflections();
                     }
                 }
                 if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null)
                 {
                     UnitState target = e.Subject;
-                    if (personal && basic) ObservePersonalHit(target, e);
+                    if (personal && basic)
+                    {
+                        ObservePersonalHit(target, e);
+                        Fill(GaugeSource.Hit);
+                        if (e.Critical) Fill(GaugeSource.Crit);
+                        if ((target.Position - Champion.Position).sqrMagnitude > 16) Fill(GaugeSource.FarHit);
+                    }
+                    else if (e.Critical && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion) Fill(GaugeSource.FriendCrit);
+                    if (!personal && k != null && k.Has(KitPassive.SlowToFreeze) && target.Alive && (target.ChillUntil > Elapsed || target.KitSlowUntil > Elapsed) && target.FreezeReadyAt <= Elapsed
+                        && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion)
+                    { target.FreezeReadyAt = Elapsed + k.Value(KitPassive.SlowToFreeze); Sleep(target, .3f); }
                     if (!personal && k != null && Elapsed >= identityTickAt && k.Has(KitPassive.TeamChainChance) && UnitWithId(e.Cause.SourceUnitId)?.Faction == Faction.Companion
                         && combatRandom.NextDouble() < k.Value(KitPassive.TeamChainChance)) KitChain(target, IdentityPower * .2f);
-                    if (IdentityId == "PatchworkHost" && identityLead != null && e.Cause.SourceUnitId == identityLead.Id && identityLead.Definition.Weapon.Kind == WeaponKind.Contact && Elapsed >= identitySecondAt)
-                    { Charge(1); identitySecondAt = Elapsed + .4f; }
                 }
                 if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy) ObserveKill(e, personal);
                 if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Champion && e.Cause.ItemId != "hunger" && e.Cause.ItemId != "overtime-cost" && e.Cause.ItemId != "curio-cost") ObserveInjury(e);
                 if (e.Kind == CombatEventKind.Dodge)
                 {
-                    if (IdentityId == "ButtonCavalier" || IdentityId == "StormFencer") Charge(2);
-                    if (IdentityId == "RainArchivist") IdentityAddPage(1);
+                    Fill(GaugeSource.NearMiss);
                     kitDodgeUntil = Elapsed + 2;
                 }
                 if (e.Kind == CombatEventKind.Pickup && e.Loot == LootKind.Coin)
                 {
-                    if (IdentityId == "GlassDice" || IdentityId == "PennyBroker") Charge(e.Value);
-                    if (IdentityId == "TideSinger") Charge(1);
+                    Fill(GaugeSource.Coin, Mathf.Max(1, e.Value));
                     if (HeroAwakening && k != null && k.Action == KitAction.BullMarket && Elapsed >= awakenReceiptAt) { awakenReceiptAt = Elapsed + .4f; /* at most one receipt every 0.4s */ var t = IdentityTarget(Champion.Position, 7); if (t != null) IdentityShot(Champion.Position, t.Position - Champion.Position, IdentityPower * .45f * ApproachScale, homingTarget: t.Id); }
                 }
-                if (e.Kind == CombatEventKind.ChestOpened && IdentityId == "RainArchivist") IdentityAddPage(3);
+                if (e.Kind == CombatEventKind.ChestOpened) Fill(GaugeSource.Chest);
             }
         }
         /// <summary>Our own identity strikes still feed a few things (the thunder god marks what it shocks).</summary>
         private void ObserveOwnEvent(CombatEvent e)
         {
             if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null && IdentityId == "StormFencer") e.Subject.KitShockedUntil = Elapsed + 3;
+            if (e.Kind == CombatEventKind.Hit && e.Subject != null && e.Subject == identityBounty && HeroAwakening && Kit?.Action == KitAction.AcornGun && Elapsed >= kitBountyCoinAt)
+            { kitBountyCoinAt = Elapsed + .5f; KitDropCoin(e.Subject.Position); }
             if (e.Kind == CombatEventKind.Kill && e.Faction == Faction.Enemy) ObserveKill(e, true);
         }
         private void ObservePersonalHit(UnitState target, CombatEvent e)
@@ -88,27 +90,25 @@ namespace ArcaneBrigade
             if (IdentityId == "Postmaster") IdentityMarkTarget(target);
             if (IdentityId == "LanternWeaver")
             {
-                bool fresh = !Marked(target);
+                if (Marked(target)) Fill(GaugeSource.Pinned); // hitting an enemy already pinned fills the frame faster
                 IdentityMarkTarget(target);
-                Charge(fresh ? 1 : .25f); // a new knot, or tightening one already tied
             }
-            if (IdentityId == "TreasureAcorn" && target == identityBounty && Elapsed >= identitySecondAt) { Charge(1); identitySecondAt = Elapsed + .2f; }
             if (IdentityId == "ArchiveCurator" && !identitySpecimens.Exists(d => d.Id == target.Definition.Id))
             {
                 if (identitySpecimens.Count < 3) identitySpecimens.Add(target.Definition);
                 else if (IdentityApproach != 1) identitySpecimens[identityCounter++ % 3] = target.Definition;
                 if (kitSpecies.Add(target.Definition.Id))
                 {
-                    Charge(1); kitRecorded++;
+                    Fill(GaugeSource.NewSpecies); kitRecorded++;
                     int every = 5; if (k.Has(KitPassive.SpeciesGold) && kitRecorded % every == 0) { KitDropCoin(Champion.Position, Mathf.RoundToInt(k.Value(KitPassive.SpeciesGold))); }
                 }
             }
-            else if (IdentityId == "ArchiveCurator" && Recorded(target)) Charge(.25f); // studying a recorded species fills the index too
             if (k.Has(KitPassive.EnemySlowOnHeroHit)) KitSlowEnemy(target, k.Value(KitPassive.EnemySlowOnHeroHit), 1);
             if (k.Has(KitPassive.TeamDamageVsWet)) target.KitWetUntil = Elapsed + 3;
             if (k.Has(KitPassive.ChainOnHit) && combatRandom.NextDouble() < k.Value(KitPassive.ChainOnHit)) KitChain(target, IdentityPower * .5f);
             if (Behind(Champion, target))
             {
+                Fill(GaugeSource.Rear);
                 if (k.Has(KitPassive.EnemySlowOnRear)) KitSlowEnemy(target, k.Value(KitPassive.EnemySlowOnRear), 1.5f);
                 if (k.Has(KitPassive.CoinOnRearHit) && lootRandom.NextDouble() < k.Value(KitPassive.CoinOnRearHit)) KitDropCoin(target.Position);
             }
@@ -129,11 +129,10 @@ namespace ArcaneBrigade
             HeroKit k = Kit; if (k == null) return;
             UnitState dead = e.Subject;
             kitKills++;
-            if (IdentityId == "NightMaw" && !(dead?.Variant?.Summoned ?? false)) Charge(1);
+            if (!(dead?.Variant?.Summoned ?? false)) Fill(GaugeSource.Kill, personal ? 1 : .3f);
             if (dead == null) return;
             if (dead == identityBounty && IdentityId == "TreasureAcorn")
             {
-                Charge(HeroIdentityRequired);
                 if (identityPayouts < k.Value(KitPassive.BountyGold)) { Gold = RunSession.BoundedCounter((long)Gold + 1); identityPayouts++; HeroIdentityGold++; }
                 identityBounty = null;
             }
@@ -146,12 +145,8 @@ namespace ArcaneBrigade
         private void ObserveInjury(CombatEvent e)
         {
             HeroKit k = Kit; if (k == null) return;
-            kitHurtUntil = Elapsed + (k.Has(KitPassive.TeamDamageOnHeroHurt) ? 3 : 2);
-            switch (IdentityId)
-            {
-                case "CopperCauldron": Charge(2); break;
-                case "ChinaMarionette": case "IvorySovereign": case "ButtonCavalier": case "ThornTreasurer": Charge(1); break;
-            }
+            kitHurtUntil = Elapsed + (k.Has(KitPassive.TeamDamageOnHeroHurt) ? 3 : 2); kitInjuries++;
+            Fill(GaugeSource.Hurt);
             if (k.Has(KitPassive.CrackDamage)) kitCracks = Mathf.Min(3, kitCracks + 1);
             if (k.Has(KitPassive.GoldOnHeroHurt) && kitInjuryGold < k.Value(KitPassive.GoldOnHeroHurt)) { kitInjuryGold++; Gold = RunSession.BoundedCounter((long)Gold + 1); HeroIdentityGold++; }
             UnitState attacker = UnitWithId(e.Cause.SourceUnitId);
@@ -160,7 +155,10 @@ namespace ArcaneBrigade
                 if (k.Has(KitPassive.EnemyCrackOnHit)) attacker.KitCrackedUntil = Elapsed + 4;
                 bool throne = HeroAwakening && k.Action == KitAction.Throne;
                 if (k.Has(KitPassive.Thorns) && (throne || Elapsed >= kitThornAt))
-                { kitThornAt = Elapsed + 1; IdentityHit(MorphGeometry.Line, Champion.Position, attacker.Position, 0, IdentityPower * (throne ? .9f : .7f) * ApproachScale, .05f, 1); }
+                {
+                    kitThornAt = Elapsed + 1; IdentityHit(MorphGeometry.Line, Champion.Position, attacker.Position, 0, IdentityPower * (throne ? .9f : .7f) * ApproachScale, .05f, 1);
+                    if (k.Has(KitPassive.ThornCoin) && lootRandom.NextDouble() < k.Value(KitPassive.ThornCoin)) KitDropCoin(attacker.Position);
+                }
             }
             AwakenOnInjury();
         }
@@ -169,6 +167,7 @@ namespace ArcaneBrigade
         {
             if (!HeroIdentityEnabled || !Champion.Alive || Phase != RunPhase.Combat) return;
             identityGlyphs.RemoveAll(g => g.Until <= Elapsed);
+            liveEnemyCount = 0; foreach (UnitState u in units) if (u.Alive && u.Faction == Faction.Enemy) liveEnemyCount++;
             identityMarks.RemoveAll(m => !m.Target.Alive || m.Until <= Elapsed);
             ResolveIdentityStrikes();
             if (!Champion.Alive || Phase != RunPhase.Combat) return;
@@ -190,6 +189,7 @@ namespace ArcaneBrigade
             ProcessKitPassives(delta, movement, walking, moved, target);
             bool transformed = ProcessAwakening(delta, walking, target);
             if (!transformed) ProcessKitFill(delta, movement, walking, moved, target);
+            SettleGauge(delta);
             // full charges climb the gauge (one tier each); while transformed or cooling the charge waits
             float required = Mathf.Max(.01f, HeroIdentityRequired);
             while (identityCharge >= required && !HeroAwakening && !HeroAwakenCooling && awakenMeter < 1) { identityCharge -= required; AwakenClimb(); }
@@ -199,24 +199,20 @@ namespace ArcaneBrigade
         /// <summary>What fills each hero's gauge, besides the events above.</summary>
         private void ProcessKitFill(float delta, Vector2 movement, bool walking, float moved, UnitState target)
         {
-            bool near = IdentityTarget(Champion.Position, 6) != null;
+            Fill(GaugeSource.Distance, moved);
+            Fill(GaugeSource.Time, delta);
+            if (GaugeUses(GaugeSource.NearEnemies) && IdentityTarget(Champion.Position, 6) != null) Fill(GaugeSource.NearEnemies, delta);
+            if (GaugeUses(GaugeSource.Sprouts) && units.Exists(u => u.Alive && u.Faction == Faction.Companion && (u.Definition.Id == "GrandSprout" || u.Definition.Id == "LittleSprout"))) Fill(GaugeSource.Sprouts, delta);
+            if (GaugeUses(GaugeSource.NearMiss)) IdentityNearMiss();
             switch (IdentityId)
             {
-                case "DrowsySeer": if (walking) Charge(delta * .4f); break;
-                case "RootOracle": case "VerdantMatron": if (near) Charge(delta); break;
-                case "CopperCauldron": if (IdentityTarget(Champion.Position, 3) != null) Charge(delta); break;
-                case "CometRunner": case "CitrusMarshal": case "MoonProwler": Charge(moved); break;
-                case "StormFencer": IdentityNearMiss(); if (near) Charge(delta * .4f); break;
-                case "ButtonCavalier": case "MirrorKeeper": IdentityNearMiss(); break;
-                case "ChinaMarionette": while (identityRecovered >= 6) { identityRecovered -= 6; Charge(1); } break;
-                case "RainArchivist": if (identityRecovered >= 4) { identityRecovered = 0; IdentityAddPage(2); } break;
                 case "SoapSkater":
                     if (walking && movement.sqrMagnitude > .01f && Elapsed >= identitySecondAt)
                     {
                         Vector2 heading = movement.normalized;
                         if (identityGhost.sqrMagnitude > .1f && Vector2.Dot(identityGhost, heading) < .574f)
                         {
-                            Charge(1); identitySecondAt = Elapsed + 1.2f;
+                            Fill(GaugeSource.Turn); identitySecondAt = Elapsed + 1.2f;
                             // the bubble left on the turn slows and gently pushes (a passive: it barely hurts)
                             IdentityHit(MorphGeometry.Disc, Champion.Position, Champion.Position + heading, .9f, IdentityPower * .15f, .65f, 3, slow: .7f, push: .2f);
                         }
@@ -249,11 +245,16 @@ namespace ArcaneBrigade
                     var p = projectiles[i]; if (p.Faction != Faction.Enemy || (p.Position - Champion.Position).sqrMagnitude > 1.4f * 1.4f) continue;
                     identityReflections.Add(new IdentityReflection { Direction = -p.Velocity.normalized, Element = p.Element }); HeroIdentityPrevented += p.Damage;
                     IdentityGlyph(MorphGeometry.Ring, p.Position, Champion.Position, .35f, .35f, role: HeroGlyphRole.Catch); projectiles.RemoveAt(i);
-                    identitySecondAt = Elapsed + k.Value(KitPassive.MirrorCatch); identityBankAt = Elapsed; Charge(1); break;
+                    identitySecondAt = Elapsed + k.Value(KitPassive.MirrorCatch); identityBankAt = Elapsed; Fill(GaugeSource.Block); break;
                 }
                 if (identityReflections.Count > 0 && Elapsed - identityBankAt >= 2 && target != null) ReleaseIdentityReflections();
             }
             if (k.Has(KitPassive.BountyGold) && (identityBounty == null || !identityBounty.Alive)) identityBounty = target;
+            if (k.Has(KitPassive.RootGrip) && Elapsed >= kitRootGripAt && IdentityTarget(Champion.Position, 4) is UnitState gripped)
+            {
+                kitRootGripAt = Elapsed + k.Value(KitPassive.RootGrip);
+                KitSlowEnemy(gripped, 1, 1); IdentityGlyph(MorphGeometry.Seal, gripped.Position, gripped.Position, .35f, 1, role: HeroGlyphRole.Mark);
+            }
             if (k.Has(KitPassive.TimeDebt)) CollectDebt(target);
         }
 
@@ -274,7 +275,7 @@ namespace ArcaneBrigade
         {
             for (int i = projectiles.Count - 1; i >= 0; i--)
                 if (projectiles[i].Faction == Faction.Enemy && (projectiles[i].Position - position).sqrMagnitude <= radius * radius)
-                { HeroIdentityPrevented += projectiles[i].Damage; projectiles.RemoveAt(i); IdentityGlyph(MorphGeometry.Ring, position, position, .6f, .3f, role: HeroGlyphRole.Catch); return true; }
+                { HeroIdentityPrevented += projectiles[i].Damage; projectiles.RemoveAt(i); IdentityGlyph(MorphGeometry.Ring, position, position, .6f, .3f, role: HeroGlyphRole.Catch); Fill(GaugeSource.Block); return true; }
             return false;
         }
         private void ReleaseIdentityReflections()

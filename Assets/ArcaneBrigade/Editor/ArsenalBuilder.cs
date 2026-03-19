@@ -102,9 +102,11 @@ namespace ArcaneBrigade.Editor
             var asset = AssetDatabase.LoadAssetAtPath<HeroGaugeArtwork>(path);
             if (asset == null) { asset = ScriptableObject.CreateInstance<HeroGaugeArtwork>(); AssetDatabase.CreateAsset(asset, path); }
             var windows = new List<HeroGaugeArtwork.Window>();
-            foreach (string empty in Directory.GetFiles("Assets/ArcaneBrigade/Art/Arsenal", "Gauge_*_Empty_v1.png"))
+            foreach (string empty in Directory.GetFiles("Assets/ArcaneBrigade/Art/Arsenal", "Gauge*_Empty_v1.png"))
             {
-                string hero = Path.GetFileName(empty).Substring("Gauge_".Length).Replace("_Empty_v1.png", "");
+                // Gauge_<Hero> is keyed by the hero; the simplified Gauge2_<Hero> (content expansion) keeps its prefix
+                string name = Path.GetFileName(empty).Replace("_Empty_v1.png", "");
+                string hero = name.StartsWith("Gauge2_") ? name : name.Substring("Gauge_".Length);
                 string full = empty.Replace("_Empty_v1.png", "_Full_v1.png");
                 if (!File.Exists(full)) continue;
                 var a = new Texture2D(2, 2, TextureFormat.RGBA32, false); var b = new Texture2D(2, 2, TextureFormat.RGBA32, false);

@@ -23,14 +23,14 @@ clock	Clock	AttackSpeed	10	0.56	0.504
 clock	Clock	AttackSpeed	12	0.63	0.567
 clock	Clock	AttackSpeed	14	0.7	0.63
 clock	Clock	AttackSpeed	16	0.77	0.692999959
-frost	Frost	Roam	2	0.15	0.135
-frost	Frost	Roam	4	0.450000018	0.405
-frost	Frost	Roam	6	0.900000036	0.81
-frost	Frost	Roam	8	1.05000007	0.944999933
-frost	Frost	Roam	10	1.2	1.08
-frost	Frost	Roam	12	1.35	1.21500015
-frost	Frost	Roam	14	1.5	1.3499999
-frost	Frost	Roam	16	1.6500001	1.485
+frost	Frost	EnemySpeed	2	-0.05	-0.05
+frost	Frost	EnemySpeed	4	-0.15	-0.15
+frost	Frost	EnemySpeed	6	-0.3	-0.3
+frost	Frost	EnemySpeed	8	-0.350000024	-0.35
+frost	Frost	EnemySpeed	10	-0.4	-0.4
+frost	Frost	EnemySpeed	12	-0.450000018	-0.450000018
+frost	Frost	EnemySpeed	14	-0.5	-0.5
+frost	Frost	EnemySpeed	16	-0.55	-0.55
 orchard	Orchard	Luck	2	0.04	0.036
 orchard	Orchard	Luck	4	0.12	0.107999995
 orchard	Orchard	Luck	6	0.24	0.215999991
@@ -39,46 +39,46 @@ orchard	Orchard	Luck	10	0.32	0.288
 orchard	Orchard	Luck	12	0.359999985	0.324
 orchard	Orchard	Luck	14	0.399999976	0.359999955
 orchard	Orchard	Luck	16	0.44	0.396
-astral	Astral	BulletSize	2	0.04	0.036
-astral	Astral	BulletSize	4	0.12	0.107999995
-astral	Astral	BulletSize	6	0.24	0.215999991
-astral	Astral	BulletSize	8	0.28	0.251999974
-astral	Astral	BulletSize	10	0.32	0.288
-astral	Astral	BulletSize	12	0.359999985	0.324
-astral	Astral	BulletSize	14	0.399999976	0.359999955
-astral	Astral	BulletSize	16	0.44	0.396
-tidal	Tidal	BulletBounce	2	0.04	0.036
-tidal	Tidal	BulletBounce	4	0.12	0.107999995
-tidal	Tidal	BulletBounce	6	0.24	0.215999991
-tidal	Tidal	BulletBounce	8	0.28	0.251999974
-tidal	Tidal	BulletBounce	10	0.32	0.288
-tidal	Tidal	BulletBounce	12	0.359999985	0.324
-tidal	Tidal	BulletBounce	14	0.399999976	0.359999955
-tidal	Tidal	BulletBounce	16	0.44	0.396
-oddity	Oddity	Dodge	2	0.04	0.036
-oddity	Oddity	Dodge	4	0.12	0.107999995
-oddity	Oddity	Dodge	6	0.24	0.215999991
-oddity	Oddity	Dodge	8	0.28	0.251999974
-oddity	Oddity	Dodge	10	0.32	0.288
-oddity	Oddity	Dodge	12	0.359999985	0.324
-oddity	Oddity	Dodge	14	0.399999976	0.359999955
-oddity	Oddity	Dodge	16	0.44	0.396
-hare	Springstep	Dodge	2	0.08	0.072
-hare	Springstep	Dodge	4	0.16	0.144
-hare	Springstep	Dodge	6	0.24	0.215999991
-hare	Springstep	Dodge	8	0.32	0.288
-hare	Springstep	Dodge	10	0.399999976	0.359999955
-hare	Springstep	Dodge	12	0.48	0.431999981
-hare	Springstep	Dodge	14	0.56	0.504
-hare	Springstep	Dodge	16	0.64	0.576
-archer	Longbow	AttackRange	2	0.12	0.107999995
-archer	Longbow	AttackRange	4	0.24	0.215999991
-archer	Longbow	AttackRange	6	0.359999985	0.323999971
-archer	Longbow	AttackRange	8	0.48	0.431999981
-archer	Longbow	AttackRange	10	0.599999964	0.539999962
-archer	Longbow	AttackRange	12	0.719999969	0.647999942
-archer	Longbow	AttackRange	14	0.84	0.756
-archer	Longbow	AttackRange	16	0.96	0.863999963
+astral	Astral	BulletSize	2	0.08	0.072
+astral	Astral	BulletSize	4	0.24	0.215999991
+astral	Astral	BulletSize	6	0.48	0.431999981
+astral	Astral	BulletSize	8	0.56	0.503999949
+astral	Astral	BulletSize	10	0.64	0.576
+astral	Astral	BulletSize	12	0.719999969	0.648
+astral	Astral	BulletSize	14	0.799999952	0.7199999
+astral	Astral	BulletSize	16	0.88	0.792
+tidal	Tidal	BulletBounce	2	0.08	0.072
+tidal	Tidal	BulletBounce	4	0.24	0.215999991
+tidal	Tidal	BulletBounce	6	0.48	0.431999981
+tidal	Tidal	BulletBounce	8	0.56	0.503999949
+tidal	Tidal	BulletBounce	10	0.64	0.576
+tidal	Tidal	BulletBounce	12	0.719999969	0.648
+tidal	Tidal	BulletBounce	14	0.799999952	0.7199999
+tidal	Tidal	BulletBounce	16	0.88	0.792
+oddity	Oddity	Crit	2	0.05	0.0449999981
+oddity	Oddity	Crit	4	0.15	0.135
+oddity	Oddity	Crit	6	0.3	0.27
+oddity	Oddity	Crit	8	0.350000024	0.315
+oddity	Oddity	Crit	10	0.4	0.359999985
+oddity	Oddity	Crit	12	0.450000018	0.405
+oddity	Oddity	Crit	14	0.5	0.45
+oddity	Oddity	Crit	16	0.55	0.495
+hare	Springstep	Knockback	2	0.15	0.135
+hare	Springstep	Knockback	4	0.3	0.27
+hare	Springstep	Knockback	6	0.450000018	0.405
+hare	Springstep	Knockback	8	0.6	0.54
+hare	Springstep	Knockback	10	0.75	0.674999952
+hare	Springstep	Knockback	12	0.900000036	0.81
+hare	Springstep	Knockback	14	1.05000007	0.945000052
+hare	Springstep	Knockback	16	1.2	1.08
+archer	Longbow	RangedDamage	2	3	2.69999981
+archer	Longbow	RangedDamage	4	6	5.39999962
+archer	Longbow	RangedDamage	6	9	8.099999
+archer	Longbow	RangedDamage	8	12	10.7999992
+archer	Longbow	RangedDamage	10	15	13.5
+archer	Longbow	RangedDamage	12	18	16.1999989
+archer	Longbow	RangedDamage	14	21	18.9
+archer	Longbow	RangedDamage	16	24	21.5999985
 root	Rootkin	Health	2	8	7.2
 root	Rootkin	Health	4	16	14.4
 root	Rootkin	Health	6	24	21.5999985
@@ -87,31 +87,30 @@ root	Rootkin	Health	10	40	36
 root	Rootkin	Health	12	48	43.1999969
 root	Rootkin	Health	14	56	50.3999977
 root	Rootkin	Health	16	64	57.6
-gauntlet	Prizefighters	AttackSpeed	3	0.08	0.072
-gauntlet	Prizefighters	AttackSpeed	6	0.16	0.144
-gauntlet	Prizefighters	AttackSpeed	9	0.24	0.215999991
-gauntlet	Prizefighters	AttackSpeed	12	0.32	0.288
-gauntlet	Prizefighters	AttackSpeed	15	0.399999976	0.359999955
-regal	Velvet Court	Damage	4	0.15	0.135
-regal	Velvet Court	Damage	8	0.3	0.27
-regal	Velvet Court	Damage	12	0.450000018	0.405
-regal	Velvet Court	Damage	16	0.6	0.54
-clover	Lucky Leaves	Luck	2	0.1	0.0899999961
-clover	Lucky Leaves	Luck	4	0.2	0.179999992
-clover	Lucky Leaves	Luck	6	0.3	0.27
-clover	Lucky Leaves	Luck	8	0.4	0.359999985
-clover	Lucky Leaves	Luck	10	0.5	0.45
-clover	Lucky Leaves	Luck	12	0.6	0.54
-clover	Lucky Leaves	Luck	14	0.7	0.63
-clover	Lucky Leaves	Luck	16	0.8	0.719999969
-fruit	Fruit Basket	Heal	2	0.3	0.27
-fruit	Fruit Basket	Heal	4	0.6	0.54
-fruit	Fruit Basket	Heal	6	0.900000036	0.81
-fruit	Fruit Basket	Heal	8	1.2	1.08
-fruit	Fruit Basket	Heal	10	1.5	1.3499999
-fruit	Fruit Basket	Heal	12	1.80000007	1.62
-fruit	Fruit Basket	Heal	14	2.10000014	1.8900001
-fruit	Fruit Basket	Heal	16	2.4	2.16
+gauntlet	Prizefighters	MeleeDamage	2	4	3.6
+gauntlet	Prizefighters	MeleeDamage	4	8	7.2
+gauntlet	Prizefighters	MeleeDamage	6	12	10.7999992
+gauntlet	Prizefighters	MeleeDamage	8	16	14.4
+gauntlet	Prizefighters	MeleeDamage	10	20	18
+gauntlet	Prizefighters	MeleeDamage	12	24	21.5999985
+gauntlet	Prizefighters	MeleeDamage	14	28	25.1999989
+gauntlet	Prizefighters	MeleeDamage	16	32	28.8
+regal	Velvet Court	CompanionDamage	2	0.08	0.072
+regal	Velvet Court	CompanionDamage	4	0.16	0.144
+regal	Velvet Court	CompanionDamage	6	0.24	0.215999991
+regal	Velvet Court	CompanionDamage	8	0.32	0.288
+regal	Velvet Court	CompanionDamage	10	0.399999976	0.359999955
+regal	Velvet Court	CompanionDamage	12	0.48	0.431999981
+regal	Velvet Court	CompanionDamage	14	0.56	0.504
+regal	Velvet Court	CompanionDamage	16	0.64	0.576
+clover	Lucky Leaves	ShopRarity	2	0.08	0.072
+clover	Lucky Leaves	ShopRarity	4	0.16	0.144
+clover	Lucky Leaves	ShopRarity	6	0.24	0.215999991
+clover	Lucky Leaves	ShopRarity	8	0.32	0.288
+clover	Lucky Leaves	ShopRarity	10	0.399999976	0.359999955
+clover	Lucky Leaves	ShopRarity	12	0.48	0.431999981
+clover	Lucky Leaves	ShopRarity	14	0.56	0.504
+clover	Lucky Leaves	ShopRarity	16	0.64	0.576
 gear	Clockwork Union	Income	2	4	3.6
 gear	Clockwork Union	Income	4	8	7.2
 gear	Clockwork Union	Income	6	12	10.7999992
@@ -120,25 +119,27 @@ gear	Clockwork Union	Income	10	20	18
 gear	Clockwork Union	Income	12	24	21.5999985
 gear	Clockwork Union	Income	14	28	25.1999989
 gear	Clockwork Union	Income	16	32	28.8
-hat	Hat Society	Crit	2	0.06	0.0539999977
-hat	Hat Society	Crit	4	0.12	0.107999995
-hat	Hat Society	Crit	6	0.179999992	0.161999986
-hat	Hat Society	Crit	8	0.24	0.215999991
-hat	Hat Society	Crit	10	0.299999982	0.269999981
-hat	Hat Society	Crit	12	0.359999985	0.323999971
-hat	Hat Society	Crit	14	0.42	0.378
-hat	Hat Society	Crit	16	0.48	0.431999981
-horn	Little Horns	Crit	2	0.08	0.072
-horn	Little Horns	Crit	4	0.16	0.144
-horn	Little Horns	Crit	6	0.24	0.215999991
-horn	Little Horns	Crit	8	0.32	0.288
-horn	Little Horns	Crit	10	0.399999976	0.359999955
-horn	Little Horns	Crit	12	0.48	0.431999981
-horn	Little Horns	Crit	14	0.56	0.504
-horn	Little Horns	Crit	16	0.64	0.576
-sprout	Jade Nursery	Discount	5	0.1	0.0899999961
-sprout	Jade Nursery	Discount	10	0.2	0.179999992
-sprout	Jade Nursery	Discount	15	0.3	0.27
+hat	Hat Society	Interest	2	2	1.8
+hat	Hat Society	Interest	4	4	3.6
+hat	Hat Society	Interest	6	6	5.39999962
+hat	Hat Society	Interest	8	8	7.2
+hat	Hat Society	Interest	10	10	9
+hat	Hat Society	Interest	12	12	10.7999992
+hat	Hat Society	Interest	14	14	12.5999994
+hat	Hat Society	Interest	16	16	14.4
+horn	Little Horns	BulletPierce	2	1	0.9
+horn	Little Horns	BulletPierce	4	2	1.8
+horn	Little Horns	BulletPierce	6	3	2.69999981
+horn	Little Horns	BulletPierce	8	4	3.6
+horn	Little Horns	BulletPierce	10	5	4.5
+horn	Little Horns	BulletPierce	12	6	5.39999962
+horn	Little Horns	BulletPierce	14	7	6.29999971
+horn	Little Horns	BulletPierce	16	8	7.2
+sprout	Jade Nursery	Discount	3	0.06	0.0539999977
+sprout	Jade Nursery	Discount	6	0.12	0.107999995
+sprout	Jade Nursery	Discount	9	0.179999992	0.161999986
+sprout	Jade Nursery	Discount	12	0.24	0.215999991
+sprout	Jade Nursery	Discount	15	0.299999982	0.269999981
 knight	Crossing Knights	CollisionDamage	2	5	4.5
 knight	Crossing Knights	CollisionDamage	4	10	9
 knight	Crossing Knights	CollisionDamage	6	15	13.5
@@ -147,45 +148,46 @@ knight	Crossing Knights	CollisionDamage	10	25	22.5
 knight	Crossing Knights	CollisionDamage	12	30	27
 knight	Crossing Knights	CollisionDamage	14	35	31.5
 knight	Crossing Knights	CollisionDamage	16	40	36
-ball	Lantern Revel	CollisionDamage	2	2	1.8
-ball	Lantern Revel	CollisionDamage	4	4	3.6
-ball	Lantern Revel	CollisionDamage	6	6	5.39999962
-ball	Lantern Revel	CollisionDamage	8	8	7.2
-ball	Lantern Revel	CollisionDamage	10	10	9
-ball	Lantern Revel	CollisionDamage	12	12	10.7999992
-ball	Lantern Revel	CollisionDamage	14	14	12.5999994
-ball	Lantern Revel	CollisionDamage	16	16	14.4
-morning	Morning Bells	ChampionDamage	3	0.15	0.135
+morning	Morning Bells	ChampionDamage	2	0.1	0.0899999961
+morning	Morning Bells	ChampionDamage	4	0.2	0.179999992
 morning	Morning Bells	ChampionDamage	6	0.3	0.27
-morning	Morning Bells	ChampionDamage	9	0.450000018	0.405
+morning	Morning Bells	ChampionDamage	8	0.4	0.359999985
+morning	Morning Bells	ChampionDamage	10	0.5	0.45
 morning	Morning Bells	ChampionDamage	12	0.6	0.54
-morning	Morning Bells	ChampionDamage	15	0.75	0.674999952
-rune	Runic School	EnemyCount	3	0.06	0.06
-rune	Runic School	EnemyCount	6	0.12	0.12
-rune	Runic School	EnemyCount	9	0.179999992	0.179999992
-rune	Runic School	EnemyCount	12	0.24	0.24
-rune	Runic School	EnemyCount	15	0.299999982	0.299999982
-mask	Masked Carnival	ChestQuality	3	0.1	0.0899999961
-mask	Masked Carnival	ChestQuality	6	0.2	0.179999992
-mask	Masked Carnival	ChestQuality	9	0.3	0.27
-mask	Masked Carnival	ChestQuality	12	0.4	0.359999985
-mask	Masked Carnival	ChestQuality	15	0.5	0.45
-hide	Wild Stitch	Armor	2	0.12	0.107999995
-hide	Wild Stitch	Armor	4	0.24	0.215999991
-hide	Wild Stitch	Armor	6	0.359999985	0.323999971
-hide	Wild Stitch	Armor	8	0.48	0.431999981
-hide	Wild Stitch	Armor	10	0.599999964	0.539999962
-hide	Wild Stitch	Armor	12	0.719999969	0.647999942
-hide	Wild Stitch	Armor	14	0.84	0.756
-hide	Wild Stitch	Armor	16	0.96	0.863999963
-resolve	Unbroken	ScoreMultiplier	2	0.2	0.179999992
-resolve	Unbroken	ScoreMultiplier	4	0.4	0.359999985
-resolve	Unbroken	ScoreMultiplier	6	0.6	0.54
-resolve	Unbroken	ScoreMultiplier	8	0.8	0.719999969
-resolve	Unbroken	ScoreMultiplier	10	1	0.9
-resolve	Unbroken	ScoreMultiplier	12	1.2	1.08
-resolve	Unbroken	ScoreMultiplier	14	1.4	1.26
-resolve	Unbroken	ScoreMultiplier	16	1.6	1.43999994
+morning	Morning Bells	ChampionDamage	14	0.7	0.63
+morning	Morning Bells	ChampionDamage	16	0.8	0.719999969
+rune	Runic School	BulletSplit	2	1	0.9
+rune	Runic School	BulletSplit	4	2	1.8
+rune	Runic School	BulletSplit	6	3	2.69999981
+rune	Runic School	BulletSplit	8	4	3.6
+rune	Runic School	BulletSplit	10	5	4.5
+rune	Runic School	BulletSplit	12	6	5.39999962
+rune	Runic School	BulletSplit	14	7	6.29999971
+rune	Runic School	BulletSplit	16	8	7.2
+mask	Masked Carnival	ChestQuality	2	0.1	0.0899999961
+mask	Masked Carnival	ChestQuality	4	0.2	0.179999992
+mask	Masked Carnival	ChestQuality	6	0.3	0.27
+mask	Masked Carnival	ChestQuality	8	0.4	0.359999985
+mask	Masked Carnival	ChestQuality	10	0.5	0.45
+mask	Masked Carnival	ChestQuality	12	0.6	0.54
+mask	Masked Carnival	ChestQuality	14	0.7	0.63
+mask	Masked Carnival	ChestQuality	16	0.8	0.719999969
+hide	Wild Stitch	Pickup	2	0.4	0.359999985
+hide	Wild Stitch	Pickup	4	0.8	0.719999969
+hide	Wild Stitch	Pickup	6	1.2	1.08
+hide	Wild Stitch	Pickup	8	1.6	1.43999994
+hide	Wild Stitch	Pickup	10	2	1.8
+hide	Wild Stitch	Pickup	12	2.4	2.16
+hide	Wild Stitch	Pickup	14	2.8	2.52
+hide	Wild Stitch	Pickup	16	3.2	2.87999988
+resolve	Unbroken	DamageCorrection	2	0.06	0.0539999977
+resolve	Unbroken	DamageCorrection	4	0.12	0.107999995
+resolve	Unbroken	DamageCorrection	6	0.179999992	0.161999986
+resolve	Unbroken	DamageCorrection	8	0.24	0.215999991
+resolve	Unbroken	DamageCorrection	10	0.299999982	0.269999981
+resolve	Unbroken	DamageCorrection	12	0.359999985	0.323999971
+resolve	Unbroken	DamageCorrection	14	0.42	0.378
+resolve	Unbroken	DamageCorrection	16	0.48	0.431999981
 shoe	Quicksoles	MoveSpeed	2	0.08	0.072
 shoe	Quicksoles	MoveSpeed	4	0.16	0.144
 shoe	Quicksoles	MoveSpeed	6	0.24	0.215999991
@@ -202,11 +204,59 @@ lantern-guild	Lantern Guild	AttackRange	10	0.5	0.45
 lantern-guild	Lantern Guild	AttackRange	12	0.6	0.54
 lantern-guild	Lantern Guild	AttackRange	14	0.7	0.63
 lantern-guild	Lantern Guild	AttackRange	16	0.8	0.719999969
-rain-script	Rain Script	Heal	2	0.35	0.315
-rain-script	Rain Script	Heal	4	0.7	0.63
-rain-script	Rain Script	Heal	6	1.05	0.944999933
-rain-script	Rain Script	Heal	8	1.4	1.26
-rain-script	Rain Script	Heal	10	1.75	1.57499993
-rain-script	Rain Script	Heal	12	2.1	1.88999987
-rain-script	Rain Script	Heal	14	2.45	2.205
-rain-script	Rain Script	Heal	16	2.8	2.52
+rain-script	Rain Script	BulletSpeed	2	0.1	0.0899999961
+rain-script	Rain Script	BulletSpeed	4	0.2	0.179999992
+rain-script	Rain Script	BulletSpeed	6	0.3	0.27
+rain-script	Rain Script	BulletSpeed	8	0.4	0.359999985
+rain-script	Rain Script	BulletSpeed	10	0.5	0.45
+rain-script	Rain Script	BulletSpeed	12	0.6	0.54
+rain-script	Rain Script	BulletSpeed	14	0.7	0.63
+rain-script	Rain Script	BulletSpeed	16	0.8	0.719999969
+paper-wings	Paper Wings	BulletDistance	2	0.12	0.107999995
+paper-wings	Paper Wings	BulletDistance	4	0.24	0.215999991
+paper-wings	Paper Wings	BulletDistance	6	0.359999985	0.323999971
+paper-wings	Paper Wings	BulletDistance	8	0.48	0.431999981
+paper-wings	Paper Wings	BulletDistance	10	0.599999964	0.539999962
+paper-wings	Paper Wings	BulletDistance	12	0.719999969	0.647999942
+paper-wings	Paper Wings	BulletDistance	14	0.84	0.756
+paper-wings	Paper Wings	BulletDistance	16	0.96	0.863999963
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	2	0.07	0.063
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	4	0.14	0.126
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	6	0.210000008	0.189
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	8	0.28	0.252
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	10	0.35	0.315
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	12	0.420000017	0.378
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	14	0.49	0.440999985
+sweet-tooth	Sweet Tooth	CompanionAttackSpeed	16	0.56	0.504
+big-top	Big Top	RecruitDiscount	2	0.08	0.072
+big-top	Big Top	RecruitDiscount	4	0.16	0.144
+big-top	Big Top	RecruitDiscount	6	0.24	0.215999991
+big-top	Big Top	RecruitDiscount	8	0.32	0.288
+big-top	Big Top	RecruitDiscount	10	0.399999976	0.359999955
+big-top	Big Top	RecruitDiscount	12	0.48	0.431999981
+big-top	Big Top	RecruitDiscount	14	0.56	0.504
+big-top	Big Top	RecruitDiscount	16	0.64	0.576
+static-club	Static Club	ChainChance	2	0.04	0.036
+static-club	Static Club	ChainChance	4	0.08	0.072
+static-club	Static Club	ChainChance	6	0.12	0.107999995
+static-club	Static Club	ChainChance	8	0.16	0.144
+static-club	Static Club	ChainChance	10	0.199999988	0.179999977
+static-club	Static Club	ChainChance	12	0.24	0.215999991
+static-club	Static Club	ChainChance	14	0.28	0.252
+static-club	Static Club	ChainChance	16	0.32	0.288
+sea-shanty	Sea Shanty	RelicDiscount	2	0.06	0.0539999977
+sea-shanty	Sea Shanty	RelicDiscount	4	0.12	0.107999995
+sea-shanty	Sea Shanty	RelicDiscount	6	0.179999992	0.161999986
+sea-shanty	Sea Shanty	RelicDiscount	8	0.24	0.215999991
+sea-shanty	Sea Shanty	RelicDiscount	10	0.299999982	0.269999981
+sea-shanty	Sea Shanty	RelicDiscount	12	0.359999985	0.323999971
+sea-shanty	Sea Shanty	RelicDiscount	14	0.42	0.378
+sea-shanty	Sea Shanty	RelicDiscount	16	0.48	0.431999981
+exhibit-hall	Exhibit Hall	RecordedDamage	2	0.1	0.0899999961
+exhibit-hall	Exhibit Hall	RecordedDamage	4	0.2	0.179999992
+exhibit-hall	Exhibit Hall	RecordedDamage	6	0.3	0.27
+exhibit-hall	Exhibit Hall	RecordedDamage	8	0.4	0.359999985
+exhibit-hall	Exhibit Hall	RecordedDamage	10	0.5	0.45
+exhibit-hall	Exhibit Hall	RecordedDamage	12	0.6	0.54
+exhibit-hall	Exhibit Hall	RecordedDamage	14	0.7	0.63
+exhibit-hall	Exhibit Hall	RecordedDamage	16	0.8	0.719999969

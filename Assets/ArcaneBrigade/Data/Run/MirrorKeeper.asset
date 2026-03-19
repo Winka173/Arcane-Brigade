@@ -38,6 +38,7 @@ MonoBehaviour:
   CriticalChance: 0.05
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
+  - frost
   - oddity
   Passive: 0
   PassiveStrength: 0.5
@@ -52,7 +53,11 @@ MonoBehaviour:
     Scope: 1
     Value: 0.1
   RecruitThemes:
+  - frost
   - oddity
+  - resolve
+  - fam-survival
+  - rival-hide
   HeroMechanic: 9
   CompanionModifiers: []
   Price: 18

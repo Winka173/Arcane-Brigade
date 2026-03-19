@@ -53,6 +53,8 @@ MonoBehaviour:
   RecruitThemes:
   - archive
   - clock
+  - regal
+  - fam-team
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

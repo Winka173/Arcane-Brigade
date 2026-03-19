@@ -29,6 +29,8 @@ PASS Localized stat ArmorCorrection
 PASS Localized stat HealCorrection
 PASS Localized stat CollisionFrequency
 PASS Localized stat ChestReach
+PASS Localized stat ChainChance
+PASS Localized stat RecordedDamage
 PASS Pierce derives from stacked run modifiers
 PASS Split derives from stacked run modifiers
 PASS Bullet collision size grows with visual size
@@ -125,17 +127,19 @@ PASS All stat labels have definitions: ArmorCorrection
 PASS All stat labels have definitions: HealCorrection
 PASS All stat labels have definitions: CollisionFrequency
 PASS All stat labels have definitions: ChestReach
+PASS All stat labels have definitions: ChainChance
+PASS All stat labels have definitions: RecordedDamage
 PASS Click route opens contextual definition
 PASS Dismiss clears glossary without fake unknown explanation
 PASS 32 new species and 24 new weapon identities loaded
-PASS Bond has at least 4 species: hearth (10)
-PASS Bond has at least 4 species: archive (10)
-PASS Bond has at least 4 species: clock (9)
+PASS Bond has at least 4 species: hearth (8)
+PASS Bond has at least 4 species: archive (9)
+PASS Bond has at least 4 species: clock (8)
 PASS Bond has at least 4 species: frost (7)
-PASS Bond has at least 4 species: orchard (7)
+PASS Bond has at least 4 species: orchard (8)
 PASS Bond has at least 4 species: astral (9)
-PASS Bond has at least 4 species: tidal (9)
-PASS Bond has at least 4 species: oddity (6)
+PASS Bond has at least 4 species: tidal (8)
+PASS Bond has at least 4 species: oddity (9)
 PASS Distinct imported animation frames BrassAcorn
 PASS Distinct imported animation frames BreadCrab
 PASS Distinct imported animation frames KettleBat

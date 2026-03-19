@@ -1,0 +1,234 @@
+PASS The expansion is applied and applying it again changes nothing
+PASS 33 bonds: Fruit Basket and Lantern Revel retired; Paper Wings, Sweet Tooth, Big Top, Static Club, Sea Shanty and Exhibit Hall in with an emblem
+PASS Every bond has its own effect
+PASS 25 minor bonds, threshold 2 (Jade Nursery 3)
+PASS TeapotPilgrim has one theme and one minor bond (hearth,lantern-guild)
+PASS CandleSnail has one theme and one minor bond (hearth,lantern-guild)
+PASS MailboxImp has one theme and one minor bond (archive,hat)
+PASS PillowOracle has one theme and one minor bond (astral,hat)
+PASS MushroomLibrarian has one theme and one minor bond (orchard,clover)
+PASS HoodWisp has one theme and one minor bond (frost,root)
+PASS JellySwordsman has one theme and one minor bond (oddity,knight)
+PASS BrassAcorn has one theme and one minor bond (archive,regal)
+PASS BreadCrab has one theme and one minor bond (hearth,gauntlet)
+PASS KettleBat has one theme and one minor bond (hearth,gauntlet)
+PASS BookmarkGolem has one theme and one minor bond (archive,rune)
+PASS TinTick has one theme and one minor bond (clock,static-club)
+PASS SpringDuck has one theme and one minor bond (clock,hare)
+PASS ButtonBeetle has one theme and one minor bond (clock,regal)
+PASS StapleMole has one theme and one minor bond (clock,gear)
+PASS SnowSpoon has one theme and one minor bond (frost,sweet-tooth)
+PASS IceCreamOwl has one theme and one minor bond (frost,sweet-tooth)
+PASS FridgeWisp has one theme and one minor bond (frost,shoe)
+PASS PearMoth has one theme and one minor bond (orchard,morning)
+PASS CitrusToad has one theme and one minor bond (orchard,hare)
+PASS RadishJester has one theme and one minor bond (orchard,mask)
+PASS SeedHedgehog has one theme and one minor bond (orchard,root)
+PASS MoonJelly has one theme and one minor bond (astral,archer)
+PASS StarSock has one theme and one minor bond (astral,shoe)
+PASS CometKite has one theme and one minor bond (astral,archer)
+PASS EclipseEgg has one theme and one minor bond (astral,morning)
+PASS OrbitMoth has one theme and one minor bond (astral,shoe)
+PASS DreamCompass has one theme and one minor bond (clock,archer)
+PASS ShellPostman has one theme and one minor bond (tidal,sea-shanty)
+PASS CoralTeacup has one theme and one minor bond (tidal,clover)
+PASS BubbleKoi has one theme and one minor bond (tidal,clover)
+PASS AnchorSnail has one theme and one minor bond (tidal,knight)
+PASS SailSquid has one theme and one minor bond (tidal,resolve)
+PASS SockCyclops has one theme and one minor bond (oddity,shoe)
+PASS DiceCrab has one theme and one minor bond (oddity,clover)
+PASS MaskPepper has one theme and one minor bond (oddity,mask)
+PASS CrayonGremlin has one theme and one minor bond (oddity,mask)
+PASS MirrorNewt has one theme and one minor bond (oddity,resolve)
+PASS RibbonSpider has one theme and one minor bond (oddity,hide)
+PASS CoilKettle has one theme and one minor bond (hearth,gear)
+PASS ThimbleMoth has one theme and one minor bond (archive,hide)
+PASS ReelOwl has one theme and one minor bond (archive,rune)
+PASS RainbowTailor has one theme and one minor bond (frost,hide)
+PASS RainbowBell has one theme and one minor bond (clock,morning)
+PASS SecretPatchBear has one theme and one minor bond (archive,hide)
+PASS SecretPaperBird has one theme and one minor bond (archive,paper-wings)
+PASS SecretDreamLamb has one theme and one minor bond (astral,hide)
+PASS SaffronMechanist has one theme and one minor bond (hearth,gear)
+PASS ClockworkPiper has one theme and one minor bond (clock,morning)
+PASS VelvetChampion has one theme and one minor bond (archive,regal)
+PASS PaperInventor has one theme and one minor bond (orchard,gear)
+PASS ReturnCaptain has one theme and one minor bond (tidal,knight)
+PASS DoughForeman has one theme and one minor bond (astral,hat)
+PASS IronLocomotive has one theme and one minor bond (frost,resolve)
+PASS VioletRemnant has one theme and one minor bond (oddity,resolve)
+PASS VelvetEnchantress has one theme and one minor bond (hearth,regal)
+PASS GrandSprout has one theme and one minor bond (clock,sprout)
+PASS BristleBall has one theme and one minor bond (orchard,horn)
+PASS PaperDevil has one theme and one minor bond (orchard,horn)
+PASS BalloonMallet has one theme and one minor bond (tidal,big-top)
+PASS LittleSprout has one theme and one minor bond (astral,sprout)
+PASS MonsterMarble has one theme and one minor bond (frost,mask)
+PASS CarouselPony has one theme and one minor bond (oddity,big-top)
+PASS TeacupCricket has one theme and one minor bond (hearth,lantern-guild)
+PASS RibbonOtter has one theme and one minor bond (tidal,rain-script)
+PASS SpindleWren has one theme and one minor bond (archive,paper-wings)
+PASS No Crimson left: Prismatic is the highest rarity
+PASS Eclipse Egg is Prismatic and astral
+PASS Every Mythic companion has its own skill and comes from the dream shop
+PASS The top rarity reads PRISMATIC
+PASS Item rarities moved: Common 40, Uncommon 61, Rare 38, Mythic 27, Prismatic 4
+PASS Common items are shared; every other item belongs to one theme (Prismatic two) and its item families
+PASS Mythic and Prismatic friends each carry their own weapon, used by no hero or starting friend
+PASS PillowOracle can only carry FortuneGlobe
+PASS EclipseEgg can only carry SaucerBlaster
+PASS MirrorNewt can only carry KunaiFan
+PASS CoilKettle can only carry CatcherMitt
+PASS ReelOwl can only carry DreamRacket
+PASS RainbowTailor can only carry TopiaryShears
+PASS RainbowBell can only carry BuzzerBlock
+PASS ClockworkPiper can only carry WindupWrench
+PASS PaperInventor can only carry GrabberClaw
+PASS ReturnCaptain can only carry PlushShark
+PASS IronLocomotive can only carry SnowGlobeGrenade
+PASS Locked weapons stay out of other friends' rolls
+PASS LanternKnight has 2 themes, one signature bond and one item family (hearth,clock,lantern-guild,fam-team)
+PASS LanternKnight pool: 15 companions, 2 Mythic, 7 bonds
+PASS LanternKnight item pool 89
+PASS LanternKnight starting friend KettleBat is in its own pool
+PASS Postmaster has 2 themes, one signature bond and one item family (archive,tidal,paper-wings,fam-marks)
+PASS Postmaster pool: 16 companions, 2 Mythic, 8 bonds
+PASS Postmaster item pool 74
+PASS Postmaster starting friend BookmarkGolem is in its own pool
+PASS DrowsySeer has 2 themes, one signature bond and one item family (astral,hearth,hat,fam-shop)
+PASS DrowsySeer pool: 17 companions, 2 Mythic, 8 bonds
+PASS DrowsySeer item pool 80
+PASS DrowsySeer starting friend CandleSnail is in its own pool
+PASS RootOracle has 2 themes, one signature bond and one item family (orchard,frost,root,fam-survival)
+PASS RootOracle pool: 13 companions, 2 Mythic, 4 bonds
+PASS RootOracle item pool 89
+PASS RootOracle starting friend MushroomLibrarian is in its own pool
+PASS LoneJelly has 2 themes, one signature bond and one item family (oddity,tidal,knight,fam-merge)
+PASS LoneJelly pool: 16 companions, 2 Mythic, 6 bonds
+PASS LoneJelly item pool 74
+PASS LoneJelly starting friend JellySwordsman is in its own pool
+PASS GlassDice has 2 themes, one signature bond and one item family (oddity,orchard,clover,fam-luck)
+PASS GlassDice pool: 18 companions, 2 Mythic, 6 bonds
+PASS GlassDice item pool 79
+PASS GlassDice starting friend DiceCrab is in its own pool
+PASS TideSinger has 2 themes, one signature bond and one item family (tidal,astral,sea-shanty,fam-drink,rival-paper-wings)
+PASS TideSinger pool: 15 companions, 2 Mythic, 8 bonds
+PASS TideSinger item pool 83
+PASS TideSinger starting friend AnchorSnail is in its own pool
+PASS CometRunner has 2 themes, one signature bond and one item family (astral,clock,shoe,fam-speed,rival-static-club)
+PASS CometRunner pool: 16 companions, 2 Mythic, 6 bonds
+PASS CometRunner item pool 79
+PASS CometRunner starting friend CometKite is in its own pool
+PASS MirrorKeeper has 2 themes, one signature bond and one item family (frost,oddity,resolve,fam-survival,rival-hide)
+PASS MirrorKeeper pool: 15 companions, 2 Mythic, 6 bonds
+PASS MirrorKeeper item pool 94
+PASS MirrorKeeper starting friend VioletRemnant is in its own pool
+PASS TreasureAcorn has 2 themes, one signature bond and one item family (orchard,archive,clover,fam-chest,rival-horn)
+PASS TreasureAcorn pool: 18 companions, 2 Mythic, 8 bonds
+PASS TreasureAcorn item pool 82
+PASS TreasureAcorn starting friend BrassAcorn is in its own pool
+PASS VerdantMatron has 2 themes, one signature bond and one item family (orchard,hearth,sprout,fam-merge,rival-hare)
+PASS VerdantMatron pool: 16 companions, 2 Mythic, 6 bonds
+PASS VerdantMatron item pool 75
+PASS VerdantMatron starting friend LittleSprout is in its own pool
+PASS CopperCauldron has 2 themes, one signature bond and one item family (hearth,oddity,resolve,fam-collision)
+PASS CopperCauldron pool: 19 companions, 3 Mythic, 7 bonds
+PASS CopperCauldron item pool 81
+PASS CopperCauldron starting friend TeacupCricket is in its own pool
+PASS ChinaMarionette has 2 themes, one signature bond and one item family (frost,oddity,hide,fam-gold,rival-resolve)
+PASS ChinaMarionette pool: 17 companions, 2 Mythic, 8 bonds
+PASS ChinaMarionette item pool 77
+PASS ChinaMarionette starting friend RibbonSpider is in its own pool
+PASS SoapSkater has 2 themes, one signature bond and one item family (tidal,frost,shoe,fam-freeze,rival-rain-script)
+PASS SoapSkater pool: 15 companions, 2 Mythic, 8 bonds
+PASS SoapSkater item pool 74
+PASS SoapSkater starting friend SailSquid is in its own pool
+PASS VelvetRegent has 2 themes, one signature bond and one item family (archive,clock,regal,fam-team)
+PASS VelvetRegent pool: 17 companions, 2 Mythic, 7 bonds
+PASS VelvetRegent item pool 87
+PASS VelvetRegent starting friend ButtonBeetle is in its own pool
+PASS ButtonCavalier has 2 themes, one signature bond and one item family (clock,oddity,knight,fam-melee,rival-morning)
+PASS ButtonCavalier pool: 18 companions, 3 Mythic, 7 bonds
+PASS ButtonCavalier item pool 79
+PASS ButtonCavalier starting friend TinTick is in its own pool
+PASS NightMaw has 2 themes, one signature bond and one item family (oddity,astral,gauntlet,fam-food)
+PASS NightMaw pool: 19 companions, 2 Mythic, 10 bonds
+PASS NightMaw item pool 85
+PASS NightMaw starting friend MaskPepper is in its own pool
+PASS ThornTreasurer has 2 themes, one signature bond and one item family (orchard,archive,horn,fam-gold,rival-clover)
+PASS ThornTreasurer pool: 15 companions, 2 Mythic, 7 bonds
+PASS ThornTreasurer item pool 78
+PASS ThornTreasurer starting friend SeedHedgehog is in its own pool
+PASS CitrusMarshal has 2 themes, one signature bond and one item family (orchard,hearth,hare,fam-collision,rival-sprout)
+PASS CitrusMarshal pool: 16 companions, 2 Mythic, 6 bonds
+PASS CitrusMarshal item pool 81
+PASS CitrusMarshal starting friend CitrusToad is in its own pool
+PASS IvorySovereign has 2 themes, one signature bond and one item family (archive,frost,hat,fam-shop)
+PASS IvorySovereign pool: 17 companions, 3 Mythic, 9 bonds
+PASS IvorySovereign item pool 79
+PASS IvorySovereign starting friend IceCreamOwl is in its own pool
+PASS PetalCitadel has 2 themes, one signature bond and one item family (orchard,astral,archer,fam-ranged)
+PASS PetalCitadel pool: 16 companions, 2 Mythic, 6 bonds
+PASS PetalCitadel item pool 88
+PASS PetalCitadel starting friend PearMoth is in its own pool
+PASS PatchworkHost has 3 themes, one signature bond and one item family (hearth,oddity,orchard,big-top,fam-team)
+PASS PatchworkHost pool: 24 companions, 3 Mythic, 10 bonds
+PASS PatchworkHost item pool 105
+PASS PatchworkHost starting friend SockCyclops is in its own pool
+PASS ArchiveCurator has 2 themes, one signature bond and one item family (clock,frost,rune,fam-kills)
+PASS ArchiveCurator pool: 15 companions, 3 Mythic, 6 bonds
+PASS ArchiveCurator item pool 75
+PASS ArchiveCurator starting friend FridgeWisp is in its own pool
+PASS PennyBroker has 2 themes, one signature bond and one item family (archive,hearth,gear,fam-gold)
+PASS PennyBroker pool: 19 companions, 3 Mythic, 9 bonds
+PASS PennyBroker item pool 81
+PASS PennyBroker starting friend MailboxImp is in its own pool
+PASS StormFencer has 2 themes, one signature bond and one item family (clock,astral,static-club,fam-crit,rival-shoe)
+PASS StormFencer pool: 13 companions, 2 Mythic, 6 bonds
+PASS StormFencer item pool 84
+PASS StormFencer starting friend SpringDuck is in its own pool
+PASS TinVirtuoso has 2 themes, one signature bond and one item family (clock,oddity,morning,fam-crit,rival-knight)
+PASS TinVirtuoso pool: 17 companions, 2 Mythic, 5 bonds
+PASS TinVirtuoso item pool 87
+PASS TinVirtuoso starting friend StapleMole is in its own pool
+PASS MoonProwler has 2 themes, one signature bond and one item family (astral,frost,mask,fam-melee)
+PASS MoonProwler pool: 17 companions, 2 Mythic, 9 bonds
+PASS MoonProwler item pool 82
+PASS MoonProwler starting friend StarSock is in its own pool
+PASS SupperMortar has 2 themes, one signature bond and one item family (hearth,tidal,sweet-tooth,fam-food)
+PASS SupperMortar pool: 17 companions, 2 Mythic, 9 bonds
+PASS SupperMortar item pool 80
+PASS SupperMortar starting friend BreadCrab is in its own pool
+PASS LanternWeaver has 2 themes, one signature bond and one item family (astral,archive,lantern-guild,fam-ranged)
+PASS LanternWeaver pool: 20 companions, 2 Mythic, 11 bonds
+PASS LanternWeaver item pool 86
+PASS LanternWeaver starting friend ThimbleMoth is in its own pool
+PASS HourglassStag has 2 themes, one signature bond and one item family (clock,tidal,morning,fam-delay)
+PASS HourglassStag pool: 16 companions, 2 Mythic, 5 bonds
+PASS HourglassStag item pool 75
+PASS HourglassStag starting friend DreamCompass is in its own pool
+PASS RainArchivist has 2 themes, one signature bond and one item family (tidal,orchard,rain-script,fam-chest)
+PASS RainArchivist pool: 14 companions, 2 Mythic, 5 bonds
+PASS RainArchivist item pool 78
+PASS RainArchivist starting friend RibbonOtter is in its own pool
+PASS Every ordinary companion is in at least five heroes' pools
+PASS LanternKnight Prismatic gift offers three Prismatic choices (RainbowCrown,RainbowThread,RainbowBell)
+PASS LanternKnight Prismatic gift draws from its own pool first (3 in pool)
+PASS Postmaster Prismatic gift offers three Prismatic choices (RainbowPrism,RainbowThread,RainbowHeart)
+PASS Postmaster Prismatic gift draws from its own pool first (1 in pool)
+PASS DrowsySeer Prismatic gift offers three Prismatic choices (RainbowThread,EclipseEgg,RainbowPrism)
+PASS DrowsySeer Prismatic gift draws from its own pool first (4 in pool)
+PASS RootOracle Prismatic gift offers three Prismatic choices (RainbowCrown,RainbowHeart,RainbowTailor)
+PASS RootOracle Prismatic gift draws from its own pool first (3 in pool)
+PASS LoneJelly Prismatic gift offers three Prismatic choices (RainbowHeart,RainbowPrism,RainbowThread)
+PASS LoneJelly Prismatic gift draws from its own pool first (1 in pool)
+PASS GlassDice Prismatic gift offers three Prismatic choices (RainbowHeart,RainbowPrism,RainbowThread)
+PASS GlassDice Prismatic gift draws from its own pool first (1 in pool)
+PASS PillowOracle uses its own skill in a fight
+PASS ReelOwl uses its own skill in a fight
+PASS ClockworkPiper uses its own skill in a fight
+PASS CoilKettle uses its own skill in a fight
+PASS IronLocomotive uses its own skill in a fight
+PASS PaperInventor uses its own skill in a fight
+PASS ReturnCaptain uses its own skill in a fight
+PASS MirrorNewt uses its own skill in a fight

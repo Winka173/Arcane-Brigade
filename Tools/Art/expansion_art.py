@@ -1,6 +1,6 @@
 """Writes Docs/Expansion_Art_Worklist.json: the image requests for the content expansion (Docs/Content_Expansion_Proposal.md,
 version 5, Docs/Content_Expansion_v5.md): 5 new heroes and 28 new companions (character sheets), the new heroes' transformed pieces and gauges, the
-simplified gauges of the 31 existing heroes, 13 new weapons, 30 item icons and 3 bond icons.
+simplified gauges of the 31 existing heroes, 13 new weapons, 30 item icons and 6 bond icons.
 
 Same job format as Docs/Bizarre_Arsenal_Art_Worklist.json (name, path, transparent, refs, depends, mode, prompt). Images are
 made by the painting pass, never procedurally. A Full gauge is an exact edit of its Empty gauge.

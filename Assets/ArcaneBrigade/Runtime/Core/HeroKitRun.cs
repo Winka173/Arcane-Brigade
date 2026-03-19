@@ -8,7 +8,7 @@ namespace ArcaneBrigade
     {
         /// <summary>Hero kit bookkeeping (18/10/2026): purchases in the current shop (for first/second purchase discounts) and
         /// merges made in this run (for kits that grow with merging).</summary>
-        public int KitPurchasesThisShop, KitMerges;
+        public int KitPurchasesThisShop, KitMerges, KitRareBuys;
     }
 
     public sealed partial class ShopOffer
@@ -33,7 +33,7 @@ namespace ArcaneBrigade
             bool companions = target == ModifierScope.Companions, run = target == ModifierScope.Run;
             switch (effect)
             {
-                case ItemEffect.CompanionDamage: return companions ? kit.Value(KitPassive.TeamDamage) : 0;
+                case ItemEffect.CompanionDamage: return companions ? kit.Value(KitPassive.TeamDamage) + Mathf.Min(.25f, State.KitRareBuys * kit.Value(KitPassive.RareBuyDamage)) : 0;
                 case ItemEffect.CompanionAttackSpeed: return companions ? kit.Value(KitPassive.TeamAttackSpeed) : 0;
                 case ItemEffect.Crit: return companions ? kit.Value(KitPassive.TeamCrit) : 0;
                 case ItemEffect.MoveSpeed: return companions ? kit.Value(KitPassive.TeamMoveSpeed) : 0;
@@ -42,7 +42,7 @@ namespace ArcaneBrigade
                 case ItemEffect.AttackRange: return companions ? kit.Value(KitPassive.TeamRange) : 0;
                 case ItemEffect.Pickup: return run ? kit.Value(KitPassive.PickupRadius) : 0;
                 case ItemEffect.Interest: return run ? kit.Value(KitPassive.InterestCap) : 0;
-                case ItemEffect.Income: return run ? kit.Value(KitPassive.Income) : 0;
+                case ItemEffect.Income: return run ? kit.Value(KitPassive.Income) + (kit.Has(KitPassive.DrinkIncome) ? Mathf.Min(kit.Value(KitPassive.DrinkIncome), State.OctoberDrinks) : 0) : 0;
                 default: return 0;
             }
         }
@@ -59,7 +59,7 @@ namespace ArcaneBrigade
         private void KitCompileUnit(UnitDefinition unit, UnitDefinition source, bool companion)
         {
             HeroKit kit = Kit; if (kit == null) return;
-            if (!companion && kit.Has(KitPassive.MergeHeroDamage)) unit.Weapon.Damage *= 1 + Mathf.Min(.15f, State.KitMerges * kit.Value(KitPassive.MergeHeroDamage));
+            if (!companion && kit.Has(KitPassive.MergeHeroDamage)) unit.Weapon.Damage *= 1 + Mathf.Min(.25f, State.KitMerges * kit.Value(KitPassive.MergeHeroDamage));
             if (companion && unit.Weapon.Kind == WeaponKind.Melee && kit.Has(KitPassive.TeamMeleeAttackSpeed)) unit.Weapon.Cooldown /= 1 + kit.Value(KitPassive.TeamMeleeAttackSpeed);
             if (companion && (source.Id == "GrandSprout" || source.Id == "LittleSprout")) unit.Weapon.Damage *= 1 + kit.Value(KitPassive.SproutDamage);
         }
@@ -123,6 +123,10 @@ namespace ArcaneBrigade
         {
             if (offer == null) return;
             if (offer.Currency == ShopCurrency.Gold && State.Offers.Contains(offer)) State.KitPurchasesThisShop++;
+            ItemRarity rarity = offer.Kind == OfferKind.Companion ? catalog.Unit(offer.Id)?.Rarity ?? ItemRarity.Common : catalog.Item(offer.Id)?.Rarity ?? ItemRarity.Common;
+            if (rarity == ItemRarity.Mythic || rarity == ItemRarity.Rainbow) State.KitRareBuys++;
+            if (offer.Kind != OfferKind.Companion && KitHas(KitPassive.DuplicateRelicGold) && (State.Items.Find(s => s.Id == offer.Id)?.Count ?? 0) >= 2)
+            { State.Gold = BoundedCounter((long)State.Gold + Mathf.RoundToInt(KitValue(KitPassive.DuplicateRelicGold))); Notice = "Twin petals: 3 gold back."; }
             ApplyKitPrices();
         }
         /// <summary>A recruit arriving: the greenhouse may raise a one-star to two (VerdantMatron).</summary>
@@ -166,6 +170,7 @@ namespace ArcaneBrigade
         private readonly Dictionary<string, int> kitBondAdded = new Dictionary<string, int>();
         /// <summary>Members the hero's kit added to each bond on top of the bodies counted (checks and tools).</summary>
         public int KitBondExtra(string bond) => kitBondAdded.TryGetValue(bond, out int n) ? n : 0;
+        public static readonly string[] ThemeBonds = { "hearth", "archive", "clock", "frost", "orchard", "astral", "tidal", "oddity" };
         private void KitBonds()
         {
             kitBondAdded.Clear();
@@ -189,6 +194,13 @@ namespace ArcaneBrigade
             }
             if (kit.Has(KitPassive.BondLeadDouble) && State.HeroIdentity != null && !string.IsNullOrEmpty(State.HeroIdentity.LeadUnit) && State.Roster.Exists(e => e.UnitId == State.HeroIdentity.LeadUnit))
                 foreach (string tag in catalog.Unit(State.HeroIdentity.LeadUnit).Tags ?? Array.Empty<string>()) Add(tag, 1);
+            if (kit.Has(KitPassive.SignatureBondLevel))
+            {
+                // the hero's signature minor bond (its RecruitTheme that names a minor bond) counts one level higher
+                string signature = Array.Find(catalog.Unit(State.ChampionId).RecruitThemes ?? Array.Empty<string>(), t => !t.StartsWith("fam-") && Array.IndexOf(ThemeBonds, t) < 0);
+                BondDefinition bond = signature == null ? null : Array.Find(catalog.Bonds, b => b.Id == signature);
+                if (bond != null && BondCounts.TryGetValue(signature, out int members) && members > 0) Add(signature, Mathf.Max(1, bond.Threshold));
+            }
             if (kit.Has(KitPassive.BondPlusOneSprout) && BondCounts.ContainsKey("sprout")) Add("sprout", 1);
             if (kit.Has(KitPassive.BondPlusOneRegal) && BondCounts.ContainsKey("regal")) Add("regal", 1);
             if (kit.Has(KitPassive.BondBiggestPlusOne))

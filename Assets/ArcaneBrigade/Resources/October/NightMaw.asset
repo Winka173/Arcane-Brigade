@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - oddity
-  - oddity
+  - astral
   Passive: 0
   PassiveStrength: 0.8
   Description: Lose 1 HP each second in battle. Each enemy defeated heals 1 HP. Regeneration
@@ -51,7 +51,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - oddity
-  - oddity
+  - astral
+  - gauntlet
+  - fam-food
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

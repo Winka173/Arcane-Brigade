@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - archive
-  - clock
+  - frost
   Passive: 0
   PassiveStrength: 0.8
   Description: Start each wave with 12 royal health. Each injury consumes exactly
@@ -52,7 +52,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - archive
-  - clock
+  - frost
+  - hat
+  - fam-shop
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

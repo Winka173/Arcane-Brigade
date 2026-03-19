@@ -7,7 +7,7 @@ namespace ArcaneBrigade
         public static string Copy(string name) => name switch
         {
             "Alien" => "Each drink bought gives this ally +4% damage (max +40%).",
-            "Applehead" => "Fruit Basket allies attack 8% faster.", "Athlete" => "For 4 seconds after you take damage, the team attacks 10% faster.",
+            "Applehead" => "Orchard allies attack 8% faster.", "Athlete" => "For 4 seconds after you take damage, the team attacks 10% faster.",
             "Bullhorn Warrior" => "Clockwork Union allies gain 8% movement and attack speed.", "Camo Shroom" => "Basic hits slow ordinary enemies for 0.4 seconds.",
             "Cheer Bunny" => "Team movement speed +5%.", "Chieftain" => "Team damage +5%.", "Clown" => "After you take damage, heal 1 HP. Shared 1-second cooldown.",
             "Fierce Fighter" => "Each attack adds 1% attack speed, up to 20%, this wave. Every third hit makes a small blast.",

@@ -82,6 +82,8 @@ namespace ArcaneBrigade
                 case ItemEffect.Damage: case ItemEffect.ChampionDamage: case ItemEffect.CompanionDamage: return "Damage";
                 case ItemEffect.AttackSpeed: case ItemEffect.CompanionAttackSpeed: return "Attack speed";
                 case ItemEffect.MoveSpeed: return "Movement speed";
+                case ItemEffect.ChainChance: return "Chain chance";
+                case ItemEffect.RecordedDamage: return "Damage vs recorded species";
                 case ItemEffect.Crit: return "Critical chance";
                 case ItemEffect.Projectiles: return "Projectile count";
                 case ItemEffect.Health: return "Maximum health";

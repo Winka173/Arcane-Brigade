@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -10,10 +11,26 @@ namespace ArcaneBrigade
             if (companion.GiftOnly) return false;
             if (champion.HeroMechanic == HeroMechanic.SoloMaw && champion.ReferenceHero != "Capped Gallant") return false;
             if (!string.IsNullOrEmpty(companion.ExclusiveHero)) return companion.ExclusiveHero == champion.ReferenceHero;
-            if (champion.ReferenceHero == "Belle") return true;
+            // every hero, the host included, recruits only from its own themes: its fixed pool (Docs/Content_Expansion_Pools.md)
+            // rival-bond rule (content expansion v5): on a shared theme pair the partner's signature friends (Common to Rare) stay out
+            if (companion.Rarity <= ItemRarity.Rare && companion.Tags.Length > 1 && Array.IndexOf(champion.RecruitThemes, "rival-" + companion.Tags[1]) >= 0) return false;
             foreach (string theme in champion.RecruitThemes)
                 if (Array.IndexOf(companion.Tags, theme) >= 0) return true;
             return false;
+        }
+        /// <summary>The hero's fixed bond pool (Docs/Content_Expansion_Pools.md): its theme bonds, then every minor bond that
+        /// enough of the hero's own companions (painted ones) share to be activated.</summary>
+        public static List<BondDefinition> PoolBonds(RunCatalog catalog, UnitDefinition champion)
+        {
+            var counts = new Dictionary<string, int>();
+            foreach (UnitDefinition ally in catalog.Companions)
+                if (ally.Body != null && Eligible(champion, ally))
+                    foreach (string tag in ally.Tags) counts[tag] = counts.TryGetValue(tag, out int n) ? n + 1 : 1;
+            var pool = new List<BondDefinition>();
+            foreach (BondDefinition bond in catalog.Bonds) if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) pool.Add(bond);
+            foreach (BondDefinition bond in catalog.Bonds)
+                if (Array.IndexOf(champion.RecruitThemes, bond.Id) < 0 && counts.TryGetValue(bond.Id, out int n) && n >= bond.Threshold) pool.Add(bond);
+            return pool;
         }
         public static RosterEntry Starter(RunCatalog catalog, UnitDefinition champion)
         {

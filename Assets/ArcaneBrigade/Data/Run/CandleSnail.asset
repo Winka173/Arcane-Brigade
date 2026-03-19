@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - hearth
-  - fruit
+  - lantern-guild
   Passive: 4
   PassiveStrength: 0.8
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nFruit Basket companions

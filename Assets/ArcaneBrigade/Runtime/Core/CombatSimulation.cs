@@ -46,6 +46,9 @@ namespace ArcaneBrigade
         public string AwakenArt;
         /// <summary>Hero-kit conditions on an enemy: slowed, shocked, soaked or cracked until these times; struck by a friend yet.</summary>
         public float KitSlowUntil, KitShockedUntil, KitWetUntil, KitCrackedUntil;
+        /// <summary>Mythic companion skills (CompanionSkills): asleep or frozen, hastened, anchored until; sprung by Coil Kettle yet.</summary>
+        public float SleepUntil, HasteUntil, AnchorUntil, FreezeReadyAt;
+        public bool CoilStruck;
         public float KitSlow;
         public bool KitStruck;
         public UnitDefinition Definition;
@@ -155,6 +158,10 @@ namespace ArcaneBrigade
     public sealed class ProjectileState
     {
         public int Id;
+        /// <summary>Mirror Newt has already tried to turn this hostile shot back.</summary>
+        public bool MirrorChecked;
+        /// <summary>Lantern Weaver's pinned-enemy pierce has been granted to this shot.</summary>
+        public bool PinnedPierced;
         public Faction Faction;
         public Vector2 Position;
         public Vector2 PreviousPosition;
@@ -489,6 +496,7 @@ namespace ArcaneBrigade
                     ProcessRelicEchoes();
                     ProcessProcs();
                     ProcessHeroIdentity(deltaTime, movement);
+                    ProcessCompanionSkills();
                     ProcessOctoberCombat(deltaTime, movement);
                 }
                 ProcessSecretEchoes();
@@ -639,7 +647,7 @@ namespace ArcaneBrigade
             }
             bool ranged = unit.Definition.Weapon.Kind == WeaponKind.Projectile;
             float stopDistance = ranged ? 4.8f : unit.Definition.Radius + Champion.Definition.Radius;
-            float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1) * KitEnemySpeed(unit);
+            float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1) * KitEnemySpeed(unit) * EnemySleepScale(unit);
             if (distance > stopDistance)
                 unit.Position = ClampPosition(unit.Position + travelDirection * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
         }
@@ -826,7 +834,7 @@ namespace ArcaneBrigade
             unit.AttackStarted = Elapsed;
             unit.AttackWindup = weapon.Windup * (weapon.Family == ExpandedWeapon.Hammer ? 1.17f : 1); // every slam alike (was: every third heavier)
             unit.ImpactTime = Elapsed + unit.AttackWindup;
-            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit) * KitCycle(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
+            unit.NextAttack = Elapsed + Mathf.Max(.28f, weapon.Cooldown * OctoberCycle(unit) * KitCycle(unit) * CompanionHaste(unit)) * (weapon.Family == ExpandedWeapon.Hammer ? 1.12f : 1);
             unit.PendingAttack = true;
             events.Add(new CombatEvent(CombatEventKind.Windup, unit.Position, unit.Faction, 0f, unit.AttackDirection, weapon, cause: NewCause(unit.Id)));
         }
@@ -962,6 +970,7 @@ namespace ArcaneBrigade
             if (!healthCost) damage = ExpandedDamage(target, damage, source, direction, weapon);
             if (cause.RootId == 0) cause = NewCause(0);
             damage = IdentityDamage(target, damage, source, cause);
+            damage = CompanionSkillDamage(target, damage, source, cause);
             if (target.Faction == Faction.Champion && !healthCost)
             {
                 if (!injectedDamage && catalog.Dodge + KitDodge > 0 && combatRandom.NextDouble() < Mathf.Clamp(catalog.Dodge + KitDodge, 0, ReferenceHero == "Sir Purrcival" ? .75f : .6f))

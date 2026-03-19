@@ -12,7 +12,7 @@ HERO PASSIVES
 - With at least 2 friends near you, you take 10% less damage.
 
 TEAM AND RUN PASSIVES
-- Guiding light: your largest bond counts one extra member.
+- Lantern Guild counts one level higher.
 - Friends within 4 units of you get +8% attack speed.
 - Friends' attack range +5%.
 - Enemies in your lamplight (within 4 units) take +5% damage.
@@ -109,7 +109,7 @@ TEAM AND RUN PASSIVES
 - Deep roots: interest cap +2.
 - Enemies near your roots are slowed 15%.
 - Friends deal +8% damage to enemies near your roots.
-- Every shop shows one more offer.
+- Every 5s the enemy nearest to you is held by roots for 1s.
 
 1. Shelter
 LIVING TREE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
@@ -138,7 +138,7 @@ HERO PASSIVES
 - Remembered shells: you take 5% less damage.
 
 TEAM AND RUN PASSIVES
-- Each merge in this run gives you +1% damage for good (max 15%).
+- Each merge in this run gives you +2% damage for good (max 25%).
 - Absorbing a memory refunds 2 gold.
 - Your hits slow enemies 10% for 1s.
 
@@ -199,7 +199,7 @@ HERO PASSIVES
 
 TEAM AND RUN PASSIVES
 - Drinks cost 25% less.
-- Coins come to you from further away.
+- Every drink bought adds 1 gold to every later wave's income (max +5).
 - Friends +5% damage.
 
 1. Current
@@ -283,7 +283,7 @@ Each Prizefighter bond level adds 3 hero collision damage. Standing still prepar
 
 THE BOUNTY LEDGER
 TRANSFORMATION: ACORN MACHINE GUN
-The gauge beside you fills from hits on the bounty and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A crank-driven acorn gun replaces your sling: a stream of acorns; enemies it fells drop a purse of gold.
+The gauge beside you fills from hits on the bounty and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A crank-driven acorn gun fires only at the bounty; every acorn that hits it shakes coins loose for the team.
 
 HERO PASSIVES
 - A bounty is always posted; felling it pays 1 gold (max 8 per wave).
@@ -323,7 +323,7 @@ TEAM AND RUN PASSIVES
 - Greenhouse: a one-star friend you buy has a 15% chance to arrive at two stars.
 - Sprouts deal +10% damage.
 - Friends +5% attack speed.
-- Jade Nursery counts one extra member.
+- Jade Nursery counts one level higher.
 
 1. Guard nursery
 SPRING FESTIVAL focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
@@ -353,9 +353,8 @@ HERO PASSIVES
 
 TEAM AND RUN PASSIVES
 - Steam clears the shelves: the first reroll in each shop is free.
-- Each food you have bought gives friends +2% damage (max 10%).
+- Each blow you take this wave gives friends +2 collision damage (max +10).
 - When you are hit, friends near you get +15% attack speed for 2s.
-- Enemies right beside the kettle are slowed 15%.
 
 1. Lid
 STEAM ENGINE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
@@ -415,7 +414,7 @@ HERO PASSIVES
 
 TEAM AND RUN PASSIVES
 - Friends deal +8% damage to slowed enemies.
-- Friends +8% move speed.
+- A friend's hit on a slowed enemy freezes it for 0.3s (once every 4s per enemy).
 - Bubble-wrapped coins: enemies that fall near you have a 10% chance to drop an extra coin.
 
 1. Ribbon
@@ -438,7 +437,7 @@ Ordinary attacks deal 35% less damage. Push ordinary enemies harder, within the 
 
 THE THREE COMMANDS
 TRANSFORMATION: ROYAL PARADE
-The gauge beside you fills from friends' attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. The whole brigade parades: friends fire together in formation with +40% attack speed.
+The gauge beside you fills from friends' attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. Knighting: for the parade every friend fights one star higher (+50% damage, +20% attack speed).
 
 HERO PASSIVES
 - With at least 3 friends, you deal +10% damage.
@@ -446,7 +445,7 @@ HERO PASSIVES
 TEAM AND RUN PASSIVES
 - The court grows: you may recruit one more new kind of friend each wave.
 - Friends +6% damage.
-- Velvet Court counts one extra member.
+- Velvet Court counts one level higher.
 
 1. Spear
 ROYAL PARADE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
@@ -538,7 +537,7 @@ TEAM AND RUN PASSIVES
 - Compound interest: interest is reckoned on 150% of the gold you hold.
 - Friends +5% damage for every 50 gold you hold (max 10%).
 - Holding at least 50 gold, rerolls cost 1 less.
-- Enemies that touch you are slowed 10%.
+- Thorns pay: each thorn that answers a blow has a 10% chance to shake loose a coin.
 
 1. Lances
 THORN THRONE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
@@ -591,7 +590,7 @@ Use your equipped weapon. Move 20% faster and gain 50% HP. Allies stay close; co
 
 THE LAST DECREE
 TRANSFORMATION: CORONATION
-The gauge beside you fills from injuries and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A last decree crosses the field as a verdict line, and for 3s you lose no health.
+The gauge beside you fills from injuries and your attacks and climbs three tiers; when full you transform by yourself for 6s, then rest for 3s. A last decree crosses the field as a verdict line; ordinary enemies under 15% health on it are executed.
 
 HERO PASSIVES
 - Royal health: 12 HP and each blow costs only 1.
@@ -599,7 +598,7 @@ HERO PASSIVES
 TEAM AND RUN PASSIVES
 - Royal pick: each shop's rarest item costs 30% less.
 - While you hold at least 6 HP, friends deal +6% damage.
-- Your largest bond counts one extra member.
+- Every Mythic or Prismatic you buy gives the team +5% damage for the run (max +25%).
 - Each boss defeated pays 5 gold.
 
 1. Verdict
@@ -630,7 +629,7 @@ HERO PASSIVES
 TEAM AND RUN PASSIVES
 - A second copy of a relic gives 50% more of its effect.
 - Each grown petal gives friends +3% damage.
-- Every shop shows one more offer.
+- Twin petals: buying a relic you already own refunds 3 gold.
 - With all four petals grown, friends +10% attack speed.
 
 1. Bloom
@@ -677,7 +676,7 @@ DAMAGE GUIDE: W means your prepared weapon damage, with a minimum of 1 for this 
 Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.
 
 INNATE TRAITS
-All ordinary companion themes may appear. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.
+Three companion themes (Hearth, Oddity, Orchard) instead of two. Enemy health +12% and count +6% through wave 8, rising to +35% / +20% at wave 20. Rerolls cost 1 less gold.
 
 ## Archive Curator / ArchiveCurator
 
@@ -720,7 +719,7 @@ HERO PASSIVES
 
 TEAM AND RUN PASSIVES
 - Dividends: +1 gold per relic you own at the end of each wave (max 5).
-- Friends +5% attack speed for every 50 gold you hold (max 10%).
+- Friends +2% attack speed for every relic you own (max 20%).
 - Forward orders cost 10% less.
 - Interest cap +1.
 
@@ -814,7 +813,7 @@ TEAM AND RUN PASSIVES
 - Pickpocket: a hit from behind has a 10% chance to shake loose a coin.
 - Friends deal +8% damage to enemies turned away from them.
 - Enemies struck from behind are slowed 10%.
-- Friends +5% move speed.
+- Melee friends striking an enemy from behind always land a critical hit.
 
 1. Rear cut
 ECLIPSE focuses: every strike of the transformation deals 15% more, shared among at most 3 targets. Best against bosses and large enemies.
@@ -873,7 +872,7 @@ HERO PASSIVES
 - Your hits pin up to 3 enemies; pinned enemies are slowed 10%.
 
 TEAM AND RUN PASSIVES
-- Threads: a friend in two bonds adds one extra member to each (once per bond).
+- A friend's shot that passes through a pinned enemy pierces one more.
 - Friends deal +8% damage to pinned enemies.
 - Friends' shots pierce one more enemy.
 

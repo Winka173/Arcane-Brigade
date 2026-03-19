@@ -38,8 +38,8 @@ MonoBehaviour:
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - clock
   - hearth
+  - clock
   Passive: 3
   PassiveStrength: 0.8
   Description: A keyblade-bearing pioneer. Travel to charge a lantern pulse; build
@@ -70,8 +70,8 @@ MonoBehaviour:
   RecruitThemes:
   - hearth
   - clock
-  - orchard
-  - oddity
+  - lantern-guild
+  - fam-team
   HeroMechanic: 1
   CompanionModifiers: []
   Price: 20

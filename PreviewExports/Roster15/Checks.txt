@@ -500,40 +500,6 @@ PASS Exact mild bond adjustment clover/15
 PASS Bond threshold unchanged clover/15
 PASS Exact mild bond adjustment clover/16
 PASS Bond threshold unchanged clover/16
-PASS Exact mild bond adjustment fruit/0
-PASS Bond threshold unchanged fruit/0
-PASS Exact mild bond adjustment fruit/1
-PASS Bond threshold unchanged fruit/1
-PASS Exact mild bond adjustment fruit/2
-PASS Bond threshold unchanged fruit/2
-PASS Exact mild bond adjustment fruit/3
-PASS Bond threshold unchanged fruit/3
-PASS Exact mild bond adjustment fruit/4
-PASS Bond threshold unchanged fruit/4
-PASS Exact mild bond adjustment fruit/5
-PASS Bond threshold unchanged fruit/5
-PASS Exact mild bond adjustment fruit/6
-PASS Bond threshold unchanged fruit/6
-PASS Exact mild bond adjustment fruit/7
-PASS Bond threshold unchanged fruit/7
-PASS Exact mild bond adjustment fruit/8
-PASS Bond threshold unchanged fruit/8
-PASS Exact mild bond adjustment fruit/9
-PASS Bond threshold unchanged fruit/9
-PASS Exact mild bond adjustment fruit/10
-PASS Bond threshold unchanged fruit/10
-PASS Exact mild bond adjustment fruit/11
-PASS Bond threshold unchanged fruit/11
-PASS Exact mild bond adjustment fruit/12
-PASS Bond threshold unchanged fruit/12
-PASS Exact mild bond adjustment fruit/13
-PASS Bond threshold unchanged fruit/13
-PASS Exact mild bond adjustment fruit/14
-PASS Bond threshold unchanged fruit/14
-PASS Exact mild bond adjustment fruit/15
-PASS Bond threshold unchanged fruit/15
-PASS Exact mild bond adjustment fruit/16
-PASS Bond threshold unchanged fruit/16
 PASS Exact mild bond adjustment gear/0
 PASS Bond threshold unchanged gear/0
 PASS Exact mild bond adjustment gear/1
@@ -704,40 +670,6 @@ PASS Exact mild bond adjustment knight/15
 PASS Bond threshold unchanged knight/15
 PASS Exact mild bond adjustment knight/16
 PASS Bond threshold unchanged knight/16
-PASS Exact mild bond adjustment ball/0
-PASS Bond threshold unchanged ball/0
-PASS Exact mild bond adjustment ball/1
-PASS Bond threshold unchanged ball/1
-PASS Exact mild bond adjustment ball/2
-PASS Bond threshold unchanged ball/2
-PASS Exact mild bond adjustment ball/3
-PASS Bond threshold unchanged ball/3
-PASS Exact mild bond adjustment ball/4
-PASS Bond threshold unchanged ball/4
-PASS Exact mild bond adjustment ball/5
-PASS Bond threshold unchanged ball/5
-PASS Exact mild bond adjustment ball/6
-PASS Bond threshold unchanged ball/6
-PASS Exact mild bond adjustment ball/7
-PASS Bond threshold unchanged ball/7
-PASS Exact mild bond adjustment ball/8
-PASS Bond threshold unchanged ball/8
-PASS Exact mild bond adjustment ball/9
-PASS Bond threshold unchanged ball/9
-PASS Exact mild bond adjustment ball/10
-PASS Bond threshold unchanged ball/10
-PASS Exact mild bond adjustment ball/11
-PASS Bond threshold unchanged ball/11
-PASS Exact mild bond adjustment ball/12
-PASS Bond threshold unchanged ball/12
-PASS Exact mild bond adjustment ball/13
-PASS Bond threshold unchanged ball/13
-PASS Exact mild bond adjustment ball/14
-PASS Bond threshold unchanged ball/14
-PASS Exact mild bond adjustment ball/15
-PASS Bond threshold unchanged ball/15
-PASS Exact mild bond adjustment ball/16
-PASS Bond threshold unchanged ball/16
 PASS Exact mild bond adjustment morning/0
 PASS Bond threshold unchanged morning/0
 PASS Exact mild bond adjustment morning/1
@@ -1010,4 +942,208 @@ PASS Exact mild bond adjustment rain-script/15
 PASS Bond threshold unchanged rain-script/15
 PASS Exact mild bond adjustment rain-script/16
 PASS Bond threshold unchanged rain-script/16
+PASS Exact mild bond adjustment paper-wings/0
+PASS Bond threshold unchanged paper-wings/0
+PASS Exact mild bond adjustment paper-wings/1
+PASS Bond threshold unchanged paper-wings/1
+PASS Exact mild bond adjustment paper-wings/2
+PASS Bond threshold unchanged paper-wings/2
+PASS Exact mild bond adjustment paper-wings/3
+PASS Bond threshold unchanged paper-wings/3
+PASS Exact mild bond adjustment paper-wings/4
+PASS Bond threshold unchanged paper-wings/4
+PASS Exact mild bond adjustment paper-wings/5
+PASS Bond threshold unchanged paper-wings/5
+PASS Exact mild bond adjustment paper-wings/6
+PASS Bond threshold unchanged paper-wings/6
+PASS Exact mild bond adjustment paper-wings/7
+PASS Bond threshold unchanged paper-wings/7
+PASS Exact mild bond adjustment paper-wings/8
+PASS Bond threshold unchanged paper-wings/8
+PASS Exact mild bond adjustment paper-wings/9
+PASS Bond threshold unchanged paper-wings/9
+PASS Exact mild bond adjustment paper-wings/10
+PASS Bond threshold unchanged paper-wings/10
+PASS Exact mild bond adjustment paper-wings/11
+PASS Bond threshold unchanged paper-wings/11
+PASS Exact mild bond adjustment paper-wings/12
+PASS Bond threshold unchanged paper-wings/12
+PASS Exact mild bond adjustment paper-wings/13
+PASS Bond threshold unchanged paper-wings/13
+PASS Exact mild bond adjustment paper-wings/14
+PASS Bond threshold unchanged paper-wings/14
+PASS Exact mild bond adjustment paper-wings/15
+PASS Bond threshold unchanged paper-wings/15
+PASS Exact mild bond adjustment paper-wings/16
+PASS Bond threshold unchanged paper-wings/16
+PASS Exact mild bond adjustment sweet-tooth/0
+PASS Bond threshold unchanged sweet-tooth/0
+PASS Exact mild bond adjustment sweet-tooth/1
+PASS Bond threshold unchanged sweet-tooth/1
+PASS Exact mild bond adjustment sweet-tooth/2
+PASS Bond threshold unchanged sweet-tooth/2
+PASS Exact mild bond adjustment sweet-tooth/3
+PASS Bond threshold unchanged sweet-tooth/3
+PASS Exact mild bond adjustment sweet-tooth/4
+PASS Bond threshold unchanged sweet-tooth/4
+PASS Exact mild bond adjustment sweet-tooth/5
+PASS Bond threshold unchanged sweet-tooth/5
+PASS Exact mild bond adjustment sweet-tooth/6
+PASS Bond threshold unchanged sweet-tooth/6
+PASS Exact mild bond adjustment sweet-tooth/7
+PASS Bond threshold unchanged sweet-tooth/7
+PASS Exact mild bond adjustment sweet-tooth/8
+PASS Bond threshold unchanged sweet-tooth/8
+PASS Exact mild bond adjustment sweet-tooth/9
+PASS Bond threshold unchanged sweet-tooth/9
+PASS Exact mild bond adjustment sweet-tooth/10
+PASS Bond threshold unchanged sweet-tooth/10
+PASS Exact mild bond adjustment sweet-tooth/11
+PASS Bond threshold unchanged sweet-tooth/11
+PASS Exact mild bond adjustment sweet-tooth/12
+PASS Bond threshold unchanged sweet-tooth/12
+PASS Exact mild bond adjustment sweet-tooth/13
+PASS Bond threshold unchanged sweet-tooth/13
+PASS Exact mild bond adjustment sweet-tooth/14
+PASS Bond threshold unchanged sweet-tooth/14
+PASS Exact mild bond adjustment sweet-tooth/15
+PASS Bond threshold unchanged sweet-tooth/15
+PASS Exact mild bond adjustment sweet-tooth/16
+PASS Bond threshold unchanged sweet-tooth/16
+PASS Exact mild bond adjustment big-top/0
+PASS Bond threshold unchanged big-top/0
+PASS Exact mild bond adjustment big-top/1
+PASS Bond threshold unchanged big-top/1
+PASS Exact mild bond adjustment big-top/2
+PASS Bond threshold unchanged big-top/2
+PASS Exact mild bond adjustment big-top/3
+PASS Bond threshold unchanged big-top/3
+PASS Exact mild bond adjustment big-top/4
+PASS Bond threshold unchanged big-top/4
+PASS Exact mild bond adjustment big-top/5
+PASS Bond threshold unchanged big-top/5
+PASS Exact mild bond adjustment big-top/6
+PASS Bond threshold unchanged big-top/6
+PASS Exact mild bond adjustment big-top/7
+PASS Bond threshold unchanged big-top/7
+PASS Exact mild bond adjustment big-top/8
+PASS Bond threshold unchanged big-top/8
+PASS Exact mild bond adjustment big-top/9
+PASS Bond threshold unchanged big-top/9
+PASS Exact mild bond adjustment big-top/10
+PASS Bond threshold unchanged big-top/10
+PASS Exact mild bond adjustment big-top/11
+PASS Bond threshold unchanged big-top/11
+PASS Exact mild bond adjustment big-top/12
+PASS Bond threshold unchanged big-top/12
+PASS Exact mild bond adjustment big-top/13
+PASS Bond threshold unchanged big-top/13
+PASS Exact mild bond adjustment big-top/14
+PASS Bond threshold unchanged big-top/14
+PASS Exact mild bond adjustment big-top/15
+PASS Bond threshold unchanged big-top/15
+PASS Exact mild bond adjustment big-top/16
+PASS Bond threshold unchanged big-top/16
+PASS Exact mild bond adjustment static-club/0
+PASS Bond threshold unchanged static-club/0
+PASS Exact mild bond adjustment static-club/1
+PASS Bond threshold unchanged static-club/1
+PASS Exact mild bond adjustment static-club/2
+PASS Bond threshold unchanged static-club/2
+PASS Exact mild bond adjustment static-club/3
+PASS Bond threshold unchanged static-club/3
+PASS Exact mild bond adjustment static-club/4
+PASS Bond threshold unchanged static-club/4
+PASS Exact mild bond adjustment static-club/5
+PASS Bond threshold unchanged static-club/5
+PASS Exact mild bond adjustment static-club/6
+PASS Bond threshold unchanged static-club/6
+PASS Exact mild bond adjustment static-club/7
+PASS Bond threshold unchanged static-club/7
+PASS Exact mild bond adjustment static-club/8
+PASS Bond threshold unchanged static-club/8
+PASS Exact mild bond adjustment static-club/9
+PASS Bond threshold unchanged static-club/9
+PASS Exact mild bond adjustment static-club/10
+PASS Bond threshold unchanged static-club/10
+PASS Exact mild bond adjustment static-club/11
+PASS Bond threshold unchanged static-club/11
+PASS Exact mild bond adjustment static-club/12
+PASS Bond threshold unchanged static-club/12
+PASS Exact mild bond adjustment static-club/13
+PASS Bond threshold unchanged static-club/13
+PASS Exact mild bond adjustment static-club/14
+PASS Bond threshold unchanged static-club/14
+PASS Exact mild bond adjustment static-club/15
+PASS Bond threshold unchanged static-club/15
+PASS Exact mild bond adjustment static-club/16
+PASS Bond threshold unchanged static-club/16
+PASS Exact mild bond adjustment sea-shanty/0
+PASS Bond threshold unchanged sea-shanty/0
+PASS Exact mild bond adjustment sea-shanty/1
+PASS Bond threshold unchanged sea-shanty/1
+PASS Exact mild bond adjustment sea-shanty/2
+PASS Bond threshold unchanged sea-shanty/2
+PASS Exact mild bond adjustment sea-shanty/3
+PASS Bond threshold unchanged sea-shanty/3
+PASS Exact mild bond adjustment sea-shanty/4
+PASS Bond threshold unchanged sea-shanty/4
+PASS Exact mild bond adjustment sea-shanty/5
+PASS Bond threshold unchanged sea-shanty/5
+PASS Exact mild bond adjustment sea-shanty/6
+PASS Bond threshold unchanged sea-shanty/6
+PASS Exact mild bond adjustment sea-shanty/7
+PASS Bond threshold unchanged sea-shanty/7
+PASS Exact mild bond adjustment sea-shanty/8
+PASS Bond threshold unchanged sea-shanty/8
+PASS Exact mild bond adjustment sea-shanty/9
+PASS Bond threshold unchanged sea-shanty/9
+PASS Exact mild bond adjustment sea-shanty/10
+PASS Bond threshold unchanged sea-shanty/10
+PASS Exact mild bond adjustment sea-shanty/11
+PASS Bond threshold unchanged sea-shanty/11
+PASS Exact mild bond adjustment sea-shanty/12
+PASS Bond threshold unchanged sea-shanty/12
+PASS Exact mild bond adjustment sea-shanty/13
+PASS Bond threshold unchanged sea-shanty/13
+PASS Exact mild bond adjustment sea-shanty/14
+PASS Bond threshold unchanged sea-shanty/14
+PASS Exact mild bond adjustment sea-shanty/15
+PASS Bond threshold unchanged sea-shanty/15
+PASS Exact mild bond adjustment sea-shanty/16
+PASS Bond threshold unchanged sea-shanty/16
+PASS Exact mild bond adjustment exhibit-hall/0
+PASS Bond threshold unchanged exhibit-hall/0
+PASS Exact mild bond adjustment exhibit-hall/1
+PASS Bond threshold unchanged exhibit-hall/1
+PASS Exact mild bond adjustment exhibit-hall/2
+PASS Bond threshold unchanged exhibit-hall/2
+PASS Exact mild bond adjustment exhibit-hall/3
+PASS Bond threshold unchanged exhibit-hall/3
+PASS Exact mild bond adjustment exhibit-hall/4
+PASS Bond threshold unchanged exhibit-hall/4
+PASS Exact mild bond adjustment exhibit-hall/5
+PASS Bond threshold unchanged exhibit-hall/5
+PASS Exact mild bond adjustment exhibit-hall/6
+PASS Bond threshold unchanged exhibit-hall/6
+PASS Exact mild bond adjustment exhibit-hall/7
+PASS Bond threshold unchanged exhibit-hall/7
+PASS Exact mild bond adjustment exhibit-hall/8
+PASS Bond threshold unchanged exhibit-hall/8
+PASS Exact mild bond adjustment exhibit-hall/9
+PASS Bond threshold unchanged exhibit-hall/9
+PASS Exact mild bond adjustment exhibit-hall/10
+PASS Bond threshold unchanged exhibit-hall/10
+PASS Exact mild bond adjustment exhibit-hall/11
+PASS Bond threshold unchanged exhibit-hall/11
+PASS Exact mild bond adjustment exhibit-hall/12
+PASS Bond threshold unchanged exhibit-hall/12
+PASS Exact mild bond adjustment exhibit-hall/13
+PASS Bond threshold unchanged exhibit-hall/13
+PASS Exact mild bond adjustment exhibit-hall/14
+PASS Bond threshold unchanged exhibit-hall/14
+PASS Exact mild bond adjustment exhibit-hall/15
+PASS Bond threshold unchanged exhibit-hall/15
+PASS Exact mild bond adjustment exhibit-hall/16
+PASS Bond threshold unchanged exhibit-hall/16
 PASS Bond UI includes reduced extra milestone bonus

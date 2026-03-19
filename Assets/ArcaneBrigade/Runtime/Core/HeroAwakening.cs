@@ -12,7 +12,7 @@ namespace ArcaneBrigade
     public sealed partial class CombatSimulation
     {
         public const float AwakenSeconds = 6f, AwakenCooldown = 3f, AwakenTierBonus = .12f;
-        private float awakenReceiptAt, awakenMeter, awakenUntil = -1, awakenStarted = -100, awakenCoolUntil = -1, awakenShotAt, awakenRamAt, awakenPressure, awakenEchoAt, awakenHealAt;
+        private float awakenPrimedAt = -1, awakenReceiptAt, awakenMeter, awakenUntil = -1, awakenStarted = -100, awakenCoolUntil = -1, awakenShotAt, awakenRamAt, awakenPressure, awakenEchoAt, awakenHealAt;
         private int awakenRound, awakenFlurry;
         private UnitState awakenFoe;
         private readonly List<Vector2> awakenPath = new List<Vector2>();
@@ -49,10 +49,12 @@ namespace ArcaneBrigade
         private int ApproachTargets => IdentityApproach == 1 ? 5 : 3;
 
         /// <summary>Captures only: fill the gauge so the next moment with an enemy near transforms.</summary>
-        public void PrimeAwakeningForCapture() { if (HeroAwakenEnabled) { awakenMeter = 1; awakenCoolUntil = -1; } }
+        public void PrimeAwakeningForCapture() { if (HeroAwakenEnabled) { awakenMeter = 1; awakenCoolUntil = -1; awakenPrimedAt = Elapsed - GaugePrimeSeconds; } }
+        /// <summary>The gauge is full and flashing: the hero transforms within a second.</summary>
+        public bool HeroAwakenPrimed => HeroAwakenEnabled && !HeroAwakening && awakenMeter >= 1;
         private void ResetAwakening()
         {
-            awakenMeter = awakenPressure = 0; awakenUntil = awakenCoolUntil = -1; awakenStarted = -100; awakenShotAt = awakenRamAt = awakenEchoAt = awakenHealAt = 0; awakenRound = awakenFlurry = 0; awakenFoe = null;
+            awakenMeter = awakenPressure = 0; awakenUntil = awakenCoolUntil = -1; awakenPrimedAt = -1; awakenStarted = -100; awakenShotAt = awakenRamAt = awakenEchoAt = awakenHealAt = 0; awakenRound = awakenFlurry = 0; awakenFoe = null;
             awakenPath.Clear(); for (int i = 0; i < awakenEchoes.Length; i++) awakenEchoes[i] = Champion != null ? Champion.Position : Vector2.zero;
             if (Champion != null) Champion.AwakenArt = null;
         }
@@ -68,7 +70,9 @@ namespace ArcaneBrigade
             if (!HeroAwakening)
             {
                 if (awakenUntil > 0 && Elapsed >= awakenUntil) EndAwakening();
-                if (awakenMeter >= 1 && target != null) BeginAwakening(target);
+                // a full gauge flashes for a second before the hero transforms (HeroAwakenPrimed), so the moment is never a surprise
+                if (awakenMeter >= 1 && awakenPrimedAt < 0) awakenPrimedAt = Elapsed;
+                if (awakenMeter >= 1 && target != null && Elapsed - awakenPrimedAt >= GaugePrimeSeconds) BeginAwakening(target);
                 if (!HeroAwakening) return false;
             }
             HeroKit k = Kit;
@@ -77,7 +81,7 @@ namespace ArcaneBrigade
             switch (k.Action)
             {
                 case KitAction.Gatling: GunBurst(target, .2f, .22f, true); break;
-                case KitAction.AcornGun: GunBurst(target, .22f, .1f, false); break;
+                case KitAction.AcornGun: GunBurst(identityBounty != null && identityBounty.Alive && CanHit(Faction.Champion, identityBounty) ? identityBounty : target, .22f, .1f, false); break;
                 case KitAction.Kitchen: Kitchen(target); break;
                 case KitAction.Engine: SteamEngine(delta); break;
                 case KitAction.Dreams: Echoes(PathAgo(1), PathAgo(2), PathAgo(3), .3f, .48f, IdentityApproach == 2 ? DamageElement.Frost : DamageElement.Arcane); break;
@@ -92,7 +96,7 @@ namespace ArcaneBrigade
                 case KitAction.Spring: Every(.8f, () => Spring(target)); HealEvery(1); break;
                 case KitAction.Kintsugi: Every(.4f, () => { if (target != null) Hit(MorphGeometry.Line, target.Position - Forward() * .8f, target.Position + Forward() * .8f, 0, .42f, .3f, element: DamageElement.Ember); }); break;
                 case KitAction.Rink: Every(.5f, () => { Vector2 way = target != null ? (target.Position - Champion.Position).normalized : Forward(); Hit(MorphGeometry.Line, Champion.Position, Champion.Position + way * 3.2f, 0, .5f, .1f, slow: .6f); }); break;
-                case KitAction.Parade: Every(1.2f, () => IdentityPerform(IdentityPower * .75f * ApproachScale, 4)); break;
+                case KitAction.Parade: Every(1.2f, () => { foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion) IdentityGlyph(MorphGeometry.Seal, f.Position + Vector2.up * .5f, f.Position, .2f, .5f, role: HeroGlyphRole.Emblem); }); break; // Knighting (KitDamageDealt, KitCycle)
                 case KitAction.Symphony: Every(1f, () => IdentityPerform(IdentityPower * .9f * ApproachScale, 5)); break;
                 case KitAction.Duel: Duel(); break;
                 case KitAction.Feast: Every(.4f, () => Feast()); break;
@@ -115,7 +119,7 @@ namespace ArcaneBrigade
         private void BeginAwakening(UnitState target)
         {
             HeroKit k = Kit;
-            awakenStarted = Elapsed; awakenUntil = Elapsed + AwakenLength; awakenMeter = 1; awakenPressure = 0;
+            awakenStarted = Elapsed; awakenUntil = Elapsed + AwakenLength; awakenMeter = 1; awakenPressure = 0; awakenPrimedAt = -1;
             awakenShotAt = awakenRamAt = awakenEchoAt = awakenHealAt = Elapsed; awakenRound = awakenFlurry = 0; awakenFoe = target;
             Champion.AwakenArt = k.Held ? k.ArtKey : null;
             if (k.ReplacesAttacks) Champion.PendingAttack = false; // a blow already raised with the usual weapon is not thrown
@@ -128,7 +132,15 @@ namespace ArcaneBrigade
             {
                 Vector2 dir = (target.Position - Champion.Position).normalized;
                 Hit(MorphGeometry.Line, Champion.Position - dir * 1f, Champion.Position + dir * MaxLineLength, 0, 2.6f, .35f);
+                Verdict(Champion.Position - dir * 1f, Champion.Position + dir * MaxLineLength);
             }
+        }
+        /// <summary>Coronation: ordinary enemies under 15% health on the line are executed.</summary>
+        private void Verdict(Vector2 from, Vector2 to)
+        {
+            foreach (UnitState u in units.ToArray())
+                if (u.Alive && u.Faction == Faction.Enemy && !u.Definition.IsBoss && u.Health < u.Definition.Health * .15f && SegmentCircle(from, to, u.Position, .6f + u.Definition.Radius) >= 0)
+                    ApplyDamage(u, u.Health + 1, Faction.Champion, "Verdict", to - from, cause: IdentityCause());
         }
         private void EndAwakening()
         {
@@ -143,7 +155,7 @@ namespace ArcaneBrigade
         private void HealEvery(float period) { if (Elapsed < awakenRamAt) return; awakenRamAt = Elapsed + period; Heal(1, IdentityCause()); }
         /// <summary>A transformation strike: budget in W, scaled by the approach (and shared by more targets on the wide one).</summary>
         private void Hit(MorphGeometry shape, Vector2 at, Vector2 end, float radius, float budget, float delay = .15f, DamageElement element = DamageElement.Physical, float slow = 0, float push = 0)
-            => IdentityHit(shape, at, end, radius, IdentityPower * budget * ApproachScale, delay, ApproachTargets, element, slow, push);
+            => IdentityHit(shape, at, end, radius, IdentityPower * budget * ApproachScale * (radius > 0 || shape == MorphGeometry.Line ? CrowdScale : 1), delay, ApproachTargets, element, slow, push);
         /// <summary>A transformed gun: one aimed shot per period that flashes at the barrel and sounds like a gun.</summary>
         private void GunBurst(UnitState target, float period, float budget, bool stamps)
         {

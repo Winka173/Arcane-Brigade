@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: -1876162280, guid: bed324f4d43c1bc41954324006ace866, type: 3}
   - {fileID: 1414962376, guid: bed324f4d43c1bc41954324006ace866, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 5f90c7da6b30b7c46ac1d38b0320731a, type: 2}
-  Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
+  Weapon: {fileID: 11400000, guid: 2316220e7ed8b8c46934e1a30b91f538, type: 2}
   Health: 100
   Speed: 4
   Radius: 0.22
@@ -29,7 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 1
-  Rarity: 2
+  Rarity: 3
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8

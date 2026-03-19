@@ -24,7 +24,7 @@ namespace ArcaneBrigade
             var hero = catalog.Unit(State.ChampionId);
             foreach (var weapon in catalog.Weapons)
             {
-                if (!RecruitWeaponEligible(id, weapon) || State.Roster.Exists(r => r.UnitId == id && r.WeaponId == weapon.Id)) continue;
+                if (!RecruitWeaponEligible(id, weapon) || !VariantFree(id, weapon)) continue;
                 scratch.CombatCatalog.Champion = scratch.BuildUnit(hero, hero.Weapon, 1, false);
                 var unit = scratch.BuildUnit(catalog.Unit(id), weapon, tier, true);
                 scratch.CombatCatalog.StartingCompanions = new[] { unit };

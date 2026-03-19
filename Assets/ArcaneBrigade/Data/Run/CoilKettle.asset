@@ -21,15 +21,15 @@ MonoBehaviour:
   - {fileID: 67453445, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
   - {fileID: 644603686, guid: dff80ff9ee1a7cf44ab3b1a8364180e6, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: a3196e36315ee724d92f9080cd207d21, type: 2}
-  Weapon: {fileID: 11400000, guid: 62d61a913b26ec545bdc8bce3ad47e6b, type: 2}
+  Weapon: {fileID: 11400000, guid: 19ea11bd1b307b04d8d157c48190500d, type: 2}
   Health: 100
   Speed: 4.6
   Radius: 0.27
   BodyHeight: 0.98
   BodyScale: 1
   KnockbackResistance: 0
-  SpecialRecruit: 0
-  Rarity: 2
+  SpecialRecruit: 1
+  Rarity: 3
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8
@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - hearth
-  - resolve
+  - gear
   Passive: 1
   PassiveStrength: 0.45
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nPaid refreshes cost 2 less gold

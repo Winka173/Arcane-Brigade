@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - clock
-  - oddity
+  - astral
   Passive: 0
   PassiveStrength: 0.8
   Description: You do not attack normally. Your contact damage is doubled. Dodging
@@ -51,7 +51,10 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - clock
-  - oddity
+  - astral
+  - static-club
+  - fam-crit
+  - rival-shoe
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

@@ -52,6 +52,9 @@ MonoBehaviour:
   RecruitThemes:
   - orchard
   - hearth
+  - hare
+  - fam-collision
+  - rival-sprout
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

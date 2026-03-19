@@ -37,7 +37,9 @@ MonoBehaviour:
   CollisionFrequency: 0.8
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
-  Tags: []
+  Tags:
+  - astral
+  - hearth
   Passive: 1
   PassiveStrength: 3
   Description: A sleepy tuning-bell oracle. Stand still to chill nearby threats and
@@ -69,10 +71,10 @@ MonoBehaviour:
     Scope: 1
     Value: 1
   RecruitThemes:
-  - frost
   - astral
-  - tidal
-  - oddity
+  - hearth
+  - hat
+  - fam-shop
   HeroMechanic: 3
   CompanionModifiers: []
   Price: 20

@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 85518266, guid: bed324f4d43c1bc41954324006ace866, type: 3}
   - {fileID: 1961909158, guid: bed324f4d43c1bc41954324006ace866, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 0d0d6cdb23cf4b649a18c44659dc0287, type: 2}
-  Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
+  Weapon: {fileID: 11400000, guid: 406a468162eb38d4e95aaeb39d1365c2, type: 2}
   Health: 100
   Speed: 4
   Radius: 0.22
@@ -29,7 +29,7 @@ MonoBehaviour:
   BodyScale: 1
   KnockbackResistance: 0
   SpecialRecruit: 1
-  Rarity: 2
+  Rarity: 3
   RecruitThemeLocked: 1
   ContactDamage: 4
   ContactInterval: 0.8
@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - tidal
-  - resolve
+  - knight
   Passive: 0
   PassiveStrength: 0.5
   Description: "COMPANION / RARE / 1 STAR\r\nTALENT\nWait 30 seconds before attacking.

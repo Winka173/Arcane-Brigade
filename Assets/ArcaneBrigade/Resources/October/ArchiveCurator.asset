@@ -38,8 +38,8 @@ MonoBehaviour:
   CriticalChance: 0
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
-  - archive
   - clock
+  - frost
   Passive: 0
   PassiveStrength: 0.8
   Description: Shops offer memory companions. Buying one absorbs its support trait
@@ -51,8 +51,10 @@ MonoBehaviour:
   GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes:
-  - archive
   - clock
+  - frost
+  - rune
+  - fam-kills
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

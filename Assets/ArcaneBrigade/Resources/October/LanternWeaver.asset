@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - astral
-  - oddity
+  - archive
   Passive: 0
   PassiveStrength: 0.8
   Description: Every fourth attack stitches three nearby enemies with a delayed lantern
@@ -51,8 +51,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - astral
-  - oddity
+  - archive
   - lantern-guild
+  - fam-ranged
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

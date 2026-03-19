@@ -23,7 +23,7 @@ namespace ArcaneBrigade.Editor
             ItemDefinition[] reference = ReferenceRelicCatalog.Create();
             Check(reference.Length == 76 && reference.All(r => c.Items.Count(i => i.ReferenceName == r.ReferenceName && i.Icon != null) == 1), "All 76 reference relics installed once with artwork");
             Check(c.Items.Where(i => !string.IsNullOrEmpty(i.ReferenceName)).Select(i => i.Icon).Distinct().Count() == 76, "76 distinct relic icon slices");
-            Check(OctoberContent.BondIds.All(id => c.Bonds.Count(b => b.Id == id) == 1), "All 19 reference bond counterparts installed");
+            Check(OctoberContent.BondIds.All(id => c.Bonds.Count(b => b.Id == id) == (id == "fruit" || id == "ball" ? 0 : 1)), "All reference bond counterparts installed (Fruit Basket and Lantern Revel retired 18/10/2026)");
             Check(c.Bonds.Any(b => b.Id == "lantern-guild") && c.Bonds.Any(b => b.Id == "rain-script"), "Two original bond families");
             foreach (var row in manifest.newHeroes.Concat(manifest.newAllies))
             {
@@ -146,7 +146,9 @@ namespace ArcaneBrigade.Editor
                 for (int i = 0; i < ingredients.Length; i++) s.State.Roster.Add(new RosterEntry { UnitId = ingredients[i], WeaponId = weapons[i].Id });
                 Check(s.CanAltar(recipe.Id) && s.Altar(recipe.Id), "Executable reference altar recipe " + recipe.ResultUnit);
                 RosterEntry result = s.State.Roster.First(r => r.UnitId == recipe.ResultUnit);
-                Check(result.Tier == 2 && weapons.Any(w => w.Id == result.WeaponId), "Altar retains one ingredient weapon " + recipe.ResultUnit);
+                // a Mythic or Prismatic result carries its own locked weapon (content expansion v5); others keep an ingredient's
+                bool locked = c.PoolRevision > 0 && c.Unit(recipe.ResultUnit).Rarity >= ItemRarity.Mythic;
+                Check(result.Tier == 2 && (locked ? result.WeaponId == c.Unit(recipe.ResultUnit).Weapon.Id : weapons.Any(w => w.Id == result.WeaponId)), "Altar keeps an ingredient weapon, or the result's own locked weapon " + recipe.ResultUnit);
                 s.Validate(s.State);
             }
             using (var s = new RunSession(c))

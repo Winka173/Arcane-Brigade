@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - orchard
-  - hearth
+  - astral
   Passive: 0
   PassiveStrength: 0.8
   Description: 'Start each wave with a balanced blessing: +2 flat melee and ranged
@@ -51,7 +51,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - orchard
-  - hearth
+  - astral
+  - archer
+  - fam-ranged
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

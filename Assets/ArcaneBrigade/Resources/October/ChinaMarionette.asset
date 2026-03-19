@@ -52,6 +52,9 @@ MonoBehaviour:
   RecruitThemes:
   - frost
   - oddity
+  - hide
+  - fam-gold
+  - rival-resolve
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

@@ -515,6 +515,9 @@ namespace ArcaneBrigade
                 description += "\n\nRECRUIT THEMES: ";
                 foreach (BondDefinition bond in catalog.Bonds)
                     if (Array.IndexOf(champion.RecruitThemes, bond.Id) >= 0) description += bond.Name + " · ";
+                // the fixed pool: only these bonds can come together in this hero's shop
+                description += "\nBONDS IN THIS HERO'S SHOP: ";
+                foreach (BondDefinition bond in K11HeroRules.PoolBonds(catalog, champion)) description += bond.Name + " · ";
             }
             description += "\n\nSTARTING TRAITS\n";
             foreach (StatModifier modifier in champion.ChampionModifiers)

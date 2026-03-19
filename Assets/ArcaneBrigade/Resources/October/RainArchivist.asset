@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - tidal
-  - oddity
+  - orchard
   Passive: 0
   PassiveStrength: 0.8
   Description: Each opened chest heals 4 HP and records a raindrop. Every third record
@@ -51,7 +51,9 @@ MonoBehaviour:
   ChampionModifiers: []
   RecruitThemes:
   - tidal
-  - oddity
+  - orchard
+  - rain-script
+  - fam-chest
   HeroMechanic: 0
   CompanionModifiers: []
   Price: 20

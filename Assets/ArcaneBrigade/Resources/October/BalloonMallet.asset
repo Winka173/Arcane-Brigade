@@ -39,7 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - tidal
-  - mask
+  - big-top
   Passive: 0
   PassiveStrength: 0.5
   Description: "COMPANION / UNCOMMON / 1 STAR\r\nTALENT\nPush ordinary enemies within

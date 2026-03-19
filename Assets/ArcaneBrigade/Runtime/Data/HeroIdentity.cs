@@ -73,10 +73,12 @@ namespace ArcaneBrigade
     public sealed partial class CheckpointCatalog
     {
         public bool EnableHeroIdentities;
-        public int HeroApproach, HeroDiceFace = 1, HeroDrinks, HeroFood, HeroWallet;
+        public int HeroApproach, HeroDiceFace = 1, HeroDrinks, HeroFood, HeroWallet, HeroRelics;
         public string HeroLeadUnit = "", HeroLeadWeapon = "";
         /// <summary>Active bond levels at the start of the battle (hero kits that grow with bonds).</summary>
         public int HeroBondLevels;
+        /// <summary>Bond effects that act in battle (content expansion v5): Static Club chain chance, Exhibit Hall damage vs recorded species.</summary>
+        public float BondChainChance, BondRecordedDamage;
         public UnitDefinition[] HeroOrgans = new UnitDefinition[0];
         public int[] HeroPetals = new int[4];
     }

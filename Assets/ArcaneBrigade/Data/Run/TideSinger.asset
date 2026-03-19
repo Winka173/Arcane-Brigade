@@ -39,6 +39,7 @@ MonoBehaviour:
   Tint: {r: 1, g: 1, b: 1, a: 1}
   Tags:
   - tidal
+  - astral
   Passive: 0
   PassiveStrength: 0.5
   Description: Collect 8 gold to heal 3 health and push nearby enemies back.
@@ -52,6 +53,10 @@ MonoBehaviour:
     Value: 4
   RecruitThemes:
   - tidal
+  - astral
+  - sea-shanty
+  - fam-drink
+  - rival-paper-wings
   HeroMechanic: 7
   CompanionModifiers: []
   Price: 27

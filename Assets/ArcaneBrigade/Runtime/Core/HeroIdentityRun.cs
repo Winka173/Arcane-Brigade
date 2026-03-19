@@ -100,8 +100,11 @@ namespace ArcaneBrigade
             CombatCatalog.EnableHeroIdentities = catalog.HeroRevision > 0 && HeroIdentityDefinition != null;
             CombatCatalog.HeroApproach = h.Approach; CombatCatalog.HeroDiceFace = h.DiceFace;
             CombatCatalog.HeroFood = State.OctoberFood; CombatCatalog.HeroDrinks = State.OctoberDrinks; CombatCatalog.HeroWallet = State.Gold;
+            CombatCatalog.HeroRelics = 0; foreach (ItemStack s in State.Items) CombatCatalog.HeroRelics += s.Count;
             CombatCatalog.HeroLeadUnit = h.LeadUnit; CombatCatalog.HeroLeadWeapon = h.LeadWeapon;
             CombatCatalog.HeroBondLevels = KitBondLevels();
+            CombatCatalog.BondChainChance = Bonus(ItemEffect.ChainChance, ModifierScope.Companions);
+            CombatCatalog.BondRecordedDamage = Bonus(ItemEffect.RecordedDamage, ModifierScope.Companions);
             var organs = new List<UnitDefinition>();
             foreach (string id in h.Organs) if (!string.IsNullOrEmpty(id) && State.AbsorbedSkills.Contains(id)) organs.Add(catalog.Unit(id));
             for (int i = State.AbsorbedSkills.Count - 1; organs.Count < 3 && i >= 0; i--) { var u = catalog.Unit(State.AbsorbedSkills[i]); if (!organs.Contains(u)) organs.Add(u); }

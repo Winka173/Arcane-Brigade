@@ -1,7 +1,7 @@
 PASS Every hero has a kit (31)
 PASS Postmaster has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS Postmaster describes its transformation
-PASS CopperCauldron has 1-2 hero passives and 2-4 team or run passives (2/4)
+PASS CopperCauldron has 1-2 hero passives and 2-4 team or run passives (2/3)
 PASS CopperCauldron describes its transformation
 PASS DrowsySeer has 1-2 hero passives and 2-4 team or run passives (1/4)
 PASS DrowsySeer describes its transformation
@@ -100,7 +100,7 @@ PASS Postmaster starts with an empty gauge
 PASS Postmaster: a full charge climbs a tier
 PASS Postmaster: a full gauge transforms by itself (SORTING GATLING)
 PASS Postmaster holds its transformed weapon only when it has one
-PASS While the sorting gatling runs it is the only gun, each shot a muzzle flash (7 shots, 0 basics, aim (-0.91, -0.42), awake True)
+PASS While the sorting gatling runs it is the only gun, each shot a muzzle flash (7 shots, 0 basics, aim (-0.94, -0.35), awake True)
 PASS Postmaster: the transformation ends and rests
 PASS Postmaster: everything stays finite
 PASS DrowsySeer starts with an empty gauge
@@ -282,7 +282,7 @@ PASS RainArchivist: the transformation ends and rests
 PASS RainArchivist: everything stays finite
 PASS CopperCauldron: the first reroll in a shop is free
 PASS CopperCauldron: later rerolls cost again
-PASS Postmaster: the first purchase of a shop is 20% cheaper (35 -> 28)
+PASS Postmaster: the first purchase of a shop is 20% cheaper (34 -> 28)
 PASS DrowsySeer: every shop shows one more offer
 PASS VelvetRegent: one more new species a wave
 PASS LanternKnight: the largest bond counts one extra member

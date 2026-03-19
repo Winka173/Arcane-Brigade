@@ -1,0 +1,6407 @@
+{
+ "companions": [
+  {
+   "id": "TeapotPilgrim",
+   "name": "Teapot Pilgrim",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "mask"
+   ],
+   "themes": [],
+   "weapon": "TeapotPopgun",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 23,
+   "reference": "Alien",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\TeapotPilgrim.asset"
+  },
+  {
+   "id": "CandleSnail",
+   "name": "Candle Snail",
+   "rarity": "Uncommon",
+   "tags": [
+    "hearth",
+    "fruit"
+   ],
+   "themes": [],
+   "weapon": "CrescentBow",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 26,
+   "reference": "Applehead",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CandleSnail.asset"
+  },
+  {
+   "id": "MailboxImp",
+   "name": "Mailbox Imp",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "gauntlet",
+    "ball"
+   ],
+   "themes": [],
+   "weapon": "MailboxLauncher",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 29,
+   "reference": "Athlete",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\MailboxImp.asset"
+  },
+  {
+   "id": "PillowOracle",
+   "name": "Pillow Oracle",
+   "rarity": "Mythic",
+   "tags": [
+    "astral",
+    "gear",
+    "hide"
+   ],
+   "themes": [],
+   "weapon": "BellFork",
+   "passive": "3",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 32,
+   "reference": "Bullhorn Warrior",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\PillowOracle.asset"
+  },
+  {
+   "id": "MushroomLibrarian",
+   "name": "Mushroom Librarian",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "clover"
+   ],
+   "themes": [],
+   "weapon": "BookPaddle",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 35,
+   "reference": "Camo Shroom",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\MushroomLibrarian.asset"
+  },
+  {
+   "id": "HoodWisp",
+   "name": "Hood Wisp",
+   "rarity": "Common",
+   "tags": [
+    "frost",
+    "hare",
+    "root"
+   ],
+   "themes": [],
+   "weapon": "RuneStaff",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 20,
+   "reference": "Cheer Bunny",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\HoodWisp.asset"
+  },
+  {
+   "id": "JellySwordsman",
+   "name": "Jelly Swordsman",
+   "rarity": "Common",
+   "tags": [
+    "oddity",
+    "gauntlet",
+    "hide"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 20,
+   "reference": "Chieftain",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\JellySwordsman.asset"
+  },
+  {
+   "id": "BrassAcorn",
+   "name": "Brass Acorn",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "regal",
+    "mask"
+   ],
+   "themes": [],
+   "weapon": "SpoonSabre",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 18,
+   "reference": "Clown",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\BrassAcorn.asset"
+  },
+  {
+   "id": "BreadCrab",
+   "name": "Bread Crab",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "gauntlet"
+   ],
+   "themes": [],
+   "weapon": "ToastCleaver",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 21,
+   "reference": "Fierce Fighter",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\BreadCrab.asset"
+  },
+  {
+   "id": "KettleBat",
+   "name": "Kettle Bat",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "archer",
+    "hide"
+   ],
+   "themes": [],
+   "weapon": "LollipopLance",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 24,
+   "reference": "Floofy",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\KettleBat.asset"
+  },
+  {
+   "id": "BookmarkGolem",
+   "name": "Bookmark Golem",
+   "rarity": "Rare",
+   "tags": [
+    "archive",
+    "hat",
+    "rune"
+   ],
+   "themes": [],
+   "weapon": "PaperFan",
+   "passive": "3",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 27,
+   "reference": "Grey Mage",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\BookmarkGolem.asset"
+  },
+  {
+   "id": "TinTick",
+   "name": "Tin Tick",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "rune",
+    "mask"
+   ],
+   "themes": [],
+   "weapon": "CorkscrewRapier",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 30,
+   "reference": "Hopping Zombie",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\TinTick.asset"
+  },
+  {
+   "id": "SpringDuck",
+   "name": "Spring Duck",
+   "rarity": "Rare",
+   "tags": [
+    "clock",
+    "gear"
+   ],
+   "themes": [],
+   "weapon": "TeabagFlail",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 18,
+   "reference": "Intelligent Construct",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\SpringDuck.asset"
+  },
+  {
+   "id": "ButtonBeetle",
+   "name": "Button Beetle",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "root",
+    "regal"
+   ],
+   "themes": [],
+   "weapon": "UmbrellaHook",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 21,
+   "reference": "Iron Swordsman",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\ButtonBeetle.asset"
+  },
+  {
+   "id": "StapleMole",
+   "name": "Staple Mole",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "clover"
+   ],
+   "themes": [],
+   "weapon": "PizzaWheel",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 24,
+   "reference": "Judge",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\StapleMole.asset"
+  },
+  {
+   "id": "SnowSpoon",
+   "name": "Snow Spoon",
+   "rarity": "Common",
+   "tags": [
+    "frost",
+    "hide"
+   ],
+   "themes": [],
+   "weapon": "MoonScythe",
+   "passive": "3",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 27,
+   "reference": "Jungle Folk",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\SnowSpoon.asset"
+  },
+  {
+   "id": "IceCreamOwl",
+   "name": "Ice Cream Owl",
+   "rarity": "Uncommon",
+   "tags": [
+    "frost",
+    "hat",
+    "rune"
+   ],
+   "themes": [],
+   "weapon": "ForkTrident",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 1,
+   "price": 30,
+   "reference": "Little Witch",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\IceCreamOwl.asset"
+  },
+  {
+   "id": "FridgeWisp",
+   "name": "Fridge Wisp",
+   "rarity": "Common",
+   "tags": [
+    "frost",
+    "gauntlet",
+    "shoe"
+   ],
+   "themes": [],
+   "weapon": "MaracaHammer",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 18,
+   "reference": "Masked Wrestler",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\FridgeWisp.asset"
+  },
+  {
+   "id": "PearMoth",
+   "name": "Pear Moth",
+   "rarity": "Uncommon",
+   "tags": [
+    "orchard",
+    "morning",
+    "rune"
+   ],
+   "themes": [],
+   "weapon": "TapeWhip",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 21,
+   "reference": "Matchstick Head",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\PearMoth.asset"
+  },
+  {
+   "id": "CitrusToad",
+   "name": "Citrus Toad",
+   "rarity": "Uncommon",
+   "tags": [
+    "orchard",
+    "shoe"
+   ],
+   "themes": [],
+   "weapon": "ButtonBow",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 24,
+   "reference": "Monkey King",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CitrusToad.asset"
+  },
+  {
+   "id": "RadishJester",
+   "name": "Radish Jester",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "mask"
+   ],
+   "themes": [],
+   "weapon": "LeafCrossbow",
+   "passive": "3",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 27,
+   "reference": "Mummy",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\RadishJester.asset"
+  },
+  {
+   "id": "SeedHedgehog",
+   "name": "Seed Hedgehog",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "fruit"
+   ],
+   "themes": [],
+   "weapon": "InkPistol",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 30,
+   "reference": "Peach",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\SeedHedgehog.asset"
+  },
+  {
+   "id": "MoonJelly",
+   "name": "Moon Jelly",
+   "rarity": "Rare",
+   "tags": [
+    "astral",
+    "hare"
+   ],
+   "themes": [],
+   "weapon": "BubbleWand",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 18,
+   "reference": "Phantom",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\MoonJelly.asset"
+  },
+  {
+   "id": "StarSock",
+   "name": "Star Sock",
+   "rarity": "Uncommon",
+   "tags": [
+    "astral",
+    "shoe"
+   ],
+   "themes": [],
+   "weapon": "StarKazoo",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 21,
+   "reference": "Pirate",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\StarSock.asset"
+  },
+  {
+   "id": "CometKite",
+   "name": "Comet Kite",
+   "rarity": "Common",
+   "tags": [
+    "astral",
+    "archer"
+   ],
+   "themes": [],
+   "weapon": "ShellCannon",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 24,
+   "reference": "Pointy Hat Witch",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CometKite.asset"
+  },
+  {
+   "id": "EclipseEgg",
+   "name": "Eclipse Egg",
+   "rarity": "Crimson",
+   "tags": [
+    "clock",
+    "regal",
+    "morning"
+   ],
+   "themes": [],
+   "weapon": "AcornSling",
+   "passive": "3",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 10,
+   "price": 80,
+   "reference": "Prince",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\EclipseEgg.asset"
+  },
+  {
+   "id": "OrbitMoth",
+   "name": "Orbit Moth",
+   "rarity": "Common",
+   "tags": [
+    "astral",
+    "regal",
+    "morning"
+   ],
+   "themes": [],
+   "weapon": "CrescentBoomerang",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 30,
+   "reference": "Princess",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\OrbitMoth.asset"
+  },
+  {
+   "id": "DreamCompass",
+   "name": "Dream Compass",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "hare",
+    "archer"
+   ],
+   "themes": [],
+   "weapon": "DartCompass",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 18,
+   "reference": "Smiley Fox",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\DreamCompass.asset"
+  },
+  {
+   "id": "ShellPostman",
+   "name": "Shell Postman",
+   "rarity": "Common",
+   "tags": [
+    "tidal",
+    "ball"
+   ],
+   "themes": [],
+   "weapon": "LanternStaff",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 21,
+   "reference": "Student",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\ShellPostman.asset"
+  },
+  {
+   "id": "CoralTeacup",
+   "name": "Coral Teacup",
+   "rarity": "Uncommon",
+   "tags": [
+    "tidal",
+    "gear"
+   ],
+   "themes": [],
+   "weapon": "SnowGlobeOrb",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 24,
+   "reference": "TV Head",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CoralTeacup.asset"
+  },
+  {
+   "id": "BubbleKoi",
+   "name": "Bubble Koi",
+   "rarity": "Common",
+   "tags": [
+    "tidal",
+    "clover",
+    "morning"
+   ],
+   "themes": [],
+   "weapon": "RibbonHarp",
+   "passive": "3",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 27,
+   "reference": "Young Lady",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\BubbleKoi.asset"
+  },
+  {
+   "id": "AnchorSnail",
+   "name": "Anchor Snail",
+   "rarity": "Uncommon",
+   "tags": [
+    "tidal",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "SpoonSabre",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 30,
+   "reference": "'\"Art of Food\" Roshi'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\AnchorSnail.asset"
+  },
+  {
+   "id": "SailSquid",
+   "name": "Sail Squid",
+   "rarity": "Uncommon",
+   "tags": [
+    "tidal",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "ToastCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 18,
+   "reference": "'\"Bullied\" Sophia'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\SailSquid.asset"
+  },
+  {
+   "id": "SockCyclops",
+   "name": "Sock Cyclops",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "LollipopLance",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 21,
+   "reference": "'\"Cars ARE My Kids\" Chris'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\SockCyclops.asset"
+  },
+  {
+   "id": "DiceCrab",
+   "name": "Dice Crab",
+   "rarity": "Common",
+   "tags": [
+    "oddity",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "PaperFan",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 24,
+   "reference": "'\"Colorful Fantasy\" Pinky'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\DiceCrab.asset"
+  },
+  {
+   "id": "MaskPepper",
+   "name": "Mask Pepper",
+   "rarity": "Common",
+   "tags": [
+    "oddity",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "CorkscrewRapier",
+   "passive": "3",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 27,
+   "reference": "'\"Enduring Suffering\" Dorothy'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\MaskPepper.asset"
+  },
+  {
+   "id": "CrayonGremlin",
+   "name": "Crayon Gremlin",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "TeabagFlail",
+   "passive": "4",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 30,
+   "reference": "'\"Expert Nurturer\" Daisy'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CrayonGremlin.asset"
+  },
+  {
+   "id": "MirrorNewt",
+   "name": "Mirror Newt",
+   "rarity": "Rare",
+   "tags": [
+    "oddity",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "UmbrellaHook",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 18,
+   "reference": "'\"Formatting Pixie\" Quentin'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\MirrorNewt.asset"
+  },
+  {
+   "id": "RibbonSpider",
+   "name": "Ribbon Spider",
+   "rarity": "Common",
+   "tags": [
+    "oddity",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "PizzaWheel",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 21,
+   "reference": "'\"GLHF\" Nia'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\RibbonSpider.asset"
+  },
+  {
+   "id": "CoilKettle",
+   "name": "Coil Kettle",
+   "rarity": "Rare",
+   "tags": [
+    "hearth",
+    "resolve"
+   ],
+   "themes": [
+    "hearth"
+   ],
+   "weapon": "SpringKnocker",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2,
+   "price": 26,
+   "reference": "'\"Leisurely Walk\" Mary'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CoilKettle.asset"
+  },
+  {
+   "id": "ThimbleMoth",
+   "name": "Thimble Moth",
+   "rarity": "Rare",
+   "tags": [
+    "archive",
+    "resolve"
+   ],
+   "themes": [
+    "archive"
+   ],
+   "weapon": "NeedleSinger",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2,
+   "price": 26,
+   "reference": "'\"Misfortune\" Emily'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\ThimbleMoth.asset"
+  },
+  {
+   "id": "ReelOwl",
+   "name": "Reel Owl",
+   "rarity": "Mythic",
+   "tags": [
+    "astral",
+    "resolve"
+   ],
+   "themes": [
+    "astral"
+   ],
+   "weapon": "DreamProjector",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 4,
+   "reference": "'\"Naming Demon\" Yan'",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\ReelOwl.asset"
+  },
+  {
+   "id": "RainbowTailor",
+   "name": "The Impossible Tailor",
+   "rarity": "Rainbow",
+   "tags": [
+    "frost",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "MoonseedOrb",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2147483647,
+   "price": 23,
+   "reference": "'\"Overtime King\" Philip'",
+   "path": "Assets/ArcaneBrigade\\Resources\\RainbowTailor.asset"
+  },
+  {
+   "id": "RainbowBell",
+   "name": "The Last Bell",
+   "rarity": "Rainbow",
+   "tags": [
+    "clock",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "SpringKnocker",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2147483647,
+   "price": 23,
+   "reference": "'\"Pet Master\" Lisa'",
+   "path": "Assets/ArcaneBrigade\\Resources\\RainbowBell.asset"
+  },
+  {
+   "id": "SecretPatchBear",
+   "name": "The Forgotten Patchwork",
+   "rarity": "Rare",
+   "tags": [
+    "archive"
+   ],
+   "themes": [
+    "archive"
+   ],
+   "weapon": "NeedleSinger",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2147483647,
+   "price": 80,
+   "reference": "",
+   "path": "Assets/ArcaneBrigade\\Resources\\SecretPatchBear.asset"
+  },
+  {
+   "id": "SecretPaperBird",
+   "name": "The Folded Courier",
+   "rarity": "Rare",
+   "tags": [
+    "hearth"
+   ],
+   "themes": [],
+   "weapon": "TeapotPopgun",
+   "passive": "1",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2147483647,
+   "price": 80,
+   "reference": "",
+   "path": "Assets/ArcaneBrigade\\Resources\\SecretPaperBird.asset"
+  },
+  {
+   "id": "SecretDreamLamb",
+   "name": "The Sleeping Friend",
+   "rarity": "Rare",
+   "tags": [
+    "astral"
+   ],
+   "themes": [
+    "astral"
+   ],
+   "weapon": "DreamProjector",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2147483647,
+   "price": 80,
+   "reference": "",
+   "path": "Assets/ArcaneBrigade\\Resources\\SecretDreamLamb.asset"
+  },
+  {
+   "id": "SaffronMechanist",
+   "name": "Saffron Mechanist",
+   "rarity": "Rare",
+   "tags": [
+    "hearth",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2,
+   "price": 24,
+   "reference": "'\"Shove Around\" Bella'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\SaffronMechanist.asset"
+  },
+  {
+   "id": "ClockworkPiper",
+   "name": "Clockwork Piper",
+   "rarity": "Rare",
+   "tags": [
+    "clock",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 32,
+   "reference": "'\"Smug and Satisfied\" Jake'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\ClockworkPiper.asset"
+  },
+  {
+   "id": "VelvetChampion",
+   "name": "Velvet Champion",
+   "rarity": "Rare",
+   "tags": [
+    "archive",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 4,
+   "price": 40,
+   "reference": "'\"The All-Knowing\" Walter'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\VelvetChampion.asset"
+  },
+  {
+   "id": "PaperInventor",
+   "name": "Paper Inventor",
+   "rarity": "Rare",
+   "tags": [
+    "orchard",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 5,
+   "price": 48,
+   "reference": "'\"The Creator\" Roger'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\PaperInventor.asset"
+  },
+  {
+   "id": "ReturnCaptain",
+   "name": "Return Captain",
+   "rarity": "Rare",
+   "tags": [
+    "tidal",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 24,
+   "reference": "'\"Triumphant Return\" Daniel'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\ReturnCaptain.asset"
+  },
+  {
+   "id": "DoughForeman",
+   "name": "Dough Foreman",
+   "rarity": "Rare",
+   "tags": [
+    "astral",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2,
+   "price": 32,
+   "reference": "'\"Quick Production\" Tao'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\DoughForeman.asset"
+  },
+  {
+   "id": "IronLocomotive",
+   "name": "Iron Locomotive",
+   "rarity": "Rare",
+   "tags": [
+    "frost",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 40,
+   "reference": "'\"Unstoppable\" Paul'",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\IronLocomotive.asset"
+  },
+  {
+   "id": "VioletRemnant",
+   "name": "Violet Remnant",
+   "rarity": "Uncommon",
+   "tags": [
+    "oddity",
+    "resolve"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 4,
+   "price": 48,
+   "reference": "Vengeful Spirit",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\VioletRemnant.asset"
+  },
+  {
+   "id": "VelvetEnchantress",
+   "name": "Velvet Enchantress",
+   "rarity": "Uncommon",
+   "tags": [
+    "hearth",
+    "knight"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 5,
+   "price": 24,
+   "reference": "Attractive Witch",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\VelvetEnchantress.asset"
+  },
+  {
+   "id": "GrandSprout",
+   "name": "Grand Sprout",
+   "rarity": "Uncommon",
+   "tags": [
+    "clock",
+    "sprout"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "Jade Cabbage",
+   "unlock": 6,
+   "price": 32,
+   "reference": "Big Cabbage",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\GrandSprout.asset"
+  },
+  {
+   "id": "BristleBall",
+   "name": "Bristle Ball",
+   "rarity": "Uncommon",
+   "tags": [
+    "archive",
+    "horn"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": true,
+   "exclusive": "",
+   "unlock": 2,
+   "price": 40,
+   "reference": "Domestic Spiked Ball",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\BristleBall.asset"
+  },
+  {
+   "id": "PaperDevil",
+   "name": "Paper Devil",
+   "rarity": "Uncommon",
+   "tags": [
+    "orchard",
+    "horn"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 48,
+   "reference": "Evil",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\PaperDevil.asset"
+  },
+  {
+   "id": "BalloonMallet",
+   "name": "Balloon Mallet",
+   "rarity": "Uncommon",
+   "tags": [
+    "tidal",
+    "mask"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": true,
+   "exclusive": "",
+   "unlock": 4,
+   "price": 24,
+   "reference": "Inflatable Hammer",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\BalloonMallet.asset"
+  },
+  {
+   "id": "LittleSprout",
+   "name": "Little Sprout",
+   "rarity": "Uncommon",
+   "tags": [
+    "astral",
+    "sprout"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "Jade Cabbage",
+   "unlock": 5,
+   "price": 32,
+   "reference": "Little Cabbage",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\LittleSprout.asset"
+  },
+  {
+   "id": "MonsterMarble",
+   "name": "Monster Marble",
+   "rarity": "Uncommon",
+   "tags": [
+    "frost",
+    "mask"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": true,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 40,
+   "reference": "Monster Friend",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\MonsterMarble.asset"
+  },
+  {
+   "id": "CarouselPony",
+   "name": "Carousel Pony",
+   "rarity": "Uncommon",
+   "tags": [
+    "clock",
+    "tidal",
+    "knight"
+   ],
+   "themes": [],
+   "weapon": "InkPistol",
+   "passive": "0",
+   "special": true,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 2,
+   "price": 48,
+   "reference": "Pony",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\CarouselPony.asset"
+  },
+  {
+   "id": "TeacupCricket",
+   "name": "Teacup Cricket",
+   "rarity": "Uncommon",
+   "tags": [
+    "hearth",
+    "lantern-guild"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 24,
+   "reference": "Original:TeacupCricket",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\TeacupCricket.asset"
+  },
+  {
+   "id": "RibbonOtter",
+   "name": "Ribbon Otter",
+   "rarity": "Uncommon",
+   "tags": [
+    "tidal",
+    "rain-script"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 4,
+   "price": 32,
+   "reference": "Original:RibbonOtter",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\RibbonOtter.asset"
+  },
+  {
+   "id": "SpindleWren",
+   "name": "Spindle Wren",
+   "rarity": "Uncommon",
+   "tags": [
+    "archive",
+    "lantern-guild"
+   ],
+   "themes": [],
+   "weapon": "KeyCleaver",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 5,
+   "price": 40,
+   "reference": "Original:SpindleWren",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\SpindleWren.asset"
+  }
+ ],
+ "heroes": [
+  {
+   "id": "LanternKnight",
+   "name": "Lantern Knight",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "hearth"
+   ],
+   "themes": [
+    "hearth",
+    "clock",
+    "orchard",
+    "oddity"
+   ],
+   "weapon": "KeyCleaver",
+   "passive": "3",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 20,
+   "reference": "Mr. Work",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\LanternKnight.asset"
+  },
+  {
+   "id": "Postmaster",
+   "name": "Postmaster",
+   "rarity": "Common",
+   "tags": [],
+   "themes": [
+    "archive",
+    "clock",
+    "tidal"
+   ],
+   "weapon": "MailboxLauncher",
+   "passive": "2",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 5,
+   "price": 20,
+   "reference": "Box Shell",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\Postmaster.asset"
+  },
+  {
+   "id": "DrowsySeer",
+   "name": "Drowsy Seer",
+   "rarity": "Common",
+   "tags": [],
+   "themes": [
+    "frost",
+    "astral",
+    "tidal",
+    "oddity"
+   ],
+   "weapon": "MoonseedOrb",
+   "passive": "1",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 10,
+   "price": 20,
+   "reference": "Frosty",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\DrowsySeer.asset"
+  },
+  {
+   "id": "RootOracle",
+   "name": "The Root Oracle",
+   "rarity": "Common",
+   "tags": [
+    "astral"
+   ],
+   "themes": [
+    "astral"
+   ],
+   "weapon": "BambooVase",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 32,
+   "reference": "Baggy",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\RootOracle.asset"
+  },
+  {
+   "id": "LoneJelly",
+   "name": "The Lone Jelly",
+   "rarity": "Common",
+   "tags": [
+    "oddity"
+   ],
+   "themes": [
+    "oddity"
+   ],
+   "weapon": "InkyOctopus",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 20,
+   "reference": "Capped Gallant",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\LoneJelly.asset"
+  },
+  {
+   "id": "GlassDice",
+   "name": "Lady Loaded Dice",
+   "rarity": "Common",
+   "tags": [
+    "oddity"
+   ],
+   "themes": [
+    "hearth",
+    "archive",
+    "clock",
+    "frost",
+    "orchard",
+    "astral",
+    "tidal",
+    "oddity"
+   ],
+   "weapon": "GlitchToybox",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 24,
+   "reference": "Sassy Senior",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\GlassDice.asset"
+  },
+  {
+   "id": "TideSinger",
+   "name": "The Tide Singer",
+   "rarity": "Common",
+   "tags": [
+    "tidal"
+   ],
+   "themes": [
+    "tidal"
+   ],
+   "weapon": "RibbonHarp",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 27,
+   "reference": "Red Scale",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\TideSinger.asset"
+  },
+  {
+   "id": "CometRunner",
+   "name": "The Comet Courier",
+   "rarity": "Common",
+   "tags": [
+    "astral"
+   ],
+   "themes": [
+    "astral"
+   ],
+   "weapon": "ClockCrescent",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 24,
+   "reference": "Derpy Wolf",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\CometRunner.asset"
+  },
+  {
+   "id": "MirrorKeeper",
+   "name": "The Mirror Keeper",
+   "rarity": "Common",
+   "tags": [
+    "oddity"
+   ],
+   "themes": [
+    "oddity"
+   ],
+   "weapon": "SnowGlobeOrb",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 18,
+   "reference": "Steel Shell",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\MirrorKeeper.asset"
+  },
+  {
+   "id": "TreasureAcorn",
+   "name": "The Treasure Clerk",
+   "rarity": "Common",
+   "tags": [
+    "archive"
+   ],
+   "themes": [
+    "archive"
+   ],
+   "weapon": "AcornSling",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 0,
+   "price": 18,
+   "reference": "Gulpy",
+   "path": "Assets/ArcaneBrigade\\Data\\Run\\TreasureAcorn.asset"
+  },
+  {
+   "id": "VerdantMatron",
+   "name": "Verdant Matron",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "hearth"
+   ],
+   "themes": [
+    "orchard",
+    "hearth"
+   ],
+   "weapon": "LeafCrossbow",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 3,
+   "price": 20,
+   "reference": "Jade Cabbage",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\VerdantMatron.asset"
+  },
+  {
+   "id": "CopperCauldron",
+   "name": "Copper Cauldron",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "oddity"
+   ],
+   "themes": [
+    "hearth",
+    "oddity"
+   ],
+   "weapon": "FireExtinguisher",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 4,
+   "price": 20,
+   "reference": "The Big Pot",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\CopperCauldron.asset"
+  },
+  {
+   "id": "ChinaMarionette",
+   "name": "China Marionette",
+   "rarity": "Common",
+   "tags": [
+    "frost",
+    "oddity"
+   ],
+   "themes": [
+    "frost",
+    "oddity"
+   ],
+   "weapon": "NeedleSinger",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 5,
+   "price": 20,
+   "reference": "Porcelain Doll",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\ChinaMarionette.asset"
+  },
+  {
+   "id": "SoapSkater",
+   "name": "Soap Skater",
+   "rarity": "Common",
+   "tags": [
+    "tidal",
+    "oddity"
+   ],
+   "themes": [
+    "tidal",
+    "oddity"
+   ],
+   "weapon": "BubbleWand",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 6,
+   "price": 20,
+   "reference": "Slippy",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\SoapSkater.asset"
+  },
+  {
+   "id": "VelvetRegent",
+   "name": "Velvet Regent",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "clock"
+   ],
+   "themes": [
+    "archive",
+    "clock"
+   ],
+   "weapon": "StarforgeClaymore",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 7,
+   "price": 20,
+   "reference": "Card King",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\VelvetRegent.asset"
+  },
+  {
+   "id": "ButtonCavalier",
+   "name": "Button Cavalier",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "oddity"
+   ],
+   "themes": [
+    "clock",
+    "oddity"
+   ],
+   "weapon": "CorkscrewRapier",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 8,
+   "price": 20,
+   "reference": "Sir Purrcival",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\ButtonCavalier.asset"
+  },
+  {
+   "id": "NightMaw",
+   "name": "Night Maw",
+   "rarity": "Common",
+   "tags": [
+    "oddity",
+    "oddity"
+   ],
+   "themes": [
+    "oddity",
+    "oddity"
+   ],
+   "weapon": "DrumstickClub",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 9,
+   "price": 20,
+   "reference": "Omnom",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\NightMaw.asset"
+  },
+  {
+   "id": "ThornTreasurer",
+   "name": "Thorn Treasurer",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "hearth"
+   ],
+   "themes": [
+    "orchard",
+    "hearth"
+   ],
+   "weapon": "GumballGatling",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 10,
+   "price": 20,
+   "reference": "Periwinky",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\ThornTreasurer.asset"
+  },
+  {
+   "id": "CitrusMarshal",
+   "name": "Citrus Marshal",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "hearth"
+   ],
+   "themes": [
+    "orchard",
+    "hearth"
+   ],
+   "weapon": "SignpostSlammer",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 8,
+   "price": 20,
+   "reference": "Clementie",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\CitrusMarshal.asset"
+  },
+  {
+   "id": "IvorySovereign",
+   "name": "Ivory Sovereign",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "clock"
+   ],
+   "themes": [
+    "archive",
+    "clock"
+   ],
+   "weapon": "DreamStamp",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 8,
+   "price": 20,
+   "reference": "Card Queen",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\IvorySovereign.asset"
+  },
+  {
+   "id": "PetalCitadel",
+   "name": "Petal Citadel",
+   "rarity": "Common",
+   "tags": [
+    "orchard",
+    "hearth"
+   ],
+   "themes": [
+    "orchard",
+    "hearth"
+   ],
+   "weapon": "RoseBouquet",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 9,
+   "price": 20,
+   "reference": "Bloom Shell",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\PetalCitadel.asset"
+  },
+  {
+   "id": "PatchworkHost",
+   "name": "Patchwork Host",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "oddity"
+   ],
+   "themes": [
+    "hearth",
+    "oddity"
+   ],
+   "weapon": "ConfettiBlunderbuss",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 9,
+   "price": 20,
+   "reference": "Belle",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\PatchworkHost.asset"
+  },
+  {
+   "id": "ArchiveCurator",
+   "name": "Archive Curator",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "clock"
+   ],
+   "themes": [
+    "archive",
+    "clock"
+   ],
+   "weapon": "SleepCamera",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 10,
+   "price": 20,
+   "reference": "Wise",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\ArchiveCurator.asset"
+  },
+  {
+   "id": "PennyBroker",
+   "name": "Penny Broker",
+   "rarity": "Common",
+   "tags": [
+    "archive",
+    "clock"
+   ],
+   "themes": [
+    "archive",
+    "clock"
+   ],
+   "weapon": "DetonatorBox",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 10,
+   "price": 20,
+   "reference": "Nicole",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\PennyBroker.asset"
+  },
+  {
+   "id": "StormFencer",
+   "name": "Storm Fencer",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "oddity"
+   ],
+   "themes": [
+    "clock",
+    "oddity"
+   ],
+   "weapon": "PlasmaTrident",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 11,
+   "price": 20,
+   "reference": "Anby",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\StormFencer.asset"
+  },
+  {
+   "id": "TinVirtuoso",
+   "name": "Tin Virtuoso",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "oddity"
+   ],
+   "themes": [
+    "clock",
+    "oddity"
+   ],
+   "weapon": "MusicBox",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 11,
+   "price": 20,
+   "reference": "Billy",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\TinVirtuoso.asset"
+  },
+  {
+   "id": "MoonProwler",
+   "name": "Moon Prowler",
+   "rarity": "Common",
+   "tags": [
+    "tidal",
+    "oddity"
+   ],
+   "themes": [
+    "tidal",
+    "oddity"
+   ],
+   "weapon": "MoonScythe",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 12,
+   "price": 20,
+   "reference": "Nekomata",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\MoonProwler.asset"
+  },
+  {
+   "id": "SupperMortar",
+   "name": "Supper Mortar",
+   "rarity": "Common",
+   "tags": [
+    "hearth",
+    "oddity"
+   ],
+   "themes": [
+    "hearth",
+    "oddity"
+   ],
+   "weapon": "TeapotPopgun",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 12,
+   "price": 20,
+   "reference": "Burgerboo",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\SupperMortar.asset"
+  },
+  {
+   "id": "LanternWeaver",
+   "name": "Lantern Weaver",
+   "rarity": "Common",
+   "tags": [
+    "astral",
+    "oddity"
+   ],
+   "themes": [
+    "astral",
+    "oddity",
+    "lantern-guild"
+   ],
+   "weapon": "LanternStaff",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 14,
+   "price": 20,
+   "reference": "Original:LanternWeaver",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\LanternWeaver.asset"
+  },
+  {
+   "id": "HourglassStag",
+   "name": "Hourglass Stag",
+   "rarity": "Common",
+   "tags": [
+    "clock",
+    "oddity"
+   ],
+   "themes": [
+    "clock",
+    "oddity",
+    "lantern-guild"
+   ],
+   "weapon": "AlarmMortar",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 15,
+   "price": 20,
+   "reference": "Original:HourglassStag",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\HourglassStag.asset"
+  },
+  {
+   "id": "RainArchivist",
+   "name": "Rain Archivist",
+   "rarity": "Common",
+   "tags": [
+    "tidal",
+    "oddity"
+   ],
+   "themes": [
+    "tidal",
+    "oddity"
+   ],
+   "weapon": "SquirtTrio",
+   "passive": "0",
+   "special": false,
+   "gift": false,
+   "exclusive": "",
+   "unlock": 16,
+   "price": 20,
+   "reference": "Original:RainArchivist",
+   "path": "Assets/ArcaneBrigade\\Resources\\October\\RainArchivist.asset"
+  }
+ ],
+ "bonds": [
+  {
+   "id": "hearth",
+   "name": "Hearth",
+   "threshold": 2,
+   "effect": 7,
+   "value": 0.15,
+   "icon": true
+  },
+  {
+   "id": "archive",
+   "name": "Archive",
+   "threshold": 2,
+   "effect": 0,
+   "value": 0.08,
+   "icon": true
+  },
+  {
+   "id": "clock",
+   "name": "Clock",
+   "threshold": 2,
+   "effect": 1,
+   "value": 0.07,
+   "icon": true
+  },
+  {
+   "id": "frost",
+   "name": "Frost",
+   "threshold": 2,
+   "effect": 5,
+   "value": 0.15,
+   "icon": true
+  },
+  {
+   "id": "orchard",
+   "name": "Orchard",
+   "threshold": 2,
+   "effect": 16,
+   "value": 0.04,
+   "icon": true
+  },
+  {
+   "id": "astral",
+   "name": "Astral",
+   "threshold": 2,
+   "effect": 28,
+   "value": 0.04,
+   "icon": true
+  },
+  {
+   "id": "tidal",
+   "name": "Tidal",
+   "threshold": 2,
+   "effect": 27,
+   "value": 0.04,
+   "icon": true
+  },
+  {
+   "id": "oddity",
+   "name": "Oddity",
+   "threshold": 2,
+   "effect": 23,
+   "value": 0.04,
+   "icon": true
+  },
+  {
+   "id": "hare",
+   "name": "Springstep",
+   "threshold": 2,
+   "effect": 23,
+   "value": 0.08,
+   "icon": true
+  },
+  {
+   "id": "archer",
+   "name": "Longbow",
+   "threshold": 2,
+   "effect": 22,
+   "value": 0.12,
+   "icon": true
+  },
+  {
+   "id": "root",
+   "name": "Rootkin",
+   "threshold": 2,
+   "effect": 2,
+   "value": 8.0,
+   "icon": true
+  },
+  {
+   "id": "gauntlet",
+   "name": "Prizefighters",
+   "threshold": 3,
+   "effect": 1,
+   "value": 0.08,
+   "icon": true
+  },
+  {
+   "id": "regal",
+   "name": "Velvet Court",
+   "threshold": 4,
+   "effect": 0,
+   "value": 0.15,
+   "icon": true
+  },
+  {
+   "id": "clover",
+   "name": "Lucky Leaves",
+   "threshold": 2,
+   "effect": 16,
+   "value": 0.1,
+   "icon": true
+  },
+  {
+   "id": "fruit",
+   "name": "Fruit Basket",
+   "threshold": 2,
+   "effect": 7,
+   "value": 0.3,
+   "icon": true
+  },
+  {
+   "id": "gear",
+   "name": "Clockwork Union",
+   "threshold": 2,
+   "effect": 24,
+   "value": 4.0,
+   "icon": true
+  },
+  {
+   "id": "hat",
+   "name": "Hat Society",
+   "threshold": 2,
+   "effect": 8,
+   "value": 0.06,
+   "icon": true
+  },
+  {
+   "id": "horn",
+   "name": "Little Horns",
+   "threshold": 2,
+   "effect": 8,
+   "value": 0.08,
+   "icon": true
+  },
+  {
+   "id": "sprout",
+   "name": "Jade Nursery",
+   "threshold": 5,
+   "effect": 15,
+   "value": 0.1,
+   "icon": true
+  },
+  {
+   "id": "knight",
+   "name": "Crossing Knights",
+   "threshold": 2,
+   "effect": 19,
+   "value": 5.0,
+   "icon": true
+  },
+  {
+   "id": "ball",
+   "name": "Lantern Revel",
+   "threshold": 2,
+   "effect": 19,
+   "value": 2.0,
+   "icon": true
+  },
+  {
+   "id": "morning",
+   "name": "Morning Bells",
+   "threshold": 3,
+   "effect": 12,
+   "value": 0.15,
+   "icon": true
+  },
+  {
+   "id": "rune",
+   "name": "Runic School",
+   "threshold": 3,
+   "effect": 34,
+   "value": 0.06,
+   "icon": true
+  },
+  {
+   "id": "mask",
+   "name": "Masked Carnival",
+   "threshold": 3,
+   "effect": 38,
+   "value": 0.1,
+   "icon": true
+  },
+  {
+   "id": "hide",
+   "name": "Wild Stitch",
+   "threshold": 2,
+   "effect": 11,
+   "value": 0.12,
+   "icon": true
+  },
+  {
+   "id": "resolve",
+   "name": "Unbroken",
+   "threshold": 2,
+   "effect": 18,
+   "value": 0.2,
+   "icon": true
+  },
+  {
+   "id": "shoe",
+   "name": "Quicksoles",
+   "threshold": 2,
+   "effect": 3,
+   "value": 0.08,
+   "icon": true
+  },
+  {
+   "id": "lantern-guild",
+   "name": "Lantern Guild",
+   "threshold": 2,
+   "effect": 22,
+   "value": 0.1,
+   "icon": true
+  },
+  {
+   "id": "rain-script",
+   "name": "Rain Script",
+   "threshold": 2,
+   "effect": 7,
+   "value": 0.35,
+   "icon": true
+  }
+ ],
+ "items": [
+  {
+   "id": "key-oil",
+   "name": "Key Oil",
+   "rarity": "Common",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [],
+   "mods": [
+    [
+     "Damage",
+     0.24
+    ]
+   ]
+  },
+  {
+   "id": "clock-spring",
+   "name": "Clock Spring",
+   "rarity": "Common",
+   "price": 20,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [],
+   "mods": [
+    [
+     "AttackSpeed",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "honey-pot",
+   "name": "Honey Pot",
+   "rarity": "Common",
+   "price": 22,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [],
+   "mods": [
+    [
+     "Health",
+     40.0
+    ]
+   ]
+  },
+  {
+   "id": "felt-boots",
+   "name": "Felt Boots",
+   "rarity": "Common",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "clock",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "MoveSpeed",
+     0.1
+    ]
+   ]
+  },
+  {
+   "id": "coin-compass",
+   "name": "Coin Compass",
+   "rarity": "Common",
+   "price": 15,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Pickup",
+     1.25
+    ]
+   ]
+  },
+  {
+   "id": "wandering-map",
+   "name": "Wandering Map",
+   "rarity": "Common",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Roam",
+     0.4
+    ]
+   ]
+  },
+  {
+   "id": "guardian-canopy",
+   "name": "Guardian Canopy",
+   "rarity": "Rare",
+   "price": 45,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 25,
+   "unlock": 4,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Interceptor",
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "warm-tea",
+   "name": "Warm Tea",
+   "rarity": "Common",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Heal",
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "oracle-lens",
+   "name": "Oracle Lens",
+   "rarity": "Common",
+   "price": 22,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "Crit",
+     0.1
+    ]
+   ]
+  },
+  {
+   "id": "twin-seal",
+   "name": "Twin Seal",
+   "rarity": "Rare",
+   "price": 35,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 25,
+   "unlock": 5,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "Projectiles",
+     2.0
+    ]
+   ]
+  },
+  {
+   "id": "piggy-mail",
+   "name": "Piggy Mail",
+   "rarity": "Common",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Interest",
+     2.0
+    ]
+   ]
+  },
+  {
+   "id": "pillow-mail",
+   "name": "Pillow Mail",
+   "rarity": "Common",
+   "price": 20,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Armor",
+     0.22
+    ]
+   ]
+  },
+  {
+   "id": "royal-key",
+   "name": "Royal Key",
+   "rarity": "Uncommon",
+   "price": 28,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 60,
+   "unlock": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ChampionDamage",
+     0.44
+    ]
+   ]
+  },
+  {
+   "id": "brigade-banner",
+   "name": "Brigade Banner",
+   "rarity": "Uncommon",
+   "price": 30,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 60,
+   "unlock": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "CompanionDamage",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "marching-bell",
+   "name": "Marching Bell",
+   "rarity": "Uncommon",
+   "price": 26,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 60,
+   "unlock": 0,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "CompanionAttackSpeed",
+     0.24
+    ]
+   ]
+  },
+  {
+   "id": "coupon-book",
+   "name": "Coupon Book",
+   "rarity": "Common",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 0,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Discount",
+     0.05
+    ]
+   ]
+  },
+  {
+   "id": "long-atlas",
+   "name": "Long Atlas",
+   "rarity": "Mythic",
+   "price": 36,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 8,
+   "unlock": 8,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Roam",
+     1.0
+    ],
+    [
+     "MoveSpeed",
+     -0.04
+    ]
+   ]
+  },
+  {
+   "id": "starlight-quilt",
+   "name": "Starlight Quilt",
+   "rarity": "Mythic",
+   "price": 42,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 8,
+   "unlock": 8,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     90.0
+    ]
+   ]
+  },
+  {
+   "id": "echo-postage",
+   "name": "Echo Postage",
+   "rarity": "Mythic",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 8,
+   "unlock": 10,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "Projectiles",
+     3.0
+    ],
+    [
+     "AttackSpeed",
+     -0.08
+    ]
+   ]
+  },
+  {
+   "id": "tarnished-crown",
+   "name": "Tarnished Crown",
+   "rarity": "Mythic",
+   "price": 48,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 8,
+   "unlock": 10,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ChampionDamage",
+     0.8
+    ]
+   ]
+  },
+  {
+   "id": "fortune-egg",
+   "name": "Fortune Egg",
+   "rarity": "Rare",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 25,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Luck",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "treasure-whisper",
+   "name": "Treasure Whisper",
+   "rarity": "Rare",
+   "price": 30,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 25,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "TreasureDetection",
+     0.35
+    ]
+   ]
+  },
+  {
+   "id": "coin-salve",
+   "name": "Coin Salve",
+   "rarity": "Rare",
+   "price": 28,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 25,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Heal",
+     0.0
+    ]
+   ]
+  },
+  {
+   "id": "chest-thunder",
+   "name": "Chest Thunder",
+   "rarity": "Rare",
+   "price": 42,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 25,
+   "unlock": 4,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.0
+    ]
+   ]
+  },
+  {
+   "id": "altar-ember",
+   "name": "Altar Ember",
+   "rarity": "Rare",
+   "price": 36,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 25,
+   "unlock": 4,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ChampionDamage",
+     0.36
+    ],
+    [
+     "MoveSpeed",
+     -0.03
+    ]
+   ]
+  },
+  {
+   "id": "harvest-receipt",
+   "name": "Harvest Receipt",
+   "rarity": "Uncommon",
+   "price": 28,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Pickup",
+     -0.15
+    ]
+   ]
+  },
+  {
+   "id": "reflective-ink",
+   "name": "Reflective Ink",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.0
+    ]
+   ]
+  },
+  {
+   "id": "carbon-ribbon",
+   "name": "Carbon Ribbon",
+   "rarity": "Rare",
+   "price": 40,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Crit",
+     -0.04
+    ]
+   ]
+  },
+  {
+   "id": "office-lens",
+   "name": "Office Lens",
+   "rarity": "Rare",
+   "price": 38,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "Crit",
+     0.24000001
+    ],
+    [
+     "AttackSpeed",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "tea-coaster",
+   "name": "Tea Coaster",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "MoveSpeed",
+     -0.02
+    ]
+   ]
+  },
+  {
+   "id": "scratch-record",
+   "name": "Scratch Record",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "AttackSpeed",
+     -0.04
+    ]
+   ]
+  },
+  {
+   "id": "treasure-ribbon",
+   "name": "Treasure Ribbon",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Damage",
+     -0.03
+    ]
+   ]
+  },
+  {
+   "id": "patch-spring",
+   "name": "Patch Spring",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CompanionAttackSpeed",
+     -0.06
+    ]
+   ]
+  },
+  {
+   "id": "thermal-ink",
+   "name": "Thermal Ink",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Crit",
+     -0.03
+    ]
+   ]
+  },
+  {
+   "id": "repair-coupon",
+   "name": "Repair Coupon",
+   "rarity": "Uncommon",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 2,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Pickup",
+     -0.1
+    ]
+   ]
+  },
+  {
+   "id": "k10-scoremultiplier",
+   "name": "\"Contract \\xB7 Score multiplier\"",
+   "rarity": "Uncommon",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ScoreMultiplier",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-collisiondamage",
+   "name": "\"Contract \\xB7 Collision damage\"",
+   "rarity": "Rare",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     10.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-meleedamage",
+   "name": "\"Contract \\xB7 Flat melee damage\"",
+   "rarity": "Mythic",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "MeleeDamage",
+     4.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-rangeddamage",
+   "name": "\"Contract \\xB7 Flat ranged damage\"",
+   "rarity": "Uncommon",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "RangedDamage",
+     4.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-attackrange",
+   "name": "\"Contract \\xB7 Attack range\"",
+   "rarity": "Rare",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "AttackRange",
+     0.25
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-dodge",
+   "name": "\"Contract \\xB7 Dodge\"",
+   "rarity": "Mythic",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Dodge",
+     0.12
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-income",
+   "name": "\"Contract \\xB7 Income\"",
+   "rarity": "Uncommon",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Income",
+     4.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bulletpierce",
+   "name": "\"Contract \\xB7 Bullet pierce\"",
+   "rarity": "Rare",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletPierce",
+     2.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bulletsplit",
+   "name": "\"Contract \\xB7 Bullet split\"",
+   "rarity": "Mythic",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletSplit",
+     2.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bulletbounce",
+   "name": "\"Contract \\xB7 Bullet bounce chance\"",
+   "rarity": "Uncommon",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletBounce",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bulletsize",
+   "name": "\"Contract \\xB7 Bullet size\"",
+   "rarity": "Rare",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletSize",
+     0.25
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bulletspeed",
+   "name": "\"Contract \\xB7 Bullet speed\"",
+   "rarity": "Mythic",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletSpeed",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bulletdistance",
+   "name": "\"Contract \\xB7 Bullet travel distance\"",
+   "rarity": "Uncommon",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletDistance",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-knockback",
+   "name": "\"Contract \\xB7 Knockback\"",
+   "rarity": "Rare",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Knockback",
+     0.25
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-bodysize",
+   "name": "\"Contract \\xB7 Champion size\"",
+   "rarity": "Mythic",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "BodySize",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-companionsize",
+   "name": "\"Contract \\xB7 Companion size\"",
+   "rarity": "Uncommon",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "CompanionSize",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-enemycount",
+   "name": "\"Contract \\xB7 Enemy count\"",
+   "rarity": "Rare",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "EnemyCount",
+     0.1
+    ],
+    [
+     "ScoreMultiplier",
+     0.2
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-enemyhealth",
+   "name": "\"Contract \\xB7 Enemy health\"",
+   "rarity": "Mythic",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "EnemyHealth",
+     0.1
+    ],
+    [
+     "ScoreMultiplier",
+     0.2
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-enemyspeed",
+   "name": "\"Contract \\xB7 Enemy speed\"",
+   "rarity": "Uncommon",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "EnemySpeed",
+     0.1
+    ],
+    [
+     "ScoreMultiplier",
+     0.2
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-hearthealing",
+   "name": "\"Contract \\xB7 Heart healing\"",
+   "rarity": "Rare",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "HeartHealing",
+     2.0
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-chestquality",
+   "name": "\"Contract \\xB7 Chest quality\"",
+   "rarity": "Mythic",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "ChestQuality",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-recruitdiscount",
+   "name": "\"Contract \\xB7 Recruit discount\"",
+   "rarity": "Uncommon",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "RecruitDiscount",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-relicdiscount",
+   "name": "\"Contract \\xB7 Relic discount\"",
+   "rarity": "Rare",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "RelicDiscount",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-shoprarity",
+   "name": "\"Contract \\xB7 Shop rarity\"",
+   "rarity": "Mythic",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ShopRarity",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-healthcorrection",
+   "name": "\"Contract \\xB7 Health correction\"",
+   "rarity": "Uncommon",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "HealthCorrection",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-damagecorrection",
+   "name": "\"Contract \\xB7 Damage correction\"",
+   "rarity": "Rare",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "DamageCorrection",
+     0.2
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-speedcorrection",
+   "name": "\"Contract \\xB7 Speed correction\"",
+   "rarity": "Mythic",
+   "price": 18,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "SpeedCorrection",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-armorcorrection",
+   "name": "\"Contract \\xB7 Armor correction\"",
+   "rarity": "Uncommon",
+   "price": 21,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ArmorCorrection",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-healcorrection",
+   "name": "\"Contract \\xB7 Healing correction\"",
+   "rarity": "Rare",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "HealCorrection",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "k10-collisionfrequency",
+   "name": "\"Contract \\xB7 Collision frequency\"",
+   "rarity": "Mythic",
+   "price": 27,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 50,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CollisionFrequency",
+     0.08
+    ],
+    [
+     "Health",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "long-pocket",
+   "name": "Long Pocket",
+   "rarity": "Uncommon",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 45,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "ChestReach",
+     0.35
+    ],
+    [
+     "MoveSpeed",
+     -0.02
+    ]
+   ]
+  },
+  {
+   "id": "velvet-first-aid",
+   "name": "Velvet First Aid",
+   "rarity": "Rare",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 45,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "TreasureDetection",
+     0.1
+    ],
+    [
+     "MoveSpeed",
+     -0.02
+    ]
+   ]
+  },
+  {
+   "id": "brass-avalanche",
+   "name": "Brass Avalanche",
+   "rarity": "Mythic",
+   "price": 24,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 45,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Knockback",
+     0.25
+    ],
+    [
+     "MoveSpeed",
+     -0.02
+    ]
+   ]
+  },
+  {
+   "id": "RainbowCrown",
+   "name": "Borrowed Crown",
+   "rarity": "Rainbow",
+   "price": 200,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.7
+    ],
+    [
+     "Projectiles",
+     2.0
+    ]
+   ]
+  },
+  {
+   "id": "RainbowHeart",
+   "name": "Clockwork Heart",
+   "rarity": "Rainbow",
+   "price": 200,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     120.0
+    ],
+    [
+     "Heal",
+     1.8
+    ]
+   ]
+  },
+  {
+   "id": "RainbowThread",
+   "name": "Living Thread",
+   "rarity": "Rainbow",
+   "price": 200,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "MeleeDamage",
+     4.0
+    ],
+    [
+     "Knockback",
+     0.63
+    ]
+   ]
+  },
+  {
+   "id": "RainbowPrism",
+   "name": "Impossible Prism",
+   "rarity": "Rainbow",
+   "price": 200,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletSplit",
+     3.0
+    ],
+    [
+     "RangedDamage",
+     4.0
+    ]
+   ]
+  },
+  {
+   "id": "CrimsonSeal",
+   "name": "Crimson Seal",
+   "rarity": "Crimson",
+   "price": 75,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 1,
+   "unlock": 10,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "ChampionDamage",
+     0.9
+    ],
+    [
+     "CollisionDamage",
+     24.0
+    ]
+   ]
+  },
+  {
+   "id": "CrimsonSpring",
+   "name": "Crimson Spring",
+   "rarity": "Crimson",
+   "price": 75,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 1,
+   "unlock": 10,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "AttackSpeed",
+     0.5
+    ],
+    [
+     "AttackRange",
+     0.45
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense0",
+   "name": "Marrow Tea",
+   "rarity": "Common",
+   "price": 35,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     50.0
+    ],
+    [
+     "Heal",
+     0.8
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense1",
+   "name": "Porcelain Splint",
+   "rarity": "Common",
+   "price": 40,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Armor",
+     0.35
+    ],
+    [
+     "MoveSpeed",
+     -0.04
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense2",
+   "name": "Escape Thimble",
+   "rarity": "Uncommon",
+   "price": 45,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Dodge",
+     0.12
+    ],
+    [
+     "MoveSpeed",
+     0.12
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense3",
+   "name": "Quicksole",
+   "rarity": "Uncommon",
+   "price": 50,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "frost",
+    "hearth",
+    "oddity",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "MoveSpeed",
+     0.18
+    ],
+    [
+     "Health",
+     20.0
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense4",
+   "name": "Pulse Bell",
+   "rarity": "Rare",
+   "price": 55,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 100,
+   "unlock": 4,
+   "themes": [
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "HealthCorrection",
+     0.25
+    ],
+    [
+     "Heal",
+     1.4
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense5",
+   "name": "Mercy Spindle",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 100,
+   "unlock": 4,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Heal",
+     2.8
+    ],
+    [
+     "Income",
+     -2.0
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense6",
+   "name": "Iron Apron",
+   "rarity": "Mythic",
+   "price": 65,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 100,
+   "unlock": 4,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Armor",
+     0.65
+    ],
+    [
+     "MoveSpeed",
+     -0.08
+    ]
+   ]
+  },
+  {
+   "id": "K26Defense7",
+   "name": "Mending Moth",
+   "rarity": "Mythic",
+   "price": 70,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 100,
+   "unlock": 4,
+   "themes": [
+    "clock",
+    "frost",
+    "hearth",
+    "oddity",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Heal",
+     2.5
+    ],
+    [
+     "Armor",
+     0.12
+    ]
+   ]
+  },
+  {
+   "id": "SecretWoodHeart",
+   "name": "The Abandoned Wooden Heart",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     18.0
+    ],
+    [
+     "Heal",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "SecretMirror",
+   "name": "The Glass Understudy",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "Crit",
+     0.05
+    ],
+    [
+     "AttackRange",
+     0.08
+    ]
+   ]
+  },
+  {
+   "id": "SecretThread",
+   "name": "Living Contraband Thread",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "AttackRange",
+     0.18
+    ],
+    [
+     "Knockback",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "SecretTicket",
+   "name": "Smuggler's Ticket",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Discount",
+     0.08
+    ],
+    [
+     "Luck",
+     0.08
+    ]
+   ]
+  },
+  {
+   "id": "SecretHour",
+   "name": "Hourglass Advance",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "AttackSpeed",
+     0.18
+    ],
+    [
+     "Damage",
+     0.1
+    ]
+   ]
+  },
+  {
+   "id": "SecretDream",
+   "name": "Sleeping-Lamb Brooch",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     12.0
+    ],
+    [
+     "HeartHealing",
+     3.0
+    ]
+   ]
+  },
+  {
+   "id": "SecretCrown",
+   "name": "Crown of the Empty Theatre",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.15
+    ],
+    [
+     "Crit",
+     0.08
+    ]
+   ]
+  },
+  {
+   "id": "SecretLetter",
+   "name": "Dead-Letter Key",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 3,
+   "weight": 0,
+   "unlock": 2147483647,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Pickup",
+     0.8
+    ],
+    [
+     "TreasureDetection",
+     0.1
+    ]
+   ]
+  },
+  {
+   "id": "OctoberRelic0",
+   "name": "Lantern Stitch",
+   "rarity": "Rare",
+   "price": 26,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 65,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "AttackRange",
+     0.1
+    ],
+    [
+     "AttackSpeed",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "OctoberRelic1",
+   "name": "Rain Receipt",
+   "rarity": "Rare",
+   "price": 30,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 65,
+   "unlock": 3,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Heal",
+     0.5
+    ],
+    [
+     "Income",
+     -2.0
+    ]
+   ]
+  },
+  {
+   "id": "OctoberRelic2",
+   "name": "Clockseed Brooch",
+   "rarity": "Rare",
+   "price": 34,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 65,
+   "unlock": 3,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     5.0
+    ],
+    [
+     "MoveSpeed",
+     -0.04
+    ]
+   ]
+  },
+  {
+   "id": "OctoberRelic3",
+   "name": "Porcelain Promise",
+   "rarity": "Rare",
+   "price": 38,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 2,
+   "weight": 65,
+   "unlock": 3,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "HeartHealing",
+     2.0
+    ],
+    [
+     "Health",
+     10.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioOrchardFizz",
+   "name": "Orchard Fizz",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "frost",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Health",
+     20.0
+    ],
+    [
+     "Income",
+     -2.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioGraveChime",
+   "name": "Grave Chime",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "clock",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     10.0
+    ],
+    [
+     "MoveSpeed",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioBreathJar",
+   "name": "Breath Jar",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "hearth",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.2
+    ],
+    [
+     "AttackSpeed",
+     -0.04
+    ]
+   ]
+  },
+  {
+   "id": "CurioCoralBroth",
+   "name": "Coral Broth",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "frost",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Heal",
+     1.0
+    ],
+    [
+     "Health",
+     -4.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioFangPin",
+   "name": "Fang Pin",
+   "rarity": "Common",
+   "price": 32,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Knockback",
+     1.0
+    ],
+    [
+     "AttackSpeed",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioRicochetSeltzer",
+   "name": "Ricochet Seltzer",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "RangedDamage",
+     6.0
+    ],
+    [
+     "BulletBounce",
+     0.25
+    ],
+    [
+     "Damage",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioNoonSpark",
+   "name": "Noon Spark",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "MeleeDamage",
+     5.0
+    ],
+    [
+     "Crit",
+     0.06
+    ]
+   ]
+  },
+  {
+   "id": "CurioQuietHour",
+   "name": "Quiet Hour",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "clock",
+    "hearth",
+    "oddity",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Armor",
+     0.12
+    ],
+    [
+     "TreasureDetection",
+     0.15
+    ]
+   ]
+  },
+  {
+   "id": "CurioBentTape",
+   "name": "Bent Tape",
+   "rarity": "Common",
+   "price": 32,
+   "category": 0,
+   "mechanic": 1,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [],
+   "mods": [
+    [
+     "AttackSpeed",
+     0.18
+    ]
+   ]
+  },
+  {
+   "id": "CurioMeadowTonic",
+   "name": "Meadow Tonic",
+   "rarity": "Common",
+   "price": 32,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "clock",
+    "oddity",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Dodge",
+     0.08
+    ],
+    [
+     "Luck",
+     0.06
+    ]
+   ]
+  },
+  {
+   "id": "CurioKindlingGloves",
+   "name": "Kindling Gloves",
+   "rarity": "Common",
+   "price": 32,
+   "category": 0,
+   "mechanic": 2,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [],
+   "mods": [
+    [
+     "Heal",
+     -0.4
+    ]
+   ]
+  },
+  {
+   "id": "CurioInterestTin",
+   "name": "Interest Tin",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 2,
+   "mechanic": 3,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Pickup",
+     0.6
+    ]
+   ]
+  },
+  {
+   "id": "CurioStormDryer",
+   "name": "Storm Dryer",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.24
+    ],
+    [
+     "Knockback",
+     0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioRetortCup",
+   "name": "Retort Cup",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 4,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Armor",
+     0.4
+    ],
+    [
+     "Luck",
+     -0.08
+    ]
+   ]
+  },
+  {
+   "id": "CurioShatteredPager",
+   "name": "Shattered Pager",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Income",
+     25.0
+    ],
+    [
+     "BulletSplit",
+     2.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioWatchfulTea",
+   "name": "Watchful Tea",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 5,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Heal",
+     2.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioSunfireFlask",
+   "name": "Sunfire Flask",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "AttackRange",
+     0.4
+    ],
+    [
+     "Projectiles",
+     1.0
+    ],
+    [
+     "AttackSpeed",
+     -0.25
+    ]
+   ]
+  },
+  {
+   "id": "CurioGiltOrbit",
+   "name": "Gilt Orbit",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 6,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "RangedDamage",
+     5.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioEmberEspresso",
+   "name": "Ember Espresso",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "hearth",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "AttackSpeed",
+     0.24
+    ],
+    [
+     "CollisionDamage",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioPrismRecord",
+   "name": "Prism Record",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 7,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "AttackRange",
+     -0.1
+    ]
+   ]
+  },
+  {
+   "id": "CurioCitrusStorm",
+   "name": "Citrus Storm",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "RangedDamage",
+     6.0
+    ],
+    [
+     "EnemyCount",
+     0.02
+    ]
+   ]
+  },
+  {
+   "id": "CurioMoonMilk",
+   "name": "Moon Milk",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "frost",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "HeartHealing",
+     4.0
+    ],
+    [
+     "MoveSpeed",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioPocketSun",
+   "name": "Pocket Sun",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "BodySize",
+     -0.1
+    ],
+    [
+     "Luck",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "CurioInkFeather",
+   "name": "Ink Feather",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 8,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioMulberryRiot",
+   "name": "Mulberry Riot",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Income",
+     30.0
+    ],
+    [
+     "TreasureDetection",
+     0.6
+    ],
+    [
+     "Armor",
+     -0.3
+    ]
+   ]
+  },
+  {
+   "id": "CurioDreamBlindfold",
+   "name": "Dream Blindfold",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 9,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Luck",
+     0.1
+    ],
+    [
+     "TreasureDetection",
+     0.25
+    ]
+   ]
+  },
+  {
+   "id": "CurioSleepyMist",
+   "name": "Sleepy Mist",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "hearth",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.35
+    ],
+    [
+     "MoveSpeed",
+     -0.2
+    ],
+    [
+     "EnemySpeed",
+     -0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioClearSip",
+   "name": "Clear Sip",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 10,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     -1.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioOddElixir",
+   "name": "Odd Elixir",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 11,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioDaylightBonnet",
+   "name": "Daylight Bonnet",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 12,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     40.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioNeedleTarget",
+   "name": "Needle Target",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "BulletPierce",
+     1.0
+    ],
+    [
+     "Crit",
+     0.15
+    ],
+    [
+     "MeleeDamage",
+     -3.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioManyDoorKey",
+   "name": "Many Door Key",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 13,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "TreasureDetection",
+     0.25
+    ],
+    [
+     "Damage",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioCourageJuice",
+   "name": "Courage Juice",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "clock",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "MoveSpeed",
+     0.2
+    ],
+    [
+     "MeleeDamage",
+     5.0
+    ],
+    [
+     "Health",
+     -10.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioCrookedEight",
+   "name": "Crooked Eight",
+   "rarity": "Uncommon",
+   "price": 46,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 100,
+   "unlock": 1,
+   "themes": [
+    "archive",
+    "astral",
+    "frost",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Luck",
+     0.4
+    ],
+    [
+     "BulletBounce",
+     0.2
+    ],
+    [
+     "Damage",
+     -0.06
+    ]
+   ]
+  },
+  {
+   "id": "CurioTornAlmanac",
+   "name": "Torn Almanac",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 14,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Damage",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioHoardersLocket",
+   "name": "Hoarders Locket",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 15,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioSplitKernel",
+   "name": "Split Kernel",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 2,
+   "mechanic": 16,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Heal",
+     3.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioWildPigment",
+   "name": "Wild Pigment",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "clock",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "MoveSpeed",
+     0.15
+    ],
+    [
+     "MeleeDamage",
+     7.0
+    ],
+    [
+     "RangedDamage",
+     -3.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioStillwaterUrn",
+   "name": "Stillwater Urn",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 17,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "MoveSpeed",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioPanicBell",
+   "name": "Panic Bell",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 18,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioOilyLozenge",
+   "name": "Oily Lozenge",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 2,
+   "mechanic": 19,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     20.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioLodestoneLabel",
+   "name": "Lodestone Label",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 20,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "RangedDamage",
+     8.0
+    ],
+    [
+     "Pickup",
+     0.9
+    ]
+   ]
+  },
+  {
+   "id": "CurioHungryLedger",
+   "name": "Hungry Ledger",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 21,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioStoneCrust",
+   "name": "Stone Crust",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 2,
+   "mechanic": 22,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "AttackSpeed",
+     -0.1
+    ]
+   ]
+  },
+  {
+   "id": "CurioBitterHoney",
+   "name": "Bitter Honey",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Heal",
+     2.5
+    ],
+    [
+     "TreasureDetection",
+     0.6
+    ],
+    [
+     "EnemySpeed",
+     0.07
+    ]
+   ]
+  },
+  {
+   "id": "CurioBurdenCollar",
+   "name": "Burden Collar",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 23,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     20.0
+    ],
+    [
+     "MoveSpeed",
+     -0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioHushEarmuffs",
+   "name": "Hush Earmuffs",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 24,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Dodge",
+     0.1
+    ],
+    [
+     "Crit",
+     0.1
+    ]
+   ]
+  },
+  {
+   "id": "CurioProfitSlide",
+   "name": "Profit Slide",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 25,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Income",
+     -10.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioAngryReliquary",
+   "name": "Angry Reliquary",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 26,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioPetalTonic",
+   "name": "Petal Tonic",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "frost",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Health",
+     90.0
+    ],
+    [
+     "Heal",
+     -2.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioSorrowLantern",
+   "name": "Sorrow Lantern",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 27,
+   "pools": 2,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Dodge",
+     -0.05
+    ]
+   ]
+  },
+  {
+   "id": "CurioMuteClock",
+   "name": "Mute Clock",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 28,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "AttackSpeed",
+     0.45
+    ],
+    [
+     "MoveSpeed",
+     0.4
+    ]
+   ]
+  },
+  {
+   "id": "CurioUrchinBall",
+   "name": "Urchin Ball",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 29,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Armor",
+     0.6
+    ],
+    [
+     "MoveSpeed",
+     0.1
+    ]
+   ]
+  },
+  {
+   "id": "CurioSourMandarin",
+   "name": "Sour Mandarin",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 2,
+   "mechanic": 30,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "hearth",
+    "orchard"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioWakefulCordial",
+   "name": "Wakeful Cordial",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     25.0
+    ],
+    [
+     "Knockback",
+     0.3
+    ],
+    [
+     "Crit",
+     -0.1
+    ]
+   ]
+  },
+  {
+   "id": "CurioGlassLotus",
+   "name": "Glass Lotus",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 0,
+   "mechanic": 31,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioNestDumpling",
+   "name": "Nest Dumpling",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 2,
+   "mechanic": 32,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Armor",
+     -0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioVictorDraught",
+   "name": "Victor Draught",
+   "rarity": "Rare",
+   "price": 60,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 55,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "frost",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Crit",
+     0.2
+    ],
+    [
+     "BulletPierce",
+     1.0
+    ],
+    [
+     "Damage",
+     -0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioWishWick",
+   "name": "Wish Wick",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 33,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Health",
+     -5.0
+    ],
+    [
+     "Income",
+     -5.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioShieldBlower",
+   "name": "Shield Blower",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     25.0
+    ],
+    [
+     "Interceptor",
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioLiarMask",
+   "name": "Liar Mask",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 34,
+   "pools": 2,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "Damage",
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioOrbitPastry",
+   "name": "Orbit Pastry",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 2,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "BodySize",
+     0.25
+    ],
+    [
+     "BulletSize",
+     0.75
+    ],
+    [
+     "BulletSpeed",
+     -0.4
+    ],
+    [
+     "ChampionDamage",
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioOathParcel",
+   "name": "Oath Parcel",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 2,
+   "mechanic": 35,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "hearth",
+    "orchard"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioFortunePear",
+   "name": "Fortune Pear",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 2,
+   "mechanic": 36,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "hearth",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Luck",
+     0.16
+    ],
+    [
+     "Income",
+     -15.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioEmeraldInvoice",
+   "name": "Emerald Invoice",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "orchard",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "RelicDiscount",
+     0.25
+    ],
+    [
+     "Damage",
+     -0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioBatteringHelm",
+   "name": "Battering Helm",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "clock",
+    "hearth",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "CollisionDamage",
+     40.0
+    ],
+    [
+     "CollisionFrequency",
+     0.7
+    ],
+    [
+     "RangedDamage",
+     -10.0
+    ]
+   ]
+  },
+  {
+   "id": "CurioGambleSandwich",
+   "name": "Gamble Sandwich",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 2,
+   "mechanic": 37,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Armor",
+     -0.2
+    ]
+   ]
+  },
+  {
+   "id": "CurioFeastBucket",
+   "name": "Feast Bucket",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 2,
+   "mechanic": 38,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "orchard"
+   ],
+   "mods": [
+    [
+     "Health",
+     40.0
+    ],
+    [
+     "Heal",
+     1.0
+    ],
+    [
+     "BodySize",
+     0.1
+    ],
+    [
+     "Dodge",
+     -0.3
+    ]
+   ]
+  },
+  {
+   "id": "CurioWanderLetter",
+   "name": "Wander Letter",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 39,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "frost"
+   ],
+   "mods": [
+    [
+     "Crit",
+     0.4
+    ],
+    [
+     "Armor",
+     -0.7
+    ]
+   ]
+  },
+  {
+   "id": "CurioVenomPass",
+   "name": "Venom Pass",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 40,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioTruceBottle",
+   "name": "Truce Bottle",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 1,
+   "mechanic": 0,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "astral",
+    "clock",
+    "frost",
+    "hearth",
+    "oddity",
+    "tidal"
+   ],
+   "mods": [
+    [
+     "Damage",
+     0.4
+    ],
+    [
+     "Crit",
+     0.2
+    ],
+    [
+     "AttackRange",
+     0.4
+    ],
+    [
+     "Armor",
+     0.6
+    ]
+   ]
+  },
+  {
+   "id": "CurioThornPerfume",
+   "name": "Thorn Perfume",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 41,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "astral",
+    "clock",
+    "hearth"
+   ],
+   "mods": [
+    [
+     "EnemySpeed",
+     0.3
+    ]
+   ]
+  },
+  {
+   "id": "CurioLastHopeMotor",
+   "name": "Last Hope Motor",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 42,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioAnchorTack",
+   "name": "Anchor Tack",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 43,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": []
+  },
+  {
+   "id": "CurioVoidDoubloon",
+   "name": "Void Doubloon",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 0,
+   "mechanic": 44,
+   "pools": 1,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "archive",
+    "oddity"
+   ],
+   "mods": [
+    [
+     "Damage",
+     -0.3
+    ]
+   ]
+  },
+  {
+   "id": "CurioSixfoldRoot",
+   "name": "Sixfold Root",
+   "rarity": "Mythic",
+   "price": 74,
+   "category": 2,
+   "mechanic": 45,
+   "pools": 2,
+   "weight": 28,
+   "unlock": 3,
+   "themes": [
+    "hearth",
+    "orchard"
+   ],
+   "mods": []
+  }
+ ]
+}
