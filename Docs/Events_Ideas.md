@@ -1,34 +1,19 @@
-# Sự kiện ngẫu nhiên — ý tưởng (18/10/2026, để làm sau)
+# Vị khách ghé shop — ý tưởng (18/10/2026, bản 4, để làm sau)
 
-Trạng thái: **chưa làm** — chủ dự án sẽ chọn danh sách cuối cùng. Bản này viết lại từ đầu sau góp ý: hợp theme Miền Chờ,
-không có tác dụng vĩnh viễn, phần thưởng thấp, không bắt vẽ lại quái.
+Trạng thái: **chưa làm** — chủ dự án chọn danh sách cuối. Theo góp ý: bỏ luật môi trường và bỏ biến cố giữa trận; chỉ làm
+vị khách ghé shop (một nhân vật xuất hiện trong shop với một lời đề nghị, nhận hay bỏ qua).
 
 ## Luật chung
 
-- Sau wave 3, cứ 3–4 wave rút ngẫu nhiên một sự kiện (theo seed của run), không lặp liền, không rơi vào wave boss.
+- Sau wave 3, cứ 2–3 shop có một vị khách ghé, rút ngẫu nhiên (theo seed của run), không lặp liền, không rơi vào wave boss.
 - Chỉ tạm thời: trong trận đó hoặc wave kế. Không sự kiện nào cho chỉ số vĩnh viễn.
-- Thưởng nhỏ: vàng 8–20, hoặc 1 trứng, hoặc 1 item Common (sự kiện khó: Uncommon từ wave 10). Nhiều sự kiện không có thưởng,
-  chỉ là một khoảnh khắc chiến thuật. Tổng mỗi run khoảng 30–50 vàng và 1–2 item Common/Uncommon.
-- Mỗi sự kiện cần tối đa một vật thể vẽ mới (gửi bên art); quái và đồng đội giữ nguyên hình; hiệu ứng vẽ bằng mực trong code.
+- Thưởng nhỏ: vàng 5–20, 1 trứng, hoặc 1 item Common (sự kiện khó: Uncommon từ wave 10). Nhiều sự kiện không có thưởng.
+- Mỗi vị khách là một nhân vật vẽ mới đứng trong shop (một tranh); hiệu ứng vẽ bằng mực trong code.
 
-## A. Giấc mơ chen vào giữa trận (bất ngờ)
+## B. Vị khách ghé shop (nhận hay bỏ qua) — đã chốt cả 45 (18/10/2026)
 
-| # | Sự kiện | Diễn ra | Thưởng | Cần vẽ |
-|---|---|---|---|---|
-| A1 | Va Li Thất Lạc | va li mọc chân chạy quanh sân; trúng 5 lần trước khi nó thoát | 1 item Common (Uncommon từ wave 10) | va li có chân |
-| A2 | Thư Bay Theo Gió | vài lá thư trôi ngang sân; hero đi qua để nhặt | 2 vàng mỗi lá, tối đa 10 | — |
-| A3 | Ngọn Đèn Tắt | 8s sân tối, chỉ còn vùng sáng quanh hero; quái ngoài vùng sáng chậm 30% | — | — |
-| A4 | Đồng Hồ Báo Thức | đứng cạnh 2s để tắt chuông: quái trên màn hình ngủ 2s, rồi một đợt quái nhỏ ùa tới | — | đồng hồ |
-| A5 | Bong Bóng Giờ Tắm | bong bóng xà phòng trôi qua; quái chạm vào bị nhốt 3s | — | — |
-| A6 | Giờ Ngủ Gật | 6s đạn của quái bay chậm như mơ | — | — |
-| A7 | Đoàn Diễu Hành Đồ Chơi | đoàn lính chì băng qua một làn, giẫm bẹp quái; hero phải tránh làn | — | lính chì |
-| A8 | Diều Lạc Mang Bưu Phẩm | diều kéo túi quà bay qua; bắn rơi trước khi nó đi mất | 1 trứng | diều + túi |
-| A9 | Bánh Sinh Nhật Bị Bỏ Quên | quái bị hút tới ăn bánh 4s; đánh vỡ bánh | 1 món ăn Common | bánh kem |
-| A10 | Gối Rơi | hero bước lên gối: lông vũ bung ra hất lùi quái quanh gối | — | gối |
-| A11 | Rèm Sân Khấu | tấm rèm kéo ngang sân, gạt quái nhỏ dồn về một phía | — | rèm |
-| A12 | Ánh Đèn Sân Khấu | 10s luồng đèn đuổi theo hero; quái hạ trong luồng đèn rơi thêm 1 xu | xu nhỏ | — |
-
-## B. Vị khách ghé shop (nhận hay bỏ qua)
+Rà soát cuối: không vị khách nào hồi máu hay đổi máu lấy vàng (máu đã là tiền tệ ở quầy mua bằng máu); không hai vị khách
+nào làm cùng một việc (một vị cá cược, một vị bán đồ, một vị đổi đồ, một vị hoàn lượt đổi, một vị đổi trứng).
 
 | # | Vị khách | Đổi chác | Cần vẽ |
 |---|---|---|---|
@@ -40,18 +25,41 @@ không có tác dụng vĩnh viễn, phần thưởng thấp, không bắt vẽ 
 | B6 | Gánh Hát Rong | chọn một vở cho wave sau: đồng đội +10% tốc đánh / quái −10% tốc độ / xu +1 | xe gánh hát |
 | B7 | Người Thắp Đèn | 6 vàng: 4 đèn góc sân cháy wave sau, quái đi qua bén lửa nhẹ | — |
 | B8 | Món Đồ Chơi Lạc Nhà | wave sau nó đi theo hero; giữ trong tầm 3 ô đủ 20s: 1 trứng và một câu chuyện ngắn | đồ chơi |
-| B9 | Thợ Vá Đồ Chơi | 10 vàng: wave sau 3 đòn đầu trúng hero không gây sát thương | thợ vá |
+| B9 | Thợ Vá Đồ Chơi | 8 vàng: vá áo cho một đồng đội; wave sau đòn của nó làm chậm quái 20% | thợ vá |
 | B10 | Hộp Nhạc Lên Dây | miễn phí: wave sau mọi thứ nhanh hơn 15% (cả quái), xu +1 | hộp nhạc |
-
-## C. Đêm lạ (báo trước, chỉ đúng wave đó)
-
-| # | Đêm | Luật |
-|---|---|---|
-| C1 | Mưa Phùn | cả wave mọi thứ ướt: đòn băng đóng băng ngắn |
-| C2 | Giấc Ngủ Nông | wave ngắn hơn 25% nhưng quái ra dồn dập |
-| C3 | Đèn Chập Chờn | mỗi 10s đèn chớp tắt; quái đứng khựng 1s |
-| C4 | Ngày Kiểm Kho | không có rương; cứ 25 quái bị hạ rơi 2 vàng |
-| C5 | Đêm Đồ Chơi Thức Dậy | vài món đồ chơi trên sàn tự nhảy vào đánh quái gần đó rồi nằm im |
-
-Gợi ý đợt đầu: A1, A4, A5, A8, A9, B1, B2, B5, B8, B10, C1, C3 (8 vật thể cần vẽ).
+| B11 | Người Đổi Chác | đổi 1 item đang có lấy 1 item ngẫu nhiên cùng bậc | người đổi chác |
+| B12 | Người Gom Đồ Cũ | bán 1 item đang có lấy 60% giá | xe đồ cũ |
+| B13 | Người Cho Mượn | cho mượn 1 item Rare đúng 1 wave, rồi lấy lại | người cho mượn |
+| B14 | Bà Kể Chuyện | ngồi nghe (miễn phí): một trang truyện về Miền Chờ, và 20s đầu wave sau mỗi quái hạ rơi thêm 1 xu | bà kể chuyện |
+| B15 | Chú Hề Tráo Hàng | tráo cả quầy shop sang hàng bậc cao hơn một bậc nhưng giá +30% | chú hề |
+| B16 | Thợ Đồng Hồ Quay Ngược | 4 vàng: trả lại tiền lượt đổi shop vừa rồi và đưa quầy về như cũ | thợ đồng hồ |
+| B17 | Đứa Trẻ Mất Ngủ | hát ru giúp: wave sau hạ 80 quái thì nhận 1 trứng | đứa trẻ |
+| B18 | Phù Thủy Kẹo | 6 vàng một túi kẹo: wave sau cứ 10s một viên kẹo rơi cạnh hero, quái xúm vào tranh kẹo 2s | phù thủy kẹo |
+| B19 | Người Bán Bóng Bay | 5 vàng một quả bóng: hết wave sau bóng mang về 1 item Common ngẫu nhiên (có thể rỗng) | người bán bóng |
+| B20 | Kẻ Bán Lời Hứa | miễn phí: hứa không mua đồng đội ở shop kế; giữ lời thì shop sau nữa giảm 15% | kẻ bán lời hứa |
+| B21 | Người Đưa Đò | chở một đồng đội 1★ sang bờ bên kia: đổi nó lấy một đồng đội 1★ khác cùng chủ đề trong bộ của hero | người đưa đò |
+| B22 | Cô Bé Bán Diêm | 3 vàng một que diêm: 3 quái đầu tiên bị hạ ở wave sau bùng lửa nhỏ đốt quái bên cạnh | cô bé |
+| B23 | Người Sưu Tầm Lạ | đặt hàng một loài quái: wave sau hạ 10 con loài đó thì nhận 12 vàng | người sưu tầm |
+| B24 | Thợ Khắc Tên | 6 vàng khắc tên một đồng đội: wave sau nó +15% sát thương | thợ khắc |
+| B25 | Người Đánh Thức | 6 vàng: wave sau thanh biến hình của hero bắt đầu ở 1/3 | người đánh thức |
+| B26 | Người Bán Mộng | chọn 1 trong 3 giấc mơ niêm phong (miễn phí): wave sau một hiệu ứng nhỏ ngẫu nhiên, đa phần tốt, đôi khi kỳ quặc | người bán mộng |
+| B27 | Hai Chị Em Sinh Đôi | đồng đội tiếp theo bạn mua ở shop này: bản thứ hai chỉ nửa giá | hai chị em |
+| B28 | Người Gánh Nước Giếng | 5 vàng: wave sau bốn góc sân có vũng nước, quái đi qua bị ướt (đòn băng đóng băng được) | người gánh nước |
+| B29 | Kẻ Trộm Đêm | rời shop với hơn 60 vàng thì hắn lấy mất 10%; trả 5 vàng để đuổi hắn đi | kẻ trộm |
+| B30 | Bác Sĩ Búp Bê | 10 vàng: khâu áo choàng cho hero; wave sau lần đầu máu tụt dưới 25%, quái quanh hero bị hất văng mạnh (một lần) | bác sĩ búp bê |
+| B31 | Người Giữ Chìa Khóa | 10 vàng một chiếc chìa: rương đầu tiên ở wave sau cho thêm 1 item Common | người giữ chìa |
+| B32 | Nhà Ảo Thuật | 6 vàng: "biến" một món ngẫu nhiên trên quầy thành miễn phí | nhà ảo thuật |
+| B33 | Người Đi Tìm Bạn | mượn một đồng đội đi cùng 1 wave (nó vắng mặt); quay về mang theo 1 trứng và 10 vàng | người đi tìm bạn |
+| B34 | Thợ Rèn Mộng | 8 vàng: đổi vũ khí của một đồng đội, chọn 1 trong 3 | thợ rèn |
+| B35 | Người Bán Bản Đồ | 6 vàng: wave sau đánh dấu sẵn chỗ rương sẽ rơi | người bán bản đồ |
+| B36 | Người Đổi Trứng | 2 trứng lấy 1 item Uncommon, hoặc 1 item lấy 2 trứng | người đổi trứng |
+| B37 | Người Đoán Thời Tiết | báo trước những loại quái của wave sau; bán chiếc ô 6 vàng: đạn địch wave sau giảm 20% sát thương | người đoán thời tiết |
+| B38 | Cụ Bà Đan Len | 8 vàng một chiếc khăn: wave sau hero chạy nhanh hơn 15% | cụ bà |
+| B39 | Họa Sĩ Vẽ Chân Dung | vẽ chân dung đội hình (miễn phí): bức tranh lưu vào bảo tàng làm kỷ niệm của run | họa sĩ |
+| B40 | Kẻ Mượn Bóng | 8 vàng: hắn giữ cái bóng của hero, 5s đầu wave sau quái không nhắm vào hero | kẻ mượn bóng |
+| B41 | Người Rắc Cát Ngủ | 8 vàng: 20s đầu wave sau quái ra chậm hơn 15% | người rắc cát |
+| B42 | Người Lạ Đổi Màu | đổi quầy miễn phí, nhưng hàng mới thấp hơn một bậc và rẻ hơn 30% | người lạ |
+| B43 | Bưu Cục Gửi Tương Lai | gửi 10 vàng hôm nay, 3 wave sau nhận lại 15 | quầy bưu cục |
+| B44 | Người Sửa Đồng Hồ Cát | lật đồng hồ cát: wave sau dài thêm 10s, thêm quái và thêm xu | thợ sửa |
+| B45 | Ca Sĩ Hát Rong | nghe một bài (miễn phí): bond đang gần lên cấp nhất được +1 thành viên trong đúng 1 wave | ca sĩ |
 Code đã soạn sẵn cho B1 (quầy thử thách + quái tinh anh) trong scratchpad, cần hạ thưởng theo bản này khi làm.

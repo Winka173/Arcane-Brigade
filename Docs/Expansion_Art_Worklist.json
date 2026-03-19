@@ -2110,5 +2110,173 @@
   "depends": null,
   "mode": "single",
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a bond emblem: a museum display bell jar with a pinned paper specimen inside. Same visual size and treatment as the emblems in the references, readable at 32 px. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Visitors1",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors1_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (GateKeeper): the Gatekeeper's herald: a tall lanky door-key creature in a night-blue coat holding a gilded challenge scroll; ROW 1 RIGHT PAIR (LostPostman): a lost postman: a small grey owl in a too-big postman cap, clutching a crumpled letter and looking at a map upside down; ROW 2 LEFT PAIR (DiceElder): an old dice gambler: a bearded tortoise in a waistcoat rattling two ivory dice in a cup; ROW 2 RIGHT PAIR (Pawnbroker): a roadside pawnbroker: a raccoon behind a tiny folding counter with a brass scale and numbered tags."
+ },
+ {
+  "name": "Visitors2",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors2_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (ParcelCourier): the unmarked parcel: a shy paper-box creature with stubby legs, wrapped in string, no address label; ROW 1 RIGHT PAIR (TroupeLeader): a travelling troupe leader: a fox in a patched harlequin cape holding three little theatre masks; ROW 2 LEFT PAIR (Lamplighter): a lamplighter: a thin heron in a long coat carrying a tall brass lamp-lighting pole with a tiny flame; ROW 2 RIGHT PAIR (LostToy): a lost toy: a worn little rag rabbit with one button eye, clutching a luggage tag, looking hopeful."
+ },
+ {
+  "name": "Visitors3",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors3_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (ToyMender): a toy mender: a mole in a leather apron with a pincushion on its wrist, holding up a needle and a patched little coat; ROW 1 RIGHT PAIR (MusicBoxKeeper): a music-box winder: a mouse in a velvet jacket carrying a music box with a big brass key; ROW 2 LEFT PAIR (Barterer): a barterer: a magpie with a cloak sewn full of little pockets, holding out a shiny trinket in each wing; ROW 2 RIGHT PAIR (JunkCollector): a junk collector: a hedgehog pulling a small handcart heaped with old lamps, pans and clocks."
+ },
+ {
+  "name": "Visitors4",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors4_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (Lender): a kind lender: a plump goose in spectacles holding out a glowing wrapped object on a velvet cushion; ROW 1 RIGHT PAIR (Storyteller): an old storyteller: a grandmother sheep in a shawl sitting on a small stool with an open storybook; ROW 2 LEFT PAIR (SwapClown): a stall-swapping clown: a jester-doll clown with a striped cone hat juggling two price tags; ROW 2 RIGHT PAIR (ClockRewinder): a clock rewinder: a cricket in a waistcoat turning back the hands of a pocket watch bigger than its head."
+ },
+ {
+  "name": "Visitors5",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors5_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (SleeplessChild): a sleepless child: a little teddy-bear child in pyjamas holding a lantern and a pillow, yawning; ROW 1 RIGHT PAIR (CandyWitch): a candy witch: a small witch made of spun sugar holding out a drawstring bag of wrapped sweets; ROW 2 LEFT PAIR (BalloonSeller): a balloon seller: a lanky stork holding a bunch of string balloons, each with a little parcel tied below; ROW 2 RIGHT PAIR (PromiseSeller): a promise seller: a quiet moth in a long coat holding a ribbon-tied paper promise and a fountain pen."
+ },
+ {
+  "name": "Visitors6",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors6_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (Ferryman): a ferryman: a calm frog in a straw hat leaning on a long punting pole, a little lantern at its tip; ROW 1 RIGHT PAIR (MatchGirl): a match girl: a small mouse girl in a hooded cloak holding out one lit match, a matchbox basket on her arm; ROW 2 LEFT PAIR (Collector): an odd collector: a tall crane with a monocle holding a butterfly net and an order notebook; ROW 2 RIGHT PAIR (Engraver): a name engraver: a beaver with a tiny chisel and hammer, a brass name plate hanging from its belt."
+ },
+ {
+  "name": "Visitors7",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors7_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (Waker): the waker: a rooster in a nightcap holding a big brass alarm bell; ROW 1 RIGHT PAIR (DreamSeller): a dream seller: a cloud-sheep merchant holding three sealed glass jars of swirling dreams; ROW 2 LEFT PAIR (Twins): the twins: two identical small cat sisters in matching dresses holding hands, one holding a coupon; ROW 2 RIGHT PAIR (WaterCarrier): a well-water carrier: a sturdy badger carrying two sloshing buckets on a shoulder yoke."
+ },
+ {
+  "name": "Visitors8",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors8_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (NightThief): a night thief: a sly masked weasel in a dark scarf with a sack, tiptoeing; ROW 1 RIGHT PAIR (DollDoctor): a doll doctor: a porcelain doll tailor-doctor in a white cap holding a thread spool and a small mended cloak; ROW 2 LEFT PAIR (KeyKeeper): a key keeper: a squirrel with a huge ring of keys on its belt, holding one key up; ROW 2 RIGHT PAIR (CupMagician): a stage magician: a rabbit magician in a tall hat waving a wand over a price tag that turns into a ribbon."
+ },
+ {
+  "name": "Visitors9",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors9_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (FriendSeeker): a friend seeker: a shy little ghost-lantern creature holding a drawing of a friend; ROW 1 RIGHT PAIR (DreamSmith): a dream smith: a small bear blacksmith with a glowing star-hammer and a tiny anvil; ROW 2 LEFT PAIR (MapSeller): a map seller: a tortoise with rolled maps sticking out of its shell, holding one map open; ROW 2 RIGHT PAIR (EggTrader): an egg trader: a hen merchant with a padded basket of speckled eggs."
+ },
+ {
+  "name": "Visitors10",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors10_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (WeatherTeller): a weather teller: a frog in a raincoat holding a tiny umbrella and a weathervane; ROW 1 RIGHT PAIR (Knitter): an old knitter: a grandmother cat in a rocking chair knitting a long striped scarf; ROW 2 LEFT PAIR (Painter): a portrait painter: a lanky stoat in a beret with a palette and a small easel; ROW 2 RIGHT PAIR (ShadowBorrower): a shadow borrower: a thin figure made of folded paper holding a dark shadow on a string like a kite."
+ },
+ {
+  "name": "Visitors11",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors11_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 2 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x1024 canvas. ROW 1 LEFT PAIR (Sandman): the sandman: a sleepy mole with a pouch of glittering sand and a nightcap; ROW 1 RIGHT PAIR (ColourStranger): a colour stranger: a chameleon in a patchwork coat whose skin shifts between pastel colours, holding a paint pot; ROW 2 LEFT PAIR (FuturePost): the post office to the future: a tiny walking postbox creature with a clock face on its chest and a slot mouth; ROW 2 RIGHT PAIR (HourglassFixer): an hourglass turner: a lizard tinkerer with goggles flipping a big brass hourglass."
+ },
+ {
+  "name": "Visitors12",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Visitors12_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/October/Heroes4.png",
+   "Assets/ArcaneBrigade/Art/October/Allies3.png",
+   "Assets/ArcaneBrigade/Art/October/Allies5.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 1 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x512 canvas. ROW 1 LEFT PAIR (Busker): a wandering busker: a song thrush with a small accordion and an open hat for coins."
  }
 ]

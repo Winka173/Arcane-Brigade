@@ -224,6 +224,12 @@ for bid, desc in {"PaperWings": "a pair of folded paper wings pinned together wi
            STYLE + "Subject: a bond emblem: " + desc + ". Same visual size and treatment as the emblems in the references, readable at 32 px."
            " 512x512 canvas." + ISOLATED)
 
+# ---------------------------------------------------------------- 7. shop visitors (45, approved 18/10/2026; Docs/Events_Ideas.md)
+import importlib.util
+_spec = importlib.util.spec_from_file_location("visitors_art", ROOT / "Tools" / "Art" / "visitors_art.py")
+_visitors = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(_visitors)
+jobs.extend(_visitors.jobs(CHAR_REFS + ["Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"]))
+
 out = ROOT / "Docs" / "Expansion_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)
