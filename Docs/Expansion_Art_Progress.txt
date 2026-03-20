@@ -254,3 +254,7 @@ BossProp_WaxCrest_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_WaxCrest_f0_v1.pn
 BossProp_Pendulum_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Pendulum_f0_v1.png done
 BossProp_Coin_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Coin_f0_v1.png done
 BossProp_OrganPipe_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_OrganPipe_f0_v1.png done
+BossProp_Suitcase_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Suitcase_f0_v1.png done
+BossProp_Suitcase_f1 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Suitcase_f1_v1.png done
+RareCover_Mythic Assets/ArcaneBrigade/Art/Arsenal/RareCover_Mythic_v1.png done
+RareCover_Prismatic Assets/ArcaneBrigade/Art/Arsenal/RareCover_Prismatic_v1.png done
