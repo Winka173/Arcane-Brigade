@@ -258,3 +258,24 @@ BossProp_Suitcase_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Suitcase_f0_v1.pn
 BossProp_Suitcase_f1 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Suitcase_f1_v1.png done
 RareCover_Mythic Assets/ArcaneBrigade/Art/Arsenal/RareCover_Mythic_v1.png done
 RareCover_Prismatic Assets/ArcaneBrigade/Art/Arsenal/RareCover_Prismatic_v1.png done
+Enemy_SpareChair Assets/ArcaneBrigade/Art/Expansion/Enemies/SpareChair_v1.png done
+Enemy_WakingSitter Assets/ArcaneBrigade/Art/Expansion/Enemies/WakingSitter_v1.png done
+Enemy_InkNotary Assets/ArcaneBrigade/Art/Expansion/Enemies/InkNotary_v1.png done
+Enemy_SewnLetter Assets/ArcaneBrigade/Art/Expansion/Enemies/SewnLetter_v1.png done
+Enemy_SewnLetter Assets/ArcaneBrigade/Art/Expansion/Enemies/SewnLetter_v1.png done
+Enemy_SewnLetterPieces Assets/ArcaneBrigade/Art/Expansion/Enemies/SewnLetterPieces_v1.png done
+Enemy_SpareChair Assets/ArcaneBrigade/Art/Expansion/Enemies/SpareChair_v1.png done
+Enemy_WakingSitter Assets/ArcaneBrigade/Art/Expansion/Enemies/WakingSitter_v1.png done
+Enemy_InkNotary Assets/ArcaneBrigade/Art/Expansion/Enemies/InkNotary_v1.png done
+Enemy_PartyLine Assets/ArcaneBrigade/Art/Expansion/Enemies/PartyLine_v1.png done
+Enemy_DoorKnocker Assets/ArcaneBrigade/Art/Expansion/Enemies/DoorKnocker_v1.png done
+Enemy_LampSnuffer Assets/ArcaneBrigade/Art/Expansion/Enemies/LampSnuffer_v1.png done
+Enemy_LedgerHound Assets/ArcaneBrigade/Art/Expansion/Enemies/LedgerHound_v1.png done
+Enemy_TollTick Assets/ArcaneBrigade/Art/Expansion/Enemies/TollTick_v1.png done
+Enemy_CoatRack Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png done
+Enemy_UnclaimedTrunk Assets/ArcaneBrigade/Art/Expansion/Enemies/UnclaimedTrunk_v1.png done
+Enemy_HatboxHopper Assets/ArcaneBrigade/Art/Expansion/Enemies/HatboxHopper_v1.png done
+Enemy_SplinterImp Assets/ArcaneBrigade/Art/Expansion/Enemies/SplinterImp_v1.png FAILED painted usage_limit_reached; reset 2026-10-19T08:04:15Z
+Enemy_IndebtedStamp Assets/ArcaneBrigade/Art/Expansion/Enemies/IndebtedStamp_v1.png FAILED painted usage_limit_reached; reset 2026-10-19T08:04:15Z
+Enemy_SplinterImp Assets/ArcaneBrigade/Art/Expansion/Enemies/SplinterImp_v1.png FAILED painted usage_limit_reached; corrected reset 2026-10-19T09:24:15Z (16:24:15 Asia/Saigon)
+Enemy_IndebtedStamp Assets/ArcaneBrigade/Art/Expansion/Enemies/IndebtedStamp_v1.png FAILED painted usage_limit_reached; corrected reset 2026-10-19T09:24:15Z (16:24:15 Asia/Saigon)
