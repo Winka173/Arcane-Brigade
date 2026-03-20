@@ -2434,5 +2434,201 @@
   "depends": null,
   "mode": "single",
   "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a draped silk cloth that shimmers through soft pastel colours (rose, mint, sky, lilac, butter) like mother-of-pearl, with a pearl clasp at the top, falling in soft folds over something hidden (only the cloth's rounded hump shows). Seen from the front, about as wide as tall, flat bottom hem. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "Enemy_SpareChair",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/SpareChair_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a folding wooden station chair that walks on its four spindly legs, a faded wine velvet seat with a brass number plate, the seat back shaped like a patient smiling face with two ember eyes; wind-up poses unfold it wide with a warm amber glow under the seat. EVOLVED: a double bench of two chairs joined by an armrest, a torn cushion with springs showing and a second number plate. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_WakingSitter",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/WakingSitter_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a dusty seated traveller of the Waiting Realm rising from a bench: a gaunt grey figure in a long coat and hat, dust settled on its shoulders, a luggage tag on its wrist, eyes closed and sad rather than angry, holding a coil of black ink thread that it throws (no weapon, the thread is part of its sleeve). EVOLVED: taller and more awake, eyes half open and glowing pale, the coat unravelling into several ink threads, the dust lifting off like moths. Melancholic, not monstrous. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_InkNotary",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/InkNotary_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a hunched clerk made of folded receipt paper with a green visor, ink-stained sleeves, a big brass rubber stamp built into one forearm and a pen nib nose; wind-up raises the stamp high. EVOLVED: a second stamp arm, a ledger book opened on its back like a shell, CLOSED and PAID stamp marks (no readable letters, just stamp shapes) printed over its paper body. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_SewnLetter",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/SewnLetter_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a fat envelope creature sewn shut with crude black thread, a red wax-seal eye in the middle, flapping its top flap like a mouth, stamp-corner feet. EVOLVED: thicker, double-sealed with two wax eyes, the stitches straining and fraying, a torn address label flapping like a tongue. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_PartyLine",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/PartyLine_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: an old rotary telephone receiver standing on its curly cord like a snake, the earpiece a mouth with tiny teeth, the cord coiled under it, cream bakelite chipped and stained; wind-up poses it ringing and shaking. EVOLVED: a full rotary phone body as a hunched beetle with the dial as a single eye and two receivers as arms. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_DoorKnocker",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/DoorKnocker_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a heavy brass door knocker in the shape of a scowling lion-like face holding its ring in its mouth, carried on two short iron feet; wind-up lifts the ring high to knock. EVOLVED: a whole little front door panel walking behind the knocker, a peephole eye glowing, three knockers stacked. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_LampSnuffer",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/LampSnuffer_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a wisp of Black Fog wearing a brass candle-snuffer cone as a pointed hat, two pale ember eyes under the brim, smoky arms with long fingers that pinch; the fog body stays inside its silhouette. EVOLVED: a larger fog body wearing a tall stack of three snuffer cones like a crown, smoke fingers grown into long tongs. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_LedgerHound",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/LedgerHound_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a lean hunting hound made of ledger pages and ink, a fountain-pen nib snout, tally-mark stripes along its back, a torn ribbon bookmark tail, ember eyes; wind-up crouches low ready to slash. EVOLVED: a second head of folded paper, the nib snout split into two sharp nibs, five tally marks glowing along the spine. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_TollTick",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/TollTick_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a round tick-like toll collector with a brass coin-slot mouth, a ticket-punch jaw, a striped toll-booth cap and receipt paper curling from its back, six little brass legs (replaces Coin Leech: it charges a toll, it does not steal). EVOLVED: a larger body with a cash-register drawer belly and a long receipt tail. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_CoatRack",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/CoatRack_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a dusty wooden coat rack hat-stand walking on its three curved feet, an old grey coat and a hat hanging on it to form a faceless figure, dust drifting from the coat's shoulders, two pale eyes under the hat brim (replaces Spore Bishop: its delayed pools are settling dust). EVOLVED: more coats and scarves piled on, four arms of hooks, a tall top hat. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_UnclaimedTrunk",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/UnclaimedTrunk_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a big battered lost-luggage trunk with brass corners, peeling travel stickers, a paper claim tag, its lid lifting a crack to show two ember eyes and odd socks and moths spilling out (replaces Smoking Coffin: it releases little lost things). EVOLVED: the lid wide open like a jaw with leather straps as teeth, a second smaller suitcase strapped on top. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_HatboxHopper",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/HatboxHopper_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a round striped station hatbox on a big coiled spring, its lid a mouth, a ribbon bow and a luggage tag, two eyes peeking from under the lid (replaces Hopper Keg). EVOLVED: two stacked hatboxes on a double spring, the top lid open with a crushed hat as a tongue. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_SplinterImp",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/SplinterImp_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite atlas for Arcane Brigade's Waiting Realm (a storybook dream world of lost things, unsent letters, lanterns, a night station and a Black Fog), genuinely transparent background. EXACT 4 columns x 4 rows = 16 full-body sprites of ONE species. TOP two rows: NORMAL form, eight poses in reading order idle / blink / walk left / walk right / crouched wind-up / charged wind-up / release (attacking) / hurt recoil. BOTTOM two rows: EVOLVED form, the same eight poses; recognisably the same creature with new visible anatomical changes, never a recolour. All 16 separate and fully contained, feet aligned, 12% transparent padding and generous transparent gutters, never overlapping. Seen slightly from above, front three-quarter, stout readable silhouette at about 90 px. Rich dark ink outline, midnight-indigo shadows, burgundy cloth, chipped ivory, tarnished brass, hostile ember or scarlet eyes. Sinister but storybook, never gory. Match the references' painted materials. No text, no ground, no cast shadow, no held weapons, no UI, no aura outside the body. Consistent proportions across the eight poses of each form. Subject: a small angular imp built from house splinters, broken floorboards and bent nails, a cracked brass door-hinge horn on its forehead, scarlet eyes in a dark knot-hole face, two stubby feet (re-themes Bristle Imp with the same behaviour). EVOLVED: the hinge horn splits into forked antlers of door hinges, splinters bristle along the back, tiny ember cracks glow. 1536x1536 canvas."
+ },
+ {
+  "name": "Enemy_SewnLetterPieces",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/SewnLetterPieces_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/Expansion/Enemies/SewnLetter_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": "Enemy_SewnLetter",
+  "mode": "single",
+  "prompt": "Production original hand-painted Unity 2D ENEMY sprite sheet for the same game, genuinely transparent background. EXACT 4 columns x 2 rows = 8 separate full-body sprites. ROW 1: one torn HALF of the sewn envelope creature from the first reference, flapping on its own with half the wax eye in four poses idle / flap / wind-up / hurt. ROW 2: a single postage stamp creature with a tiny scowling face and serrated edges in four poses idle / hop / wind-up / hurt. Same ink and painted materials as the references, seen slightly from above, readable at 60 px, 12% transparent padding, generous gutters, no text, no ground, no shadow, no aura. Subject details: they must match the Sewn Letter in the first reference exactly. 1536x768 canvas."
+ },
+ {
+  "name": "Enemy_IndebtedStamp",
+  "path": "Assets/ArcaneBrigade/Art/Expansion/Enemies/IndebtedStamp_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png",
+   "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+   "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Production hand-painted 2D game emblem, genuinely transparent background: a round receipt-ink rubber-stamp impression in deep wine-black ink with a cracked coin in the middle and a rough double rim, slightly smudged like a real stamp, no readable letters. Readable at 32 px. ONE isolated emblem centred with 12% margin, no ground, no shadow, no text. 512x512 canvas."
  }
 ]

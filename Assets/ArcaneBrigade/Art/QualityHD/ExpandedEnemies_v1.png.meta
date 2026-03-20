@@ -120,7 +120,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -128,7 +128,7 @@ TextureImporter:
       spriteID: 2a8befa7b705aad4e96b2b2c3b6141b3
       internalID: 770608900
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
@@ -142,7 +142,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -150,7 +150,7 @@ TextureImporter:
       spriteID: 4e9dd8430fdf26642b6b9082188f6e5b
       internalID: 810198511
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
@@ -164,7 +164,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -172,7 +172,7 @@ TextureImporter:
       spriteID: bd90d778956675649b7d7dda6c28fd6a
       internalID: 277963533
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     - serializedVersion: 2
@@ -186,7 +186,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData:
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -194,17 +194,17 @@ TextureImporter:
       spriteID: d44f4371703dadb4b9d23aa579144e98
       internalID: 377456318
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
     outline: []
-    customData:
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 37dfb5216e15bda439de59fa6ee628f1
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
@@ -215,8 +215,8 @@ TextureImporter:
       DoorBearer: 770608900
       MoonMagnet: 810198511
       SleepMimic: 277963533
-  mipmapLimitGroupName:
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

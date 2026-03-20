@@ -141,6 +141,7 @@ namespace ArcaneBrigade
         public float LastBossVacuumTime;
         public float BossPoseTime;
         public int ActiveBossSignature = -1;
+        public bool ActiveTrademark; // this wind-up ends in the boss's own move (BossTrademarks)
         public float BossSkillStarted = -100;
         public float BossSkillUntil = -100;
         public float NextEvolutionAttack = -1;
@@ -732,6 +733,7 @@ namespace ArcaneBrigade
                 int count = BossPartRules.BulletCount(boss);
                 bool signature = catalog.ExpandedContent && boss.ActiveBossSignature >= 0;
                 if (signature) { ResolveBossSignature(boss); count = 0; }
+                else if (boss.ActiveTrademark) { boss.ActiveTrademark = false; ResolveBossTrademark(boss); count = 0; }
                 else if (catalog.ExpandedContent && ResolveBossBodyAttack(boss)) count = 0;
                 for (int index = 0; index < count && projectiles.Count < 4096; index++)
                 {
@@ -752,6 +754,7 @@ namespace ArcaneBrigade
             }
             if (Elapsed < boss.NextBossPattern || boss.TelegraphUntil > 0f) return;
             boss.ActiveBossSignature = catalog.ExpandedContent && BossEncounterRules.IsSignature(boss.BossVolley) ? (boss.BossVolley / 4) % 2 : -1;
+            boss.ActiveTrademark = catalog.ExpandedContent && boss.ActiveBossSignature < 0 && BossTrademarks.Fires(boss.Definition, boss.BossVolley);
             boss.TelegraphUntil = Elapsed + BossEncounterRules.Windup(boss);
             boss.ActiveBossOrgan = BossPartRules.NextOrgan(boss);
             boss.TelegraphDirection = (Champion.Position - boss.Position).normalized;

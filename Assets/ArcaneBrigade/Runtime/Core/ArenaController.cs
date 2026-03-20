@@ -123,7 +123,7 @@ namespace ArcaneBrigade
                 else session.Start(string.IsNullOrEmpty(RunLaunch.ChampionId) ? runCatalog.Champions[0].Id : RunLaunch.ChampionId, RunLaunch.ChallengeIndex > 0 ? RunMeta.ChallengeSeed(RunLaunch.ChallengeIndex) : RunPaths.Diagnostic ? 131026 : Environment.TickCount, RunLaunch.Difficulty, RunMeta.ChallengeIds[RunLaunch.ChallengeIndex]);
                 if (session.State.WaitingCampaign?.Room > 0) { SceneManager.LoadScene("WaitingRoom"); return; }
                 ArcadeSkin.Bundle = profile.Cosmetic;
-                PresentationSettings.Apply(profile);
+                PresentationSettings.Apply(profile); PresentationSettings.ApplyDisplay(profile);
                 AudioListener.pause = false;
                 PersistBoundary();
             }
@@ -417,6 +417,13 @@ namespace ArcaneBrigade
             else details.Show(session, runCatalog, session.State.Phase == SessionPhase.Combat ? simulation.Champion.Health : session.State.Health, session.State.Phase == SessionPhase.Combat ? simulation : null);
             pauseGate.Details = details.Open;
             ApplyPause();
+        }
+        /// <summary>Saves a settings change made from the pause menu.</summary>
+        public bool SaveSettings()
+        {
+            if (storage == null || profile == null) return true;
+            try { storage.SaveProfile(profile); return true; }
+            catch (Exception exception) { SaveError = "Settings save failed: " + exception.Message; CheckpointAudio.PlayInterfaceId("ui.error"); return false; }
         }
         public void RequestMenuReturn() { pauseGate.Navigation = true; ApplyPause(); }
         public void CancelMenuReturn() { pauseGate.Navigation = false; ApplyPause(); }

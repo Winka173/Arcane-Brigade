@@ -132,7 +132,7 @@ namespace ArcaneBrigade
             }
             target.ExposedUntil = Mathf.Max(target.ExposedUntil, Elapsed + 1.1f);
             target.TelegraphUntil = 0;
-            target.ActiveBossSignature = -1;
+            target.ActiveBossSignature = -1; target.ActiveTrademark = false;
             target.BossRecoveryUntil = Mathf.Max(target.BossRecoveryUntil, Elapsed + 0.65f);
             target.NextBossPattern = Mathf.Max(target.NextBossPattern, Elapsed + 0.9f);
             Vector2 outward = part == 0 ? Vector2.left : part == 1 ? Vector2.right : Vector2.down;

@@ -4,7 +4,7 @@ namespace ArcaneBrigade
 {
     public static class CarnivalHazards
     {
-        public static bool IsHostile(ExpandedFieldKind kind) => kind == ExpandedFieldKind.OfficeHazard || kind == ExpandedFieldKind.ToyHazard || kind == ExpandedFieldKind.Curtain || kind == ExpandedFieldKind.Tentacle || kind == ExpandedFieldKind.Shockwave || kind == ExpandedFieldKind.FallingProp || kind == ExpandedFieldKind.ShadowPool;
+        public static bool IsHostile(ExpandedFieldKind kind) => kind == ExpandedFieldKind.OfficeHazard || kind == ExpandedFieldKind.ToyHazard || kind == ExpandedFieldKind.Curtain || kind == ExpandedFieldKind.Tentacle || kind == ExpandedFieldKind.Shockwave || kind == ExpandedFieldKind.FallingProp || kind == ExpandedFieldKind.ShadowPool || kind == ExpandedFieldKind.Roller;
 
         public static float ShockRadius(ExpandedField field, float time) => field.Radius * Mathf.Clamp01((time - field.At) / Mathf.Max(0.05f, field.Until - field.At));
 
@@ -15,6 +15,16 @@ namespace ArcaneBrigade
                 Vector2 segment = field.Position - field.Start;
                 float fraction = segment.sqrMagnitude < 0.0001f ? 0 : Mathf.Clamp01(Vector2.Dot(position - field.Start, segment) / segment.sqrMagnitude);
                 return Vector2.Distance(position, field.Start + segment * fraction) <= field.Radius + bodyRadius;
+            }
+            if (field.Kind == ExpandedFieldKind.Roller)
+            {
+                if (field.Damage <= 0 || time < field.At) return false;
+                if (field.Motion == TrademarkMotion.Rise && time > field.Until - 0.05f) return false;
+                if (field.Length <= 0) return Vector2.Distance(position, field.Position) <= field.Radius + bodyRadius;
+                BossTrademarks.Bar(field, out Vector2 a, out Vector2 b);
+                Vector2 bar = b - a;
+                float along = Mathf.Clamp01(Vector2.Dot(position - a, bar) / Mathf.Max(0.0001f, bar.sqrMagnitude));
+                return Vector2.Distance(position, a + bar * along) <= field.Radius + bodyRadius;
             }
             if (field.Kind == ExpandedFieldKind.Shockwave)
                 return Mathf.Abs(Vector2.Distance(position, field.Position) - ShockRadius(field, time)) <= 0.22f + bodyRadius;

@@ -393,7 +393,13 @@ namespace ArcaneBrigade
                     if (offer.Kind == OfferKind.Item)
                     {
                         ItemRarity rarity = catalog.Item(offer.Id).Rarity;
-                        if (rarity != ItemRarity.Common) CheckpointAudio.PlayInterfaceId(rarity == ItemRarity.Mythic ? "up.rarity.gold" : rarity == ItemRarity.Rare ? "up.rarity.purple" : "up.rarity.blue", landingAt + 0.07f);
+                        if (rarity != ItemRarity.Common && !RareUnveil.Unveils(rarity)) CheckpointAudio.PlayInterfaceId(rarity == ItemRarity.Mythic ? "up.rarity.gold" : rarity == ItemRarity.Rare ? "up.rarity.purple" : "up.rarity.blue", landingAt + 0.07f);
+                    }
+                    ItemRarity arriving = offer.Kind == OfferKind.Item ? catalog.Item(offer.Id).Rarity : catalog.Unit(offer.Id).Rarity;
+                    if (RareUnveil.Unveils(arriving) && station.Actor != null && station.Actor.View != null)
+                    {
+                        var cover = new GameObject("RareUnveil"); cover.transform.SetParent(station.Marker, false);
+                        cover.AddComponent<RareUnveil>().Configure(owner, station.Actor.View, arriving, landingAt);
                     }
                 }
                 if (offer.Currency == ShopCurrency.Health) station.Description += " · Costs current HP, not maximum HP; must leave at least 1 HP.";

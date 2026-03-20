@@ -59,7 +59,7 @@ namespace ArcaneBrigade
         public void ConfigureK7Diagnostics(RunCatalog definition, PlayerProfile readOnlyProfile)
         {
             if (!RunPaths.K7Capture) throw new InvalidOperationException("K7 fixture requires isolated mode");
-            catalog = definition; profile = readOnlyProfile; PresentationSettings.Apply(profile);
+            catalog = definition; profile = readOnlyProfile; PresentationSettings.Apply(profile); PresentationSettings.ApplyDisplay(profile);
         }
         public void SelectHistoryForDiagnostics(int index, bool evidence)
         {
@@ -575,61 +575,7 @@ namespace ArcaneBrigade
             return unit.AnimationFrames[UnitVisual.AnimationFrame(time, identity, stepping, reducedMotion)] ?? unit.Body;
         }
 
-        private void DrawSettings()
-        {
-            DrawVolume(160, "Master volume", profile.Volume, value => profile.Volume = value);
-            DrawVolume(204, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
-            DrawVolume(248, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
-            DrawVolume(292, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
-            if (Button(new Rect(75, 340, 540, 52), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic)))
-            {
-                int before = profile.Cosmetic;
-                int candidate = (before + 1) % 3;
-                while (!RunMeta.CosmeticUnlocked(profile, candidate)) candidate = (candidate + 1) % 3;
-                profile.Cosmetic = candidate;
-                if (!SaveProfile()) profile.Cosmetic = before;
-                PresentationSettings.Apply(profile);
-            }
-            ToggleOption(new Rect(645, 340, 560, 52), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
-            ToggleOption(new Rect(75, 402, 540, 52), "REDUCED AUDIO CLUTTER", profile.ReducedAudio, value => profile.ReducedAudio = value);
-            ToggleOption(new Rect(645, 402, 560, 52), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
-            ToggleOption(new Rect(75, 464, 540, 52), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
-            ToggleOption(new Rect(645, 464, 560, 52), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
-            ToggleOption(new Rect(75, 526, 365, 44), "REDUCED SHAKE", profile.ReducedShake, value => profile.ReducedShake = value);
-            ToggleOption(new Rect(460, 526, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
-            ToggleOption(new Rect(845, 526, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
-            // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
-            if (Button(new Rect(75, 578, 1130, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN AUTOMATICALLY" : "NOTIFY ONLY  ·  OPEN THE NOTE TO READ")))
-            {
-                bool before = profile.StoryPagesAutoOpen;
-                profile.StoryPagesAutoOpen = !before;
-                CheckpointAudio.PlayInterfaceId("ui.setting");
-                if (!SaveProfile()) profile.StoryPagesAutoOpen = before;
-            }
-            Label(new Rect(75, 626, 1130, 64), RunUIHints.Menu + "\nCosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
-        }
-
-        private void DrawVolume(float top, string caption, float value, Action<float> setter)
-        {
-            Label(new Rect(75, top, 310, 40), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
-            float changed = GUI.HorizontalSlider(new Rect(390, top + 16, 630, 25), value, 0, 1);
-            if (Button(new Rect(1050, top, 65, 42), "−")) changed = Mathf.Max(0, value - 0.1f);
-            if (Button(new Rect(1135, top, 65, 42), "+")) changed = Mathf.Min(1, value + 0.1f);
-            if (Mathf.Abs(changed - value) < 0.005f) return;
-            setter(changed);
-            CheckpointAudio.PlayInterfaceId("ui.setting");
-            if (!SaveProfile()) setter(value);
-            PresentationSettings.Apply(profile);
-        }
-
-        private void ToggleOption(Rect rectangle, string caption, bool value, Action<bool> setter)
-        {
-            if (!Button(rectangle, caption + (value ? ": ON" : ": OFF"))) return;
-            setter(!value);
-            CheckpointAudio.PlayInterfaceId("ui.setting");
-            if (!SaveProfile()) setter(value);
-            PresentationSettings.Apply(profile);
-        }
+        private void DrawSettings() => SettingsSheet.Draw(profile, Vector2.zero, Button, Label, SaveProfile, false);
 
         private void OnApplicationFocus(bool focus)
         {

@@ -18,6 +18,7 @@ namespace ArcaneBrigade
         private CarnivalStageAssets stageArt;
         private BuildMorphVisual morphVisual;
         private HeroIdentityVisual heroVisual;
+        private BossTrademarkVisual trademarkVisual;
         private MaterialPropertyBlock tint;
         public bool ReducedMotion;
         public int VisibleCount { get; private set; }
@@ -25,6 +26,8 @@ namespace ArcaneBrigade
         {
             if (heroVisual == null) heroVisual = gameObject.AddComponent<HeroIdentityVisual>();
             heroVisual.Display(simulation);
+            if (trademarkVisual == null) trademarkVisual = gameObject.AddComponent<BossTrademarkVisual>();
+            trademarkVisual.Display(simulation);
             if (morphVisual == null) morphVisual = gameObject.AddComponent<BuildMorphVisual>();
             morphVisual.Display(simulation, ReducedMotion || PresentationSettings.ReducedMotion);
             if (tint == null) tint = new MaterialPropertyBlock();
@@ -36,6 +39,7 @@ namespace ArcaneBrigade
                     bool hazard = CarnivalHazards.IsHostile(field.Kind) || field.Source?.Faction == Faction.Enemy;
                     bool carnival = field.Kind == ExpandedFieldKind.Projector || field.Kind == ExpandedFieldKind.MagnetCone || field.Kind == ExpandedFieldKind.YoYoTether || field.Kind == ExpandedFieldKind.SewingLink;
                     if (field.Kind == ExpandedFieldKind.YoYoTether && (field.Projectile == null || !ContainsProjectile(simulation, field.Projectile))) continue;
+                    if (field.Kind == ExpandedFieldKind.Roller) continue;
                     if (hazard != (priority == 0)) continue;
                     if (VisibleCount >= (hazard ? 96 : EffectDensity.Limit(96))) break;
                     int slot = VisibleCount++;

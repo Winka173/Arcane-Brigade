@@ -1,0 +1,136 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace ArcaneBrigade
+{
+    /// <summary>The settings page (Light, Sound &amp; Comfort), drawn by the main menu and by the pause menu during a run.
+    /// Laid out on the menu's 1280x720 canvas; <paramref name="origin"/> moves it (the pause menu centres it on 1920x1080).
+    /// Every change is saved at once; a failed save puts the old value back.</summary>
+    public static class SettingsSheet
+    {
+        public delegate bool ButtonFn(Rect rectangle, string caption);
+        private static PlayerProfile profile;
+        private static ButtonFn button;
+        private static Func<bool> save;
+        private static Vector2 origin;
+
+        public static readonly int[] ShakeSteps = { 100, 75, 50, 25, 0 };
+        public static readonly string[] WindowNames = { "FULLSCREEN", "BORDERLESS", "WINDOWED" };
+
+        public static void Draw(PlayerProfile current, Vector2 at, ButtonFn buttonFn, Action<Rect, string> label, Func<bool> saveFn, bool inRun)
+        {
+            profile = current; button = buttonFn; save = saveFn; origin = at;
+            Volume(label, 150, "Master volume", profile.Volume, value => profile.Volume = value);
+            Volume(label, 190, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
+            Volume(label, 230, "Sound effects", profile.SfxVolume, value => profile.SfxVolume = value);
+            Volume(label, 270, "Voices", profile.VoiceVolume, value => profile.VoiceVolume = value);
+            // the cosmetic bundle is chosen between runs (the champion is already dressed during one)
+            GUI.enabled = !inRun;
+            if (Button(new Rect(75, 318, 540, 48), "BUNDLE: " + RunMeta.CosmeticName(profile.Cosmetic) + (inRun ? " (BETWEEN RUNS)" : "")))
+            {
+                int before = profile.Cosmetic;
+                int candidate = (before + 1) % 3;
+                while (!RunMeta.CosmeticUnlocked(profile, candidate)) candidate = (candidate + 1) % 3;
+                profile.Cosmetic = candidate;
+                if (!save()) profile.Cosmetic = before;
+                PresentationSettings.Apply(profile);
+            }
+            GUI.enabled = true;
+            Toggle(new Rect(645, 318, 560, 48), "REDUCED MOTION", profile.ReducedMotion, value => profile.ReducedMotion = value);
+            Toggle(new Rect(75, 372, 540, 48), "REDUCED AUDIO CLUTTER", profile.ReducedAudio, value => profile.ReducedAudio = value);
+            Toggle(new Rect(645, 372, 560, 48), "HIGH-CONTRAST UI", profile.HighReadability, value => profile.HighReadability = value);
+            Toggle(new Rect(75, 426, 540, 48), "DAMAGE NUMBERS", profile.ShowDamageNumbers, value => profile.ShowDamageNumbers = value);
+            Toggle(new Rect(645, 426, 560, 48), "LOOT INDICATORS", profile.ShowLootIndicators, value => profile.ShowLootIndicators = value);
+            // screen shake: a strength, not only on/off (100 -> 75 -> 50 -> 25 -> off)
+            int shake = ShakePercent(profile);
+            if (Button(new Rect(75, 480, 365, 44), "SCREEN SHAKE: " + (shake == 0 ? "OFF" : shake + "%")))
+            {
+                float scale = profile.ShakeScale; bool reduced = profile.ReducedShake;
+                int next = ShakeSteps[(Array.IndexOf(ShakeSteps, shake) + 1) % ShakeSteps.Length];
+                profile.ShakeScale = next / 100f; profile.ReducedShake = next == 0;
+                Changed(() => { profile.ShakeScale = scale; profile.ReducedShake = reduced; });
+            }
+            Toggle(new Rect(460, 480, 365, 44), "REDUCED FLASHES", profile.ReducedFlashes, value => profile.ReducedFlashes = value);
+            Toggle(new Rect(845, 480, 360, 44), "REDUCED EFFECTS", profile.ReducedEffects, value => profile.ReducedEffects = value);
+            // display: window mode, resolution and vsync (applied by PresentationSettings.ApplyDisplay in a player build)
+            int window = DisplayWindow(profile);
+            if (Button(new Rect(75, 530, 365, 44), "WINDOW: " + WindowNames[window]))
+            {
+                int before = profile.WindowMode;
+                profile.WindowMode = (window + 1) % WindowNames.Length;
+                Changed(() => profile.WindowMode = before, true);
+            }
+            Vector2Int size = DisplaySize(profile);
+            if (Button(new Rect(460, 530, 365, 44), "RESOLUTION: " + size.x + "×" + size.y))
+            {
+                int width = profile.ScreenWidth, height = profile.ScreenHeight;
+                List<Vector2Int> sizes = Sizes();
+                int index = sizes.IndexOf(size);
+                Vector2Int next = sizes[(index + 1) % sizes.Count];
+                profile.ScreenWidth = next.x; profile.ScreenHeight = next.y;
+                Changed(() => { profile.ScreenWidth = width; profile.ScreenHeight = height; }, true);
+            }
+            if (Button(new Rect(845, 530, 360, 44), "VSYNC: " + (profile.VSync ? "ON" : "OFF")))
+            {
+                bool before = profile.VSync; profile.VSync = !before;
+                Changed(() => profile.VSync = before, true);
+            }
+            // story pages: open by themselves after a wave, or only leave a sealed note (open the note when you want to read)
+            if (Button(new Rect(75, 580, 1130, 42), "STORY PAGES: " + (profile.StoryPagesAutoOpen ? "OPEN AUTOMATICALLY" : "NOTIFY ONLY  ·  OPEN THE NOTE TO READ")))
+            {
+                bool before = profile.StoryPagesAutoOpen;
+                profile.StoryPagesAutoOpen = !before;
+                CheckpointAudio.PlayInterfaceId("ui.setting");
+                if (!save()) profile.StoryPagesAutoOpen = before;
+            }
+            label(Shift(new Rect(75, 630, 1130, 64)), RunUIHints.Menu + "\nCosmetics: Office wave 5; Stage 3 bosses. Fonts: Be Vietnam Pro, Noto Sans Mono (OFL 1.1).");
+        }
+
+        public static int ShakePercent(PlayerProfile p) => p.ReducedShake ? 0 : ShakeSteps.OrderBy(step => Mathf.Abs(step - p.ShakeScale * 100)).First();
+        public static int DisplayWindow(PlayerProfile p)
+        {
+            if (p.WindowMode >= 0) return Mathf.Clamp(p.WindowMode, 0, WindowNames.Length - 1);
+            return Screen.fullScreenMode == FullScreenMode.Windowed ? 2 : Screen.fullScreenMode == FullScreenMode.ExclusiveFullScreen ? 0 : 1;
+        }
+        public static Vector2Int DisplaySize(PlayerProfile p) => p.ScreenWidth > 0 && p.ScreenHeight > 0 ? new Vector2Int(p.ScreenWidth, p.ScreenHeight) : new Vector2Int(Screen.width, Screen.height);
+        /// <summary>The resolutions offered: the monitor's own sizes from 1280x720 up (refresh rates folded), always including the current one.</summary>
+        public static List<Vector2Int> Sizes()
+        {
+            var sizes = new List<Vector2Int>();
+            foreach (Resolution r in Screen.resolutions) { var s = new Vector2Int(r.width, r.height); if (s.x >= 1280 && s.y >= 720 && !sizes.Contains(s)) sizes.Add(s); }
+            if (sizes.Count == 0) sizes.AddRange(new[] { new Vector2Int(1280, 720), new Vector2Int(1600, 900), new Vector2Int(1920, 1080) });
+            var current = DisplaySize(profile ?? new PlayerProfile());
+            if (!sizes.Contains(current)) sizes.Add(current);
+            sizes.Sort((a, b) => a.x != b.x ? a.x.CompareTo(b.x) : a.y.CompareTo(b.y));
+            return sizes;
+        }
+
+        private static Rect Shift(Rect r) => new Rect(r.x + origin.x, r.y + origin.y, r.width, r.height);
+        private static bool Button(Rect r, string caption) => button(Shift(r), caption);
+        private static void Changed(Action undo, bool display = false)
+        {
+            CheckpointAudio.PlayInterfaceId("ui.setting");
+            if (!save()) undo();
+            PresentationSettings.Apply(profile);
+            if (display) PresentationSettings.ApplyDisplay(profile);
+        }
+        private static void Toggle(Rect rectangle, string caption, bool value, Action<bool> setter)
+        {
+            if (!Button(rectangle, caption + (value ? ": ON" : ": OFF"))) return;
+            setter(!value);
+            Changed(() => setter(value));
+        }
+        private static void Volume(Action<Rect, string> label, float top, string caption, float value, Action<float> setter)
+        {
+            label(Shift(new Rect(75, top, 310, 36)), caption + ": " + Mathf.RoundToInt(value * 100) + "%");
+            float changed = GUI.HorizontalSlider(Shift(new Rect(390, top + 14, 630, 25)), value, 0, 1);
+            if (Button(new Rect(1050, top, 65, 36), "−")) changed = Mathf.Max(0, value - 0.1f);
+            if (Button(new Rect(1135, top, 65, 36), "+")) changed = Mathf.Min(1, value + 0.1f);
+            if (Mathf.Abs(changed - value) < 0.005f) return;
+            setter(changed);
+            Changed(() => setter(value));
+        }
+    }
+}

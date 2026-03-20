@@ -66,6 +66,7 @@ namespace ArcaneBrigade
             }
 
             if (special) return;
+            if (boss.ActiveTrademark) return; // its path is inked by BossTrademarkVisual once the pieces are out
             if (signature)
             {
                 // a signature move lands near its target: ink seeps into the floor there

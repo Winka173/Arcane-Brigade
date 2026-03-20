@@ -27,6 +27,10 @@ namespace ArcaneBrigade
         public bool ShowLootIndicators = true;
         public bool HighReadability;
         public bool ReducedShake;
+        public float ShakeScale = 1f;   // screen-shake strength (Settings: 100/75/50/25/off); ReducedShake stays true at off
+        public int WindowMode = -1;     // -1 keep the player's launch mode; 0 fullscreen, 1 borderless, 2 windowed
+        public int ScreenWidth, ScreenHeight; // 0 keep the launch resolution
+        public bool VSync = true;
         public bool ReducedFlashes;
         public bool ReducedEffects;
         public bool TutorialSeen;

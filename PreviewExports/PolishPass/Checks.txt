@@ -1,0 +1,123 @@
+PASS A move of its own UndeliveredKing (Return to Sender)
+PASS Second volley of every four, never on a signature UndeliveredKing
+PASS Its pieces wait for their inked path first UndeliveredKing (3)
+PASS Nothing hurts during the warning UndeliveredKing
+PASS Real damage from the pieces UndeliveredKing
+PASS The pieces travel UndeliveredKing
+PASS The move ends by itself UndeliveredKing
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage UndeliveredKing
+PASS Volley 1 winds up a trademark UndeliveredKing
+PASS The live boss throws it UndeliveredKing
+PASS The shop clears the pieces UndeliveredKing
+PASS A move of its own ScarletIndex (Redaction)
+PASS Second volley of every four, never on a signature ScarletIndex
+PASS Its pieces wait for their inked path first ScarletIndex (2)
+PASS Nothing hurts during the warning ScarletIndex
+PASS Real damage from the pieces ScarletIndex
+PASS The pieces travel ScarletIndex
+PASS The move ends by itself ScarletIndex
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage ScarletIndex
+PASS Volley 1 winds up a trademark ScarletIndex
+PASS The live boss throws it ScarletIndex
+PASS The shop clears the pieces ScarletIndex
+PASS A move of its own SleepCollector (Counting Sheep)
+PASS Second volley of every four, never on a signature SleepCollector
+PASS Its pieces wait for their inked path first SleepCollector (5)
+PASS Nothing hurts during the warning SleepCollector
+PASS Real damage from the pieces SleepCollector
+PASS The pieces travel SleepCollector
+PASS The move ends by itself SleepCollector
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage SleepCollector
+PASS Volley 1 winds up a trademark SleepCollector
+PASS The live boss throws it SleepCollector
+PASS The shop clears the pieces SleepCollector
+PASS A move of its own WaxAdmiral (Wax Tide)
+PASS Second volley of every four, never on a signature WaxAdmiral
+PASS Its pieces wait for their inked path first WaxAdmiral (4)
+PASS Nothing hurts during the warning WaxAdmiral
+PASS Real damage from the pieces WaxAdmiral
+PASS The pieces travel WaxAdmiral
+PASS The move ends by itself WaxAdmiral
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage WaxAdmiral
+PASS Volley 1 winds up a trademark WaxAdmiral
+PASS The live boss throws it WaxAdmiral
+PASS The shop clears the pieces WaxAdmiral
+PASS A move of its own LastLantern (Lit Fuse)
+PASS Second volley of every four, never on a signature LastLantern
+PASS Its pieces wait for their inked path first LastLantern (3)
+PASS Nothing hurts during the warning LastLantern
+PASS Real damage from the pieces LastLantern
+PASS The pieces travel LastLantern
+PASS The move ends by itself LastLantern
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage LastLantern
+PASS Volley 1 winds up a trademark LastLantern
+PASS The live boss throws it LastLantern
+PASS The shop clears the pieces LastLantern
+PASS A move of its own MarqueeMaw (Follow Spot)
+PASS Second volley of every four, never on a signature MarqueeMaw
+PASS Its pieces wait for their inked path first MarqueeMaw (1)
+PASS Nothing hurts during the warning MarqueeMaw
+PASS The follow spot itself never hurts (only its sandbag does)
+PASS The pieces travel MarqueeMaw
+PASS The move ends by itself MarqueeMaw
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage MarqueeMaw
+PASS Follow spot ran
+PASS Volley 1 winds up a trademark MarqueeMaw
+PASS The live boss throws it MarqueeMaw
+PASS The shop clears the pieces MarqueeMaw
+PASS A move of its own UmbraCradle (Rocking Pendulum)
+PASS Second volley of every four, never on a signature UmbraCradle
+PASS Its pieces wait for their inked path first UmbraCradle (1)
+PASS Nothing hurts during the warning UmbraCradle
+PASS Real damage from the pieces UmbraCradle
+PASS The pieces travel UmbraCradle
+PASS The move ends by itself UmbraCradle
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage UmbraCradle
+PASS Volley 1 winds up a trademark UmbraCradle
+PASS The live boss throws it UmbraCradle
+PASS The shop clears the pieces UmbraCradle
+PASS A move of its own CoinWidow (Rolling Change)
+PASS Second volley of every four, never on a signature CoinWidow
+PASS Its pieces wait for their inked path first CoinWidow (4)
+PASS Nothing hurts during the warning CoinWidow
+PASS Real damage from the pieces CoinWidow
+PASS The pieces travel CoinWidow
+PASS The move ends by itself CoinWidow
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage CoinWidow
+PASS Volley 1 winds up a trademark CoinWidow
+PASS The live boss throws it CoinWidow
+PASS The shop clears the pieces CoinWidow
+PASS A move of its own ChoirEngine (Pipe Scale)
+PASS Second volley of every four, never on a signature ChoirEngine
+PASS Its pieces wait for their inked path first ChoirEngine (14)
+PASS Nothing hurts during the warning ChoirEngine
+PASS Real damage from the pieces ChoirEngine
+PASS The pieces travel ChoirEngine
+PASS The move ends by itself ChoirEngine
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage ChoirEngine
+PASS Volley 1 winds up a trademark ChoirEngine
+PASS The live boss throws it ChoirEngine
+PASS The shop clears the pieces ChoirEngine
+PASS A move of its own SuitcaseLeviathan (Baggage Carousel)
+PASS Second volley of every four, never on a signature SuitcaseLeviathan
+PASS Its pieces wait for their inked path first SuitcaseLeviathan (5)
+PASS Nothing hurts during the warning SuitcaseLeviathan
+PASS Real damage from the pieces SuitcaseLeviathan
+PASS The pieces travel SuitcaseLeviathan
+PASS The move ends by itself SuitcaseLeviathan
+PASS Each piece (and its drop) hits at most once, for the capped hazard damage SuitcaseLeviathan
+PASS Volley 1 winds up a trademark SuitcaseLeviathan
+PASS The live boss throws it SuitcaseLeviathan
+PASS The shop clears the pieces SuitcaseLeviathan
+PASS Ten bosses, ten moves
+PASS Painted pieces are named for the art worklist
+PASS Only Mythic and Prismatic offers arrive covered
+PASS A cloth exists for both (painted or inked)
+PASS Covered until the beat after landing
+PASS Painted star-up art is wired
+PASS Shake strength applies
+PASS Old 'reduced shake' profiles stay shake-free
+PASS Older profiles keep the launch display and full shake
+PASS Shake steps read back
+PASS Resolutions from 1280x720 up
+PASS Pause menu (fight and shop): settings and a confirmed restart

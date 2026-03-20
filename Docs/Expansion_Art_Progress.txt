@@ -242,3 +242,15 @@ Gauge2_SundaeDuchess_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge2_SundaeDuchess_
 Gauge2_BellDiver_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge2_BellDiver_Full_v1.png done
 Gauge2_SundaeDuchess_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge2_SundaeDuchess_Full_v1.png done
 Visitors12 Assets/ArcaneBrigade/Art/Expansion/Visitors12_v1.png done
+BossProp_Letter_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png done
+BossProp_Sheep_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Sheep_f0_v1.png done
+BossProp_Sheep_f1 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Sheep_f1_v1.png done
+BossProp_WaxCrest_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_WaxCrest_f0_v1.png done
+BossProp_Pendulum_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Pendulum_f0_v1.png done
+BossProp_Letter_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png done
+BossProp_Sheep_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Sheep_f0_v1.png done
+BossProp_Sheep_f1 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Sheep_f1_v1.png done
+BossProp_WaxCrest_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_WaxCrest_f0_v1.png done
+BossProp_Pendulum_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Pendulum_f0_v1.png done
+BossProp_Coin_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_Coin_f0_v1.png done
+BossProp_OrganPipe_f0 Assets/ArcaneBrigade/Art/Arsenal/BossProp_OrganPipe_f0_v1.png done

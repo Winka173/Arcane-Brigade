@@ -252,6 +252,12 @@ for name, subject in [("RareCover_Mythic", "a draped velvet cloth in deep wine w
                       ("RareCover_Prismatic", "a draped silk cloth that shimmers through soft pastel colours (rose, mint, sky, lilac, butter) like mother-of-pearl, with a pearl clasp at the top, falling in soft folds over something hidden (only the cloth's rounded hump shows)")]:
     single(ART + name + "_v1.png", name, REFS, STYLE + "Subject: " + subject + ". Seen from the front, about as wide as tall, flat bottom hem. 512x512 canvas." + ISOLATED)
 
+# ---------------------------------------------------------------- 9. enemy roster review (approved 19/10/2026, Docs/Enemy_Roster_v2.md)
+_espec = importlib.util.spec_from_file_location("enemies_art", ROOT / "Tools" / "Art" / "enemies_art.py")
+_enemies = importlib.util.module_from_spec(_espec); _espec.loader.exec_module(_enemies)
+_enemies.jobs(["Assets/ArcaneBrigade/Art/K22/BurrowBell_v1.png", "Assets/ArcaneBrigade/Art/K25/LostLanternSoul_v1.png",
+               "Assets/ArcaneBrigade/Art/K22/BroomSkater_v1.png"], single)
+
 out = ROOT / "Docs" / "Expansion_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)

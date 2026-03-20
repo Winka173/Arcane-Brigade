@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbafebf9cab231d4ca006893cf516a93, type: 3}
   m_Name: DreamIron
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.WeaponDefinition
+  Arsenal: 0
+  SecretRecall: 0
   Id: DreamIron
   Kind: 1
   Sprite: {fileID: -245110343, guid: c2ba9821218d40349af68238ec2fd0f3, type: 3}
@@ -21,6 +23,9 @@ MonoBehaviour:
   Windup: 0.17
   Recovery: 0.24
   ProjectileSpeed: 8
+  ProjectileSpread: 0.14
+  HomingOutbound: 0
+  SpecialOnly: 0
   ProjectileLifetime: 3
   VisualWidth: 0.85
   MountDistance: 0.34
@@ -49,3 +54,5 @@ MonoBehaviour:
   MarkLifetime: 2.4
   PushDistance: 0.35
   Family: 6
+  Mechanic: 0
+  GameplaySummary: 

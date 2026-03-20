@@ -51,6 +51,37 @@ namespace ArcaneBrigade
         private int lastEggs;
         private float goldChanged = -100;
         private float eggsChanged = -100;
+        // the pause menu's page: 0 the menu, 1 settings, 2 "start over?"
+        private int pausePage;
+        private void DrawPause(ArenaController owner)
+        {
+            if (pausePage == 1)
+            {
+                Fill(new Rect(330, 150, 1260, 800), Panel);
+                ArcadeSkin.Header(new Rect(390, 190, 900, 92), "THE NIGHT WAITS WITH YOU", "Light, Sound & Comfort");
+                if (navigation.Button(new Rect(1330, 205, 200, 50), "BACK", button)) pausePage = 0;
+                SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => GUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true);
+                return;
+            }
+            if (pausePage == 2)
+            {
+                Fill(new Rect(600, 330, 720, 400), Panel);
+                ArcadeSkin.Header(new Rect(660, 380, 600, 100), "THE NIGHT WAITS WITH YOU", "Start over?");
+                GUI.Label(new Rect(660, 490, 600, 80), "This night ends here and is not recorded.\nA new night begins with the same hero.", text);
+                if (navigation.Button(new Rect(660, 600, 280, 65), "KEEP PLAYING", primary)) pausePage = 0;
+                if (navigation.Button(new Rect(980, 600, 280, 65), "START OVER", button)) { pausePage = 0; owner.RestartRun(); }
+                return;
+            }
+            Fill(new Rect(640, 260, 640, 580), Panel);
+            ArcadeSkin.Header(new Rect(700, 330, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
+            if (navigation.Button(new Rect(750, 465, 420, 65), "RESUME", primary)) owner.TogglePause();
+            if (navigation.Button(new Rect(700, 545, 250, 60), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
+            if (navigation.Button(new Rect(970, 545, 250, 60), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
+            if (navigation.Button(new Rect(700, 620, 250, 60), "SETTINGS", button)) pausePage = 1;
+            if (navigation.Button(new Rect(970, 620, 250, 60), "START OVER", button)) pausePage = 2;
+            if (navigation.Button(new Rect(750, 700, 420, 55), "MAIN MENU", button)) owner.RequestMenuReturn();
+        }
+
         public void ReadNavigation(bool enabled) { RunUIHints.Refresh(); if (enabled) navigation.ReadInput(); }
         public void ShowInvoiceEvidenceFixture()
         {
@@ -209,15 +240,8 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(425 + 1070 * 0.5f - 2, 948, 4, 42), ArcadeSkin.Cream);
                     GUI.Label(new Rect(425, 950, 1070, 38), Mathf.CeilToInt(simulation.Boss.Health) + " / " + Mathf.CeilToInt(simulation.Boss.Definition.Health), numeric);
                 }
-                if (simulation.Phase == RunPhase.Paused)
-                {
-                    Fill(new Rect(640, 300, 640, 500), Panel);
-                    ArcadeSkin.Header(new Rect(700, 380, 520, 100), "THE NIGHT WAITS WITH YOU", "Paused");
-                    if (navigation.Button(new Rect(750, 515, 420, 65), "RESUME", primary)) owner.TogglePause();
-                    if (navigation.Button(new Rect(700, 595, 250, 60), "STATS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(0); }
-                    if (navigation.Button(new Rect(970, 595, 250, 60), "RELICS", button)) { owner.ToggleDetails(); owner.Details.SelectTab(2); }
-                    if (navigation.Button(new Rect(750, 675, 420, 55), "MAIN MENU", button)) owner.RequestMenuReturn();
-                }
+                if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
+                else pausePage = 0;
             }
             else if (state.Phase == SessionPhase.Shop) { owner.Shop.DrawPriceTags(camera); DrawShop(owner); statFeedback.Draw(owner,camera); }
             else
@@ -270,12 +294,8 @@ namespace ArcaneBrigade
             WorldShop shop = owner.Shop;
             if (shop == null) return;
             shop.DrawMerchantDialogue();
-            if (owner.Simulation.Phase == RunPhase.Paused)
-            {
-                Fill(new Rect(710, 440, 500, 180), Panel);
-                if (navigation.Button(new Rect(755, 485, 410, 75), "RESUME", primary)) owner.TogglePause();
-                return;
-            }
+            if (owner.Simulation.Phase == RunPhase.Paused) { DrawPause(owner); return; }
+            pausePage = 0;
             WorldShop.Station station = shop.Nearby;
             ShownShopCard = Rect.zero;
             if (station != null)

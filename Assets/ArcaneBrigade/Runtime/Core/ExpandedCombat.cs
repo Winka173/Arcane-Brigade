@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArcaneBrigade
 {
-    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether, SewingLink, Tentacle, Shockwave, FallingProp, ShadowPool }
+    public enum ExpandedFieldKind { Tea, Iron, Fuse, Strike, Link, Photo, Echo, OfficeHazard, ToyHazard, Curtain, Ink, Projector, MagnetCone, YoYoTether, SewingLink, Tentacle, Shockwave, FallingProp, ShadowPool, Roller }
     public sealed class ExpandedField
     {
         public ExpandedFieldKind Kind;
@@ -25,6 +25,12 @@ namespace ArcaneBrigade
         public bool Critical;
         public UnitState Anchor;
         public int SourceOrgan = -1;
+        // a boss's moving piece (BossTrademarks): style = boss pattern, how it travels, and its path's numbers
+        public int Style = -1;
+        public TrademarkMotion Motion;
+        public float Speed, Phase, Length, Reach, Moved;
+        public Vector2 Center;
+        public bool Spent;
         public readonly HashSet<int> CollateralVictims = new HashSet<int>();
     }
 
@@ -234,11 +240,12 @@ namespace ArcaneBrigade
             {
                 ExpandedField field = fields[index];
                 if (Elapsed > field.Until) { fields.RemoveAt(index); continue; }
+                if (field.Kind == ExpandedFieldKind.Roller) MoveRoller(field);
                 bool ink = field.Kind == ExpandedFieldKind.Ink;
                 if (Elapsed < field.At || field.Resolved || Elapsed < field.NextTick || (field.Damage <= 0 && !ink)) continue;
                 bool heat = field.Kind == ExpandedFieldKind.Tea || field.Kind == ExpandedFieldKind.Iron;
                 if (field.Kind == ExpandedFieldKind.Strike && field.Source != null && field.Source.Definition.Weapon.Mechanic == CarnivalWeapon.RibbonWheel) field.Position = field.Source.Position;
-                field.NextTick = Elapsed + (field.Kind == ExpandedFieldKind.Shockwave ? 0.05f : 0.4f); field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector && field.Kind != ExpandedFieldKind.Shockwave && field.Kind != ExpandedFieldKind.ShadowPool;
+                field.NextTick = Elapsed + (field.Kind == ExpandedFieldKind.Shockwave || field.Kind == ExpandedFieldKind.Roller ? 0.05f : 0.4f); field.Resolved = !heat && !ink && field.Kind != ExpandedFieldKind.Projector && field.Kind != ExpandedFieldKind.Shockwave && field.Kind != ExpandedFieldKind.ShadowPool && field.Kind != ExpandedFieldKind.Roller;
                 ExpandedPayoffs++;
                 if (field.Source == null || field.Source.Faction != Faction.Enemy) RecordActivation(field.Cause);
                 // fuse and echo blasts are heard and seen as explosions (presentation only; Value = blast radius)

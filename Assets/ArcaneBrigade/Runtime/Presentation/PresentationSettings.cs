@@ -12,6 +12,8 @@ namespace ArcaneBrigade
         public static bool LootIndicators { get; private set; } = true;
         public static bool HighReadability { get; private set; }
         public static bool ReducedShake { get; private set; }
+        /// <summary>Screen-shake strength, 0 (off) to 1.</summary>
+        public static float ShakeScale { get; private set; } = 1f;
         public static bool ReducedFlashes { get; private set; }
         public static bool ReducedEffects { get; private set; }
         public static float DangerUntil { get; private set; }
@@ -21,9 +23,20 @@ namespace ArcaneBrigade
             ReducedAudio = profile.ReducedAudio; ReducedMotion = profile.ReducedMotion;
             DamageNumbers = profile.ShowDamageNumbers; LootIndicators = profile.ShowLootIndicators;
             HighReadability = profile.HighReadability;
-            ReducedShake = profile.ReducedShake; ReducedFlashes = profile.ReducedFlashes; ReducedEffects = profile.ReducedEffects;
+            ReducedShake = profile.ReducedShake; ShakeScale = profile.ReducedShake ? 0 : Mathf.Clamp01(profile.ShakeScale); ReducedFlashes = profile.ReducedFlashes; ReducedEffects = profile.ReducedEffects;
             AudioListener.volume = profile.Volume;
             ArcadeSkin.Bundle = profile.Cosmetic;
+        }
+        /// <summary>Window mode, resolution and vsync from the profile; only a player build changes the screen, and only when
+        /// something differs (the editor, batch runs and captures keep their own).</summary>
+        public static void ApplyDisplay(PlayerProfile profile)
+        {
+            if (profile == null || Application.isEditor || Application.isBatchMode || RunPaths.Diagnostic) return;
+            QualitySettings.vSyncCount = profile.VSync ? 1 : 0;
+            if (profile.WindowMode < 0 && (profile.ScreenWidth <= 0 || profile.ScreenHeight <= 0)) return;
+            FullScreenMode mode = profile.WindowMode == 0 ? FullScreenMode.ExclusiveFullScreen : profile.WindowMode == 1 ? FullScreenMode.FullScreenWindow : profile.WindowMode == 2 ? FullScreenMode.Windowed : Screen.fullScreenMode;
+            int width = profile.ScreenWidth > 0 ? profile.ScreenWidth : Screen.width, height = profile.ScreenHeight > 0 ? profile.ScreenHeight : Screen.height;
+            if (Screen.fullScreenMode != mode || Screen.width != width || Screen.height != height) Screen.SetResolution(width, height, mode);
         }
         public static void Danger(float seconds = 0.5f) { DangerUntil = Mathf.Max(DangerUntil, Time.unscaledTime + seconds); }
         // a voiced line ducks the music lightly while it is audible (VoiceDirector)

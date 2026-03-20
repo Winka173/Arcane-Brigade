@@ -42,10 +42,10 @@ namespace ArcaneBrigade
         {
             get
             {
-                if (PresentationSettings.ReducedMotion || PresentationSettings.ReducedShake || trauma <= 0.001f) return Vector2.zero;
+                if (PresentationSettings.ReducedMotion || PresentationSettings.ReducedShake || PresentationSettings.ShakeScale <= 0 || trauma <= 0.001f) return Vector2.zero;
                 float x = Mathf.PerlinNoise(clock * 22f, 0.37f) * 2 - 1, y = Mathf.PerlinNoise(1.91f, clock * 22f) * 2 - 1;
                 Vector2 shake = new Vector2(x, y) * 0.75f + bias * Mathf.Sin(clock * 55f) * 0.35f;
-                return Vector2.ClampMagnitude(shake, 1f) * MaxShake * Mathf.Pow(trauma, 1.5f);
+                return Vector2.ClampMagnitude(shake, 1f) * MaxShake * Mathf.Pow(trauma, 1.5f) * PresentationSettings.ShakeScale;
             }
         }
         public void Clear() { trauma = freeze = freezeCooldown = slow = flash = punctuation = 0; }
