@@ -16,12 +16,18 @@ MonoBehaviour:
   - Hero: Gauge2_ArchiveCurator
     Low: 0.19117647
     High: 0.7352941
+  - Hero: Gauge2_BellDiver
+    Low: 0.184178
+    High: 0.6897404
+  - Hero: Gauge2_BonsaiClocksmith
+    Low: 0.2071651
+    High: 0.71028036
   - Hero: Gauge2_ButtonCavalier
-    Low: 0.13773148
-    High: 0.8402778
+    Low: 0.32698414
+    High: 0.63492066
   - Hero: Gauge2_ChinaMarionette
-    Low: 0.056074765
-    High: 0.8182762
+    Low: 0.37269938
+    High: 0.6809816
   - Hero: Gauge2_CitrusMarshal
     Low: 0.46747968
     High: 0.5731707
@@ -29,8 +35,8 @@ MonoBehaviour:
     Low: 0.16018307
     High: 0.61098397
   - Hero: Gauge2_CopperCauldron
-    Low: 0.24545455
-    High: 0.7613636
+    Low: 0.12882096
+    High: 0.5720524
   - Hero: Gauge2_DrowsySeer
     Low: 0.17368421
     High: 0.7894737
@@ -38,17 +44,23 @@ MonoBehaviour:
     Low: 0.22695035
     High: 0.75177306
   - Hero: Gauge2_HourglassStag
-    Low: 0.17162472
-    High: 0.8947368
+    Low: 0.17124183
+    High: 0.6810458
   - Hero: Gauge2_IvorySovereign
     Low: 0.2207944
     High: 0.7686916
+  - Hero: Gauge2_JugglingJester
+    Low: 0.42548078
+    High: 0.86778843
+  - Hero: Gauge2_KiteAdmiral
+    Low: 0.04398148
+    High: 0.8923611
   - Hero: Gauge2_LanternKnight
     Low: 0.3889515
     High: 0.64599776
   - Hero: Gauge2_LanternWeaver
-    Low: 0.18928164
-    High: 0.71607757
+    Low: 0.16693419
+    High: 0.7383628
   - Hero: Gauge2_LoneJelly
     Low: 0.32098764
     High: 0.58641976
@@ -59,8 +71,8 @@ MonoBehaviour:
     Low: 0.23128119
     High: 0.750416
   - Hero: Gauge2_NightMaw
-    Low: 0.20843092
-    High: 0.7412178
+    Low: 0.16312057
+    High: 0.83687943
   - Hero: Gauge2_PatchworkHost
     Low: 0.24242425
     High: 0.6515151
@@ -74,23 +86,26 @@ MonoBehaviour:
     Low: 0.17337461
     High: 0.8034056
   - Hero: Gauge2_RainArchivist
-    Low: 0.122651935
-    High: 0.7480663
+    Low: 0.23363286
+    High: 0.79974324
   - Hero: Gauge2_RootOracle
     Low: 0.118161924
     High: 0.7045952
   - Hero: Gauge2_SoapSkater
-    Low: 0.14802259
-    High: 0.5661017
+    Low: 0.3237519
+    High: 0.60816944
   - Hero: Gauge2_StormFencer
     Low: 0.20706455
     High: 0.7868453
+  - Hero: Gauge2_SundaeDuchess
+    Low: 0.36408365
+    High: 0.95571953
   - Hero: Gauge2_SupperMortar
-    Low: 0.09839817
-    High: 0.82036614
+    Low: 0.2247557
+    High: 0.9055375
   - Hero: Gauge2_ThornTreasurer
-    Low: 0.12888378
-    High: 0.7917146
+    Low: 0.09406657
+    High: 0.8683068
   - Hero: Gauge2_TideSinger
     Low: 0.1955836
     High: 0.67297584
@@ -101,11 +116,11 @@ MonoBehaviour:
     Low: 0.1
     High: 0.76117647
   - Hero: Gauge2_VelvetRegent
-    Low: 0.15911731
-    High: 0.757259
+    Low: 0.5726316
+    High: 0.8336842
   - Hero: Gauge2_VerdantMatron
-    Low: 0.16033755
-    High: 0.636076
+    Low: 0.089705884
+    High: 0.9014706
   - Hero: ArchiveCurator
     Low: 0.17202072
     High: 0.73886013
@@ -214,3 +229,76 @@ MonoBehaviour:
   - Hero: VerdantMatron
     Low: 0.17690678
     High: 0.7341102
+  Orders:
+  - Hero: Gauge2_LanternKnight
+    Map: {fileID: 2800000, guid: c687daec74d0fd94aa95893257743b7b, type: 3}
+  - Hero: Gauge2_Postmaster
+    Map: {fileID: 2800000, guid: 2078782b8861397479c0071921f14fe2, type: 3}
+  - Hero: Gauge2_DrowsySeer
+    Map: {fileID: 2800000, guid: e1a09acec1933204885e9d708cd697c6, type: 3}
+  - Hero: Gauge2_RootOracle
+    Map: {fileID: 2800000, guid: a965e980ffbe99b4a82fd6a15375f5fe, type: 3}
+  - Hero: Gauge2_LoneJelly
+    Map: {fileID: 2800000, guid: ae8170502e101864bab3bc2cbdee97be, type: 3}
+  - Hero: Gauge2_GlassDice
+    Map: {fileID: 2800000, guid: 89852b14da424764983886a741bc33df, type: 3}
+  - Hero: Gauge2_TideSinger
+    Map: {fileID: 2800000, guid: 779c24c538b7cf3469ebf9d1a6483618, type: 3}
+  - Hero: Gauge2_CometRunner
+    Map: {fileID: 2800000, guid: 14eb6a02f452adf47b701f06a0e55c65, type: 3}
+  - Hero: Gauge2_MirrorKeeper
+    Map: {fileID: 2800000, guid: fd00a499d2663424e8e01133596f5ee4, type: 3}
+  - Hero: Gauge2_TreasureAcorn
+    Map: {fileID: 2800000, guid: e577b8cb2ee731e41854f185cbc64a21, type: 3}
+  - Hero: Gauge2_VerdantMatron
+    Map: {fileID: 2800000, guid: b41fa17ff596fcd48b128dc209b67f04, type: 3}
+  - Hero: Gauge2_CopperCauldron
+    Map: {fileID: 2800000, guid: c8d71fb25a7b03642b1586c7e15230a1, type: 3}
+  - Hero: Gauge2_ChinaMarionette
+    Map: {fileID: 2800000, guid: 17c30fc9eecff5d4c85a61966a2e5cca, type: 3}
+  - Hero: Gauge2_SoapSkater
+    Map: {fileID: 2800000, guid: aa52aa755459b994ba7aa35eff80f8b2, type: 3}
+  - Hero: Gauge2_VelvetRegent
+    Map: {fileID: 2800000, guid: a40f568c5a9f3be4f8a33e89508b2488, type: 3}
+  - Hero: Gauge2_ButtonCavalier
+    Map: {fileID: 2800000, guid: a04f088337fffb64e96ee563ac3b15cc, type: 3}
+  - Hero: Gauge2_NightMaw
+    Map: {fileID: 2800000, guid: 301a340d351587f41b90fc1ea96b947e, type: 3}
+  - Hero: Gauge2_ThornTreasurer
+    Map: {fileID: 2800000, guid: 9ce6f67f4e409944a89e8eff4fa9ff01, type: 3}
+  - Hero: Gauge2_CitrusMarshal
+    Map: {fileID: 2800000, guid: eac649e9e820030448ce90ea8842028a, type: 3}
+  - Hero: Gauge2_IvorySovereign
+    Map: {fileID: 2800000, guid: 42971c5ab9b9f084e8be48d04c040b9a, type: 3}
+  - Hero: Gauge2_PetalCitadel
+    Map: {fileID: 2800000, guid: 4957960e360f1ed4b90141f90842a745, type: 3}
+  - Hero: Gauge2_PatchworkHost
+    Map: {fileID: 2800000, guid: fca985e757d49d24bbf6c15ae2929930, type: 3}
+  - Hero: Gauge2_ArchiveCurator
+    Map: {fileID: 2800000, guid: 36ab9b6087a4fd2498bef0430edc4121, type: 3}
+  - Hero: Gauge2_PennyBroker
+    Map: {fileID: 2800000, guid: e19067b79c96c7a49a36b5117b0ba607, type: 3}
+  - Hero: Gauge2_StormFencer
+    Map: {fileID: 2800000, guid: cba3d41d5a0e20c48b156585a70269a7, type: 3}
+  - Hero: Gauge2_TinVirtuoso
+    Map: {fileID: 2800000, guid: b51897be50f6df54cabc87757465a294, type: 3}
+  - Hero: Gauge2_MoonProwler
+    Map: {fileID: 2800000, guid: 70d8e35d6d0c6494ca63763e8e63b2ff, type: 3}
+  - Hero: Gauge2_SupperMortar
+    Map: {fileID: 2800000, guid: 02605b7c0ccfce64c95d2538f9c62ca2, type: 3}
+  - Hero: Gauge2_LanternWeaver
+    Map: {fileID: 2800000, guid: 8bec25e34656bc74294abe72be051130, type: 3}
+  - Hero: Gauge2_HourglassStag
+    Map: {fileID: 2800000, guid: c90c3847c75eca2439a23a9bdfaef561, type: 3}
+  - Hero: Gauge2_RainArchivist
+    Map: {fileID: 2800000, guid: 5066698b314e87b43b8fe7346ee0a8f1, type: 3}
+  - Hero: Gauge2_KiteAdmiral
+    Map: {fileID: 2800000, guid: bd950afa21f599b438a5819a079466d3, type: 3}
+  - Hero: Gauge2_SundaeDuchess
+    Map: {fileID: 2800000, guid: 56a9d84a8881bbb4cb838b178fed1e04, type: 3}
+  - Hero: Gauge2_BonsaiClocksmith
+    Map: {fileID: 2800000, guid: 28d1b2b449799fc438007df3d86f7ae7, type: 3}
+  - Hero: Gauge2_JugglingJester
+    Map: {fileID: 2800000, guid: e802e8b979b43ab4d9cb0dc7d0a62011, type: 3}
+  - Hero: Gauge2_BellDiver
+    Map: {fileID: 2800000, guid: 92ec1e281a08fe441b76e1aec0d10a43, type: 3}

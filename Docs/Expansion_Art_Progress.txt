@@ -236,3 +236,9 @@ Visitors8 Assets/ArcaneBrigade/Art/Expansion/Visitors8_v1.png done
 Visitors5 Assets/ArcaneBrigade/Art/Expansion/Visitors5_v1.png done
 Visitors9 Assets/ArcaneBrigade/Art/Expansion/Visitors9_v1.png done
 Visitors6 Assets/ArcaneBrigade/Art/Expansion/Visitors6_v1.png done
+Visitors10 Assets/ArcaneBrigade/Art/Expansion/Visitors10_v1.png done
+Visitors11 Assets/ArcaneBrigade/Art/Expansion/Visitors11_v1.png done
+Gauge2_SundaeDuchess_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge2_SundaeDuchess_Full_v1.png done
+Gauge2_BellDiver_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge2_BellDiver_Full_v1.png done
+Gauge2_SundaeDuchess_Full Assets/ArcaneBrigade/Art/Arsenal/Gauge2_SundaeDuchess_Full_v1.png done
+Visitors12 Assets/ArcaneBrigade/Art/Expansion/Visitors12_v1.png done

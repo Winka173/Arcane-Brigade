@@ -37,6 +37,7 @@ namespace ArcaneBrigade
             if (effect == ItemEffect.Armor) value += MechanicStacks(RelicMechanic.SlowToArmor) * Mathf.Max(0, -Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion));
             if (effect == ItemEffect.Income) value += MechanicStacks(RelicMechanic.DamageToIncome) * Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.Damage, ModifierScope.Champion)) / .04f);
             if (effect == ItemEffect.Discount && State.RelicDiscountWave == State.Wave) value += .3f;
+            if (effect == ItemEffect.Discount && State.PromiseDiscountWave == State.Wave) value += .15f; // a promise kept
             if (effect == ItemEffect.AttackSpeed && target != ModifierScope.Run && MechanicStacks(RelicMechanic.ClockworkHeart) > 0) value += Mathf.Min(.3f, State.HeartWinds * .03f);
             if (effect == ItemEffect.AttackSpeed && target == ModifierScope.Companions && MechanicStacks(RelicMechanic.SlipstreamScarf) > 0)
                 value += MechanicStacks(RelicMechanic.SlipstreamScarf) * Mathf.Min(.15f, Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion)) / .05f + .001f) * .01f);

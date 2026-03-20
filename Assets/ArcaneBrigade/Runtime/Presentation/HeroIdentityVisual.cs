@@ -44,6 +44,7 @@ namespace ArcaneBrigade
             ghost = go.AddComponent<SpriteRenderer>(); ghost.sortingOrder = 1090; ghost.enabled = false;
         }
 
+        private Material spriteMaterial;
         private SpriteRenderer Place(Sprite sprite, Vector2 at, Vector2 scale, float angle, Color color, bool airborne)
         {
             if (sprite == null || color.a <= .004f) return null;
@@ -53,6 +54,8 @@ namespace ArcaneBrigade
                 tokens.Add(go.AddComponent<SpriteRenderer>());
             }
             var r = tokens[used++]; r.enabled = true; r.sprite = sprite; r.color = color; r.sortingOrder = airborne ? AirTokenOrder : GroundTokenOrder;
+            spriteMaterial ??= r.sharedMaterial;
+            if (r.sharedMaterial != spriteMaterial) { r.sharedMaterial = spriteMaterial; r.SetPropertyBlock(null); } // a shaped gauge's reveal stays with its own token
             float unit = Mathf.Max(.01f, Mathf.Max(sprite.bounds.size.x, sprite.bounds.size.y)); // procedural tokens are 1 unit; painted art may differ
             r.transform.position = at; r.transform.rotation = Quaternion.Euler(0, 0, angle); r.transform.localScale = new Vector3(scale.x / unit, scale.y / unit, 1);
             return r;

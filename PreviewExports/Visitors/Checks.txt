@@ -1,0 +1,237 @@
+PASS 45 distinct visitors
+PASS Every visitor speaks, states its offer, and none heals
+PASS GateKeeper offers something that can be taken
+PASS GateKeeper is answered
+PASS GateKeeper leaves, and nobody was healed
+PASS GateKeeper pays only small amounts (0 gold, 0 eggs)
+PASS GateKeeper leaves nothing behind after its wave
+PASS LostPostman offers something that can be taken
+PASS LostPostman is answered
+PASS LostPostman leaves, and nobody was healed
+PASS LostPostman pays only small amounts (0 gold, 0 eggs)
+PASS LostPostman leaves nothing behind after its wave
+PASS DiceElder offers something that can be taken
+PASS DiceElder is answered
+PASS DiceElder leaves, and nobody was healed
+PASS DiceElder pays only small amounts (-5 gold, 0 eggs)
+PASS DiceElder leaves nothing behind after its wave
+PASS Pawnbroker offers something that can be taken
+PASS Pawnbroker is answered
+PASS Pawnbroker leaves, and nobody was healed
+PASS Pawnbroker pays only small amounts (9 gold, 0 eggs)
+PASS Pawnbroker leaves nothing behind after its wave
+PASS ParcelCourier offers something that can be taken
+PASS ParcelCourier is answered
+PASS ParcelCourier leaves, and nobody was healed
+PASS ParcelCourier pays only small amounts (-10 gold, 0 eggs)
+PASS ParcelCourier leaves nothing behind after its wave
+PASS TroupeLeader offers something that can be taken
+PASS TroupeLeader is answered
+PASS TroupeLeader leaves, and nobody was healed
+PASS TroupeLeader pays only small amounts (0 gold, 0 eggs)
+PASS TroupeLeader leaves nothing behind after its wave
+PASS Lamplighter offers something that can be taken
+PASS Lamplighter is answered
+PASS Lamplighter leaves, and nobody was healed
+PASS Lamplighter pays only small amounts (-6 gold, 0 eggs)
+PASS Lamplighter leaves nothing behind after its wave
+PASS LostToy offers something that can be taken
+PASS LostToy is answered
+PASS LostToy leaves, and nobody was healed
+PASS LostToy pays only small amounts (0 gold, 0 eggs)
+PASS LostToy leaves nothing behind after its wave
+PASS ToyMender offers something that can be taken
+PASS ToyMender is answered
+PASS ToyMender leaves, and nobody was healed
+PASS ToyMender pays only small amounts (-8 gold, 0 eggs)
+PASS ToyMender leaves nothing behind after its wave
+PASS MusicBoxKeeper offers something that can be taken
+PASS MusicBoxKeeper is answered
+PASS MusicBoxKeeper leaves, and nobody was healed
+PASS MusicBoxKeeper pays only small amounts (0 gold, 0 eggs)
+PASS MusicBoxKeeper leaves nothing behind after its wave
+PASS Barterer offers something that can be taken
+PASS Barterer is answered
+PASS Barterer leaves, and nobody was healed
+PASS Barterer pays only small amounts (0 gold, 0 eggs)
+PASS Barterer leaves nothing behind after its wave
+PASS JunkCollector offers something that can be taken
+PASS JunkCollector is answered
+PASS JunkCollector leaves, and nobody was healed
+PASS JunkCollector pays only small amounts (11 gold, 0 eggs)
+PASS JunkCollector leaves nothing behind after its wave
+PASS Lender offers something that can be taken
+PASS Lender is answered
+PASS Lender leaves, and nobody was healed
+PASS Lender pays only small amounts (0 gold, 0 eggs)
+PASS Lender leaves nothing behind after its wave
+PASS Storyteller offers something that can be taken
+PASS Storyteller is answered
+PASS Storyteller leaves, and nobody was healed
+PASS Storyteller pays only small amounts (0 gold, 0 eggs)
+PASS Storyteller leaves nothing behind after its wave
+PASS SwapClown offers something that can be taken
+PASS SwapClown is answered
+PASS SwapClown leaves, and nobody was healed
+PASS SwapClown pays only small amounts (0 gold, 0 eggs)
+PASS SwapClown leaves nothing behind after its wave
+PASS ClockRewinder offers something that can be taken
+PASS ClockRewinder is answered
+PASS ClockRewinder leaves, and nobody was healed
+PASS ClockRewinder pays only small amounts (0 gold, 0 eggs)
+PASS ClockRewinder leaves nothing behind after its wave
+PASS SleeplessChild offers something that can be taken
+PASS SleeplessChild is answered
+PASS SleeplessChild leaves, and nobody was healed
+PASS SleeplessChild pays only small amounts (0 gold, 0 eggs)
+PASS SleeplessChild leaves nothing behind after its wave
+PASS CandyWitch offers something that can be taken
+PASS CandyWitch is answered
+PASS CandyWitch leaves, and nobody was healed
+PASS CandyWitch pays only small amounts (-6 gold, 0 eggs)
+PASS CandyWitch leaves nothing behind after its wave
+PASS BalloonSeller offers something that can be taken
+PASS BalloonSeller is answered
+PASS BalloonSeller leaves, and nobody was healed
+PASS BalloonSeller pays only small amounts (-5 gold, 0 eggs)
+PASS BalloonSeller leaves nothing behind after its wave
+PASS PromiseSeller offers something that can be taken
+PASS PromiseSeller is answered
+PASS PromiseSeller leaves, and nobody was healed
+PASS PromiseSeller pays only small amounts (0 gold, 0 eggs)
+PASS PromiseSeller leaves nothing behind after its wave
+PASS Ferryman offers something that can be taken
+PASS Ferryman is answered
+PASS Ferryman leaves, and nobody was healed
+PASS Ferryman pays only small amounts (0 gold, 0 eggs)
+PASS Ferryman leaves nothing behind after its wave
+PASS MatchGirl offers something that can be taken
+PASS MatchGirl is answered
+PASS MatchGirl leaves, and nobody was healed
+PASS MatchGirl pays only small amounts (-3 gold, 0 eggs)
+PASS MatchGirl leaves nothing behind after its wave
+PASS Collector offers something that can be taken
+PASS Collector is answered
+PASS Collector leaves, and nobody was healed
+PASS Collector pays only small amounts (0 gold, 0 eggs)
+PASS Collector leaves nothing behind after its wave
+PASS Engraver offers something that can be taken
+PASS Engraver is answered
+PASS Engraver leaves, and nobody was healed
+PASS Engraver pays only small amounts (-6 gold, 0 eggs)
+PASS Engraver leaves nothing behind after its wave
+PASS Waker offers something that can be taken
+PASS Waker is answered
+PASS Waker leaves, and nobody was healed
+PASS Waker pays only small amounts (-6 gold, 0 eggs)
+PASS Waker leaves nothing behind after its wave
+PASS DreamSeller offers something that can be taken
+PASS DreamSeller is answered
+PASS DreamSeller leaves, and nobody was healed
+PASS DreamSeller pays only small amounts (0 gold, 0 eggs)
+PASS DreamSeller leaves nothing behind after its wave
+PASS Twins offers something that can be taken
+PASS Twins is answered
+PASS Twins leaves, and nobody was healed
+PASS Twins pays only small amounts (0 gold, 0 eggs)
+PASS Twins leaves nothing behind after its wave
+PASS WaterCarrier offers something that can be taken
+PASS WaterCarrier is answered
+PASS WaterCarrier leaves, and nobody was healed
+PASS WaterCarrier pays only small amounts (-5 gold, 0 eggs)
+PASS WaterCarrier leaves nothing behind after its wave
+PASS NightThief offers something that can be taken
+PASS NightThief is answered
+PASS NightThief leaves, and nobody was healed
+PASS NightThief pays only small amounts (-5 gold, 0 eggs)
+PASS NightThief leaves nothing behind after its wave
+PASS DollDoctor offers something that can be taken
+PASS DollDoctor is answered
+PASS DollDoctor leaves, and nobody was healed
+PASS DollDoctor pays only small amounts (-10 gold, 0 eggs)
+PASS DollDoctor leaves nothing behind after its wave
+PASS KeyKeeper offers something that can be taken
+PASS KeyKeeper is answered
+PASS KeyKeeper leaves, and nobody was healed
+PASS KeyKeeper pays only small amounts (-10 gold, 0 eggs)
+PASS KeyKeeper leaves nothing behind after its wave
+PASS CupMagician offers something that can be taken
+PASS CupMagician is answered
+PASS CupMagician leaves, and nobody was healed
+PASS CupMagician pays only small amounts (-6 gold, 0 eggs)
+PASS CupMagician leaves nothing behind after its wave
+PASS FriendSeeker offers something that can be taken
+PASS FriendSeeker is answered
+PASS FriendSeeker leaves, and nobody was healed
+PASS FriendSeeker pays only small amounts (0 gold, 0 eggs)
+PASS FriendSeeker leaves nothing behind after its wave
+PASS DreamSmith offers something that can be taken
+PASS DreamSmith is answered
+PASS DreamSmith second step
+PASS DreamSmith leaves, and nobody was healed
+PASS DreamSmith pays only small amounts (-8 gold, 0 eggs)
+PASS DreamSmith leaves nothing behind after its wave
+PASS MapSeller offers something that can be taken
+PASS MapSeller is answered
+PASS MapSeller leaves, and nobody was healed
+PASS MapSeller pays only small amounts (-6 gold, 0 eggs)
+PASS MapSeller leaves nothing behind after its wave
+PASS EggTrader offers something that can be taken
+PASS EggTrader is answered
+PASS EggTrader leaves, and nobody was healed
+PASS EggTrader pays only small amounts (0 gold, -2 eggs)
+PASS EggTrader leaves nothing behind after its wave
+PASS WeatherTeller offers something that can be taken
+PASS WeatherTeller is answered
+PASS WeatherTeller leaves, and nobody was healed
+PASS WeatherTeller pays only small amounts (-6 gold, 0 eggs)
+PASS WeatherTeller leaves nothing behind after its wave
+PASS Knitter offers something that can be taken
+PASS Knitter is answered
+PASS Knitter leaves, and nobody was healed
+PASS Knitter pays only small amounts (-8 gold, 0 eggs)
+PASS Knitter leaves nothing behind after its wave
+PASS Painter offers something that can be taken
+PASS Painter is answered
+PASS Painter leaves, and nobody was healed
+PASS Painter pays only small amounts (0 gold, 0 eggs)
+PASS Painter leaves nothing behind after its wave
+PASS ShadowBorrower offers something that can be taken
+PASS ShadowBorrower is answered
+PASS ShadowBorrower leaves, and nobody was healed
+PASS ShadowBorrower pays only small amounts (-8 gold, 0 eggs)
+PASS ShadowBorrower leaves nothing behind after its wave
+PASS Sandman offers something that can be taken
+PASS Sandman is answered
+PASS Sandman leaves, and nobody was healed
+PASS Sandman pays only small amounts (-8 gold, 0 eggs)
+PASS Sandman leaves nothing behind after its wave
+PASS ColourStranger offers something that can be taken
+PASS ColourStranger is answered
+PASS ColourStranger leaves, and nobody was healed
+PASS ColourStranger pays only small amounts (0 gold, 0 eggs)
+PASS ColourStranger leaves nothing behind after its wave
+PASS FuturePost offers something that can be taken
+PASS FuturePost is answered
+PASS FuturePost leaves, and nobody was healed
+PASS FuturePost pays only small amounts (-10 gold, 0 eggs)
+PASS FuturePost leaves nothing behind after its wave
+PASS HourglassFixer offers something that can be taken
+PASS HourglassFixer is answered
+PASS HourglassFixer leaves, and nobody was healed
+PASS HourglassFixer pays only small amounts (0 gold, 0 eggs)
+PASS HourglassFixer leaves nothing behind after its wave
+PASS Busker offers something that can be taken
+PASS Busker is answered
+PASS Busker leaves, and nobody was healed
+PASS Busker pays only small amounts (0 gold, 0 eggs)
+PASS Busker leaves nothing behind after its wave
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS No visitor before wave 3
+PASS Visitors come every 2-3 shops (8 in 20)

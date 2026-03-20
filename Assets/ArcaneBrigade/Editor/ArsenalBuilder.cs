@@ -146,7 +146,11 @@ namespace ArcaneBrigade.Editor
                 }
                 finally { UnityEngine.Object.DestroyImmediate(a); UnityEngine.Object.DestroyImmediate(b); }
             }
-            asset.Windows = windows.ToArray(); EditorUtility.SetDirty(asset);
+            asset.Windows = windows.ToArray();
+            var log = new List<string>();
+            asset.Orders = GaugeOrderBaker.Bake(log).ToArray(); // shaped gauges: each hero's own fill order
+            File.AppendAllLines("PreviewExports/Arsenal/Art_Status.txt", log);
+            EditorUtility.SetDirty(asset);
         }
 
         /// <summary>Records each Arsenal painting's ink box (its painted pixels, not the transparent canvas) in SpriteInkMetrics,

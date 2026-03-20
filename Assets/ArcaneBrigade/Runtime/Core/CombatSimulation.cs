@@ -57,6 +57,8 @@ namespace ArcaneBrigade
         public float ProbedUntil; public int ArsenalLastTarget;
         /// <summary>The new friends: Ringmaster Jack's taunt, Sundae Golem's cream, the pin and fossil stun, Court Herald's fanfare.</summary>
         public float TauntUntil, CreamTime, CreamSeen, PinReadyAt; public int TauntBy, SummonedBy; public bool HeraldShot;
+        /// <summary>Shop visitors: lured to a sweet; a Gatekeeper's elite.</summary>
+        public float LureUntil; public Vector2 LurePoint; public bool Elite;
         public bool CoilStruck;
         public float KitSlow;
         public bool KitStruck;
@@ -173,6 +175,8 @@ namespace ArcaneBrigade
         public bool PinnedPierced;
         /// <summary>Kite Tail Ribbon: extra bounces of a critical friendly shot.</summary>
         public int RelicBounces;
+        /// <summary>The visitor's umbrella has already had its chance at this shot.</summary>
+        public bool UmbrellaChecked;
         public Faction Faction;
         public Vector2 Position;
         public Vector2 PreviousPosition;
@@ -343,7 +347,7 @@ namespace ArcaneBrigade
             StartSecretCombat();
             ResetExpansion();
             ResetOutsideSummons();
-            ResetRelics();
+            ResetRelics(); ResetVisitors();
             ResetOctoberCombat();
             ResetHeroIdentity();
             ResetSwarmPacing();
@@ -427,7 +431,7 @@ namespace ArcaneBrigade
             foreach (UnitState unit in units) unit.PreviousPosition = unit.Position;
             movement = Vector2.ClampMagnitude(movement, 1);
             if (Champion.Definition.HeroMechanic == HeroMechanic.RootedOracle && !HeroIdentityEnabled) movement = Vector2.zero; // with identities on, Root Oracle walks (its identity roots it)
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * deltaTime, Champion.Definition.Radius);
+            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * VisitorHeroScale * deltaTime, Champion.Definition.Radius);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
             foreach (UnitState unit in units)
                 if (unit.Alive && unit.Faction == Faction.Companion)
@@ -458,12 +462,12 @@ namespace ArcaneBrigade
             StepRelics(deltaTime, movement);
             if (Phase != RunPhase.Combat) return;
             for (int index = 0; index < units.Count; index++) units[index].PreviousPosition = units[index].Position;
-            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * deltaTime, Champion.Definition.Radius);
+            Champion.Position = ClampPosition(Champion.Position + movement * Champion.Definition.Speed * KitHeroSpeed() * VisitorHeroScale * deltaTime, Champion.Definition.Radius);
             float beforeRegeneration = Champion.Health;
             Champion.Health = Mathf.Min(Champion.Definition.Health, Champion.Health + Mathf.Max(0,catalog.PassiveHeal) * RelicMendingScale * deltaTime);
             if (Champion.Health > beforeRegeneration) RecordHealing(NewCause(Champion.Id).Child("passive-regen"), Champion.Health - beforeRegeneration);
             if (movement.sqrMagnitude > 0.001f) Champion.Facing = movement.normalized;
-            SpawnWaveEnemies();
+            SpawnWaveEnemies(); ProcessElites();
             spatial.Rebuild(units);
 
             for (int index = 0; index < units.Count && Phase == RunPhase.Combat; index++)
@@ -510,6 +514,7 @@ namespace ArcaneBrigade
                     ProcessProcs();
                     ProcessHeroIdentity(deltaTime, movement);
                     ProcessCompanionSkills();
+                    ProcessVisitors(deltaTime);
                     ProcessOctoberCombat(deltaTime, movement);
                 }
                 ProcessSecretEchoes();
@@ -548,7 +553,7 @@ namespace ArcaneBrigade
             bool overtime = BossOvertimeSwarm;
             if (overtime && (catalog.BossSwarmBudget <= 0 || Boss == null || !Boss.Alive)) return;
             if (Elapsed < nextSpawn) return;
-            nextSpawn = Elapsed + Mathf.Max(0.12f, catalog.SpawnInterval * WaveCadence.Envelope(catalog.RunWave, Elapsed, catalog.WaveDuration) * WaveCadence.SwarmInterval(catalog.RunWave, Elapsed)) * (overtime ? 2.2f : 1f);
+            nextSpawn = Elapsed + Mathf.Max(0.12f, catalog.SpawnInterval * VisitorSpawnScale * WaveCadence.Envelope(catalog.RunWave, Elapsed, catalog.WaveDuration) * WaveCadence.SwarmInterval(catalog.RunWave, Elapsed)) * (overtime ? 2.2f : 1f);
             int enemyCount = 0;
             for (int index = 0; index < units.Count; index++) if (units[index].Faction == Faction.Enemy && units[index].Alive) enemyCount++;
             int budget = overtime ? catalog.BossSwarmBudget : catalog.EnemyBudget;
@@ -660,7 +665,7 @@ namespace ArcaneBrigade
             }
             bool ranged = unit.Definition.Weapon.Kind == WeaponKind.Projectile;
             float stopDistance = ranged ? 4.8f : unit.Definition.Radius + Champion.Definition.Radius;
-            float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1) * KitEnemySpeed(unit) * EnemySleepScale(unit);
+            float speed = unit.Definition.Speed * (unit.ChillUntil > Elapsed ? 0.55f : 1f) * (unit.Definition.IsBoss ? BossPartRules.MovementMultiplier(unit) : 1) * KitEnemySpeed(unit) * EnemySleepScale(unit) * VisitorEnemyScale(unit);
             if (distance > stopDistance)
                 unit.Position = ClampPosition(unit.Position + travelDirection * Mathf.Min(speed * deltaTime, distance - stopDistance), unit.Definition.Radius);
         }
@@ -943,6 +948,7 @@ namespace ArcaneBrigade
             for (int index = projectiles.Count - 1; index >= 0 && Phase == RunPhase.Combat; index--)
             {
                 ProjectileState projectile = projectiles[index];
+                if (VisitorUmbrella(projectile)) { projectiles.RemoveAt(index); continue; }
                 if (projectile.IdentityTargetId > 0)
                 {
                     UnitState address = UnitWithId(projectile.IdentityTargetId);
@@ -1051,11 +1057,12 @@ namespace ArcaneBrigade
             else
             {
                 if (target == Boss) BossDefeated = true;
+                EliteFell(target);
                 Kills++;
                 if (source != Faction.Enemy) RecordKill(cause);
                 SwarmDeath(target, source, overkill, cause);
                 PacingLoot(target);
-                int coinValue = SwarmCoinValue(target);
+                int coinValue = SwarmCoinValue(target); if (coinValue > 0) coinValue += VisitorCoins;
                 if (coinValue > 0) DropLoot(LootKind.Coin, target.Position, coinValue);
                 if (target.StolenCoins > 0) { DropLoot(LootKind.Coin, target.Position, target.StolenCoins); target.StolenCoins = 0; }
                 if (catalog.ExtendedLoot && !target.SwarmMinion)

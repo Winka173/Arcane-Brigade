@@ -531,6 +531,45 @@ namespace ArcaneBrigade
                 case ArsenalPropKind.Gust:
                     ink.Draw(ArsenalInk.Moment.FrostGust, at, p.Direction, Mathf.InverseLerp(p.Born, p.Until, now), 3f, p.Born * 13);
                     break;
+                // ---- the shop visitors' traces (VisitorCombat)
+                case ArsenalPropKind.VisitorLamp:
+                {
+                    // a lamplighter's corner lamp: a brass post, a flickering flame and its warm pool on the floor
+                    float flicker = still ? 1 : 0.85f + 0.15f * Mathf.Sin(now * 9 + p.Order * 2);
+                    ink.Pool(at, p.Radius * 0.8f, 0.35f, ArsenalInk.Amber, p.Order * 40, 0.45f, 0.45f);
+                    ink.Stroke(at, at + Vector2.up * 0.7f, ArsenalInk.Gold, 0.05f, 1, 0, 0.95f);
+                    ink.Light(at + Vector2.up * 0.8f, 0.7f * flicker, ArsenalInk.Amber.Glow, 0.5f);
+                    ink.TokenAt(InkToken.Ember, ArsenalInk.Amber, at + Vector2.up * 0.8f, 0.2f * flicker, still ? 0 : now * 60, 1);
+                    break;
+                }
+                case ArsenalPropKind.Puddle:
+                    ink.Pool(at, p.Radius, 0.8f, ArsenalInk.Water, p.Born * 30 + at.x, 0.7f, 0.5f);
+                    if (!still) ink.Bubbles(at, p.Radius * 0.8f, now, ArsenalInk.Water, 3, at.x, 0.7f);
+                    break;
+                case ArsenalPropKind.Candy:
+                {
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now);
+                    ink.Light(at, 0.6f, ArsenalInk.Candy.Glow, 0.35f * (1 - life));
+                    ink.TokenAt(InkToken.Button, ArsenalInk.Candy, at + Vector2.up * (still ? 0.1f : 0.1f + Mathf.Abs(Mathf.Sin(now * 6)) * 0.05f), 0.24f, still ? 0 : now * 90, Mathf.Clamp01((1 - life) * 4));
+                    break;
+                }
+                case ArsenalPropKind.Toy:
+                {
+                    // the lost toy toddles along; a dashed thread joins it to the hero while they walk together
+                    Sprite toy = ExpansionArtwork.Current?.Visitor("LostToy", 0);
+                    bool near = p.Source != null && (p.Source.Position - at).sqrMagnitude <= 9;
+                    if (near && p.Source != null) ink.Cord(p.Source.Position, at, ArsenalInk.Cream, 0.02f, true, 0.6f);
+                    ShadowAt(at + Vector2.down * 0.08f, 0.3f);
+                    Draw(toy, at + Vector2.up * (0.3f + (still ? 0 : Mathf.Abs(Mathf.Sin(now * 5)) * 0.06f)), 0.6f, still ? 0 : Mathf.Sin(now * 5) * 6, Order(at));
+                    break;
+                }
+                case ArsenalPropKind.Shadow:
+                {
+                    // the borrowed shadow: the hero's own silhouette in ink, running off with the enemies behind it
+                    if (now > p.Until || p.Source == null) break;
+                    Draw(p.Source.Definition.Body, at + Vector2.up * 0.35f, 0.75f, 0, Order(at), new Color(0.05f, 0.04f, 0.1f, 0.6f * Mathf.Clamp01((p.Until - now) * 2)));
+                    break;
+                }
                 case ArsenalPropKind.Plunge:
                     if (p.Source != null) ink.Cord(p.Source.Position, at, ArsenalInk.Wine, 0.06f, false);
                     Draw(ArsenalArtwork.Frame("PlungerCup", 0), at, 0.32f, 0, Order(at) + 2);

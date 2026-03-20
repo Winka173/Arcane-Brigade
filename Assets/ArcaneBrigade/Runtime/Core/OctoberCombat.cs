@@ -99,6 +99,7 @@ namespace ArcaneBrigade
         private Vector2 OctoberEnemyTarget(UnitState enemy)
         {
             if (enemy.TauntUntil > Elapsed && UnitWithId(enemy.TauntBy) is UnitState taunter && taunter.Alive) return taunter.Position; // Ringmaster Jack
+            if (VisitorLure(enemy, out Vector2 lure)) return lure; // a visitor's sweet, or the borrowed shadow
             if (!enemy.Definition.IsBoss && catalog.EnableHeroMechanics && Mathf.Repeat(Elapsed, 6) < 2)
                 foreach (UnitState decoy in OctoberUnits("\"Unstoppable\" Paul")) if (decoy.Alive && (decoy.Position - enemy.Position).sqrMagnitude < 64) return decoy.Position;
             return Champion.Position;

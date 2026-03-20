@@ -40,7 +40,7 @@ namespace ArcaneBrigade
         }
         private bool RelicMarked(UnitState u) => Marked(u) || u.ExposedUntil > Elapsed || u.AnchorUntil > Elapsed || u.ProbedUntil > Elapsed;
         private float RelicLateFee => 1 + .25f * RelicCount(RelicMechanic.LateFee);
-        private float RelicCycle(UnitState unit) => unit.FunhouseUntil > Elapsed ? 2 : 1;
+        private float RelicCycle(UnitState unit) => (unit.FunhouseUntil > Elapsed ? 2 : 1) * VisitorCycle(unit);
         private float RelicPickupRadius => catalog.PickupRadius + (relicStanding ? 0 : .5f * RelicCount(RelicMechanic.CoinSash));
         private float RelicCrit(UnitState unit)
         {

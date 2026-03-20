@@ -87,7 +87,14 @@ namespace ArcaneBrigade
                     case CombatEventKind.Detonation when value.Cause.ItemId == "ink-bloater": AddTrauma(0.08f, true); break; // chains rattle, they do not freeze
                     case CombatEventKind.Flare: AddTrauma(0.45f, false); hold = Mathf.Max(hold, 0.08f); flash = Mathf.Max(flash, 0.35f); break;
                     case CombatEventKind.Detonation when value.Cause.ItemId != null && value.Cause.ItemId.StartsWith("hero-identity-"): AddTrauma(0.07f, true); break; // the hero's own blasts rattle, they do not shake the room
+                    // friends' bombs and bursts rattle the screen a little and never hold it: a brigade of bombers would
+                    // otherwise shake and stutter the whole fight (18/10/2026); the hero's own blasts still land as a beat
+                    case CombatEventKind.Detonation when value.Faction == Faction.Companion: AddTrauma(Mathf.Clamp(value.Value * 0.07f, 0.04f, 0.12f), true); break;
                     case CombatEventKind.Detonation: AddTrauma(Mathf.Clamp(value.Value * 0.16f, 0.14f, 0.34f), false); hold = Mathf.Max(hold, 0.045f); break;
+                    // the moment a hero transforms is the beat of the fight
+                    case CombatEventKind.HeroIdentityCast when value.Value >= 1: AddTrauma(0.32f, false); hold = Mathf.Max(hold, 0.07f); bias = Vector2.up; break;
+                    // a royal blow, a whale's spout or a gale: big single moments of the new relics and friends
+                    case CombatEventKind.Proc when value.Cause.ItemId == "curio-royal" || value.Cause.ItemId == "curio-quilt": AddTrauma(0.16f, true); break;
                     case CombatEventKind.Hit when value.Value > 0 && value.Faction == Faction.Champion:
                         // being hurt shakes hard, but a swarm of small bites cannot keep the screen at full tilt; only real blows hold
                         trauma = Mathf.Max(trauma, Mathf.Min(0.62f, trauma + 0.24f)); bias = direction;

@@ -491,6 +491,9 @@ namespace ArcaneBrigade
         }
         public bool RerollShop() => Transaction("Reroll stock", () => session.Reroll(), 21);
         public bool RefundRelic() => Transaction("Refund relic", () => session.RefundLastRelic(), 21);
+        public bool VisitorChoose(int option) => Transaction("Visitor", () => session.VisitorChoose(option), 21);
+        public bool VisitorDecline() => Transaction("Visitor leaves", () => session.VisitorDecline(), -1);
+        public bool RedeemPawn() => Transaction("Redeem relic", () => session.RedeemPawn(), 21);
         public bool RerollAltar() => Transaction("Reroll altar stock", () => session.RerollAltar(), 21);
         public bool FuseAltar(string id) => Transaction("Altar fusion", () => session.Altar(id), -1);
         public void ShowReceiptFixture() => runHud.ShowReceiptFixture();

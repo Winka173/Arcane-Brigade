@@ -53,7 +53,7 @@ namespace ArcaneBrigade
                 "Original:TeacupCricket" => "Every fifth basic attack may release one echo for 40% of this ally's weapon damage. Uses the ally's 0.7s response cooldown; no echo chain.",
                 "Original:RibbonOtter" => "Collecting a heart attempts 1 extra HP of healing while at least one Ribbon Otter talent is owned. Extra healing does not stack by copies; hero healing restrictions apply.",
                 "Original:SpindleWren" => "Lantern Guild companions gain 8% reach while at least one Spindle Wren talent is owned, subject to final range caps. Presence effect; extra copies do not multiply it.",
-                _ => string.IsNullOrEmpty(name) ? u.Id switch { "SecretPatchBear" => "A living resident rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.", "SecretPaperBird" => "A folded courier rescued from the Lost-Property Vault. Permanent friend; remembers your letter and provides periodic healing.", "SecretDreamLamb" => "Garden visitor for two normal-wave victories. The dream friend then departs; its support ends with the contract.", _ => u.Description } : OctoberCompanions.Copy(name)
+                _ => string.IsNullOrEmpty(name) ? u.Id switch { "SecretPatchBear" => "A living resident rescued from the Lost-Property Vault. Permanent friend; its support and assigned weapon are listed below.", "SecretPaperBird" => "A folded courier rescued from the Lost-Property Vault. Permanent friend; remembers your letter and provides periodic healing.", "SecretDreamLamb" => "Garden visitor for two normal-wave victories. The dream friend then departs; its support ends with the contract.", _ => Authored(u) } : OctoberCompanions.Copy(name)
             };
         }
         public static string Passive(UnitDefinition u,int tier,float support=3)
@@ -65,6 +65,45 @@ namespace ArcaneBrigade
                 PassiveKind.ChillAura => "Every 4s, chill enemies within "+(2+strength*.625f).ToString("0.###")+" units: 1.5s normally, 0.6s on bosses.",
                 PassiveKind.Rally => "Own weapon damage gains "+(strength).ToString("0.###")+"% per companion body in the roster, before later balance modifiers.",
                 _ => "No additional periodic personal passive."
+            };
+        }
+        /// <summary>The talent in one short line for the shop card (the full rules stay in Talent, shown under INFO).</summary>
+        /// <summary>A line about each new friend without an own skill (content expansion).</summary>
+        public static readonly System.Collections.Generic.Dictionary<string,string> Flavour=new System.Collections.Generic.Dictionary<string,string>{
+            ["PaperPlanePigeon"]="A pigeon who folds the post into paper planes and lets them chase the trouble.",
+            ["BobaTadpole"]="A tadpole in a milk-tea cup who sips, then spits pearls in swaying waves.",
+            ["BakerMouse"]="A floury mouse baker who rolls everything flat.",
+            ["WateringSnail"]="A slow snail who waters the garden, and the enemies in it.",
+            ["RaincoatFrog"]="A frog in a yellow raincoat with a plunger for every puddle.",
+            ["LampGoat"]="A goat whose horns hold lanterns, swinging a lantern glaive.",
+            ["YoyoSquirrel"]="A springy squirrel who never misses with a yo-yo.",
+            ["ShovelPenguin"]="A penguin who heaves snow at anyone in the way.",
+            ["TopBeetle"]="A clockwork beetle who spins tops into the crowd.",
+            ["LensOwl"]="An owl scholar who focuses sunlight through a reading lens.",
+            ["RainHeron"]="A heron who copies the rain into its notebook and takes any weapon offered.",
+        };
+        /// <summary>A talent written by hand, never a baked card (a check stores whole cards in Description).</summary>
+        private static string Authored(UnitDefinition u)
+        {
+            if(Flavour.TryGetValue(u.Id,out string f))return f;
+            if(CombatSimulation.SkillCopy.TryGetValue(u.Id,out string s))return s;
+            string d=u.Description??""; return d.StartsWith("COMPANION /")?"":d;
+        }
+        public static string ShortTalent(UnitDefinition u)
+        {
+            if(string.IsNullOrEmpty(u.ReferenceCompanion)) { if(CombatSimulation.SkillCopy.ContainsKey(u.Id)) return ""; string t=Talent(u); return t.StartsWith("COMPANION /")?"":t; }
+            string copy=OctoberCompanions.Copy(u.ReferenceCompanion);
+            return string.IsNullOrEmpty(copy)?Talent(u):copy;
+        }
+        public static string ShortPassive(UnitDefinition u,int tier,float support=3)
+        {
+            float strength=(u.Passive==PassiveKind.Scavenge?Mathf.Round(u.PassiveStrength):u.PassiveStrength)*Mathf.Pow(support,Mathf.Clamp(tier,1,3)-1);
+            return u.Passive switch {
+                PassiveKind.HealChampion => "Every 4s heals the hero "+(strength*3).ToString("0.#")+" HP.",
+                PassiveKind.Scavenge => "Every 4s finds "+Mathf.RoundToInt(strength)+" gold.",
+                PassiveKind.ChillAura => "Every 4s chills enemies within "+(2+strength*.625f).ToString("0.#")+" units.",
+                PassiveKind.Rally => "+"+strength.ToString("0.#")+"% damage per friend in the roster.",
+                _ => ""
             };
         }
         public static string Describe(UnitDefinition u,int tier=1,float support=3)
@@ -177,6 +216,68 @@ namespace ArcaneBrigade
             RelicMechanic.StorybookEnding=>"Every wave won adds a page to the story: the team gains one random stat for the rest of the run.",
             RelicMechanic.DreamLoom=>"Common items give double their stats.",
             _=>throw new ArgumentOutOfRangeException(nameof(m),m,"Missing relic mechanic copy")
+        };
+        /// <summary>One short line per special effect for the shop card (the full rules stay in Mechanic, shown under INFO).</summary>
+        public static string ShortMechanic(RelicMechanic m)=>m switch {
+            RelicMechanic.CrowdedTape=>"Next wave: +10% more enemies.",
+            RelicMechanic.CoinMending=>"Coins have a 15% chance to heal 2 HP.",
+            RelicMechanic.CompoundInterest=>"Each wave start: saved gold x1.2.",
+            RelicMechanic.RetortVolley=>"When hit: 30% chance of a ring of 8 shots.",
+            RelicMechanic.ExposedRecovery=>"Next wave: hero armor -0.8.",
+            RelicMechanic.TreasureLease=>"Next wave: +1 Treasure Detection.",
+            RelicMechanic.PrismEcho=>"Your shots echo onto a random enemy.",
+            RelicMechanic.RerollFeather=>"Refreshes cost 2 gold less.",
+            RelicMechanic.ChestLightning=>"Opening a chest strikes 1-3 enemies.",
+            RelicMechanic.DrinkVitality=>"Each drink bought: +4 max HP for the run.",
+            RelicMechanic.DrinkTempo=>"Each drink bought: +6% team attack speed for the run.",
+            RelicMechanic.PanicMagnet=>"When hit: 5% chance to pull in every pickup.",
+            RelicMechanic.ChestLuck=>"Each chest opened: +0.06 Luck for the run.",
+            RelicMechanic.ChaosIncome=>"Each wave start: 25-75 random gold.",
+            RelicMechanic.HoardPower=>"+1% team damage per 5 gold you hold.",
+            RelicMechanic.HalfHealthSeed=>"Each fight starts with the hero at half HP at most.",
+            RelicMechanic.StillRecovery=>"Standing still heals 3 HP per second.",
+            RelicMechanic.CoinLightning=>"Each coin picked up strikes an enemy.",
+            RelicMechanic.TurnDiscount=>"On buy: the other relics in this shop cost 30% less.",
+            RelicMechanic.CloseFollowers=>"Friends stay closer to the hero.",
+            RelicMechanic.WaveGrowth=>"Each wave start: +4 melee, +4 ranged and +10% team damage for the run.",
+            RelicMechanic.MeleeToCollision=>"Hero contact damage gains half your flat melee bonus.",
+            RelicMechanic.SlowToArmor=>"Hero armor grows with your hero speed penalty.",
+            RelicMechanic.DodgeMending=>"On a dodge: 30% chance to heal 10 HP.",
+            RelicMechanic.DamageToIncome=>"+1 wave income per +4% hero damage.",
+            RelicMechanic.ChestOnlyRecovery=>"No regeneration or hearts; each chest heals 30 HP.",
+            RelicMechanic.SorrowPulse=>"Every 3s all enemies take 20% of the hero's max HP.",
+            RelicMechanic.BleedingAlarm=>"In battle the hero loses 1 HP each second.",
+            RelicMechanic.CollisionOnly=>"The hero stops attacking; contact damage +10 per armor.",
+            RelicMechanic.SoloOverdrive=>"Next wave: friends rest, the hero attacks 6 times faster.",
+            RelicMechanic.FreshLotus=>"Each wave starts with +3 pierce and +30% crit until the hero is hit.",
+            RelicMechanic.EggGift=>"On buy: 3 eggs.",
+            RelicMechanic.CompanionGift=>"On buy: up to 2 friends from your hero's pool join.",
+            RelicMechanic.FragilePower=>"Each hit on the hero: -5% team damage for the run.",
+            RelicMechanic.StatFloor=>"On buy: your current bonuses can no longer drop.",
+            RelicMechanic.LuckToHealth=>"+100 max HP per point of Luck.",
+            RelicMechanic.GambleRecovery=>"Every 3s: 50% heal 20 HP, 50% take 8 damage.",
+            RelicMechanic.FoodGrowth=>"Each food bought: +10 max HP, +0.5 HP/s, +5% size.",
+            RelicMechanic.FreeFollowers=>"Friends roam the whole arena.",
+            RelicMechanic.IncomePoison=>"Hero hits poison for 4s, ticking for your wave income.",
+            RelicMechanic.HurtGrowth=>"Each hit on the hero: a small random bonus for the run.",
+            RelicMechanic.StillPower=>"+16 attack damage until the hero first moves in a fight.",
+            RelicMechanic.StaticFollowers=>"Friends stand still with double range and +3 pierce.",
+            RelicMechanic.VoidPulse=>"Every 3s all enemies lose 15% of their current HP.",
+            RelicMechanic.SixWeapons=>"Six phantom weapons fire from the hero instead of the team's attacks.",
+            _=>Mechanic(m)
+        };
+        public static string ShortSignature(SignatureRelicKind role)=>role switch {
+            SignatureRelicKind.HarvestReceipt=>"With a bell weapon nearby, coins quicken its beat.",
+            SignatureRelicKind.ReflectiveInk=>"Stamps add 2 marks; marks last 65% as long.",
+            SignatureRelicKind.CarbonRibbon=>"Stamp bursts pull in coins; bell pulses expose.",
+            SignatureRelicKind.OfficeLens=>"Crits on exposed enemies hit 25-50% harder.",
+            SignatureRelicKind.TeaCoaster=>"Tea trails 40% wider, 20% weaker.",
+            SignatureRelicKind.ScratchRecord=>"Music-box hits echo; bells hit marked enemies harder.",
+            SignatureRelicKind.TreasureRibbon=>"Chests heal 3 HP and power up bow hits for 4s.",
+            SignatureRelicKind.PatchSpring=>"Arena toys charge themselves every 3s.",
+            SignatureRelicKind.ThermalInk=>"Hot trails strike marked enemies.",
+            SignatureRelicKind.RepairCoupon=>"Arena-toy kills heal 1 HP.",
+            _=>Signature(role)
         };
         public static string Signature(SignatureRelicKind role)=>role switch {
             SignatureRelicKind.None=>"", SignatureRelicKind.HarvestReceipt=>"Requires a bell signature weapon within 6 units. Collecting a coin advances its bell beat, up to 2 steps; shared 0.35s cooldown.",

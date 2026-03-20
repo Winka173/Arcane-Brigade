@@ -230,6 +230,28 @@ _spec = importlib.util.spec_from_file_location("visitors_art", ROOT / "Tools" / 
 _visitors = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(_visitors)
 jobs.extend(_visitors.jobs(CHAR_REFS + ["Assets/ArcaneBrigade/Art/AnimationHD/StrangeMerchants_v2.png"]))
 
+# ---------------------------------------------------------------- 8. the bosses' own moves (BossTrademarks, 19/10/2026) and rare covers
+# Enemy objects: wine, bile-purple, tarnished brass and ember are allowed here (they belong to the bosses, not to our side).
+ENEMY = (" This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange,"
+         " slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen).")
+K = "Assets/ArcaneBrigade/Art/"
+for name, refs, subject, shape in [
+    ("BossProp_Letter_f0", [], "a sealed letter flying end over end: a thick cream envelope gone yellow, a cracked wine-red wax seal with a crown, a torn corner and a faded stamp, no readable writing", " Seen flat from the front, slightly tilted. 512x512 canvas."),
+    ("BossProp_Sheep_f0", [], "a dream sheep made of grey-lilac cloud wool running in a hop, little black legs tucked, sleepy half-closed eyes, a tiny brass bell on its collar, facing RIGHT", " Side view facing right (+X), all four feet off the ground mid-hop. 512x512 canvas."),
+    ("BossProp_Sheep_f1", [], "the SAME dream sheep landing from its hop, legs stretched down, wool squashed slightly, facing RIGHT", " Side view facing right (+X), same size and design as the first frame. 512x512 canvas."),
+    ("BossProp_WaxCrest_f0", [K + "K16/WaxAdmiral_v2.png"], "a rolling crest of melting candle wax like a small breaking wave, cream and amber wax with drips and two half-buried burnt wicks, belonging to the wax ship-captain boss in the first reference", " A wide low crest seen from the side, about three times as wide as tall, flat bottom edge. 768x384 canvas."),
+    ("BossProp_Pendulum_f0", [], "a heavy pendulum weight shaped like a crescent-moon cradle carved from dark midnight wood with a tarnished brass rim and a small hook on top where the cord ties", " Hanging straight down, hook at the top centre. 512x512 canvas."),
+    ("BossProp_Coin_f0", [K + "K17/CoinWidow_v2.png"], "a huge old coin rolling on its edge, tarnished gold with a veiled widow's profile stamped on its face and a worn milled rim, belonging to the coin widow boss in the first reference", " Seen face-on, perfectly round. 512x512 canvas."),
+    ("BossProp_OrganPipe_f0", [], "a single organ pipe of dented brass rising out of the floor, its mouth a dark slot with a faint bile-purple breath, a small wine ribbon tied round it", " Standing upright, about three times as tall as wide, the bottom edge cut flat where it meets the floor. 384x768 canvas."),
+    ("BossProp_Suitcase_f0", [], "a battered old suitcase with a wine leather body, brass corners and clasp, a few travel stickers and a paper luggage tag on a string, no readable text", " Seen from the elevated three-quarter game view, standing on its side. 512x512 canvas."),
+    ("BossProp_Suitcase_f1", [], "a battered old hatbox-style trunk in teal-black leather with brass studs, a strap and a paper luggage tag, no readable text", " Seen from the elevated three-quarter game view. 512x512 canvas."),
+]:
+    single(ART + name + "_v1.png", name, refs + REFS, STYLE + "Subject: " + subject + "." + ENEMY + shape + ISOLATED)
+# a Mythic or Prismatic shop offer arrives under a cloth that is whisked away (RareUnveil)
+for name, subject in [("RareCover_Mythic", "a draped velvet cloth in deep wine with a heavy gold fringe and a small gold star clasp at the top, falling in soft folds over something hidden underneath (the hidden object is not visible, only the cloth's rounded hump)"),
+                      ("RareCover_Prismatic", "a draped silk cloth that shimmers through soft pastel colours (rose, mint, sky, lilac, butter) like mother-of-pearl, with a pearl clasp at the top, falling in soft folds over something hidden (only the cloth's rounded hump shows)")]:
+    single(ART + name + "_v1.png", name, REFS, STYLE + "Subject: " + subject + ". Seen from the front, about as wide as tall, flat bottom hem. 512x512 canvas." + ISOLATED)
+
 out = ROOT / "Docs" / "Expansion_Art_Worklist.json"
 out.write_text(json.dumps(jobs, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(jobs), "jobs ->", out)

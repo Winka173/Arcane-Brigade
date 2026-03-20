@@ -10,7 +10,7 @@ namespace ArcaneBrigade
     {
         public sealed class Entry { public string Name; public string Description; public ItemEffect Effect; }
         private static readonly Dictionary<string, Entry> entries = Build();
-        private static readonly Regex tokens = new Regex("(\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         private static readonly Regex signedValue = new Regex("^[+−-]\\d+(?:\\.\\d+)?%?$", RegexOptions.CultureInvariant);
         public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.ScopeName(scope) + " / " + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
         private static ItemEffect NearbyEffect(MatchCollection all, int index)
@@ -171,6 +171,19 @@ namespace ArcaneBrigade
                 Match token = all[tokenIndex];
                 string word = token.Value;
                 if (word.Contains("\n")) { horizontal = 0; vertical += line; continue; }
+                if (word == "{mark}")
+                {
+                    // a small gold lozenge that opens each effect line of a shop card
+                    float mark = line * .38f;
+                    if (draw)
+                    {
+                        Rect m = new Rect(bounds.x + horizontal + 2, bounds.y + vertical + (line - mark) * .5f, mark, mark);
+                        Matrix4x4 keep = GUI.matrix; GUIUtility.RotateAroundPivot(45, m.center);
+                        ArcadeSkin.Line(m, ArcadeSkin.Gold); ArcadeSkin.Line(new Rect(m.x + mark * .3f, m.y + mark * .3f, mark * .4f, mark * .4f), ArcadeSkin.Cream);
+                        GUI.matrix = keep;
+                    }
+                    horizontal += mark + 9; continue;
+                }
                 Entry entry = Find(word);
                 string[] bonus = word.StartsWith("{bonus:", StringComparison.Ordinal) ? word.Substring(7, word.Length - 8).Split('|') : null;
                 bool formatted = bonus != null && bonus.Length == 3 && Enum.TryParse(bonus[0], out ItemEffect _);

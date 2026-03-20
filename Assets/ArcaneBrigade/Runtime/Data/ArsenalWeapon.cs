@@ -31,7 +31,9 @@ namespace ArcaneBrigade
     public enum ArsenalPropKind { Bomb, Bomblet, Stick, Vase, Shoot, Petals, Octopus, Sign, ToyBomb, Pinwheel, Drill, Bump, Batted, Grab, Plunge, Wound, Fizz, Catch, Buzzer, Brick, Kunai, Snip, Lob,
         Kite, Scoop, Cuckoo, Pin, Buoy, Dough, Sun, Top,
         // the new friends' own skills (CompanionSkillsNew)
-        Teapot, Spout, Taunt, Wind, Cream, Carousel, Hedge, Tower, Gust }
+        Teapot, Spout, Taunt, Wind, Cream, Carousel, Hedge, Tower, Gust,
+        // the shop visitors' traces in a fight (VisitorCombat)
+        VisitorLamp, Puddle, Candy, Toy, Shadow }
 
     public sealed class ArsenalProp
     {

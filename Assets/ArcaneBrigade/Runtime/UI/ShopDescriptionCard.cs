@@ -40,18 +40,19 @@ namespace ArcaneBrigade
                 var item = catalog.Item(offer.Id); Rarity = item.Rarity; Portrait = item.Icon;
                 Identity = RelicDescriptions.Category(item) + " · " + RunModifierRules.RarityName(Rarity) + (item.Stacking == StackPolicy.Unique ? " · UNIQUE" : " · STACKABLE");
                 Details = RelicDescriptions.Describe(item, session.StackCount(item.Id) + 1, catalog) + RelicDescriptions.PurchaseReactions(session, catalog, item);
+                // the card: one line per stat (painted stat icon, exact value), one short line per special effect; every rule,
+                // cap and condition stays under INFO (Details)
                 var copy = new StringBuilder();
-                copy.AppendLine("WHILE OWNED · per copy");
                 foreach (var m in item.EffectiveModifiers)
                     if (m.Value != 0) copy.AppendLine(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value));
-                // Every condition, proc, purchase reaction and cap remains available in the main scroll as well as INFO.
-                int effects = Details.IndexOf("\nSPECIAL EFFECT", StringComparison.Ordinal);
-                int synergy = Details.IndexOf("\nWEAPON SYNERGY", StringComparison.Ordinal);
-                int trigger = Details.IndexOf("\nTRIGGER:", StringComparison.Ordinal);
-                int owned = Details.IndexOf("\nOwned effective copies:", StringComparison.Ordinal);
-                int start = new[] { effects, synergy, trigger, owned }.Where(n => n >= 0).DefaultIfEmpty(0).Min();
-                if (item.Category != RelicCategory.Curio) copy.AppendLine("ON PURCHASE · counts as one " + RelicDescriptions.Category(item).ToLowerInvariant() + ". No separate use action.");
-                copy.Append(Details.Substring(start)); Summary = copy.ToString().Trim();
+                if (item.Mechanic != RelicMechanic.None) copy.AppendLine("{mark} " + RelicDescriptions.ShortMechanic(item.Mechanic));
+                if (item.SignatureRole != SignatureRelicKind.None) copy.AppendLine("{mark} " + RelicDescriptions.ShortSignature(item.SignatureRole));
+                foreach (var proc in catalog.ProcRules ?? Array.Empty<ProcRule>())
+                    if (proc.ItemId == item.Id) copy.AppendLine("{mark} " + ProcLine(proc));
+                if (item.Category != RelicCategory.Curio) copy.AppendLine("{mark} Counts as a " + RelicDescriptions.Category(item).ToLowerInvariant() + ".");
+                int held = session.StackCount(item.Id);
+                if (held > 0 || item.StackLimit < 100000) copy.AppendLine("Owned " + held + (item.StackLimit < 100000 ? " / " + item.StackLimit : "") + (item.Stacking == StackPolicy.Unique ? " · unique" : ""));
+                Summary = copy.ToString().Trim();
                 return;
             }
             var unit = catalog.Unit(offer.Id); Rarity = unit.Rarity; Portrait = unit.Body;
@@ -75,21 +76,28 @@ namespace ArcaneBrigade
                 if (after != count && !Bonds.Any(row => row.Bond.Id == bond.Id))
                     Bonds.Add(new BondRow { Bond = bond, Count = count, Next = bond.NextThreshold(count), After = after, Preview = true });
             }
+            // the card: support stats with their painted icons, then one short line each for the own skill, the talent, the
+            // passive and where a merge stands; the full rules, the lore and the weapon preview stay under INFO (Details)
             var b = new StringBuilder();
-            b.AppendLine("SUPPORT WHILE OWNED · offered " + offer.Tier + "-star body");
-            if (!(unit.CompanionModifiers ?? Array.Empty<StatModifier>()).Any(m => m.Value != 0)) b.AppendLine("No direct stat support; talent and personal passive are listed below.");
             foreach (var m in unit.CompanionModifiers ?? Array.Empty<StatModifier>())
                 if (m.Value != 0) b.AppendLine(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * UnitDefinition.ModifierScale(offer.Tier)));
-            b.AppendLine("TALENT · " + CompanionDescriptions.Talent(unit));
-            if (unit.Passive != PassiveKind.None) b.AppendLine("PASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier));
+            if (CombatSimulation.SkillCopy.TryGetValue(unit.Id, out string skill)) b.AppendLine("{mark} " + skill);
+            string talent = CompanionDescriptions.ShortTalent(unit);
+            if (!string.IsNullOrEmpty(talent) && talent != skill) b.AppendLine("{mark} " + talent);
+            string passive = CompanionDescriptions.ShortPassive(unit, offer.Tier, catalog.TierSupportMultiplier);
+            if (passive.Length > 0) b.AppendLine("{mark} " + passive);
             int copies = session.State.Roster.Count(r => r.UnitId == unit.Id && r.Tier == offer.Tier);
-            b.AppendLine("Immortal · " + copies + " matching " + offer.Tier + "-star bodies owned. " + (unit.ReferenceCompanion == "Evil" ? "Cannot merge." : offer.Tier >= catalog.MaximumTier ? "Maximum star level; no further merge." : "Three matching bodies merge; one of their weapons is kept."));
-            b.AppendLine("Shown support is per body, not the purchase delta; merging replaces its ingredients.");
-            b.AppendLine("Random weapon: displayed attack ranges use your current build before this purchase. " + (Attack.Melee && Attack.Ranged ? "Melee and ranged weapons are eligible." : Attack.Ranged ? "Ranged weapons are eligible." : "Close-range weapons are eligible."));
-            string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
-            if (!string.IsNullOrEmpty(voice)) b.AppendLine("“" + voice + "”");
+            b.AppendLine(unit.ReferenceCompanion == "Evil" ? "Owned " + copies + " · never merges"
+                : offer.Tier >= catalog.MaximumTier ? "Owned " + copies + " at " + offer.Tier + "-star · max stars"
+                : "Owned " + copies + "/3 at " + offer.Tier + "-star" + (copies == 2 ? " · buying merges them into " + (offer.Tier + 1) + "-star" : ""));
             Summary = b.ToString().Trim();
-            Details = Summary + "\n\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(unit.Id)
+            string voice = CompanionVoice.Line(unit.Id, session.State.Wave, session.State);
+            Details = Summary + "\n\nTALENT\n" + CompanionDescriptions.Talent(unit)
+                + (unit.Passive != PassiveKind.None ? "\nPASSIVE · " + CompanionDescriptions.Passive(unit, offer.Tier, catalog.TierSupportMultiplier) : "")
+                + "\nImmortal. Shown support is per body; three matching bodies merge and keep one of their weapons."
+                + "\nRandom weapon: the attack ranges use your current build. " + (Attack.Melee && Attack.Ranged ? "Melee and ranged weapons are eligible." : Attack.Ranged ? "Ranged weapons are eligible." : "Close-range weapons are eligible.")
+                + (string.IsNullOrEmpty(voice) ? "" : "\n“" + voice + "”")
+                + "\n\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(unit.Id)
                 + "\n\nSOURCE\n" + (unit.GiftOnly ? "Gift / nursery / special reward; not ordinary shop stock." : !string.IsNullOrEmpty(unit.ExclusiveHero) ? "Recruitment exclusive: " + unit.ExclusiveHero : unit.SpecialRecruit ? "Dream shop / special reward; hero theme and unlock wave apply." : "Regular shop; hero theme and unlock wave apply.")
                 + "\nNamed talents count bodies and absorbed memories; star level only scales the separately listed support unless stated."
                 + "\n\nWEAPON PREVIEW / CURRENT BUILD\n" + (Attack.Choices == 0 ? "No eligible unused weapon variant." : Attack.Choices + " eligible random weapons. Damage " + RecruitAttackReadout.Range(Attack.MinDamage, Attack.MaxDamage) + "; cycle " + RecruitAttackReadout.Range(Attack.MinCycle, Attack.MaxCycle) + "s; reach " + RecruitAttackReadout.Range(Attack.MinRange, Attack.MaxRange) + ". Bounds use the current build before recruiting. Different weapons produce different attacks; these ranges are not guaranteed together. Purchase talents and merges can change the final build.");
@@ -101,6 +109,8 @@ namespace ArcaneBrigade
             }
         }
 
+        private static string ProcLine(ProcRule p)
+            => (p.Trigger == ProcTrigger.CoinCollected ? "Coins" : p.Trigger == ProcTrigger.ChestOpened ? "Chests" : "Kills") + ": " + (p.Chance < 1 ? (p.Chance * 100).ToString("0.#") + "% chance to " : "") + (p.Action == ProcAction.HealChampion ? "heal the hero " + p.Power.ToString("0.#") + " HP" : "blast nearby enemies for " + p.Power.ToString("0.#")) + ".";
         public float HeaderHeight => Attack == null ? 0 : Mathf.Max(125, Mathf.CeilToInt(Bonds.Count / 3f) * 115 + 8);
         public void DrawHeader(Rect bounds, float clock = 0)
         {

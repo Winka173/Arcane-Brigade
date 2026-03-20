@@ -71,6 +71,9 @@ namespace ArcaneBrigade
         public int[] RelicStacks = new int[0];
         /// <summary>The Endless Index: enemy species defeated in the run (its pages).</summary>
         public int IndexPages;
+        /// <summary>The shop visitors' effects on this wave, and the Gatekeeper's elites.</summary>
+        public VisitorWave Visitor = new VisitorWave();
+        public int EliteCount;
         public float RelicIncome;
         public float RelicMelee;
         public float RelicRanged;

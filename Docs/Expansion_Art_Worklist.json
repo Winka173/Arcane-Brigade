@@ -2278,5 +2278,161 @@
   "depends": null,
   "mode": "single",
   "prompt": "A production hand-painted 2D CHARACTER SPRITE SHEET for the same game as the reference sheets (match their characters' rendering, proportions and ink line exactly). Exactly 4 columns by 1 rows of completely isolated full-body sprites on a truly transparent background. Each ROW holds TWO visiting characters of the dream shop: columns 1-2 are the first visitor, columns 3-4 the second. For each visitor: the first column is the visitor waiting, relaxed; the second is the visitor offering its deal toward the viewer with a friendly expressive gesture, holding out its prop. Same scale and identity in both poses. Living storybook creatures with hand-made curio details; our side never glows ember-red. Front three-quarter view facing LEFT (toward the player in the shop), full body and feet visible. Sprites use at most 70% of the cell width and 75% of the cell height, large transparent margins, never overlapping. No ground, no shadows, no glow outside the silhouette, no text, no grid. 1536x512 canvas. ROW 1 LEFT PAIR (Busker): a wandering busker: a song thrush with a small accordion and an open hat for coins."
+ },
+ {
+  "name": "BossProp_Letter_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Letter_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a sealed letter flying end over end: a thick cream envelope gone yellow, a cracked wine-red wax seal with a crown, a torn corner and a faded stamp, no readable writing. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Seen flat from the front, slightly tilted. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_Sheep_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Sheep_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a dream sheep made of grey-lilac cloud wool running in a hop, little black legs tucked, sleepy half-closed eyes, a tiny brass bell on its collar, facing RIGHT. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Side view facing right (+X), all four feet off the ground mid-hop. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_Sheep_f1",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Sheep_f1_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: the SAME dream sheep landing from its hop, legs stretched down, wool squashed slightly, facing RIGHT. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Side view facing right (+X), same size and design as the first frame. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_WaxCrest_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_WaxCrest_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K16/WaxAdmiral_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a rolling crest of melting candle wax like a small breaking wave, cream and amber wax with drips and two half-buried burnt wicks, belonging to the wax ship-captain boss in the first reference. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). A wide low crest seen from the side, about three times as wide as tall, flat bottom edge. 768x384 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_Pendulum_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Pendulum_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a heavy pendulum weight shaped like a crescent-moon cradle carved from dark midnight wood with a tarnished brass rim and a small hook on top where the cord ties. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Hanging straight down, hook at the top centre. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_Coin_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Coin_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/K17/CoinWidow_v2.png",
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a huge old coin rolling on its edge, tarnished gold with a veiled widow's profile stamped on its face and a worn milled rim, belonging to the coin widow boss in the first reference. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Seen face-on, perfectly round. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_OrganPipe_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_OrganPipe_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a single organ pipe of dented brass rising out of the floor, its mouth a dark slot with a faint bile-purple breath, a small wine ribbon tied round it. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Standing upright, about three times as tall as wide, the bottom edge cut flat where it meets the floor. 384x768 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_Suitcase_f0",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Suitcase_f0_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a battered old suitcase with a wine leather body, brass corners and clasp, a few travel stickers and a paper luggage tag on a string, no readable text. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Seen from the elevated three-quarter game view, standing on its side. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "BossProp_Suitcase_f1",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/BossProp_Suitcase_f1_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a battered old hatbox-style trunk in teal-black leather with brass studs, a strap and a paper luggage tag, no readable text. This is an object thrown by a nightmare boss: it may use deep wine, bile-purple, tarnished brass and a little ember-orange, slightly sinister but still storybook, never gory. Readable at small gameplay size (about 90 px on screen). Seen from the elevated three-quarter game view. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "RareCover_Mythic",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/RareCover_Mythic_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a draped velvet cloth in deep wine with a heavy gold fringe and a small gold star clasp at the top, falling in soft folds over something hidden underneath (the hidden object is not visible, only the cloth's rounded hump). Seen from the front, about as wide as tall, flat bottom hem. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
+ },
+ {
+  "name": "RareCover_Prismatic",
+  "path": "Assets/ArcaneBrigade/Art/Arsenal/RareCover_Prismatic_v1.png",
+  "transparent": true,
+  "refs": [
+   "Assets/ArcaneBrigade/Art/FinalQuality/furniture-00_v1.png",
+   "Assets/ArcaneBrigade/Art/AnimationHD/NightMarket_v1.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Postscript.png",
+   "Assets/ArcaneBrigade/Resources/MienCho/ActOne/Prop_BoundaryGate.png"
+  ],
+  "depends": null,
+  "mode": "single",
+  "prompt": "Use case: style-transfer. Production raster art for Arcane Brigade, a storybook dream-world roguelite. The input images are STYLE REFERENCES ONLY, not edit targets: match THEIR generation exactly, the layered painterly storybook rendering with patterning and warm metallic sheen. Confident dark ink contours, rounded slightly crooked asymmetric hand-made forms. Palette: warm antique brass, amber, cream highlights, deep teal, midnight blue, burgundy/wine velvet as a material. Our side's objects NEVER glow ember-red or danger-red (reserved for enemies); any red is a deep wine material. Simple, readable silhouette at gameplay size. Clearly drawn illustration, never photo, 3D render, PBR or plastic sheen. Subject: a draped silk cloth that shimmers through soft pastel colours (rose, mint, sky, lilac, butter) like mother-of-pearl, with a pearl clasp at the top, falling in soft folds over something hidden (only the cloth's rounded hump shows). Seen from the front, about as wide as tall, flat bottom hem. 512x512 canvas. ONE complete isolated subject on a genuinely transparent RGBA background, centred, with 12% empty margin. No ground plane, cast shadow, external halo, lettering, labels, UI, grid or watermark. No gore."
  }
 ]

@@ -116,9 +116,25 @@ namespace ArcaneBrigade
         private void PaintedGauge(Sprite empty, Sprite full, Vector2 bottom, Vector2 top, float fill, float dim, Vector2 window)
         {
             Rect ink = SpriteInkMetrics.BoundsOf(empty);
-            float scale = (top.y - bottom.y) / Mathf.Max(.01f, ink.height);
+            // a round or wide shaped gauge is kept about as wide as the column is tall, beside the hero
+            float scale = (top.y - bottom.y) / Mathf.Max(.01f, Mathf.Max(ink.height, ink.width * .9f));
             Vector2 at = (bottom + top) * .5f - ink.center * scale;
             PlaceRaw(empty, at, scale, new Color(1, 1, 1, dim * strength));
+            Texture2D order = HeroGaugeArtwork.OrderFor("Gauge2_" + style.Id);
+            if (order != null && empty.name.StartsWith("Gauge2_", System.StringComparison.Ordinal))
+            {
+                // shaped gauge: the full painting shows pixel by pixel in the hero's own order (GaugeReveal)
+                if (fill <= .001f) return;
+                var shaped = Place(full, at, Vector2.one, 0, new Color(1, 1, 1, dim * strength), true);
+                if (shaped == null) return;
+                shaped.transform.localScale = new Vector3(scale, scale, 1); shaped.sortingOrder += 1;
+                revealMaterial ??= Resources.Load<Shader>("GaugeReveal") is Shader shader ? new Material(shader) : null;
+                if (revealMaterial == null) return;
+                shaped.sharedMaterial = revealMaterial;
+                revealBlock ??= new MaterialPropertyBlock();
+                shaped.GetPropertyBlock(revealBlock); revealBlock.SetTexture("_OrderTex", order); revealBlock.SetFloat("_Fill", Mathf.Clamp01(fill)); shaped.SetPropertyBlock(revealBlock);
+                return;
+            }
             if (fill <= .01f) return;
             if (fill >= .995f) { PlaceRaw(full, at, scale, new Color(1, 1, 1, dim * strength), 1); return; }
             Rect fullInk = SpriteInkMetrics.BoundsOf(full);
@@ -136,6 +152,7 @@ namespace ArcaneBrigade
             }
             PlaceRaw(part, at, scale, new Color(1, 1, 1, dim * strength), 1);
         }
+        private Material revealMaterial; private MaterialPropertyBlock revealBlock;
         /// <summary>A sprite at its own scale; above lifts it over the vessel drawn underneath (same layer otherwise).</summary>
         private void PlaceRaw(Sprite sprite, Vector2 at, float scale, Color color, int above = 0)
         {

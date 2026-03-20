@@ -151,6 +151,7 @@ namespace ArcaneBrigade
             foreach (ShopOffer offer in Special ? state.SpecialOffers : state.Offers) current = unchecked(current * 31 + offer.Token * 2 + (offer.Sold ? 1 : 0));
             current = unchecked(current * 31 + state.Wave);
             current = unchecked(current * 31 + (owner.Session.RefundAvailable ? 1 : 0));
+            current = unchecked(current * 31 + (owner.Session.Visitor != null ? owner.Session.Visitor.Id.GetHashCode() : 3) + (owner.Session.Pawned != null ? 7 : 0));
             if (current != signature) { Build(); signature = current; }
             scenery.SetActive(true); Nearby = null;
             if (Animating || leavingSpecial || owner.HallExitPending) { MergePreview.Observe(null, true); return; }
@@ -206,6 +207,8 @@ namespace ArcaneBrigade
             if (offer != null && (offer.Open || offer.InputConsumedFrame == Time.frameCount)) return false;
             MemoryReturn memory = owner.GetComponent<MemoryReturn>();
             if (memory != null && memory.Open) return false;
+            VisitorCard visiting = owner.GetComponent<VisitorCard>();
+            if (visiting != null && (visiting.Open || visiting.InputConsumedFrame == Time.frameCount)) return false;
             Display();
             if (owner.Simulation.Phase != RunPhase.Rest || Nearby == null || owner.HallExitPending || owner.TransitionPending || Animating || leavingSpecial) return false;
             Station station = Nearby; Vector2 position = station.Position; Sprite icon = station.Icon;
@@ -252,6 +255,16 @@ namespace ArcaneBrigade
                             ShopStockRetirement.Play(owner, old.Actor.View, old.Offer.Kind == OfferKind.Item ? owner.Content.Item(old.Offer.Id).Rarity : owner.Content.Unit(old.Offer.Id).Rarity);
                     arrivingStock = true;
                 }
+            }
+            else if (station.Action == "VISITOR")
+            {
+                // the visitor's table: its card opens (the shop does nothing else)
+                owner.GetComponent<VisitorCard>()?.Show(); return true;
+            }
+            else if (station.Action == "REDEEM")
+            {
+                completed = owner.RedeemPawn();
+                if (completed) CheckpointAudio.PlayInterfaceId("shop.buy.gold");
             }
             else if (station.Action == "REFUND")
             {
@@ -395,6 +408,17 @@ namespace ArcaneBrigade
             }
             Station reroll = AddStation(new Vector2(-5.0f, -1.5f), "REROLL", art.RerollMachine[0], art.RerollMachine, false);
             reroll.Price = owner.Session.RerollCost; reroll.Description = "Refresh stock. Starts at 2 gold each wave.\n" + owner.Session.RecruitmentSummary;
+            if (!Special && owner.Session.Visitor is VisitorDefinition visitor && ExpansionArtwork.Current?.Visitor(visitor.Id) is Sprite guest)
+            {
+                // a visitor waits at its own table on the right
+                Station table = AddStation(new Vector2(5.0f, 0.4f), "VISITOR", guest, ExpansionArtwork.Current.VisitorPoses(visitor.Id), false);
+                table.Description = visitor.Name + ": '" + visitor.Line + "'\n" + visitor.Offer;
+            }
+            if (!Special && owner.Session.Pawned is VisitorEffect pawn && owner.Content.Item(pawn.Target) is ItemDefinition pawned)
+            {
+                Station redeem = AddStation(new Vector2(5.0f, -1.5f), "REDEEM", pawned.Icon, null, false);
+                redeem.Price = Mathf.RoundToInt(pawn.Value); redeem.Description = "Redeem " + pawned.Name + " from the pawnbroker for " + redeem.Price + " gold (until wave " + pawn.Wave + ").";
+            }
             if (!Special && owner.Session.RefundAvailable)
             {
                 ItemDefinition returned = owner.Content.Item(owner.Session.State.RefundRelicId);
@@ -471,6 +495,8 @@ namespace ArcaneBrigade
         {
             if (station.Action == "REROLL") return "REROLL";
             if (station.Action == "REFUND") return "REFUND";
+            if (station.Action == "VISITOR") return owner.Session.Visitor?.Name ?? "VISITOR";
+            if (station.Action == "REDEEM") return "REDEEM";
             if (station.Action == "NEXT HALL" && owner.Session.HobRescueNeeded) return "HOB IS STILL SITTING";
             if (station.Action == "NEXT HALL") return Special ? "HEAD DOWN · GOLD SHOP" : "HEAD DOWN · NEXT WAVE";
             if (station.Action == "GOLD SHOP") return "GOLD SHOP";
@@ -567,6 +593,7 @@ namespace ArcaneBrigade
             GUI.matrix = unrotated;
         }
 
+        private Sprite fitIcon;
         public void DrawPriceTags(Camera camera)
         {
             if (scenery == null || !scenery.activeSelf || owner.HallExitPending || Animating || leavingSpecial) return;
@@ -619,15 +646,22 @@ namespace ArcaneBrigade
                 if (station.Offer != null)
                 {
                     bool merge = ShopMergePreview.Ready(owner.Session, station.Offer);
+                    string fit = merge ? null : owner.Session.BuildFit(station.Offer, out fitIcon);
                     bool item = station.Offer.Kind == OfferKind.Item;
                     Color tagColor = item ? ArcadeSkin.RarityColor(owner.Content.Item(station.Offer.Id).Rarity) : owner.Content.Unit(station.Offer.Id).Rarity != ItemRarity.Common ? ArcadeSkin.RarityColor(owner.Content.Unit(station.Offer.Id).Rarity) : ArcadeSkin.Teal;
-                    Rect category = new Rect(point.x - (merge ? 60 : 45), ticket.y - 29, merge ? 120 : 90, 26);
-                    ArcadeSkin.Slant(category, tagColor);
+                    Rect category = new Rect(point.x - (merge ? 60 : fit != null ? 56 : 45), ticket.y - 29, merge ? 120 : fit != null ? 112 : 90, 26);
+                    ArcadeSkin.Slant(category, fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "BUILD" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
                     if (merge)
                     {
                         GUI.Label(new Rect(category.x + 3, category.y, 77, category.height), "MERGE", categoryStyle);
                         int tier = ShopMergePreview.ProjectedTier(owner.Session, station.Offer);
                         for (int star = 0; star < tier; star++) RunHud.Sprite(new Rect(category.x + 81 + star * 11, category.y + 7, 11, 11), K8Motion.TierStar());
+                    }
+                    else if (fit != null)
+                    {
+                        // the build-fit badge: the bond it raises (or the relic itself) and a short word
+                        if (fitIcon != null) RunHud.Sprite(new Rect(category.x + 8, category.y + 2, 22, 22), fitIcon);
+                        GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
                     }
                     else GUI.Label(category, item ? "RELIC" : "ALLY", categoryStyle);
                 }

@@ -303,6 +303,8 @@ namespace ArcaneBrigade
             if (MechanicStacks(RelicMechanic.MoonClockKey) > 0)
                 foreach (BondDefinition bond in catalog.Bonds)
                     if (BondCounts.TryGetValue(bond.Id, out int active) && active >= bond.Threshold) BondCounts[bond.Id] = active + 1;
+            // the busker's song: for the wave it is sung, the chosen bond counts one more friend
+            if (State.Phase == SessionPhase.Combat && VisitorEffectFor("Song", State.Wave) is VisitorEffect song && BondCounts.TryGetValue(song.Target, out int sung)) BondCounts[song.Target] = sung + 1;
             if (Talent("\"The All-Knowing\" Walter") > 0)
                 foreach (BondDefinition bond in catalog.Bonds) BondCounts[bond.Id] = BondCounts.TryGetValue(bond.Id, out int count) ? count + 1 : 1;
             KitBonds();
@@ -437,6 +439,7 @@ namespace ArcaneBrigade
             CombatCatalog.GoldPerKill = Mathf.Max(1, Mathf.RoundToInt(CombatCatalog.GoldPerKill * 0.5f * (1 + Mathf.Min(2, Mathf.Max(0, State.Wave - 1) / 6f))));
             CombatCatalog.MinionCoin = 1;
             CombatCatalog.EnemyBudget = Mathf.Min(600, CombatCatalog.EnemyBudget);
+            PrepareVisitors();
             CombatCatalog.BossSwarmBudget = bossWave ? Mathf.CeilToInt(CombatCatalog.EnemyBudget * 0.22f) : 0;
             CombatCatalog.FinalDuel = false;
             CombatCatalog.PrismDrops = State.Endless ? 0 : Mathf.Max(0, 2 - State.PrismShardDrops);
@@ -569,7 +572,7 @@ namespace ArcaneBrigade
             State.LastDamageKind = simulation.LastDamageKind;
             simulation.SweepRemaining();
             State.Gold = BoundedCounter((long)State.Gold + simulation.Gold);
-            SettleNewRelics(simulation);
+            SettleNewRelics(simulation); SettleVisitors(simulation);
             State.TotalKills = BoundedCounter((long)State.TotalKills + simulation.Kills);
             State.CombatSeconds += simulation.Elapsed;
             ContributionLedger.Merge(State.Contributions, simulation.Contributions);
@@ -603,6 +606,7 @@ namespace ArcaneBrigade
             State.SpecialNewSpeciesRecruitsThisWave = 0;
             RollShop(true);
             OfferPrismGift();
+            VisitorNewShop();
         }
 
         public void ContinueWave()
@@ -611,6 +615,7 @@ namespace ArcaneBrigade
             if (State.OutsideStage == OutsideStageStatus.Reward) return;
             if (SecretRoomOpen) return;
             if (State.Wave == int.MaxValue) { Notice = "Technical hall counter limit reached. Records remain saved."; return; }
+            VisitorLeaveShop();
             State.Wave++;
             State.Phase = SessionPhase.Combat;
             State.Offers.Clear();
@@ -669,6 +674,7 @@ namespace ArcaneBrigade
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 OctoberPurchase(catalog.Unit(offer.Id));
                 if (offer.Id == "BottleGull") State.OctoberDrinks++; // Bottle Gull counts as a drink
+                VisitorBoughtCompanion(offer);
                 if (OctoberAbsorbs) { State.AbsorbedSkills.Add(offer.Id); State.Roster.Remove(recruited); KitAbsorbed(); }
                 MergeTriples(offer.Id);
                 TrackMergeDrought(false);
@@ -761,6 +767,7 @@ namespace ArcaneBrigade
             if (State.RerollsThisShop == int.MaxValue) return false;
             State.Gold -= price;
             KitRerollLuck(price);
+            RememberShelf(price);
             RollShop();
             State.RerollsThisShop++;
             if (MechanicStacks(RelicMechanic.HagglersAbacus) > 0) ApplyKitPrices();

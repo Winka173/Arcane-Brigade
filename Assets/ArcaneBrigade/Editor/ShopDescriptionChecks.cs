@@ -35,7 +35,8 @@ namespace ArcaneBrigade.Editor
                 Check(card.Bonds.Count == (u.Tags ?? Array.Empty<string>()).Length && card.Bonds.All(b => b.Bond.Icon != null && b.Next == b.Bond.NextThreshold(b.Count)), "Every bond has its own icon and real threshold: " + u.Id + " / " + tier);
                 foreach (var m in u.CompanionModifiers ?? Array.Empty<StatModifier>())
                     if (m.Value != 0) Check(card.Summary.Contains(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value * UnitDefinition.ModifierScale(tier))), "All support values and scopes included: " + u.Id + " / " + tier + " / " + m.Effect);
-                Check(card.Summary.Contains(CompanionDescriptions.Talent(u)) && card.Details.Contains(CreatureLives.Origin(u.Id)), "Complete talent and personal lore: " + u.Id + " / " + tier);
+                Check(card.Summary.Contains(CompanionDescriptions.ShortTalent(u)) && card.Details.Contains(CompanionDescriptions.Talent(u)) && card.Details.Contains(CreatureLives.Origin(u.Id)), "Short talent on the card, the full talent and lore under INFO: " + u.Id + " / " + tier);
+                Check(card.Summary.Split('\n').Count(line => !line.Contains("{bonus:")) <= 5, "The companion card stays short (stat lines are one icon each): " + u.Id + " / " + tier + " :: " + card.Summary.Replace("\n", " | "));
                 copy.AppendLine("## " + u.DisplayName + " / " + tier + " star\n" + card.Details + "\n");
             }
             foreach (var item in c.Items)
@@ -46,16 +47,18 @@ namespace ArcaneBrigade.Editor
                 foreach (var m in item.EffectiveModifiers) if (m.Value != 0)
                     Check(card.Summary.Contains(GlossaryUI.Modifier(m.Effect, m.Scope, m.Value)), "Every item modifier includes icon, scope and exact value: " + item.Id + " / " + m.Effect);
                 string mechanic = RelicDescriptions.Mechanic(item.Mechanic), signature = RelicDescriptions.Signature(item.SignatureRole);
-                Check(card.Summary.Contains(mechanic) && card.Summary.Contains(signature) && JsonUtility.ToJson(run.State) == before, "Item mechanics, conditions and RNG preserved: " + item.Id);
+                Check(card.Summary.Contains(RelicDescriptions.ShortMechanic(item.Mechanic)) && card.Summary.Contains(RelicDescriptions.ShortSignature(item.SignatureRole))
+                    && card.Details.Contains(mechanic) && card.Details.Contains(signature) && JsonUtility.ToJson(run.State) == before, "Short effect lines on the card, the full rules under INFO, RNG preserved: " + item.Id);
+                Check(card.Summary.Split('\n').Count(line => !line.Contains("{bonus:")) <= 5, "The item card stays short (stat lines are one icon each): " + item.Id);
                 copy.AppendLine("## " + item.Name + "\n" + card.Details + "\n");
             }
             var selected = c.Companions.First(u => u.ReferenceCompanion != "Evil" && u.CompanionModifiers.Length > 0);
             run.State.Roster.Clear();
             foreach (var w in c.Weapons.Where(w => run.RecruitWeaponEligible(selected.Id, w)).Take(2)) run.State.Roster.Add(new RosterEntry { UnitId = selected.Id, WeaponId = w.Id, Tier = 2 });
             card.Refresh(run, c, new ShopOffer { Kind = OfferKind.Companion, Id = selected.Id, Tier = 2 });
-            Check(card.Summary.Contains("2 matching 2-star bodies"), "Tier-two offers count tier-two ingredients");
+            Check(card.Summary.Contains("Owned 2/3 at 2-star · buying merges them into 3-star"), "Tier-two offers count tier-two ingredients");
             var high = new ShopOffer { Kind = OfferKind.Companion, Id = selected.Id, Tier = 3 };
-            card.Refresh(run, c, high); Check(card.Summary.Contains("no further merge"), "Maximum-tier offer does not promise a fourth star");
+            card.Refresh(run, c, high); Check(card.Summary.Contains("max stars"), "Maximum-tier offer does not promise a fourth star");
             Check(ShortOfferCopy.PurchaseDelta(run, c, high).StartsWith("Recruit 3-star"), "Buying a high-star body is not falsely labeled a merge");
             run.State.NewRecruitsThisWave = 3; run.State.Gold = 0;
             card.Refresh(run, c, high); Check(card.Attack.Choices > 0 && card.Details.Length > 100, "Quota or insufficient currency never hides inspection");
