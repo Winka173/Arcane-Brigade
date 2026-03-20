@@ -32,6 +32,15 @@ namespace ArcaneBrigade.Editor
                     if (!pieces.TryGetValue(name, out var frames)) pieces[name] = frames = new SortedDictionary<int, Sprite>();
                     frames[frame] = sprite;
                 }
+            // pieces the new friends place (content expansion): Tea Dragon's teapot, The First Seed's hedge
+            foreach (string file in new[] { "Assets/ArcaneBrigade/Art/Expansion/TeaDragon_Teapot_v1.png", "Assets/ArcaneBrigade/Art/Expansion/FirstSeed_Hedge_v1.png" })
+            {
+                if (!File.Exists(file)) continue;
+                AssetDatabase.ImportAsset(file, ImportAssetOptions.ForceSynchronousImport);
+                if (AssetImporter.GetAtPath(file) is TextureImporter importer && importer.textureType != TextureImporterType.Sprite) { importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single; importer.alphaIsTransparency = true; importer.SaveAndReimport(); }
+                Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(file);
+                if (sprite != null) pieces[Path.GetFileNameWithoutExtension(file).Replace("_v1", "")] = new SortedDictionary<int, Sprite> { [0] = sprite };
+            }
             const string artworkPath = "Assets/ArcaneBrigade/Resources/ArsenalArtwork.asset";
             ArsenalArtwork artwork = AssetDatabase.LoadAssetAtPath<ArsenalArtwork>(artworkPath);
             if (artwork == null) { artwork = ScriptableObject.CreateInstance<ArsenalArtwork>(); AssetDatabase.CreateAsset(artwork, artworkPath); }
@@ -55,6 +64,7 @@ namespace ArcaneBrigade.Editor
                 if (missing.Count > 0) { status.Add("WAITING " + spec.Id + ": " + string.Join(", ", missing)); continue; }
                 string path = "Assets/ArcaneBrigade/Data/Run/" + spec.Id + ".asset";
                 WeaponDefinition weapon = AssetDatabase.LoadAssetAtPath<WeaponDefinition>(path);
+                bool created = weapon == null;
                 if (weapon == null) { weapon = ScriptableObject.CreateInstance<WeaponDefinition>(); AssetDatabase.CreateAsset(weapon, path); }
                 weapon.Id = spec.Id; weapon.Arsenal = spec.Arsenal; weapon.Kind = spec.Kind; weapon.Motion = spec.Motion; weapon.Element = spec.Element;
                 weapon.Damage = spec.Damage; weapon.Range = spec.Range; weapon.Cooldown = spec.Cooldown; weapon.Windup = spec.Windup; weapon.Recovery = 0.24f;
@@ -63,7 +73,10 @@ namespace ArcaneBrigade.Editor
                 if (shot != null) { int cut = shot.LastIndexOf("_f", StringComparison.Ordinal); string key = cut > 0 ? shot.Substring(0, cut) : shot; weapon.ProjectileSprite = pieces[key][new List<int>(pieces[key].Keys)[0]]; }
                 else weapon.ProjectileSprite = weapon.Sprite; // a thrown copy of the weapon itself (brick, ingot, bottle, twin-moon staff) flies as its own painting
                 weapon.ProjectileVisualWidth = 0.32f; weapon.ProjectileColor = Color.white; weapon.ProjectileSpeed = 8; weapon.ProjectileLifetime = 2.4f;
-                weapon.VisualWidth = (spec.Kind == WeaponKind.Melee ? 1.1f : 0.95f) * spec.Width; // fist-sized arms (paw, wraps, knuckle) are drawn smaller weapon.MountDistance = 0.34f; weapon.MuzzleDistance = 0.6f;
+                // fist-sized arms (paw, wraps, knuckle) are drawn smaller; mount and muzzle start at the usual distances and are
+                // then calibrated per weapon, so only a new weapon gets them here
+                weapon.VisualWidth = (spec.Kind == WeaponKind.Melee ? 1.1f : 0.95f) * spec.Width;
+                if (created) { weapon.MountDistance = 0.34f; weapon.MuzzleDistance = 0.5f; }
                 weapon.ConeDot = spec.Arsenal == ArsenalWeapon.DragonLanternGlaive ? 0.5f : 0.2f; weapon.SwingAngle = spec.Arsenal == ArsenalWeapon.StarforgeClaymore ? 120 : 70;
                 weapon.BodyAttackTilt = spec.Kind == WeaponKind.Melee ? 14 : 8; weapon.PushDistance = 0.15f;
                 weapon.Family = ExpandedWeapon.None; weapon.Mechanic = CarnivalWeapon.None; weapon.Signature = SignatureWeapon.None; weapon.SpecialOnly = false;

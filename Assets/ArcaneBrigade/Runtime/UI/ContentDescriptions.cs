@@ -71,6 +71,7 @@ namespace ArcaneBrigade
         {
             var b=new StringBuilder();b.AppendLine("COMPANION / "+RunModifierRules.RarityName(u.Rarity)+" / "+tier+" STAR");
             b.AppendLine("TALENT\n"+Talent(u));
+            if(CombatSimulation.SkillCopy.TryGetValue(u.Id,out string own)&&own!=Talent(u))b.AppendLine("\nOWN SKILL\n"+own);
             b.AppendLine("\nSUPPORT WHILE OWNED\n"+RunModifierRules.DescribeCompanion(u,tier));
             b.AppendLine("\nLIFE IN THE WAITING REALM\n" + CreatureLives.Origin(u.Id));
             b.AppendLine("PERSONAL PASSIVE\n"+Passive(u,tier,support));

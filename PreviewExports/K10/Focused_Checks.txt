@@ -132,14 +132,14 @@ PASS All stat labels have definitions: RecordedDamage
 PASS Click route opens contextual definition
 PASS Dismiss clears glossary without fake unknown explanation
 PASS 32 new species and 24 new weapon identities loaded
-PASS Bond has at least 4 species: hearth (8)
-PASS Bond has at least 4 species: archive (9)
-PASS Bond has at least 4 species: clock (8)
-PASS Bond has at least 4 species: frost (7)
-PASS Bond has at least 4 species: orchard (8)
-PASS Bond has at least 4 species: astral (9)
-PASS Bond has at least 4 species: tidal (8)
-PASS Bond has at least 4 species: oddity (9)
+PASS Bond has at least 4 species: hearth (12)
+PASS Bond has at least 4 species: archive (13)
+PASS Bond has at least 4 species: clock (12)
+PASS Bond has at least 4 species: frost (11)
+PASS Bond has at least 4 species: orchard (11)
+PASS Bond has at least 4 species: astral (11)
+PASS Bond has at least 4 species: tidal (13)
+PASS Bond has at least 4 species: oddity (11)
 PASS Distinct imported animation frames BrassAcorn
 PASS Distinct imported animation frames BreadCrab
 PASS Distinct imported animation frames KettleBat

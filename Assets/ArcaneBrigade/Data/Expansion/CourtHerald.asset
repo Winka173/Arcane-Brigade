@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: CourtHerald
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: CourtHerald
+  DisplayName: Court Herald
+  Body: {fileID: 1926243039, guid: 1461ad2599112954ca710ca2faffe5fd, type: 3}
+  AnimationFrames:
+  - {fileID: 1926243039, guid: 1461ad2599112954ca710ca2faffe5fd, type: 3}
+  - {fileID: -1752596116, guid: 1461ad2599112954ca710ca2faffe5fd, type: 3}
+  - {fileID: 524822622, guid: 1461ad2599112954ca710ca2faffe5fd, type: 3}
+  - {fileID: -1026517250, guid: 1461ad2599112954ca710ca2faffe5fd, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: d7b3a6e50674c6e4d94f50841ad93fd7, type: 2}
+  Weapon: {fileID: 11400000, guid: e7379a1fb6cf83d42b03a082caef1783, type: 2}
+  Health: 100
+  Speed: 4
+  Radius: 0.22
+  BodyHeight: 0.75
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - archive
+  - hat
+  Passive: 0
+  PassiveStrength: 0.5
+  Description: 'Fanfare: the first attack of every friend each wave fires one extra
+    shot.'
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 22
+  UnlockWave: 0
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

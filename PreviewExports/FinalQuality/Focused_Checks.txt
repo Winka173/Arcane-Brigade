@@ -789,6 +789,314 @@ PASS Bounded context line SpindleWren/20/0
 PASS Bounded context line SpindleWren/20/1
 PASS Bounded context line SpindleWren/20/2
 PASS Nightmare-specific voice SpindleWren
+PASS Exact-ID dialogue BakerMouse
+PASS Bounded context line BakerMouse/1/0
+PASS Bounded context line BakerMouse/1/1
+PASS Bounded context line BakerMouse/1/2
+PASS Bounded context line BakerMouse/12/0
+PASS Bounded context line BakerMouse/12/1
+PASS Bounded context line BakerMouse/12/2
+PASS Bounded context line BakerMouse/20/0
+PASS Bounded context line BakerMouse/20/1
+PASS Bounded context line BakerMouse/20/2
+PASS Nightmare-specific voice BakerMouse
+PASS Exact-ID dialogue TeaDragon
+PASS Bounded context line TeaDragon/1/0
+PASS Bounded context line TeaDragon/1/1
+PASS Bounded context line TeaDragon/1/2
+PASS Bounded context line TeaDragon/12/0
+PASS Bounded context line TeaDragon/12/1
+PASS Bounded context line TeaDragon/12/2
+PASS Bounded context line TeaDragon/20/0
+PASS Bounded context line TeaDragon/20/1
+PASS Bounded context line TeaDragon/20/2
+PASS Nightmare-specific voice TeaDragon
+PASS Exact-ID dialogue SundaeGolem
+PASS Bounded context line SundaeGolem/1/0
+PASS Bounded context line SundaeGolem/1/1
+PASS Bounded context line SundaeGolem/1/2
+PASS Bounded context line SundaeGolem/12/0
+PASS Bounded context line SundaeGolem/12/1
+PASS Bounded context line SundaeGolem/12/2
+PASS Bounded context line SundaeGolem/20/0
+PASS Bounded context line SundaeGolem/20/1
+PASS Bounded context line SundaeGolem/20/2
+PASS Nightmare-specific voice SundaeGolem
+PASS Exact-ID dialogue LensOwl
+PASS Bounded context line LensOwl/1/0
+PASS Bounded context line LensOwl/1/1
+PASS Bounded context line LensOwl/1/2
+PASS Bounded context line LensOwl/12/0
+PASS Bounded context line LensOwl/12/1
+PASS Bounded context line LensOwl/12/2
+PASS Bounded context line LensOwl/20/0
+PASS Bounded context line LensOwl/20/1
+PASS Bounded context line LensOwl/20/2
+PASS Nightmare-specific voice LensOwl
+PASS Exact-ID dialogue EndlessIndex
+PASS Bounded context line EndlessIndex/1/0
+PASS Bounded context line EndlessIndex/1/1
+PASS Bounded context line EndlessIndex/1/2
+PASS Bounded context line EndlessIndex/12/0
+PASS Bounded context line EndlessIndex/12/1
+PASS Bounded context line EndlessIndex/12/2
+PASS Bounded context line EndlessIndex/20/0
+PASS Bounded context line EndlessIndex/20/1
+PASS Bounded context line EndlessIndex/20/2
+PASS Nightmare-specific voice EndlessIndex
+PASS Exact-ID dialogue LampGoat
+PASS Bounded context line LampGoat/1/0
+PASS Bounded context line LampGoat/1/1
+PASS Bounded context line LampGoat/1/2
+PASS Bounded context line LampGoat/12/0
+PASS Bounded context line LampGoat/12/1
+PASS Bounded context line LampGoat/12/2
+PASS Bounded context line LampGoat/20/0
+PASS Bounded context line LampGoat/20/1
+PASS Bounded context line LampGoat/20/2
+PASS Nightmare-specific voice LampGoat
+PASS Exact-ID dialogue TopBeetle
+PASS Bounded context line TopBeetle/1/0
+PASS Bounded context line TopBeetle/1/1
+PASS Bounded context line TopBeetle/1/2
+PASS Bounded context line TopBeetle/12/0
+PASS Bounded context line TopBeetle/12/1
+PASS Bounded context line TopBeetle/12/2
+PASS Bounded context line TopBeetle/20/0
+PASS Bounded context line TopBeetle/20/1
+PASS Bounded context line TopBeetle/20/2
+PASS Nightmare-specific voice TopBeetle
+PASS Exact-ID dialogue ShovelPenguin
+PASS Bounded context line ShovelPenguin/1/0
+PASS Bounded context line ShovelPenguin/1/1
+PASS Bounded context line ShovelPenguin/1/2
+PASS Bounded context line ShovelPenguin/12/0
+PASS Bounded context line ShovelPenguin/12/1
+PASS Bounded context line ShovelPenguin/12/2
+PASS Bounded context line ShovelPenguin/20/0
+PASS Bounded context line ShovelPenguin/20/1
+PASS Bounded context line ShovelPenguin/20/2
+PASS Nightmare-specific voice ShovelPenguin
+PASS Exact-ID dialogue BobaTadpole
+PASS Bounded context line BobaTadpole/1/0
+PASS Bounded context line BobaTadpole/1/1
+PASS Bounded context line BobaTadpole/1/2
+PASS Bounded context line BobaTadpole/12/0
+PASS Bounded context line BobaTadpole/12/1
+PASS Bounded context line BobaTadpole/12/2
+PASS Bounded context line BobaTadpole/20/0
+PASS Bounded context line BobaTadpole/20/1
+PASS Bounded context line BobaTadpole/20/2
+PASS Nightmare-specific voice BobaTadpole
+PASS Exact-ID dialogue RainHeron
+PASS Bounded context line RainHeron/1/0
+PASS Bounded context line RainHeron/1/1
+PASS Bounded context line RainHeron/1/2
+PASS Bounded context line RainHeron/12/0
+PASS Bounded context line RainHeron/12/1
+PASS Bounded context line RainHeron/12/2
+PASS Bounded context line RainHeron/20/0
+PASS Bounded context line RainHeron/20/1
+PASS Bounded context line RainHeron/20/2
+PASS Nightmare-specific voice RainHeron
+PASS Exact-ID dialogue WateringSnail
+PASS Bounded context line WateringSnail/1/0
+PASS Bounded context line WateringSnail/1/1
+PASS Bounded context line WateringSnail/1/2
+PASS Bounded context line WateringSnail/12/0
+PASS Bounded context line WateringSnail/12/1
+PASS Bounded context line WateringSnail/12/2
+PASS Bounded context line WateringSnail/20/0
+PASS Bounded context line WateringSnail/20/1
+PASS Bounded context line WateringSnail/20/2
+PASS Nightmare-specific voice WateringSnail
+PASS Exact-ID dialogue YoyoSquirrel
+PASS Bounded context line YoyoSquirrel/1/0
+PASS Bounded context line YoyoSquirrel/1/1
+PASS Bounded context line YoyoSquirrel/1/2
+PASS Bounded context line YoyoSquirrel/12/0
+PASS Bounded context line YoyoSquirrel/12/1
+PASS Bounded context line YoyoSquirrel/12/2
+PASS Bounded context line YoyoSquirrel/20/0
+PASS Bounded context line YoyoSquirrel/20/1
+PASS Bounded context line YoyoSquirrel/20/2
+PASS Nightmare-specific voice YoyoSquirrel
+PASS Exact-ID dialogue FirstSeed
+PASS Bounded context line FirstSeed/1/0
+PASS Bounded context line FirstSeed/1/1
+PASS Bounded context line FirstSeed/1/2
+PASS Bounded context line FirstSeed/12/0
+PASS Bounded context line FirstSeed/12/1
+PASS Bounded context line FirstSeed/12/2
+PASS Bounded context line FirstSeed/20/0
+PASS Bounded context line FirstSeed/20/1
+PASS Bounded context line FirstSeed/20/2
+PASS Nightmare-specific voice FirstSeed
+PASS Exact-ID dialogue PaperPlanePigeon
+PASS Bounded context line PaperPlanePigeon/1/0
+PASS Bounded context line PaperPlanePigeon/1/1
+PASS Bounded context line PaperPlanePigeon/1/2
+PASS Bounded context line PaperPlanePigeon/12/0
+PASS Bounded context line PaperPlanePigeon/12/1
+PASS Bounded context line PaperPlanePigeon/12/2
+PASS Bounded context line PaperPlanePigeon/20/0
+PASS Bounded context line PaperPlanePigeon/20/1
+PASS Bounded context line PaperPlanePigeon/20/2
+PASS Nightmare-specific voice PaperPlanePigeon
+PASS Exact-ID dialogue RaincoatFrog
+PASS Bounded context line RaincoatFrog/1/0
+PASS Bounded context line RaincoatFrog/1/1
+PASS Bounded context line RaincoatFrog/1/2
+PASS Bounded context line RaincoatFrog/12/0
+PASS Bounded context line RaincoatFrog/12/1
+PASS Bounded context line RaincoatFrog/12/2
+PASS Bounded context line RaincoatFrog/20/0
+PASS Bounded context line RaincoatFrog/20/1
+PASS Bounded context line RaincoatFrog/20/2
+PASS Nightmare-specific voice RaincoatFrog
+PASS Exact-ID dialogue LighthouseWhale
+PASS Bounded context line LighthouseWhale/1/0
+PASS Bounded context line LighthouseWhale/1/1
+PASS Bounded context line LighthouseWhale/1/2
+PASS Bounded context line LighthouseWhale/12/0
+PASS Bounded context line LighthouseWhale/12/1
+PASS Bounded context line LighthouseWhale/12/2
+PASS Bounded context line LighthouseWhale/20/0
+PASS Bounded context line LighthouseWhale/20/1
+PASS Bounded context line LighthouseWhale/20/2
+PASS Nightmare-specific voice LighthouseWhale
+PASS Exact-ID dialogue KiteDragon
+PASS Bounded context line KiteDragon/1/0
+PASS Bounded context line KiteDragon/1/1
+PASS Bounded context line KiteDragon/1/2
+PASS Bounded context line KiteDragon/12/0
+PASS Bounded context line KiteDragon/12/1
+PASS Bounded context line KiteDragon/12/2
+PASS Bounded context line KiteDragon/20/0
+PASS Bounded context line KiteDragon/20/1
+PASS Bounded context line KiteDragon/20/2
+PASS Nightmare-specific voice KiteDragon
+PASS Exact-ID dialogue JackInTheBox
+PASS Bounded context line JackInTheBox/1/0
+PASS Bounded context line JackInTheBox/1/1
+PASS Bounded context line JackInTheBox/1/2
+PASS Bounded context line JackInTheBox/12/0
+PASS Bounded context line JackInTheBox/12/1
+PASS Bounded context line JackInTheBox/12/2
+PASS Bounded context line JackInTheBox/20/0
+PASS Bounded context line JackInTheBox/20/1
+PASS Bounded context line JackInTheBox/20/2
+PASS Nightmare-specific voice JackInTheBox
+PASS Exact-ID dialogue LostCarousel
+PASS Bounded context line LostCarousel/1/0
+PASS Bounded context line LostCarousel/1/1
+PASS Bounded context line LostCarousel/1/2
+PASS Bounded context line LostCarousel/12/0
+PASS Bounded context line LostCarousel/12/1
+PASS Bounded context line LostCarousel/12/2
+PASS Bounded context line LostCarousel/20/0
+PASS Bounded context line LostCarousel/20/1
+PASS Bounded context line LostCarousel/20/2
+PASS Nightmare-specific voice LostCarousel
+PASS Exact-ID dialogue StaticFerret
+PASS Bounded context line StaticFerret/1/0
+PASS Bounded context line StaticFerret/1/1
+PASS Bounded context line StaticFerret/1/2
+PASS Bounded context line StaticFerret/12/0
+PASS Bounded context line StaticFerret/12/1
+PASS Bounded context line StaticFerret/12/2
+PASS Bounded context line StaticFerret/20/0
+PASS Bounded context line StaticFerret/20/1
+PASS Bounded context line StaticFerret/20/2
+PASS Nightmare-specific voice StaticFerret
+PASS Exact-ID dialogue StormKitten
+PASS Bounded context line StormKitten/1/0
+PASS Bounded context line StormKitten/1/1
+PASS Bounded context line StormKitten/1/2
+PASS Bounded context line StormKitten/12/0
+PASS Bounded context line StormKitten/12/1
+PASS Bounded context line StormKitten/12/2
+PASS Bounded context line StormKitten/20/0
+PASS Bounded context line StormKitten/20/1
+PASS Bounded context line StormKitten/20/2
+PASS Nightmare-specific voice StormKitten
+PASS Exact-ID dialogue VoltEel
+PASS Bounded context line VoltEel/1/0
+PASS Bounded context line VoltEel/1/1
+PASS Bounded context line VoltEel/1/2
+PASS Bounded context line VoltEel/12/0
+PASS Bounded context line VoltEel/12/1
+PASS Bounded context line VoltEel/12/2
+PASS Bounded context line VoltEel/20/0
+PASS Bounded context line VoltEel/20/1
+PASS Bounded context line VoltEel/20/2
+PASS Nightmare-specific voice VoltEel
+PASS Exact-ID dialogue ShantySeaLion
+PASS Bounded context line ShantySeaLion/1/0
+PASS Bounded context line ShantySeaLion/1/1
+PASS Bounded context line ShantySeaLion/1/2
+PASS Bounded context line ShantySeaLion/12/0
+PASS Bounded context line ShantySeaLion/12/1
+PASS Bounded context line ShantySeaLion/12/2
+PASS Bounded context line ShantySeaLion/20/0
+PASS Bounded context line ShantySeaLion/20/1
+PASS Bounded context line ShantySeaLion/20/2
+PASS Nightmare-specific voice ShantySeaLion
+PASS Exact-ID dialogue BottleGull
+PASS Bounded context line BottleGull/1/0
+PASS Bounded context line BottleGull/1/1
+PASS Bounded context line BottleGull/1/2
+PASS Bounded context line BottleGull/12/0
+PASS Bounded context line BottleGull/12/1
+PASS Bounded context line BottleGull/12/2
+PASS Bounded context line BottleGull/20/0
+PASS Bounded context line BottleGull/20/1
+PASS Bounded context line BottleGull/20/2
+PASS Nightmare-specific voice BottleGull
+PASS Exact-ID dialogue PinnedBeetle
+PASS Bounded context line PinnedBeetle/1/0
+PASS Bounded context line PinnedBeetle/1/1
+PASS Bounded context line PinnedBeetle/1/2
+PASS Bounded context line PinnedBeetle/12/0
+PASS Bounded context line PinnedBeetle/12/1
+PASS Bounded context line PinnedBeetle/12/2
+PASS Bounded context line PinnedBeetle/20/0
+PASS Bounded context line PinnedBeetle/20/1
+PASS Bounded context line PinnedBeetle/20/2
+PASS Nightmare-specific voice PinnedBeetle
+PASS Exact-ID dialogue FossilArmadillo
+PASS Bounded context line FossilArmadillo/1/0
+PASS Bounded context line FossilArmadillo/1/1
+PASS Bounded context line FossilArmadillo/1/2
+PASS Bounded context line FossilArmadillo/12/0
+PASS Bounded context line FossilArmadillo/12/1
+PASS Bounded context line FossilArmadillo/12/2
+PASS Bounded context line FossilArmadillo/20/0
+PASS Bounded context line FossilArmadillo/20/1
+PASS Bounded context line FossilArmadillo/20/2
+PASS Nightmare-specific voice FossilArmadillo
+PASS Exact-ID dialogue SpecimenSlime
+PASS Bounded context line SpecimenSlime/1/0
+PASS Bounded context line SpecimenSlime/1/1
+PASS Bounded context line SpecimenSlime/1/2
+PASS Bounded context line SpecimenSlime/12/0
+PASS Bounded context line SpecimenSlime/12/1
+PASS Bounded context line SpecimenSlime/12/2
+PASS Bounded context line SpecimenSlime/20/0
+PASS Bounded context line SpecimenSlime/20/1
+PASS Bounded context line SpecimenSlime/20/2
+PASS Nightmare-specific voice SpecimenSlime
+PASS Exact-ID dialogue CourtHerald
+PASS Bounded context line CourtHerald/1/0
+PASS Bounded context line CourtHerald/1/1
+PASS Bounded context line CourtHerald/1/2
+PASS Bounded context line CourtHerald/12/0
+PASS Bounded context line CourtHerald/12/1
+PASS Bounded context line CourtHerald/12/2
+PASS Bounded context line CourtHerald/20/0
+PASS Bounded context line CourtHerald/20/1
+PASS Bounded context line CourtHerald/20/2
+PASS Nightmare-specific voice CourtHerald
 PASS Named individual spatial encore UndeliveredKing
 PASS Production choreography executes UndeliveredKing
 PASS Bounded non-projectile choreography UndeliveredKing

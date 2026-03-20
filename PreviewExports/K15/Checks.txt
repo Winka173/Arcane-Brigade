@@ -115,6 +115,19 @@ PASS Bounded weapon feel PinataBomb
 PASS Bounded weapon feel AcornCluster
 PASS Bounded weapon feel FortuneGlobe
 PASS Bounded weapon feel TopiaryShears
+PASS Bounded weapon feel KiteSpool
+PASS Bounded weapon feel ScoopLauncher
+PASS Bounded weapon feel CuckooCannon
+PASS Bounded weapon feel JugglingPins
+PASS Bounded weapon feel SonarHarpoon
+PASS Bounded weapon feel YoYo
+PASS Bounded weapon feel RollingPin
+PASS Bounded weapon feel BobaStraw
+PASS Bounded weapon feel PaperPlaneSquadron
+PASS Bounded weapon feel WateringCan
+PASS Bounded weapon feel SnowShovel
+PASS Bounded weapon feel SunLens
+PASS Bounded weapon feel SpinningTop
 PASS Camera accent has a bounded displacement
 PASS An explosion holds the frame and shakes the camera
 PASS The hit hold is brief

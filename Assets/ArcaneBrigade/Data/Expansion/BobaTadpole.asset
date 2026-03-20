@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: BobaTadpole
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: BobaTadpole
+  DisplayName: Boba Tadpole
+  Body: {fileID: -2003007768, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  AnimationFrames:
+  - {fileID: -2003007768, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -66843565, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -750041087, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: -241551285, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: ab29281e8ed24464a9d102fecf7b0a94, type: 2}
+  Weapon: {fileID: 11400000, guid: 1ba8db90310d36f45a7dc0a997c05a97, type: 2}
+  Health: 100
+  Speed: 4
+  Radius: 0.22
+  BodyHeight: 0.75
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 0
+  Rarity: 0
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - frost
+  - sweet-tooth
+  Passive: 0
+  PassiveStrength: 0.5
+  Description: A tadpole in a milk-tea cup who sips, then spits pearls in swaying
+    waves.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers: []
+  Price: 22
+  UnlockWave: 0
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0

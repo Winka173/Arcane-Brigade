@@ -13,7 +13,9 @@ namespace ArcaneBrigade
         private static readonly List<UnitState> skillTargets = new List<UnitState>();
 
         /// <summary>Companion skill ids, for checks and descriptions.</summary>
-        public static readonly string[] CompanionSkillIds = { "PillowOracle", "ReelOwl", "ClockworkPiper", "CoilKettle", "IronLocomotive", "PaperInventor", "ReturnCaptain", "MirrorNewt" };
+        public static readonly string[] CompanionSkillIds = { "PillowOracle", "ReelOwl", "ClockworkPiper", "CoilKettle", "IronLocomotive", "PaperInventor", "ReturnCaptain", "MirrorNewt",
+            "TeaDragon", "LighthouseWhale", "JackInTheBox", "KiteDragon", "SundaeGolem", "LostCarousel", "EndlessIndex", "FirstSeed", "EclipseEgg",
+            "StaticFerret", "StormKitten", "VoltEel", "ShantySeaLion", "PinnedBeetle", "FossilArmadillo", "CourtHerald" };
         public int CompanionSkillCasts { get; private set; }
 
         private bool SkillReady(UnitState u, float period)
@@ -80,15 +82,6 @@ namespace ArcaneBrigade
                         foreach (UnitState f in units) if (f.Alive && f.Faction == Faction.Companion && f != actor && (f.Position - actor.Position).sqrMagnitude <= 9) best = Mathf.Max(best, f.Definition.Weapon.Damage);
                         if (best > 0) { ApplyWeaponDamage(target, best * .8f, Faction.Companion, DamageElement.Arcane, "Reel Owl", (target.Position - actor.Position).normalized, cause: NewCause(actor.Id).Child("reel-owl")); Skill(actor, MorphGeometry.Line, actor.Position, target.Position, 0); }
                     }
-                    if (id == "PaperInventor" && n % 5 == 0)
-                    {
-                        // a volley of paper darts at the two nearest enemies
-                        skillTargets.Clear();
-                        foreach (UnitState u in units) if (CanHit(Faction.Champion, u) && (u.Position - actor.Position).sqrMagnitude <= 30) skillTargets.Add(u);
-                        skillTargets.Sort((a, b) => (a.Position - actor.Position).sqrMagnitude.CompareTo((b.Position - actor.Position).sqrMagnitude));
-                        for (int k = 0; k < Mathf.Min(2, skillTargets.Count); k++)
-                        { var t = skillTargets[k]; ApplyWeaponDamage(t, actor.Definition.Weapon.Damage * .9f, Faction.Companion, DamageElement.Physical, "Paper Inventor", (t.Position - actor.Position).normalized, cause: NewCause(actor.Id).Child("paper-inventor")); Skill(actor, MorphGeometry.Line, actor.Position, t.Position, 0); }
-                    }
                 }
                 if (e.Kind == CombatEventKind.Hit && e.Faction == Faction.Enemy && e.Subject != null && catalog.BondChainChance > 0 && combatRandom.NextDouble() < catalog.BondChainChance)
                 {
@@ -107,6 +100,7 @@ namespace ArcaneBrigade
                     e.Subject.CoilStruck = true; Sleep(e.Subject, .4f); Skill(actor, MorphGeometry.Disc, e.Subject.Position, e.Subject.Position, .35f);
                 }
             }
+            ProcessNewCompanionSkills();
             foreach (UnitState u in units)
             {
                 if (!u.Alive || u.Faction != Faction.Companion) continue;
@@ -123,16 +117,10 @@ namespace ArcaneBrigade
                         }
                         break;
                     case "IronLocomotive":
-                        if (Nearest(u.Position, 4.5f) is UnitState ahead && SkillReady(u, 7))
-                        {
-                            // a charge four units along the way it faces; everything on the line is struck and frozen for 1s
-                            Vector2 dir = (ahead.Position - u.Position).normalized, from = u.Position, to = ClampPosition(from + dir * 4, u.Definition.Radius);
-                            foreach (UnitState t in units)
-                                if (CanHit(Faction.Champion, t) && SegmentCircle(from, to, t.Position, t.Definition.Radius + .35f) >= 0)
-                                { ApplyWeaponDamage(t, u.Definition.Weapon.Damage * 1.2f, Faction.Companion, DamageElement.Frost, "Iron Locomotive", dir, cause: NewCause(u.Id).Child("iron-locomotive")); if (t.Alive) Freeze(t, 1); }
-                            u.PreviousPosition = u.Position = to; spatial.Move(u);
-                            Skill(u, MorphGeometry.Line, from, to, 0);
-                        }
+                        if (Nearest(u.Position, 4f) is UnitState ahead && SkillReady(u, 7)) FrostWhistle(u, ahead);
+                        break;
+                    case "PaperInventor":
+                        if (!towerBuilt.Contains(u.Id) && Nearest(u.Position, 5f) is UnitState first) PaperTower(u, first);
                         break;
                     case "ReturnCaptain":
                         if (Strongest(u.Position, 6) is UnitState anchored && SkillReady(u, 5)) { anchored.AnchorUntil = Elapsed + 5; Skill(u, MorphGeometry.Disc, anchored.Position, anchored.Position, .4f); }

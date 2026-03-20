@@ -86,14 +86,14 @@ namespace ArcaneBrigade.Editor
                 s.Restore(JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(s.State)));
                 Check(MienChoStory.Choice(s.State, 8) == 2, "The telephone choice survives a real save");
             }
-            Check(CreatureLives.SpeciesCount == c.Companions.Length && CreatureLives.ArcCount == 6, "All sixty-six origins and six three-part companion arcs");
+            Check(CreatureLives.SpeciesCount == c.Companions.Length && CreatureLives.ArcCount == 6, "Every companion's origin and six three-part companion arcs");
             foreach (var hero in c.Champions) Check(WaitingArrivals.For(hero.Id).Length > 100, "Individual dream arrival " + hero.Id);
             foreach (var u in c.Companions)
             {
                 Check(CreatureLives.Has(u.Id) && CreatureLives.Origin(u.Id).Length > 100, "Individual life and intent " + u.Id);
                 Check(CompanionDescriptions.Describe(u).Contains(CreatureLives.Origin(u.Id)), "Origin reaches actual companion description " + u.Id);
             }
-            Check(c.Companions.Select(u => CreatureLives.Origin(u.Id)).Distinct().Count() == 66, "No shared fallback biographies");
+            Check(c.Companions.Select(u => CreatureLives.Origin(u.Id)).Distinct().Count() == c.Companions.Length, "No shared fallback biographies");
             // Phase 2: the story party, the warm chair and the night you hid
             foreach (string id in ActOneCanon.StoryIds) Check(c.Unit(id) != null && c.Unit(id).Weapon != null, "Story companion body exists " + id);
             Check(!ActOneCanon.StoryPresent(0, 1, false, false) && ActOneCanon.StoryPresent(0, 1, true, false) && !ActOneCanon.StoryPresent(1, 5, false, false) && ActOneCanon.StoryPresent(1, 5, true, false)

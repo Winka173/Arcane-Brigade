@@ -13,9 +13,108 @@ MonoBehaviour:
   m_Name: HeroGaugeArtwork
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.HeroGaugeArtwork
   Windows:
+  - Hero: Gauge2_ArchiveCurator
+    Low: 0.19117647
+    High: 0.7352941
+  - Hero: Gauge2_ButtonCavalier
+    Low: 0.13773148
+    High: 0.8402778
+  - Hero: Gauge2_ChinaMarionette
+    Low: 0.056074765
+    High: 0.8182762
+  - Hero: Gauge2_CitrusMarshal
+    Low: 0.46747968
+    High: 0.5731707
+  - Hero: Gauge2_CometRunner
+    Low: 0.16018307
+    High: 0.61098397
+  - Hero: Gauge2_CopperCauldron
+    Low: 0.24545455
+    High: 0.7613636
+  - Hero: Gauge2_DrowsySeer
+    Low: 0.17368421
+    High: 0.7894737
+  - Hero: Gauge2_GlassDice
+    Low: 0.22695035
+    High: 0.75177306
+  - Hero: Gauge2_HourglassStag
+    Low: 0.17162472
+    High: 0.8947368
+  - Hero: Gauge2_IvorySovereign
+    Low: 0.2207944
+    High: 0.7686916
+  - Hero: Gauge2_LanternKnight
+    Low: 0.3889515
+    High: 0.64599776
+  - Hero: Gauge2_LanternWeaver
+    Low: 0.18928164
+    High: 0.71607757
+  - Hero: Gauge2_LoneJelly
+    Low: 0.32098764
+    High: 0.58641976
+  - Hero: Gauge2_MirrorKeeper
+    Low: 0.13333334
+    High: 0.70208335
+  - Hero: Gauge2_MoonProwler
+    Low: 0.23128119
+    High: 0.750416
+  - Hero: Gauge2_NightMaw
+    Low: 0.20843092
+    High: 0.7412178
+  - Hero: Gauge2_PatchworkHost
+    Low: 0.24242425
+    High: 0.6515151
+  - Hero: Gauge2_PennyBroker
+    Low: 0.16135882
+    High: 0.52653927
+  - Hero: Gauge2_PetalCitadel
+    Low: 0.1295082
+    High: 0.8540984
+  - Hero: Gauge2_Postmaster
+    Low: 0.17337461
+    High: 0.8034056
+  - Hero: Gauge2_RainArchivist
+    Low: 0.122651935
+    High: 0.7480663
+  - Hero: Gauge2_RootOracle
+    Low: 0.118161924
+    High: 0.7045952
+  - Hero: Gauge2_SoapSkater
+    Low: 0.14802259
+    High: 0.5661017
+  - Hero: Gauge2_StormFencer
+    Low: 0.20706455
+    High: 0.7868453
+  - Hero: Gauge2_SupperMortar
+    Low: 0.09839817
+    High: 0.82036614
+  - Hero: Gauge2_ThornTreasurer
+    Low: 0.12888378
+    High: 0.7917146
+  - Hero: Gauge2_TideSinger
+    Low: 0.1955836
+    High: 0.67297584
+  - Hero: Gauge2_TinVirtuoso
+    Low: 0.21612903
+    High: 0.31290323
+  - Hero: Gauge2_TreasureAcorn
+    Low: 0.1
+    High: 0.76117647
+  - Hero: Gauge2_VelvetRegent
+    Low: 0.15911731
+    High: 0.757259
+  - Hero: Gauge2_VerdantMatron
+    Low: 0.16033755
+    High: 0.636076
   - Hero: ArchiveCurator
     Low: 0.17202072
     High: 0.73886013
+  - Hero: BellDiver
+    Low: 0.30023363
+    High: 0.7056075
+  - Hero: BonsaiClocksmith
+    Low: 0.16517857
+    High: 0.6238839
   - Hero: ButtonCavalier
     Low: 0.20846233
     High: 0.6996904
@@ -43,6 +142,12 @@ MonoBehaviour:
   - Hero: IvorySovereign
     Low: 0.25484198
     High: 0.73598367
+  - Hero: JugglingJester
+    Low: 0.26853934
+    High: 0.8280899
+  - Hero: KiteAdmiral
+    Low: 0.22334455
+    High: 0.7485971
   - Hero: LanternKnight
     Low: 0.21186441
     High: 0.73940676
@@ -85,6 +190,9 @@ MonoBehaviour:
   - Hero: StormFencer
     Low: 0.18027571
     High: 0.7242842
+  - Hero: SundaeDuchess
+    Low: 0.28422275
+    High: 0.7285383
   - Hero: SupperMortar
     Low: 0.16459627
     High: 0.78571427

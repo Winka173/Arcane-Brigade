@@ -68,6 +68,9 @@ COMPANION / MYTHIC / 1 STAR
 TALENT
 Clockwork Union companions gain 8% movement and attack speed per talent. Combined with Intelligent Construct, this buff is capped at 25%.
 
+OWN SKILL
+Every 8s lulls the strongest enemy near it to sleep for 1.5s.
+
 SUPPORT WHILE OWNED
 Champion / Maximum health: +3
 Champion / Attack speed: -0.5%
@@ -511,6 +514,9 @@ COMPANION / PRISMATIC / 1 STAR
 TALENT
 Each Princess talent grants this ally +1 projectile, up to +3. Projectile count helps projectile weapons; this does not turn a melee weapon into a ranged weapon.
 
+OWN SKILL
+Each fight it hatches into one of three forms and keeps it: a saucer gunner, a brawler, or a herald that hastens the friends near it.
+
 SUPPORT WHILE OWNED
 Run / Enemy speed: +10%
 Run / Score multiplier: +10%
@@ -753,6 +759,9 @@ COMPANION / MYTHIC / 1 STAR
 TALENT
 All companion bodies and hitboxes are 12% smaller. Presence effect: multiple copies do not shrink them repeatedly.
 
+OWN SKILL
+A quarter of the hostile shots that reach it are turned back at an enemy.
+
 SUPPORT WHILE OWNED
 Run / Score multiplier: +2.5%
 Champion / Maximum health: -1
@@ -794,6 +803,9 @@ COMPANION / MYTHIC / 1 STAR
 TALENT
 Paid refreshes cost 2 less gold per talent, minimum 1 gold. Applies to both normal and dream-stock refreshes.
 
+OWN SKILL
+Its first blow on each new enemy springs it up, stunning it for 0.4s.
+
 SUPPORT WHILE OWNED
 Champion / Knockback: +4%
 Champion / Movement speed: -1%
@@ -834,6 +846,9 @@ Bonds: archive, hide. Immortal. Weapon rolls on recruitment; three equal-species
 COMPANION / MYTHIC / 1 STAR
 TALENT
 Every third basic attack may fire a coloured echo for 25% weapon damage. Shares this ally's 0.7s response cooldown. The echo cannot trigger itself.
+
+OWN SKILL
+Every 4th attack replays the strongest blow of a friend nearby on its own target.
 
 SUPPORT WHILE OWNED
 Companions / Attack range: +6%
@@ -971,6 +986,9 @@ COMPANION / MYTHIC / 1 STAR
 TALENT
 On purchase, recruit two junior helpers.
 
+OWN SKILL
+Every 6s a tune: friends within 3 units attack 30% faster for 2s.
+
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
@@ -1009,6 +1027,9 @@ COMPANION / MYTHIC / 1 STAR
 TALENT
 ON RECRUIT / ALTAR CREATION: gain 100 gold immediately once. No recurring payment just for keeping this ally.
 
+OWN SKILL
+Once a fight builds a paper tower ahead of it that fires paper darts at the enemies near it.
+
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
 
@@ -1027,6 +1048,9 @@ Bonds: orchard, gear. Immortal. Weapon rolls on recruitment; three equal-species
 COMPANION / MYTHIC / 1 STAR
 TALENT
 Attacks from the beginning. After 30 seconds, deal triple weapon damage for the rest of the wave.
+
+OWN SKILL
+Every 5s drops an anchor on the strongest enemy: friends deal it +20% damage for 5s.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -1065,6 +1089,9 @@ Bonds: astral, hat. Immortal. Weapon rolls on recruitment; three equal-species/e
 COMPANION / MYTHIC / 1 STAR
 TALENT
 Contact damage +40. Briefly distract nearby ordinary enemies for 2 seconds every 6 seconds. Bosses ignore the decoy.
+
+OWN SKILL
+Every 7s a frost whistle: a cold blast ahead freezes the first 3 enemies in it for 1s.
 
 SUPPORT WHILE OWNED
 Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
@@ -1300,6 +1327,465 @@ No additional periodic personal passive.
 
 Named talents count bodies and absorbed memories; their stated percentages are not multiplied by star level unless explicitly stated. Listed support modifiers scale separately at 1/2/4.
 Bonds: archive, paper-wings. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Baker Mouse / BakerMouse
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+A floury mouse baker who rolls everything flat.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A mouse who baked for a lighthouse crew through storms, rising before everyone so the bread was warm. The crew left on a calm morning without saying goodbye. They bake now for people who stay to eat.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: hearth, sweet-tooth. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Tea Dragon / TeaDragon
+
+COMPANION / MYTHIC / 1 STAR
+TALENT
+Every 7s sets a teapot ahead; it whistles, then bursts in scalding steam that spreads to the enemies beside it.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A porcelain dragon from a tea house where every quarrel was settled over one more pot. They brewed until the last guests left reconciled and the dragon had no one to share a cup with. They travel to drink tea with a friend.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: hearth, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Sundae Golem / SundaeGolem
+
+COMPANION / PRISMATIC / 1 STAR
+TALENT
+Every blow leaves a puddle of cream; an enemy that stands in it for 2s freezes for 1s.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A giant built from sundae scoops to guard a summer fair. The fair ended and the golem kept guarding, melting a little every day. They are looking for shade, and for someone who does not mind sticky hands.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: hearth, sweet-tooth. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Lens Owl / LensOwl
+
+COMPANION / RARE / 1 STAR
+TALENT
+An owl scholar who focuses sunlight through a reading lens.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+An owl who read in an archive by the light of a single window, moving a lens across pages as the sun moved. Night came every day before the last chapter. They travel to finish a story while someone else holds the light.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: archive, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## The Endless Index / EndlessIndex
+
+COMPANION / PRISMATIC / 1 STAR
+TALENT
+Every 3rd attack copies that blow onto 2 nearby enemies. Every enemy species defeated in the run is a page: at 10, 20 and 30 pages Runic School friends split their shots once more.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+An index card catalogue that kept growing to hold every name in a library that never closed. The library forgot its own name in the end. The Index travels to file one entry it cannot find: its own.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: archive, rune. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Lamp Goat / LampGoat
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+A goat whose horns hold lanterns, swinging a lantern glaive.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A goat who carried lanterns up a mountain shrine every evening so pilgrims would not lose the path. One night the shrine was empty and the lanterns were still needed. They keep lighting paths while they decide where their own leads.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: clock, horn. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Top Beetle / TopBeetle
+
+COMPANION / RARE / 1 STAR
+TALENT
+A clockwork beetle who spins tops into the crowd.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A clockwork beetle built to spin tops in a toy shop window until a child chose one. Every top was chosen except the beetle's own. They spin now to see how long they can stand without anyone deciding for them.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: clock, gear. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Shovel Penguin / ShovelPenguin
+
+COMPANION / RARE / 1 STAR
+TALENT
+A penguin who heaves snow at anyone in the way.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A penguin who shovelled snow from a schoolhouse door every morning so lessons could begin. The lessons were never for penguins. They travel to find a door they are allowed to walk through after clearing it.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: frost, gauntlet. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Boba Tadpole / BobaTadpole
+
+COMPANION / COMMON / 1 STAR
+TALENT
+A tadpole in a milk-tea cup who sips, then spits pearls in swaying waves.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A tadpole who grew up in a tea shop's tall glass, watching customers decide what they wanted. Nobody ordered for the tadpole. They left to find out whether they would rather be a frog, a pearl, or something new.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: frost, sweet-tooth. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Rain Heron / RainHeron
+
+COMPANION / RARE / 1 STAR
+TALENT
+A heron who copies the rain into its notebook and takes any weapon offered.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A heron who copied every raindrop of a marsh into a notebook so the marsh would never be forgotten. The notebook outgrew the marsh. They carry whatever weapon they are handed, because the notebook taught them to receive.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: frost, rain-script. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Watering Snail / WateringSnail
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+A slow snail who waters the garden, and the enemies in it.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A snail who tended a garden at the bottom of a dried well, carrying water up one shell-full at a time. The flowers bloomed for visitors who never looked down. They travel to grow something someone will notice.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: orchard, sprout. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Yo-yo Squirrel / YoyoSquirrel
+
+COMPANION / RARE / 1 STAR
+TALENT
+A springy squirrel who never misses with a yo-yo.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A squirrel who never let anything go: every acorn, every toy, every friend tied on a string. The strings tangled into a knot no one could open. They are learning that some things come back without being pulled.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: orchard, hare. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## The First Seed / FirstSeed
+
+COMPANION / PRISMATIC / 1 STAR
+TALENT
+Every 8s grows a thorn hedge ahead that stops enemies for 3s; each fight a sapling sprouts to fight beside it.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+The first seed of a garden that has not been planted yet. Every orchard in the Waiting Realm remembers it, though nobody saw it fall. It travels to find soil where something can grow without being the first or the last.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: orchard, root. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Paper Plane Pigeon / PaperPlanePigeon
+
+COMPANION / COMMON / 1 STAR
+TALENT
+A pigeon who folds the post into paper planes and lets them chase the trouble.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A pigeon from a rooftop post office where letters were folded into planes so they could fly the last street alone. One plane never landed. They follow every new flight to see where kindness actually arrives.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: astral, paper-wings. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Raincoat Frog / RaincoatFrog
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+A frog in a yellow raincoat with a plunger for every puddle.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A frog who walked children home through the storm drains of a city that rained without stopping. Every child got home dry. The frog never once went inside. They are looking for a door that opens for them too.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: tidal, rain-script. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Harbor Whale / LighthouseWhale
+
+COMPANION / MYTHIC / 1 STAR
+TALENT
+Every 6s sprays a column of water on the enemy nearest the hero, soaking the ones around and pushing them back.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A whale who carried a little lighthouse on its back so ships would never be lost at sea. Ships followed the light everywhere, and the whale could never dive. They travel toward a harbor deep enough to rest in.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: tidal, lantern-guild. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Kite Dragon / KiteDragon
+
+COMPANION / PRISMATIC / 1 STAR
+TALENT
+Flies over the fight; every 5s sweeps a cutting band of wind across the field ahead.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A paper dragon flown every new year to carry wishes into the sky. The wishes were heavy, and the string was never let go. They fly with this brigade to learn what the sky feels like when nobody is holding on.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: tidal, paper-wings. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Ringmaster Jack / JackInTheBox
+
+COMPANION / MYTHIC / 1 STAR
+TALENT
+Every 6s spins a ball on its nose: enemies within 3.5 units turn on it for 1.5s.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A ringmaster who sprang out of his box every time the crank turned, smiling on cue for a crowd. The crank kept turning after the circus left. He is learning to climb out on his own, and to stay in when he wants to.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: oddity, big-top. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## The Lost Carousel / LostCarousel
+
+COMPANION / PRISMATIC / 1 STAR
+TALENT
+Every 10s raises a carousel round the thickest crowd: its horses gallop round for 4s, striking and shoving.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A carousel that turned alone in an empty park long after the music stopped, waiting for riders who had grown up. Its horses remember every child by name. It travels to give one more ride, then let the circle end.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Source: dream shop or special reward, subject to hero theme and unlock wave.
+Bonds: oddity, big-top. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Static Ferret / StaticFerret
+
+COMPANION / COMMON / 1 STAR
+TALENT
+Its hits leave static that arcs once to the nearest other enemy (50%).
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A ferret who ran through the copper wires of a telephone exchange, carrying calls that crackled with other people's news. Every message stuck to their fur as static. They travel to finally hear a call meant for them.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: clock, static-club. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Storm Kitten / StormKitten
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+Every 6s a little storm cloud over an enemy drops a bolt of lightning.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A kitten whose fluffy fur became a little storm cloud the night she was left out in the thunder. Now the thunder follows her. She is looking for someone who does not run when she rumbles.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: astral, static-club. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Volt Eel / VoltEel
+
+COMPANION / RARE / 1 STAR
+TALENT
+Its hits arc on twice: to the nearest other enemy, then the next (50%, then 35%).
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+An eel who lit the aquarium tank at night, glowing so the other fish would not be afraid of the dark. When the aquarium closed, the eel had nowhere to plug the glow. They travel to find a dark place that wants light.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: tidal, static-club. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Shanty Sea Lion / ShantySeaLion
+
+COMPANION / COMMON / 1 STAR
+TALENT
+Every 3rd hit lands with a note that pushes the enemy back.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A young sea lion who sang shanties on a pier so the sailors would row in time. The boats went out and the songs stayed on the pier. They travel looking for a crew that sings back.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: tidal, sea-shanty. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Bottle Gull / BottleGull
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+Recruiting it counts as buying a drink.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A gull who delivered messages in bottles up and down the coast, always to strangers. One bottle came back addressed to the gull. They have not opened it yet. They travel to find the courage to read it.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: hearth, sea-shanty. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Pinned Beetle / PinnedBeetle
+
+COMPANION / COMMON / 1 STAR
+TALENT
+Its hits pin the enemy in place for 0.3s (once every 2s per enemy).
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A specimen beetle that lay pinned in a museum drawer under a label written in someone else's hand. When the drawer opened in the Waiting Realm, the pin came loose. They travel to write their own label.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Recruitment exclusive: Wise.
+Bonds: archive, exhibit-hall. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Fossil Armadillo / FossilArmadillo
+
+COMPANION / UNCOMMON / 1 STAR
+TALENT
+Rolled up: an enemy that bumps into it is stunned for 0.3s (once every 2s per enemy).
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+An armadillo found curled in stone, older than the museum that displayed it. Visitors guessed what it had been afraid of. It uncurls now, slowly, to show what it was protecting all along.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Recruitment exclusive: Wise.
+Bonds: frost, exhibit-hall. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Specimen Slime / SpecimenSlime
+
+COMPANION / RARE / 1 STAR
+TALENT
+Defeating a recorded species splits off a little slime that fights beside it (at most 2 a fight).
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A slime kept in a jar labelled 'unclassified' because no one could decide what it was. It split itself to fill every gap in the collection. It travels to find a shape it chooses, or none at all.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Recruitment exclusive: Wise.
+Bonds: clock, exhibit-hall. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
+
+## Court Herald / CourtHerald
+
+COMPANION / COMMON / 1 STAR
+TALENT
+Fanfare: the first attack of every friend each wave fires one extra shot.
+
+SUPPORT WHILE OWNED
+Tier 1/2/3 traits ×1/2/4; merging three units reduces support sources.
+
+
+LIFE IN THE WAITING REALM
+A rabbit herald who announced every arrival at a palace gate, even the ones nobody welcomed. One day the gate closed with the herald outside. They announce this brigade now, because every arrival deserves a fanfare.
+PERSONAL PASSIVE
+No additional periodic personal passive.
+Bonds: archive, hat. Immortal. Weapon rolls on recruitment; three equal-species/equal-star bodies merge unless the talent forbids it.
 
 ## Key Oil / key-oil
 
@@ -3475,6 +3961,90 @@ No direct stat modifier; effects are described below.
 
 SPECIAL EFFECT
 Every 8s an undertow from the front line pushes the 5 enemies nearest the hero back 2 units and soaks them.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Funhouse Mirror / FunhouseMirror
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every 10s one friend's weapon is warped for 3s: double size and damage, half the speed.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Splice Kit / SpliceKit
+
+CURIO / MYTHIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Once per wave, three different one-star friends are spliced into one random two-star friend.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## The Endless Encore / TheEndlessEncore
+
+CURIO / PRISMATIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+No 3s rest after a transformation: the gauge starts filling again at once.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Moon Clock Key / MoonClockKey
+
+CURIO / PRISMATIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every active bond counts one more member.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Mirror of Twins / MirrorOfTwins
+
+CURIO / PRISMATIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Your strongest companion deals +60% damage and its shooting weapon fires one more projectile.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Storybook Ending / StorybookEnding
+
+CURIO / PRISMATIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Every wave won adds a page to the story: the team gains one random stat for the rest of the run.
+
+Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
+
+## Dream Loom / DreamLoom
+
+CURIO / PRISMATIC / UNIQUE
+
+WHILE OWNED / per copy
+No direct stat modifier; effects are described below.
+
+SPECIAL EFFECT
+Common items give double their stats.
 
 Owned effective copies: 1. Stack limit: 1. Values apply before combat limits.
 

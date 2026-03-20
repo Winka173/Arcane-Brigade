@@ -69,6 +69,8 @@ namespace ArcaneBrigade
         public bool ThermalInk;
         public int RepairStacks;
         public int[] RelicStacks = new int[0];
+        /// <summary>The Endless Index: enemy species defeated in the run (its pages).</summary>
+        public int IndexPages;
         public float RelicIncome;
         public float RelicMelee;
         public float RelicRanged;

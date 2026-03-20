@@ -42,6 +42,18 @@ MonoBehaviour:
   - Name: BareKnuckles_Held
     Frames:
     - {fileID: 21300000, guid: 289f8dcb3481ed44cb12d5d76be82d3c, type: 3}
+  - Name: BellDiver_Awake
+    Frames:
+    - {fileID: 21300000, guid: 61d0d0f901394184e8d8da5e7852c0e9, type: 3}
+  - Name: BobaPearl
+    Frames:
+    - {fileID: 21300000, guid: 55f82a69c278fa042a36a0d68783e60f, type: 3}
+  - Name: BobaStraw_Held
+    Frames:
+    - {fileID: 21300000, guid: 73923409a4f4c9e45a97750fb7648e8b, type: 3}
+  - Name: BonsaiClocksmith_Awake
+    Frames:
+    - {fileID: 21300000, guid: 33f857671c0eae743ae5ba10566e6357, type: 3}
   - Name: BouquetShot
     Frames:
     - {fileID: 21300000, guid: 2526a54f859df5f499b7d387b99acd99, type: 3}
@@ -110,6 +122,12 @@ MonoBehaviour:
   - Name: CorkRifle_Held
     Frames:
     - {fileID: 21300000, guid: fc5aff3e274f3e045b80cc06bdcb5cc3, type: 3}
+  - Name: CuckooBird
+    Frames:
+    - {fileID: 21300000, guid: 3f6553f98a8911044a4b36cc1a5f16ef, type: 3}
+  - Name: CuckooCannon_Held
+    Frames:
+    - {fileID: 21300000, guid: 012405e64bb640f4c8b2d1085aa528e7, type: 3}
   - Name: DetonatorBox_Held
     Frames:
     - {fileID: 21300000, guid: 5910148b8dcba634496d1381a4de3386, type: 3}
@@ -140,6 +158,9 @@ MonoBehaviour:
   - Name: FirecrackerPinwheel_Held
     Frames:
     - {fileID: 21300000, guid: 9aba33283244add4e9f9d4b443bbb8af, type: 3}
+  - Name: FirstSeed_Hedge
+    Frames:
+    - {fileID: 21300000, guid: d92b70e640903314aa317548ca7151ec, type: 3}
   - Name: FizzBottle_Held
     Frames:
     - {fileID: 21300000, guid: fcc22e8455d310c498bbdb7215b95c24, type: 3}
@@ -149,12 +170,210 @@ MonoBehaviour:
   - Name: FortuneGlobe_Held
     Frames:
     - {fileID: 21300000, guid: 2aeb4da6b6bc11c4cb601b87a4d3ed99, type: 3}
+  - Name: Gauge2_ArchiveCurator_Empty
+    Frames:
+    - {fileID: 21300000, guid: 88e63ec4a59bfef4fba809f574685227, type: 3}
+  - Name: Gauge2_ArchiveCurator_Full
+    Frames:
+    - {fileID: 21300000, guid: 726ae08f9b73ccd42b0e1454d5950bfb, type: 3}
+  - Name: Gauge2_ButtonCavalier_Empty
+    Frames:
+    - {fileID: 21300000, guid: b14c15be3582fd541b9e1bb792145f3b, type: 3}
+  - Name: Gauge2_ButtonCavalier_Full
+    Frames:
+    - {fileID: 21300000, guid: 4b046047cc2276744a5ad8104e8b4e56, type: 3}
+  - Name: Gauge2_ChinaMarionette_Empty
+    Frames:
+    - {fileID: 21300000, guid: 287e8e57c1afb094db34543b7edb7989, type: 3}
+  - Name: Gauge2_ChinaMarionette_Full
+    Frames:
+    - {fileID: 21300000, guid: de0885e4dccc0a34498e5c505a10de87, type: 3}
+  - Name: Gauge2_CitrusMarshal_Empty
+    Frames:
+    - {fileID: 21300000, guid: d01930fa8cbdc50438a439a1a318d195, type: 3}
+  - Name: Gauge2_CitrusMarshal_Full
+    Frames:
+    - {fileID: 21300000, guid: e5e8b10064bf9c04b9f567d4e0fe48f2, type: 3}
+  - Name: Gauge2_CometRunner_Empty
+    Frames:
+    - {fileID: 21300000, guid: 70b18dc5657073f4a89870e0692e60b1, type: 3}
+  - Name: Gauge2_CometRunner_Full
+    Frames:
+    - {fileID: 21300000, guid: 22aeee86bbeef914681d94c16abdd07c, type: 3}
+  - Name: Gauge2_CopperCauldron_Empty
+    Frames:
+    - {fileID: 21300000, guid: 4d7eda394737acc4dabfe65b41296f60, type: 3}
+  - Name: Gauge2_CopperCauldron_Full
+    Frames:
+    - {fileID: 21300000, guid: 1f0f47ec92c5aa546ac0537e6ef70f9a, type: 3}
+  - Name: Gauge2_DrowsySeer_Empty
+    Frames:
+    - {fileID: 21300000, guid: e7ac24ab70352bc498af80d8dc3d4712, type: 3}
+  - Name: Gauge2_DrowsySeer_Full
+    Frames:
+    - {fileID: 21300000, guid: e89f8bc17dfe8e64b98a1164faf27a51, type: 3}
+  - Name: Gauge2_GlassDice_Empty
+    Frames:
+    - {fileID: 21300000, guid: c3d493f4e0ecd0a4dbedfb122b729a5f, type: 3}
+  - Name: Gauge2_GlassDice_Full
+    Frames:
+    - {fileID: 21300000, guid: fa8aa6ed744cbb248a1cb8d5b6ae6040, type: 3}
+  - Name: Gauge2_HourglassStag_Empty
+    Frames:
+    - {fileID: 21300000, guid: 3d6ae0ab5373dde4c9120d46ffbba9e3, type: 3}
+  - Name: Gauge2_HourglassStag_Full
+    Frames:
+    - {fileID: 21300000, guid: 607f25050690a38468feac7f1a8a59b3, type: 3}
+  - Name: Gauge2_IvorySovereign_Empty
+    Frames:
+    - {fileID: 21300000, guid: 54babbc3e74f5be47affb1721c4be3dd, type: 3}
+  - Name: Gauge2_IvorySovereign_Full
+    Frames:
+    - {fileID: 21300000, guid: 2760d2d93f93b274f871ef59a3d2c11f, type: 3}
+  - Name: Gauge2_LanternKnight_Empty
+    Frames:
+    - {fileID: 21300000, guid: be2afbbec29832143ac1afe2ef59b72f, type: 3}
+  - Name: Gauge2_LanternKnight_Full
+    Frames:
+    - {fileID: 21300000, guid: 71e8b744c35de8c46bf26e634de6bcf8, type: 3}
+  - Name: Gauge2_LanternWeaver_Empty
+    Frames:
+    - {fileID: 21300000, guid: dea7fa574f87b1b43bdf7d58b0da0eec, type: 3}
+  - Name: Gauge2_LanternWeaver_Full
+    Frames:
+    - {fileID: 21300000, guid: 317a065342c7f3246aaa03d421e83148, type: 3}
+  - Name: Gauge2_LoneJelly_Empty
+    Frames:
+    - {fileID: 21300000, guid: f90cc1c620398f74db1cbdedfe8e6e6a, type: 3}
+  - Name: Gauge2_LoneJelly_Full
+    Frames:
+    - {fileID: 21300000, guid: 703c53a13dfd1454baf3c729a8ef3374, type: 3}
+  - Name: Gauge2_MirrorKeeper_Empty
+    Frames:
+    - {fileID: 21300000, guid: 382d4350b5773c64199795cb88eb21c6, type: 3}
+  - Name: Gauge2_MirrorKeeper_Full
+    Frames:
+    - {fileID: 21300000, guid: 692ca79043b689643a24325582c14582, type: 3}
+  - Name: Gauge2_MoonProwler_Empty
+    Frames:
+    - {fileID: 21300000, guid: b3f3b52a94ebc41409722644b49e691b, type: 3}
+  - Name: Gauge2_MoonProwler_Full
+    Frames:
+    - {fileID: 21300000, guid: 5da3fc91d21976e4fb033d9c92370f72, type: 3}
+  - Name: Gauge2_NightMaw_Empty
+    Frames:
+    - {fileID: 21300000, guid: c9dec917c11788f4dbd47b1946b3cf46, type: 3}
+  - Name: Gauge2_NightMaw_Full
+    Frames:
+    - {fileID: 21300000, guid: 829b29045c20e75458ab132e72108add, type: 3}
+  - Name: Gauge2_PatchworkHost_Empty
+    Frames:
+    - {fileID: 21300000, guid: 502335de0a0d5cc44bf75bab23e1f5ac, type: 3}
+  - Name: Gauge2_PatchworkHost_Full
+    Frames:
+    - {fileID: 21300000, guid: 9e757135ca302174c81b4b8567316b03, type: 3}
+  - Name: Gauge2_PennyBroker_Empty
+    Frames:
+    - {fileID: 21300000, guid: e8f4affd604225d40a2cc460adc1c80a, type: 3}
+  - Name: Gauge2_PennyBroker_Full
+    Frames:
+    - {fileID: 21300000, guid: 4a4192755bb8ccc40958f14c457adedd, type: 3}
+  - Name: Gauge2_PetalCitadel_Empty
+    Frames:
+    - {fileID: 21300000, guid: 5513f6e6963ed2d4181c807c0d260a94, type: 3}
+  - Name: Gauge2_PetalCitadel_Full
+    Frames:
+    - {fileID: 21300000, guid: d91da3f589e9e4b42a791905b6827434, type: 3}
+  - Name: Gauge2_Postmaster_Empty
+    Frames:
+    - {fileID: 21300000, guid: f16e5365a08c91446a54695b73bd0e58, type: 3}
+  - Name: Gauge2_Postmaster_Full
+    Frames:
+    - {fileID: 21300000, guid: de75cbc59bcaddd4ab14cedacecde218, type: 3}
+  - Name: Gauge2_RainArchivist_Empty
+    Frames:
+    - {fileID: 21300000, guid: eb48afbd5edd950478cf2baf8a083858, type: 3}
+  - Name: Gauge2_RainArchivist_Full
+    Frames:
+    - {fileID: 21300000, guid: fa21c265db38dd543a612168d5c1d838, type: 3}
+  - Name: Gauge2_RootOracle_Empty
+    Frames:
+    - {fileID: 21300000, guid: d88e3b4135ba4f64987698a626f9260a, type: 3}
+  - Name: Gauge2_RootOracle_Full
+    Frames:
+    - {fileID: 21300000, guid: 83cad918b8f1acd4d9d47f4c2aec47fc, type: 3}
+  - Name: Gauge2_SoapSkater_Empty
+    Frames:
+    - {fileID: 21300000, guid: 3418bfcd7f149d546b1dda772af5ae23, type: 3}
+  - Name: Gauge2_SoapSkater_Full
+    Frames:
+    - {fileID: 21300000, guid: 67a5e6a076781ac469b33d5631624ee2, type: 3}
+  - Name: Gauge2_StormFencer_Empty
+    Frames:
+    - {fileID: 21300000, guid: 27cd5760f630d9d41bf5c905eba4eaa9, type: 3}
+  - Name: Gauge2_StormFencer_Full
+    Frames:
+    - {fileID: 21300000, guid: 4df98fc5b74c16b4a8f6b9b4e47843b7, type: 3}
+  - Name: Gauge2_SupperMortar_Empty
+    Frames:
+    - {fileID: 21300000, guid: 69213a7ea895c284f9a1e5dc145401d7, type: 3}
+  - Name: Gauge2_SupperMortar_Full
+    Frames:
+    - {fileID: 21300000, guid: 8398b436bbd428446acf30f4c3a03a7b, type: 3}
+  - Name: Gauge2_ThornTreasurer_Empty
+    Frames:
+    - {fileID: 21300000, guid: 5b5cd98642b278e42b2570c74c659798, type: 3}
+  - Name: Gauge2_ThornTreasurer_Full
+    Frames:
+    - {fileID: 21300000, guid: 0f0b20ca0eb41854dabd80d66eb23d63, type: 3}
+  - Name: Gauge2_TideSinger_Empty
+    Frames:
+    - {fileID: 21300000, guid: 36917e2d1c0dee042b3e5d24036f9da7, type: 3}
+  - Name: Gauge2_TideSinger_Full
+    Frames:
+    - {fileID: 21300000, guid: 2cf38bae385972d43b89acb64c9485d5, type: 3}
+  - Name: Gauge2_TinVirtuoso_Empty
+    Frames:
+    - {fileID: 21300000, guid: 5ff4a3b73df48794a93b2a4fcd783f45, type: 3}
+  - Name: Gauge2_TinVirtuoso_Full
+    Frames:
+    - {fileID: 21300000, guid: f4bcc0c834761a04fafc990d1f7f3c03, type: 3}
+  - Name: Gauge2_TreasureAcorn_Empty
+    Frames:
+    - {fileID: 21300000, guid: e774d4b4dcdfd7443bd6aaba7b89e986, type: 3}
+  - Name: Gauge2_TreasureAcorn_Full
+    Frames:
+    - {fileID: 21300000, guid: 6a1aaa21b73b8494ca8b456fb9b63564, type: 3}
+  - Name: Gauge2_VelvetRegent_Empty
+    Frames:
+    - {fileID: 21300000, guid: 9bea09fdc37036b47b530fabf2562671, type: 3}
+  - Name: Gauge2_VelvetRegent_Full
+    Frames:
+    - {fileID: 21300000, guid: 1a6739b0eba1a774181bf69246780f26, type: 3}
+  - Name: Gauge2_VerdantMatron_Empty
+    Frames:
+    - {fileID: 21300000, guid: 928fbd2dfbee1e6459a9887d1a6e0991, type: 3}
+  - Name: Gauge2_VerdantMatron_Full
+    Frames:
+    - {fileID: 21300000, guid: ee15b740e0ba34e4086153ebebf787fa, type: 3}
   - Name: Gauge_ArchiveCurator_Empty
     Frames:
     - {fileID: 21300000, guid: c19b7be13f81fd547b88aa6a44954c5a, type: 3}
   - Name: Gauge_ArchiveCurator_Full
     Frames:
     - {fileID: 21300000, guid: 015131def42334c4dae4b452a2cdff1e, type: 3}
+  - Name: Gauge_BellDiver_Empty
+    Frames:
+    - {fileID: 21300000, guid: 8f9e1f42ecb187d43be1c6631421fa17, type: 3}
+  - Name: Gauge_BellDiver_Full
+    Frames:
+    - {fileID: 21300000, guid: 0e3b868cfe1cd4d4b998dd39df805db5, type: 3}
+  - Name: Gauge_BonsaiClocksmith_Empty
+    Frames:
+    - {fileID: 21300000, guid: 6b2347af63dfb3b4581b0425917a1f29, type: 3}
+  - Name: Gauge_BonsaiClocksmith_Full
+    Frames:
+    - {fileID: 21300000, guid: 872f62f1b33dfd5469dbcbc5325ee446, type: 3}
   - Name: Gauge_ButtonCavalier_Empty
     Frames:
     - {fileID: 21300000, guid: 375089a2c74884e47af48b043aa4ce10, type: 3}
@@ -209,6 +428,18 @@ MonoBehaviour:
   - Name: Gauge_IvorySovereign_Full
     Frames:
     - {fileID: 21300000, guid: 60d4eaa2ef3fc1a4383629b679fbaf49, type: 3}
+  - Name: Gauge_JugglingJester_Empty
+    Frames:
+    - {fileID: 21300000, guid: 10746558261431341a86f96ebb8dcfe8, type: 3}
+  - Name: Gauge_JugglingJester_Full
+    Frames:
+    - {fileID: 21300000, guid: a1407eff2c197d044a33a43488b0d00f, type: 3}
+  - Name: Gauge_KiteAdmiral_Empty
+    Frames:
+    - {fileID: 21300000, guid: 6d17cae6714863f43b78e11cb6ea0b8c, type: 3}
+  - Name: Gauge_KiteAdmiral_Full
+    Frames:
+    - {fileID: 21300000, guid: 484a2f8cdf3a5da41996e2bbebb23d4c, type: 3}
   - Name: Gauge_LanternKnight_Empty
     Frames:
     - {fileID: 21300000, guid: 1cf171cdc0ff61c4fb9b9b976e88f58a, type: 3}
@@ -293,6 +524,12 @@ MonoBehaviour:
   - Name: Gauge_StormFencer_Full
     Frames:
     - {fileID: 21300000, guid: 01ed7127f22f8bb449528159036616a4, type: 3}
+  - Name: Gauge_SundaeDuchess_Empty
+    Frames:
+    - {fileID: 21300000, guid: 22aec36ace89bd244b162170a676773d, type: 3}
+  - Name: Gauge_SundaeDuchess_Full
+    Frames:
+    - {fileID: 21300000, guid: 19f39e503620297498c11aba3b9e59cc, type: 3}
   - Name: Gauge_SupperMortar_Empty
     Frames:
     - {fileID: 21300000, guid: e705d3f492d0b2d41932d352eeb95e91, type: 3}
@@ -353,6 +590,9 @@ MonoBehaviour:
   - Name: GumballGatling_Held
     Frames:
     - {fileID: 21300000, guid: bb953a1d762aad94cbea3d0b09caf0b5, type: 3}
+  - Name: HarpoonShot
+    Frames:
+    - {fileID: 21300000, guid: 9ea67968a9172c7489ce015662a9ee75, type: 3}
   - Name: HearthBrick_Held
     Frames:
     - {fileID: 21300000, guid: f6fb6405b2674744784e2ee78bea6c0b, type: 3}
@@ -371,6 +611,21 @@ MonoBehaviour:
   - Name: IvorySovereign_Awake_Held
     Frames:
     - {fileID: 21300000, guid: 9e87ceda7fe46264a9657a0e453dde65, type: 3}
+  - Name: JugglingJester_Awake_Held
+    Frames:
+    - {fileID: 21300000, guid: 23302cf6d7d331148b9d2aa020f01ded, type: 3}
+  - Name: JugglingPins_Held
+    Frames:
+    - {fileID: 21300000, guid: c6d42bd41f6ee8446a09ac24c69b6359, type: 3}
+  - Name: KiteAdmiral_Awake
+    Frames:
+    - {fileID: 21300000, guid: 41c437635b3dc4f4fb5128a04e73e548, type: 3}
+  - Name: KiteShot
+    Frames:
+    - {fileID: 21300000, guid: 59b0ff3a8a4212a4dbe3f8a9eef1ee9d, type: 3}
+  - Name: KiteSpool_Held
+    Frames:
+    - {fileID: 21300000, guid: 397ca543923052740819d3c20ce533d0, type: 3}
   - Name: KunaiFan_Held
     Frames:
     - {fileID: 21300000, guid: a75f4b54409f69447b22e0be30f87f73, type: 3}
@@ -404,6 +659,12 @@ MonoBehaviour:
   - Name: PaperLanternBomb_Held
     Frames:
     - {fileID: 21300000, guid: d64dd02785ca69a488f13d40231c1926, type: 3}
+  - Name: PaperPlane
+    Frames:
+    - {fileID: 21300000, guid: a122a7bae85da424f83c4d61d64d5504, type: 3}
+  - Name: PaperPlaneSquadron_Held
+    Frames:
+    - {fileID: 21300000, guid: 4fb7d67cf16c8d046bb6b1885b613486, type: 3}
   - Name: PaperShuriken_Held
     Frames:
     - {fileID: 21300000, guid: 5954c9d71bd07694d96cd65effa5c559, type: 3}
@@ -413,6 +674,9 @@ MonoBehaviour:
   - Name: PawMitten_Held
     Frames:
     - {fileID: 21300000, guid: 1582d8be3fe0e58439d51893b6eec0d3, type: 3}
+  - Name: PendulumShot
+    Frames:
+    - {fileID: 21300000, guid: 6b98f0ed65d86f347b0f2d11ea782181, type: 3}
   - Name: PennyBroker_Awake
     Frames:
     - {fileID: 21300000, guid: 00957bc65083b6e40b748c77e3fbe48b, type: 3}
@@ -466,6 +730,9 @@ MonoBehaviour:
   - Name: RainArchivist_Awake_Held
     Frames:
     - {fileID: 21300000, guid: eb4a263c38ad74a47b59de6079b46c97, type: 3}
+  - Name: RollingPin_Held
+    Frames:
+    - {fileID: 21300000, guid: a9c1c5a5ed7797048aeed16c5416e46b, type: 3}
   - Name: RootOracle_Awake
     Frames:
     - {fileID: 21300000, guid: fb5e88277c806b74596c65027a02decc, type: 3}
@@ -478,6 +745,14 @@ MonoBehaviour:
   - Name: SaucerShot
     Frames:
     - {fileID: 21300000, guid: ef7d68f6db883c040b3efd7052988498, type: 3}
+  - Name: Scoop
+    Frames:
+    - {fileID: 21300000, guid: 9ec54e1844f4c074cab64eab94b86dc5, type: 3}
+    - {fileID: 21300000, guid: dfcfaa60f3180d94b816ddcad35ae6e9, type: 3}
+    - {fileID: 21300000, guid: 3683dba87de11a44398431e07810ec77, type: 3}
+  - Name: ScoopLauncher_Held
+    Frames:
+    - {fileID: 21300000, guid: a8298597a6780b74798c9eef9b23879f, type: 3}
   - Name: Shot_AcornSling
     Frames:
     - {fileID: 21300000, guid: 988fca57c1bdc294ba33c379baa18ea7, type: 3}
@@ -661,18 +936,36 @@ MonoBehaviour:
   - Name: SignpostSlammer_Held
     Frames:
     - {fileID: 21300000, guid: 77521fc06640f084ba883248f10a81ea, type: 3}
+  - Name: SnowClump
+    Frames:
+    - {fileID: 21300000, guid: 2c95859a543998b4ba87722dea06f3ce, type: 3}
   - Name: SnowGlobeGrenade_Held
     Frames:
     - {fileID: 21300000, guid: 1fb38b8afff9ec34f85f5f47045b7daa, type: 3}
   - Name: SnowGlobeShot
     Frames:
     - {fileID: 21300000, guid: ba30ca269776eb740b893a36866992b3, type: 3}
+  - Name: SnowShovel_Held
+    Frames:
+    - {fileID: 21300000, guid: cb22a351d59929d4abf655d5b53bc4a8, type: 3}
   - Name: SoapSkater_Awake
     Frames:
     - {fileID: 21300000, guid: c30ed563c8e8bfa44a896475f18bca4e, type: 3}
+  - Name: SonarHarpoon_Held
+    Frames:
+    - {fileID: 21300000, guid: b11c2973257876e449bd791304575212, type: 3}
   - Name: SoundFin
     Frames:
     - {fileID: 21300000, guid: f6781c8f484b7394eaa34976478b8912, type: 3}
+  - Name: SpinTop
+    Frames:
+    - {fileID: 21300000, guid: 12b70685f7d6bc44ea88bf2e221c04f1, type: 3}
+  - Name: SpinningTop_Held
+    Frames:
+    - {fileID: 21300000, guid: a594074295f44a1488e50284e709c452, type: 3}
+  - Name: Sprout
+    Frames:
+    - {fileID: 21300000, guid: cfc0449be53f9a740a52bac077f48a34, type: 3}
   - Name: SquirtTrio_Held
     Frames:
     - {fileID: 21300000, guid: bb5eb52c9468f9840bb93e5841c94f0d, type: 3}
@@ -697,12 +990,21 @@ MonoBehaviour:
   - Name: StormFencer_Awake_Held
     Frames:
     - {fileID: 21300000, guid: 23be3efa7a9381747b2ffbc9a829a3f9, type: 3}
+  - Name: SunLens_Held
+    Frames:
+    - {fileID: 21300000, guid: 3e1eba8758226a143a7e757b1ec618a6, type: 3}
+  - Name: SundaeDuchess_Awake
+    Frames:
+    - {fileID: 21300000, guid: 4092b2a764ed35f4aa6ec314de3c53c4, type: 3}
   - Name: SupperMortar_Awake_Held
     Frames:
     - {fileID: 21300000, guid: eeb81702e37b45d4f8f2756392877148, type: 3}
   - Name: TalismanIngot_Held
     Frames:
     - {fileID: 21300000, guid: 509aee2c01a374c4a9c65078c3378e66, type: 3}
+  - Name: TeaDragon_Teapot
+    Frames:
+    - {fileID: 21300000, guid: 59fc403eb6936af4cb7ccc53b732772e, type: 3}
   - Name: ThornTreasurer_Awake
     Frames:
     - {fileID: 21300000, guid: 021a9657fe4138a4190563c16c52d4d4, type: 3}
@@ -739,6 +1041,9 @@ MonoBehaviour:
   - Name: WaterJet
     Frames:
     - {fileID: 21300000, guid: 6ae8aa26bf0b4db48900e65b9be5d211, type: 3}
+  - Name: WateringCan_Held
+    Frames:
+    - {fileID: 21300000, guid: ea8454622a06c704aa5a9da546d9d333, type: 3}
   - Name: WindupKey
     Frames:
     - {fileID: 21300000, guid: d206f5a64ca3bba448583e0048d1f0b9, type: 3}
@@ -746,3 +1051,9 @@ MonoBehaviour:
   - Name: WindupWrench_Held
     Frames:
     - {fileID: 21300000, guid: ba995cbd5eababa4cbb4521bb1b42d40, type: 3}
+  - Name: YoYo_Held
+    Frames:
+    - {fileID: 21300000, guid: f005ce0dd36a31a4eac1d7f6e74c2d9a, type: 3}
+  - Name: YoyoSpin
+    Frames:
+    - {fileID: 21300000, guid: 7f4a6b5c8bd3e484ea895b58383fbc39, type: 3}

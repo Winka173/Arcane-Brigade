@@ -1,4 +1,4 @@
-PASS 47 distinct weapons
+PASS 60 distinct weapons (47 plus the 13 of the content expansion)
 PASS a weapon is only in the catalog with its art
 PASS every hero carries a different weapon now
 PASS every hero's own weapon is different
@@ -99,6 +99,14 @@ PASS ink moment FirecrackerBlast is layered all through its life (38 pieces at l
 PASS ink moment LanternBurst is layered all through its life (31 pieces at least)
 PASS ink moment SnowBurst is layered all through its life (32 pieces at least)
 PASS ink moment AcornPop is layered all through its life (23 pieces at least)
+PASS ink moment Splat is layered all through its life (26 pieces at least)
+PASS ink moment Feathers is layered all through its life (25 pieces at least)
+PASS ink moment Sprinkle is layered all through its life (10 pieces at least)
+PASS ink moment SnowPuff is layered all through its life (28 pieces at least)
+PASS ink moment PinClack is layered all through its life (9 pieces at least)
+PASS ink moment Scald is layered all through its life (35 pieces at least)
+PASS ink moment Spout is layered all through its life (16 pieces at least)
+PASS ink moment FrostGust is layered all through its life (9 pieces at least)
 PASS ink room pieces draw (pool 27, all 50)
 PASS melee weapon has its own strike KeyCleaver
 PASS melee weapon has its own strike UmbrellaLance
@@ -141,8 +149,8 @@ PASS melee weapon has its own strike WindupWrench
 PASS melee weapon has its own strike StarKnuckle
 PASS melee weapon has its own strike TopiaryShears
 PASS no two melee weapons share a strike (40)
-PASS no two weapons share a hit look (104)
-PASS no two weapons share a voice (104 weapons, 33 cues)
+PASS no two weapons share a hit look (117)
+PASS no two weapons share a voice (117 weapons, 33 cues)
 PASS ranged weapon has its own shot painting TeapotPopgun
 PASS ranged weapon has its own shot painting MailboxLauncher
 PASS ranged weapon has its own shot painting BellFork
@@ -207,6 +215,19 @@ PASS ranged weapon has its own shot painting SnowGlobeGrenade
 PASS ranged weapon has its own shot painting PinataBomb
 PASS ranged weapon has its own shot painting AcornCluster
 PASS ranged weapon has its own shot painting FortuneGlobe
+PASS ranged weapon has its own shot painting KiteSpool
+PASS ranged weapon has its own shot painting ScoopLauncher
+PASS ranged weapon has its own shot painting CuckooCannon
+PASS ranged weapon has its own shot painting JugglingPins
+PASS ranged weapon has its own shot painting SonarHarpoon
+PASS ranged weapon has its own shot painting YoYo
+PASS ranged weapon has its own shot painting RollingPin
+PASS ranged weapon has its own shot painting BobaStraw
+PASS ranged weapon has its own shot painting PaperPlaneSquadron
+PASS ranged weapon has its own shot painting WateringCan
+PASS ranged weapon has its own shot painting SnowShovel
+PASS ranged weapon has its own shot painting SunLens
+PASS ranged weapon has its own shot painting SpinningTop
 PASS every thrown weapon flies its own object
 PASS CherryFuseBomb the bomb is still in the air
 PASS CherryFuseBomb bursts where it landed and hits beside the target
@@ -331,3 +352,35 @@ PASS TopiaryShears never strikes the enemy right behind the wielder
 PASS BareKnuckles punches reach only up close
 PASS BareKnuckles a critical punch pops the air ahead
 PASS BareKnuckles never strikes the enemy right behind the wielder
+PASS KiteSpool the kite loops ahead on its string
+PASS KiteSpool dives at the end of its flight
+PASS KiteSpool never strikes the enemy right behind the wielder
+PASS ScoopLauncher the scoop is still in the air
+PASS ScoopLauncher lands, and the melting puddle slows
+PASS ScoopLauncher never strikes the enemy right behind the wielder
+PASS CuckooCannon every third shot sends the cuckoo
+PASS CuckooCannon the pendulum strikes and the cuckoo dives on the farthest
+PASS CuckooCannon never strikes the enemy right behind the wielder
+PASS JugglingPins the pin lands on its enemy
+PASS JugglingPins the next pin picks another enemy
+PASS JugglingPins never strikes the enemy right behind the wielder
+PASS SonarHarpoon pierces two and probes them
+PASS SonarHarpoon leaves a sonar buoy
+PASS SonarHarpoon never strikes the enemy right behind the wielder
+PASS YoYo strikes on the way out and on the way home
+PASS YoYo never strikes the enemy right behind the wielder
+PASS RollingPin rolls through the line and leaves dough
+PASS RollingPin never strikes the enemy right behind the wielder
+PASS BobaStraw the swaying pearls reach the enemy
+PASS BobaStraw never strikes the enemy right behind the wielder
+PASS PaperPlaneSquadron three planes chase three enemies
+PASS PaperPlaneSquadron never strikes the enemy right behind the wielder
+PASS WateringCan waters and soaks the enemy ahead
+PASS WateringCan never strikes the enemy right behind the wielder
+PASS SnowShovel the snow is still in the air
+PASS SnowShovel lands and slows
+PASS SnowShovel never strikes the enemy right behind the wielder
+PASS SunLens the sunspot burns, then sets its enemy alight
+PASS SunLens never strikes the enemy right behind the wielder
+PASS SpinningTop spins where it lands, grinding and flinging the enemy out
+PASS SpinningTop never strikes the enemy right behind the wielder

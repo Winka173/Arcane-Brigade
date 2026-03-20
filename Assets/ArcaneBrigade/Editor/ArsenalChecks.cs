@@ -19,7 +19,7 @@ namespace ArcaneBrigade.Editor
         {
             results.Clear();
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
-            Require(ArsenalSpecs.All.Length == 47 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 47, "47 distinct weapons");
+            Require(ArsenalSpecs.All.Length == 60 && ArsenalSpecs.All.Select(s => s.Id).Distinct().Count() == 60, "60 distinct weapons (47 plus the 13 of the content expansion)");
             Require(ArsenalSpecs.All.All(s => catalog.Weapon(s.Id) == null || catalog.Weapon(s.Id).Sprite != null), "a weapon is only in the catalog with its art");
             Loadouts(catalog);
             InkMoments();
@@ -88,7 +88,11 @@ namespace ArcaneBrigade.Editor
             Require(voices.Distinct().Count() == voices.Count, "no two weapons share a voice (" + voices.Count + " weapons, " + voices.Select(v => v.Split('@')[0]).Distinct().Count() + " cues)");
             string worklist = File.ReadAllText("Docs/Bizarre_Arsenal_Art_Worklist.json");
             // thrown weapons fly their own painted object instead of a Shot_ painting (each one is unique to its weapon)
-            var thrown = new Dictionary<string, string> { ["PaperLanternBomb"] = "LanternBombShot", ["SnowGlobeGrenade"] = "SnowGlobeShot", ["PinataBomb"] = "PinataShot", ["AcornCluster"] = "AcornBomb", ["FortuneGlobe"] = "GlobeMote" };
+            var thrown = new Dictionary<string, string> { ["PaperLanternBomb"] = "LanternBombShot", ["SnowGlobeGrenade"] = "SnowGlobeShot", ["PinataBomb"] = "PinataShot", ["AcornCluster"] = "AcornBomb", ["FortuneGlobe"] = "GlobeMote",
+                // content expansion: their own pieces, or the weapon itself thrown/held out (pins, rolling pin, can, lens)
+                ["KiteSpool"] = "KiteShot", ["ScoopLauncher"] = "Scoop", ["CuckooCannon"] = "PendulumShot", ["SonarHarpoon"] = "HarpoonShot", ["YoYo"] = "YoyoSpin",
+                ["BobaStraw"] = "BobaPearl", ["PaperPlaneSquadron"] = "PaperPlane", ["SnowShovel"] = "SnowClump", ["SpinningTop"] = "SpinTop",
+                ["JugglingPins"] = "JugglingPins_Held", ["RollingPin"] = "RollingPin_Held", ["WateringCan"] = "WateringCan_Held", ["SunLens"] = "SunLens_Held" };
             foreach (WeaponDefinition w in weapons.Where(w => w.Kind == WeaponKind.Projectile))
                 Require(thrown.TryGetValue(w.Id, out string own) ? ArsenalArtwork.Frames(own) != null : worklist.Contains("\"Shot_" + w.Id + "\""), "ranged weapon has its own shot painting " + w.Id);
             Require(thrown.Values.Distinct().Count() == thrown.Count, "every thrown weapon flies its own object");
@@ -468,6 +472,109 @@ namespace ArcaneBrigade.Editor
                     tough.Health = f.Full; t.Health = f.Full * 0.5f;
                     sim.ArsenalAttackFixture(me, t); f.Tick(0.2f);
                     Require(t.Health < f.Full * 0.5f && tough.Health < f.Full, id + " one snip down the line, the next at the toughest enemy");
+                    break;
+                }
+                // content expansion
+                case ArsenalWeapon.KiteSpool:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(1f);
+                    Require(sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Kite && !p.Resolved), id + " the kite loops ahead on its string");
+                    f.Tick(2f);
+                    Require(t.Health < f.Full && !sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Kite && !p.Resolved), id + " dives at the end of its flight");
+                    break;
+                }
+                case ArsenalWeapon.ScoopLauncher:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.3f);
+                    Require(t.Health == f.Full, id + " the scoop is still in the air");
+                    f.Tick(1f);
+                    Require(t.Health < f.Full && t.ChillUntil > sim.Elapsed, id + " lands, and the melting puddle slows");
+                    break;
+                }
+                case ArsenalWeapon.CuckooCannon:
+                {
+                    UnitState t = f.Enemy(new Vector2(2.5f, 0)), far = f.Enemy(new Vector2(5.4f, 0.3f));
+                    for (int i = 0; i < 3; i++) { sim.ArsenalAttackFixture(me, t); f.Tick(0.1f); }
+                    Require(sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Cuckoo), id + " every third shot sends the cuckoo");
+                    f.Tick(1f);
+                    Require(t.Health < f.Full && far.Health < f.Full, id + " the pendulum strikes and the cuckoo dives on the farthest");
+                    break;
+                }
+                case ArsenalWeapon.JugglingPins:
+                {
+                    UnitState t = f.Enemy(new Vector2(2.2f, 0)), other = f.Enemy(new Vector2(3f, 1f));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.9f);
+                    Require(t.Health < f.Full && other.Health == f.Full, id + " the pin lands on its enemy");
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.9f);
+                    Require(other.Health < f.Full, id + " the next pin picks another enemy");
+                    break;
+                }
+                case ArsenalWeapon.SonarHarpoon:
+                {
+                    UnitState t = f.Enemy(new Vector2(2, 0)), next = f.Enemy(new Vector2(3, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.6f);
+                    Require(t.Health < f.Full && next.Health < f.Full && t.ProbedUntil > sim.Elapsed, id + " pierces two and probes them");
+                    Require(sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Buoy), id + " leaves a sonar buoy");
+                    break;
+                }
+                case ArsenalWeapon.YoYo:
+                {
+                    UnitState t = f.Enemy(new Vector2(2.5f, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(1.4f);
+                    Require(f.Full - t.Health > w * 0.7f * 1.5f, id + " strikes on the way out and on the way home");
+                    break;
+                }
+                case ArsenalWeapon.RollingPin:
+                {
+                    UnitState a = f.Enemy(new Vector2(1.5f, 0)), b = f.Enemy(new Vector2(2.6f, 0));
+                    sim.ArsenalAttackFixture(me, a); f.Tick(1f);
+                    Require(a.Health < f.Full && b.Health < f.Full && sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Dough), id + " rolls through the line and leaves dough");
+                    break;
+                }
+                case ArsenalWeapon.BobaStraw:
+                {
+                    UnitState t = f.Enemy(new Vector2(2.2f, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.8f);
+                    Require(t.Health < f.Full, id + " the swaying pearls reach the enemy");
+                    break;
+                }
+                case ArsenalWeapon.PaperPlaneSquadron:
+                {
+                    var three = new[] { f.Enemy(new Vector2(2, 1)), f.Enemy(new Vector2(2, -1)), f.Enemy(new Vector2(3, 0)) };
+                    sim.ArsenalAttackFixture(me, three[2]); f.Tick(1.5f);
+                    Require(three.All(e => e.Health < f.Full), id + " three planes chase three enemies");
+                    break;
+                }
+                case ArsenalWeapon.WateringCan:
+                {
+                    UnitState t = f.Enemy(new Vector2(1.5f, 0));
+                    sim.ArsenalAttackFixture(me, t);
+                    Require(t.Health < f.Full && t.KitWetUntil > sim.Elapsed, id + " waters and soaks the enemy ahead");
+                    break;
+                }
+                case ArsenalWeapon.SnowShovel:
+                {
+                    UnitState t = f.Enemy(new Vector2(2.5f, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(0.2f);
+                    Require(t.Health == f.Full && sim.ArsenalProps.Any(p => p.Kind == ArsenalPropKind.Lob), id + " the snow is still in the air");
+                    f.Tick(1f);
+                    Require(t.Health < f.Full && t.ChillUntil > sim.Elapsed, id + " lands and slows");
+                    break;
+                }
+                case ArsenalWeapon.SunLens:
+                {
+                    UnitState t = f.Enemy(new Vector2(3, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(2f);
+                    Require(t.Health < f.Full && t.BurnUntil > sim.Elapsed + 1.5f, id + " the sunspot burns, then sets its enemy alight");
+                    break;
+                }
+                case ArsenalWeapon.SpinningTop:
+                {
+                    UnitState t = f.Enemy(new Vector2(2, 0));
+                    sim.ArsenalAttackFixture(me, t); f.Tick(1f);
+                    Require(t.Health < f.Full && t.Position.x > 2.05f, id + " spins where it lands, grinding and flinging the enemy out");
                     break;
                 }
                 case ArsenalWeapon.BareKnuckles:

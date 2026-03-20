@@ -45,6 +45,19 @@ LIVE AcornCluster
 LIVE FortuneGlobe
 LIVE TopiaryShears
 LIVE BareKnuckles
+LIVE KiteSpool
+LIVE ScoopLauncher
+LIVE CuckooCannon
+LIVE JugglingPins
+LIVE SonarHarpoon
+LIVE YoYo
+LIVE RollingPin
+LIVE BobaStraw
+LIVE PaperPlaneSquadron
+LIVE WateringCan
+LIVE SnowShovel
+LIVE SunLens
+LIVE SpinningTop
 FRAME PAINTED Uncommon
 FRAME PAINTED Rare
 FRAME PAINTED Mythic

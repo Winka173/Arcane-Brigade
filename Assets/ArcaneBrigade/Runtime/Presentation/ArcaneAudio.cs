@@ -374,6 +374,16 @@ namespace ArcaneBrigade
             ArsenalWeapon.VerdictGavel => "cmb.windup",
             ArsenalWeapon.TalismanIngot => "loot.coin.drop",
             ArsenalWeapon.FortuneGlobe => "wpn.cast.arcane",
+            // content expansion
+            ArsenalWeapon.KiteSpool or ArsenalWeapon.PaperPlaneSquadron => "wpn.boomerang.fly",
+            ArsenalWeapon.ScoopLauncher or ArsenalWeapon.SnowShovel or ArsenalWeapon.CuckooCannon => "wpn.launcher",
+            ArsenalWeapon.JugglingPins or ArsenalWeapon.SpinningTop => "wpn.bounce",
+            ArsenalWeapon.SonarHarpoon => "wpn.pierce",
+            ArsenalWeapon.YoYo => "wpn.yoyo.throw",
+            ArsenalWeapon.RollingPin => "cmb.swing.hammer",
+            ArsenalWeapon.BobaStraw => "wpn.gun.pop",
+            ArsenalWeapon.WateringCan => "wpn.split",
+            ArsenalWeapon.SunLens => "wpn.cast.arcane",
             _ => null
         };
         /// <summary>The sound of an Arsenal weapon's own burst (null: the usual boom).</summary>

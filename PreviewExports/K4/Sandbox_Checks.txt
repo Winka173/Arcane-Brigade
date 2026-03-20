@@ -1262,6 +1262,162 @@ PASS TopiaryShears tier 3 uses independent unit/weapon data
 PASS TopiaryShears tier damage follows catalog multiplier with no build bonuses
 PASS TopiaryShears tier 3 auto attacks through actual simulation events
 PASS TopiaryShears preview cannot farm rewards or kills
+PASS KiteSpool tier 1 uses independent unit/weapon data
+PASS KiteSpool tier damage follows catalog multiplier with no build bonuses
+PASS KiteSpool tier 1 auto attacks through actual simulation events
+PASS KiteSpool preview cannot farm rewards or kills
+PASS KiteSpool tier 2 uses independent unit/weapon data
+PASS KiteSpool tier damage follows catalog multiplier with no build bonuses
+PASS KiteSpool tier 2 auto attacks through actual simulation events
+PASS KiteSpool preview cannot farm rewards or kills
+PASS KiteSpool tier 3 uses independent unit/weapon data
+PASS KiteSpool tier damage follows catalog multiplier with no build bonuses
+PASS KiteSpool tier 3 auto attacks through actual simulation events
+PASS KiteSpool preview cannot farm rewards or kills
+PASS ScoopLauncher tier 1 uses independent unit/weapon data
+PASS ScoopLauncher tier damage follows catalog multiplier with no build bonuses
+PASS ScoopLauncher tier 1 auto attacks through actual simulation events
+PASS ScoopLauncher preview cannot farm rewards or kills
+PASS ScoopLauncher tier 2 uses independent unit/weapon data
+PASS ScoopLauncher tier damage follows catalog multiplier with no build bonuses
+PASS ScoopLauncher tier 2 auto attacks through actual simulation events
+PASS ScoopLauncher preview cannot farm rewards or kills
+PASS ScoopLauncher tier 3 uses independent unit/weapon data
+PASS ScoopLauncher tier damage follows catalog multiplier with no build bonuses
+PASS ScoopLauncher tier 3 auto attacks through actual simulation events
+PASS ScoopLauncher preview cannot farm rewards or kills
+PASS CuckooCannon tier 1 uses independent unit/weapon data
+PASS CuckooCannon tier damage follows catalog multiplier with no build bonuses
+PASS CuckooCannon tier 1 auto attacks through actual simulation events
+PASS CuckooCannon preview cannot farm rewards or kills
+PASS CuckooCannon tier 2 uses independent unit/weapon data
+PASS CuckooCannon tier damage follows catalog multiplier with no build bonuses
+PASS CuckooCannon tier 2 auto attacks through actual simulation events
+PASS CuckooCannon preview cannot farm rewards or kills
+PASS CuckooCannon tier 3 uses independent unit/weapon data
+PASS CuckooCannon tier damage follows catalog multiplier with no build bonuses
+PASS CuckooCannon tier 3 auto attacks through actual simulation events
+PASS CuckooCannon preview cannot farm rewards or kills
+PASS JugglingPins tier 1 uses independent unit/weapon data
+PASS JugglingPins tier damage follows catalog multiplier with no build bonuses
+PASS JugglingPins tier 1 auto attacks through actual simulation events
+PASS JugglingPins preview cannot farm rewards or kills
+PASS JugglingPins tier 2 uses independent unit/weapon data
+PASS JugglingPins tier damage follows catalog multiplier with no build bonuses
+PASS JugglingPins tier 2 auto attacks through actual simulation events
+PASS JugglingPins preview cannot farm rewards or kills
+PASS JugglingPins tier 3 uses independent unit/weapon data
+PASS JugglingPins tier damage follows catalog multiplier with no build bonuses
+PASS JugglingPins tier 3 auto attacks through actual simulation events
+PASS JugglingPins preview cannot farm rewards or kills
+PASS SonarHarpoon tier 1 uses independent unit/weapon data
+PASS SonarHarpoon tier damage follows catalog multiplier with no build bonuses
+PASS SonarHarpoon tier 1 auto attacks through actual simulation events
+PASS SonarHarpoon preview cannot farm rewards or kills
+PASS SonarHarpoon tier 2 uses independent unit/weapon data
+PASS SonarHarpoon tier damage follows catalog multiplier with no build bonuses
+PASS SonarHarpoon tier 2 auto attacks through actual simulation events
+PASS SonarHarpoon preview cannot farm rewards or kills
+PASS SonarHarpoon tier 3 uses independent unit/weapon data
+PASS SonarHarpoon tier damage follows catalog multiplier with no build bonuses
+PASS SonarHarpoon tier 3 auto attacks through actual simulation events
+PASS SonarHarpoon preview cannot farm rewards or kills
+PASS YoYo tier 1 uses independent unit/weapon data
+PASS YoYo tier damage follows catalog multiplier with no build bonuses
+PASS YoYo tier 1 auto attacks through actual simulation events
+PASS YoYo preview cannot farm rewards or kills
+PASS YoYo tier 2 uses independent unit/weapon data
+PASS YoYo tier damage follows catalog multiplier with no build bonuses
+PASS YoYo tier 2 auto attacks through actual simulation events
+PASS YoYo preview cannot farm rewards or kills
+PASS YoYo tier 3 uses independent unit/weapon data
+PASS YoYo tier damage follows catalog multiplier with no build bonuses
+PASS YoYo tier 3 auto attacks through actual simulation events
+PASS YoYo preview cannot farm rewards or kills
+PASS RollingPin tier 1 uses independent unit/weapon data
+PASS RollingPin tier damage follows catalog multiplier with no build bonuses
+PASS RollingPin tier 1 auto attacks through actual simulation events
+PASS RollingPin preview cannot farm rewards or kills
+PASS RollingPin tier 2 uses independent unit/weapon data
+PASS RollingPin tier damage follows catalog multiplier with no build bonuses
+PASS RollingPin tier 2 auto attacks through actual simulation events
+PASS RollingPin preview cannot farm rewards or kills
+PASS RollingPin tier 3 uses independent unit/weapon data
+PASS RollingPin tier damage follows catalog multiplier with no build bonuses
+PASS RollingPin tier 3 auto attacks through actual simulation events
+PASS RollingPin preview cannot farm rewards or kills
+PASS BobaStraw tier 1 uses independent unit/weapon data
+PASS BobaStraw tier damage follows catalog multiplier with no build bonuses
+PASS BobaStraw tier 1 auto attacks through actual simulation events
+PASS BobaStraw preview cannot farm rewards or kills
+PASS BobaStraw tier 2 uses independent unit/weapon data
+PASS BobaStraw tier damage follows catalog multiplier with no build bonuses
+PASS BobaStraw tier 2 auto attacks through actual simulation events
+PASS BobaStraw preview cannot farm rewards or kills
+PASS BobaStraw tier 3 uses independent unit/weapon data
+PASS BobaStraw tier damage follows catalog multiplier with no build bonuses
+PASS BobaStraw tier 3 auto attacks through actual simulation events
+PASS BobaStraw preview cannot farm rewards or kills
+PASS PaperPlaneSquadron tier 1 uses independent unit/weapon data
+PASS PaperPlaneSquadron tier damage follows catalog multiplier with no build bonuses
+PASS PaperPlaneSquadron tier 1 auto attacks through actual simulation events
+PASS PaperPlaneSquadron preview cannot farm rewards or kills
+PASS PaperPlaneSquadron tier 2 uses independent unit/weapon data
+PASS PaperPlaneSquadron tier damage follows catalog multiplier with no build bonuses
+PASS PaperPlaneSquadron tier 2 auto attacks through actual simulation events
+PASS PaperPlaneSquadron preview cannot farm rewards or kills
+PASS PaperPlaneSquadron tier 3 uses independent unit/weapon data
+PASS PaperPlaneSquadron tier damage follows catalog multiplier with no build bonuses
+PASS PaperPlaneSquadron tier 3 auto attacks through actual simulation events
+PASS PaperPlaneSquadron preview cannot farm rewards or kills
+PASS WateringCan tier 1 uses independent unit/weapon data
+PASS WateringCan tier damage follows catalog multiplier with no build bonuses
+PASS WateringCan tier 1 auto attacks through actual simulation events
+PASS WateringCan preview cannot farm rewards or kills
+PASS WateringCan tier 2 uses independent unit/weapon data
+PASS WateringCan tier damage follows catalog multiplier with no build bonuses
+PASS WateringCan tier 2 auto attacks through actual simulation events
+PASS WateringCan preview cannot farm rewards or kills
+PASS WateringCan tier 3 uses independent unit/weapon data
+PASS WateringCan tier damage follows catalog multiplier with no build bonuses
+PASS WateringCan tier 3 auto attacks through actual simulation events
+PASS WateringCan preview cannot farm rewards or kills
+PASS SnowShovel tier 1 uses independent unit/weapon data
+PASS SnowShovel tier damage follows catalog multiplier with no build bonuses
+PASS SnowShovel tier 1 auto attacks through actual simulation events
+PASS SnowShovel preview cannot farm rewards or kills
+PASS SnowShovel tier 2 uses independent unit/weapon data
+PASS SnowShovel tier damage follows catalog multiplier with no build bonuses
+PASS SnowShovel tier 2 auto attacks through actual simulation events
+PASS SnowShovel preview cannot farm rewards or kills
+PASS SnowShovel tier 3 uses independent unit/weapon data
+PASS SnowShovel tier damage follows catalog multiplier with no build bonuses
+PASS SnowShovel tier 3 auto attacks through actual simulation events
+PASS SnowShovel preview cannot farm rewards or kills
+PASS SunLens tier 1 uses independent unit/weapon data
+PASS SunLens tier damage follows catalog multiplier with no build bonuses
+PASS SunLens tier 1 auto attacks through actual simulation events
+PASS SunLens preview cannot farm rewards or kills
+PASS SunLens tier 2 uses independent unit/weapon data
+PASS SunLens tier damage follows catalog multiplier with no build bonuses
+PASS SunLens tier 2 auto attacks through actual simulation events
+PASS SunLens preview cannot farm rewards or kills
+PASS SunLens tier 3 uses independent unit/weapon data
+PASS SunLens tier damage follows catalog multiplier with no build bonuses
+PASS SunLens tier 3 auto attacks through actual simulation events
+PASS SunLens preview cannot farm rewards or kills
+PASS SpinningTop tier 1 uses independent unit/weapon data
+PASS SpinningTop tier damage follows catalog multiplier with no build bonuses
+PASS SpinningTop tier 1 auto attacks through actual simulation events
+PASS SpinningTop preview cannot farm rewards or kills
+PASS SpinningTop tier 2 uses independent unit/weapon data
+PASS SpinningTop tier damage follows catalog multiplier with no build bonuses
+PASS SpinningTop tier 2 auto attacks through actual simulation events
+PASS SpinningTop preview cannot farm rewards or kills
+PASS SpinningTop tier 3 uses independent unit/weapon data
+PASS SpinningTop tier damage follows catalog multiplier with no build bonuses
+PASS SpinningTop tier 3 auto attacks through actual simulation events
+PASS SpinningTop preview cannot farm rewards or kills
 PASS Reset disposes old runtime weapon clone
 PASS Reset clears elapsed time, attacks and diagnostics
 PASS Local combat and roam RNG reproduce after reset despite reduced-motion change

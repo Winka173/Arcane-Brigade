@@ -1,4 +1,4 @@
-PASS 31 heroes and 66 ally species installed
+PASS 31 heroes (36 with the expansion's) and 94 ally species installed
 PASS Hero counterpart Mr. Work / LanternKnight
 PASS Hero counterpart Derpy Wolf / CometRunner
 PASS Hero counterpart Jade Cabbage / VerdantMatron

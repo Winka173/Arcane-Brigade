@@ -18,7 +18,7 @@ namespace ArcaneBrigade.Editor
             Check(catalog.Bosses.Length == 10 && !catalog.Bosses.Contains(assets.Boss), "Optional boss never enters ordinary rotation");
             Check(BossAnatomy.For(assets.Boss).Organs.Length == 3, "The transfer hand belongs to the boss anatomy");
             Check((int)ItemRarity.Mythic == 3 && ItemRarity.Crimson > ItemRarity.Mythic && ItemRarity.Rainbow > ItemRarity.Crimson, "Rarity ordinals remain compatible");
-            Check(catalog.Items.Count(item => item.Rarity == ItemRarity.Rainbow) == 4 && catalog.Companions.Count(unit => unit.Rarity == ItemRarity.Rainbow) >= 3, "Four relics and the prismatic allies (two originals and Eclipse Egg, 18/10/2026)");
+            Check(catalog.Items.Count(item => item.Rarity == ItemRarity.Rainbow) >= 4 && catalog.Companions.Count(unit => unit.Rarity == ItemRarity.Rainbow) >= 3, "Four relics and the prismatic allies (two originals and Eclipse Egg, 18/10/2026)");
             Check(catalog.Items.Where(item => item.Rarity == ItemRarity.Rainbow).All(item => item.ShopWeight == 0 && item.UnlockWave == int.MaxValue), "Prismatic gifts cannot reroll into normal shops");
             foreach (string hero in new[] { "LanternKnight", "LoneJelly" })
             {

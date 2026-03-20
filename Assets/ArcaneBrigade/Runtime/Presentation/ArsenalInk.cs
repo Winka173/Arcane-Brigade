@@ -13,7 +13,8 @@ namespace ArcaneBrigade
         {
             Burst, CottonPop, PopperBurst, CandyFloss, PaperScraps, BalloonPop, Confetti, MuzzleCloud, CorkPop, Droplets, Steam,
             LeekSwipe, PawSwipe, GoldLeaf, Dragon, MetalSwipe, FistJab, SwatPrint, Crumbs, BrickDust, GavelStamp, IngotBlast,
-            KnucklePop, MittCatch, Zap, Spark, HomeRun, Glitch, Snip, FirecrackerBlast, LanternBurst, SnowBurst, AcornPop
+            KnucklePop, MittCatch, Zap, Spark, HomeRun, Glitch, Snip, FirecrackerBlast, LanternBurst, SnowBurst, AcornPop,
+            Splat, Feathers, Sprinkle, SnowPuff, PinClack, Scald, Spout, FrostGust
         }
 
         private static InkPalette P(Color ink, Color body, Color light, Color glow, Color accent) => new InkPalette(ink, body, light, glow, accent);
@@ -295,6 +296,57 @@ namespace ArcaneBrigade
                     Cloud(at, size * .45f, p, Glass, seed, .12f, 5, 1, true);
                     Scatter(at, size * 1.1f, p, InkToken.Shard, Glass, 7, .14f, seed, .35f, Water, InkToken.Star);
                     Rays(at, size * .45f, p, Glass, 6, seed, .04f, size * .3f);
+                    break;
+                case Moment.Splat:
+                    // a scoop lands: a low creamy splash, drips and a bubble or two flung out
+                    Glow(at, size * 1.6f, Candy.Glow, .22f * (1 - p));
+                    Cloud(at, size * .42f, p, Candy, seed, .05f, 5, 1, true);
+                    Scatter(at, size * .95f, p, InkToken.Drop, Candy, 7, .13f, seed, .45f, Cream, InkToken.Bubble);
+                    break;
+                case Moment.Feathers:
+                    // the cuckoo strikes: a puff of dust, comic strike lines and feathers drifting down
+                    Cloud(at, size * .32f, p, Dust, seed, .1f, 4, 1, true);
+                    Rays(at, size * .4f, p, Leather, 5, seed, .045f, size * .3f);
+                    Scatter(at, size * 1.1f, p, InkToken.Leaf, Leather, 6, .15f, seed, .2f, Cream, InkToken.Petal);
+                    break;
+                case Moment.Sprinkle:
+                    // a watering can's arc: a brush sweep of water ahead and drops raining down along it
+                    Sweep(at, dir, size * .75f, p, Water, .08f, 38);
+                    Scatter(at + dir * size * .45f, size * .8f, p, InkToken.Drop, Water, 8, .11f, seed, .6f, Glass, InkToken.Bubble, 80, face);
+                    break;
+                case Moment.SnowPuff:
+                    // a clump of snow bursts: a soft powdery cloud on the floor and flakes thrown out
+                    Glow(at, size * 1.8f, Water.Glow, .2f * (1 - p));
+                    Cloud(at, size * .5f, p, Cotton, seed, .12f, 6, 1, true);
+                    Scatter(at, size, p, InkToken.Star, Water, 6, .13f, seed, .4f, Cotton, InkToken.Puff);
+                    break;
+                case Moment.Scald:
+                    // the teapot bursts: a billow of steam, hot droplets and strike lines
+                    Glow(at, size * 2f, Amber.Glow, .25f * (1 - p));
+                    Cloud(at + Vector2.up * size * .15f, size * .55f, p, Cream, seed, .5f, 6);
+                    Scatter(at, size * 1.1f, p, InkToken.Drop, Amber, 7, .12f, seed, .3f, Water, InkToken.Puff);
+                    Rays(at, size * .45f, p, Amber, 6, seed, .04f, size * .3f);
+                    break;
+                case Moment.Spout:
+                {
+                    // a column of water rises on the spot and falls back as drops round it
+                    float rise = still ? .7f : OutCubic(Mathf.Min(1, p / .35f));
+                    Glow(at + Vector2.up * size * .6f, size * 1.6f, Water.Glow, .25f * (1 - p));
+                    air.Stroke(InkCanvas.Line(at, at + Vector2.up * size * 1.4f * rise, .07f, 3, false, seed), Brush(Water, size * .35f, fade, 1, still ? 0 : InQuad(Mathf.Clamp01((p - .45f) / .55f)), .8f));
+                    Cloud(at + Vector2.up * size * 1.3f * rise, size * .35f, p, Water, seed, .1f, 4, 1);
+                    if (p > .25f) Scatter(at + Vector2.up * size * 1.1f, size * .9f, (p - .25f) / .75f, InkToken.Drop, Water, 8, .12f, seed, 1.4f, Glass, InkToken.Bubble);
+                    break;
+                }
+                case Moment.FrostGust:
+                    // a cold whistle ahead: two frosted brush sweeps and snowflakes blown along them
+                    Sweep(at, dir, size * .55f, p, Glass, .09f, 28);
+                    Sweep(at, dir, size * .85f, p, Water, .06f, 22, 0, 1, .1f);
+                    Scatter(at + dir * size * .5f, size * .7f, p, InkToken.Star, Glass, 7, .12f, seed, .1f, Water, InkToken.Shard, 50, face);
+                    break;
+                case Moment.PinClack:
+                    // a juggling pin lands: a clack of strike lines and a few circus stars
+                    Rays(at, size * .3f, p, Gold, 5, seed, .04f, size * .28f);
+                    Scatter(at, size * .8f, p, InkToken.Star, Gold, 4, .12f, seed, .3f, Wine, InkToken.Spark);
                     break;
                 case Moment.AcornPop:
                     // an acorn pops: a little cloud of husk dust, its cap and chips flying

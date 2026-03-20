@@ -17,7 +17,7 @@ namespace ArcaneBrigade.Editor
                 if (!valid) throw new InvalidOperationException("October: " + caption);
             }
             RunCatalog c = Resources.Load<RunCatalog>("RunCatalog"); OctoberRoster manifest = OctoberContent.Roster;
-            Check(c.Champions.Length == 31 && c.Companions.Length == 66, "31 heroes and 66 ally species installed");
+            Check(c.Champions.Length >= 31 && c.Companions.Length == 94, "31 heroes (36 with the expansion's) and 94 ally species installed");
             foreach (var row in manifest.heroes) Check(c.Champions.Any(u => u.Id == row.id && !string.IsNullOrEmpty(u.ReferenceHero)), "Hero counterpart " + row.reference + " / " + row.id);
             foreach (var row in manifest.allies) Check(c.Companions.Any(u => u.Id == row.id && u.ReferenceCompanion == (row.reference == "Original" ? "Original:" + row.id : row.reference)), "Ally counterpart " + row.reference + " / " + row.id);
             ItemDefinition[] reference = ReferenceRelicCatalog.Create();

@@ -93,7 +93,7 @@ namespace ArcaneBrigade.Editor
                 Check(s.OfferPrismGift() && s.State.OutsideStage == OutsideStageStatus.Reward && s.State.PrismShards == 0 && s.State.OutsideRewards.Count == 3 && s.State.OutsideRewards.Distinct().Count() == 3, "Three shards open three rainbow choices");
                 s.Validate(s.State);
                 Check(!s.OutsideChallengeAvailable && s.ClaimOutsideStageReward(0) && s.State.OutsideStage == OutsideStageStatus.Unseen && s.OutsideChallengeAvailable, "Taking the gift leaves the Keeper's hand where it was");
-                string first = s.State.Items.Select(i => i.Id).Concat(s.State.Roster.Select(r => r.UnitId)).First(id => id.StartsWith("Rainbow"));
+                string first = s.State.Items.Select(i => i.Id).Concat(s.State.Roster.Select(r => r.UnitId)).First(id => (c.Item(id)?.Rarity ?? c.Unit(id)?.Rarity) == ItemRarity.Rainbow); // Prismatic gifts (their ids no longer all start with "Rainbow")
                 s.State.PrismShards = 3; Check(s.OfferPrismGift() && !s.State.OutsideRewards.Contains(first), "A second gift never offers what you already own");
                 s.State.OutsideRewards.Clear(); s.State.OutsideStage = OutsideStageStatus.Unseen; s.State.OutsideBeforeGift = -1;
                 s.State.ActOne ??= new ActOneProgress(); s.State.ActOne.PendingRelight = 1;

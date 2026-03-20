@@ -84,6 +84,7 @@ namespace ArcaneBrigade
                     ArsenalWeapon.BareKnuckles or ArsenalWeapon.StarKnuckle => (ArsenalInk.Moment.FistJab, 0, 0.75f, 0.22f),
                     ArsenalWeapon.TopiaryShears => (ArsenalInk.Moment.Snip, 0, 1.5f, 0.24f),
                     ArsenalWeapon.GlitchToybox => (ArsenalInk.Moment.Glitch, 0.5f, 0.5f, 0.3f),
+                    ArsenalWeapon.WateringCan => (ArsenalInk.Moment.Sprinkle, 0.25f, 1.6f, 0.45f),
                     _ => ((ArsenalInk.Moment)(-1), 0, 0, 0)
                 };
                 if ((int)cue.m >= 0) Add(cue.m, value.Position + dir * cue.ahead, dir, time, cue.life, cue.size);
@@ -94,6 +95,7 @@ namespace ArcaneBrigade
                 if (w == ArsenalWeapon.CatcherMitt) Add(ArsenalInk.Moment.MittCatch, value.Position, dir, time, 0.3f, 0.5f);
                 else if (w == ArsenalWeapon.BuzzerBlock) Add(ArsenalInk.Moment.Zap, value.Position, dir, time, 0.4f, 0.9f);
                 else if (w == ArsenalWeapon.StarforgeClaymore) Add(ArsenalInk.Moment.Spark, value.Position, dir, time, 0.25f, 0.4f);
+                else if (w == ArsenalWeapon.SunLens) Add(ArsenalInk.Moment.FirecrackerBlast, value.Position, dir, time, 0.4f, 0.55f);
                 return;
             }
             if (value.Kind != CombatEventKind.Detonation) return;
@@ -106,6 +108,9 @@ namespace ArcaneBrigade
                 ArsenalWeapon.BalloonBuddy => ArsenalInk.Moment.BalloonPop, ArsenalWeapon.ConfettiBlunderbuss => ArsenalInk.Moment.Confetti,
                 ArsenalWeapon.HearthBrick => ArsenalInk.Moment.BrickDust, ArsenalWeapon.VerdictGavel => ArsenalInk.Moment.GavelStamp,
                 ArsenalWeapon.TalismanIngot => ArsenalInk.Moment.IngotBlast, ArsenalWeapon.BareKnuckles => ArsenalInk.Moment.KnucklePop,
+                ArsenalWeapon.ScoopLauncher => ArsenalInk.Moment.Splat, ArsenalWeapon.CuckooCannon => ArsenalInk.Moment.Feathers,
+                ArsenalWeapon.SnowShovel => ArsenalInk.Moment.SnowPuff, ArsenalWeapon.KiteSpool => ArsenalInk.Moment.PaperScraps,
+                ArsenalWeapon.JugglingPins => ArsenalInk.Moment.PinClack,
                 _ => ArsenalInk.Moment.Burst
             };
             Flash f = Add(burst, value.Position, dir, time, burst == ArsenalInk.Moment.GavelStamp ? 0.7f : 0.55f, Mathf.Max(0.6f, value.Value));
@@ -332,7 +337,7 @@ namespace ArcaneBrigade
                     string art = w switch
                     {
                         ArsenalWeapon.PopperSticks => "PopperStick", ArsenalWeapon.PaperLanternBomb => "LanternBombShot", ArsenalWeapon.SnowGlobeGrenade => "SnowGlobeShot",
-                        ArsenalWeapon.PinataBomb => p.Stage == 1 ? "CandyBomblet" : "PinataShot", ArsenalWeapon.AcornCluster => "AcornBomb", _ => null
+                        ArsenalWeapon.PinataBomb => p.Stage == 1 ? "CandyBomblet" : "PinataShot", ArsenalWeapon.AcornCluster => "AcornBomb", ArsenalWeapon.SnowShovel => "SnowClump", _ => null
                     };
                     Sprite look = art != null ? ArsenalArtwork.Frame(art, 0) : null;
                     if (look == null && p.Weapon != null) look = ArsenalArtwork.Frame("Shot_" + p.Weapon.Id, 0) ?? Held(p.Weapon.Id);
@@ -367,6 +372,165 @@ namespace ArcaneBrigade
                     Draw(ArsenalArtwork.Frame("BuzzerFloor", 0), at, 0.4f, 0, Order(at));
                     break;
                 }
+                case ArsenalPropKind.Kite:
+                {
+                    if (p.Resolved) break;
+                    // high on its string, swaying; in its last moment it dives to the floor
+                    float dive = Mathf.InverseLerp(p.FuseAt - 0.3f, p.FuseAt, now);
+                    Vector2 air = at + Vector2.up * (0.95f * (1 - dive) + (still ? 0 : Mathf.Sin(now * 5 + p.Order) * 0.06f));
+                    if (p.Source != null) ink.Cord(p.Source.Position + Vector2.up * 0.25f, air, ArsenalInk.Cream, 0.025f, true, 0.9f);
+                    ShadowAt(at + Vector2.down * 0.1f, 0.32f);
+                    Draw(ArsenalArtwork.Frame("KiteShot", 0), air, 0.55f, still ? 0 : Mathf.Sin(now * 4 + p.Order) * 14 - 80 * dive, Order(air) + 20);
+                    break;
+                }
+                case ArsenalPropKind.Scoop:
+                {
+                    InkPalette flavour = p.Stage == 0 ? ArsenalInk.Amber : p.Stage == 1 ? ArsenalInk.Cyan : ArsenalInk.Cream;
+                    Sprite scoop = ArsenalArtwork.Frame("Scoop", p.Stage / 3f + 0.01f) ?? ArsenalArtwork.Frame("Scoop", 0);
+                    if (now < p.LandAt)
+                    {
+                        float t = Mathf.InverseLerp(p.Born, p.LandAt, now); Vector2 air = Arc(p.Start, at, t, 1f);
+                        ShadowAt(Vector2.Lerp(p.Start, at, t) + Vector2.down * 0.1f, 0.3f * (0.5f + 0.5f * t));
+                        Draw(scoop, air, 0.36f, still ? 0 : t * 360, Order(air));
+                        break;
+                    }
+                    // landed: a melting puddle in its flavour, the scoop sinking into it
+                    float life = Mathf.InverseLerp(p.LandAt, p.Until, now);
+                    ink.Pool(at, 0.7f * (still ? 1 : 0.8f + 0.2f * Mathf.Clamp01(life * 6)), Mathf.Clamp01((1 - life) * 3), flavour, p.Born * 50, 0.85f);
+                    Draw(scoop, at + Vector2.up * 0.05f, 0.34f * (1 - 0.6f * life), 0, Order(at), new Color(1, 1, 1, Mathf.Clamp01((1 - life) * 2)), still ? 1 : 1 - 0.35f * life);
+                    break;
+                }
+                case ArsenalPropKind.Cuckoo:
+                {
+                    // the cuckoo bursts out above the cannon and dives on its enemy
+                    float t = Mathf.InverseLerp(p.Born, p.LandAt, now);
+                    Vector2 air = Vector2.Lerp(p.Start, at, t * t) + Vector2.up * 0.6f * Mathf.Sin(Mathf.PI * t) * (1 - t);
+                    ShadowAt(Vector2.Lerp(p.Source != null ? p.Source.Position : at, at, t) + Vector2.down * 0.1f, 0.26f);
+                    Draw(ArsenalArtwork.Frame("CuckooBird", 0), air, 0.46f, still ? 0 : -35 * t, Order(air) + 10);
+                    break;
+                }
+                case ArsenalPropKind.Pin:
+                {
+                    float t = Mathf.InverseLerp(p.Born, p.LandAt, now); Vector2 air = Arc(p.Start, at, t, 1.4f);
+                    ShadowAt(Vector2.Lerp(p.Start, at, t) + Vector2.down * 0.1f, 0.3f * (0.5f + 0.5f * t));
+                    Draw(Held("JugglingPins"), air, 0.42f, still ? 0 : t * 720, Order(air) + 4);
+                    break;
+                }
+                case ArsenalPropKind.Buoy:
+                {
+                    // the harpoon stands where it stopped, a sonar ripple spreading on the floor round it
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now), fadeOut = Mathf.Clamp01((1 - life) * 4);
+                    ink.Pool(at, 0.55f + (still ? 0 : 0.08f * Mathf.Sin(now * 3)), fadeOut * 0.6f, ArsenalInk.Water, p.Born * 40, 0.5f, 0.45f);
+                    ink.Wake(at, Vector2.right * 0.6f, ArsenalInk.Cyan, now, p.Born * 13, true);
+                    Draw(ArsenalArtwork.Frame("HarpoonShot", 0), at + Vector2.up * (0.3f + (still ? 0 : Mathf.Sin(now * 4) * 0.03f)), 0.48f, 75, Order(at), new Color(1, 1, 1, fadeOut));
+                    break;
+                }
+                case ArsenalPropKind.Dough:
+                {
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now);
+                    Vector2 along = p.Direction.sqrMagnitude > 0.001f ? p.Direction.normalized : Vector2.right;
+                    ink.FloorStroke(at - along * 0.2f, at + along * 0.2f, ArsenalInk.Dust, 0.32f, 1, 0, Mathf.Clamp01((1 - life) * 3) * 0.9f, 0.04f, p.Born * 7);
+                    break;
+                }
+                case ArsenalPropKind.Sun:
+                {
+                    // a beam from the lens focuses to a crawling sunspot that scorches the floor
+                    float flicker = still ? 1 : 0.85f + 0.15f * Mathf.Sin(now * 23 + p.Born);
+                    if (p.Source != null) ink.Stroke(p.Source.Position + Vector2.up * 0.3f, at + Vector2.up * 0.05f, ArsenalInk.Gold, 0.03f, 1, 0, 0.35f * flicker);
+                    ink.Pool(at, 0.32f, 0.5f, ArsenalInk.Amber, p.Born * 30, 0.55f, 0.5f);
+                    ink.Light(at, 0.6f * flicker, ArsenalInk.Gold.Glow, 0.45f);
+                    ink.TokenAt(InkToken.Star, ArsenalInk.Gold, at + Vector2.up * 0.05f, 0.2f * flicker, still ? 0 : now * 140, 0.9f);
+                    break;
+                }
+                case ArsenalPropKind.Top:
+                {
+                    if (now < p.LandAt) { float t = Mathf.InverseLerp(p.Born, p.LandAt, now); Draw(ArsenalArtwork.Frame("SpinTop", 0), Arc(p.Start, at, t, 0.5f), 0.42f, 0, Order(at)); break; }
+                    float life = Mathf.InverseLerp(p.LandAt, p.Until, now);
+                    ink.Spiral(at, 0.6f, life, now, p.Born * 40);
+                    ShadowAt(at + Vector2.down * 0.08f, 0.34f);
+                    Draw(ArsenalArtwork.Frame("SpinTop", 0), at + Vector2.up * 0.2f, 0.44f, still ? 0 : Mathf.Sin(now * 30) * 6, Order(at), null, still ? 1 : 1 + 0.06f * Mathf.Sin(now * 40));
+                    break;
+                }
+                // ---- the new friends' own skills (CompanionSkillsNew)
+                case ArsenalPropKind.Teapot:
+                {
+                    Sprite pot = ArsenalArtwork.Frame("TeaDragon_Teapot", 0);
+                    if (p.Stage == 0)
+                    {
+                        // set down ahead, then rattling and puffing louder as the whistle builds
+                        float t = Mathf.InverseLerp(p.Born, p.LandAt, now), build = Mathf.InverseLerp(p.LandAt, p.FuseAt, now);
+                        Vector2 spot = now < p.LandAt ? Arc(p.Start, at, t, 0.6f) : at;
+                        float rattle = still ? 0 : Mathf.Sin(now * (20 + 40 * build)) * 6 * build;
+                        ShadowAt(at + Vector2.down * 0.1f, 0.4f);
+                        Draw(pot, spot + Vector2.up * 0.2f, 0.55f, rattle, Order(at));
+                        if (!still && now >= p.LandAt) for (int i = 0; i < 2; i++) ink.TokenAt(InkToken.Puff, ArsenalInk.Cream, spot + new Vector2(0.22f, 0.45f + 0.25f * Mathf.Repeat(now * 1.5f + i * 0.5f, 1)), 0.14f + 0.1f * build, now * 40 + i * 90, 0.8f * (1 - Mathf.Repeat(now * 1.5f + i * 0.5f, 1)));
+                    }
+                    else ink.Draw(ArsenalInk.Moment.Scald, at, Vector2.up, Mathf.InverseLerp(p.FuseAt, p.Until, now), 1.1f, p.Born * 17);
+                    break;
+                }
+                case ArsenalPropKind.Spout:
+                    ink.Draw(ArsenalInk.Moment.Spout, at, Vector2.up, Mathf.InverseLerp(p.Born, p.Until, now), 0.9f, p.Born * 23);
+                    break;
+                case ArsenalPropKind.Taunt:
+                {
+                    // the ringmaster spins a striped ball on its nose; a ring of circus stars draws the eye
+                    if (p.Source == null) break;
+                    Vector2 nose = p.Source.Position + new Vector2(0.15f, 0.95f);
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now), fadeOut = Mathf.Clamp01((1 - life) * 4);
+                    ink.TokenAt(InkToken.Button, ArsenalInk.Candy, nose + Vector2.up * (still ? 0 : Mathf.Abs(Mathf.Sin(now * 9)) * 0.08f), 0.24f, still ? 0 : now * 720, fadeOut);
+                    ink.Orbit(nose, 0.32f, now, InkToken.Star, ArsenalInk.Gold, 4, fadeOut * 0.85f);
+                    break;
+                }
+                case ArsenalPropKind.Wind:
+                {
+                    // a cutting band of wind across the field: a pale floor wash and fast air strokes along it
+                    float t = Mathf.InverseLerp(p.Born, p.Until, now), alpha = Mathf.Clamp01((1 - t) * 2.5f);
+                    Vector2 side = new Vector2(-p.Direction.y, p.Direction.x);
+                    ink.FloorStroke(p.Start, at, ArsenalInk.Glass, 0.45f, still ? 1 : Mathf.Clamp01(t * 4), still ? 0 : Mathf.Clamp01((t - 0.4f) / 0.6f), alpha * 0.55f, 0.06f, p.Born * 9);
+                    for (int i = -1; i <= 1; i++) ink.Stroke(p.Start + side * (0.2f * i), at + side * (0.2f * i), ArsenalInk.Cream, 0.03f, still ? 1 : Mathf.Clamp01(t * 5 - i * 0.2f), still ? 0 : Mathf.Clamp01((t - 0.3f) / 0.7f), alpha, 0.12f, p.Born * 5 + i);
+                    break;
+                }
+                case ArsenalPropKind.Cream:
+                {
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now), fadeOut = Mathf.Clamp01((1 - life) * 3);
+                    ink.Pool(at, 0.6f * (still ? 1 : 0.75f + 0.25f * Mathf.Clamp01(life * 8)), fadeOut, ArsenalInk.Candy, p.Born * 50, 0.8f);
+                    ink.Bubbles(at, 0.5f, now, ArsenalInk.Cotton, 3, p.Born, fadeOut);
+                    break;
+                }
+                case ArsenalPropKind.Carousel:
+                {
+                    // a ring on the floor and four wooden horses galloping round it, rising and falling on their poles
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now), alpha = Mathf.Clamp01(life * 6) * Mathf.Clamp01((1 - life) * 6);
+                    var ring = new List<Vector2>();
+                    for (int k = 0; k <= 32; k++) { float a = k * Mathf.PI * 2 / 32; ring.Add(p.Start + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * 0.7f) * p.Radius); }
+                    ink.Ribbon(ring, ArsenalInk.Gold, 0.05f, 1, 0, alpha * 0.8f, false);
+                    float spin = (now - p.Born) * 2f;
+                    for (int k = 0; k < 4; k++)
+                    {
+                        float a = spin + k * Mathf.PI / 2;
+                        Vector2 horse = p.Start + new Vector2(Mathf.Cos(a), Mathf.Sin(a) * 0.7f) * p.Radius;
+                        float bob = still ? 0 : Mathf.Sin(now * 6 + k) * 0.08f;
+                        ShadowAt(horse + Vector2.down * 0.1f, 0.3f);
+                        Draw(ArsenalArtwork.Frame("LostCarousel_Horse", 0), horse + Vector2.up * (0.32f + bob), 0.55f, 0, Order(horse), new Color(1, 1, 1, alpha));
+                    }
+                    break;
+                }
+                case ArsenalPropKind.Hedge:
+                {
+                    // the hedge bursts up out of the floor, stands, then sinks back
+                    float life = Mathf.InverseLerp(p.Born, p.Until, now), grow = still ? 1 : Mathf.Clamp01(life * 8), sink = Mathf.Clamp01((life - 0.85f) / 0.15f);
+                    ShadowAt(at + Vector2.down * 0.05f, 1.3f);
+                    Draw(ArsenalArtwork.Frame("FirstSeed_Hedge", 0), at + Vector2.up * 0.28f * grow, 1.7f, 0, Order(at), new Color(1, 1, 1, 1 - sink), Mathf.Max(0.2f, grow - 0.5f * sink));
+                    if (life < 0.15f) ink.Draw(ArsenalInk.Moment.AcornPop, at, Vector2.up, life / 0.15f, 0.9f, p.Born * 11);
+                    break;
+                }
+                case ArsenalPropKind.Tower:
+                    ShadowAt(at + Vector2.down * 0.08f, 0.5f);
+                    Draw(ArsenalArtwork.Frame("PaperInventor_Tower", 0), at + Vector2.up * 0.45f, 0.8f, still ? 0 : Mathf.Sin(now * 2 + p.Born) * 2, Order(at));
+                    break;
+                case ArsenalPropKind.Gust:
+                    ink.Draw(ArsenalInk.Moment.FrostGust, at, p.Direction, Mathf.InverseLerp(p.Born, p.Until, now), 3f, p.Born * 13);
+                    break;
                 case ArsenalPropKind.Plunge:
                     if (p.Source != null) ink.Cord(p.Source.Position, at, ArsenalInk.Wine, 0.06f, false);
                     Draw(ArsenalArtwork.Frame("PlungerCup", 0), at, 0.32f, 0, Order(at) + 2);

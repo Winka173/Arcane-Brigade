@@ -54,7 +54,7 @@ PASS First-canon save migrates and opens only the current beat
 PASS A choice cannot be stored on a beat that has none
 PASS A future choice cannot be forged
 PASS The telephone choice survives a real save
-PASS All sixty-six origins and six three-part companion arcs
+PASS Every companion's origin and six three-part companion arcs
 PASS Individual dream arrival LanternKnight
 PASS Individual dream arrival Postmaster
 PASS Individual dream arrival DrowsySeer
@@ -218,6 +218,62 @@ PASS Individual life and intent RibbonOtter
 PASS Origin reaches actual companion description RibbonOtter
 PASS Individual life and intent SpindleWren
 PASS Origin reaches actual companion description SpindleWren
+PASS Individual life and intent BakerMouse
+PASS Origin reaches actual companion description BakerMouse
+PASS Individual life and intent TeaDragon
+PASS Origin reaches actual companion description TeaDragon
+PASS Individual life and intent SundaeGolem
+PASS Origin reaches actual companion description SundaeGolem
+PASS Individual life and intent LensOwl
+PASS Origin reaches actual companion description LensOwl
+PASS Individual life and intent EndlessIndex
+PASS Origin reaches actual companion description EndlessIndex
+PASS Individual life and intent LampGoat
+PASS Origin reaches actual companion description LampGoat
+PASS Individual life and intent TopBeetle
+PASS Origin reaches actual companion description TopBeetle
+PASS Individual life and intent ShovelPenguin
+PASS Origin reaches actual companion description ShovelPenguin
+PASS Individual life and intent BobaTadpole
+PASS Origin reaches actual companion description BobaTadpole
+PASS Individual life and intent RainHeron
+PASS Origin reaches actual companion description RainHeron
+PASS Individual life and intent WateringSnail
+PASS Origin reaches actual companion description WateringSnail
+PASS Individual life and intent YoyoSquirrel
+PASS Origin reaches actual companion description YoyoSquirrel
+PASS Individual life and intent FirstSeed
+PASS Origin reaches actual companion description FirstSeed
+PASS Individual life and intent PaperPlanePigeon
+PASS Origin reaches actual companion description PaperPlanePigeon
+PASS Individual life and intent RaincoatFrog
+PASS Origin reaches actual companion description RaincoatFrog
+PASS Individual life and intent LighthouseWhale
+PASS Origin reaches actual companion description LighthouseWhale
+PASS Individual life and intent KiteDragon
+PASS Origin reaches actual companion description KiteDragon
+PASS Individual life and intent JackInTheBox
+PASS Origin reaches actual companion description JackInTheBox
+PASS Individual life and intent LostCarousel
+PASS Origin reaches actual companion description LostCarousel
+PASS Individual life and intent StaticFerret
+PASS Origin reaches actual companion description StaticFerret
+PASS Individual life and intent StormKitten
+PASS Origin reaches actual companion description StormKitten
+PASS Individual life and intent VoltEel
+PASS Origin reaches actual companion description VoltEel
+PASS Individual life and intent ShantySeaLion
+PASS Origin reaches actual companion description ShantySeaLion
+PASS Individual life and intent BottleGull
+PASS Origin reaches actual companion description BottleGull
+PASS Individual life and intent PinnedBeetle
+PASS Origin reaches actual companion description PinnedBeetle
+PASS Individual life and intent FossilArmadillo
+PASS Origin reaches actual companion description FossilArmadillo
+PASS Individual life and intent SpecimenSlime
+PASS Origin reaches actual companion description SpecimenSlime
+PASS Individual life and intent CourtHerald
+PASS Origin reaches actual companion description CourtHerald
 PASS No shared fallback biographies
 PASS Story companion body exists TeapotPilgrim
 PASS Story companion body exists HoodWisp

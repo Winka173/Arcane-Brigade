@@ -668,6 +668,7 @@ namespace ArcaneBrigade
                 if (countsAsNewRecruit || countsAsNewSpecialRecruit) RegisterNewShopSpecies(countsAsNewSpecialRecruit);
                 RememberVariant(State.Roster[State.Roster.Count - 1]);
                 OctoberPurchase(catalog.Unit(offer.Id));
+                if (offer.Id == "BottleGull") State.OctoberDrinks++; // Bottle Gull counts as a drink
                 if (OctoberAbsorbs) { State.AbsorbedSkills.Add(offer.Id); State.Roster.Remove(recruited); KitAbsorbed(); }
                 MergeTriples(offer.Id);
                 TrackMergeDrought(false);

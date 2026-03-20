@@ -97,6 +97,12 @@ namespace ArcaneBrigade
                 Pattern = source.Faction == Faction.Enemy ? ShotPattern.None : ShotPatterns.For(weapon)
             };
             if (projectiles.Count < 4096) projectiles.Add(shot);
+            if (source.HeraldShot && source.Faction == Faction.Companion)
+            {
+                // Court Herald's fanfare: the first attack of the wave fires one more
+                source.HeraldShot = false;
+                ArsenalShot(source, from, ArsenalTurn(direction, 10), speed, range, damage, critical, cause.Child("herald-fanfare"), radius, pierce, weapon);
+            }
             return shot;
         }
         /// <summary>A thrown bomb: it flies on an arc to `at` (within the weapon's throw) over `flight` seconds, waits `fuse`,
@@ -134,7 +140,8 @@ namespace ArcaneBrigade
                     {
                         Vector2 at = ClampPosition(point + new Vector2(-aim.y, aim.x) * (i == 0 ? 0 : 0.6f), 0.3f);
                         ArsenalProp bomb = PlaceProp(ArsenalPropKind.Bomb, source, at, damage * 1.6f, 1.1f, critical, cause);
-                        bomb.LandAt = Elapsed + 0.45f; bomb.FuseAt = bomb.LandAt + 0.45f; // a short fuse: the enemy is still there when it bursts bomb.Until = bomb.FuseAt + 0.1f; bomb.Stage = tier;
+                        // a short fuse: the enemy is still there when it bursts
+                        bomb.LandAt = Elapsed + 0.45f; bomb.FuseAt = bomb.LandAt + 0.45f; bomb.Until = bomb.FuseAt + 0.1f; bomb.Stage = tier;
                     }
                     return true;
                 case ArsenalWeapon.PopperSticks:
@@ -440,6 +447,110 @@ namespace ArcaneBrigade
                     snip.Start = source.Position + (trimTo - source.Position).normalized * 0.2f; snip.FuseAt = Elapsed + 0.12f; snip.Until = snip.FuseAt + 0.05f;
                     return true;
                 }
+                // content expansion: the thirteen new weapons
+                case ArsenalWeapon.KiteSpool:
+                {
+                    // one kite at a time: a new attack steers the flying kite to the new point
+                    foreach (ArsenalProp q in arsenalProps) if (q.Source == source && q.Kind == ArsenalPropKind.Kite && !q.Resolved) { q.Start = ClampPosition(point, 0.3f); return true; }
+                    ArsenalProp kite = PlaceProp(ArsenalPropKind.Kite, source, ArsenalMuzzle(source), damage * 0.3f, 0.3f, critical, cause);
+                    kite.Start = ClampPosition(point, 0.3f); kite.FuseAt = Elapsed + 2.5f; kite.Until = kite.FuseAt + 0.3f; kite.Order = combatRandom.Next(6);
+                    return true;
+                }
+                case ArsenalWeapon.ScoopLauncher:
+                {
+                    // thrown where the enemy will be; three flavours take turns (ember, frost, cream), at most three puddles
+                    Vector2 lead = target != null ? target.Position + Vector2.ClampMagnitude(target.Velocity * 0.5f, 1f) : point;
+                    ArsenalProp scoop = PlaceProp(ArsenalPropKind.Scoop, source, ClampPosition(lead, 0.3f), damage, 0.7f, critical, cause);
+                    scoop.Start = ArsenalMuzzle(source); scoop.LandAt = Elapsed + 0.5f; scoop.Until = scoop.LandAt + 2f; scoop.Stage = source.ArsenalBeat % 3;
+                    DropOldest(source, ArsenalPropKind.Scoop, 3);
+                    return true;
+                }
+                case ArsenalWeapon.CuckooCannon:
+                {
+                    ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 9f, weapon.Range + 0.5f, damage, critical, cause, 0.13f);
+                    if (source.ArsenalBeat % 3 != 0 || OwnedProps(source, ArsenalPropKind.Cuckoo) > 0) return true;
+                    UnitState far = null; float best = -1;
+                    foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d <= Mathf.Pow(weapon.Range + 1, 2) && d > best) { best = d; far = u; } }
+                    if (far == null) return true;
+                    ArsenalProp bird = PlaceProp(ArsenalPropKind.Cuckoo, source, far.Position, damage * 1.8f, 0.55f, critical, cause.Child("cuckoo-dive"));
+                    bird.Start = source.Position + Vector2.up * 1.2f; bird.TargetId = far.Id; bird.LandAt = Elapsed + 0.6f; bird.Until = bird.LandAt + 0.05f;
+                    return true;
+                }
+                case ArsenalWeapon.JugglingPins:
+                {
+                    if (OwnedProps(source, ArsenalPropKind.Pin) >= 2) return true;
+                    // the next pin picks another enemy than the last one
+                    UnitState mark = null; float best = Mathf.Pow(weapon.Range + 0.5f, 2);
+                    foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && u.Id != source.ArsenalLastTarget && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; mark = u; } }
+                    mark ??= target; if (mark == null) return true;
+                    source.ArsenalLastTarget = mark.Id;
+                    ArsenalProp pin = PlaceProp(ArsenalPropKind.Pin, source, mark.Position, damage, 0.45f, critical, cause);
+                    pin.Start = ArsenalMuzzle(source); pin.TargetId = mark.Id; pin.LandAt = Elapsed + 0.7f; pin.Until = pin.LandAt + 0.05f;
+                    return true;
+                }
+                case ArsenalWeapon.SonarHarpoon:
+                    ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 10f, weapon.Range + 0.5f, damage, critical, cause, 0.12f, 1);
+                    return true;
+                case ArsenalWeapon.YoYo:
+                {
+                    Vector2 to = point - ArsenalMuzzle(source);
+                    ArsenalShot(source, ArsenalMuzzle(source), to, 9f, Mathf.Min(weapon.Range + 0.3f, to.magnitude + 0.3f), damage * 0.7f, critical, cause, 0.16f, 99);
+                    return true;
+                }
+                case ArsenalWeapon.RollingPin:
+                    ArsenalShot(source, ArsenalMuzzle(source), aim, 5f, weapon.Range, damage * 0.8f, critical, cause, 0.22f, 99).ArsenalTimer = Elapsed;
+                    return true;
+                case ArsenalWeapon.BobaStraw:
+                {
+                    ProjectileState pearl = ArsenalShot(source, ArsenalMuzzle(source), point - ArsenalMuzzle(source), 7f, weapon.Range + 0.5f, damage, critical, cause, 0.1f, 99);
+                    pearl.ArsenalTimer = Elapsed; pearl.ArsenalStage = source.ArsenalBeat % 5 == 0 ? 1 : 0;
+                    return true;
+                }
+                case ArsenalWeapon.PaperPlaneSquadron:
+                {
+                    int flying = 0; foreach (ProjectileState s in projectiles) if (s.SourceUnitId == source.Id && s.Arsenal == ArsenalWeapon.PaperPlaneSquadron) flying++;
+                    var picked = new List<UnitState>();
+                    for (int i = 0; i < 3 - flying; i++)
+                    {
+                        UnitState next = null; float best = Mathf.Pow(weapon.Range + 1, 2);
+                        foreach (UnitState u in units) { float d = (u.Position - source.Position).sqrMagnitude; if (CanHit(source.Faction, u) && !picked.Contains(u) && d < best && Vector2.Dot(u.Position - source.Position, aim) > 0) { best = d; next = u; } }
+                        if (next == null) break;
+                        picked.Add(next);
+                        ProjectileState plane = ArsenalShot(source, ArsenalMuzzle(source), ArsenalTurn(aim, -30 + 30 * i), 6f, weapon.Range + 2f, damage * 0.55f, critical, i == 0 ? cause : cause.Child("paper-plane-" + i), 0.12f);
+                        plane.OrbitTargetId = next.Id;
+                    }
+                    return true;
+                }
+                case ArsenalWeapon.WateringCan:
+                    // an arc of water ahead: it soaks what it waters (a soaked enemy hit by frost freezes)
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        UnitState u = units[i]; Vector2 delta = u.Position - source.Position;
+                        if (!CanHit(source.Faction, u) || delta.magnitude > weapon.Range + u.Definition.Radius || Vector2.Dot(delta.normalized, aim) < 0.4f) continue;
+                        ApplyWeaponDamage(u, damage * 0.8f, source.Faction, weapon.Element, weapon.Id, aim, weapon, critical, cause);
+                        if (u.Alive) u.KitWetUntil = Elapsed + 3;
+                    }
+                    return true;
+                case ArsenalWeapon.SnowShovel:
+                    Lob(source, point, weapon, damage * 1.2f, 0.8f, 0.45f, 0, critical, cause); return true;
+                case ArsenalWeapon.SunLens:
+                {
+                    ArsenalProp sun = null; foreach (ArsenalProp q in arsenalProps) if (q.Source == source && q.Kind == ArsenalPropKind.Sun) sun = q;
+                    if (sun == null)
+                    {
+                        if (target == null) return true;
+                        sun = PlaceProp(ArsenalPropKind.Sun, source, target.Position, damage * 0.3f, 0.35f, critical, cause);
+                    }
+                    sun.Until = Elapsed + 6f; if (target != null) sun.TargetId = target.Id;
+                    return true;
+                }
+                case ArsenalWeapon.SpinningTop:
+                {
+                    if (OwnedProps(source, ArsenalPropKind.Top) > 0) return true;
+                    ArsenalProp top = PlaceProp(ArsenalPropKind.Top, source, PlantAt(source, point, weapon), damage * 0.35f, 0.75f, critical, cause);
+                    top.Start = ArsenalMuzzle(source); top.LandAt = Elapsed + 0.3f; top.Until = top.LandAt + 2f;
+                    return true;
+                }
                 case ArsenalWeapon.BareKnuckles:
                     ArsenalSweep(source, weapon, aim, weapon.Range, 0.6f, damage, critical, cause);
                     // no weapon at all: a critical punch pops the air just ahead of the fist
@@ -571,6 +682,49 @@ namespace ArcaneBrigade
                     if (mark != null && mark.Alive) shot.Velocity = Vector2.Lerp(shot.Velocity, (mark.Position - shot.Position).normalized * 7.5f, Mathf.Clamp01(delta * 8));
                     return 0;
                 }
+                case ArsenalWeapon.SonarHarpoon:
+                    if (shot.ArsenalStage == 0 && shot.Remaining - delta <= 0 && source != null) PlaceBuoy(source, shot);
+                    return 0;
+                case ArsenalWeapon.YoYo:
+                {
+                    if (source == null) return -1;
+                    if (shot.ArsenalStage == 0 && shot.Remaining - delta <= 0) { shot.ArsenalStage = 1; shot.Victims.Clear(); shot.Remaining = 5; }
+                    if (shot.ArsenalStage == 1)
+                    {
+                        // yanked home along the string, striking again on the way
+                        Vector2 home = source.Position - shot.Position;
+                        if (home.magnitude < 0.35f) return -1;
+                        shot.Velocity = home.normalized * 10f;
+                    }
+                    return 0;
+                }
+                case ArsenalWeapon.RollingPin:
+                    if (source != null && Elapsed >= shot.ArsenalTimer)
+                    {
+                        // the pin leaves a sticky strip of dough behind it
+                        shot.ArsenalTimer = Elapsed + 0.18f;
+                        ArsenalProp dough = PlaceProp(ArsenalPropKind.Dough, source, shot.Position, 0, 0.35f, false, shot.Cause.Child("rolling-dough"));
+                        dough.Direction = shot.Velocity.normalized; dough.Until = Elapsed + 2f;
+                        DropOldest(source, ArsenalPropKind.Dough, 16);
+                    }
+                    return 0;
+                case ArsenalWeapon.BobaStraw:
+                    // the pearls sway in a wave around their line
+                    shot.Velocity = ArsenalTurn(shot.LaunchVelocity, Mathf.Cos((Elapsed - shot.ArsenalTimer) * 11f) * 30f); // centred on the aim line
+                    return 0;
+                case ArsenalWeapon.PaperPlaneSquadron:
+                {
+                    // each plane banks toward its own enemy; when it is gone, toward the nearest
+                    UnitState chased = UnitWithId(shot.OrbitTargetId);
+                    if ((chased == null || !chased.Alive) && source != null)
+                    {
+                        chased = null; float best = 9;
+                        foreach (UnitState u in units) { float d = (u.Position - shot.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; chased = u; } }
+                        shot.OrbitTargetId = chased != null ? chased.Id : 0;
+                    }
+                    if (chased != null) shot.Velocity = Vector2.Lerp(shot.Velocity, (chased.Position - shot.Position).normalized * 6f, Mathf.Clamp01(delta * 5));
+                    return 0;
+                }
                 case ArsenalWeapon.PlushShark:
                     if (shot.ArsenalStage == 0 && shot.Remaining - delta <= 0 && source != null) { shot.ArsenalStage = 1; shot.Remaining = 5; shot.Damage = 0; }
                     if (shot.ArsenalStage == 1 && source != null)
@@ -634,6 +788,18 @@ namespace ArcaneBrigade
                 case ArsenalWeapon.TalismanIngot:
                     ArsenalBurst(source, shot.Weapon, target.Position, 0.6f, shot.Damage, shot.Critical, shot.Cause.Child("ingot-blast"));
                     shot.Remaining = 0; return;
+                case ArsenalWeapon.SonarHarpoon:
+                    if (target.Alive) target.ProbedUntil = Mathf.Max(target.ProbedUntil, Elapsed + 3f);
+                    if (shot.Victims.Count >= 2) { PlaceBuoy(source, shot); shot.Remaining = 0; }
+                    return;
+                case ArsenalWeapon.RollingPin:
+                    if (target.Alive && !target.Definition.IsBoss) Sleep(target, 0.3f); // knocked flat for a moment
+                    return;
+                case ArsenalWeapon.BobaStraw:
+                    if (shot.ArsenalStage == 1 && target.Alive) { shot.ArsenalStage = 2; KitSlowEnemy(target, 1f, 1f); } // the sticky pearl holds it in place
+                    return;
+                case ArsenalWeapon.PaperPlaneSquadron:
+                    shot.Remaining = 0; return;
                 case ArsenalWeapon.PlungerPopper:
                 {
                     ArsenalProp plunge = PlaceProp(ArsenalPropKind.Plunge, source, target.Position, shot.Damage / 0.25f * 1.1f, 0, shot.Critical, shot.Cause.Child("plunger-pop"));
@@ -641,6 +807,15 @@ namespace ArcaneBrigade
                     shot.Remaining = 0; return;
                 }
             }
+        }
+        /// <summary>Sonar Harpoon: where the harpoon stops a buoy bobs for 4s; enemies passing it are probed (at most two buoys).</summary>
+        private void PlaceBuoy(UnitState source, ProjectileState shot)
+        {
+            if (shot.ArsenalStage != 0) return;
+            shot.ArsenalStage = 1;
+            ArsenalProp buoy = PlaceProp(ArsenalPropKind.Buoy, source, ClampPosition(shot.Position, 0.3f), 0, 0.9f, false, shot.Cause.Child("sonar-buoy"));
+            buoy.Until = Elapsed + 4f; buoy.Direction = shot.Velocity.normalized;
+            DropOldest(source, ArsenalPropKind.Buoy, 2);
         }
         private void PlantDrill(UnitState source, ProjectileState shot)
         {
@@ -854,7 +1029,7 @@ namespace ArcaneBrigade
                     {
                         if (Elapsed < p.FuseAt) break;
                         ArsenalWeapon kind = weapon.Arsenal;
-                        float chill = kind == ArsenalWeapon.SnowGlobeGrenade ? 1.5f : 0, push = kind == ArsenalWeapon.PaperLanternBomb ? 0.35f : kind == ArsenalWeapon.PopperSticks ? 0.25f : 0.1f;
+                        float chill = kind == ArsenalWeapon.SnowGlobeGrenade || kind == ArsenalWeapon.SnowShovel ? 1.5f : 0, push = kind == ArsenalWeapon.PaperLanternBomb ? 0.35f : kind == ArsenalWeapon.PopperSticks ? 0.25f : 0.1f;
                         ArsenalBurst(source, weapon, p.Position, p.Radius, p.Damage, p.Critical, p.Cause, push, chill);
                         if (kind == ArsenalWeapon.PinataBomb && p.Stage == 0)
                             for (int i = 0; i < 5; i++)
@@ -914,6 +1089,133 @@ namespace ArcaneBrigade
                         events.Add(new CombatEvent(CombatEventKind.Proc, p.Position, source.Faction, 0.4f, Vector2.up, weapon, cause: p.Cause));
                         arsenalProps.Remove(p); break;
                     }
+                    case ArsenalPropKind.Kite:
+                        // the kite loops round its point ahead; its string cuts what it crosses; at the end it dives
+                        if (Elapsed < p.FuseAt)
+                        {
+                            float angle = (Elapsed - p.Born) * 2.6f + p.Order;
+                            Vector2 loop = ClampPosition(p.Start + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.6f) * 0.9f, 0.3f);
+                            p.Position = Vector2.MoveTowards(p.Position, loop, 7f * delta);
+                            if (Elapsed >= p.NextTick)
+                            {
+                                p.NextTick = Elapsed + 0.3f;
+                                Vector2 from = source.Position + (p.Position - source.Position).normalized * 0.4f;
+                                ArsenalLine(source, weapon, from, p.Position, 0.08f, p.Damage, p.Critical, p.Cause.Child("kite-string"));
+                            }
+                            break;
+                        }
+                        if (!p.Resolved) { p.Resolved = true; ArsenalBurst(source, weapon, p.Position, 0.75f, p.Damage * 3.5f, p.Critical, p.Cause); }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
+                    case ArsenalPropKind.Scoop:
+                    {
+                        if (Elapsed < p.LandAt) break;
+                        DamageElement flavour = p.Stage == 0 ? DamageElement.Ember : p.Stage == 1 ? DamageElement.Frost : DamageElement.Physical;
+                        bool splat = !p.Resolved;
+                        if (splat || Elapsed >= p.NextTick)
+                        {
+                            p.Resolved = true; p.NextTick = Elapsed + 0.3f;
+                            foreach (UnitState u in units.ToArray())
+                            {
+                                if (!CanHit(source.Faction, u) || (u.Position - p.Position).sqrMagnitude > Mathf.Pow(p.Radius + u.Definition.Radius, 2)) continue;
+                                if (splat) ApplyWeaponDamage(u, p.Damage, source.Faction, flavour, weapon.Id, u.Position - p.Position, weapon, p.Critical, p.Cause);
+                                else ApplyDamage(u, p.Damage * 0.2f, source.Faction, weapon.Id, Vector2.zero, weapon, p.Critical, cause: p.Cause.Child("scoop-melt"));
+                                if (u.Alive && !u.Definition.IsBoss) u.ChillUntil = Mathf.Max(u.ChillUntil, Elapsed + 0.45f);
+                            }
+                            if (splat) { ArsenalBursts++; events.Add(new CombatEvent(CombatEventKind.Detonation, p.Position, source.Faction, p.Radius, p.Direction, weapon, p.Critical, cause: p.Cause)); }
+                        }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
+                    }
+                    case ArsenalPropKind.Cuckoo:
+                    {
+                        UnitState prey = UnitWithId(p.TargetId);
+                        if (prey != null && prey.Alive && Elapsed < p.LandAt) p.Position = prey.Position;
+                        if (Elapsed < p.LandAt) break;
+                        ArsenalBurst(source, weapon, p.Position, p.Radius + 0.1f, p.Damage, p.Critical, p.Cause);
+                        arsenalProps.Remove(p); break;
+                    }
+                    case ArsenalPropKind.Pin:
+                    {
+                        UnitState prey = UnitWithId(p.TargetId);
+                        if (prey != null && prey.Alive && Elapsed < p.LandAt) p.Position = prey.Position;
+                        if (p.Stage == 0 && Elapsed >= p.Born + 0.25f)
+                        {
+                            // on the way up the spinning pin clips what it passes
+                            p.Stage = 1;
+                            ArsenalLine(source, weapon, p.Start, Vector2.Lerp(p.Start, p.Position, 0.55f), 0.22f, p.Damage * 0.6f, p.Critical, p.Cause.Child("pin-rise"));
+                        }
+                        if (Elapsed < p.LandAt) break;
+                        ArsenalBurst(source, weapon, p.Position, p.Radius, p.Damage, p.Critical, p.Cause, loud: false);
+                        arsenalProps.Remove(p); break;
+                    }
+                    case ArsenalPropKind.Buoy:
+                        if (Elapsed >= p.NextTick)
+                        {
+                            p.NextTick = Elapsed + 0.25f;
+                            foreach (UnitState u in units)
+                                if (CanHit(source.Faction, u) && (u.Position - p.Position).sqrMagnitude <= Mathf.Pow(p.Radius + u.Definition.Radius, 2)) u.ProbedUntil = Mathf.Max(u.ProbedUntil, Elapsed + 3f);
+                        }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
+                    case ArsenalPropKind.Dough:
+                        if (Elapsed >= p.NextTick)
+                        {
+                            p.NextTick = Elapsed + 0.2f;
+                            foreach (UnitState u in units)
+                                if (CanHit(source.Faction, u) && !p.Victims.Contains(u.Id) && (u.Position - p.Position).sqrMagnitude <= Mathf.Pow(p.Radius + u.Definition.Radius, 2))
+                                { p.Victims.Add(u.Id); if (!u.Definition.IsBoss) Sleep(u, 0.5f); }
+                        }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
+                    case ArsenalPropKind.Sun:
+                    {
+                        // the sunspot crawls to its enemy, burning what it crosses; held 1.5s on one enemy it sets it alight
+                        UnitState prey = UnitWithId(p.TargetId);
+                        if (prey == null || !CanHit(source.Faction, prey))
+                        {
+                            prey = null; float best = 16;
+                            foreach (UnitState u in units) { float d = (u.Position - p.Position).sqrMagnitude; if (CanHit(source.Faction, u) && d < best) { best = d; prey = u; } }
+                            p.TargetId = prey != null ? prey.Id : 0;
+                        }
+                        if (prey != null) p.Position = Vector2.MoveTowards(p.Position, prey.Position, 2.5f * delta);
+                        if (Elapsed >= p.NextTick)
+                        {
+                            p.NextTick = Elapsed + 0.25f;
+                            foreach (UnitState u in units.ToArray())
+                                if (CanHit(source.Faction, u) && (u.Position - p.Position).sqrMagnitude <= Mathf.Pow(p.Radius + u.Definition.Radius, 2))
+                                    ApplyWeaponDamage(u, p.Damage, source.Faction, weapon.Element, weapon.Id, Vector2.zero, weapon, p.Critical, p.Cause);
+                        }
+                        if (prey != null && (prey.Position - p.Position).sqrMagnitude < 0.09f)
+                        {
+                            if (p.Order != prey.Id) { p.Order = prey.Id; p.At = Elapsed; }
+                            else if (Elapsed - p.At >= 1.5f && prey.Alive)
+                            {
+                                p.At = Elapsed; prey.BurnUntil = Mathf.Max(prey.BurnUntil, Elapsed + 4f); prey.BurnCause = p.Cause.Child("sun-ignite");
+                                ApplyWeaponDamage(prey, p.Damage * 3f, source.Faction, DamageElement.Ember, weapon.Id, Vector2.zero, weapon, p.Critical, p.Cause.Child("sun-ignite"));
+                                events.Add(new CombatEvent(CombatEventKind.Proc, prey.Position, source.Faction, 0.5f, Vector2.up, weapon, cause: p.Cause));
+                            }
+                        }
+                        if (Elapsed > p.Until || prey == null && Elapsed - p.Born > 1f) arsenalProps.Remove(p);
+                        break;
+                    }
+                    case ArsenalPropKind.Top:
+                        if (Elapsed < p.LandAt) break;
+                        if (Elapsed >= p.NextTick)
+                        {
+                            // the top spins where it stands, grinding and flinging the small ones outward
+                            p.NextTick = Elapsed + 0.25f;
+                            foreach (UnitState u in units.ToArray())
+                            {
+                                Vector2 off = u.Position - p.Position;
+                                if (!CanHit(source.Faction, u) || off.sqrMagnitude > Mathf.Pow(p.Radius + u.Definition.Radius, 2)) continue;
+                                ApplyWeaponDamage(u, p.Damage, source.Faction, weapon.Element, weapon.Id, off, weapon, p.Critical, p.Cause);
+                                if (u.Alive && !u.Definition.IsBoss && u.Definition.Radius <= 0.35f)
+                                { u.Position = ClampPosition(u.Position + (off.sqrMagnitude > 0.0001f ? off.normalized : Vector2.right) * OctoberBalance.Push(u.Definition, 0.35f), u.Definition.Radius); spatial.Move(u); }
+                            }
+                        }
+                        if (Elapsed > p.Until) arsenalProps.Remove(p);
+                        break;
                     case ArsenalPropKind.Plunge:
                     {
                         UnitState stuck = UnitWithId(p.TargetId);

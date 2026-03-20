@@ -14,7 +14,7 @@ namespace ArcaneBrigade
         private void ResetNewRelics()
         {
             relicCuckooAt = 12; relicUndertowAt = 8; relicFunhouseAt = 10; relicSundaeAt = relicShardAt = 0; relicMimicUntil = -1; relicMimicUsed = false;
-            relicChimeCrits = relicFrozenKills = 0; KilledSpecies.Clear();
+            relicChimeCrits = relicFrozenKills = 0; KilledSpecies.Clear(); newSkillsStarted = false;
             int polish = RelicCount(RelicMechanic.StarPolish);
             UnitState strongest = null;
             foreach (UnitState u in units)
@@ -38,7 +38,7 @@ namespace ArcaneBrigade
             Sleep(enemy, seconds);
             enemy.FrozenUntil = Mathf.Max(enemy.FrozenUntil, enemy.SleepUntil);
         }
-        private bool RelicMarked(UnitState u) => Marked(u) || u.ExposedUntil > Elapsed || u.AnchorUntil > Elapsed;
+        private bool RelicMarked(UnitState u) => Marked(u) || u.ExposedUntil > Elapsed || u.AnchorUntil > Elapsed || u.ProbedUntil > Elapsed;
         private float RelicLateFee => 1 + .25f * RelicCount(RelicMechanic.LateFee);
         private float RelicCycle(UnitState unit) => unit.FunhouseUntil > Elapsed ? 2 : 1;
         private float RelicPickupRadius => catalog.PickupRadius + (relicStanding ? 0 : .5f * RelicCount(RelicMechanic.CoinSash));
@@ -59,6 +59,16 @@ namespace ArcaneBrigade
         private void RelicEmitted(UnitState unit, int first)
         {
             if (unit.Faction != Faction.Companion || first >= projectiles.Count) return;
+            if (unit.HeraldShot)
+            {
+                // Court Herald's fanfare: one more shot beside the first of the wave
+                unit.HeraldShot = false; ProjectileState a = projectiles[first];
+                var b = new ProjectileState { Id = ++nextId, Faction = a.Faction, Position = a.Position, PreviousPosition = a.PreviousPosition, Velocity = (Vector2)(Quaternion.Euler(0, 0, 10) * a.Velocity),
+                    LaunchVelocity = (Vector2)(Quaternion.Euler(0, 0, 10) * a.LaunchVelocity), Damage = a.Damage, Remaining = a.Remaining, Color = a.Color, Element = a.Element, SourceName = a.SourceName,
+                    LaunchSegment = a.LaunchSegment, Sprite = a.Sprite, VisualWidth = a.VisualWidth, Radius = a.Radius, Critical = a.Critical, SourceUnitId = a.SourceUnitId,
+                    Cause = a.Cause.Child("herald-fanfare"), Weapon = a.Weapon, SplitCount = a.SplitCount, SplitOnImpact = a.SplitOnImpact, Pattern = a.Pattern };
+                if (projectiles.Count < 4096) projectiles.Add(b);
+            }
             int kite = RelicCount(RelicMechanic.KiteTailRibbon);
             for (int i = first; i < projectiles.Count; i++)
             {

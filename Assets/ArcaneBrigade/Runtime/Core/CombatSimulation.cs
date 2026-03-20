@@ -53,6 +53,10 @@ namespace ArcaneBrigade
         /// <summary>New items: frozen (Freeze), Cuckoo Pendulum's called crit, Wind Chime's piercing shots, Duelist's Ribbon count,
         /// Funhouse Mirror's warp.</summary>
         public float FrozenUntil, FunhouseUntil; public bool CuckooReady; public int ChimeShots, DuelHits;
+        /// <summary>Sonar-probed by a Sonar Harpoon or its buoy (Bell Diver's marks); Juggling Pins' last target.</summary>
+        public float ProbedUntil; public int ArsenalLastTarget;
+        /// <summary>The new friends: Ringmaster Jack's taunt, Sundae Golem's cream, the pin and fossil stun, Court Herald's fanfare.</summary>
+        public float TauntUntil, CreamTime, CreamSeen, PinReadyAt; public int TauntBy, SummonedBy; public bool HeraldShot;
         public bool CoilStruck;
         public float KitSlow;
         public bool KitStruck;
@@ -1066,9 +1070,11 @@ namespace ArcaneBrigade
         {
             if (!target.Alive) return;
             if (cause.RootId == 0) cause = NewCause(0);
+            bool soaked = target.Faction == Faction.Enemy && source != Faction.Enemy && element == DamageElement.Frost && target.KitWetUntil > Elapsed; // a soaked enemy hit by frost freezes
             bool reaction = target.Faction == Faction.Enemy && ((element == DamageElement.Ember && target.ChillUntil > Elapsed) || (element == DamageElement.Frost && target.BurnUntil > Elapsed));
             ApplyDamage(target, damage, source, sourceName, direction, weapon, critical, element, cause);
             if (target.Faction != Faction.Enemy || (!target.Alive && element != DamageElement.Arcane)) return;
+            if (soaked && target.Alive) { target.KitWetUntil = 0; Freeze(target, .6f); }
             if (reaction)
             {
                 target.BurnUntil = target.ChillUntil = 0f;

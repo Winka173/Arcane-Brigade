@@ -117,6 +117,34 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 299f5bc2f6c850648a87241f5badf623, type: 2}
   - {fileID: 11400000, guid: 782c4e051e743d44989b18b9512de792, type: 2}
   - {fileID: 11400000, guid: c9a12bc0a23b4524f9a140264bfb1061, type: 2}
+  - {fileID: 11400000, guid: 5677866ecf2687e488afa910d2e2ffd9, type: 2}
+  - {fileID: 11400000, guid: 4487ee910ef397e4899fb07fbbb21810, type: 2}
+  - {fileID: 11400000, guid: 4304df195b3ea9e4a8fc9285715a823b, type: 2}
+  - {fileID: 11400000, guid: accea9fdaff4e7b4a8bdcbcd36ef1c52, type: 2}
+  - {fileID: 11400000, guid: f8857968d2523eb448c2e9f8550cda3e, type: 2}
+  - {fileID: 11400000, guid: 9f2765a20eef04644be73d8ca0f18a2a, type: 2}
+  - {fileID: 11400000, guid: 483fa2cdd92639d41a96cb6609adad0f, type: 2}
+  - {fileID: 11400000, guid: 7d8d7ef0838976b4bbd1036f35e30b17, type: 2}
+  - {fileID: 11400000, guid: 5f31279aab275c145a8a300d2d926fd5, type: 2}
+  - {fileID: 11400000, guid: af60ce162fec00a4b9f0a36a5331e358, type: 2}
+  - {fileID: 11400000, guid: a848e4fa30f5fc943a2724ff27073a4b, type: 2}
+  - {fileID: 11400000, guid: 2183c9d11c75a6e4080b788686eefa1f, type: 2}
+  - {fileID: 11400000, guid: e3cfbedfa40d31a449c86ed6a94a8c8d, type: 2}
+  - {fileID: 11400000, guid: c50a1c321a8096f4098ac1f76fb483b5, type: 2}
+  - {fileID: 11400000, guid: e133f981d2a577b4291cd219d2f2a28e, type: 2}
+  - {fileID: 11400000, guid: 3b8d689910a75a94195004cfa34057b5, type: 2}
+  - {fileID: 11400000, guid: dac36ae7ad91b9148946565e1547fb08, type: 2}
+  - {fileID: 11400000, guid: 6054180dcf0cf984188ec67cbbca2d37, type: 2}
+  - {fileID: 11400000, guid: eec87decca55ee94a953b99896188f41, type: 2}
+  - {fileID: 11400000, guid: 9c391a0fa978fa94abed0c358850e66d, type: 2}
+  - {fileID: 11400000, guid: 70825be3dae9bb446a2020e146280f5b, type: 2}
+  - {fileID: 11400000, guid: 983b846cfcebbfe44a809c60113a81ae, type: 2}
+  - {fileID: 11400000, guid: f2be4089feceb344b9e8e75e1153d75c, type: 2}
+  - {fileID: 11400000, guid: e1abddfb25341864ca7bd09b13e14ab9, type: 2}
+  - {fileID: 11400000, guid: f9d4024d9d699f443ade206daae134d0, type: 2}
+  - {fileID: 11400000, guid: 98741ea4d93f9474c9681ec8a990e127, type: 2}
+  - {fileID: 11400000, guid: e7f13aa3f641a5244aec847ff24c89f1, type: 2}
+  - {fileID: 11400000, guid: b826ca200277f49498a5b108b997624e, type: 2}
   Weapons:
   - {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   - {fileID: 11400000, guid: 23706b44c147807488f1feb4ce08c9b1, type: 2}
@@ -222,6 +250,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e49518cf57ab504e950f5bca6d76c45, type: 2}
   - {fileID: 11400000, guid: cf064ecfc15c0ab49abc48188f557b6f, type: 2}
   - {fileID: 11400000, guid: b9fca70dd177fa744ba88bb804228a8a, type: 2}
+  - {fileID: 11400000, guid: c8e00062d6460614a8b91500c5c77096, type: 2}
+  - {fileID: 11400000, guid: 03d588634d2758943b243653942704d2, type: 2}
+  - {fileID: 11400000, guid: 090f13df3c13d43408c5238a72803f77, type: 2}
+  - {fileID: 11400000, guid: 19bffc21738982342b00cb3beeed02a9, type: 2}
+  - {fileID: 11400000, guid: af2231280b1e5a544946bb1bf280d5f8, type: 2}
+  - {fileID: 11400000, guid: cc77bd7305310c148846b1770824c525, type: 2}
+  - {fileID: 11400000, guid: 8d28dba5fd561794aa04d71e253b90a1, type: 2}
+  - {fileID: 11400000, guid: 1ba8db90310d36f45a7dc0a997c05a97, type: 2}
+  - {fileID: 11400000, guid: 5eb2479680421f44690771befc44a9d1, type: 2}
+  - {fileID: 11400000, guid: 551073b76ec5b224db7bbbc50ccb7a4c, type: 2}
+  - {fileID: 11400000, guid: bc9159edc29072e4599c931f0422594a, type: 2}
+  - {fileID: 11400000, guid: 7dd216bed8f97574893ee1f6654bc32d, type: 2}
+  - {fileID: 11400000, guid: 214cc9051e9acba4c8c03923575809b5, type: 2}
   Enemies:
   - {fileID: 11400000, guid: d8eea6049ab45ad4fb4154c5f613ea32, type: 2}
   - {fileID: 11400000, guid: 6429a3f0a2b461249ade0a1e03919f29, type: 2}
@@ -8572,6 +8613,168 @@ MonoBehaviour:
     ShopThemes:
     - oddity
     - tidal
+    - fam-team
+  - Id: MoonClockKey
+    Name: Moon Clock Key
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      active bond counts one more member.
+
+
+      Owned effective copies: 1. Stack
+      limit: 1. Values apply before combat limits.'
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 671fe295ad49e244fbe1b6c657c06338, type: 3}
+    UnlockWave: 2147483647
+    Modifiers: []
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 0
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 84
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - astral
+    - clock
+    - fam-team
+  - Id: MirrorOfTwins
+    Name: Mirror of Twins
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Your
+      strongest companion deals +60% damage and its shooting weapon fires one more
+      projectile.
+
+
+      Owned effective copies: 1. Stack limit: 1. Values apply
+      before combat limits.'
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 1f7e9897b6514c7469cb90140af932f5, type: 3}
+    UnlockWave: 2147483647
+    Modifiers: []
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 0
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 85
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - hearth
+    - oddity
+    - fam-team
+  - Id: StorybookEnding
+    Name: Storybook Ending
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Every
+      wave won adds a page to the story: the team gains one random stat for the rest
+      of the run.
+
+
+      Owned effective copies: 1. Stack limit: 1. Values apply
+      before combat limits.'
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: f76becdec3026804693f898e0da6101a, type: 3}
+    UnlockWave: 2147483647
+    Modifiers: []
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 0
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 86
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - orchard
+    - tidal
+    - fam-team
+  - Id: DreamLoom
+    Name: Dream Loom
+    Description: 'CURIO / PRISMATIC / UNIQUE
+
+
+      WHILE OWNED / per copy
+
+      No
+      direct stat modifier; effects are described below.
+
+
+      SPECIAL EFFECT
+
+      Common
+      items give double their stats.
+
+
+      Owned effective copies: 1. Stack limit:
+      1. Values apply before combat limits.'
+    Price: 200
+    Effect: 0
+    Value: 0
+    Icon: {fileID: 21300000, guid: 8eeb7710b8dcd2c4c8f25c085ae75bae, type: 3}
+    UnlockWave: 2147483647
+    Modifiers: []
+    Rarity: 5
+    Stacking: 1
+    MaximumStacks: 100000
+    ShopWeight: 0
+    Pools: 1
+    AltarCurrency: 1
+    AltarPrice: 2
+    SignatureRole: 0
+    Mechanic: 87
+    Category: 0
+    ReferenceName: 
+    ShopThemes:
+    - frost
+    - archive
     - fam-team
   Bonds:
   - Id: hearth

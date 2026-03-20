@@ -101,6 +101,7 @@ namespace ArcaneBrigade
             CombatCatalog.HeroApproach = h.Approach; CombatCatalog.HeroDiceFace = h.DiceFace;
             CombatCatalog.HeroFood = State.OctoberFood; CombatCatalog.HeroDrinks = State.OctoberDrinks; CombatCatalog.HeroWallet = State.Gold;
             CombatCatalog.HeroRelics = 0; foreach (ItemStack s in State.Items) CombatCatalog.HeroRelics += s.Count;
+            CombatCatalog.IndexPages = State.KilledSpecies?.Count ?? 0;
             CombatCatalog.HeroLeadUnit = h.LeadUnit; CombatCatalog.HeroLeadWeapon = h.LeadWeapon;
             CombatCatalog.HeroBondLevels = KitBondLevels();
             CombatCatalog.BondChainChance = Bonus(ItemEffect.ChainChance, ModifierScope.Companions);

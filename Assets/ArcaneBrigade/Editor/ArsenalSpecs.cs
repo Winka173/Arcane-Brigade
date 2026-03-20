@@ -78,6 +78,20 @@ namespace ArcaneBrigade.Editor
             S("FortuneGlobe", ArsenalWeapon.FortuneGlobe, P, WeaponMotion.Cast, DamageElement.Arcane, 10, 5.0f, 1.2f, 0.22f, "Three crystal motes wander out, growing larger and harder as they fly.", "GlobeMote"),
             S("TopiaryShears", ArsenalWeapon.TopiaryShears, M, WeaponMotion.Scissors, DamageElement.Physical, 10, 1.4f, 0.9f, 0.16f, "Two quick snips down a line ahead; every third trims the toughest enemy."),
             S("BareKnuckles", ArsenalWeapon.BareKnuckles, M, WeaponMotion.Thrust, DamageElement.Physical, 5, 0.95f, 0.38f, 0.06f, "No weapon at all: very fast punches; a critical punch pops the air ahead."),
+            // content expansion: thirteen new weapons (Docs/Content_Expansion_Proposal.md §5 with the v5 changes)
+            S("KiteSpool", ArsenalWeapon.KiteSpool, P, WeaponMotion.Cast, DamageElement.Physical, 11, 4.5f, 1.3f, 0.22f, "Flies a kite in loops ahead; its string cuts what it crosses, then it dives.", "KiteShot"),
+            S("ScoopLauncher", ArsenalWeapon.ScoopLauncher, P, WeaponMotion.Recoil, DamageElement.Frost, 11, 4.6f, 1.2f, 0.24f, "Lobs a scoop where the enemy is heading; the melting puddle slows. Flavours take turns: ember, frost, cream.", "Scoop_f0", "Scoop_f1", "Scoop_f2"),
+            S("CuckooCannon", ArsenalWeapon.CuckooCannon, P, WeaponMotion.Recoil, DamageElement.Physical, 12, 5.0f, 1.15f, 0.24f, "Fires a pendulum; every third shot a cuckoo dives on the farthest enemy.", "PendulumShot", "CuckooBird"),
+            S("JugglingPins", ArsenalWeapon.JugglingPins, P, WeaponMotion.Recoil, DamageElement.Physical, 10, 4.5f, 1.0f, 0.2f, "Tosses a pin that strikes on the way up and again as it falls; the next pin picks another enemy."),
+            S("SonarHarpoon", ArsenalWeapon.SonarHarpoon, P, WeaponMotion.Thrust, DamageElement.Frost, 12, 5.0f, 1.3f, 0.24f, "A harpoon pierces 2 enemies and leaves a sonar buoy; enemies it strikes or that pass the buoy are probed.", "HarpoonShot"),
+            S("YoYo", ArsenalWeapon.YoYo, P, WeaponMotion.Thrust, DamageElement.Physical, 10, 3.8f, 0.9f, 0.18f, "Flung at an enemy and yanked back: it strikes on the way out and on the way home.", "YoyoSpin"),
+            S("RollingPin", ArsenalWeapon.RollingPin, P, WeaponMotion.Thrust, DamageElement.Physical, 12, 4.2f, 1.2f, 0.26f, "Rolls straight ahead, knocking enemies flat, and leaves a sticky strip of dough that holds them 0.5s."),
+            S("BobaStraw", ArsenalWeapon.BobaStraw, P, WeaponMotion.Recoil, DamageElement.Physical, 4, 5.0f, 0.34f, 0.08f, "A swaying stream of pearls strikes everything along the wave; every fifth pearl sticks an enemy in place.", "BobaPearl"),
+            S("PaperPlaneSquadron", ArsenalWeapon.PaperPlaneSquadron, P, WeaponMotion.Cast, DamageElement.Physical, 9, 5.5f, 1.2f, 0.22f, "Three paper planes chase three different enemies.", "PaperPlane"),
+            S("WateringCan", ArsenalWeapon.WateringCan, P, WeaponMotion.Cast, DamageElement.Physical, 9, 4.2f, 1.0f, 0.2f, "Waters an arc ahead and soaks it; a soaked enemy hit by frost freezes."),
+            S("SnowShovel", ArsenalWeapon.SnowShovel, P, WeaponMotion.Recoil, DamageElement.Frost, 12, 4.0f, 1.15f, 0.26f, "Heaves a clump of snow ahead; where it lands enemies are slowed.", "SnowClump"),
+            S("SunLens", ArsenalWeapon.SunLens, P, WeaponMotion.Cast, DamageElement.Ember, 5, 5.0f, 0.9f, 0.18f, "Focuses a sunspot that crawls over enemies, burning; held 1.5s on one it sets it alight."),
+            S("SpinningTop", ArsenalWeapon.SpinningTop, P, WeaponMotion.Cast, DamageElement.Physical, 9, 4.0f, 1.4f, 0.24f, "Spins a top in place ahead for 2s, grinding and flinging small enemies outward.", "SpinTop"),
         };
     }
 }

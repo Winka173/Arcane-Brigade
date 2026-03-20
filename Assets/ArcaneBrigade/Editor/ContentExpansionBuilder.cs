@@ -134,6 +134,7 @@ namespace ArcaneBrigade.Editor
         {
             RunCatalog catalog = AssetDatabase.LoadAssetAtPath<RunCatalog>("Assets/ArcaneBrigade/Resources/RunCatalog.asset");
             Plan plan = Load();
+            ExpansionUnits.BuildCompanions(catalog, plan); // the new friends whose sheets are painted
             // companions: one theme + one minor bond, new rarity; Mythic companions come from the dream shop like the others
             foreach (CompanionRow row in plan.companionList)
             {

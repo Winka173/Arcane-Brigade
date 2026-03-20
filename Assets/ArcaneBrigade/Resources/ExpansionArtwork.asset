@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a8a08c40f8c0a46a62488ed74e9c49, type: 3}
+  m_Name: ExpansionArtwork
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.ExpansionArtwork
+  EclipseForms:
+  - {fileID: 11400000, guid: 1e19fecb6885e4a43964618bbe116d83, type: 2}
+  - {fileID: 11400000, guid: 9032b091c0cb43b448c2edde4ccc61fd, type: 2}
+  - {fileID: 11400000, guid: 2c5d56b4635c75a46b87db4e70a1149e, type: 2}
+  Sapling: {fileID: 11400000, guid: b32d2fc6824aa4d4a82b72d86df45676, type: 2}
+  MiniSlime: {fileID: 11400000, guid: 242b437aee98ea94eb38b707262e1ee5, type: 2}

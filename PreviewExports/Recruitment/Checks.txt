@@ -817,4 +817,4 @@ PASS Reduction starts at six companions
 PASS Crowd never suppresses owned-species offer slot 5
 PASS Crowd never suppresses owned-species offer slot 6
 PASS Crowd never suppresses owned-species offer slot 12
-PASS Seeded shop rolls reduce new species at 5/6/12 bodies: 267/166/12
+PASS Seeded shop rolls reduce new species at 5/6/12 bodies: 288/158/18

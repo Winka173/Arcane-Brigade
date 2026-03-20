@@ -103,6 +103,34 @@ PASS Companion CarouselPony
 PASS Companion TeacupCricket
 PASS Companion RibbonOtter
 PASS Companion SpindleWren
+PASS Companion BakerMouse
+PASS Companion TeaDragon
+PASS Companion SundaeGolem
+PASS Companion LensOwl
+PASS Companion EndlessIndex
+PASS Companion LampGoat
+PASS Companion TopBeetle
+PASS Companion ShovelPenguin
+PASS Companion BobaTadpole
+PASS Companion RainHeron
+PASS Companion WateringSnail
+PASS Companion YoyoSquirrel
+PASS Companion FirstSeed
+PASS Companion PaperPlanePigeon
+PASS Companion RaincoatFrog
+PASS Companion LighthouseWhale
+PASS Companion KiteDragon
+PASS Companion JackInTheBox
+PASS Companion LostCarousel
+PASS Companion StaticFerret
+PASS Companion StormKitten
+PASS Companion VoltEel
+PASS Companion ShantySeaLion
+PASS Companion BottleGull
+PASS Companion PinnedBeetle
+PASS Companion FossilArmadillo
+PASS Companion SpecimenSlime
+PASS Companion CourtHerald
 PASS Weapon KeyCleaver
 PASS Weapon TeapotPopgun
 PASS Weapon UmbrellaLance
@@ -207,6 +235,19 @@ PASS Weapon PinataBomb
 PASS Weapon AcornCluster
 PASS Weapon FortuneGlobe
 PASS Weapon TopiaryShears
+PASS Weapon KiteSpool
+PASS Weapon ScoopLauncher
+PASS Weapon CuckooCannon
+PASS Weapon JugglingPins
+PASS Weapon SonarHarpoon
+PASS Weapon YoYo
+PASS Weapon RollingPin
+PASS Weapon BobaStraw
+PASS Weapon PaperPlaneSquadron
+PASS Weapon WateringCan
+PASS Weapon SnowShovel
+PASS Weapon SunLens
+PASS Weapon SpinningTop
 PASS New run boundary
 PASS No shopping during combat
 PASS Exactly once settlement and shop

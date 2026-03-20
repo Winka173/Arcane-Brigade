@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b6d21849d15554d8f5a9df73ba1f09, type: 3}
+  m_Name: EclipseEgg_Melee
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
+  Id: EclipseEgg_Melee
+  DisplayName: Eclipse Egg
+  Body: {fileID: 702132367, guid: c427370c92bb2424899c0fd82bd1ecdd, type: 3}
+  AnimationFrames:
+  - {fileID: 702132367, guid: c427370c92bb2424899c0fd82bd1ecdd, type: 3}
+  - {fileID: -836111458, guid: c427370c92bb2424899c0fd82bd1ecdd, type: 3}
+  - {fileID: 2000642479, guid: c427370c92bb2424899c0fd82bd1ecdd, type: 3}
+  - {fileID: 1470304419, guid: c427370c92bb2424899c0fd82bd1ecdd, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: fd1505e7bb2093647b7ea64633a361dd, type: 2}
+  Weapon: {fileID: 11400000, guid: 47d13be737948024186abbb9e0e1e303, type: 2}
+  Health: 100
+  Speed: 4.2
+  Radius: 0.22
+  BodyHeight: 0.77
+  BodyScale: 1
+  KnockbackResistance: 0
+  SpecialRecruit: 1
+  Rarity: 5
+  RecruitThemeLocked: 0
+  ContactDamage: 4
+  ContactInterval: 0.8
+  CollisionDamage: 0
+  CollisionFrequency: 0.8
+  CriticalChance: 0.05
+  Tint: {r: 1, g: 1, b: 1, a: 1}
+  Tags:
+  - astral
+  - morning
+  Passive: 3
+  PassiveStrength: 0.5
+  Description: "COMPANION / CRIMSON / 1 STAR\r\nTALENT\nEach Princess talent grants
+    this ally +1 projectile, up to +3. Projectile count helps projectile weapons;
+    this does not turn a melee weapon into a ranged weapon.\r\n\nSUPPORT WHILE OWNED\nRun
+    / Enemy speed: +10%\nRun / Score multiplier: +10%\nChampion / Maximum health:
+    -1\nTier 1/2/3 traits \xD71/2/4; merging three units reduces support sources.\n\r\n\nLIFE
+    IN THE WAITING REALM\nAn unhatched sky-dweller who speaks through their shell,
+    postponing hatching until their flock is found. The shell is their body, not
+    a container to open for a reward. They decide when the next part of their life
+    begins.\r\nPERSONAL PASSIVE\nOwn weapon damage gains 0.5% per companion body
+    in the roster, before later balance modifiers.\r\n\nNamed talents count bodies
+    and absorbed memories; their stated percentages are not multiplied by star level
+    unless explicitly stated. Listed support modifiers scale separately at 1/2/4.\r\nSource:
+    dream shop or special reward, subject to hero theme and unlock wave.\r\nBonds:
+    clock, regal, morning. Immortal. Weapon rolls on recruitment; three equal-species/equal-star
+    bodies merge unless the talent forbids it."
+  ReferenceHero: 
+  ReferenceCompanion: Prince
+  ExclusiveHero: 
+  GiftOnly: 1
+  ChampionModifiers: []
+  RecruitThemes: []
+  HeroMechanic: 0
+  CompanionModifiers:
+  - Effect: 36
+    Scope: 3
+    Value: 0.1
+  - Effect: 18
+    Scope: 3
+    Value: 0.1
+  - Effect: 2
+    Scope: 1
+    Value: -1
+  Price: 0
+  UnlockWave: 2147483647
+  IsBoss: 0
+  BossPattern: 0
+  CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
+  Behavior: 0
+  Shot: 0
+  Material: 0
+  Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
