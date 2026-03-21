@@ -279,3 +279,5 @@ Enemy_SplinterImp Assets/ArcaneBrigade/Art/Expansion/Enemies/SplinterImp_v1.png 
 Enemy_IndebtedStamp Assets/ArcaneBrigade/Art/Expansion/Enemies/IndebtedStamp_v1.png FAILED painted usage_limit_reached; reset 2026-10-19T08:04:15Z
 Enemy_SplinterImp Assets/ArcaneBrigade/Art/Expansion/Enemies/SplinterImp_v1.png FAILED painted usage_limit_reached; corrected reset 2026-10-19T09:24:15Z (16:24:15 Asia/Saigon)
 Enemy_IndebtedStamp Assets/ArcaneBrigade/Art/Expansion/Enemies/IndebtedStamp_v1.png FAILED painted usage_limit_reached; corrected reset 2026-10-19T09:24:15Z (16:24:15 Asia/Saigon)
+Enemy_SplinterImp Assets/ArcaneBrigade/Art/Expansion/Enemies/SplinterImp_v1.png done
+Enemy_IndebtedStamp Assets/ArcaneBrigade/Art/Expansion/Enemies/IndebtedStamp_v1.png done
