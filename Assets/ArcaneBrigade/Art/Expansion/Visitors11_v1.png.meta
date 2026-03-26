@@ -139,8 +139,8 @@ TextureImporter:
       name: ExpansionVisitors11_00
       rect:
         serializedVersion: 2
-        x: 84
-        y: 577
+        x: 756
+        y: 0
         width: 215
         height: 254
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ExpansionVisitors11_01
       rect:
         serializedVersion: 2
-        x: 445
-        y: 578
+        x: 488
+        y: 0
         width: 261
         height: 258
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ExpansionVisitors11_02
       rect:
         serializedVersion: 2
-        x: 850
-        y: 577
+        x: 220
+        y: 276
         width: 219
         height: 238
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: ExpansionVisitors11_03
       rect:
         serializedVersion: 2
-        x: 1214
-        y: 578
+        x: 976
+        y: 252
         width: 261
         height: 242
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: ExpansionVisitors11_04
       rect:
         serializedVersion: 2
-        x: 86
-        y: 65
+        x: 0
+        y: 0
         width: 214
         height: 274
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: ExpansionVisitors11_05
       rect:
         serializedVersion: 2
-        x: 446
-        y: 66
+        x: 220
+        y: 0
         width: 261
         height: 270
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: ExpansionVisitors11_06
       rect:
         serializedVersion: 2
-        x: 832
-        y: 66
+        x: 976
+        y: 0
         width: 257
         height: 246
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: ExpansionVisitors11_07
       rect:
         serializedVersion: 2
-        x: 1213
-        y: 66
+        x: 488
+        y: 264
         width: 262
         height: 242
       alignment: 9
@@ -335,6 +335,6 @@ TextureImporter:
       ExpansionVisitors11_07: -1272522627
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1252;h=520;ppu=128;packed=0ed78be6
   assetBundleName: 
   assetBundleVariant: 

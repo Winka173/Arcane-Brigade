@@ -139,8 +139,8 @@ TextureImporter:
       name: OctoberReactions2_00
       rect:
         serializedVersion: 2
-        x: 45
-        y: 893
+        x: 760
+        y: 608
         width: 221
         height: 295
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: OctoberReactions2_01
       rect:
         serializedVersion: 2
-        x: 385
-        y: 892
+        x: 264
+        y: 0
         width: 237
         height: 305
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: OctoberReactions2_02
       rect:
         serializedVersion: 2
-        x: 712
-        y: 891
+        x: 0
+        y: 612
         width: 233
         height: 288
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: OctoberReactions2_03
       rect:
         serializedVersion: 2
-        x: 1023
-        y: 890
+        x: 508
+        y: 908
         width: 257
         height: 249
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: OctoberReactions2_04
       rect:
         serializedVersion: 2
-        x: 52
-        y: 586
+        x: 760
+        y: 308
         width: 226
         height: 296
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: OctoberReactions2_05
       rect:
         serializedVersion: 2
-        x: 372
-        y: 584
+        x: 508
+        y: 0
         width: 258
         height: 303
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: OctoberReactions2_06
       rect:
         serializedVersion: 2
-        x: 714
-        y: 575
+        x: 260
+        y: 312
         width: 237
         height: 295
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: OctoberReactions2_07
       rect:
         serializedVersion: 2
-        x: 1027
-        y: 574
+        x: 240
+        y: 612
         width: 253
         height: 273
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: OctoberReactions2_08
       rect:
         serializedVersion: 2
-        x: 32
-        y: 322
+        x: 240
+        y: 892
         width: 262
         height: 253
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: OctoberReactions2_09
       rect:
         serializedVersion: 2
-        x: 365
-        y: 334
+        x: 0
+        y: 1152
         width: 273
         height: 244
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: OctoberReactions2_10
       rect:
         serializedVersion: 2
-        x: 700
-        y: 321
+        x: 280
+        y: 1164
         width: 261
         height: 237
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: OctoberReactions2_11
       rect:
         serializedVersion: 2
-        x: 1015
-        y: 313
+        x: 548
+        y: 1164
         width: 273
         height: 207
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: OctoberReactions2_12
       rect:
         serializedVersion: 2
-        x: 23
-        y: 16
+        x: 508
+        y: 308
         width: 248
         height: 298
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: OctoberReactions2_13
       rect:
         serializedVersion: 2
-        x: 363
-        y: 16
+        x: 0
+        y: 0
         width: 260
         height: 308
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: OctoberReactions2_14
       rect:
         serializedVersion: 2
-        x: 689
-        y: 16
+        x: 0
+        y: 312
         width: 253
         height: 296
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: OctoberReactions2_15
       rect:
         serializedVersion: 2
-        x: 1037
-        y: 20
+        x: 500
+        y: 612
         width: 248
         height: 271
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       OctoberReactions2_15: -1993751984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1312;h=1200;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=996;h=1408;ppu=128;packed=0b94ab0f
   assetBundleName: 
   assetBundleVariant: 

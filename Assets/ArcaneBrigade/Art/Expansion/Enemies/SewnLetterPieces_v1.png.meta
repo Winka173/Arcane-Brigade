@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_00
       rect:
         serializedVersion: 2
-        x: 70
-        y: 438
+        x: 248
+        y: 0
         width: 245
         height: 263
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_01
       rect:
         serializedVersion: 2
-        x: 453
-        y: 438
+        x: 500
+        y: 0
         width: 244
         height: 256
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_02
       rect:
         serializedVersion: 2
-        x: 822
-        y: 437
+        x: 264
+        y: 516
         width: 277
         height: 206
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_03
       rect:
         serializedVersion: 2
-        x: 1222
-        y: 438
+        x: 0
+        y: 0
         width: 243
         height: 278
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_04
       rect:
         serializedVersion: 2
-        x: 62
-        y: 53
+        x: 0
+        y: 512
         width: 259
         height: 210
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_05
       rect:
         serializedVersion: 2
-        x: 444
-        y: 54
+        x: 500
+        y: 260
         width: 264
         height: 249
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_06
       rect:
         serializedVersion: 2
-        x: 821
-        y: 54
+        x: 548
+        y: 516
         width: 278
         height: 193
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemySewnLetterPieces_07
       rect:
         serializedVersion: 2
-        x: 1226
-        y: 54
+        x: 248
+        y: 268
         width: 237
         height: 238
       alignment: 9
@@ -335,6 +335,6 @@ TextureImporter:
       EnemySewnLetterPieces_07: 1770459626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=768;ppu=128
+  userData: BuildSize:std=1024;mob=512;mips=0;w=844;h=728;ppu=128;packed=a798999f
   assetBundleName: 
   assetBundleVariant: 

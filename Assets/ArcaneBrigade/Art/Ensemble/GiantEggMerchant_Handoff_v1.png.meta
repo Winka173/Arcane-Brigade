@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: GiantEggMerchantHandoff_00
       rect:
         serializedVersion: 2
-        x: 71
-        y: 125
+        x: 1248
+        y: 0
         width: 405
         height: 475
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: GiantEggMerchantHandoff_01
       rect:
         serializedVersion: 2
-        x: 605
-        y: 121
+        x: 416
+        y: 0
         width: 406
         height: 491
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: GiantEggMerchantHandoff_02
       rect:
         serializedVersion: 2
-        x: 1143
-        y: 120
+        x: 0
+        y: 0
         width: 412
         height: 489
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: GiantEggMerchantHandoff_03
       rect:
         serializedVersion: 2
-        x: 1671
-        y: 123
+        x: 828
+        y: 0
         width: 413
         height: 485
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       GiantEggMerchantHandoff_03: 1312690638
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1660;h=496;ppu=128;packed=5d52d88f
   assetBundleName: 
   assetBundleVariant: 

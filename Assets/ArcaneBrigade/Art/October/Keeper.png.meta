@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: OctoberKeeper_00
       rect:
         serializedVersion: 2
-        x: 35
-        y: 35
+        x: 540
+        y: 0
         width: 491
         height: 623
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: OctoberKeeper_01
       rect:
         serializedVersion: 2
-        x: 545
-        y: 21
+        x: 0
+        y: 0
         width: 534
         height: 683
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: OctoberKeeper_02
       rect:
         serializedVersion: 2
-        x: 1101
-        y: 32
+        x: 0
+        y: 688
         width: 524
         height: 626
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: OctoberKeeper_03
       rect:
         serializedVersion: 2
-        x: 1702
-        y: 37
+        x: 540
+        y: 628
         width: 448
         height: 605
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       OctoberKeeper_03: 1138190060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1036;h=1320;ppu=128;packed=411b9d15
   assetBundleName: 
   assetBundleVariant: 

@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: CarnivalProjectiles_v1_00
       rect:
         serializedVersion: 2
-        x: 187
-        y: 191
+        x: 544
+        y: 0
         width: 345
         height: 347
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: CarnivalProjectiles_v1_01
       rect:
         serializedVersion: 2
-        x: 724
-        y: 232
+        x: 0
+        y: 392
         width: 724
         height: 178
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: CarnivalProjectiles_v1_02
       rect:
         serializedVersion: 2
-        x: 1448
-        y: 189
+        x: 0
+        y: 0
         width: 539
         height: 385
       alignment: 9
@@ -220,6 +220,6 @@ TextureImporter:
       CarnivalProjectiles_v1_02: -1093984053
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=256
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=904;h=576;ppu=256;packed=1c39b9d3
   assetBundleName: 
   assetBundleVariant: 

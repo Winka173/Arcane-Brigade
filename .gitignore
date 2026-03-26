@@ -108,3 +108,4 @@ InitTestScene*.unity*
 
 # local backup of the pre-resample originals (19/10/2026); the originals live in git history at f00b257c
 /ArtArchive/PreResample_2026-10-19/
+/ArtArchive/PrePack_2026-10-20/

@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 98
+        y: 0
         width: 533
         height: 548
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: KettleBat_1
       rect:
         serializedVersion: 2
-        x: 533
-        y: 98
+        x: 540
+        y: 0
         width: 534
         height: 548
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: KettleBat_2
       rect:
         serializedVersion: 2
-        x: 1067
-        y: 98
+        x: 0
+        y: 552
         width: 534
         height: 548
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: KettleBat_3
       rect:
         serializedVersion: 2
-        x: 1601
-        y: 98
+        x: 540
+        y: 552
         width: 534
         height: 548
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       KettleBat_3: -2018366832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2136;h=736;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1092;h=1104;ppu=256;packed=567b0a47
   assetBundleName: 
   assetBundleVariant: 

@@ -139,8 +139,8 @@ TextureImporter:
       name: ShellCannon
       rect:
         serializedVersion: 2
-        x: 19
-        y: 61
+        x: 0
+        y: 0
         width: 712
         height: 268
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       ShellCannon: -1235735543
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=748;h=376;ppu=107.6528
+  userData: BuildSize:std=1024;mob=512;mips=0;w=716;h=272;ppu=107.6528;packed=837202c4
   assetBundleName: 
   assetBundleVariant: 

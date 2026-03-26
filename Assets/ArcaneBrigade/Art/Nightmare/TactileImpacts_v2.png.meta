@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: TactileImpact_00
       rect:
         serializedVersion: 2
-        x: 84
-        y: 968
+        x: 568
+        y: 312
         width: 153
         height: 142
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: TactileImpact_01
       rect:
         serializedVersion: 2
-        x: 331
-        y: 949
+        x: 0
+        y: 244
         width: 271
         height: 213
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: TactileImpact_02
       rect:
         serializedVersion: 2
-        x: 664
-        y: 946
+        x: 280
+        y: 240
         width: 282
         height: 213
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: TactileImpact_03
       rect:
         serializedVersion: 2
-        x: 1033
-        y: 972
+        x: 568
+        y: 0
         width: 156
         height: 150
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: TactileImpact_04
       rect:
         serializedVersion: 2
-        x: 84
-        y: 677
+        x: 560
+        y: 752
         width: 145
         height: 135
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: TactileImpact_05
       rect:
         serializedVersion: 2
-        x: 325
-        y: 642
+        x: 0
+        y: 0
         width: 274
         height: 238
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: TactileImpact_06
       rect:
         serializedVersion: 2
-        x: 671
-        y: 638
+        x: 276
+        y: 460
         width: 281
         height: 212
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: TactileImpact_07
       rect:
         serializedVersion: 2
-        x: 1036
-        y: 677
+        x: 564
+        y: 460
         width: 139
         height: 142
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: TactileImpact_08
       rect:
         serializedVersion: 2
-        x: 72
-        y: 378
+        x: 564
+        y: 608
         width: 150
         height: 139
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: TactileImpact_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 345
+        x: 280
+        y: 0
         width: 263
         height: 234
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: TactileImpact_10
       rect:
         serializedVersion: 2
-        x: 677
-        y: 354
+        x: 0
+        y: 464
         width: 270
         height: 191
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: TactileImpact_11
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 382
+        x: 0
+        y: 868
         width: 136
         height: 130
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: TactileImpact_12
       rect:
         serializedVersion: 2
-        x: 70
-        y: 93
+        x: 280
+        y: 864
         width: 166
         height: 135
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: TactileImpact_13
       rect:
         serializedVersion: 2
-        x: 324
-        y: 80
+        x: 0
+        y: 676
         width: 274
         height: 186
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: TactileImpact_14
       rect:
         serializedVersion: 2
-        x: 674
-        y: 73
+        x: 280
+        y: 676
         width: 275
         height: 182
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: TactileImpact_15
       rect:
         serializedVersion: 2
-        x: 1035
-        y: 88
+        x: 568
+        y: 156
         width: 145
         height: 149
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       TactileImpact_15: 1891272525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=128
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=728;h=1004;ppu=128;packed=2bf4a21f
   assetBundleName: 
   assetBundleVariant: 

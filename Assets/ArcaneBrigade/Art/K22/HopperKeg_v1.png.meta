@@ -139,8 +139,8 @@ TextureImporter:
       name: HopperKegEvolution_00
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1011
+        x: 0
+        y: 888
         width: 253
         height: 262
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: HopperKegEvolution_01
       rect:
         serializedVersion: 2
-        x: 326
-        y: 1011
+        x: 904
+        y: 632
         width: 244
         height: 262
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: HopperKegEvolution_02
       rect:
         serializedVersion: 2
-        x: 627
-        y: 1007
+        x: 276
+        y: 636
         width: 273
         height: 264
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: HopperKegEvolution_03
       rect:
         serializedVersion: 2
-        x: 943
-        y: 1003
+        x: 0
+        y: 336
         width: 269
         height: 271
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: HopperKegEvolution_04
       rect:
         serializedVersion: 2
-        x: 13
-        y: 717
+        x: 520
+        y: 904
         width: 265
         height: 245
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: HopperKegEvolution_05
       rect:
         serializedVersion: 2
-        x: 313
-        y: 719
+        x: 792
+        y: 904
         width: 273
         height: 232
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: HopperKegEvolution_06
       rect:
         serializedVersion: 2
-        x: 626
-        y: 719
+        x: 592
+        y: 632
         width: 305
         height: 266
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: HopperKegEvolution_07
       rect:
         serializedVersion: 2
-        x: 955
-        y: 718
+        x: 260
+        y: 904
         width: 255
         height: 262
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: HopperKegEvolution_08
       rect:
         serializedVersion: 2
-        x: 14
-        y: 383
+        x: 616
+        y: 0
         width: 262
         height: 315
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: HopperKegEvolution_09
       rect:
         serializedVersion: 2
-        x: 317
-        y: 382
+        x: 328
+        y: 320
         width: 257
         height: 311
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: HopperKegEvolution_10
       rect:
         serializedVersion: 2
-        x: 626
-        y: 376
+        x: 328
+        y: 0
         width: 282
         height: 314
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: HopperKegEvolution_11
       rect:
         serializedVersion: 2
-        x: 945
-        y: 375
+        x: 884
+        y: 0
         width: 272
         height: 311
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: HopperKegEvolution_12
       rect:
         serializedVersion: 2
-        x: 14
-        y: 46
+        x: 592
+        y: 320
         width: 269
         height: 286
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: HopperKegEvolution_13
       rect:
         serializedVersion: 2
-        x: 317
-        y: 48
+        x: 0
+        y: 612
         width: 269
         height: 272
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: HopperKegEvolution_14
       rect:
         serializedVersion: 2
-        x: 615
-        y: 43
+        x: 0
+        y: 0
         width: 324
         height: 329
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: HopperKegEvolution_15
       rect:
         serializedVersion: 2
-        x: 953
-        y: 36
+        x: 884
+        y: 316
         width: 261
         height: 312
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       HopperKegEvolution_15: 1532164479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1228;h=1284;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1160;h=1172;ppu=256;packed=68830577
   assetBundleName: 
   assetBundleVariant: 

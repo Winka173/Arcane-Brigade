@@ -139,8 +139,8 @@ TextureImporter:
       name: LanternKnightMotion_00
       rect:
         serializedVersion: 2
-        x: 65
-        y: 713
+        x: 0
+        y: 0
         width: 264
         height: 365
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: LanternKnightMotion_01
       rect:
         serializedVersion: 2
-        x: 412
-        y: 714
+        x: 268
+        y: 0
         width: 261
         height: 342
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: LanternKnightMotion_02
       rect:
         serializedVersion: 2
-        x: 767
-        y: 713
+        x: 1064
+        y: 0
         width: 264
         height: 335
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: LanternKnightMotion_03
       rect:
         serializedVersion: 2
-        x: 1142
-        y: 709
+        x: 804
+        y: 0
         width: 256
         height: 339
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: LanternKnightMotion_04
       rect:
         serializedVersion: 2
-        x: 70
-        y: 367
+        x: 1064
+        y: 340
         width: 262
         height: 334
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: LanternKnightMotion_05
       rect:
         serializedVersion: 2
-        x: 433
-        y: 367
+        x: 536
+        y: 0
         width: 261
         height: 337
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: LanternKnightMotion_06
       rect:
         serializedVersion: 2
-        x: 788
-        y: 365
+        x: 280
+        y: 680
         width: 264
         height: 326
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: LanternKnightMotion_07
       rect:
         serializedVersion: 2
-        x: 1148
-        y: 369
+        x: 848
+        y: 680
         width: 262
         height: 279
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: LanternKnightMotion_08
       rect:
         serializedVersion: 2
-        x: 83
-        y: 30
+        x: 548
+        y: 680
         width: 296
         height: 293
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: LanternKnightMotion_09
       rect:
         serializedVersion: 2
-        x: 450
-        y: 28
+        x: 0
+        y: 372
         width: 275
         height: 325
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: LanternKnightMotion_10
       rect:
         serializedVersion: 2
-        x: 792
-        y: 25
+        x: 536
+        y: 344
         width: 253
         height: 331
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: LanternKnightMotion_11
       rect:
         serializedVersion: 2
-        x: 1144
-        y: 26
+        x: 796
+        y: 344
         width: 249
         height: 329
       alignment: 9
@@ -427,6 +427,6 @@ TextureImporter:
       LanternKnightMotion_11: 1964030448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1448;h=1088;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1332;h=1012;ppu=256;packed=6d4d8600
   assetBundleName: 
   assetBundleVariant: 

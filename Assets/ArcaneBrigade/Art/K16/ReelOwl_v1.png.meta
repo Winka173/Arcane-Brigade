@@ -139,8 +139,8 @@ TextureImporter:
       name: ReelOwlMotion_00
       rect:
         serializedVersion: 2
-        x: 29
-        y: 744
+        x: 660
+        y: 0
         width: 302
         height: 298
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ReelOwlMotion_01
       rect:
         serializedVersion: 2
-        x: 390
-        y: 744
+        x: 348
+        y: 304
         width: 315
         height: 293
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ReelOwlMotion_02
       rect:
         serializedVersion: 2
-        x: 755
-        y: 742
+        x: 328
+        y: 604
         width: 289
         height: 292
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: ReelOwlMotion_03
       rect:
         serializedVersion: 2
-        x: 1138
-        y: 744
+        x: 984
+        y: 0
         width: 275
         height: 286
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: ReelOwlMotion_04
       rect:
         serializedVersion: 2
-        x: 41
-        y: 406
+        x: 624
+        y: 604
         width: 290
         height: 285
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: ReelOwlMotion_05
       rect:
         serializedVersion: 2
-        x: 426
-        y: 405
+        x: 984
+        y: 292
         width: 273
         height: 288
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: ReelOwlMotion_06
       rect:
         serializedVersion: 2
-        x: 742
-        y: 403
+        x: 668
+        y: 304
         width: 310
         height: 296
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: ReelOwlMotion_07
       rect:
         serializedVersion: 2
-        x: 1129
-        y: 403
+        x: 0
+        y: 636
         width: 292
         height: 240
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: ReelOwlMotion_08
       rect:
         serializedVersion: 2
-        x: 28
-        y: 50
+        x: 0
+        y: 0
         width: 344
         height: 336
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: ReelOwlMotion_09
       rect:
         serializedVersion: 2
-        x: 395
-        y: 55
+        x: 0
+        y: 340
         width: 322
         height: 289
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: ReelOwlMotion_10
       rect:
         serializedVersion: 2
-        x: 766
-        y: 56
+        x: 920
+        y: 604
         width: 304
         height: 277
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: ReelOwlMotion_11
       rect:
         serializedVersion: 2
-        x: 1114
-        y: 58
+        x: 348
+        y: 0
         width: 305
         height: 300
       alignment: 9
@@ -427,6 +427,6 @@ TextureImporter:
       ReelOwlMotion_11: 1483829530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1448;h=1088;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1276;h=900;ppu=256;packed=ffa06f72
   assetBundleName: 
   assetBundleVariant: 

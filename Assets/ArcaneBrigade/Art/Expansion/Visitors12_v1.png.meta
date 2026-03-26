@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: ExpansionVisitors12_00
       rect:
         serializedVersion: 2
-        x: 95
-        y: 65
+        x: 268
+        y: 0
         width: 223
         height: 270
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ExpansionVisitors12_01
       rect:
         serializedVersion: 2
-        x: 445
-        y: 65
+        x: 0
+        y: 0
         width: 262
         height: 270
       alignment: 9
@@ -197,6 +197,6 @@ TextureImporter:
       ExpansionVisitors12_01: 784481991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1536;h=512;ppu=128
+  userData: BuildSize:std=512;mob=512;mips=0;w=508;h=276;ppu=128;packed=4e632e35
   assetBundleName: 
   assetBundleVariant: 

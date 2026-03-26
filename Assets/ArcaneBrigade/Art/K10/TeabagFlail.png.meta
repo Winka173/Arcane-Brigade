@@ -139,8 +139,8 @@ TextureImporter:
       name: TeabagFlail
       rect:
         serializedVersion: 2
-        x: 32
-        y: 81
+        x: 0
+        y: 0
         width: 711
         height: 207
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       TeabagFlail: 73887098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=772;h=388;ppu=110.9718
+  userData: BuildSize:std=1024;mob=512;mips=0;w=716;h=212;ppu=110.9718;packed=0237c203
   assetBundleName: 
   assetBundleVariant: 

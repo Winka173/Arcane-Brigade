@@ -139,8 +139,8 @@ TextureImporter:
       name: GroundedCabinet_00
       rect:
         serializedVersion: 2
-        x: 99
-        y: 94
+        x: 756
+        y: 0
         width: 740
         height: 620
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: GroundedCabinet_01
       rect:
         serializedVersion: 2
-        x: 919
-        y: 70
+        x: 0
+        y: 0
         width: 749
         height: 724
       alignment: 9
@@ -197,6 +197,6 @@ TextureImporter:
       GroundedCabinet_01: 133311
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1776;h=888;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1512;h=728;ppu=128;packed=dc7a400b
   assetBundleName: 
   assetBundleVariant: 

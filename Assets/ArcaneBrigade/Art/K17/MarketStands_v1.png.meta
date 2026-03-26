@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: MarketStandsMotion_00
       rect:
         serializedVersion: 2
-        x: 30
-        y: 629
+        x: 588
+        y: 420
         width: 280
         height: 180
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: MarketStandsMotion_01
       rect:
         serializedVersion: 2
-        x: 370
-        y: 629
+        x: 296
+        y: 796
         width: 289
         height: 145
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: MarketStandsMotion_02
       rect:
         serializedVersion: 2
-        x: 706
-        y: 629
+        x: 588
+        y: 216
         width: 272
         height: 198
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: MarketStandsMotion_03
       rect:
         serializedVersion: 2
-        x: 1037
-        y: 629
+        x: 0
+        y: 428
         width: 276
         height: 177
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: MarketStandsMotion_04
       rect:
         serializedVersion: 2
-        x: 32
-        y: 341
+        x: 288
+        y: 0
         width: 290
         height: 212
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: MarketStandsMotion_05
       rect:
         serializedVersion: 2
-        x: 373
-        y: 341
+        x: 0
+        y: 624
         width: 290
         height: 175
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: MarketStandsMotion_06
       rect:
         serializedVersion: 2
-        x: 705
-        y: 341
+        x: 0
+        y: 0
         width: 283
         height: 216
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: MarketStandsMotion_07
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 341
+        x: 0
+        y: 220
         width: 283
         height: 201
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: MarketStandsMotion_08
       rect:
         serializedVersion: 2
-        x: 27
-        y: 74
+        x: 288
+        y: 216
         width: 296
         height: 201
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: MarketStandsMotion_09
       rect:
         serializedVersion: 2
-        x: 361
-        y: 75
+        x: 296
+        y: 624
         width: 314
         height: 165
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: MarketStandsMotion_10
       rect:
         serializedVersion: 2
-        x: 710
-        y: 75
+        x: 584
+        y: 0
         width: 283
         height: 211
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: MarketStandsMotion_11
       rect:
         serializedVersion: 2
-        x: 1037
-        y: 75
+        x: 288
+        y: 424
         width: 288
         height: 196
       alignment: 9
@@ -427,6 +427,6 @@ TextureImporter:
       MarketStandsMotion_11: 1493596197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1344;h=1008;ppu=237.2597
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=872;h=948;ppu=237.2597;packed=7f991829
   assetBundleName: 
   assetBundleVariant: 

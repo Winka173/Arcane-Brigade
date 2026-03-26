@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyCoatRack_00
       rect:
         serializedVersion: 2
-        x: 109
-        y: 1205
+        x: 568
+        y: 0
         width: 159
         height: 251
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyCoatRack_01
       rect:
         serializedVersion: 2
-        x: 493
-        y: 1205
+        x: 396
+        y: 0
         width: 165
         height: 252
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyCoatRack_02
       rect:
         serializedVersion: 2
-        x: 865
-        y: 1204
+        x: 0
+        y: 0
         width: 189
         height: 254
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyCoatRack_03
       rect:
         serializedVersion: 2
-        x: 1246
-        y: 1205
+        x: 196
+        y: 0
         width: 196
         height: 252
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyCoatRack_04
       rect:
         serializedVersion: 2
-        x: 109
-        y: 821
+        x: 660
+        y: 704
         width: 166
         height: 213
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyCoatRack_05
       rect:
         serializedVersion: 2
-        x: 481
-        y: 821
+        x: 0
+        y: 260
         width: 189
         height: 230
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyCoatRack_06
       rect:
         serializedVersion: 2
-        x: 820
-        y: 821
+        x: 196
+        y: 256
         width: 280
         height: 237
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyCoatRack_07
       rect:
         serializedVersion: 2
-        x: 1251
-        y: 821
+        x: 480
+        y: 256
         width: 187
         height: 234
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyCoatRack_08
       rect:
         serializedVersion: 2
-        x: 113
-        y: 437
+        x: 672
+        y: 256
         width: 158
         height: 219
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyCoatRack_09
       rect:
         serializedVersion: 2
-        x: 497
-        y: 436
+        x: 672
+        y: 480
         width: 160
         height: 218
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyCoatRack_10
       rect:
         serializedVersion: 2
-        x: 871
-        y: 437
+        x: 0
+        y: 496
         width: 179
         height: 224
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyCoatRack_11
       rect:
         serializedVersion: 2
-        x: 1257
-        y: 437
+        x: 480
+        y: 496
         width: 175
         height: 222
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyCoatRack_12
       rect:
         serializedVersion: 2
-        x: 104
-        y: 52
+        x: 0
+        y: 724
         width: 176
         height: 180
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyCoatRack_13
       rect:
         serializedVersion: 2
-        x: 479
-        y: 53
+        x: 184
+        y: 720
         width: 196
         height: 210
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyCoatRack_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 52
+        x: 184
+        y: 500
         width: 280
         height: 216
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyCoatRack_15
       rect:
         serializedVersion: 2
-        x: 1223
-        y: 52
+        x: 384
+        y: 724
         width: 240
         height: 201
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyCoatRack_15: 1136397523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=848;h=936;ppu=256;packed=10130d41
   assetBundleName: 
   assetBundleVariant: 

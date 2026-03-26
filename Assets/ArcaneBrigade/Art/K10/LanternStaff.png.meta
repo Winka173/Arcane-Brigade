@@ -139,8 +139,8 @@ TextureImporter:
       name: LanternStaff
       rect:
         serializedVersion: 2
-        x: 25
-        y: 89
+        x: 0
+        y: 0
         width: 712
         height: 203
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       LanternStaff: 765566995
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=764;h=380;ppu=109.8174
+  userData: BuildSize:std=1024;mob=512;mips=0;w=716;h=208;ppu=109.8174;packed=42fa7cca
   assetBundleName: 
   assetBundleVariant: 

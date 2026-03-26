@@ -139,8 +139,8 @@ TextureImporter:
       name: harvest-receipt
       rect:
         serializedVersion: 2
-        x: 81
-        y: 476
+        x: 0
+        y: 0
         width: 414
         height: 405
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: reflective-ink
       rect:
         serializedVersion: 2
-        x: 524
-        y: 484
+        x: 452
+        y: 0
         width: 372
         height: 398
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: carbon-ribbon
       rect:
         serializedVersion: 2
-        x: 46
-        y: 47
+        x: 0
+        y: 412
         width: 448
         height: 403
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: office-lens
       rect:
         serializedVersion: 2
-        x: 536
-        y: 44
+        x: 452
+        y: 404
         width: 391
         height: 384
       alignment: 0
@@ -243,6 +243,6 @@ TextureImporter:
       reflective-ink: -568152159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=956;h=936;ppu=192.8574
+  userData: BuildSize:std=1024;mob=512;mips=0;w=860;h=820;ppu=192.8574;packed=63baefd0
   assetBundleName: 
   assetBundleVariant: 

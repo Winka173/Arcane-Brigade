@@ -139,8 +139,8 @@ TextureImporter:
       name: OctoberBonds2_00
       rect:
         serializedVersion: 2
-        x: 46
-        y: 841
+        x: 1004
+        y: 0
         width: 263
         height: 258
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: OctoberBonds2_01
       rect:
         serializedVersion: 2
-        x: 401
-        y: 843
+        x: 708
+        y: 268
         width: 291
         height: 257
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: OctoberBonds2_02
       rect:
         serializedVersion: 2
-        x: 742
-        y: 847
+        x: 0
+        y: 532
         width: 287
         height: 249
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: OctoberBonds2_03
       rect:
         serializedVersion: 2
-        x: 1112
-        y: 835
+        x: 0
+        y: 0
         width: 211
         height: 277
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: OctoberBonds2_04
       rect:
         serializedVersion: 2
-        x: 35
-        y: 576
+        x: 568
+        y: 532
         width: 304
         height: 246
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: OctoberBonds2_05
       rect:
         serializedVersion: 2
-        x: 425
-        y: 575
+        x: 292
+        y: 532
         width: 271
         height: 251
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: OctoberBonds2_06
       rect:
         serializedVersion: 2
-        x: 774
-        y: 584
+        x: 208
+        y: 788
         width: 227
         height: 226
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: OctoberBonds2_07
       rect:
         serializedVersion: 2
-        x: 1131
-        y: 576
+        x: 0
+        y: 788
         width: 204
         height: 237
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: OctoberBonds2_08
       rect:
         serializedVersion: 2
-        x: 60
-        y: 292
+        x: 216
+        y: 0
         width: 256
         height: 269
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: OctoberBonds2_09
       rect:
         serializedVersion: 2
-        x: 396
-        y: 291
+        x: 708
+        y: 0
         width: 281
         height: 264
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: OctoberBonds2_10
       rect:
         serializedVersion: 2
-        x: 757
-        y: 306
+        x: 1004
+        y: 264
         width: 251
         height: 244
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: OctoberBonds2_11
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 284
+        x: 476
+        y: 0
         width: 228
         height: 272
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: OctoberBonds2_12
       rect:
         serializedVersion: 2
-        x: 46
-        y: 34
+        x: 876
+        y: 760
         width: 293
         height: 238
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: OctoberBonds2_13
       rect:
         serializedVersion: 2
-        x: 378
-        y: 28
+        x: 216
+        y: 276
         width: 324
         height: 250
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: OctoberBonds2_14
       rect:
         serializedVersion: 2
-        x: 777
-        y: 32
+        x: 1004
+        y: 512
         width: 224
         height: 243
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: OctoberBonds2_15
       rect:
         serializedVersion: 2
-        x: 1118
-        y: 36
+        x: 568
+        y: 784
         width: 241
         height: 240
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       OctoberBonds2_15: -1137005939
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1404;h=1124;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1272;h=1032;ppu=128;packed=e2a27c99
   assetBundleName: 
   assetBundleVariant: 

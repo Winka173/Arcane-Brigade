@@ -139,8 +139,8 @@ TextureImporter:
       name: BurrowBellEvolution_00
       rect:
         serializedVersion: 2
-        x: 32
-        y: 986
+        x: 852
+        y: 856
         width: 259
         height: 266
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: BurrowBellEvolution_01
       rect:
         serializedVersion: 2
-        x: 328
-        y: 986
+        x: 584
+        y: 624
         width: 261
         height: 265
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: BurrowBellEvolution_02
       rect:
         serializedVersion: 2
-        x: 634
-        y: 988
+        x: 900
+        y: 584
         width: 270
         height: 268
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: BurrowBellEvolution_03
       rect:
         serializedVersion: 2
-        x: 946
-        y: 989
+        x: 308
+        y: 624
         width: 269
         height: 267
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BurrowBellEvolution_04
       rect:
         serializedVersion: 2
-        x: 25
-        y: 701
+        x: 280
+        y: 896
         width: 270
         height: 247
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BurrowBellEvolution_05
       rect:
         serializedVersion: 2
-        x: 330
-        y: 700
+        x: 0
+        y: 892
         width: 276
         height: 250
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: BurrowBellEvolution_06
       rect:
         serializedVersion: 2
-        x: 638
-        y: 700
+        x: 0
+        y: 616
         width: 301
         height: 270
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: BurrowBellEvolution_07
       rect:
         serializedVersion: 2
-        x: 966
-        y: 701
+        x: 556
+        y: 896
         width: 256
         height: 235
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: BurrowBellEvolution_08
       rect:
         serializedVersion: 2
-        x: 21
-        y: 373
+        x: 612
+        y: 0
         width: 283
         height: 308
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: BurrowBellEvolution_09
       rect:
         serializedVersion: 2
-        x: 329
-        y: 374
+        x: 612
+        y: 312
         width: 284
         height: 308
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: BurrowBellEvolution_10
       rect:
         serializedVersion: 2
-        x: 635
-        y: 373
+        x: 316
+        y: 320
         width: 286
         height: 299
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: BurrowBellEvolution_11
       rect:
         serializedVersion: 2
-        x: 946
-        y: 374
+        x: 900
+        y: 0
         width: 277
         height: 295
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: BurrowBellEvolution_12
       rect:
         serializedVersion: 2
-        x: 20
-        y: 46
+        x: 0
+        y: 328
         width: 289
         height: 282
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: BurrowBellEvolution_13
       rect:
         serializedVersion: 2
-        x: 326
-        y: 45
+        x: 316
+        y: 0
         width: 289
         height: 313
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: BurrowBellEvolution_14
       rect:
         serializedVersion: 2
-        x: 630
-        y: 43
+        x: 0
+        y: 0
         width: 312
         height: 322
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: BurrowBellEvolution_15
       rect:
         serializedVersion: 2
-        x: 958
-        y: 41
+        x: 900
+        y: 300
         width: 257
         height: 279
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       BurrowBellEvolution_15: -1061181236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1232;h=1280;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1184;h=1148;ppu=256;packed=a43e32e2
   assetBundleName: 
   assetBundleVariant: 

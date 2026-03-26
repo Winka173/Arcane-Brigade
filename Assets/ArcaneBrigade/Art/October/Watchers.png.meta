@@ -139,8 +139,8 @@ TextureImporter:
       name: OctoberWatchers_00
       rect:
         serializedVersion: 2
-        x: 39
-        y: 774
+        x: 936
+        y: 316
         width: 308
         height: 239
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: OctoberWatchers_01
       rect:
         serializedVersion: 2
-        x: 419
-        y: 777
+        x: 648
+        y: 560
         width: 305
         height: 236
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: OctoberWatchers_02
       rect:
         serializedVersion: 2
-        x: 801
-        y: 777
+        x: 332
+        y: 560
         width: 311
         height: 236
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: OctoberWatchers_03
       rect:
         serializedVersion: 2
-        x: 1193
-        y: 778
+        x: 960
+        y: 560
         width: 299
         height: 236
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: OctoberWatchers_04
       rect:
         serializedVersion: 2
-        x: 32
-        y: 598
+        x: 568
+        y: 968
         width: 338
         height: 160
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: OctoberWatchers_05
       rect:
         serializedVersion: 2
-        x: 409
-        y: 600
+        x: 916
+        y: 800
         width: 337
         height: 162
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: OctoberWatchers_06
       rect:
         serializedVersion: 2
-        x: 780
-        y: 600
+        x: 568
+        y: 800
         width: 342
         height: 163
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: OctoberWatchers_07
       rect:
         serializedVersion: 2
-        x: 1165
-        y: 599
+        x: 912
+        y: 968
         width: 340
         height: 159
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: OctoberWatchers_08
       rect:
         serializedVersion: 2
-        x: 51
-        y: 355
+        x: 296
+        y: 800
         width: 266
         height: 225
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: OctoberWatchers_09
       rect:
         serializedVersion: 2
-        x: 434
-        y: 354
+        x: 0
+        y: 800
         width: 289
         height: 236
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: OctoberWatchers_10
       rect:
         serializedVersion: 2
-        x: 798
-        y: 354
+        x: 320
+        y: 320
         width: 325
         height: 233
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: OctoberWatchers_11
       rect:
         serializedVersion: 2
-        x: 1177
-        y: 357
+        x: 0
+        y: 560
         width: 325
         height: 233
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: OctoberWatchers_12
       rect:
         serializedVersion: 2
-        x: 46
-        y: 38
+        x: 936
+        y: 0
         width: 276
         height: 309
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: OctoberWatchers_13
       rect:
         serializedVersion: 2
-        x: 420
-        y: 36
+        x: 632
+        y: 0
         width: 300
         height: 314
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: OctoberWatchers_14
       rect:
         serializedVersion: 2
-        x: 797
-        y: 32
+        x: 320
+        y: 0
         width: 306
         height: 316
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: OctoberWatchers_15
       rect:
         serializedVersion: 2
-        x: 1190
-        y: 33
+        x: 0
+        y: 0
         width: 313
         height: 317
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       OctoberWatchers_15: 1534321797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1276;h=1132;ppu=128;packed=f7f13811
   assetBundleName: 
   assetBundleVariant: 

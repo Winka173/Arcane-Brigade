@@ -139,8 +139,8 @@ TextureImporter:
       name: OctoberHeroes3_00
       rect:
         serializedVersion: 2
-        x: 103
-        y: 805
+        x: 848
+        y: 492
         width: 214
         height: 202
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: OctoberHeroes3_01
       rect:
         serializedVersion: 2
-        x: 482
-        y: 810
+        x: 540
+        y: 744
         width: 216
         height: 199
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: OctoberHeroes3_02
       rect:
         serializedVersion: 2
-        x: 856
-        y: 811
+        x: 0
+        y: 752
         width: 227
         height: 191
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: OctoberHeroes3_03
       rect:
         serializedVersion: 2
-        x: 1231
-        y: 804
+        x: 540
+        y: 532
         width: 259
         height: 205
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: OctoberHeroes3_04
       rect:
         serializedVersion: 2
-        x: 102
-        y: 531
+        x: 904
+        y: 0
         width: 184
         height: 261
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: OctoberHeroes3_05
       rect:
         serializedVersion: 2
-        x: 501
-        y: 523
+        x: 0
+        y: 0
         width: 182
         height: 270
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: OctoberHeroes3_06
       rect:
         serializedVersion: 2
-        x: 870
-        y: 524
+        x: 416
+        y: 268
         width: 213
         height: 258
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: OctoberHeroes3_07
       rect:
         serializedVersion: 2
-        x: 1240
-        y: 523
+        x: 456
+        y: 0
         width: 235
         height: 263
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: OctoberHeroes3_08
       rect:
         serializedVersion: 2
-        x: 79
-        y: 291
+        x: 848
+        y: 268
         width: 235
         height: 220
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: OctoberHeroes3_09
       rect:
         serializedVersion: 2
-        x: 451
-        y: 295
+        x: 276
+        y: 532
         width: 258
         height: 215
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: OctoberHeroes3_10
       rect:
         serializedVersion: 2
-        x: 827
-        y: 292
+        x: 0
+        y: 532
         width: 272
         height: 215
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: OctoberHeroes3_11
       rect:
         serializedVersion: 2
-        x: 1221
-        y: 289
+        x: 804
+        y: 700
         width: 283
         height: 200
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: OctoberHeroes3_12
       rect:
         serializedVersion: 2
-        x: 89
-        y: 16
+        x: 636
+        y: 268
         width: 205
         height: 260
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: OctoberHeroes3_13
       rect:
         serializedVersion: 2
-        x: 471
-        y: 14
+        x: 696
+        y: 0
         width: 204
         height: 263
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: OctoberHeroes3_14
       rect:
         serializedVersion: 2
-        x: 845
-        y: 15
+        x: 188
+        y: 268
         width: 222
         height: 258
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: OctoberHeroes3_15
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 15
+        x: 188
+        y: 0
         width: 263
         height: 262
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       OctoberHeroes3_15: -1823948168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1104;h=948;ppu=128;packed=49547b61
   assetBundleName: 
   assetBundleVariant: 

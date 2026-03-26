@@ -139,8 +139,8 @@ TextureImporter:
       name: RarityBloom_00
       rect:
         serializedVersion: 2
-        x: 83
-        y: 771
+        x: 868
+        y: 932
         width: 227
         height: 185
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: RarityBloom_01
       rect:
         serializedVersion: 2
-        x: 438
-        y: 771
+        x: 0
+        y: 500
         width: 283
         height: 225
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: RarityBloom_02
       rect:
         serializedVersion: 2
-        x: 813
-        y: 768
+        x: 364
+        y: 496
         width: 315
         height: 229
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: RarityBloom_03
       rect:
         serializedVersion: 2
-        x: 1213
-        y: 776
+        x: 344
+        y: 932
         width: 258
         height: 185
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: RarityBloom_04
       rect:
         serializedVersion: 2
-        x: 76
-        y: 524
+        x: 0
+        y: 940
         width: 257
         height: 181
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: RarityBloom_05
       rect:
         serializedVersion: 2
-        x: 426
-        y: 512
+        x: 732
+        y: 252
         width: 316
         height: 245
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: RarityBloom_06
       rect:
         serializedVersion: 2
-        x: 796
-        y: 512
+        x: 384
+        y: 0
         width: 342
         height: 256
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: RarityBloom_07
       rect:
         serializedVersion: 2
-        x: 1201
-        y: 519
+        x: 684
+        y: 504
         width: 298
         height: 212
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: RarityBloom_08
       rect:
         serializedVersion: 2
-        x: 76
-        y: 271
+        x: 344
+        y: 732
         width: 254
         height: 196
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: RarityBloom_09
       rect:
         serializedVersion: 2
-        x: 406
-        y: 266
+        x: 732
+        y: 0
         width: 353
         height: 246
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: RarityBloom_10
       rect:
         serializedVersion: 2
-        x: 772
-        y: 256
+        x: 0
+        y: 0
         width: 380
         height: 256
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: RarityBloom_11
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 263
+        x: 684
+        y: 720
         width: 347
         height: 206
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: RarityBloom_12
       rect:
         serializedVersion: 2
-        x: 80
-        y: 27
+        x: 608
+        y: 932
         width: 255
         height: 185
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: RarityBloom_13
       rect:
         serializedVersion: 2
-        x: 431
-        y: 22
+        x: 364
+        y: 260
         width: 318
         height: 232
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: RarityBloom_14
       rect:
         serializedVersion: 2
-        x: 792
-        y: 20
+        x: 0
+        y: 260
         width: 360
         height: 236
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: RarityBloom_15
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 20
+        x: 0
+        y: 732
         width: 339
         height: 203
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       RarityBloom_15: 1458443109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1112;h=1128;ppu=128;packed=2dce38c1
   assetBundleName: 
   assetBundleVariant: 

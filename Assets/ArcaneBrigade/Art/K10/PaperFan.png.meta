@@ -139,8 +139,8 @@ TextureImporter:
       name: PaperFan
       rect:
         serializedVersion: 2
-        x: 40
-        y: 41
+        x: 0
+        y: 0
         width: 712
         height: 454
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       PaperFan: -242229779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=796;h=532;ppu=132.5
+  userData: BuildSize:std=1024;mob=512;mips=0;w=716;h=460;ppu=132.5;packed=a564619e
   assetBundleName: 
   assetBundleVariant: 

@@ -139,8 +139,8 @@ TextureImporter:
       name: ExpansionCharacters8_00
       rect:
         serializedVersion: 2
-        x: 82
-        y: 1213
+        x: 1172
+        y: 212
         width: 216
         height: 197
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ExpansionCharacters8_01
       rect:
         serializedVersion: 2
-        x: 448
-        y: 1216
+        x: 652
+        y: 416
         width: 223
         height: 197
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ExpansionCharacters8_02
       rect:
         serializedVersion: 2
-        x: 826
-        y: 1211
+        x: 260
+        y: 420
         width: 235
         height: 171
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: ExpansionCharacters8_03
       rect:
         serializedVersion: 2
-        x: 1211
-        y: 1216
+        x: 0
+        y: 420
         width: 255
         height: 170
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: ExpansionCharacters8_04
       rect:
         serializedVersion: 2
-        x: 79
-        y: 847
+        x: 180
+        y: 216
         width: 232
         height: 200
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: ExpansionCharacters8_05
       rect:
         serializedVersion: 2
-        x: 452
-        y: 846
+        x: 668
+        y: 0
         width: 251
         height: 206
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: ExpansionCharacters8_06
       rect:
         serializedVersion: 2
-        x: 839
-        y: 846
+        x: 1100
+        y: 416
         width: 247
         height: 174
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: ExpansionCharacters8_07
       rect:
         serializedVersion: 2
-        x: 1228
-        y: 845
+        x: 180
+        y: 0
         width: 245
         height: 210
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: ExpansionCharacters8_08
       rect:
         serializedVersion: 2
-        x: 111
-        y: 489
+        x: 0
+        y: 0
         width: 173
         height: 216
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: ExpansionCharacters8_09
       rect:
         serializedVersion: 2
-        x: 469
-        y: 492
+        x: 1164
+        y: 0
         width: 228
         height: 205
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: ExpansionCharacters8_10
       rect:
         serializedVersion: 2
-        x: 844
-        y: 489
+        x: 432
+        y: 0
         width: 229
         height: 211
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: ExpansionCharacters8_11
       rect:
         serializedVersion: 2
-        x: 1226
-        y: 490
+        x: 924
+        y: 0
         width: 233
         height: 205
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: ExpansionCharacters8_12
       rect:
         serializedVersion: 2
-        x: 93
-        y: 129
+        x: 416
+        y: 216
         width: 229
         height: 197
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: ExpansionCharacters8_13
       rect:
         serializedVersion: 2
-        x: 478
-        y: 126
+        x: 880
+        y: 416
         width: 216
         height: 200
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: ExpansionCharacters8_14
       rect:
         serializedVersion: 2
-        x: 853
-        y: 127
+        x: 924
+        y: 212
         width: 241
         height: 199
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: ExpansionCharacters8_15
       rect:
         serializedVersion: 2
-        x: 1223
-        y: 126
+        x: 668
+        y: 212
         width: 249
         height: 200
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       ExpansionCharacters8_15: 626529135
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1396;h=620;ppu=128;packed=c3b5614e
   assetBundleName: 
   assetBundleVariant: 

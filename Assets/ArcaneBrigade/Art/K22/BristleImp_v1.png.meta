@@ -139,8 +139,8 @@ TextureImporter:
       name: BristleImpEvolution_00
       rect:
         serializedVersion: 2
-        x: 34
-        y: 958
+        x: 580
+        y: 304
         width: 261
         height: 275
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: BristleImpEvolution_01
       rect:
         serializedVersion: 2
-        x: 339
-        y: 957
+        x: 0
+        y: 584
         width: 256
         height: 268
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: BristleImpEvolution_02
       rect:
         serializedVersion: 2
-        x: 658
-        y: 956
+        x: 580
+        y: 584
         width: 255
         height: 267
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: BristleImpEvolution_03
       rect:
         serializedVersion: 2
-        x: 973
-        y: 956
+        x: 848
+        y: 568
         width: 264
         height: 268
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BristleImpEvolution_04
       rect:
         serializedVersion: 2
-        x: 32
-        y: 666
+        x: 256
+        y: 872
         width: 263
         height: 234
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BristleImpEvolution_05
       rect:
         serializedVersion: 2
-        x: 341
-        y: 664
+        x: 540
+        y: 856
         width: 266
         height: 252
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: BristleImpEvolution_06
       rect:
         serializedVersion: 2
-        x: 659
-        y: 661
+        x: 840
+        y: 840
         width: 279
         height: 260
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: BristleImpEvolution_07
       rect:
         serializedVersion: 2
-        x: 975
-        y: 663
+        x: 0
+        y: 856
         width: 250
         height: 243
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: BristleImpEvolution_08
       rect:
         serializedVersion: 2
-        x: 14
-        y: 344
+        x: 0
+        y: 0
         width: 285
         height: 305
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: BristleImpEvolution_09
       rect:
         serializedVersion: 2
-        x: 330
-        y: 344
+        x: 580
+        y: 0
         width: 272
         height: 297
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: BristleImpEvolution_10
       rect:
         serializedVersion: 2
-        x: 647
-        y: 345
+        x: 292
+        y: 304
         width: 283
         height: 293
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: BristleImpEvolution_11
       rect:
         serializedVersion: 2
-        x: 972
-        y: 346
+        x: 856
+        y: 0
         width: 268
         height: 281
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: BristleImpEvolution_12
       rect:
         serializedVersion: 2
-        x: 26
-        y: 39
+        x: 0
+        y: 312
         width: 277
         height: 267
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: BristleImpEvolution_13
       rect:
         serializedVersion: 2
-        x: 331
-        y: 36
+        x: 260
+        y: 604
         width: 273
         height: 262
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: BristleImpEvolution_14
       rect:
         serializedVersion: 2
-        x: 657
-        y: 34
+        x: 292
+        y: 0
         width: 281
         height: 299
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: BristleImpEvolution_15
       rect:
         serializedVersion: 2
-        x: 972
-        y: 33
+        x: 856
+        y: 288
         width: 266
         height: 276
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       BristleImpEvolution_15: -1383517482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1248;h=1264;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1136;h=1112;ppu=256;packed=1ca36d2b
   assetBundleName: 
   assetBundleVariant: 

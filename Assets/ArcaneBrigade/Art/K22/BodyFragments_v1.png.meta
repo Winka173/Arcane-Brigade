@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyBodyFragment_00
       rect:
         serializedVersion: 2
-        x: 25
-        y: 1187
+        x: 488
+        y: 636
         width: 223
         height: 277
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyBodyFragment_01
       rect:
         serializedVersion: 2
-        x: 292
-        y: 1189
+        x: 204
+        y: 1180
         width: 221
         height: 225
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyBodyFragment_02
       rect:
         serializedVersion: 2
-        x: 550
-        y: 1189
+        x: 236
+        y: 928
         width: 214
         height: 246
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyBodyFragment_03
       rect:
         serializedVersion: 2
-        x: 803
-        y: 1194
+        x: 0
+        y: 1176
         width: 200
         height: 248
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyBodyFragment_04
       rect:
         serializedVersion: 2
-        x: 18
-        y: 787
+        x: 0
+        y: 0
         width: 237
         height: 338
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyBodyFragment_05
       rect:
         serializedVersion: 2
-        x: 279
-        y: 794
+        x: 244
+        y: 0
         width: 225
         height: 333
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyBodyFragment_06
       rect:
         serializedVersion: 2
-        x: 531
-        y: 811
+        x: 0
+        y: 344
         width: 253
         height: 289
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyBodyFragment_07
       rect:
         serializedVersion: 2
-        x: 799
-        y: 820
+        x: 260
+        y: 636
         width: 222
         height: 288
       alignment: 0
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyBodyFragment_08
       rect:
         serializedVersion: 2
-        x: 38
-        y: 444
+        x: 692
+        y: 316
         width: 210
         height: 301
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyBodyFragment_09
       rect:
         serializedVersion: 2
-        x: 280
-        y: 444
+        x: 476
+        y: 328
         width: 205
         height: 302
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyBodyFragment_10
       rect:
         serializedVersion: 2
-        x: 543
-        y: 473
+        x: 0
+        y: 924
         width: 229
         height: 246
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyBodyFragment_11
       rect:
         serializedVersion: 2
-        x: 828
-        y: 465
+        x: 724
+        y: 624
         width: 174
         height: 260
       alignment: 0
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyBodyFragment_12
       rect:
         serializedVersion: 2
-        x: 41
-        y: 77
+        x: 692
+        y: 0
         width: 208
         height: 310
       alignment: 0
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyBodyFragment_13
       rect:
         serializedVersion: 2
-        x: 272
-        y: 68
+        x: 476
+        y: 0
         width: 210
         height: 322
       alignment: 0
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyBodyFragment_14
       rect:
         serializedVersion: 2
-        x: 533
-        y: 93
+        x: 488
+        y: 920
         width: 232
         height: 270
       alignment: 0
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyBodyFragment_15
       rect:
         serializedVersion: 2
-        x: 793
-        y: 70
+        x: 0
+        y: 640
         width: 212
         height: 280
       alignment: 0
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyBodyFragment_15: -305317040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1024;h=1536;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=912;h=1428;ppu=256;packed=6b21af50
   assetBundleName: 
   assetBundleVariant: 

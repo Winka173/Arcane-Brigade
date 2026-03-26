@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: KeyCleaver
       rect:
         serializedVersion: 2
-        x: 24
-        y: 625
+        x: 0
+        y: 524
         width: 426
         height: 149
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: TeapotPopgun
       rect:
         serializedVersion: 2
-        x: 481
-        y: 567
+        x: 680
+        y: 0
         width: 342
         height: 229
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: UmbrellaLance
       rect:
         serializedVersion: 2
-        x: 852
-        y: 612
+        x: 432
+        y: 592
         width: 405
         height: 150
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: MailboxLauncher
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 558
+        x: 176
+        y: 276
         width: 379
         height: 243
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BellFork
       rect:
         serializedVersion: 2
-        x: 30
-        y: 220
+        x: 560
+        y: 424
         width: 416
         height: 162
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BookPaddle
       rect:
         serializedVersion: 2
-        x: 470
-        y: 212
+        x: 680
+        y: 236
         width: 353
         height: 182
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: CrescentBow
       rect:
         serializedVersion: 2
-        x: 921
-        y: 85
+        x: 0
+        y: 0
         width: 169
         height: 445
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: RuneStaff
       rect:
         serializedVersion: 2
-        x: 1142
-        y: 164
+        x: 176
+        y: 0
         width: 497
         height: 270
       alignment: 9
@@ -335,6 +335,6 @@ TextureImporter:
       UmbrellaLance: -54328072
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1672;h=944;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1052;h=748;ppu=256;packed=68f2df90
   assetBundleName: 
   assetBundleVariant: 

@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: GiantGoldMerchantHandoff_00
       rect:
         serializedVersion: 2
-        x: 60
-        y: 153
+        x: 1164
+        y: 0
         width: 379
         height: 452
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: GiantGoldMerchantHandoff_01
       rect:
         serializedVersion: 2
-        x: 603
-        y: 153
+        x: 0
+        y: 0
         width: 384
         height: 452
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: GiantGoldMerchantHandoff_02
       rect:
         serializedVersion: 2
-        x: 1144
-        y: 153
+        x: 388
+        y: 0
         width: 382
         height: 452
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: GiantGoldMerchantHandoff_03
       rect:
         serializedVersion: 2
-        x: 1688
-        y: 153
+        x: 776
+        y: 0
         width: 384
         height: 452
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       GiantGoldMerchantHandoff_03: 1194517528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1556;h=456;ppu=128;packed=9c9e1f3f
   assetBundleName: 
   assetBundleVariant: 

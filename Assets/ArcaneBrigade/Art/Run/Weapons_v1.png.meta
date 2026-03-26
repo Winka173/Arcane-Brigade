@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: KeyCleaver
       rect:
         serializedVersion: 2
-        x: 31
-        y: 667
+        x: 0
+        y: 424
         width: 481
         height: 171
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: TeapotPopgun
       rect:
         serializedVersion: 2
-        x: 594
-        y: 627
+        x: 452
+        y: 0
         width: 377
         height: 231
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: UmbrellaLance
       rect:
         serializedVersion: 2
-        x: 1049
-        y: 663
+        x: 0
+        y: 600
         width: 454
         height: 152
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: MailboxLauncher
       rect:
         serializedVersion: 2
-        x: 52
-        y: 174
+        x: 0
+        y: 0
         width: 446
         height: 267
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BellFork
       rect:
         serializedVersion: 2
-        x: 562
-        y: 226
+        x: 460
+        y: 600
         width: 431
         height: 152
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BookPaddle
       rect:
         serializedVersion: 2
-        x: 1069
-        y: 210
+        x: 452
+        y: 236
         width: 426
         height: 182
       alignment: 9
@@ -289,6 +289,6 @@ TextureImporter:
       UmbrellaLance: -814582946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1536;h=1024;ppu=256
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=904;h=756;ppu=256;packed=66000f91
   assetBundleName: 
   assetBundleVariant: 

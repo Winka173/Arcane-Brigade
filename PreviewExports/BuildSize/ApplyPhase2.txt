@@ -1,0 +1,3 @@
+readable cleared: 0
+SpriteInkMetrics entries 1083 -> 1083 (kept as recorded; 53 recorded boxes differ >5% from today's paintings, see InkMetrics_Stale.txt)
+PaintedStatIcons ink rects measured again: 49

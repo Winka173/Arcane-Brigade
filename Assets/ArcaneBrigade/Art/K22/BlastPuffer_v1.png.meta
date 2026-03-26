@@ -139,8 +139,8 @@ TextureImporter:
       name: BlastPufferEvolution_00
       rect:
         serializedVersion: 2
-        x: 26
-        y: 987
+        x: 876
+        y: 788
         width: 257
         height: 231
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: BlastPufferEvolution_01
       rect:
         serializedVersion: 2
-        x: 336
-        y: 988
+        x: 300
+        y: 836
         width: 260
         height: 230
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: BlastPufferEvolution_02
       rect:
         serializedVersion: 2
-        x: 648
-        y: 987
+        x: 880
+        y: 552
         width: 262
         height: 231
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: BlastPufferEvolution_03
       rect:
         serializedVersion: 2
-        x: 971
-        y: 987
+        x: 564
+        y: 864
         width: 258
         height: 231
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BlastPufferEvolution_04
       rect:
         serializedVersion: 2
-        x: 24
-        y: 709
+        x: 828
+        y: 1024
         width: 289
         height: 211
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BlastPufferEvolution_05
       rect:
         serializedVersion: 2
-        x: 345
-        y: 706
+        x: 300
+        y: 600
         width: 263
         height: 229
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: BlastPufferEvolution_06
       rect:
         serializedVersion: 2
-        x: 642
-        y: 697
+        x: 0
+        y: 864
         width: 295
         height: 254
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: BlastPufferEvolution_07
       rect:
         serializedVersion: 2
-        x: 966
-        y: 693
+        x: 880
+        y: 292
         width: 263
         height: 253
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: BlastPufferEvolution_08
       rect:
         serializedVersion: 2
-        x: 18
-        y: 386
+        x: 584
+        y: 292
         width: 291
         height: 286
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: BlastPufferEvolution_09
       rect:
         serializedVersion: 2
-        x: 333
-        y: 386
+        x: 288
+        y: 308
         width: 280
         height: 286
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: BlastPufferEvolution_10
       rect:
         serializedVersion: 2
-        x: 630
-        y: 385
+        x: 0
+        y: 308
         width: 283
         height: 285
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: BlastPufferEvolution_11
       rect:
         serializedVersion: 2
-        x: 951
-        y: 380
+        x: 304
+        y: 0
         width: 273
         height: 291
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: BlastPufferEvolution_12
       rect:
         serializedVersion: 2
-        x: 30
-        y: 80
+        x: 0
+        y: 600
         width: 295
         height: 259
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: BlastPufferEvolution_13
       rect:
         serializedVersion: 2
-        x: 338
-        y: 76
+        x: 572
+        y: 584
         width: 297
         height: 275
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: BlastPufferEvolution_14
       rect:
         serializedVersion: 2
-        x: 641
-        y: 59
+        x: 0
+        y: 0
         width: 298
         height: 303
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: BlastPufferEvolution_15
       rect:
         serializedVersion: 2
-        x: 941
-        y: 66
+        x: 584
+        y: 0
         width: 296
         height: 286
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       BlastPufferEvolution_15: 651150868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1248;h=1264;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1148;h=1240;ppu=256;packed=ff8004d3
   assetBundleName: 
   assetBundleVariant: 

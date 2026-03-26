@@ -139,8 +139,8 @@ TextureImporter:
       name: EmberProcession_00
       rect:
         serializedVersion: 2
-        x: 17
-        y: 768
+        x: 1220
+        y: 252
         width: 148
         height: 246
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EmberProcession_01
       rect:
         serializedVersion: 2
-        x: 208
-        y: 768
+        x: 1372
+        y: 252
         width: 142
         height: 246
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EmberProcession_02
       rect:
         serializedVersion: 2
-        x: 406
-        y: 768
+        x: 1256
+        y: 0
         width: 162
         height: 245
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EmberProcession_03
       rect:
         serializedVersion: 2
-        x: 585
-        y: 768
+        x: 1060
+        y: 252
         width: 156
         height: 245
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EmberProcession_04
       rect:
         serializedVersion: 2
-        x: 771
-        y: 768
+        x: 368
+        y: 260
         width: 189
         height: 185
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EmberProcession_05
       rect:
         serializedVersion: 2
-        x: 960
-        y: 768
+        x: 668
+        y: 256
         width: 192
         height: 242
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EmberProcession_06
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 768
+        x: 1060
+        y: 0
         width: 192
         height: 245
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EmberProcession_07
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 768
+        x: 0
+        y: 260
         width: 170
         height: 215
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EmberProcession_08
       rect:
         serializedVersion: 2
-        x: 16
-        y: 258
+        x: 172
+        y: 0
         width: 161
         height: 254
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EmberProcession_09
       rect:
         serializedVersion: 2
-        x: 205
-        y: 258
+        x: 340
+        y: 0
         width: 160
         height: 254
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EmberProcession_10
       rect:
         serializedVersion: 2
-        x: 404
-        y: 256
+        x: 0
+        y: 0
         width: 168
         height: 254
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EmberProcession_11
       rect:
         serializedVersion: 2
-        x: 583
-        y: 256
+        x: 504
+        y: 0
         width: 160
         height: 255
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EmberProcession_12
       rect:
         serializedVersion: 2
-        x: 773
-        y: 257
+        x: 176
+        y: 260
         width: 187
         height: 212
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EmberProcession_13
       rect:
         serializedVersion: 2
-        x: 960
-        y: 256
+        x: 668
+        y: 0
         width: 192
         height: 249
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EmberProcession_14
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 256
+        x: 864
+        y: 0
         width: 192
         height: 252
       alignment: 9
@@ -469,7 +469,7 @@ TextureImporter:
       name: EmberProcession_15
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 864
         y: 256
         width: 182
         height: 223
@@ -519,6 +519,6 @@ TextureImporter:
       EmberProcession_15: -1874353869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1532;h=504;ppu=128;packed=206a3cdd
   assetBundleName: 
   assetBundleVariant: 

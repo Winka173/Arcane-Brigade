@@ -139,8 +139,8 @@ TextureImporter:
       name: Relic_D_00
       rect:
         serializedVersion: 2
-        x: 20
-        y: 947
+        x: 772
+        y: 584
         width: 297
         height: 283
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: Relic_D_01
       rect:
         serializedVersion: 2
-        x: 351
-        y: 966
+        x: 276
+        y: 884
         width: 284
         height: 244
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: Relic_D_02
       rect:
         serializedVersion: 2
-        x: 701
-        y: 949
+        x: 0
+        y: 316
         width: 195
         height: 282
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: Relic_D_03
       rect:
         serializedVersion: 2
-        x: 972
-        y: 949
+        x: 812
+        y: 0
         width: 256
         height: 285
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: Relic_D_04
       rect:
         serializedVersion: 2
-        x: 64
-        y: 645
+        x: 560
+        y: 300
         width: 206
         height: 287
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: Relic_D_05
       rect:
         serializedVersion: 2
-        x: 402
-        y: 651
+        x: 0
+        y: 604
         width: 178
         height: 276
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: Relic_D_06
       rect:
         serializedVersion: 2
-        x: 665
-        y: 651
+        x: 628
+        y: 872
         width: 265
         height: 271
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: Relic_D_07
       rect:
         serializedVersion: 2
-        x: 1021
-        y: 649
+        x: 468
+        y: 592
         width: 155
         height: 282
       alignment: 0
@@ -315,8 +315,8 @@ TextureImporter:
       name: Relic_D_08
       rect:
         serializedVersion: 2
-        x: 29
-        y: 354
+        x: 0
+        y: 884
         width: 271
         height: 263
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: Relic_D_09
       rect:
         serializedVersion: 2
-        x: 360
-        y: 355
+        x: 200
+        y: 600
         width: 238
         height: 279
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: Relic_D_10
       rect:
         serializedVersion: 2
-        x: 669
-        y: 344
+        x: 812
+        y: 292
         width: 250
         height: 287
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: Relic_D_11
       rect:
         serializedVersion: 2
-        x: 1014
-        y: 346
+        x: 276
+        y: 308
         width: 186
         height: 288
       alignment: 0
@@ -403,8 +403,8 @@ TextureImporter:
       name: Relic_D_12
       rect:
         serializedVersion: 2
-        x: 31
-        y: 33
+        x: 0
+        y: 0
         width: 271
         height: 309
       alignment: 0
@@ -425,8 +425,8 @@ TextureImporter:
       name: Relic_D_13
       rect:
         serializedVersion: 2
-        x: 349
-        y: 37
+        x: 560
+        y: 0
         width: 248
         height: 295
       alignment: 0
@@ -447,8 +447,8 @@ TextureImporter:
       name: Relic_D_14
       rect:
         serializedVersion: 2
-        x: 658
-        y: 51
+        x: 900
+        y: 872
         width: 256
         height: 263
       alignment: 0
@@ -469,8 +469,8 @@ TextureImporter:
       name: Relic_D_15
       rect:
         serializedVersion: 2
-        x: 953
-        y: 25
+        x: 276
+        y: 0
         width: 280
         height: 302
       alignment: 0
@@ -519,6 +519,6 @@ TextureImporter:
       Relic_D_15: 1537509894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1160;h=1152;ppu=256;packed=b5793f24
   assetBundleName: 
   assetBundleVariant: 

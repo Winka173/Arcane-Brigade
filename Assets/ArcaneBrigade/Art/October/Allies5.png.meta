@@ -139,8 +139,8 @@ TextureImporter:
       name: OctoberAllies5_00
       rect:
         serializedVersion: 2
-        x: 74
-        y: 765
+        x: 220
+        y: 0
         width: 199
         height: 246
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: OctoberAllies5_01
       rect:
         serializedVersion: 2
-        x: 457
-        y: 763
+        x: 0
+        y: 0
         width: 214
         height: 248
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: OctoberAllies5_02
       rect:
         serializedVersion: 2
-        x: 888
-        y: 764
+        x: 1236
+        y: 0
         width: 225
         height: 221
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: OctoberAllies5_03
       rect:
         serializedVersion: 2
-        x: 1234
-        y: 763
+        x: 424
+        y: 0
         width: 287
         height: 236
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: OctoberAllies5_04
       rect:
         serializedVersion: 2
-        x: 54
-        y: 511
+        x: 716
+        y: 0
         width: 227
         height: 233
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: OctoberAllies5_05
       rect:
         serializedVersion: 2
-        x: 451
-        y: 511
+        x: 948
+        y: 0
         width: 229
         height: 231
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: OctoberAllies5_06
       rect:
         serializedVersion: 2
-        x: 849
-        y: 514
+        x: 268
+        y: 464
         width: 251
         height: 220
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: OctoberAllies5_07
       rect:
         serializedVersion: 2
-        x: 1226
-        y: 510
+        x: 948
+        y: 236
         width: 284
         height: 227
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: OctoberAllies5_08
       rect:
         serializedVersion: 2
-        x: 67
-        y: 271
+        x: 756
+        y: 468
         width: 210
         height: 213
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: OctoberAllies5_09
       rect:
         serializedVersion: 2
-        x: 434
-        y: 272
+        x: 524
+        y: 464
         width: 225
         height: 213
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: OctoberAllies5_10
       rect:
         serializedVersion: 2
-        x: 849
-        y: 272
+        x: 1236
+        y: 228
         width: 228
         height: 218
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: OctoberAllies5_11
       rect:
         serializedVersion: 2
-        x: 1249
-        y: 271
+        x: 424
+        y: 240
         width: 271
         height: 217
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: OctoberAllies5_12
       rect:
         serializedVersion: 2
-        x: 59
-        y: 17
+        x: 972
+        y: 468
         width: 211
         height: 214
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: OctoberAllies5_13
       rect:
         serializedVersion: 2
-        x: 434
-        y: 17
+        x: 1236
+        y: 452
         width: 218
         height: 218
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: OctoberAllies5_14
       rect:
         serializedVersion: 2
-        x: 850
-        y: 16
+        x: 700
+        y: 240
         width: 227
         height: 219
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: OctoberAllies5_15
       rect:
         serializedVersion: 2
-        x: 1256
-        y: 16
+        x: 0
+        y: 252
         width: 263
         height: 219
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       OctoberAllies5_15: 1771004449
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1468;h=688;ppu=128;packed=fa77eba9
   assetBundleName: 
   assetBundleVariant: 

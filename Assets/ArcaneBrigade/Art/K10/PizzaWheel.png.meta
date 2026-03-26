@@ -139,8 +139,8 @@ TextureImporter:
       name: PizzaWheel
       rect:
         serializedVersion: 2
-        x: 30
-        y: 33
+        x: 0
+        y: 0
         width: 712
         height: 319
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       PizzaWheel: 1679436766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=772;h=388;ppu=111.2604
+  userData: BuildSize:std=1024;mob=512;mips=0;w=716;h=324;ppu=111.2604;packed=baf6cea2
   assetBundleName: 
   assetBundleVariant: 

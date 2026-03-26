@@ -139,8 +139,8 @@ TextureImporter:
       name: CloudScissors
       rect:
         serializedVersion: 2
-        x: 63
-        y: 710
+        x: 460
+        y: 516
         width: 449
         height: 236
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: SleepCamera
       rect:
         serializedVersion: 2
-        x: 512
-        y: 719
+        x: 0
+        y: 516
         width: 455
         height: 238
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: TinFish
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 715
+        x: 952
+        y: 0
         width: 468
         height: 258
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: DreamIron
       rect:
         serializedVersion: 2
-        x: 51
-        y: 389
+        x: 448
+        y: 272
         width: 459
         height: 240
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: RubberHammer
       rect:
         serializedVersion: 2
-        x: 569
-        y: 402
+        x: 1076
+        y: 264
         width: 388
         height: 227
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: AlarmMortar
       rect:
         serializedVersion: 2
-        x: 1057
-        y: 404
+        x: 0
+        y: 0
         width: 443
         height: 270
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: MusicBox
       rect:
         serializedVersion: 2
-        x: 48
-        y: 77
+        x: 916
+        y: 516
         width: 464
         height: 220
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: TeapotPopgun
       rect:
         serializedVersion: 2
-        x: 512
-        y: 55
+        x: 448
+        y: 0
         width: 498
         height: 265
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: CrescentBow
       rect:
         serializedVersion: 2
-        x: 1227
-        y: 85
+        x: 952
+        y: 264
         width: 117
         height: 247
       alignment: 9
@@ -358,6 +358,6 @@ TextureImporter:
       TinFish: -1102170098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1536;h=1024;ppu=256
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1480;h=760;ppu=256;packed=b5d28253
   assetBundleName: 
   assetBundleVariant: 

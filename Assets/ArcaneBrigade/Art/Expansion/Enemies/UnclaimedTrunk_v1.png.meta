@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_00
       rect:
         serializedVersion: 2
-        x: 83
-        y: 1205
+        x: 460
+        y: 244
         width: 217
         height: 180
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_01
       rect:
         serializedVersion: 2
-        x: 469
-        y: 1204
+        x: 0
+        y: 252
         width: 213
         height: 175
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_02
       rect:
         serializedVersion: 2
-        x: 851
-        y: 1205
+        x: 236
+        y: 244
         width: 218
         height: 187
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_03
       rect:
         serializedVersion: 2
-        x: 1235
-        y: 1205
+        x: 1004
+        y: 240
         width: 217
         height: 192
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_04
       rect:
         serializedVersion: 2
-        x: 77
-        y: 821
+        x: 688
+        y: 464
         width: 231
         height: 148
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_05
       rect:
         serializedVersion: 2
-        x: 461
-        y: 821
+        x: 0
+        y: 432
         width: 231
         height: 167
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_06
       rect:
         serializedVersion: 2
-        x: 820
-        y: 821
+        x: 716
+        y: 240
         width: 281
         height: 220
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_07
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 820
+        x: 460
+        y: 428
         width: 224
         height: 171
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_08
       rect:
         serializedVersion: 2
-        x: 74
-        y: 437
+        x: 236
+        y: 0
         width: 236
         height: 240
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_09
       rect:
         serializedVersion: 2
-        x: 459
-        y: 437
+        x: 476
+        y: 0
         width: 235
         height: 237
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_10
       rect:
         serializedVersion: 2
-        x: 845
-        y: 437
+        x: 1000
+        y: 0
         width: 229
         height: 236
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_11
       rect:
         serializedVersion: 2
-        x: 1229
-        y: 437
+        x: 0
+        y: 0
         width: 229
         height: 245
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_12
       rect:
         serializedVersion: 2
-        x: 69
-        y: 53
+        x: 1228
+        y: 416
         width: 246
         height: 172
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_13
       rect:
         serializedVersion: 2
-        x: 453
-        y: 53
+        x: 1236
+        y: 0
         width: 247
         height: 207
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 53
+        x: 716
+        y: 0
         width: 280
         height: 236
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyUnclaimedTrunk_15
       rect:
         serializedVersion: 2
-        x: 1227
-        y: 53
+        x: 1236
+        y: 212
         width: 235
         height: 198
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyUnclaimedTrunk_15: 1609835908
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1488;h=616;ppu=256;packed=360c865a
   assetBundleName: 
   assetBundleVariant: 

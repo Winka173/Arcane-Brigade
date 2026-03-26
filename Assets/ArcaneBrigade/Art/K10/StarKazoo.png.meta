@@ -139,8 +139,8 @@ TextureImporter:
       name: StarKazoo
       rect:
         serializedVersion: 2
-        x: 16
-        y: 46
+        x: 0
+        y: 0
         width: 713
         height: 281
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       StarKazoo: -1890122771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=744;h=372;ppu=106.9312
+  userData: BuildSize:std=1024;mob=512;mips=0;w=720;h=288;ppu=106.9312;packed=594dbe5e
   assetBundleName: 
   assetBundleVariant: 

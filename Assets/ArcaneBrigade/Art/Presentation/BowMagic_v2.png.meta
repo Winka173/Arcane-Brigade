@@ -139,8 +139,8 @@ TextureImporter:
       name: CrescentBow
       rect:
         serializedVersion: 2
-        x: 198
-        y: 493
+        x: 0
+        y: 0
         width: 420
         height: 435
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: RuneStaff
       rect:
         serializedVersion: 2
-        x: 874
-        y: 530
+        x: 424
+        y: 0
         width: 550
         height: 313
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ArrowBolt
       rect:
         serializedVersion: 2
-        x: 145
-        y: 162
+        x: 424
+        y: 320
         width: 528
         height: 119
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: RuneOrb
       rect:
         serializedVersion: 2
-        x: 1010
-        y: 90
+        x: 980
+        y: 0
         width: 271
         height: 274
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       RuneStaff: -854049897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1264;h=444;ppu=256;packed=c658aeb2
   assetBundleName: 
   assetBundleVariant: 

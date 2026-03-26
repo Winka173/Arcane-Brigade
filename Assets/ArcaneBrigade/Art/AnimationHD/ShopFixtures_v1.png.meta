@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 161
+        y: 400
         width: 576
         height: 396
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: Furniture_1
       rect:
         serializedVersion: 2
-        x: 576
-        y: 161
+        x: 0
+        y: 0
         width: 608
         height: 396
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: Furniture_2
       rect:
         serializedVersion: 2
-        x: 1184
-        y: 161
+        x: 612
+        y: 0
         width: 499
         height: 396
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: Furniture_3
       rect:
         serializedVersion: 2
-        x: 1683
-        y: 161
+        x: 580
+        y: 400
         width: 489
         height: 396
       alignment: 0
@@ -243,6 +243,6 @@ TextureImporter:
       Furniture_3: 2007587753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1128;h=800;ppu=256;packed=16827468
   assetBundleName: 
   assetBundleVariant: 

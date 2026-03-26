@@ -139,8 +139,8 @@ TextureImporter:
       name: DartCompass
       rect:
         serializedVersion: 2
-        x: 28
-        y: 42
+        x: 0
+        y: 0
         width: 712
         height: 430
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       DartCompass: 397209000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=768;h=512;ppu=128
+  userData: BuildSize:std=1024;mob=512;mips=0;w=716;h=436;ppu=128;packed=f4530201
   assetBundleName: 
   assetBundleVariant: 

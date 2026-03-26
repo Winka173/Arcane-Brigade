@@ -110,7 +110,7 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: 51
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -123,7 +123,7 @@ TextureImporter:
     buildTarget: iOS
     maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: 51
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -151,6 +151,6 @@ TextureImporter:
     nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=1024;mips=1;w=1024;h=512;ppu=147.77
+  userData: BuildSize:std=1024;mob=1024;mips=1;w=1024;h=512;ppu=147.77;soft=1
   assetBundleName: 
   assetBundleVariant: 

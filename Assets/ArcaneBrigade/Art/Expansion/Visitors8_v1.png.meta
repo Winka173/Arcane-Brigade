@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: ExpansionVisitors8_00
       rect:
         serializedVersion: 2
-        x: 75
-        y: 584
+        x: 268
+        y: 288
         width: 234
         height: 267
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ExpansionVisitors8_01
       rect:
         serializedVersion: 2
-        x: 446
-        y: 584
+        x: 0
+        y: 288
         width: 261
         height: 267
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ExpansionVisitors8_02
       rect:
         serializedVersion: 2
-        x: 858
-        y: 584
+        x: 792
+        y: 280
         width: 203
         height: 272
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: ExpansionVisitors8_03
       rect:
         serializedVersion: 2
-        x: 1214
-        y: 584
+        x: 524
+        y: 280
         width: 261
         height: 272
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: ExpansionVisitors8_04
       rect:
         serializedVersion: 2
-        x: 66
-        y: 72
+        x: 268
+        y: 0
         width: 252
         height: 283
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: ExpansionVisitors8_05
       rect:
         serializedVersion: 2
-        x: 446
-        y: 72
+        x: 0
+        y: 0
         width: 261
         height: 282
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: ExpansionVisitors8_06
       rect:
         serializedVersion: 2
-        x: 862
-        y: 72
+        x: 792
+        y: 0
         width: 197
         height: 276
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: ExpansionVisitors8_07
       rect:
         serializedVersion: 2
-        x: 1214
-        y: 72
+        x: 524
+        y: 0
         width: 261
         height: 273
       alignment: 9
@@ -335,6 +335,6 @@ TextureImporter:
       ExpansionVisitors8_07: -2107485147
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=1004;h=560;ppu=128;packed=328194ac
   assetBundleName: 
   assetBundleVariant: 

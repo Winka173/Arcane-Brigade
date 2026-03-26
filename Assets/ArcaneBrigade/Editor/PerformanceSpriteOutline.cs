@@ -12,6 +12,7 @@ namespace ArcaneBrigade.Editor
     {
         public static void Apply(string path, bool keepDetached = false)
         {
+            if (BuildSizePolicy.IsPacked(path)) return; // repacked sheet (build size) already carries light outlines that cover every drawn pixel
             var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             try
             {

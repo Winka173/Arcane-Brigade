@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 93
+        y: 0
         width: 543
         height: 551
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: TinTick_1
       rect:
         serializedVersion: 2
-        x: 543
-        y: 93
+        x: 548
+        y: 0
         width: 543
         height: 551
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: TinTick_2
       rect:
         serializedVersion: 2
-        x: 1086
-        y: 93
+        x: 0
+        y: 556
         width: 543
         height: 551
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: TinTick_3
       rect:
         serializedVersion: 2
-        x: 1629
-        y: 93
+        x: 548
+        y: 556
         width: 543
         height: 551
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       TinTick_3: 1101026765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1104;h=1112;ppu=256;packed=f75ef7b4
   assetBundleName: 
   assetBundleVariant: 

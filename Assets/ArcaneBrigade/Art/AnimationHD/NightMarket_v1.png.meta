@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 838
+        y: 768
         width: 313
         height: 278
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: GoldMerchant_1
       rect:
         serializedVersion: 2
-        x: 313
-        y: 838
+        x: 320
+        y: 992
         width: 313
         height: 278
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: GoldMerchant_2
       rect:
         serializedVersion: 2
-        x: 626
-        y: 838
+        x: 640
+        y: 992
         width: 313
         height: 278
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: GoldMerchant_3
       rect:
         serializedVersion: 2
-        x: 939
-        y: 838
+        x: 0
+        y: 1052
         width: 313
         height: 278
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: EggMerchant
       rect:
         serializedVersion: 2
-        x: 0
-        y: 473
+        x: 320
+        y: 384
         width: 313
         height: 299
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: EggMerchant_1
       rect:
         serializedVersion: 2
-        x: 313
-        y: 473
+        x: 640
+        y: 384
         width: 313
         height: 299
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: EggMerchant_2
       rect:
         serializedVersion: 2
-        x: 626
-        y: 473
+        x: 320
+        y: 688
         width: 313
         height: 299
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: EggMerchant_3
       rect:
         serializedVersion: 2
-        x: 939
-        y: 473
+        x: 640
+        y: 688
         width: 313
         height: 299
       alignment: 0
@@ -316,7 +316,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 62
+        y: 0
         width: 313
         height: 377
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: Fixtures_1
       rect:
         serializedVersion: 2
-        x: 313
-        y: 62
+        x: 320
+        y: 0
         width: 313
         height: 377
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: Fixtures_2
       rect:
         serializedVersion: 2
-        x: 626
-        y: 62
+        x: 640
+        y: 0
         width: 313
         height: 377
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: Fixtures_3
       rect:
         serializedVersion: 2
-        x: 939
-        y: 62
+        x: 0
+        y: 384
         width: 313
         height: 377
       alignment: 0
@@ -427,6 +427,6 @@ TextureImporter:
       GoldMerchant_3: 725111870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1000;h=1336;ppu=256;packed=dc5fbb76
   assetBundleName: 
   assetBundleVariant: 

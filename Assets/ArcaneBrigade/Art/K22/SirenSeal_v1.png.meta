@@ -139,8 +139,8 @@ TextureImporter:
       name: SirenSealEvolution_00
       rect:
         serializedVersion: 2
-        x: 14
-        y: 948
+        x: 640
+        y: 252
         width: 273
         height: 238
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: SirenSealEvolution_01
       rect:
         serializedVersion: 2
-        x: 302
-        y: 948
+        x: 336
+        y: 496
         width: 272
         height: 238
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: SirenSealEvolution_02
       rect:
         serializedVersion: 2
-        x: 598
-        y: 948
+        x: 276
+        y: 740
         width: 316
         height: 222
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: SirenSealEvolution_03
       rect:
         serializedVersion: 2
-        x: 932
-        y: 954
+        x: 312
+        y: 968
         width: 289
         height: 218
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: SirenSealEvolution_04
       rect:
         serializedVersion: 2
-        x: 8
-        y: 657
+        x: 608
+        y: 968
         width: 299
         height: 211
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: SirenSealEvolution_05
       rect:
         serializedVersion: 2
-        x: 319
-        y: 658
+        x: 608
+        y: 1184
         width: 294
         height: 206
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: SirenSealEvolution_06
       rect:
         serializedVersion: 2
-        x: 624
-        y: 670
+        x: 612
+        y: 496
         width: 357
         height: 229
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: SirenSealEvolution_07
       rect:
         serializedVersion: 2
-        x: 972
-        y: 668
+        x: 0
+        y: 732
         width: 270
         height: 228
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: SirenSealEvolution_08
       rect:
         serializedVersion: 2
-        x: 20
-        y: 350
+        x: 0
+        y: 0
         width: 283
         height: 247
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: SirenSealEvolution_09
       rect:
         serializedVersion: 2
-        x: 308
-        y: 350
+        x: 288
+        y: 0
         width: 276
         height: 246
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: SirenSealEvolution_10
       rect:
         serializedVersion: 2
-        x: 598
-        y: 350
+        x: 0
+        y: 252
         width: 331
         height: 243
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: SirenSealEvolution_11
       rect:
         serializedVersion: 2
-        x: 934
-        y: 352
+        x: 336
+        y: 252
         width: 299
         height: 240
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: SirenSealEvolution_12
       rect:
         serializedVersion: 2
-        x: 15
-        y: 61
+        x: 0
+        y: 968
         width: 305
         height: 221
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: SirenSealEvolution_13
       rect:
         serializedVersion: 2
-        x: 321
-        y: 60
+        x: 0
+        y: 500
         width: 304
         height: 226
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: SirenSealEvolution_14
       rect:
         serializedVersion: 2
-        x: 625
-        y: 70
+        x: 612
+        y: 732
         width: 360
         height: 231
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: SirenSealEvolution_15
       rect:
         serializedVersion: 2
-        x: 982
-        y: 67
+        x: 568
+        y: 0
         width: 256
         height: 245
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       SirenSealEvolution_15: -1827891200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1248;h=1264;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=980;h=1396;ppu=256;packed=b8738e0c
   assetBundleName: 
   assetBundleVariant: 

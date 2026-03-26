@@ -139,8 +139,8 @@ TextureImporter:
       name: LanternStage_00
       rect:
         serializedVersion: 2
-        x: 54
-        y: 942
+        x: 548
+        y: 632
         width: 226
         height: 285
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: LanternStage_01
       rect:
         serializedVersion: 2
-        x: 324
-        y: 941
+        x: 0
+        y: 336
         width: 300
         height: 299
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: LanternStage_02
       rect:
         serializedVersion: 2
-        x: 717
-        y: 941
+        x: 612
+        y: 320
         width: 183
         height: 307
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: LanternStage_03
       rect:
         serializedVersion: 2
-        x: 1026
-        y: 967
+        x: 364
+        y: 920
         width: 178
         height: 218
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: LanternStage_04
       rect:
         serializedVersion: 2
-        x: 25
-        y: 628
+        x: 804
+        y: 316
         width: 267
         height: 309
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: LanternStage_05
       rect:
         serializedVersion: 2
-        x: 313
-        y: 624
+        x: 804
+        y: 0
         width: 333
         height: 310
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: LanternStage_06
       rect:
         serializedVersion: 2
-        x: 718
-        y: 624
+        x: 612
+        y: 0
         width: 186
         height: 316
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: LanternStage_07
       rect:
         serializedVersion: 2
-        x: 1018
-        y: 647
+        x: 1052
+        y: 632
         width: 197
         height: 231
       alignment: 0
@@ -315,8 +315,8 @@ TextureImporter:
       name: LanternStage_08
       rect:
         serializedVersion: 2
-        x: 16
-        y: 339
+        x: 780
+        y: 632
         width: 268
         height: 269
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: LanternStage_09
       rect:
         serializedVersion: 2
-        x: 309
-        y: 358
+        x: 0
+        y: 920
         width: 358
         height: 218
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: LanternStage_10
       rect:
         serializedVersion: 2
-        x: 723
-        y: 331
+        x: 312
+        y: 324
         width: 211
         height: 296
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: LanternStage_11
       rect:
         serializedVersion: 2
-        x: 1012
-        y: 355
+        x: 0
+        y: 640
         width: 231
         height: 226
       alignment: 0
@@ -403,8 +403,8 @@ TextureImporter:
       name: LanternStage_12
       rect:
         serializedVersion: 2
-        x: 8
-        y: 14
+        x: 312
+        y: 0
         width: 293
         height: 317
       alignment: 0
@@ -425,8 +425,8 @@ TextureImporter:
       name: LanternStage_13
       rect:
         serializedVersion: 2
-        x: 302
-        y: 46
+        x: 780
+        y: 908
         width: 373
         height: 226
       alignment: 0
@@ -447,8 +447,8 @@ TextureImporter:
       name: LanternStage_14
       rect:
         serializedVersion: 2
-        x: 699
-        y: 7
+        x: 0
+        y: 0
         width: 306
         height: 330
       alignment: 0
@@ -469,8 +469,8 @@ TextureImporter:
       name: LanternStage_15
       rect:
         serializedVersion: 2
-        x: 1007
-        y: 23
+        x: 304
+        y: 624
         width: 239
         height: 291
       alignment: 0
@@ -519,6 +519,6 @@ TextureImporter:
       LanternStage_15: 1814556027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1144;ppu=256;packed=28dff231
   assetBundleName: 
   assetBundleVariant: 

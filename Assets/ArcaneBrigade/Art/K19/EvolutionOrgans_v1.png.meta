@@ -139,8 +139,8 @@ TextureImporter:
       name: Evolution_00
       rect:
         serializedVersion: 2
-        x: 54
-        y: 693
+        x: 820
+        y: 0
         width: 292
         height: 382
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: Evolution_01
       rect:
         serializedVersion: 2
-        x: 393
-        y: 715
+        x: 820
+        y: 388
         width: 294
         height: 363
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: Evolution_02
       rect:
         serializedVersion: 2
-        x: 735
-        y: 699
+        x: 456
+        y: 396
         width: 320
         height: 381
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: Evolution_03
       rect:
         serializedVersion: 2
-        x: 1149
-        y: 671
+        x: 224
+        y: 0
         width: 226
         height: 405
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: Evolution_04
       rect:
         serializedVersion: 2
-        x: 28
-        y: 429
+        x: 784
+        y: 756
         width: 332
         height: 248
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: Evolution_05
       rect:
         serializedVersion: 2
-        x: 399
-        y: 438
+        x: 784
+        y: 1008
         width: 228
         height: 246
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: Evolution_06
       rect:
         serializedVersion: 2
-        x: 694
-        y: 412
+        x: 396
+        y: 784
         width: 384
         height: 269
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: Evolution_07
       rect:
         serializedVersion: 2
-        x: 1090
-        y: 427
+        x: 0
+        y: 1044
         width: 330
         height: 236
       alignment: 0
@@ -315,8 +315,8 @@ TextureImporter:
       name: Evolution_08
       rect:
         serializedVersion: 2
-        x: 31
-        y: 18
+        x: 456
+        y: 0
         width: 360
         height: 391
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: Evolution_09
       rect:
         serializedVersion: 2
-        x: 399
-        y: 33
+        x: 0
+        y: 416
         width: 390
         height: 370
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: Evolution_10
       rect:
         serializedVersion: 2
-        x: 800
-        y: 104
+        x: 0
+        y: 792
         width: 292
         height: 246
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: Evolution_11
       rect:
         serializedVersion: 2
-        x: 1187
-        y: 19
+        x: 0
+        y: 0
         width: 217
         height: 410
       alignment: 0
@@ -427,6 +427,6 @@ TextureImporter:
       Evolution_11: -95190740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1448;h=1088;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1128;h=1284;ppu=256;packed=8c4327ce
   assetBundleName: 
   assetBundleVariant: 

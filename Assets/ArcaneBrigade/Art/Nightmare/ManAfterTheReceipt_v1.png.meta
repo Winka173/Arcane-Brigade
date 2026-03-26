@@ -139,8 +139,8 @@ TextureImporter:
       name: ManAfterReceipt_00
       rect:
         serializedVersion: 2
-        x: 92
-        y: 48
+        x: 672
+        y: 0
         width: 320
         height: 686
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ManAfterReceipt_01
       rect:
         serializedVersion: 2
-        x: 611
-        y: 48
+        x: 0
+        y: 0
         width: 331
         height: 688
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ManAfterReceipt_02
       rect:
         serializedVersion: 2
-        x: 1132
-        y: 48
+        x: 336
+        y: 0
         width: 329
         height: 686
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: ManAfterReceipt_03
       rect:
         serializedVersion: 2
-        x: 1682
-        y: 48
+        x: 996
+        y: 0
         width: 309
         height: 668
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       ManAfterReceipt_03: 1865181809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=2048;h=768;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1316;h=692;ppu=128;packed=c3a375d1
   assetBundleName: 
   assetBundleVariant: 

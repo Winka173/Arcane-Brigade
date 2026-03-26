@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: Latch_00
       rect:
         serializedVersion: 2
-        x: 34
-        y: 39
+        x: 976
+        y: 0
         width: 482
         height: 673
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: Latch_01
       rect:
         serializedVersion: 2
-        x: 568
-        y: 43
+        x: 1464
+        y: 0
         width: 494
         height: 669
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: Latch_02
       rect:
         serializedVersion: 2
-        x: 1101
-        y: 28
+        x: 496
+        y: 0
         width: 476
         height: 677
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: Latch_03
       rect:
         serializedVersion: 2
-        x: 1640
-        y: 30
+        x: 0
+        y: 0
         width: 489
         height: 682
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       Latch_03: 875211400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1968;h=688;ppu=128;packed=e4044b45
   assetBundleName: 
   assetBundleVariant: 

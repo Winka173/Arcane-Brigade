@@ -139,8 +139,8 @@ TextureImporter:
       name: TwinFlameFurnace_00
       rect:
         serializedVersion: 2
-        x: 76
-        y: 791
+        x: 840
+        y: 788
         width: 229
         height: 225
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: TwinFlameFurnace_01
       rect:
         serializedVersion: 2
-        x: 445
-        y: 790
+        x: 840
+        y: 1020
         width: 227
         height: 225
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: TwinFlameFurnace_02
       rect:
         serializedVersion: 2
-        x: 812
-        y: 785
+        x: 0
+        y: 552
         width: 258
         height: 233
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: TwinFlameFurnace_03
       rect:
         serializedVersion: 2
-        x: 1229
-        y: 789
+        x: 0
+        y: 792
         width: 254
         height: 229
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: TwinFlameFurnace_04
       rect:
         serializedVersion: 2
-        x: 54
-        y: 543
+        x: 560
+        y: 1024
         width: 267
         height: 210
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: TwinFlameFurnace_05
       rect:
         serializedVersion: 2
-        x: 419
-        y: 542
+        x: 260
+        y: 1024
         width: 294
         height: 215
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: TwinFlameFurnace_06
       rect:
         serializedVersion: 2
-        x: 819
-        y: 544
+        x: 264
+        y: 788
         width: 293
         height: 232
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: TwinFlameFurnace_07
       rect:
         serializedVersion: 2
-        x: 1204
-        y: 544
+        x: 564
+        y: 788
         width: 270
         height: 229
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: TwinFlameFurnace_08
       rect:
         serializedVersion: 2
-        x: 54
-        y: 262
+        x: 288
+        y: 0
         width: 272
         height: 275
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: TwinFlameFurnace_09
       rect:
         serializedVersion: 2
-        x: 436
-        y: 263
+        x: 564
+        y: 0
         width: 261
         height: 273
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: TwinFlameFurnace_10
       rect:
         serializedVersion: 2
-        x: 808
-        y: 264
+        x: 0
+        y: 0
         width: 284
         height: 273
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: TwinFlameFurnace_11
       rect:
         serializedVersion: 2
-        x: 1201
-        y: 264
+        x: 0
+        y: 280
         width: 290
         height: 267
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: TwinFlameFurnace_12
       rect:
         serializedVersion: 2
-        x: 45
-        y: 9
+        x: 296
+        y: 540
         width: 299
         height: 244
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: TwinFlameFurnace_13
       rect:
         serializedVersion: 2
-        x: 413
-        y: 8
+        x: 624
+        y: 536
         width: 317
         height: 248
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: TwinFlameFurnace_14
       rect:
         serializedVersion: 2
-        x: 814
-        y: 7
+        x: 296
+        y: 280
         width: 322
         height: 254
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: TwinFlameFurnace_15
       rect:
         serializedVersion: 2
-        x: 1191
-        y: 6
+        x: 624
+        y: 280
         width: 285
         height: 251
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       TwinFlameFurnace_15: 1729091553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1080;h=1252;ppu=256;packed=d287bde2
   assetBundleName: 
   assetBundleVariant: 

@@ -139,8 +139,8 @@ TextureImporter:
       name: BuildMorphBack_00
       rect:
         serializedVersion: 2
-        x: 82
-        y: 716
+        x: 1140
+        y: 0
         width: 225
         height: 241
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: BuildMorphBack_01
       rect:
         serializedVersion: 2
-        x: 433
-        y: 707
+        x: 0
+        y: 0
         width: 295
         height: 262
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: BuildMorphBack_02
       rect:
         serializedVersion: 2
-        x: 861
-        y: 716
+        x: 920
+        y: 248
         width: 200
         height: 238
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: BuildMorphBack_03
       rect:
         serializedVersion: 2
-        x: 1184
-        y: 724
+        x: 580
+        y: 492
         width: 331
         height: 185
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BuildMorphBack_04
       rect:
         serializedVersion: 2
-        x: 72
-        y: 394
+        x: 888
+        y: 0
         width: 246
         height: 244
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BuildMorphBack_05
       rect:
         serializedVersion: 2
-        x: 428
-        y: 389
+        x: 612
+        y: 248
         width: 303
         height: 237
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: BuildMorphBack_06
       rect:
         serializedVersion: 2
-        x: 826
-        y: 397
+        x: 612
+        y: 0
         width: 271
         height: 241
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: BuildMorphBack_07
       rect:
         serializedVersion: 2
-        x: 1204
-        y: 404
+        x: 0
+        y: 268
         width: 291
         height: 228
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: BuildMorphBack_08
       rect:
         serializedVersion: 2
-        x: 72
-        y: 81
+        x: 1124
+        y: 248
         width: 242
         height: 230
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: BuildMorphBack_09
       rect:
         serializedVersion: 2
-        x: 427
-        y: 69
+        x: 300
+        y: 0
         width: 306
         height: 248
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: BuildMorphBack_10
       rect:
         serializedVersion: 2
-        x: 818
-        y: 88
+        x: 300
+        y: 252
         width: 292
         height: 231
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: BuildMorphBack_11
       rect:
         serializedVersion: 2
-        x: 1209
-        y: 89
+        x: 296
+        y: 488
         width: 280
         height: 224
       alignment: 9
@@ -427,6 +427,6 @@ TextureImporter:
       BuildMorphBack_11: -457329115
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1024;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1380;h=716;ppu=128;packed=04ef36d5
   assetBundleName: 
   assetBundleVariant: 

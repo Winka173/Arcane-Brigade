@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: BondAstral
       rect:
         serializedVersion: 2
-        x: 93
-        y: 92
+        x: 0
+        y: 0
         width: 469
         height: 467
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       BondAstral: 608553034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=1024;mob=512;mips=0;w=644;h=644;ppu=130.8581
+  userData: BuildSize:std=512;mob=512;mips=0;w=476;h=472;ppu=130.8581;packed=4c7d78d3
   assetBundleName: 
   assetBundleVariant: 

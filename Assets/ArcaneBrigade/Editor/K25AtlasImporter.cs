@@ -13,6 +13,7 @@ namespace ArcaneBrigade.Editor
         {
             if (regions != null && (regions.Length != columns * rows || componentRows || regions.Any(region => region.width <= 0 || region.height <= 0 || region.xMin < 0 || region.yMin < 0 || region.xMax > 1 || region.yMax > 1))) throw new ArgumentException("Invalid atlas regions " + id);
             if (columns <= 0 || rows <= 0 || cells.Any(cell => cell < 0 || cell >= columns * rows) || rowEdges != null && (rowEdges.Length != rows + 1 || rowEdges[0] != 0 || rowEdges[rows] != 1024)) throw new ArgumentException("Invalid K25 atlas layout " + id);
+            if (BuildSizePolicy.IsPacked(path)) return BuildSizePolicy.PackedSprites(path); // repacked sheet (build size): keep its sprites, never re-slice it on the painted grid
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Multiple;

@@ -139,8 +139,8 @@ TextureImporter:
       name: LastCustomerOrgan_00
       rect:
         serializedVersion: 2
-        x: 23
-        y: 386
+        x: 924
+        y: 0
         width: 413
         height: 397
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: LastCustomerOrgan_01
       rect:
         serializedVersion: 2
-        x: 451
-        y: 430
+        x: 0
+        y: 0
         width: 432
         height: 403
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: LastCustomerOrgan_02
       rect:
         serializedVersion: 2
-        x: 917
-        y: 368
+        x: 1344
+        y: 0
         width: 429
         height: 386
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: LastCustomerOrgan_03
       rect:
         serializedVersion: 2
-        x: 1356
-        y: 387
+        x: 436
+        y: 0
         width: 481
         height: 397
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: LastCustomerOrgan_04
       rect:
         serializedVersion: 2
-        x: 27
-        y: 10
+        x: 436
+        y: 404
         width: 458
         height: 367
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: LastCustomerOrgan_05
       rect:
         serializedVersion: 2
-        x: 502
-        y: 44
+        x: 0
+        y: 408
         width: 404
         height: 338
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: LastCustomerOrgan_06
       rect:
         serializedVersion: 2
-        x: 948
-        y: 17
+        x: 900
+        y: 404
         width: 452
         height: 344
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: LastCustomerOrgan_07
       rect:
         serializedVersion: 2
-        x: 1442
-        y: 30
+        x: 1356
+        y: 392
         width: 378
         height: 344
       alignment: 9
@@ -335,6 +335,6 @@ TextureImporter:
       LastCustomerOrgan_07: -1608888033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1856;h=848;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1784;h=776;ppu=128;packed=ddced4fe
   assetBundleName: 
   assetBundleVariant: 

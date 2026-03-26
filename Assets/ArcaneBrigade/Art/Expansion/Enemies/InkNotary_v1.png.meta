@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyInkNotary_00
       rect:
         serializedVersion: 2
-        x: 83
-        y: 1205
+        x: 744
+        y: 0
         width: 216
         height: 216
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyInkNotary_01
       rect:
         serializedVersion: 2
-        x: 465
-        y: 1206
+        x: 964
+        y: 216
         width: 223
         height: 209
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyInkNotary_02
       rect:
         serializedVersion: 2
-        x: 839
-        y: 1205
+        x: 964
+        y: 0
         width: 242
         height: 209
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyInkNotary_03
       rect:
         serializedVersion: 2
-        x: 1233
-        y: 1205
+        x: 1192
+        y: 216
         width: 223
         height: 209
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyInkNotary_04
       rect:
         serializedVersion: 2
-        x: 77
-        y: 822
+        x: 720
+        y: 220
         width: 229
         height: 193
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyInkNotary_05
       rect:
         serializedVersion: 2
-        x: 465
-        y: 821
+        x: 0
+        y: 0
         width: 220
         height: 280
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyInkNotary_06
       rect:
         serializedVersion: 2
-        x: 825
-        y: 821
+        x: 468
+        y: 0
         width: 270
         height: 216
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyInkNotary_07
       rect:
         serializedVersion: 2
-        x: 1221
-        y: 821
+        x: 468
+        y: 220
         width: 245
         height: 196
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyInkNotary_08
       rect:
         serializedVersion: 2
-        x: 83
-        y: 437
+        x: 512
+        y: 420
         width: 219
         height: 190
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyInkNotary_09
       rect:
         serializedVersion: 2
-        x: 465
-        y: 437
+        x: 284
+        y: 420
         width: 222
         height: 192
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyInkNotary_10
       rect:
         serializedVersion: 2
-        x: 835
-        y: 437
+        x: 736
+        y: 432
         width: 251
         height: 188
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyInkNotary_11
       rect:
         serializedVersion: 2
-        x: 1238
-        y: 437
+        x: 992
+        y: 432
         width: 213
         height: 186
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyInkNotary_12
       rect:
         serializedVersion: 2
-        x: 76
-        y: 53
+        x: 0
+        y: 480
         width: 232
         height: 184
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyInkNotary_13
       rect:
         serializedVersion: 2
-        x: 457
-        y: 53
+        x: 224
+        y: 0
         width: 238
         height: 231
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyInkNotary_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 53
+        x: 0
+        y: 284
         width: 280
         height: 192
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyInkNotary_15
       rect:
         serializedVersion: 2
-        x: 1241
-        y: 53
+        x: 1212
+        y: 432
         width: 207
         height: 186
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyInkNotary_15: 1760465933
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1428;h=668;ppu=256;packed=32b079c8
   assetBundleName: 
   assetBundleVariant: 

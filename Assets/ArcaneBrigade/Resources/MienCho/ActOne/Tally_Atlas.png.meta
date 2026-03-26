@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: Tally_00
       rect:
         serializedVersion: 2
-        x: 64
-        y: 158
+        x: 0
+        y: 404
         width: 418
         height: 390
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: Tally_01
       rect:
         serializedVersion: 2
-        x: 601
-        y: 158
+        x: 436
+        y: 0
         width: 427
         height: 394
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: Tally_02
       rect:
         serializedVersion: 2
-        x: 1138
-        y: 153
+        x: 0
+        y: 0
         width: 432
         height: 399
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: Tally_03
       rect:
         serializedVersion: 2
-        x: 1678
-        y: 155
+        x: 436
+        y: 400
         width: 427
         height: 395
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       Tally_03: 1091212225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=872;h=800;ppu=128;packed=1245538d
   assetBundleName: 
   assetBundleVariant: 

@@ -60,6 +60,7 @@ namespace ArcaneBrigade.Editor
 
         private static Dictionary<string, Sprite> ImportAtlas()
         {
+            if (BuildSizePolicy.IsPacked(Atlas)) return BuildSizePolicy.PackedSprites(Atlas).ToDictionary(sprite => sprite.name); // repacked sheet: keep its sprites
             AssetDatabase.ImportAsset(Atlas, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(Atlas);
             importer.textureType = TextureImporterType.Sprite;

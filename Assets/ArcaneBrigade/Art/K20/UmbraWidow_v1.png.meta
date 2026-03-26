@@ -139,8 +139,8 @@ TextureImporter:
       name: UmbraWidow_00
       rect:
         serializedVersion: 2
-        x: 26
-        y: 937
+        x: 836
+        y: 300
         width: 289
         height: 290
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: UmbraWidow_01
       rect:
         serializedVersion: 2
-        x: 398
-        y: 954
+        x: 916
+        y: 0
         width: 194
         height: 293
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: UmbraWidow_02
       rect:
         serializedVersion: 2
-        x: 684
-        y: 951
+        x: 340
+        y: 0
         width: 224
         height: 299
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: UmbraWidow_03
       rect:
         serializedVersion: 2
-        x: 1047
-        y: 958
+        x: 0
+        y: 872
         width: 163
         height: 243
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: UmbraWidow_04
       rect:
         serializedVersion: 2
-        x: 9
-        y: 631
+        x: 568
+        y: 0
         width: 341
         height: 294
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: UmbraWidow_05
       rect:
         serializedVersion: 2
-        x: 425
-        y: 656
+        x: 324
+        y: 304
         width: 220
         height: 283
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: UmbraWidow_06
       rect:
         serializedVersion: 2
-        x: 685
-        y: 644
+        x: 568
+        y: 300
         width: 261
         height: 295
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: UmbraWidow_07
       rect:
         serializedVersion: 2
-        x: 1052
-        y: 640
+        x: 324
+        y: 592
         width: 176
         height: 275
       alignment: 0
@@ -315,8 +315,8 @@ TextureImporter:
       name: UmbraWidow_08
       rect:
         serializedVersion: 2
-        x: 28
-        y: 358
+        x: 836
+        y: 596
         width: 296
         height: 268
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: UmbraWidow_09
       rect:
         serializedVersion: 2
-        x: 343
-        y: 370
+        x: 380
+        y: 872
         width: 287
         height: 232
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: UmbraWidow_10
       rect:
         serializedVersion: 2
-        x: 643
-        y: 353
+        x: 0
+        y: 596
         width: 311
         height: 272
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: UmbraWidow_11
       rect:
         serializedVersion: 2
-        x: 1026
-        y: 358
+        x: 168
+        y: 872
         width: 205
         height: 235
       alignment: 0
@@ -403,8 +403,8 @@ TextureImporter:
       name: UmbraWidow_12
       rect:
         serializedVersion: 2
-        x: 12
-        y: 42
+        x: 0
+        y: 0
         width: 333
         height: 298
       alignment: 0
@@ -425,8 +425,8 @@ TextureImporter:
       name: UmbraWidow_13
       rect:
         serializedVersion: 2
-        x: 348
-        y: 63
+        x: 504
+        y: 600
         width: 293
         height: 266
       alignment: 0
@@ -447,8 +447,8 @@ TextureImporter:
       name: UmbraWidow_14
       rect:
         serializedVersion: 2
-        x: 647
-        y: 53
+        x: 0
+        y: 304
         width: 317
         height: 285
       alignment: 0
@@ -469,8 +469,8 @@ TextureImporter:
       name: UmbraWidow_15
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 49
+        x: 804
+        y: 868
         width: 217
         height: 245
       alignment: 0
@@ -519,6 +519,6 @@ TextureImporter:
       UmbraWidow_15: 260675243
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1136;h=1120;ppu=256;packed=46e41aec
   assetBundleName: 
   assetBundleVariant: 

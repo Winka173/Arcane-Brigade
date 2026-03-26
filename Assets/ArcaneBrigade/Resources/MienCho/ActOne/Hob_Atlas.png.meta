@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: Hob_00
       rect:
         serializedVersion: 2
-        x: 68
-        y: 158
+        x: 812
+        y: 0
         width: 396
         height: 409
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: Hob_01
       rect:
         serializedVersion: 2
-        x: 624
-        y: 159
+        x: 408
+        y: 0
         width: 397
         height: 410
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: Hob_02
       rect:
         serializedVersion: 2
-        x: 1156
-        y: 157
+        x: 0
+        y: 0
         width: 401
         height: 411
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: Hob_03
       rect:
         serializedVersion: 2
-        x: 1713
-        y: 158
+        x: 1212
+        y: 0
         width: 387
         height: 410
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       Hob_03: -1770721855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1612;h=416;ppu=128;packed=d69ac8e9
   assetBundleName: 
   assetBundleVariant: 

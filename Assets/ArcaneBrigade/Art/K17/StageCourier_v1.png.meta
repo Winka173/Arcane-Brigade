@@ -139,8 +139,8 @@ TextureImporter:
       name: StageCourierMotion_00
       rect:
         serializedVersion: 2
-        x: 16
-        y: 772
+        x: 0
+        y: 248
         width: 323
         height: 213
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: StageCourierMotion_01
       rect:
         serializedVersion: 2
-        x: 403
-        y: 778
+        x: 0
+        y: 468
         width: 297
         height: 212
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: StageCourierMotion_02
       rect:
         serializedVersion: 2
-        x: 749
-        y: 752
+        x: 604
+        y: 0
         width: 358
         height: 236
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: StageCourierMotion_03
       rect:
         serializedVersion: 2
-        x: 1155
-        y: 748
+        x: 604
+        y: 240
         width: 275
         height: 229
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: StageCourierMotion_04
       rect:
         serializedVersion: 2
-        x: 28
-        y: 397
+        x: 292
+        y: 0
         width: 307
         height: 240
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: StageCourierMotion_05
       rect:
         serializedVersion: 2
-        x: 392
-        y: 394
+        x: 256
+        y: 684
         width: 306
         height: 192
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: StageCourierMotion_06
       rect:
         serializedVersion: 2
-        x: 800
-        y: 391
+        x: 0
+        y: 684
         width: 252
         height: 200
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: StageCourierMotion_07
       rect:
         serializedVersion: 2
-        x: 1148
-        y: 402
+        x: 0
+        y: 0
         width: 285
         height: 242
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: StageCourierMotion_08
       rect:
         serializedVersion: 2
-        x: 14
-        y: 84
+        x: 256
+        y: 880
         width: 363
         height: 188
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: StageCourierMotion_09
       rect:
         serializedVersion: 2
-        x: 396
-        y: 97
+        x: 304
+        y: 476
         width: 344
         height: 201
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: StageCourierMotion_10
       rect:
         serializedVersion: 2
-        x: 765
-        y: 73
+        x: 652
+        y: 680
         width: 296
         height: 198
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: StageCourierMotion_11
       rect:
         serializedVersion: 2
-        x: 1126
-        y: 77
+        x: 652
+        y: 476
         width: 303
         height: 200
       alignment: 9
@@ -427,6 +427,6 @@ TextureImporter:
       StageCourierMotion_11: 966862500
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1448;h=1088;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=972;h=1072;ppu=256;packed=97715b97
   assetBundleName: 
   assetBundleVariant: 

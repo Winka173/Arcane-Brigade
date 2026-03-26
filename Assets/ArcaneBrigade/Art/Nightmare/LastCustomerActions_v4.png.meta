@@ -139,8 +139,8 @@ TextureImporter:
       name: LastCustomerAction_00
       rect:
         serializedVersion: 2
-        x: 101
-        y: 644
+        x: 0
+        y: 0
         width: 525
         height: 575
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: LastCustomerAction_01
       rect:
         serializedVersion: 2
-        x: 670
-        y: 645
+        x: 0
+        y: 580
         width: 516
         height: 358
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: LastCustomerAction_02
       rect:
         serializedVersion: 2
-        x: 78
-        y: 90
+        x: 532
+        y: 0
         width: 519
         height: 487
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: LastCustomerAction_03
       rect:
         serializedVersion: 2
-        x: 676
-        y: 86
+        x: 532
+        y: 492
         width: 541
         height: 482
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       LastCustomerAction_03: 1616681492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1084;h=980;ppu=128;packed=98c595aa
   assetBundleName: 
   assetBundleVariant: 

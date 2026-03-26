@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemySpareChair_00
       rect:
         serializedVersion: 2
-        x: 85
-        y: 1205
+        x: 476
+        y: 0
         width: 215
         height: 261
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemySpareChair_01
       rect:
         serializedVersion: 2
-        x: 463
-        y: 1205
+        x: 244
+        y: 0
         width: 225
         height: 266
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemySpareChair_02
       rect:
         serializedVersion: 2
-        x: 840
-        y: 1205
+        x: 0
+        y: 0
         width: 240
         height: 267
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemySpareChair_03
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 1205
+        x: 980
+        y: 0
         width: 224
         height: 256
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemySpareChair_04
       rect:
         serializedVersion: 2
-        x: 60
-        y: 821
+        x: 0
+        y: 780
         width: 264
         height: 222
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemySpareChair_05
       rect:
         serializedVersion: 2
-        x: 447
-        y: 821
+        x: 696
+        y: 264
         width: 257
         height: 260
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemySpareChair_06
       rect:
         serializedVersion: 2
-        x: 820
-        y: 821
+        x: 696
+        y: 0
         width: 280
         height: 259
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemySpareChair_07
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 821
+        x: 980
+        y: 260
         width: 224
         height: 252
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemySpareChair_08
       rect:
         serializedVersion: 2
-        x: 65
-        y: 437
+        x: 0
+        y: 528
         width: 255
         height: 246
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemySpareChair_09
       rect:
         serializedVersion: 2
-        x: 451
-        y: 437
+        x: 284
+        y: 272
         width: 251
         height: 251
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemySpareChair_10
       rect:
         serializedVersion: 2
-        x: 835
-        y: 437
+        x: 260
+        y: 528
         width: 250
         height: 245
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemySpareChair_11
       rect:
         serializedVersion: 2
-        x: 1231
-        y: 437
+        x: 960
+        y: 516
         width: 227
         height: 242
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemySpareChair_12
       rect:
         serializedVersion: 2
-        x: 63
-        y: 52
+        x: 268
+        y: 780
         width: 259
         height: 224
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemySpareChair_13
       rect:
         serializedVersion: 2
-        x: 439
-        y: 52
+        x: 744
+        y: 764
         width: 273
         height: 239
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemySpareChair_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 53
+        x: 0
+        y: 272
         width: 280
         height: 250
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemySpareChair_15
       rect:
         serializedVersion: 2
-        x: 1233
-        y: 52
+        x: 516
+        y: 528
         width: 222
         height: 244
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemySpareChair_15: 1169543880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1212;h=1008;ppu=256;packed=c1ec2d82
   assetBundleName: 
   assetBundleVariant: 

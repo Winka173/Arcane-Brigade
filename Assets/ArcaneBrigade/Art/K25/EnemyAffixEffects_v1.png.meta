@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyAffixEffect_00
       rect:
         serializedVersion: 2
-        x: 86
-        y: 979
+        x: 184
+        y: 472
         width: 156
         height: 181
       alignment: 0
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyAffixEffect_01
       rect:
         serializedVersion: 2
-        x: 397
-        y: 975
+        x: 540
+        y: 252
         width: 160
         height: 201
       alignment: 0
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyAffixEffect_02
       rect:
         serializedVersion: 2
-        x: 700
-        y: 974
+        x: 704
+        y: 240
         width: 168
         height: 220
       alignment: 0
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyAffixEffect_03
       rect:
         serializedVersion: 2
-        x: 1006
-        y: 974
+        x: 540
+        y: 464
         width: 180
         height: 196
       alignment: 0
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyAffixEffect_04
       rect:
         serializedVersion: 2
-        x: 77
-        y: 671
+        x: 184
+        y: 256
         width: 163
         height: 212
       alignment: 0
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyAffixEffect_05
       rect:
         serializedVersion: 2
-        x: 385
-        y: 665
+        x: 704
+        y: 0
         width: 172
         height: 234
       alignment: 0
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyAffixEffect_06
       rect:
         serializedVersion: 2
-        x: 701
-        y: 661
+        x: 352
+        y: 0
         width: 170
         height: 247
       alignment: 0
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyAffixEffect_07
       rect:
         serializedVersion: 2
-        x: 1005
-        y: 664
+        x: 352
+        y: 252
         width: 184
         height: 219
       alignment: 0
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyAffixEffect_08
       rect:
         serializedVersion: 2
-        x: 70
-        y: 354
+        x: 876
+        y: 460
         width: 181
         height: 206
       alignment: 0
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyAffixEffect_09
       rect:
         serializedVersion: 2
-        x: 389
-        y: 349
+        x: 880
+        y: 0
         width: 173
         height: 227
       alignment: 0
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyAffixEffect_10
       rect:
         serializedVersion: 2
-        x: 697
-        y: 342
+        x: 0
+        y: 0
         width: 173
         height: 258
       alignment: 0
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyAffixEffect_11
       rect:
         serializedVersion: 2
-        x: 1013
-        y: 348
+        x: 880
+        y: 232
         width: 178
         height: 221
       alignment: 0
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyAffixEffect_12
       rect:
         serializedVersion: 2
-        x: 72
-        y: 54
+        x: 344
+        y: 476
         width: 181
         height: 175
       alignment: 0
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyAffixEffect_13
       rect:
         serializedVersion: 2
-        x: 388
-        y: 38
+        x: 180
+        y: 0
         width: 167
         height: 251
       alignment: 0
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyAffixEffect_14
       rect:
         serializedVersion: 2
-        x: 699
-        y: 39
+        x: 528
+        y: 0
         width: 170
         height: 248
       alignment: 0
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyAffixEffect_15
       rect:
         serializedVersion: 2
-        x: 1011
-        y: 39
+        x: 0
+        y: 264
         width: 177
         height: 213
       alignment: 0
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyAffixEffect_15: -1609966749
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1256;h=1256;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1068;h=672;ppu=256;packed=e4e4882c
   assetBundleName: 
   assetBundleVariant: 

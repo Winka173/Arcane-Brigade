@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyLampSnuffer_00
       rect:
         serializedVersion: 2
-        x: 90
-        y: 1205
+        x: 916
+        y: 0
         width: 204
         height: 225
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyLampSnuffer_01
       rect:
         serializedVersion: 2
-        x: 479
-        y: 1205
+        x: 492
+        y: 244
         width: 193
         height: 222
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyLampSnuffer_02
       rect:
         serializedVersion: 2
-        x: 851
-        y: 1205
+        x: 692
+        y: 0
         width: 217
         height: 226
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyLampSnuffer_03
       rect:
         serializedVersion: 2
-        x: 1234
-        y: 1205
+        x: 0
+        y: 256
         width: 220
         height: 220
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyLampSnuffer_04
       rect:
         serializedVersion: 2
-        x: 88
-        y: 821
+        x: 692
+        y: 460
         width: 208
         height: 209
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyLampSnuffer_05
       rect:
         serializedVersion: 2
-        x: 476
-        y: 821
+        x: 224
+        y: 476
         width: 200
         height: 210
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyLampSnuffer_06
       rect:
         serializedVersion: 2
-        x: 820
-        y: 821
+        x: 692
+        y: 232
         width: 280
         height: 223
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyLampSnuffer_07
       rect:
         serializedVersion: 2
-        x: 1239
-        y: 821
+        x: 0
+        y: 480
         width: 211
         height: 187
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyLampSnuffer_08
       rect:
         serializedVersion: 2
-        x: 91
-        y: 437
+        x: 284
+        y: 0
         width: 204
         height: 242
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyLampSnuffer_09
       rect:
         serializedVersion: 2
-        x: 480
-        y: 437
+        x: 492
+        y: 0
         width: 193
         height: 240
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyLampSnuffer_10
       rect:
         serializedVersion: 2
-        x: 848
-        y: 437
+        x: 1124
+        y: 0
         width: 222
         height: 224
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyLampSnuffer_11
       rect:
         serializedVersion: 2
-        x: 1242
-        y: 437
+        x: 284
+        y: 248
         width: 204
         height: 223
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyLampSnuffer_12
       rect:
         serializedVersion: 2
-        x: 84
-        y: 53
+        x: 1124
+        y: 228
         width: 216
         height: 224
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyLampSnuffer_13
       rect:
         serializedVersion: 2
-        x: 471
-        y: 53
+        x: 976
+        y: 456
         width: 211
         height: 218
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyLampSnuffer_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 53
+        x: 0
+        y: 0
         width: 280
         height: 250
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyLampSnuffer_15
       rect:
         serializedVersion: 2
-        x: 1242
-        y: 53
+        x: 428
+        y: 476
         width: 204
         height: 204
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyLampSnuffer_15: 375180538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1352;h=692;ppu=256;packed=cdfd7aa2
   assetBundleName: 
   assetBundleVariant: 

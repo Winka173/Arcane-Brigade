@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: LivingChest_00
       rect:
         serializedVersion: 2
-        x: 41
-        y: 95
+        x: 1456
+        y: 0
         width: 494
         height: 418
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: LivingChest_01
       rect:
         serializedVersion: 2
-        x: 590
-        y: 95
+        x: 960
+        y: 0
         width: 492
         height: 424
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: LivingChest_02
       rect:
         serializedVersion: 2
-        x: 1131
-        y: 95
+        x: 464
+        y: 0
         width: 491
         height: 482
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: LivingChest_03
       rect:
         serializedVersion: 2
-        x: 1687
-        y: 94
+        x: 0
+        y: 0
         width: 459
         height: 540
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       LivingChest_03: 996131866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1964;h=544;ppu=128;packed=1ec7ea6b
   assetBundleName: 
   assetBundleVariant: 

@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: BuildMorphCharm_00
       rect:
         serializedVersion: 2
-        x: 64
-        y: 488
+        x: 280
+        y: 424
         width: 134
         height: 200
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: BuildMorphCharm_01
       rect:
         serializedVersion: 2
-        x: 318
-        y: 488
+        x: 0
+        y: 220
         width: 139
         height: 208
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: BuildMorphCharm_02
       rect:
         serializedVersion: 2
-        x: 557
-        y: 499
+        x: 456
+        y: 416
         width: 144
         height: 198
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: BuildMorphCharm_03
       rect:
         serializedVersion: 2
-        x: 829
-        y: 487
+        x: 144
+        y: 220
         width: 132
         height: 207
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: BuildMorphCharm_04
       rect:
         serializedVersion: 2
-        x: 75
-        y: 267
+        x: 0
+        y: 432
         width: 117
         height: 196
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: BuildMorphCharm_05
       rect:
         serializedVersion: 2
-        x: 301
-        y: 265
+        x: 280
+        y: 220
         width: 170
         height: 198
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: BuildMorphCharm_06
       rect:
         serializedVersion: 2
-        x: 580
-        y: 265
+        x: 504
+        y: 0
         width: 125
         height: 202
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: BuildMorphCharm_07
       rect:
         serializedVersion: 2
-        x: 814
-        y: 288
+        x: 124
+        y: 432
         width: 139
         height: 179
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: BuildMorphCharm_08
       rect:
         serializedVersion: 2
-        x: 60
-        y: 33
+        x: 188
+        y: 0
         width: 157
         height: 213
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: BuildMorphCharm_09
       rect:
         serializedVersion: 2
-        x: 309
-        y: 33
+        x: 0
+        y: 0
         width: 184
         height: 213
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: BuildMorphCharm_10
       rect:
         serializedVersion: 2
-        x: 594
-        y: 42
+        x: 504
+        y: 208
         width: 87
         height: 204
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: BuildMorphCharm_11
       rect:
         serializedVersion: 2
-        x: 819
-        y: 39
+        x: 352
+        y: 0
         width: 148
         height: 214
       alignment: 9
@@ -427,6 +427,6 @@ TextureImporter:
       BuildMorphCharm_11: -432202080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1024;h=1536;ppu=128
+  userData: BuildSize:std=1024;mob=512;mips=0;w=636;h=632;ppu=128;packed=6e2a83de
   assetBundleName: 
   assetBundleVariant: 

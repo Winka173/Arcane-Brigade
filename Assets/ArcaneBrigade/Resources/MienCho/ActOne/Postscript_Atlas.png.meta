@@ -139,8 +139,8 @@ TextureImporter:
       name: Postscript_00
       rect:
         serializedVersion: 2
-        x: 18
-        y: 60
+        x: 508
+        y: 0
         width: 512
         height: 580
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: Postscript_01
       rect:
         serializedVersion: 2
-        x: 556
-        y: 60
+        x: 1024
+        y: 0
         width: 512
         height: 579
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: Postscript_02
       rect:
         serializedVersion: 2
-        x: 1093
-        y: 68
+        x: 1540
+        y: 0
         width: 510
         height: 566
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: Postscript_03
       rect:
         serializedVersion: 2
-        x: 1640
-        y: 60
+        x: 0
+        y: 0
         width: 502
         height: 581
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       Postscript_03: 1844333407
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=4096;mob=2048;mips=0;w=2172;h=724;ppu=128
+  userData: BuildSize:std=4096;mob=2048;mips=0;w=2056;h=588;ppu=128;packed=c700cbb2
   assetBundleName: 
   assetBundleVariant: 

@@ -139,8 +139,8 @@ TextureImporter:
       name: RuneWispEvolution_00
       rect:
         serializedVersion: 2
-        x: 29
-        y: 973
+        x: 824
+        y: 296
         width: 252
         height: 274
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: RuneWispEvolution_01
       rect:
         serializedVersion: 2
-        x: 336
-        y: 972
+        x: 532
+        y: 300
         width: 243
         height: 274
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: RuneWispEvolution_02
       rect:
         serializedVersion: 2
-        x: 635
-        y: 975
+        x: 308
+        y: 580
         width: 287
         height: 249
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: RuneWispEvolution_03
       rect:
         serializedVersion: 2
-        x: 964
-        y: 975
+        x: 780
+        y: 576
         width: 238
         height: 259
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: RuneWispEvolution_04
       rect:
         serializedVersion: 2
-        x: 17
-        y: 680
+        x: 0
+        y: 844
         width: 269
         height: 214
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: RuneWispEvolution_05
       rect:
         serializedVersion: 2
-        x: 323
-        y: 680
+        x: 0
+        y: 1064
         width: 277
         height: 208
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: RuneWispEvolution_06
       rect:
         serializedVersion: 2
-        x: 627
-        y: 674
+        x: 0
+        y: 580
         width: 302
         height: 257
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: RuneWispEvolution_07
       rect:
         serializedVersion: 2
-        x: 980
-        y: 680
+        x: 532
+        y: 836
         width: 229
         height: 234
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: RuneWispEvolution_08
       rect:
         serializedVersion: 2
-        x: 20
-        y: 344
+        x: 0
+        y: 0
         width: 258
         height: 301
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: RuneWispEvolution_09
       rect:
         serializedVersion: 2
-        x: 334
-        y: 344
+        x: 264
+        y: 0
         width: 263
         height: 299
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: RuneWispEvolution_10
       rect:
         serializedVersion: 2
-        x: 632
-        y: 341
+        x: 532
+        y: 0
         width: 288
         height: 295
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: RuneWispEvolution_11
       rect:
         serializedVersion: 2
-        x: 961
-        y: 340
+        x: 824
+        y: 0
         width: 252
         height: 291
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: RuneWispEvolution_12
       rect:
         serializedVersion: 2
-        x: 13
-        y: 59
+        x: 768
+        y: 840
         width: 279
         height: 214
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: RuneWispEvolution_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 59
+        x: 768
+        y: 1060
         width: 291
         height: 210
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: RuneWispEvolution_14
       rect:
         serializedVersion: 2
-        x: 630
-        y: 50
+        x: 0
+        y: 308
         width: 309
         height: 265
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: RuneWispEvolution_15
       rect:
         serializedVersion: 2
-        x: 991
-        y: 56
+        x: 308
+        y: 836
         width: 219
         height: 237
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       RuneWispEvolution_15: -1340751152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1224;h=1288;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1084;h=1276;ppu=256;packed=c8704ca9
   assetBundleName: 
   assetBundleVariant: 

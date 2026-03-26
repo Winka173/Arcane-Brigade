@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 1024
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 89
+        y: 0
         width: 265
         height: 186
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: DreamProjectiles_v1_1
       rect:
         serializedVersion: 2
-        x: 265
-        y: 89
+        x: 272
+        y: 0
         width: 265
         height: 186
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: DreamProjectiles_v1_2
       rect:
         serializedVersion: 2
-        x: 530
-        y: 89
+        x: 272
+        y: 192
         width: 264
         height: 186
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: DreamProjectiles_v1_3
       rect:
         serializedVersion: 2
-        x: 794
-        y: 89
+        x: 0
+        y: 192
         width: 265
         height: 186
       alignment: 9
@@ -243,6 +243,6 @@ TextureImporter:
       DreamProjectiles_v1_3: 2003532666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1060;h=356;ppu=124.8177
+  userData: BuildSize:std=1024;mob=512;mips=0;w=552;h=384;ppu=124.8177;packed=74a11169
   assetBundleName: 
   assetBundleVariant: 

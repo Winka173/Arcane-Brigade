@@ -139,8 +139,8 @@ TextureImporter:
       name: TongueWhip_00
       rect:
         serializedVersion: 2
-        x: 11
-        y: 33
+        x: 0
+        y: 0
         width: 1959
         height: 727
       alignment: 9
@@ -174,6 +174,6 @@ TextureImporter:
       TongueWhip_00: -827963245
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1984;h=796;ppu=128
+  userData: BuildSize:std=2048;mob=2048;mips=0;w=1964;h=732;ppu=128;packed=fd5bf392
   assetBundleName: 
   assetBundleVariant: 

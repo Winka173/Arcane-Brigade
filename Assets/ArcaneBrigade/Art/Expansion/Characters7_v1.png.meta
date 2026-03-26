@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: ExpansionCharacters7_00
       rect:
         serializedVersion: 2
-        x: 94
-        y: 1210
+        x: 408
+        y: 232
         width: 182
         height: 224
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: ExpansionCharacters7_01
       rect:
         serializedVersion: 2
-        x: 488
-        y: 1210
+        x: 212
+        y: 240
         width: 188
         height: 217
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: ExpansionCharacters7_02
       rect:
         serializedVersion: 2
-        x: 854
-        y: 1210
+        x: 220
+        y: 664
         width: 204
         height: 194
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: ExpansionCharacters7_03
       rect:
         serializedVersion: 2
-        x: 1240
-        y: 1210
+        x: 788
+        y: 676
         width: 228
         height: 191
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: ExpansionCharacters7_04
       rect:
         serializedVersion: 2
-        x: 86
-        y: 829
+        x: 0
+        y: 464
         width: 216
         height: 216
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: ExpansionCharacters7_05
       rect:
         serializedVersion: 2
-        x: 467
-        y: 827
+        x: 0
+        y: 240
         width: 208
         height: 217
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: ExpansionCharacters7_06
       rect:
         serializedVersion: 2
-        x: 835
-        y: 828
+        x: 428
+        y: 680
         width: 231
         height: 186
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: ExpansionCharacters7_07
       rect:
         serializedVersion: 2
-        x: 1217
-        y: 826
+        x: 220
+        y: 464
         width: 251
         height: 193
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: ExpansionCharacters7_08
       rect:
         serializedVersion: 2
-        x: 83
-        y: 453
+        x: 636
+        y: 0
         width: 196
         height: 227
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: ExpansionCharacters7_09
       rect:
         serializedVersion: 2
-        x: 468
-        y: 453
+        x: 408
+        y: 0
         width: 224
         height: 226
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: ExpansionCharacters7_10
       rect:
         serializedVersion: 2
-        x: 850
-        y: 455
+        x: 788
+        y: 456
         width: 228
         height: 215
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: ExpansionCharacters7_11
       rect:
         serializedVersion: 2
-        x: 1217
-        y: 451
+        x: 596
+        y: 232
         width: 248
         height: 217
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: ExpansionCharacters7_12
       rect:
         serializedVersion: 2
-        x: 110
-        y: 84
+        x: 244
+        y: 0
         width: 160
         height: 232
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: ExpansionCharacters7_13
       rect:
         serializedVersion: 2
-        x: 482
-        y: 87
+        x: 836
+        y: 0
         width: 175
         height: 228
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: ExpansionCharacters7_14
       rect:
         serializedVersion: 2
-        x: 863
-        y: 85
+        x: 596
+        y: 456
         width: 188
         height: 217
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: ExpansionCharacters7_15
       rect:
         serializedVersion: 2
-        x: 1231
-        y: 82
+        x: 0
+        y: 0
         width: 239
         height: 235
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       ExpansionCharacters7_15: -1409333624
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=128
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=1020;h=872;ppu=128;packed=fc32b0f3
   assetBundleName: 
   assetBundleVariant: 

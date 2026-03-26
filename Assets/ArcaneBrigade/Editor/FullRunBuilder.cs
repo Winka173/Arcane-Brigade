@@ -209,6 +209,7 @@ namespace ArcaneBrigade.Editor
 
         public static Dictionary<string, Sprite> ImportGrid(string path, string[] names, bool body, int columns = 3, float lowerRowFraction = 0.5f)
         {
+            if (BuildSizePolicy.IsPacked(path)) return BuildSizePolicy.PackedSprites(path).ToDictionary(sprite => sprite.name); // repacked sheet: keep its sprites
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             importer.textureType = TextureImporterType.Sprite;

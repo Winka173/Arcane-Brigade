@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyDoorKnocker_00
       rect:
         serializedVersion: 2
-        x: 94
-        y: 1205
+        x: 0
+        y: 256
         width: 198
         height: 209
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyDoorKnocker_01
       rect:
         serializedVersion: 2
-        x: 473
-        y: 1205
+        x: 224
+        y: 248
         width: 206
         height: 213
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyDoorKnocker_02
       rect:
         serializedVersion: 2
-        x: 847
-        y: 1205
+        x: 488
+        y: 468
         width: 226
         height: 202
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyDoorKnocker_03
       rect:
         serializedVersion: 2
-        x: 1244
-        y: 1205
+        x: 720
+        y: 468
         width: 200
         height: 204
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyDoorKnocker_04
       rect:
         serializedVersion: 2
-        x: 85
-        y: 821
+        x: 924
+        y: 468
         width: 213
         height: 196
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyDoorKnocker_05
       rect:
         serializedVersion: 2
-        x: 466
-        y: 821
+        x: 920
+        y: 236
         width: 221
         height: 227
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyDoorKnocker_06
       rect:
         serializedVersion: 2
-        x: 820
-        y: 821
+        x: 204
+        y: 468
         width: 280
         height: 202
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyDoorKnocker_07
       rect:
         serializedVersion: 2
-        x: 1238
-        y: 821
+        x: 1144
+        y: 468
         width: 214
         height: 191
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyDoorKnocker_08
       rect:
         serializedVersion: 2
-        x: 93
-        y: 437
+        x: 716
+        y: 0
         width: 197
         height: 236
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyDoorKnocker_09
       rect:
         serializedVersion: 2
-        x: 475
-        y: 437
+        x: 508
+        y: 0
         width: 201
         height: 237
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyDoorKnocker_10
       rect:
         serializedVersion: 2
-        x: 857
-        y: 437
+        x: 1136
+        y: 0
         width: 207
         height: 232
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyDoorKnocker_11
       rect:
         serializedVersion: 2
-        x: 1238
-        y: 437
+        x: 920
+        y: 0
         width: 212
         height: 231
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyDoorKnocker_12
       rect:
         serializedVersion: 2
-        x: 83
-        y: 53
+        x: 508
+        y: 244
         width: 219
         height: 220
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyDoorKnocker_13
       rect:
         serializedVersion: 2
-        x: 466
-        y: 53
+        x: 0
+        y: 0
         width: 220
         height: 249
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyDoorKnocker_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 53
+        x: 224
+        y: 0
         width: 280
         height: 241
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyDoorKnocker_15
       rect:
         serializedVersion: 2
-        x: 1237
-        y: 53
+        x: 1148
+        y: 236
         width: 215
         height: 225
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyDoorKnocker_15: -48397137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=1368;h=676;ppu=256;packed=3882330c
   assetBundleName: 
   assetBundleVariant: 

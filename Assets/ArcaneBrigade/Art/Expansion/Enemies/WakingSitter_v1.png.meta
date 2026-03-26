@@ -82,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 25
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: EnemyWakingSitter_00
       rect:
         serializedVersion: 2
-        x: 115
-        y: 1205
+        x: 312
+        y: 212
         width: 155
         height: 185
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: EnemyWakingSitter_01
       rect:
         serializedVersion: 2
-        x: 511
-        y: 1205
+        x: 336
+        y: 0
         width: 130
         height: 205
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: EnemyWakingSitter_02
       rect:
         serializedVersion: 2
-        x: 887
-        y: 1204
+        x: 0
+        y: 212
         width: 145
         height: 201
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: EnemyWakingSitter_03
       rect:
         serializedVersion: 2
-        x: 1268
-        y: 1204
+        x: 152
+        y: 212
         width: 153
         height: 198
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: EnemyWakingSitter_04
       rect:
         serializedVersion: 2
-        x: 95
-        y: 820
+        x: 208
+        y: 776
         width: 195
         height: 166
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: EnemyWakingSitter_05
       rect:
         serializedVersion: 2
-        x: 475
-        y: 820
+        x: 0
+        y: 600
         width: 204
         height: 175
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: EnemyWakingSitter_06
       rect:
         serializedVersion: 2
-        x: 820
-        y: 820
+        x: 408
+        y: 776
         width: 281
         height: 161
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: EnemyWakingSitter_07
       rect:
         serializedVersion: 2
-        x: 1249
-        y: 820
+        x: 0
+        y: 780
         width: 184
         height: 159
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: EnemyWakingSitter_08
       rect:
         serializedVersion: 2
-        x: 111
-        y: 436
+        x: 0
+        y: 0
         width: 163
         height: 208
       alignment: 9
@@ -337,8 +337,8 @@ TextureImporter:
       name: EnemyWakingSitter_09
       rect:
         serializedVersion: 2
-        x: 495
-        y: 436
+        x: 168
+        y: 0
         width: 163
         height: 207
       alignment: 9
@@ -359,8 +359,8 @@ TextureImporter:
       name: EnemyWakingSitter_10
       rect:
         serializedVersion: 2
-        x: 867
-        y: 437
+        x: 472
+        y: 0
         width: 187
         height: 201
       alignment: 9
@@ -381,8 +381,8 @@ TextureImporter:
       name: EnemyWakingSitter_11
       rect:
         serializedVersion: 2
-        x: 1260
-        y: 436
+        x: 472
+        y: 208
         width: 169
         height: 201
       alignment: 9
@@ -403,8 +403,8 @@ TextureImporter:
       name: EnemyWakingSitter_12
       rect:
         serializedVersion: 2
-        x: 97
-        y: 52
+        x: 364
+        y: 416
         width: 190
         height: 179
       alignment: 9
@@ -425,8 +425,8 @@ TextureImporter:
       name: EnemyWakingSitter_13
       rect:
         serializedVersion: 2
-        x: 474
-        y: 52
+        x: 152
+        y: 416
         width: 206
         height: 180
       alignment: 9
@@ -447,8 +447,8 @@ TextureImporter:
       name: EnemyWakingSitter_14
       rect:
         serializedVersion: 2
-        x: 820
-        y: 52
+        x: 208
+        y: 600
         width: 282
         height: 172
       alignment: 9
@@ -469,8 +469,8 @@ TextureImporter:
       name: EnemyWakingSitter_15
       rect:
         serializedVersion: 2
-        x: 1241
-        y: 52
+        x: 496
+        y: 600
         width: 204
         height: 170
       alignment: 9
@@ -519,6 +519,6 @@ TextureImporter:
       EnemyWakingSitter_15: -2033365841
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=1024;mips=0;w=1536;h=1536;ppu=256
+  userData: BuildSize:std=1024;mob=1024;mips=0;w=704;h=948;ppu=256;packed=ce95d04f
   assetBundleName: 
   assetBundleVariant: 

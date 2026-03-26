@@ -43,6 +43,20 @@ namespace ArcaneBrigade.Editor
             if (Application.isBatchMode) EditorApplication.Exit(failed == 0 ? 0 : 1);
         }
 
+        private static IEnumerable<string> PackedOrder(string path)
+        {
+            // the packer's order: sprites as listed in the .meta
+            string meta = File.ReadAllText(path + ".meta");
+            foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(meta.Replace("\r\n", "\n"), @"\n      rect:\n        serializedVersion: 2\n        x: (\S+)\n        y: (\S+)\n        width: (\S+)\n        height: (\S+)"))
+                yield return m.Groups[1].Value + "," + m.Groups[2].Value + "," + m.Groups[3].Value + "," + m.Groups[4].Value;
+        }
+        private static uint Crc(string text)
+        {
+            uint crc = 0xffffffff;
+            foreach (byte b in System.Text.Encoding.UTF8.GetBytes(text)) { crc ^= b; for (int k = 0; k < 8; k++) crc = (crc >> 1) ^ (0xedb88320u & (uint)-(int)(crc & 1)); }
+            return ~crc;
+        }
+
         /// <summary>Every texture under the game's folders: no readable flag, a BC7 Standalone override and an ASTC phone
         /// override, sides compressible (multiple of 4; power of two when mipmapped); gauge order maps point/linear/RG16.</summary>
         public static void Policy()
@@ -64,7 +78,14 @@ namespace ArcaneBrigade.Editor
                 }
                 if (texture.format != TextureFormat.BC7 && texture.format != TextureFormat.DXT1 && texture.format != TextureFormat.DXT5) problems.Add("not block-compressed " + path + " " + texture.format + " " + texture.width + "x" + texture.height);
                 var phone = importer.GetPlatformTextureSettings("Android");
-                if (!phone.overridden || phone.format != TextureImporterFormat.ASTC_6x6) problems.Add("no ASTC phone override " + path);
+                if (!phone.overridden || phone.format != TextureImporterFormat.ASTC_6x6 && phone.format != TextureImporterFormat.ASTC_8x8) problems.Add("no ASTC phone override " + path);
+                var entry = BuildSizePolicy.Entry.Parse(importer.userData);
+                if (entry != null && !string.IsNullOrEmpty(entry.Packed) && BuildSizePolicy.IsPacked(path))
+                {
+                    // a repacked sheet must keep the rects it was packed with: a builder slicing it on the old grid would cut wrong cells
+                    string want = entry.Packed; uint crc = Crc(string.Join(";", PackedOrder(path)));
+                    if (crc.ToString("x8") != want) problems.Add("repacked sheet re-sliced " + path);
+                }
             }
             File.WriteAllLines("PreviewExports/BuildSize/PolicyProblems.txt", problems);
             if (problems.Count > 0) throw new InvalidOperationException(problems.Count + " of " + checkedCount + " textures break the build-size policy, first: " + string.Join("; ", problems.Take(5)));

@@ -108,7 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -121,7 +121,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: iOS
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 2
@@ -139,8 +139,8 @@ TextureImporter:
       name: SuspensionMist_00
       rect:
         serializedVersion: 2
-        x: 94
-        y: 474
+        x: 564
+        y: 724
         width: 283
         height: 351
       alignment: 9
@@ -161,8 +161,8 @@ TextureImporter:
       name: SuspensionMist_01
       rect:
         serializedVersion: 2
-        x: 525
-        y: 472
+        x: 0
+        y: 0
         width: 282
         height: 370
       alignment: 9
@@ -183,8 +183,8 @@ TextureImporter:
       name: SuspensionMist_02
       rect:
         serializedVersion: 2
-        x: 969
-        y: 472
+        x: 568
+        y: 364
         width: 274
         height: 353
       alignment: 9
@@ -205,8 +205,8 @@ TextureImporter:
       name: SuspensionMist_03
       rect:
         serializedVersion: 2
-        x: 1411
-        y: 470
+        x: 288
+        y: 0
         width: 273
         height: 362
       alignment: 9
@@ -227,8 +227,8 @@ TextureImporter:
       name: SuspensionMist_04
       rect:
         serializedVersion: 2
-        x: 90
-        y: 49
+        x: 276
+        y: 728
         width: 282
         height: 343
       alignment: 9
@@ -249,8 +249,8 @@ TextureImporter:
       name: SuspensionMist_05
       rect:
         serializedVersion: 2
-        x: 533
-        y: 46
+        x: 288
+        y: 368
         width: 272
         height: 354
       alignment: 9
@@ -271,8 +271,8 @@ TextureImporter:
       name: SuspensionMist_06
       rect:
         serializedVersion: 2
-        x: 972
-        y: 42
+        x: 568
+        y: 0
         width: 268
         height: 357
       alignment: 9
@@ -293,8 +293,8 @@ TextureImporter:
       name: SuspensionMist_07
       rect:
         serializedVersion: 2
-        x: 1412
-        y: 46
+        x: 0
+        y: 376
         width: 272
         height: 356
       alignment: 9
@@ -335,6 +335,6 @@ TextureImporter:
       SuspensionMist_07: -1240897758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: BuildSize:std=2048;mob=2048;mips=0;w=1776;h=888;ppu=128
+  userData: BuildSize:std=2048;mob=1024;mips=0;w=856;h=1080;ppu=128;packed=db9ad1cb
   assetBundleName: 
   assetBundleVariant: 

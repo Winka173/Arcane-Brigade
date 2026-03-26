@@ -20,17 +20,20 @@ namespace ArcaneBrigade.Editor
     /// - Unity only block-compresses a non-power-of-two texture without mipmaps, so mipmaps are dropped on NPOT art.
     /// - No sprite physics shapes (nothing in the game uses sprite colliders).
     /// - Gauge order maps (Art/Arsenal/Generated/Gauge2_*_Order) are data for GaugeReveal: linear, point, no mipmaps, RG16.
-    /// A texture a builder has made readable keeps its plain import while the builder reads it; the build clears readable.</summary>
+    /// A texture a builder has made readable keeps its plain import while the builder reads it; the build clears readable.
+    /// Phase 2 (20/10/2026): soft art ("soft=1": rings, flashes, puffs, floors, backdrops) is ASTC 8x8 on phones; sheets
+    /// repacked without empty canvas carry "packed=<crc of their rects>" and slicers leave them alone (IsPacked); music
+    /// is Vorbis 0.45 on Android/iOS only (PC audio is untouched).</summary>
     public sealed class BuildSizePolicy : AssetPostprocessor, IPreprocessBuildWithReport
     {
-        public const uint PolicyVersion = 1;
+        public const uint PolicyVersion = 2;
         public override uint GetVersion() => PolicyVersion;
         public override int GetPostprocessOrder() => 1000;
         public int callbackOrder => 0;
 
         public sealed class Entry
         {
-            public int Std, Mob, W, H; public bool Mips, Npot; public float Ppu; public Vector2? Pivot;
+            public int Std, Mob, W, H; public bool Mips, Npot, Soft; public string Packed; public float Ppu; public Vector2? Pivot;
             public static Entry Parse(string userData)
             {
                 if (string.IsNullOrEmpty(userData) || !userData.StartsWith("BuildSize:", StringComparison.Ordinal)) return null;
@@ -47,6 +50,8 @@ namespace ArcaneBrigade.Editor
                         case "h": e.H = int.Parse(kv[1]); break;
                         case "mips": e.Mips = kv[1] == "1"; break;
                         case "npot": e.Npot = kv[1] == "1"; break;
+                        case "soft": e.Soft = kv[1] == "1"; break;
+                        case "packed": e.Packed = kv[1]; break;
                         case "ppu": e.Ppu = F(kv[1]); break;
                         case "piv": string[] p = kv[1].Split(','); e.Pivot = new Vector2(F(p[0]), F(p[1])); break;
                     }
@@ -113,7 +118,31 @@ namespace ArcaneBrigade.Editor
             if (importer.isReadable) return; // a builder is reading this painting's pixels right now; the build clears readable
             int std = current ? entry.Std : Mathf.Min(PotCeil(longest), Mathf.Max(32, importer.maxTextureSize));
             int mob = current ? entry.Mob : Mathf.Max(32, Mathf.Min(std, PotCeil(Mathf.RoundToInt(longest * 0.6f))));
-            Platforms(importer, std, mob, TextureImporterFormat.BC7, TextureImporterFormat.ASTC_6x6);
+            Platforms(importer, std, mob, TextureImporterFormat.BC7, current && entry.Soft ? TextureImporterFormat.ASTC_8x8 : TextureImporterFormat.ASTC_6x6);
+        }
+
+        /// <summary>True while a repacked sheet still has the size it was packed at: its cells no longer sit on the painted grid,
+        /// so a builder must keep its sprites instead of slicing the sheet again (a repainted sheet has another size).</summary>
+        public static bool IsPacked(string path)
+        {
+            if (!(AssetImporter.GetAtPath(path) is TextureImporter importer)) return false;
+            Entry entry = Entry.Parse(importer.userData);
+            return entry != null && !string.IsNullOrEmpty(entry.Packed) && SourceSize(path, importer, out int w, out int h) && w == entry.W && h == entry.H;
+        }
+        public static Sprite[] PackedSprites(string path) => AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().OrderBy(s => s.name).ToArray();
+
+        private static bool IsMusic(string path) => path.Contains("/Resources/Audio/") && (path.Contains("/Music/") || path.Contains("/Licensed/") || path.Count(c => c == '/') == 4);
+        private void OnPreprocessAudio()
+        {
+            string path = assetPath.Replace('\\', '/');
+            if (!path.StartsWith("Assets/ArcaneBrigade/", StringComparison.Ordinal) || !IsMusic(path)) return;
+            var importer = (AudioImporter)assetImporter;
+            foreach (string platform in new[] { "Android", "iOS" })
+            {
+                AudioImporterSampleSettings s = importer.defaultSampleSettings;
+                s.compressionFormat = AudioCompressionFormat.Vorbis; s.quality = Mathf.Min(s.quality, 0.45f);
+                importer.SetOverrideSampleSettings(platform, s);
+            }
         }
 
         public static void Platforms(TextureImporter importer, int std, int mob, TextureImporterFormat pc, TextureImporterFormat phone)
@@ -141,6 +170,22 @@ namespace ArcaneBrigade.Editor
             }
             if (count > 0) Debug.Log("BUILD_SIZE_POLICY readable cleared on " + count + " textures");
             return count;
+        }
+
+        /// <summary>Phase 2 follow-ups after the sheets were repacked and the outlines lightened (scratchpad repack.py):
+        /// ink boxes checked (they are relative to each sprite's pivot, so they stay), stat-icon pixel rects measured again.</summary>
+        public static void ApplyPhase2()
+        {
+            var log = new List<string>();
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            log.Add("readable cleared: " + ClearReadable());
+            log.Add(RebakeInkMetrics());
+            log.Add(RemeasureStatIcons());
+            AssetDatabase.SaveAssets();
+            Directory.CreateDirectory("PreviewExports/BuildSize");
+            File.WriteAllLines("PreviewExports/BuildSize/ApplyPhase2.txt", log);
+            Debug.Log("BUILD_SIZE_PHASE2_DONE\n" + string.Join("\n", log));
+            BuildSizeReport.Run();
         }
 
         /// <summary>Phase 1 follow-ups after the PNGs were resized (Tools: scratchpad resample.py): order maps rebaked at the new
